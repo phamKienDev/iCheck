@@ -1,0 +1,140 @@
+package vn.icheck.android.screen.scan.viewmodel
+
+import android.util.Patterns
+import androidx.hilt.Assisted
+import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModel
+import com.scandit.barcodepicker.BarcodePicker
+import vn.icheck.android.ICheckApplication
+import vn.icheck.android.R
+import vn.icheck.android.base.model.ICError
+import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.loyalty.helper.ToastHelper
+import vn.icheck.android.network.base.ICNewApiListener
+import vn.icheck.android.network.base.ICResponse
+import vn.icheck.android.network.base.ICResponseCode
+import vn.icheck.android.network.feature.product.ProductInteractor
+import vn.icheck.android.network.feature.user.UserInteractor
+import vn.icheck.android.network.models.ICMyID
+import vn.icheck.android.network.models.ICValidStampSocial
+import vn.icheck.android.screen.scan.model.ICKScanModel
+import vn.icheck.android.util.ick.showSimpleErrorToast
+
+class ICKScanViewModel : ViewModel() {
+    private var ickScanModel = ICKScanModel()
+    val ickScanModelLiveData = MutableLiveData<ICKScanModel>()
+    var mPicker: BarcodePicker? = null
+    val mScreen = MutableLiveData<ScanScreen>()
+
+    val userInteractor = UserInteractor()
+
+    val onError = MutableLiveData<ICError>()
+    val liveData = MutableLiveData<String>()
+    var scanOnlyChat = false
+    var scanOnly = false
+    var reviewOnly = false
+    val repository = ProductInteractor()
+
+    var codeScan = ""
+
+    val stampHoaPhat = MutableLiveData<ICValidStampSocial>()
+    val stampThinhLong = MutableLiveData<ICValidStampSocial>()
+    val showDialogSuggestApp = MutableLiveData<ICValidStampSocial>()
+    val checkStampSocial = MutableLiveData<ICValidStampSocial>()
+    val stampFake = MutableLiveData<String>()
+    val errorQr = MutableLiveData<String>()
+    val errorString = MutableLiveData<String>()
+
+    fun getMyID() {
+        if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
+            onError.postValue(ICError(R.drawable.ic_error_network, ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), null, null))
+            return
+        }
+
+        userInteractor.getMyID(object : ICNewApiListener<ICResponse<ICMyID>> {
+            override fun onSuccess(obj: ICResponse<ICMyID>) {
+                if (obj.data != null) {
+                    if (obj.data!!.myId.isNotEmpty()) {
+                        liveData.postValue(obj.data!!.myId)
+                    }
+                }
+            }
+
+            override fun onError(error: ICResponseCode?) {
+                onError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai), null, null))
+            }
+        })
+    }
+
+    fun checkQrStampSocial() {
+        if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
+            errorString.postValue(ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+            return
+        }
+
+        if (Patterns.WEB_URL.matcher(codeScan).matches()) {
+            if (!codeScan.startsWith("http")) {
+                codeScan = "http://$codeScan"
+            }
+        }
+
+        repository.checkScanQrCode(codeScan, object : ICNewApiListener<ICResponse<ICValidStampSocial>> {
+            override fun onSuccess(obj: ICResponse<ICValidStampSocial>) {
+                when (obj.data?.theme) {
+                    1 -> {
+                        stampHoaPhat.postValue(obj.data)
+                    }
+                    2 -> {
+                        stampThinhLong.postValue(obj.data)
+                    }
+                    else -> {
+                        if (obj.data?.suggest_apps.isNullOrEmpty()) {
+                            checkStampSocial.postValue(obj.data)
+                        } else {
+                            showDialogSuggestApp.postValue(obj.data)
+                        }
+                    }
+                }
+            }
+
+            override fun onError(error: ICResponseCode?) {
+                if (error?.code == 400) {
+                    stampFake.postValue("Sản phẩm này có dấu hiệu làm giả sản phẩm chính hãng.\nXin vui lòng liên hệ với đơn vị phân phối chính hãng để được hỗ trợ.")
+                } else {
+                    errorQr.postValue(codeScan)
+                }
+            }
+        })
+    }
+
+    fun setGuide() {
+        ickScanModel.showGuide = !ickScanModel.showGuide
+        ickScanModelLiveData.postValue(ickScanModel)
+    }
+
+    fun offGuide() {
+        ickScanModel.showGuide = false
+        ickScanModelLiveData.postValue(ickScanModel)
+    }
+
+    fun setFlash() {
+        ickScanModel.isFlash = !ickScanModel.isFlash
+        ickScanModelLiveData.postValue(ickScanModel)
+    }
+
+    fun navigate(screen: ScanScreen) {
+        mScreen.postValue(screen)
+    }
+
+    enum class ScanScreen {
+        SCAN,
+        SCAN_BUY,
+        MY_CODE
+    }
+
+    fun dispose() {
+        repository.dispose()
+    }
+}

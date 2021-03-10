@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/imgBack"
+            android:layout_width="@dimen/size_44"
+            android:layout_height="@dimen/size_44"
+            android:background="@color/transparent"
+            app:layout_constraintBottom_toBottomOf="@id/edtSearch"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/edtSearch"
+            app:srcCompat="@drawable/ic_back_blue_24px_new" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edtSearch"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/size_40"
+            android:layout_marginTop="@dimen/size_12"
+            android:layout_marginBottom="@dimen/size_12"
+            android:background="@drawable/bg_corner_4_gray"
+            android:drawablePadding="@dimen/size_12"
+            android:fontFamily="@font/barlow_medium"
+            android:hint="@string/tim_kiem_x"
+            android:imeOptions="actionSearch"
+            android:paddingLeft="@dimen/size_12"
+            android:paddingTop="@dimen/size_12"
+            android:paddingBottom="@dimen/size_12"
+            android:singleLine="true"
+            android:textColor="@color/collection_product_name"
+            android:textColorHint="@color/darkGray2"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/imgCart"
+            app:layout_constraintStart_toEndOf="@id/imgBack"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/imgCart"
+            android:layout_width="@dimen/size_44"
+            android:layout_height="44dp"
+            android:background="@color/transparent"
+            android:src="@drawable/ic_cart_blue_no_bg_24"
+            app:layout_constraintBottom_toBottomOf="@id/edtSearch"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/edtSearch" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCountCart"
+            android:layout_width="@dimen/size_22"
+            android:layout_height="@dimen/size_22"
+            android:layout_marginEnd="@dimen/size_3"
+            android:layout_marginRight="@dimen/size_3"
+            android:background="@drawable/bg_circle_count_cart_22dp"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center"
+            tools:text="99"
+            android:visibility="invisible"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@id/imgCart"
+            app:layout_constraintTop_toTopOf="@id/imgCart" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        style="@style/Shadow_Bottom"
+        android:layout_width="match_parent" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcvContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/darkGray6" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</LinearLayout>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:paddingTop="41dp"
+        android:paddingBottom="@dimen/size_12"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/imgBack"
+            android:layout_width="@dimen/size_44"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            app:srcCompat="@drawable/ic_back_black_28px" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:layout_width="@dimen/size_44"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:background="?android:attr/selectableItemBackground"
+            android:visibility="invisible" />
+    </FrameLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgDefault"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/size_60"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        tools:srcCompat="@drawable/ic_onboarding_step2" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_40"
+        android:layout_marginRight="@dimen/size_12"
+        android:ellipsize="end"
+        android:fontFamily="@font/roboto_medium"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textColor="@color/darkBlue"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/imgDefault"
+        tools:text="Chọn quà hay, đổi liền tay" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_10"
+        android:layout_marginRight="@dimen/size_12"
+        android:fontFamily="@font/roboto_regular"
+        android:gravity="center"
+        android:textColor="#434343"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+        tools:text="Sử dụng điểm tích lũy để đổi những\nphần quà hấp dẫn bạn nhé!" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="61dp"
+        android:layout_marginRight="61dp"
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/size_40"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btnQuayLai"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginRight="@dimen/size_6"
+            android:background="@drawable/bg_corner_47_light_gray"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center"
+            android:paddingTop="@dimen/size_10"
+            android:paddingBottom="@dimen/size_10"
+            android:text="Quay lại"
+            android:textColor="#057DDA"
+            android:textSize="16sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btnTiepTuc"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/size_6"
+            android:background="@drawable/bg_corner_47_outline_1_light_blue"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center"
+            android:paddingTop="@dimen/size_10"
+            android:paddingBottom="@dimen/size_10"
+            tools:text="Tiếp tục"
+            android:textColor="#057DDA"
+            android:textSize="16sp" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

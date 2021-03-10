@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:clickable="true"
+    android:focusable="true">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@id/imgBackground"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_image_cover_in_wall"
+        app:layout_constraintDimensionRatio="H,375:139"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@id/img_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
+        android:padding="8dp"
+        android:src="@drawable/ic_back_black_28px"
+        app:layout_constraintStart_toStartOf="@id/imgBackground"
+        app:layout_constraintTop_toTopOf="@id/imgBackground" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@id/layoutCenter"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/bg_white_corners_top_16"
+        android:fillViewport="true"
+        android:paddingTop="72dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_back">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:stretchColumns="2">
+
+            <TableRow
+                android:id="@id/layoutConfirmUpdate"
+                android:visibility="gone">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_12"
+                    android:layout_marginTop="@dimen/size_4"
+                    android:layout_marginEnd="@dimen/size_12"
+                    android:layout_marginBottom="@dimen/size_4"
+                    android:layout_span="2"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@id/tvIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/size_12"
+                            android:layout_marginLeft="@dimen/size_12"
+                            android:layout_marginTop="@dimen/size_12"
+                            android:layout_marginBottom="@dimen/size_12"
+                            android:drawableStart="@drawable/ic_confirm_update_profile"
+                            android:drawableLeft="@drawable/ic_confirm_update_profile"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/size_12"
+                            android:layout_marginLeft="@dimen/size_12"
+                            android:layout_marginTop="@dimen/size_12"
+                            android:layout_marginBottom="@dimen/size_12"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-medium"
+                                android:includeFontPadding="false"
+                                android:text="@string/update_profile_note_title"
+                                android:textColor="#434343"
+                                android:textSize="12sp"
+                                android:textStyle="normal"
+                                app:layout_constraintEnd_toStartOf="@id/tvClose"
+                                app:layout_constraintStart_toEndOf="@id/tvIcon"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/size_4"
+                                android:fontFamily="sans-serif"
+                                android:includeFontPadding="false"
+                                android:text="@string/update_profile_note_content"
+                                android:textColor="#828282"
+                                android:textSize="12sp"
+                                android:textStyle="normal"
+                                app:layout_constraintEnd_toStartOf="@id/tvClose"
+                                app:layout_constraintStart_toEndOf="@id/tvIcon"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </LinearLayout>
+
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@id/txtCloseConfirmUpdate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:padding="@dimen/size_12"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_close_blue_14" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </TableRow>
+
+            <TableRow android:id="@+id/row_gender">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/UpdateProfile_Title"
+                    android:text="@string/gioi_tinh" />
+
+                <RadioGroup
+                    android:id="@id/rdGroup"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:focusable="false"
+                    android:clickable="false"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@id/rbMale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/size_30"
+                        android:background="@drawable/bg_update_male"
+                        android:button="@null"
+                        android:checked="false"
+                        android:drawableStart="@drawable/select_ic_male_18dp"
+                        android:drawableLeft="@drawable/select_ic_male_18dp"
+                        android:drawablePadding="@dimen/size_4"
+                        android:fontFamily="@font/barlow_medium"
+                        android:gravity="center"
+                        android:minWidth="@dimen/size_70"
+                        android:paddingStart="@dimen/size_8"
+                        android:paddingLeft="@dimen/size_8"
+                        android:paddingEnd="@dimen/size_12"
+                        android:paddingRight="@dimen/size_12"
+                        android:text="@string/nam"
+                        android:textColor="@color/text_color_update_profile_gender" />
+
+                    <RadioButton
+                        android:id="@id/rbFemale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/size_30"
+                        android:layout_marginStart="@dimen/size_10"
+                        android:layout_marginLeft="@dimen/size_10"
+                        android:background="@drawable/bg_update_gender_female"
+                        android:button="@null"
+                        android:checked="false"
+                        android:drawableStart="@drawable/select_ic_female_18dp"
+                        android:drawableLeft="@drawable/select_ic_female_18dp"
+                        android:drawablePadding="@dimen/size_4"
+                        android:fontFamily="@font/barlow_medium"
+                        android:gravity="center"
+                        android:minWidth="@dimen/size_70"
+                        android:paddingStart="@dimen/size_8"
+                        android:paddingLeft="@dimen/size_8"
+                        android:paddingEnd="@dimen/size_12"
+                        android:paddingRight="@dimen/size_12"
+                        android:text="@string/nu"
+                        android:textColor="@color/text_color_update_gender_female" />
+
+                    <RadioButton
+                        android:id="@+id/rbGay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/size_30"
+                        android:layout_marginStart="@dimen/size_10"
+                        android:layout_marginLeft="@dimen/size_10"
+                        android:background="@drawable/bg_update_gender_gay"
+                        android:button="@null"
+                        android:checked="false"
+                        android:drawableStart="@drawable/select_ic_gay_18dp"
+                        android:drawableLeft="@drawable/select_ic_gay_18dp"
+                        android:drawablePadding="@dimen/size_4"
+                        android:fontFamily="@font/barlow_medium"
+                        android:gravity="center"
+                        android:minWidth="@dimen/size_70"
+                        android:paddingStart="@dimen/size_8"
+                        android:paddingLeft="@dimen/size_8"
+                        android:paddingEnd="@dimen/size_12"
+                        android:paddingRight="@dimen/size_12"
+                        android:text="@string/khac"
+                        android:textColor="@color/text_color_update_gender_gay" />
+                </RadioGroup>
+            </TableRow>
+
+            <TableRow>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/UpdateProfile_Title_Seccond"
+                    android:text="Họ" />
+
+                <TextView
+                    android:id="@+id/edt_first_name"
+                    style="@style/text_black_barlow"
+                    tools:text="Tran" />
+
+            </TableRow>
+
+            <TableRow>
+
+                <View
+                    style="@style/Line_Gray.Horizontal"
+                    android:layout_span="2"
+                    android:layout_weight="1" />
+            </TableRow>
+            <TableRow>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/UpdateProfile_Title_Seccond"
+                    android:text="Tên" />
+
+                <TextView
+                    android:id="@+id/edt_last_name"
+                    style="@style/text_black_barlow"
+                    tools:text="Van tam"
+                     />
+
+            </TableRow>
+
+            <TableRow>
+
+                <View
+                    style="@style/Line_Gray.Horizontal"
+                    android:layout_span="2"
+                    android:layout_weight="1" />
+            </TableRow>
+
+            <TableRow android:id="@+id/row_birthday">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/UpdateProfile_Title"
+                    android:text="@string/ngay_sinh" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@id/txtBirthday"
+                    style="@style/text_black_barlow"
+                    tools:text="24/10/2010"/>
+            </TableRow>
+
+            <TableRow>
+
+                <View
+                    style="@style/Line_Gray_Wall.HorizontalWall"
+                    android:layout_span="2"
+                    android:layout_weight="1" />
+            </TableRow>
+
+            <TableRow android:id="@+id/row_phone">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/UpdateProfile_Title"
+                    android:text="@string/so_dien_thoai" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@id/edtPhone"
+                    style="@style/text_black_barlow"
+                    tools:text="0989187893"/>
+
+            </TableRow>
+
+            <TableRow
+                android:id="@id/layoutGiftPhone"
+                android:visibility="gone">
+
+                <View />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@id/txtConfirmPhone"
+                    style="@style/UpdateProfile_Gift"
+                    android:layout_marginBottom="@dimen/size_12"
+                    android:text="@string/update_profile_gift_phone" />
+            </TableRow>
+
+            <TableRow>
+
+                <View
+                    android:id="@+id/view_phone"
+                    style="@style/Line_Gray.Horizontal"
+                    android:layout_span="2"
+                    android:layout_weight="1" />
+            </TableRow>
+
+            <TableRow android:id="@+id/row_email">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/UpdateProfile_Title"
+                    android:text="@string/email" />
+
+                <TextView
+                    android:id="@id/edtEmail"
+                    style="@style/text_black_barlow"
+                    tools:text="donsogd@gmail.com"
+                   />
+            </TableRow>
+
+            <TableRow
+                android:id="@id/layoutGiftEmail"
+                android:visibility="gone">
+
+                <View />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@id/txtConfirmEmail"
+                    style="@style/UpdateProfile_Gift"
+                    android:text="@string/update_profile_gift_email" />
+            </TableRow>
+
+            <TableRow>
+
+                <View
+                    android:id="@+id/view_email"
+                    style="@style/Line_Gray_Wall.HorizontalWall"
+                    android:layout_span="2"
+                    android:layout_weight="1" />
+            </TableRow>
+
+            <TableRow android:id="@+id/row_city">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/UpdateProfile_Title"
+                    android:text="@string/tinh_thanh" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@id/txtProvince"
+                    style="@style/text_black_barlow"
+                    tools:text="Ha noi" />
+            </TableRow>
+
+            <TableRow>
+
+                <View
+                    android:id="@+id/view_city"
+                    style="@style/Line_Gray.Horizontal"
+                    android:layout_span="2"
+                    android:layout_weight="1" />
+            </TableRow>
+
+            <TableRow android:id="@+id/row_district">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/UpdateProfile_Title"
+                    android:paddingStart="@dimen/size_12"
+                    android:paddingLeft="@dimen/size_12"
+                    android:paddingEnd="@dimen/size_32"
+                    android:paddingRight="@dimen/size_32"
+                    android:text="@string/quan_huyen" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@id/txtDistrict"
+                    style="@style/text_black_barlow"
+                    tools:text="Thanh xuan" />
+            </TableRow>
+
+            <TableRow>
+
+                <View
+                    android:id="@+id/view_district"
+                    style="@style/Line_Gray.Horizontal"
+                    android:layout_span="2"
+                    android:layout_weight="1" />
+            </TableRow>
+
+            <TableRow android:id="@+id/row_ward">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/UpdateProfile_Title"
+                    android:text="@string/phuong_xa" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@id/tvWard"
+                    style="@style/text_black_barlow"
+                    tools:text="Cau giay" />
+            </TableRow>
+
+            <TableRow>
+
+                <View
+                    android:id="@+id/view_ward"
+                    style="@style/Line_Gray.Horizontal"
+                    android:layout_span="2"
+                    android:layout_weight="1" />
+            </TableRow>
+
+            <TableRow android:id="@+id/row_address">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/UpdateProfile_Title"
+                    android:text="@string/dia_chi" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@id/edtAddress"
+                    style="@style/text_black_barlow"
+                    tools:text="48 le van luong"
+                     />
+            </TableRow>
+
+            <TableRow>
+
+                <View
+                    android:id="@+id/view_address"
+                    style="@style/Line_Gray_Wall.HorizontalWall"
+                    android:layout_span="2"
+                    android:layout_weight="1" />
+            </TableRow>
+
+            <TableRow android:gravity="center_vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/UpdateProfile_Title"
+                    android:text="@string/danh_tinh" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/edtDanhtinh"
+                        style="@style/UpdateProfile_Input"
+                        android:hint="@string/chua_xac_thuc"
+                        android:visibility="visible"
+                        tools:visibility="gone" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txtConfirmedDanhtinh"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_green_20_corner_23"
+                        android:fontFamily="@font/barlow_semi_bold"
+                        android:inputType="textCapWords"
+                        android:paddingLeft="@dimen/size_8"
+                        android:paddingTop="@dimen/size_3"
+                        android:paddingRight="@dimen/size_8"
+                        android:textColor="#85C440"
+                        android:paddingBottom="@dimen/size_3"
+                        android:text="Đã xác thực"
+                        android:textSize="14sp"
+                        android:visibility="gone"
+                        tools:visibility="visible" />
+
+                </LinearLayout>
+            </TableRow>
+            <TableRow>
+
+                <View
+                    style="@style/Line_Gray_Wall.HorizontalWall"
+                    android:layout_span="2"
+                    android:layout_weight="1" />
+            </TableRow>
+
+            <TableRow>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/UpdateProfile_Title"
+                    android:text="@string/tai_khoan" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/id_user"
+                    style="@style/text_black_barlow"
+                    tools:text="IC-5u892"
+                    />
+            </TableRow>
+            <TableRow>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/UpdateProfile_Title"
+                    android:text="@string/nguoi_theo_doi" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/total_follower"
+                    style="@style/text_black_barlow"
+                    tools:text="100.000"
+                    />
+            </TableRow>
+
+        </TableLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <FrameLayout
+        android:id="@id/layoutAvatar"
+        android:layout_width="84dp"
+        android:layout_height="84dp"
+        app:layout_constraintBottom_toTopOf="@id/layoutCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/layoutCenter">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@id/imgAvatar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_circle_avatar_default"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="@dimen/size_2"
+            app:layout_constraintBottom_toTopOf="@id/layoutCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/layoutCenter" />
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

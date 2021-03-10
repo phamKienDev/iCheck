@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/size_10"
+    android:layout_marginLeft="@dimen/size_10"
+    android:layout_marginTop="@dimen/size_10"
+    android:layout_marginEnd="@dimen/size_10"
+    android:layout_marginRight="@dimen/size_10">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/size_10"
+        android:minHeight="234dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <View
+            android:id="@+id/viewBackground"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_0"
+            app:layout_constraintBottom_toTopOf="@id/view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@id/imgAvatar"
+            android:layout_width="@dimen/size_40"
+            android:layout_height="@dimen/size_40"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginLeft="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_14"
+            app:layout_constraintBottom_toTopOf="@id/view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginLeft="@dimen/size_8"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toStartOf="@id/imgDetail"
+            app:layout_constraintStart_toEndOf="@id/imgAvatar"
+            app:layout_constraintTop_toTopOf="@id/imgAvatar">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvNamePage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/size_8"
+                android:ellipsize="end"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:gravity="center_vertical"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                tools:text="Công ty Cổ phần ViviDa" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPageCategory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_3"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_medium"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_4"
+            app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
+            app:layout_constraintEnd_toEndOf="@id/linearLayout"
+            app:layout_constraintStart_toStartOf="@id/linearLayout"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout"
+            tools:text="Doanh nghiệp sở hữu" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/size_12"
+            android:layout_marginRight="@dimen/size_12"
+            app:layout_constraintBottom_toTopOf="@+id/view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="@dimen/size_1"
+            android:layout_marginTop="@dimen/size_12"
+            android:background="@color/gray_ef"
+            app:layout_constraintEnd_toEndOf="@id/imgDetail"
+            app:layout_constraintStart_toStartOf="@id/imgAvatar"
+            app:layout_constraintTop_toBottomOf="@id/imgAvatar" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@id/recyclerView"
+            app:layout_constraintEnd_toEndOf="@id/view"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@id/view"
+            app:layout_constraintTop_toBottomOf="@id/view">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvPhone"
+                style="@style/style_text_barlow_page"
+                android:textColor="@color/lightBlue"
+                android:layout_width="wrap_content"
+                tools:text="0325.332.201" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvDangCapNhatSDT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/barlow_regular"
+                android:gravity="center_vertical"
+                android:layout_marginTop="12dp"
+                android:drawableStart="@drawable/ic_list_blue_12px"
+                android:visibility="visible"
+                android:drawablePadding="2dp"
+                android:textStyle="italic"
+                android:includeFontPadding="false"
+                android:textColor="#B4B4B4"
+                android:textSize="@dimen/font_size_4"
+                android:text="Số điện thoại đang cập nhật"
+                android:drawableLeft="@drawable/ic_list_blue_12px" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvAddress"
+                style="@style/style_text_barlow_page"
+                tools:text="Tầng 12, Diamond Flower Tower, 48 Lê Văn Lương, Nhân Chính, Thanh Xuân, Hà Nội" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginTop="@dimen/size_12"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvMST"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_list_blue_12px"
+                    android:drawableLeft="@drawable/ic_list_blue_12px"
+                    android:drawablePadding="2dp"
+                    android:fontFamily="@font/barlow_medium"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/darkGray1"
+                    android:textSize="@dimen/font_size_4"
+                    tools:text="MST: 5822948" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvDangCapNhatMST"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/barlow_regular"
+                    android:gravity="center_vertical"
+                    android:visibility="visible"
+                    android:textStyle="italic"
+                    android:includeFontPadding="false"
+                    android:textColor="#B4B4B4"
+                    android:textSize="@dimen/font_size_4"
+                    android:text="Đang cập nhật"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_12"
+            android:layout_marginRight="@dimen/size_8"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout2" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutMore"
+        android:layout_width="170dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="@id/constraintLayout"
+        app:layout_constraintStart_toStartOf="@id/constraintLayout"
+        app:layout_constraintTop_toTopOf="@id/constraintLayout">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_seemore_right_36px" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_8"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center_horizontal"
+            android:text="Xem tất cả"
+            android:textColor="@color/lightCyan"
+            android:textSize="@dimen/font_size_4" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.AppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tvDetail"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/size_12"
+    android:paddingLeft="@dimen/size_12"
+    android:paddingEnd="@dimen/size_12"
+    android:paddingTop="@dimen/size_10"
+    android:paddingRight="@dimen/size_12"
+    android:fontFamily="@font/barlow_medium"
+    tools:text="Là một trong những đơn vị cung cấp nguồn hàng rất rất nhiều kinh nghiệm trong ngành"
+    android:textColor="@color/black_21_v2"
+    android:textSize="@dimen/font_size_4" />

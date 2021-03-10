@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vn.icheck.android.ui.colorcardview.ColorCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="246dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="5dp"
+    android:layout_marginTop="9dp"
+    android:layout_marginEnd="5dp"
+    android:layout_marginBottom="20dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="@dimen/size_4"
+    app:cardElevation="4dp"
+    app:cardUseCompatPadding="false"
+    app:cardPreventCornerOverlap="false"
+    app:contentPadding="0dp"
+    app:cardShadowColorEnd="@color/app_selector_shadow_end"
+    app:cardShadowColorStart="@color/elevation_color_card">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@id/imgNews"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            tools:background="@color/light_blue"
+            android:scaleType="centerCrop" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/tvName"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="12dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_medium"
+            android:includeFontPadding="false"
+            android:maxLines="2"
+            android:textColor="@color/black_21_v2"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+</vn.icheck.android.ui.colorcardview.ColorCardView>

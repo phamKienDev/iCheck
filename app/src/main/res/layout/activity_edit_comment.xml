@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@id/layoutContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@id/layoutToolbar"
+        layout="@layout/toolbar_light_blue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@id/imgProduct"
+        android:layout_width="@dimen/size_30"
+        android:layout_height="@dimen/size_30"
+        android:layout_marginEnd="@dimen/size_12"
+        android:layout_marginRight="@dimen/size_12"
+        app:layout_constraintBottom_toBottomOf="@id/layoutToolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/layoutToolbar" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@id/layoutCenter"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0"
+        android:layout_marginBottom="@dimen/size_10"
+        app:layout_constraintBottom_toTopOf="@id/btnCancel"
+        app:layout_constraintTop_toBottomOf="@id/layoutToolbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgLevel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_10"
+                android:src="@drawable/ic_avatar_rank_diamond_16dp"
+                app:layout_constraintEnd_toEndOf="@id/layoutAvatar"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@id/layoutAvatar"
+                android:layout_width="@dimen/size_30"
+                android:layout_height="@dimen/size_30"
+                app:civ_border_color="#D8D8D8"
+                app:civ_border_width="1dp"
+                android:layout_marginStart="@dimen/size_14"
+                android:layout_marginLeft="@dimen/size_14"
+                android:layout_marginTop="@dimen/size_8"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/imgLevel" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgVerified"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_verified_16px"
+                app:layout_constraintBottom_toBottomOf="@id/layoutAvatar"
+                app:layout_constraintEnd_toEndOf="@id/layoutAvatar" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@id/edtComment"
+                android:layout_width="@dimen/size_0"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_5"
+                android:layout_marginLeft="@dimen/size_5"
+                android:layout_marginEnd="@dimen/size_12"
+                android:layout_marginRight="@dimen/size_12"
+                android:background="@drawable/bg_outline_gray_1_corners_4"
+                android:fontFamily="@font/barlow_medium"
+                android:gravity="top"
+                android:hint="@string/viet_binh_luan"
+                android:minLines="5"
+                android:padding="@dimen/size_4"
+                android:textColor="@color/collection_product_name"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/layoutAvatar"
+                app:layout_constraintTop_toTopOf="@id/layoutAvatar" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@id/imageView"
+                android:layout_width="115dp"
+                android:layout_height="115dp"
+                android:layout_marginTop="@dimen/size_10"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                app:layout_constraintStart_toStartOf="@id/edtComment"
+                app:layout_constraintTop_toBottomOf="@id/edtComment" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_4"
+        android:background="@drawable/shadow_bottom"
+        app:layout_constraintTop_toBottomOf="@id/layoutToolbar" />
+
+    <vn.icheck.android.component.view.ButtonWhiteOutlineLightBlueCorners4
+        android:id="@id/btnCancel"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="@dimen/size_36"
+        android:layout_marginStart="@dimen/size_10"
+        android:layout_marginLeft="@dimen/size_10"
+        android:layout_marginEnd="@dimen/size_6"
+        android:layout_marginRight="@dimen/size_6"
+        android:layout_marginBottom="@dimen/size_10"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:text="@string/huy"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnUpdate"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <vn.icheck.android.component.view.ButtonLightBlueCorners4
+        android:id="@id/btnUpdate"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="@dimen/size_36"
+        android:layout_marginStart="@dimen/size_6"
+        android:layout_marginLeft="@dimen/size_6"
+        android:layout_marginEnd="@dimen/size_10"
+        android:layout_marginRight="@dimen/size_10"
+        android:layout_marginBottom="@dimen/size_10"
+        android:text="@string/cap_nhat"
+        android:fontFamily="@font/barlow_semi_bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnCancel" />
+</androidx.constraintlayout.widget.ConstraintLayout>

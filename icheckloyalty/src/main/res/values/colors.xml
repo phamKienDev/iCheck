@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="black_10">#1A000000</color>
+
+    <color name="green">#62AF58</color>
+    <color name="errorColor">#EB5757</color>
+    <color name="orange">#FBBB00</color>
+    <color name="titleToolbar">#20336b</color>
+    <color name="darkGray3">#828282</color>
+    <color name="blue">#3C5A99</color>
+    <color name="yellow">#FFB800</color>
+    <color name="darkGray2">#B4B4B4</color>
+    <color name="gray_v2">#757575</color>
+    <color name="gray">#D8D8D8</color>
+    <color name="black_60">#99000000</color>
+    <color name="lightBlue">#057DDA</color>
+    <color name="lightCyan">#00BAF2</color>
+    <color name="darkBlue">#20336B</color>
+    <color name="red">#ff0000</color>
+    <color name="transparent">@android:color/transparent</color>
+    <color name="blueVip">#0064B1</color>
+    <color name="blueVip10">#1A0064B1</color>
+    <color name="green_opactity_20">#3349AA2D</color>
+    <color name="orange_opactity">#33FBBB00</color>
+    <color name="green2">#49aa2d</color>
+    <color name="orange_red">#FE4E1B</color>
+    <color name="darkGray1">#434343</color>
+    <color name="lightGray">#F1F1F1</color>
+    <color name="gray_item_search">#F5F5F5</color>
+    <color name="collection_product_name">#212121</color>
+</resources>

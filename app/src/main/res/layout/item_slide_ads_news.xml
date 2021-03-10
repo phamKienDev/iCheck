@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/size_6"
+    android:layout_marginEnd="@dimen/size_6"
+    android:layout_marginBottom="@dimen/size_6"
+    android:background="@drawable/bg_corner_gray_solid_white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@id/imgImage"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_0"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="H, 351:174"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <SurfaceView
+            android:id="@id/surfaceView"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="@dimen/size_0"
+            android:background="@color/black_25"
+            app:layout_constraintBottom_toBottomOf="@id/imgImage"
+            app:layout_constraintEnd_toEndOf="@id/imgImage"
+            app:layout_constraintStart_toStartOf="@id/imgImage"
+            app:layout_constraintTop_toTopOf="@id/imgImage" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/imgPlay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_play_40dp"
+            android:drawableLeft="@drawable/ic_play_40dp"
+            app:layout_constraintBottom_toBottomOf="@id/surfaceView"
+            app:layout_constraintEnd_toEndOf="@id/surfaceView"
+            app:layout_constraintStart_toStartOf="@id/surfaceView"
+            app:layout_constraintTop_toTopOf="@id/surfaceView" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/tvContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="@dimen/size_10"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_medium"
+            android:maxLines="2"
+            android:textColor="@color/collection_product_name"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/surfaceView"
+            tools:text="Học cách sáng tạo trên TikTok để nhãn hàng của bạn nổi bật và thu hút khách hàng- Tối đa 2 dòng..." />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

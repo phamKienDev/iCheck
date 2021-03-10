@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="vn.icheck.android.screen.user.coinhistory.CoinHistoryActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@id/imgBack"
+            android:layout_width="@dimen/size_44"
+            android:layout_height="@dimen/size_44"
+            android:background="?android:attr/selectableItemBackground"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_back_blue_v2_24px" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/txtTitle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_44"
+            android:layout_marginStart="@dimen/size_44"
+            android:layout_marginEnd="@dimen/size_44"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/icheck_xu"
+            android:textColor="@color/lightBlue"
+            android:textSize="18sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@id/imgAction"
+            android:layout_width="@dimen/size_44"
+            android:layout_height="@dimen/size_44"
+            android:layout_gravity="end"
+            android:background="?android:attr/selectableItemBackground"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_filter_24px" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgDot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="@dimen/size_8"
+            android:layout_marginEnd="@dimen/size_8"
+            android:background="?android:attr/selectableItemBackground"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_dot_red_filter_coin" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/view33"
+        style="@style/Shadow_Bottom"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view33">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

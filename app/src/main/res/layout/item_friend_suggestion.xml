@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:padding="@dimen/size_10">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@id/layoutAvatar"
+        android:layout_width="@dimen/size_56"
+        android:layout_height="@dimen/size_56"
+        android:layout_marginTop="@dimen/size_12"
+        app:avatarSize="56dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvIcoin"
+        app:rankSize="@dimen/size_24"
+        tools:src="@drawable/ic_circle_avatar_default" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvIcoin"
+        android:layout_width="@dimen/size_24"
+        android:layout_height="@dimen/size_24"
+        android:layout_marginStart="@dimen/size_34"
+        android:layout_marginLeft="@dimen/size_34"
+        app:layout_constraintStart_toStartOf="@id/layoutAvatar"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:drawableEnd="@drawable/ic_avatar_standard_24dp"
+        tools:drawableRight="@drawable/ic_avatar_rank_silver_16dp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvName"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_14"
+        android:layout_marginLeft="@dimen/size_14"
+        android:ellipsize="end"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:singleLine="true"
+        android:textColor="#212121"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/layoutAvatar"
+        app:layout_constraintTop_toTopOf="@id/layoutAvatar"
+        tools:text="Xuyến Đỗ" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/btnAgree"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/size_28"
+        android:layout_marginTop="@dimen/size_10"
+        android:background="@drawable/btn_light_blue_corners_4"
+        android:drawableStart="@drawable/ic_add_white_12dp"
+        android:drawableLeft="@drawable/ic_add_white_12dp"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:gravity="center"
+        android:minWidth="@dimen/size_100"
+        android:paddingStart="@dimen/size_10"
+        android:paddingEnd="@dimen/size_10"
+        android:text="@string/ket_ban"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/tvName"
+        app:layout_constraintTop_toBottomOf="@id/tvName" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/btnDisagree"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/size_28"
+        android:layout_marginStart="@dimen/size_10"
+        android:layout_marginLeft="@dimen/size_10"
+        android:layout_marginTop="@dimen/size_10"
+        android:background="@drawable/btn_white_outline_light_blue_1_corners_4"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:gravity="center"
+        android:minWidth="@dimen/size_100"
+        android:paddingStart="@dimen/size_12"
+        android:paddingEnd="@dimen/size_12"
+        android:text="@string/xoa"
+        android:textColor="@color/lightBlue"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@id/btnAgree"
+        app:layout_constraintTop_toBottomOf="@id/tvName" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/size_28"
+        android:layout_marginTop="@dimen/size_10"
+        android:background="@drawable/bg_dark_gray_6_corners_4"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:gravity="center"
+        android:minWidth="@dimen/size_100"
+        android:paddingStart="@dimen/size_10"
+        android:paddingEnd="@dimen/size_10"
+        android:text="@string/da_gui_loi_moi"
+        android:textColor="@color/fast_survey_gray"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/tvName"
+        app:layout_constraintTop_toBottomOf="@id/tvName" />
+</androidx.constraintlayout.widget.ConstraintLayout>

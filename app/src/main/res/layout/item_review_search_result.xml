@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/size_12"
+    android:layout_marginTop="@dimen/size_12"
+    android:layout_marginRight="@dimen/size_12"
+    android:background="@drawable/bg_corners_white_4_border_05"
+    android:paddingBottom="@dimen/size_16">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgRank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_4"
+            android:src="@drawable/ic_avatar_rank_silver_16dp"
+            app:layout_constraintEnd_toEndOf="@id/imgAvatar"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgAvatar"
+            android:layout_width="@dimen/size_40"
+            android:layout_height="@dimen/size_40"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="8dp"
+            android:src="@color/colorAccent"
+            app:civ_border_color="@color/gray"
+            app:civ_border_width="@dimen/size_0_5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/imgRank"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgVerified"
+            android:layout_width="@dimen/size_16"
+            android:layout_height="@dimen/size_16"
+            android:src="@drawable/ic_verified_16px"
+            app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
+            app:layout_constraintEnd_toEndOf="@id/imgAvatar" />
+
+        <TextView
+            android:id="@+id/tvNameUser"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="@dimen/size_8"
+            android:layout_marginRight="@dimen/size_8"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:includeFontPadding="false"
+            android:singleLine="true"
+            android:textColor="@color/collection_product_name"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@id/tvLike"
+            app:layout_constraintStart_toEndOf="@+id/imgAvatar"
+            app:layout_constraintTop_toTopOf="@id/imgAvatar"
+            tools:text="Quỳnh Hoa" />
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/barlow_medium"
+            android:includeFontPadding="false"
+            android:textColor="@color/fast_survey_gray"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/tvNameUser"
+            app:layout_constraintTop_toBottomOf="@+id/tvNameUser"
+            tools:text="43 phút trước" />
+
+        <TextView
+            android:id="@+id/tvComment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_10"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/bg_stroke_gray_corner_4"
+            android:drawablePadding="@dimen/size_4"
+            android:padding="@dimen/size_6"
+            android:textColor="@color/fast_survey_gray"
+            android:textSize="12sp"
+            app:drawableStartCompat="@drawable/ic_comment_12px"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="100+" />
+
+        <TextView
+            android:id="@+id/tvLike"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_stroke_gray_corner_4"
+            android:drawablePadding="@dimen/size_4"
+            android:gravity="center"
+            android:padding="@dimen/size_6"
+            android:textColor="@color/fast_survey_gray"
+            android:textSize="12sp"
+            app:drawableStartCompat="@drawable/ic_gray_like_12_px"
+            app:layout_constraintEnd_toStartOf="@+id/tvComment"
+            app:layout_constraintTop_toTopOf="@+id/tvComment"
+            tools:text="100+" />
+
+        <vn.icheck.android.component.rating_star.RatingStarComponent
+            android:id="@+id/containerRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="@+id/imgAvatar"
+            app:layout_constraintTop_toBottomOf="@+id/imgAvatar" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginLeft="@dimen/size_12"
+        android:layout_marginEnd="@dimen/size_16"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:fontFamily="@font/barlow_medium"
+        android:includeFontPadding="false"
+        android:maxLines="4"
+        android:textColor="@color/collection_product_name"
+        android:textSize="14sp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        tools:text="Sản phẩm tốt,ádfsdfdsfsdfsfsdafsdfsdafsdafsafsafsfsadf" />
+
+    <LinearLayout
+        android:id="@+id/containerImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_10"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/size_12"
+        android:paddingRight="@dimen/size_12"
+        app:layout_constraintTop_toBottomOf="@id/tvContent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgOne"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:visibility="visible"
+            app:layout_constraintTop_toBottomOf="@id/tvContent" />
+
+        <vn.icheck.android.component.image.LayoutImageInPostComponent
+            android:id="@+id/imgMulti"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible" />
+    </LinearLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/containerMeta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_12"
+        android:layout_marginRight="@dimen/size_12"
+        android:background="@drawable/bg_gray_f0_corners_4"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/containerImage">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgProduct"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="6dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvProduct"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:includeFontPadding="false"
+            android:maxLines="2"
+            android:textColor="@color/darkGray1"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgProduct"
+            app:layout_constraintTop_toTopOf="@+id/imgProduct"
+            tools:text="Sản phẩm túi giỏ xách mây tre đan chất lượng cao đảm bảo Sản phẩm túi giỏ xách mây tre đan chất lượng cao đảm bảo" />
+
+        <TextView
+            android:id="@+id/tvShop"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="@dimen/size_4"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_medium"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="6sp"
+            android:maxLines="2"
+            android:textColor="@color/fast_survey_gray"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/tvProduct"
+            app:layout_constraintStart_toStartOf="@+id/tvProduct"
+            app:layout_constraintTop_toBottomOf="@+id/tvProduct"
+            tools:text="Công ty cổ phần iCheck" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

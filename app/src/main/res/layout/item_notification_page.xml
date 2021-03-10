@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="128dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/size_5"
+    android:layout_marginEnd="@dimen/size_5"
+    android:background="?android:attr/selectableItemBackground"
+    android:orientation="vertical">
+
+    <vn.icheck.android.ui.view.SquareImageView
+        android:background="@drawable/gray_stroke_corner_4"
+        android:id="@id/imgAvatar"
+        android:padding="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:src="@drawable/ic_square_avatar_default" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_4"
+        android:ellipsize="end"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:includeFontPadding="false"
+        android:singleLine="true"
+        android:textColor="@color/collection_product_name"
+        android:textSize="14sp"
+        tools:text="Trang sức hàng ngày" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_10"
+        android:layout_marginBottom="@dimen/size_10"
+        android:background="@drawable/btn_light_blue_corners_4"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:paddingTop="@dimen/size_8"
+        android:paddingBottom="@dimen/size_8"
+        android:text="@string/theo_doi"
+        android:textAlignment="gravity"
+        android:textColor="#ffffff"
+        android:textSize="14sp" />
+</LinearLayout>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="vn.icheck.android.screen.user.history_accumulate_points.HistoryAccumulatePointActivity">
+
+    <include layout="@layout/toolbar_blue_v2" />
+
+    <vn.icheck.android.component.view.TabLayoutWidthIndicator
+        android:id="@id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/white"
+        app:tabGravity="fill"
+        app:tabIndicatorHeight="@dimen/size_3"
+        app:tabIndicatorColor="@color/lightBlue"
+        app:tabIndicator="@drawable/bg_campaign_history_title"
+        app:tabTextAppearance="@style/MyTabLayoutTextAppearance"
+        app:tabMode="fixed"
+        app:tabRippleColor="@null"
+        app:tabInlineLabel="true"
+        app:tabSelectedTextColor="@color/lightBlue"
+        app:tabTextColor="@color/darkGray2" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_4"
+        android:background="@drawable/shadow_bottom"/>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

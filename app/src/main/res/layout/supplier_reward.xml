@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/size_10"
+    android:layout_marginBottom="@dimen/size_20"
+    android:background="@color/white">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgLogoSupplier"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="#03A9F4" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:src="@drawable/ic_verified_18px"
+        app:layout_constraintBottom_toBottomOf="@+id/imgLogoSupplier"
+        app:layout_constraintEnd_toEndOf="@+id/imgLogoSupplier" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/appCompatTextView33"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/barlow_medium"
+        android:lineSpacingExtra="4sp"
+        android:textColor="#757575"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@id/imgLogoSupplier"
+        app:layout_constraintTop_toTopOf="@id/imgLogoSupplier"
+        android:text="Được cung cấp bởi" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvNameSupplier"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:lineSpacingExtra="6sp"
+        android:textColor="#212121"
+        android:textSize="14sp"
+        android:fontFamily="@font/barlow_semi_bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/appCompatTextView33"
+        app:layout_constraintTop_toBottomOf="@+id/appCompatTextView33"
+        tools:text="Công ty Cổ phần Điện Máy Xanh (không giới hạn dòng)Công ty Cổ phần Điện Máy Xanh (không giới hạn dòng)" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

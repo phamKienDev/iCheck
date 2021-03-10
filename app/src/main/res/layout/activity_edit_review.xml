@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    tools:context="vn.icheck.android.screen.user.edit_review.EditReviewActivity">
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@android:color/white"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:padding="14dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_cancel_light_blue_24dp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:paddingStart="@dimen/size_12"
+            android:paddingEnd="@dimen/size_12"
+            android:singleLine="true"
+            android:textAlignment="center"
+            android:textColor="@color/lightBlue"
+            android:textSize="18sp"
+            app:fontFamily="@font/barlow_semi_bold"
+            android:text="@string/chinh_sua_danh_gia" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgProduct"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
+            app:srcCompat="@drawable/product_images_new_placeholder" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider3"
+        style="@style/Shadow_Bottom"
+        android:layout_width="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvRating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_8"
+        android:paddingLeft="@dimen/size_12"
+        android:paddingRight="@dimen/size_12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider3" />
+
+
+    <LinearLayout
+        android:id="@+id/containerSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_12"
+        android:layout_marginRight="@dimen/size_12"
+        android:background="@drawable/bg_border_gray_4dp_shop"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/size_10"
+        android:paddingRight="@dimen/size_10"
+        app:layout_constraintTop_toBottomOf="@id/rcvRating">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edtContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_6"
+            android:background="@color/transparent"
+            android:ems="10"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="start|top"
+            android:hint="@string/viet_danh_gia"
+            android:inputType="textMultiLine"
+            android:lines="3"
+            android:textColor="@color/collection_product_name"
+            android:textColorHint="@color/fast_survey_gray"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_1"
+            android:layout_marginTop="@dimen/size_12"
+            android:background="@color/gray" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imgCamera"
+            android:layout_marginBottom="@dimen/size_4"
+            android:src="@drawable/ic_camera_off_24px" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvImage"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_20"
+        android:layout_marginEnd="@dimen/size_12"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toTopOf="@id/btnSend"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/containerSubmit" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/btnSend"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_36"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="@dimen/size_20"
+        android:background="@drawable/btn_light_blue_corners_4"
+        android:gravity="center"
+        android:text="@string/hoan_tat"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        app:fontFamily="@font/barlow_semi_bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

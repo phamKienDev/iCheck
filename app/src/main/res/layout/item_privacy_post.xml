@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutPublic"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/size_16">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btnIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_15"
+        android:background="@drawable/ic_radio_un_checked_gray_24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvDesc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvTitle" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_10"
+        android:includeFontPadding="false"
+        android:text="@string/cong_khai"
+        android:textColor="@color/collection_product_name"
+        android:textSize="14sp"
+        app:fontFamily="@font/barlow_medium"
+        app:layout_constraintStart_toEndOf="@id/btnIcon"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_marginLeft="@dimen/size_10" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_4"
+        android:includeFontPadding="false"
+        android:textColor="@color/fast_survey_gray"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        tools:text="Tất cả mọi người đều xem được" />
+</androidx.constraintlayout.widget.ConstraintLayout>

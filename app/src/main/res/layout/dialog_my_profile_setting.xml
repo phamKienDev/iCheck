@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@android:color/transparent"
+    android:paddingStart="@dimen/size_10"
+    android:paddingEnd="@dimen/size_10"
+    android:paddingBottom="@dimen/size_12">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_white_corners_8"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_50"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:text="@string/thiet_lap"
+            android:textColor="#b4b4b4"
+            android:textSize="14sp"
+            android:textStyle="normal" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/txtChangeAvatar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_50"
+            android:background="@drawable/btn_white"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:text="@string/doi_anh_dai_dien"
+            android:textColor="#3fa2f7"
+            android:textSize="18sp"
+            android:textStyle="normal" />
+
+        <View style="@style/Line_Gray.Horizontal" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/txtChangeCover"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_50"
+            android:background="@drawable/btn_white"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:text="@string/doi_anh_bia"
+            android:textColor="#3fa2f7"
+            android:textSize="18sp"
+            android:textStyle="normal" />
+
+        <View style="@style/Line_Gray.Horizontal" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/txtUpdateInfo"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_50"
+            android:background="@drawable/btn_white_bottom_corners_8"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:text="@string/cap_nhat_thong_tin"
+            android:textColor="#3fa2f7"
+            android:textSize="18sp"
+            android:textStyle="normal" />
+
+        <View style="@style/Line_Gray.Horizontal" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/txtCancel"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_50"
+        android:layout_marginTop="@dimen/size_8"
+        android:background="@drawable/btn_white_corners_8"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:text="@string/dong"
+        android:textColor="#3fa2f7"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+</LinearLayout>

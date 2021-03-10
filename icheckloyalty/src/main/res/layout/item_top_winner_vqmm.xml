@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="147dp"
+    android:layout_marginBottom="@dimen/size_2">
+
+    <View
+        android:id="@+id/top1"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="164dp"
+        android:layout_marginLeft="@dimen/size_2"
+        android:layout_marginTop="@dimen/size_2"
+        android:background="@drawable/bg_corners_top_6_white"
+        app:layout_constraintEnd_toStartOf="@id/top3"
+        app:layout_constraintStart_toEndOf="@id/top2"
+        app:layout_constraintTop_toTopOf="@id/tvTop1" />
+
+    <View
+        android:id="@+id/top2"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="@dimen/size_0"
+        android:layout_marginTop="@dimen/size_2"
+        app:layout_constraintEnd_toStartOf="@id/top1"
+        android:background="@drawable/bg_corners_top_left_6_white"
+        app:layout_constraintBottom_toBottomOf="@id/top1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvTop2" />
+
+    <View
+        android:id="@+id/top3"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="@dimen/size_0"
+        app:layout_constraintStart_toEndOf="@id/top1"
+        android:layout_marginTop="@dimen/size_2"
+        android:background="@drawable/bg_corners_top_right_6_white"
+        app:layout_constraintBottom_toBottomOf="@id/top1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvTop3" />
+
+    <View
+        android:layout_width="@dimen/size_2"
+        android:layout_height="@dimen/size_0"
+        android:background="@drawable/ic_winner_left"
+        app:layout_constraintBottom_toBottomOf="@id/top2"
+        app:layout_constraintStart_toEndOf="@id/top2"
+        app:layout_constraintTop_toTopOf="@id/top2" />
+
+    <View
+        android:layout_width="@dimen/size_2"
+        android:layout_height="@dimen/size_0"
+        android:background="@drawable/ic_winner_right"
+        app:layout_constraintBottom_toBottomOf="@id/top3"
+        app:layout_constraintStart_toStartOf="@id/top3"
+        app:layout_constraintTop_toTopOf="@id/top3" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTop2"
+        android:layout_width="@dimen/size_14"
+        android:layout_height="@dimen/size_25"
+        android:layout_marginLeft="@dimen/size_8"
+        android:layout_marginTop="@dimen/size_22"
+        android:background="@drawable/ic_tag_top_yellow"
+        android:fontFamily="@font/roboto_bold"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="2"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/top2"
+        app:layout_constraintTop_toTopOf="@id/top1" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgAvatarTop2"
+        android:layout_width="@dimen/size_46"
+        android:layout_height="@dimen/size_46"
+        android:layout_marginTop="@dimen/size_20"
+        android:src="@drawable/ic_circle_avatar_default"
+        app:layout_constraintEnd_toEndOf="@id/top2"
+        app:layout_constraintStart_toStartOf="@id/top2"
+        app:layout_constraintTop_toTopOf="@id/top2"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="27dp"
+        android:layout_marginBottom="@dimen/size_36"
+        app:layout_constraintBottom_toBottomOf="@+id/imgAvatarTop2"
+        app:layout_constraintStart_toStartOf="@id/imgAvatarTop2"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvNameTop2"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_2"
+        android:layout_marginRight="@dimen/size_2"
+        android:ellipsize="end"
+        android:fontFamily="@font/roboto_bold"
+        android:gravity="center_horizontal|bottom"
+        android:includeFontPadding="false"
+        android:maxLines="2"
+        android:minLines="2"
+        android:text="@string/dang_cap_nhat"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_size_4"
+        app:layout_constraintBottom_toTopOf="@+id/tviCoinTop2"
+        app:layout_constraintEnd_toEndOf="@id/top2"
+        app:layout_constraintStart_toStartOf="@id/top2"
+        app:layout_constraintTop_toBottomOf="@id/imgAvatarTop2" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tviCoinTop2"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_6"
+        android:ellipsize="end"
+        android:fontFamily="@font/roboto_bold"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:singleLine="true"
+        android:text="@string/dang_cap_nhat"
+        android:textColor="@color/yellow"
+        app:layout_constraintBottom_toBottomOf="@id/top2"
+        app:layout_constraintEnd_toEndOf="@id/tvNameTop2"
+        app:layout_constraintStart_toStartOf="@id/tvNameTop2"
+        tools:text="12,690,000 Xu" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTop1"
+        android:layout_width="@dimen/size_14"
+        android:layout_height="@dimen/size_25"
+        android:layout_marginLeft="@dimen/size_8"
+        android:background="@drawable/ic_tag_top_yellow"
+        android:fontFamily="@font/roboto_bold"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="1"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/top1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgAvatarTop1"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:padding="@dimen/size_4"
+        android:background="@drawable/ic_stroke_line_yellow"
+        android:layout_marginTop="27dp"
+        app:layout_constraintEnd_toEndOf="@id/top1"
+        app:layout_constraintStart_toStartOf="@id/top1"
+        app:layout_constraintTop_toTopOf="@id/top1" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgRankTop1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_34"
+        android:layout_marginBottom="@dimen/size_44"
+        app:layout_constraintBottom_toBottomOf="@+id/imgAvatarTop1"
+        app:layout_constraintStart_toStartOf="@id/imgAvatarTop1"
+        android:src="@drawable/ic_crown_top1_24px" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvNameTop1"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_2"
+        android:layout_marginRight="@dimen/size_2"
+        android:layout_marginBottom="@dimen/size_6"
+        android:ellipsize="end"
+        android:fontFamily="@font/roboto_bold"
+        android:gravity="center_horizontal|bottom"
+        android:maxLines="2"
+        android:minLines="2"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_size_4"
+        app:layout_constraintBottom_toTopOf="@+id/tviCoinTop1"
+        app:layout_constraintEnd_toEndOf="@id/top1"
+        app:layout_constraintStart_toStartOf="@id/top1" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tviCoinTop1"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_6"
+        android:ellipsize="end"
+        android:fontFamily="@font/roboto_bold"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:singleLine="true"
+        android:textColor="@color/yellow"
+        app:layout_constraintBottom_toBottomOf="@id/top1"
+        app:layout_constraintEnd_toEndOf="@id/tvNameTop1"
+        app:layout_constraintStart_toStartOf="@id/tvNameTop1"
+        tools:text="12,690,000 Xu" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTop3"
+        android:layout_width="@dimen/size_14"
+        android:layout_height="@dimen/size_25"
+        android:layout_marginTop="@dimen/size_33"
+        android:layout_marginRight="@dimen/size_8"
+        android:background="@drawable/ic_tag_top_yellow"
+        android:fontFamily="@font/roboto_bold"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="3"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@id/top3"
+        app:layout_constraintTop_toTopOf="@id/top1" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgAvatarTop3"
+        android:layout_width="@dimen/size_46"
+        android:layout_height="@dimen/size_46"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_circle_avatar_default"
+        app:layout_constraintEnd_toEndOf="@id/top3"
+        app:layout_constraintStart_toStartOf="@id/top3"
+        app:layout_constraintTop_toTopOf="@id/top3" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_22"
+        android:layout_marginBottom="31dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgAvatarTop3"
+        app:layout_constraintStart_toStartOf="@id/imgAvatarTop3"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvNameTop3"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_2"
+        android:layout_marginRight="@dimen/size_2"
+        android:ellipsize="end"
+        android:fontFamily="@font/roboto_bold"
+        android:gravity="center_horizontal|bottom"
+        android:includeFontPadding="false"
+        android:maxLines="2"
+        android:minLines="2"
+        android:text="@string/dang_cap_nhat"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_size_4"
+        app:layout_constraintBottom_toTopOf="@+id/tviCoinTop3"
+        app:layout_constraintEnd_toEndOf="@id/top3"
+        app:layout_constraintStart_toStartOf="@id/top3"
+        app:layout_constraintTop_toBottomOf="@id/imgAvatarTop3" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tviCoinTop3"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_6"
+        android:ellipsize="end"
+        android:fontFamily="@font/roboto_bold"
+        android:gravity="center"
+        android:text="@string/dang_cap_nhat"
+        android:includeFontPadding="false"
+        android:singleLine="true"
+        android:textColor="@color/yellow"
+        app:layout_constraintBottom_toBottomOf="@id/top3"
+        app:layout_constraintEnd_toEndOf="@id/tvNameTop3"
+        app:layout_constraintStart_toStartOf="@id/tvNameTop3"
+        tools:text="12,690,000 Xu" />
+</androidx.constraintlayout.widget.ConstraintLayout>

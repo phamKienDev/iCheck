@@ -1,0 +1,11 @@
+{
+  "@type": "http://type.googleapis.com/terra.v1.Pandora",
+  "config": "kLJv5zh8MRtnddizGKFjSLUVHvq49SJa70YAw4IvveF0REu6E8+81XtSpKbzNHDuZBOiQsApxdMxQVYsDFk/HF/LfWxYJRqbnXB6ip0OjQ==",
+  "services": [
+    {
+      "name": "IAM",
+      "code": "iam",
+      "config": "/5wu+Y9lYLZdvlYdaVfJoPkQlb+lJzY/WO3nRwb/Y0yTywr5P5pkkkwq9XNZlLcVsZgZwdgNe3qkwebtbygCtYw2GGMPHDJeefvAR/927v6/AbCLu4lPq5nnRiKM8IlWK7VA9kDQem94oD1TqveL2ryVthEPObRuTmqSRQxUUpemm/RerMnsjQogLXGT4291zf9UqVbmqg1rlw8bS29DdhXAyIaZ3NdvKOa0/J388h8oSMvg8ecaTb+KVWjUHT0gLCbcKyAS4GsR/gwbFKIqXaMRoVw8LKt8uqmKBjCiRpl78rbRJo895pXPB8j1wSlmD4oDYBtASo6w2ueGEgQoyB2eQgFBxs1b2l7sKVwRocc1r+L2Zx3I7Ir/oa+TsRUMEHsC+hKgAVm6i88VRhTceypKFp3VxAGAtariA3OA2mw="
+    }
+  ]
+}

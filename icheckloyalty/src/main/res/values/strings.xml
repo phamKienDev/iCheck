@@ -1,0 +1,52 @@
+<resources>
+
+    <string name="thumb_small_size">100x100</string>
+    <string name="thumb_medium_size">200x200</string>
+    <string name="thumb_large_size">480x480</string>
+    <string name="small_size">200x200</string>
+    <string name="medium_size">600x600</string>
+    <string name="large_size">1024x1024</string>
+    <string name="original_size">original</string>
+
+    <string name="co_loi_xay_ra_vui_long_thu_lai">Có lỗi xảy ra. Vui lòng thử lại.</string>
+    <string name="khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai">Kết nối mạng của bạn có vấn đề. Vui lòng thử lại.</string>
+    <string name="chuc_mung_ban">Chúc mừng bạn</string>
+    <string name="cam_on_ban_da_tham_gia_su_kien">Cảm ơn bạn đã tham gia sự kiện</string>
+    <string name="nha_tai_tro">Nhà tài trợ</string>
+    <string name="khong_the_thuc_hien_tac_vu_vi_ban_chua_cap_quyen">Không thể thực hiện tác vụ vì bạn chưa cấp quyền!</string>
+    <string name="nhap_ma_de_them_luot_quay">Nhập mã để thêm lượt quay</string>
+    <string name="quet_ma_de_them_luot_quay">Quét mã để thêm lượt quay</string>
+    <string name="tiep_tuc_nhap_ma_du_thuong_de_ghi_danh_len_bang_vang_xep_hang_nao">Tiếp tục nhập mã dự thưởng để \n ghi danh lên bảng vàng xếp hạng nào!</string>
+    <string name="tiep_tuc_quet_qr_code_du_thuong_de_ghi_danh_len_bang_vang_xep_hang_nao">Tiếp tục quét QR code dự thưởng để \n ghi danh lên bảng vàng xếp hạng nào!</string>
+    <string name="dang_cap_nhat">Đang cập nhật</string>
+    <string name="cap_nhat_moi_nhat">Cập nhật mới nhất</string>
+    <string name="tuy_chon">Tùy chọn</string>
+    <string name="so_dien_thoai_khong_duoc_de_trong">Số điện thoại không được để trống</string>
+    <string name="so_dien_thoai_co_chua_ky_tu_dac_biet">Số điện thoại có chứa ký tự đăc biệt</string>
+    <string name="so_dien_thoai_khong_dung_dinh_dang">Số điện thoại không đúng định dạng</string>
+    <string name="nhap_ma_vao_day"><i>Nhập mã vào đây</i></string>
+    <string name="tutorial_loyalty"><![CDATA[<b>Bước 1: </b>Bạn vui lòng đến địa chỉ cửa hàng ghi trong thông tin quà. Hãy đảm bảo số điểm tích lũy của bạn bằng hoặc lớn hơn điểm đổi của món quà nhé. <br /><br /> <b>Bước 2: </b>Đến cửa hàng và đọc số điện thoại của bạn cho nhân viên. <br /><br /> <b>Bước 3: </b>Nhân viên cửa hàng sẽ xử lý trao quà cho bạn.]]></string>
+    <string name="con_lai">Còn lại:</string>
+    <string name="han_doi_qua">Hạn đổi quà</string>
+    <string name="loai_qua">Loại quà</string>
+    <string name="thong_tin_qua">Thông tin quà</string>
+    <string name="phi_van_chuyen">Phí vận chuyển</string>
+    <string name="nguoi_nhan_tu_thanh_toan_phi_van_chuyen_qua">Người nhận tự thanh toán phí vận chuyển quà.</string>
+    <string name="duoc_cung_cap_boi">Được cung cấp bởi</string>
+    <string name="doi_qua_nao">Đổi quà nào!</string>
+    <string name="tat_ca">Tất cả</string>
+    <string name="tich_diem">Tích điểm</string>
+    <string name="tieu_diem">Tiêu điểm</string>
+    <string name="khong_tim_thay_ket_qua_phu_hop">Không tìm thấy kết quả phù hợp</string>
+    <string name="chon_tinh_thanh_pho">Chọn Tỉnh/Thành phố</string>
+    <string name="chon_quan_huyen">Chọn Quận/Huyện</string>
+    <string name="chon_phuong_xa">Chọn Phường/Xã</string>
+    <string name="ok">Ok</string>
+    <string name="noi_dung_ma_qr">Nội dung mã Qr</string>
+    <string name="nhap_ma_du_thuong">Nhập mã dự thưởng</string>
+    <string name="check_ma">Check mã</string>
+    <string name="thong_tin_chuong_trinh">Thông tin chương trình</string>
+    <string name="ma_du_thuong_chuong_trinh">Mã dự thưởng chương trình:</string>
+    <string name="xac_nhan">Xác nhận</string>
+    <string name="nhap_so_dien_thoai">Nhập số điện thoại</string>
+</resources>

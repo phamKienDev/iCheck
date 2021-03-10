@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/swipeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:layerType="hardware"
+    tools:context="vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.DetailStampHoaPhatActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/bottomLayout"
+            android:orientation="vertical">
+
+            <!--Toolbar-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_44"
+                android:background="@color/white"
+                android:elevation="@dimen/size_4">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btn_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:background="@null"
+                    android:padding="@dimen/size_12"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_back_blue_24px" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="@dimen/size_0"
+                    android:layout_height="match_parent"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:paddingStart="80dp"
+                    android:paddingEnd="80dp"
+                    android:singleLine="true"
+                    android:textColor="#20336B"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:text="09293938383" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btn_bookmark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:paddingStart="@dimen/size_12"
+                    android:paddingEnd="@dimen/size_6"
+                    app:layout_constraintEnd_toStartOf="@id/btn_homepage"
+                    app:srcCompat="@drawable/ic_bookmark_unactive_blue_24px" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btn_homepage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:paddingStart="@dimen/size_6"
+                    android:paddingEnd="@dimen/size_12"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_home_blue_24px" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--Error Client-->
+            <LinearLayout
+                android:id="@+id/layoutErrorClient"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgError"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvMessageError"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:textColor="#828282"
+                    android:textSize="14sp"
+                    android:textStyle="normal" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnAgainError"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="40dp"
+                    android:background="@drawable/bg_corner_solid_white_strokke_blue"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Thử Lại"
+                    android:textColor="#3c5a99"
+                    android:textSize="16sp"
+                    android:textStyle="normal" />
+
+            </LinearLayout>
+
+            <!--Require Location-->
+            <LinearLayout
+                android:id="@+id/llAcceptPermission"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_location_permission_history" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvMessageLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textColor="#828282"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    tools:text="Để hiển thị dữ liệu Cửa hàng, vui lòng bật GPS" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/btnRequestPermission"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="38dp"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginEnd="38dp"
+                    android:background="@drawable/bg_blue_corners_40_solid_white"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:paddingTop="11dp"
+                    android:paddingBottom="11dp"
+                    android:text="@string/bat_gps"
+                    android:textColor="#3c5a99"
+                    android:textSize="16sp"
+                    android:textStyle="normal" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/btnEnableLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="38dp"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginEnd="38dp"
+                    android:background="@drawable/bg_blue_corners_40_solid_white"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:paddingTop="11dp"
+                    android:paddingBottom="11dp"
+                    android:text="@string/bat_vi_tri"
+                    android:textColor="#3c5a99"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <!--Error Stamp-->
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/scrollViewError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fillViewport="true"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="17dp"
+                        android:background="@drawable/bg_corner_red_10"
+                        android:gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvMessageStampError"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginEnd="12dp"
+                            android:layout_marginBottom="17dp"
+                            android:drawableTop="@drawable/ic_stamp_fake_50_dp"
+                            android:drawablePadding="9dp"
+                            android:fontFamily="sans-serif-medium"
+                            android:gravity="center"
+                            android:textColor="#ffffff"
+                            android:textSize="14sp"
+                            android:textStyle="normal"
+                            tools:text="CẢNH BÁO! \n MÃ TEM KHÔNG HỢP LỆ (TEXT KHÔNG CỐ ĐỊNH)" />
+
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rcvConfigError"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+            <!--Data-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/gray_stamp_hoa_phat"
+                android:visibility="gone"
+                tools:visibility="visible" />
+        </LinearLayout>
+
+        <!--BottomView-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bottomLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:visibility="visible">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="#1aa7dc"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/layoutBuyNow"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/btnChat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="3dp"
+                    android:drawableTop="@drawable/ic_chat_temp_white_24_px"
+                    android:drawablePadding="3dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Chat ngay"
+                    android:textColor="#ffffff"
+                    android:textSize="12sp"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!--                <View-->
+                <!--                    android:layout_width="1dp"-->
+                <!--                    android:layout_height="0dp"-->
+                <!--                    android:layout_marginStart="24dp"-->
+                <!--                    android:layout_marginEnd="24dp"-->
+                <!--                    android:background="@color/white"-->
+                <!--                    app:layout_constraintBottom_toBottomOf="@+id/btnChat"-->
+                <!--                    app:layout_constraintEnd_toStartOf="@+id/btnAddToCart"-->
+                <!--                    app:layout_constraintStart_toEndOf="@+id/btnChat"-->
+                <!--                    app:layout_constraintTop_toTopOf="@+id/btnChat" />-->
+
+                <!--                <androidx.appcompat.widget.AppCompatTextView-->
+                <!--                    android:id="@+id/btnAddToCart"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginTop="6dp"-->
+                <!--                    android:layout_marginEnd="24dp"-->
+                <!--                    android:layout_marginBottom="3dp"-->
+                <!--                    android:drawableTop="@drawable/ic_shop_white_24px"-->
+                <!--                    android:drawablePadding="3dp"-->
+                <!--                    android:fontFamily="sans-serif-medium"-->
+                <!--                    android:text="+ Giỏ hàng"-->
+                <!--                    android:textColor="#ffffff"-->
+                <!--                    android:textSize="12sp"-->
+                <!--                    android:textStyle="normal"-->
+                <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+                <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+                <!--                    app:layout_constraintTop_toTopOf="parent" />-->
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutBuyNow"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="#3c5a99"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="@+id/constraintLayout7"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/constraintLayout7"
+                app:layout_constraintTop_toTopOf="@+id/constraintLayout7">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Mua ngay"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textFab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_marginBottom="68dp"
+            android:background="@drawable/bg_corner_dark_blue_45"
+            android:drawableStart="@drawable/ic_update_user_info_white_24px"
+            android:drawablePadding="6dp"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:paddingStart="12dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="10dp"
+            android:text="Cập nhật thông tin khách hàng"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            android:visibility="invisible"
+            tools:visibility="visible" />
+
+    </RelativeLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout11"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="6dp"
+        android:fontFamily="@font/barlow_medium"
+        app:layout_constrainedWidth="true"
+        android:textColor="#212121"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/edt_price"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Giá sản phẩm" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/edt_price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:background="@drawable/bg_edt_ick_contribute_product"
+        android:digits="0123456789"
+        android:ems="10"
+        android:fontFamily="@font/barlow_medium"
+        android:imeOptions="actionDone"
+        android:inputType="number"
+        android:maxLength="10"
+        android:maxLines="1"
+        android:padding="8dp"
+        android:textColor="#212121"
+        android:textColorHint="#B4B4B4"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:hint="Nhập giá sản phẩm" />
+
+    <ImageView
+        android:id="@+id/img_help"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tv_title"
+        app:layout_constraintTop_toTopOf="@+id/tv_title"
+        app:srcCompat="@drawable/ic_infor_help_18px"
+        tools:visibility="visible" />
+</androidx.constraintlayout.widget.ConstraintLayout>

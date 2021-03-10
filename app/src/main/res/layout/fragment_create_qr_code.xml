@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/darkGray6"
+    android:clickable="true"
+    android:focusable="true">
+
+    <FrameLayout
+        android:id="@+id/layoutToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:elevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@id/imgBack"
+            android:layout_width="@dimen/size_44"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            app:srcCompat="@drawable/ic_back_blue_v2_24px" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/txtTitle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_44"
+            android:layout_marginStart="@dimen/size_44"
+            android:layout_marginEnd="@dimen/size_44"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/lightBlue"
+            android:textSize="18sp"
+            android:textStyle="normal"
+            tools:text="Tiêu đề" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@id/imgAction"
+            android:layout_width="@dimen/size_44"
+            android:layout_height="@dimen/size_44"
+            android:layout_gravity="end"
+            android:background="?android:attr/selectableItemBackground"
+            android:visibility="gone" />
+    </FrameLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/layoutText"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_20"
+        android:layout_marginEnd="@dimen/size_6"
+        app:layout_constraintEnd_toStartOf="@id/layoutLink"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutToolbar"
+        card_view:cardBackgroundColor="@color/white"
+        card_view:cardCornerRadius="@dimen/size_6"
+        card_view:cardUseCompatPadding="false">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/txtText"
+            style="@style/Create_Qr_Code_Action_Text"
+            android:drawableTop="@drawable/ic_document_40"
+            android:fontFamily="@font/barlow_medium"
+            android:text="@string/van_ban" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/layoutLink"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_6"
+        android:layout_marginEnd="@dimen/size_6"
+        app:layout_constraintBottom_toBottomOf="@id/layoutText"
+        app:layout_constraintEnd_toStartOf="@id/layoutPhone"
+        app:layout_constraintStart_toEndOf="@id/layoutText"
+        app:layout_constraintTop_toTopOf="@id/layoutText"
+        card_view:cardBackgroundColor="@color/white"
+        card_view:cardCornerRadius="@dimen/size_6"
+        card_view:cardUseCompatPadding="false">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/txtLink"
+            style="@style/Create_Qr_Code_Action_Text"
+            android:drawableTop="@drawable/ic_link_40"
+            android:fontFamily="@font/barlow_medium"
+            android:text="@string/duong_dan" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/layoutPhone"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_6"
+        android:layout_marginEnd="@dimen/size_12"
+        app:layout_constraintBottom_toBottomOf="@id/layoutText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/layoutLink"
+        app:layout_constraintTop_toTopOf="@id/layoutText"
+        card_view:cardBackgroundColor="@color/white"
+        card_view:cardCornerRadius="@dimen/size_6"
+        card_view:cardUseCompatPadding="false">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/txtPhone"
+            style="@style/Create_Qr_Code_Action_Text"
+            android:layout_marginEnd="@dimen/size_5"
+            android:drawableTop="@drawable/ic_phone_40"
+            android:fontFamily="@font/barlow_medium"
+            android:text="@string/so_dien_thoai" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/layoutMessage"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_20"
+        app:layout_constraintEnd_toEndOf="@id/layoutText"
+        app:layout_constraintStart_toStartOf="@id/layoutText"
+        app:layout_constraintTop_toBottomOf="@id/layoutText"
+        card_view:cardBackgroundColor="@color/white"
+        card_view:cardCornerRadius="@dimen/size_6"
+        card_view:cardUseCompatPadding="false">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/txtMessage"
+            style="@style/Create_Qr_Code_Action_Text"
+            android:drawableTop="@drawable/ic_message_40"
+            android:fontFamily="@font/barlow_medium"
+            android:text="@string/tin_nhan" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/layoutMessage"
+        app:layout_constraintEnd_toEndOf="@id/layoutLink"
+        app:layout_constraintStart_toStartOf="@id/layoutLink"
+        app:layout_constraintTop_toTopOf="@id/layoutMessage"
+        card_view:cardBackgroundColor="@color/white"
+        card_view:cardCornerRadius="@dimen/size_6"
+        card_view:cardUseCompatPadding="false">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/txtEmail"
+            style="@style/Create_Qr_Code_Action_Text"
+            android:drawableTop="@drawable/ic_email_40"
+            android:fontFamily="@font/barlow_medium"
+            android:text="@string/email"
+            app:layout_constraintBottom_toBottomOf="@id/layoutMessage"
+            app:layout_constraintEnd_toEndOf="@id/layoutLink"
+            app:layout_constraintStart_toStartOf="@id/layoutLink"
+            app:layout_constraintTop_toTopOf="@id/layoutMessage" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/layoutMessage"
+        app:layout_constraintEnd_toEndOf="@id/layoutPhone"
+        app:layout_constraintStart_toStartOf="@id/layoutPhone"
+        app:layout_constraintTop_toTopOf="@id/layoutMessage"
+        card_view:cardBackgroundColor="@color/white"
+        card_view:cardCornerRadius="@dimen/size_6"
+        card_view:cardUseCompatPadding="false">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/txtLocation"
+            style="@style/Create_Qr_Code_Action_Text"
+            android:drawableTop="@drawable/ic_location_40"
+            android:fontFamily="@font/barlow_medium"
+            android:text="@string/vi_tri"
+            app:layout_constraintBottom_toBottomOf="@id/layoutMessage"
+            app:layout_constraintEnd_toEndOf="@id/layoutPhone"
+            app:layout_constraintStart_toStartOf="@id/layoutPhone"
+            app:layout_constraintTop_toTopOf="@id/layoutMessage" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/layoutContact"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_20"
+        app:layout_constraintEnd_toEndOf="@id/layoutText"
+        app:layout_constraintStart_toStartOf="@id/layoutText"
+        app:layout_constraintTop_toBottomOf="@id/layoutMessage"
+        card_view:cardBackgroundColor="@color/white"
+        card_view:cardCornerRadius="@dimen/size_6"
+        card_view:cardUseCompatPadding="false">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/txtContact"
+            style="@style/Create_Qr_Code_Action_Text"
+            android:drawableTop="@drawable/ic_contact_40"
+            android:fontFamily="@font/barlow_medium"
+            android:text="@string/danh_ba" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/layoutContact"
+        app:layout_constraintEnd_toEndOf="@id/layoutLink"
+        app:layout_constraintStart_toStartOf="@id/layoutLink"
+        app:layout_constraintTop_toTopOf="@id/layoutContact"
+        card_view:cardBackgroundColor="@color/white"
+        card_view:cardCornerRadius="@dimen/size_6"
+        card_view:cardUseCompatPadding="false">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/txtEvent"
+            style="@style/Create_Qr_Code_Action_Text"
+            android:drawableTop="@drawable/ic_event_40"
+            android:fontFamily="@font/barlow_medium"
+            android:text="@string/lich_su_kien" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/layoutContact"
+        app:layout_constraintEnd_toEndOf="@id/layoutPhone"
+        app:layout_constraintStart_toStartOf="@id/layoutPhone"
+        app:layout_constraintTop_toTopOf="@id/layoutContact"
+        card_view:cardBackgroundColor="@color/white"
+        card_view:cardCornerRadius="@dimen/size_6"
+        card_view:cardUseCompatPadding="false">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/txtWifi"
+            style="@style/Create_Qr_Code_Action_Text"
+            android:drawableTop="@drawable/ic_network_40"
+            android:fontFamily="@font/barlow_medium"
+            android:text="@string/wifi" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_20"
+        android:fontFamily="@font/barlow_medium"
+        android:singleLine="true"
+        android:text="@string/ma_qr_chia_se_thong_tin_cua_ban"
+        android:textColor="#828282"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

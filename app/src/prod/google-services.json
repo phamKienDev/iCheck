@@ -1,0 +1,93 @@
+{
+  "project_info": {
+    "project_number": "873655301603",
+    "firebase_url": "https://helical-history-126218.firebaseio.com",
+    "project_id": "helical-history-126218",
+    "storage_bucket": "helical-history-126218.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:873655301603:android:a082be4f28368bc7",
+        "android_client_info": {
+          "package_name": "vn.icheck.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "873655301603-2gtuolap4mfikitmbuu1qhp9c5g4v8fo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "vn.icheck.android",
+            "certificate_hash": "872a94ca55572d67e30679bd9de385a3e7c84a73"
+          }
+        },
+        {
+          "client_id": "873655301603-u36b2kibhoelr8efibphftkb193bkbsl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUu-z1wgtGYnfd5Zg9WxkJhlvHiJAp1gE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "873655301603-2a03gvlji6n9m84e9qrm7ieg4jl0fvac.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "873655301603-blbkt3hrrn3cl0vedgrgt5ecg6nadq4p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "vn.icheck.ios.qrcheck"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:873655301603:android:2ac7aee993266392",
+        "android_client_info": {
+          "package_name": "vn.qrcheck.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "873655301603-u36b2kibhoelr8efibphftkb193bkbsl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUu-z1wgtGYnfd5Zg9WxkJhlvHiJAp1gE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

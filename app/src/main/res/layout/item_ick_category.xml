@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/vg_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_category_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="@dimen/size_12"
+        android:layout_marginEnd="12dp"
+        android:drawableEnd="@drawable/ic_arrow_right_light_blue_24dp"
+        android:drawableRight="@drawable/ic_arrow_right_light_blue_24dp"
+        android:fontFamily="@font/barlow_medium"
+        android:textColor="#212121"
+        android:textSize="16sp"
+        tools:text="Thời trang Nam" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="@dimen/size_6"
+        android:layout_marginEnd="12dp"
+        android:background="@color/gray" />
+</LinearLayout>

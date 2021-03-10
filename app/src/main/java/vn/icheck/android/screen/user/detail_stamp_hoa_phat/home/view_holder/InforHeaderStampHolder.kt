@@ -1,0 +1,69 @@
+package vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.view_holder
+
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import kotlinx.android.synthetic.main.infor_header_stamp.view.*
+import vn.icheck.android.R
+import vn.icheck.android.base.holder.BaseViewHolder
+import vn.icheck.android.network.models.v1.ICBarcodeProductV1
+import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.call_back.SlideHeaderStampHoaPhatListener
+import vn.icheck.android.util.kotlin.WidgetUtils
+import vn.icheck.android.util.text.ReviewPointText
+
+class InforHeaderStampHolder(parent: ViewGroup, val headerImagelistener: SlideHeaderStampHoaPhatListener) : BaseViewHolder<ICBarcodeProductV1>(LayoutInflater.from(parent.context).inflate(R.layout.infor_header_stamp, parent, false)) {
+
+    var nation: String? = "http://ucontent.icheck.vn/ensign/VN.png"
+        set(value) {
+            field = "http://ucontent.icheck.vn/ensign/" + value?.toUpperCase() + ".png"
+        }
+
+    override fun bind(obj: ICBarcodeProductV1) {
+        itemView.tv_product_name.text = obj.name
+
+        if (obj.price > 0) {
+            itemView.tv_price.text = String.format("%,dđ", obj.price)
+            itemView.tvGiaNiemYet.visibility = View.VISIBLE
+        } else {
+            itemView.tv_price.visibility = View.INVISIBLE
+            itemView.tvGiaNiemYet.visibility = View.INVISIBLE
+        }
+
+        itemView.tvBarcodeProduct.text = obj.barcode
+
+        nation = obj.owner?.vendorPage?.country?.code
+
+        val nationName = obj.owner?.vendorPage?.country?.name ?: "Việt Nam"
+
+        if (!nationName.isNullOrEmpty()) {
+            itemView.tv_sx.text = nationName
+            WidgetUtils.loadImageUrl(itemView.nation_img,nation)
+            itemView.tv_sx.visibility = View.VISIBLE
+            itemView.nation_img.visibility = View.VISIBLE
+        } else {
+            itemView.tv_sx.visibility = View.GONE
+            itemView.nation_img.visibility = View.GONE
+        }
+
+        if (obj.productRate > 0f) {
+            itemView.product_rate.visibility = View.VISIBLE
+            itemView.tv_product_avg.visibility = View.VISIBLE
+            itemView.product_rate.rating = obj.productRate
+            itemView.tv_product_avg.text = String.format("%.1f %s", obj.productRate * 2,
+                    ReviewPointText.getText(obj.productRate))
+        } else {
+            itemView.product_rate.visibility = View.GONE
+            itemView.tv_product_avg.visibility = View.GONE
+        }
+
+        if (obj.countReviews == 0) {
+            itemView.tv_xrv.visibility = View.GONE
+        } else {
+            itemView.tv_xrv.text = String.format("Xem %,d đánh giá", obj.countReviews)
+            itemView.tv_xrv.setOnClickListener {
+                headerImagelistener.showAllBottomReviews()
+            }
+            itemView.tv_xrv.visibility = View.VISIBLE
+        }
+    }
+}

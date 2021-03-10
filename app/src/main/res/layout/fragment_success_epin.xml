@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:background="@android:color/white"
+        android:layout_height="@dimen/size_44">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="@dimen/size_12"
+            android:textSize="18sp"
+            android:textColor="@color/darkBlue"
+            android:fontFamily="sans-serif-medium"
+            android:text="Giao dịch thành công"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <ImageButton
+            android:id="@+id/btn_history"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:background="@null"
+            android:paddingEnd="@dimen/size_12"
+            app:layout_constraintEnd_toStartOf="@+id/btn_home"
+            app:srcCompat="@drawable/ic_history_mission_24px"
+            app:layout_constraintTop_toTopOf="@id/btn_home"
+            app:layout_constraintBottom_toBottomOf="@id/btn_home"/>
+
+        <ImageButton
+            android:id="@+id/btn_home"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:paddingEnd="@dimen/size_12"
+            android:background="@null"
+            app:srcCompat="@drawable/ic_home_blue_24px"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@id/viewShadow"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_4"
+        android:background="@drawable/shadow_bottom" />
+
+    <TextView
+        android:id="@+id/tv_notify"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        tools:text="Quý khách đã mua thành công mã thẻ điện thoại Mobifone"
+        android:textAlignment="center"
+        android:textColor="#35384B" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginEnd="@dimen/size_12"
+        android:background="@drawable/dotted"
+        android:layerType="software" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:background="@drawable/bg_gray_corner_10"
+        android:paddingBottom="8dp">
+
+        <TextView
+            android:id="@+id/textView37"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Nhà mạng:"
+            android:textColor="#434343"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_msp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_8"
+            android:layout_marginEnd="@dimen/size_8"
+            android:textSize="@dimen/font_size_4"
+            android:textColor="@color/darkGray1"
+            android:fontFamily="sans-serif-medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Mobifone" />
+
+        <TextView
+            android:id="@+id/textView51"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Tổng thanh toán:"
+            android:textColor="#434343"
+            app:layout_constraintStart_toStartOf="@+id/textView37"
+            app:layout_constraintTop_toBottomOf="@+id/textView37" />
+
+        <TextView
+            android:id="@+id/textView73"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Hình thức thanh toán:"
+            android:textColor="#434343"
+            app:layout_constraintStart_toStartOf="@+id/textView51"
+            app:layout_constraintTop_toBottomOf="@+id/textView51" />
+
+        <TextView
+            android:id="@+id/tv_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_size_4"
+            android:textColor="@color/darkGray1"
+            android:fontFamily="sans-serif-medium"
+            app:layout_constraintEnd_toEndOf="@+id/tv_msp"
+            app:layout_constraintTop_toTopOf="@+id/textView51"
+            tools:text="150,000đ" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ví iCoin"
+            android:textSize="@dimen/font_size_4"
+            android:textColor="@color/darkGray1"
+            android:fontFamily="sans-serif-medium"
+            app:layout_constraintEnd_toEndOf="@+id/tv_total"
+            app:layout_constraintTop_toTopOf="@+id/textView73" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:paddingBottom="8dp"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/bg_gray_corner_10">
+
+        <TextView
+            android:id="@+id/textView76"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="MÃ THẺ"
+            android:textColor="#3C5A99"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView77"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Số seri:"
+            android:textColor="#434343"
+            app:layout_constraintStart_toStartOf="@+id/textView76"
+            app:layout_constraintTop_toBottomOf="@+id/textView76" />
+
+        <TextView
+            android:id="@+id/textView78"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Mã nạp:"
+            android:textColor="#434343"
+            app:layout_constraintStart_toStartOf="@+id/textView77"
+            app:layout_constraintTop_toBottomOf="@+id/textView77" />
+
+        <ImageView
+            android:id="@+id/imageView30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView77"
+            app:srcCompat="@drawable/ic_copy_24px" />
+
+        <ImageView
+            android:id="@+id/imageView31"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/imageView30"
+            app:layout_constraintTop_toTopOf="@+id/textView78"
+            app:srcCompat="@drawable/ic_copy_24px" />
+
+        <TextView
+            android:id="@+id/tv_serial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            tools:text="05613081439641"
+            android:textSize="@dimen/font_size_4"
+            android:textColor="@color/darkGray1"
+            android:fontFamily="sans-serif-medium"
+            app:layout_constraintEnd_toStartOf="@+id/imageView30"
+            app:layout_constraintTop_toTopOf="@+id/textView77" />
+
+        <TextView
+            android:id="@+id/tv_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            tools:text="05613081439641"
+            android:textSize="@dimen/font_size_4"
+            android:textColor="@color/darkGray1"
+            android:fontFamily="sans-serif-medium"
+            app:layout_constraintEnd_toStartOf="@+id/imageView31"
+            app:layout_constraintTop_toTopOf="@+id/textView78" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:text="Trải nghiệm này tuyệt vời chứ? Vui lòng đánh giá trải nghiệm của bạn"
+        android:textAlignment="center"
+        android:textColor="#717E8E"
+        android:visibility="gone" />
+
+    <com.willy.ratingbar.ScaleRatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        app:srb_drawableEmpty="@drawable/heart_outline"
+        app:srb_drawableFilled="@drawable/heart_filled"
+        app:srb_starHeight="30dp"
+        app:srb_starWidth="32dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <Button
+            android:id="@+id/btn_again"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_blue_corners_40_solid_white"
+            android:text="Mua mã thẻ khác"
+            android:textAllCaps="false"
+            android:layout_marginBottom="8dp"
+            android:textColor="#3C5A99" />
+
+        <Button
+            android:id="@+id/btn_charge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_blue_corners_40"
+            android:layout_marginBottom="8dp"
+            android:text="Nạp ngay"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+</LinearLayout>

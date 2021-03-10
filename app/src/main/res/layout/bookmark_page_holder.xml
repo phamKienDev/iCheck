@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="12dp"
+    android:layout_marginEnd="12dp"
+    android:layout_marginBottom="12dp"
+    android:background="@drawable/bg_gray_corner_10"
+    android:elevation="2dp"
+    android:paddingBottom="12dp">
+
+    <LinearLayout
+        android:id="@+id/owner_name_vg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_owner_verified"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_owner_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="8dp"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            tools:text="Công ty Cổ phần Nano Techco" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_owner_mst"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:textColor="@android:color/black"
+        android:fontFamily="sans-serif-medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/owner_name_vg"
+        tools:text="MST: 0312983404" />
+
+    <TextView
+        android:id="@+id/tv_owner_address"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="12dp"
+        android:maxLines="2"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_owner_mst"
+        tools:text="149/30 Bành Văn Trân, Phường 7, Quận Tân Bình, TP Hồ Chí Minh" />
+
+    <TextView
+        android:id="@+id/tv_owner_website"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="12dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="#3C5A99"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_owner_address"
+        tools:text="www.mediwhite.vn" />
+
+    <TextView
+        android:id="@+id/tv_owner_phone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="4dp"
+        android:maxLines="1"
+        android:textColor="#3C5A99"
+        app:layout_constraintEnd_toStartOf="@+id/tv_owner_mail"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_owner_website"
+        tools:text="0985771133" />
+
+    <TextView
+        android:id="@+id/tv_owner_mail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:gravity="end"
+        android:maxLines="1"
+        android:textColor="#3C5A99"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_owner_phone"
+        app:layout_constraintTop_toTopOf="@+id/tv_owner_phone"
+        tools:text="cskh@mediwhite.vn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

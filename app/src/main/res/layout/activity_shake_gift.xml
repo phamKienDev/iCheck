@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_lac_qua"
+    tools:context="vn.icheck.android.screen.user.home_page.my_gift_warehouse.shake_gift.shake.ShakeGiftActivity">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@id/imgBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="52dp"
+        android:padding="8dp"
+        android:src="@drawable/ic_cancel_black_28px"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@id/imgGift"
+        android:layout_width="270dp"
+        android:layout_height="365dp"
+        android:layout_marginTop="83dp"
+        android:layout_marginBottom="97dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tv_progress"
+        app:layout_constraintTop_toBottomOf="@+id/imgBack" />
+
+    <SeekBar
+        android:id="@id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="66dp"
+        android:layout_marginEnd="66dp"
+        android:clipChildren="false"
+        android:clipToPadding="true"
+        android:max="100"
+        android:paddingStart="28dp"
+        android:paddingEnd="28dp"
+        android:progressDrawable="@drawable/progress_shake_gift"
+        android:splitTrack="false"
+        android:thumb="@drawable/ic_thumb_shake"
+        app:layout_constraintBottom_toTopOf="@+id/img_guide"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:lineSpacingExtra="6sp"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:layout_marginEnd="25dp"
+        app:layout_constraintEnd_toEndOf="@+id/progressBar"
+        app:layout_constraintTop_toTopOf="@+id/progressBar"
+        tools:text="68%" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_guide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="7dp"
+        android:src="@drawable/ic_guidance_shake"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/tvMessageShake"
+        app:layout_constraintEnd_toEndOf="@id/progressBar"
+        app:layout_constraintStart_toStartOf="@id/progressBar" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvMessageShake"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="29dp"
+        android:fontFamily="@font/barlow_medium"
+        android:gravity="center"
+        android:lineSpacingExtra="6sp"
+        android:text="@string/message_shake_1"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/progressBar"
+        app:layout_constraintStart_toStartOf="@+id/progressBar" />
+</androidx.constraintlayout.widget.ConstraintLayout>

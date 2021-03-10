@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_shot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gift_game">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_star_effect"
+        android:layout_width="0dp"
+        android:layout_height="140dp"
+        android:scaleX="0"
+        android:scaleY="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_gift_effect" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_light"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_star_effect"
+        app:srcCompat="@drawable/bg_light_gift_game" />
+
+    <LinearLayout
+        android:id="@+id/img_frame"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="130dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:background="@drawable/bg_gift_game_frame"
+        android:elevation="4dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_cmb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp"
+            android:elevation="5dp"
+            app:srcCompat="@drawable/img_gift_cmb" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/img_bg_center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/ic_center_gift_game"
+            android:paddingStart="@dimen/size_22"
+            android:paddingTop="@dimen/size_40"
+            android:paddingEnd="@dimen/size_22"
+            android:paddingBottom="@dimen/size_6" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="-23dp"
+            app:cardCornerRadius="23dp"
+            android:visibility="invisible"
+            app:cardElevation="@dimen/size_4">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgBusiness"
+                android:layout_width="@dimen/size_46"
+                android:layout_height="@dimen/size_46"
+                android:src="@drawable/img_default_business_logo"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="@dimen/size_2" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_gift_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:paddingStart="@dimen/size_12"
+            android:paddingEnd="@dimen/size_12"
+            android:textColor="@color/black"
+            tools:text="1 Chỉ Vàng 9999 (tên quà k giới hạn dòng)" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_second"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal"
+            android:text="Cảm ơn bạn đã tham gia sự kiện "
+            android:textAlignment="center" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginBottom="@dimen/size_8"
+            android:layout_marginEnd="@dimen/size_12"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="\u0022"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/black" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_third"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:textColor="#434343"
+                    tools:text="“Vui cùng C2 - Nhận Ngàn quà tặng”..." />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="\u0022"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_no_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/img_frame"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:elevation="6dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_gift_game_no_top" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_no_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:elevation="5dp"
+        app:layout_constraintStart_toStartOf="@+id/img_frame"
+        app:layout_constraintTop_toTopOf="@+id/img_no_top"
+        app:srcCompat="@drawable/ic_gift_game_no_left" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_no_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:elevation="5dp"
+        app:layout_constraintEnd_toEndOf="@+id/img_frame"
+        app:layout_constraintTop_toTopOf="@+id/img_no_top"
+        app:srcCompat="@drawable/ic_gift_game_no_right" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_xkq"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/img_kbb"
+        app:layout_constraintTop_toBottomOf="@+id/img_frame"
+        app:srcCompat="@drawable/ic_view_single_gift" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_kbb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/img_xkq"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_frame"
+        app:srcCompat="@drawable/btn_kbb" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btn_cancel"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="8dp"
+        android:scaleType="centerInside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/img_star_effect"
+        app:srcCompat="@drawable/ic_cancel_black_28px" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

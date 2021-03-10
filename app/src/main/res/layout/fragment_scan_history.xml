@@ -1,0 +1,257 @@
+ <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="vn.icheck.android.screen.user.scan_history.ScanHistoryFragment">
+
+    <LinearLayout
+        android:id="@id/layoutContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:elevation="4dp">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/imgMenu"
+                android:layout_width="@dimen/size_44"
+                android:layout_height="@dimen/size_44"
+                android:background="@color/transparent"
+                android:src="@drawable/ic_leftmenu_24_px"
+                app:layout_constraintBottom_toTopOf="@id/containerType"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:text="@string/lich_su_quet"
+                android:textColor="@color/lightBlue"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@id/imgMenu"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/imgMenu" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/imgSearch"
+                android:layout_width="@dimen/size_44"
+                android:layout_height="44dp"
+                android:background="@color/transparent"
+                android:src="@drawable/ic_search_light_blue_24dp"
+                app:layout_constraintEnd_toStartOf="@id/imgCart"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/imgCart"
+                android:layout_width="@dimen/size_44"
+                android:layout_height="44dp"
+                android:background="@color/transparent"
+                android:src="@drawable/ic_cart_blue_no_bg_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvCountCart"
+                android:layout_width="@dimen/size_22"
+                android:layout_height="@dimen/size_22"
+                android:layout_marginStart="@dimen/size_10"
+                android:layout_marginEnd="@dimen/size_3"
+                android:background="@drawable/bg_circle_count_cart_22dp"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:gravity="center"
+                android:text="99"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="@id/imgCart"
+                app:layout_constraintTop_toTopOf="@id/imgCart" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/containerType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imgMenu">
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#D8D8D8"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvSort"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:drawableStart="@drawable/ic_selected_history_27"
+                    android:drawableEnd="@drawable/ic_sort_arrow_down_gray_24_px"
+                    android:drawablePadding="5dp"
+                    android:fontFamily="@font/barlow_medium"
+                    android:gravity="center"
+                    android:text="Sắp xếp: Mới nhất"
+                    android:textColor="#757575"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tvFilter"
+                    app:layout_constraintBottom_toBottomOf="@id/tvFilter"/>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgFilterHis"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="7dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvFilter"
+                    app:layout_constraintEnd_toStartOf="@+id/tvFilter"
+                    app:layout_constraintTop_toTopOf="@+id/tvFilter"
+                    app:srcCompat="@drawable/ic_filter_gray_24_px" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvFilter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="13dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="12dp"
+                    android:fontFamily="@font/barlow_medium"
+                    android:gravity="center_horizontal|end"
+                    android:text="Lọc theo"
+                    android:textColor="#757575"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/view" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgDot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toEndOf="@+id/imgFilterHis"
+                    app:layout_constraintTop_toTopOf="@+id/imgFilterHis"
+                    app:srcCompat="@drawable/ic_dot_red_filter_coin" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <FrameLayout
+            android:id="@+id/layoutData"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipe_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcvHistory"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/darkGray6" />
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutParentSort"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#80000000"
+                android:clickable="true"
+                android:focusable="true"
+                android:visibility="invisible">
+
+                <LinearLayout
+                    android:id="@+id/layoutSort"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/btnNearest"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:fontFamily="@font/barlow_medium"
+                        android:paddingTop="7dp"
+                        android:paddingBottom="7dp"
+                        android:text="Mới nhất"
+                        android:textColor="#757575"
+                        android:textSize="16sp"
+                        android:textStyle="normal" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/btnfurthest"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_marginTop="17dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="20dp"
+                        android:fontFamily="@font/barlow_medium"
+                        android:paddingTop="7dp"
+                        android:paddingBottom="7dp"
+                        android:text="Cũ nhất"
+                        android:textColor="#757575"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/containerGps"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:gravity="center"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_location_permission_history" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_12"
+                android:fontFamily="@font/barlow_medium"
+                android:text="Để hiển thị dữ liệu Cửa hàng, vui lòng bật GPS"
+                android:textColor="@color/fast_survey_gray"
+                android:textSize="14sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/btnGps"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_12"
+                android:background="@drawable/bg_corners_4_light_blue_solid"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:gravity="center"
+                android:paddingTop="@dimen/size_10"
+                android:paddingBottom="@dimen/size_10"
+                android:text="@string/bat_gps_ngay"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

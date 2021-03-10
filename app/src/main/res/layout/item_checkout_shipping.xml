@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:orientation="vertical">
+
+    <View
+        android:id="@id/viewTop"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_2"
+        android:background="@drawable/line_dotted_horizontal_gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_12"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/size_8"
+        android:paddingEnd="@dimen/size_8">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@id/tvChecked"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:scaleType="fitCenter" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/tvName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_8"
+            android:fontFamily="sans-serif-medium"
+            android:includeFontPadding="false"
+            android:textColor="#3c5a99"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            tools:text="J&amp;T Express: 16,500đ" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvNote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_40"
+        android:layout_marginEnd="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_3"
+        android:fontFamily="sans-serif"
+        android:includeFontPadding="false"
+        android:textColor="#828282"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        tools:text="Thời gian giao hàng từ 3 - 9 ngày. Phí giao hàng được tính dựa trên tổng khối lượng, kích thước đóng gói sản phẩm bạn đã mua." />
+
+    <View
+        android:id="@id/viewBottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_2"
+        android:layout_marginTop="@dimen/size_12"
+        android:background="@drawable/line_dotted_horizontal_gray" />
+</LinearLayout>

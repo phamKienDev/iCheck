@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f0f0f0"
+    android:clickable="true"
+    android:focusable="true">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@id/imgBanner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/ic_account_level_standard" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:padding="12dp"
+        android:src="@drawable/ic_back_black_28px"
+        app:layout_constraintStart_toStartOf="@id/imgBanner"
+        app:layout_constraintTop_toTopOf="@id/imgBanner" />
+
+    <LinearLayout
+        android:id="@+id/layoutSeekbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="30dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/imgBack">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPointCurrent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:text="Điểm hiện tại: 150,450"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ProgressBar
+                android:id="@id/seekBar"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:maxHeight="@dimen/size_8"
+                android:minHeight="@dimen/size_8"
+                android:progressDrawable="@drawable/standard_progress_bar_rank" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@id/imgLevel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:includeFontPadding="false"
+                tools:src="@drawable/ic_rank_silver_24" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutSeekbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginTop="@dimen/size_22"
+                android:layout_marginEnd="@dimen/size_12"
+                android:layout_marginBottom="@dimen/size_10"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/size_10"
+                app:elevation="0dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imgAvatar"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginStart="55dp"
+                        android:elevation="4dp"
+                        app:civ_border_color="@color/white"
+                        app:civ_border_width="1dp"
+                        android:layout_marginTop="35dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:rankSize="36dp"
+                        android:layout_marginLeft="55dp" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_rank_user"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="45dp"
+                        android:layout_marginStart="35dp"
+                        android:layout_marginLeft="35dp"
+                        android:elevation="4dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/imgAvatar"
+                        app:layout_constraintStart_toStartOf="@+id/imgAvatar"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_leftmenu_avatar_standard_36dp" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvPoint"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="11dp"
+                        android:layout_marginLeft="11dp"
+                        android:fontFamily="@font/barlow_semi_bold"
+                        android:textSize="24sp"
+                        app:layout_constraintStart_toEndOf="@+id/img_rank_user"
+                        app:layout_constraintTop_toTopOf="@+id/imgAvatar"
+                        tools:text="150.45000 Điểm" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/goToHistory"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:paddingStart="8.8dp"
+                        android:layout_marginEnd="54.8dp"
+                        android:layout_marginTop="5dp"
+                        android:paddingEnd="8.8dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvPoint"
+                        app:layout_constraintStart_toEndOf="@+id/tvPoint"
+                        app:layout_constraintTop_toTopOf="@+id/tvPoint"
+                        tools:src="@drawable/ic_arrow_right_standard_8" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvNameRank"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        tools:text="Thành viên Chuẩn"
+                        android:textColor="#757575"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/imgAvatar"
+                        app:layout_constraintStart_toStartOf="@+id/tvPoint"
+                        app:layout_constraintTop_toBottomOf="@+id/tvPoint" />
+
+                    <View
+                        android:id="@+id/view"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="33dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="33dp"
+                        android:background="#d8d8d8"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/imgAvatar" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvMessageUpRank"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="41dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="41dp"
+                        android:gravity="center"
+                        android:lineSpacingExtra="4.8sp"
+                        tools:text="Điểm tích lũy dùng để tăng hạng thành viên của bạn. Tích luỹ thêm 345.000 điểm để đạt Thành viên Bạc"
+                        android:textColor="#212121"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/view" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvMyGift"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="20dp"
+                        android:drawableTop="@drawable/ic_homeheader_gift_50px"
+                        android:fontFamily="@font/barlow_medium"
+                        android:text="Quà của tôi"
+                        android:textColor="#212121"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/tvMission"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvMessageUpRank" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvMission"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableTop="@drawable/ic_homeheader_campaign_50dp"
+                        android:fontFamily="@font/barlow_medium"
+                        android:gravity="center"
+                        android:text="Sự kiện"
+                        android:textColor="#212121"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvMyGift"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/tvMyGift"
+                        app:layout_constraintTop_toTopOf="@+id/tvMyGift" />
+
+                    <vn.icheck.android.component.view.ButtonWhiteOutlineLightBlueCorners4
+                        android:id="@+id/tvBenefit"
+                        android:layout_width="match_parent"
+                        android:layout_height="36dp"
+                        android:visibility="gone"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="34dp"
+                        android:layout_marginEnd="25dp"
+                        android:layout_marginRight="25dp"
+                        android:layout_marginBottom="20dp"
+                        android:fontFamily="@font/barlow_semi_bold"
+                        android:gravity="center"
+                        android:text="Quyền lợi thành viên"
+                        android:textColor="#057dda"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvMyGift" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_10"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/btn_how_to_rank_up"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/ic_arrow_right_gray_14"
+                    android:fontFamily="@font/barlow_medium"
+                    android:paddingStart="12dp"
+                    android:paddingTop="16dp"
+                    android:paddingEnd="12dp"
+                    android:paddingBottom="17dp"
+                    android:text="Hướng dẫn thăng hạng"
+                    android:textColor="#212121"
+                    android:textSize="14sp"
+                    android:drawableRight="@drawable/ic_arrow_right_gray_14" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#d8d8d8"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:id="@+id/tv_frequently_asked"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/ic_arrow_right_gray_14"
+                    android:fontFamily="@font/barlow_medium"
+                    android:paddingStart="12dp"
+                    android:paddingTop="16dp"
+                    android:paddingEnd="12dp"
+                    android:paddingBottom="16dp"
+                    android:text="Câu hỏi thường gặp"
+                    android:textColor="#212121"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

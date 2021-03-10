@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="8dp"
+    android:layout_marginStart="@dimen/size_12"
+    android:layout_marginEnd="@dimen/size_12">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvStatusName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:fontFamily="sans-serif-medium"
+        android:textStyle="normal"
+        android:textColor="#434343"
+        tools:text="Kích hoạt" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvCreatedTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:fontFamily="sans-serif"
+        android:textStyle="normal"
+        android:textColor="#828282"
+        tools:text="9h30 23/10/2017"
+        android:drawableEnd="@drawable/ic_next_blue_18px"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginTop="9.5dp"
+        android:layout_height="1dp"
+        android:background="#d8d8d8"/>
+
+</LinearLayout>

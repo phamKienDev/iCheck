@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_50">
+
+    <com.theartofdev.edmodo.cropper.CropImageView
+        android:id="@id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0"
+        app:cropAspectRatioX="1"
+        app:cropAspectRatioY="1"
+        app:cropMinCropResultHeightPX="500"
+        app:cropMinCropResultWidthPX="500"
+        app:cropScaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@id/layoutBottom"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/btnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:includeFontPadding="false"
+        android:padding="@dimen/size_12"
+        android:text="@string/huy"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/btnDone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:includeFontPadding="false"
+        android:padding="@dimen/size_12"
+        android:text="@string/xong"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@id/layoutBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/size_10"
+        android:paddingTop="@dimen/size_12"
+        android:paddingEnd="@dimen/size_10"
+        android:paddingBottom="@dimen/size_12"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_warning_white_24px"
+            android:drawableLeft="@drawable/ic_warning_white_24px"
+            android:includeFontPadding="false" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginLeft="@dimen/size_12"
+            android:fontFamily="@font/barlow_medium"
+            android:includeFontPadding="false"
+            android:text="@string/crop_image_message"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@id/layoutLoading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:scaleType="centerInside"
+            app:lottie_autoPlay="true"
+            app:lottie_enableMergePathsForKitKatAndAbove="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loading_short" />
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

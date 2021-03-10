@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/darkGray6"
+    android:orientation="vertical"
+    tools:context="vn.icheck.android.screen.user.icheckstore.list.ProductStoreiCheckActivity">
+
+    <include layout="@layout/toolbar_blue_v2" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_4"
+        android:background="@drawable/shadow_bottom" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/size_10" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutAddToCart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightBlue"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/size_12"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:orientation="vertical">
+
+            <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tam_tinh"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+                android:id="@+id/tvPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_4"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                tools:text="234,964,000 Xu" />
+        </LinearLayout>
+
+        <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+            android:id="@+id/tvCountProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_arrow_right_white_bg_blue_28px"
+            android:drawablePadding="@dimen/size_8"
+            android:ellipsize="end"
+            android:gravity="end|center"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            tools:text="2 Sản phẩm" />
+    </LinearLayout>
+</LinearLayout>

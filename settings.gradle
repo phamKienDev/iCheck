@@ -1,0 +1,3 @@
+include ':icheckloyalty'
+include ':app', ':ichecknetwork'
+rootProject.name='iCheck'

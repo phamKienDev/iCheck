@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="310dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/size_12"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="@dimen/size_4"
+    android:layout_marginBottom="@dimen/size_10"
+    app:cardElevation="@dimen/size_3"
+    android:layout_marginTop="@dimen/size_10"
+    android:layout_marginLeft="@dimen/size_12">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@id/imgBanner"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="H, 310:138"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@id/imgAvatar"
+            android:layout_width="@dimen/size_40"
+            android:layout_height="@dimen/size_40"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginLeft="@dimen/size_8"
+            android:layout_marginTop="@dimen/size_8"
+            android:layout_marginBottom="@dimen/size_10"
+            android:src="@color/blue"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imgBanner" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgVerified"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_verified_16px"
+            app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
+            app:layout_constraintEnd_toEndOf="@id/imgAvatar" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/tvName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginLeft="@dimen/size_8"
+            android:layout_marginTop="@dimen/size_12"
+            android:layout_marginEnd="@dimen/size_4"
+            android:layout_marginRight="@dimen/size_4"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@id/tvAction"
+            app:layout_constraintStart_toEndOf="@id/imgAvatar"
+            app:layout_constraintTop_toBottomOf="@id/imgBanner"
+            tools:text="Công ty cổ phần OMO Việt Nam - Chuyên đồ gia dụng" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvFollowCount"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_medium"
+            android:includeFontPadding="false"
+            android:text="@string/nhan_hang_san_xuat"
+            android:textColor="@color/fast_survey_gray"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
+            app:layout_constraintEnd_toEndOf="@id/tvName"
+            app:layout_constraintStart_toStartOf="@id/tvName" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvAction"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/size_8"
+            android:layout_marginRight="@dimen/size_8"
+            android:background="@drawable/bg_corners_4_light_blue_no_solid"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:paddingTop="@dimen/size_8"
+            android:paddingBottom="@dimen/size_8"
+            android:text="@string/ghe_tham"
+            android:textColor="@color/lightBlue"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/imgAvatar" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

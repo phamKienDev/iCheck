@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/viewTop"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0_5"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginLeft="@dimen/size_12"
+        android:background="@color/gray"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgProduct"
+        android:layout_width="@dimen/size_60"
+        android:layout_height="@dimen/size_60"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_10"
+        app:layout_constraintStart_toStartOf="@id/viewTop"
+        app:layout_constraintTop_toBottomOf="@id/viewTop" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvProduct"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_8"
+        android:layout_marginLeft="@dimen/size_8"
+        android:ellipsize="end"
+        android:fontFamily="@font/barlow_medium"
+        android:includeFontPadding="false"
+        android:singleLine="true"
+        android:text="Sữa rửa mặt sạch dầu (1 dòng)..."
+        android:textColor="@color/collection_product_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imgProduct"
+        app:layout_constraintTop_toTopOf="@id/imgProduct" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvCount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:fontFamily="@font/barlow_medium"
+        android:includeFontPadding="false"
+        android:singleLine="true"
+        android:text="x1"
+        android:layout_marginTop="@dimen/size_4"
+        android:textColor="@color/fast_survey_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tvProduct"
+        app:layout_constraintTop_toBottomOf="@id/tvProduct" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

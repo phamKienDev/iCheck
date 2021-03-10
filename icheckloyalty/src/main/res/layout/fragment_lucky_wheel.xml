@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_bg_game"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:layerType="software"
+        android:scaleType="fitXY"
+        android:src="@color/black"
+        tools:src="@drawable/ic_background_game"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <include
+        android:id="@+id/luckyWheelEight"
+        layout="@layout/lucky_wheel_eight"
+        android:layout_width="0dp"
+        android:layout_height="350dp"
+        android:layout_centerInParent="true"
+        android:layerType="software"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/img_vanh_off"
+        app:layout_constraintEnd_toEndOf="@+id/img_vanh_off"
+        app:layout_constraintStart_toStartOf="@+id/img_vanh_off"
+        app:layout_constraintTop_toBottomOf="@+id/img_vanh_off" />
+
+    <include
+        android:id="@+id/luckyWheelTen"
+        layout="@layout/lucky_wheel_ten"
+        android:layout_width="0dp"
+        android:layout_height="350dp"
+        android:layout_centerInParent="true"
+        android:layerType="software"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/img_vanh_off"
+        app:layout_constraintEnd_toEndOf="@+id/img_vanh_off"
+        app:layout_constraintStart_toStartOf="@+id/img_vanh_off"
+        app:layout_constraintTop_toBottomOf="@+id/img_vanh_off" />
+
+    <include
+        android:id="@+id/luckyWheel"
+        layout="@layout/lucky_wheel_six"
+        android:layout_width="0dp"
+        android:layout_height="350dp"
+        android:layout_centerInParent="true"
+        android:layerType="software"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/img_vanh_off"
+        app:layout_constraintEnd_toEndOf="@+id/img_vanh_off"
+        app:layout_constraintStart_toStartOf="@+id/img_vanh_off"
+        app:layout_constraintTop_toBottomOf="@+id/img_vanh_off"
+        tools:visibility="visible">
+
+    </include>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_vanh"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layerType="software"
+        android:src="@drawable/bg_vanh"
+        app:layout_constraintBottom_toTopOf="@id/tv_total_turn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_bottom" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_vanh_off"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:src="@drawable/bg_vanh_off"
+        app:layout_constraintBottom_toTopOf="@id/tv_total_turn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_bottom" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_center_wheel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="10dp"
+        android:src="@drawable/center"
+        app:layout_constraintBottom_toBottomOf="@+id/img_vanh"
+        app:layout_constraintEnd_toEndOf="@+id/img_vanh"
+        app:layout_constraintStart_toStartOf="@+id/img_vanh"
+        app:layout_constraintTop_toTopOf="@+id/img_vanh"
+        tools:visibility="invisible" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_star"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layerType="software"
+        android:src="@drawable/bg_star_game"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_banner"
+        app:layout_constraintVertical_bias="0.425" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_tv_quay"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:elevation="10dp"
+        android:src="@drawable/tv_quay"
+        app:layout_constraintBottom_toBottomOf="@+id/img_center_wheel"
+        app:layout_constraintEnd_toEndOf="@+id/img_center_wheel"
+        app:layout_constraintStart_toStartOf="@+id/img_center_wheel"
+        app:layout_constraintTop_toTopOf="@+id/img_center_wheel" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_cursor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/img_vanh"
+        app:layout_constraintEnd_toEndOf="@+id/img_vanh"
+        app:layout_constraintStart_toStartOf="@+id/img_vanh" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_banner"
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_20"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnDSQua"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_danh_sach_qua" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnTheWinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_25"
+            app:srcCompat="@drawable/ic_mo_qua_btn" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnQA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_25"
+            app:srcCompat="@drawable/ic_hoi_dap" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_25"
+            app:srcCompat="@drawable/ic_lich_su_nhan_qua" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/btnThemLuot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_20"
+        android:layout_marginBottom="@dimen/size_8"
+        android:drawableTop="@drawable/ic_add_count_game"
+        android:gravity="center"
+        android:text="Thêm lượt"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@id/linearLayout"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_total_turn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_28"
+        android:background="@drawable/bg_text_game_count"
+        android:padding="8dp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Bạn có 1 lượt quay" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_top"
+        android:layout_width="0dp"
+        android:layout_height="5dp"
+        android:alpha="0.6"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/img_star"
+        app:srcCompat="@drawable/top_list_trung_thuong_bg"
+        app:tint="@color/white" />
+
+    <ScrollView
+        android:id="@+id/tv_list_user"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#007C93"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_top">
+
+        <TextView
+            android:id="@+id/marquee_text"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:freezesText="true"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:textColor="@android:color/white"
+            tools:ignore="EllipsizeMaxLines"
+            tools:text="ggggg" />
+    </ScrollView>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_bottom"
+        android:layout_width="0dp"
+        android:layout_height="5dp"
+        android:alpha="0.6"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_list_user"
+        app:srcCompat="@drawable/bottom_list_trung_thuong_bg"
+        app:tint="@color/white" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_4"
+        android:layout_marginTop="@dimen/size_15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_game_back_36px" />
+</androidx.constraintlayout.widget.ConstraintLayout>

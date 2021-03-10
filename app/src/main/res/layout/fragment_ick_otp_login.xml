@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@android:color/transparent"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <ImageView
+        android:id="@+id/btn_back"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerInside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_back_blue_24px_new" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:textColor="#212121"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_back"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Đăng nhập bằng số điện thoại" />
+
+    <ScrollView
+        android:id="@+id/scrollView3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_continue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_back"
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView25"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="62dp"
+                android:layout_marginLeft="62dp"
+                android:layout_marginEnd="62dp"
+                android:layout_marginRight="62dp"
+                android:fontFamily="@font/barlow_medium"
+                android:gravity="center_horizontal"
+                android:lineHeight="20dp"
+                android:textAlignment="center"
+                android:textColor="#757575"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Số điện thoại của bạn được sử dụng để đăng nhập tài khoản iCheck"
+                tools:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_nation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="34dp"
+                android:layout_marginLeft="34dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:text="Việt Nam"
+                android:textColor="#B4B4B4"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView25" />
+
+            <ImageView
+                android:id="@+id/ic_nation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_nation"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_nation"
+                app:srcCompat="@drawable/ic_arrow_right_gray_24dp" />
+
+            <View
+                android:id="@+id/divider18"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="12dp"
+                android:background="#F0F0F0"
+                app:layout_constraintEnd_toEndOf="@+id/ic_nation"
+                app:layout_constraintStart_toStartOf="@+id/tv_nation"
+                app:layout_constraintTop_toBottomOf="@+id/tv_nation" />
+
+            <vn.icheck.android.ui.edittext.FocusableEditText
+                android:id="@+id/tv_phone_head"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:focusable="false"
+                android:fontFamily="@font/barlow_medium"
+                android:paddingBottom="20dp"
+                android:focusableInTouchMode="false"
+                android:hint="+84"
+                android:textColor="#757575"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/edt_phone"
+                app:layout_constraintStart_toStartOf="@+id/divider18"
+                app:layout_constraintTop_toBottomOf="@+id/divider18" />
+
+            <vn.icheck.android.ui.edittext.FocusableEditText
+                android:id="@+id/edt_phone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:digits="0123456789"
+                android:focusableInTouchMode="true"
+                android:fontFamily="@font/barlow_medium"
+                android:gravity="center"
+                android:hint="Nhập số điện thoại"
+                android:imeOptions="actionSend"
+                android:inputType="phone"
+                android:paddingBottom="20dp"
+                android:textColor="#212121"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/divider18"
+                app:layout_constraintStart_toEndOf="@+id/tv_phone_head"
+                app:layout_constraintTop_toTopOf="@+id/tv_phone_head" />
+
+            <vn.icheck.android.ui.edittext.FocusableEditText
+                android:id="@+id/group_pw"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="34dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="34dp"
+                android:focusableInTouchMode="true"
+                android:hint="Nhập mật khẩu"
+                android:inputType="textPassword"
+                android:orientation="horizontal"
+                android:paddingBottom="20dp"
+                android:textColor="#212121"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_phone_head"
+                tools:visibility="visible" />
+
+            <vn.icheck.android.ui.edittext.FocusableEditText
+                android:id="@+id/group_re_pw"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="34dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="34dp"
+                android:layout_marginBottom="16dp"
+                android:focusableInTouchMode="true"
+                android:hint="Nhập lại mật khẩu"
+                android:inputType="textPassword"
+                android:orientation="horizontal"
+                android:paddingBottom="20dp"
+                android:textColor="#212121"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/group_pw"
+                tools:visibility="visible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <vn.icheck.android.ui.EnableButton
+        android:id="@+id/btn_continue"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="12dp"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:text="Tiếp tục"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@id/layoutToolbar"
+        layout="@layout/toolbar_blue" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0"
+        android:layout_marginBottom="@dimen/size_12"
+        app:layout_constraintBottom_toTopOf="@id/btnCreate"
+        app:layout_constraintTop_toBottomOf="@id/layoutToolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/size_12"
+            android:paddingEnd="@dimen/size_12"
+            android:paddingBottom="@dimen/size_16">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/CreateUserAddress_Title"
+                android:text="@string/ho_bat_buoc" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@id/layoutInputLastName"
+                style="@style/CreateUserAddress_InputLayout"
+                app:errorTextAppearance="@style/TextInputLayout_Create_Qr_Code_Error"
+                app:hintEnabled="false">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@id/edtLastName"
+                    style="@style/CreateUserAddress_Input"
+                    android:hint="@string/nhap_ho"
+                    android:inputType="textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/CreateUserAddress_Title"
+                android:text="@string/ten_bat_buoc" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@id/layoutInputFirstName"
+                style="@style/CreateUserAddress_InputLayout"
+                app:errorTextAppearance="@style/TextInputLayout_Create_Qr_Code_Error"
+                app:hintEnabled="false">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@id/edtFirstName"
+                    style="@style/CreateUserAddress_Input"
+                    android:hint="@string/nhap_ten"
+                    android:inputType="textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/CreateUserAddress_Title"
+                android:text="@string/so_dien_thoai_bat_buoc" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@id/layoutInputPhone"
+                style="@style/CreateUserAddress_InputLayout"
+                app:errorTextAppearance="@style/TextInputLayout_Create_Qr_Code_Error"
+                app:hintEnabled="false">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@id/edtPhone"
+                    style="@style/CreateUserAddress_Input"
+                    android:hint="@string/nhap_so_dien_thoai"
+                    android:inputType="phone" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="@dimen/size_0"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/size_4"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/CreateUserAddress_Title"
+                        android:text="@string/tinh_thanh_bat_buoc" />
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_8">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@id/layoutInputProvince"
+                            style="@style/CreateUserAddress_InputLayout"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="@dimen/size_0"
+                            app:errorTextAppearance="@style/TextInputLayout_Create_Qr_Code_Error"
+                            app:hintEnabled="false">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                style="@style/CreateUserAddress_Input"
+                                android:clickable="false"
+                                android:focusable="false"
+                                android:inputType="phone"
+                                android:longClickable="false" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@id/spProvince"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/size_36"
+                            android:drawableEnd="@drawable/ic_down_dark_blue_18px"
+                            android:drawablePadding="@dimen/size_8"
+                            android:ellipsize="end"
+                            android:fontFamily="sans-serif"
+                            android:gravity="center_vertical"
+                            android:paddingStart="@dimen/size_16"
+                            android:paddingEnd="@dimen/size_9"
+                            android:singleLine="true"
+                            android:text="@string/tuy_chon"
+                            android:textColor="#434343"
+                            android:textSize="14sp"
+                            android:textStyle="normal" />
+                    </FrameLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="@dimen/size_0"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_4"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/CreateUserAddress_Title"
+                        android:text="@string/huyen_bat_buoc" />
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_8">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@id/layoutInputDistrict"
+                            style="@style/CreateUserAddress_InputLayout"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="@dimen/size_0"
+                            app:errorTextAppearance="@style/TextInputLayout_Create_Qr_Code_Error"
+                            app:hintEnabled="false">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                style="@style/CreateUserAddress_Input"
+                                android:clickable="false"
+                                android:focusable="false"
+                                android:inputType="phone"
+                                android:longClickable="false" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@id/spDistrict"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/size_36"
+                            android:drawableEnd="@drawable/ic_down_dark_blue_18px"
+                            android:drawablePadding="@dimen/size_8"
+                            android:ellipsize="end"
+                            android:fontFamily="sans-serif"
+                            android:gravity="center_vertical"
+                            android:paddingStart="@dimen/size_16"
+                            android:paddingEnd="@dimen/size_9"
+                            android:singleLine="true"
+                            android:text="@string/tuy_chon"
+                            android:textColor="#434343"
+                            android:textSize="14sp"
+                            android:textStyle="normal" />
+                    </FrameLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/CreateUserAddress_Title"
+                android:text="@string/phuong_xa_bat_buoc" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_8">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@id/layoutInputWard"
+                    style="@style/CreateUserAddress_InputLayout"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/size_0"
+                    app:errorTextAppearance="@style/TextInputLayout_Create_Qr_Code_Error"
+                    app:hintEnabled="false">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        style="@style/CreateUserAddress_Input"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:inputType="phone"
+                        android:longClickable="false" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@id/spWard"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_36"
+                    android:drawableEnd="@drawable/ic_down_dark_blue_18px"
+                    android:drawablePadding="@dimen/size_8"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/size_16"
+                    android:paddingEnd="@dimen/size_9"
+                    android:singleLine="true"
+                    android:text="@string/tuy_chon"
+                    android:textColor="#434343"
+                    android:textSize="14sp"
+                    android:textStyle="normal" />
+            </FrameLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/CreateUserAddress_Title"
+                android:text="@string/dia_chi_bat_buoc" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@id/layoutInputAddress"
+                style="@style/CreateUserAddress_InputLayout"
+                app:errorTextAppearance="@style/TextInputLayout_Create_Qr_Code_Error"
+                app:hintEnabled="false">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@id/edtAddress"
+                    style="@style/CreateUserAddress_Input"
+                    android:hint="@string/nhap_dia_chi"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@id/btnCreate"
+        style="@style/Button_Blue_Corners_26"
+        android:layout_width="match_parent"
+        android:layout_marginStart="@dimen/size_40"
+        android:layout_marginEnd="@dimen/size_40"
+        android:layout_marginBottom="@dimen/size_12"
+        android:text="@string/xong"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <View
+        style="@style/Shadow_Bottom"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutToolbar" />
+</androidx.constraintlayout.widget.ConstraintLayout>

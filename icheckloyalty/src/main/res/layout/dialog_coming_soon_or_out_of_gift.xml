@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_28"
+            android:layout_marginTop="@dimen/size_44"
+            android:layout_marginEnd="@dimen/size_28"
+            android:background="@drawable/bg_white_corners_10"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/size_18"
+            android:paddingEnd="@dimen/size_18"
+            android:paddingBottom="@dimen/size_20"
+            app:layout_constraintTop_toTopOf="@id/imageView">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="92dp"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:textColor="@color/darkGray1"
+                android:textSize="14sp"
+                tools:text="Chương trình chưa diễn ra" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_12"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:textColor="@color/darkGray1"
+                android:textSize="14sp"
+                tools:text="Mời bạn qua lại sau để\ntham gia chương trình nhé!" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/size_0"
+            app:layout_constraintDimensionRatio="H, 158:108"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_coming_soon" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btnClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_20"
+        app:srcCompat="@drawable/ic_close_popup_32px" />
+</LinearLayout>

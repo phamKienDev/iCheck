@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/bg_corner_top_gray_10"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:textColor="@color/blue"
+            android:textSize="18sp"
+            tools:text="Giới thiệu thông tin sản phẩm" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@id/tvContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/barlow_medium"
+                    android:textColor="#434343"
+                    android:maxHeight="220dp"
+                    tools:text="Năm 2015 đánh dấu bước ngoặt của Hòa Phát khi Tập đoàn chính thức đầu tư và lĩnh vực nông nghiệp công nghệ cao quy mô lớn. Các nhà máy sản xuất Thức ăn chăn nuôi, trang trại chăm nuôi heo, bò..."
+                    />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"/>
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvGradient"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:maxHeight="102dp"
+                android:gravity="bottom"
+                android:background="@drawable/bg_gra_bottom_to_top_white"
+                android:layout_gravity="bottom"/>
+
+        </FrameLayout>
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tv_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:gravity="center_horizontal"
+        android:paddingTop="4dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="12dp"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:drawableEnd="@drawable/ic_next_blue_18px"
+        android:layout_gravity="center"
+        android:textColor="@color/blue"
+        android:lineSpacingExtra="6sp"
+        android:text="Xem chi tiết"
+        />
+
+</LinearLayout>

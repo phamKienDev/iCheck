@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="700dp"
+    android:orientation="vertical"
+    android:paddingTop="40dp">
+
+    <View
+        android:layout_width="51dp"
+        android:layout_height="6dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/bg_indicator_selected" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_red_corners_top_16">
+
+        <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="14dp"
+            android:layout_marginBottom="12dp"
+            android:drawableStart="@drawable/ic_warning_white_40px"
+            android:drawablePadding="14dp"
+            android:gravity="start|center"
+            android:text="Tiếc quá,\nBạn không thể mua hàng tại nhà sản xuất!"
+            android:textColor="#ffffff"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="700dp">
+
+        <vn.icheck.android.screen.user.reason_not_buy_product.ObservableWebView
+            android:id="@id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@id/layoutCenter"
+            layout="@layout/dialog_loading"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="@dimen/size_0"
+            app:layout_constraintBottom_toBottomOf="@id/webView"
+            app:layout_constraintEnd_toEndOf="@id/webView"
+            app:layout_constraintStart_toStartOf="@id/webView"
+            app:layout_constraintTop_toTopOf="@id/webView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

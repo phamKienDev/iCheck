@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/size_12"
+    android:paddingLeft="@dimen/size_12"
+    android:paddingRight="@dimen/size_12">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/size_10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:id="@id/imgBanner"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_0"
+                android:background="@color/placeholder_bg1"
+                app:layout_constraintDimensionRatio="H, 351:140"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@id/linearLayout"
+                android:layout_width="109dp"
+                android:layout_height="@dimen/size_25"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:background="@color/white"
+                app:layout_constraintEnd_toEndOf="@+id/imgBanner"
+                app:layout_constraintTop_toTopOf="@+id/imgBanner">
+
+                <View
+                    android:layout_width="80dp"
+                    android:layout_height="@dimen/size_10"
+                    android:background="@color/placeholder_bg" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_8"
+        android:layout_marginRight="@dimen/size_8"
+        app:cardCornerRadius="@dimen/size_6"
+        app:layout_constraintBottom_toBottomOf="@id/cardView"
+        app:layout_constraintEnd_toEndOf="@+id/cardView"
+        app:layout_constraintStart_toStartOf="@+id/cardView"
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:id="@id/imgAvatar"
+                android:layout_width="@dimen/size_36"
+                android:layout_height="@dimen/size_36"
+                android:layout_marginStart="@dimen/size_8"
+                android:layout_marginLeft="@dimen/size_8"
+                android:layout_marginTop="@dimen/size_8"
+                android:layout_marginBottom="@dimen/size_8"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@color/placeholder_bg" />
+
+            <View
+                android:id="@+id/tv1"
+                android:layout_width="80dp"
+                android:layout_height="@dimen/size_14"
+                android:layout_marginStart="@dimen/size_8"
+                android:layout_marginLeft="@dimen/size_8"
+                android:layout_marginTop="@dimen/size_6"
+                android:background="@color/placeholder_bg"
+                app:layout_constraintStart_toEndOf="@+id/imgAvatar"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@id/txtDate"
+                android:layout_width="200dp"
+                android:layout_height="@dimen/size_14"
+                android:layout_marginStart="@dimen/size_8"
+                android:layout_marginLeft="@dimen/size_8"
+                android:layout_marginTop="@dimen/size_4"
+                android:background="@color/placeholder_bg"
+                app:layout_constraintStart_toEndOf="@+id/imgAvatar"
+                app:layout_constraintTop_toBottomOf="@id/tv1" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+    <View
+        android:id="@id/viewShadow"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_4"
+        android:layout_marginLeft="@dimen/size_8"
+        android:layout_marginRight="@dimen/size_8"
+        app:layout_constraintTop_toBottomOf="@id/cardView1"
+        android:background="@drawable/shadow_bottom"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

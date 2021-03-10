@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context="vn.icheck.android.screen.user.detail_stamp_v6.update_information_guarantee_v6.UpdateInformationStampV6Activity">
+
+    <include layout="@layout/toolbar_blue" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/shadow_bottom" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvViewVerifiedPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginTop="@dimen/size_12"
+                android:layout_marginEnd="@dimen/size_12"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:text="Cập nhật thông tin khách hàng để nhận các ưu đãi\nvà chăm sóc tốt nhất."
+                android:textAlignment="center"
+                android:textColor="#828282"
+                android:textSize="13sp"
+                android:textStyle="normal"
+                android:visibility="visible"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvViewForceUpdate"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginTop="@dimen/size_12"
+                android:layout_marginEnd="@dimen/size_12"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:text="Bạn phải nhập thông tin cá nhân để kích hoạt bảo hành.\nNhà sản xuất có quyền từ chối bảo hành nếu thông tin\nkhông chính xác."
+                android:textAlignment="center"
+                android:textColor="#828282"
+                android:textSize="13sp"
+                android:textStyle="normal" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="@dimen/size_20"
+                android:fontFamily="sans-serif"
+                android:text="Số điện thoại (*)"
+                android:textColor="#434343"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginTop="@dimen/size_8"
+                android:layout_marginEnd="@dimen/size_12"
+                android:background="@drawable/bg_gray_corners_40_solid_white"
+                android:fontFamily="sans-serif"
+                android:hint="Nhập số điện thoại"
+                android:paddingStart="16dp"
+                android:inputType="phone"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="#000000"
+                android:textColorHint="#b4b4b4"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="sans-serif"
+                android:text="Họ và tên (*) "
+                android:textColor="#434343"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginTop="@dimen/size_8"
+                android:layout_marginEnd="@dimen/size_12"
+                android:background="@drawable/bg_gray_corners_40_solid_white"
+                android:fontFamily="sans-serif"
+                android:hint="Nhập họ tên"
+                android:paddingStart="16dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="#000000"
+                android:textColorHint="#b4b4b4"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="@dimen/size_20"
+                android:fontFamily="sans-serif"
+                android:text="Email"
+                android:textColor="#434343"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginTop="@dimen/size_8"
+                android:layout_marginEnd="@dimen/size_12"
+                android:background="@drawable/bg_gray_corners_40_solid_white"
+                android:fontFamily="sans-serif"
+                android:hint="Nhập email"
+                android:paddingStart="16dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="#000000"
+                android:textColorHint="#b4b4b4"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvSubTinhThanh"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="sans-serif"
+                    android:paddingStart="24dp"
+                    android:text="Tỉnh thành (*)"
+                    android:textColor="#434343"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toStartOf="@+id/tvSubHuyen"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layoutSelectCity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="4.5dp"
+                    android:background="@drawable/bg_gray_corners_40_solid_white"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toStartOf="@+id/layoutSelectDistrict"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSubTinhThanh">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvCities"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="sans-serif"
+                        android:text="Tùy chọn"
+                        android:textColor="#434343"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="9dp"
+                        android:drawableEnd="@drawable/ic_down_dark_blue_18px"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvCities"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tvCities" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvSubHuyen"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:paddingStart="16dp"
+                    android:text="Huyện (*)"
+                    android:textColor="#434343"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tvSubTinhThanh"
+                    app:layout_constraintTop_toTopOf="@+id/tvSubTinhThanh" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layoutSelectDistrict"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4.5dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/bg_gray_corners_40_solid_white"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="@+id/tvSubHuyen"
+                    app:layout_constraintStart_toEndOf="@+id/layoutSelectCity"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSubHuyen">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvDistricts"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="sans-serif"
+                        android:text="Tùy chọn"
+                        android:textColor="#434343"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="9dp"
+                        android:drawableEnd="@drawable/ic_down_dark_blue_18px"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvDistricts"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tvDistricts" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="sans-serif"
+                android:text="Địa chỉ (*)"
+                android:textColor="#434343"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginTop="@dimen/size_8"
+                android:layout_marginEnd="@dimen/size_12"
+                android:background="@drawable/bg_gray_corners_40_solid_white"
+                android:fontFamily="sans-serif"
+                android:hint="Nhập địa chỉ"
+                android:paddingStart="16dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="#000000"
+                android:textColorHint="#b4b4b4"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="sans-serif"
+                android:text="Nơi mua sản phẩm"
+                android:textColor="#434343"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtShop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginTop="@dimen/size_8"
+                android:layout_marginEnd="@dimen/size_12"
+                android:focusable="false"
+                android:background="@drawable/bg_gray_corners_40_solid_white"
+                android:fontFamily="sans-serif"
+                android:hint="Nơi mua sản phẩm"
+                android:paddingStart="16dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="#000000"
+                android:textColorHint="#b4b4b4"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnUpdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="37dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/bg_blue_corners_40"
+                android:fontFamily="sans-serif-medium"
+                android:text="Cập nhật"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

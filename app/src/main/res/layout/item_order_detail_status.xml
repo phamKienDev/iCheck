@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/layoutTop"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/blue"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvStatus"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:fontFamily="sans-serif"
+        android:padding="@dimen/size_12"
+        android:textColor="#ffffff"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        tools:text="Đang giao hàng" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvAction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableEnd="@drawable/ic_next_white_18dp"
+        android:drawablePadding="@dimen/size_3"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center_vertical"
+        android:includeFontPadding="false"
+        android:padding="@dimen/size_12"
+        android:textAlignment="gravity"
+        android:textColor="#ffffff"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        android:text="@string/xem_chi_tiet" />
+</LinearLayout>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/size_16"
+        android:paddingBottom="@dimen/size_16">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_count_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:text="TextView"
+                android:textColor="@color/blue"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/barlow_medium"
+                android:text="Lượt thích bài viết"
+                android:textColor="@color/blue"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="@dimen/size_1"
+            android:layout_height="@dimen/size_20"
+            android:background="@color/gray" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_count_follow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:text="TextView"
+                android:textColor="@color/blue"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/barlow_medium"
+                android:text="Số người theo dõi"
+                android:textColor="@color/blue"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_1"
+        android:background="@color/gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="@dimen/size_20">
+
+        <vn.icheck.android.component.view.ListAvatar
+            android:id="@+id/img_list_avatar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_16"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:includeFontPadding="false"
+        android:text="Mời bạn bè theo dõi trang này"
+        android:textColor="@color/collection_product_name"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/textView73"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_24"
+        android:layout_marginTop="@dimen/size_5"
+        android:layout_marginRight="@dimen/size_24"
+        android:fontFamily="@font/barlow_medium"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="Mời thêm bạn bè để cùng cập nhập các thông tin mới nhất từ trang này"
+        android:textColor="@color/fast_survey_gray"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tvInvite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_22"
+        android:background="@drawable/bg_corners_4_light_blue_solid"
+        android:drawableStart="@drawable/ic_user_follow_page_18dp"
+        android:drawableLeft="@drawable/ic_user_follow_page_18dp"
+        android:drawablePadding="@dimen/size_8"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:paddingStart="@dimen/size_24"
+        android:paddingLeft="@dimen/size_24"
+        android:paddingTop="@dimen/size_10"
+        android:paddingRight="@dimen/size_24"
+        android:paddingBottom="@dimen/size_10"
+        android:layout_marginBottom="@dimen/size_22"
+        android:text="Mời bạn bè"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_10"
+        android:background="@color/darkGray6"/>
+
+
+</LinearLayout>

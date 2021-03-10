@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/layoutParent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="@color/black_20"
+    tools:context="vn.icheck.android.screen.user.home_page.my_gift_warehouse.shake_gift.shake_box_success.ShakeBoxSuccessActivity">
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_anh_dep"
+        app:layout_constraintBottom_toBottomOf="@id/linearLayout14"
+        app:layout_constraintTop_toTopOf="@id/viewBow" />
+
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout14"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="29dp"
+        android:layout_marginLeft="29dp"
+        android:layout_marginTop="57dp"
+        android:layout_marginEnd="29dp"
+        android:layout_marginRight="29dp"
+        android:background="@drawable/bg_corner_white_10"
+        android:orientation="vertical"
+        android:paddingBottom="23dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/viewBow">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:text="Chúc mừng bạn!"
+            android:textColor="#ff0000"
+            android:textSize="18sp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageGift"
+                android:layout_width="204dp"
+                android:layout_height="204dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_product_shake_gift"
+                android:paddingStart="22dp"
+                android:paddingTop="39dp"
+                android:paddingEnd="22dp"
+                android:paddingBottom="5dp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/imageGiftVoucher"
+                android:layout_width="204dp"
+                android:layout_height="204dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_product_shake_gift"
+                android:paddingStart="22dp"
+                android:paddingTop="39dp"
+                android:paddingEnd="22dp"
+                android:paddingBottom="5dp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgBgGift"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:src="@drawable/img_gift_mission"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvNameGift"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_12"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="@dimen/size_12"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center"
+            android:text="Bạn nhận được 1 lượt mở quà"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvThank"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center"
+            android:paddingLeft="60dp"
+            android:paddingRight="60dp"
+            android:text="Mở ngay để nhận những phần quà cực giá trị nào"
+            android:textAlignment="center"
+            android:textColor="#828282"
+            android:textSize="14sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btnGift"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_marginStart="@dimen/size_10"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="@dimen/size_10"
+            android:background="@drawable/bg_corners_4_light_blue_solid"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center"
+            android:text="Mở quà"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvThank" />
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/viewBow"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_bow_shake_success"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <View
+        android:id="@+id/btnClose"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="@dimen/size_22"
+        android:background="@drawable/ic_close_white_border_30dp"
+        app:layout_constraintEnd_toEndOf="@id/linearLayout14"
+        app:layout_constraintStart_toStartOf="@id/linearLayout14"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout14" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

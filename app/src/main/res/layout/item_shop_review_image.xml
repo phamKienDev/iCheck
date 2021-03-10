@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/size_6"
+    android:layout_marginEnd="@dimen/size_6"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@id/imgIcon"
+        android:layout_width="@dimen/size_70"
+        android:layout_height="@dimen/size_70"
+        android:layout_marginStart="@dimen/size_0"
+        android:layout_marginTop="@dimen/size_6"
+        android:layout_marginEnd="@dimen/size_6"
+        android:scaleType="center" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:drawableEnd="@drawable/ic_close_red_24px"
+        android:includeFontPadding="false" />
+</FrameLayout>

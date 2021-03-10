@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    tools:context="vn.icheck.android.screen.user.detail_stamp_v6_1.verified_phone.VerifiedPhoneActivity">
+
+    <include
+        layout="@layout/toolbar_blue"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/shadow_bottom"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvMessTitleVerifyPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/size_12"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_12"
+        android:textSize="14sp"
+        android:fontFamily="sans-serif"
+        android:textStyle="normal"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="#828282" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvSubTel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_marginTop="@dimen/size_30"
+        android:layout_marginStart="@dimen/size_24"
+        android:fontFamily="sans-serif"
+        android:textStyle="normal"
+        android:textColor="#434343" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/edtPhoneNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_gray_corners_40_solid_white"
+        android:fontFamily="sans-serif"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginEnd="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_8"
+        android:paddingStart="16dp"
+        android:inputType="number"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textColor="#000000"
+        android:textColorHint="#b4b4b4"
+        android:textSize="14sp"
+        android:textStyle="normal" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnUpdate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_blue_corners_40"
+        android:fontFamily="sans-serif-medium"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="12dp"
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        android:textStyle="normal" />
+
+</LinearLayout>

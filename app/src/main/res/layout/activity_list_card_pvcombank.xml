@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/darkGray6"
+    android:orientation="vertical"
+    tools:context=".screen.user.pvcombank.listcard.ListPVCardActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_44"
+        android:background="@color/white"
+        android:elevation="4dp">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@id/imgBack"
+            android:layout_width="@dimen/size_44"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            app:srcCompat="@drawable/ic_back_blue_v2_24px" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/txtTitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center"
+            android:text="Danh sách thẻ"
+            android:textColor="@color/lightBlue"
+            android:textSize="18sp" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:layout_width="@dimen/size_52"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:src="@drawable/ic_logo_pvcbank_icheck_52dp"
+            android:visibility="visible" />
+    </FrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="16dp" />
+</LinearLayout>

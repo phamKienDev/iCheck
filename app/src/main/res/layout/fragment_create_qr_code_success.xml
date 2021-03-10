@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#057dda"
+    android:clickable="true"
+    android:focusable="true">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_create_qr_success"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_close_white_20"
+        android:padding="@dimen/size_12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/imgDownload"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.8">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_qr_code_success_top"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="@string/chia_se_qr_code_nay_toi_ban_be_cua_ban"
+            android:textColor="#35384b"
+            android:textSize="14sp"
+            android:textStyle="normal" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@id/imgQrCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:background="@drawable/bg_qr_code_success_bottom"
+            android:padding="@dimen/size_20"
+            android:scaleType="fitCenter" />
+    </LinearLayout>
+
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@id/imgCreate"
+        android:layout_width="@dimen/size_48"
+        android:layout_height="@dimen/size_48"
+        android:layout_marginEnd="@dimen/size_38"
+        android:background="@drawable/btn_white_oval"
+        android:src="@drawable/ic_add_blue_48"
+        app:layout_constraintEnd_toStartOf="@id/imgDownload"
+        app:layout_constraintTop_toTopOf="@id/imgDownload" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_8"
+        android:fontFamily="sans-serif"
+        android:text="@string/tao_moi"
+        android:textColor="#ffffff"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="@id/imgCreate"
+        app:layout_constraintStart_toStartOf="@id/imgCreate"
+        app:layout_constraintTop_toBottomOf="@id/imgCreate" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@id/imgDownload"
+        android:layout_width="@dimen/size_48"
+        android:layout_height="@dimen/size_48"
+        android:layout_marginBottom="@dimen/size_60"
+        android:background="@drawable/btn_white_oval"
+        android:src="@drawable/ic_download_blue_48"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_8"
+        android:fontFamily="sans-serif"
+        android:text="@string/tai_xuong"
+        android:textColor="#ffffff"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="@id/imgDownload"
+        app:layout_constraintStart_toStartOf="@id/imgDownload"
+        app:layout_constraintTop_toBottomOf="@id/imgDownload" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@id/imgSave"
+        android:layout_width="@dimen/size_48"
+        android:layout_height="@dimen/size_48"
+        android:layout_marginStart="@dimen/size_38"
+        android:background="@drawable/btn_white_oval"
+        android:src="@drawable/ic_share_blue_48"
+        app:layout_constraintStart_toEndOf="@id/imgDownload"
+        app:layout_constraintTop_toTopOf="@id/imgDownload" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_8"
+        android:fontFamily="sans-serif"
+        android:text="@string/chia_se"
+        android:textColor="#ffffff"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="@id/imgSave"
+        app:layout_constraintStart_toStartOf="@id/imgSave"
+        app:layout_constraintTop_toBottomOf="@id/imgSave" />
+</androidx.constraintlayout.widget.ConstraintLayout>

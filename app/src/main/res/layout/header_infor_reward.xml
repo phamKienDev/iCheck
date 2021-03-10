@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/darkGray6"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutBanner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@id/imgBanner"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="H, 375:269"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="#2196F3" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-45dp"
+        android:background="@drawable/bg_infor_detail_reward"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="27dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@id/imgLogo"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@mipmap/ic_launcher" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgUsed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/imgLogo"
+                app:layout_constraintEnd_toEndOf="@id/imgLogo"
+                app:layout_constraintStart_toStartOf="@id/imgLogo"
+                app:layout_constraintTop_toTopOf="@id/imgLogo"
+                android:src="@drawable/img_code_used" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@id/tvNameProduct"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:textColor="@color/blue"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/imgLogo"
+                app:layout_constraintTop_toTopOf="@id/imgLogo"
+                tools:text="Son kem lì Innissfree (tên quà dài không giới hạn...)" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvCongty"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/barlow_medium"
+                android:lineSpacingExtra="4sp"
+                android:textColor="@color/fast_survey_gray"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@id/tvNameProduct"
+                app:layout_constraintStart_toStartOf="@id/tvNameProduct"
+                app:layout_constraintTop_toBottomOf="@id/tvNameProduct"
+                tools:text="Công ty Cổ phần Điện Máy Xanh (không giới hạn dòng)" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="27dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:textColor="#057dda"
+                android:textSize="16sp"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Đã xác nhận ship quà"
+                tools:visibility="visible" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvRefuse"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_6"
+                android:layout_marginBottom="4dp"
+                android:fontFamily="@font/barlow_medium"
+                android:lineSpacingExtra="6sp"
+                android:textColor="#757575"
+                android:textSize="14sp"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvState"
+                tools:text="Lý do"
+                tools:visibility="visible" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvRefuseDes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:lineSpacingExtra="6sp"
+                android:textColor="#757575"
+                android:textSize="14sp"
+                android:visibility="gone"
+                app:layout_constraintStart_toEndOf="@id/tvRefuse"
+                app:layout_constraintTop_toTopOf="@id/tvRefuse"
+                app:layout_constraintBottom_toBottomOf="@id/tvRefuse"
+                tools:text="Lý do: Phí ship quá cao"
+                tools:visibility="visible" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTime"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_6"
+                android:fontFamily="@font/barlow_medium"
+                android:lineSpacingExtra="6sp"
+                android:textColor="@color/fast_survey_gray"
+                android:textSize="14sp"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvRefuse"
+                tools:text="Thời gian xác nhận"
+                tools:visibility="visible" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTimeDes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:lineSpacingExtra="6sp"
+                android:textSize="14sp"
+                android:visibility="gone"
+                app:layout_constraintStart_toEndOf="@id/tvTime"
+                app:layout_constraintTop_toTopOf="@id/tvTime"
+                app:layout_constraintBottom_toBottomOf="@id/tvTime"
+                tools:text="Thời gian xác nhận: 14:21, 21/05/2020"
+                tools:visibility="visible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+</LinearLayout>

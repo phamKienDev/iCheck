@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingStart="@dimen/size_12"
+    android:paddingTop="@dimen/size_12"
+    android:paddingEnd="@dimen/size_12"
+    android:paddingBottom="@dimen/size_8">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:includeFontPadding="false"
+        android:text="@string/hinh_thuc_thanh_toan"
+        android:textColor="#3c5a99"
+        android:textSize="14sp"
+        android:textStyle="normal" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_8"
+        android:background="@drawable/bg_f1f1f1_corners_10"
+        android:drawablePadding="@dimen/size_10"
+        android:fontFamily="sans-serif"
+        android:gravity="start|center"
+        android:includeFontPadding="false"
+        android:maxLines="2"
+        android:padding="@dimen/size_8"
+        android:textAlignment="gravity"
+        android:textColor="#434343"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        tools:text="Thanh toán khi nhận hàng - COD" />
+</LinearLayout>

@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar_blue" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_4"
+        android:background="@drawable/shadow_bottom" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_12"
+                android:layout_marginTop="@dimen/size_20"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Thông tin nhận quà"
+                android:textColor="@color/blue" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_24"
+                android:layout_marginTop="@dimen/size_12"
+                android:text="Họ và tên (*)"
+                android:textColor="#434343" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutInputName"
+                style="@style/CreateUserAddress_InputLayout"
+                android:layout_marginLeft="@dimen/size_12"
+                android:layout_marginRight="@dimen/size_12"
+                app:errorTextAppearance="@style/TextInputLayout_Create_Qr_Code_Error"
+                app:boxStrokeColor="@null"
+                app:hintEnabled="false">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtName"
+                    style="@style/CreateUserAddress_Input"
+                    android:hint="Nhập họ tên"
+                    android:inputType="textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_24"
+                android:layout_marginTop="@dimen/size_12"
+                android:text="Số điện thoại (*)"
+                android:textColor="#434343" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutInputPhone"
+                style="@style/CreateUserAddress_InputLayout"
+                android:layout_marginLeft="@dimen/size_12"
+                android:layout_marginRight="@dimen/size_12"
+                app:errorTextAppearance="@style/TextInputLayout_Create_Qr_Code_Error"
+                app:hintEnabled="false">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtPhone"
+                    style="@style/CreateUserAddress_Input"
+                    android:hint="Nhập số điện thoại"
+                    android:inputType="phone" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_24"
+                android:layout_marginTop="@dimen/size_12"
+                android:text="Email"
+                android:textColor="#434343" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutInputEmail"
+                style="@style/CreateUserAddress_InputLayout"
+                android:layout_marginLeft="@dimen/size_12"
+                android:layout_marginRight="@dimen/size_12"
+                app:errorTextAppearance="@style/TextInputLayout_Create_Qr_Code_Error"
+                app:hintEnabled="false">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtEmail"
+                    style="@style/CreateUserAddress_Input"
+                    android:hint="Nhập email"
+                    android:inputType="textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_12"
+                android:layout_marginRight="@dimen/size_12"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="@dimen/size_0"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/size_4"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/size_12"
+                        android:layout_marginTop="@dimen/size_12"
+                        android:text="Tỉnh thành (*)"
+                        android:textColor="#434343" />
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_8">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutInputProvince"
+                            style="@style/CreateUserAddress_InputLayout"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="@dimen/size_0"
+                            app:errorTextAppearance="@style/TextInputLayout_Create_Qr_Code_Error"
+                            app:hintEnabled="false">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                style="@style/CreateUserAddress_Input"
+                                android:clickable="false"
+                                android:focusable="false"
+                                android:inputType="phone"
+                                android:longClickable="false" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/spProvince"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/size_36"
+                            android:drawableRight="@drawable/ic_down_dark_blue_18px"
+                            android:drawablePadding="@dimen/size_8"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/roboto_regular"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="@dimen/size_16"
+                            android:paddingRight="@dimen/size_9"
+                            android:singleLine="true"
+                            android:text="@string/tuy_chon"
+                            android:textColor="#434343"
+                            android:textSize="14sp"
+                            android:textStyle="normal" />
+                    </FrameLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="@dimen/size_0"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/size_4"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/size_12"
+                        android:layout_marginTop="@dimen/size_12"
+                        android:text="Huyện (*)"
+                        android:textColor="#434343" />
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_8">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutInputDistrict"
+                            style="@style/CreateUserAddress_InputLayout"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="@dimen/size_0"
+                            app:errorTextAppearance="@style/TextInputLayout_Create_Qr_Code_Error"
+                            app:hintEnabled="false">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                style="@style/CreateUserAddress_Input"
+                                android:clickable="false"
+                                android:focusable="false"
+                                android:inputType="phone"
+                                android:longClickable="false" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/spDistrict"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/size_36"
+                            android:drawableRight="@drawable/ic_down_dark_blue_18px"
+                            android:drawablePadding="@dimen/size_8"
+                            android:ellipsize="end"
+                            android:fontFamily="sans-serif"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="@dimen/size_16"
+                            android:paddingRight="@dimen/size_9"
+                            android:singleLine="true"
+                            android:text="@string/tuy_chon"
+                            android:textColor="#434343"
+                            android:textSize="14sp"
+                            android:textStyle="normal" />
+                    </FrameLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_24"
+                android:layout_marginTop="@dimen/size_12"
+                android:text="Phường xã (*)"
+                android:textColor="#434343" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_12"
+                android:layout_marginRight="@dimen/size_12"
+                android:layout_marginTop="@dimen/size_8">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutInputWard"
+                    style="@style/CreateUserAddress_InputLayout"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/size_0"
+                    app:errorTextAppearance="@style/TextInputLayout_Create_Qr_Code_Error"
+                    app:hintEnabled="false">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        style="@style/CreateUserAddress_Input"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:inputType="phone"
+                        android:longClickable="false" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/spWard"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_36"
+                    android:drawableRight="@drawable/ic_down_dark_blue_18px"
+                    android:drawablePadding="@dimen/size_8"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/size_16"
+                    android:paddingRight="@dimen/size_9"
+                    android:singleLine="true"
+                    android:text="@string/tuy_chon"
+                    android:textColor="#434343"
+                    android:textSize="14sp"
+                    android:textStyle="normal" />
+            </FrameLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_24"
+                android:layout_marginTop="@dimen/size_12"
+                android:text="Địa chỉ nhận quà (*)"
+                android:textColor="#434343" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutInputAddress"
+                style="@style/CreateUserAddress_InputLayout"
+                android:layout_marginLeft="@dimen/size_12"
+                android:layout_marginRight="@dimen/size_12"
+                app:errorTextAppearance="@style/TextInputLayout_Create_Qr_Code_Error"
+                app:hintEnabled="false">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtAddress"
+                    style="@style/CreateUserAddress_Input"
+                    android:hint="Nhập địa chỉ nhận quà"
+                    android:inputType="textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_0"
+                android:layout_marginTop="@dimen/size_12"
+                android:layout_weight="1" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/btnDone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="@dimen/size_40"
+                android:layout_marginRight="@dimen/size_40"
+                android:background="@drawable/bg_gradient_button_orange_yellow"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:paddingTop="@dimen/size_10"
+                android:paddingBottom="@dimen/size_10"
+                android:text="Hoàn thành"
+                android:layout_marginBottom="@dimen/size_22"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

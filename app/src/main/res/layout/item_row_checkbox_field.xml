@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatCheckedTextView
+        android:id="@+id/tvCheck"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:drawablePadding="15dp"
+        android:checked="false"
+        android:gravity="center"
+        android:drawableStart="@drawable/state_check_field_guarantee"
+        android:drawableLeft="@drawable/state_check_field_guarantee"
+        android:fontFamily="sans-serif"
+        android:textStyle="normal"
+        android:textColor="@drawable/state_text_color_check_field_guarantee"
+        tools:text="checkbox"/>
+
+</LinearLayout>

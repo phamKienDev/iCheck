@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="vn.icheck.android.screen.user.invite_friend_follow_page.InviteFriendFollowPageActivity">
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_12"
+        android:layout_marginRight="@dimen/size_12"
+        android:background="@drawable/bg_blue_opacity_corners_4"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_5"
+            android:layout_marginBottom="@dimen/size_5"
+            android:src="@drawable/img_emoji_65dp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_16"
+            android:layout_marginTop="@dimen/size_12"
+            android:layout_marginBottom="@dimen/size_12"
+            android:layout_weight="1"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="top"
+            android:includeFontPadding="false"
+            android:text="Khi mọi người theo dõi Trang bạn mời, những người khác sẽ dễ dàng tìm thấy Trang và xem bài viết nhiều hơn."
+            android:textColor="@color/fast_survey_gray"
+            android:textSize="14sp" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/imgClose"
+            android:layout_width="@dimen/size_44"
+            android:layout_height="@dimen/size_44"
+            android:background="@color/transparent"
+            app:srcCompat="@drawable/ic_cancel_light_blue_24dp" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvSpam"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_12"
+        android:layout_marginRight="@dimen/size_12"
+        android:layout_weight="1"
+        android:background="@drawable/bg_red_opacity_corners_4"
+        android:fontFamily="@font/barlow_medium"
+        android:gravity="top"
+        android:includeFontPadding="false"
+        android:padding="@dimen/size_12"
+        android:text="Để tránh spam, chúng tôi sẽ giới hạn số lời mời có thể gửi đi trong ngày. Hãy gửi lời mời hôm nay rồi mai quay lại gửi thêm nhé!"
+        android:textColor="@color/fast_survey_gray"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/container" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvFriendCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:textColor="@color/blue"
+        android:textSize="16sp"
+        android:text="sadfsadf"
+        android:layout_marginLeft="@dimen/size_12"
+        android:layout_marginRight="@dimen/size_12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSpam" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvNote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_2"
+        android:fontFamily="@font/barlow_medium"
+        android:layout_marginLeft="@dimen/size_12"
+        android:layout_marginRight="@dimen/size_12"
+        android:text="Để tránh spam, chúng tôi sẽ giới hạn tối đa 50 lời mời có thể gửi đi trong ngày. Hãy gửi lời mời tới những người bạn thân thiết nhé!"
+        android:textColor="@color/fast_survey_gray"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvFriendCount" />
+
+    <View
+        android:id="@+id/view45"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/size_0_5"
+        android:layout_marginLeft="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_10"
+        android:background="@color/gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNote" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

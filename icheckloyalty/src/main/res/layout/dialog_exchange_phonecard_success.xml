@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_60"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_22"
+        android:layout_marginRight="@dimen/size_22"
+        android:background="@drawable/bg_dialog_exchange_gifts_point_success"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="90dp"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center_horizontal"
+            android:text="Bạn đã đổi quà thành công"
+            android:textColor="#434343" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPoint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_32"
+            android:layout_marginTop="@dimen/size_4"
+            android:layout_marginRight="@dimen/size_32"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center_horizontal"
+            android:textColor="#FE4E1B"
+            android:textSize="18sp"
+            tools:text="Thẻ cào Viettel\n300,000VND" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_20"
+            android:gravity="center_horizontal"
+            android:layout_marginLeft="@dimen/size_32"
+            android:layout_marginRight="@dimen/size_32"
+            tools:text="Thẻ cào đã được cộng vào tài khoản\n+ 84 369 220 114"
+            android:textColor="#434343" />
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_20"
+        app:srcCompat="@drawable/ic_close_popup_32px" />
+</LinearLayout>

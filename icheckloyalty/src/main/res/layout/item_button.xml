@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.AppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/bg_gradient_button_blue"
+    android:text="Xem tất cả giao dịch"
+    android:paddingTop="@dimen/size_10"
+    android:paddingBottom="@dimen/size_10"
+    android:gravity="center"
+    android:textColor="@color/white"
+    android:fontFamily="@font/roboto_medium"
+    android:textSize="16sp"
+    android:layout_marginBottom="@dimen/size_20"
+    android:layout_marginStart="72dp"
+    android:layout_marginEnd="72dp"
+    android:layout_marginTop="@dimen/size_30"
+    android:layout_height="wrap_content"/>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_dialog"
+    android:paddingBottom="20dp">
+
+    <include
+        android:id="@+id/layoutHeader"
+        layout="@layout/layout_title_filter_search" />
+
+    <View
+        android:id="@+id/divider31"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#D8D8D8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutHeader" />
+
+    <TextView
+        android:id="@+id/tv_all"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginLeft="@dimen/size_12"
+        android:layout_marginEnd="14dp"
+        android:layout_marginRight="14dp"
+        android:drawableEnd="@drawable/ic_checkbox_single_on_24px"
+        android:drawableRight="@drawable/ic_checkbox_single_on_24px"
+        android:fontFamily="@font/barlow_medium"
+        android:gravity="center_vertical"
+        android:includeFontPadding="false"
+        android:text="@string/moi_nguoi"
+        android:textColor="@color/collection_product_name"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider31" />
+
+    <View
+        android:id="@+id/divider32"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="12dp"
+        android:background="#D8D8D8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_all" />
+
+    <TextView
+        android:id="@+id/tv_friend"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/size_48"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginLeft="@dimen/size_12"
+        android:layout_marginEnd="14dp"
+        android:layout_marginRight="14dp"
+        android:fontFamily="@font/barlow_medium"
+        android:gravity="center_vertical"
+        android:text="@string/chinh_ban"
+        android:textColor="@color/collection_product_name"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider32" />
+
+    <View
+        android:id="@+id/divider33"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="12dp"
+        android:background="#D8D8D8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_friend" />
+
+    <TextView
+        android:id="@+id/tv_friend_2"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/size_48"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginLeft="@dimen/size_12"
+        android:layout_marginEnd="14dp"
+        android:layout_marginRight="14dp"
+        android:fontFamily="@font/barlow_medium"
+        android:gravity="center_vertical"
+        android:text="@string/ban_be"
+        android:textColor="@color/collection_product_name"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider33" />
+
+    <View
+        android:id="@+id/divider34"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="12dp"
+        android:background="#D8D8D8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_friend_2" />
+
+    <TextView
+        android:id="@+id/tv_page"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/size_48"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginLeft="@dimen/size_12"
+        android:layout_marginEnd="14dp"
+        android:layout_marginRight="14dp"
+        android:fontFamily="@font/barlow_medium"
+        android:gravity="center_vertical"
+        android:text="@string/trang_cua_ban"
+        android:textColor="@color/collection_product_name"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider34" />
+
+    <View
+        android:id="@+id/divider30"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="12dp"
+        android:background="#D8D8D8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_page" />
+
+    <TextView
+        android:id="@+id/tv_clear"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_20"
+        android:layout_marginEnd="@dimen/size_12"
+        android:background="@drawable/bg_corners_4_light_blue_no_solid"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:gravity="center"
+        android:paddingTop="@dimen/size_8"
+        android:paddingBottom="@dimen/size_8"
+        android:text="@string/thiet_lap_lai"
+        android:textColor="@color/light_blue"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider30" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

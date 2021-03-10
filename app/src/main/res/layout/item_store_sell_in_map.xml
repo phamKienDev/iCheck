@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/layoutParent"
+    android:layout_width="301dp"
+    android:layout_height="168dp"
+    android:layout_marginStart="7.5dp"
+    android:layout_marginEnd="7.5dp"
+    android:background="@drawable/bg_white_corners_16">
+
+    <LinearLayout
+        android:id="@+id/layoutImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="11dp"
+        android:background="@drawable/bg_corner_12_stroke_gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgAva"
+            android:layout_width="57dp"
+            android:layout_height="57dp"
+            android:layout_margin="1dp"
+            tools:src="#03A9F4" />
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:fontFamily="@font/barlow_medium"
+        android:textColor="#4f4f4f"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/layoutImage"
+        app:layout_constraintTop_toTopOf="@+id/layoutImage"
+        tools:text="Siêu thị VinMart Mỹ Đình" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvKhoangCach"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/barlow_medium"
+        android:layout_marginStart="10dp"
+        android:drawableStart="@drawable/ic_gps_off_18_px"
+        android:textColor="#b4b4b4"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/layoutImage"
+        app:layout_constraintTop_toBottomOf="@+id/tvName"
+        tools:text="KC: 300m" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:textColor="#fa9538"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/tvName"
+        app:layout_constraintTop_toBottomOf="@+id/tvKhoangCach"
+        tools:text="23,004,000 đ" />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="7.5dp"
+        android:background="#e0e0e0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvPrice" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgPin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="2dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvAddress"
+        android:src="@drawable/ic_pin_map_14_gray"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvAddress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="6dp"
+        android:drawablePadding="7dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/barlow_regular"
+        android:lineSpacingExtra="7.6sp"
+        android:maxLines="2"
+        android:textColor="#212121"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@id/imgPin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line"
+        tools:text="Số nhà 18, chung cư 125A Nguyễn Ngọc Vũ,  Trung Hoà, Q. Cầu Giấy, Hà Nội" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_phone_gray_14"
+        app:layout_constraintTop_toTopOf="@id/tvPhone"
+        app:layout_constraintStart_toStartOf="@id/imgPin"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPhone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/barlow_regular"
+        android:lineSpacingExtra="7.6sp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="17dp"
+        android:textColor="#212121"
+        android:maxLines="1"
+        android:minLines="1"
+        android:ellipsize="end"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@id/tvAddress"
+        app:layout_constraintStart_toStartOf="@id/tvAddress"
+        app:layout_constraintTop_toBottomOf="@id/tvAddress"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="0985 555 222 • Fax: 033 22 222" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

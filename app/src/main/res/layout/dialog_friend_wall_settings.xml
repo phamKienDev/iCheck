@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <View
+        android:id="@id/viewTop"
+        android:layout_width="@dimen/size_50"
+        android:layout_height="@dimen/size_6"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/bg_white_corners_4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_8"
+        android:background="@drawable/bg_white_corners_top_16"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/size_30">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutfollow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="4dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgUnfollow"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="8dp"
+                android:src="@drawable/ic_unfollow_40dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvUnfolow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/barlow_medium"
+                android:textColor="#212121"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@id/imgUnfollow"
+                app:layout_constraintTop_toTopOf="@id/imgUnfollow"
+                tools:text="Bỏ theo dõi Xuyến Đỗ" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/barlow_regular"
+                android:text="Khi bỏ theo dõi, các bài viết của người này sẽ không hiển thị trên trang chủ của bạn nữa."
+                android:textColor="#757575"
+                android:textSize="14sp"
+                android:visibility="visible"
+                app:fontFamily="@font/barlow_medium"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tvUnfolow"
+                app:layout_constraintTop_toBottomOf="@id/tvUnfolow" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutNotify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="4dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgNotify"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="8dp"
+                app:srcCompat="@drawable/ic_unfriend_40dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTitleNotify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/barlow_medium"
+                android:textColor="#212121"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@id/imgNotify"
+                app:layout_constraintTop_toTopOf="@id/imgNotify"
+                tools:text="Hủy kết bạn Tùng Thanh" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/barlow_regular"
+                android:text="Lời mời kết bạn trước đó sẽ bị hủy bỏ. Bạn vẫn có thể gửi lại  lời mời kết bạn cho người này."
+                android:textColor="#757575"
+                android:textSize="14sp"
+                android:visibility="visible"
+                app:fontFamily="@font/barlow_medium"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tvTitleNotify"
+                app:layout_constraintTop_toBottomOf="@id/tvTitleNotify" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutReport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:visibility="visible"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="4dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgReport"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="8dp"
+                android:src="@drawable/ic_report_40px"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_report"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/barlow_medium"
+                android:text="Báo cáo người dùng"
+                android:textColor="#212121"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@id/imgReport"
+                app:layout_constraintTop_toTopOf="@id/imgReport" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/barlow_regular"
+                android:text="Bạn nhận thấy người dùng này có những hoạt động mang nội dung spam, nhạy cảm? Hãy cho chúng tôi biết."
+                android:textColor="#757575"
+                android:textSize="14sp"
+                android:visibility="visible"
+                app:fontFamily="@font/barlow_medium"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tv_report"
+                app:layout_constraintTop_toBottomOf="@id/tv_report" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</LinearLayout>

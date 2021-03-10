@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient_welcome"
+    tools:context="vn.icheck.android.screen.user.welcome.WelcomeActivity">
+
+    <me.itangqi.waveloadingview.WaveLoadingView
+        android:id="@+id/waveLoadingView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:wlv_shapeType="rectangle"
+        app:wlv_waveAmplitude="80"
+        app:wlv_progressValue="80"
+        app:wlv_waveColor="@color/white"/>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.rd.PageIndicatorView
+        android:id="@+id/indicatorProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/size_0"
+        app:layout_constraintBottom_toTopOf="@+id/waveLoadingView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:piv_animationType="fill"
+        app:piv_dynamicCount="true"
+        android:paddingStart="@dimen/size_12"
+        app:piv_interactiveAnimation="true"
+        app:piv_padding="@dimen/size_6"
+        android:paddingTop="@dimen/size_1"
+        android:paddingBottom="@dimen/size_1"
+        app:piv_radius="@dimen/size_3"
+        app:piv_selectedColor="@color/white"
+        app:piv_unselectedColor="#d8d8d8"
+        app:piv_viewPager="@id/viewPager" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtSkip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:paddingStart="@dimen/size_12"
+        android:paddingTop="@dimen/size_10"
+        android:paddingEnd="@dimen/size_12"
+        android:paddingBottom="@dimen/size_10"
+        android:text="@string/bo_qua"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/waveLoadingView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/waveLoadingView" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:paddingStart="@dimen/size_12"
+        android:paddingTop="@dimen/size_10"
+        android:paddingEnd="@dimen/size_12"
+        android:paddingBottom="@dimen/size_10"
+        android:text="@string/tiep"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtSkip" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

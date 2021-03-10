@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/layoutShopVariant"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="8dp"
+        app:cardCornerRadius="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_corner_top_dark_blue_10">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvNameShopVariant"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Công ty TNHH Kính Mắt Quang Hưng" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvKmShopVariant"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="6dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/view"
+                    app:layout_constraintStart_toStartOf="@+id/tvNameShopVariant"
+                    app:layout_constraintTop_toBottomOf="@+id/tvNameShopVariant"
+                    tools:text="5km" />
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="2dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="18dp"
+                    android:background="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvKmShopVariant"
+                    app:layout_constraintEnd_toStartOf="@+id/tvRatingShopVariant"
+                    app:layout_constraintStart_toEndOf="@+id/tvKmShopVariant"
+                    app:layout_constraintTop_toTopOf="@+id/tvKmShopVariant" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvRatingShopVariant"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:drawableStart="@drawable/ic_start_stamp_12"
+                    android:drawablePadding="8dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="@+id/view"
+                    app:layout_constraintStart_toEndOf="@+id/view"
+                    app:layout_constraintTop_toTopOf="@+id/view"
+                    tools:text="4.5/5.0" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/gray_item_search"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvAddressShopVariant"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="sans-serif"
+                        android:textColor="#434343"
+                        android:textSize="12sp"
+                        android:textStyle="normal"
+                        tools:text="Số 50, Ngõ 125 Nguyễn Ngọc Vũ, Trung Hòa, Cầu Giấy, Hà Nội (tên dài không giới hạn)" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rcvServiceShopVariant"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="14dp" />
+
+                </LinearLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_corner_bottom_white_10">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvAddToCartInDiemBan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginBottom="6dp"
+                        android:drawableEnd="@drawable/ic_add_cart_light_blue_24px"
+                        android:drawablePadding="5dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="center"
+                        android:text="Giỏ hàng"
+                        android:textColor="#4f4f4f"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:background="@drawable/bg_corner_sub_price_green_stamp"
+                        android:gravity="center|end"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="30dp"
+                            android:background="@drawable/bg_corner_sub_price_green_stamp_2"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvPriceNoSale"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginEnd="14dp"
+                                android:drawableStart="@drawable/ic_price_white_18px"
+                                android:drawablePadding="7dp"
+                                android:fontFamily="sans-serif"
+                                android:gravity="center"
+                                android:textColor="#d8d8d8"
+                                android:textSize="14sp"
+                                android:textStyle="normal"
+                                tools:text="130,000" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvPriceSale"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="8dp"
+                                android:fontFamily="sans-serif"
+                                android:textColor="#ffffff"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                tools:text="90,000đ" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

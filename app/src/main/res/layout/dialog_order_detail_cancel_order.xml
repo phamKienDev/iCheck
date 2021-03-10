@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/size_10"
+    android:layout_marginEnd="@dimen/size_10"
+    android:layout_marginBottom="@dimen/size_12"
+    android:background="@drawable/bg_white_corners_8"
+    android:paddingBottom="@dimen/size_10">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_10"
+        android:fontFamily="sans-serif-medium"
+        android:includeFontPadding="false"
+        android:text="@string/trang_thai_don_hang"
+        android:textColor="#3c5a99"
+        android:textSize="18sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@id/imgClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_9"
+        android:background="?android:attr/selectableItemBackground"
+        android:padding="@dimen/size_6"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_close_blue_24"
+        app:layout_constraintBottom_toBottomOf="@id/tvTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvTitle" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvDone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/size_9"
+        android:fontFamily="sans-serif-medium"
+        android:includeFontPadding="false"
+        android:padding="@dimen/size_6"
+        android:text="@string/xong"
+        android:textColor="#49aa2d"
+        android:textSize="18sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@id/tvTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvTitle" />
+
+
+    <View
+        android:id="@id/viewLine"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0_5"
+        android:layout_marginTop="@dimen/size_10"
+        android:background="#bdbdbd"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_20"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/viewLine">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_20"
+            android:fontFamily="sans-serif"
+            android:includeFontPadding="false"
+            android:text="@string/ly_do_huy"
+            android:textColor="#434343"
+            android:textSize="14sp"
+            android:textStyle="normal" />
+
+        <RadioGroup
+            android:id="@id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/radioButton1"
+                style="@style/Order_Detail_Cancel_Radio_Button"
+                android:layout_marginTop="@dimen/size_10"
+                android:text="@string/tim_duoc_san_pham_voi_gia_tot_hon" />
+
+            <View style="@style/Order_Detail_Cancel_View" />
+
+            <RadioButton
+                style="@style/Order_Detail_Cancel_Radio_Button"
+                android:text="@string/dat_nham_san_pham" />
+
+            <View style="@style/Order_Detail_Cancel_View" />
+
+            <RadioButton
+                style="@style/Order_Detail_Cancel_Radio_Button"
+                android:text="@string/khong_muon_mua_nua" />
+
+            <View style="@style/Order_Detail_Cancel_View" />
+
+            <RadioButton
+                style="@style/Order_Detail_Cancel_Radio_Button"
+                android:text="@string/phi_van_chuyen_cao" />
+
+            <View style="@style/Order_Detail_Cancel_View" />
+
+            <RadioButton
+                style="@style/Order_Detail_Cancel_Radio_Button"
+                android:text="@string/ly_do_khac" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

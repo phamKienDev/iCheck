@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/size_6"
+    android:layout_marginTop="@dimen/size_2"
+    android:layout_marginEnd="@dimen/size_6"
+    android:layout_marginBottom="@dimen/size_8"
+    android:background="@drawable/bg_corner_gray_solid_white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@id/imgImage"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_0"
+            android:background="@color/black_25"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="H, 171:82"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@id/imgAvatar"
+            android:layout_width="@dimen/size_40"
+            android:layout_height="@dimen/size_40"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginLeft="@dimen/size_8"
+            android:layout_marginTop="@dimen/size_8"
+            android:layout_marginBottom="@dimen/size_10"
+            app:civ_border_color="@color/gray"
+            app:civ_border_width="@dimen/size_0_5"
+            app:layout_constraintBottom_toBottomOf="@id/imgImage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imgImage"
+            tools:src="@drawable/img_default_business_logo" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgVerified"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_27"
+            android:layout_marginLeft="@dimen/size_27"
+            android:layout_marginTop="@dimen/size_27"
+            app:layout_constraintStart_toStartOf="@id/imgAvatar"
+            app:layout_constraintTop_toTopOf="@id/imgAvatar"
+            tools:src="@drawable/ic_verified_16px" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/tvName"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_6"
+            android:layout_marginTop="@dimen/size_6"
+            android:layout_marginEnd="@dimen/size_6"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:includeFontPadding="false"
+            android:maxHeight="40dp"
+            android:maxLines="2"
+            android:minHeight="40dp"
+            android:singleLine="true"
+            android:textColor="@color/collection_product_name"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imgAvatar"
+            tools:text="Adidas Store (tối 1 dòng)..." />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/tvStatus"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_6"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_medium"
+            android:includeFontPadding="false"
+            android:singleLine="true"
+            android:textColor="#757575"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@id/tvName"
+            app:layout_constraintStart_toStartOf="@id/tvName"
+            app:layout_constraintTop_toBottomOf="@id/tvName"
+            tools:text="1,241,021 Người theo dõi" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/btnAction"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="@dimen/size_28"
+            android:layout_marginTop="@dimen/size_6"
+            android:layout_marginBottom="@dimen/size_6"
+            android:background="@drawable/btn_white_outline_light_blue_1_corners_4"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/tvName"
+            app:layout_constraintStart_toStartOf="@id/tvName"
+            app:layout_constraintTop_toBottomOf="@id/tvStatus" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/tvAction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:includeFontPadding="false"
+            android:singleLine="true"
+            android:textColor="@color/text_color_light_blue"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/btnAction"
+            app:layout_constraintEnd_toEndOf="@id/btnAction"
+            app:layout_constraintStart_toStartOf="@id/btnAction"
+            app:layout_constraintTop_toTopOf="@id/btnAction"
+            tools:text="Ghé thăm" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

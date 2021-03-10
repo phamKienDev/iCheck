@@ -1,0 +1,1061 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="vn.icheck.android">
+
+    <uses-sdk tools:overrideLibrary="vn.map4d.types,vn.map4d.map,vn.teko.android.miniappconnector.teko.vnshop, vn.teko.android.vnshop,vn.teko.android.auth.login, vn.teko.android.auth.user, vn.teko.android.auth.core, vn.teko.hestia.android.nativelib,         vn.teko.hestia.android, vn.teko.android.tracker.manager, vn.teko.service.ppm.android, vn.teko.service.listing.android, vn.teko.service.policy.android, vn.teko.service.discovery.android, vn.teko.service.user.android, vn.teko.service.location.android,         vn.teko.service.order.android, vn.teko.service.notification.android, vn.teko.service.search.android, vn.teko.service.ticket.android,vn.teko.service.cart.android, vn.teko.android.payment.manager, vn.teko.terra.core.android, vn.teko.android.tracker.event.v2,vn.teko.android.tracker.core, vn.teko.android.payment.observer.firebase, vn.teko.android.payment.v2, vn.teko.hestia.trackingbridge,it.sephiroth.android.library.rangeseekbar" />
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <supports-screens
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.sensor.accelerometer"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+    <uses-feature android:name="android.hardware.camera.flash" />
+    <uses-feature android:name="android.hardware.camera.any" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission
+        android:name="ACCESS_BACKGROUND_LOCATION"
+        tools:node="remove" />
+    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <uses-permission-sdk-23 android:name="android.permission.READ_CALENDAR" />
+    <uses-permission-sdk-23 android:name="android.permission.WRITE_CALENDAR" /> <!-- Insider Required -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <application
+        android:name=".ICheckApplication"
+        android:allowBackup="false"
+        android:debuggable="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        tools:ignore="GoogleAppIndexingWarning,HardcodedDebugMode"
+        tools:replace="android:allowBackup"
+        tools:targetApi="m">
+        <activity android:name=".TestActivity"></activity>
+        <activity
+            android:name=".screen.user.gift_history.v2.GiftHistoryV2Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.ads_more.AdsMoreActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.detail_stamp_hoa_phat.infor_product.InforProductHoaPhatActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.detail_stamp_thinh_long.home.DetailStampThinhLongActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.detail_stamp_hoa_phat.home.DetailStampHoaPhatActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.rank_of_user.RankUpActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Translucent" />
+        <activity
+            android:name=".activities.product.product_questions_v1.ProductQuestionsV1Activity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.product.review_product_v1.ReviewProductV1Activity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.product.review_v1.EditReviewV1Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.detail_stamp_v6_1.selectdistrictstamp.SelectDistrictStampActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.detail_stamp_v6_1.selectprovincestamp.SelectProvinceStampActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.view_item_image_stamp.ViewItemImageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.map_scan_history.MapScanHistoryActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.product_of_shop_history.ProductOfShopHistoryActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.suggest_store_history.SuggestStoreHistoryActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.social_chat.SocialChatActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.detail_media.DetailMediaActivity"
+            android:configChanges="orientation|screenSize|layoutDirection"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_Black" />
+        <activity
+            android:name=".screen.user.store_sell_history.StoreSellHistoryActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.bookmark_history.BookmarkHistoryActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.gift_campaign.GiftOfCampaignActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.report.ReportActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".screen.user.list_trending_products.ListTrendingProductsActivity" />
+        <activity
+            android:name=".screen.user.shipping.ship.ShipActivity"
+            android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|orientation|screenLayout|touchscreen|uiMode"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.pvcombank.detailspecialoffer.DetailSpecialOfferPVCardActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.utilities.UtilitiesActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.pvcombank.specialoffer.SpecialOfferPVCardActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.pvcombank.confirmunlockcard.ConfirmUnlockPVCardActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.pvcombank.card_history.HistoryPVCardActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.pvcombank.confirmlockcard.ConfirmLockPVCardActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.pvcombank.home.HomePVCardActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.pvcombank.authen.CreatePVCardActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.pvcombank.listcard.ListPVCardActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.info.AppInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.campaign_onboarding.CampaignOnboardingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.contact.ContactActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.wall.manage_page.my_follow_page.MyFollowPageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".screen.user.wall.manage_page.my_owner_page.MyOwnerPageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".screen.user.list_contribution.ContributionAttributesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.crop_camera.CropCameraActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppFullScreenTheme" />
+        <activity
+            android:name=".screen.user.home_page.my_gift_warehouse.list_mission.list.ListMissionActivity"
+            android:theme="@style/Theme.AppCompat.Translucent"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.history_accumulate_points.HistoryAccumulatePointActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.exclusive_privileges_detail.ExclusivePrivilegesDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.exclusive_privileges.ExclusivePrivilegesActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.rank_of_user.RankOfUserActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.winner_campaign.WinnerCampaignActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.option_manager_user_watching.ManagerUserWatchingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.media_in_post.MediaInPostActivity"
+            android:configChanges="orientation|screenSize|layoutDirection"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_Black" />
+        <activity
+            android:name=".screen.user.verify_identity.VerifyIdentityActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.option_manger_user_follow.ManagerUserFollowActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.detail_post.DetailPostActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.option_edit_information_public.EditInformationPublicActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.list_friend_in_wall.ListFriendOfWallActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.wall.IckUserWallActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.createpost.CreateOrUpdatePostActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.scanproduct.ScanProductActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.OverStatusBar" />
+        <activity
+            android:name=".screen.user.list_facebook_friend.ListFacebookFriendActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.listdistributor.ListDistributorActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.edit_privacy.EditPrivacyActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.contribute_product.IckContributeProductActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.cropimage.CropImageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.OverStatusBar"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.share_post_of_page.SharePostActivity"
+            android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|orientation|screenLayout|touchscreen|uiMode"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.invite_friend_follow_page.InviteFriendFollowPageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".screen.user.detail_my_reward.DetailMyRewardActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppFullScreenTheme" />
+        <activity
+            android:name=".screen.user.history_search.HistorySearchActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".screen.user.editcomment.EditCommentActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.commentpost.CommentPostActivity"
+            android:theme="@style/Theme.AppCompat.Translucent"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.home_page.my_gift_warehouse.shake_gift.shake_box_success.ShakeBoxSuccessActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/TranslucentStatusBarDapQua" />
+        <activity
+            android:name=".screen.user.list_product_history.ListProductHistoryActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.map_history.MapHistoryActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.mygift.MyGiftActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.home_page.my_gift_warehouse.shake_gift.shake.ShakeGiftActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.home_page.my_gift_warehouse.shake_gift.list_box_gift.ListShakeGridBoxActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.home_page.campaign.detail_campagin_v2.DetailCampaignV2Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/TranslucentStatusBarDapQua" />
+        <activity
+            android:name=".screen.user.bookmark.BookMarkV2Activity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.image_asset_page.ImageAssetPageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.brand.BrandPageActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.user_follow_page.UserFollowPageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.icheckstore.list.ProductStoreiCheckActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.search_home.review.SearchReviewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".screen.user.search_home.shop.SearchShopActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".screen.user.search_home.page.SearchPageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".screen.user.search_home.product.SearchProductActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".screen.user.buy_mobile_card_success.BuyCardSuccessActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.buy_mobile_card.BuyMobileCardV2Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.list_product_question.ListProductQuestionActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.search_home.user.SearchUserActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".screen.user.listnotification.productnotice.ListProductNoticeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.OverStatusBar"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.listnotification.othernotification.ListOtherNotificationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.OverStatusBar"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.listnotification.interactive.ListInteractiveActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.OverStatusBar"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.listnotification.friendsuggestion.ListFriendSuggestionActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.OverStatusBar"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.listnotification.friendrequest.ListFriendRequestActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.list_product_review.ListProductReviewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.search_home.result.SearchResultActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".screen.user.search_home.main.SearchHomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.scan.ICKScanActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.information_product.InformationProductActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.listcontribute.ListContributeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.page_details.PageDetailActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.report_product.ReportProductActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.product_detail.product.IckProductDetailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".screen.account.icklogin.IckLoginActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".screen.user.suggest_topic.SuggestTopicActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.OverStatusBar" />
+        <activity
+            android:name=".screen.user.suggest_page.SuggestPageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.list_shop_variant.ListShopVariantActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.newsdetailv2.NewDetailV2Activity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.newslistv2.NewsListV2Activity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.home_page.my_gift_warehouse.open_reward_box_tet.OpenRewardBoxTetActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/TranslucentStatusBarDapQua" />
+        <activity android:name=".activities.chat.group.NewCreateGroupChatActivity" />
+        <activity
+            android:name=".screen.user.qr_code_marketing.QrCodeMarketingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.popup_giftcode_lucky.PopupGiftCodeLucky"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Translucent" />
+        <activity android:name=".activities.chat.setting.ChatV2SettingActivity" />
+        <activity android:name=".activities.chat.v2.ChatV2Activity" />
+        <activity android:name=".activities.chat.sticker.StickerStoreActivity" />
+        <activity
+            android:name=".screen.user.detail_stamp_v5.detail_history_guarantee_v5.DetaiHistoryGuaranteeV5Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.detail_stamp_v6.detail_history_guarantee_v6.DetaiHistoryGuaranteeV6Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.popup_gift_loyalty.PopupGiftLoyalty"
+            android:theme="@style/Theme.AppCompat.Translucent" />
+        <activity
+            android:name=".activities.product.ListDistributorActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.voucher.VoucherActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity android:name=".activities.chat.ScanForChatActivity" />
+        <activity
+            android:name=".screen.user.popup_complete_mission.PopupCompleteMissionActivity"
+            android:theme="@style/Theme.AppCompat.Translucent" />
+        <activity
+            android:name=".screen.user.detail_stamp_v6_1.more_information_product.MoreInformationProductActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.profile.changepassword.ChangePasswordActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.profile.updateprofile.UpdateProfileActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.profile.confirmphone.ConfirmNewPhoneActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.account.resetpassword.ResetPasswordActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.OverStatusBar"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.account.registerfacebookphone.RegisterFacebookPhoneActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.account.verifyfacebookphone.VerifyFacebookPhoneActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.shopreview.OrderReviewActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.history_loading_card.home.HistoryCardActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.detail_stamp_v6_1.more_product_verified_by_distributor.MoreProductVerifiedByDistributorActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.orderdetail.OrderDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.listproductcategory.ListProductCategoryActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.webview.WebViewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.vinmart.VinMartActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.productlanding.LandingPageActivity"
+            android:theme="@style/Theme.AppCompat.Translucent" />
+        <activity
+            android:name=".activities.image.DetailImagesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.surveydetail.success.SurveyDetailSuccessActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.surveydetail.answer.SurveyDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.firebase.FirebaseDynamicLinksActivity"
+            android:theme="@style/Theme.AppCompat.Translucent">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="icheck.page.link"
+                    android:scheme="http" />
+                <data
+                    android:host="icheck.page.link"
+                    android:scheme="https" />
+                <data
+                    android:host="icheckdev.com.vn"
+                    android:scheme="http" />
+                <data
+                    android:host="icheckdev.com.vn"
+                    android:scheme="https" />
+                <data
+                    android:host="vn.icheck.android"
+                    android:scheme="http" />
+                <data
+                    android:host="vn.icheck.android"
+                    android:scheme="https" />
+                <data
+                    android:host="icheckdev.page.link"
+                    android:scheme="http" />
+                <data
+                    android:host="icheckdev.page.link"
+                    android:scheme="https" />
+                <data
+                    android:host="*"
+                    android:scheme="icheck" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".screen.user.welcome.WelcomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_Light_Blue" />
+        <activity
+            android:name=".screen.downloadtheme.DownloadThemeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.checktheme.CheckThemeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.splashscreen.SplashScreenActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".screen.user.detail_stamp_v5.select_store_stamp_v5.SelectStoreStampV5Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.detail_stamp_v5.update_information_guarantee_v5.UpdateInformationStampV5Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.detail_stamp_v5.more_business_v5.MoreBusinessV5Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.detail_stamp_v5.history_guarantee_v5.HistoryGuaranteeV5Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.MapActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.product.contribute.SelectCategoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.product.contribute.ContributeProductActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.orderhistory.OrderHistoryActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="checkout"
+                    android:scheme="icheck" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".screen.user.updateaddress.UpdateUserAddressActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.selectprovince.SelectProvinceActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.selectdistrict.SelectDistrictActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.selectward.SelectWardActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.detail_stamp_v6.home.DetailStampV6Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.detail_stamp_v5.home.DetailStampV5Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.detail_stamp_v6.select_store_stamp_v6.SelectStoreStampV6Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.detail_stamp_v6.update_information_guarantee_v6.UpdateInformationStampV6Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.detail_stamp_v6.more_business_v6.MoreBusinessV6Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.detail_stamp_v6.history_guarantee_v6.HistoryGuaranteeV6Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.payment_topup_success.BuyTopupSuccessActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.payment_topup.PaymentTopupActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.recharge_phone.RechargePhoneActivity"
+            android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|orientation|screenLayout|touchscreen|uiMode"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".base.dialog.notify.map.MapGoogleActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Translucent" />
+        <activity
+            android:name=".screen.user.edit_review.EditReviewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".screen.user.checkoutcart.CheckoutCartActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.createuseraddress.CreateUserAddressActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.selectuseraddress.SelectUserAddressActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.account.verifyforgetpasswordphone.VerifyForgetPasswordPhoneActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.OverStatusBar"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.detail_stamp_v6_1.otp_information_guarantee.VerifyOTPGuaranteeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.detail_stamp_v6_1.verified_phone.VerifiedPhoneActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.listnotification.ListNotificationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.detail_stamp_v6_1.more_business.MoreBusinessActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.detail_stamp_v6_1.contact_support.ContactSupportActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.detail_stamp_v6_1.detail_history_guarantee.DetaiHistoryGuaranteeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.detail_stamp_v6_1.update_information_first.UpdateInformationFirstActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".screen.user.detail_stamp_v6_1.history_guarantee.HistoryGuaranteeActivity" />
+        <activity
+            android:name=".screen.user.cart.CartActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.scanbuy.ScanBuyActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name=".screen.user.support.ContactAndSupportActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.detail_stamp_v6_1.home.DetailStampActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.setting.SettingsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.QrResultActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.missiondetail.MissionDetailActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.chat.CreateGroupChatActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.InviteFriendActivity"
+            android:screenOrientation="portrait" />
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".screen.user.viewimage.ViewImageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.home_page.my_gift_warehouse.open_reward_box.OpenRewardBoxActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.home_page.my_gift_warehouse.comfirm_ship_gift.ComfirmShipGiftActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.home_page.my_gift_warehouse.detail_my_gift_warehouse.DetailMyGiftWareHouseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.home_page.my_gift_warehouse.home.MyGiftWareHouseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.user.home_page.campaign.list_campaign.ListCampaignActivity"
+            android:exported="true"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.home_page.campaign.detail_campaign.DetailCampaignActivity"
+            android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|orientation|screenLayout|touchscreen|uiMode"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.OverStatusBar"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.follow.FollowActivity"
+            android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|orientation|screenLayout|touchscreen|uiMode"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.profile.ProfileActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.account.registeruser.inputotp.RegisterUserOtpActivity"
+            android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|orientation|screenLayout|touchscreen|uiMode"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.OverStatusBar"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.account.registeruser.register.RegisterUserActivity"
+            android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|orientation|screenLayout|touchscreen|uiMode"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.OverStatusBar"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.listproduct.ListProductActivity"
+            android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|orientation|screenLayout|touchscreen|uiMode"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.createqrcode.home.CreateQrCodeHomeActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.createqrcode.content.CreateQrCodeContentActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.createqrcode.success.CreateQrCodeSuccessActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_Blue"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.account.home.AccountActivity"
+            android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|orientation|screenLayout|touchscreen|uiMode"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.OverStatusBar"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".screen.user.bannersurvey.BannerSurveyActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.user.home.HomeActivity"
+            android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|orientation|screenLayout|touchscreen|uiMode"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.OverStatusBar"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" /> <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+        <!-- </intent-filter> -->
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/app_id"
+            tools:replace="android:value" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/ak_login_protocol_scheme" />
+            </intent-filter>
+        </activity> <!-- End Facebook -->
+        <!-- Account Kit -->
+        <!--
+ Set custom default icon. This is used when no icon is set for incoming notification messages.
+     See README(https://goo.gl/l4GJaQ) for more.
+        -->
+        <meta-data
+            android:name="com.facebook.accountkit.ApplicationName"
+            android:value="@string/app_name" />
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/app_id" />
+        <meta-data
+            android:name="com.facebook.accountkit.ClientToken"
+            android:value="@string/client_token" />
+
+        <activity
+            android:name=".screen.user.coinhistory.CoinHistoryActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider> <!-- Disable workManager initializer for debugging -->
+        <provider
+            android:name="androidx.work.impl.WorkManagerInitializer"
+            android:authorities="${applicationId}.workmanager-init"
+            tools:node="remove" />
+
+        <service
+            android:name=".services.IcFcmService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@mipmap/ic_logo_icheck_tet" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorPrimary" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" /> <!-- Tripi -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="vn.map4d.map.ACCESS_KEY"
+            android:value="34347084052b21748cbe3dd3fe1ce7a3" />
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+        <meta-data
+            android:name="firebase_performance_logcat_enabled"
+            android:value="true" />
+    </application>
+</manifest>

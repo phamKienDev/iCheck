@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    android:background="@android:color/white">
+
+    <ImageView
+        android:id="@+id/img_product"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/default_product_image" />
+
+    <TextView
+        android:id="@+id/tv_name_product"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/barlow_medium"
+        android:maxLines="1"
+        android:textColor="#212121"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/img_product"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Giày thể thao cao cổ Converse ( 1 dòng)..." />
+
+    <TextView
+        android:id="@+id/tv_barcode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:drawablePadding="4dp"
+        android:fontFamily="@font/barlow_medium"
+        android:includeFontPadding="false"
+        android:textColor="#828282"
+        app:drawableLeftCompat="@drawable/ic_barcode_blue_18px"
+        app:drawableStartCompat="@drawable/ic_barcode_blue_18px"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/img_product"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name_product"
+        tools:text="8930123456789" />
+
+    <TextView
+        android:id="@+id/tv_no_review"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/barlow_semi_bold_italic"
+        android:text="Chưa có đánh giá"
+        android:textColor="#b4b4b4"
+        android:textSize="12sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/divider38"
+        app:layout_constraintStart_toEndOf="@+id/img_product"
+        app:layout_constraintTop_toBottomOf="@+id/tv_barcode"
+        app:layout_constraintVertical_bias="0.0"
+        tools:visibility="visible" />
+
+    <include
+        android:id="@+id/item_review_root"
+        layout="@layout/item_review_product"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/divider38"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_no_review"
+        app:layout_constraintTop_toBottomOf="@+id/tv_barcode"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <View
+        android:id="@+id/divider38"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_product" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/btn_like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginRight="14dp"
+        android:button="@drawable/checkbox_like"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider38" />
+
+    <TextView
+        android:id="@+id/tv_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:maxLines="1"
+        android:text="Giá chưa được cập nhật"
+        android:textColor="#b4b4b4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider38" />
+
+    <TextView
+        android:id="@+id/tv_gia_niem_yet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:fontFamily="@font/barlow_medium"
+        android:text="(Giá niêm yết)"
+        android:textColor="#3C5A99"
+        android:visibility="gone"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_price"
+        app:layout_constraintEnd_toStartOf="@+id/btn_like"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tv_price"
+        tools:visibility="visible" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_22"
+        android:layout_marginRight="@dimen/size_22"
+        android:background="@drawable/bg_dialog_confirm_exchange_gifts"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_24"
+            android:layout_marginTop="@dimen/size_24"
+            android:layout_marginRight="@dimen/size_24"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center"
+            android:text="Xác nhận đổi điểm"
+            android:textColor="@color/blue"
+            android:textSize="16sp" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgProduct"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/size_12" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_18"
+            android:layout_marginTop="@dimen/size_16"
+            android:layout_marginRight="@dimen/size_18"
+            android:background="@drawable/bg_corner_6_yellow_nhat">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_4"
+                android:layout_marginTop="@dimen/size_12"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Quà đổi: "
+                android:textColor="#434343"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvNameProduct"
+                android:layout_width="@dimen/size_0"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_12"
+                android:layout_marginRight="@dimen/size_10"
+                android:ellipsize="end"
+                android:fontFamily="@font/roboto_medium"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:textColor="#434343"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/textView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/textView"
+                app:layout_constraintTop_toTopOf="@id/textView"
+                tools:text="iPhone 11 64GB - Hàng ( 1 dòng)..." />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_6"
+                android:layout_marginBottom="@dimen/size_8"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Điểm đổi: "
+                android:textColor="#434343"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/textView"
+                app:layout_constraintTop_toBottomOf="@id/textView" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvPoint"
+                android:layout_width="@dimen/size_0"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/roboto_medium"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:textColor="#FE4E1B"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/textView1"
+                app:layout_constraintEnd_toEndOf="@+id/tvNameProduct"
+                app:layout_constraintStart_toStartOf="@+id/tvNameProduct"
+                app:layout_constraintTop_toTopOf="@id/textView1"
+                tools:text="15,000,000" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_18"
+            android:layout_marginTop="@dimen/size_12"
+            android:layout_marginRight="@dimen/size_18"
+            android:fontFamily="@font/roboto_regular"
+            android:text="Chú thích: Điểm sẽ trừ thẳng vào tài khoản Điểm tích lũy của bạn trong chương trình này."
+            android:textColor="#828282"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_22"
+            android:layout_marginTop="@dimen/size_16"
+            android:layout_marginRight="@dimen/size_22"
+            android:layout_marginBottom="@dimen/size_25"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/btnHuy"
+                android:layout_width="@dimen/size_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:background="@drawable/bg_button_dialog_confirm_exchange_gift"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:paddingTop="@dimen/size_10"
+                android:paddingBottom="@dimen/size_10"
+                android:text="Hủy"
+                tools:visibility="gone"
+                android:textColor="#FE4E1B"
+                android:textSize="16sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/btnAccept"
+                android:layout_width="@dimen/size_0"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_9"
+                android:layout_weight="2"
+                android:background="@drawable/bg_gradient_button_orange_yellow"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:paddingTop="@dimen/size_10"
+                android:paddingBottom="@dimen/size_10"
+                android:text="Xác nhận"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_20"
+        app:srcCompat="@drawable/ic_close_popup_32px" />
+</LinearLayout>

@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+        android:id="@id/tvCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="#3c5a99"
+        android:textSize="18sp"
+        tools:text="14 Điểm bán gần đây" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/vg_shop_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/white">
+
+            <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+                android:id="@+id/tv_shop_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="64dp"
+                android:layout_marginLeft="64dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="14dp"
+                android:layout_marginRight="14dp"
+                android:textColor="#3c5a99"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Công ty TNHH Kính Mắt Quang Hưng" />
+
+            <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+                android:id="@+id/tv_distance"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:textColor="#757575"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/tv_shop_name"
+                app:layout_constraintStart_toStartOf="@+id/tv_shop_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_shop_name"
+                tools:text="Khoảng cách: 3km" />
+
+            <View
+                android:id="@id/view"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="9.5dp"
+                android:layout_marginEnd="8dp"
+                android:background="#d8d8d8"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_distance" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_2"
+                android:layout_marginLeft="@dimen/size_2"
+                android:layout_marginTop="@dimen/size_8"
+                android:layout_marginEnd="@dimen/size_2"
+                android:layout_marginRight="@dimen/size_2"
+                android:layout_marginBottom="@dimen/size_9"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view" />
+
+            <LinearLayout
+                android:id="@id/layoutBottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_8"
+                android:layout_marginLeft="@dimen/size_8"
+                android:layout_marginTop="@dimen/size_8"
+                android:layout_marginEnd="@dimen/size_8"
+                android:layout_marginRight="@dimen/size_8"
+                android:layout_marginBottom="@dimen/size_10"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recyclerView">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+                        android:id="@+id/tv_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/barlow_semi_bold"
+                        android:textColor="#ff0000"
+                        android:textSize="16sp"
+                        tools:text="23,004,000đ" />
+
+                    <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+                        android:id="@+id/tv_sale_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#b4b4b4"
+                        android:fontFamily="@font/barlow_medium"
+                        android:textSize="12sp"
+                        tools:text="23,504,000đ" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center|end"
+                    android:layout_marginStart="55dp"
+                    android:background="@drawable/bg_corners_4_light_blue_no_solid"
+                    android:gravity="center"
+                    android:visibility="gone">
+
+                    <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:drawableStart="@drawable/ic_location_item_shop_variant"
+                        android:drawablePadding="8dp"
+                        android:gravity="center_vertical"
+                        android:fontFamily="@font/barlow_semi_bold"
+                        android:text="Chỉ đường"
+                        android:textColor="#057dda"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutLocation2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="10dp"
+                    android:visibility="gone">
+
+                    <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_corners_4_light_blue_no_solid"
+                        android:drawableStart="@drawable/ic_location_item_shop_variant"
+                        android:gravity="center"
+                        android:paddingStart="11dp"
+                        android:paddingEnd="11dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutAddToCart"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center|end"
+                    android:layout_marginStart="38dp"
+                    android:background="@drawable/bg_corners_4_light_blue_solid"
+                    android:gravity="center"
+                    android:visibility="gone">
+
+                    <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+                        android:id="@+id/tvSubAddToCart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:drawableStart="@drawable/ic_add_to_cart_item_shop_variant"
+                        android:drawablePadding="16dp"
+                        android:gravity="center_vertical"
+                        android:singleLine="true"
+                        android:text="Thêm vào giỏ hàng"
+                        android:textColor="#ffffff"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/bg_rating_shop_variant"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+                android:id="@+id/tv_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="4,3" />
+
+            <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="/5"
+                android:textColor="#ffffff"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+    </FrameLayout>
+
+</LinearLayout>

@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_20">
+
+    <FrameLayout
+        android:id="@id/layoutContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_0"
+                android:background="@color/black_60"
+                app:layout_constraintBottom_toTopOf="@id/imgIcon"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@id/layoutTop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/imgClose2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:padding="@dimen/size_4"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/ic_close_white_20"
+                    android:visibility="gone" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="@dimen/size_8"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@id/imgClose"
+                        android:layout_width="@dimen/size_36"
+                        android:layout_height="@dimen/size_36"
+                        android:layout_marginStart="@dimen/size_12"
+                        android:layout_marginLeft="@dimen/size_12"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:scaleType="centerInside"
+                        app:srcCompat="@drawable/ic_close_white_20"
+                        app:layout_constraintBottom_toBottomOf="@id/tvFlash"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tvFlash" />
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@id/imgAnswer"
+                        android:layout_width="@dimen/size_36"
+                        android:layout_height="@dimen/size_36"
+                        android:layout_marginStart="@dimen/size_20"
+                        android:layout_marginLeft="@dimen/size_20"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_answer_white_36dp"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="@id/tvFlash"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tvFlash" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@id/tvInputByHand"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_group_barcode_input"
+                        app:layout_constraintBottom_toBottomOf="@id/tvFlash"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tvFlash" />
+
+                    <androidx.appcompat.widget.AppCompatCheckedTextView
+                        android:id="@id/tvFlash"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_4"
+                        android:layout_marginEnd="@dimen/size_20"
+                        android:layout_marginRight="@dimen/size_20"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:checked="false"
+                        android:drawableEnd="@drawable/ic_selected_flash_white"
+                        android:drawableRight="@drawable/ic_selected_flash_white"
+                        app:layout_constraintBottom_toBottomOf="@id/tvInputByHand"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/size_0"
+                android:layout_height="@dimen/size_0"
+                android:background="@color/black_60"
+                app:layout_constraintBottom_toBottomOf="@id/imgIcon"
+                app:layout_constraintEnd_toStartOf="@id/imgIcon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/imgIcon" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@id/imgIcon"
+                android:layout_width="@dimen/size_0"
+                android:layout_height="@dimen/size_0"
+                android:layout_marginTop="@dimen/size_16"
+                android:layout_marginBottom="@dimen/size_16"
+                android:background="@drawable/ic_scandit_center"
+                app:layout_constraintBottom_toTopOf="@id/recyclerView"
+                app:layout_constraintHeight_max="200dp"
+                app:layout_constraintDimensionRatio="W, 1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layoutTop" />
+
+            <View
+                android:layout_width="@dimen/size_0"
+                android:layout_height="@dimen/size_0"
+                android:background="@color/black_60"
+                app:layout_constraintBottom_toBottomOf="@id/imgIcon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/imgIcon"
+                app:layout_constraintTop_toTopOf="@id/imgIcon" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_0"
+                android:background="@color/black_60"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imgIcon" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/size_20"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toTopOf="@id/layoutBottom"
+                tools:listitem="@layout/item_scan_buy" />
+
+            <LinearLayout
+                android:id="@id/layoutBottom"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_40"
+                android:layout_gravity="bottom"
+                android:background="@color/blue"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/size_12"
+                android:paddingEnd="@dimen/size_12"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@id/tvTotal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-medium"
+                    android:includeFontPadding="false"
+                    android:text="@string/tam_tinh_xxx__d"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp"
+                    android:textStyle="normal" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@id/tvIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="@dimen/size_16"
+                        android:layout_marginRight="@dimen/size_16"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:drawableEnd="@drawable/ic_shop_white_24dp"
+                        android:drawableRight="@drawable/ic_shop_white_24dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@id/tvCount"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="@id/tvIcon"
+                        app:layout_constraintStart_toEndOf="@id/tvIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/size_14"
+                        android:layout_gravity="end"
+                        android:layout_marginTop="@dimen/size_6"
+                        android:background="@drawable/bg_eb5757_corners_9"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center_vertical"
+                        android:includeFontPadding="false"
+                        android:paddingStart="@dimen/size_2"
+                        android:paddingEnd="@dimen/size_2"
+                        android:textColor="#ffffff"
+                        android:textSize="10sp"
+                        android:textStyle="normal"
+                        tools:text="99+" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@id/tvViewCart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/ic_keyboard_arrow_right_white_24dp"
+                    android:drawableRight="@drawable/ic_keyboard_arrow_right_white_24dp"
+                    android:drawablePadding="@dimen/size_4"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center_vertical"
+                    android:includeFontPadding="false"
+                    android:paddingTop="@dimen/size_8"
+                    android:paddingBottom="@dimen/size_8"
+                    android:text="@string/gio_hang"
+                    android:textAllCaps="true"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@id/layoutError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+
+    <View
+        android:id="@id/viewBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#99000000"
+        android:visibility="gone" />
+
+    <!-- 160dp -->
+    <LinearLayout
+        android:id="@id/bottomSheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:behavior_hideable="false"
+        app:behavior_peekHeight="160dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/txtInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_swipe_top_white"
+            android:drawablePadding="@dimen/size_6"
+            android:fontFamily="sans-serif-medium"
+            android:includeFontPadding="false"
+            android:text="@string/vuot_len_de_xem_chi_tiet"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:textStyle="normal" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_12"
+            android:background="@drawable/bg_white_corners_top_10"
+            android:padding="@dimen/size_12">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@id/txtTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:text="@string/huong_dan_quet_san_pham_icheck"
+                android:textColor="#3c5a99"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@id/viewTop"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_3"
+                android:layout_marginTop="@dimen/size_12"
+                android:background="@drawable/line_dotted_light_blue"
+                app:layout_constraintTop_toBottomOf="@id/txtTitle" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtStep1"
+                style="@style/ScanAndBuy_Step"
+                android:layout_marginTop="@dimen/size_16"
+                android:text="@string/buoc_1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/viewTop" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtStepContent1"
+                style="@style/ScanAndBuy_Content"
+                android:layout_marginStart="@dimen/size_14"
+                android:layout_marginLeft="@dimen/size_14"
+                android:text="@string/scan_and_go_step_1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/txtStep1"
+                app:layout_constraintTop_toTopOf="@id/txtStep1" />
+
+            <View
+                android:layout_width="@dimen/size_2"
+                android:layout_height="@dimen/size_0"
+                android:background="@drawable/line_dotted_vertical_blue_2"
+                app:layout_constraintBottom_toTopOf="@id/txtStep2"
+                app:layout_constraintEnd_toEndOf="@id/txtStep1"
+                app:layout_constraintStart_toStartOf="@id/txtStep1"
+                app:layout_constraintTop_toBottomOf="@id/txtStep1" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtStep2"
+                style="@style/ScanAndBuy_Step"
+                android:layout_marginTop="@dimen/size_20"
+                android:text="@string/buoc_2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtStepContent1" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtStepContent2"
+                style="@style/ScanAndBuy_Content"
+                android:layout_marginStart="@dimen/size_14"
+                android:layout_marginLeft="@dimen/size_14"
+                android:text="@string/scan_and_go_step_2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/txtStep2"
+                app:layout_constraintTop_toTopOf="@id/txtStep2" />
+
+            <View
+                android:layout_width="@dimen/size_2"
+                android:layout_height="@dimen/size_0"
+                android:background="@drawable/line_dotted_vertical_blue_2"
+                app:layout_constraintBottom_toTopOf="@id/txtStep3"
+                app:layout_constraintEnd_toEndOf="@id/txtStep2"
+                app:layout_constraintStart_toStartOf="@id/txtStep2"
+                app:layout_constraintTop_toBottomOf="@id/txtStep2" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtStep3"
+                style="@style/ScanAndBuy_Step"
+                android:layout_marginTop="@dimen/size_20"
+                android:text="@string/buoc_3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtStepContent2" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtStepContent3"
+                style="@style/ScanAndBuy_Content"
+                android:layout_marginStart="@dimen/size_14"
+                android:layout_marginLeft="@dimen/size_14"
+                android:text="@string/scan_and_go_step_3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/txtStep3"
+                app:layout_constraintTop_toTopOf="@id/txtStep3" />
+
+            <View
+                android:layout_width="@dimen/size_2"
+                android:layout_height="@dimen/size_0"
+                android:background="@drawable/line_dotted_vertical_blue_2"
+                app:layout_constraintBottom_toTopOf="@id/txtStep4"
+                app:layout_constraintEnd_toEndOf="@id/txtStep3"
+                app:layout_constraintStart_toStartOf="@id/txtStep3"
+                app:layout_constraintTop_toBottomOf="@id/txtStep3" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtStep4"
+                style="@style/ScanAndBuy_Step"
+                android:layout_marginTop="@dimen/size_20"
+                android:text="@string/buoc_4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtStepContent3" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/ScanAndBuy_Content"
+                android:layout_marginStart="@dimen/size_14"
+                android:layout_marginLeft="@dimen/size_14"
+                android:layout_marginBottom="@dimen/size_4"
+                android:text="@string/scan_and_go_step_4"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/txtStep4"
+                app:layout_constraintTop_toTopOf="@id/txtStep4" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

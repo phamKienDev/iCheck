@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_white_corners_top_16"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="8.6dp"
+            android:src="@drawable/ic_cancel_light_blue_24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitle"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center"
+            android:text="Liên hệ Doanh nghiệp"
+            android:textColor="#057dda"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/imgCancel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/imgCancel" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#d8d8d8" />
+
+    <LinearLayout
+        android:id="@+id/layoutPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingStart="12dp"
+        android:paddingTop="@dimen/size_24"
+        android:paddingEnd="12dp"
+        android:paddingBottom="@dimen/size_16">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_contact_22dp"
+            android:drawablePadding="6dp"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center|start"
+            android:lineSpacingExtra="4sp"
+            android:text="@string/so_dien_thoai"
+            android:textColor="#757575"
+            android:textSize="12sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPhone"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center|end"
+            android:lineSpacingExtra="6sp"
+            android:textColor="#057dda"
+            android:textSize="14sp"
+            tools:text="0902 195 488" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/viewPhone"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginStart="12dp"
+        android:background="#d8d8d8" />
+
+    <LinearLayout
+        android:id="@+id/layoutEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingStart="12dp"
+        android:paddingTop="@dimen/size_16"
+        android:paddingEnd="12dp"
+        android:paddingBottom="@dimen/size_16">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_contact_mail_22dp"
+            android:drawablePadding="6dp"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center|start"
+            android:lineSpacingExtra="4sp"
+            android:text="@string/email"
+            android:textColor="#757575"
+            android:textSize="12sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvEmail"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center|end"
+            android:lineSpacingExtra="6sp"
+            android:textColor="#057dda"
+            android:textSize="14sp"
+            tools:text="hoaphat88@hoaphat.vn" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/viewEmail"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginStart="12dp"
+        android:background="#d8d8d8" />
+
+    <LinearLayout
+        android:id="@+id/layoutChat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingStart="12dp"
+        android:paddingTop="@dimen/size_16"
+        android:paddingEnd="12dp"
+        android:paddingBottom="@dimen/size_24">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_contact_chat_20_px"
+            android:drawablePadding="6dp"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center|start"
+            android:lineSpacingExtra="4sp"
+            android:text="@string/nhan_tin"
+            android:textColor="#757575"
+            android:textSize="12sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btnChat"
+            android:layout_width="100dp"
+            android:layout_height="28dp"
+            android:background="@drawable/bg_corner_4_light_blue_white"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center"
+            android:lineSpacingExtra="6sp"
+            android:text="Nhắn tin"
+            android:textColor="#057dda"
+            android:textSize="14sp" />
+    </LinearLayout>
+</LinearLayout>

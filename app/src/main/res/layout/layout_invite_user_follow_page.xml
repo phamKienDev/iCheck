@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="@dimen/size_12"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgAvatar"
+        android:layout_width="@dimen/size_40"
+        app:civ_border_color="@color/gray"
+        app:civ_border_width="@dimen/size_0_5"
+        android:layout_height="@dimen/size_40"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginLeft="@dimen/size_12" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginLeft="@dimen/size_12"
+        android:layout_marginEnd="@dimen/size_14"
+        android:layout_marginRight="@dimen/size_14"
+        android:layout_weight="1"
+        android:drawablePadding="@dimen/size_8"
+        android:drawableEnd="@drawable/ic_ellipse"
+        android:drawableRight="@drawable/ic_ellipse"
+        android:fontFamily="@font/barlow_medium"
+        android:gravity="center_vertical"
+        android:textColor="@color/collection_product_name"
+        android:textSize="14sp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        tools:text="Dung Nguyen Dung Dung Nguyen Dung Dung Nguyen Dung " />
+
+</LinearLayout>

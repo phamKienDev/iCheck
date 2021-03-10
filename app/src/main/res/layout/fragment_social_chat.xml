@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    app:layoutDescription="@xml/fragment_social_chat_scene">
+
+    <ImageView
+        android:id="@+id/img_menu"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="centerInside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_leftmenu_24_px" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:text="Tin nhắn"
+        android:textColor="@color/lightBlue"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/img_add"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="centerInside"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_add_blue_2_24px" />
+
+    <View
+        android:id="@+id/div"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="40dp"
+        android:background="#b4b4b4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_menu" />
+
+    <TextView
+        android:id="@+id/tv_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/barlow_medium"
+        android:text="Tin nhắn"
+        android:textColor="@color/lightBlue"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/div"
+        app:layout_constraintEnd_toStartOf="@+id/tv_phonebook"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_add" />
+
+    <TextView
+        android:id="@+id/tv_phonebook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/barlow_medium"
+        android:text="Danh bạ"
+        android:textColor="@color/darkGray2"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/div"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tv_message"
+        app:layout_constraintTop_toBottomOf="@id/img_add" />
+
+    <View
+        android:id="@+id/div_selector"
+        android:layout_width="80dp"
+        android:layout_height="3dp"
+        android:background="@drawable/div_selector_bg"
+        app:layout_constraintBottom_toTopOf="@+id/div"
+        app:layout_constraintEnd_toEndOf="@+id/tv_message"
+        app:layout_constraintStart_toStartOf="@+id/tv_message" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/container_framelayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/div">
+
+    </androidx.viewpager2.widget.ViewPager2>
+</androidx.constraintlayout.motion.widget.MotionLayout>

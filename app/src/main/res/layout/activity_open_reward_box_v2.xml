@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="vn.icheck.android.screen.user.home_page.my_gift_warehouse.shake_gift.list_box_gift.ListShakeGridBoxActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@id/imgBanner"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="H,375:200"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@id/imgBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="52dp"
+            android:padding="8dp"
+            android:src="@drawable/ic_back_black_28px"
+            app:layout_constraintStart_toStartOf="@id/imgBanner"
+            app:layout_constraintTop_toTopOf="@id/imgBanner"
+            android:layout_marginLeft="4dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="-25dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/layoutBottom"
+            android:background="@drawable/bg_corner_top_white_25">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextView40"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:lineSpacingExtra="6sp"
+                android:text="Hãy chọn một hình may mắn để mở!"
+                android:textColor="#212121"
+                android:textSize="14sp"
+                android:fontFamily="@font/barlow_semi_bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@id/btnMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginRight="4dp"
+                android:src="@drawable/ic_more_blue_vertical_24_px"
+                app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView40"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/appCompatTextView40" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:paddingTop="22.5dp"
+                android:paddingStart="11dp"
+                android:paddingBottom="19.5dp"
+                android:paddingEnd="11dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/appCompatTextView40" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@id/layoutBottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white"
+            android:elevation="8dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvSubCountGift"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="19dp"
+                    android:drawableStart="@drawable/ic_gift_box_v2"
+                    android:drawablePadding="6dp"
+                    android:fontFamily="@font/barlow_medium"
+                    android:gravity="center_vertical"
+                    android:text="Bạn có "
+                    android:textColor="#212121"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvCountGift"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:fontFamily="@font/barlow_semi_bold"
+                    android:gravity="center_vertical"
+                    android:text=" 4/12 "
+                    android:textColor="#df1733"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvSubCountGift"
+                    app:layout_constraintStart_toEndOf="@+id/tvSubCountGift"
+                    app:layout_constraintTop_toTopOf="@+id/tvSubCountGift" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:fontFamily="@font/barlow_medium"
+                    android:gravity="center_vertical"
+                    android:text=" lượt mở quà "
+                    android:textColor="#212121"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvCountGift"
+                    app:layout_constraintStart_toEndOf="@+id/tvCountGift"
+                    app:layout_constraintTop_toTopOf="@+id/tvCountGift" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvAddMoreTurn"
+                    android:layout_width="95dp"
+                    android:layout_height="32dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/bg_more_turn"
+                    android:fontFamily="@font/barlow_semi_bold"
+                    android:gravity="center"
+                    android:text="Thêm lượt"
+                    android:textColor="#057dda"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvCountGift"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tvCountGift" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

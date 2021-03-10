@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context="vn.icheck.android.screen.user.edit_privacy.EditPrivacyActivity">
+
+    <include
+        android:id="@id/layoutToolbar"
+        layout="@layout/toolbar_light_blue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View style="@style/Shadow_Bottom" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_6"
+        android:gravity="center_horizontal"
+        android:text="@string/ai_co_the_xem_bai_viet_nay_cua_ban"
+        android:textColor="@color/collection_product_name"
+        android:textSize="14sp"
+        app:fontFamily="@font/barlow_semi_bold" />
+
+    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--        android:id="@+id/layoutPublic"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="@dimen/size_16">-->
+
+    <!--        <androidx.appcompat.widget.AppCompatImageButton-->
+    <!--            android:id="@+id/btnPublic"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginStart="@dimen/size_15"-->
+    <!--            android:layout_marginLeft="@dimen/size_15"-->
+    <!--            android:background="@drawable/ic_radio_un_checked_gray_24dp"-->
+    <!--            app:layout_constraintBottom_toBottomOf="@+id/tvTitlePublic1"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toTopOf="@+id/tvTitlePublic" />-->
+
+    <!--        <androidx.appcompat.widget.AppCompatTextView-->
+    <!--            android:id="@+id/tvTitlePublic"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginStart="@dimen/size_10"-->
+    <!--            android:layout_marginLeft="@dimen/size_10"-->
+    <!--            android:includeFontPadding="false"-->
+    <!--            android:text="@string/cong_khai"-->
+    <!--            android:textColor="@color/collection_product_name"-->
+    <!--            android:textSize="14sp"-->
+    <!--            app:fontFamily="@font/barlow_medium"-->
+    <!--            app:layout_constraintStart_toEndOf="@id/btnPublic"-->
+    <!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--        <androidx.appcompat.widget.AppCompatTextView-->
+    <!--            android:id="@+id/tvTitlePublic1"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginTop="@dimen/size_4"-->
+    <!--            android:includeFontPadding="false"-->
+    <!--            android:text="Tất cả mọi người đều xem được"-->
+    <!--            android:textColor="@color/fast_survey_gray"-->
+    <!--            android:textSize="14sp"-->
+    <!--            app:layout_constraintStart_toStartOf="@id/tvTitlePublic"-->
+    <!--            app:layout_constraintTop_toBottomOf="@id/tvTitlePublic" />-->
+    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--        android:id="@+id/layoutPrivate"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="@dimen/size_16">-->
+
+    <!--        <androidx.appcompat.widget.AppCompatImageButton-->
+    <!--            android:id="@+id/btnPrivate"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginStart="@dimen/size_15"-->
+    <!--            android:layout_marginLeft="@dimen/size_15"-->
+    <!--            android:background="@drawable/ic_radio_un_checked_gray_24dp"-->
+    <!--            app:layout_constraintBottom_toBottomOf="@+id/tvTitlePrivate1"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toTopOf="@+id/tvTitlePrivate" />-->
+
+    <!--        <androidx.appcompat.widget.AppCompatTextView-->
+    <!--            android:id="@+id/tvTitlePrivate"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginStart="@dimen/size_10"-->
+    <!--            android:layout_marginLeft="@dimen/size_10"-->
+    <!--            android:includeFontPadding="false"-->
+    <!--            android:text="@string/rieng_tu"-->
+    <!--            android:textColor="@color/collection_product_name"-->
+    <!--            android:textSize="14sp"-->
+    <!--            app:fontFamily="@font/barlow_medium"-->
+    <!--            app:layout_constraintStart_toEndOf="@id/btnPrivate"-->
+    <!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--        <androidx.appcompat.widget.AppCompatTextView-->
+    <!--            android:id="@+id/tvTitlePrivate1"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginTop="@dimen/size_4"-->
+    <!--            android:includeFontPadding="false"-->
+    <!--            android:text="Chỉ mình bạn xem được"-->
+    <!--            android:textColor="@color/fast_survey_gray"-->
+    <!--            android:textSize="14sp"-->
+    <!--            app:layout_constraintStart_toStartOf="@id/tvTitlePrivate"-->
+    <!--            app:layout_constraintTop_toBottomOf="@id/tvTitlePrivate" />-->
+    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--        android:id="@+id/layoutFriend"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="@dimen/size_16">-->
+
+    <!--        <androidx.appcompat.widget.AppCompatImageButton-->
+    <!--            android:id="@+id/btnFriend"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginStart="@dimen/size_15"-->
+    <!--            android:layout_marginLeft="@dimen/size_15"-->
+    <!--            android:background="@drawable/ic_radio_un_checked_gray_24dp"-->
+    <!--            app:layout_constraintBottom_toBottomOf="@+id/tvTitleFriend1"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toTopOf="@+id/tvTitleFriend" />-->
+
+    <!--        <androidx.appcompat.widget.AppCompatTextView-->
+    <!--            android:id="@+id/tvTitleFriend"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginStart="@dimen/size_10"-->
+    <!--            android:layout_marginLeft="@dimen/size_10"-->
+    <!--            android:includeFontPadding="false"-->
+    <!--            android:text="@string/ban_be"-->
+    <!--            android:textColor="@color/collection_product_name"-->
+    <!--            android:textSize="14sp"-->
+    <!--            app:fontFamily="@font/barlow_medium"-->
+    <!--            app:layout_constraintStart_toEndOf="@id/btnFriend"-->
+    <!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--        <androidx.appcompat.widget.AppCompatTextView-->
+    <!--            android:id="@+id/tvTitleFriend1"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginTop="@dimen/size_4"-->
+    <!--            android:includeFontPadding="false"-->
+    <!--            android:text="Bạn bè của bạn có thể xem được"-->
+    <!--            android:textColor="@color/fast_survey_gray"-->
+    <!--            android:textSize="14sp"-->
+    <!--            app:layout_constraintStart_toStartOf="@id/tvTitleFriend"-->
+    <!--            app:layout_constraintTop_toBottomOf="@id/tvTitleFriend" />-->
+    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/size_8"
+        android:layout_marginBottom="@dimen/size_8"
+        android:layout_weight="1">
+
+        <include
+            android:id="@id/layoutMessage"
+            layout="@layout/item_message"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@id/layoutContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+        <FrameLayout
+            android:id="@id/layoutLoading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:scaleType="centerInside"
+                app:lottie_autoPlay="true"
+                app:lottie_enableMergePathsForKitKatAndAbove="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/loading_short" />
+        </FrameLayout>
+    </FrameLayout>
+
+    <View
+        android:id="@id/viewCenter"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:visibility="gone" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvFinish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_12"
+        android:layout_marginRight="@dimen/size_12"
+        android:layout_marginBottom="@dimen/size_20"
+        android:background="@drawable/bg_corners_4_light_blue_solid"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:gravity="center"
+        android:paddingTop="@dimen/size_8"
+        android:paddingBottom="@dimen/size_8"
+        android:text="@string/xong"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+</LinearLayout>

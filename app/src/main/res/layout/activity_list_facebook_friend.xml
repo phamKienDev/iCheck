@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context="vn.icheck.android.screen.user.list_facebook_friend.ListFacebookFriendActivity">
+
+    <include layout="@layout/toolbar_light_blue" />
+
+    <View
+        style="@style/Shadow_Bottom"
+        android:layout_width="match_parent" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edtFind"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/size_12"
+                    android:layout_marginTop="@dimen/size_6"
+                    android:layout_marginRight="@dimen/size_12"
+                    android:background="@drawable/bg_gray_f0_corners_4"
+                    android:drawableStart="@drawable/ic_baseline_search_gray_18"
+                    android:drawableLeft="@drawable/ic_baseline_search_gray_18"
+                    android:drawablePadding="@dimen/size_12"
+                    android:fontFamily="@font/barlow_medium"
+                    android:gravity="center_vertical"
+                    android:hint="@string/tim_kiem_trong_danh_sach_nay"
+                    android:paddingLeft="@dimen/size_12"
+                    android:paddingTop="@dimen/size_8"
+                    android:paddingRight="@dimen/size_45"
+                    android:paddingBottom="@dimen/size_8"
+                    android:textColor="@color/collection_product_name"
+                    android:textColorHint="@color/darkGray2"
+                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/img_clear"
+                    android:layout_width="@dimen/size_42"
+                    android:layout_height="@dimen/size_42"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_delete_gray_24px"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@id/edtFind"
+                    app:layout_constraintEnd_toEndOf="@id/edtFind"
+                    app:layout_constraintTop_toTopOf="@id/edtFind" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginLeft="@dimen/size_12"
+                android:layout_marginTop="@dimen/size_10"
+                android:textColor="@color/blue"
+                android:textSize="16sp"
+                app:fontFamily="@font/barlow_semi_bold"
+                tools:text="2,345 Bạn bè" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcvList"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        </LinearLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</LinearLayout>

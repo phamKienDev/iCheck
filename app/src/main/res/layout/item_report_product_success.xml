@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:background="@drawable/bg_corner_32_gray">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/barlow_medium"
+        android:textSize="14sp"
+        android:paddingStart="12dp"
+        android:paddingBottom="6dp"
+        android:paddingTop="6dp"
+        android:paddingEnd="12dp"
+        tools:text="Đây là sản phẩm bị cấm/có chứa chất cấm"
+        android:textColor="#212121"/>
+
+</LinearLayout>

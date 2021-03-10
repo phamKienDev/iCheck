@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_marginStart="65dp"
+    android:layout_marginEnd="65dp"
+    android:layout_height="wrap_content"
+    android:background="#B3000000"
+    app:cardBackgroundColor="#B3000000"
+    app:cardCornerRadius="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView24"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:srcCompat="@drawable/ic_subtract_error" />
+
+        <TextView
+            android:id="@+id/tv_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center_horizontal"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            tools:text="Mã dự thưởng không hợp lệ
+Vui lòng kiểm tra lại" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

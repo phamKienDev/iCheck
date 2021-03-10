@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_qrcode_marketing"
+    tools:context="vn.icheck.android.screen.user.qr_code_marketing.QrCodeMarketingActivity">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_4"
+        android:layout_marginTop="@dimen/size_28"
+        android:drawableStart="@drawable/ic_close_white_20"
+        android:drawableLeft="@drawable/ic_close_white_20"
+        android:padding="@dimen/size_12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/transparent"
+        app:cardCornerRadius="@dimen/size_10"
+        app:cardElevation="@dimen/size_0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.8">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_qrcode_marketing_top"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@id/linearLayout2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgBanner"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_0"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/bg_white_corners_top_10"
+                    android:cropToPadding="true"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintBottom_toTopOf="@id/imgQrCode"
+                    app:layout_constraintDimensionRatio="H, 750:150"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@id/imgQrCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_0"
+                    android:adjustViewBounds="true"
+                    android:padding="@dimen/size_20"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="H, 343:285"
+                    app:layout_constraintEnd_toEndOf="@id/imgBanner"
+                    app:layout_constraintStart_toStartOf="@id/imgBanner"
+                    app:layout_constraintTop_toBottomOf="@id/imgBanner" />
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="@dimen/size_36"
+                    android:layout_height="@dimen/size_36"
+                    android:background="@drawable/bg_corner_white_10"
+                    app:layout_constraintBottom_toBottomOf="@+id/imgQrCode"
+                    app:layout_constraintEnd_toEndOf="@+id/imgQrCode"
+                    app:layout_constraintStart_toStartOf="@+id/imgQrCode"
+                    app:layout_constraintTop_toTopOf="@+id/imgQrCode" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="@dimen/size_0"
+                    android:layout_height="@dimen/size_0"
+                    android:layout_margin="@dimen/size_3"
+                    app:cardCornerRadius="@dimen/size_10"
+                    app:layout_constraintBottom_toBottomOf="@id/view"
+                    app:layout_constraintEnd_toEndOf="@id/view"
+                    app:layout_constraintStart_toStartOf="@id/view"
+                    app:layout_constraintTop_toTopOf="@id/view">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imgLogo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_corners_blue_10"
+                        android:src="@drawable/ic_logo_icheck_marketing" />
+                </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_qrcod_marketing_bottom"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="@id/linearLayout"
+                app:layout_constraintStart_toStartOf="@id/linearLayout"
+                app:layout_constraintTop_toBottomOf="@id/linearLayout">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvMess"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/size_12"
+                    android:layout_weight="1"
+                    android:includeFontPadding="false"
+                    android:paddingRight="@dimen/size_8"
+                    android:textColor="#333333"
+                    android:textSize="@dimen/font_size_4"
+                    tools:text="Vui lòng đưa mã QR này \n cho nhân viên để kích hoạt" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/btnJoin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/size_16"
+                    android:background="@drawable/bg_corners_6_light_blue"
+                    android:paddingLeft="@dimen/size_8"
+                    android:paddingTop="@dimen/size_12"
+                    android:paddingRight="@dimen/size_8"
+                    android:paddingBottom="@dimen/size_12"
+                    android:text="@string/tham_gia_ngay"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_4"
+                    android:textStyle="normal" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

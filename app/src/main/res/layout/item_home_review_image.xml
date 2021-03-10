@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@id/imgProduct"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="H, 1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/txtProductCount"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/bg_black_20_corners_4"
+        android:gravity="center"
+        android:textAlignment="gravity"
+        android:textColor="@color/white"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/imgProduct"
+        app:layout_constraintEnd_toEndOf="@id/imgProduct"
+        app:layout_constraintStart_toStartOf="@id/imgProduct"
+        app:layout_constraintTop_toTopOf="@id/imgProduct" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:fontFamily="sans-serif"
+        android:textColor="#434343"
+        android:textSize="18sp"
+        android:textStyle="normal"
+        tools:text="iCheck Cơ sở phía Bắc" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvHotline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/bg_outline_blue_1_corners_40"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textColor="#3c5a99"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        tools:text="Hotline: 1900xxxx" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/bg_outline_blue_1_corners_40"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textColor="#3c5a99"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        tools:text="Email: cskh@icheck.vn" />
+
+</LinearLayout>

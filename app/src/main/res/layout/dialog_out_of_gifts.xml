@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_18"
+        android:layout_marginRight="@dimen/size_18"
+        android:background="@drawable/bg_corner_white_10"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/size_20"
+        android:paddingRight="@dimen/size_20">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgDefault"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            app:srcCompat="@drawable/ic_out_of_gifts" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_30"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="6sp"
+            android:singleLine="true"
+            android:text="Bạn đã hết lượt mở quà rồi!"
+            android:textColor="#212121"
+            android:textSize="14sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_10"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="6sp"
+            android:text="Hoàn thành các thử thách sau để nhận thêm lượt mở quà mới nào:"
+            android:textColor="#757575"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_12"
+            android:background="@drawable/bg_border_dotted_10_gray"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:itemCount="3" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_18"
+            android:layout_marginBottom="@dimen/size_20"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/btnThucHien"
+                android:layout_width="@dimen/size_0"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/size_4"
+                android:layout_weight="1"
+                android:background="@drawable/bg_corners_4_light_blue_no_solid"
+                android:gravity="center"
+                android:padding="@dimen/size_8"
+                android:text="Thực hiện thử thách"
+                android:textColor="#057dda"
+                android:textSize="16sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/btnListGifts"
+                android:layout_width="@dimen/size_0"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_4"
+                android:layout_weight="1"
+                android:background="@drawable/bg_corners_4_light_blue_solid"
+                android:gravity="center"
+                android:padding="@dimen/size_8"
+                android:text="Danh sách quà"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btnClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/size_20"
+        app:srcCompat="@drawable/ic_close_white_border_30dp" />
+</LinearLayout>

@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/size_5"
+    android:layout_marginBottom="@dimen/size_5"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/size_10">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginEnd="@dimen/size_12">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@id/imgRank"
+            android:layout_width="@dimen/size_16"
+            android:layout_height="@dimen/size_16"
+            app:layout_constraintEnd_toEndOf="@id/imgLogo"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@id/imgLogo"
+            android:layout_width="@dimen/size_40"
+            android:layout_height="@dimen/size_40"
+            android:layout_marginTop="@dimen/size_8"
+            app:civ_border_color="@color/gray"
+            app:civ_border_width="@dimen/size_0_5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/imgRank"
+            tools:src="@color/blue" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgVerified"
+            android:layout_width="@dimen/size_16"
+            android:layout_height="@dimen/size_16"
+            android:src="@drawable/ic_verified_16px"
+            app:layout_constraintBottom_toBottomOf="@id/imgLogo"
+            app:layout_constraintEnd_toEndOf="@id/imgLogo" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/tvName"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginEnd="@dimen/size_8"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:includeFontPadding="false"
+            android:singleLine="true"
+            android:textColor="@color/collection_product_name"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgLogo"
+            app:layout_constraintTop_toTopOf="@id/imgLogo"
+            tools:text="Unilever Vietnam OfficialUnilever Vietnam Official Unilever Vietnam Official" />
+
+
+        <LinearLayout
+            android:id="@id/layoutRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_4"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@id/imgLogo"
+            app:layout_constraintTop_toBottomOf="@id/imgLogo">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@id/tvRating"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/size_16"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:gravity="center_vertical"
+                android:includeFontPadding="false"
+                android:paddingStart="@dimen/size_6"
+                android:paddingEnd="@dimen/size_6"
+                android:textSize="12sp"
+                tools:text="Trên cả Tuyệt vời" />
+
+            <androidx.appcompat.widget.AppCompatRatingBar
+                android:id="@+id/ratingStar"
+                style="@style/Product_Rating_Bar_New"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_6"
+                android:clickable="false"
+                android:focusable="false"
+                android:isIndicator="true"
+                app:srb_numStars="5"
+                app:srb_starHeight="10dp"
+                app:srb_starPadding="2dp"
+                app:srb_starWidth="10dp"
+                app:srb_stepSize="0.5" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@id/imgShowRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:src="@drawable/ic_arrow_down_gray_24dp" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_6"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_medium"
+            android:includeFontPadding="false"
+            android:singleLine="true"
+            android:textColor="@color/fast_survey_gray"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/tvName"
+            app:layout_constraintTop_toBottomOf="@id/tvName"
+            tools:text="43 phút trước" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/tvContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_6"
+            android:fontFamily="@font/barlow_medium"
+            android:includeFontPadding="false"
+            android:textColor="@color/collection_product_name"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/layoutRating"
+            tools:text="Sản phẩm tốt, chất lượng cao. Chính hãng nên đảm bảo lắm nhé. Mọi người đều nên sử dụng thử một lần! nhưng phải dùng lâu dài mới tác dụng (Tối đa 3 dòng)..." />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@id/layoutImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_10"
+        android:layout_marginEnd="@dimen/size_12">
+
+        <vn.icheck.android.component.image.LayoutImageInPostComponent
+            android:id="@id/imgBanner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@id/layoutProduct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_4"
+        android:layout_marginEnd="@dimen/size_12"
+        android:background="@drawable/bg_dark_gray_6_corners_4"
+        android:padding="@dimen/size_4">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@id/imgProduct"
+            android:layout_width="@dimen/size_40"
+            android:layout_height="@dimen/size_40"
+            android:layout_marginTop="@dimen/size_2"
+            android:src="@drawable/img_default_product_big"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/tvProduct"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginLeft="@dimen/size_8"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:includeFontPadding="false"
+            android:maxLines="2"
+            android:textColor="@color/darkGray1"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgProduct"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Viên Uống Vitamin Tổng Hợp DHViên Uống Vitamin Tổng Hợp DHC Multi Vitamin 120 viên (Tên tối đa 2 dòng nhé)...C Multi Vitamin 120 viên (Tên tối đa 2 dòng nhé)..." />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/tvShopName"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_6"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_medium"
+            android:includeFontPadding="false"
+            android:maxLines="2"
+            android:textColor="@color/fast_survey_gray"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@id/tvProduct"
+            app:layout_constraintStart_toStartOf="@id/tvProduct"
+            app:layout_constraintTop_toBottomOf="@id/tvProduct"
+            tools:text="Công ty cổ phần iCheck" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_10"
+        android:layout_marginEnd="@dimen/size_12"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/size_10">
+
+        <androidx.appcompat.widget.AppCompatCheckedTextView
+            android:id="@id/tvLike"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_like_checked_state_24dp"
+            android:drawableLeft="@drawable/ic_like_checked_state_24dp"
+            android:drawablePadding="@dimen/size_6"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center_vertical"
+            android:includeFontPadding="false"
+            android:textAlignment="gravity"
+            android:textColor="@color/text_color_post"
+            android:textSize="14sp"
+            tools:text="12,781" />
+
+        <androidx.appcompat.widget.AppCompatCheckedTextView
+            android:id="@id/tvViewComment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_comment_24dp"
+            android:drawableLeft="@drawable/ic_comment_24dp"
+            android:drawablePadding="@dimen/size_6"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center_vertical"
+            android:includeFontPadding="false"
+            android:textAlignment="gravity"
+            android:textColor="@color/fast_survey_gray"
+            android:textSize="14sp"
+            tools:text="12,781" />
+
+        <androidx.appcompat.widget.AppCompatCheckedTextView
+            android:id="@id/tvView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_view_24dp"
+            android:drawableLeft="@drawable/ic_view_24dp"
+            android:drawablePadding="@dimen/size_6"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center_vertical"
+            android:includeFontPadding="false"
+            android:textAlignment="gravity"
+            android:textColor="@color/fast_survey_gray"
+            android:textSize="14sp"
+            tools:text="12,781" />
+
+        <androidx.appcompat.widget.AppCompatCheckedTextView
+            android:id="@id/tvShare"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_share_24px"
+            android:drawableLeft="@drawable/ic_share_24px"
+            android:drawablePadding="@dimen/size_6"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center_vertical"
+            android:includeFontPadding="false"
+            android:textAlignment="gravity"
+            android:textColor="@color/fast_survey_gray"
+            android:textSize="14sp"
+            tools:text="12,781" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_10"
+        android:background="@color/darkGray6" />
+</LinearLayout>

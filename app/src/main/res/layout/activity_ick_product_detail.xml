@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/layoutContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".screen.user.product_detail.product.IckProductDetailActivity">
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@id/swipeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:descendantFocusability="blocksDescendants"
+        app:layout_constraintBottom_toTopOf="@+id/layoutBottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:focusableInTouchMode="true"
+            android:background="#f0f0f0" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0"
+        app:layout_constraintBottom_toBottomOf="@id/layoutToolbarAlpha">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_4"
+            android:layout_marginLeft="@dimen/size_4"
+            android:background="?android:attr/selectableItemBackground"
+            android:padding="@dimen/size_8"
+            android:src="@drawable/ic_back_black_28px" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/imgActionGray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginEnd="@dimen/size_8"
+            android:layout_marginRight="@dimen/size_8"
+            android:background="?android:attr/selectableItemBackground"
+            android:padding="@dimen/size_4"
+            android:src="@drawable/ic_more_black_28dp" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@id/layoutToolbarAlpha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:alpha="0"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@id/imgBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_4"
+            android:layout_marginLeft="@dimen/size_4"
+            android:background="?android:attr/selectableItemBackground"
+            android:padding="@dimen/size_10"
+            android:src="@drawable/ic_back_blue_v2_24px" />
+
+        <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+            android:id="@id/txtTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_40"
+            android:layout_marginLeft="@dimen/size_40"
+            android:layout_marginEnd="@dimen/size_8"
+            android:layout_marginRight="@dimen/size_8"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:singleLine="true"
+            android:text="2335432323327"
+            android:textColor="@color/lightBlue"
+            android:textSize="18sp"
+            tools:text="Tiêu đề" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@id/imgLike"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/size_2"
+            android:layout_marginRight="@dimen/size_2"
+            android:background="?android:attr/selectableItemBackground"
+            android:padding="@dimen/size_4"
+            android:src="@drawable/ic_like_off_24dp" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@id/imgAction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/size_6"
+            android:layout_marginRight="@dimen/size_6"
+            android:background="?android:attr/selectableItemBackground"
+            android:padding="@dimen/size_8"
+            android:src="@drawable/ic_more_light_blue_24dp" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@id/layoutLoading"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0"
+        android:background="@android:color/transparent"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="@id/swipeLayout"
+        app:layout_constraintTop_toTopOf="@id/swipeLayout">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:scaleType="centerInside"
+            app:lottie_autoPlay="true"
+            app:lottie_enableMergePathsForKitKatAndAbove="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loading_short" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@id/layoutStatus"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0"
+        android:background="@color/white"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="top|center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutToolbarAlpha"
+        tools:visibility="visible">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_4"
+            android:background="@drawable/shadow_bottom" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            tools:src="@drawable/ic_holder_product_notfound" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitleError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center"
+            android:textColor="#212121"
+            android:textSize="16sp"
+            tools:text="Thông tin sản phẩm chưa được cập nhật" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDescError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center"
+            android:lineSpacingExtra="6sp"
+            android:textColor="#757575"
+            android:textSize="14sp"
+            tools:text="Chúng tôi không thể giúp bạn kiểm tra thông tin nguồn gốc xuất xứ của sản phầm này." />
+
+        <LinearLayout
+            android:id="@+id/layoutNotFound"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="12dp"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/btn_contact_not_found"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_corners_4_light_blue_no_solid"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:gravity="center"
+                android:text="Liên hệ iCheck"
+                android:textColor="#057dda"
+                android:textSize="16sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/btn_contribute"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_corners_4_light_blue_solid"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="Đóng góp thông tin"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btn_lien_he"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="38dp"
+            android:background="@drawable/bg_corners_4_light_blue_no_solid"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center"
+            android:text="Liên hệ iCheck"
+            android:textColor="#057dda"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/layoutHideFromBusiness"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="12dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/btn_contact_icheck"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_corners_4_light_blue_no_solid"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:gravity="center"
+                android:text="Liên hệ iCheck"
+                android:textColor="#057dda"
+                android:textSize="16sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/btn_contact_dn"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_corners_4_light_blue_solid"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:gravity="center"
+                android:text="Liên hệ doanh nghiệp"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@id/view"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@drawable/shadow_top"
+        app:layout_constraintBottom_toTopOf="@id/layoutBottom"
+        app:layout_constraintEnd_toEndOf="@id/layoutBottom"
+        app:layout_constraintStart_toStartOf="@id/layoutBottom" />
+
+    <LinearLayout
+        android:id="@+id/layoutBottom"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingBottom="25dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:id="@id/btnRate"
+            android:layout_width="142dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/bg_btn_contact"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_star_white_24px"
+                android:drawableLeft="@drawable/ic_star_white_24px"
+                android:drawablePadding="7dp"
+                android:fontFamily="@font/barlow_medium"
+                android:gravity="center"
+                android:text="Đánh giá"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@id/btnBuy"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginStart="@dimen/size_5"
+            android:layout_marginLeft="@dimen/size_5"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="@dimen/size_12"
+            android:layout_marginRight="@dimen/size_12"
+            android:background="@drawable/background_button_enable"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvBuy"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/barlow_medium"
+                android:gravity="center"
+                android:text="@string/dang_ky_mua_hang_chinh_hang"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@id/layoutAction"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        tools:visibility="gone">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_polygon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginRight="18dp"
+            android:elevation="6dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_polygon" />
+
+        <LinearLayout
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="6dp"
+            android:layout_marginRight="6dp"
+            android:background="@drawable/bg_more_group"
+            android:elevation="6dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_polygon">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@id/tvGoToHome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_home_white_24px"
+                android:drawableLeft="@drawable/ic_home_white_24px"
+                android:drawablePadding="8dp"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:gravity="center_vertical"
+                android:includeFontPadding="false"
+                android:padding="@dimen/size_8"
+                android:text="@string/tro_ve_trang_chu"
+                android:textColor="@color/white" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/white" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@id/tvShare"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_product_share_white_24px"
+                android:drawableLeft="@drawable/ic_product_share_white_24px"
+                android:drawablePadding="8dp"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:gravity="center_vertical"
+                android:includeFontPadding="false"
+                android:padding="@dimen/size_8"
+                android:text="@string/chia_se"
+                android:textColor="@color/white" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/white" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@id/tvReport"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_product_report_white_24px"
+                android:drawableLeft="@drawable/ic_product_report_white_24px"
+                android:drawablePadding="8dp"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:gravity="center_vertical"
+                android:includeFontPadding="false"
+                android:padding="@dimen/size_8"
+                android:text="@string/to_cao_san_pham"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

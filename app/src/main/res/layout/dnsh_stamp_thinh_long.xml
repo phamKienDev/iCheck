@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_dn_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/roboto_regular"
+        android:text="Doanh nghiệp sở hữu"
+        android:textColor="@color/blue"
+        android:textSize="18sp" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="12dp"
+        app:cardCornerRadius="10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/gray_item_search">
+
+            <LinearLayout
+                android:id="@+id/owner_name_vg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:background="@drawable/bg_corner_top_dnsh_thinh_long_10">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_owner_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginEnd="14dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginBottom="6dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    tools:text="Công ty CP Thương mại quốc tế Thịnh Long"
+                    android:layout_marginRight="14dp" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_not_verified"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/ic_evs_verified" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btn_owner_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:background="@null"
+                    app:srcCompat="@drawable/ic_next_white_18px" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/owner_name_vg">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_owner_mst"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#000000"
+                    tools:text="MST: 0312983404" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_owner_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="12dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:maxLines="2"
+                    android:textColor="#000000"
+                    tools:text="149/30 Bành Văn Trân, Phường 7, Quận Tân Bình, TP Hồ Chí Minh" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_owner_mail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:paddingStart="1dp"
+                    android:paddingTop="4dp"
+                    android:layout_marginEnd="12dp"
+                    android:drawableStart="@drawable/ic_web_dnsh_thinh_long"
+                    android:drawableLeft="@drawable/ic_web_dnsh_thinh_long"
+                    android:drawablePadding="8.5dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity="center_vertical"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:textColor="#3C5A99"
+                    tools:text="www.mediwhite.vn" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_owner_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:paddingTop="4dp"
+                    android:drawableStart="@drawable/ic_phone_blue_18px"
+                    android:drawableLeft="@drawable/ic_phone_blue_18px"
+                    android:drawablePadding="6dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:maxLines="1"
+                    android:textColor="#3C5A99"
+                    tools:text="0985771133" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_owner_website"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:drawablePadding="6dp"
+                    android:drawableStart="@drawable/ic_website_blue_18px"
+                    android:maxLines="1"
+                    android:textColor="#3C5A99"
+                    tools:text="cskh@mediwhite.vn"
+                    android:drawableLeft="@drawable/ic_website_blue_18px" />
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

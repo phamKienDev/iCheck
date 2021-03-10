@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/size_12"
+    android:layout_marginEnd="@dimen/size_12"
+    android:background="?android:attr/selectableItemBackground"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@id/layoutProduct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_home_review_account"
+        android:padding="@dimen/size_10"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@id/imgProduct"
+            android:layout_width="@dimen/size_60"
+            android:layout_height="@dimen/size_60"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/txtProductName"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_12"
+            android:maxLines="2"
+            android:singleLine="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgProduct"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/tvProductPrice"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_6"
+            android:maxLines="2"
+            android:singleLine="true"
+            app:layout_constraintStart_toStartOf="@id/txtProductName"
+            app:layout_constraintTop_toBottomOf="@id/txtProductName" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@id/layoutAccount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_8"
+        android:background="?android:attr/selectableItemBackground"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@id/imgAvatar"
+            android:layout_width="@dimen/size_46"
+            android:layout_height="@dimen/size_46"
+            app:civ_border_color="#D9D9D9"
+            app:civ_border_overlay="true"
+            app:civ_border_width="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/tvName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginEnd="@dimen/size_12"
+            android:ellipsize="end"
+            android:singleLine="true"
+            app:layout_constraintBottom_toTopOf="@id/ratingBar"
+            app:layout_constraintEnd_toStartOf="@id/txtDate"
+            app:layout_constraintStart_toEndOf="@id/imgAvatar"
+            app:layout_constraintTop_toTopOf="@id/imgAvatar"
+            tools:text="Name" />
+
+        <androidx.appcompat.widget.AppCompatRatingBar
+            android:id="@id/ratingBar"
+            style="@style/Product_Rating_Bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:max="5"
+            android:rating="0"
+            app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
+            app:layout_constraintStart_toStartOf="@id/tvName"
+            app:layout_constraintTop_toBottomOf="@id/tvName" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/txtDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_12"
+            android:ellipsize="end"
+            android:singleLine="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvName"
+            tools:text="Date" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/txtContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="@dimen/size_5"
+        android:maxLines="3"
+        tools:text="Content" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@id/layoutImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="@dimen/size_10"
+        android:visibility="gone">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@id/img1"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="@dimen/size_0"
+            android:layout_marginEnd="@dimen/size_5"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="H, 1:1"
+            app:layout_constraintEnd_toStartOf="@id/img2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@id/img2"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="@dimen/size_0"
+            android:layout_marginStart="@dimen/size_5"
+            android:layout_marginEnd="@dimen/size_5"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="H, 1:1"
+            app:layout_constraintEnd_toStartOf="@id/img3"
+            app:layout_constraintStart_toEndOf="@id/img1"
+            app:layout_constraintTop_toTopOf="@id/img1" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@id/img3"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="@dimen/size_0"
+            android:layout_marginStart="@dimen/size_5"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="H, 1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/img2"
+            app:layout_constraintTop_toTopOf="@id/img1" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/txtProductCount"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/bg_black_20_corners_4"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:textAlignment="gravity"
+            android:textColor="@color/white"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/img3"
+            app:layout_constraintEnd_toEndOf="@id/img3"
+            app:layout_constraintStart_toStartOf="@id/img3"
+            app:layout_constraintTop_toTopOf="@id/img3" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--    <androidx.recyclerview.widget.RecyclerView-->
+    <!--        android:id="@id/recyclerView"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="60dp"-->
+    <!--        android:layout_marginTop="@dimen/size_10" />-->
+</LinearLayout>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_13"
+        android:layout_marginRight="@dimen/size_13"
+        android:background="@drawable/bg_white_corners_8"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:paddingTop="@dimen/size_17"
+            android:paddingBottom="@dimen/size_17"
+            android:text="Sắp xếp theo"
+            android:textColor="@color/darkGray2"
+            android:textSize="@dimen/font_size_4"
+            android:textStyle="normal" />
+
+        <View
+            android:id="@id/view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_0_5"
+            android:background="@color/collection_product_sale" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDefault"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:paddingTop="@dimen/size_14"
+            android:paddingBottom="@dimen/size_14"
+            android:text="Mặc định"
+            android:textColor="@color/light_blue"
+            android:textSize="18sp"
+            android:textStyle="normal" />
+
+        <View
+            android:id="@id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_0_5"
+            android:background="@color/collection_product_sale" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvLowtoHigh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:paddingTop="@dimen/size_14"
+            android:paddingBottom="@dimen/size_14"
+            android:text="Giá: thấp - cao"
+            android:textColor="@color/light_blue"
+            android:textSize="18sp"
+            android:textStyle="normal" />
+
+        <View
+            android:id="@id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_0_5"
+            android:background="@color/collection_product_sale" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvHightoLow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:paddingTop="@dimen/size_14"
+            android:paddingBottom="@dimen/size_14"
+            android:text="Giá: cao - thấp"
+            android:textColor="@color/light_blue"
+            android:textSize="18sp"
+            android:textStyle="normal" />
+
+        <View
+            android:id="@id/view3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_0_5"
+            android:background="@color/collection_product_sale" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvNew"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:paddingTop="@dimen/size_14"
+            android:paddingBottom="@dimen/size_14"
+            android:text="Mới nhất"
+            android:textColor="@color/light_blue"
+            android:textSize="18sp"
+            android:textStyle="normal" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_0_5"
+            android:background="@color/collection_product_sale" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTheBestSeller"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:paddingTop="@dimen/size_14"
+            android:paddingBottom="@dimen/size_14"
+            android:text="Bán chạy nhất"
+            android:textColor="@color/light_blue"
+            android:textSize="18sp"
+            android:textStyle="normal" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_0_5"
+            android:background="@color/collection_product_sale" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_8"
+        android:layout_marginLeft="@dimen/size_13"
+        android:layout_marginRight="@dimen/size_13"
+        android:background="@drawable/bg_white_corners_8"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvClose"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:paddingTop="@dimen/size_14"
+            android:paddingBottom="@dimen/size_14"
+            android:text="Đóng"
+            android:textColor="@color/light_blue"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</LinearLayout>

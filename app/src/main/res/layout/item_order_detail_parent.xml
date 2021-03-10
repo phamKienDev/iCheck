@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/size_12"
+    android:layout_marginTop="@dimen/size_12"
+    android:layout_marginEnd="@dimen/size_12"
+    android:layout_marginBottom="80dp">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:includeFontPadding="false"
+        android:text="@string/san_pham_dat_mua"
+        android:textColor="#3c5a99"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@id/layoutTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_8"
+        android:background="@drawable/bg_light_gray_corners_10"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@id/imgAvatar"
+            android:layout_width="@dimen/size_44"
+            android:layout_height="@dimen/size_40"
+            android:paddingStart="@dimen/size_12"
+            android:paddingLeft="@dimen/size_12"
+            android:paddingTop="@dimen/size_8"
+            android:paddingEnd="@dimen/size_8"
+            android:paddingRight="@dimen/size_8"
+            android:paddingBottom="@dimen/size_8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/tvName"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="@dimen/size_0"
+            android:fontFamily="sans-serif"
+            android:gravity="center_vertical"
+            android:includeFontPadding="false"
+            android:paddingStart="@dimen/size_0"
+            android:paddingLeft="@dimen/size_0"
+            android:paddingEnd="@dimen/size_12"
+            android:paddingRight="@dimen/size_12"
+            android:singleLine="true"
+            android:textAlignment="gravity"
+            android:textColor="#3c5a99"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgAvatar"
+            app:layout_constraintTop_toTopOf="@id/imgAvatar"
+            tools:text="Tạp hóa Ngọc Lan" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/imgAvatar"
+            tools:itemCount="2"
+            tools:listitem="@layout/item_order_detail_child" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvNote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_light_gray_corners_10"
+        android:drawableStart="@drawable/ic_note_blue_24dp"
+        android:drawableLeft="@drawable/ic_note_blue_24dp"
+        android:drawablePadding="@dimen/size_10"
+        android:fontFamily="sans-serif"
+        android:gravity="center_vertical"
+        android:hint="@string/khong_co_ghi_chu_nao"
+        android:includeFontPadding="false"
+        android:paddingStart="@dimen/size_8"
+        android:paddingTop="@dimen/size_12"
+        android:paddingEnd="@dimen/size_8"
+        android:paddingBottom="@dimen/size_12"
+        android:textAlignment="gravity"
+        android:textColor="#434343"
+        android:textColorHint="#434343"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintTop_toBottomOf="@id/layoutTop" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@id/viewBottom"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginStart="@dimen/size_10"
+        android:layout_marginEnd="@dimen/size_10"
+        android:background="@drawable/line_dotted_horizontal_blue"
+        app:layout_constraintBottom_toTopOf="@id/tvNote"
+        app:layout_constraintTop_toBottomOf="@id/layoutTop" />
+</androidx.constraintlayout.widget.ConstraintLayout>

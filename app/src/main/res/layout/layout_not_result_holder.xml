@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@color/darkGray6"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_search_90dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_48"
+        android:layout_marginTop="@dimen/size_16"
+        android:layout_marginRight="@dimen/size_48"
+        android:fontFamily="@font/barlow_medium"
+        android:gravity="center"
+        android:textColor="@color/fast_survey_gray"
+        android:textSize="14sp"
+        android:text="Xin lỗi chúng tôi không thể tìm được kết quả phù hợp với tìm kiếm của bạn" />
+
+    <TextView
+        android:id="@+id/tvCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_20"
+        android:background="@drawable/bg_corners_4_light_blue_solid"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:paddingLeft="66dp"
+        android:paddingTop="@dimen/size_10"
+        android:paddingRight="66dp"
+        android:visibility="gone"
+        android:paddingBottom="@dimen/size_10"
+        android:text="Thử lại với từ khoá khác"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+</LinearLayout>

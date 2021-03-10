@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".screen.gift_voucher.GiftDetailFromAppActivity">
+
+    <include layout="@layout/toolbar_blue" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_4"
+        android:background="@drawable/shadow_bottom" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingBottom="80dp"
+                app:layout_constraintBottom_toTopOf="@+id/layoutButton"
+                tools:listitem="@layout/item_gift_detail_from_app" />
+
+            <LinearLayout
+                android:id="@+id/layoutButton"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginTop="@dimen/size_20"
+                android:layout_marginEnd="@dimen/size_12"
+                android:layout_marginBottom="@dimen/size_20"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/btnCancel"
+                    android:layout_width="@dimen/size_0"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/size_6"
+                    android:layout_marginRight="@dimen/size_6"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_corner_20_outline_1_blue"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:paddingTop="@dimen/size_10"
+                    android:paddingBottom="@dimen/size_10"
+                    android:text="Từ chối nhận"
+                    android:textColor="@color/blue"
+                    android:textSize="16sp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/btnAccept"
+                    android:layout_width="@dimen/size_0"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/size_6"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:background="@drawable/bg_corner_20_blue"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:paddingTop="@dimen/size_10"
+                    android:paddingBottom="@dimen/size_10"
+                    android:text="Nhận quà"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</LinearLayout>

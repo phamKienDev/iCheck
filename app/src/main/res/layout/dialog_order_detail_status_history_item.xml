@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/size_20"
+    android:gravity="center_vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/size_18"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif"
+        android:includeFontPadding="false"
+        android:textColor="#434343"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        tools:text="@string/don_hang_duoc_tao_" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-medium"
+        android:includeFontPadding="false"
+        android:singleLine="true"
+        android:textColor="#3c5a99"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        tools:text="12:00, 12/03/1994" />
+</TableRow>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:clickable="true"
+    android:focusable="true">
+
+    <include
+        android:id="@id/layoutToolbar"
+        layout="@layout/toolbar_black" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0"
+        android:layout_marginBottom="@dimen/size_16"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/btnHome"
+        app:layout_constraintTop_toBottomOf="@id/layoutToolbar">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_direct_survey_success" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/txtThankYou"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_20"
+            android:layout_marginTop="@dimen/size_20"
+            android:layout_marginEnd="@dimen/size_20"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:text="@string/cam_on_ban_da_tham_gia_khao_sat"
+            android:textAlignment="gravity"
+            android:textColor="#35384b"
+            android:textSize="18sp"
+            android:textStyle="normal" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/size_12"
+            android:visibility="gone"
+            android:drawableStart="@drawable/ic_coin_status_20dp"
+            android:drawablePadding="@dimen/size_6"
+            android:fontFamily="sans-serif-medium"
+            android:text="+558.000"
+            android:textColor="#3c5a99"
+            android:textSize="18sp"
+            android:textStyle="normal" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_20"
+            android:layout_marginEnd="@dimen/size_12"
+            android:background="@drawable/bg_banner_survey_note"
+            android:drawableStart="@drawable/ic_question_circular_blue_30"
+            android:drawablePadding="@dimen/size_8"
+            android:fontFamily="sans-serif"
+            android:includeFontPadding="false"
+            android:padding="@dimen/size_12"
+            android:text="@string/text_banner_survey_tip"
+            android:textColor="#828282"
+            android:textSize="14sp"
+            android:textStyle="italic" />
+    </LinearLayout>
+
+    <View
+        style="@style/Shadow_Bottom"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutToolbar" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@id/btnHome"
+        style="@style/Button_White_Corners_6"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="@dimen/size_48"
+        android:layout_marginStart="@dimen/size_24"
+        android:layout_marginEnd="@dimen/size_24"
+        android:layout_marginBottom="@dimen/size_16"
+        android:text="@string/trang_chu_title"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@id/btnShare"
+        style="@style/Button_Blue_Corners_6"
+        android:layout_width="@dimen/size_0"
+        android:layout_marginStart="@dimen/size_6"
+        android:visibility="gone"
+        android:layout_marginEnd="@dimen/size_24"
+        android:text="@string/chia_se_title"
+        app:layout_constraintBottom_toBottomOf="@id/btnHome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnHome"
+        app:layout_constraintTop_toTopOf="@id/btnHome" />
+</androidx.constraintlayout.widget.ConstraintLayout>

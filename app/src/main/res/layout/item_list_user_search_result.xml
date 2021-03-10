@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_white_corners_4">
+
+    <vn.icheck.android.component.avatar_user.AvatarUserComponent
+        android:id="@id/layoutAvatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:avatarSize="@dimen/size_40"
+        app:rankSize="@dimen/size_16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="@dimen/size_12"
+        tools:src="@color/blue" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_8"
+        android:layout_marginStart="@dimen/size_8"
+        android:layout_marginEnd="@dimen/size_8"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:includeFontPadding="false"
+        android:textColor="@color/collection_product_name"
+        android:textSize="14sp"
+        android:maxLines="2"
+        android:ellipsize="end"
+        app:layout_constraintEnd_toStartOf="@id/btnConfirm"
+        app:layout_constraintStart_toEndOf="@id/layoutAvatar"
+        app:layout_constraintTop_toTopOf="@+id/layoutAvatar"
+        tools:text="X" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvContent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/barlow_medium"
+        android:includeFontPadding="false"
+        android:singleLine="true"
+        android:textSize="12sp"
+        android:textColor="@color/gray_v2"
+        app:layout_constraintEnd_toEndOf="@id/tvTitle"
+        app:layout_constraintStart_toStartOf="@+id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+        tools:text="3 bạn chung • Cầu Giấy,ádfsadfjasflasjdf" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/btnConfirm"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/size_28"
+        android:layout_marginEnd="@dimen/size_12"
+        android:layout_marginRight="@dimen/size_12"
+        android:background="@drawable/bg_corners_4_light_blue_solid"
+        android:drawableStart="@drawable/ic_add_white_12dp"
+        android:drawableLeft="@drawable/ic_add_white_12dp"
+        android:drawablePadding="@dimen/size_8"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:paddingStart="@dimen/size_16"
+        android:paddingEnd="@dimen/size_16"
+        android:text="@string/ket_ban"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvMessage"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="@dimen/size_28"
+        android:background="@drawable/btn_white_outline_light_blue_1_corners_4"
+        android:drawablePadding="@dimen/size_8"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:paddingStart="@dimen/size_16"
+        android:paddingEnd="@dimen/size_16"
+        android:text="@string/nhan_tin"
+        android:textColor="@color/lightBlue"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@id/btnConfirm"
+        app:layout_constraintStart_toStartOf="@id/btnConfirm"
+        app:layout_constraintTop_toTopOf="@id/btnConfirm" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0_5"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginLeft="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_12"
+        android:background="@color/gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvContent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

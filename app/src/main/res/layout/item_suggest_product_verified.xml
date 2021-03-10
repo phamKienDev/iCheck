@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/size_12"
+    android:background="?android:attr/selectableItemBackground">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgSuggesVerified"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_default_square" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvNameSuggestVerified"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:textColor="#434343"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="@+id/imgSuggesVerified"
+        app:layout_constraintStart_toStartOf="@+id/imgSuggesVerified"
+        app:layout_constraintTop_toBottomOf="@+id/imgSuggesVerified"
+        tools:text="Nước hoa hồng, dưỡng da Langege" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPrice"
+        android:visibility="gone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif-medium"
+        tools:text="157,200,000đ"
+        android:textColor="#3c5a99"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tvNameSuggestVerified"
+        app:layout_constraintStart_toStartOf="@+id/tvNameSuggestVerified"
+        app:layout_constraintTop_toBottomOf="@+id/tvNameSuggestVerified" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="@android:color/white"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Thông báo khác"
+        android:textColor="#3C5A99"
+        android:fontFamily="@font/barlow_medium"
+        android:layout_marginBottom="10dp"
+        android:textSize="18sp"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:id="@+id/title"
+        android:layout_marginLeft="12dp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:paddingStart="@dimen/size_12"
+        android:paddingTop="@dimen/size_6"
+        android:paddingEnd="@dimen/size_12"
+        android:paddingBottom="@dimen/size_6">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@id/imgAvatar"
+            android:layout_width="@dimen/size_36"
+            android:layout_height="@dimen/size_36"
+            android:background="@drawable/bg_outline_gray_1_corners_4"
+            android:padding="@dimen/size_1"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_circle_avatar_default"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/tvStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_20"
+            android:layout_marginLeft="@dimen/size_20"
+            android:layout_marginTop="@dimen/size_23"
+            app:layout_constraintStart_toStartOf="@id/imgAvatar"
+            app:layout_constraintTop_toTopOf="@id/imgAvatar"
+            tools:drawableEnd="@drawable/ic_notification_voucher_20dp" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@id/imgOption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:src="@drawable/ic_more_disable_24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/tvTitle"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginEnd="@dimen/size_8"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:includeFontPadding="false"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:textColor="@color/collection_product_name"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@id/imgOption"
+            app:layout_constraintStart_toEndOf="@id/imgAvatar"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="(Thông báo liên quan đến điểm)..." />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/tvMessage"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_4"
+            android:fontFamily="@font/barlow_medium"
+            android:includeFontPadding="false"
+            android:maxLines="2"
+            android:textColor="@color/collection_product_name"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@id/tvTitle"
+            app:layout_constraintStart_toStartOf="@id/tvTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle"
+            tools:text="Lorem ipsum dolor sit amet, conse ctetura dipiscing elit, sed do eiusmod tempor..." />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/tvDate"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_6"
+            android:includeFontPadding="false"
+            android:textColor="@color/fast_survey_gray"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/tvTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvMessage"
+            tools:text="15:14, 21/4/2019" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

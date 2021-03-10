@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="@color/white"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/layoutToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:elevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@id/imgBack"
+            android:layout_width="@dimen/size_44"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            app:srcCompat="@drawable/ic_back_blue_v2_24px" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/txtTitle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_44"
+            android:layout_marginStart="@dimen/size_44"
+            android:layout_marginEnd="@dimen/size_44"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/lightBlue"
+            android:textSize="18sp"
+            android:textStyle="normal"
+            tools:text="Tiêu đề" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@id/imgAction"
+            android:layout_width="@dimen/size_44"
+            android:layout_height="@dimen/size_44"
+            android:layout_gravity="end"
+            android:background="?android:attr/selectableItemBackground"
+            android:visibility="gone" />
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/barlow_medium"
+                android:lineSpacingExtra="4sp"
+                android:text="Email"
+                android:textColor="#212121"
+                android:textSize="12sp" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@id/edtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/bg_corner_gray_solid_white"
+                android:fontFamily="@font/barlow_medium"
+                android:gravity="start|center"
+                android:hint="Bắt buộc"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:textColor="#212121"
+                android:textColorHint="#b4b4b4"
+                android:textSize="14sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvMessageEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="12dp"
+                android:drawableStart="@drawable/ic_error_red_18dp"
+                android:drawableLeft="@drawable/ic_error_red_18dp"
+                android:drawablePadding="4dp"
+                android:fontFamily="@font/barlow_medium"
+                android:lineSpacingExtra="4sp"
+                android:textColor="#ff0000"
+                android:textSize="12sp"
+                android:visibility="gone"
+                tools:text="Nhập sai định dạng. Thử lại!" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/barlow_medium"
+                android:lineSpacingExtra="4sp"
+                android:text="Tiêu đề"
+                android:textColor="#212121"
+                android:textSize="12sp" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@id/edtTitle"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/bg_corner_gray_solid_white"
+                android:fontFamily="@font/barlow_medium"
+                android:gravity="start|center"
+                android:hint="Không bắt buộc"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:textColor="#212121"
+                android:textColorHint="#b4b4b4"
+                android:textSize="14sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvMessageTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="12dp"
+                android:drawableStart="@drawable/ic_error_red_18dp"
+                android:drawableLeft="@drawable/ic_error_red_18dp"
+                android:drawablePadding="4dp"
+                android:fontFamily="@font/barlow_medium"
+                android:lineSpacingExtra="4sp"
+                android:textColor="#ff0000"
+                android:textSize="12sp"
+                android:visibility="gone"
+                tools:text="Nhập sai định dạng. Thử lại!" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/barlow_medium"
+                android:lineSpacingExtra="4sp"
+                android:text="Nội dung tin nhắn"
+                android:textColor="#212121"
+                android:textSize="12sp" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@id/edtContent"
+                android:layout_width="match_parent"
+                android:layout_height="76dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/bg_corner_gray_solid_white"
+                android:fontFamily="@font/barlow_medium"
+                android:gravity="start|top"
+                android:hint="Nội dung"
+                android:paddingStart="10dp"
+                android:paddingTop="6dp"
+                android:paddingEnd="10dp"
+                android:textColor="#212121"
+                android:textColorHint="#b4b4b4"
+                android:textSize="14sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvMessageContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="12dp"
+                android:drawableStart="@drawable/ic_error_red_18dp"
+                android:drawableLeft="@drawable/ic_error_red_18dp"
+                android:drawablePadding="4dp"
+                android:fontFamily="@font/barlow_medium"
+                android:lineSpacingExtra="4sp"
+                android:textColor="#ff0000"
+                android:textSize="12sp"
+                android:visibility="gone"
+                tools:text="Nhập sai định dạng. Thử lại!" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@id/btnCreate"
+        style="@style/Button_Blue_Corners_6"
+        android:layout_margin="@dimen/size_12"
+        android:text="@string/tao_ma_qr" />
+</LinearLayout>

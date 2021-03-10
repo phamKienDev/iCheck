@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="vn.icheck.android.screen.user.exclusive_privileges_detail.ExclusivePrivilegesDetailActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_44"
+        android:alpha="0"
+        android:background="@color/white"
+        android:elevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@id/imgBack"
+            android:layout_width="@dimen/size_44"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            app:srcCompat="@drawable/ic_back_blue_v2_24px" />
+
+        <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+            android:id="@id/txtTitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/size_44"
+            android:layout_marginEnd="@dimen/size_44"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="Đặc quyền riêng"
+            android:textColor="@color/lightBlue"
+            android:textSize="18sp" />
+    </FrameLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@id/layoutBottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgExclusive"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="#03A9F4"
+                app:layout_constraintDimensionRatio="H,375:235"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/size_12"
+                android:paddingTop="@dimen/size_12"
+                android:paddingBottom="4dp"
+                android:src="@drawable/ic_cancel_black_28px"
+                app:layout_constraintStart_toStartOf="@id/imgExclusive"
+                app:layout_constraintTop_toTopOf="@id/imgExclusive" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextView17"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/barlow_medium"
+                android:gravity="center"
+                android:textColor="#212121"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imgExclusive"
+                tools:text="Chào hè quét mã nhận ngay quà khủng" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextView27"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/barlow_medium"
+                android:textColor="#ff0000"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/appCompatTextView17"
+                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView17"
+                tools:text="Hết hạn sau 29 ngày" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextView32"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="17dp"
+                android:fontFamily="@font/barlow_medium"
+                android:textColor="#757575"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView27"
+                tools:text="Điểm" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextView34"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:drawableStart="@drawable/ic_exclusive_privileges"
+                android:drawablePadding="6.2dp"
+                android:fontFamily="@font/barlow_medium"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/appCompatTextView32"
+                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView32"
+                tools:text="156.000 điểm" />
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="0dp"
+                android:background="#b4b4b4"
+                app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView34"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/appCompatTextView32" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvSubTimeEnd"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:layout_marginRight="12dp"
+                android:fontFamily="@font/barlow_medium"
+                android:textColor="#757575"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/appCompatTextView32"
+                tools:text="Hết hạn" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/barlow_medium"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/tvSubTimeEnd"
+                app:layout_constraintTop_toBottomOf="@+id/tvSubTimeEnd"
+                tools:text="22:59 13/09/2020" />
+
+            <View
+                android:id="@+id/view26"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="15.5dp"
+                android:layout_marginEnd="12dp"
+                android:background="#d8d8d8"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/appCompatTextView34" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:fontFamily="@font/barlow_medium"
+                android:textColor="#212121"
+                android:layout_marginTop="16dp"
+                android:textSize="14sp"
+                app:layout_constraintTop_toBottomOf="@+id/view26"
+                app:layout_constraintStart_toStartOf="@id/view26"
+                app:layout_constraintEnd_toEndOf="@id/view26"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:layout_editor_absoluteX="44dp"
+                tools:text="- Ưu đãi 99% tương đương 900.000 đ khi nạp tiền điện thoại mệnh giá 200.000 đ" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <FrameLayout
+        android:id="@+id/layoutBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <vn.icheck.android.component.view.ButtonLightBlueCorners4
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:text="Đổi thưởng"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="false">
+        <layer-list>
+            <item android:id="@android:id/background">
+                <shape>
+                    <corners android:bottomLeftRadius="@dimen/size_4" android:bottomRightRadius="@dimen/size_0" android:topLeftRadius="@dimen/size_4" android:topRightRadius="@dimen/size_0" />
+                    <solid android:color="@color/darkGray6" />
+                </shape>
+            </item>
+            <item android:id="@android:id/secondaryProgress">
+                <clip>
+                    <shape>
+                        <corners android:radius="@dimen/size_4" />
+                        <solid android:color="@color/darkGray2" />
+                    </shape>
+                </clip>
+            </item>
+            <item android:id="@android:id/progress">
+                <clip>
+                    <shape>
+                        <corners android:radius="@dimen/size_4" />
+                        <solid android:color="@color/darkGray2" />
+                    </shape>
+                </clip>
+            </item>
+        </layer-list>
+    </item>
+    <item>
+        <layer-list>
+            <item android:id="@android:id/background">
+                <shape>
+                    <corners android:bottomLeftRadius="@dimen/size_4" android:bottomRightRadius="@dimen/size_0" android:topLeftRadius="@dimen/size_4" android:topRightRadius="@dimen/size_0" />
+                    <solid android:color="@color/darkGray6" />
+                </shape>
+            </item>
+            <item android:id="@android:id/secondaryProgress">
+                <clip>
+                    <shape>
+                        <corners android:radius="@dimen/size_4" />
+                        <solid android:color="@color/yellow" />
+                    </shape>
+                </clip>
+            </item>
+            <item android:id="@android:id/progress">
+                <clip>
+                    <shape>
+                        <corners android:radius="@dimen/size_4" />
+                        <solid android:color="@color/yellow" />
+                    </shape>
+                </clip>
+            </item>
+        </layer-list>
+    </item>
+</selector>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".screen.user.pvcombank.card_history.HistoryPVCardActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_pvcombank" />
+
+    <View
+        android:id="@+id/viewShadow"
+        style="@style/Shadow_Bottom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerviewCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/viewShadow" />
+
+    <View
+        android:id="@+id/viewMid"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_10"
+        android:background="@color/gray_e5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recyclerviewCard" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerviewTransaction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/viewMid" />
+
+    <include
+        android:id="@+id/layoutMessage"
+        layout="@layout/item_message"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewShadow" />
+</androidx.constraintlayout.widget.ConstraintLayout>

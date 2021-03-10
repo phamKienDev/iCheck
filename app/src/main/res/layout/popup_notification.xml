@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@null"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:clickable="true"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginEnd="@dimen/size_12"
+        android:background="@drawable/bg_popup_notification_green">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@id/imgIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_16"
+            android:layout_marginTop="@dimen/size_20"
+            android:layout_marginBottom="@dimen/size_20"
+            android:src="@drawable/ic_notification_popup" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_15"
+            android:layout_marginTop="@dimen/size_10"
+            android:layout_marginEnd="@dimen/size_25"
+            android:layout_marginBottom="@dimen/size_10"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineHeight="@dimen/size_16"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_4"
+                android:textStyle="bold"
+                tools:text="Lỗi thanh toán" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvMess1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_3"
+                android:lineHeight="@dimen/size_20"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_4"
+                tools:text="Thanh toán đơn hàng không thàng công. \n Mã đơn hàng: #A565S648 - 100.000 đ" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

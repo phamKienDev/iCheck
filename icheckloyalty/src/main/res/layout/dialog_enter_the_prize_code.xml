@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_33"
+        android:layout_marginRight="@dimen/size_33"
+        android:background="@drawable/bg_dialog_enter_the_prize_code"
+        android:orientation="vertical"
+        android:paddingLeft="29dp"
+        android:paddingRight="29dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_40"
+            tools:src="@drawable/ic_nhap_ma_cong_diem" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_16"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="center"
+            android:textColor="#828282"
+            android:textSize="12sp"
+            tools:text="Nhập mã được dán trên sản phẩm\nđể nhận điểm tích lũy đổi quà!" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edtInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_22"
+            android:background="@drawable/bg_edittext_dialog"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center"
+            android:textColor="#935400"
+            android:textAllCaps="true"
+            android:textColorHint="#D8A35D"
+            android:textSize="16sp"
+            android:inputType="textCapCharacters"
+            tools:hint="@string/nhap_ma_vao_day"
+            tools:text="0974815770" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_12"
+            android:drawableLeft="@drawable/ic_error_red_18px"
+            android:drawablePadding="@dimen/size_6"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center_vertical"
+            android:includeFontPadding="false"
+            android:textColor="@color/red"
+            android:visibility="gone"
+            tools:text="Mã không tồn tại. Vui lòng thử lại asdjalskj  djalksjd" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btnAccept"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_40"
+            android:layout_marginTop="@dimen/size_20"
+            android:layout_marginRight="@dimen/size_40"
+            android:layout_marginBottom="@dimen/size_30"
+            android:background="@drawable/bg_gradient_button_orange_yellow"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center"
+            android:paddingTop="@dimen/size_10"
+            android:paddingBottom="@dimen/size_10"
+            android:text="Xác nhận"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_26"
+        app:srcCompat="@drawable/ic_close_popup_32px" />
+</LinearLayout>

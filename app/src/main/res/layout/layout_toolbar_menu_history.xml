@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="96dp"
+    android:background="@color/white"
+    android:elevation="4dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgCloseDrawer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="12dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="10dp"
+        android:src="@drawable/ic_cancel_blue_24px"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/appCompatTextView44"
+        tools:layout_editor_absoluteX="329dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:gravity="center"
+        android:text="Bộ lọc"
+        android:textColor="#057dda"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgCloseDrawer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imgCloseDrawer" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/btnUncheckAll"
+        android:text="Bỏ chọn"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:fontFamily="@font/barlow_regular"
+        android:gravity="center"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:textColor="#757575"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/appCompatTextView44"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/appCompatTextView44" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

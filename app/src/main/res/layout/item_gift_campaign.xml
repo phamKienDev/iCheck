@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginRight="@dimen/size_8"
+    android:layout_marginLeft="@dimen/size_4"
+    android:layout_marginTop="@dimen/size_10"
+    android:layout_marginBottom="@dimen/size_6">
+
+    <LinearLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_corners_white_4_border_05"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/size_10"
+        android:layout_marginLeft="@dimen/size_4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/layoutCount"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgICoin"
+            android:layout_width="@dimen/size_100"
+            android:layout_height="@dimen/size_100"
+            android:layout_marginTop="@dimen/size_6"
+            android:layout_gravity="center"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_10"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:maxLines="2"
+            android:minLines="2"
+            android:paddingLeft="@dimen/font_size_2"
+            android:paddingRight="@dimen/font_size_2"
+            android:textColor="@color/black_21_v2"
+            android:textSize="14sp"
+            android:visibility="visible"
+            tools:text="Điện thoại iphone 11 - Chính hãng (tên 2 dòng)..." />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="@dimen/size_10">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/size_0"
+                android:ellipsize="end"
+                android:layout_marginTop="@dimen/size_4"
+                android:layout_marginBottom="@dimen/size_4"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:minWidth="100dp"
+                android:paddingStart="@dimen/size_12"
+                android:paddingEnd="@dimen/size_12"
+                android:singleLine="true"
+                android:textColor="@color/lightBlue"
+                android:background="@drawable/bg_corner_right_gray_12"
+                android:layout_marginStart="@dimen/size_26"
+                app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
+                app:layout_constraintStart_toStartOf="@id/imgAvatar"
+                app:layout_constraintTop_toTopOf="@id/imgAvatar"
+                tools:text="0 Xu" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgAvatar"
+                android:layout_width="@dimen/size_32"
+                android:layout_height="@dimen/size_32"
+                android:padding="@dimen/size_1"
+                app:civ_circle_background_color="@color/darkGray1"
+                android:src="@drawable/img_default_shop_logo"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutCount"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCountGift"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_6"
+            android:background="@drawable/ic_content_20px"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:paddingLeft="@dimen/size_6"
+            android:paddingRight="@dimen/size_6"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="120 Quà" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="@dimen/size_4"
+            android:layout_height="@dimen/size_4"
+            android:src="@drawable/ic_triangle_4px"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="@id/tvCountGift"
+            app:layout_constraintTop_toBottomOf="@id/tvCountGift" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/vid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_tail_20px"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@id/tvCountGift"
+            app:layout_constraintStart_toEndOf="@id/tvCountGift"
+            app:layout_constraintTop_toTopOf="@id/tvCountGift" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:background="@color/white"
+    android:paddingBottom="8dp">
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:text="Bạn có muốn minh bạch thông tin sản phẩm không?"
+        android:textColor="#212121"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/btn_yes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/bg_corners_4_light_blue_no_solid"
+        android:fontFamily="@font/barlow_medium"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="Có"
+        android:textColor="#057dda"
+        app:layout_constraintEnd_toStartOf="@+id/btn_no"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toStartOf="@+id/tvName"
+        app:layout_constraintTop_toBottomOf="@+id/tvName" />
+
+    <TextView
+        android:id="@+id/btn_no"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_corners_4_light_blue_no_solid"
+        android:fontFamily="@font/barlow_medium"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="Không"
+        android:textColor="#057dda"
+        app:layout_constraintEnd_toEndOf="@+id/tvName"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_yes"
+        app:layout_constraintTop_toBottomOf="@+id/tvName" />
+
+    <TextView
+        android:id="@+id/tvPercentYes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/barlow_medium"
+        android:textColor="#057dda"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_yes"
+        tools:text="72%" />
+
+    <TextView
+        android:id="@+id/tvPercentNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:fontFamily="@font/barlow_medium"
+        android:textColor="#757575"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_no"
+        tools:text="28%" />
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/bgProgress"
+        android:layout_width="0dp"
+        android:layout_height="8dp"
+        android:visibility="invisible"
+        android:layout_marginTop="7dp"
+        android:background="@drawable/bg_corner_gray_4"
+        app:layout_constraintEnd_toEndOf="@id/tvPercentNo"
+        app:layout_constraintStart_toStartOf="@id/tvPercentYes"
+        app:layout_constraintTop_toBottomOf="@id/tvPercentYes" />
+
+
+    <ProgressBar
+        android:id="@+id/progressbar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/size_16"
+        android:max="100"
+        android:progress="50"
+        android:progressDrawable="@drawable/progress_light_blue_background_transparent_corners_8"
+        app:layout_constraintEnd_toEndOf="@id/tvPercentNo"
+        app:layout_constraintStart_toStartOf="@id/tvPercentYes"
+        app:layout_constraintBottom_toBottomOf="@+id/bgProgress"
+        app:layout_constraintTop_toTopOf="@+id/bgProgress" />
+
+    <TextView
+        android:id="@+id/textHintYes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/barlow_medium"
+        android:text="Có"
+        android:textColor="#057dda"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/progressbar"
+        app:layout_constraintTop_toBottomOf="@id/progressbar" />
+
+    <TextView
+        android:id="@+id/textHintNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/barlow_medium"
+        android:text="Không"
+        android:textColor="#b4b4b4"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@id/progressbar"
+        app:layout_constraintTop_toBottomOf="@id/progressbar" />
+</androidx.constraintlayout.widget.ConstraintLayout>

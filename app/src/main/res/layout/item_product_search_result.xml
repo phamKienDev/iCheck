@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgProduct"
+        android:layout_width="77dp"
+        android:layout_height="@dimen/size_70"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_payment_vnpay_40dp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_name_product"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginEnd="@dimen/size_12"
+        android:layout_marginRight="@dimen/size_12"
+        android:ellipsize="end"
+        android:fontFamily="@font/barlow_medium"
+        android:includeFontPadding="false"
+        android:maxLines="2"
+        android:minLines="2"
+        android:textColor="@color/darkGray1"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgProduct"
+        app:layout_constraintTop_toTopOf="@+id/imgProduct"
+        tools:text="Mặt Nạ Dưỡng Trắng Dịu Mát Da (tối đa 2 dòng)...ádfsdfssafsadfsfasfsafsagasgsagsagasgasgasgasasg" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tv_name_product"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name_product">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_price_product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/size_10"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:includeFontPadding="false"
+            android:textColor="@color/lightBlue"
+            android:textSize="14sp"
+            android:visibility="visible"
+            tools:text="25.900 ₫" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_verified"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_verified_16px"
+            android:drawablePadding="@dimen/size_5"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center_vertical"
+            android:lineSpacingExtra="4sp"
+            android:text="@string/verified"
+            android:textColor="@color/green_v3"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0_5"
+        android:layout_marginTop="@dimen/size_12"
+        android:background="@color/gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgProduct" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/size_8"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgAvatar"
+        android:layout_width="@dimen/size_40"
+        android:layout_height="@dimen/size_40"
+        android:layout_marginStart="@dimen/size_8"
+        android:layout_marginLeft="@dimen/size_8"
+        app:civ_border_color="@color/gray"
+        app:civ_border_width="@dimen/size_0_5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_8"
+        android:layout_marginLeft="@dimen/size_8"
+        android:layout_marginEnd="@dimen/size_8"
+        android:layout_marginRight="@dimen/size_8"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:fontFamily="@font/barlow_medium"
+        android:gravity="center_vertical"
+        android:singleLine="true"
+        android:textColor="@color/darkGray1"
+        app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imgAvatar"
+        app:layout_constraintTop_toTopOf="@id/imgAvatar"
+        tools:text="Hà Linh ( vai trò user đầu tiên) - 1 dòng ..." />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="@dimen/size_0_5"
+        android:layout_marginTop="@dimen/size_8"
+        android:background="@color/gray"
+        app:layout_constraintStart_toStartOf="@id/imgAvatar"
+        app:layout_constraintTop_toBottomOf="@id/imgAvatar" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:layout_marginEnd="12dp"
+    android:layout_marginStart="12dp"
+    android:gravity="center|start"
+    android:orientation="horizontal">
+
+    <vn.icheck.android.component.avatar_user.AvatarUserComponent
+        android:id="@+id/avatarUserPost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:avatarSize="@dimen/size_40"
+        app:rankSize="@dimen/size_16" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:lineSpacingExtra="6sp"
+        android:textColor="#212121"
+        android:textSize="14sp"
+        tools:text="Xuyến Đỗ" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="100dp"
+        android:layout_height="28dp"
+        android:background="@drawable/bg_corners_4_light_blue_no_solid"
+        android:gravity="center"
+        android:lineSpacingExtra="6sp"
+        android:textColor="#057dda"
+        android:textSize="14sp"
+        tools:text="Gửi" />
+
+</LinearLayout>

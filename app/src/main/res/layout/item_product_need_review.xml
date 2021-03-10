@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="274dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginStart="@dimen/size_6"
+    android:layout_marginTop="@dimen/size_12"
+    android:layout_marginEnd="@dimen/size_6"
+    android:layout_marginBottom="@dimen/size_20"
+    app:cardCornerRadius="4dp"
+    app:cardBackgroundColor="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@id/layoutProduct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@id/imgAvatar"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                tools:src="@drawable/product_images_new_placeholder"
+                android:layout_marginTop="@dimen/size_12"
+                android:layout_marginStart="@dimen/size_10"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_12"
+                android:layout_marginEnd="@dimen/size_10"
+                android:layout_marginStart="@dimen/size_10"
+                android:orientation="vertical">
+
+                <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+                    android:id="@id/tvName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textSize="14sp"
+                    android:minLines="2"
+                    android:textColor="#212121"
+                    tools:text="Brightening Pore Facial Cleanser" />
+
+                <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+                    android:id="@id/tvNameBusiness"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_2"
+                    android:textSize="12sp"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textColor="#757575"
+                    tools:text="Innisfree Official" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutRatingBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_7">
+
+            <com.willy.ratingbar.ScaleRatingBar
+                android:id="@id/ratingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srb_isIndicator="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="@dimen/size_9"
+                app:srb_drawableEmpty="@drawable/ic_star_yellow_32"
+                android:layout_gravity="center_horizontal"
+                app:srb_numStars="5" />
+
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

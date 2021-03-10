@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/bg_corner_egg_color_12">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageInfor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="6dp"
+            android:src="@drawable/ic_method_stamp1_small"
+            app:layout_constraintBottom_toTopOf="@id/tvSub1"
+            app:layout_constraintEnd_toEndOf="@id/tvSub1"
+            app:layout_constraintStart_toStartOf="@id/tvSub1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSub1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="7dp"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center_horizontal"
+            android:text="Thông tin\nsản phẩm"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tvSub2"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgStepBuild"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="6dp"
+            android:src="@drawable/ic_method_stamp2_small"
+            app:layout_constraintBottom_toTopOf="@id/tvSub2"
+            app:layout_constraintEnd_toEndOf="@id/tvSub2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tvSub2" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSub2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center_horizontal"
+            android:text="Truy xuất\nnguồn gốc trứng"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvSub1"
+            app:layout_constraintEnd_toStartOf="@+id/tvSub3"
+            app:layout_constraintStart_toEndOf="@id/tvSub1" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgCccn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="6dp"
+            android:src="@drawable/ic_method_stamp3_small"
+            app:layout_constraintBottom_toTopOf="@id/tvSub3"
+            app:layout_constraintEnd_toEndOf="@id/tvSub3"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tvSub3" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSub3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center_horizontal"
+            android:text="Chứng chỉ,\nChứng nhận"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvSub2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvSub2" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

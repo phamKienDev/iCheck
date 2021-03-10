@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="thumb_small_size">150x150</string>
+    <string name="thumb_medium_size">300x300</string>
+    <string name="thumb_large_size">720x720</string>
+    <string name="small_size">300x300</string>
+    <string name="medium_size">900x900</string>
+    <string name="large_size">1536x1536</string>
+    <bool name="isTablet">true</bool>
+</resources>

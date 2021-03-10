@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:paddingBottom="8dp"
+    android:elevation="2dp"
+    android:layout_margin="12dp"
+    android:background="@drawable/bg_gray_corner_10"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView62"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:text="Đánh giá của bạn"
+        android:textColor="#434343"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/customer_rating"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_your_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textColor="#3C5A99"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/textView62"
+        app:layout_constraintTop_toBottomOf="@+id/textView62"
+        tools:text="8,7 Tuyệt vời" />
+
+    <com.willy.ratingbar.ScaleRatingBar
+        android:id="@+id/customer_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srb_drawableEmpty="@drawable/star_empty_layer"
+        app:srb_drawableFilled="@drawable/star_filled_layer"
+        app:srb_numStars="5"
+        app:srb_isIndicator="true"
+        app:srb_starHeight="24dp"
+        app:srb_starWidth="24dp"
+        app:srb_stepSize="0.5" />
+
+    <TextView
+        android:id="@+id/tv_xem_chi_tiet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:drawableEnd="@drawable/ic_down_blue_18px"
+        android:text="Xem chi tiết"
+        android:textColor="#057DDA"
+        app:layout_constraintEnd_toEndOf="@+id/customer_rating"
+        app:layout_constraintTop_toBottomOf="@+id/customer_rating" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_detail_review"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="#F5F5F5"
+        android:paddingBottom="8dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_xem_chi_tiet"
+        tools:visibility="visible">
+
+        <TextView
+            android:id="@+id/textView68"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="Nhận xét:"
+            android:textColor="#3C5A99"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rcv_customer" />
+
+        <TextView
+            android:id="@+id/tv_msg_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="12dp"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView68"
+            app:layout_constraintTop_toBottomOf="@+id/textView68"
+            tools:text="Sản phẩm có nguồn gốc xuất xứ rõ ràng đáng tiền, nhưng không thích loại này bằng loại đỏ." />
+
+        <Button
+            android:id="@+id/btn_edit"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/size_36"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/bg_blue_corners_40"
+            android:text="Chỉnh sửa đánh giá"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rcvImage" />
+
+        <TextView
+            android:id="@+id/tv_collapse_drv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:drawableEnd="@drawable/ic_up_blue_18px"
+            android:text="Thu gọn"
+            android:textColor="#057DDA"
+            app:layout_constraintEnd_toEndOf="@+id/btn_edit"
+            app:layout_constraintTop_toBottomOf="@+id/btn_edit" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcvImage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_msg_content" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcv_customer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

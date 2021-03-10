@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <include
+        android:id="@id/layoutToolbar"
+        layout="@layout/toolbar_black" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutToolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="76dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@id/imgBanner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_banner_survey" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@id/layoutCenter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginTop="-36dp"
+                android:layout_marginEnd="@dimen/size_12"
+                android:layout_marginBottom="@dimen/size_12"
+                android:background="@drawable/bg_shadow_6"
+                android:visibility="visible"
+                app:cardCornerRadius="@dimen/size_10"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/viewHeader">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_blue_corners_top_10"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@id/tvName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/size_12"
+                            android:layout_marginTop="@dimen/size_16"
+                            android:layout_marginEnd="@dimen/size_12"
+                            android:fontFamily="sans-serif-medium"
+                            android:includeFontPadding="false"
+                            android:textColor="#ffffff"
+                            android:textSize="16sp"
+                            android:textStyle="normal" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txtQuestionTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/size_12"
+                            android:layout_marginTop="@dimen/size_16"
+                            android:layout_marginEnd="@dimen/size_12"
+                            android:fontFamily="sans-serif-medium"
+                            android:includeFontPadding="false"
+                            android:textColor="#ffffff"
+                            android:textSize="16sp"
+                            android:textStyle="normal" />
+
+                        <ProgressBar
+                            android:id="@id/progressBar"
+                            style="@android:style/Widget.ProgressBar.Horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/size_6"
+                            android:layout_marginStart="@dimen/size_12"
+                            android:layout_marginTop="13dp"
+                            android:layout_marginEnd="@dimen/size_12"
+                            android:layout_marginBottom="@dimen/size_12"
+                            android:max="100"
+                            android:progress="50"
+                            android:progressDrawable="@drawable/progress_orange_background_blue_corners_3" />
+                    </LinearLayout>
+
+                    <FrameLayout
+                        android:id="@id/layoutOption"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/size_6"
+                        android:layout_marginTop="@dimen/size_12"
+                        android:layout_marginEnd="@dimen/size_6"
+                        android:layout_marginBottom="@dimen/size_6"
+                        android:orientation="vertical" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@id/layoutSuccess"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_20"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/imgBanner">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@id/txtThankYou"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_12"
+                    android:layout_marginEnd="@dimen/size_12"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:text="@string/cam_on_ban_da_tham_gia_khao_sat"
+                    android:textAlignment="gravity"
+                    android:textColor="#35384b"
+                    android:textSize="18sp"
+                    android:textStyle="normal"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_12"
+                    android:layout_marginTop="@dimen/size_20"
+                    android:layout_marginEnd="@dimen/size_12"
+                    android:background="@drawable/bg_banner_survey_note"
+                    android:drawableStart="@drawable/ic_question_circular_blue_30"
+                    android:drawablePadding="@dimen/size_8"
+                    android:fontFamily="sans-serif"
+                    android:includeFontPadding="false"
+                    android:padding="@dimen/size_12"
+                    android:text="@string/text_banner_survey_tip"
+                    android:textColor="#828282"
+                    android:textSize="14sp"
+                    android:textStyle="italic"
+                    app:layout_constraintTop_toBottomOf="@id/txtThankYou" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@id/layoutBottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_48"
+        android:layout_marginBottom="@dimen/size_12"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/size_18"
+        android:paddingEnd="@dimen/size_18"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@id/btnHome"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/size_6"
+            android:layout_marginEnd="@dimen/size_6"
+            android:layout_weight="1"
+            android:background="@drawable/btn_white_outline_blue_1_corners_6"
+            android:text="@string/trang_chu_title"
+            android:textAllCaps="false"
+            android:textColor="@color/blue"
+            android:visibility="gone" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@id/btnLeft"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/size_6"
+            android:layout_marginEnd="@dimen/size_6"
+            android:layout_weight="1"
+            android:background="@drawable/btn_white_outline_blue_1_corners_6"
+            android:fontFamily="sans-serif-medium"
+            android:textAllCaps="false"
+            android:textColor="@color/blue"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            tools:text="Câu 1" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@id/btnRight"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/size_6"
+            android:layout_marginEnd="@dimen/size_6"
+            android:layout_weight="1"
+            android:background="@drawable/btn_blue_corners_6"
+            android:fontFamily="sans-serif-medium"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            tools:text="Tiếp theo" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

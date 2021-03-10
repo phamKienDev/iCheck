@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/layoutImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rectangle_corner_stroke_gray_8"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgTopup"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="5dp" />
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvNameNetwork"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:textSize="14sp"
+            android:textColor="#212121"
+            android:textStyle="normal"
+            app:layout_constraintStart_toEndOf="@+id/layoutImg"
+            app:layout_constraintTop_toTopOf="@+id/layoutImg"
+            tools:text="Thẻ Mobifone" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPriceTopup"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:textColor="#3c5a99"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/tvDate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvNameNetwork"
+            tools:text="50.000đ" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/barlow_medium"
+            android:includeFontPadding="false"
+            android:textColor="#757575"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="@+id/tvNameNetwork"
+            app:layout_constraintTop_toBottomOf="@+id/tvNameNetwork"
+            tools:text="12:52, 05/05/2019" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@id/line"
+            android:layout_width="0dp"
+            android:layout_height="2.5dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="12dp"
+            android:layerType="software"
+            android:src="@drawable/line_dotted"
+            app:layout_constraintBottom_toBottomOf="@id/layoutImg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tvDate"
+            app:layout_constraintTop_toBottomOf="@+id/tvDate" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSubMaThe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/barlow_medium"
+            android:text="Mã thẻ:"
+            android:textColor="#757575"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/line"
+            app:layout_constraintTop_toBottomOf="@id/line" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvMaThe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:textColor="#212121"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@id/line"
+            app:layout_constraintTop_toTopOf="@+id/tvSubMaThe"
+            tools:text="04520440964420" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSubSoSeri"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/barlow_medium"
+            android:text="Số seri:"
+            android:textColor="#757575"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tvSubMaThe"
+            app:layout_constraintTop_toBottomOf="@id/tvSubMaThe" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSeri"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:textColor="#212121"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/tvSubSoSeri"
+            app:layout_constraintEnd_toEndOf="@id/tvMaThe"
+            app:layout_constraintTop_toTopOf="@+id/tvSubSoSeri"
+            tools:text="0499205202100" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="15.5dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginStart="9dp"
+        android:background="#d8d8d8"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="36dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSelectUsed"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Đánh dấu đã dùng"
+            android:fontFamily="@font/barlow_medium"
+            android:textColor="#ff0000"
+            android:textSize="14sp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@id/view"
+            android:layout_width="1.5dp"
+            android:layout_height="16dp"
+            android:background="#cccccc"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@id/tvSelectUsed"
+            app:layout_constraintEnd_toStartOf="@+id/tvLoadNow"
+            app:layout_constraintStart_toEndOf="@id/tvSelectUsed"
+            app:layout_constraintTop_toTopOf="@id/tvSelectUsed" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvLoadNow"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Nạp ngay"
+            android:textColor="#057dda"
+            android:fontFamily="@font/barlow_medium"
+            android:textSize="14sp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@id/view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/view"
+            app:layout_constraintTop_toTopOf="@id/view" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvUsed"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center"
+            android:paddingTop="8dp"
+            android:paddingBottom="10dp"
+            android:text="Mã thẻ đã dùng"
+            android:textColor="#757575"
+            android:textSize="14sp"
+            android:background="#d8d8d8"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

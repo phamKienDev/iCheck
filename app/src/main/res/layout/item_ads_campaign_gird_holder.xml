@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="4dp"
+    android:layout_marginEnd="4dp"
+    android:layout_marginTop="6dp"
+    android:layout_marginBottom="6dp"
+    android:background="@drawable/bg_corner_gray_solid_white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/size_10">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgCampaign"
+            android:layout_width="match_parent"
+            android:layout_height="92dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@color/collection_product_name" />
+
+        <TextView
+            android:id="@+id/tvTimeStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_6"
+            android:layout_marginLeft="@dimen/size_6"
+            android:layout_marginTop="@dimen/size_8"
+            android:fontFamily="@font/barlow_medium"
+            android:includeFontPadding="false"
+            android:text="CHỦ NHẬT TUẦN NÀY: 21:00"
+            android:textColor="@color/red"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgCampaign" />
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_4"
+            android:layout_marginEnd="@dimen/size_6"
+            android:layout_marginRight="@dimen/size_6"
+            android:layout_marginStart="@dimen/size_6"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:includeFontPadding="false"
+            android:maxLines="2"
+            android:text="Scan Coca Cola nhận quà (tên 2 dòng).."
+            android:textColor="@color/collection_product_name"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tvTimeStart"
+            app:layout_constraintTop_toBottomOf="@+id/tvTimeStart" />
+
+        <TextView
+            android:id="@+id/tvTimeLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_2"
+            android:fontFamily="@font/barlow_medium"
+            android:includeFontPadding="false"
+            android:text="Còn 29 ngày"
+            android:textColor="@color/fast_survey_gray"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/tvName"
+            app:layout_constraintTop_toBottomOf="@+id/tvName" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvJoin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_6"
+            android:layout_marginTop="@dimen/size_8"
+            android:layout_marginRight="@dimen/size_6"
+            android:background="@drawable/bg_corners_4_light_blue_solid"
+            android:gravity="center_horizontal"
+            android:paddingTop="@dimen/size_4"
+            android:paddingBottom="@dimen/size_4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTimeLeft" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvJoin1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_6"
+            android:layout_marginTop="@dimen/size_8"
+            android:layout_marginRight="@dimen/size_6"
+            android:drawableEnd="@drawable/ic_star_white_14"
+            android:drawableRight="@drawable/ic_star_white_14"
+            android:drawablePadding="@dimen/size_4"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center"
+            android:paddingTop="@dimen/size_4"
+            android:paddingBottom="@dimen/size_4"
+            android:text="@string/tham_gia"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTimeLeft" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <include
+        android:id="@id/layoutToolbar"
+        layout="@layout/toolbar_blue" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutToolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/size_8"
+            android:paddingBottom="64dp">
+
+            <TableLayout
+                android:id="@id/tableLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginEnd="@dimen/size_12"
+                android:orientation="vertical" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_1"
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginTop="@dimen/size_15"
+                android:layout_marginEnd="@dimen/size_12"
+                android:background="@color/gray" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@id/edtNote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginTop="@dimen/size_8"
+                android:layout_marginEnd="@dimen/size_12"
+                android:background="@drawable/bg_gray_stroke_corner_10"
+                android:ems="10"
+                android:fontFamily="sans-serif"
+                android:gravity="start|top"
+                android:hint="@string/shop_review_note"
+                android:inputType="textMultiLine"
+                android:lines="3"
+                android:padding="8dp"
+                android:textColor="#434343"
+                android:textColorHint="#B4B4B4"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_4"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/size_6"
+                android:paddingEnd="@dimen/size_6"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_shop_review_image" />
+        </LinearLayout>
+    </ScrollView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@id/tvDone"
+        style="@style/Button_Blue_Corners_26"
+        android:layout_width="match_parent"
+        android:layout_marginStart="@dimen/size_25"
+        android:layout_marginEnd="@dimen/size_25"
+        android:layout_marginBottom="@dimen/size_12"
+        android:text="@string/hoan_tat"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <View
+        style="@style/Shadow_Bottom"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutToolbar" />
+</androidx.constraintlayout.widget.ConstraintLayout>

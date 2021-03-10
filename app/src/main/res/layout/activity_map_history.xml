@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_0"
+            app:layout_constraintBottom_toTopOf="@+id/view1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_0"
+            android:layout_marginTop="@dimen/size_20"
+            app:layout_constraintBottom_toBottomOf="@id/view"
+            app:layout_constraintTop_toTopOf="@id/view" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_0"
+            android:background="@drawable/bg_corner_top_20"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="H, 375:277" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgAvatar"
+            android:layout_width="@dimen/size_36"
+            android:layout_height="@dimen/size_36"
+            android:layout_marginLeft="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_20"
+            app:layout_constraintStart_toStartOf="@id/view"
+            app:layout_constraintTop_toTopOf="@id/view" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_12"
+            android:layout_marginRight="@dimen/size_12"
+            android:drawableRight="@drawable/ic_verified_icon_chu"
+            android:drawablePadding="@dimen/size_8"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:includeFontPadding="false"
+            android:singleLine="true"
+            android:textColor="@color/lightBlue"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@+id/imgAvatar"
+            app:layout_constraintTop_toTopOf="@+id/imgAvatar"
+            tools:text="Converse Store Mỹ Đình" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_10"
+            android:src="@drawable/ic_pin_map_14_gray"
+            app:layout_constraintStart_toStartOf="@id/tvName"
+            app:layout_constraintTop_toBottomOf="@id/tvName" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvAddress"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_8"
+            android:layout_marginRight="@dimen/size_12"
+            android:fontFamily="@font/barlow_medium"
+            android:includeFontPadding="false"
+            android:textColor="@color/black_21_v2"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@id/view"
+            app:layout_constraintStart_toEndOf="@id/img"
+            app:layout_constraintTop_toTopOf="@id/img"
+            tools:text="Số nhà 18, chung cư 125A Nguyễn Ngọc Vũ,  Trung Hoà, Q. Cầu Giấy, Hà Nội" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPhone"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_10"
+            android:drawableLeft="@drawable/ic_phone_gray_14"
+            android:drawablePadding="@dimen/size_8"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_medium"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="5.6sp"
+            android:singleLine="true"
+            android:textColor="@color/black_21_v2"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@id/tvAddress"
+            app:layout_constraintStart_toStartOf="@id/img"
+            app:layout_constraintTop_toBottomOf="@id/tvAddress"
+            tools:text="0985 555 222  •  Fax: 033 22 222" />
+
+        <View
+            android:id="@+id/viewLine"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_0_5"
+            android:layout_marginTop="@dimen/size_12"
+            android:background="@color/darkGray4"
+            app:layout_constraintTop_toBottomOf="@id/tvPhone" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDescription"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_12"
+            android:fontFamily="@font/barlow_medium"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="5.6sp"
+            android:textColor="@color/black_21_v2"
+            android:textSize="14sp"
+            android:maxLength="250"
+            android:ellipsize="end"
+            android:minLines="1"
+            android:maxLines="5"
+            app:layout_constraintEnd_toEndOf="@id/tvPhone"
+            app:layout_constraintStart_toStartOf="@id/imgAvatar"
+            app:layout_constraintTop_toBottomOf="@id/viewLine"
+            tools:text="Lạ Sneakers là thương hiệu chuyên cung cấp các sản phẩm giày VNNK chất lượng, độc đáo với giá thành hợp lý tại thị trường Hà Nội hiện nay. \n
+Với phương châm ĐỘC — ĐẸP — RẺ, Lạ Sneakers thường xuyên cập nhật các kiểu dáng giày mới nhất đá...Đọc tiếp" />
+
+        <FrameLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:paddingTop="@dimen/size_40"
+            android:paddingBottom="@dimen/size_12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/imgBack"
+                android:layout_width="@dimen/size_44"
+                android:layout_height="match_parent"
+                android:background="?android:attr/selectableItemBackground"
+                app:srcCompat="@drawable/ic_back_black_28px" />
+        </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

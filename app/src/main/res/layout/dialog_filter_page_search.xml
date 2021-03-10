@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_dialog"
+    android:paddingBottom="20dp">
+
+    <include
+        android:id="@+id/layoutHeader"
+        layout="@layout/layout_title_filter_search" />
+
+    <View
+        android:id="@+id/divider27"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#D8D8D8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutHeader" />
+
+    <LinearLayout
+        android:id="@+id/containerLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingRight="@dimen/size_8"
+        app:layout_constraintTop_toBottomOf="@id/divider27">
+
+        <TextView
+            android:id="@+id/tv_select_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_14"
+            android:layout_marginLeft="@dimen/size_14"
+            android:layout_marginTop="@dimen/size_13"
+            android:layout_marginBottom="@dimen/size_13"
+            android:drawableStart="@drawable/ic_location_filer_12dp"
+            android:drawablePadding="8dp"
+            android:fontFamily="@font/barlow_medium"
+            android:text="@string/tinh_thanh_pho"
+            android:textColor="@color/collection_product_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider27"
+            app:drawableStartCompat="@drawable/ic_location_filer_12dp" />
+
+        <TextView
+            android:id="@+id/tv_location"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginEnd="@dimen/size_12"
+            android:layout_weight="1"
+            android:drawablePadding="8dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="right"
+            android:maxLines="1"
+            android:textColor="#757575"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider27"
+            tools:text="@string/moi_noi" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_clear_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/size_8"
+            android:src="@drawable/ic_close_gray_18_dp" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider28"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="12dp"
+        android:background="#D8D8D8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/containerLocation" />
+
+    <TextView
+        android:id="@+id/tv_select_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_14"
+        android:drawablePadding="8dp"
+        android:fontFamily="@font/barlow_medium"
+        android:text="@string/da_xac_thuc"
+        android:textColor="#212121"
+        app:drawableStartCompat="@drawable/ic_verified_page_filter_16dp"
+        app:layout_constraintBottom_toBottomOf="@id/divider29"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider28" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switch_verfied"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/size_12"
+        android:thumb="@drawable/ic_filer_switch_thumb_selector"
+        app:layout_constraintBottom_toBottomOf="@id/divider29"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider28"
+        app:track="@drawable/ic_filer_switch_track_selector" />
+
+
+    <View
+        android:id="@+id/divider29"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="13dp"
+        android:background="#D8D8D8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_select_time" />
+
+    <LinearLayout
+        android:id="@+id/containerCate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingEnd="@dimen/size_8"
+        app:layout_constraintTop_toBottomOf="@id/divider29">
+
+        <TextView
+            android:id="@+id/tv_select_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_14"
+            android:layout_marginTop="@dimen/size_13"
+            android:layout_marginBottom="@dimen/size_13"
+            android:drawablePadding="8dp"
+            android:fontFamily="@font/barlow_medium"
+            android:text="@string/danh_muc"
+            android:textColor="#212121"
+            app:drawableStartCompat="@drawable/ic_categories_page_filter_15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider29" />
+
+        <TextView
+            android:id="@+id/tv_category"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginEnd="@dimen/size_12"
+            android:layout_weight="1"
+            android:drawablePadding="8dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="right"
+            android:maxLines="1"
+            android:text="@string/tat_ca"
+            android:textColor="@color/fast_survey_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider29" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_clear_cate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/size_8"
+            android:src="@drawable/ic_close_gray_18_dp" />
+    </LinearLayout>
+
+
+    <View
+        android:id="@+id/divider30"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="12dp"
+        android:background="#D8D8D8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/containerCate" />
+
+    <TextView
+        android:id="@+id/tv_clear"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_20"
+        android:layout_marginEnd="@dimen/size_12"
+        android:background="@drawable/bg_corners_4_light_blue_no_solid"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:gravity="center"
+        android:paddingTop="@dimen/size_8"
+        android:paddingBottom="@dimen/size_8"
+        android:text="@string/thiet_lap_lai"
+        android:textColor="@color/light_blue"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider30" />
+</androidx.constraintlayout.widget.ConstraintLayout>

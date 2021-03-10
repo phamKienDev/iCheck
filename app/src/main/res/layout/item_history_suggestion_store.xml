@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:layout_marginStart="12dp"
+    android:layout_marginEnd="12dp"
+    android:background="@drawable/bg_corners_white_4_border_05">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@id/imgAvatar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="13dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="#03A9F4" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvNameShop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:textColor="#35384b"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/imgAvatar"
+        app:layout_constraintTop_toTopOf="@+id/imgAvatar"
+        tools:text="Giày Việt" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvCountRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:drawableStart="@drawable/ic_start_alone_15_dp"
+        android:drawablePadding="5dp"
+        android:fontFamily="@font/barlow_medium"
+        android:textColor="#4f4f4f"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@id/tvNameShop"
+        app:layout_constraintTop_toBottomOf="@+id/tvNameShop"
+        tools:text="8,9" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvCountReview"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="5.2dp"
+        android:fontFamily="@font/barlow_medium"
+        android:textColor="#828282"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/tvCountRating"
+        app:layout_constraintStart_toEndOf="@id/tvCountRating"
+        app:layout_constraintTop_toTopOf="@id/tvCountRating"
+        tools:text="(999+)" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvGoMap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="7dp"
+        android:drawableStart="@drawable/ic_alternate_16_px"
+        android:drawablePadding="4dp"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:lineSpacingExtra="6sp"
+        android:text="Chỉ đường"
+        android:textColor="#828282"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvCountReview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvCountReview" />
+
+    <View
+        android:id="@id/view"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="8.5dp"
+        android:background="#d8d8d8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgAvatar" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvCountProductOfShop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="12dp"
+        android:paddingBottom="11dp"
+        android:drawableEnd="@drawable/ic_down_light_blue_18_px"
+        android:fontFamily="@font/barlow_medium"
+        android:gravity="center"
+        android:textColor="#057dda"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view"
+        tools:text="Có 12 sản phẩm có sẵn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

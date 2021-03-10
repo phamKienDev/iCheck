@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#E5E5E5">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/bannerCampaign"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:scaleType="centerCrop" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/size_10"
+                android:layout_marginTop="@dimen/size_20"
+                android:background="@drawable/bg_white_corners_10"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/size_8"
+                android:paddingVertical="@dimen/size_12">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ma_du_thuong_chuong_trinh"
+                    android:textColor="@color/darkGray1"
+                    android:textSize="14sp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/titleCampaign"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_8"
+                    android:textColor="@color/blue"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edittext"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_36"
+                    android:layout_marginTop="@dimen/size_12"
+                    android:background="@drawable/bg_gray_corner_4dp"
+                    android:gravity="center"
+                    android:hint="@string/nhap_ma_du_thuong"
+                    android:inputType="textCapCharacters"
+                    android:textAllCaps="true" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnCheckCode"
+                    android:layout_width="122dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="@dimen/size_8"
+                    android:background="@drawable/bg_light_blue_15_corner_4dp"
+                    android:text="@string/check_ma"
+                    android:textAllCaps="false"
+                    android:gravity="center"
+                    android:textColor="@color/lightBlue" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/size_12"
+                android:layout_marginTop="@dimen/size_20"
+                android:background="@drawable/bg_white_corners_10"
+                android:orientation="vertical"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="@dimen/size_12">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <View
+                        android:layout_width="@dimen/size_8"
+                        android:layout_height="@dimen/size_8"
+                        android:background="@drawable/bg_item_title" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/size_4"
+                        android:layout_marginLeft="@dimen/size_4"
+                        android:text="@string/thong_tin_chuong_trinh"
+                        android:textColor="@color/darkGray1"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <WebView
+                    android:id="@+id/des"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_4"
+                    android:textColor="@color/darkGray1"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginLeft="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_40"
+        android:src="@drawable/ic_back_blue_24px"
+        android:tint="@color/white" />
+</RelativeLayout>

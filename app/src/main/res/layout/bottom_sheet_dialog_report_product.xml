@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_white_corners_top_10"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="31.8dp"
+        app:srcCompat="@drawable/ic_feed_report_success" />
+
+    <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18.6dp"
+        android:gravity="center"
+        android:text="Cảm ơn bạn đã tố cáo sản phẩm này!"
+        android:textColor="#212121"
+        android:textSize="16sp" />
+
+    <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="63dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="62dp"
+        android:gravity="center"
+        android:lineSpacingExtra="6sp"
+        android:text="Đội ngũ iCheck sẽ kiểm tra và giải quyết báo cáo của bạn sớm."
+        android:textColor="#757575"
+        android:textSize="14sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="9.5dp"
+        android:layout_marginEnd="12dp"
+        android:background="#d8d8d8" />
+
+    <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="12dp"
+        android:lineSpacingExtra="6sp"
+        android:text="Nội dung tố cáo:"
+        android:textColor="#757575"
+        android:textSize="14sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"/>
+
+    <vn.icheck.android.component.view.ButtonLightBlueCorners4
+        android:id="@id/btnCancel"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:gravity="center"
+        android:text="Xong"
+        android:textColor="@color/white" />
+
+</LinearLayout>

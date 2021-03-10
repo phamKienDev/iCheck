@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        card_view:cardCornerRadius="10dp"
+        app:cardBackgroundColor="@color/gray_item_search"
+        app:cardElevation="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutheaderAccuracy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:background="@drawable/bg_corner_top_green_10">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgAccuracy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="4dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvSubName"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tvSubName"
+                    tools:src="@drawable/ic_verified_stamp_36dp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@id/tvSubName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="12dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/imgAccuracy"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Sản phẩm chính hãng" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvTimeAccuracy"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@id/tvSubName"
+                    app:layout_constraintStart_toStartOf="@id/tvSubName"
+                    app:layout_constraintTop_toBottomOf="@id/tvSubName"
+                    tools:text="Thời gian xác thực 12h21 ngày 09/10/2017" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutSerial"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvSerial"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="#3c5a99"
+                    android:textSize="14sp"
+                    tools:text="Serial: L - 00123" />
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutAnalytic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_corner_bottom_gray_10">
+
+                <View
+                    android:id="@+id/view1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:background="@color/gray" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@id/imgScanQr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="29dp"
+                    android:layout_marginLeft="29dp"
+                    android:layout_marginTop="18.5dp"
+                    android:layout_marginBottom="21dp"
+                    android:src="@drawable/ic_qrcode_black_30px"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view1" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvCountScan"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:gravity="center"
+                    android:fontFamily="@font/barlow_semi_bold"
+                    android:includeFontPadding="false"
+                    android:textColor="#3c5a99"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toEndOf="@id/imgScanQr"
+                    app:layout_constraintTop_toTopOf="@id/imgScanQr"
+                    app:layout_constraintEnd_toEndOf="@id/appCompatTextView12"
+                    tools:text="17" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/appCompatTextView12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:text="Số lần quét"
+                    android:textColor="#828282"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@id/imgScanQr"
+                    app:layout_constraintStart_toStartOf="@id/tvCountScan"
+                    app:layout_constraintTop_toBottomOf="@id/tvCountScan" />
+
+                <View
+                    android:id="@id/view2"
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:background="@color/gray"
+                    app:layout_constraintBottom_toBottomOf="@id/appCompatTextView12"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tvCountScan" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgUserScan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:src="@drawable/ic_group_friend_gray_30_px"
+                    app:layout_constraintBottom_toBottomOf="@id/appCompatTextView13"
+                    app:layout_constraintEnd_toStartOf="@id/appCompatTextView13"
+                    app:layout_constraintTop_toTopOf="@id/tvCountUserScan" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/appCompatTextView13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
+                    android:layout_marginEnd="29dp"
+                    android:layout_marginRight="29dp"
+                    android:gravity="center"
+                    android:text="Số người quét"
+                    android:textColor="#828282"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvCountUserScan" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvCountUserScan"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:fontFamily="@font/barlow_semi_bold"
+                    android:includeFontPadding="false"
+                    android:textColor="#3c5a99"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="@id/appCompatTextView13"
+                    app:layout_constraintStart_toStartOf="@id/appCompatTextView13"
+                    app:layout_constraintTop_toTopOf="@id/view2"
+                    tools:text="140,842" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

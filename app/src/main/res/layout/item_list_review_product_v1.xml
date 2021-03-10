@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/review_1_widget"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="horizontal"
+    android:paddingBottom="12dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/one_user"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/user_placeholder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="@dimen/size_4"
+            android:background="@drawable/bg_gray_corner_10"
+            android:elevation="2dp">
+
+            <TextView
+                android:id="@+id/tv_1_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:includeFontPadding="false"
+                android:textColor="#828282"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="3 ngày trước" />
+
+            <com.willy.ratingbar.ScaleRatingBar
+                android:id="@+id/user_1_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_1_time"
+                app:srb_drawableEmpty="@drawable/ic_star_outline_16px"
+                app:srb_drawableFilled="@drawable/ic_star_full_16px"
+                app:srb_isIndicator="true"
+                app:srb_starHeight="10dp"
+                app:srb_starPadding="2dp"
+                app:srb_starWidth="10dp"
+                app:srb_stepSize="0.5" />
+
+            <TextView
+                android:id="@+id/tv_user_1_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/size_10"
+                android:fontFamily="sans-serif-medium"
+                android:text="TextView"
+                android:includeFontPadding="false"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/user_1_rating"
+                app:layout_constraintTop_toBottomOf="@+id/user_1_rating"
+                tools:text="Mai Lan Nguyễn" />
+
+            <TextView
+                android:id="@+id/tv_user_1_comment"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/darkGray1"
+                android:textSize="@dimen/font_size_4"
+                android:includeFontPadding="false"
+                app:layout_constraintEnd_toEndOf="@id/tv_1_time"
+                app:layout_constraintStart_toStartOf="@+id/tv_user_1_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_user_1_name"
+                tools:text="Sản phẩm có nguồn gốc xuất xứ rõ ràng mình đã dùng và thấy rất ổn"
+                tools:visibility="visible" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcv_image_review"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+               android:layout_marginStart="@dimen/size_8"
+                android:visibility="visible"
+                android:layout_marginTop="@dimen/size_8"
+                app:layout_constraintStart_toStartOf="@+id/tv_user_1_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_user_1_comment" />
+
+            <View
+                android:id="@+id/view24"
+                android:layout_width="0dp"
+                android:layout_height="5dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/dotted"
+                android:layerType="software"
+                app:layout_constraintEnd_toEndOf="@id/tv_1_time"
+                app:layout_constraintStart_toStartOf="@+id/tv_user_1_name"
+                app:layout_constraintTop_toBottomOf="@id/rcv_image_review" />
+
+            <LinearLayout
+                android:id="@+id/tv_1_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/gv_useful"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rcv_rating"
+                tools:visibility="visible">
+
+                <TextView
+                    android:id="@+id/detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/ic_down_blue_18px"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Xem chi tiết đánh giá"
+                    android:textColor="@color/lightBlue"
+                    android:textSize="@dimen/font_size_4" />
+
+                <TextView
+                    android:id="@+id/coplapse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/ic_up_blue_18px"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Thu gọn"
+                    android:textColor="@color/lightBlue"
+                    android:textSize="@dimen/font_size_4"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcv_rating"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view24"
+                tools:visibility="visible">
+
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/gv_useful"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_gray_bottom_border_10"
+                android:orientation="horizontal"
+                android:paddingTop="4dp"
+                android:paddingBottom="@dimen/size_4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_1_detail"
+                tools:visibility="visible">
+
+                <ImageView
+                    android:id="@+id/imageView26"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/shit" />
+
+                <TextView
+                    android:id="@+id/tv_1_useful"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_useful_unfc_24px"
+                    android:gravity="center"
+                    android:text="Hữu ích"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView26"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/imageView26"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/imageView26" />
+
+                <TextView
+                    android:id="@+id/tv_1_unuseful"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_unuseful_unfc_24px"
+                    android:gravity="center"
+                    android:text="Không hữu ích"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView26"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView26"
+                    app:layout_constraintTop_toTopOf="@+id/imageView26" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/img_make_commend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_12"
+            app:srcCompat="@drawable/btn_comment" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcv_comment_review"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_12"
+            android:orientation="vertical" />
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/size_8"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginLeft="@dimen/size_12"
+        app:layout_constraintBottom_toBottomOf="@id/tvCoin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvCoin"
+        app:srcCompat="@drawable/ic_leftmenu_xu_26dp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvCoin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginLeft="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_10"
+        android:fontFamily="@font/barlow_medium"
+        android:includeFontPadding="false"
+        android:textColor="@color/orange"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@id/imgIcon"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="580.000 Xu" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtQuyDoi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_3"
+        android:layout_marginBottom="@dimen/size_10"
+        android:fontFamily="@font/barlow_medium"
+        android:includeFontPadding="false"
+        android:text="@string/quy_doi_1000_icoin"
+        android:textColor="@color/fast_survey_gray"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tvCoin"
+        app:layout_constraintTop_toBottomOf="@id/tvCoin" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@android:color/white"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        tools:visibility="visible">
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:padding="14dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_back_blue_24px" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:textColor="#20336B"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:paddingEnd="@dimen/size_12"
+            android:paddingStart="@dimen/size_12"
+            android:fontFamily="sans-serif-medium"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textAlignment="center"
+            tools:text="09293938383" />
+
+        <ImageView
+            android:id="@+id/img_product"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="12dp"
+            app:srcCompat="@drawable/error_load_image" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/no_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_dialog">
+
+        <View
+            android:id="@+id/view25"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/size_20"
+            android:background="@color/gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rcv_rating" />
+
+        <ImageButton
+            android:id="@+id/btn_nrv_take_img"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@null"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view25"
+            app:srcCompat="@drawable/ic_chat_image_18px" />
+
+        <EditText
+            android:id="@+id/edt_nrv_comment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bg_gray_stroke_corner_10"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="Viết đánh giá"
+            android:inputType="textMultiLine"
+            android:lines="3"
+            android:padding="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btn_nrv_take_img"
+            app:layout_constraintTop_toBottomOf="@+id/view25" />
+
+        <Button
+            android:id="@+id/btn_nrv_send"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/size_36"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="@dimen/size_20"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bg_blue_corners_40"
+            android:text="Hoàn tất"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rcv_image" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcv_image"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edt_nrv_comment" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcv_rating"
+            android:layout_width="0dp"
+            android:layout_marginTop="@dimen/size_12"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

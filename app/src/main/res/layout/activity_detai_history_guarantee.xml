@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical"
+    tools:context="vn.icheck.android.screen.user.detail_stamp_v6_1.detail_history_guarantee.DetaiHistoryGuaranteeActivity">
+
+    <include layout="@layout/toolbar_blue" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/shadow_bottom" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:descendantFocusability="blocksDescendants"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:descendantFocusability="blocksDescendants"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvCustomerInfor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="sans-serif"
+                tools:text="Thông tin khách hàng"
+                android:textColor="#3c5a99"
+                android:textSize="18sp"
+                android:textStyle="normal" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/bg_corner_gray_10"
+                android:orientation="vertical"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvNameCustomer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:drawableStart="@drawable/ic_outline_person_blue_18px"
+                    android:drawablePadding="8dp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    tools:text="Họ và tên: Đặng Trung Đức" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvPhoneCustomer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:drawableStart="@drawable/ic_outline_phone_blue_18px"
+                    android:drawablePadding="8dp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    tools:text="Số điện thoại: 098 123 ***" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvMailCustomer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:drawableStart="@drawable/ic_outline_local_blue_18px"
+                    android:drawablePadding="8dp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    tools:text="Email: ***@icheck.vn" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvAddressCustomer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="12dp"
+                    android:drawableStart="@drawable/ic_outline_place_blue_18px"
+                    android:drawablePadding="8dp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    tools:text="Địa chỉ: Số 50, ngõ 125, Nguyễn Ngọc Vũ, Hà Nội" />
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvWarrantyInfor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="sans-serif"
+                tools:text="Thông tin bảo hành"
+                android:textColor="#3c5a99"
+                android:textSize="18sp"
+                android:textStyle="normal" />
+
+            <LinearLayout
+                android:id="@id/layoutContentHistory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/bg_corner_gray_10"
+                android:orientation="vertical"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="8dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvTimeGuarantee"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:drawableStart="@drawable/ic_time_start_blue_18_px"
+                    android:drawablePadding="8dp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    tools:text="Thời gian: 5h30 24/12/2018" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvNameStoreGuarantee"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:drawableStart="@drawable/ic_store_blue_18px"
+                    android:drawablePadding="8dp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    tools:text="Điểm bảo hành: Cơ sở 1" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:drawableStart="@drawable/ic_outline_person_blue_18px"
+                    android:drawablePadding="8dp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    android:visibility="gone"
+                    tools:text="Nhân viên phụ trách: Phạm Lệ Mỹ" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvStateGuarantee"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:drawableStart="@drawable/ic_warranty_blue_18px"
+                    android:drawablePadding="8dp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    tools:text="Tình trạng: Kích hoạt bảo hành lần 1" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvReturnTimeGuarantee"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:drawableStart="@drawable/ic_time_start_blue_18_px"
+                    android:drawablePadding="8dp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    tools:text="Ngày hẹn trả: 27/12/2017" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@id/layoutImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/bg_corner_gray_10"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                android:visibility="gone" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewNote"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="12dp" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

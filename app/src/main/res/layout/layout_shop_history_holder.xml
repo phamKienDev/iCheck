@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+        android:id="@+id/tvTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginLeft="@dimen/size_12"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:text="2 tiếng trước"
+        android:textAllCaps="true"
+        android:textColor="@color/darkGray3"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginLeft="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_12"
+        android:background="@drawable/bg_corners_white_4_border_05"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTime">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/containerShop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/avatarShop"
+                android:layout_width="@dimen/size_36"
+                android:layout_height="@dimen/size_36"
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginLeft="@dimen/size_12"
+                android:layout_marginTop="@dimen/size_12"
+                android:src="@drawable/ic_default_square"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvNameShop"
+                android:layout_width="@dimen/size_0"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_10"
+                android:layout_marginEnd="@dimen/size_10"
+                android:ellipsize="end"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:text="Tạp hóa Ngọc Lan"
+                android:textColor="@color/black_blue"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/avatarShop"
+                app:layout_constraintTop_toTopOf="@+id/avatarShop" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvDistance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_6"
+                android:layout_marginBottom="@dimen/size_12"
+                android:background="@drawable/bg_violet_corners_15dp"
+                android:drawableStart="@drawable/ic_location_history_18dp"
+                android:drawableLeft="@drawable/ic_location_history_18dp"
+                android:drawablePadding="@dimen/size_4"
+                android:fontFamily="@font/barlow_medium"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/size_2"
+                android:paddingLeft="@dimen/size_2"
+                android:paddingTop="@dimen/size_2"
+                android:paddingEnd="@dimen/size_6"
+                android:paddingRight="@dimen/size_6"
+                android:paddingBottom="@dimen/size_2"
+                android:text="Khoảng cách: 5km"
+                android:textColor="@color/violet_2"
+                android:textSize="12sp"
+                app:fontFamily="@font/barlow_medium"
+                app:layout_constraintStart_toStartOf="@+id/tvNameShop"
+                app:layout_constraintTop_toBottomOf="@+id/tvNameShop" />
+
+            <ImageView
+                android:id="@+id/imgGlobal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvDistance"
+                app:layout_constraintStart_toEndOf="@+id/imgShop"
+                app:layout_constraintTop_toTopOf="@+id/tvDistance"
+                app:srcCompat="@drawable/ic_global_blue_18_px" />
+
+            <ImageView
+                android:id="@+id/imgShop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvDistance"
+                app:layout_constraintStart_toEndOf="@+id/tvDistance"
+                app:layout_constraintTop_toTopOf="@+id/tvDistance"
+                app:srcCompat="@drawable/ic_icon_shop_18dp" />
+
+            <ImageView
+                android:id="@+id/imgVerified"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvDistance"
+                app:layout_constraintStart_toEndOf="@+id/imgGlobal"
+                app:layout_constraintTop_toTopOf="@+id/tvDistance"
+                app:srcCompat="@drawable/ic_official_brand_green_18_px" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/imgVerified"
+                app:layout_constraintEnd_toEndOf="@+id/imgVerified"
+                app:layout_constraintStart_toStartOf="@+id/imgVerified"
+                app:srcCompat="@drawable/ic_shop_verified" />
+
+            <ImageView
+                android:id="@+id/imgGlobal2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/imgGlobal"
+                app:layout_constraintEnd_toEndOf="@+id/imgGlobal"
+                app:layout_constraintStart_toStartOf="@+id/imgGlobal"
+                app:srcCompat="@drawable/ic_sell_online" />
+
+            <ImageView
+                android:id="@+id/imgVerified2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/imgVerified"
+                app:layout_constraintEnd_toEndOf="@+id/imgVerified"
+                app:layout_constraintStart_toStartOf="@+id/imgVerified"
+                app:srcCompat="@drawable/ic_shop_verified" />
+
+            <View
+                android:id="@+id/viewLine1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_1"
+                android:layout_marginTop="@dimen/size_12"
+                android:background="@color/gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvDistance" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/containerProduct"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/white">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgAvaProduct"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="@dimen/size_10"
+                android:layout_marginLeft="@dimen/size_10"
+                android:layout_marginTop="@dimen/size_14"
+                android:src="@drawable/ic_default_square" />
+
+            <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+                android:id="@+id/tvNameProduct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="@dimen/size_10"
+                android:layout_marginLeft="@dimen/size_10"
+                android:layout_marginTop="@dimen/size_12"
+                android:layout_marginEnd="@dimen/size_8"
+                android:layout_marginRight="@dimen/size_8"
+                android:layout_toEndOf="@id/imgAvaProduct"
+                android:layout_toRightOf="@id/imgAvaProduct"
+                android:ellipsize="end"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:text="Nước hoa hồng Langege dung tích 201..."
+                android:textColor="@color/collection_product_name"
+                android:textSize="14sp" />
+
+
+            <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+                android:id="@+id/tvBarcodeProduct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvNameProduct"
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginLeft="@dimen/size_12"
+                android:layout_marginTop="@dimen/size_4"
+                android:layout_toEndOf="@id/imgAvaProduct"
+                android:layout_toRightOf="@id/imgAvaProduct"
+                android:drawableStart="@drawable/ic_barcode_blue_18px"
+                android:drawableLeft="@drawable/ic_barcode_blue_18px"
+                android:drawablePadding="@dimen/size_4"
+                android:fontFamily="@font/barlow_medium"
+                android:includeFontPadding="false"
+                android:text="8930123456789"
+                android:textColor="@color/darkGray3"
+                android:textSize="14sp" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvBarcodeProduct"
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginLeft="@dimen/size_12"
+                android:layout_marginEnd="@dimen/size_10"
+                android:layout_marginRight="@dimen/size_10"
+                android:layout_toEndOf="@id/imgAvaProduct"
+                android:layout_toRightOf="@id/imgAvaProduct">
+
+                <androidx.appcompat.widget.AppCompatRatingBar
+                    android:id="@+id/ratingBar"
+                    style="@style/Product_Rating_Bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:isIndicator="true"
+                    android:max="5"
+                    android:numStars="5"
+                    android:rating="2.5"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tvCountRating"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+                    android:id="@+id/tvCountRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_4"
+                    android:layout_marginLeft="@dimen/size_4"
+                    android:layout_marginEnd="@dimen/size_10"
+                    android:layout_marginRight="@dimen/size_10"
+                    android:fontFamily="@font/barlow_semi_bold"
+                    android:textColor="@color/lightBlue"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
+                    app:layout_constraintEnd_toStartOf="@+id/tvVerify"
+                    app:layout_constraintStart_toEndOf="@+id/ratingBar"
+                    app:layout_constraintTop_toTopOf="@+id/ratingBar"
+                    tools:text="8,9" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvVerify"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:drawableStart="@drawable/ic_verified_16px"
+                    android:drawableLeft="@drawable/ic_verified_16px"
+                    android:drawablePadding="3dp"
+                    android:fontFamily="@font/barlow_semi_bold"
+                    android:gravity="center_vertical"
+                    android:text="@string/verified"
+                    android:textColor="@color/green2"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvCountRating"
+                    app:layout_constraintStart_toEndOf="@+id/tvCountRating"
+                    app:layout_constraintTop_toTopOf="@+id/tvCountRating" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/viewLine"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_1"
+                android:layout_below="@id/imgAvaProduct"
+                android:layout_marginTop="@dimen/size_15"
+                android:background="@color/gray" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvPriceProduct"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/viewLine"
+                android:layout_marginStart="@dimen/size_10"
+                android:layout_marginLeft="@dimen/size_10"
+                android:layout_marginTop="@dimen/size_6"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:includeFontPadding="false"
+                android:text="23,004,000đ"
+                android:textColor="@color/red"
+                android:textSize="16sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvPriceSale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvPriceProduct"
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginLeft="@dimen/size_12"
+                android:layout_marginTop="@dimen/size_2"
+                android:fontFamily="@font/barlow_medium"
+                android:includeFontPadding="false"
+                android:text="23,504,000đ"
+                android:textColor="@color/darkGray2"
+                android:textSize="12sp" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/tvBuyNow"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/size_32"
+                android:layout_below="@id/viewLine"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/size_12"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/bg_corners_4_light_blue_solid"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:gravity="center"
+                android:paddingLeft="@dimen/size_20"
+                android:paddingRight="@dimen/size_20"
+                android:src="@drawable/img_add_to_cart_history_17dp"
+                android:text="@string/mua"
+                android:textColor="@color/white" />
+
+            <ImageView
+                android:id="@+id/imgAddCart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/viewLine"
+                android:layout_marginTop="@dimen/size_12"
+                android:layout_marginRight="@dimen/size_8"
+                android:layout_toLeftOf="@id/tvBuyNow"
+                app:srcCompat="@drawable/ic_add_cart_32dp" />
+
+            <TextView
+                android:id="@+id/tvCountCart"
+                android:layout_width="@dimen/size_32"
+                android:layout_height="@dimen/size_32"
+                android:layout_below="@id/viewLine"
+                android:layout_marginTop="@dimen/size_12"
+                android:layout_marginRight="@dimen/size_6"
+                android:layout_toLeftOf="@id/imgAddCart"
+                android:background="@drawable/bg_corner_gray_4"
+                android:fontFamily="@font/barlow_medium"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="@color/collection_product_name"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/imgMinusCart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/viewLine"
+                android:layout_marginTop="@dimen/size_12"
+                android:layout_marginRight="@dimen/size_6"
+                android:layout_toLeftOf="@id/tvCountCart"
+                app:srcCompat="@drawable/ic_minus_cart_32dp" />
+
+            <View
+                android:id="@+id/viewLine2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_1"
+                android:layout_below="@id/tvBuyNow"
+                android:layout_marginTop="@dimen/size_12"
+                android:background="@color/gray" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_12"
+            android:layout_marginBottom="@dimen/size_15">
+
+            <TextView
+                android:id="@+id/tvAllProduct"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginLeft="@dimen/size_12"
+                android:drawableRight="@drawable/ic_arrow_right_light_blue_24dp"
+                android:fontFamily="@font/barlow_medium"
+                android:gravity="center_vertical"
+                android:text="@string/xem_tat_ca_san_pham"
+                android:textColor="@color/lightBlue"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvCollapse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/size_10"
+                android:drawableRight="@drawable/ic_extend_history_24dp"
+                android:drawablePadding="@dimen/size_6"
+                android:fontFamily="@font/barlow_medium"
+                android:gravity="center_vertical"
+                android:textColor="@color/darkGray3"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/tvAllProduct"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvAllProduct"
+                tools:text="@string/xem_them" />
+        </RelativeLayout>
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

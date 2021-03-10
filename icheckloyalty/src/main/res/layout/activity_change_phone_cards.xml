@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar_blue" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_4"
+        android:layout_marginBottom="-4dp"
+        android:background="@drawable/shadow_bottom" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_20"
+        android:fontFamily="@font/roboto_regular"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="Để nhận quà này, bạn vui lòng nhập\nsố điện thoại và chọn nhà mạng để nhận thẻ cào."
+        android:textColor="@color/darkGray1"
+        android:textSize="14sp" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/edtPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="58dp"
+        android:layout_marginTop="@dimen/size_20"
+        android:layout_marginEnd="58dp"
+        android:background="@drawable/bg_edt_nmdt"
+        android:ems="10"
+        android:fontFamily="@font/roboto_bold"
+        android:gravity="center"
+        android:hint="@string/nhap_so_dien_thoai"
+        android:inputType="phone"
+        android:textColorHint="#D8A35D"
+        android:textColor="#935400"
+        android:textSize="16sp"
+        android:textStyle="italic" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_48"
+        android:layout_marginLeft="@dimen/size_48"
+        android:layout_marginTop="@dimen/size_20"
+        android:layout_marginEnd="58dp"
+        android:layout_marginRight="58dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="3"
+        tools:itemCount="5" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/btnAccept"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="58dp"
+        android:layout_marginTop="@dimen/size_20"
+        android:layout_marginEnd="58dp"
+        android:background="@drawable/bg_b4_corner_20dp"
+        android:elevation="@dimen/size_4"
+        android:fontFamily="@font/roboto_medium"
+        android:gravity="center"
+        android:paddingTop="@dimen/size_10"
+        android:paddingBottom="@dimen/size_10"
+        android:text="@string/xac_nhan"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        tools:targetApi="lollipop" />
+</LinearLayout>

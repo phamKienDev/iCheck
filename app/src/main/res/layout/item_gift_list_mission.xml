@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vn.icheck.android.ui.colorcardview.ColorCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/size_9"
+    android:layout_marginTop="@dimen/size_5"
+    android:layout_marginEnd="@dimen/size_9"
+    android:layout_marginBottom="@dimen/size_5"
+    app:cardBackgroundColor="@color/white"
+    app:cardShadowColorEnd="@color/app_selector_shadow_end"
+    app:cardShadowColorStart="@color/elevation_color_card"
+    app:cardElevation="3dp"
+    app:cardCornerRadius="@dimen/size_4">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/tvCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_6"
+            android:layout_marginLeft="@dimen/size_6"
+            android:layout_marginTop="@dimen/size_9"
+            android:drawableStart="@drawable/ic_mission_gift_24dp"
+            android:drawableLeft="@drawable/ic_mission_gift_24dp"
+            android:drawablePadding="@dimen/size_3"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center_vertical"
+            android:includeFontPadding="false"
+            android:textColor="@color/red"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="2" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_6"
+            android:layout_marginLeft="@dimen/size_6"
+            android:fontFamily="@font/barlow_medium"
+            android:includeFontPadding="false"
+            android:text="@string/luot"
+            android:textColor="@color/fast_survey_gray"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/tvCount"
+            app:layout_constraintStart_toEndOf="@id/tvCount"
+            app:layout_constraintTop_toTopOf="@id/tvCount" />
+
+        <TextView
+            android:id="@id/tvProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:includeFontPadding="false"
+            android:textColor="#757575"
+            android:textSize="14sp"
+            android:layout_marginEnd="@dimen/size_12"
+            android:layout_marginRight="@dimen/size_12"
+            app:layout_constraintBottom_toBottomOf="@id/tvCount"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvCount"
+            tools:text="Tiến độ: 43%" />
+
+        <View
+            android:id="@id/viewLine"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_0_5"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginLeft="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_6"
+            android:background="@color/gray"
+            app:layout_constraintTop_toBottomOf="@id/tvCount" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@id/imgIcon"
+            android:layout_width="@dimen/size_36"
+            android:layout_height="@dimen/size_36"
+            android:layout_marginStart="@dimen/size_10"
+            android:layout_marginLeft="@dimen/size_10"
+            android:layout_marginTop="@dimen/size_17"
+            android:layout_marginBottom="@dimen/size_15"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_mission_barcode_inprogress_24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/viewLine" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/tvName"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_10"
+            android:layout_marginLeft="@dimen/size_10"
+            android:layout_marginTop="@dimen/size_2"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:includeFontPadding="false"
+            android:textColor="@color/collection_product_name"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@id/tvStatus"
+            app:layout_constraintStart_toEndOf="@id/imgIcon"
+            app:layout_constraintBottom_toTopOf="@id/progressBar"
+            app:layout_constraintTop_toTopOf="@id/imgIcon"
+            tools:text="Thực hiện khảo sát" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/tvStatus"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/size_12"
+            android:layout_marginRight="@dimen/size_12"
+            android:fontFamily="@font/barlow_medium"
+            android:includeFontPadding="false"
+            android:textColor="@color/fast_survey_gray"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/tvName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvName"
+            tools:text="5/5" />
+
+        <ProgressBar
+            android:id="@id/progressBar"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="@dimen/size_8"
+            android:layout_marginTop="@dimen/size_12"
+            android:layout_marginEnd="@dimen/size_20"
+            android:layout_marginRight="@dimen/size_20"
+            android:layout_marginBottom="@dimen/size_3"
+            android:max="100"
+            android:progress="30"
+            app:layout_constraintTop_toBottomOf="@id/tvName"
+            android:progressDrawable="@drawable/progress_yellow"
+            app:layout_constraintBottom_toBottomOf="@id/imgIcon"
+            app:layout_constraintEnd_toEndOf="@id/imgStatus"
+            app:layout_constraintStart_toStartOf="@id/tvName" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@id/imgStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/size_9"
+            android:layout_marginRight="@dimen/size_9"
+            app:layout_constraintBottom_toBottomOf="@id/progressBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/progressBar" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</vn.icheck.android.ui.colorcardview.ColorCardView>

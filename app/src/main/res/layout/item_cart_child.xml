@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/layoutContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@id/viewTop"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0_5"
+        android:background="@color/gray"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@id/imgChecked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:padding="@dimen/size_4"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/imgAvatar" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@id/imgAvatar"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="@dimen/size_2"
+        android:layout_marginLeft="@dimen/size_2"
+        android:layout_marginTop="@dimen/size_12"
+        app:layout_constraintStart_toEndOf="@id/imgChecked"
+        app:layout_constraintTop_toBottomOf="@id/viewTop" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvStatus"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="@dimen/size_0"
+        android:background="@drawable/bg_black_60_corners_5"
+        android:clickable="false"
+        android:ellipsize="end"
+        android:focusable="false"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:padding="@dimen/size_2"
+        android:singleLine="true"
+        android:text="@string/mua_sau"
+        android:textAlignment="gravity"
+        android:textColor="#ffffff"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
+        app:layout_constraintEnd_toEndOf="@id/imgAvatar"
+        app:layout_constraintStart_toStartOf="@id/imgAvatar"
+        app:layout_constraintTop_toTopOf="@id/imgAvatar" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvName"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_8"
+        android:layout_marginEnd="@dimen/size_8"
+        android:fontFamily="sans-serif"
+        android:includeFontPadding="false"
+        android:singleLine="true"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toStartOf="@id/tvDelete"
+        app:layout_constraintStart_toEndOf="@id/imgAvatar"
+        app:layout_constraintTop_toTopOf="@id/imgAvatar"
+        tools:text="Bột tắm trắng BODY WHITE SHOWER" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/size_8"
+        android:layout_marginRight="@dimen/size_8"
+        android:background="?android:attr/selectableItemBackground"
+        android:drawableEnd="@drawable/ic_history_delete_gray_24px"
+        android:drawableRight="@drawable/ic_history_delete_gray_24px"
+        android:padding="@dimen/size_4"
+        app:layout_constraintBottom_toBottomOf="@id/tvName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvName" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvAttributes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/size_12"
+        android:layout_marginRight="@dimen/size_12"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif"
+        android:includeFontPadding="false"
+        android:singleLine="true"
+        android:textColor="#434343"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
+        app:layout_constraintEnd_toStartOf="@id/tvOldPrice"
+        app:layout_constraintStart_toStartOf="@id/tvName"
+        app:layout_constraintTop_toBottomOf="@id/tvName"
+        tools:text="Loại: 230ml" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvCount"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/size_24"
+        android:layout_marginStart="@dimen/size_8"
+        android:layout_marginEnd="@dimen/size_8"
+        android:background="@color/white"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:singleLine="true"
+        android:text="1"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@id/btnAdd"
+        app:layout_constraintEnd_toEndOf="@id/btnAdd"
+        app:layout_constraintStart_toStartOf="@id/btnUnAdd"
+        app:layout_constraintTop_toTopOf="@id/btnAdd" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@id/btnUnAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_12"
+        android:background="?android:attr/selectableItemBackground"
+        android:src="@drawable/ic_unadd_cart_dark_gray_2_24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tvName"
+        app:layout_constraintTop_toBottomOf="@id/imgAvatar"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@id/btnAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_28"
+        android:layout_marginLeft="@dimen/size_28"
+        android:background="?android:attr/selectableItemBackground"
+        android:src="@drawable/ic_add_cart_light_blue_24dp"
+        app:layout_constraintBottom_toBottomOf="@id/btnUnAdd"
+        app:layout_constraintStart_toEndOf="@id/btnUnAdd"
+        app:layout_constraintTop_toTopOf="@id/btnUnAdd" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvOldPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_4"
+        android:fontFamily="sans-serif"
+        android:includeFontPadding="false"
+        android:textColor="#828282"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toTopOf="@id/tvProductPrice"
+        app:layout_constraintEnd_toEndOf="@id/tvProductPrice"
+        tools:text="205,000₫" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvProductPrice"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="end"
+        android:includeFontPadding="false"
+        android:textColor="#3c5a99"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@id/btnUnAdd"
+        app:layout_constraintEnd_toEndOf="@id/tvName"
+        app:layout_constraintStart_toEndOf="@id/btnAdd"
+        tools:text="200,000₫" />
+</androidx.constraintlayout.widget.ConstraintLayout>

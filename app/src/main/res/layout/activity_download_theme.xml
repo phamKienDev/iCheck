@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@id/imgBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:src="@drawable/bg_download_theme"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_40"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/dang_cap_nhat_tai_nguyen"
+        android:textColor="#35384b"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgBackground" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_16"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_download_progress"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center_horizontal"
+            android:includeFontPadding="false"
+            android:paddingStart="@dimen/size_4"
+            android:paddingTop="@dimen/size_3"
+            android:paddingEnd="@dimen/size_4"
+            android:paddingBottom="@dimen/size_6"
+            android:text="0%"
+            android:textColor="#ffffff"
+            android:textSize="10sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="@id/viewPosition"
+            app:layout_constraintStart_toEndOf="@id/viewPosition"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <FrameLayout
+            android:id="@id/viewPosition"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/size_0"
+            app:layout_constraintStart_toStartOf="@id/seekBar"
+            app:layout_constraintTop_toTopOf="@id/seekBar" />
+
+        <SeekBar
+            android:id="@id/seekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_24"
+            android:layout_marginTop="@dimen/size_5"
+            android:layout_marginEnd="@dimen/size_24"
+            android:layout_weight="1"
+            android:max="100"
+            android:maxHeight="@dimen/size_6"
+            android:minHeight="@dimen/size_6"
+            android:progress="0"
+            android:progressDrawable="@drawable/standard_progress_bar_download_theme"
+            android:thumb="@null"
+            app:layout_constraintTop_toBottomOf="@id/tvCount" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvSkip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_40"
+        android:background="?android:attr/selectableItemBackground"
+        android:fontFamily="sans-serif-medium"
+        android:includeFontPadding="false"
+        android:padding="@dimen/size_10"
+        android:text="@string/bo_qua"
+        android:textColor="#bdbdbd"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

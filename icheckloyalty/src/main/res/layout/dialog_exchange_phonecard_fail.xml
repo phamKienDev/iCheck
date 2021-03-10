@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layoutBackground"
+    android:layout_gravity="center"
+    android:background="@color/black_60"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_22"
+        android:layout_marginRight="@dimen/size_22">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_14"
+            android:background="@drawable/bg_error_scan_game"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/imgIcon">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_34"
+                android:layout_marginTop="53dp"
+                android:layout_marginRight="@dimen/size_34"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:textColor="#434343"
+                android:textSize="16sp"
+                android:text="Nạp thẻ thất bại" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_28"
+                android:layout_marginTop="@dimen/size_32"
+                android:layout_marginRight="@dimen/size_28"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:textColor="#828282"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:fontFamily="@font/roboto_regular"
+                android:text="Có lỗi trong quá trình nạp thẻ\nBạn vui lòng thử lại sau" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/btnDefault"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="80dp"
+                android:layout_marginTop="@dimen/size_20"
+                android:layout_marginRight="80dp"
+                android:background="@drawable/bg_gradient_button_orange_yellow"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:visibility="gone"
+                android:paddingTop="@dimen/size_10"
+                android:paddingBottom="@dimen/size_10"
+                android:layout_marginBottom="@dimen/size_20"
+                android:text="Quét tiếp"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_error_scan_game" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/size_20"
+        app:srcCompat="@drawable/ic_close_popup_32px" />
+</LinearLayout>

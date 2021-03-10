@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_child"
+    android:layout_width="140dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="6dp"
+    android:layout_marginEnd="6dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="12dp"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_product"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/update_product_holder" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/product_name"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        app:fontFamily="@font/roboto_regular"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textColor="#434343"
+        android:fontFamily="@font/roboto_regular"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_product"
+        tools:text="Nước " />
+
+    <com.willy.ratingbar.ScaleRatingBar
+        android:id="@+id/product_rating"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="3dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/product_name"
+        app:srb_drawableEmpty="@drawable/ic_star_outline_16px"
+        app:srb_drawableFilled="@drawable/ic_star_full_16px"
+        app:srb_numStars="5"
+        app:srb_starHeight="10dp"
+        app:srb_starPadding="2dp"
+        app:srb_starWidth="10dp"
+        app:srb_stepSize="0.5">
+
+    </com.willy.ratingbar.ScaleRatingBar>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/product_price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:fontFamily="@font/roboto_medium"
+        android:textColor="#3c5a99"
+        android:fontFamily="@font/roboto_medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/product_rating"
+        tools:text="157,200,000đ" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_verfified"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/img_product"
+        app:layout_constraintEnd_toEndOf="@id/img_product"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/product_image_thinh_long_small" />
+</androidx.constraintlayout.widget.ConstraintLayout>

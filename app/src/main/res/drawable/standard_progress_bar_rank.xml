@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="false">
+        <layer-list>
+            <item android:id="@android:id/background">
+                <shape>
+                    <corners android:radius="@dimen/size_4" />
+                   <solid android:color="#80FFFFFF"/>
+                </shape>
+            </item>
+            <item android:id="@android:id/secondaryProgress"
+                android:top="1dp"
+                android:bottom="1dp"
+                android:left="1dp"
+                android:right="1dp">
+                <scale android:scaleWidth="100%">
+                    <shape>
+                        <corners android:radius="@dimen/size_4" />
+                        <solid android:color="@color/white" />
+                    </shape>
+                </scale>
+            </item>
+            <item android:id="@android:id/progress"
+                android:top="1dp"
+                android:bottom="1dp"
+                android:left="1dp"
+                android:right="1dp">
+                <scale android:scaleWidth="100%">
+                    <shape>
+                        <corners android:radius="@dimen/size_4" />
+                        <solid android:color="@color/white" />
+                    </shape>
+                </scale>
+            </item>
+        </layer-list>
+    </item>
+    <item>
+        <layer-list>
+            <item android:id="@android:id/background">
+                <shape>
+                    <corners android:radius="@dimen/size_4" />
+                    <solid android:color="#80FFFFFF"/>
+                </shape>
+            </item>
+            <item android:id="@android:id/secondaryProgress"
+                android:top="1dp"
+                android:bottom="1dp"
+                android:left="1dp"
+                android:right="1dp">
+                <scale android:scaleWidth="100%">
+                    <shape>
+                        <corners android:radius="@dimen/size_4" />
+                        <solid android:color="@color/white" />
+                    </shape>
+                </scale>
+            </item>
+            <item android:id="@android:id/progress"
+                android:top="1dp"
+                android:bottom="1dp"
+                android:left="1dp"
+                android:right="1dp">
+                <scale android:scaleWidth="100%">
+                    <shape>
+                        <corners android:radius="@dimen/size_4" />
+                        <solid android:color="@color/white" />
+                    </shape>
+                </scale>
+            </item>
+        </layer-list>
+    </item>
+</selector>

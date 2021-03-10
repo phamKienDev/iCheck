@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/size_12"
+    android:paddingLeft="@dimen/size_12">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgAvatar"
+        android:layout_width="@dimen/size_60"
+        android:layout_height="@dimen/size_60"
+        app:civ_border_width="1dp"
+        app:civ_border_color="#D8D8D8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/tv_verified"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
+        app:layout_constraintEnd_toEndOf="@id/imgAvatar" />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="@dimen/size_8"
+        android:layout_marginRight="@dimen/size_8"
+        android:ellipsize="end"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:includeFontPadding="false"
+        android:maxLines="2"
+        android:textColor="@color/collection_product_name"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@id/imgMore"
+        app:layout_constraintStart_toEndOf="@+id/imgAvatar"
+        app:layout_constraintTop_toTopOf="@+id/imgAvatar"
+        tools:text="Trang sức hàng ngày (tối đa2 dòng)...Trang sức hàng ngày (tối đa2 dòng)..." />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/imgMore"
+        android:layout_width="@dimen/size_44"
+        android:layout_height="@dimen/size_44"
+        android:background="@color/transparent"
+        android:src="@drawable/ic_more_disable_24dp"
+        app:layout_constraintBottom_toBottomOf="@id/tvName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvName" />
+
+    <TextView
+        android:id="@+id/tvCountFollow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_4"
+        android:ellipsize="end"
+        android:fontFamily="@font/barlow_medium"
+        android:includeFontPadding="false"
+        android:maxLines="1"
+        android:textColor="@color/fast_survey_gray"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/tvName"
+        app:layout_constraintTop_toBottomOf="@id/tvName"
+        tools:text="147,214 Người đang theo dõi" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0_5"
+        android:layout_marginTop="@dimen/size_12"
+        android:layout_marginEnd="@dimen/size_12"
+        android:layout_marginRight="@dimen/size_12"
+        android:background="@color/gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgAvatar" />
+</androidx.constraintlayout.widget.ConstraintLayout>

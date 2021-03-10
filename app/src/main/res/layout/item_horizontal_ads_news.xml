@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vn.icheck.android.ui.colorcardview.ColorCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="246dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/size_3"
+    android:layout_marginTop="@dimen/size_7"
+    android:layout_marginEnd="@dimen/size_3"
+    android:layout_marginBottom="@dimen/size_7"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="@dimen/size_4"
+    app:cardElevation="4dp"
+    app:cardPreventCornerOverlap="false"
+    app:cardShadowColorEnd="@color/app_selector_shadow_end"
+    app:cardShadowColorStart="@color/elevation_color_card"
+    app:cardUseCompatPadding="false"
+    app:contentPadding="0dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgHorizontalNews"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@color/light_blue" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/imgVerifiedHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/bg_corner_212121_opacity_25_3"
+            android:drawableStart="@drawable/ic_world_white_12"
+            android:drawablePadding="3dp"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center"
+            android:paddingStart="3dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="4dp"
+            android:paddingBottom="2dp"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@id/imgHorizontalNews"
+            app:layout_constraintStart_toStartOf="@id/imgHorizontalNews"
+            tools:text="Được tài Trợ" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="5dp"
+            android:minHeight="34dp"
+            android:maxHeight="34dp"
+            android:layout_marginBottom="10dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_medium"
+            android:maxLines="2"
+            android:textColor="#212121"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/imgHorizontalNews"
+            app:layout_constraintStart_toStartOf="@id/imgHorizontalNews"
+            app:layout_constraintTop_toBottomOf="@id/imgHorizontalNews"
+            tools:text="Sự kiện đáng mong đợi nhất năm: Mừng iCheck sinh (2 dòng)..." />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</vn.icheck.android.ui.colorcardview.ColorCardView>

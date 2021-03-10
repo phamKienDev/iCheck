@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".screen.user.page_details.PageDetailActivity">
+
+    <vn.icheck.android.helper.ViewPagerNoScroll
+        android:id="@id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/layoutFollow"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_4"
+        android:background="@drawable/shadow_top"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/layoutFollow" />
+
+    <LinearLayout
+        android:id="@+id/layoutFollow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="@dimen/size_12"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/layoutBottom"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:id="@id/btnFollow"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_corners_4_light_blue_solid"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvPrimary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginLeft="62dp"
+                android:layout_marginEnd="11dp"
+                android:layout_marginRight="62dp"
+                android:layout_marginBottom="62dp"
+                android:drawablePadding="@dimen/size_8"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvExtra"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginLeft="@dimen/size_8"
+            android:background="@drawable/bg_corners_4_light_blue_no_solid"
+            android:drawableStart="@drawable/ic_phone_blue_16dp"
+            android:drawableLeft="@drawable/ic_phone_blue_16dp"
+            android:paddingStart="23dp"
+            android:paddingLeft="23dp"
+            android:paddingEnd="23dp"
+            android:paddingRight="23dp" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginLeft="@dimen/size_8"
+            android:background="@drawable/bg_corners_4_light_blue_no_solid"
+            android:paddingStart="23dp"
+            android:paddingLeft="23dp"
+            android:paddingEnd="23dp"
+            android:paddingRight="23dp"
+            android:src="@drawable/ic_3_cham_light_blue_16" />
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_1"
+            android:background="@color/gray"
+            app:layout_constraintBottom_toTopOf="@id/tvHome" />
+
+        <androidx.appcompat.widget.AppCompatCheckedTextView
+            android:id="@+id/tvHome"
+            style="@style/Home_Text_Tab"
+            android:checked="true"
+            android:drawableTop="@drawable/ic_overview_checked_page_detail_27"
+            android:text="@string/tong_quan"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tvPost"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatCheckedTextView
+            android:id="@+id/tvPost"
+            style="@style/Home_Text_Tab"
+            android:drawableTop="@drawable/ic_post_checked_page_detail_27"
+            android:text="@string/bai_viet"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tvProduct"
+            app:layout_constraintStart_toEndOf="@id/tvHome" />
+
+        <androidx.appcompat.widget.AppCompatCheckedTextView
+            android:id="@+id/tvProduct"
+            style="@style/Home_Text_Tab"
+            android:drawableTop="@drawable/ic_product_checked_page_detail_27"
+            android:text="@string/san_pham"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvPost" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

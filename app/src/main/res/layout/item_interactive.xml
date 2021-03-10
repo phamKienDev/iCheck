@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:paddingStart="@dimen/size_12"
+    android:paddingEnd="@dimen/size_12"
+    android:paddingBottom="@dimen/size_6">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@id/imgAvatar"
+        android:layout_width="@dimen/size_40"
+        android:layout_height="@dimen/size_40"
+        android:layout_marginTop="@dimen/size_8"
+        app:avatarSize="56dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvRank"
+        app:rankSize="@dimen/size_24"
+        tools:src="@drawable/ic_circle_avatar_default" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvRank"
+        android:layout_width="@dimen/size_16"
+        android:layout_height="@dimen/size_16"
+        android:layout_marginStart="@dimen/size_26"
+        android:layout_marginLeft="@dimen/size_34"
+        app:layout_constraintStart_toStartOf="@id/imgAvatar"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:drawableEnd="@drawable/ic_avatar_rank_silver_16dp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="23dp"
+        android:layout_marginLeft="23dp"
+        android:layout_marginTop="27dp"
+        app:layout_constraintStart_toStartOf="@id/imgAvatar"
+        app:layout_constraintTop_toTopOf="@id/imgAvatar"
+        tools:drawableEnd="@drawable/ic_notification_comment_20dp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvTitle"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_8"
+        android:layout_marginTop="@dimen/size_6"
+        android:layout_marginEnd="@dimen/size_8"
+        android:fontFamily="@font/barlow_medium"
+        android:includeFontPadding="false"
+        android:maxLines="2"
+        android:textColor="@color/collection_product_name"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@id/imgOption"
+        app:layout_constraintStart_toEndOf="@id/imgAvatar"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="vừa bình luận về bài đánh giá bạn đang theo dõi ( tối đa 2 dòng)..." />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@id/imgOption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_6"
+        android:background="?android:attr/selectableItemBackground"
+        android:src="@drawable/ic_more_disable_24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_6"
+        android:fontFamily="@font/barlow_medium"
+        android:includeFontPadding="false"
+        android:lineSpacingExtra="4sp"
+        android:textColor="@color/fast_survey_gray"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        tools:text="43 Phút trước" />
+</androidx.constraintlayout.widget.ConstraintLayout>

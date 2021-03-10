@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/item_copy_text"
+        android:title="Sao chép"
+        android:icon="@drawable/ic_content_copy_gray_24dp"/>
+    <item
+        android:id="@+id/item_copy_link"
+        android:title="Sao chép link"
+        android:icon="@drawable/ic_insert_link_gray_24dp"/>
+</menu>

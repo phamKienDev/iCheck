@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context="vn.icheck.android.screen.user.option_edit_information_public.EditInformationPublicActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_44"
+        android:background="@color/white"
+        android:elevation="4dp">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@id/imgBack"
+            android:layout_width="@dimen/size_44"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            app:srcCompat="@drawable/ic_back_blue_v2_24px" />
+
+        <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+            android:id="@id/txtTitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/size_44"
+            android:layout_marginEnd="@dimen/size_44"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/lightBlue"
+            android:textSize="18sp"
+            tools:text="Tiêu đề" />
+    </FrameLayout>
+
+    <!--Layout Empty Information-->
+    <LinearLayout
+        android:id="@+id/layoutEmptyInformation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="gone">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_empty_information_wall" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/barlow_medium"
+            android:text="Thông tin cá nhân của bạn chưa được cập nhật"
+            android:textColor="#757575"
+            android:textSize="14sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btnUpdateInfor"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="38dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/bg_corners_4_light_blue_solid"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center"
+            android:text="Cập nhật thông tin cá nhân"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <!--Layout Data-->
+    <LinearLayout
+        android:id="@+id/layoutData"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        tools:visibility="visible">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/barlow_medium"
+            android:lineSpacingExtra="6sp"
+            android:text="Thông tin công khai là những thông tin cá nhân bạn cho phép người khác nhìn thấy trên trang cá nhân của mình."
+            android:textColor="#757575"
+            android:textSize="14sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="2dp" />
+
+        <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+        <!--            android:id="@+id/layoutBirthDay"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="16dp">-->
+
+        <!--            <androidx.appcompat.widget.AppCompatTextView-->
+        <!--                android:id="@+id/tvTitleBirthDay"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:drawableStart="@drawable/ic_list_blue_12px"-->
+        <!--                android:drawablePadding="2dp"-->
+        <!--                android:fontFamily="@font/barlow_medium"-->
+        <!--                android:text="Ngày tháng năm sinh"-->
+        <!--                android:textColor="#434343"-->
+        <!--                android:textSize="14sp"-->
+        <!--                app:layout_constraintStart_toStartOf="parent"-->
+        <!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+        <!--            <androidx.appcompat.widget.AppCompatTextView-->
+        <!--                android:id="@+id/tvBirthDay"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginTop="4dp"-->
+        <!--                android:fontFamily="@font/barlow_medium"-->
+        <!--                android:paddingStart="14dp"-->
+        <!--                android:textColor="#757575"-->
+        <!--                android:textSize="14sp"-->
+        <!--                app:layout_constraintTop_toBottomOf="@id/tvTitleBirthDay"-->
+        <!--                app:layout_constraintStart_toStartOf="@id/tvTitleBirthDay"-->
+        <!--                tools:text="10/05/2000" />-->
+
+        <!--            <androidx.appcompat.widget.SwitchCompat-->
+        <!--                android:id="@+id/switchBirthDay"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                app:layout_constraintEnd_toEndOf="parent"-->
+        <!--                app:layout_constraintTop_toTopOf="@id/tvTitleBirthDay"-->
+        <!--                app:layout_constraintBottom_toBottomOf="@id/tvBirthDay"/>-->
+
+        <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+        <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+        <!--            android:id="@+id/layoutCity"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="16dp">-->
+
+        <!--            <androidx.appcompat.widget.AppCompatTextView-->
+        <!--                android:id="@+id/tvTitleCity"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:drawableStart="@drawable/ic_list_blue_12px"-->
+        <!--                android:drawablePadding="2dp"-->
+        <!--                android:fontFamily="@font/barlow_medium"-->
+        <!--                android:text="Thành phố "-->
+        <!--                android:textColor="#434343"-->
+        <!--                android:textSize="14sp"-->
+        <!--                app:layout_constraintStart_toStartOf="parent"-->
+        <!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+        <!--            <androidx.appcompat.widget.AppCompatTextView-->
+        <!--                android:id="@+id/tvCity"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginTop="4dp"-->
+        <!--                android:fontFamily="@font/barlow_medium"-->
+        <!--                android:paddingStart="14dp"-->
+        <!--                android:textColor="#757575"-->
+        <!--                android:textSize="14sp"-->
+        <!--                app:layout_constraintTop_toBottomOf="@id/tvTitleCity"-->
+        <!--                app:layout_constraintStart_toStartOf="@id/tvTitleCity"-->
+        <!--                tools:text="Hà Nội" />-->
+
+        <!--            <androidx.appcompat.widget.SwitchCompat-->
+        <!--                android:id="@+id/switchCity"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                app:layout_constraintEnd_toEndOf="parent"-->
+        <!--                app:layout_constraintTop_toTopOf="@id/tvTitleCity"-->
+        <!--                app:layout_constraintBottom_toBottomOf="@id/tvCity"/>-->
+
+        <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+        <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+        <!--            android:id="@+id/layoutPhone"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="16dp">-->
+
+        <!--            <androidx.appcompat.widget.AppCompatTextView-->
+        <!--                android:id="@+id/tvTitlePhone"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:drawableStart="@drawable/ic_list_blue_12px"-->
+        <!--                android:drawablePadding="2dp"-->
+        <!--                android:fontFamily="@font/barlow_medium"-->
+        <!--                android:text="Số điện thoại"-->
+        <!--                android:textColor="#434343"-->
+        <!--                android:textSize="14sp"-->
+        <!--                app:layout_constraintStart_toStartOf="parent"-->
+        <!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+        <!--            <androidx.appcompat.widget.AppCompatTextView-->
+        <!--                android:id="@+id/tvPhone"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginTop="4dp"-->
+        <!--                android:fontFamily="@font/barlow_medium"-->
+        <!--                android:paddingStart="14dp"-->
+        <!--                android:textColor="#757575"-->
+        <!--                android:textSize="14sp"-->
+        <!--                app:layout_constraintTop_toBottomOf="@id/tvTitlePhone"-->
+        <!--                app:layout_constraintStart_toStartOf="@id/tvTitlePhone"-->
+        <!--                tools:text="0254 220 210" />-->
+
+        <!--            <androidx.appcompat.widget.SwitchCompat-->
+        <!--                android:id="@+id/switchPhone"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                app:layout_constraintEnd_toEndOf="parent"-->
+        <!--                app:layout_constraintTop_toTopOf="@id/tvTitlePhone"-->
+        <!--                app:layout_constraintBottom_toBottomOf="@id/tvPhone"/>-->
+
+        <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+        <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+        <!--            android:id="@+id/layoutEmail"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="16dp">-->
+
+        <!--            <androidx.appcompat.widget.AppCompatTextView-->
+        <!--                android:id="@+id/tvTitleEmail"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:drawableStart="@drawable/ic_list_blue_12px"-->
+        <!--                android:drawablePadding="2dp"-->
+        <!--                android:fontFamily="@font/barlow_medium"-->
+        <!--                android:text="Email"-->
+        <!--                android:textColor="#434343"-->
+        <!--                android:textSize="14sp"-->
+        <!--                app:layout_constraintStart_toStartOf="parent"-->
+        <!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+        <!--            <androidx.appcompat.widget.AppCompatTextView-->
+        <!--                android:id="@+id/tvEmail"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginTop="4dp"-->
+        <!--                android:fontFamily="@font/barlow_medium"-->
+        <!--                android:paddingStart="14dp"-->
+        <!--                android:textColor="#757575"-->
+        <!--                android:textSize="14sp"-->
+        <!--                app:layout_constraintTop_toBottomOf="@id/tvTitleEmail"-->
+        <!--                app:layout_constraintStart_toStartOf="@id/tvTitleEmail"-->
+        <!--                tools:text="vnkdjs@gmail.com" />-->
+
+        <!--            <androidx.appcompat.widget.SwitchCompat-->
+        <!--                android:id="@+id/switchEmail"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                app:layout_constraintEnd_toEndOf="parent"-->
+        <!--                app:layout_constraintTop_toTopOf="@id/tvTitleEmail"-->
+        <!--                app:layout_constraintBottom_toBottomOf="@id/tvEmail"/>-->
+
+        <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+    </LinearLayout>
+</LinearLayout>

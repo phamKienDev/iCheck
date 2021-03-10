@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/size_12"
+    android:layout_marginTop="@dimen/size_12"
+    android:layout_marginRight="@dimen/size_12"
+    android:background="@drawable/bg_white_stroke_gray_corners_4"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginLeft="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_12"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:text="@string/moi_nguoi"
+        android:visibility="gone"
+        android:textColor="@color/blue"
+        android:textSize="16sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcv_users_search"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_xem_them"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/size_12"
+        android:visibility="gone"
+        android:drawableEnd="@drawable/ic_arrow_right_light_blue_24dp"
+        android:drawableRight="@drawable/ic_arrow_right_light_blue_24dp"
+        android:gravity="center_vertical"
+        android:text="@string/xem_them"
+        android:fontFamily="@font/barlow_medium"
+        android:textColor="@color/lightBlue"
+        android:textSize="14sp" />
+
+</LinearLayout>

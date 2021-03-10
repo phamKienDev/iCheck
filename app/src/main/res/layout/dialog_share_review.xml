@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:gravity="center_horizontal"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/size_20"
+    android:paddingRight="@dimen/size_20">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_corner_white_10"
+        android:orientation="vertical"
+        android:paddingBottom="20dp">
+
+        <ImageView
+            android:id="@+id/imageView28"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_popup_review_success" />
+
+        <TextView
+            android:id="@+id/textView69"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center_horizontal"
+            android:text="Cảm ơn đánh giá của bạn!"
+            android:textAlignment="center"
+            android:textColor="@color/collection_product_name"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/imageView28"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageView28" />
+
+        <TextView
+            android:id="@+id/textView70"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginEnd="@dimen/size_12"
+            android:gravity="center_horizontal"
+            android:text="Hãy chia sẻ đánh giá này với người thân, bạn bè, đóng góp cho cộng đồng sử dụng sản phẩm chính hãng nhé"
+            android:textAlignment="center"
+            android:layout_marginTop="@dimen/size_12"
+            android:textSize="14sp"
+            android:textColor="@color/collection_product_name"
+            android:fontFamily="@font/barlow_medium"
+            app:layout_constraintEnd_toEndOf="@id/imageView28"
+            app:layout_constraintStart_toStartOf="@id/imageView28"
+            app:layout_constraintTop_toBottomOf="@id/textView69" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btn_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_corners_4_light_blue_solid"
+            android:paddingStart="16dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="8dp"
+            android:text="Chia sẻ ngay"
+            android:layout_marginTop="@dimen/size_16"
+            android:textColor="@android:color/white"
+            android:visibility="visible"
+            android:textSize="16sp"
+            android:fontFamily="@font/barlow_semi_bold"
+            app:layout_constraintEnd_toEndOf="@id/imageView28"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView70" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

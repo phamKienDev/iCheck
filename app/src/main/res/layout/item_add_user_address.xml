@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingStart="@dimen/size_12"
+    android:paddingTop="@dimen/size_10"
+    android:paddingEnd="@dimen/size_12"
+    android:paddingBottom="@dimen/size_10">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@id/tvChecked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_radio_un_checked_gray_24dp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_8"
+        android:fontFamily="sans-serif-medium"
+        android:includeFontPadding="false"
+        android:textColor="#b4b4b4"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        android:text="@string/dia_chi_moi" />
+</LinearLayout>

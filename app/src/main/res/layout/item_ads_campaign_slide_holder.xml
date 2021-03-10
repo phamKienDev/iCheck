@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="6dp"
+    android:layout_marginEnd="6dp"
+    android:background="@drawable/bg_corner_gray_solid_white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/size_10">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgImage"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_0"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@id/mediaView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <SurfaceView
+            android:id="@+id/mediaView"
+            android:layout_width="match_parent"
+            android:layout_height="174dp"
+            android:background="@color/black_25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/imgPlay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_play_40dp"
+            android:drawableLeft="@drawable/ic_play_40dp"
+            app:layout_constraintBottom_toBottomOf="@id/mediaView"
+            app:layout_constraintEnd_toEndOf="@id/mediaView"
+            app:layout_constraintStart_toStartOf="@id/mediaView"
+            app:layout_constraintTop_toTopOf="@id/mediaView" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_4"
+            android:layout_marginLeft="@dimen/size_4"
+            android:layout_marginBottom="@dimen/size_4"
+            android:background="@drawable/bg_black_opacity_25_corners_4"
+            android:drawableStart="@drawable/ic_world_12dp"
+            android:drawableLeft="@drawable/ic_world_12dp"
+            android:drawablePadding="@dimen/size_3"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:paddingStart="@dimen/size_4"
+            android:paddingTop="@dimen/size_2"
+            android:paddingEnd="@dimen/size_4"
+            android:paddingRight="@dimen/size_4"
+            android:paddingBottom="@dimen/size_2"
+            android:text="@string/duoc_tai_tro"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@id/mediaView"
+            app:layout_constraintStart_toStartOf="@id/mediaView" />
+
+        <TextView
+            android:id="@+id/tvTimeStartSlide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginLeft="@dimen/size_8"
+            android:layout_marginTop="@dimen/size_8"
+            android:fontFamily="@font/barlow_medium"
+            android:includeFontPadding="false"
+            android:textColor="@color/red"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mediaView"
+            tools:text="CHỦ NHẬT TUẦN NÀY: 21:00" />
+
+        <TextView
+            android:id="@+id/tvNameSlide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginTop="@dimen/size_2"
+            android:layout_marginEnd="@dimen/size_8"
+            android:layout_marginRight="@dimen/size_8"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="6sp"
+            android:maxLines="1"
+            android:textColor="@color/collection_product_name"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tvTimeStartSlide"
+            app:layout_constraintTop_toBottomOf="@+id/tvTimeStartSlide"
+            tools:text="Scan Coca Cola nhận quà (tên 2 dòng).." />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_8"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvNameSlide">
+
+            <TextView
+                android:id="@+id/tvTimeLeftSlide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_8"
+                android:layout_marginLeft="@dimen/size_8"
+                android:fontFamily="@font/barlow_medium"
+                android:includeFontPadding="false"
+                android:textColor="@color/fast_survey_gray"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@id/tvJoin"
+                app:layout_constraintStart_toStartOf="@+id/tvName"
+                app:layout_constraintTop_toTopOf="@id/tvJoin"
+                tools:text="Còn 29 ngày" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/containerJoin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_50"
+                android:layout_marginLeft="@dimen/size_50"
+                android:layout_marginEnd="@dimen/size_5"
+                android:layout_marginRight="@dimen/size_5"
+                android:layout_weight="1"
+                android:visibility="visible">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvJoinSlide"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_corners_4_light_blue_solid"
+                    android:paddingTop="@dimen/size_4"
+                    android:paddingBottom="@dimen/size_4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/ic_star_white_14"
+                    android:drawableRight="@drawable/ic_star_white_14"
+                    android:fontFamily="@font/barlow_semi_bold"
+                    android:gravity="center"
+                    android:text="@string/tham_gia"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@id/tvJoinSlide"
+                    app:layout_constraintEnd_toEndOf="@id/tvJoinSlide"
+                    app:layout_constraintStart_toStartOf="@id/tvJoinSlide"
+                    app:layout_constraintTop_toTopOf="@+id/tvJoinSlide" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

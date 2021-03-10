@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/size_60"
+    android:id="@+id/btn_add_description"
+    android:gravity="center"
+    android:background="@drawable/bg_border_dotted_10_gray">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:text="Thêm mô tả sản phẩm"
+        android:drawableStart="@drawable/ic_add_gray_24px"
+        android:drawablePadding="@dimen/size_13"
+        android:textColor="@color/darkGray3" />
+</LinearLayout>

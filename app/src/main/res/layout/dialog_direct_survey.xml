@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/size_20"
+        android:layout_marginEnd="@dimen/size_20"
+        card_view:cardBackgroundColor="@color/gray_item_search"
+        card_view:cardCornerRadius="@dimen/size_10"
+        card_view:cardUseCompatPadding="false">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true">
+
+            <LinearLayout
+                android:id="@id/layoutTop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_blue_corners_top_10"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@id/tvName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/size_12"
+                        android:layout_marginTop="@dimen/size_16"
+                        android:layout_marginEnd="@dimen/size_12"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="center_horizontal"
+                        android:includeFontPadding="false"
+                        android:textColor="#ffffff"
+                        android:textSize="14sp"
+                        android:textStyle="normal" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txtQuestionTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/size_12"
+                        android:layout_marginTop="@dimen/size_16"
+                        android:layout_marginEnd="@dimen/size_12"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="center_horizontal"
+                        android:includeFontPadding="false"
+                        android:textColor="#ffffff"
+                        android:textSize="16sp"
+                        android:textStyle="normal" />
+
+                    <ProgressBar
+                        android:id="@id/progressBar"
+                        style="@android:style/Widget.ProgressBar.Horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_6"
+                        android:layout_marginStart="@dimen/size_14"
+                        android:layout_marginTop="@dimen/size_16"
+                        android:layout_marginEnd="@dimen/size_14"
+                        android:layout_marginBottom="@dimen/size_12"
+                        android:max="100"
+                        android:progress="50"
+                        android:progressDrawable="@drawable/progress_orange_background_blue_corners_3" />
+                </LinearLayout>
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_6"
+                    android:layout_marginTop="@dimen/size_14"
+                    android:layout_marginEnd="@dimen/size_6">
+
+                    <FrameLayout
+                        android:id="@id/layoutOption"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" />
+                </ScrollView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_36"
+                    android:layout_marginTop="@dimen/size_14"
+                    android:layout_marginBottom="@dimen/size_20"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/size_12"
+                    android:paddingEnd="@dimen/size_12">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@id/btnLeft"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/btn_dark_gray_2_corners_18"
+                        android:minWidth="100dp"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        tools:text="Câu 1" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@id/btnRight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/btn_blue_corners_26"
+                        android:minWidth="100dp"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        tools:text="Tiếp theo" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@id/layoutBottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    app:srcCompat="@drawable/bg_survey_popup_success_335x125" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_12"
+                    android:layout_marginTop="@dimen/size_16"
+                    android:layout_marginEnd="@dimen/size_12"
+                    android:fontFamily="sans-serif"
+                    android:includeFontPadding="false"
+                    android:text="@string/cam_on_ban_da_tham_gia_khao_sat"
+                    android:textColor="#35384b"
+                    android:textSize="18sp"
+                    android:textStyle="normal" />
+
+                <!--                <androidx.appcompat.widget.AppCompatTextView-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginTop="@dimen/size_12"-->
+                <!--                    android:drawableStart="@drawable/ic_coin_status_24dp"-->
+                <!--                    android:drawablePadding="@dimen/size_6"-->
+                <!--                    android:fontFamily="sans-serif-medium"-->
+                <!--                    android:gravity="center_vertical"-->
+                <!--                    android:includeFontPadding="false"-->
+                <!--                    android:text="+558.000"-->
+                <!--                    android:textColor="#057dda"-->
+                <!--                    android:textSize="18sp"-->
+                <!--                    android:textStyle="normal" />-->
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_12"
+                    android:layout_marginTop="@dimen/size_18"
+                    android:layout_marginEnd="@dimen/size_12"
+                    android:layout_marginBottom="@dimen/size_18"
+                    android:background="@drawable/bg_direct_survey_popup_content"
+                    android:drawableStart="@drawable/ic_question_circular_blue_30"
+                    android:drawablePadding="@dimen/size_8"
+                    android:fontFamily="sans-serif"
+                    android:includeFontPadding="false"
+                    android:paddingStart="@dimen/size_10"
+                    android:paddingTop="@dimen/size_12"
+                    android:paddingEnd="@dimen/size_10"
+                    android:paddingBottom="@dimen/size_12"
+                    android:text="@string/direct_survey_popup_content"
+                    android:textColor="#828282"
+                    android:textSize="14sp"
+                    android:textStyle="italic" />
+
+                <!--                <androidx.appcompat.widget.AppCompatButton-->
+                <!--                    style="@style/Button_Blue_Corners_6"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_marginTop="@dimen/size_20"-->
+                <!--                    android:layout_marginBottom="@dimen/size_20"-->
+                <!--                    android:drawableStart="@drawable/ic_facebook_white_16"-->
+                <!--                    android:drawablePadding="@dimen/size_8"-->
+                <!--                    android:paddingStart="@dimen/size_38"-->
+                <!--                    android:paddingEnd="@dimen/size_38"-->
+                <!--                    android:text="@string/chia_se" />-->
+            </LinearLayout>
+        </FrameLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/size_12"
+        android:background="?android:attr/selectableItemBackground"
+        android:drawableEnd="@drawable/ic_close_white_border_30dp" />
+</LinearLayout>

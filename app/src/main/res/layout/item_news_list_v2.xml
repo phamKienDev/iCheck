@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/size_10"
+    android:paddingBottom="@dimen/size_12"
+    android:background="@color/white">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgNews"
+        android:layout_width="105dp"
+        android:layout_height="@dimen/size_70"
+        android:layout_marginTop="@dimen/size_10"
+        android:layout_marginEnd="@dimen/size_12"
+        android:layout_marginRight="@dimen/size_12"
+        android:layout_marginBottom="@dimen/size_10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/txtTitle"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtTitle"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginLeft="@dimen/size_12"
+        android:ellipsize="end"
+        android:includeFontPadding="false"
+        android:maxLines="2"
+        android:minLines="1"
+        android:paddingEnd="@dimen/size_4"
+        android:paddingRight="@dimen/size_4"
+        android:fontFamily="@font/barlow_medium"
+        android:textColor="#212121"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/txtTime"
+        app:layout_constraintEnd_toStartOf="@id/imgNews"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/imgNews"
+        tools:text="Các thực phẩm nên bổ sung đầy đủ mùa dịch Covid (Tối đa 2 dòng)...dlkashdlasjdlasjdklas jdklasjdklasjdlask " />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_6"
+        android:drawableRight="@drawable/ic_tag_new_news_32px"
+        android:drawablePadding="@dimen/size_4"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:fontFamily="@font/barlow_medium"
+        android:singleLine="true"
+        android:textColor="#757575"
+        android:textSize="@dimen/font_size_4"
+        app:layout_constraintBottom_toBottomOf="@id/imgNews"
+        app:layout_constraintStart_toStartOf="@id/txtTitle"
+        app:layout_constraintTop_toBottomOf="@id/txtTitle"
+        tools:text="12 phút trước" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtDescription"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_10"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:fontFamily="@font/barlow_medium"
+        android:maxLines="3"
+        android:minLines="1"
+        android:textColor="#757575"
+        android:textSize="@dimen/font_size_4"
+        app:layout_constraintEnd_toEndOf="@+id/imgNews"
+        app:layout_constraintStart_toStartOf="@id/txtTitle"
+        app:layout_constraintTop_toBottomOf="@id/txtTime"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="Các thực phẩm nên bổ sung đầy đủ mùa dịch Covid. Câu mở đầu của bài tin tức \n(Tối đa 3 dòng)..." />
+</androidx.constraintlayout.widget.ConstraintLayout>

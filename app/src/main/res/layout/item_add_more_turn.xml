@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@id/view"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:background="#d8d8d8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/appCompatImageView5"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="12.5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/view"
+        app:layout_constraintTop_toBottomOf="@id/view"
+        tools:src="@mipmap/ic_launcher" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/appCompatTextView41"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:fontFamily="@font/barlow_medium"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:textColor="#212121"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/appCompatTextView43"
+        app:layout_constraintStart_toEndOf="@+id/appCompatImageView5"
+        app:layout_constraintTop_toTopOf="@+id/appCompatImageView5"
+        tools:text="Đóng góp thông tin sản phẩm" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvCountTurn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:textColor="#df1733"
+        android:drawableStart="@drawable/ic_box_shake_20dp"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView5"
+        app:layout_constraintStart_toStartOf="@+id/appCompatTextView41"
+        app:layout_constraintTop_toBottomOf="@+id/appCompatTextView41"
+        tools:text="2" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/barlow_medium"
+        android:lineSpacingExtra="6sp"
+        android:text="lượt"
+        android:layout_marginStart="3dp"
+        android:textColor="#757575"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvCountTurn"
+        app:layout_constraintStart_toEndOf="@+id/tvCountTurn"
+        app:layout_constraintTop_toTopOf="@+id/tvCountTurn" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/appCompatTextView43"
+        android:layout_width="95dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:background="@drawable/bg_more_turn"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:gravity="center"
+        android:textColor="#057dda"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvCountTurn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/appCompatTextView41"
+        tools:text="Thực hiện" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

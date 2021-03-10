@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@android:color/white">
+
+    <TextView
+        android:id="@+id/textView36"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/barlow_medium"
+        android:text="Đăng bài mới"
+        android:textColor="#3C5A99"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/user_avatar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="18dp"
+        android:src="@drawable/user_placeholder"
+        app:civ_border_color="@color/gray"
+        app:civ_border_width="@dimen/size_0_5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView36"
+        app:layout_constraintTop_toBottomOf="@+id/textView36" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@id/imgStatus"
+        android:layout_width="@dimen/size_16"
+        android:layout_height="@dimen/size_16"
+        android:layout_marginStart="@dimen/size_25"
+        android:layout_marginBottom="32dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/user_avatar"
+        app:layout_constraintStart_toStartOf="@id/user_avatar"
+        tools:src="@drawable/ic_avatar_silver_24dp" />
+
+    <TextView
+        android:id="@+id/textView45"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center_vertical"
+        android:lineSpacingExtra="4dp"
+        android:text="Bạn đã sử dụng sản phẩm nào?\nHãy chia sẻ cảm nhận nhé!"
+        android:textColor="#B4B4B4"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/user_avatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/user_avatar"
+        app:layout_constraintTop_toTopOf="@+id/user_avatar" />
+</androidx.constraintlayout.widget.ConstraintLayout>

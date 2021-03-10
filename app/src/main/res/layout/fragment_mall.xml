@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@id/layoutContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusable="true">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/txtMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:drawableStart="@drawable/ic_home_menu_light_blue_24dp"
+        android:drawableLeft="@drawable/ic_home_menu_light_blue_24dp"
+        android:paddingStart="@dimen/size_12"
+        android:paddingEnd="@dimen/size_12"
+        app:layout_constraintBottom_toBottomOf="@id/txtLogo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/txtLogo" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/txtLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_icheck_mall_130_21"
+        android:drawableLeft="@drawable/ic_icheck_mall_130_21"
+        android:paddingTop="@dimen/size_10"
+        android:paddingBottom="@dimen/size_10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/txtSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:drawableStart="@drawable/ic_baseline_search_gray_18"
+        android:drawableLeft="@drawable/ic_baseline_search_gray_18"
+        android:paddingStart="@dimen/size_12"
+        android:paddingEnd="@dimen/size_12"
+        app:layout_constraintBottom_toBottomOf="@id/txtLogo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/txtLogo" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@id/rvCategoryHorizontal"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/size_5"
+        android:paddingEnd="@dimen/size_5"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="@id/imgHideOrShow"
+        app:layout_constraintEnd_toStartOf="@id/imgHideOrShow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/imgHideOrShow" />
+
+    <View
+        android:layout_width="@dimen/size_0"
+        android:layout_height="@dimen/size_0"
+        android:background="@drawable/ic_linear_white_to_gray"
+        app:layout_constraintBottom_toBottomOf="@id/imgHideOrShow"
+        app:layout_constraintEnd_toStartOf="@id/imgHideOrShow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/imgHideOrShow" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/txtCategory"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/size_18"
+        android:paddingLeft="@dimen/size_18"
+        android:paddingEnd="@dimen/size_0"
+        android:paddingRight="@dimen/size_0"
+        android:text="@string/danh_muc"
+        android:textAlignment="gravity"
+        android:textColor="#3c5a99"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@id/imgHideOrShow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/imgHideOrShow" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@id/imgHideOrShow"
+        android:layout_width="@dimen/size_44"
+        android:layout_height="@dimen/size_44"
+        android:background="?android:attr/selectableItemBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtLogo"
+        app:srcCompat="@drawable/ic_arrow_drop_down_blue_24" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@id/swipeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgHideOrShow">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:descendantFocusability="blocksDescendants" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <FrameLayout
+        android:id="@id/bgCategoryVertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#80000000"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/imgHideOrShow">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@id/rvCategoryVertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="4" />
+    </FrameLayout>
+
+    <include
+        android:id="@id/layoutLoading"
+        layout="@layout/dialog_loading"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@id/imgHideOrShow" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_4"
+        android:background="@drawable/shadow_bottom"
+        app:layout_constraintTop_toBottomOf="@id/txtLogo" />
+</androidx.constraintlayout.widget.ConstraintLayout>

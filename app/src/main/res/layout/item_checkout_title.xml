@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/size_16">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginEnd="@dimen/size_12"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif"
+        android:includeFontPadding="false"
+        android:singleLine="true"
+        android:textColor="#3c5a99"
+        android:textSize="18sp"
+        android:textStyle="normal"
+        tools:text="Địa chỉ nhận hàng" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvAction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:fontFamily="sans-serif-medium"
+        android:paddingStart="@dimen/size_12"
+        android:paddingEnd="@dimen/size_12"
+        android:textColor="#3c5a99"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        tools:text="Thay đổi" />
+</LinearLayout>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.AppCompatRatingBar
+        android:id="@+id/ratingBar"
+        style="@style/Product_Rating_Bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:isIndicator="true"
+        android:max="5"
+        android:numStars="5"
+        android:rating="2.5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tvCountRating"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+        android:id="@+id/tvCountRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_4"
+        android:layout_marginLeft="@dimen/size_4"
+        android:layout_marginEnd="@dimen/size_10"
+        android:layout_marginRight="@dimen/size_10"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:textColor="@color/lightBlue"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
+        app:layout_constraintEnd_toStartOf="@+id/tvVerify"
+        app:layout_constraintStart_toEndOf="@+id/ratingBar"
+        app:layout_constraintTop_toTopOf="@+id/ratingBar"
+        tools:text="8,9" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvVerify"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:drawableStart="@drawable/ic_verified_16px"
+        android:drawableLeft="@drawable/ic_verified_16px"
+        android:drawablePadding="3dp"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:gravity="center_vertical"
+        android:text="@string/verified"
+        android:textColor="@color/green2"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tvCountRating"
+        app:layout_constraintStart_toEndOf="@+id/tvCountRating"
+        app:layout_constraintTop_toTopOf="@+id/tvCountRating" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/user_avatar"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/ic_avatar_default_84px"
+        tools:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/tv_business_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_business_name"
+        android:padding="3dp"
+        android:textColor="@color/blue"
+        android:textSize="10sp"
+        app:layout_constraintStart_toEndOf="@+id/user_avatar"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Công Ty Sữa Vinamilk"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/img_verified"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/user_avatar"
+        app:layout_constraintTop_toTopOf="@+id/user_avatar"
+        app:srcCompat="@drawable/ic_product_detail_verified_green_18px"
+        tools:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_first"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="64dp"
+        android:background="@drawable/bg_first_msg_business"
+        android:padding="8dp"
+        android:textColor="@color/darkGray1"
+        android:visibility="visible"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tv_business_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_business_name"
+        tools:text="Chào bạn, Công ty Sữa Vinamilk rất vui nếu có thể giúp bạn mua hàng chính hãng. Hãy cho chúng tôi biết bạn đang cần tư vấn gì?"
+        tools:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_second"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginRight="64dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/bg_second_msg_business"
+        android:drawableEnd="@drawable/ic_send_light_blue_24px"
+        android:drawablePadding="12dp"
+        android:padding="8dp"
+        android:text="Tôi muốn mua sản phẩm "
+        android:textColor="@color/lightBlue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_first" />
+</androidx.constraintlayout.widget.ConstraintLayout>

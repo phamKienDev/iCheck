@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="310dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/size_6"
+    android:layout_marginTop="@dimen/size_12"
+    android:layout_marginEnd="@dimen/size_6"
+    android:layout_marginBottom="@dimen/size_16"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="@dimen/size_4"
+    app:cardElevation="@dimen/size_4">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/size_12">
+
+        <TextureView
+            android:id="@+id/texture_media"
+            android:layout_width="wrap_content"
+            android:layout_height="138dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/texture_media"
+            app:layout_constraintBottom_toBottomOf="@id/texture_media"
+            app:layout_constraintTop_toTopOf="@id/texture_media"
+            app:layout_constraintEnd_toEndOf="@id/texture_media"
+            android:layout_height="wrap_content"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_logo"
+            android:layout_width="@dimen/size_46"
+            android:layout_height="@dimen/size_46"
+            android:layout_marginStart="@dimen/size_10"
+            android:layout_marginLeft="@dimen/size_10"
+            android:layout_marginTop="@dimen/size_10"
+            app:layout_constraintStart_toStartOf="@id/texture_media"
+            app:layout_constraintTop_toBottomOf="@id/texture_media" />
+
+        <TextView
+            android:id="@+id/tv_name_product"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="@dimen/size_18"
+            android:layout_marginRight="@dimen/size_18"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_medium"
+            android:includeFontPadding="false"
+            android:singleLine="true"
+            android:textColor="@color/collection_product_name"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@id/btn_buy_now"
+            app:layout_constraintStart_toEndOf="@+id/img_logo"
+            app:layout_constraintTop_toTopOf="@+id/img_logo"
+            tools:text="Giày Adidas Hunter X ..." />
+
+        <TextView
+            android:id="@+id/tv_name_enterprise"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:includeFontPadding="false"
+            android:singleLine="true"
+            android:textColor="@color/fast_survey_gray"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@id/tv_name_product"
+            app:layout_constraintStart_toStartOf="@+id/tv_name_product"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name_product"
+            tools:text="Adidas Store Việt Nam" />
+
+        <TextView
+            android:id="@+id/tv_count_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:includeFontPadding="false"
+            android:textColor="@color/lightBlue"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/tv_name_enterprise"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name_enterprise"
+            tools:text="4.5" />
+
+        <ImageView
+            android:id="@+id/img_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginLeft="2dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_count_rating"
+            app:layout_constraintStart_toEndOf="@+id/tv_count_rating"
+            app:layout_constraintTop_toTopOf="@+id/tv_count_rating"
+            app:srcCompat="@drawable/custom_rating_bar_new"
+            tools:text="4.5" />
+
+        <TextView
+            android:id="@+id/tv_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginLeft="@dimen/size_8"
+            android:paddingLeft="@dimen/size_6"
+            android:paddingRight="@dimen/size_6"
+            android:gravity="center"
+            android:paddingTop="@dimen/size_1"
+            android:paddingBottom="@dimen/size_1"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:includeFontPadding="false"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_count_rating"
+            app:layout_constraintStart_toEndOf="@+id/img_rating"
+            app:layout_constraintTop_toTopOf="@+id/tv_count_rating"
+            tools:text="Tuyệt vời" />
+
+        <TextView
+            android:id="@+id/tv_special_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/barlow_medium"
+            android:includeFontPadding="false"
+            android:textColor="@color/fast_survey_gray"
+            android:textSize="14sp"
+            android:paddingRight="8dp"
+            app:layout_constraintEnd_toStartOf="@id/tv_price"
+            app:layout_constraintStart_toStartOf="@+id/tv_count_rating"
+            app:layout_constraintTop_toBottomOf="@+id/tv_count_rating"
+            tools:text="2.753.900 ₫" />
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:includeFontPadding="false"
+            android:textColor="@color/lightBlue"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/tv_special_price"
+            app:layout_constraintTop_toBottomOf="@+id/tv_count_rating"
+            android:layout_marginTop="8dp"
+            tools:text="2.753.900 ₫" />
+
+        <vn.icheck.android.component.view.CustomButton
+            android:id="@+id/btn_buy_now"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_18"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center"
+            android:paddingLeft="@dimen/size_18"
+            android:paddingTop="@dimen/size_4"
+            android:paddingRight="@dimen/size_18"
+            android:paddingBottom="@dimen/size_4"
+            android:text="@string/mua"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:cb_enable_background_color="@color/lightBlue"
+            app:cb_radius="@dimen/size_4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_name_enterprise" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_media"
+            android:layout_width="0dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/texture_media"
+            app:layout_constraintEnd_toEndOf="@+id/texture_media"
+            app:layout_constraintStart_toStartOf="@+id/texture_media"
+            app:layout_constraintTop_toTopOf="@+id/texture_media" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

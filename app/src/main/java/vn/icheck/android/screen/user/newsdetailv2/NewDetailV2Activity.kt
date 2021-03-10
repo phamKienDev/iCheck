@@ -1,0 +1,255 @@
+package vn.icheck.android.screen.user.newsdetailv2
+
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.os.Build
+import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.view.View
+import android.view.WindowManager
+import android.webkit.WebResourceRequest
+import android.webkit.WebSettings
+import android.webkit.WebView
+import android.webkit.WebViewClient
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.NestedScrollView
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.activity_new_detail_v2.*
+import org.greenrobot.eventbus.EventBus
+import vn.icheck.android.R
+import vn.icheck.android.base.activity.BaseActivityMVVM
+import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
+import vn.icheck.android.base.model.ICMessageEvent
+import vn.icheck.android.constant.Constant
+import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
+import vn.icheck.android.screen.user.newsdetailv2.adapter.NewDetailV2Adapter
+import vn.icheck.android.screen.user.newsdetailv2.viewmodel.NewDetailViewModel
+import vn.icheck.android.screen.user.newslistv2.NewsListV2Activity
+import vn.icheck.android.screen.user.webview.WebViewActivity
+import vn.icheck.android.ui.layout.CustomLinearLayoutManager
+import vn.icheck.android.util.kotlin.ActivityUtils
+import vn.icheck.android.util.kotlin.StatusBarUtils
+import vn.icheck.android.util.kotlin.WidgetUtils
+
+/**
+ * Phạm Hoàng Phi Hùng
+ * 0974815770
+ * hungphp@icheck.vn
+ */
+class NewDetailV2Activity : BaseActivityMVVM() {
+    lateinit var viewModel: NewDetailViewModel
+
+    var id = -1L
+
+    var html = ""
+
+    var imgCover = ""
+
+    var title = ""
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_new_detail_v2)
+
+        initView()
+        setupToolbar()
+        setupScrollToolbar()
+        getDataSuccess()
+        getDataError()
+    }
+
+    fun initView() {
+        StatusBarUtils.setOverStatusBarDark(this@NewDetailV2Activity)
+
+        viewModel = ViewModelProvider(this)[NewDetailViewModel::class.java]
+
+        getDataIntent()
+    }
+
+    fun getDataIntent() {
+        id = try {
+            intent?.getLongExtra(Constant.DATA_1, -1L) ?: -1L
+        } catch (e: Exception) {
+            -1L
+        }
+
+        try {
+            title = intent?.getStringExtra(Constant.DATA_1) ?: ""
+            imgCover = intent?.getStringExtra(Constant.DATA_2) ?: ""
+            html = intent?.getStringExtra(Constant.DATA_3) ?: ""
+        } catch (e: Exception) {
+            title = ""
+            imgCover = ""
+            html = ""
+        }
+
+        if (id != -1L) {
+            constraintLayout.visibility = View.VISIBLE
+            viewModel.getNewsDetail(id)
+
+        } else if (!html.isNullOrEmpty()) {
+
+            constraintLayout.visibility = View.GONE
+            loadDataHTML()
+
+        } else {
+            DialogHelper.showNotification(this, R.string.co_loi_xay_ra_vui_long_thu_lai, false, object : NotificationDialogListener {
+                override fun onDone() {
+                    onBackPressed()
+                }
+            })
+        }
+    }
+
+    fun setupToolbar() {
+        imgBack.setOnClickListener {
+            onBackPressed()
+        }
+
+        imgAction.setOnClickListener {
+            EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.GO_TO_HOME, 1))
+        }
+    }
+
+    @SuppressLint("RestrictedApi")
+    private fun setupScrollToolbar() {
+        var backgroundHeight = 0
+
+        nestedScrollView.setOnScrollChangeListener { v: NestedScrollView?, scrollX: Int, scrollY: Int, oldScrollX: Int, oldScrollY: Int ->
+
+            if (backgroundHeight <= 0) {
+                backgroundHeight = toolbarAlpha.height + (toolbarAlpha.height / 2)
+            }
+
+            val visibility = viewModel.getHeaderAlpha(nestedScrollView.computeVerticalScrollOffset(), backgroundHeight)
+            toolbarAlpha.alpha = visibility
+            viewShadow.alpha = visibility
+        }
+    }
+
+    @SuppressLint("SetJavaScriptEnabled")
+    private fun getDataSuccess() {
+        viewModel.liveData.observe(this, Observer {
+            if (!it.obj?.title.isNullOrEmpty()) {
+                txtTitle.text = it.obj?.title
+
+                tvTitle.text = it.obj?.title
+            }
+
+            if (!it.obj?.ctaLabel.isNullOrEmpty()) {
+                linearLayout.visibility = View.VISIBLE
+                viewShadowBottom.visibility = View.VISIBLE
+                btnCTA.text = it.obj?.ctaLabel
+            } else {
+                linearLayout.visibility = View.GONE
+                viewShadowBottom.visibility = View.GONE
+            }
+
+            btnCTA.setOnClickListener { view ->
+                FirebaseDynamicLinksActivity.startDestinationUrl(this@NewDetailV2Activity, it.obj?.ctaUrl)
+            }
+
+            WidgetUtils.loadImageUrl(imgBanner, it.obj?.thumbnail?.trim())
+
+            webView.settings.javaScriptEnabled = true
+            webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
+            webView.settings.domStorageEnabled = true
+            webView.settings.allowFileAccessFromFileURLs = true
+            webView.settings.allowUniversalAccessFromFileURLs = true
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
+            } else {
+                webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.NORMAL
+            }
+
+            if (!it.obj?.fulltext.isNullOrEmpty()) {
+                webView.loadDataWithBaseURL(null, Constant.getHtmlData(it.obj?.fulltext!!), "text/html", "utf-8", "")
+            }
+
+            webView.webViewClient = object : WebViewClient() {
+                override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
+                    constraintLayout.visibility = View.GONE
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        view.loadUrl(request.url.toString())
+                    }
+                    return false
+                }
+            }
+
+            if (!it.listData.isNullOrEmpty()) {
+                constraintLayout.visibility = View.VISIBLE
+
+                txtViewAll.setOnClickListener {
+                    ActivityUtils.startActivity<NewsListV2Activity>(this)
+                }
+
+                val adapter = NewDetailV2Adapter(it.listData)
+                recyclerView.layoutManager = CustomLinearLayoutManager(this, RecyclerView.VERTICAL, false)
+                recyclerView.adapter = adapter
+            } else {
+                constraintLayout.visibility = View.GONE
+            }
+
+        })
+    }
+
+    @SuppressLint("SetJavaScriptEnabled")
+    private fun loadDataHTML() {
+        if (!title.isNullOrEmpty()) {
+            txtTitle.text = title
+
+            tvTitle.text = title
+        }
+
+        WidgetUtils.loadImageUrl(imgBanner, imgCover.trim())
+
+        webView.settings.javaScriptEnabled = true
+        webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
+        webView.settings.domStorageEnabled = true
+        webView.settings.allowFileAccessFromFileURLs = true
+        webView.settings.allowUniversalAccessFromFileURLs = true
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
+        } else {
+            webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.NORMAL
+        }
+
+        if (!html.isNullOrEmpty()) {
+            webView.loadDataWithBaseURL(null, Constant.getHtmlData(html), "text/html", "utf-8", "")
+        }
+
+        webView.webViewClient = object : WebViewClient() {
+            override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
+                constraintLayout.visibility = View.GONE
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    view.loadUrl(request.url.toString())
+                }
+                return false
+            }
+        }
+    }
+
+    private fun getDataError() {
+        viewModel.onError.observe(this, Observer {
+            DialogHelper.showNotification(this, R.string.co_loi_xay_ra_vui_long_thu_lai, false, object : NotificationDialogListener {
+                override fun onDone() {
+                    onBackPressed()
+                }
+            })
+        })
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        id = -1L
+        html = ""
+        imgCover = ""
+        title = ""
+    }
+}

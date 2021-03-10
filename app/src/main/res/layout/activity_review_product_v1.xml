@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/imgBack"
+        android:layout_width="@dimen/size_44"
+        android:layout_height="@dimen/size_44"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="@id/txt_title_toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_categories_menu_blue_24" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_title_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_44"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:maxLines="1"
+        android:paddingStart="57dp"
+        android:paddingEnd="57dp"
+        android:singleLine="true"
+        android:textColor="@color/blue"
+        android:textSize="18sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Tiêu đề" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgProduct"
+        android:layout_width="@dimen/size_30"
+        android:layout_height="@dimen/size_30"
+        android:layout_marginStart="@dimen/size_15"
+        android:layout_marginEnd="@dimen/size_12"
+        app:layout_constraintBottom_toBottomOf="@id/txt_title_toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view"
+        style="@style/Shadow_Bottom"
+        android:layout_width="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_title_toolbar" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_header"
+        android:layout_width="match_parent"
+        android:layout_height="192dp"
+        android:background="@drawable/bg_reviews"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view">
+
+        <View
+            android:id="@+id/view32"
+            android:layout_width="125dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/bg_stroke_white_corner_10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="..."
+            android:textColor="@android:color/white"
+            android:textSize="36sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_score_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Điểm đánh giá"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="@id/tv_score"
+            app:layout_constraintStart_toStartOf="@id/tv_score"
+            app:layout_constraintTop_toBottomOf="@id/tv_score" />
+
+        <com.willy.ratingbar.ScaleRatingBar
+            android:id="@+id/review_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_score_text"
+            app:layout_constraintStart_toStartOf="@+id/tv_score_text"
+            app:layout_constraintTop_toBottomOf="@+id/tv_score_text"
+            app:srb_drawableEmpty="@drawable/star_outline_rv"
+            app:srb_drawableFilled="@drawable/star_full_rv"
+            app:srb_isIndicator="true"
+            app:srb_numStars="5"
+            app:srb_starPadding="2dp"
+            app:srb_stepSize="0.5" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/view28"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="152dp"
+        android:background="@drawable/rounded_dialog"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@id/container_send_comment"
+        app:layout_constraintTop_toBottomOf="@id/view">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_review_product"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingTop="152dp" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+    <include
+        android:id="@+id/container_send_comment"
+        layout="@layout/item_base_send_message_product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_view_container"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view"
+        app:shimmer_duration="8000">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include layout="@layout/recipe_placeholder_item_product_review" />
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

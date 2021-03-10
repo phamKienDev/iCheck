@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/game_nav"
+    app:startDestination="@id/onBoardingGameFragment">
+
+    <fragment
+        android:id="@+id/onBoardingGameFragment"
+        android:name="vn.icheck.android.loyalty.screen.game_from_labels.vqmm.onboard.OnBoardingGameFragment"
+        android:label="OnBoardingGameFragment"
+        tools:layout="@layout/fragment_onboard">
+        <action
+            android:id="@+id/action_onBoardingGameFragment_to_fragmentLoadingGame"
+            app:destination="@id/fragmentLoadingGame"
+            app:enterAnim="@anim/anim_slide_in_left"
+            app:exitAnim="@anim/anim_slide_out_left"
+            app:popUpTo="@id/onBoardingGameFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentLuckyWheelGame"
+        android:name="vn.icheck.android.loyalty.screen.game_from_labels.vqmm.fragment.FragmentLuckyWheelGame"
+        android:label="FragmentLuckyWheelGame"
+        tools:layout="@layout/fragment_lucky_wheel">
+        <argument
+            android:name="campaignId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_fragmentLuckyWheelGame_to_fragmentGiftGame"
+            app:destination="@id/fragmentGiftGame"
+            app:enterAnim="@anim/zoom_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/zoom_out" />
+        <action
+            android:id="@+id/action_fragmentLuckyWheelGame_to_noGiftDialogFragment"
+            app:destination="@id/noGiftDialogFragment" />
+        <argument
+            android:name="bitmapMap"
+            app:argType="string[]" />
+        <argument
+            android:name="arrGiftName"
+            app:argType="string[]" />
+        <argument
+            android:name="campaignName"
+            app:argType="string" />
+        <argument
+            android:name="shopName"
+            app:argType="string" />
+        <argument
+            android:name="avatarShop"
+            app:argType="string" />
+        <argument
+            android:name="playCount"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_fragmentLuckyWheelGame_to_fragmentListUserWin"
+            app:destination="@id/fragmentListUserWin"
+            app:enterAnim="@anim/anim_slide_in_left"
+            app:exitAnim="@anim/anim_slide_out_left"
+            app:popExitAnim="@anim/anim_slide_out_left" />
+        <action
+            android:id="@+id/action_fragmentLuckyWheelGame_to_nmdtDialogFragment"
+            app:destination="@id/nmdtDialogFragment" />
+        <argument
+            android:name="hasChanceCode"
+            android:defaultValue="true"
+            app:argType="boolean" />
+        <action
+            android:id="@+id/action_fragmentLuckyWheelGame_to_scanForGameFragment"
+            app:destination="@id/scanForGameFragment"
+            app:enterAnim="@anim/anim_slide_in_left"
+            app:exitAnim="@anim/anim_slide_out_left" />
+        <argument
+            android:name="owner"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_fragmentLuckyWheelGame_to_helpGameFragment"
+            app:destination="@id/helpGameFragment"
+            app:enterAnim="@anim/anim_slide_in_left" />
+        <argument
+            android:name="description"
+            app:argType="string" />
+        <argument
+            android:name="data"
+            app:argType="vn.icheck.android.loyalty.model.RowsItem" />
+        <action
+            android:id="@+id/action_fragmentLuckyWheelGame_to_historyGameFragment"
+            app:destination="@id/historyGameFragment"
+            app:enterAnim="@anim/anim_slide_in_left"
+            app:exitAnim="@anim/anim_slide_out_left"
+            app:popExitAnim="@anim/anim_slide_out_left" />
+        <action
+            android:id="@+id/action_fragmentLuckyWheelGame_to_listOfGiftReceived"
+            app:destination="@id/listOfGiftReceived" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentGiftGame"
+        android:name="vn.icheck.android.loyalty.screen.game_from_labels.vqmm.fragment.FragmentGiftGame"
+        android:label="FragmentGiftGame"
+        tools:layout="@layout/fragment_gift_game">
+        <argument
+            android:name="campaignName"
+            app:argType="string" />
+        <argument
+            android:name="giftName"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="giftImage"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="owner"
+            app:argType="string" />
+        <argument
+            android:name="count"
+            app:argType="integer" />
+        <argument
+            android:name="ownerAvatar"
+            app:argType="string" />
+        <argument
+            android:name="giftType"
+            app:argType="string" />
+        <argument
+            android:name="winnerId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentLoadingGame"
+        android:name="vn.icheck.android.loyalty.screen.game_from_labels.vqmm.fragment.FragmentLoadingGame"
+        android:label="FragmentLoadingGame"
+        tools:layout="@layout/fragment_loading_game">
+        <action
+            android:id="@+id/action_fragmentLoadingGame_to_fragmentLuckyWheelGame2"
+            app:destination="@id/fragmentLuckyWheelGame"
+            app:enterAnim="@anim/anim_slide_in_left"
+            app:exitAnim="@anim/anim_slide_out_left"
+
+            app:launchSingleTop="true"
+            app:popEnterAnim="@anim/anim_slide_in_left"
+            app:popExitAnim="@anim/anim_slide_out_left"
+            app:popUpTo="@id/fragmentLoadingGame"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="campaignId"
+            app:argType="long" />
+        <argument
+            android:name="owner"
+            app:argType="string" />
+        <argument
+            android:name="data"
+            app:argType="vn.icheck.android.loyalty.model.RowsItem" />
+    </fragment>
+    <dialog
+        android:id="@+id/noGiftDialogFragment"
+        android:name="vn.icheck.android.loyalty.screen.game_from_labels.vqmm.fragment.NoGiftDialogFragment"
+        android:label="NoGiftDialogFragment"
+        tools:layout="@layout/dialog_no_gift">
+    </dialog>
+    <fragment
+        android:id="@+id/fragmentListUserWin"
+        android:name="vn.icheck.android.loyalty.screen.game_from_labels.vqmm.the_winner.TheWinnerLoyaltyFragment"
+        android:label="FragmentListUserWin"
+        tools:layout="@layout/fragment_the_winner_loyalty">
+        <argument
+            android:name="campaignId"
+            app:argType="long" />
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="currentCount"
+            app:argType="integer" />
+    </fragment>
+    <dialog
+        android:id="@+id/nmdtDialogFragment"
+        android:name="vn.icheck.android.loyalty.screen.game_from_labels.vqmm.fragment.NmdtDialogFragment"
+        android:label="NmdtDialogFragment"
+        tools:layout="@layout/fragment_nmdt">
+        <argument
+            android:name="campaignId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_nmdtDialogFragment_to_congratsDialogFragment"
+            app:destination="@id/congratsDialogFragment"
+            app:popUpTo="@id/nmdtDialogFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="currentCount"
+            app:argType="integer" />
+    </dialog>
+    <dialog
+        android:id="@+id/congratsDialogFragment"
+        android:name="vn.icheck.android.loyalty.screen.game_from_labels.vqmm.fragment.CongratsDialogFragment"
+        android:label="CongratsDialogFragment"
+        tools:layout="@layout/dialog_congrats">
+        <argument
+            android:name="playCount"
+            app:argType="integer" />
+        <argument
+            android:name="currentCount"
+            app:argType="integer" />
+        <argument
+            android:name="campaignId"
+            app:argType="long" />
+    </dialog>
+    <fragment
+        android:id="@+id/scanForGameFragment"
+        android:name="vn.icheck.android.loyalty.screen.game_from_labels.vqmm.fragment.ScanForGameFragment"
+        android:label="ScanForGameFragment"
+        tools:layout="@layout/custom_scan_loyalty">
+        <action
+            android:id="@+id/action_scanForGameFragment_to_congratsDialogFragment"
+            app:destination="@id/congratsDialogFragment"
+            app:popUpTo="@id/scanForGameFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="currentCount"
+            app:argType="integer" />
+        <argument
+            android:name="campaignId"
+            app:argType="long" />
+        <argument
+            android:name="nameCampaign"
+            app:argType="string" />
+        <argument
+            android:name="nameShop"
+            app:argType="string" />
+        <argument
+            android:name="avatarShop"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/helpGameFragment"
+        android:name="vn.icheck.android.loyalty.screen.game_from_labels.vqmm.fragment.HelpGameFragment"
+        android:label="HelpGameFragment"
+        tools:layout="@layout/fragment_help_game">
+        <argument
+            android:name="description"
+            app:argType="string" />
+        <argument
+            android:name="currentCount"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/historyGameFragment"
+        android:name="vn.icheck.android.loyalty.screen.game_from_labels.vqmm.history.HistoryGameFragment"
+        android:label="HistoryGameFragment"
+        tools:layout="@layout/fragment_history_game">
+        <argument
+            android:name="campaignId"
+            app:argType="long" />
+        <argument
+            android:name="currentCount"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_historyGameFragment_to_scanForGameFragment"
+            app:destination="@id/scanForGameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listOfGiftReceived"
+        android:name="vn.icheck.android.loyalty.screen.game_from_labels.vqmm.listofgiftsreceived.ListOfGiftsReceivedFragment"
+        android:label="ListOfGiftsReceivedFragment"
+        tools:layout="@layout/fragment_list_of_gifts_received">
+        <argument
+            android:name="campaignId"
+            app:argType="long" />
+        <argument
+            android:name="currentCount"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_listOfGiftReceived_to_scanForGameFragment"
+            app:destination="@id/scanForGameFragment" />
+    </fragment>
+</navigation>

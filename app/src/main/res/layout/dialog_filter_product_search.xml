@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_dialog"
+    android:paddingBottom="20dp">
+
+    <include
+        android:id="@+id/layoutHeader"
+        layout="@layout/layout_title_filter_search" />
+
+    <View
+        android:id="@+id/divider27"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#D8D8D8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutHeader" />
+
+    <TextView
+        android:id="@+id/tv_select_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="13dp"
+        android:drawableStart="@drawable/ic_product_verified_check"
+        android:drawableLeft="@drawable/ic_product_verified_check"
+        android:drawablePadding="8dp"
+        android:fontFamily="@font/barlow_medium"
+        android:text="Sản phẩm đã xác thực"
+        android:textColor="#212121"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider27" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/product_verified_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/size_12"
+        android:layout_marginRight="@dimen/size_12"
+        android:thumb="@drawable/ic_filer_switch_thumb_selector"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_select_location"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_select_location"
+        app:track="@drawable/ic_filer_switch_track_selector" />
+
+    <View
+        android:id="@+id/divider28"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/size_0_5"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="13dp"
+        android:background="#D8D8D8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_select_location" />
+
+    <LinearLayout
+        android:id="@+id/containerPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingRight="@dimen/size_4"
+        app:layout_constraintTop_toBottomOf="@id/divider28">
+
+        <TextView
+            android:id="@+id/tv_select_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="13dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="@dimen/size_12"
+            android:layout_marginBottom="@dimen/size_12"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_price_tag"
+            android:drawableLeft="@drawable/ic_price_tag"
+            android:drawablePadding="8dp"
+            android:fontFamily="@font/barlow_medium"
+            android:text="Giá từ"
+            android:textColor="#212121"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider28" />
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/size_8"
+            android:layout_marginRight="@dimen/size_8"
+            android:fontFamily="@font/barlow_medium"
+            android:text="@string/tat_ca"
+            android:textColor="#757575"
+            app:layout_constraintEnd_toStartOf="@id/img_clear_price"
+            app:layout_constraintTop_toBottomOf="@+id/divider28" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_clear_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/size_8"
+            android:layout_marginRight="@dimen/size_8"
+            android:background="@drawable/ic_close_gray_18_dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_price"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_price" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider29"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/size_0_5"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:background="#D8D8D8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/containerPrice" />
+
+    <LinearLayout
+        android:id="@+id/containerReview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingRight="@dimen/size_4"
+        app:layout_constraintTop_toBottomOf="@id/divider29">
+
+        <TextView
+            android:id="@+id/textView40"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="13dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="@dimen/size_12"
+            android:layout_marginBottom="@dimen/size_12"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_star_black"
+            android:drawableLeft="@drawable/ic_star_black"
+            android:drawablePadding="8dp"
+            android:fontFamily="@font/barlow_medium"
+            android:text="@string/danh_gia"
+            android:textColor="#212121"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider29" />
+
+        <TextView
+            android:id="@+id/tv_all_review"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/size_8"
+            android:layout_marginRight="@dimen/size_8"
+            android:fontFamily="@font/barlow_medium"
+            android:includeFontPadding="false"
+            android:text="@string/tat_ca"
+            app:layout_constraintEnd_toStartOf="@id/img_clear_review"
+            app:layout_constraintTop_toBottomOf="@+id/divider29" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/img_clear_review"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/size_8"
+            android:layout_marginRight="@dimen/size_8"
+            android:background="@drawable/ic_close_gray_18_dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_all_review"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_all_review" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider30"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/size_0_5"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:background="#D8D8D8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/containerReview" />
+
+    <TextView
+        android:id="@+id/tv_clear"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_20"
+        android:layout_marginEnd="@dimen/size_12"
+        android:layout_marginRight="@dimen/size_12"
+        android:background="@drawable/bg_corners_4_light_blue_no_solid"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:gravity="center"
+        android:paddingTop="@dimen/size_8"
+        android:paddingBottom="@dimen/size_8"
+        android:text="@string/thiet_lap_lai"
+        android:textColor="@color/lightBlue"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider30" />
+</androidx.constraintlayout.widget.ConstraintLayout>

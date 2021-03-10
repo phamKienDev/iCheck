@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="12dp"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:fontFamily="@font/roboto_medium"
+        android:includeFontPadding="false"
+        android:paddingStart="@dimen/size_12"
+        android:paddingTop="@dimen/size_20"
+        android:paddingEnd="@dimen/size_12"
+        android:paddingBottom="@dimen/size_12"
+        android:singleLine="true"
+        android:text="Truy xuất nguồn gốc Trứng"
+        android:textColor="@color/blue"
+        android:textSize="18sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_2"
+        android:layout_marginBottom="@dimen/size_12"
+        android:clipToPadding="false"
+        android:orientation="horizontal"
+        android:layout_marginEnd="@dimen/size_24"
+        android:layout_marginStart="@dimen/size_24"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/size_20"
+            android:layout_marginRight="@dimen/size_20"
+            android:background="@drawable/bg_step_build_product_stamp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@id/tvCount"
+                android:layout_width="@dimen/size_28"
+                android:layout_height="@dimen/size_28"
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginLeft="@dimen/size_12"
+                android:background="@drawable/bg_corner_white_5"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:maxLength="2"
+                android:text="1"
+                android:textColor="#315fa5"
+                android:textSize="16sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@id/tvName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_10"
+                android:layout_marginLeft="@dimen/size_10"
+                android:layout_marginEnd="@dimen/size_30"
+                android:layout_marginRight="@dimen/size_30"
+                android:ellipsize="end"
+                android:fontFamily="@font/roboto_medium"
+                android:includeFontPadding="false"
+                android:maxLines="2"
+                android:text="Tự chủ nguồn cám sạch - an toàn - title tối đa 2 dòng)..."
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/tvContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
+            android:includeFontPadding="false"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginStart="12dp"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="14dp"
+            android:layout_marginBottom="8dp"
+            android:layout_gravity="end"
+            android:src="@drawable/img_egg_default"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/size_10"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_8">
+
+        <TextView
+            android:id="@+id/tvOrderId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:textColor="@color/collection_product_name"
+            android:textSize="14sp"
+            app:drawableEndCompat="@drawable/ic_mission_gift_24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Mã đơn: CDJA56BHC" />
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/barlow_medium"
+            android:includeFontPadding="false"
+            android:textColor="@color/fast_survey_gray"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/tvOrderId"
+            app:layout_constraintTop_toBottomOf="@id/tvOrderId"
+            tools:text="Ngày tạo đơn: 12:43, 14/02/2020" />
+
+        <TextView
+            android:id="@+id/tvCancelOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="@dimen/size_12"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="@string/huy_don"
+            android:textColor="@color/lightBlue"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/tvTime"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvOrderId" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvOrders"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@+id/tvTime"
+        tools:itemCount="3"
+        tools:layout_editor_absoluteX="0dp"
+        tools:listitem="@layout/item_product_in_order" />
+
+    <LinearLayout
+        android:id="@+id/layoutCount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/size_10"
+        android:visibility="visible">
+
+        <View
+            android:id="@+id/viewTop"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_0_5"
+            android:layout_marginStart="@dimen/size_12"
+            android:background="@color/gray"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_5"
+            android:fontFamily="@font/barlow_medium"
+            android:includeFontPadding="false"
+            android:textColor="@color/lightBlue"
+            tools:text="4 sản phẩm khác" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bgButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_10"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvError"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_12"
+            android:background="@drawable/bg_corners_4_light_blue_no_solid"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center"
+            android:paddingTop="@dimen/size_8"
+            android:paddingBottom="@dimen/size_8"
+            android:text="@string/bao_loi"
+            android:textColor="@color/light_blue"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tvConfirm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_10"
+            android:layout_marginEnd="@dimen/size_12"
+            android:layout_weight="1"
+            android:background="@drawable/bg_corners_4_light_blue_solid"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center"
+            android:paddingTop="@dimen/size_8"
+            android:paddingBottom="@dimen/size_8"
+            android:text="@string/xac_nhan_da_nhan_hang"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</LinearLayout>

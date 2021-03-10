@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="9dp"
+    android:layout_marginEnd="9dp"
+    android:layout_marginBottom="8dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/viewLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bg_gift_ware_house_left"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgGiftFromVendor"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/viewCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/viewRight"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/bg_gift_ware_house_right"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@id/viewLeft"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/viewLeft"
+        app:layout_constraintTop_toTopOf="@id/viewLeft">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitleGift"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif"
+            android:maxLines="2"
+            android:textColor="#434343"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/tvVendor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Hộp quà iCHECK" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvVendor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/blue"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@+id/tvTimeEndGifBox"
+            app:layout_constraintEnd_toEndOf="@+id/tvTitleGift"
+            app:layout_constraintStart_toStartOf="@+id/tvTitleGift"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleGift"
+            tools:text="Từ iCheck" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTimeEndGifBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:drawableStart="@drawable/ic_clock_gray_12"
+            android:drawablePadding="5dp"
+            android:fontFamily="sans-serif"
+            android:textColor="#828282"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tvVendor"
+            app:layout_constraintTop_toBottomOf="@+id/tvVendor"
+            tools:text="Còn 154 ngày" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvReceivedGift"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_green_opacity_corners_26"
+            android:paddingStart="18dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="18dp"
+            android:paddingBottom="2dp"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="normal"
+            android:textColor="#49aa2d"
+            android:text="Đã nhận quà"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/tvTimeEndGifBox"
+            app:layout_constraintEnd_toEndOf="@+id/tvVendor"
+            app:layout_constraintTop_toTopOf="@+id/tvTimeEndGifBox" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvUseGift"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="18dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="2dp"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="normal"
+            android:textColor="#3c5a99"
+            android:text="Dùng ngay"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/tvTimeEndGifBox"
+            app:layout_constraintEnd_toEndOf="@+id/tvVendor"
+            app:layout_constraintTop_toTopOf="@+id/tvTimeEndGifBox" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvRefuseGift"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_gray_opacity_corners_26"
+            android:paddingStart="18dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="18dp"
+            android:paddingBottom="2dp"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="normal"
+            android:textColor="#828282"
+            android:text="Đã từ chối"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/tvTimeEndGifBox"
+            app:layout_constraintEnd_toEndOf="@+id/tvVendor"
+            app:layout_constraintTop_toTopOf="@+id/tvTimeEndGifBox" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvWaitAcceptGift"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_orage_opacity_corners_26"
+            android:paddingStart="18dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="18dp"
+            android:paddingBottom="2dp"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="normal"
+            android:textColor="#fbbb00"
+            android:visibility="gone"
+            android:text="Chưa xác nhận"
+            app:layout_constraintBottom_toBottomOf="@+id/tvTimeEndGifBox"
+            app:layout_constraintEnd_toEndOf="@+id/tvVendor"
+            app:layout_constraintTop_toTopOf="@+id/tvTimeEndGifBox" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/viewCenter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_gift_center"
+        app:layout_constraintBottom_toBottomOf="@id/viewLeft"
+        app:layout_constraintEnd_toStartOf="@id/viewRight"
+        app:layout_constraintStart_toEndOf="@id/viewLeft"
+        app:layout_constraintTop_toTopOf="@id/viewLeft" />
+</androidx.constraintlayout.widget.ConstraintLayout>

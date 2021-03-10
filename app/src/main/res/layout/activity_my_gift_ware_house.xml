@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context="vn.icheck.android.screen.user.home_page.my_gift_warehouse.home.MyGiftWareHouseActivity">
+
+    <include layout="@layout/toolbar_blue" />
+
+    <View
+        android:id="@id/viewShadow"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_4"
+        android:background="@drawable/shadow_bottom" />
+
+    <vn.icheck.android.screen.user.component.view.TabSegment
+        android:id="@+id/tabSegment"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:elevation="4dp"
+        android:fadingEdgeLength="10dp"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_12"
+        android:layout_marginEnd="@dimen/size_12"
+        android:background="@drawable/bg_light_gray_corners_40" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/size_12" />
+</LinearLayout>

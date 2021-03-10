@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/size_12"
+    android:layout_marginTop="@dimen/size_12"
+    android:orientation="vertical">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgItem"
+        android:layout_width="@dimen/size_28"
+        android:layout_height="@dimen/size_28"
+        android:src="@drawable/ic_circle_avatar_default"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgVerified"
+        android:layout_width="@dimen/size_10"
+        android:layout_height="@dimen/size_10"
+        android:src="@drawable/ic_home_verify_16dp"
+        app:layout_constraintBottom_toBottomOf="@id/imgItem"
+        app:layout_constraintEnd_toEndOf="@id/imgItem" />
+
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_16"
+        android:layout_marginEnd="@dimen/size_12"
+        android:background="@drawable/bg_corner_gray_10"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imgItem"
+        app:layout_constraintTop_toTopOf="@id/imgItem">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginTop="@dimen/size_8"
+            android:layout_marginEnd="@dimen/size_8"
+            android:layout_marginBottom="@dimen/size_12"
+            android:fontFamily="sans-serif-medium"
+            android:includeFontPadding="false"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            tools:text="Mai Lan Nguyễn" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginEnd="@dimen/size_8"
+            android:layout_marginBottom="@dimen/size_8"
+            android:fontFamily="sans-serif"
+            android:includeFontPadding="false"
+            android:textColor="#434343"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            tools:text="Cho em hỏi sản phẩm còn hàng không ạ? Có ship tỉnh không?" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcv_send_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginBottom="@dimen/size_8" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTimeLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_6"
+        android:fontFamily="sans-serif"
+        android:includeFontPadding="false"
+        android:textColor="#828282"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="@id/container"
+        app:layout_constraintTop_toBottomOf="@id/container"
+        tools:text="1 ngày trước" />
+
+    <TextView
+        android:id="@+id/tvResponse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_12"
+        android:fontFamily="sans-serif-medium"
+        android:includeFontPadding="false"
+        android:text="Trả lời"
+        android:textColor="#3c5a99"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@id/tvTimeLeft"
+        app:layout_constraintStart_toEndOf="@id/tvTimeLeft" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvAnswers"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/container"
+        app:layout_constraintTop_toBottomOf="@id/tvTimeLeft" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

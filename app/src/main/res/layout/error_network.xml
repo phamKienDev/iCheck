@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_error_request" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:fontFamily="sans-serif"
+        android:textStyle="normal"
+        android:layout_margin="16dp"
+        android:textColor="#828282"
+        android:text="Không thể truy cập. Vui lòng thử lại sau"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/bg_corner_solid_white_strokke_blue"
+        android:fontFamily="sans-serif-medium"
+        android:padding="16dp"
+        android:text="Trang Chủ"
+        android:textAlignment="center"
+        android:textColor="#3c5a99"
+        android:textSize="16sp"
+        android:textStyle="normal" />
+</LinearLayout>

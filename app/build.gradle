@@ -1,0 +1,306 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+//Hilt di
+apply plugin: 'dagger.hilt.android.plugin'
+//Firebase
+apply plugin: 'com.google.gms.google-services'
+
+apply plugin: 'com.google.firebase.crashlytics'
+
+//Firebase Performance
+apply plugin: 'com.google.firebase.firebase-perf'
+
+// Navigation
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
+android {
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+        checkAllWarnings false
+        ignoreWarnings true
+    }
+    signingConfigs {
+        release {
+            storeFile file('icheck.keystore')
+            storePassword '123456'
+            keyAlias = 'icheckpublish'
+            keyPassword '123456'
+        }
+    }
+    compileSdkVersion 29
+    defaultConfig {
+        applicationId "vn.icheck.android"
+        minSdkVersion 17
+        targetSdkVersion 29
+        versionCode 21030901
+        versionName "6.5.1"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled = true
+        signingConfig signingConfigs.release
+        vectorDrawables.useSupportLibrary = true
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments["room.incremental"] = "true"
+                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+    }
+    buildFeatures {
+        dataBinding true
+        viewBinding true
+    }
+    aaptOptions { cruncherEnabled = false }
+    buildTypes {
+        release {
+            debuggable false
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            manifestPlaceholders = [partner: "icheckvn"]
+        }
+        debug {
+            debuggable true
+            manifestPlaceholders = [partner: "icheckvntest"]
+        }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+//        freeCompilerArgs += ["-Xopt-in=kotlin.RequiresOptIn"]
+    }
+    buildToolsVersion = '29.0.3'
+    flavorDimensions 'default'
+
+    productFlavors {
+        dev {
+            applicationIdSuffix = '.develop'
+            resValue "string", "app_name", "NativeDev"
+            resValue "string", "app_id", "1465397716834916"
+            resValue "string", "ak_login_protocol_scheme", "ak1465397716834916"
+            resValue "string", "client_token", "7e784c39b6e8276791c06bb407f1c58b"
+        }
+        prod {
+            resValue "string", "app_name", "iCheck"
+            resValue "string", "app_id", "906784082696285"
+            resValue "string", "ak_login_protocol_scheme", "ak906784082696285"
+            resValue "string", "client_token", "2d5a74d2ced833d25af57a02e63132a9"
+        }
+    }
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+}
+
+dependencies {
+    api 'com.google.android.play:core-ktx:1.8.1'
+    def roomDBVersion = "2.2.5"
+    api fileTree(dir: 'libs', include: ['*.jar','*.aar'])
+    api 'androidx.appcompat:appcompat:1.2.0'
+//    api 'androidx.constraintlayout:constraintlayout:2.0.0-beta6'
+//    api 'androidx.constraintlayout:constraintlayout:1.1.3'
+//    api e'androidx.navigation:navigation-fragment:2.1.0'
+//    api 'androidx.navigation:navigation-ui:2.1.0'
+    api 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    api 'com.android.support:design:29.0.0'
+//    api 'com.google.code.gson:gson:2.8.5'
+    api 'com.google.android.material:material:1.2.1'
+    api 'com.google.android.gms:play-services-location:17.0.0'
+    api 'com.google.android.gms:play-services-maps:17.0.0'
+    api "com.google.maps.android:android-maps-utils:0.5"
+
+    /** iCheck network and apis **/
+    api project(path: ':ichecknetwork')
+    api project(path: ':icheckloyalty')
+
+    /** Zxing */
+    api "com.google.zxing:core:3.4.0"
+
+    /** EventBus **/
+    api 'org.greenrobot:eventbus:3.1.1'
+
+    /** Room database **/
+    api "androidx.room:room-runtime:${roomDBVersion}"
+    api "androidx.room:room-ktx:${roomDBVersion}"
+    api "androidx.room:room-rxjava2:${roomDBVersion}"
+    api 'androidx.legacy:legacy-support-v4:1.0.0'
+    kapt "androidx.room:room-compiler:${roomDBVersion}"
+
+    /** Glide **/
+    api 'com.github.bumptech.glide:glide:4.11.0'
+    kapt "com.github.bumptech.glide:compiler:4.11.0"
+    implementation ('com.github.bumptech.glide:okhttp3-integration:4.11.0'){
+        exclude group: 'glide-parent'
+    }
+//    api 'com.squareup.picasso:picasso:2.71828'
+
+    /** Test **/
+//    testapi 'junit:junit:4.12'
+//    androidTestapi 'androidx.test:runner:1.2.0'
+//    androidTestapi 'androidx.test.espresso:espresso-core:3.2.0'
+
+    /** View */
+    api 'de.hdodenhof:circleimageview:3.0.1'
+    api 'com.airbnb.android:lottie:3.4.0'
+    api 'com.romandanylyk:pageindicatorview:1.0.3'
+    api 'com.google.android:flexbox:2.0.1'
+    api 'it.sephiroth.android.library.rangeseekbar:rangeseekbar:1.1.0'
+    /** Facebook */
+    api 'com.facebook.android:facebook-login:5.5.1'
+    api 'com.facebook.shimmer:shimmer:0.5.0'
+
+    /*Map 4D*/
+    api 'vn.map4d:Map4dTypes:1.0.6'
+    api 'vn.map4d:Map4dMap:1.4.4'
+
+    /** RX */
+    api 'io.reactivex.rxjava2:rxkotlin:2.3.0'
+    api 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    api 'com.jakewharton.rxbinding2:rxbinding:2.1.1'
+    api 'com.jakewharton.rxbinding3:rxbinding-appcompat:3.0.0'
+
+    /** Google Map */
+    api 'com.google.android.libraries.places:places:2.4.0'
+    api 'com.google.android.gms:play-services-places:17.0.0'
+
+    /* Firebase */
+    api 'com.google.firebase:firebase-auth:20.0.2'
+    api 'com.google.firebase:firebase-database:19.6.0'
+    api 'com.google.firebase:firebase-crashlytics:17.3.1'
+
+    /* Firebase Performance */
+    implementation 'com.google.firebase:firebase-perf-ktx:19.1.1'
+
+    /** Coroutine **/
+    api 'androidx.lifecycle:lifecycle-runtime-ktx:2.2.0'
+
+//    api "androidx.core:core-ktx:1.2.0"
+    api "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
+
+    api 'com.squareup.retrofit2:retrofit:2.9.0'
+
+    api 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+
+    api 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    // ScanDit
+    api files('src/main/jniLibs/scanditsdk-android-5.13.1.jar')
+
+    api 'com.github.ome450901:SimpleRatingBar:1.4.3'
+    api 'com.yarolegovich:discrete-scrollview:1.4.9'
+
+    /**
+     * Swipe notification
+     */
+    api "com.daimajia.swipelayout:library:1.2.0@aar"
+    api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    /**
+     * TagView
+     */
+    api 'com.github.kaedea:android-tagview:b546a5f073'
+    api 'com.google.firebase:firebase-messaging:21.0.1'
+
+    /**
+     * Wave View
+     */
+    api 'me.itangqi.waveloadingview:library:0.3.5'
+
+    //paging library
+    //Paging
+    api 'androidx.paging:paging-runtime-ktx:2.1.2'
+    api "androidx.paging:paging-runtime-ktx:3.0.0-alpha10"
+
+    // (Recommended) Add the Google Analytics dependency.
+    api 'com.google.firebase:firebase-analytics:18.0.2'
+
+    // Add the Firebase Crashlytics dependency.
+//    api 'com.crashlytics.sdk.android:crashlytics:17.2.2'
+
+    api 'com.squareup.okhttp3:logging-interceptor:4.7.2'
+    api 'com.tapadoo.android:alerter:5.1.2'
+
+    def multidex_version = "2.0.1"
+    api "androidx.multidex:multidex:$multidex_version"
+
+    api "androidx.activity:activity-ktx:1.2.0-beta02"
+    /** Ktx **/
+    api 'androidx.core:core-ktx:1.3.2'
+    api 'androidx.fragment:fragment-ktx:1.3.0-beta02'
+
+    /**
+     * Exo player
+     */
+    api 'com.google.android.exoplayer:exoplayer:2.12.2'
+    /** Navigation **/
+    implementation "androidx.navigation:navigation-fragment-ktx:2.3.3"
+    implementation "androidx.navigation:navigation-ui-ktx:2.3.3"
+
+    /** Coroutine Scope **/
+    api 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-beta01'
+    api "androidx.lifecycle:lifecycle-livedata-ktx:2.3.0-beta01"
+
+    /** MotionLayout **/
+    api 'androidx.constraintlayout:constraintlayout:2.0.4'
+
+    /* Cropper */
+    api 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
+
+    /** Hilt di **/
+    api 'com.google.dagger:hilt-android:2.28.3-alpha'
+    kapt 'com.google.dagger:hilt-android-compiler:2.28.3-alpha'
+    api 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02'
+    kapt 'androidx.hilt:hilt-compiler:1.0.0-alpha02'
+    api 'androidx.hilt:hilt-work:1.0.0-alpha02'
+    kapt 'androidx.hilt:hilt-compiler:1.0.0-alpha02'
+
+    /** Work manager **/
+    api "androidx.work:work-runtime-ktx:2.4.0"
+
+    api "androidx.preference:preference-ktx:1.1.1"
+
+    /* Insider */
+    implementation 'com.useinsider:insider:11.6.1-nh'
+    api 'com.google.android.gms:play-services-ads:16.0.0'
+    /* End Insider */
+
+
+    /* Tripi Product*/
+//    api files('src/main/libs/SDKFlight-product-release-20200827.aar')
+//    api files('src/main/libs/SDKHotel-product-release.aar')
+
+    /* Tripi Dev*/
+    implementation files('src/main/libs/SDKFlight-product-release.aar')
+    implementation files('src/main/libs/SDKHotel-product-release.aar')
+    implementation files('src/main/libs/VNPaySDK-release1.11_live.aar')
+
+    implementation("vn.teko.hestia:hestia-tracking-bridge:0.0.3")
+//    implementation files('src/main/libs/tracker-core-0.2.3.aar')
+//    implementation files('src/main/libs/tracker-event-v2-0.2.3.aar')
+    implementation "vn.teko.android.tracker:tracker-event-v2:0.2.6"
+
+
+//    implementation("vn.teko.terra:terra-core-android:0.3.9")
+//    implementation("vn.teko.hestia:hestia-android:0.0.3")
+//    implementation("vn.teko.hestia:hestia-android-native:0.0.3")
+//    implementation("vn.teko.android.auth:auth-core:0.1.11")
+//    implementation("vn.teko.android.auth:auth-login:0.1.11")
+//    implementation("vn.teko.android.auth:auth-user:0.1.11")
+//    implementation("vn.teko.android.vnshop:vnshop-connector:1.3.5-beta3-stag")
+//    implementation("vn.teko.android.vnshop:vnshop-connector:1.3.5.1-prod")
+    api "com.github.skydoves:balloon:1.3.0"
+    // https://mvnrepository.com/artifact/commons-codec/commons-codec
+}
+repositories {
+    mavenCentral()
+}
+kapt {
+    correctErrorTypes = true
+}

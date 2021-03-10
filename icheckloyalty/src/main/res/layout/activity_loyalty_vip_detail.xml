@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/layoutToolbar"
+        layout="@layout/toolbar_blue"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/viewShadow"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_4"
+        android:background="@drawable/shadow_bottom"
+        app:layout_constraintTop_toBottomOf="@id/layoutToolbar" />
+
+    <vn.icheck.android.loyalty.base.commons.ViewPagerNoScroll
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewShadow" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="false"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:srcCompat="@drawable/bg_bottom_corner_shadow" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_20"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@id/imageView">
+
+        <androidx.appcompat.widget.AppCompatCheckedTextView
+            android:id="@+id/btnInformation"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_information_blue_46dp"
+            android:gravity="center"
+            android:text="Thông tin"
+            android:fontFamily="@font/roboto_medium"
+            android:textSize="12sp"
+            android:checked="true"
+            android:includeFontPadding="false"
+            android:textColor="@color/text_color_checked_black_uncheck_gray"
+            android:textAlignment="center" />
+
+        <androidx.appcompat.widget.AppCompatCheckedTextView
+            android:id="@+id/btnAdd"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_add_blue_72dp"
+            android:gravity="center"
+            android:text="Tích điểm"
+            android:fontFamily="@font/roboto_medium"
+            android:textSize="12sp"
+            android:includeFontPadding="false"
+            android:textColor="@color/text_color_checked_black_uncheck_gray"
+            android:textAlignment="center" />
+
+        <androidx.appcompat.widget.AppCompatCheckedTextView
+            android:id="@+id/btnHistory"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_history_blue_46dp"
+            android:gravity="center"
+            android:text="Lịch sử tích điểm"
+            android:fontFamily="@font/roboto_medium"
+            android:textSize="12sp"
+            android:includeFontPadding="false"
+            android:textColor="@color/text_color_checked_black_uncheck_gray"
+            android:textAlignment="center" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

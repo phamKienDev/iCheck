@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.willy.ratingbar.ScaleRatingBar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ratingReview"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:srb_drawableEmpty="@drawable/ic_star_empty_36px"
+    app:srb_drawableFilled="@drawable/star_active_36px"
+    app:srb_numStars="5"
+    app:srb_rating="0"
+    app:srb_isIndicator="false"
+    app:srb_clickable="true"
+    app:srb_scrollable="false"
+    app:srb_starHeight="@dimen/size_36"
+    app:srb_starPadding="@dimen/size_0"
+    app:srb_starWidth="@dimen/size_36" />

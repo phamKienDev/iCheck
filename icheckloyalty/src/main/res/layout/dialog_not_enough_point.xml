@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@color/transparent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_22"
+        android:layout_marginRight="@dimen/size_22"
+        android:background="@drawable/bg_not_enough_point"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/size_22"
+        android:paddingRight="@dimen/size_22">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            app:srcCompat="@drawable/ic_error_scan_game" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_34"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:singleLine="true"
+            android:textColor="#434343"
+            android:textSize="16sp"
+            tools:text="Bạn không đủ điểm rồi!" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_17"
+            android:background="@drawable/bg_border_dotted_10_gray"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_6"
+                android:layout_marginTop="@dimen/size_8"
+                android:layout_marginRight="@dimen/size_6"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:textColor="#434343"
+                tools:text="Quét tem QRcode được dán trên bao bì\nsản phẩm để nhận điểm tích lũy đổi quà nhé!" />
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgDefault"
+                android:layout_width="130dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="@dimen/size_16"
+                android:layout_marginBottom="@dimen/size_7"
+                tools:srcCompat="@drawable/ic_onboarding_scan" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btnDefault"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="64dp"
+            android:layout_marginTop="@dimen/size_16"
+            android:layout_marginRight="64dp"
+            android:layout_marginBottom="35dp"
+            android:background="@drawable/bg_button_not_enough_point"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center"
+            android:textColor="#FE4E1B"
+            android:textSize="16sp"
+            tools:text="Quét tem ngay" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/size_20"
+        app:srcCompat="@drawable/ic_close_popup_32px" />
+</LinearLayout>

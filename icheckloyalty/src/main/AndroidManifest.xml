@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="vn.icheck.android.loyalty">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application>
+        <activity android:name=".screen.gift_voucher.GiftDetailFromAppActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"/>
+        <activity
+            android:name=".screen.loyalty_customers.exchange_phonecard.ChangePhoneCardsActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.url_gift_detail.UrlGiftDetailActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.web.WebViewActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.loyalty_customers.gift_shop.GiftShopActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.loyalty_customers.accept_ship_gift.AcceptShipGiftActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.loyalty_customers.giftdetail.GiftDetailActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.loyalty_customers.history.LoyaltyPointsHistoryActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.loyalty_customers.loyaltyvipdetail.LoyaltyVipDetailActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.loyalty_customers.campaign_of_business.CampaignOfBusinessActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.loyalty_customers.home.HomePageEarnPointsActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.loyalty_customers.longtermprogramlist.LongTermProgramListActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.select_address.ward.SelectWardActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.select_address.district.SelectDistrictActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.select_address.province.SelectProvinceActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.game_from_labels.redeem_points.point_history.PointHistoryLoyaltyActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.game_from_labels.redeem_points.detail_gift_point.DetailGiftLoyaltyActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.game_from_labels.redeem_points.accept_ship_gift.AcceptShipGiftLoyaltyActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.game_from_labels.redeem_points.the_winner_point.TheWinnerPointActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.redemption_history.RedemptionHistoryActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.scan.ScanLoyaltyActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.game_from_labels.redeem_points.home.HomeRedeemPointActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.game_from_labels.redeem_points.onboarding.OnBoardingActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.game_from_labels.vqmm.GameActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity
+            android:name=".screen.game_from_labels.game_list.GameFromLabelsListActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+    </application>
+
+</manifest>

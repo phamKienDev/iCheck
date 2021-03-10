@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/size_10"
+    android:layout_marginEnd="@dimen/size_10"
+    android:layout_marginBottom="@dimen/size_12"
+    android:background="@drawable/bg_white_corners_8"
+    android:paddingBottom="@dimen/size_20">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_10"
+        android:fontFamily="sans-serif-medium"
+        android:includeFontPadding="false"
+        android:text="@string/trang_thai_don_hang"
+        android:textColor="#3c5a99"
+        android:textSize="18sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@id/imgClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_9"
+        android:background="?android:attr/selectableItemBackground"
+        android:padding="@dimen/size_6"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_close_blue_24"
+        app:layout_constraintBottom_toBottomOf="@id/tvTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvTitle" />
+
+    <View
+        android:id="@id/viewLine"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0_5"
+        android:layout_marginTop="@dimen/size_10"
+        android:background="#bdbdbd"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/txtContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_20"
+        android:layout_marginTop="@dimen/size_20"
+        android:layout_marginEnd="@dimen/size_20"
+        android:fontFamily="sans-serif-medium"
+        android:includeFontPadding="false"
+        android:text="@string/don_hang_da_huy"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewLine" />
+
+    <TableLayout
+        android:id="@id/layoutContent"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_10"
+        app:layout_constraintEnd_toEndOf="@id/txtContent"
+        app:layout_constraintStart_toStartOf="@id/txtContent"
+        app:layout_constraintTop_toBottomOf="@id/txtContent">
+
+        <TableRow>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/size_18"
+                android:fontFamily="sans-serif"
+                android:includeFontPadding="false"
+                android:text="@string/nguoi_huy_"
+                android:textColor="#434343"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-medium"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:textColor="#3c5a99"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                tools:text="Người mua" />
+        </TableRow>
+
+        <TableRow android:layout_marginTop="@dimen/size_8">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/size_18"
+                android:fontFamily="sans-serif"
+                android:includeFontPadding="false"
+                android:text="@string/thoi_gian_huy_"
+                android:textColor="#434343"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@id/tvDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-medium"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:textColor="#3c5a99"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                tools:text="14:32, 30/02/2019" />
+        </TableRow>
+
+        <TableRow android:layout_marginTop="@dimen/size_8">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/size_18"
+                android:fontFamily="sans-serif"
+                android:includeFontPadding="false"
+                android:text="@string/ly_do_huy_"
+                android:textColor="#434343"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@id/tvNote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-medium"
+                android:includeFontPadding="false"
+                android:textColor="#3c5a99"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                tools:text="Không thích mua nữa" />
+        </TableRow>
+    </TableLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvOrder"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="@dimen/size_40"
+        android:layout_marginStart="@dimen/size_15"
+        android:layout_marginTop="@dimen/size_34"
+        android:layout_marginEnd="@dimen/size_15"
+        android:background="@drawable/bg_green_corners_26"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:text="@string/dat_lai_don_nay"
+        android:textAlignment="gravity"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutContent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/size_12"
+    android:gravity="center_vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/san_pham_dang_tien"
+        android:textColor="#434343"
+        android:textSize="14sp"
+        android:textStyle="normal" />
+
+    <com.willy.ratingbar.ScaleRatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srb_drawableEmpty="@drawable/star_outpine_24px"
+        app:srb_drawableFilled="@drawable/star_full_24px"
+        app:srb_numStars="5"
+        app:srb_rating="4"
+        app:srb_starHeight="20dp"
+        app:srb_starWidth="20dp" />
+</TableRow>

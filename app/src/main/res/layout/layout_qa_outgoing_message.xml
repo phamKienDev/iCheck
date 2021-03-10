@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="bottom"
+        tools:src="@mipmap/ic_launcher"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/lightBlue"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:textSize="14sp"
+        android:maxLines="3"
+        android:ellipsize="end"
+        tools:text="Cho em hỏi sản phẩm còn hàng không ạ? Em rất muốn mua sản phẩm này (Tối đa 3 dòng thôi nhé)...mdsamd sadopaskdpsak skad kasdlk;salskd las;kdsa;ld kdls;a kd;sakd las;dk als;dkl;sa" />
+
+
+</LinearLayout>

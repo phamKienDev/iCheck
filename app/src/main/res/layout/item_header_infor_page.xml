@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgAvaPage"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="16dp"
+            app:civ_border_color="#D8D8D8"
+            app:civ_border_width="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@color/lightBlue" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@id/imgEditAvatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_50"
+            android:src="@drawable/ic_edit_img_26px"
+            app:layout_constraintEnd_toEndOf="@id/imgAvaPage"
+            app:layout_constraintTop_toTopOf="@id/imgAvaPage" />
+
+        <LinearLayout
+            android:id="@+id/layoutName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
+            app:layout_constraintBottom_toTopOf="@id/tvNameTypePage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgAvaPage"
+            app:layout_constraintTop_toTopOf="@id/imgAvaPage">
+
+            <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+                android:id="@id/tvNamePage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/size_8"
+                android:gravity="center_vertical"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                tools:text="Unilever Vietnam Official Unilever Vietnam Official  " />
+        </LinearLayout>
+
+        <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+            android:id="@+id/tvNameTypePage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="Doanh nghiệp"
+            android:textColor="#3c5a99"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/imgAvaPage"
+            app:layout_constraintStart_toStartOf="@id/layoutName"
+            app:layout_constraintTop_toBottomOf="@id/layoutName" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="12dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/btnChinh"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_corners_4_light_blue_solid"
+            android:gravity="center">
+
+            <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+                android:id="@+id/tvChinh"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:drawablePadding="6.3dp"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:gravity="center"
+                android:text="@string/theo_doi"
+                android:textColor="#ffffff"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btnPhu"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/bg_corners_4_light_blue_no_solid"
+            android:drawableStart="@drawable/ic_phone_blue_16dp"
+            android:drawableLeft="@drawable/ic_phone_blue_16dp"
+            android:gravity="center"
+            android:paddingStart="23dp"
+            android:paddingEnd="23dp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btnMore"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/bg_corners_4_light_blue_no_solid"
+            android:drawableStart="@drawable/ic_more_blue_16"
+            android:drawableLeft="@drawable/ic_more_blue_16"
+            android:gravity="center"
+            android:paddingStart="23dp"
+            android:paddingEnd="23dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="12dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <vn.icheck.android.component.view.ListAvatar
+            android:id="@+id/img_list_avatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal" />
+
+        <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+            android:id="@id/tv_number_follow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="#757575"
+            android:textSize="14sp"
+            tools:text="Huy, Quân, Hoàng và 3.000 người khác theo dõi trang này " />
+    </LinearLayout>
+
+    <View
+        android:id="@id/view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0_5"
+        android:layout_marginTop="11.5dp"
+        android:background="@color/placeholder_bg" />
+
+    <LinearLayout
+        android:id="@+id/containerOverview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/containerProduct"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+                android:id="@id/tvCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#3c5a99"
+                android:textSize="20sp"
+                tools:text="10" />
+
+            <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sản phẩm"
+                android:textColor="#3c5a99"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+                android:id="@id/tvRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#3c5a99"
+                android:textSize="20sp"
+                tools:text="4.5/5" />
+
+            <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Đánh giá"
+                android:textColor="#3c5a99"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+                android:id="@+id/tvCountScan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#3c5a99"
+                android:textSize="20sp"
+                tools:text="186.820" />
+
+            <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lượt quét"
+                android:textColor="#3c5a99"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/viewbg"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_10"
+        android:background="@color/darkGray6" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/containerCreate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white">
+
+        <TextView
+            android:id="@+id/textView36"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/barlow_medium"
+            android:text="Đăng bài mới"
+            android:textColor="#3C5A99"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/user_avatar"
+            android:layout_width="@dimen/size_40"
+            android:layout_height="@dimen/size_40"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="18dp"
+            android:src="@drawable/img_default_business_logo"
+            app:civ_border_color="@color/gray"
+            app:civ_border_width="@dimen/size_0_5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView36"
+            app:layout_constraintTop_toBottomOf="@+id/textView36" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgVerified2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_verified_16px"
+            app:layout_constraintBottom_toBottomOf="@id/user_avatar"
+            app:layout_constraintEnd_toEndOf="@id/user_avatar" />
+
+        <TextView
+            android:id="@+id/textView45"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:gravity="center_vertical"
+            android:text="Hãy chia sẻ những thông tin hữu ích nào!"
+            android:textColor="#B4B4B4"
+            app:layout_constraintBottom_toBottomOf="@+id/user_avatar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/user_avatar"
+            app:layout_constraintTop_toTopOf="@+id/user_avatar" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>

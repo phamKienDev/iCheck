@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".screen.user.newsdetailv2.NewDetailV2Activity">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@id/nestedScrollView"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/viewShadowBottom"
+        android:layout_height="@dimen/size_0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/size_14"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@id/imgBanner"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_0"
+                    android:background="@color/white"
+                    app:layout_constraintDimensionRatio="H, 375:200"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_10"
+                android:background="@color/white"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:gravity="center_vertical"
+                android:includeFontPadding="false"
+                android:paddingStart="@dimen/size_12"
+                android:paddingLeft="@dimen/size_12"
+                android:paddingEnd="@dimen/size_12"
+                android:paddingRight="@dimen/size_12"
+                android:paddingBottom="@dimen/size_20"
+                android:textColor="@color/black_21_v2"
+                android:textSize="18sp" />
+
+            <WebView
+                android:id="@id/webView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingStart="@dimen/size_12"
+                android:paddingLeft="@dimen/size_12"
+                android:paddingEnd="@dimen/size_12"
+                android:paddingRight="@dimen/size_12" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_20"
+                android:background="#F0F0F0"
+                android:visibility="gone">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/appCompatTextView30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/barlow_semi_bold"
+                    android:includeFontPadding="false"
+                    android:paddingStart="@dimen/size_12"
+                    android:paddingLeft="@dimen/size_12"
+                    android:paddingTop="@dimen/size_12"
+                    android:text="Tin tức liên quan"
+                    android:textColor="@color/blue"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@id/txtViewAll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/barlow_semi_bold"
+                    android:includeFontPadding="false"
+                    android:paddingTop="@dimen/size_12"
+                    android:paddingEnd="@dimen/size_12"
+                    android:paddingRight="@dimen/size_12"
+                    android:text="Xem thêm"
+                    android:textColor="@color/blue"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/appCompatTextView30" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#F0F0F0"
+                    app:layout_constraintTop_toBottomOf="@+id/appCompatTextView30" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <FrameLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:paddingTop="@dimen/size_40"
+        android:paddingBottom="@dimen/size_12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:layout_width="@dimen/size_44"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            app:srcCompat="@drawable/ic_back_black_28px" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:layout_width="@dimen/size_44"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:background="?android:attr/selectableItemBackground"
+            android:src="@drawable/ic_home_black_28px" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/toolbarAlpha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:alpha="0"
+        android:background="@color/white"
+        android:paddingTop="41dp"
+        android:paddingBottom="@dimen/size_12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@id/imgBack"
+            android:layout_width="@dimen/size_44"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            app:srcCompat="@drawable/ic_back_blue_v2_24px" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/txtTitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/size_44"
+            android:layout_marginEnd="@dimen/size_44"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="#057DDA"
+            android:textSize="18sp"
+            android:textStyle="normal"
+            tools:text="Tiêu đề" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@id/imgAction"
+            android:layout_width="@dimen/size_44"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:background="?android:attr/selectableItemBackground"
+            android:src="@drawable/ic_home_blue_v2_24px" />
+    </FrameLayout>
+
+    <View
+        android:id="@+id/viewShadow"
+        style="@style/Shadow_Bottom"
+        android:layout_width="match_parent"
+        android:alpha="0"
+        app:layout_constraintTop_toBottomOf="@id/toolbarAlpha" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btnCTA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_10"
+            android:layout_marginRight="@dimen/size_12"
+            android:layout_marginBottom="@dimen/size_20"
+            android:background="@drawable/bg_corners_4_light_blue_solid"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center"
+            android:paddingTop="@dimen/size_10"
+            android:paddingBottom="@dimen/size_10"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            tools:text="CTA ( không cố định)" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/viewShadowBottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_4"
+        android:background="@drawable/shadow_top"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/linearLayout" />
+</androidx.constraintlayout.widget.ConstraintLayout>

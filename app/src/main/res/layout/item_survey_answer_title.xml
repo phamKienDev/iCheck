@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.AppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/txtQuestion"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/size_6"
+    android:layout_marginEnd="@dimen/size_6"
+    android:layout_marginBottom="@dimen/size_8"
+    android:fontFamily="sans-serif"
+    android:gravity="center"
+    android:textAlignment="gravity"
+    android:textColor="#333333"
+    android:textSize="14sp"
+    android:textStyle="normal"
+    tools:text="Title" />

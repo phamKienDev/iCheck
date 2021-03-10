@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/user_wall_nav_graph"
+    app:startDestination="@id/ickUserWallFragment">
+
+    <fragment
+        android:id="@+id/ickUserWallFragment"
+        tools:layout="@layout/activity_ick_user_wall"
+        android:name="vn.icheck.android.screen.user.wall.mainuser.IckUserWallFragment"
+        android:label="IckUserWallFragment" >
+        <action
+            android:id="@+id/action_ickUserWallFragment_to_userWallSettingFragment"
+            app:destination="@id/userWallSettingFragment" />
+        <action
+            android:id="@+id/action_ickUserWallFragment_to_privacySettingFragment"
+            app:destination="@id/privacySettingFragment" />
+        <action
+            android:id="@+id/action_ickUserWallFragment_to_editMyInformationActivity"
+            app:destination="@id/editMyInformationActivity" />
+        <action
+            android:id="@+id/action_ickUserWallFragment_to_ickNewPwFragment"
+            app:destination="@id/ickNewPwFragment" />
+        <action
+            android:id="@+id/action_ickUserWallFragment_to_pageManagementFragment"
+            app:destination="@id/pageManagementFragment" />
+        <action
+            android:id="@+id/action_ickUserWallFragment_to_publicInfoFragment"
+            app:destination="@id/publicInfoFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/userWallSettingFragment"
+        tools:layout="@layout/dialog_bottom_wall_setting"
+        android:name="vn.icheck.android.screen.user.wall.setting.UserWallSettingFragment"
+        android:label="UserWallSettingFragment" />
+    <fragment
+        android:id="@+id/privacySettingFragment"
+        tools:layout="@layout/fragment_privacy_settings"
+        android:name="vn.icheck.android.screen.user.wall.privacy.PrivacySettingFragment"
+        android:label="PrivacySettingFragment" />
+    <fragment
+        android:id="@+id/editMyInformationActivity"
+        tools:layout="@layout/activity_edit_my_information"
+        android:name="vn.icheck.android.screen.user.wall.option_edit_my_information.EditMyInformationActivity"
+        android:label="EditMyInformationActivity" >
+        <action
+            android:id="@+id/action_editMyInformationActivity_to_ickNewPwFragment"
+            app:destination="@id/ickNewPwFragment" />
+        <action
+            android:id="@+id/action_editMyInformationActivity_to_ickChangePhoneFragment"
+            app:destination="@id/ickChangePhoneFragment" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_new_pw"
+        android:id="@+id/ickNewPwFragment"
+        android:name="vn.icheck.android.screen.user.wall.updatepassword.IckNewPwFragment"
+        android:label="IckNewPwFragment" >
+        <action
+            android:id="@+id/action_ickNewPwFragment_to_ickChangePasswordSuccessDialog2"
+            app:destination="@id/ickChangePasswordSuccessDialog2" />
+        <argument
+            android:name="type"
+            app:argType="integer"
+            android:defaultValue="1" />
+    </fragment>
+    <dialog
+        tools:layout="@layout/dialog_change_pw_success"
+        android:id="@+id/ickChangePasswordSuccessDialog2"
+        android:name="vn.icheck.android.screen.account.icklogin.fragment.IckChangePasswordSuccessDialog"
+        android:label="IckChangePasswordSuccessDialog" />
+    <fragment
+        tools:layout="@layout/fragment_change_phone"
+        android:id="@+id/ickChangePhoneFragment"
+        android:name="vn.icheck.android.screen.user.wall.updatephone.IckChangePhoneFragment"
+        android:label="IckChangePhoneFragment" >
+        <action
+            android:id="@+id/action_ickChangePhoneFragment_to_ickConfirmChangePhoneFragment"
+            app:destination="@id/ickConfirmChangePhoneFragment"
+            app:popUpTo="@id/ickChangePhoneFragment" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_confirm_change_phone"
+        android:id="@+id/ickConfirmChangePhoneFragment"
+        android:name="vn.icheck.android.screen.user.wall.updatephone.IckConfirmChangePhoneFragment"
+        android:label="IckConfirmChangePhoneFragment" >
+        <argument
+            android:name="phone"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/pageManagementFragment"
+        tools:layout="@layout/fragment_page_management"
+        android:name="vn.icheck.android.screen.user.wall.manage_page.PageManagementFragment"
+        android:label="PageManagementFragment" />
+    <fragment
+        android:id="@+id/publicInfoFragment"
+        tools:layout="@layout/public_info"
+        android:name="vn.icheck.android.screen.user.wall.public_info.PublicInfoFragment"
+        android:label="PublicInfoFragment" />
+</navigation>

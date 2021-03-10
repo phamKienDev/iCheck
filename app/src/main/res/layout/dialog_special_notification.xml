@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/bg_black_45_corner_10"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@id/imgIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_16"
+        android:src="@drawable/ic_check_read_all_42_dp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_16"
+        android:layout_marginTop="@dimen/size_12"
+        android:layout_marginEnd="@dimen/size_16"
+        android:layout_marginBottom="@dimen/size_10"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:gravity="center_horizontal"
+        android:includeFontPadding="false"
+        android:maxWidth="245dp"
+        android:textAlignment="gravity"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        tools:text="@string/ban_da_doc_tat_ca_cac_thong_bao" />
+</LinearLayout>

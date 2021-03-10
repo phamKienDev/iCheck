@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/size_6">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgBanner"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginEnd="@dimen/size_12"
+        app:layout_constraintDimensionRatio="H, 351:140"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_8"
+        android:layout_marginTop="122dp"
+        android:layout_marginEnd="@dimen/size_8"
+        android:layout_marginBottom="@dimen/size_6"
+        android:background="@color/white"
+        app:cardCornerRadius="@dimen/size_6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/imgBanner"
+        app:layout_constraintStart_toStartOf="@id/imgBanner"
+        app:layout_constraintTop_toTopOf="@id/imgBanner">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgAvatar"
+                android:layout_width="@dimen/size_36"
+                android:layout_height="@dimen/size_36"
+                android:layout_margin="@dimen/size_6" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvNameShop"
+                android:layout_width="@dimen/size_0"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="3"
+                android:ellipsize="end"
+                android:fontFamily="@font/roboto_medium"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                tools:text="Tập đoàn Hòa Phát" />
+
+            <LinearLayout
+                android:layout_width="@dimen/size_0"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/size_8"
+                android:layout_marginTop="@dimen/size_6"
+                android:layout_marginEnd="@dimen/size_8"
+                android:layout_marginBottom="@dimen/size_7"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="end"
+                    android:includeFontPadding="false"
+                    android:singleLine="true"
+                    android:textColor="@color/blueVip"
+                    android:textSize="14sp"
+                    tools:text="45" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvPointName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_4"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="end"
+                    android:includeFontPadding="false"
+                    android:singleLine="true"
+                    android:textColor="@color/darkGray2"
+                    android:textSize="12sp"
+                    tools:text="Hòa Phát88" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

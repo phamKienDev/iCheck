@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitCenter"
+        android:visibility="gone"
+        android:src="@drawable/bg_unbox_gift_success"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgDotTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:src="@drawable/ic_dot_light_top_left_unbox"
+        app:layout_constraintStart_toStartOf="@+id/box_big"
+        app:layout_constraintTop_toTopOf="@+id/box_big" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgDotBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:src="@drawable/ic_dot_light_bottom_right_unbox"
+        app:layout_constraintBottom_toBottomOf="@+id/box_big"
+        app:layout_constraintEnd_toEndOf="@+id/box_big" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/box_big"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        app:layout_constraintWidth_percent="0.5"
+        android:src="@drawable/ic_gift_box_normal_seller"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/imgBig1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="58dp"
+        android:layout_marginEnd="55dp"
+        android:layout_marginBottom="@dimen/size_33"
+        android:background="@drawable/bg_white_corners_4"
+        android:scaleType="fitCenter"
+        tools:visibility="gone"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/box_big"
+        app:layout_constraintDimensionRatio="H, 1:1"
+        app:layout_constraintEnd_toEndOf="@id/box_big"
+        app:layout_constraintStart_toStartOf="@id/box_big" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

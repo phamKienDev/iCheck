@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/size_10"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvVote"
+        android:layout_width="0dp"
+        android:layout_weight="4"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_list_blue_12px"
+        android:drawableLeft="@drawable/ic_list_blue_12px"
+        android:drawablePadding="@dimen/size_2"
+        android:ellipsize="end"
+        android:fontFamily="@font/barlow_medium"
+        android:singleLine="true"
+        android:textColor="@color/black_21_v2"
+        android:textSize="14sp"
+        tools:text="Chất lượng sản phẩm" />
+
+    <com.willy.ratingbar.ScaleRatingBar
+        android:id="@+id/ratingReview"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:layout_weight="5"
+        app:srb_clickable="false"
+        app:srb_drawableEmpty="@drawable/ic_star_empty_36px"
+        app:srb_drawableFilled="@drawable/star_active_36px"
+        app:srb_isIndicator="false"
+        app:srb_numStars="5"
+        app:srb_rating="0"
+        app:srb_scrollable="false"
+        app:srb_starHeight="@dimen/size_36"
+        android:gravity="end"
+        app:srb_starPadding="@dimen/size_0"
+        app:srb_starWidth="@dimen/size_36" />
+</LinearLayout>

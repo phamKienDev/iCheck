@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/title"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_20"
+        android:fontFamily="@font/roboto_medium"
+        android:includeFontPadding="false"
+        android:text="Lịch sử tích điểm"
+        android:textColor="@color/darkBlue"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@drawable/bg_corner_10_f5f5f5"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/size_12"
+        android:paddingRight="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_12"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_12"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvHintSerial"
+                android:layout_width="@dimen/size_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:fontFamily="@font/roboto_regular"
+                android:includeFontPadding="false"
+                android:textColor="#434343"
+                android:textSize="14sp"
+                tools:text="Số serial:" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvSerial"
+                android:layout_width="@dimen/size_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:ellipsize="end"
+                android:gravity="end"
+                android:fontFamily="@font/roboto_medium"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:textColor="#434343"
+                android:textSize="14sp"
+                tools:text="ABC - 123456" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_8"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="@dimen/size_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:fontFamily="@font/roboto_regular"
+                android:includeFontPadding="false"
+                android:text="Điểm tích lũy:"
+                android:textColor="#434343"
+                android:textSize="14sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvPoint"
+                android:layout_width="@dimen/size_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:ellipsize="end"
+                android:gravity="end"
+                android:fontFamily="@font/roboto_medium"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:textColor="#49AA2D"
+                android:textSize="18sp"
+                tools:text="+ 2,000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_12"
+            android:layout_marginBottom="@dimen/size_8"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTime"
+                android:layout_width="@dimen/size_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:fontFamily="@font/roboto_regular"
+                android:includeFontPadding="false"
+                android:textColor="#434343"
+                android:textSize="14sp"
+                android:text="Thời gian:" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvDate"
+                android:layout_width="@dimen/size_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:ellipsize="end"
+                android:gravity="end"
+                android:fontFamily="@font/roboto_regular"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:textColor="#434343"
+                android:textSize="14sp"
+                tools:text="12:43, 14/04/2019" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@id/tvExist"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/size_25"
+        android:background="@drawable/bg_exist_cart"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:paddingStart="@dimen/size_20"
+        android:paddingEnd="@dimen/size_20"
+        android:text="@string/da_co_trong_gio_hang"
+        android:textColor="#ffffff"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@id/layoutContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_12"
+        android:layout_marginEnd="@dimen/size_12"
+        android:background="@drawable/bg_white_corners_8"
+        app:layout_constraintTop_toBottomOf="@id/tvExist"
+        app:layout_goneMarginTop="@dimen/size_6">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@id/imgProduct"
+            android:layout_width="@dimen/size_60"
+            android:layout_height="@dimen/size_60"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginTop="@dimen/size_8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/tvProductName"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginEnd="@dimen/size_8"
+            android:fontFamily="sans-serif-medium"
+            android:includeFontPadding="false"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgProduct"
+            app:layout_constraintTop_toTopOf="@id/imgProduct"
+            tools:text="Nước khoáng Lavie 350ml - Chính hãng (tên 2 dòng)......" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/tvProductPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:textColor="#3c5a99"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@id/imgProduct"
+            app:layout_constraintStart_toStartOf="@id/tvProductName"
+            tools:text="Giá bán: 4,000đ" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/tvPriceNoSale"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:includeFontPadding="false"
+            android:textColor="#828282"
+            android:textSize="@dimen/font_size_2"
+            android:paddingStart="@dimen/size_9"
+            android:paddingEnd="@dimen/size_9"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@id/imgProduct"
+            app:layout_constraintEnd_toEndOf="@id/tvProductName"
+            app:layout_constraintStart_toEndOf="@id/tvProductPrice"
+            app:layout_constraintTop_toTopOf="@+id/tvProductPrice"
+            tools:text="552,110,000đ" />
+
+        <LinearLayout
+            android:id="@+id/layoutShop"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_40"
+            android:orientation="horizontal"
+            android:layout_marginTop="62dp"
+            android:background="@color/gray_item_search"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/imgProduct">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@id/imgAvatarShop"
+                android:layout_width="@dimen/size_24"
+                android:layout_height="@dimen/size_24"
+                android:layout_marginStart="@dimen/size_8"
+                tools:src="@drawable/ic_circle_avatar_default"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@id/tvShopName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_8"
+                android:layout_marginEnd="@dimen/size_8"
+                android:fontFamily="sans-serif"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:paddingEnd="@dimen/size_5"
+                android:textColor="#3c5a99"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                tools:text="Tạp hóa Ngọc Lan" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCount"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/size_24"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginEnd="@dimen/size_8"
+            android:background="#f5f5f5"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:singleLine="true"
+            android:text="1"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@id/btnAdd"
+            app:layout_constraintEnd_toEndOf="@id/btnAdd"
+            app:layout_constraintStart_toStartOf="@id/btnUnAdd"
+            app:layout_constraintTop_toTopOf="@id/btnAdd" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@id/btnUnAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_8"
+            android:background="?android:attr/selectableItemBackground"
+            android:src="@drawable/ic_unadd_cart_dark_gray_2_24dp"
+            app:layout_constraintBottom_toBottomOf="@id/btnAddToCart"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btnAddToCart" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@id/btnAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_28"
+            android:background="?android:attr/selectableItemBackground"
+            android:src="@drawable/ic_add_cart_light_blue_24dp"
+            app:layout_constraintBottom_toBottomOf="@id/btnUnAdd"
+            app:layout_constraintStart_toEndOf="@id/btnUnAdd"
+            app:layout_constraintTop_toTopOf="@id/btnUnAdd" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@id/btnAddToCart"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/size_36"
+            android:layout_marginTop="@dimen/size_12"
+            android:layout_marginEnd="@dimen/size_8"
+            android:layout_marginBottom="@dimen/size_12"
+            android:background="@drawable/btn_white_outline_blue_1_corners_36"
+            android:drawableStart="@drawable/ic_shop_blue_24dp"
+            android:drawablePadding="@dimen/size_8"
+            android:fontFamily="sans-serif"
+            android:paddingStart="@dimen/size_12"
+            android:paddingEnd="@dimen/size_12"
+            android:text="@string/them_vao_gio"
+            android:textAllCaps="false"
+            android:textColor="#3c5a99"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutShop" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@id/imgClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:src="@drawable/ic_circle_close_red_24dp"
+        app:layout_constraintBottom_toTopOf="@id/layoutContent"
+        app:layout_constraintEnd_toEndOf="@id/layoutContent"
+        app:layout_constraintStart_toEndOf="@id/layoutContent"
+        app:layout_constraintTop_toTopOf="@id/layoutContent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="@dimen/size_3"
+        android:drawableEnd="@drawable/ic_scan_buy_detail_product"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/layoutContent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

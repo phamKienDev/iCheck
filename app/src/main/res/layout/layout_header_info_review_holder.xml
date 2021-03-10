@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgStar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginLeft="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_10"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/img_star_review_81dp" />
+
+    <TextView
+        android:id="@+id/tvPoint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:includeFontPadding="false"
+        android:textColor="@color/point_review"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgStar"
+        app:layout_constraintEnd_toEndOf="@+id/imgStar"
+        app:layout_constraintStart_toStartOf="@+id/imgStar"
+        app:layout_constraintTop_toTopOf="@+id/imgStar"
+        tools:text="8,7" />
+
+    <TextView
+        android:id="@+id/tvRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_4"
+        android:layout_marginLeft="@dimen/size_4"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:includeFontPadding="false"
+        android:textColor="@color/lightBlue"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/imgStar"
+        app:layout_constraintTop_toTopOf="@+id/imgStar"
+        tools:text="Tuyệt vời" />
+
+    <TextView
+        android:id="@+id/tvCountReview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:includeFontPadding="false"
+        android:textColor="@color/fast_survey_gray"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/tvRating"
+        app:layout_constraintTop_toBottomOf="@+id/tvRating"
+        tools:text="187 Đánh giá" />
+</androidx.constraintlayout.widget.ConstraintLayout>

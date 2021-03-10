@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:background="@drawable/bg_gray_corners_3_solid_white"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_pick_gallery"
+        android:layout_width="match_parent"
+        android:textAlignment="center"
+        android:padding="12dp"
+        android:textColor="@color/blue"
+        android:layout_height="wrap_content"
+        android:text="Chọn ảnh từ thư viện" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray" />
+
+    <TextView
+        android:textAlignment="center"
+        android:id="@+id/tv_pick_camera"
+        android:padding="12dp"
+        android:textColor="@color/blue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Chụp ảnh" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray" />
+
+    <TextView
+        android:textAlignment="center"
+        android:textColor="@color/blue"
+        android:id="@+id/tv_cancel"
+        android:padding="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hủy" />
+</LinearLayout>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/size_10">
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgBackground"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="110dp"
+        android:layout_marginTop="@dimen/size_16"
+        android:layout_marginEnd="@dimen/size_12"
+        android:layout_marginRight="@dimen/size_12"
+        android:layout_marginBottom="@dimen/size_10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="W, 165:110"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/size_3"
+        android:src="@drawable/ic_delete_gray_24px"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvMessage"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginLeft="@dimen/size_12"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:includeFontPadding="false"
+        android:paddingEnd="@dimen/size_5"
+        android:paddingRight="@dimen/size_5"
+        android:textColor="@color/black_21_v2"
+        android:textSize="@dimen/font_size_4"
+        app:layout_constraintEnd_toStartOf="@id/imgBackground"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/imgBackground"
+        tools:text="Chỉ muốn xem những chủ đề mà bạn quan tâm?" />
+
+    <vn.icheck.android.component.view.ButtonLightBlueCorners4
+        android:id="@+id/btnAction"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_20"
+        android:layout_marginEnd="@dimen/size_12"
+        android:layout_marginRight="@dimen/size_12"
+        app:buttonTextSize="@dimen/font_size_4"
+        android:text="Lựa chọn"
+        android:padding="@dimen/size_4"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/imgBackground"
+        app:layout_constraintEnd_toEndOf="@id/tvMessage"
+        app:layout_constraintStart_toStartOf="@id/tvMessage"
+        app:layout_constraintTop_toBottomOf="@id/tvMessage" />
+</androidx.constraintlayout.widget.ConstraintLayout>

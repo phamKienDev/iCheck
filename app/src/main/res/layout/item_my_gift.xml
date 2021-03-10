@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/darkGray6"
+    android:layout_marginLeft="@dimen/size_12"
+    android:layout_marginTop="@dimen/size_10"
+    android:layout_marginRight="@dimen/size_12"
+    app:cardCornerRadius="@dimen/size_4">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/idOne"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/size_0"
+            android:src="@drawable/ic_left_round_right"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/idTwo"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="@dimen/size_0"
+            android:background="@drawable/ic_right_round_left"
+            app:layout_constraintBottom_toBottomOf="@id/idOne"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/idOne"
+            app:layout_constraintTop_toTopOf="@id/idOne" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgProduct"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="@dimen/size_8"
+            android:layout_marginTop="@dimen/size_10"
+            android:layout_marginBottom="@dimen/size_10"
+            android:src="@drawable/ic_gift_80"
+            app:layout_constraintBottom_toBottomOf="@id/idOne"
+            app:layout_constraintStart_toStartOf="@id/idOne"
+            app:layout_constraintTop_toTopOf="@id/idOne" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_tag_green_top"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center_horizontal|end"
+            android:includeFontPadding="false"
+            android:paddingTop="@dimen/size_2"
+            android:paddingRight="@dimen/size_4"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="x999" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvProduct"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_10"
+            android:layout_marginTop="@dimen/size_10"
+            android:layout_marginRight="@dimen/size_12"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:includeFontPadding="false"
+            android:maxLines="2"
+            android:minLines="1"
+            android:textColor="@color/black_21_v2"
+            app:layout_constraintEnd_toStartOf="@+id/tvCount"
+            app:layout_constraintStart_toStartOf="@id/idTwo"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPage"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_6"
+            android:layout_marginRight="@dimen/size_10"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_medium"
+            android:includeFontPadding="false"
+            android:singleLine="true"
+            android:textColor="@color/blue"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tvProduct"
+            app:layout_constraintTop_toBottomOf="@id/tvProduct" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDate"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_clock_gray_12"
+            android:drawablePadding="@dimen/size_6"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center_vertical"
+            android:includeFontPadding="false"
+            android:singleLine="true"
+            android:textColor="@color/gray_v2"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/btnUse"
+            app:layout_constraintEnd_toStartOf="@id/btnUse"
+            app:layout_constraintStart_toStartOf="@id/tvPage"
+            app:layout_constraintTop_toTopOf="@id/btnUse"
+            tools:text="Còn 154 ngày" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btnUse"
+            android:layout_width="@dimen/size_100"
+            android:layout_height="@dimen/size_28"
+            android:layout_marginBottom="@dimen/size_12"
+            android:background="@drawable/bg_yellow_corner_4"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="Đập quà"
+            android:textColor="@color/white"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tvPage" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:clickable="true"
+    android:focusable="true">
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_40"
+        android:drawableStart="@drawable/ic_view_image_back_50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.rd.PageIndicatorView xmlns:attrs="http://schemas.android.com/apk/res-auto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginBottom="@dimen/size_25"
+        app:piv_animationType="fill"
+        app:piv_dynamicCount="true"
+        app:piv_interactiveAnimation="true"
+        app:piv_selectedColor="@color/white"
+        app:piv_unselectedColor="@color/white"
+        app:piv_viewPager="@id/viewPager"
+        attrs:layout_constraintBottom_toBottomOf="parent"
+        attrs:layout_constraintStart_toStartOf="parent"
+        attrs:piv_padding="@dimen/size_8"
+        attrs:piv_radius="@dimen/size_5" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@id/txtDownload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_8"
+        android:background="?android:attr/selectableItemBackground"
+        android:padding="@dimen/size_12"
+        android:src="@drawable/ic_download_white_20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

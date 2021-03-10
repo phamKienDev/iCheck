@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/layoutContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <include
+        android:id="@id/layoutToolbar"
+        layout="@layout/toolbar_light_blue" />
+
+    <View
+        android:id="@id/viewBackground"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_10"
+        android:background="@color/darkGray6"
+        app:layout_constraintTop_toBottomOf="@id/layoutToolbar" />
+
+    <View
+        android:id="@id/viewTop"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_4"
+        android:background="@drawable/shadow_bottom"
+        app:layout_constraintTop_toBottomOf="@id/layoutToolbar" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@id/swipeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewBackground">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:descendantFocusability="blocksDescendants"
+            tools:listitem="@layout/item_friend_request" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <include
+        android:id="@id/layoutLoading"
+        layout="@layout/dialog_loading"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0"
+        app:layout_constraintBottom_toBottomOf="@id/swipeLayout"
+        app:layout_constraintTop_toTopOf="@id/swipeLayout" />
+</androidx.constraintlayout.widget.ConstraintLayout>

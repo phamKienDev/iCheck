@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/layoutContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    app:layoutDescription="@xml/fragment_home_scene">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/group_notification"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="50dp"
+        android:visibility="gone"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/root_reminder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="8dp"
+                android:paddingBottom="12dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_remider_36px" />
+
+            <TextView
+                android:id="@+id/tv_show_all_reminders"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:text="Xem tất cả lời nhắc"
+                android:textColor="#FF0000"
+                app:drawableEndCompat="@drawable/ic_arrow_down_blue_24px_vector"
+                app:drawableRightCompat="@drawable/ic_arrow_down_blue_24px_vector"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView13"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.48"
+                app:layout_constraintStart_toEndOf="@+id/imageView13"
+                app:layout_constraintTop_toTopOf="@+id/imageView13"
+                tools:visibility="visible" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/group_reminders"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/bg_reminder"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView13"
+                tools:visibility="visible">
+
+                <ImageView
+                    android:id="@+id/imageView14"
+                    android:layout_width="50dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="24dp"
+                    android:maxWidth="50dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:srcCompat="@drawable/ic_reminder_item" />
+
+                <TextView
+                    android:id="@+id/tv_reminder_content"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginRight="12dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/barlow_medium"
+                    android:maxLines="2"
+                    android:textColor="#212121"
+                    app:layout_constraintEnd_toStartOf="@id/imageView14"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Bạn có 1 đơn hàng 800.000 đ thanh toán tại VinMarrt+ ( tối đa 2 dòng)..." />
+
+                <TextView
+                    android:id="@+id/tv_action"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/barlow_medium"
+                    android:lines="1"
+                    android:textColor="@color/lightBlue"
+                    android:textSize="16sp"
+                    app:drawableEndCompat="@drawable/ic_arrow_right_light_blue_24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/imageView14"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_reminder_content"
+                    tools:text="Thanh toán ngay" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@id/swipeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#f0f0f0"
+            android:clipToPadding="false"
+            android:descendantFocusability="blocksDescendants" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+<!--    <View-->
+<!--        android:id="@+id/toolbarBackground"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="@dimen/size_0"-->
+<!--        android:alpha="0"-->
+<!--        android:background="@color/white"-->
+<!--        app:layout_constraintBottom_toBottomOf="@id/layoutHeader"-->
+<!--        app:layout_constraintTop_toTopOf="@id/layoutHeader" />-->
+
+    <ScrollView
+        android:id="@+id/toolbarBackground"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0"
+        android:alpha="0"
+        android:clickable="false"
+        android:focusable="false"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/layoutHeader"
+        app:layout_constraintTop_toTopOf="@id/layoutHeader">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgThemeBackground"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter" />
+    </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@id/layoutHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="invisible"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
+
+        <androidx.appcompat.widget.AppCompatCheckedTextView
+            android:id="@+id/txtAvatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_7"
+            android:layout_marginLeft="@dimen/size_7"
+            android:drawableStart="@drawable/icon_home_menu_24dp"
+            android:drawableLeft="@drawable/icon_home_menu_24dp"
+            android:padding="@dimen/size_8"
+            app:layout_constraintBottom_toBottomOf="@id/txtSearch"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/txtSearch" />
+
+        <androidx.appcompat.widget.AppCompatCheckedTextView
+            android:id="@id/txtSearch"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/size_34"
+            android:layout_marginStart="@dimen/size_7"
+            android:layout_marginTop="@dimen/size_10"
+            android:layout_marginEnd="@dimen/size_6"
+            android:layout_marginBottom="@dimen/size_10"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_icheck_70dp_17dp"
+            android:drawablePadding="@dimen/size_6"
+            android:fontFamily="sans-serif"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/size_10"
+            android:paddingEnd="@dimen/size_10"
+            android:textColor="#828282"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tvViewCart"
+            app:layout_constraintStart_toEndOf="@id/txtAvatar"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatCheckedTextView
+            android:id="@id/tvViewCart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/icon_home_shop_24dp"
+            android:drawableLeft="@drawable/icon_home_shop_24dp"
+            android:padding="@dimen/size_8"
+            app:layout_constraintBottom_toBottomOf="@id/txtSearch"
+            app:layout_constraintEnd_toStartOf="@id/txtNotification"
+            app:layout_constraintTop_toTopOf="@id/txtSearch" />
+
+        <androidx.appcompat.widget.AppCompatCheckedTextView
+            android:id="@id/tvCartCount"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:background="@drawable/bg_home_notification"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:minWidth="@dimen/size_20"
+            android:minHeight="@dimen/size_20"
+            android:paddingStart="@dimen/size_4"
+            android:paddingEnd="@dimen/size_4"
+            android:textAlignment="gravity"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/tvViewCart"
+            app:layout_constraintTop_toTopOf="@+id/tvViewCart"
+            tools:text="9"
+            tools:visibility="visible" />
+
+        <androidx.appcompat.widget.AppCompatCheckedTextView
+            android:id="@id/txtNotification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/size_8"
+            android:layout_marginRight="@dimen/size_8"
+            android:drawableStart="@drawable/icon_home_notification_24dp"
+            android:drawableLeft="@drawable/icon_home_notification_24dp"
+            android:padding="@dimen/size_8"
+            app:layout_constraintBottom_toBottomOf="@id/txtSearch"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/txtSearch" />
+
+        <androidx.appcompat.widget.AppCompatCheckedTextView
+            android:id="@id/tvNotificationCount"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginLeft="18dp"
+            android:background="@drawable/bg_home_cart"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:textAlignment="gravity"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            android:visibility="invisible"
+            app:layout_constraintStart_toEndOf="@+id/tvViewCart"
+            app:layout_constraintTop_toTopOf="@+id/txtNotification"
+            tools:text="9+"
+            tools:visibility="visible" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@id/viewShadow"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_4"
+        android:alpha="0"
+        android:background="@drawable/shadow_bottom"
+        app:layout_constraintTop_toBottomOf="@id/layoutHeader" />
+
+    <TextView
+        android:id="@+id/tv_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0.0"
+        android:background="@drawable/bg_red_corner_6"
+        android:elevation="10dp"
+        android:fontFamily="@font/barlow_medium"
+        android:outlineProvider="none"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/group_notification"
+        app:layout_constraintEnd_toEndOf="@+id/group_notification"
+        app:layout_constraintStart_toEndOf="@+id/group_notification"
+        app:layout_constraintTop_toTopOf="@+id/group_notification"
+        tools:text="9+"
+        tools:visibility="visible" />
+
+    <FrameLayout
+        android:background="@android:color/transparent"
+        android:clickable="true"
+        android:focusable="true"
+        android:id="@id/layoutLoading"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:scaleType="centerInside"
+            app:lottie_autoPlay="true"
+            app:lottie_enableMergePathsForKitKatAndAbove="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loading_short" />
+    </FrameLayout>
+</androidx.constraintlayout.motion.widget.MotionLayout>

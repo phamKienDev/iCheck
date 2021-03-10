@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:paddingTop="@dimen/size_14"
+        android:paddingBottom="@dimen/size_14"
+        android:textAlignment="gravity"
+        android:textColor="#3fa2f7"
+        android:textSize="18sp"
+        android:textStyle="normal"
+        tools:text="Xem chi tiết sản phẩm" />
+
+</LinearLayout>

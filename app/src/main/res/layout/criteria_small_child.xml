@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/criteria_name"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="8dp"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:textSize="12sp"
+        android:gravity="start"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@color/darkGray1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/rating_bar"
+        tools:text="Chất lượng sản phẩm ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff" />
+
+    <com.willy.ratingbar.ScaleRatingBar
+        android:id="@+id/rating_bar"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:paddingEnd="@dimen/size_12"
+        android:paddingStart="@dimen/size_12"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:srb_drawableEmpty="@drawable/star_empty_layer"
+        app:srb_drawableFilled="@drawable/star_filled_layer"
+        app:srb_numStars="5"
+        app:srb_starHeight="@dimen/size_24"
+        app:srb_starPadding="4dp"
+        app:srb_starWidth="@dimen/size_24" />
+</androidx.constraintlayout.widget.ConstraintLayout>

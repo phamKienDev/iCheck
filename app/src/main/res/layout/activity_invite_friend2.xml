@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="vn.icheck.android.screen.user.invite_friend_follow_page.InviteFriendFollowPageActivity">
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/img_back"
+        android:layout_width="@dimen/size_44"
+        android:layout_height="@dimen/size_44"
+        android:background="@color/transparent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_back_blue_24px_new" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:text="@string/moi_ban_be"
+        android:textColor="@color/lightBlue"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/img_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/img_back" />
+
+    <View
+        android:id="@+id/view41"
+        style="@style/Shadow_Bottom"
+        android:layout_width="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_back" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/view46"
+        app:layout_constraintTop_toTopOf="@id/view41">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginTop="@dimen/size_12"
+                android:layout_marginEnd="@dimen/size_12"
+                android:background="@drawable/bg_gray_f0_corners_4"
+                android:drawableStart="@drawable/ic_search_gray_24dp"
+                android:drawablePadding="@dimen/size_12"
+                android:fontFamily="@font/barlow_medium"
+                android:hint="@string/tim_kiem_trong_danh_sach_nay"
+                android:imeOptions="actionSearch"
+                android:maxLines="3"
+                android:paddingStart="@dimen/size_12"
+                android:paddingTop="@dimen/size_8"
+                android:paddingEnd="@dimen/size_45"
+                android:paddingBottom="@dimen/size_8"
+                android:textColor="@color/collection_product_name"
+                android:textColorHint="@color/darkGray2"
+                android:textSize="14sp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/img_clear"
+                android:layout_width="@dimen/size_42"
+                android:layout_height="@dimen/size_42"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/ic_delete_gray_vector"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/edtSearch"
+                app:layout_constraintEnd_toEndOf="@id/edtSearch"
+                app:layout_constraintTop_toTopOf="@id/edtSearch" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcvContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view46"
+        style="@style/Shadow_Bottom"
+        android:layout_width="wrap_content"
+        android:layout_marginBottom="@dimen/size_10"
+        app:layout_constraintBottom_toTopOf="@id/tvInvite"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvInvite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_12"
+        android:layout_marginRight="@dimen/size_12"
+        android:layout_marginBottom="@dimen/size_20"
+        android:background="@drawable/bg_gray_b4_corners_4"
+        android:enabled="false"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:gravity="center"
+        android:paddingTop="@dimen/size_8"
+        android:paddingBottom="@dimen/size_8"
+        android:text="@string/gui_loi_moi"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

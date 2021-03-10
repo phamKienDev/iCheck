@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <include
+        android:id="@id/layoutToolbar"
+        layout="@layout/toolbar_blue" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0"
+        android:descendantFocusability="blocksDescendants"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutToolbar"
+        tools:listitem="@layout/item_order_detail_parent" />
+
+    <View
+        style="@style/Shadow_Bottom"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutToolbar" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@id/layoutBottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_48"
+        android:layout_marginBottom="@dimen/size_16"
+        android:visibility="gone"
+        android:weightSum="1"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@id/layoutStart"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginLeft="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_4"
+            android:layout_marginBottom="@dimen/size_4"
+            app:cardBackgroundColor="@color/transparent"
+            app:cardCornerRadius="@dimen/size_20"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.5136">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@id/btnActionOne"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/btn_blue_corners_26"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-medium"
+                android:paddingStart="@dimen/size_24"
+                android:paddingEnd="@dimen/size_24"
+                android:singleLine="true"
+                android:text="@string/ghe_tham_shop"
+                android:textAllCaps="false"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                tools:text="Ghé thăm shop" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@id/layoutEnd"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="@dimen/size_0"
+            android:layout_marginStart="@dimen/size_10"
+            android:layout_marginLeft="@dimen/size_10"
+            android:layout_marginEnd="@dimen/size_12"
+            android:layout_marginRight="@dimen/size_12"
+            app:cardBackgroundColor="@color/transparent"
+            app:cardCornerRadius="@dimen/size_20"
+            app:layout_constraintBottom_toBottomOf="@id/layoutStart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/layoutStart"
+            app:layout_constraintTop_toTopOf="@id/layoutStart">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@id/btnActionTwo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/btn_white_outline_blue_1_corners_36"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-medium"
+                android:paddingStart="@dimen/size_24"
+                android:paddingEnd="@dimen/size_24"
+                android:singleLine="true"
+                android:text="@string/ghe_tham_shop"
+                android:textAllCaps="false"
+                android:textColor="#3c5a99"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                tools:text="Đặt lại đơn này" />
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

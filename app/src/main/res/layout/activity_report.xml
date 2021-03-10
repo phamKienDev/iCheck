@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@id/imgCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/size_4"
+            android:layout_marginLeft="@dimen/size_4"
+            android:background="?android:attr/selectableItemBackground"
+            android:padding="@dimen/size_8"
+            android:src="@drawable/ic_cancel_light_blue_24dp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:includeFontPadding="false"
+            android:paddingTop="@dimen/size_10"
+            android:paddingBottom="@dimen/size_10"
+            android:text="@string/bao_cao_bai_viet"
+            android:textColor="#057dda"
+            android:textSize="18sp" />
+    </FrameLayout>
+
+    <View style="@style/Shadow_Bottom" />
+
+    <FrameLayout
+        android:id="@id/layoutLoading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <include
+            android:id="@id/layoutMessage"
+            layout="@layout/item_message"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutData"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:id="@id/layoutContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_12"
+            android:orientation="vertical"
+            android:visibility="visible" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@id/edtContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginEnd="@dimen/size_12"
+            android:layout_marginBottom="@dimen/size_10"
+            android:background="@drawable/bg_outline_gray_1_corners_4"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="top"
+            android:hint="@string/mo_ta_noi_dung_bao_loi"
+            android:includeFontPadding="false"
+            android:maxLines="6"
+            android:minLines="3"
+            android:paddingStart="@dimen/size_10"
+            android:paddingTop="@dimen/size_6"
+            android:paddingEnd="@dimen/size_10"
+            android:paddingBottom="@dimen/size_6"
+            android:textAlignment="gravity"
+            android:textColor="@color/collection_product_name"
+            android:textColorHint="@color/darkGray2"
+            android:textSize="14sp"
+            android:visibility="gone" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/btnDone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginEnd="@dimen/size_12"
+            android:layout_marginBottom="@dimen/size_10"
+            android:background="@drawable/bg_corners_4_light_blue_solid"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center"
+            android:paddingStart="@dimen/size_10"
+            android:paddingTop="@dimen/size_6"
+            android:paddingEnd="@dimen/size_10"
+            android:paddingBottom="@dimen/size_6"
+            android:text="@string/gui_bao_loi"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="visible" />
+    </LinearLayout>
+</LinearLayout>

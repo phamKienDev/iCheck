@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/size_16"
+    android:layout_marginRight="@dimen/size_16"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_15"
+        android:layout_marginBottom="@dimen/size_5"
+        android:ellipsize="end"
+        android:fontFamily="@font/roboto_medium"
+        android:includeFontPadding="false"
+        android:singleLine="true"
+        android:text="Cập nhật mới nhất"
+        android:textColor="#AF8A32"
+        android:textSize="16sp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/size_16"
+        android:paddingLeft="@dimen/size_10"
+        android:paddingRight="@dimen/size_10">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgReward"
+            android:layout_width="@dimen/size_36"
+            android:layout_height="@dimen/size_36"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/size_10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgReward"
+            app:layout_constraintTop_toTopOf="@+id/imgReward">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvName"
+                android:layout_width="@dimen/size_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:fontFamily="@font/roboto_bold"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                tools:text="Hoàng Dương Hải Trang" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvPoint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:drawablePadding="@dimen/size_6"
+                tools:text="+ 70"
+                android:textColor="@color/orange_red"
+                android:fontFamily="@font/roboto_medium"
+                android:drawableRight="@drawable/ic_verified_red"
+                android:gravity="center"
+                android:textSize="16sp"/>
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPhone"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_4"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_medium"
+            android:includeFontPadding="false"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_4"
+            app:layout_constraintEnd_toEndOf="@id/linearLayout"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout"
+            tools:text="+84 97 954 ****" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDate"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_4"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_medium"
+            android:includeFontPadding="false"
+            android:singleLine="true"
+            android:textColor="@color/gray_v2"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@id/tvPhone"
+            app:layout_constraintStart_toStartOf="@+id/tvPhone"
+            app:layout_constraintTop_toBottomOf="@id/tvPhone"
+            tools:text="12:34, 13/05/2019" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_0_5"
+            android:layout_marginTop="@dimen/size_10"
+            android:background="@color/gray"
+            app:layout_constraintTop_toBottomOf="@id/tvDate" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

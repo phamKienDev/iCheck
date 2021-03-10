@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/size_12"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="@dimen/size_12"
+    android:layout_marginBottom="8dp"
+    android:background="@drawable/bg_corners_white_4_border_05"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_10"
+        android:layout_marginLeft="@dimen/size_10"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="@dimen/size_10"
+        android:layout_marginRight="@dimen/size_10"
+        android:layout_marginBottom="12dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgAvaProduct"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:layout_constraintBottom_toTopOf="@+id/viewLine1"
+            app:layout_constraintEnd_toStartOf="@+id/tvNameProduct"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTenSpUpdating"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_10"
+            android:layout_marginLeft="@dimen/size_10"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="4sp"
+            android:textColor="#b4b4b4"
+            android:textSize="14sp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgAvaProduct"
+            app:layout_constraintTop_toTopOf="@+id/imgAvaProduct"
+            android:visibility="invisible"
+            android:text="Tên đang cập nhật" />
+
+        <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+            android:id="@+id/tvNameProduct"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_10"
+            android:layout_marginLeft="@dimen/size_10"
+            android:drawablePadding="5dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:textColor="@color/collection_product_name"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgAvaProduct"
+            app:layout_constraintTop_toTopOf="@+id/imgAvaProduct"
+            tools:text="Nước hoa hồng Langege dung tích 201..." />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutBarcode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            app:layout_constraintStart_toStartOf="@id/tvNameProduct"
+            app:layout_constraintTop_toBottomOf="@id/tvNameProduct">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvQrcode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_history_qrcode_18px"
+                android:drawablePadding="8dp"
+                android:fontFamily="@font/barlow_medium"
+                android:textColor="#828282"
+                android:textSize="14sp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="0544A585214A" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

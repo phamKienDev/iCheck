@@ -1,0 +1,85 @@
+<resources>
+
+    <!-- Declare custom theme attributes that allow changing which styles are
+         used for button bars depending on the API level.
+         ?android:attr/buttonBarStyle is new as of API 11 so this is
+         necessary to support previous API levels. -->
+    <declare-styleable name="ButtonBarContainerTheme">
+        <attr name="metaButtonBarStyle" format="reference" />
+        <attr name="metaButtonBarButtonStyle" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="BaseButton">
+        <attr name="buttonTextSize" format="dimension" />
+        <attr name="buttonTextColor" format="reference|color" />
+        <attr name="buttonStrokeWidth" format="dimension" />
+        <attr name="buttonStrokeColor" format="color" />
+        <attr name="buttonRadius" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="CustomButton">
+        <attr name="cb_disable_background_color" format="color" />
+        <attr name="cb_enable_background_color" format="color" />
+        <attr name="cb_pressed_background_color" format="color" />
+
+        <attr name="cb_disable_stroke_color" format="color" />
+        <attr name="cb_enable_stroke_color" format="color" />
+        <attr name="cb_pressed_stroke_color" format="color" />
+
+        <attr name="cb_stroke_width" format="dimension" />
+        <attr name="cb_radius" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="AvatarUserComponent">
+        <attr name="avatarSize" format="dimension" />
+        <attr name="rankSize" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="SkyRoundCornerLayout">
+        <attr name="cornerRadius" format="dimension" />
+        <attr name="topEnabled" format="boolean" />
+        <attr name="bottomEnabled" format="boolean" />
+        <attr name="topLeftEnabled" format="boolean" />
+        <attr name="topRightEnabled" format="boolean" />
+        <attr name="bottomLeftEnabled" format="boolean" />
+        <attr name="bottomRightEnabled" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="RoundCornerFrameLayout">
+        <attr name="corner_radius" format="dimension" />
+    </declare-styleable>
+
+
+    <declare-styleable name="TagView">
+        <attr name="lineMargin" format="dimension" />
+        <attr name="tagMargin" format="dimension" />
+        <attr name="textPaddingLeft" format="dimension" />
+        <attr name="textPaddingRight" format="dimension" />
+        <attr name="textPaddingTop" format="dimension" />
+        <attr name="textPaddingBottom" format="dimension" />
+    </declare-styleable>
+
+    <attr name="cardViewStyle" format="reference" />
+
+    <declare-styleable name="CardView">
+        <attr name="cardBackgroundColor" format="color" />
+        <attr name="cardCornerRadius" format="dimension" />
+        <attr name="cardElevation" format="dimension" />
+        <attr name="cardMaxElevation" format="dimension" />
+        <attr name="cardUseCompatPadding" format="boolean" />
+        <attr name="cardPreventCornerOverlap" format="boolean" />
+        <attr name="contentPadding" format="dimension" />
+        <attr name="contentPaddingLeft" format="dimension" />
+        <attr name="contentPaddingRight" format="dimension" />
+        <attr name="contentPaddingTop" format="dimension" />
+        <attr name="contentPaddingBottom" format="dimension" />
+
+        <attr name="cardShadowColorStart" format="color" />
+        <attr name="cardShadowColorEnd" format="color" />
+
+        <attr name="android:minWidth" />
+        <attr name="android:minHeight" />
+    </declare-styleable>
+
+    <bool name="isTablet">false</bool>
+
+</resources>

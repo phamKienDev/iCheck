@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+        android:id="@+id/tvTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginLeft="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_20"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:text="2 tiếng trước"
+        android:textAllCaps="true"
+        android:textColor="@color/darkGray3"
+        android:textSize="14sp" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_12"
+        android:layout_marginEnd="@dimen/size_12"
+        android:background="@drawable/bg_corners_white_4_border_05">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgAvaProduct"
+            android:layout_width="108dp"
+            android:layout_height="108dp"
+            android:layout_marginStart="@dimen/size_10"
+            android:layout_marginLeft="@dimen/size_10"
+            android:layout_marginTop="@dimen/size_12"
+            android:layout_marginBottom="@dimen/size_12"
+            android:src="@drawable/ic_default_square"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tvNameProduct"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+            android:id="@+id/tvNameProduct"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginLeft="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_8"
+            android:layout_marginEnd="@dimen/size_10"
+            android:layout_marginRight="@dimen/size_10"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:includeFontPadding="false"
+            android:text="Giày thể thao cao cổ Converse hàng Limited size 42"
+            android:textColor="@color/collection_product_name"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgAvaProduct"
+            app:layout_constraintTop_toTopOf="@+id/imgAvaProduct" />
+
+        <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+            android:id="@+id/tvBarcodeProduct"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_6"
+            android:drawableStart="@drawable/ic_barcode_blue_18px"
+            android:drawableLeft="@drawable/ic_barcode_blue_18px"
+            android:drawablePadding="@dimen/size_4"
+            android:fontFamily="@font/barlow_medium"
+            android:includeFontPadding="false"
+            android:text="8930123456789"
+            android:textColor="@color/darkGray3"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/tvNameProduct"
+            app:layout_constraintTop_toBottomOf="@+id/tvNameProduct" />
+
+
+        <androidx.appcompat.widget.AppCompatRatingBar
+            android:id="@+id/ratingBar"
+            style="@style/Product_Rating_Bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:isIndicator="true"
+            android:max="5"
+            android:numStars="5"
+            android:rating="2.5"
+            android:layout_marginTop="@dimen/size_8"
+            app:layout_constraintEnd_toStartOf="@+id/tvCountRating"
+            app:layout_constraintStart_toStartOf="@id/tvNameProduct"
+            app:layout_constraintTop_toBottomOf="@id/tvBarcodeProduct" />
+
+        <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+            android:id="@+id/tvCountRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_4"
+            android:layout_marginLeft="@dimen/size_4"
+            android:layout_marginEnd="@dimen/size_10"
+            android:layout_marginRight="@dimen/size_10"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:textColor="@color/lightBlue"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
+            app:layout_constraintEnd_toStartOf="@+id/tvVerify"
+            app:layout_constraintStart_toEndOf="@+id/ratingBar"
+            app:layout_constraintTop_toTopOf="@+id/ratingBar"
+            tools:text="8,9" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvVerify"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_10"
+            android:layout_marginLeft="@dimen/size_10"
+            android:drawableStart="@drawable/ic_verified_16px"
+            android:drawableLeft="@drawable/ic_verified_16px"
+            android:drawablePadding="@dimen/size_4"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center_vertical"
+            android:text="@string/verified"
+            android:textColor="@color/green2"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/tvCountRating"
+            app:layout_constraintStart_toEndOf="@+id/tvCountRating"
+            app:layout_constraintTop_toTopOf="@+id/tvCountRating" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>

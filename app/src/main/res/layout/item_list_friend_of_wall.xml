@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="6.5dp"
+    android:layout_marginBottom="6.5dp">
+
+    <vn.icheck.android.component.avatar_user.AvatarUserComponent
+        android:id="@+id/avatar_friend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="14dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:lineSpacingExtra="6sp"
+        android:maxLines="1"
+        android:textColor="#212121"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/imgMore"
+        app:layout_constraintStart_toEndOf="@id/avatar_friend"
+        app:layout_constraintTop_toTopOf="@id/avatar_friend"
+        tools:text="Xuyến Đỗ" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgMore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_more_disable_24dp"
+        app:layout_constraintBottom_toBottomOf="@id/tvName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvName" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvChat"
+        android:layout_width="100dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_corners_4_light_blue_solid"
+        android:gravity="center"
+        android:lineSpacingExtra="6sp"
+        android:text="Nhắn tin"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/avatar_friend"
+        app:layout_constraintStart_toStartOf="@id/tvName"
+        app:layout_constraintTop_toBottomOf="@id/tvName" />
+
+    <LinearLayout
+        android:id="@+id/tvAddFriend"
+        android:layout_width="100dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_corners_4_light_blue_solid"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/avatar_friend"
+        app:layout_constraintStart_toStartOf="@id/tvName"
+        app:layout_constraintTop_toBottomOf="@id/tvName">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_add_white_12px"
+            android:drawableLeft="@drawable/ic_add_white_12px"
+            android:drawablePadding="6dp"
+            android:gravity="center"
+            android:lineSpacingExtra="6sp"
+            android:text="Kết bạn"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/avatar_friend"
+            app:layout_constraintStart_toStartOf="@id/tvName"
+            app:layout_constraintTop_toBottomOf="@id/tvName" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tvSendRequest"
+        android:layout_width="100dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_corner_4_gray"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/avatar_friend"
+        app:layout_constraintStart_toStartOf="@id/tvName"
+        app:layout_constraintTop_toBottomOf="@id/tvName">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center"
+            android:lineSpacingExtra="6sp"
+            android:text="Đã gửi lời mời"
+            android:textColor="@color/fast_survey_gray"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/avatar_friend"
+            app:layout_constraintStart_toStartOf="@id/tvName"
+            app:layout_constraintTop_toBottomOf="@id/tvName" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutInviteToMe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/avatar_friend"
+        app:layout_constraintStart_toStartOf="@id/tvName"
+        app:layout_constraintTop_toBottomOf="@id/tvName">
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="28dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/bg_corners_4_light_blue_solid"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@id/avatar_friend"
+            app:layout_constraintStart_toStartOf="@id/tvName"
+            app:layout_constraintTop_toBottomOf="@id/tvName">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/btnAcceptFriend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_add_white_12px"
+                android:drawableLeft="@drawable/ic_add_white_12px"
+                android:drawablePadding="6dp"
+                android:gravity="center"
+                android:lineSpacingExtra="6sp"
+                android:text="Xác nhận"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/avatar_friend"
+                app:layout_constraintStart_toStartOf="@id/tvName"
+                app:layout_constraintTop_toBottomOf="@id/tvName" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btnRefuseFriend"
+            android:layout_width="100dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/bg_corner_4_light_blue_white"
+            android:gravity="center"
+            android:lineSpacingExtra="6sp"
+            android:text="Xác nhận"
+            android:textColor="@color/lightBlue"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/avatar_friend"
+            app:layout_constraintStart_toStartOf="@id/tvName"
+            app:layout_constraintTop_toBottomOf="@id/tvName" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/placeholder_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/avatar_friend" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

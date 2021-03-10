@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="vn.icheck.android.screen.user.home_page.campaign.detail_campagin_v2.DetailCampaignV2Activity">
+
+    <vn.icheck.android.helper.ViewPagerNoScroll
+        android:id="@id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/txtInfomation"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatCheckedTextView
+        android:id="@+id/txtInfomation"
+        style="@style/Home_Text_Tab"
+        android:checked="true"
+        android:drawableTop="@drawable/ic_selected_infor_campaign_27"
+        android:text="@string/thong_tin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/txtGiftCampaign"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatCheckedTextView
+        android:id="@+id/txtGiftCampaign"
+        style="@style/Home_Text_Tab"
+        android:drawableTop="@drawable/ic_selected_gift_campaign_27"
+        android:text="@string/cong_dong"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/txtWinnerCampaign"
+        app:layout_constraintStart_toEndOf="@id/txtInfomation" />
+
+    <androidx.appcompat.widget.AppCompatCheckedTextView
+        android:id="@+id/txtWinnerCampaign"
+        style="@style/Home_Text_Tab"
+        android:drawableTop="@drawable/ic_selected_winner_campaign_27"
+        android:text="@string/lich_su"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/txtGiftCampaign"
+        app:layout_constraintTop_toTopOf="@id/txtGiftCampaign"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_4"
+        android:background="@drawable/shadow_top"
+        app:layout_constraintBottom_toTopOf="@id/txtInfomation" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

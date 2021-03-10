@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/containerMessage"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/size_38">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@id/imgIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_16"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toTopOf="@id/txtMessage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/txtMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:gravity="center_horizontal"
+        android:includeFontPadding="false"
+        android:textAlignment="gravity"
+        android:textColor="#828282"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@id/btnTryAgain"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/size_44"
+        android:layout_marginTop="@dimen/size_16"
+        android:background="@drawable/btn_white_outline_blue_1_corners_6"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/thu_lai"
+        android:textAllCaps="false"
+        android:textColor="#3c5a99"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtMessage" />
+</androidx.constraintlayout.widget.ConstraintLayout>

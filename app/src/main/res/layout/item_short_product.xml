@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/size_4"
+    android:paddingTop="@dimen/size_6"
+    android:paddingEnd="@dimen/size_4"
+    android:paddingBottom="@dimen/size_6">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@id/imgProduct"
+        android:layout_width="@dimen/size_40"
+        android:layout_height="@dimen/size_40"
+        android:layout_marginTop="@dimen/size_2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/ic_default_square" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvTitle"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_8"
+        android:layout_marginLeft="@dimen/size_8"
+        android:ellipsize="end"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:includeFontPadding="false"
+        android:maxLines="2"
+        android:singleLine="false"
+        android:textColor="#434343"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imgProduct"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Viên Uống Vitamin Tổng Hợp DHC Multi Vitamin 120 viên (Tên tối đa 2 dòng nhé), Viên Uống Vitamin Tổng Hợp DHC Multi Vitamin 120 viên (Tên tối đa 2 dòng nhé)" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tvContent"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_6"
+        android:ellipsize="end"
+        android:fontFamily="@font/barlow_medium"
+        android:includeFontPadding="false"
+        android:singleLine="false"
+        android:textColor="#757575"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@id/tvTitle"
+        app:layout_constraintStart_toStartOf="@id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        tools:text="Công ty cổ phần iCheck" />
+</androidx.constraintlayout.widget.ConstraintLayout>
