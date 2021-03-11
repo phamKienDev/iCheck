@@ -16,7 +16,7 @@ extern "C" JNIEXPORT jstring JNICALL Java_vn_icheck_android_network_base_APICons
 extern "C" JNIEXPORT jstring JNICALL Java_vn_icheck_android_network_base_APIConstants_detailStampV6Host(JNIEnv* env,jobject) {return env->NewStringUTF("https://api-qrcode.icheck.com.vn/");}
 extern "C" JNIEXPORT jstring JNICALL Java_vn_icheck_android_network_base_APIConstants_scanditLicenseKey(JNIEnv* env,jobject) {return env->NewStringUTF("2LhYrxig6g0rt//PrMHQsuVdVnq2z4XJDlYQdgBRUi0");}
 extern "C" JNIEXPORT jstring JNICALL Java_vn_icheck_android_network_base_APIConstants_insiderPartnerNameDev(JNIEnv* env,jobject) {return env->NewStringUTF("icheckvntest");}
-extern "C" JNIEXPORT jstring JNICALL Java_vn_icheck_android_network_base_APIConstants_insiderPartnerNameProd(JNIEnv* env,jobject) {return env->NewStringUTF("icheckvntest");}
+extern "C" JNIEXPORT jstring JNICALL Java_vn_icheck_android_network_base_APIConstants_insiderPartnerNameProd(JNIEnv* env,jobject) {return env->NewStringUTF("icheckvn");}
 extern "C" JNIEXPORT jstring JNICALL Java_vn_icheck_android_network_base_APIConstants_trackingTekoUrlDev(JNIEnv* env,jobject) {return env->NewStringUTF("https://footprint-ingestor.dev.tekoapis.net");}
 extern "C" JNIEXPORT jstring JNICALL Java_vn_icheck_android_network_base_APIConstants_trackingTekoUrlProd(JNIEnv* env,jobject) {return env->NewStringUTF("https://footprint-ingestor.tekoapis.com");}
 extern "C" JNIEXPORT jstring JNICALL Java_vn_icheck_android_network_base_APIConstants_trackingAppIdProd(JNIEnv* env,jobject) {return env->NewStringUTF("88c05846-5f5d-499c-8aa0-3d1592365151");}
