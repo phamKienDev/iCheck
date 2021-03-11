@@ -14,5 +14,5 @@ data class ICListCardPVBank(
         @Expose var exceedLimit: String? = null,
         @Expose var expDate: String? = null,
         @Expose var isDefault: Boolean = false,
-        var isShow : Boolean = false
+        var isShow : Boolean = true
 ) : Serializable

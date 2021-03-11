@@ -35,35 +35,29 @@ class HistoryPVCardAdapter : RecyclerViewAdapter<ICListCardPVBank>() {
 
     inner class ViewHolder(parent: ViewGroup) : BaseViewHolder<ICListCardPVBank>(LayoutInflater.from(parent.context).inflate(R.layout.item_info_pvcard_holder, parent, false)) {
         private var expDate = ""
-        private var validFrom = ""
 
         override fun bind(obj: ICListCardPVBank) {
-//            if (!obj.expDate.isNullOrEmpty() && obj.expDate!!.length == 6) {
-//                val repYear = obj.expDate!!.substring(0, 4)
-//                val lastYear = repYear.substring(2, 4)
-//                val repMonth = obj.expDate!!.substring(4, 6)
-//                expDate = "$repMonth/$lastYear"
-//
-//                val vFrom = (repYear.toLong() - 5).toString()
-//                val lastVFrom = vFrom.substring(2, 4)
-//                validFrom = "$repMonth/$lastVFrom"
-//            }
-//
-//            if (obj.isShow) {
-//                itemView.btnShowHide.setImageResource(R.drawable.ic_eye_off_white_30)
-//                itemView.tvCardNumber.text = obj.cardMasking
-//                        ?: itemView.context.getString(R.string.dang_cap_nhat)
-//                itemView.tvName.text = obj.embossName
-//                        ?: itemView.context.getString(R.string.dang_cap_nhat)
-//                itemView.tvDateEnd.text = expDate
-//                itemView.tvDateFrom.text = validFrom
-//            } else {
-//                itemView.btnShowHide.setImageResource(R.drawable.ic_eye_on_white_30)
-//                itemView.tvCardNumber.text = "**** **** **** ****"
-//                itemView.tvDateFrom.text = "**/**"
-//                itemView.tvDateEnd.text = "**/**"
-//                itemView.tvName.text = "**********"
-//            }
+            if (!obj.expDate.isNullOrEmpty() && obj.expDate!!.length == 6) {
+                val repYear = obj.expDate!!.substring(0, 4)
+                val lastYear = repYear.substring(2, 4)
+                val repMonth = obj.expDate!!.substring(4, 6)
+                expDate = "$repMonth/$lastYear"
+
+            }
+
+            if (obj.isShow) {
+                itemView.btnShowHide.setImageResource(R.drawable.ic_eye_off_white_24px)
+                itemView.tvMoney.text = "${TextHelper.formatMoney(obj.avlBalance ?: "0")} đ"
+                itemView.tvCardNumber.text = obj.cardMasking
+                        ?: itemView.context.getString(R.string.dang_cap_nhat)
+                itemView.tvName.text = obj.embossName
+                        ?: itemView.context.getString(R.string.dang_cap_nhat)
+                itemView.tvTimeEnd.text = expDate
+            } else {
+                itemView.btnShowHide.setImageResource(R.drawable.ic_eye_on_white_24px)
+                itemView.tvCardNumber.text = "**** **** **** ****"
+                itemView.tvTimeEnd.text = "**/**"
+            }
 
             itemView.btnShowHide.setOnClickListener {
                 EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.SHOW_OR_HIDE_PV_FULLCARD, obj))

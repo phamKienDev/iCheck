@@ -19,13 +19,13 @@
             android:id="@+id/tvMoney"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/size_24"
-            android:layout_marginTop="77dp"
+            android:layout_marginStart="@dimen/size_18"
+            android:layout_marginTop="70dp"
             android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
             android:text="254.241.000 đ"
             android:textColor="@color/white"
-            android:textSize="26sp"
+            android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,20 +33,20 @@
             android:id="@+id/tvCardNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size_26"
+            android:layout_marginTop="@dimen/size_14"
             android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
             android:text="254.241.000 đ"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@id/tvMoney"
             app:layout_constraintTop_toBottomOf="@id/tvMoney" />
 
         <TextView
-            android:id="@+id/tvTimeFrom"
+            android:id="@+id/tvTimeEnd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="12dp"
             android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:text="10/24"
@@ -59,15 +59,15 @@
             android:id="@+id/tvCCV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/size_60"
+            android:layout_marginStart="@dimen/size_40"
             android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:text="CCV:"
             android:textColor="@color/white"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@id/tvTimeFrom"
-            app:layout_constraintStart_toEndOf="@id/tvTimeFrom"
-            app:layout_constraintTop_toTopOf="@id/tvTimeFrom" />
+            app:layout_constraintBottom_toBottomOf="@id/tvTimeEnd"
+            app:layout_constraintStart_toEndOf="@id/tvTimeEnd"
+            app:layout_constraintTop_toTopOf="@id/tvTimeEnd" />
 
         <TextView
             android:id="@+id/tvCCVContent"
@@ -80,35 +80,35 @@
             android:text="***"
             android:textColor="@color/white"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@id/tvTimeFrom"
+            app:layout_constraintBottom_toBottomOf="@id/tvTimeEnd"
             app:layout_constraintStart_toEndOf="@id/tvCCV"
-            app:layout_constraintTop_toTopOf="@id/tvTimeFrom" />
+            app:layout_constraintTop_toTopOf="@id/tvTimeEnd" />
 
 
         <ImageView
             android:id="@+id/btnShowHide"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/size_46"
+            android:layout_marginStart="@dimen/size_36"
             app:layout_constraintBottom_toBottomOf="@id/tvCCVContent"
             app:layout_constraintStart_toEndOf="@id/tvCCVContent"
             app:layout_constraintTop_toTopOf="@id/tvCCVContent"
-            app:srcCompat="@drawable/ic_eye_on_white_24dp" />
+            app:srcCompat="@drawable/ic_eye_on_white_24px" />
 
 
         <TextView
             android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="@dimen/size_22"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="@dimen/size_16"
             android:fontFamily="@font/barlow_semi_bold"
             android:text="NGUYEN HOANG BAO ANH"
             android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@id/tvTimeFrom"
-            app:layout_constraintTop_toBottomOf="@id/tvTimeFrom" />
+            app:layout_constraintStart_toStartOf="@id/tvTimeEnd"
+            app:layout_constraintTop_toBottomOf="@id/tvTimeEnd" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
