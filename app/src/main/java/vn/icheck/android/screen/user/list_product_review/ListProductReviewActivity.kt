@@ -39,7 +39,6 @@ class ListProductReviewActivity : BaseActivityMVVM(), ISubmitReviewListener, IRe
     lateinit var adapter: ListProductReviewAdapter
     lateinit var viewModel: ListProductReviewViewModel
 
-    lateinit var takeMediaDialog: TakeMediaDialog
     lateinit var shareReviewDialog: ReviewTributeDialog
     private val requestCameraPermission = 3
     private val requestPostReview = 4
@@ -48,6 +47,30 @@ class ListProductReviewActivity : BaseActivityMVVM(), ISubmitReviewListener, IRe
     private var isActivityVisible = true
 
     private var reviewStartInsider = true
+
+    private val takeMediaListener = object : TakeMediaDialog.TakeImageListener {
+        override fun onPickMediaSucess(file: File) {
+            val holder = rcvListReview.findViewHolderForAdapterPosition(positionSubmit)
+            if (holder != null && holder is SubmitReviewHolder) {
+                holder.setImage(file)
+            }
+        }
+
+        override fun onPickMuliMediaSucess(file: MutableList<File>) {
+            val holder = rcvListReview.findViewHolderForAdapterPosition(positionSubmit)
+            if (holder != null && holder is SubmitReviewHolder) {
+                holder.setImage(file)
+            }
+        }
+
+        override fun onTakeMediaSuccess(file: File?) {
+            val holder = rcvListReview.findViewHolderForAdapterPosition(positionSubmit)
+            if (holder != null && holder is SubmitReviewHolder) {
+                file?.let { holder.setImage(it) }
+            }
+        }
+
+    }
 
     companion object {
         fun startActivity(productId: Long, activity: Activity) {
@@ -63,7 +86,6 @@ class ListProductReviewActivity : BaseActivityMVVM(), ISubmitReviewListener, IRe
         isActivityVisible = true
         initView()
         initRecyclerView()
-        setUpTakeImage()
         listenerData()
     }
 
@@ -83,31 +105,6 @@ class ListProductReviewActivity : BaseActivityMVVM(), ISubmitReviewListener, IRe
         rcvListReview.adapter = adapter
     }
 
-    private fun setUpTakeImage() {
-        takeMediaDialog = TakeMediaDialog(object : TakeMediaDialog.TakeImageListener {
-            override fun onPickMediaSucess(file: File) {
-                val holder = rcvListReview.findViewHolderForAdapterPosition(positionSubmit)
-                if (holder != null && holder is SubmitReviewHolder) {
-                    holder.setImage(file)
-                }
-            }
-
-            override fun onPickMuliMediaSucess(file: MutableList<File>) {
-                val holder = rcvListReview.findViewHolderForAdapterPosition(positionSubmit)
-                if (holder != null && holder is SubmitReviewHolder) {
-                    holder.setImage(file)
-                }
-            }
-
-            override fun onTakeMediaSuccess(file: File?) {
-                val holder = rcvListReview.findViewHolderForAdapterPosition(positionSubmit)
-                if (holder != null && holder is SubmitReviewHolder) {
-                    file?.let { holder.setImage(it) }
-                }
-            }
-
-        }, true)
-    }
 
     private fun listenerData() {
         viewModel.getData(intent)
@@ -199,7 +196,7 @@ class ListProductReviewActivity : BaseActivityMVVM(), ISubmitReviewListener, IRe
 
         val permission = arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
         if (PermissionHelper.checkPermission(this, permission, requestCameraPermission)) {
-            takeMediaDialog.show(supportFragmentManager, takeMediaDialog.tag)
+            selectPicture()
         }
     }
 
@@ -274,7 +271,6 @@ class ListProductReviewActivity : BaseActivityMVVM(), ISubmitReviewListener, IRe
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        takeMediaDialog.takeMediaHelper?.onActivityResult(requestCode, resultCode)
 
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == requestEditReview) {
@@ -297,7 +293,7 @@ class ListProductReviewActivity : BaseActivityMVVM(), ISubmitReviewListener, IRe
             requestCameraPermission -> {
                 if (PermissionHelper.checkResult(grantResults)) {
                     try {
-                        takeMediaDialog.show(supportFragmentManager, null)
+                        selectPicture()
                     } catch (e: Exception) {
                         logError(e)
                     }
@@ -306,6 +302,10 @@ class ListProductReviewActivity : BaseActivityMVVM(), ISubmitReviewListener, IRe
                 }
             }
         }
+    }
+
+    private fun selectPicture() {
+        TakeMediaDialog.show(supportFragmentManager, takeMediaListener, true)
     }
 
     override fun onMessageClicked() {
