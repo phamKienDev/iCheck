@@ -176,6 +176,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
 
         viewModel.onUpdateAds.observe(viewLifecycleOwner, Observer {
             if (it == true) {
+                closeLoading()
                 homeAdapter.updateAds()
             }
         })
