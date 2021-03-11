@@ -13,6 +13,8 @@ class PVcomBankRepository : BaseInteractor() {
         requestNewApi(ICNetworkClient.getNewSocialApi().getLinkFormAuth(), listener)
     }
 
+    suspend fun getFormAuth() = ICNetworkClient.getNewSocialApi().getLinkFormAuthV2()
+
     fun getMyListCard(listener: ICNewApiListener<ICResponse<ICListResponse<ICListCardPVBank>>>) {
         val fullName = SessionManager.session.user?.getNamePVCombank ?: ""
         requestNewApi(ICNetworkClient.getNewSocialApi().getListCardPVComBank(fullName), listener)

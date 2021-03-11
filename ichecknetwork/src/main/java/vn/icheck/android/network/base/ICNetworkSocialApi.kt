@@ -308,6 +308,9 @@ interface ICNetworkSocialApi {
     @GET(APIConstants.PVCombank.FORM_AUTH)
     fun getLinkFormAuth(): Observable<ICResponse<ICAuthenPVCard>>
 
+    @GET(APIConstants.PVCombank.FORM_AUTH)
+    suspend fun getLinkFormAuthV2(): ICResponse<ICAuthenPVCard>
+
     @GET(APIConstants.PVCombank.INFO_CARD)
     fun getInfoCard(@Path("cardId") cardId: String): Observable<ICResponse<ICInfoPVCard>>
 
