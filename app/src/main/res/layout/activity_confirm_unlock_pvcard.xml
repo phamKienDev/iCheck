@@ -90,7 +90,7 @@
                 android:paddingTop="5dp"
                 android:paddingEnd="10dp"
                 android:paddingBottom="5dp"
-                android:text="Gửi lại mã"
+                android:text="Gửi lại mã (60s)"
                 android:textColor="@color/blue"
                 android:textSize="14sp" />
 
