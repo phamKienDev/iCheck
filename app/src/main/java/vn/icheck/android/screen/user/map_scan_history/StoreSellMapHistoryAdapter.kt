@@ -1,14 +1,15 @@
 package vn.icheck.android.screen.user.map_scan_history
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_store_sell_in_map.view.*
 import vn.icheck.android.R
+import vn.icheck.android.databinding.ItemStoreSellInMapBinding
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.network.models.history.ICStoreNear
+import vn.icheck.android.util.ick.dpToPx
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class StoreSellMapHistoryAdapter(val view: StoreSellMapHistoryView) : RecyclerView.Adapter<StoreSellMapHistoryAdapter.ViewHolder>() {
@@ -17,7 +18,7 @@ class StoreSellMapHistoryAdapter(val view: StoreSellMapHistoryView) : RecyclerVi
 
     private var selectedPos = 0
 
-    fun setData(list: MutableList<ICStoreNear>,selectedID: Long): Int {
+    fun setData(list: MutableList<ICStoreNear>, selectedID: Long): Int {
         listData.clear()
         listData.addAll(list)
 
@@ -42,9 +43,7 @@ class StoreSellMapHistoryAdapter(val view: StoreSellMapHistoryView) : RecyclerVi
         return 0
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, p1: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_store_sell_in_map, parent, false))
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, p1: Int) = ViewHolder(parent)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = listData[position]
@@ -55,8 +54,22 @@ class StoreSellMapHistoryAdapter(val view: StoreSellMapHistoryView) : RecyclerVi
         return listData.size
     }
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    private val sizeWidth = 301.dpToPx()
+    private val sizeHeight = 168.dpToPx()
+    private val sizeMargin = 7.5F.dpToPx()
+
+    inner class ViewHolder(parent: ViewGroup, val binding: ItemStoreSellInMapBinding = ItemStoreSellInMapBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : RecyclerView.ViewHolder(binding.root) {
         fun bindData(item: ICStoreNear) {
+            binding.layoutParent.layoutParams = if (listData.size > 1) {
+                RecyclerView.LayoutParams(sizeWidth, sizeHeight).apply {
+                    setMargins(sizeMargin, 0, sizeMargin, 0)
+                }
+            } else {
+                RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, sizeHeight).apply {
+                    setMargins(sizeMargin, 0, sizeMargin, 0)
+                }
+            }
+
             WidgetUtils.loadImageUrlRoundedFitCenter(itemView.imgAva, item.avatar, R.drawable.ic_error_load_shop_40_px, R.drawable.ic_error_load_shop_40_px, SizeHelper.size12)
 
             if (selectedPos == absoluteAdapterPosition) {
