@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_gravity="center"
     android:layout_marginStart="@dimen/size_36"
     android:layout_marginEnd="@dimen/size_36"
     card_view:cardBackgroundColor="@color/white"
@@ -100,9 +100,9 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:includeFontPadding="false"
+            android:text="Đồng bộ"
             android:textAllCaps="false"
             android:textColor="#057DDA"
-            android:text="Đồng bộ"
             android:textSize="16sp"
             android:textStyle="normal"
             card_view:layout_constraintBottom_toBottomOf="@id/viewCenter"
@@ -114,14 +114,14 @@
             android:id="@+id/tv_dksd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_marginTop="4dp"
             android:fontFamily="@font/barlow_semi_bold"
-            android:textColor="@color/lightBlue"
+            android:gravity="center"
             android:text="Điều khoản sử dụng"
+            android:textColor="@color/lightBlue"
+            card_view:drawableEndCompat="@drawable/ic_arrow_right_light_blue_24dp"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/txtMessage"
-            card_view:drawableEndCompat="@drawable/ic_arrow_right_light_blue_24dp" />
+            card_view:layout_constraintTop_toBottomOf="@+id/txtMessage" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

@@ -103,8 +103,8 @@ class ProductDetailShopVariantComponent : LinearLayout {
             listService.add(ICServiceShopVariant(0, R.drawable.ic_offline_shop_variant_18dp, "Mua tại cửa hàng", "#eb5757", R.drawable.bg_corner_shop_variant_offline))
         }
 
-        if (productRow.verified == true) {
-            listService.add(ICServiceShopVariant(1, R.drawable.ic_verified_shop_variant_18px, "Đại lý chính hãng", "#49aa2d", R.drawable.bg_corner_verified_shop_variant))
+        if (!productRow.title.isNullOrEmpty()) {
+            listService.add(ICServiceShopVariant(1, R.drawable.ic_verified_shop_variant_18px, productRow.title, "#49aa2d", R.drawable.bg_corner_verified_shop_variant))
         }
 
 //        if (productRow.isOnline == true) {
@@ -174,7 +174,6 @@ class ProductDetailShopVariantComponent : LinearLayout {
         }
     }
 
-    // Todo chuyển map
     private fun showMap(obj: ICShopVariantV2) {
         ICheckApplication.currentActivity()?.let { activity ->
             val json = JsonHelper.toJson(mutableListOf(ICStoreNear().apply {
@@ -184,7 +183,7 @@ class ProductDetailShopVariantComponent : LinearLayout {
                 distance = obj.distance
                 price = obj.price
                 address = obj.address
-                phone = phone
+                phone = obj.phone
                 location = obj.location
             }))
 

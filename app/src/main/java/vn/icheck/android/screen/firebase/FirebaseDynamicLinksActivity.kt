@@ -97,7 +97,6 @@ import vn.icheck.android.util.kotlin.ActivityUtils
 import java.net.URL
 import java.util.*
 
-
 class FirebaseDynamicLinksActivity : AppCompatActivity() {
     private val requestLogin = 1
     private val requestFlight = 2
