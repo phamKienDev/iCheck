@@ -148,28 +148,14 @@ class ConfirmUnlockPVCardActivity : BaseActivityMVVM() {
         })
 
         viewModel.errorData.observe(this, {
-            when (it) {
-                Constant.ERROR_EMPTY -> {
-                    showLongError(R.string.co_loi_xay_ra_vui_long_thu_lai)
-                    onBackPressed()
-                }
-
-                Constant.ERROR_SERVER -> {
-                    showLongError(R.string.co_loi_xay_ra_vui_long_thu_lai)
-                    onBackPressed()
-                }
-
-                Constant.ERROR_UNKNOW -> {
-                    showLongError(R.string.co_loi_xay_ra_vui_long_thu_lai)
-                    onBackPressed()
-                }
-            }
+            showLongError(it)
+            onBackPressed()
         })
     }
 
     private fun initTimer() {
         cancelTimer()
-        timer = object : CountDownTimer(61000, 1000){
+        timer = object : CountDownTimer(61000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 try {
                     btnResend.text = String.format("Gửi lại mã (%ds)", millisUntilFinished / 1000)
@@ -178,7 +164,7 @@ class ConfirmUnlockPVCardActivity : BaseActivityMVVM() {
                 }
             }
 
-            override fun onFinish(){
+            override fun onFinish() {
                 btnResend.setTextColor(Color.parseColor("#3C5A99"))
                 btnResend.text = "Gửi lại mã"
                 btnResend.setOnClickListener {

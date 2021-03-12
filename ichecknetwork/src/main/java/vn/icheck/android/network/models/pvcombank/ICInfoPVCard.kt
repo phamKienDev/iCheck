@@ -3,7 +3,7 @@ package vn.icheck.android.network.models.pvcombank
 data class ICInfoPVCard(
 		val code: Int? = null,
 		val message: String? = null,
-		val verification: Any? = null,
+		val verification: ICVerificationPVBank? = null,
 		val card: Card? = null
 ){
 	data class Card(

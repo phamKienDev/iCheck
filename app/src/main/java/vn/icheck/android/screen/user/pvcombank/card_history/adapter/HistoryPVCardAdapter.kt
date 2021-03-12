@@ -35,7 +35,6 @@ class HistoryPVCardAdapter : RecyclerViewAdapter<ICListCardPVBank>() {
 
     inner class ViewHolder(parent: ViewGroup) : BaseViewHolder<ICListCardPVBank>(LayoutInflater.from(parent.context).inflate(R.layout.item_info_pvcard_holder, parent, false)) {
         private var expDate = ""
-        private var validFrom = ""
 
         override fun bind(obj: ICListCardPVBank) {
             if (!obj.expDate.isNullOrEmpty() && obj.expDate!!.length == 6) {
@@ -44,25 +43,29 @@ class HistoryPVCardAdapter : RecyclerViewAdapter<ICListCardPVBank>() {
                 val repMonth = obj.expDate!!.substring(4, 6)
                 expDate = "$repMonth/$lastYear"
 
-                val vFrom = (repYear.toLong() - 5).toString()
-                val lastVFrom = vFrom.substring(2, 4)
-                validFrom = "$repMonth/$lastVFrom"
             }
 
             if (obj.isShow) {
-                itemView.btnShowHide.setImageResource(R.drawable.ic_eye_off_white_30)
-                itemView.tvCardNumber.text = obj.cardMasking
-                        ?: itemView.context.getString(R.string.dang_cap_nhat)
+                itemView.btnShowHide.setImageResource(R.drawable.ic_eye_off_white_24px)
+                itemView.tvMoney.text = "${TextHelper.formatMoney(obj.avlBalance ?: "0")}đ"
+                itemView.tvCardNumber.text = if (obj.cardMasking.isNullOrEmpty()) {
+                    itemView.context.getString(R.string.dang_cap_nhat)
+                } else {
+                    if (obj.cardMasking!!.length == 16) {
+                        obj.cardMasking!!.substring(0, 4) + " " + obj.cardMasking!!.substring(4, 8) + " " + obj.cardMasking!!.substring(8, 12) + " " + obj.cardMasking!!.substring(12, 16)
+                    } else {
+                        obj.cardMasking!!
+                    }
+                }
                 itemView.tvName.text = obj.embossName
                         ?: itemView.context.getString(R.string.dang_cap_nhat)
-                itemView.tvDateEnd.text = expDate
-                itemView.tvDateFrom.text = validFrom
+                itemView.tvTimeEnd.text = expDate
             } else {
-                itemView.btnShowHide.setImageResource(R.drawable.ic_eye_on_white_30)
+                itemView.btnShowHide.setImageResource(R.drawable.ic_eye_on_white_24px)
+                itemView.tvMoney.text = "******"
                 itemView.tvCardNumber.text = "**** **** **** ****"
-                itemView.tvDateFrom.text = "**/**"
-                itemView.tvDateEnd.text = "**/**"
-                itemView.tvName.text = "**********"
+                itemView.tvName.text = ""
+                itemView.tvTimeEnd.text = "**/**"
             }
 
             itemView.btnShowHide.setOnClickListener {

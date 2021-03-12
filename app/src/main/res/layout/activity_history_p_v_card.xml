@@ -23,7 +23,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/viewShadow" />
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/viewShadow"
+        tools:listitem="@layout/item_info_pvcard_holder" />
 
     <View
         android:id="@+id/viewMid"
@@ -36,7 +39,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerviewTransaction"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:background="@color/white"
         app:layout_constraintTop_toBottomOf="@id/viewMid" />
 

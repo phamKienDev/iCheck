@@ -847,9 +847,7 @@
             android:name=".screen.user.scanbuy.ScanBuyActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustNothing" />
-        <activity
-            android:name=".screen.user.support.ContactAndSupportActivity"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".screen.user.detail_stamp_v6_1.home.DetailStampActivity"
             android:exported="true"
