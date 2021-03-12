@@ -14,7 +14,7 @@ data class ICThemeSetting(
             @Expose val homeBackgroundImage: String? = null,
             @Expose val productOverlayImage: String? = null,
             @Expose val bottomBarSelectedTextColor: String? = null,
-            @Expose val bottomBarSelectedIcons: List<String>? = null,
+            @Expose val bottomBarSelectedIcons: List<String?>? = null,
             @Expose val bottomBarNormalIcons: List<String>? = null,
             var homeBackgroundImagePath: String? = null,
             var homeHeaderImagePath: String? = null
