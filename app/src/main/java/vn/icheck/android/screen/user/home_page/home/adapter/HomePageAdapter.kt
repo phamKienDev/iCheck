@@ -44,6 +44,7 @@ import vn.icheck.android.screen.user.campaign.calback.IBannerV2Listener
 import vn.icheck.android.screen.user.campaign.calback.IMessageListener
 import vn.icheck.android.screen.user.campaign.calback.IProductNeedReviewListener
 import vn.icheck.android.screen.user.campaign.holder.base.ShortMessageHolder
+import vn.icheck.android.screen.user.home_page.home.callback.IHomePageView
 import vn.icheck.android.screen.user.home_page.home.holder.primaryfunction.HomeFunctionHolder
 import vn.icheck.android.screen.user.home_page.home.model.ICListHomeItem
 import vn.icheck.android.util.ick.openAppInGooglePlay
@@ -51,7 +52,8 @@ import vn.icheck.android.util.ick.openAppInGooglePlay
 class HomePageAdapter(
         private val bannerV2Listener: IBannerV2Listener,
         private val messageListener: IMessageListener,
-        private val productReviewListener: IProductNeedReviewListener
+        private val productReviewListener: IProductNeedReviewListener,
+        private val homePageListener: IHomePageView
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val listData = mutableListOf<ICLayout>()
 
@@ -259,7 +261,7 @@ class HomePageAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             ICViewTypes.HOME_PRIMARY_FUNC -> {
-                HomeFunctionHolder(parent, isExistTheme)
+                HomeFunctionHolder(parent, isExistTheme, homePageListener)
             }
             ICViewTypes.CHECK_UPDATE_TYPE -> {
                 CheckUpdateHolder(parent)
