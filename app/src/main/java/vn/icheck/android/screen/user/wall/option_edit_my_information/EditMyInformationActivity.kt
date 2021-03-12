@@ -50,6 +50,7 @@ import vn.icheck.android.util.date.DatePickerFragment
 import vn.icheck.android.util.date.OnDatePicked
 import vn.icheck.android.util.ick.*
 import androidx.lifecycle.Observer
+import vn.icheck.android.helper.PermissionHelper
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -129,8 +130,6 @@ class EditMyInformationActivity : CoroutineFragment() {
             }
         }
     }
-
-    private val takeImageDialog = TakeMediaDialog(takeImageListener, false, isVideo = false)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -438,14 +437,8 @@ class EditMyInformationActivity : CoroutineFragment() {
     }
 
     fun request() {
-        if (ContextCompat.checkSelfPermission(
-                        requireContext(),
-                        Manifest.permission.READ_EXTERNAL_STORAGE
-                ) != PackageManager.PERMISSION_GRANTED ||
-                ContextCompat.checkSelfPermission(
-                        requireContext(),
-                        Manifest.permission.CAMERA
-                ) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requestPermissions(
                         arrayOf(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE),
@@ -453,7 +446,20 @@ class EditMyInformationActivity : CoroutineFragment() {
                 )
             }
         } else {
-            takeImageDialog.show(childFragmentManager, null)
+            selectPicture()
+        }
+    }
+
+    private fun selectPicture() {
+        TakeMediaDialog.show(childFragmentManager, takeImageListener, false, isVideo = false)
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == CONTRIBUTE_REQUEST) {
+            if (PermissionHelper.checkResult(grantResults)) {
+                selectPicture()
+            }
         }
     }
 
