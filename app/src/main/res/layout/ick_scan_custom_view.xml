@@ -101,13 +101,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_scan_focus_svg" />
+        app:srcCompat="@drawable/focus_v2" />
 
     <View
         android:id="@+id/divider23"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/img_scan_focus" />
@@ -116,8 +115,6 @@
         android:id="@+id/divider24"
         android:layout_width="1dp"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/img_scan_focus"
         app:layout_constraintTop_toTopOf="parent" />
@@ -126,8 +123,6 @@
         android:id="@+id/divider25"
         android:layout_width="1dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/img_scan_focus"
         app:layout_constraintTop_toTopOf="parent" />
@@ -136,7 +131,6 @@
         android:id="@+id/divider26"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/img_scan_focus"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
