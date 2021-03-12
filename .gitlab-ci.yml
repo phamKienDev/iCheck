@@ -7,7 +7,7 @@ assembleProdRelease:
     - autobuild
   only:
     refs:
-      - merge-code-android
+      - master
   stage: build
   script:
     - ./gradlew clean
