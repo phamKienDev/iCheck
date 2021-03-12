@@ -36,7 +36,7 @@ android {
     compileSdkVersion 29
     defaultConfig {
         applicationId "vn.icheck.android"
-        minSdkVersion 17
+        minSdkVersion 19
         targetSdkVersion 29
         versionCode 21031101
         versionName "6.6.1"
@@ -296,7 +296,15 @@ dependencies {
 //    implementation("vn.teko.android.vnshop:vnshop-connector:1.3.5-beta3-stag")
 //    implementation("vn.teko.android.vnshop:vnshop-connector:1.3.5.1-prod")
     api "com.github.skydoves:balloon:1.3.0"
-    // https://mvnrepository.com/artifact/commons-codec/commons-codec
+
+    implementation files('src/main/libs/ScanditCaptureCore.aar')
+    implementation files('src/main/libs/ScanditBarcodeCapture.aar')
+
+    implementation files('src/main/libs/ScanditTextCaptureBase.aar')
+    implementation files('src/main/libs/ScanditTextCapture.aar')
+
+    implementation files('src/main/libs/ScanditParser.aar')
+    implementation files('src/main/libs/ScanditIdCapture.aar')
 }
 repositories {
     mavenCentral()

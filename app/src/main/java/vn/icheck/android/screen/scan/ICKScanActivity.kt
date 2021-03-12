@@ -104,10 +104,6 @@ class ICKScanActivity : BaseActivityMVVM() {
         })
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        //No call for super(). Bug on API Level > 11.
-    }
-
     private fun selectTab() {
         when (intent.getIntExtra(Constant.DATA_1, -1)) {
             2 -> {

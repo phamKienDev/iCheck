@@ -73,6 +73,7 @@ import vn.icheck.android.screen.dialog.PermissionDialog
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.info.AppInfoActivity
 import vn.icheck.android.screen.scan.ICKScanActivity
+import vn.icheck.android.screen.scan.V6ScanditActivity
 import vn.icheck.android.screen.user.bookmark.BookMarkV2Activity
 import vn.icheck.android.screen.user.bookmark_history.BookmarkHistoryActivity
 import vn.icheck.android.screen.user.coinhistory.CoinHistoryActivity
@@ -724,7 +725,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                     onRequireLogin()
                 } else {
                     IckUserWallActivity.create(SessionManager.session.user?.id, this)
-//                    simpleStartActivity(GiftWaitingActivity::class.java)
+//                    simpleStartActivity(V6ScanditActivity::class.java)
                 }
             }
             R.id.btn_icheck_xu -> {

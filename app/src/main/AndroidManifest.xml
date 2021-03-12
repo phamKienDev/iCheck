@@ -76,7 +76,8 @@
         tools:ignore="GoogleAppIndexingWarning,HardcodedDebugMode"
         tools:replace="android:allowBackup"
         tools:targetApi="m">
-        <activity android:name=".TestActivity"></activity>
+        <activity android:name=".screen.scan.V6ScanditActivity"></activity>
+        <activity android:name=".TestActivity" />
         <activity
             android:name=".screen.user.gift_history.v2.GiftHistoryV2Activity"
             android:screenOrientation="portrait"
@@ -846,7 +847,6 @@
             android:name=".screen.user.scanbuy.ScanBuyActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustNothing" />
-
         <activity
             android:name=".screen.user.detail_stamp_v6_1.home.DetailStampActivity"
             android:exported="true"
@@ -1049,11 +1049,14 @@
         <meta-data
             android:name="vn.map4d.map.ACCESS_KEY"
             android:value="34347084052b21748cbe3dd3fe1ce7a3" />
+
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
+
         <meta-data
             android:name="firebase_performance_logcat_enabled"
             android:value="true" />
     </application>
+
 </manifest>
