@@ -237,6 +237,10 @@ fun Int.dpToPx(): Int {
     return (this * Resources.getSystem().displayMetrics.density).toInt()
 }
 
+fun Float.dpToPx(): Int {
+    return (this * Resources.getSystem().displayMetrics.density).toInt()
+}
+
 
 fun Float.toPx(): Float {
     val res = ICheckApplication.getInstance().resources

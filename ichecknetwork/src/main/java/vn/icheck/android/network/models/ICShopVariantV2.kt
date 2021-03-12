@@ -7,6 +7,7 @@ import java.io.Serializable
 data class ICShopVariantV2(
         @Expose val sales : Long? = null,
         @Expose val cover : String? = null,
+        @Expose val title : String? = null,
         @Expose val id : Long? = null,
         @Expose val address : String? = null,
         @Expose val verified : Boolean? = null,

@@ -1,6 +1,5 @@
 package vn.icheck.android.screen.user.home
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.bumptech.glide.Glide
 import kotlinx.coroutines.*
@@ -132,16 +131,14 @@ class HomeViewModel : BaseViewModel() {
                         scanIcon?.exists() == true ||
                         historyIcon?.exists() == true ||
                         messageIcon?.exists() == true) {
-                    if (FileHelper.copyFile(homeBackgroundImage!!, File(path + FileHelper.homeBackgroundImage)) ||
-                            FileHelper.copyFile(homeHeaderImage!!, File(path + FileHelper.homeHeaderImage)) ||
-                            FileHelper.copyFile(homeIcon!!, File(path + FileHelper.homeIcon)) ||
-                            FileHelper.copyFile(newsIcon!!, File(path + FileHelper.newsIcon)) ||
-                            FileHelper.copyFile(scanIcon!!, File(path + FileHelper.scanIcon)) ||
-                            FileHelper.copyFile(historyIcon!!, File(path + FileHelper.historyIcon)) ||
-                            FileHelper.copyFile(messageIcon!!, File(path + FileHelper.messageIcon))
-                    ) {
-                        EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_SET_THEME))
-                    }
+                    FileHelper.copyFile(homeBackgroundImage!!, File(path + FileHelper.homeBackgroundImage))
+                    FileHelper.copyFile(homeHeaderImage!!, File(path + FileHelper.homeHeaderImage))
+                    FileHelper.copyFile(homeIcon!!, File(path + FileHelper.homeIcon))
+                    FileHelper.copyFile(newsIcon!!, File(path + FileHelper.newsIcon))
+                    FileHelper.copyFile(scanIcon!!, File(path + FileHelper.scanIcon))
+                    FileHelper.copyFile(historyIcon!!, File(path + FileHelper.historyIcon))
+                    FileHelper.copyFile(messageIcon!!, File(path + FileHelper.messageIcon))
+                    EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_SET_THEME))
                 }
             }
         }
