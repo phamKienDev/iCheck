@@ -75,7 +75,6 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
     private lateinit var childEmojiAdapter: EmojiAdapter
 
     private val requestTakePicture = 1
-    lateinit var takeMediaDialog: TakeMediaDialog
 
     private var behavior: CoordinatorLayout.Behavior<*>? = null
     private var unregistrar: Unregistrar? = null
@@ -116,6 +115,19 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
 
     }
 
+    private val takeMediaListener = object : TakeMediaDialog.TakeImageListener {
+        override fun onPickMediaSucess(file: File) {
+            showLayoutImage(file)
+        }
+
+        override fun onPickMuliMediaSucess(file: MutableList<File>) {
+        }
+
+        override fun onTakeMediaSuccess(file: File?) {
+            showLayoutImage(file)
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_comment_post)
@@ -129,7 +141,6 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
         setupPermission()
         setupViewModel()
         setupListener()
-        setUpTakeImage()
     }
 
 
@@ -468,7 +479,7 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
 
         imgCamera.onDelayClick({
             if (PermissionHelper.checkPermission(this, arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE), requestTakePicture)) {
-                takeMediaDialog.show(supportFragmentManager, null)
+                TakeMediaDialog.show(supportFragmentManager,takeMediaListener)
             }
         }, 2000)
 
@@ -512,21 +523,6 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
                 onRequireLogin(requestLogin)
             }
         }
-    }
-
-    private fun setUpTakeImage() {
-        takeMediaDialog = TakeMediaDialog(object : TakeMediaDialog.TakeImageListener {
-            override fun onPickMediaSucess(file: File) {
-                showLayoutImage(file)
-            }
-
-            override fun onPickMuliMediaSucess(file: MutableList<File>) {
-            }
-
-            override fun onTakeMediaSuccess(file: File?) {
-                showLayoutImage(file)
-            }
-        })
     }
 
     fun showLayoutImage(file: File?) {
@@ -716,7 +712,6 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        takeMediaDialog.takeMediaHelper?.onActivityResult(requestCode, resultCode)
         when (requestCode) {
             requestEdit -> {
                 if (resultCode == Activity.RESULT_OK) {

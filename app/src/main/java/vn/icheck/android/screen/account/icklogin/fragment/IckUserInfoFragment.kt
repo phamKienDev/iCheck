@@ -86,8 +86,6 @@ class IckUserInfoFragment : CoroutineFragment() {
 
     var cityPicker: CityPicker? = null
 
-    private val takeImageDialog = TakeMediaDialog(takeImageListener, false, isVideo = false)
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentUserInfoBinding.inflate(inflater, container, false)
         return binding.root
@@ -357,36 +355,28 @@ class IckUserInfoFragment : CoroutineFragment() {
 
 
     fun request() {
-        if (ContextCompat.checkSelfPermission(
-                        requireContext(),
-                        Manifest.permission.READ_EXTERNAL_STORAGE
-                ) != PackageManager.PERMISSION_GRANTED ||
-                ContextCompat.checkSelfPermission(
-                        requireContext(),
-                        Manifest.permission.CAMERA
-                ) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(
                     arrayOf(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE),
                     CONTRIBUTE_REQUEST
             )
         } else {
-            takeImageDialog.show(childFragmentManager, null)
+            selectPicture()
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        takeImageDialog.takeMediaHelper?.onActivityResult(requestCode, resultCode)
+    private fun selectPicture() {
+        TakeMediaDialog.show(childFragmentManager, takeImageListener, false, isVideo = false)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == CONTRIBUTE_REQUEST) {
-            if ((grantResults.isNotEmpty() &&
-                            grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+            if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                 // Permission is granted. Continue the action or workflow
                 // in your app.
-                takeImageDialog.show(childFragmentManager, null)
+                selectPicture()
             }
         }
     }
