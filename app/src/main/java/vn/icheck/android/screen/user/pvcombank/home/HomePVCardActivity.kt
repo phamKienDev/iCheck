@@ -65,7 +65,7 @@ class HomePVCardActivity : BaseActivityMVVM(), View.OnClickListener {
             WebViewActivity.start(this, it.description)
         })
 
-        viewModel.onState.observe(this, {
+        viewModel.onState.observe(this, Observer {
             when (it.type) {
                 ICMessageEvent.Type.ON_SHOW_LOADING -> {
                     DialogHelper.showLoading(this)
@@ -80,7 +80,7 @@ class HomePVCardActivity : BaseActivityMVVM(), View.OnClickListener {
     }
 
     private fun getDetailCard() {
-        viewModel.getDetailCardV2().observe(this, {
+        viewModel.getDetailCardV2().observe(this, Observer {
             when (it.status) {
                 Status.LOADING -> {
                     viewModel.onState.postValue(ICMessageEvent(ICMessageEvent.Type.ON_SHOW_LOADING))
@@ -113,7 +113,7 @@ class HomePVCardActivity : BaseActivityMVVM(), View.OnClickListener {
     }
 
     private fun getKyc() {
-        viewModel.getKyc().observe(this, {
+        viewModel.getKyc().observe(this, Observer {
             when (it.status) {
                 Status.LOADING -> {
                     DialogHelper.showLoading(this@HomePVCardActivity)

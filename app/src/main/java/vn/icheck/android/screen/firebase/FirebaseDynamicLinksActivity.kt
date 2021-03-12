@@ -1041,7 +1041,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                                         finishActivity()
                                     }
                                     Status.SUCCESS -> {
-                                        if (checkCardRes.data?.data == true) {1
+                                        if (checkCardRes.data?.data == true) {
                                             if (SettingManager.getSessionPvcombank.isEmpty()) {
                                                 getFormAuth(5000L).observe(this, Observer { formAuthRes ->
                                                     when (formAuthRes.status) {

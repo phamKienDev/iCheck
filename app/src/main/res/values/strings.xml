@@ -895,4 +895,7 @@
     <string name="force_update_title">Thông báo cập nhật</string>
     <string name="force_update_content">Có phiên bản mới của ứng dụng. Vui lòng cập nhật để trải nghiệm các tính năng mới nhất</string>
     <string name="ban_khong_co_the_nao">Bạn không có thẻ nào</string>
+    <string name="so_du_ví">Số dư ví</string>
+    <string name="mo_the_va_kich_hoat_vi_de_thanh_toan_moi_luc_moi_noi">Mở thẻ và kích hoạt ví để thanh toán mọi lúc mọi nơi</string>
+    <string name="mo_the_ngay">Mở thẻ ngay</string>
 </resources>
