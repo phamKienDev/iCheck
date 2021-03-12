@@ -27,7 +27,9 @@ import vn.icheck.android.screen.user.pvcombank.card_history.adapter.HistoryPVTra
 import vn.icheck.android.screen.user.pvcombank.confirmunlockcard.ConfirmUnlockPVCardActivity
 import vn.icheck.android.ui.carousel_recyclerview.CenterScrollListener
 import vn.icheck.android.ui.carousel_recyclerview.ZoomCenterCardLayoutManager
+import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
+import vn.icheck.android.util.ick.visibleOrGone
 
 class HistoryPVCardActivity : BaseActivityMVVM(), IRecyclerViewCallback {
     private lateinit var cardAdapter: HistoryPVCardAdapter
@@ -83,7 +85,7 @@ class HistoryPVCardActivity : BaseActivityMVVM(), IRecyclerViewCallback {
     }
 
     private fun initData() {
-        viewModel.onListCard.observe(this, Observer {
+        viewModel.onListCard.observe(this, {
             if (!isInit) {
                 recyclerviewCard.addOnScrollListener(CenterScrollListener())
                 recyclerviewCard.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
@@ -132,7 +134,7 @@ class HistoryPVCardActivity : BaseActivityMVVM(), IRecyclerViewCallback {
             viewModel.getListTransaction(cardId)
         })
 
-        viewModel.onSetTransaction.observe(this, Observer {
+        viewModel.onSetTransaction.observe(this, {
             if (it.isNullOrEmpty()) {
                 transactionAdapter.setError(R.drawable.ic_group_120dp, "Chưa có lịch sử giao dịch", -1)
             } else {
@@ -141,11 +143,11 @@ class HistoryPVCardActivity : BaseActivityMVVM(), IRecyclerViewCallback {
             recyclerviewTransaction.smoothScrollToPosition(0)
         })
 
-        viewModel.onAddTransaction.observe(this, Observer {
+        viewModel.onAddTransaction.observe(this, {
             transactionAdapter.addListData(it)
         })
 
-        viewModel.onError.observe(this, Observer {
+        viewModel.onError.observe(this, {
             if (cardAdapter.isEmpty && transactionAdapter.isEmpty) {
                 layoutMessage.beVisible()
                 imgIcon.setImageResource(it.icon)
@@ -154,7 +156,7 @@ class HistoryPVCardActivity : BaseActivityMVVM(), IRecyclerViewCallback {
                 showShortError(it.message ?: "")
             }
         })
-        viewModel.statusCode.observe(this, Observer {
+        viewModel.statusCode.observe(this, {
             when (it) {
                 ICMessageEvent.Type.ON_SHOW_LOADING -> {
                     DialogHelper.showLoading(this)
@@ -169,7 +171,7 @@ class HistoryPVCardActivity : BaseActivityMVVM(), IRecyclerViewCallback {
     }
 
     private fun getListCard() {
-        viewModel.getListCard().observe(this, Observer { result ->
+        viewModel.getListCard().observe(this, { result ->
             when (result.status) {
                 Status.LOADING -> {
                     viewModel.statusCode.postValue(ICMessageEvent.Type.ON_SHOW_LOADING)
@@ -230,6 +232,7 @@ class HistoryPVCardActivity : BaseActivityMVVM(), IRecyclerViewCallback {
                     cardId = listCards.firstOrNull()?.cardId
                     cardAdapter.disableLoadMore()
                     cardAdapter.setListData(listCards)
+                    viewMid.visibleOrGone(!listCards.isNullOrEmpty())
                     viewModel.getListTransaction(cardId)
                 }
             }
@@ -275,7 +278,7 @@ class HistoryPVCardActivity : BaseActivityMVVM(), IRecyclerViewCallback {
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
                 requestFullCard -> {
-                    val id = data?.getStringExtra(Constant.DATA_1)
+                    val id = data?.getStringExtra(Constant.DATA_2)
                     if (id != null) {
                         cardAdapter.showOrHide(id, true)
                     }
