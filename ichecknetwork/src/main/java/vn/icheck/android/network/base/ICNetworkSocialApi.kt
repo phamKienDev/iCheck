@@ -330,7 +330,7 @@ interface ICNetworkSocialApi {
     fun unlockCard(@Path("cardId") cardId: String): Observable<ICResponse<ICLockCard>>
 
     @POST(APIConstants.PVCombank.VERIFY_OTP_UNLOCK_CARD)
-    fun verifyOtpUnlockCard(@Body body: HashMap<String, Any>, @Path("reqId") requestId: String): Observable<ICResponse<ICLockCard>>
+    fun verifyOtpUnlockCard(@Body body: HashMap<String, Any>, @Path("reqId") requestId: String): Observable<ICResponse<ICInfoPVCard>>
 
     @GET(APIConstants.PVCombank.TRANSACTION_CARD)
     fun getTransactionCard(@Path("cardId") cardId: String): Observable<ICResponse<ICTransactionPVCard>>

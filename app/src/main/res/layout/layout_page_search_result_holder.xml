@@ -30,16 +30,14 @@
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="@dimen/size_10"
         android:layout_marginRight="@dimen/size_10"
-        android:ellipsize="end"
         android:fontFamily="@font/barlow_semi_bold"
         android:includeFontPadding="false"
-        android:singleLine="true"
         android:textColor="@color/collection_product_name"
         android:textSize="14sp"
         app:layout_constraintEnd_toStartOf="@+id/tv_follow_shop"
         app:layout_constraintStart_toEndOf="@+id/img_avatar"
         app:layout_constraintTop_toTopOf="@+id/img_avatar"
-        tools:text="Nguyễn Quang Hải" />
+        tools:text="Nguyễn Quang Hải Nguyễn Quang Hải" />
 
     <TextView
         android:id="@+id/tv_count_like"

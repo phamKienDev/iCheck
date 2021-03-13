@@ -283,7 +283,7 @@
             android:layout_height="@dimen/size_40"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="18dp"
-            android:src="@drawable/img_default_business_logo"
+            android:src="@drawable/ic_business_v2"
             app:civ_border_color="@color/gray"
             app:civ_border_width="@dimen/size_0_5"
             app:layout_constraintBottom_toBottomOf="parent"

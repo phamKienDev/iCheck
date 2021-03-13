@@ -34,12 +34,16 @@ class HomeViewModel : BaseViewModel() {
                 if (!theme.homeBackgroundImage.isNullOrEmpty()) {
                     arrAsync.add(async(Dispatchers.IO) {
                         try {
-                            homeBackgroundImage = Glide.with(ICheckApplication.getInstance())
-                                    .asFile()
-                                    .timeout(30000)
-                                    .load(theme.homeBackgroundImage)
-                                    .submit()
-                                    .get()
+                            homeBackgroundImage = if (!theme.homeBackgroundImage.isNullOrEmpty()) {
+                                Glide.with(ICheckApplication.getInstance())
+                                        .asFile()
+                                        .timeout(30000)
+                                        .load(theme.homeBackgroundImage)
+                                        .submit()
+                                        .get()
+                            } else {
+                                null
+                            }
                         } catch (e: Exception) {
                             e.printStackTrace()
                         }
@@ -48,12 +52,16 @@ class HomeViewModel : BaseViewModel() {
                 if (!theme.homeHeaderImage.isNullOrEmpty()) {
                     arrAsync.add(async(Dispatchers.IO) {
                         try {
-                            homeHeaderImage = Glide.with(ICheckApplication.getInstance())
-                                    .asFile()
-                                    .timeout(30000)
-                                    .load(theme.homeHeaderImage)
-                                    .submit()
-                                    .get()
+                            homeHeaderImage = if (!theme.homeHeaderImage.isNullOrEmpty()) {
+                                Glide.with(ICheckApplication.getInstance())
+                                        .asFile()
+                                        .timeout(30000)
+                                        .load(theme.homeHeaderImage)
+                                        .submit()
+                                        .get()
+                            } else {
+                                null
+                            }
                         } catch (e: Exception) {
                             e.printStackTrace()
                         }
@@ -62,60 +70,80 @@ class HomeViewModel : BaseViewModel() {
                 if (theme.bottomBarSelectedIcons?.size ?: 0 > 4) {
                     arrAsync.add(async(Dispatchers.IO) {
                         try {
-                            homeIcon = Glide.with(ICheckApplication.getInstance())
-                                    .asFile()
-                                    .timeout(30000)
-                                    .load(theme.bottomBarSelectedIcons!![0])
-                                    .submit()
-                                    .get()
+                            homeIcon = if (!theme.bottomBarSelectedIcons!![0].isNullOrEmpty()) {
+                                Glide.with(ICheckApplication.getInstance())
+                                        .asFile()
+                                        .timeout(30000)
+                                        .load(theme.bottomBarSelectedIcons!![0])
+                                        .submit()
+                                        .get()
+                            } else {
+                                null
+                            }
                         } catch (e: Exception) {
                             e.printStackTrace()
                         }
                     })
                     arrAsync.add(async(Dispatchers.IO) {
                         try {
-                            newsIcon = Glide.with(ICheckApplication.getInstance())
-                                    .asFile()
-                                    .timeout(30000)
-                                    .load(theme.bottomBarSelectedIcons!![1])
-                                    .submit()
-                                    .get()
+                            newsIcon = if (!theme.bottomBarSelectedIcons!![1].isNullOrEmpty()) {
+                                Glide.with(ICheckApplication.getInstance())
+                                        .asFile()
+                                        .timeout(30000)
+                                        .load(theme.bottomBarSelectedIcons!![1])
+                                        .submit()
+                                        .get()
+                            } else {
+                                null
+                            }
                         } catch (e: Exception) {
                             e.printStackTrace()
                         }
                     })
                     arrAsync.add(async(Dispatchers.IO) {
                         try {
-                            scanIcon = Glide.with(ICheckApplication.getInstance())
-                                    .asFile()
-                                    .timeout(30000)
-                                    .load(theme.bottomBarSelectedIcons!![2])
-                                    .submit()
-                                    .get()
+                            scanIcon = if (!theme.bottomBarSelectedIcons!![2].isNullOrEmpty()) {
+                                Glide.with(ICheckApplication.getInstance())
+                                        .asFile()
+                                        .timeout(30000)
+                                        .load(theme.bottomBarSelectedIcons!![2])
+                                        .submit()
+                                        .get()
+                            } else {
+                                null
+                            }
                         } catch (e: Exception) {
                             e.printStackTrace()
                         }
                     })
                     arrAsync.add(async(Dispatchers.IO) {
                         try {
-                            historyIcon = Glide.with(ICheckApplication.getInstance())
-                                    .asFile()
-                                    .timeout(30000)
-                                    .load(theme.bottomBarSelectedIcons!![3])
-                                    .submit()
-                                    .get()
+                            historyIcon = if (!theme.bottomBarSelectedIcons!![3].isNullOrEmpty()) {
+                                Glide.with(ICheckApplication.getInstance())
+                                        .asFile()
+                                        .timeout(30000)
+                                        .load(theme.bottomBarSelectedIcons!![3])
+                                        .submit()
+                                        .get()
+                            } else {
+                                null
+                            }
                         } catch (e: Exception) {
                             e.printStackTrace()
                         }
                     })
                     arrAsync.add(async(Dispatchers.IO) {
                         try {
-                            messageIcon = Glide.with(ICheckApplication.getInstance())
-                                    .asFile()
-                                    .timeout(30000)
-                                    .load(theme.bottomBarSelectedIcons!![4])
-                                    .submit()
-                                    .get()
+                            messageIcon = if (!theme.bottomBarSelectedIcons!![4].isNullOrEmpty()) {
+                                Glide.with(ICheckApplication.getInstance())
+                                        .asFile()
+                                        .timeout(30000)
+                                        .load(theme.bottomBarSelectedIcons!![4])
+                                        .submit()
+                                        .get()
+                            } else {
+                                null
+                            }
                         } catch (e: Exception) {
                             e.printStackTrace()
                         }
@@ -131,13 +159,22 @@ class HomeViewModel : BaseViewModel() {
                         scanIcon?.exists() == true ||
                         historyIcon?.exists() == true ||
                         messageIcon?.exists() == true) {
-                    FileHelper.copyFile(homeBackgroundImage!!, File(path + FileHelper.homeBackgroundImage))
-                    FileHelper.copyFile(homeHeaderImage!!, File(path + FileHelper.homeHeaderImage))
-                    FileHelper.copyFile(homeIcon!!, File(path + FileHelper.homeIcon))
-                    FileHelper.copyFile(newsIcon!!, File(path + FileHelper.newsIcon))
-                    FileHelper.copyFile(scanIcon!!, File(path + FileHelper.scanIcon))
-                    FileHelper.copyFile(historyIcon!!, File(path + FileHelper.historyIcon))
-                    FileHelper.copyFile(messageIcon!!, File(path + FileHelper.messageIcon))
+
+                    if (homeBackgroundImage != null)
+                        FileHelper.copyFile(homeBackgroundImage!!, File(path + FileHelper.homeBackgroundImage))
+                    if (homeHeaderImage != null)
+                        FileHelper.copyFile(homeHeaderImage!!, File(path + FileHelper.homeHeaderImage))
+                    if (homeIcon != null)
+                        FileHelper.copyFile(homeIcon!!, File(path + FileHelper.homeIcon))
+                    if (newsIcon != null)
+                        FileHelper.copyFile(newsIcon!!, File(path + FileHelper.newsIcon))
+                    if (scanIcon != null)
+                        FileHelper.copyFile(scanIcon!!, File(path + FileHelper.scanIcon))
+                    if (historyIcon != null)
+                        FileHelper.copyFile(historyIcon!!, File(path + FileHelper.historyIcon))
+                    if (messageIcon != null)
+                        FileHelper.copyFile(messageIcon!!, File(path + FileHelper.messageIcon))
+
                     EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_SET_THEME))
                 }
             }

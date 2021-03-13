@@ -202,7 +202,7 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
             override fun onItemClick(position: Int, item: ICCommentPermission?) {
                 if (item != null) {
                     if (item.type == Constant.PAGE) {
-                        WidgetUtils.loadImageUrl(imgAvatar, item.avatar, R.drawable.img_default_business_logo_big)
+                        WidgetUtils.loadImageUrl(imgAvatar, item.avatar, R.drawable.ic_business_v2)
                     } else {
                         WidgetUtils.loadImageUrl(imgAvatar, item.avatar, R.drawable.ic_user_orange_circle)
                     }

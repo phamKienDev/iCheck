@@ -9,7 +9,6 @@ import kotlinx.android.synthetic.main.fragment_user_profile.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
-import vn.icheck.android.activities.chat.v2.ChatV2Activity
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.fragment.BaseFragment
@@ -250,7 +249,7 @@ class UserProfileFragment : BaseFragment<UserProfilePresenter>(), IUserProfileVi
 
             }
             R.id.imgMessage -> {
-                ChatV2Activity.createChatUser(presenter.getUser.id, requireActivity())
+//                ChatV2Activity.createChatUser(presenter.getUser.id, requireActivity())
             }
             R.id.txtViewAll -> {
                 startActivity<FollowActivity, Long>(Constant.DATA_1, presenter.getUserID)

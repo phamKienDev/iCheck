@@ -42,7 +42,7 @@ class PVcomBankRepository : BaseInteractor() {
         requestNewApi(ICNetworkClient.getNewSocialApi().lockCard(cardId), listener)
     }
 
-    fun verifyOtp(requestId: String, otp: String, otptranid: String, listener: ICNewApiListener<ICResponse<ICLockCard>>) {
+    fun verifyOtp(requestId: String, otp: String, otptranid: String, listener: ICNewApiListener<ICResponse<ICInfoPVCard>>) {
         val body = hashMapOf<String, Any>()
         body["requestId"] = requestId
         body["otpcode"] = otp

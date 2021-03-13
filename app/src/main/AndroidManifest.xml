@@ -57,6 +57,10 @@
     <uses-permission-sdk-23 android:name="android.permission.WRITE_CALENDAR" /> <!-- Insider Required -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
+    <uses-permission
+        android:name="android.permission.ACCESS_BACKGROUND_LOCATION"
+        tools:node="remove" />
+
     <application
         android:name=".ICheckApplication"
         android:allowBackup="false"
@@ -525,7 +529,6 @@
             android:name=".screen.user.home_page.my_gift_warehouse.open_reward_box_tet.OpenRewardBoxTetActivity"
             android:screenOrientation="portrait"
             android:theme="@style/TranslucentStatusBarDapQua" />
-        <activity android:name=".activities.chat.group.NewCreateGroupChatActivity" />
         <activity
             android:name=".screen.user.qr_code_marketing.QrCodeMarketingActivity"
             android:screenOrientation="portrait" />
@@ -533,8 +536,6 @@
             android:name=".screen.user.popup_giftcode_lucky.PopupGiftCodeLucky"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Translucent" />
-        <activity android:name=".activities.chat.setting.ChatV2SettingActivity" />
-        <activity android:name=".activities.chat.v2.ChatV2Activity" />
         <activity android:name=".activities.chat.sticker.StickerStoreActivity" />
         <activity
             android:name=".screen.user.detail_stamp_v5.detail_history_guarantee_v5.DetaiHistoryGuaranteeV5Activity"
@@ -552,7 +553,6 @@
             android:name=".screen.user.voucher.VoucherActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme_White" />
-        <activity android:name=".activities.chat.ScanForChatActivity" />
         <activity
             android:name=".screen.user.popup_complete_mission.PopupCompleteMissionActivity"
             android:theme="@style/Theme.AppCompat.Translucent" />
@@ -857,9 +857,6 @@
         <activity
             android:name=".screen.user.missiondetail.MissionDetailActivity"
             android:exported="true"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activities.chat.CreateGroupChatActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.InviteFriendActivity"

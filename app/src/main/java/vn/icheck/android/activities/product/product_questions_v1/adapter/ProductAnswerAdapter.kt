@@ -75,7 +75,7 @@ class ProductAnswerAdapter(val questionPosition: Int, val listener: IProductQues
                         WidgetUtils.loadImageUrlRounded4(itemView.imgItem, obj.actor.avatarThumbnails?.original, R.drawable.ic_user_orange_circle)
                     }
                     "page" -> {
-                        WidgetUtils.loadImageUrlRounded4(itemView.imgItem, obj.actor.avatarThumbnails?.original, R.drawable.img_default_business_logo)
+                        WidgetUtils.loadImageUrlRounded4(itemView.imgItem, obj.actor.avatarThumbnails?.original, R.drawable.ic_business_v2)
                     }
                     else -> {
                         WidgetUtils.loadImageUrlRounded4(itemView.imgItem, obj.actor.avatarThumbnails?.original, R.drawable.img_shop_default)

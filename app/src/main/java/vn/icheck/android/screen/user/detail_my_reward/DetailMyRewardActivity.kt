@@ -121,7 +121,7 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
         binding.imgLogo.loadImageWithHolder(data.image, R.drawable.default_product_image)
         binding.txtTitle simpleText data.name
 
-        binding.imgLogoSupplier.loadImageWithHolder(data.shopImage, R.drawable.img_default_business_logo_big)
+        binding.imgLogoSupplier.loadImageWithHolder(data.shopImage, R.drawable.ic_business_v2)
         binding.tvNameSupplier simpleText data.shopName
         if (!data.desc.isNullOrEmpty()) {
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
