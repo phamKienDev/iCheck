@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_detail_pvcard.*
 import kotlinx.android.synthetic.main.toolbar_pvcombank.*
+import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
@@ -192,5 +193,10 @@ class HomePVCardActivity : BaseActivityMVVM(), View.OnClickListener {
             else -> {
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_DESTROY_PVCOMBANK))
     }
 }

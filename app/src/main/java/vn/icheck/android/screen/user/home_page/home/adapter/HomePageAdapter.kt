@@ -40,6 +40,7 @@ import vn.icheck.android.helper.getAdsType
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.models.*
 import vn.icheck.android.network.models.product_need_review.ICProductNeedReview
+import vn.icheck.android.network.models.pvcombank.ICListCardPVBank
 import vn.icheck.android.screen.user.campaign.calback.IBannerV2Listener
 import vn.icheck.android.screen.user.campaign.calback.IMessageListener
 import vn.icheck.android.screen.user.campaign.calback.IProductNeedReviewListener
@@ -55,7 +56,7 @@ class HomePageAdapter(
         private val productReviewListener: IProductNeedReviewListener,
         private val homePageListener: IHomePageView
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private val listData = mutableListOf<ICLayout>()
+    val listData = mutableListOf<ICLayout>()
 
     private var timeFlashSale: Long = 0L
 
@@ -63,6 +64,23 @@ class HomePageAdapter(
     private var errorMessage: String? = null
 
     private val isExistTheme = SettingManager.themeSetting?.theme != null
+
+    fun updatePVCombank(obj: ICListCardPVBank?) {
+        for (i in listData.indices) {
+            if (listData[i].viewType == ICViewTypes.HOME_PRIMARY_FUNC) {
+                if (listData[i].data != null) {
+                    (listData[i].data as MutableList<Any?>).apply {
+                        if (size > 1) {
+                            removeLast()
+                        }
+                        add(obj)
+                        notifyDataSetChanged()
+                    }
+                }
+                return
+            }
+        }
+    }
 
     @Synchronized
     fun addItem(obj: ICLayout) {
@@ -327,7 +345,7 @@ class HomePageAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is HomeFunctionHolder -> {
-                holder.bind(listData[position].data as ICTheme)
+                holder.bind(listData[position].data as MutableList<Any?>)
             }
             is CheckUpdateHolder -> {
                 holder.bind()

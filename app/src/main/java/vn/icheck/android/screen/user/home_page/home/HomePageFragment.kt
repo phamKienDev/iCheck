@@ -49,6 +49,8 @@ import vn.icheck.android.screen.user.campaign.calback.IProductNeedReviewListener
 import vn.icheck.android.screen.user.edit_review.EditReviewActivity
 import vn.icheck.android.screen.user.home.HomeActivity
 import vn.icheck.android.screen.user.home_page.home.adapter.HomePageAdapter
+import vn.icheck.android.screen.user.home_page.home.callback.IHomePageView
+import vn.icheck.android.screen.user.home_page.home.holder.primaryfunction.HomeFunctionHolder
 import vn.icheck.android.screen.user.home_page.home.reminders.ReminderHomeDialog
 import vn.icheck.android.screen.user.list_trending_products.ListTrendingProductsActivity
 import vn.icheck.android.screen.user.listnotification.ListNotificationActivity
@@ -66,8 +68,8 @@ import java.io.File
  * Email: vulcl@icheck.vn
  */
 @AndroidEntryPoint
-class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener, IProductNeedReviewListener, View.OnClickListener {
-    private var homeAdapter = HomePageAdapter(this, this, this)
+class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener, IProductNeedReviewListener, IHomePageView, View.OnClickListener {
+    private var homeAdapter = HomePageAdapter(this, this, this, this)
 
     private val viewModel: HomePageViewModel by activityViewModels()
 
@@ -139,7 +141,6 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
     }
 
     private fun checkTheme() {
-        homeAdapter.notifyDataSetChanged()
         File(FileHelper.getPath(this@HomePageFragment.requireContext()) + FileHelper.homeBackgroundImage).let {
             if (it.exists() && imgThemeBackground != null) {
                 WidgetUtils.loadImageFile(imgThemeBackground, it)
@@ -164,6 +165,15 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                                 ViewHelper.getDrawableFillColor(R.drawable.ic_notification_white_24, homeHeaderIconColor!!)
                         ), null, null, null)
                     }
+                }
+            }
+        }
+
+        for (i in homeAdapter.listData.indices) {
+            recyclerView.findViewHolderForAdapterPosition(i)?.let { viewHolder ->
+                if (viewHolder is HomeFunctionHolder) {
+                    viewHolder.updateTheme()
+                    return
                 }
             }
         }
@@ -203,6 +213,18 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         viewModel.onUpdateListData.observe(viewLifecycleOwner, Observer {
             homeAdapter.updateItem(it)
             layoutHeader.beVisible()
+        })
+
+        viewModel.onUpdatePVCombank.observe(viewLifecycleOwner, Observer {
+            homeAdapter.updatePVCombank(it)
+            for (i in homeAdapter.listData.indices) {
+                recyclerView.findViewHolderForAdapterPosition(i)?.let { viewHolder ->
+                    if (viewHolder is HomeFunctionHolder) {
+                        viewHolder.updateHomePVCombank(it)
+                        return@Observer
+                    }
+                }
+            }
         })
     }
 
@@ -305,6 +327,17 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         }
     }
 
+    private fun updateHomeHeader() {
+        for (i in homeAdapter.listData.indices) {
+            recyclerView.findViewHolderForAdapterPosition(i)?.let { viewHolder ->
+                if (viewHolder is HomeFunctionHolder) {
+                    viewHolder.updateHomeHeader()
+                    return
+                }
+            }
+        }
+    }
+
     override fun onBannerSurveyClicked(id: Long) {
         AdsUtils.bannerSurveyClicked(this, requestBannerSurvey, id)
     }
@@ -331,6 +364,22 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                 IckProductDetailActivity.start(it, item.barcode!!)
             }
         }
+    }
+
+    override fun onCreatePVCombank() {
+        FirebaseDynamicLinksActivity.startDestinationUrl(this@HomePageFragment.requireActivity(), "digital_bank")
+    }
+
+    override fun onRechargePVCombank() {
+        // Todo
+    }
+
+    override fun onInfoPVCombank() {
+        // Todo
+    }
+
+    override fun onTransactionCombank() {
+        // Todo
     }
 
     override fun onRequireLoginSuccess(requestCode: Int) {
@@ -366,7 +415,8 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                 }
             }
             ICMessageEvent.Type.UPDATE_COIN_AND_RANK -> {
-                homeAdapter.notifyItemChanged(0)
+//                homeAdapter.notifyItemChanged(0)
+                updateHomeHeader()
             }
 //            ICMessageEvent.Type.UPDATE_COUNT_CART -> {
 //                val count = event.data as String?
@@ -377,7 +427,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                 getReminders()
             }
             ICMessageEvent.Type.ON_LOG_OUT -> {
-                homeAdapter.notifyItemChanged(0)
+                viewModel.onUpdatePVCombank.value = null
                 getCoin()
                 layoutContainer.setTransition(R.id.no_reminder)
                 tvCartCount.beGone()
@@ -402,6 +452,9 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                 if (isVisible && !SessionManager.isUserLogged) {
                     onRequireLogin()
                 }
+            }
+            ICMessageEvent.Type.ON_DESTROY_PVCOMBANK -> {
+                viewModel.getPVCombank()
             }
             else -> {
             }
@@ -495,7 +548,8 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
 //            })
 //        }
 
-        homeAdapter.notifyItemChanged(0)
+//        homeAdapter.notifyItemChanged(0)
+        updateHomeHeader()
         getCoin()
         getReminders()
 

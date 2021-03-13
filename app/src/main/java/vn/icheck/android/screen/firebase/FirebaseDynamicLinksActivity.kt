@@ -1054,6 +1054,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                                                             } else {
                                                                 CreatePVCardActivity.redirectUrl = formAuthRes.data!!.data!!.redirectUrl
                                                                 WebViewActivity.start(this, formAuthRes.data!!.data!!.authUrl)
+                                                                finishActivity()
                                                             }
                                                         }
                                                         else -> {

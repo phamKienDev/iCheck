@@ -99,6 +99,7 @@ data class ICMessageEvent(val type: Type, val data: Any? = null) {
         ON_CHECK_UPDATE_LOCATION,
         SOCKET_TIMEOUT,
         UNFRIEND,
-        ON_KYC_SUCCESS
+        ON_KYC_SUCCESS,
+        ON_DESTROY_PVCOMBANK
     }
 }

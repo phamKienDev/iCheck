@@ -1,10 +1,13 @@
 package vn.icheck.android.screen.user.home_page.home.holder.primaryfunction
 
+import android.graphics.Rect
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.*
 import androidx.viewpager.widget.PagerAdapter
+import androidx.viewpager2.widget.MarginPageTransformer
+import androidx.viewpager2.widget.ViewPager2
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
@@ -27,14 +30,69 @@ import vn.icheck.android.screen.user.home_page.home.callback.IHomePageView
 import vn.icheck.android.screen.user.home_page.home.holder.secondfunction.HomeSecondaryFunctionAdapter
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.io.File
+import kotlin.math.abs
 
 class HomeFunctionHolder(parent: ViewGroup, isExistTheme: Boolean, listener: IHomePageView,
-                         val binding: ItemHomeFunctionBinding = ItemHomeFunctionBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : BaseViewHolder<ICTheme>(binding.root) {
+                         val binding: ItemHomeFunctionBinding = ItemHomeFunctionBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : BaseViewHolder<MutableList<Any?>>(binding.root) {
 
-    private val primaryAdapter = HomePrimaryAdapter(listener)
+    private val primaryAdapter = HomePrimaryAdapterV2(listener)
     private val secondaryAdapter = HomeSecondaryFunctionAdapter(mutableListOf(), isExistTheme)
+    private val pagerSnapHelper = PagerSnapHelper()
 
-    override fun bind(obj: ICTheme) {
+    override fun bind(obj: MutableList<Any?>) {
+        updateTheme()
+
+        binding.viewPager.apply {
+//            if (layoutManager == null)
+//                layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+//            if (onFlingListener == null)
+//                pagerSnapHelper.attachToRecyclerView(this)
+
+//            val itemDecoration = object : RecyclerView.ItemDecoration() {
+//                override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+//                    outRect.right = SizeHelper.size24
+//                    outRect.left = SizeHelper.size24
+//                }
+//            }
+//            addItemDecoration(itemDecoration)
+
+            adapter = primaryAdapter
+            primaryAdapter.setData(obj)
+
+            offscreenPageLimit = primaryAdapter.itemCount
+            setPageTransformer { page: View, position: Float ->
+                page.translationX = -SizeHelper.size24 * position
+            }
+        }
+
+        binding.rcvSecond.apply {
+            val functions = (obj[0] as ICTheme).secondary_functions
+            layoutManager = GridLayoutManager(itemView.context, if (functions?.size ?: 0 >= 4) {
+                4
+            } else {
+                functions?.size ?: 0
+            })
+            adapter = secondaryAdapter.apply {
+                setData(functions ?: mutableListOf())
+            }
+        }
+    }
+
+    fun updateHomeHeader() {
+        primaryAdapter.notifyItemChanged(0)
+        binding.viewPager.apply {
+            offscreenPageLimit = primaryAdapter.itemCount
+            setPageTransformer { page: View, position: Float ->
+                page.translationX = -SizeHelper.size24 * position
+            }
+        }
+    }
+
+    fun updateHomePVCombank(obj: ICListCardPVBank?) {
+        primaryAdapter.addMoreDate(obj)
+    }
+
+    fun updateTheme() {
         val path = FileHelper.getPath(itemView.context)
         File(path + FileHelper.homeBackgroundImage).let {
             if (it.exists()) {
@@ -54,30 +112,199 @@ class HomeFunctionHolder(parent: ViewGroup, isExistTheme: Boolean, listener: IHo
                 }
             }
         }
+    }
 
-        binding.viewPager.apply {
-            adapter = primaryAdapter
-            primaryAdapter.setData()
+    class HomePrimaryAdapterV2(private val listener: IHomePageView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+        private val listData = mutableListOf<Any?>()
+
+        private val headerType = 1
+        private val detailType = 2
+
+        fun setData(list: MutableList<Any?>) {
+            listData.clear()
+            listData.addAll(list)
+            notifyItemRangeChanged(0, itemCount)
         }
 
-        binding.rcvSecond.apply {
-            layoutManager = if (obj.secondary_functions!!.size >= 4) {
-                GridLayoutManager(itemView.context, 4)
+        fun addMoreDate(obj: Any?) {
+            if (listData.size > 1) {
+                listData.removeLast()
+                listData.add(obj)
+                notifyItemRangeChanged(0, itemCount)
             } else {
-                GridLayoutManager(itemView.context, obj.secondary_functions!!.size)
+                listData.add(obj)
+                notifyDataSetChanged()
             }
-            adapter = secondaryAdapter.apply {
-                setData(obj.secondary_functions ?: mutableListOf())
+        }
+
+        override fun getItemViewType(position: Int): Int {
+            return when (val obj = listData[position]) {
+                is ICTheme -> {
+                    headerType
+                }
+                is ICListCardPVBank -> {
+                    detailType
+                }
+                else -> {
+                    super.getItemViewType(position)
+                }
+            }
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+            return when (viewType) {
+                headerType -> {
+                    HeaderHolder(parent)
+                }
+                detailType -> {
+                    DetailHolder(parent)
+                }
+                else -> {
+                    CreateHolder(parent)
+                }
+            }
+        }
+
+        override fun getItemCount() = listData.size
+
+        override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+            when (holder) {
+                is HeaderHolder -> {
+                    holder.bind(listData[position] as ICTheme)
+                }
+                is DetailHolder -> {
+                    holder.bind(listData[position] as ICListCardPVBank)
+                }
+                is CreateHolder -> {
+                    holder.bind(true)
+                }
+            }
+        }
+
+        inner class HeaderHolder(parent: ViewGroup, val binding: ItemHomeFunctionInfoBinding = ItemHomeFunctionInfoBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : BaseViewHolder<ICTheme>(binding.root) {
+            private val primaryAdapter = HomeFunctionAdapter()
+
+            override fun bind(obj: ICTheme) {
+                val user = SessionManager.session.user
+
+                binding.avatarUser.apply {
+                    avatarSize = SizeHelper.size32
+                    rankSize = SizeHelper.size12
+                    setData(user?.avatar, user?.rank?.level, R.drawable.ic_avatar_default_84px)
+
+                    setOnClickListener {
+                        if (SessionManager.isUserLogged) {
+                            ICheckApplication.currentActivity()?.let { activity ->
+                                FirebaseDynamicLinksActivity.startDestinationUrl(activity, "icheck://user")
+                            }
+                        } else {
+                            EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_REQUIRE_LOGIN))
+                        }
+                    }
+                }
+
+                binding.tvName.apply {
+                    text = if (user != null && SessionManager.isUserLogged) {
+                        if (user.getName == "Chưa cập nhật") {
+                            user.getPhoneOnly()
+                        } else {
+                            user.getName
+                        }
+                    } else {
+                        context.getString(R.string.nguoi_la)
+                    }
+                    setOnClickListener {
+                        ICheckApplication.currentActivity()?.let { activity ->
+                            FirebaseDynamicLinksActivity.startDestinationUrl(activity, "icheck://user")
+                        }
+                    }
+                }
+
+                binding.tvIcheckXu.text = TextHelper.formatMoneyPhay(SessionManager.getCoin())
+
+                binding.imgShowOrHidePassword.setOnClickListener {
+                    if (binding.tvIcheckXu.visibility == View.GONE) {
+                        binding.imgShowOrHidePassword.setImageResource(R.drawable.ic_eye_off_gray_24dp)
+                        binding.tvHide.visibility = View.GONE
+                        binding.tvIcheckXu.visibility = View.VISIBLE
+                    } else {
+                        binding.imgShowOrHidePassword.setImageResource(R.drawable.ic_eye_on_24px)
+                        binding.tvHide.visibility = View.VISIBLE
+                        binding.tvIcheckXu.visibility = View.GONE
+                    }
+                }
+
+                binding.rcvPrimary.apply {
+                    if (!obj.primary_functions.isNullOrEmpty()) {
+                        setVisible()
+                        layoutManager = if (obj.primary_functions!!.size >= 4) {
+                            GridLayoutManager(context, 4)
+                        } else {
+                            GridLayoutManager(context, obj.primary_functions!!.size)
+                        }
+                        adapter = primaryAdapter.apply {
+                            setData(obj.primary_functions!!)
+                        }
+                    } else {
+                        setGone()
+                    }
+                }
+            }
+        }
+
+        inner class DetailHolder(parent: ViewGroup, val binding: ItemHomeFunctionDetailPvcombankBinding = ItemHomeFunctionDetailPvcombankBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : BaseViewHolder<ICListCardPVBank>(binding.root) {
+
+            override fun bind(obj: ICListCardPVBank) {
+                binding.tvMoney.text = if (binding.tvMoney.isChecked) {
+                    TextHelper.formatMoney(obj.avlBalance ?: "").replace("[0-9]".toRegex(), "*")
+                } else {
+                    TextHelper.formatMoney(obj.avlBalance ?: "")
+                }
+
+                binding.tvMoney.setOnClickListener {
+                    binding.tvMoney.isChecked = !binding.tvMoney.isChecked
+
+                    binding.tvMoney.text = if (binding.tvMoney.isChecked) {
+                        TextHelper.formatMoney(obj.avlBalance ?: "").replace("[0-9]".toRegex(), "*")
+                    } else {
+                        TextHelper.formatMoney(obj.avlBalance ?: "")
+                    }
+                }
+
+                binding.tvRecharge.setOnClickListener {
+                    listener.onRechargePVCombank()
+                }
+
+                binding.tvInfo.setOnClickListener {
+                    listener.onInfoPVCombank()
+                }
+
+                binding.tvTransaction.setOnClickListener {
+                    listener.onTransactionCombank()
+                }
+            }
+        }
+
+        inner class CreateHolder(parent: ViewGroup, val binding: ItemHomeFunctionCreatePvcombankBinding = ItemHomeFunctionCreatePvcombankBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : BaseViewHolder<Boolean>(binding.root) {
+
+            override fun bind(obj: Boolean) {
+                binding.imgImage.setOnClickListener {
+                    listener.onCreatePVCombank()
+                }
+
+                binding.btnCreate.setOnClickListener {
+                    listener.onCreatePVCombank()
+                }
             }
         }
     }
 
     class HomePrimaryAdapter(private val listener: IHomePageView) : PagerAdapter() {
-        private val listData = mutableListOf<Any>()
+        private val listData = mutableListOf<Any?>()
 
         private val primaryAdapter = HomeFunctionAdapter()
 
-        fun setData(list: MutableList<Any>) {
+        fun setData(list: MutableList<Any?>) {
             listData.clear()
             listData.addAll(list)
             notifyDataSetChanged()
@@ -154,7 +381,7 @@ class HomeFunctionHolder(parent: ViewGroup, isExistTheme: Boolean, listener: IHo
                                 setGone()
                             }
                         }
-                    }
+                    }.root
                 }
                 is ICListCardPVBank -> {
                     ItemHomeFunctionDetailPvcombankBinding.inflate(LayoutInflater.from(container.context), container, false).apply {
@@ -166,17 +393,17 @@ class HomeFunctionHolder(parent: ViewGroup, isExistTheme: Boolean, listener: IHo
                         }
 
                         tvRecharge.setOnClickListener {
-
+                            listener.onRechargePVCombank()
                         }
 
                         tvInfo.setOnClickListener {
-
+                            listener.onInfoPVCombank()
                         }
 
                         tvTransaction.setOnClickListener {
-
+                            listener.onTransactionCombank()
                         }
-                    }
+                    }.root
                 }
                 else -> {
                     ItemHomeFunctionCreatePvcombankBinding.inflate(LayoutInflater.from(container.context), container, false).apply {
@@ -187,11 +414,11 @@ class HomeFunctionHolder(parent: ViewGroup, isExistTheme: Boolean, listener: IHo
                         btnCreate.setOnClickListener {
                             listener.onCreatePVCombank()
                         }
-                    }
+                    }.root
                 }
             }
 
-            container.addView(itemView.root)
+            container.addView(itemView)
             return itemView
         }
 

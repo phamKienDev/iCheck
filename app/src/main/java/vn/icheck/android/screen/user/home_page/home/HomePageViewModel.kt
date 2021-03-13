@@ -35,6 +35,7 @@ import vn.icheck.android.network.feature.setting.SettingRepository
 import vn.icheck.android.network.feature.utility.UtilityRepository
 import vn.icheck.android.network.models.*
 import vn.icheck.android.network.models.product_need_review.ICProductNeedReview
+import vn.icheck.android.network.models.pvcombank.ICListCardPVBank
 import vn.icheck.android.screen.user.home_page.home.model.ICListHomeItem
 import vn.icheck.android.util.ick.logError
 import java.util.concurrent.TimeUnit
@@ -58,7 +59,7 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
     val onAddData = MutableLiveData<ICLayout>()
     val onUpdateData = MutableLiveData<ICLayout>()
     val onUpdateListData = MutableLiveData<ICListHomeItem>()
-    val onUpdatePVCombank = MutableLiveData<ICLayout>()
+    val onUpdatePVCombank = MutableLiveData<ICListCardPVBank?>()
     val onUpdateAds = MutableLiveData<Boolean>()
 
     private var totalRequest = 0
@@ -234,12 +235,11 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
                 disposable = null
 
                 if (!obj.data?.secondary_functions.isNullOrEmpty()) {
-                    layout.data = obj.data
-                    onUpdateData.value = layout
-                    getPVCombank()
-                } else {
-                    onUpdateData.value = layout
+                    layout.data = mutableListOf(obj.data)
                 }
+
+                onUpdateData.value = layout
+                getPVCombank()
             }
 
             override fun onError(error: ICResponseCode?) {
@@ -256,30 +256,25 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
         })
     }
 
-    private fun getPVCombank() {
+    fun getPVCombank() {
+        var response: ICResponse<ICListResponse<ICListCardPVBank>>? = null
+
         if (SessionManager.isUserLogged && SettingManager.getSessionPvcombank.isNotEmpty()) {
             viewModelScope.launch {
-                val response = try {
+                response = try {
                     withTimeoutOrNull(5000) { pvcombankRepository.getMyListCards() }
                 } catch (e: Exception) {
                     null
                 }
 
-                if (!response?.data?.rows.isNullOrEmpty()) {
-                    onUpdatePVCombank.value = ICLayout().apply {
-                        viewType = ICViewTypes.PVCOMBANK_TYPE
-                        data = response!!.data!!.rows.first()
-                    }
-                } else {
-                    onUpdatePVCombank.value = ICLayout().apply {
-                        viewType = ICViewTypes.PVCOMBANK_TYPE
-                    }
+                if (response?.data?.rows?.firstOrNull() == null) {
+                    SettingManager.setSessionIdPvcombank("")
                 }
+
+                onUpdatePVCombank.value = response?.data?.rows?.firstOrNull()
             }
         } else {
-            onUpdatePVCombank.value = ICLayout().apply {
-                viewType = ICViewTypes.PVCOMBANK_TYPE
-            }
+            onUpdatePVCombank.value = response?.data?.rows?.firstOrNull()
         }
     }
 
