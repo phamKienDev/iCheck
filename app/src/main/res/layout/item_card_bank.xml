@@ -26,95 +26,77 @@
                 android:id="@id/imgBackground"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:src="@drawable/bg_card_visa_pvcard"
-                app:layout_constraintDimensionRatio="H,331:202"
+                android:background="@drawable/bg_history_pv_card"
+                app:layout_constraintDimensionRatio="H,340:215"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/appCompatImageView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:src="@drawable/pv_com_bank_logo_2"
-                app:layout_constraintStart_toStartOf="@id/imgBackground"
-                app:layout_constraintTop_toTopOf="@id/imgBackground" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/appCompatImageView7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:src="@drawable/ic_visa_pvcard"
-                app:layout_constraintEnd_toEndOf="@id/imgBackground"
-                app:layout_constraintTop_toTopOf="@+id/appCompatImageView6" />
-
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvNumberCardHeader"
+                android:id="@+id/tvMoneyCard"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="37dp"
+                android:layout_marginStart="@dimen/size_24"
+                android:layout_marginTop="70dp"
                 android:fontFamily="@font/barlow_semi_bold"
+                android:includeFontPadding="false"
                 android:letterSpacing="0.06"
                 android:shadowColor="#59000000"
                 android:shadowDy="1"
                 android:shadowRadius="1"
                 android:textColor="@color/white"
                 android:textSize="22sp"
-                app:layout_constraintEnd_toEndOf="@+id/appCompatImageView7"
-                app:layout_constraintStart_toStartOf="@+id/appCompatImageView6"
-                app:layout_constraintTop_toBottomOf="@+id/appCompatImageView6"
-                tools:text="**** **** **** ****" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="4563 9780 0249 4937 " />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/appCompatTextView42"
+                android:id="@+id/tvNumberCardHeader"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:includeFontPadding="false"
+                android:letterSpacing="0.06"
+                android:shadowColor="#59000000"
+                android:shadowDy="1"
+                android:shadowRadius="1"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@id/tvMoneyCard"
+                app:layout_constraintTop_toBottomOf="@id/tvMoneyCard"
+                tools:text="5119 6288 8888 8888" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvDateEnd"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_marginTop="7dp"
+                android:layout_marginTop="10dp"
                 android:fontFamily="@font/barlow_medium"
-                android:text="VALID\nFROM"
+                android:text="10/24"
                 android:textColor="@color/white"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@+id/tvNumberCardHeader"
                 app:layout_constraintTop_toBottomOf="@+id/tvNumberCardHeader" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvValidFrom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginLeft="4dp"
-                android:fontFamily="@font/barlow_semi_bold"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView42"
-                app:layout_constraintStart_toEndOf="@+id/appCompatTextView42"
-                app:layout_constraintTop_toTopOf="@+id/appCompatTextView42"
-                tools:text="**/**" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/appCompatTextView45"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_marginStart="40dp"
-                android:layout_marginLeft="40dp"
+                android:layout_marginStart="50dp"
                 android:fontFamily="@font/barlow_medium"
-                android:text="UNTIL\nEND"
+                android:text="CCV: "
                 android:textColor="@color/white"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:textStyle="normal"
-                app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView42"
-                app:layout_constraintStart_toEndOf="@+id/tvValidFrom"
-                app:layout_constraintTop_toTopOf="@+id/appCompatTextView42" />
+                app:layout_constraintBottom_toBottomOf="@id/tvDateEnd"
+                app:layout_constraintStart_toEndOf="@id/tvDateEnd"
+                app:layout_constraintTop_toTopOf="@id/tvDateEnd" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvExpDateHeader"
+                android:id="@+id/tvCCV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
@@ -126,57 +108,34 @@
                 app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView45"
                 app:layout_constraintStart_toEndOf="@+id/appCompatTextView45"
                 app:layout_constraintTop_toTopOf="@+id/appCompatTextView45"
-                tools:text="**/**" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/appCompatTextView46"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/barlow_medium"
-                android:text="CARD HOLDER"
-                android:textColor="@color/white"
-                android:textSize="10sp"
-                android:textStyle="normal"
-                app:layout_constraintStart_toStartOf="@+id/appCompatTextView42"
-                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView42" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvCardHolder"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/barlow_semi_bold"
-                android:shadowColor="#59000000"
-                android:shadowDy="1"
-                android:shadowRadius="1"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@+id/appCompatTextView46"
-                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView46"
-                tools:text="**********" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/icLockCard"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
-                android:src="@drawable/ic_pv_locked_56_px"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@+id/imgBackground"
-                app:layout_constraintEnd_toEndOf="@+id/imgBackground" />
+                tools:text="****" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/btnShowHide"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:src="@drawable/ic_eye_on_white_30"
-                app:layout_constraintBottom_toBottomOf="@+id/imgBackground"
-                app:layout_constraintEnd_toEndOf="@+id/imgBackground" />
+                android:layout_marginStart="40dp"
+                app:layout_constraintBottom_toBottomOf="@id/tvDateEnd"
+                app:layout_constraintStart_toEndOf="@id/tvCCV"
+                app:layout_constraintTop_toTopOf="@id/tvDateEnd"
+                app:srcCompat="@drawable/ic_eye_on_white_24px" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvCardHolder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:fontFamily="@font/barlow_medium"
+                android:letterSpacing="0.06"
+                android:shadowColor="#59000000"
+                android:shadowDy="1"
+                android:shadowRadius="1"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@id/tvDateEnd"
+                app:layout_constraintTop_toBottomOf="@id/tvDateEnd"
+                tools:text="TOLU AROWOSELU" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.core.widget.NestedScrollView
@@ -322,10 +281,67 @@
 
                 </LinearLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="#d8d8d8" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="9.5dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/barlow_medium"
+                        android:text="Trạng thái thẻ"
+                        android:textColor="#757575"
+                        android:textSize="12sp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvNotAuthen"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/barlow_semi_bold"
+                            android:gravity="end"
+                            android:text="Chưa định danh"
+                            android:layout_marginEnd="@dimen/size_6"
+                            android:textColor="#EB5757"
+                            android:textSize="14sp" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvActionAuthen"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableEnd="@drawable/ic_arrow_right_light_blue_24dp"
+                            android:fontFamily="@font/barlow_semi_bold"
+                            android:gravity="end"
+                            android:textColor="@color/lightBlue"
+                            android:textSize="14sp"
+                            android:src="@drawable/ic_copy_24px"
+                            android:text="Định danh ngay" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp">
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -357,6 +373,19 @@
                         android:visibility="gone" />
 
                     <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvInfoCard"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@drawable/ic_pv_lock_32_px"
+                        android:drawablePadding="6dp"
+                        android:fontFamily="@font/barlow_medium"
+                        android:gravity="center"
+                        android:text="Thông tin thẻ"
+                        android:textColor="#212121"
+                        android:textSize="14sp" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvChangePassword"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -366,19 +395,6 @@
                         android:fontFamily="@font/barlow_medium"
                         android:gravity="center"
                         android:text="Đổi mật khẩu"
-                        android:textColor="#212121"
-                        android:textSize="14sp" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvSecurity"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:drawableTop="@drawable/ic_pv_security_32_px"
-                        android:drawablePadding="6dp"
-                        android:fontFamily="@font/barlow_medium"
-                        android:gravity="center"
-                        android:text="Bảo mật"
                         android:textColor="#212121"
                         android:textSize="14sp" />
 

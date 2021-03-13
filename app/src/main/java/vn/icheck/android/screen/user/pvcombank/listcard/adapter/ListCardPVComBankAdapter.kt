@@ -44,8 +44,8 @@ class ListCardPVComBankAdapter(private val listener: CardPVComBankListener) : Re
     }
 
     fun setDefaultCard(cardId: String, pos: Int) {
-        for (i in listData){
-            if (i.cardId == cardId){
+        for (i in listData) {
+            if (i.cardId == cardId) {
                 i.isDefault = true
                 notifyItemChanged(pos)
             } else {
@@ -55,10 +55,12 @@ class ListCardPVComBankAdapter(private val listener: CardPVComBankListener) : Re
     }
 
     fun showHide(cardId: String?, isShow: Boolean, position: Int, cardFull: String) {
-        for (i in listData){
-            if (i.cardId == cardId){
+        for (i in listData) {
+            if (i.cardId == cardId) {
                 i.isShow = isShow
-                i.cardMasking = cardFull
+                if (cardFull.isNotEmpty()) {
+                    i.cardMasking = cardFull
+                }
                 notifyItemChanged(position)
             } else {
                 i.isDefault = false
@@ -132,69 +134,71 @@ class ListCardPVComBankAdapter(private val listener: CardPVComBankListener) : Re
                 validFrom = "$repMonth/$lastVFrom"
             }
 
-            if (obj.used == true) {
-                binding.tvUsed.visibility = View.VISIBLE
-                binding.btnUseDefault.visibility = View.GONE
-            } else {
-                binding.btnUseDefault.visibility = View.VISIBLE
-                binding.tvUsed.visibility = View.GONE
-            }
+//            if (obj.used == true) {
+//                binding.tvUsed.visibility = View.VISIBLE
+//                binding.btnUseDefault.visibility = View.GONE
+//            } else {
+//                binding.btnUseDefault.visibility = View.VISIBLE
+//                binding.tvUsed.visibility = View.GONE
+//            }
+//
+//            // != 0 là thẻ khóa còn == 0 là có hiệu lực
+//            if (obj.cardStatus == "0"){
+//                if (obj.isLock == true) {
+//                    binding.tvUnLockCard.visibility = View.VISIBLE
+//                    binding.tvLockCard.visibility = View.GONE
+//                    binding.btnShowHide.visibility = View.GONE
+//                    binding.imgBackground.setImageResource(R.drawable.bg_lock_card_pvbank)
+//                    binding.icLockCard.visibility = View.VISIBLE
+//                } else {
+//                    binding.tvLockCard.visibility = View.VISIBLE
+//                    binding.tvUnLockCard.visibility = View.GONE
+//                    binding.btnShowHide.visibility = View.VISIBLE
+//                    binding.imgBackground.setImageResource(R.drawable.bg_card_visa_pvcard)
+//                    binding.icLockCard.visibility = View.GONE
+//                }
+//            } else {
+//                if (obj.isLock == true) {
+//                    binding.tvUnLockCard.visibility = View.VISIBLE
+//                    binding.tvLockCard.visibility = View.GONE
+//                    binding.btnShowHide.visibility = View.GONE
+//                    binding.imgBackground.setImageResource(R.drawable.bg_lock_card_pvbank)
+//                    binding.icLockCard.visibility = View.VISIBLE
+//                } else {
+//                    binding.tvLockCard.visibility = View.VISIBLE
+//                    binding.tvUnLockCard.visibility = View.GONE
+//                    binding.btnShowHide.visibility = View.VISIBLE
+//                    binding.imgBackground.setImageResource(R.drawable.bg_card_visa_pvcard)
+//                    binding.icLockCard.visibility = View.GONE
+//                }
+//            }
+//
+//            if (obj.isDefault){
+//                binding.btnUseDefault.visibility = View.GONE
+//                binding.tvUsed.visibility = View.VISIBLE
+//            } else {
+//                binding.btnUseDefault.visibility = View.VISIBLE
+//                binding.tvUsed.visibility = View.GONE
+//            }
 
-            // != 0 là thẻ khóa còn == 0 là có hiệu lực
-            if (obj.cardStatus == "0"){
-                if (obj.isLock == true) {
-                    binding.tvUnLockCard.visibility = View.VISIBLE
-                    binding.tvLockCard.visibility = View.GONE
-                    binding.btnShowHide.visibility = View.GONE
-                    binding.imgBackground.setImageResource(R.drawable.bg_lock_card_pvbank)
-                    binding.icLockCard.visibility = View.VISIBLE
-                } else {
-                    binding.tvLockCard.visibility = View.VISIBLE
-                    binding.tvUnLockCard.visibility = View.GONE
-                    binding.btnShowHide.visibility = View.VISIBLE
-                    binding.imgBackground.setImageResource(R.drawable.bg_card_visa_pvcard)
-                    binding.icLockCard.visibility = View.GONE
-                }
-            } else {
-                if (obj.isLock == true) {
-                    binding.tvUnLockCard.visibility = View.VISIBLE
-                    binding.tvLockCard.visibility = View.GONE
-                    binding.btnShowHide.visibility = View.GONE
-                    binding.imgBackground.setImageResource(R.drawable.bg_lock_card_pvbank)
-                    binding.icLockCard.visibility = View.VISIBLE
-                } else {
-                    binding.tvLockCard.visibility = View.VISIBLE
-                    binding.tvUnLockCard.visibility = View.GONE
-                    binding.btnShowHide.visibility = View.VISIBLE
-                    binding.imgBackground.setImageResource(R.drawable.bg_card_visa_pvcard)
-                    binding.icLockCard.visibility = View.GONE
-                }
-            }
-
-            if (obj.isDefault){
-                binding.btnUseDefault.visibility = View.GONE
-                binding.tvUsed.visibility = View.VISIBLE
-            } else {
-                binding.btnUseDefault.visibility = View.VISIBLE
-                binding.tvUsed.visibility = View.GONE
-            }
-
-            if (obj.isShow){
-                binding.btnShowHide.setImageResource(R.drawable.ic_eye_off_white_30)
-                binding.tvNumberCardHeader.text = obj.cardMasking ?: getString(R.string.dang_cap_nhat)
+            if (obj.isShow) {
+                binding.btnShowHide.setImageResource(R.drawable.ic_eye_off_white_24px)
+                binding.tvMoneyCard.text = "${TextHelper.formatMoney(obj.avlBalance ?: "0")}đ"
+                binding.tvNumberCardHeader.text = obj.cardMasking
+                        ?: getString(R.string.dang_cap_nhat)
                 binding.tvCardHolder.text = obj.embossName ?: getString(R.string.dang_cap_nhat)
-                binding.tvExpDateHeader.text = expDate
-                binding.tvValidFrom.text = validFrom
+                binding.tvDateEnd.text = expDate
 
                 binding.tvAvlBalance.text = TextHelper.formatMoney(obj.avlBalance ?: "0") + "đ"
                 binding.tvNumberCard.text = obj.cardMasking ?: getString(R.string.dang_cap_nhat)
                 binding.tvExpDate.text = expDate
             } else {
-                binding.btnShowHide.setImageResource(R.drawable.ic_eye_on_white_30)
+                binding.btnShowHide.setImageResource(R.drawable.ic_eye_on_white_24px)
+                binding.tvMoneyCard.text = "*** đ"
                 binding.tvNumberCardHeader.text = "**** **** **** ****"
-                binding.tvValidFrom.text = "**/**"
-                binding.tvExpDateHeader.text = "**/**"
+                binding.tvDateEnd.text = "**/**"
                 binding.tvCardHolder.text = "**********"
+                binding.tvCCV.text = "***"
 
                 binding.tvAvlBalance.text = "**********"
                 binding.tvNumberCard.text = "**** **** **** ****"
@@ -204,7 +208,7 @@ class ListCardPVComBankAdapter(private val listener: CardPVComBankListener) : Re
 
         private fun listener(item: ICListCardPVBank) {
             binding.btnShowHide.setOnClickListener {
-                listener.onClickShowHide(item,absoluteAdapterPosition)
+                listener.onClickShowOrHide(item, absoluteAdapterPosition)
             }
 
             binding.btnCopyCard.setOnClickListener {
@@ -214,7 +218,7 @@ class ListCardPVComBankAdapter(private val listener: CardPVComBankListener) : Re
                     clipboard.setPrimaryClip(clip)
                     ToastUtils.showShortSuccess(itemView.context, "Đã copy mã thẻ")
                 } else {
-                    ToastUtils.showShortSuccess(itemView.context, "Bạn cần phải hiển thị đầy đủ thông tin")
+                    ToastUtils.showShortError(itemView.context, "Bạn cần phải hiển thị đầy đủ thông tin")
                 }
             }
 
@@ -225,7 +229,7 @@ class ListCardPVComBankAdapter(private val listener: CardPVComBankListener) : Re
                     clipboard.setPrimaryClip(clip)
                     ToastUtils.showShortSuccess(itemView.context, "Đã copy hạn sử dụng")
                 } else {
-                    ToastUtils.showShortSuccess(itemView.context, "Bạn cần phải hiển thị đầy đủ thông tin")
+                    ToastUtils.showShortError(itemView.context, "Bạn cần phải hiển thị đầy đủ thông tin")
                 }
             }
 
@@ -245,14 +249,19 @@ class ListCardPVComBankAdapter(private val listener: CardPVComBankListener) : Re
                 listener.onClickChangePassword(item, absoluteAdapterPosition)
             }
 
-            binding.tvSecurity.setOnClickListener {
-                listener.onClickSecuriryCard(item, absoluteAdapterPosition)
+            binding.tvInfoCard.setOnClickListener {
+                if (item.cardMasking?.contains("*") == true) {
+                   listener.onClickShow(item, absoluteAdapterPosition)
+                }
+            }
+            binding.tvActionAuthen.setOnClickListener {
+                listener.onAuthenCard(item)
             }
         }
     }
 
-    inner class ErrorHolder (parent: ViewGroup, val binding: ItemErrorPvcombankBinding = ItemErrorPvcombankBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : BaseViewHolder<Int>(binding.root) {
-        
+    inner class ErrorHolder(parent: ViewGroup, val binding: ItemErrorPvcombankBinding = ItemErrorPvcombankBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : BaseViewHolder<Int>(binding.root) {
+
         override fun bind(obj: Int) {
             when (obj) {
                 Constant.ERROR_EMPTY -> {
