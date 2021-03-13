@@ -59,7 +59,7 @@ class FragmentGiftGame : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         WidgetHelper.loadImageFitCenterUrl(img_bg_center, args.giftImage)
-        WidgetHelper.loadImageUrl(imgBusiness, ImageHelper.getImageUrl(args.ownerAvatar, ImageHelper.thumbSmallSize), R.drawable.img_default_business_logo)
+        WidgetHelper.loadImageUrl(imgBusiness, ImageHelper.getImageUrl(args.ownerAvatar, ImageHelper.thumbSmallSize), R.drawable.ic_business_v2)
         tv_gift_name.text = args.giftName
         tv_third.text = args.campaignName
         if (args.giftType.equals("ICOIN", true)) {

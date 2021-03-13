@@ -63,7 +63,7 @@
             app:civ_border_color="#D8D8D8"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imgImage"
-            tools:src="@drawable/img_default_business_logo" />
+            tools:src="@drawable/ic_business_v2" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imgVerified"

@@ -33,7 +33,7 @@ class InteractiveHolder(parent: ViewGroup) : BaseViewHolder<ICNotification>(Layo
     override fun bind(obj: ICNotification) {
         checkRead(obj.isReaded)
         if (obj.sourceUser?.firstOrNull()?.entity == "PAGE") {
-            WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.sourceUser?.firstOrNull()?.avatar, R.drawable.img_default_business_logo)
+            WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.sourceUser?.firstOrNull()?.avatar, R.drawable.ic_business_v2)
         } else {
             WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.sourceUser?.firstOrNull()?.avatar, R.drawable.ic_user_svg)
         }

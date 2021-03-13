@@ -21,7 +21,6 @@ import com.tripi.hotel.config.HotelSDK
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
-import vn.icheck.android.activities.chat.v2.ChatV2Activity
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.base.viewmodel.BaseViewModel
@@ -824,7 +823,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                         showLoginDialog()
                         return
                     } else {
-                        ActivityUtils.startActivity<ChatV2Activity, String>(this, "id", id)
+//                        ActivityUtils.startActivity<ChatV2Activity, String>(this, "id", id)
                     }
                 }
             }
@@ -832,7 +831,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                 val id = deepLink?.getQueryParameter("id")
 
                 if (!id.isNullOrEmpty()) {
-                    ChatV2Activity.createChatUser(id.toLong(), this)
+//                    ChatV2Activity.createChatUser(id.toLong(), this)
                 }
             }
             user -> {

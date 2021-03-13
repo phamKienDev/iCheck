@@ -37,7 +37,6 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_detail_stamp.*
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
-import vn.icheck.android.activities.chat.v2.ChatV2Activity
 import vn.icheck.android.base.activity.BaseActivity
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
@@ -594,10 +593,10 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
 
         btnChat.setOnClickListener {
             if (SessionManager.isUserLogged || SessionManager.isUserLogged) {
-                val intent = Intent(this, ChatV2Activity::class.java)
-                intent.putExtra(Constant.DATA_1, idShopVariant)
-                intent.putExtra(Constant.DATA_2, objProductShopVariant)
-                startActivity(intent)
+//                val intent = Intent(this, ChatV2Activity::class.java)
+//                intent.putExtra(Constant.DATA_1, idShopVariant)
+//                intent.putExtra(Constant.DATA_2, objProductShopVariant)
+//                startActivity(intent)
             } else {
                 startActivity<AccountActivity>()
             }

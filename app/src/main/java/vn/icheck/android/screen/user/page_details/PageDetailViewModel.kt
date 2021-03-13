@@ -2,6 +2,7 @@ package vn.icheck.android.screen.user.page_details
 
 import android.os.Bundle
 import android.os.Handler
+import androidx.annotation.DrawableRes
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -121,7 +122,7 @@ open class PageDetailViewModel : ViewModel() {
                                     for (att in attachments) {
                                         if (att.content.isNullOrEmpty()) {
                                             listAttachments.add(MediaLogic(null, ICMediaType.TYPE_IMAGE).apply {
-                                                bgDefault = R.drawable.bg_default_page
+                                                bgDefault = getDrawable()
                                             })
                                         } else {
                                             if (att.type == "image") {
@@ -136,7 +137,7 @@ open class PageDetailViewModel : ViewModel() {
                                     }
                                 } else {
                                     listAttachments.add(MediaLogic(null, ICMediaType.TYPE_IMAGE).apply {
-                                        bgDefault = R.drawable.bg_default_page
+                                        bgDefault = getDrawable()
                                     })
                                 }
                                 layout.viewType = ICViewTypes.IMAGE_VIDEO_SLIDER
@@ -330,7 +331,15 @@ open class PageDetailViewModel : ViewModel() {
             }
         })
     }
-
+    @DrawableRes
+    fun getDrawable(): Int {
+        return when ((0..3).random()) {
+            0 -> R.drawable.page_cover_1
+            1 -> R.drawable.page_cover_3
+            2 -> R.drawable.page_cover_2
+            else -> R.drawable.page_cover_4
+        }
+    }
     private fun getWidgetBrand(layout: ICLayout) {
         pageInteraction.getBrands(layout.request.url!!, 0, object : ICNewApiListener<ICResponse<ICListResponse<ICPageTrend>>> {
             override fun onSuccess(obj: ICResponse<ICListResponse<ICPageTrend>>) {
