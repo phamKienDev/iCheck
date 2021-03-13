@@ -244,10 +244,8 @@ class DetailStampHoaPhatActivity : BaseActivityMVVM(), SlideHeaderStampHoaPhatLi
                 viewModel.barcodeProduct?.let {
                     it.manager?.let { manager ->
                         SocialChatActivity.createPageChat(this, manager.id)
-//                        ChatV2Activity.createChatBot(manager.id, it.barcode, this)
                     } ?: run {
                         SocialChatActivity.createPageChat(this,viewModel.barcodeProduct?.owner?.id, it.barcode)
-//                        ChatV2Activity.createChatBotIcheck(it.barcode, this)
                     }
                 }
             } else {

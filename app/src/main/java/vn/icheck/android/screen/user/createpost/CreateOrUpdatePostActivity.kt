@@ -104,7 +104,7 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
     private fun setupView() {
         if (intent?.getLongExtra(Constant.DATA_2, -1) != -1L) {
             tvName.text = intent.getStringExtra(Constant.DATA_3)
-            WidgetUtils.loadImageUrl(imgAvatar, intent.getStringExtra(Constant.DATA_4), R.drawable.img_default_business_logo_big)
+            WidgetUtils.loadImageUrl(imgAvatar, intent.getStringExtra(Constant.DATA_4), R.drawable.ic_business_v2)
             edtContent.hint = "Hãy chia sẻ những thông tin hữu ích nào!"
             tvType.beGone()
             imgStatus.beGone()

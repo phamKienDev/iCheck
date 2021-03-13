@@ -77,7 +77,7 @@ class EditCommentActivity : BaseActivityMVVM() {
 
         viewModel.onSetCommentQuestion.observe(this, {
             if (it.page != null) {
-                WidgetUtils.loadImageUrl(layoutAvatar, it.page?.avatar, R.drawable.img_default_business_logo_big)
+                WidgetUtils.loadImageUrl(layoutAvatar, it.page?.avatar, R.drawable.ic_business_v2)
                 imgLevel.beGone()
                 if (it.page!!.isVerify) {
                     imgVerified.beVisible()
@@ -103,7 +103,7 @@ class EditCommentActivity : BaseActivityMVVM() {
 
         viewModel.onSetCommentPost.observe(this, {
             if (it.page != null) {
-                WidgetUtils.loadImageUrl(layoutAvatar, it.page?.avatar, R.drawable.img_default_business_logo_big)
+                WidgetUtils.loadImageUrl(layoutAvatar, it.page?.avatar, R.drawable.ic_business_v2)
                 imgLevel.beGone()
                 if (it.page!!.isVerify) {
                     imgVerified.beVisible()

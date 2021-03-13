@@ -120,7 +120,7 @@ class SuggestPageAdapter(val callback: IRecyclerViewCallback) : RecyclerViewCust
 
     inner class ItemPageHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_suggest_item_page, parent, false)) {
         fun bind(obj: ICSuggestPage) {
-            WidgetUtils.loadImageUrl(itemView.img_logo_page, obj.avatar, R.drawable.img_default_business_logo_big, R.drawable.img_default_business_logo_big)
+            WidgetUtils.loadImageUrl(itemView.img_logo_page, obj.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
 
             itemView.img_verfified.visibility = if (obj.isVerify) {
                 View.VISIBLE
