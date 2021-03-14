@@ -37,25 +37,11 @@ class HomeFunctionHolder(parent: ViewGroup, isExistTheme: Boolean, listener: IHo
 
     private val primaryAdapter = HomePrimaryAdapterV2(listener)
     private val secondaryAdapter = HomeSecondaryFunctionAdapter(mutableListOf(), isExistTheme)
-    private val pagerSnapHelper = PagerSnapHelper()
 
     override fun bind(obj: MutableList<Any?>) {
         updateTheme()
 
         binding.viewPager.apply {
-//            if (layoutManager == null)
-//                layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-//            if (onFlingListener == null)
-//                pagerSnapHelper.attachToRecyclerView(this)
-
-//            val itemDecoration = object : RecyclerView.ItemDecoration() {
-//                override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
-//                    outRect.right = SizeHelper.size24
-//                    outRect.left = SizeHelper.size24
-//                }
-//            }
-//            addItemDecoration(itemDecoration)
-
             adapter = primaryAdapter
             primaryAdapter.setData(obj)
 
@@ -256,18 +242,18 @@ class HomeFunctionHolder(parent: ViewGroup, isExistTheme: Boolean, listener: IHo
 
             override fun bind(obj: ICListCardPVBank) {
                 binding.tvMoney.text = if (binding.tvMoney.isChecked) {
-                    TextHelper.formatMoney(obj.avlBalance ?: "").replace("[0-9]".toRegex(), "*")
+                    TextHelper.formatMoney(obj.avlBalance ?: "").replace("[0-9]".toRegex(), "*") + "**"
                 } else {
-                    TextHelper.formatMoney(obj.avlBalance ?: "")
+                    TextHelper.formatMoney(obj.avlBalance ?: "") + " đ"
                 }
 
                 binding.tvMoney.setOnClickListener {
                     binding.tvMoney.isChecked = !binding.tvMoney.isChecked
 
                     binding.tvMoney.text = if (binding.tvMoney.isChecked) {
-                        TextHelper.formatMoney(obj.avlBalance ?: "").replace("[0-9]".toRegex(), "*")
+                        TextHelper.formatMoney(obj.avlBalance ?: "").replace("[0-9]".toRegex(), "*") + "**"
                     } else {
-                        TextHelper.formatMoney(obj.avlBalance ?: "")
+                        TextHelper.formatMoney(obj.avlBalance ?: "") + " đ"
                     }
                 }
 

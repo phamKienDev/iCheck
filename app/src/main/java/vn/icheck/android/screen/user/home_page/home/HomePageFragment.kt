@@ -35,9 +35,12 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.component.view.ViewHelper.setScrollSpeed
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.ExoPlayerManager
 import vn.icheck.android.helper.FileHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.loyalty.helper.ActivityHelper
+import vn.icheck.android.loyalty.helper.ToastHelper
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.base.Status
@@ -55,10 +58,17 @@ import vn.icheck.android.screen.user.home_page.home.reminders.ReminderHomeDialog
 import vn.icheck.android.screen.user.list_trending_products.ListTrendingProductsActivity
 import vn.icheck.android.screen.user.listnotification.ListNotificationActivity
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
+import vn.icheck.android.screen.user.pvcombank.authen.CreatePVCardActivity
+import vn.icheck.android.screen.user.pvcombank.authen.CreatePVCardViewModel
+import vn.icheck.android.screen.user.pvcombank.card_history.HistoryPVCardActivity
+import vn.icheck.android.screen.user.pvcombank.home.HomePVCardActivity
+import vn.icheck.android.screen.user.pvcombank.listcard.ListPVCardActivity
 import vn.icheck.android.screen.user.search_home.main.SearchHomeActivity
 import vn.icheck.android.screen.user.shipping.ship.ShipActivity
+import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.util.AdsUtils
 import vn.icheck.android.util.ick.*
+import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.io.File
 
@@ -78,7 +88,9 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
     private val requestLoginCart = 3
     private val requestProductNeedReview = 4
     private val requestOpenCart = 5
+    private val requestPVCombank = 6
 
+    private var pvCombankType = 0
     private var isViewCreated = false
 
     private val broadcastReceiver = object : BroadcastReceiver() {
@@ -371,15 +383,84 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
     }
 
     override fun onRechargePVCombank() {
-        // Todo
+        checkPVCombank(1)
     }
 
     override fun onInfoPVCombank() {
-        // Todo
+        checkPVCombank(2)
     }
 
     override fun onTransactionCombank() {
-        // Todo
+        checkPVCombank(3)
+    }
+
+    private fun checkPVCombank(type: Int) {
+        CreatePVCardViewModel().apply {
+            checkHasCard(5000L).observe(this@HomePageFragment, Observer {checkCardRes ->
+                this@HomePageFragment.apply {
+                    when (checkCardRes.status) {
+                        Status.LOADING -> {
+                            DialogHelper.showLoading(this)
+                        }
+                        Status.ERROR_NETWORK -> {
+                            DialogHelper.closeLoading(this)
+                            ToastHelper.showLongError(requireContext(), R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
+                        }
+                        Status.ERROR_REQUEST -> {
+                            DialogHelper.closeLoading(this)
+                            ToastHelper.showLongError(requireContext(), ICheckApplication.getError(checkCardRes.message))
+                        }
+                        Status.SUCCESS -> {
+                            if (checkCardRes.data?.data == true) {
+                                if (SettingManager.getSessionPvcombank.isEmpty()) {
+                                    getFormAuth(5000L).observe(this, Observer { formAuthRes ->
+                                        when (formAuthRes.status) {
+                                            Status.LOADING -> {}
+                                            Status.SUCCESS -> {
+                                                DialogHelper.closeLoading(this)
+                                                if (formAuthRes.data?.data?.redirectUrl.isNullOrEmpty() || formAuthRes.data?.data?.authUrl.isNullOrEmpty()) {
+                                                    ToastHelper.showLongError(requireContext(), getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                                                } else {
+                                                    pvCombankType = type
+                                                    CreatePVCardActivity.redirectUrl = formAuthRes.data!!.data!!.redirectUrl
+                                                    WebViewActivity.start(requireActivity(), formAuthRes.data!!.data!!.authUrl)
+                                                }
+                                            }
+                                            else -> {
+                                                DialogHelper.closeLoading(this)
+                                                ToastHelper.showLongError(requireContext(), ICheckApplication.getError(checkCardRes.message))
+                                            }
+                                        }
+                                    })
+                                } else {
+                                    DialogHelper.closeLoading(this)
+                                    goToPVCombank()
+                                }
+                            } else {
+                                DialogHelper.closeLoading(this)
+                                goToPVCombank()
+                            }
+                        }
+                    }
+                }
+            })
+        }
+    }
+
+    private fun goToPVCombank() {
+        when (pvCombankType) {
+            1 -> {
+
+            }
+            2 -> {
+                ActivityHelper.startActivityForResult<ListPVCardActivity>(this, requestPVCombank)
+            }
+            3 -> {
+                ActivityHelper.startActivityForResult<HistoryPVCardActivity>(this, requestPVCombank)
+            }
+        }
+
+        pvCombankType = 0
     }
 
     override fun onRequireLoginSuccess(requestCode: Int) {
@@ -455,6 +536,9 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
             }
             ICMessageEvent.Type.ON_DESTROY_PVCOMBANK -> {
                 viewModel.getPVCombank()
+            }
+            ICMessageEvent.Type.FINISH_CREATE_PVCOMBANK -> {
+                goToPVCombank()
             }
             else -> {
             }

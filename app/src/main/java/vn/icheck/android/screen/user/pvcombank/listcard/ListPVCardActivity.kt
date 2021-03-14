@@ -297,7 +297,7 @@ class ListPVCardActivity : BaseActivityMVVM(), CardPVComBankListener {
     }
 
     override fun onAuthenCard(item: ICListCardPVBank) {
-        viewModel.getKyc().observe(this, {
+        viewModel.getKyc().observe(this, Observer {
             when (it.status) {
                 Status.LOADING -> {
                     DialogHelper.showLoading(this@ListPVCardActivity)
