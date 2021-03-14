@@ -85,7 +85,7 @@ class HistoryPVCardActivity : BaseActivityMVVM(), IRecyclerViewCallback {
     }
 
     private fun initData() {
-        viewModel.onListCard.observe(this, {
+        viewModel.onListCard.observe(this, Observer {
             if (!isInit) {
                 recyclerviewCard.addOnScrollListener(CenterScrollListener())
                 recyclerviewCard.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
@@ -134,7 +134,7 @@ class HistoryPVCardActivity : BaseActivityMVVM(), IRecyclerViewCallback {
             viewModel.getListTransaction(cardId)
         })
 
-        viewModel.onSetTransaction.observe(this, {
+        viewModel.onSetTransaction.observe(this, Observer {
             if (it.isNullOrEmpty()) {
                 transactionAdapter.setError(R.drawable.ic_group_120dp, "Chưa có lịch sử giao dịch", -1)
             } else {
@@ -143,11 +143,11 @@ class HistoryPVCardActivity : BaseActivityMVVM(), IRecyclerViewCallback {
             recyclerviewTransaction.smoothScrollToPosition(0)
         })
 
-        viewModel.onAddTransaction.observe(this, {
+        viewModel.onAddTransaction.observe(this, Observer {
             transactionAdapter.addListData(it)
         })
 
-        viewModel.onError.observe(this, {
+        viewModel.onError.observe(this, Observer {
             if (cardAdapter.isEmpty && transactionAdapter.isEmpty) {
                 layoutMessage.beVisible()
                 imgIcon.setImageResource(it.icon)
@@ -156,7 +156,7 @@ class HistoryPVCardActivity : BaseActivityMVVM(), IRecyclerViewCallback {
                 showShortError(it.message ?: "")
             }
         })
-        viewModel.statusCode.observe(this, {
+        viewModel.statusCode.observe(this, Observer {
             when (it) {
                 ICMessageEvent.Type.ON_SHOW_LOADING -> {
                     DialogHelper.showLoading(this)
@@ -171,7 +171,7 @@ class HistoryPVCardActivity : BaseActivityMVVM(), IRecyclerViewCallback {
     }
 
     private fun getListCard() {
-        viewModel.getListCard().observe(this, { result ->
+        viewModel.getListCard().observe(this, Observer { result ->
             when (result.status) {
                 Status.LOADING -> {
                     viewModel.statusCode.postValue(ICMessageEvent.Type.ON_SHOW_LOADING)

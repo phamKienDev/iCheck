@@ -5,8 +5,6 @@ package vn.icheck.android.util.kotlin
 import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ValueAnimator
-import android.graphics.*
-import android.graphics.Shader.TileMode
 import android.graphics.drawable.Drawable
 import android.media.MediaMetadataRetriever
 import android.text.method.PasswordTransformationMethod
@@ -88,7 +86,7 @@ object WidgetUtils {
             textHide.visibility = View.VISIBLE
             editText.visibility = View.GONE
         } else {
-            imgShow.setImageResource(R.drawable.ic_eye_off_24px)
+            imgShow.setImageResource(R.drawable.ic_eye_off_gray_24dp)
             textHide.visibility = View.GONE
             editText.visibility = View.VISIBLE
         }

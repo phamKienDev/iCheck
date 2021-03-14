@@ -3754,52 +3754,6 @@ object ViewHelper {
         }
     }
 
-    fun createListBannerHolder(context: Context, marginTop: Int = 0, marginBottom: Int = 0): View {
-        val layoutParent = LinearLayout(context)
-        val parentParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-        parentParams.setMargins(SizeHelper.size12, marginTop, SizeHelper.size12, marginBottom)
-        layoutParent.layoutParams = parentParams
-        layoutParent.orientation = LinearLayout.VERTICAL
-        layoutParent.gravity = Gravity.CENTER_HORIZONTAL
-
-        val viewPager = HeightWrappingViewPager(context)
-        viewPager.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-        layoutParent.addView(viewPager)
-
-        val indicator = LayoutInflater.from(context).inflate(R.layout.item_indicator, layoutParent, false) as PageIndicatorView
-        val indicatorParams = indicator.layoutParams as LinearLayout.LayoutParams
-        indicatorParams.setMargins(0, SizeHelper.size12, 0, 0)
-        indicator.layoutParams = indicatorParams
-        indicator.id = R.id.indicator
-        indicator.setDynamicCount(true)
-        indicator.setInteractiveAnimation(true)
-        indicator.setAnimationType(AnimationType.WORM)
-        indicator.selectedColor = ContextCompat.getColor(context, R.color.home_indicator_selected)
-        indicator.unselectedColor = ContextCompat.getColor(context, R.color.home_indicator_unselected)
-        indicator.setViewPager(viewPager)
-        layoutParent.addView(indicator)
-
-        return layoutParent
-    }
-
-    fun setExpandTextWithoutActionNotClick(textView: TextView, maxLine: Int, expandText: String) {
-        if (textView.tag == null) {
-            textView.tag = textView.text
-        }
-
-        textView.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
-            override fun onGlobalLayout() {
-                textView.viewTreeObserver.removeOnGlobalLayoutListener(this)
-
-                if (textView.lineCount >= maxLine) {
-                    val lineEndIndex = textView.layout.getLineStart(maxLine)
-                    val text = (textView.text.subSequence(0, lineEndIndex - expandText.length * 2).toString() + "… " + expandText)
-                    textView.setText(addClickablePartTextViewResizableColor(text, "#3C5A99", expandText), TextView.BufferType.SPANNABLE)
-                }
-            }
-        })
-    }
-
     private fun addClickablePartTextViewResizableColor(strSpanned: String, textColor: String, spanableText: String): SpannableStringBuilder? {
         val ssb = SpannableStringBuilder(strSpanned)
         if (strSpanned.contains(spanableText)) {

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="@dimen/size_12"
+    android:layout_marginEnd="@dimen/size_12">
+
+    <vn.icheck.android.ui.colorcardview.ColorCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/size_4"
+        app:cardElevation="4dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardShadowColorEnd="@color/app_selector_shadow_end"
+        app:cardShadowColorStart="@color/elevation_color_card"
+        app:cardUseCompatPadding="false"
+        app:contentPadding="0dp">
+
+        <!--Layout content-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/size_12"
+            android:paddingEnd="@dimen/size_12">
+
+            <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+                android:layout_width="@dimen/size_0"
+                android:layout_height="wrap_content"
+                android:text="@string/so_du_ví"
+                android:textColor="@color/collection_product_name"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/tvMoney"
+                app:layout_constraintEnd_toStartOf="@id/tvMoney"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvMoney" />
+
+            <vn.icheck.android.component.view.text_view.CheckedTextViewBarlowMedium
+                android:id="@id/tvMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_20"
+                android:checked="true"
+                android:drawableEnd="@drawable/icon_eye_gray_24dp"
+                android:drawablePadding="@dimen/size_5"
+                android:gravity="center_vertical"
+                android:textAlignment="gravity"
+                android:textColor="@color/yellow"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@id/viewLine"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_1"
+                android:layout_marginTop="@dimen/size_14"
+                android:background="@color/gray"
+                app:layout_constraintTop_toBottomOf="@id/tvMoney" />
+
+            <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+                android:id="@id/tvRecharge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_4"
+                android:background="?android:attr/selectableItemBackground"
+                android:drawableTop="@drawable/ic_homeheader_recharge_50dp"
+                android:drawablePadding="@dimen/size_4"
+                android:gravity="center_horizontal"
+                android:paddingStart="@dimen/size_10"
+                android:paddingEnd="@dimen/size_10"
+                android:paddingBottom="@dimen/size_10"
+                android:text="@string/nap_tien"
+                android:textAlignment="gravity"
+                android:textColor="@color/collection_product_name"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toStartOf="@id/tvInfo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/viewLine" />
+
+            <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+                android:id="@id/tvInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_4"
+                android:background="?android:attr/selectableItemBackground"
+                android:drawableTop="@drawable/ic_homeheader_info_50dp"
+                android:drawablePadding="@dimen/size_4"
+                android:gravity="center_horizontal"
+                android:paddingStart="@dimen/size_10"
+                android:paddingEnd="@dimen/size_10"
+                android:paddingBottom="@dimen/size_10"
+                android:text="@string/thong_tin"
+                android:textAlignment="gravity"
+                android:textColor="@color/collection_product_name"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toStartOf="@id/tvTransaction"
+                app:layout_constraintStart_toEndOf="@id/tvRecharge"
+                app:layout_constraintTop_toBottomOf="@id/viewLine" />
+
+            <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+                android:id="@id/tvTransaction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_4"
+                android:background="?android:attr/selectableItemBackground"
+                android:drawableTop="@drawable/ic_homeheader_transaction_50dp"
+                android:drawablePadding="@dimen/size_4"
+                android:gravity="center_horizontal"
+                android:paddingStart="@dimen/size_10"
+                android:paddingEnd="@dimen/size_10"
+                android:paddingBottom="@dimen/size_10"
+                android:text="@string/giao_dich"
+                android:textAlignment="gravity"
+                android:textColor="@color/collection_product_name"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tvInfo"
+                app:layout_constraintTop_toBottomOf="@id/viewLine" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </vn.icheck.android.ui.colorcardview.ColorCardView>
+</FrameLayout>
