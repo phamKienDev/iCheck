@@ -900,4 +900,11 @@
     <string name="mo_the_ngay">Mở thẻ ngay</string>
     <string name="nap_tien">Nạp tiền</string>
     <string name="giao_dich">Giao dịch</string>
+    <string name="so_du_the">Số dư thẻ</string>
+    <string name="thong_tin_the">Thông tin thẻ</string>
+    <string name="so_the">Số thẻ</string>
+    <string name="han_su_dung">Hạn sử dụng</string>
+    <string name="trang_thai_the">Trạng thái thẻ</string>
+    <string name="chua_dinh_danh">Chưa định danh</string>
+    <string name="dinh_danh_ngay">Định danh ngay</string>
 </resources>

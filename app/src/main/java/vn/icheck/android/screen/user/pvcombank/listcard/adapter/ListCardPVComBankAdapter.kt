@@ -7,6 +7,9 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
@@ -183,10 +186,10 @@ class ListCardPVComBankAdapter(private val listener: CardPVComBankListener) : Re
             if (obj.isShow) {
                 binding.btnShowHide.setImageResource(R.drawable.ic_eye_off_white_24px)
                 binding.tvMoneyCard.text = "${TextHelper.formatMoney(obj.avlBalance ?: "0")}đ"
-                binding.tvNumberCardHeader.text = obj.cardMasking
-                        ?: getString(R.string.dang_cap_nhat)
+                binding.tvNumberCardHeader.text = obj.cardMasking ?: getString(R.string.dang_cap_nhat)
                 binding.tvCardHolder.text = obj.embossName ?: getString(R.string.dang_cap_nhat)
                 binding.tvDateEnd.text = expDate
+                binding.tvCCV.text = "CCV: ***"
 
                 binding.tvAvlBalance.text = TextHelper.formatMoney(obj.avlBalance ?: "0") + "đ"
                 binding.tvNumberCard.text = obj.cardMasking ?: getString(R.string.dang_cap_nhat)
@@ -197,12 +200,27 @@ class ListCardPVComBankAdapter(private val listener: CardPVComBankListener) : Re
                 binding.tvNumberCardHeader.text = "**** **** **** ****"
                 binding.tvDateEnd.text = "**/**"
                 binding.tvCardHolder.text = "**********"
-                binding.tvCCV.text = "***"
+                binding.tvCCV.text = "CCV: ***"
 
                 binding.tvAvlBalance.text = "**********"
                 binding.tvNumberCard.text = "**** **** **** ****"
                 binding.tvExpDate.text = "**/**"
             }
+
+            updateWidth(binding.tvDateEnd)
+            updateWidth(binding.tvCCV)
+        }
+
+        private fun updateWidth(textView: AppCompatTextView) {
+            textView.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+                override fun onGlobalLayout() {
+                    textView.viewTreeObserver.removeOnGlobalLayoutListener(this)
+                    textView.layoutParams.apply {
+                        width = ConstraintLayout.LayoutParams.WRAP_CONTENT
+                    }
+                    textView.requestLayout()
+                }
+            })
         }
 
         private fun listener(item: ICListCardPVBank) {
