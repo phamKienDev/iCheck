@@ -3,9 +3,11 @@ package vn.icheck.android.loyalty.dialog
 import android.content.Context
 import android.content.Intent
 import kotlinx.android.synthetic.main.dialog_confirm_exchange_gifts.*
+import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.dialog.base.BaseDialog
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
+import vn.icheck.android.loyalty.base.ICMessageEvent
 import vn.icheck.android.loyalty.dialog.base.DialogHelperGame
 import vn.icheck.android.loyalty.helper.NetworkHelper
 import vn.icheck.android.loyalty.helper.TextHelper
@@ -57,7 +59,7 @@ open class DialogConfirmExchangeGifts(context: Context, val obj: ICKBoxGifts, va
                     exchangeGift()
                 }
                 "PHONE_CARD" -> {
-                    ToastHelper.showLongWarning(context, "Chưa làm")
+                    EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.EXCHANGE_PHONE_CARD, obj.gift_id))
                 }
                 "PRODUCT" -> {
                     val intent = Intent(context, AcceptShipGiftLoyaltyActivity::class.java)

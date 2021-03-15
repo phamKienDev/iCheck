@@ -27,13 +27,6 @@ import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class MyFollowPageAdapter(val typeHome: Boolean, callback: IRecyclerViewCallback? = null) : RecyclerViewAdapter<ICPage>(callback) {
-    var dialog: MyFollowPageDialog? = null
-
-    fun dismissDialog() {
-        dialog?.dismiss()
-        dialog = null
-    }
-
     fun deleteItem(pageId: Long) {
         for (i in listData.size - 1 downTo 0) {
             if (listData[i].id == pageId) {

@@ -16,6 +16,7 @@ import vn.icheck.android.loyalty.model.ICKAccumulatePoint
 import vn.icheck.android.loyalty.model.ICKBoxGifts
 import vn.icheck.android.loyalty.model.ICKNone
 import vn.icheck.android.loyalty.screen.game_from_labels.game_list.GameFromLabelsListActivity
+import vn.icheck.android.loyalty.screen.loyalty_customers.exchange_phonecard.ChangePhoneCardsActivity
 import vn.icheck.android.loyalty.screen.scan.ScanLoyaltyActivity
 
 class DetailGiftLoyaltyActivity : BaseActivityGame() {
@@ -55,7 +56,7 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
                 }
                 "PHONE_CARD" -> {
                     layoutPhiVanChuyen.setGone()
-                    btnDoiQua.setGone()
+                    btnDoiQua.setVisible()
                 }
                 "RECEIVE_STORE" -> {
                     layoutPhiVanChuyen.setGone()
@@ -261,6 +262,10 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
     override fun onMessageEvent(event: ICMessageEvent) {
         super.onMessageEvent(event)
 
-        if (event.type == ICMessageEvent.Type.ON_COUNT_GIFT) tvCountGift.text = "${SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.COUNT_GIFT)} Quà"
+        if (event.type == ICMessageEvent.Type.ON_COUNT_GIFT) {
+            tvCountGift.text = "${SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.COUNT_GIFT)} Quà"
+        }else if(event.type == ICMessageEvent.Type.EXCHANGE_PHONE_CARD){
+            startActivityForResult<ChangePhoneCardsActivity, Long>(ConstantsLoyalty.DATA_2, event.data as Long, 111)
+        }
     }
 }

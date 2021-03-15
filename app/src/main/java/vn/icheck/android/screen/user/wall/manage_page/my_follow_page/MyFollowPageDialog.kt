@@ -109,7 +109,9 @@ class MyFollowPageDialog(val pageId: Long) : BaseBottomSheetDialogFragment() {
 
         DialogHelper.showConfirm(requireContext(), requireContext().getString(R.string.ban_chac_chan_bo_theo_doi_trang_nay), null,
                 requireContext().getString(R.string.de_sau), requireContext().getString(R.string.dong_y), true, object : ConfirmDialogListener {
-            override fun onDisagree() {}
+            override fun onDisagree() {
+                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.DISMISS_DIALOG))
+            }
 
             override fun onAgree() {
                 interactor.unFollowPage(pageId, object : ICNewApiListener<ICResponse<Boolean>> {
