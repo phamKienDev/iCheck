@@ -19,7 +19,6 @@ import vn.icheck.android.screen.user.pvcombank.listcard.callbacks.CardPVComBankL
 import vn.icheck.android.util.kotlin.ToastUtils
 
 class ListCardPVComBankAdapter(private val listener: CardPVComBankListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
     private val listData = mutableListOf<ICListCardPVBank>()
 
     private var errorCode = 0

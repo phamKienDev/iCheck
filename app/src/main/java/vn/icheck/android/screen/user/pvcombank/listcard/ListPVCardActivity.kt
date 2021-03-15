@@ -3,7 +3,6 @@ package vn.icheck.android.screen.user.pvcombank.listcard
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.view.ViewTreeObserver
 import android.widget.LinearLayout
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
@@ -32,7 +31,6 @@ import vn.icheck.android.screen.user.pvcombank.listcard.viewModel.ListCardPVComB
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.ui.carousel_recyclerview.CenterScrollListener
 import vn.icheck.android.ui.carousel_recyclerview.LinePagerIndicatorBankDecoration
-import vn.icheck.android.ui.carousel_recyclerview.ZoomCenterCardLayoutManager
 import vn.icheck.android.util.ick.showSimpleSuccessToast
 
 class ListPVCardActivity : BaseActivityMVVM(), CardPVComBankListener {
@@ -79,9 +77,9 @@ class ListPVCardActivity : BaseActivityMVVM(), CardPVComBankListener {
         val snapHelper: SnapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(recyclerView)
         adapter = ListCardPVComBankAdapter(this)
-        val manager = ZoomCenterCardLayoutManager(this)
-        manager.orientation = LinearLayoutManager.HORIZONTAL
-        recyclerView.layoutManager = manager
+//        val manager = ZoomCenterCardLayoutManager(this)
+//        manager.orientation = LinearLayoutManager.HORIZONTAL
+        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.adapter = adapter
     }
 
@@ -92,15 +90,6 @@ class ListPVCardActivity : BaseActivityMVVM(), CardPVComBankListener {
         viewModel.listData.observe(this, Observer {
             if (!isInit) {
                 recyclerView.addOnScrollListener(CenterScrollListener())
-                recyclerView.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
-                    override fun onGlobalLayout() {
-                        recyclerView.viewTreeObserver.removeOnGlobalLayoutListener(this)
-                        val range = resources.getDimension(R.dimen.width_your_card_item_horizontal).toInt()
-                        val margin = resources.getDimension(R.dimen.margin_your_card_item_horizontal).toInt()
-                        val extent: Int = (recyclerView.width - range) / 2 - margin
-                        recyclerView.setPadding(extent, 0, extent, 0)
-                    }
-                })
                 recyclerView.clipToPadding = false
                 recyclerView.setHasFixedSize(true)
                 recyclerView.smoothScrollBy(5, 0)
@@ -110,7 +99,6 @@ class ListPVCardActivity : BaseActivityMVVM(), CardPVComBankListener {
 
             adapter.setListData(it)
         })
-
 
         /*
         * Lock card thành công
