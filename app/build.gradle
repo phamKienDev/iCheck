@@ -299,12 +299,6 @@ dependencies {
 
     implementation files('src/main/libs/ScanditCaptureCore.aar')
     implementation files('src/main/libs/ScanditBarcodeCapture.aar')
-
-    implementation files('src/main/libs/ScanditTextCaptureBase.aar')
-    implementation files('src/main/libs/ScanditTextCapture.aar')
-
-    implementation files('src/main/libs/ScanditParser.aar')
-    implementation files('src/main/libs/ScanditIdCapture.aar')
 }
 repositories {
     mavenCentral()
