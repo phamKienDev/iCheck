@@ -5,9 +5,14 @@ import android.graphics.Typeface
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
 
-class TextViewBarlowBold(context: Context?, attrs: AttributeSet? = null) : AppCompatTextView(context!!, attrs) {
+class TextViewBarlowBold : AppCompatTextView {
+
+    constructor(context: Context) : super(context)
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
+
     init {
-        typeface = Typeface.createFromAsset(getContext().assets, "font/barlow_semi_bold.ttf")
+        typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
         includeFontPadding = false
     }
 }
