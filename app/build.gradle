@@ -38,8 +38,8 @@ android {
         applicationId "vn.icheck.android"
         minSdkVersion 17
         targetSdkVersion 29
-        versionCode 21031501
-        versionName "6.10.1"
+        versionCode 21031502
+        versionName "6.11.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled = true
         signingConfig signingConfigs.release
