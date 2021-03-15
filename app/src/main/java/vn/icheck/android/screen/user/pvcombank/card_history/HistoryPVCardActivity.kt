@@ -27,7 +27,9 @@ import vn.icheck.android.screen.user.pvcombank.card_history.adapter.HistoryPVTra
 import vn.icheck.android.screen.user.pvcombank.confirmunlockcard.ConfirmUnlockPVCardActivity
 import vn.icheck.android.ui.carousel_recyclerview.CenterScrollListener
 import vn.icheck.android.ui.carousel_recyclerview.ZoomCenterCardLayoutManager
+import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
+import vn.icheck.android.util.ick.visibleOrGone
 
 class HistoryPVCardActivity : BaseActivityMVVM(), IRecyclerViewCallback {
     private lateinit var cardAdapter: HistoryPVCardAdapter
@@ -230,6 +232,7 @@ class HistoryPVCardActivity : BaseActivityMVVM(), IRecyclerViewCallback {
                     cardId = listCards.firstOrNull()?.cardId
                     cardAdapter.disableLoadMore()
                     cardAdapter.setListData(listCards)
+                    viewMid.visibleOrGone(!listCards.isNullOrEmpty())
                     viewModel.getListTransaction(cardId)
                 }
             }
@@ -275,7 +278,7 @@ class HistoryPVCardActivity : BaseActivityMVVM(), IRecyclerViewCallback {
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
                 requestFullCard -> {
-                    val id = data?.getStringExtra(Constant.DATA_1)
+                    val id = data?.getStringExtra(Constant.DATA_2)
                     if (id != null) {
                         cardAdapter.showOrHide(id, true)
                     }

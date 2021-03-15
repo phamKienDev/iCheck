@@ -47,15 +47,24 @@ class HistoryPVCardAdapter : RecyclerViewAdapter<ICListCardPVBank>() {
 
             if (obj.isShow) {
                 itemView.btnShowHide.setImageResource(R.drawable.ic_eye_off_white_24px)
-                itemView.tvMoney.text = "${TextHelper.formatMoney(obj.avlBalance ?: "0")} đ"
-                itemView.tvCardNumber.text = obj.cardMasking
-                        ?: itemView.context.getString(R.string.dang_cap_nhat)
+                itemView.tvMoney.text = "${TextHelper.formatMoney(obj.avlBalance ?: "0")}đ"
+                itemView.tvCardNumber.text = if (obj.cardMasking.isNullOrEmpty()) {
+                    itemView.context.getString(R.string.dang_cap_nhat)
+                } else {
+                    if (obj.cardMasking!!.length == 16) {
+                        obj.cardMasking!!.substring(0, 4) + " " + obj.cardMasking!!.substring(4, 8) + " " + obj.cardMasking!!.substring(8, 12) + " " + obj.cardMasking!!.substring(12, 16)
+                    } else {
+                        obj.cardMasking!!
+                    }
+                }
                 itemView.tvName.text = obj.embossName
                         ?: itemView.context.getString(R.string.dang_cap_nhat)
                 itemView.tvTimeEnd.text = expDate
             } else {
                 itemView.btnShowHide.setImageResource(R.drawable.ic_eye_on_white_24px)
+                itemView.tvMoney.text = "******"
                 itemView.tvCardNumber.text = "**** **** **** ****"
+                itemView.tvName.text = ""
                 itemView.tvTimeEnd.text = "**/**"
             }
 

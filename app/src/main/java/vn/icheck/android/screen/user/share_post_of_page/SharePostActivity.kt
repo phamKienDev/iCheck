@@ -30,7 +30,7 @@ class SharePostActivity : BaseActivityMVVM() {
 
     private fun listenerGetData() {
         viewmodel.post.observe(this, Observer {
-            avatarUserPost.setData(it.page?.avatar, -1, R.drawable.img_default_business_logo)
+            avatarUserPost.setData(it.page?.avatar, -1, R.drawable.ic_business_v2)
             tvNameUserPost.text = it.page?.name
 
             when (it.targetType) {
@@ -67,7 +67,7 @@ class SharePostActivity : BaseActivityMVVM() {
         })
 
         viewmodel.page.observe(this, Observer {
-            avatarUser.setData(it.avatar, -1, R.drawable.img_default_business_logo)
+            avatarUser.setData(it.avatar, -1, R.drawable.ic_business_v2)
             tvName.text = it.name
             tvSubName.visibility = View.GONE
         })

@@ -41,7 +41,7 @@ class CommentPostHolder(val binding: ItemCommentPostBinding, val listener: IComm
         }
 
         if (obj.page != null) {
-            WidgetUtils.loadImageUrl(binding.imgAvatar, obj.page?.avatar, R.drawable.img_default_business_logo)
+            WidgetUtils.loadImageUrl(binding.imgAvatar, obj.page?.avatar, R.drawable.ic_business_v2)
             binding.tvTitle.text = obj.page?.name
             binding.imgLevel.beGone()
             if (obj.page!!.isVerify) {

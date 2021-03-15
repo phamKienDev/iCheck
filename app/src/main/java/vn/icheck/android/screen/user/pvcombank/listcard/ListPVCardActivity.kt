@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.SnapHelper
 import kotlinx.android.synthetic.main.activity_list_card_pvcombank.*
 import kotlinx.coroutines.launch
+import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
@@ -28,6 +29,7 @@ import vn.icheck.android.screen.user.pvcombank.home.HomePVCardActivity
 import vn.icheck.android.screen.user.pvcombank.listcard.adapter.ListCardPVComBankAdapter
 import vn.icheck.android.screen.user.pvcombank.listcard.callbacks.CardPVComBankListener
 import vn.icheck.android.screen.user.pvcombank.listcard.viewModel.ListCardPVComBankViewModel
+import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.ui.carousel_recyclerview.CenterScrollListener
 import vn.icheck.android.ui.carousel_recyclerview.LinePagerIndicatorBankDecoration
 import vn.icheck.android.ui.carousel_recyclerview.ZoomCenterCardLayoutManager
@@ -105,6 +107,7 @@ class ListPVCardActivity : BaseActivityMVVM(), CardPVComBankListener {
                 recyclerView.addItemDecoration(LinePagerIndicatorBankDecoration())
                 isInit = true
             }
+
             adapter.setListData(it)
         })
 
@@ -118,7 +121,6 @@ class ListPVCardActivity : BaseActivityMVVM(), CardPVComBankListener {
                 adapter.setLockCard(viewModel.cardId, viewModel.pos, true)
             }
         })
-
 
         /*
         * Set card làm thẻ chính
@@ -269,29 +271,62 @@ class ListPVCardActivity : BaseActivityMVVM(), CardPVComBankListener {
     /*
     * Check show/hide thông tin card
     */
-    override fun onClickShowHide(item: ICListCardPVBank, position: Int) {
+    override fun onClickShowOrHide(item: ICListCardPVBank, position: Int) {
         if (!item.isShow) {
-            //Request để lấy full thông tin
-            viewModel.cardId = item.cardId!!
-            viewModel.pos = position
-
-            val intent = Intent(this@ListPVCardActivity, ConfirmUnlockPVCardActivity::class.java)
-            intent.putExtra(Constant.DATA_1, item)
-            intent.putExtra(Constant.DATA_2, "full_card")
-            ActivityHelper.startActivityForResult(this@ListPVCardActivity, intent, requestFullCard)
+            getInfoCard(item, position)
         } else {
             //Ẩn thông tin
             item.cardMasking?.let { adapter.showHide(item.cardId, false, position, it) }
         }
     }
 
+
+    override fun onClickShow(item: ICListCardPVBank, position: Int) {
+        getInfoCard(item, position)
+    }
+
+    private fun getInfoCard(item: ICListCardPVBank, position: Int) {
+        //Request để lấy full thông tin
+        viewModel.cardId = item.cardId!!
+        viewModel.pos = position
+
+        val intent = Intent(this@ListPVCardActivity, ConfirmUnlockPVCardActivity::class.java)
+        intent.putExtra(Constant.DATA_1, item)
+        intent.putExtra(Constant.DATA_2, "full_card")
+        ActivityHelper.startActivityForResult(this@ListPVCardActivity, intent, requestFullCard)
+    }
+
+    override fun onAuthenCard(item: ICListCardPVBank) {
+        viewModel.getKyc().observe(this, Observer {
+            when (it.status) {
+                Status.LOADING -> {
+                    DialogHelper.showLoading(this@ListPVCardActivity)
+                }
+                Status.ERROR_NETWORK -> {
+                    DialogHelper.closeLoading(this@ListPVCardActivity)
+                    showLongError(ICheckApplication.getError(it.message))
+                }
+                Status.ERROR_REQUEST -> {
+                    DialogHelper.closeLoading(this@ListPVCardActivity)
+                    showLongError(ICheckApplication.getError(it.message))
+                }
+                Status.SUCCESS -> {
+                    DialogHelper.closeLoading(this@ListPVCardActivity)
+                    if (!it.data?.data?.kycUrl.isNullOrEmpty()) {
+                        HomePVCardActivity.redirectUrl = it.data?.data?.redirectUrl
+                        WebViewActivity.start(this, it.data?.data?.kycUrl)
+                    } else {
+                        showLongError(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                    }
+                }
+            }
+        })
+    }
+
     override fun onClickChangePassword(item: ICListCardPVBank, position: Int) {
         showShortSuccess(getString(R.string.tinh_nang_dang_phat_trien))
     }
 
-    override fun onClickSecuriryCard(item: ICListCardPVBank, position: Int) {
-        showShortSuccess(getString(R.string.tinh_nang_dang_phat_trien))
-    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -317,7 +352,7 @@ class ListPVCardActivity : BaseActivityMVVM(), CardPVComBankListener {
                     val cardFull = data?.getSerializableExtra(Constant.DATA_1) as ICLockCard
                     val id = data.getStringExtra(Constant.DATA_2)
                     if (id != null) {
-                        if (!cardFull.fullCard.isNullOrEmpty()){
+                        if (!cardFull.fullCard.isNullOrEmpty()) {
                             adapter.showHide(id, true, viewModel.pos, cardFull.fullCard!!)
                         }
                     }

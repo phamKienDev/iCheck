@@ -361,7 +361,7 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
     private fun setPermission(obj: ICCommentPermission) {
         imgAvatar.tag = obj
         if (obj.type == Constant.PAGE) {
-            WidgetUtils.loadImageUrl(imgAvatar, obj.avatar, R.drawable.img_default_business_logo_big)
+            WidgetUtils.loadImageUrl(imgAvatar, obj.avatar, R.drawable.ic_business_v2)
         } else {
             WidgetUtils.loadImageUrl(imgAvatar, obj.avatar, R.drawable.ic_user_orange_circle)
         }

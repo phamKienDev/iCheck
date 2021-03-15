@@ -36,7 +36,7 @@ class InviteFollowPageHolder(parent: ViewGroup) : BaseViewHolder<ICPageOverview>
                 itemView.getChildAt(i).beVisible()
 
 
-            WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.avatar, R.drawable.img_default_business_logo_big, R.drawable.img_default_business_logo_big)
+            WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
             itemView.imgVerified.visibleOrInvisible(obj.isVerify)
             itemView.tvName.text = "Bạn đã theo dõi ${obj.name}"
 

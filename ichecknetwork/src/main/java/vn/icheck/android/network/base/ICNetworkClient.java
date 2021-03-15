@@ -6,17 +6,8 @@ import com.google.gson.GsonBuilder;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
-
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -27,28 +18,27 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.Route;
-//import okhttp3.logging.HttpLoggingInterceptor;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import vn.icheck.android.network.models.ICSessionData;
-import vn.icheck.android.network.shared.SharedHelper;
 import vn.icheck.android.network.util.DeviceUtils;
 
 public class ICNetworkClient {
     public static ICNetworkCallbackManager networkCallbackManager = ICNetworkCallbackManager.Factory.create();
 
-    private static volatile Gson gson = new GsonBuilder()
+    private static final Gson gson = new GsonBuilder()
             .setLenient()
             .serializeNulls()
             .create();
 
-    private static volatile OkHttpClient client = new OkHttpClient.Builder()
+    private static final OkHttpClient client = new OkHttpClient.Builder()
             .connectTimeout(20, TimeUnit.SECONDS)
             .readTimeout(20, TimeUnit.SECONDS)
             .writeTimeout(20, TimeUnit.SECONDS)
 //            .authenticator(new TokenAuthenticator())
-//            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .addInterceptor(ICNetworkClient::requireLoginCallback).build();
 
     private static OkHttpClient getClient(int timeRequest) {
@@ -57,88 +47,48 @@ public class ICNetworkClient {
                 .readTimeout(timeRequest, TimeUnit.SECONDS)
                 .writeTimeout(timeRequest, TimeUnit.SECONDS)
 //            .authenticator(new TokenAuthenticator())
-//                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .addInterceptor(ICNetworkClient::requireLoginCallback).build();
     }
 
-    private static volatile OkHttpClient client2 = new OkHttpClient.Builder()
+    private static final OkHttpClient client2 = new OkHttpClient.Builder()
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
 //            .authenticator(new TokenAuthenticator())
-//            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .addInterceptor(ICNetworkClient::requireLoginCallback2).build();
 
-    private static volatile OkHttpClient client3 = new OkHttpClient.Builder()
+    private static final OkHttpClient client3 = new OkHttpClient.Builder()
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
 //            .authenticator(new TokenAuthenticator())
-//            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .addInterceptor(ICNetworkClient::requireLoginCallback3).build();
 
-    private static volatile OkHttpClient client4 = new OkHttpClient.Builder()
+    private static final OkHttpClient client4 = new OkHttpClient.Builder()
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
 //            .authenticator(new TokenAuthenticator())
-//            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .addInterceptor(ICNetworkClient::requireLoginCallback4).build();
 
-    private static volatile OkHttpClient clientStamp = new OkHttpClient.Builder()
+    private static final OkHttpClient clientStamp = new OkHttpClient.Builder()
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
 //            .authenticator(new TokenAuthenticator())
-//            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .addInterceptor(ICNetworkClient::requireLoginCallbackStamp).build();
 
-    private static OkHttpClient clientSsl() {
-        try {
-            final HostnameVerifier verifier = (hostname, session) -> {
-//                HostnameVerifier hv = HttpsURLConnection.getDefaultHostnameVerifier();
-//                return hv.verify("proxy-pvcombank.dev.icheck.vn", session);
-                return true;
-            };
 
-            final TrustManager[] trustAllCerts = new TrustManager[]{
-                    new X509TrustManager() {
-                        @Override
-                        public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType) {
-                        }
-
-                        @Override
-                        public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType) {
-                        }
-
-                        @Override
-                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-                            return new java.security.cert.X509Certificate[]{};
-                        }
-                    }
-            };
-            final SSLContext sslContext = SSLContext.getInstance("SSL");
-            sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
-            return new OkHttpClient.Builder()
-                    .connectTimeout(30, TimeUnit.SECONDS)
-                    .readTimeout(30, TimeUnit.SECONDS)
-                    .writeTimeout(30, TimeUnit.SECONDS)
-                    .hostnameVerifier(verifier)
-                    .sslSocketFactory(sslContext.getSocketFactory())
-//                    .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-                    .addInterceptor(ICNetworkClient::requireLoginCallback4).build();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return client;
-        }
-    }
-
-
-    private static volatile OkHttpClient uploadClient = new OkHttpClient.Builder()
+    private static final OkHttpClient uploadClient = new OkHttpClient.Builder()
             .connectTimeout(60, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)
-//            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .addInterceptor(ICNetworkClient::requireLoginCallback).build();
 
 
@@ -159,7 +109,6 @@ public class ICNetworkClient {
 
     private static volatile ICNetworkAPI icheckApi = null;
     private static volatile ICNetworkAPI icheckApi2 = null;
-    private static volatile ICNetworkAPI icheckApi5 = null;
 
     private static volatile ICNetworkAPI simpleIcheckApi = null;
 
@@ -300,7 +249,7 @@ public class ICNetworkClient {
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .writeTimeout(30, TimeUnit.SECONDS)
                 .authenticator(new TokenAuthenticator())
-//                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .addInterceptor(ICNetworkClient::requireLoginCallback)
                 .build();
     }
@@ -374,21 +323,6 @@ public class ICNetworkClient {
                 .create(ICNetworkAPI.class);
     }
 
-    public static ICNetworkAPI getApiClient5() {
-        if (icheckApi5 == null) {
-            synchronized (ICNetworkAPI.class) {
-                icheckApi5 = new Retrofit.Builder()
-                        .baseUrl("https://api-loyalty-test.dev.icheck.vn/api/")
-                        .client(client)
-                        .addConverterFactory(GsonConverterFactory.create(gson))
-                        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                        .build()
-                        .create(ICNetworkAPI.class);
-            }
-        }
-        return icheckApi5;
-    }
-
     public static ICNetworkAPI getApiClientNoHeaderWithRx() {
         if (icheckApi2 == null) {
             icheckApi2 = new Retrofit.Builder()
@@ -444,7 +378,7 @@ public class ICNetworkClient {
                 .create(ICNetworkAPI.class);
     }
 
-    public static ICNetworkAPI getStampClientSocial(){
+    public static ICNetworkAPI getStampClientSocial() {
         if (socialStampApi == null) {
             synchronized (ICNetworkAPI.class) {
                 socialStampApi = new Retrofit.Builder()
@@ -529,7 +463,7 @@ public class ICNetworkClient {
                     .connectTimeout(60, TimeUnit.SECONDS)
                     .readTimeout(60, TimeUnit.SECONDS)
                     .writeTimeout(60, TimeUnit.SECONDS)
-//                    .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                    .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                     .build();
         } else {
             chatClient = client;
@@ -557,12 +491,11 @@ public class ICNetworkClient {
                             .connectTimeout(60, TimeUnit.SECONDS)
                             .readTimeout(60, TimeUnit.SECONDS)
                             .writeTimeout(60, TimeUnit.SECONDS)
-//                            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                             .build();
                 } else {
                     throw new NullPointerException("Firebase token not found");
                 }
-
 
                 chatApi = new Retrofit.Builder()
                         .baseUrl("https://chat.icheck.com.vn/")
@@ -592,25 +525,25 @@ public class ICNetworkClient {
                         .subscribeOn(Schedulers.io())
                         .subscribe(new Observer<ICSessionData>() {
                             @Override
-                            public void onSubscribe(Disposable d) {
+                            public void onSubscribe(@NotNull Disposable d) {
                             }
 
                             @Override
-                            public void onNext(ICSessionData icSessionData) {
+                            public void onNext(@NotNull ICSessionData icSessionData) {
                                 if (icSessionData.getToken() != null && !icSessionData.getToken().isEmpty() && icSessionData.getTokenType() != null && !icSessionData.getTokenType().isEmpty()) {
                                     SessionManager.INSTANCE.setSession(icSessionData);
                                 }
                             }
 
                             @Override
-                            public void onError(Throwable e) {
+                            public void onError(@NotNull Throwable e) {
                             }
 
                             @Override
                             public void onComplete() {
                                 ICSessionData sessionData = SessionManager.INSTANCE.getSession();
 
-                                if (sessionData != null && sessionData.getTokenType() != null && sessionData.getToken() != null) {
+                                if (sessionData.getTokenType() != null && sessionData.getToken() != null) {
                                     builder[0] = response.request().newBuilder()
                                             .addHeader("Content-Type", "application/json")
                                             .addHeader("User-Agent", DeviceUtils.getModel())

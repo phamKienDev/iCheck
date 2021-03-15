@@ -37,6 +37,8 @@ class ListCardPVComBankViewModel : BaseViewModel() {
         return request { interactor.getMyListCards() }
     }
 
+    fun getKyc() = request { interactor.getKyc() }
+
 //    fun getData() {
 //        if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
 //            statusCode.postValue(ICMessageEvent.Type.ON_NO_INTERNET)

@@ -180,7 +180,7 @@ class MapScanHistoryActivity : BaseActivityMVVM(), StoreSellMapHistoryView, OnMa
             for (i in listStore) {
                 if (i.location?.lat != null && i.location?.lon != null) {
                     if (viewModel.isPage) {
-                        WidgetUtils.loadImageUrlFitCenter(view.imgShop, i.avatar, R.drawable.img_default_business_logo_big, R.drawable.img_default_business_logo_big)
+                        WidgetUtils.loadImageUrlFitCenter(view.imgShop, i.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
                         markerView = map4D?.addMarker(MFMarkerOptions().position(MFLocationCoordinate(i.location?.lat!!, i.location?.lon!!)).iconView(view))
                     } else {
                         WidgetUtils.loadImageUrlFitCenter(view.imgShop, i.avatar, R.drawable.ic_error_load_shop_40_px, R.drawable.ic_error_load_shop_40_px)
@@ -195,14 +195,14 @@ class MapScanHistoryActivity : BaseActivityMVVM(), StoreSellMapHistoryView, OnMa
         } else {
             if (!viewModel.avatarShop.isEmpty()) {
                 if (viewModel.isPage) {
-                    WidgetUtils.loadImageUrlFitCenter(view.imgShop, viewModel.avatarShop, R.drawable.img_default_business_logo_big, R.drawable.img_default_business_logo_big)
+                    WidgetUtils.loadImageUrlFitCenter(view.imgShop, viewModel.avatarShop, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
                 } else {
                     WidgetUtils.loadImageUrlFitCenter(view.imgShop, viewModel.avatarShop, R.drawable.ic_error_load_shop_40_px, R.drawable.ic_error_load_shop_40_px)
                 }
                 markerView = map4D?.addMarker(MFMarkerOptions().position(MFLocationCoordinate(viewModel.latShop, viewModel.lonShop)).iconView(view))
             } else {
                 if (viewModel.isPage) {
-                    view.imgShop.setImageResource(R.drawable.img_default_business_logo_big)
+                    view.imgShop.setImageResource(R.drawable.ic_business_v2)
                 } else {
                     view.imgShop.setImageResource(R.drawable.ic_error_load_shop_40_px)
                 }

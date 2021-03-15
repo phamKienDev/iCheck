@@ -81,7 +81,7 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
             WidgetUtils.loadImageUrl(imgPermission, SettingManager.getPostPermission()?.avatar, if (SettingManager.getPostPermission()?.type == Constant.USER) {
                 R.drawable.ic_avatar_default_84px
             } else {
-                R.drawable.img_default_business_logo_big
+                R.drawable.ic_business_v2
             })
         }
 
@@ -159,7 +159,7 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
                         WidgetUtils.loadImageUrl(imgPermission, SettingManager.getPostPermission()?.avatar, if (permission.type == Constant.USER) {
                             R.drawable.ic_user_orange_circle
                         } else {
-                            R.drawable.img_default_business_logo_big
+                            R.drawable.ic_business_v2
                         })
                         listener.onClickReviewPermission()
                     }

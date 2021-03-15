@@ -105,6 +105,7 @@ object SettingManager {
     fun clear() {
         setUserCoin(0L)
         setRankLevel(1)
+        setSessionIdPvcombank("")
     }
 
     var domainQr: List<ICClientSetting>

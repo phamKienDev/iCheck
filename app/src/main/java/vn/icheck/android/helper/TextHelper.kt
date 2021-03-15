@@ -220,8 +220,7 @@ object TextHelper {
     fun parserValueMonneyFomat(value: String): Float {
         val format = DecimalFormat("###,###,###,###")
         return try {
-            val number = format.parse(value)
-            number.toFloat()
+            format.parse(value).toFloat()
         } catch (e: ParseException) {
             0f
         }

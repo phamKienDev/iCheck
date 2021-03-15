@@ -53,7 +53,7 @@ class CommentPermissionAdapter(val listener: ItemClickListener<ICCommentPermissi
 
         override fun bind(obj: ICCommentPermission) {
             WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.avatar, if (obj.type == Constant.PAGE) {
-                R.drawable.img_default_business_logo_big
+                R.drawable.ic_business_v2
             } else {
                 R.drawable.ic_user_orange_circle
             })

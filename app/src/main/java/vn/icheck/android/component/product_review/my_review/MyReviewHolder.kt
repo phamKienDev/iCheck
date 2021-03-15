@@ -89,7 +89,7 @@ class MyReviewHolder(parent: ViewGroup, val listener: IMyReviewListener) : Recyc
                 WidgetUtils.loadImageUrl(imgPermission, data.user?.avatar, R.drawable.ic_avatar_default_84px)
             } else {
                 val error = if (SettingManager.getPostPermission()?.type == Constant.PAGE) {
-                    R.drawable.img_default_business_logo_big
+                    R.drawable.ic_business_v2
                 } else {
                     R.drawable.ic_avatar_default_84px
                 }

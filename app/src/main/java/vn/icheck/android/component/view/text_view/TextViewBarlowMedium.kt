@@ -8,5 +8,6 @@ import androidx.appcompat.widget.AppCompatTextView
 class TextViewBarlowMedium(context: Context?, attrs: AttributeSet? = null) : AppCompatTextView(context!!, attrs) {
     init {
         typeface = Typeface.createFromAsset(getContext().assets, "font/barlow_medium.ttf")
+        includeFontPadding = false
     }
 }

@@ -40,6 +40,7 @@ import vn.icheck.android.network.base.*
 import vn.icheck.android.screen.user.pvcombank.home.HomePVCardActivity
 import vn.icheck.android.screen.user.pvcombank.listcard.ListPVCardActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
+import java.net.URL
 import java.util.*
 import java.util.regex.Pattern
 
@@ -137,8 +138,6 @@ class WebViewActivity : BaseActivityMVVM() {
             ActivityUtils.finishActivity(this@WebViewActivity)
         }
     }
-
-    private val loctionPermission = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)
 
     @SuppressLint("SetJavaScriptEnabled")
     private fun setupWebView(url: String, title: String?) {
@@ -240,7 +239,7 @@ class WebViewActivity : BaseActivityMVVM() {
                         when (permission) {
                             PermissionRequest.RESOURCE_VIDEO_CAPTURE -> {
                                 if (PermissionHelper.checkPermission(this@WebViewActivity, Manifest.permission.CAMERA, requestPermission)) {
-                                    request.grant(arrayOf(permission))
+                                    confirmAllowCamera(request)
                                 } else {
                                     webViewRequest = request
                                 }
@@ -267,6 +266,22 @@ class WebViewActivity : BaseActivityMVVM() {
                 })
             }
         }
+    }
+
+    private fun confirmAllowCamera(request: PermissionRequest?) {
+        DialogHelper.showConfirm(this@WebViewActivity, null, "'${URL(webView.url).host}' muốn sử dụng camera của bạn", "Từ chối", "Cho phép", true, null, R.color.blue, object : ConfirmDialogListener {
+            override fun onDisagree() {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    request?.deny()
+                }
+            }
+
+            override fun onAgree() {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    request?.grant(request.resources)
+                }
+            }
+        })
     }
 
     private fun handleNewUrl(view: WebView?, uri: Uri) {
@@ -367,7 +382,7 @@ class WebViewActivity : BaseActivityMVVM() {
             if (requestCode == requestPermission) {
                 if (webViewRequest != null) {
                     if (PermissionHelper.checkResult(grantResults)) {
-                        webViewRequest!!.grant(webViewRequest!!.resources)
+                        confirmAllowCamera(webViewRequest)
                     } else {
                         webViewRequest!!.deny()
                     }

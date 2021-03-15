@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_detail_pvcard.*
 import kotlinx.android.synthetic.main.toolbar_pvcombank.*
+import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
@@ -65,7 +66,7 @@ class HomePVCardActivity : BaseActivityMVVM(), View.OnClickListener {
             WebViewActivity.start(this, it.description)
         })
 
-        viewModel.onState.observe(this, {
+        viewModel.onState.observe(this, Observer {
             when (it.type) {
                 ICMessageEvent.Type.ON_SHOW_LOADING -> {
                     DialogHelper.showLoading(this)
@@ -80,7 +81,7 @@ class HomePVCardActivity : BaseActivityMVVM(), View.OnClickListener {
     }
 
     private fun getDetailCard() {
-        viewModel.getDetailCardV2().observe(this, {
+        viewModel.getDetailCardV2().observe(this, Observer {
             when (it.status) {
                 Status.LOADING -> {
                     viewModel.onState.postValue(ICMessageEvent(ICMessageEvent.Type.ON_SHOW_LOADING))
@@ -113,7 +114,7 @@ class HomePVCardActivity : BaseActivityMVVM(), View.OnClickListener {
     }
 
     private fun getKyc() {
-        viewModel.getKyc().observe(this, {
+        viewModel.getKyc().observe(this, Observer {
             when (it.status) {
                 Status.LOADING -> {
                     DialogHelper.showLoading(this@HomePVCardActivity)
@@ -192,5 +193,10 @@ class HomePVCardActivity : BaseActivityMVVM(), View.OnClickListener {
             else -> {
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_DESTROY_PVCOMBANK))
     }
 }

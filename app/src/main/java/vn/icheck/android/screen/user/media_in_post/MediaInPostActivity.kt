@@ -136,7 +136,7 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
 
         viewModel.onPostData.observe(this, {
             if (it.page != null) {
-                WidgetUtils.loadImageUrl(imgAvatar, it.page!!.avatar, R.drawable.img_default_business_logo)
+                WidgetUtils.loadImageUrl(imgAvatar, it.page!!.avatar, R.drawable.ic_business_v2)
                 if (it.page!!.isVerify) {
                     imgVerified.beVisible()
                 } else {

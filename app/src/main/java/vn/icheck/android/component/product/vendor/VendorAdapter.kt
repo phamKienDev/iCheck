@@ -70,7 +70,7 @@ class VendorAdapter(val listData: MutableList<ICPage>, val icon: Int?) : Recycle
                 }
             }
 
-            WidgetUtils.loadImageUrlRounded4(itemView.imgAvatar, obj.avatar, R.drawable.img_default_business_logo, R.drawable.img_default_business_logo)
+            WidgetUtils.loadImageUrlRounded4(itemView.imgAvatar, obj.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
 
             itemView.tvNamePage.text = if (obj.name.isNullOrEmpty()) {
                 itemView.context.getString(R.string.dang_cap_nhat)

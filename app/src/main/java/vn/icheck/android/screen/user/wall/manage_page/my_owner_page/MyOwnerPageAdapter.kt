@@ -49,7 +49,7 @@ class MyOwnerPageAdapter(val typeHome: Boolean, callback: IRecyclerViewCallback?
                 itemView.tv_verified.beGone()
             }
 
-            WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.avatar, R.drawable.img_default_business_logo_big, R.drawable.img_default_business_logo_big)
+            WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
             itemView.tvName.setText(obj.name ?: "")
             itemView.tvCountFollow.text = if (obj.followCount ?: 0 > 0) {
                 "${TextHelper.formatMoneyPhay(obj.followCount)} Người đang theo dõi"
