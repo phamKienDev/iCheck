@@ -3,6 +3,7 @@ package vn.icheck.android.screen.user.pvcombank.listcard
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.ViewTreeObserver
 import android.widget.LinearLayout
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
@@ -19,6 +20,7 @@ import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.network.base.Status
 import vn.icheck.android.network.models.pvcombank.ICListCardPVBank
@@ -31,6 +33,7 @@ import vn.icheck.android.screen.user.pvcombank.listcard.viewModel.ListCardPVComB
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.ui.carousel_recyclerview.CenterScrollListener
 import vn.icheck.android.ui.carousel_recyclerview.LinePagerIndicatorBankDecoration
+import vn.icheck.android.ui.carousel_recyclerview.ZoomCenterCardLayoutManager
 import vn.icheck.android.util.ick.showSimpleSuccessToast
 
 class ListPVCardActivity : BaseActivityMVVM(), CardPVComBankListener {
@@ -77,9 +80,9 @@ class ListPVCardActivity : BaseActivityMVVM(), CardPVComBankListener {
         val snapHelper: SnapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(recyclerView)
         adapter = ListCardPVComBankAdapter(this)
-//        val manager = ZoomCenterCardLayoutManager(this)
-//        manager.orientation = LinearLayoutManager.HORIZONTAL
-        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        val manager = ZoomCenterCardLayoutManager(this)
+        manager.orientation = LinearLayoutManager.HORIZONTAL
+        recyclerView.layoutManager = manager
         recyclerView.adapter = adapter
     }
 
@@ -90,6 +93,7 @@ class ListPVCardActivity : BaseActivityMVVM(), CardPVComBankListener {
         viewModel.listData.observe(this, Observer {
             if (!isInit) {
                 recyclerView.addOnScrollListener(CenterScrollListener())
+                recyclerView.setPadding(SizeHelper.dpToPx(3.5), 0, SizeHelper.dpToPx(3.5), 0)
                 recyclerView.clipToPadding = false
                 recyclerView.setHasFixedSize(true)
                 recyclerView.smoothScrollBy(5, 0)

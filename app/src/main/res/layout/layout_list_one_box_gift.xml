@@ -9,13 +9,15 @@
         android:id="@+id/img_bg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scaleType="fitCenter"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_light"
         android:visibility="gone"
-        android:src="@drawable/bg_unbox_gift_success"
+        android:tint="@color/quantum_yellow300"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imgDotTop"

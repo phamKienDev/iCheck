@@ -17,7 +17,6 @@ import vn.icheck.android.network.models.pvcombank.ICTransactionPVCard
 class HistoryPVCardViewModel : BaseViewModel() {
     private val interactor = PVcomBankRepository()
 
-    val onListCard = MutableLiveData<MutableList<ICListCardPVBank>>()
     val onSetTransaction = MutableLiveData<MutableList<ICTransactionPVCard.ICItemTransaction>>()
     val onAddTransaction = MutableLiveData<MutableList<ICTransactionPVCard.ICItemTransaction>>()
     val statusCode = MutableLiveData<ICMessageEvent.Type>()

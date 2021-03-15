@@ -9,9 +9,9 @@
     android:layout_marginStart="3.5dp"
     android:layout_marginTop="16dp"
     android:layout_marginEnd="3.5dp"
-    android:layout_marginBottom="14dp"
+    android:layout_marginBottom="28dp"
     app:cardBackgroundColor="@color/white"
-    app:cardCornerRadius="@dimen/size_14">
+    app:cardCornerRadius="@dimen/size_20">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,8 +37,8 @@
                 android:id="@+id/tvMoneyCard"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/size_24"
-                android:layout_marginTop="80dp"
+                android:layout_marginStart="@dimen/size_40"
+                android:layout_marginTop="100dp"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:includeFontPadding="false"
                 android:letterSpacing="0.06"
@@ -46,7 +46,7 @@
                 android:shadowDy="1"
                 android:shadowRadius="1"
                 android:textColor="@color/white"
-                android:textSize="22sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="4563 9780 0249 4937 " />
@@ -55,7 +55,7 @@
                 android:id="@+id/tvNumberCardHeader"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="30dp"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:includeFontPadding="false"
                 android:letterSpacing="0.06"
@@ -63,7 +63,7 @@
                 android:shadowDy="1"
                 android:shadowRadius="1"
                 android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="@id/tvMoneyCard"
                 app:layout_constraintTop_toBottomOf="@id/tvMoneyCard"
                 tools:text="5119 6288 8888 8888" />
@@ -72,11 +72,11 @@
                 android:id="@+id/tvDateEnd"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="18dp"
                 android:fontFamily="@font/barlow_medium"
                 android:text="10/24"
                 android:textColor="@color/white"
-                android:textSize="12sp"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@+id/tvNumberCardHeader"
                 app:layout_constraintTop_toBottomOf="@+id/tvNumberCardHeader" />
 
@@ -89,7 +89,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:text="CCV: "
                 android:textColor="@color/white"
-                android:textSize="12sp"
+                android:textSize="20sp"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="@id/tvDateEnd"
                 app:layout_constraintStart_toEndOf="@id/tvDateEnd"
@@ -104,11 +104,11 @@
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView45"
                 app:layout_constraintStart_toEndOf="@+id/appCompatTextView45"
                 app:layout_constraintTop_toTopOf="@+id/appCompatTextView45"
-                android:text="***" />
+                tools:text="****" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/btnShowHide"
@@ -125,14 +125,14 @@
                 android:id="@+id/tvCardHolder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="18dp"
                 android:fontFamily="@font/barlow_medium"
                 android:letterSpacing="0.06"
                 android:shadowColor="#59000000"
                 android:shadowDy="1"
                 android:shadowRadius="1"
                 android:textColor="@color/white"
-                android:textSize="14sp"
+                android:textSize="22sp"
                 app:layout_constraintStart_toStartOf="@id/tvDateEnd"
                 app:layout_constraintTop_toBottomOf="@id/tvDateEnd"
                 tools:text="TOLU AROWOSELU" />
@@ -163,7 +163,7 @@
                         android:gravity="center"
                         android:text="Số dư thẻ"
                         android:textColor="@color/blue"
-                        android:textSize="16sp" />
+                        android:textSize="20sp" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvAvlBalance"
@@ -173,7 +173,7 @@
                         android:gravity="center|end"
                         android:text="254.241.000 đ"
                         android:textColor="#ffb800"
-                        android:textSize="20sp" />
+                        android:textSize="24sp" />
 
                 </LinearLayout>
 
@@ -194,7 +194,7 @@
                     android:fontFamily="@font/barlow_semi_bold"
                     android:text="Thông tin thẻ"
                     android:textColor="@color/blue"
-                    android:textSize="16sp" />
+                    android:textSize="20sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -212,7 +212,7 @@
                         android:fontFamily="@font/barlow_medium"
                         android:text="Số thẻ"
                         android:textColor="#757575"
-                        android:textSize="12sp" />
+                        android:textSize="16sp" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvNumberCard"
@@ -223,7 +223,7 @@
                         android:gravity="end"
                         android:text="2541 1145 1114 2225"
                         android:textColor="#212121"
-                        android:textSize="14sp" />
+                        android:textSize="18sp" />
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/btnCopyCard"
@@ -258,7 +258,7 @@
                         android:fontFamily="@font/barlow_medium"
                         android:text="Hạn sử dụng"
                         android:textColor="#757575"
-                        android:textSize="12sp" />
+                        android:textSize="16sp" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvExpDate"
@@ -269,7 +269,7 @@
                         android:gravity="end"
                         android:text="10/28"
                         android:textColor="#212121"
-                        android:textSize="14sp" />
+                        android:textSize="18sp" />
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/btnEndDate"
@@ -304,7 +304,7 @@
                         android:fontFamily="@font/barlow_medium"
                         android:text="Trạng thái thẻ"
                         android:textColor="#757575"
-                        android:textSize="12sp" />
+                        android:textSize="16sp" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -321,7 +321,7 @@
                             android:text="Chưa định danh"
                             android:layout_marginEnd="@dimen/size_6"
                             android:textColor="#EB5757"
-                            android:textSize="14sp" />
+                            android:textSize="18sp" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/tvActionAuthen"
@@ -331,7 +331,7 @@
                             android:fontFamily="@font/barlow_semi_bold"
                             android:gravity="end"
                             android:textColor="@color/lightBlue"
-                            android:textSize="14sp"
+                            android:textSize="18sp"
                             android:src="@drawable/ic_copy_24px"
                             android:text="Định danh ngay" />
 
@@ -383,7 +383,7 @@
                         android:gravity="center"
                         android:text="Thông tin thẻ"
                         android:textColor="#212121"
-                        android:textSize="14sp" />
+                        android:textSize="18sp" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvChangePassword"
@@ -396,7 +396,7 @@
                         android:gravity="center"
                         android:text="Đổi mật khẩu"
                         android:textColor="#212121"
-                        android:textSize="14sp" />
+                        android:textSize="18sp" />
 
                 </LinearLayout>
 
