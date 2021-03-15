@@ -7,6 +7,7 @@ import android.text.TextPaint
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatTextView
 
 /**
  * Text view that auto adjusts text size to fit within the view.
@@ -16,7 +17,7 @@ import android.widget.TextView
  * @author Chase Colburn
  * @since Apr 4, 2011
  */
-class AutoResizeTextView : TextViewBarlowBold {
+class AutoResizeTextView : TextViewBarlowMedium {
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)

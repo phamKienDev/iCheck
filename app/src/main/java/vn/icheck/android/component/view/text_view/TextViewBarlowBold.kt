@@ -5,7 +5,7 @@ import android.graphics.Typeface
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
 
-open class TextViewBarlowBold : AppCompatTextView {
+class TextViewBarlowBold : AppCompatTextView {
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
