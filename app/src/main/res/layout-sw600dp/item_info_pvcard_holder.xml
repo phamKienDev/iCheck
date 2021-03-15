@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="3.5sp"
+    android:layout_marginStart="3.5dp"
     android:layout_marginTop="@dimen/size_20"
-    android:layout_marginRight="3.5sp"
+    android:layout_marginEnd="3.5dp"
     android:layout_marginBottom="@dimen/size_20"
-    app:cardCornerRadius="@dimen/size_12">
+    app:cardCornerRadius="@dimen/size_20">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -25,19 +24,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <TextView
             android:id="@+id/tvMoney"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/size_18"
-            android:layout_marginTop="70dp"
+            android:layout_marginStart="@dimen/size_40"
+            android:layout_marginTop="110dp"
             android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="bottom"
             android:includeFontPadding="false"
             android:text="254.***.000 đ"
-            android:gravity="bottom"
             android:textColor="@color/white"
-            android:textSize="24sp"
+            android:textSize="30sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,12 +43,12 @@
             android:id="@+id/tvCardNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size_14"
+            android:layout_marginTop="@dimen/size_30"
             android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
             android:text="254.241.000 đ"
             android:textColor="@color/white"
-            android:textSize="18sp"
+            android:textSize="24sp"
             app:layout_constraintStart_toStartOf="@id/tvMoney"
             app:layout_constraintTop_toBottomOf="@id/tvMoney" />
 
@@ -58,12 +56,12 @@
             android:id="@+id/tvTimeEnd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="18dp"
             android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:text="10/24"
             android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@id/tvCardNumber"
             app:layout_constraintTop_toBottomOf="@id/tvCardNumber" />
 
@@ -76,7 +74,7 @@
             android:includeFontPadding="false"
             android:text="CCV:"
             android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@id/tvTimeEnd"
             app:layout_constraintStart_toEndOf="@id/tvTimeEnd"
             app:layout_constraintTop_toTopOf="@id/tvTimeEnd" />
@@ -91,7 +89,7 @@
             android:includeFontPadding="false"
             android:text="***"
             android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@id/tvTimeEnd"
             app:layout_constraintStart_toEndOf="@id/tvCCV"
             app:layout_constraintTop_toTopOf="@id/tvTimeEnd" />
@@ -113,11 +111,11 @@
             android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="18dp"
             android:fontFamily="@font/barlow_semi_bold"
             android:text="NGUYEN HOANG BAO ANH"
             android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textSize="22sp"
             app:layout_constraintStart_toStartOf="@id/tvTimeEnd"
             app:layout_constraintTop_toBottomOf="@id/tvTimeEnd" />
 
