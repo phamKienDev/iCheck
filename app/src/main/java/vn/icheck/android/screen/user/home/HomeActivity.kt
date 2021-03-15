@@ -258,7 +258,8 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                         ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), ICK_REQUEST_CAMERA)
                     }
                 } else {
-                    ICKScanActivity.create(this)
+//                    ICKScanActivity.create(this)
+                    V6ScanditActivity.create(this)
                 }
             }
         }
@@ -563,7 +564,8 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == ICK_REQUEST_CAMERA) {
             if (PermissionHelper.checkResult(grantResults)) {
-                ICKScanActivity.create(this)
+//                ICKScanActivity.create(this)
+                V6ScanditActivity.create(this)
             }
         }
     }
@@ -693,7 +695,8 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                         ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), ICK_REQUEST_CAMERA)
                     }
                 } else {
-                    ICKScanActivity.create(this)
+//                    ICKScanActivity.create(this)
+                    V6ScanditActivity.create(this)
                 }
             }
             R.id.tvHistory -> {
@@ -725,7 +728,6 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                     onRequireLogin()
                 } else {
                     IckUserWallActivity.create(SessionManager.session.user?.id, this)
-//                    simpleStartActivity(V6ScanditActivity::class.java)
                 }
             }
             R.id.btn_icheck_xu -> {

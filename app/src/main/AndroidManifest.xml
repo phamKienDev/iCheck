@@ -56,7 +56,6 @@
     <uses-permission-sdk-23 android:name="android.permission.READ_CALENDAR" />
     <uses-permission-sdk-23 android:name="android.permission.WRITE_CALENDAR" /> <!-- Insider Required -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-
     <uses-permission
         android:name="android.permission.ACCESS_BACKGROUND_LOCATION"
         tools:node="remove" />
@@ -77,7 +76,8 @@
         tools:ignore="GoogleAppIndexingWarning,HardcodedDebugMode"
         tools:replace="android:allowBackup"
         tools:targetApi="m">
-        <activity android:name=".screen.scan.V6ScanditActivity"></activity>
+        <activity android:name=".screen.scan.MyQrActivity"></activity>
+        <activity android:name=".screen.scan.V6ScanditActivity" />
         <activity android:name=".TestActivity" />
         <activity
             android:name=".screen.user.gift_history.v2.GiftHistoryV2Activity"
