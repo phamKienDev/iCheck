@@ -266,7 +266,7 @@ class PageRepository : BaseInteractor() {
 
     suspend fun getMyOwnerPageV2(filterString: String?, limit: Int, offset: Int):ICResponse<ICListResponse<ICPage>> {
         val param = hashMapOf<String, Any>()
-        if (filterString != null) {
+        if (!filterString.isNullOrEmpty()) {
             param["filterString"] = filterString
         }
         param["limit"] = limit
@@ -277,7 +277,7 @@ class PageRepository : BaseInteractor() {
 
     suspend fun getMyFollowPageV2(filterString: String?, limit: Int, offset: Int): ICResponse<ICListResponse<ICPage>> {
         val param = hashMapOf<String, Any>()
-        if (filterString != null) {
+        if (!filterString.isNullOrEmpty()) {
             param["filterString"] = filterString
         }
         param["limit"] = limit

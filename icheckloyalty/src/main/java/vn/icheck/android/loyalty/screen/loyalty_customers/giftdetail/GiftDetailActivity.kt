@@ -19,6 +19,7 @@ import vn.icheck.android.loyalty.screen.loyalty_customers.exchange_phonecard.Exc
  * putExtra(Constant.DATA_2, 1) nếu muốn vào màn chi tiết quà của shop
  */
 class GiftDetailActivity : BaseActivityGame() {
+    private val requestCard = 111
 
     companion object {
         fun startActivityGiftDetail(context: Context, idGift: Long, type: Int? = null) {
@@ -139,14 +140,14 @@ class GiftDetailActivity : BaseActivityGame() {
                 setResult(RESULT_OK)
             }
             ICMessageEvent.Type.EXCHANGE_PHONE_CARD -> {
-                startActivityForResult<ChangePhoneCardsActivity, Long>(ConstantsLoyalty.DATA_2, event.data as Long, 111)
+                ChangePhoneCardsActivity.start(this, event.data as Long, ConstantsLoyalty.TDDH, requestCard)
             }
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 111) {
+        if (requestCode == requestCard) {
             if (resultCode == RESULT_OK) {
                 getData()
                 val phone = data?.getStringExtra("phone")

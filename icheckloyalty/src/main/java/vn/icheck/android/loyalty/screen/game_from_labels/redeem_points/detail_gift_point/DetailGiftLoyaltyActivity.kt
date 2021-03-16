@@ -1,6 +1,7 @@
 package vn.icheck.android.loyalty.screen.game_from_labels.redeem_points.detail_gift_point
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Handler
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -16,11 +17,14 @@ import vn.icheck.android.loyalty.model.ICKAccumulatePoint
 import vn.icheck.android.loyalty.model.ICKBoxGifts
 import vn.icheck.android.loyalty.model.ICKNone
 import vn.icheck.android.loyalty.screen.game_from_labels.game_list.GameFromLabelsListActivity
+import vn.icheck.android.loyalty.screen.loyalty_customers.campaign_of_business.CampaignOfBusinessActivity
 import vn.icheck.android.loyalty.screen.loyalty_customers.exchange_phonecard.ChangePhoneCardsActivity
+import vn.icheck.android.loyalty.screen.loyalty_customers.exchange_phonecard.ExchangePhonecardSuccessDialog
 import vn.icheck.android.loyalty.screen.scan.ScanLoyaltyActivity
 
 class DetailGiftLoyaltyActivity : BaseActivityGame() {
 
+    private val requestCard = 111
     override val getLayoutID: Int
         get() = R.layout.activity_detail_gift_loyalty
 
@@ -124,36 +128,7 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
             }
         }
 
-        tvStatus.run {
-            when (obj.state) {
-                1 -> {
-                    text = "Chờ xác nhận"
-                    setTextColor(ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.orange))
-                    setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
-                }
-                2 -> {
-                    setVisible()
-                    text = "Chờ giao"
-                    setTextColor(ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.orange))
-                    setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
-                }
-                3 -> {
-                    setVisible()
-                    text = "Đã nhận quà"
-                    setTextColor(ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.green2))
-                    setBackgroundResource(R.drawable.bg_corner_30_green_opacity_02)
-                }
-                4 -> {
-                    setVisible()
-                    text = "Từ chối"
-                    setTextColor(ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.orange))
-                    setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
-                }
-                else -> {
-                    setGone()
-                }
-            }
-        }
+        setStatusGift(obj.state)
 
         tvProduct.text = if (!obj.gift?.name.isNullOrEmpty()) {
             obj.gift?.name
@@ -193,6 +168,27 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
                 when (obj.gift?.type) {
                     "RECEIVE_STORE" -> {
                         DialogHelperGame.dialogTutorialLoyalty(this, R.drawable.bg_gradient_button_orange_yellow)
+                    }
+                    "PHONE_CARD" -> {
+                        if (obj.points!! <= SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.POINT_USER_LOYALTY)) {
+                            DialogHelperGame.dialogConfirmExchangeGifts(this@DetailGiftLoyaltyActivity, obj, id)
+                        } else {
+                            DialogHelperGame.dialogScanLoyaltyError(this@DetailGiftLoyaltyActivity,
+                                    R.drawable.ic_error_scan_game, "Bạn không đủ điểm đổi quà!",
+                                    "Tích cực tham gia các chương trình của\nnhãn hàng để nhận điểm Thành viên nhé",
+                                    null, "Tích điểm ngay", false, R.drawable.bg_button_not_enough_point, R.color.orange_red,
+                                    object : IClickButtonDialog<ICKNone> {
+                                        override fun onClickButtonData(data: ICKNone?) {
+                                            startActivity(Intent(this@DetailGiftLoyaltyActivity, CampaignOfBusinessActivity::class.java).apply {
+                                                putExtra(ConstantsLoyalty.DATA_1, id)
+                                            })
+                                        }
+                                    }, object : IDismissDialog {
+                                override fun onDismiss() {
+
+                                }
+                            })
+                        }
                     }
                     else -> {
                         if (obj.points!! <= SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.POINT_USER_LOYALTY)) {
@@ -258,14 +254,65 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
         }
     }
 
+    private fun setStatusGift(state: Int) {
+        tvStatus.run {
+            when (state) {
+                1 -> {
+                    text = "Chờ xác nhận"
+                    setTextColor(ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.orange))
+                    setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
+                }
+                2 -> {
+                    setVisible()
+                    text = "Chờ giao"
+                    setTextColor(ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.orange))
+                    setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
+                }
+                3 -> {
+                    setVisible()
+                    text = "Đã nhận quà"
+                    setTextColor(ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.green2))
+                    setBackgroundResource(R.drawable.bg_corner_30_green_opacity_02)
+                }
+                4 -> {
+                    setVisible()
+                    text = "Từ chối"
+                    setTextColor(ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.orange))
+                    setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
+                }
+                else -> {
+                    setGone()
+                }
+            }
+        }
+    }
+
     @SuppressLint("SetTextI18n")
     override fun onMessageEvent(event: ICMessageEvent) {
         super.onMessageEvent(event)
 
         if (event.type == ICMessageEvent.Type.ON_COUNT_GIFT) {
             tvCountGift.text = "${SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.COUNT_GIFT)} Quà"
-        }else if(event.type == ICMessageEvent.Type.EXCHANGE_PHONE_CARD){
-            startActivityForResult<ChangePhoneCardsActivity, Long>(ConstantsLoyalty.DATA_2, event.data as Long, 111)
+        } else if (event.type == ICMessageEvent.Type.EXCHANGE_PHONE_CARD) {
+            ChangePhoneCardsActivity.start(this, event.data as Long, ConstantsLoyalty.TDNH, requestCard)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == RESULT_OK) {
+            if (requestCode == requestCard) {
+                val phone = data?.getStringExtra("phone")
+                val provider = data?.getStringExtra("provider")
+
+                val dialog = ExchangePhonecardSuccessDialog(phone, provider)
+                dialog.show(supportFragmentManager, null)
+
+                SharedLoyaltyHelper(this).putLong(ConstantsLoyalty.COUNT_GIFT, SharedLoyaltyHelper(this).getLong(ConstantsLoyalty.COUNT_GIFT) - 1)
+                tvCountGift.text = "${SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.COUNT_GIFT)} Quà"
+                setStatusGift(3)
+                btnDoiQua.setGone()
+            }
         }
     }
 }

@@ -127,6 +127,7 @@ class PageManagementFragment : Fragment() {
 
     private fun getFollowPage() {
         var myFollowPage: ICResponse<ICListResponse<ICPage>>? = null
+
         lifecycleScope.launch {
             withContext(lifecycleScope.coroutineContext) {
                 try {

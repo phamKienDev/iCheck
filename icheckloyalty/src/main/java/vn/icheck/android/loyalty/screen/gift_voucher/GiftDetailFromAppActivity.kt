@@ -16,6 +16,8 @@ import vn.icheck.android.loyalty.dialog.ConfirmLoyaltyDialog
 import vn.icheck.android.loyalty.dialog.DialogNotification
 import vn.icheck.android.loyalty.model.ICKGift
 import vn.icheck.android.loyalty.screen.loyalty_customers.accept_ship_gift.AcceptShipGiftActivity
+import vn.icheck.android.loyalty.screen.loyalty_customers.exchange_phonecard.ChangePhoneCardsActivity
+import vn.icheck.android.loyalty.screen.loyalty_customers.exchange_phonecard.ExchangePhonecardSuccessDialog
 
 /**
  * Happy new year
@@ -27,6 +29,8 @@ class GiftDetailFromAppActivity : BaseActivityGame() {
     private val viewModel by viewModels<GiftDetailFromAppViewModel>()
 
     private val adapter = GiftDetailFromAppAdapter()
+
+    private val requestCard = 111
 
     override val getLayoutID: Int
         get() = R.layout.activity_gift_detail_from_app
@@ -61,7 +65,7 @@ class GiftDetailFromAppActivity : BaseActivityGame() {
     }
 
     private fun initListener() {
-        viewModel.onErrorString.observe(this@GiftDetailFromAppActivity, Observer {
+        viewModel.onErrorString.observe(this@GiftDetailFromAppActivity, {
             swipeLayout.isRefreshing = false
 
             if (it.isNotEmpty()) {
@@ -75,12 +79,12 @@ class GiftDetailFromAppActivity : BaseActivityGame() {
             }
         })
 
-        viewModel.onError.observe(this@GiftDetailFromAppActivity, Observer {
+        viewModel.onError.observe(this@GiftDetailFromAppActivity, {
             swipeLayout.isRefreshing = false
             showLongError(it.title)
         })
 
-        viewModel.onActionSuccess.observe(this@GiftDetailFromAppActivity, Observer {
+        viewModel.onActionSuccess.observe(this@GiftDetailFromAppActivity, {
             getData()
         })
 
@@ -95,25 +99,29 @@ class GiftDetailFromAppActivity : BaseActivityGame() {
     }
 
     private fun setUpButton(obj: ICKGift) {
-        when (obj.rewardType) {
-            "spirit" -> {
-                layoutButton.setGone()
-            }
-            "product" -> {
-                if (obj.state == 1) {
-                    layoutButton.setVisible()
-                } else {
+        if (obj.state==2 || obj.state ==3) {
+            layoutButton.setGone()
+        }else{
+            when (obj.rewardType) {
+                "spirit" -> {
                     layoutButton.setGone()
                 }
-            }
-            "PRODUCT_IN_SHOP" -> {
-                layoutButton.setGone()
-            }
-            "CARD" -> {
-                layoutButton.setGone()
-            }
-            else -> {
-                layoutButton.setGone()
+                "product" -> {
+                    if (obj.state == 1) {
+                        layoutButton.setVisible()
+                    } else {
+                        layoutButton.setGone()
+                    }
+                }
+                "PRODUCT_IN_SHOP" -> {
+                    layoutButton.setGone()
+                }
+                "CARD" -> {
+                    layoutButton.setVisible()
+                }
+                else -> {
+                    layoutButton.setGone()
+                }
             }
         }
 
@@ -134,10 +142,30 @@ class GiftDetailFromAppActivity : BaseActivityGame() {
         }
 
         btnAccept.setOnClickListener {
-            startActivity(Intent(this@GiftDetailFromAppActivity, AcceptShipGiftActivity::class.java).apply {
-                putExtra(ConstantsLoyalty.DATA_2, obj.id)
-                putExtra(ConstantsLoyalty.TYPE, 2)
-            })
+            if (obj.rewardType == "CARD") {
+                if (obj.id != null)
+                    ChangePhoneCardsActivity.start(this, obj.id, ConstantsLoyalty.VQMM, requestCard)
+            } else {
+                startActivity(Intent(this@GiftDetailFromAppActivity, AcceptShipGiftActivity::class.java).apply {
+                    putExtra(ConstantsLoyalty.DATA_2, obj.id)
+                    putExtra(ConstantsLoyalty.TYPE, 2)
+                })
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == RESULT_OK) {
+            if (resultCode == requestCard) {
+                getData()
+                val phone = data?.getStringExtra("phone")
+                val provider = data?.getStringExtra("provider")
+
+                val dialog = ExchangePhonecardSuccessDialog(phone, provider)
+                dialog.show(supportFragmentManager, null)
+            }
         }
     }
 
