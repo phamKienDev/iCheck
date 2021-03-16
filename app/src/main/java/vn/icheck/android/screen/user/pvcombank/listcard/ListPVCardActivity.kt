@@ -93,16 +93,7 @@ class ListPVCardActivity : BaseActivityMVVM(), CardPVComBankListener {
         viewModel.listData.observe(this, Observer {
             if (!isInit) {
                 recyclerView.addOnScrollListener(CenterScrollListener())
-//                recyclerView.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
-//                    override fun onGlobalLayout() {
-//                        recyclerView.viewTreeObserver.removeOnGlobalLayoutListener(this)
-//                        val range = resources.getDimension(R.dimen.width_your_card_item_horizontal).toInt()
-//                        val margin = resources.getDimension(R.dimen.margin_your_card_item_horizontal).toInt()
-//                        val extent: Int = (recyclerView.width - range) / 2 - margin
-//                        recyclerView.setPadding(extent, 0, extent, 0)
-                        recyclerView.setPadding(SizeHelper.dpToPx(3.5), 0, SizeHelper.dpToPx(3.5), 0)
-//                    }
-//                })
+                recyclerView.setPadding(SizeHelper.dpToPx(3.5), 0, SizeHelper.dpToPx(3.5), 0)
                 recyclerView.clipToPadding = false
                 recyclerView.setHasFixedSize(true)
                 recyclerView.smoothScrollBy(5, 0)
@@ -110,10 +101,8 @@ class ListPVCardActivity : BaseActivityMVVM(), CardPVComBankListener {
                 isInit = true
             }
 
-            it.addAll(it)
             adapter.setListData(it)
         })
-
 
         /*
         * Lock card thành công

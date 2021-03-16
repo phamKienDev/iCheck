@@ -61,14 +61,15 @@ import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActi
 import vn.icheck.android.screen.user.pvcombank.authen.CreatePVCardActivity
 import vn.icheck.android.screen.user.pvcombank.authen.CreatePVCardViewModel
 import vn.icheck.android.screen.user.pvcombank.card_history.HistoryPVCardActivity
-import vn.icheck.android.screen.user.pvcombank.home.HomePVCardActivity
 import vn.icheck.android.screen.user.pvcombank.listcard.ListPVCardActivity
 import vn.icheck.android.screen.user.search_home.main.SearchHomeActivity
 import vn.icheck.android.screen.user.shipping.ship.ShipActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.util.AdsUtils
-import vn.icheck.android.util.ick.*
-import vn.icheck.android.util.kotlin.ActivityUtils
+import vn.icheck.android.util.ick.beGone
+import vn.icheck.android.util.ick.beVisible
+import vn.icheck.android.util.ick.loadImageWithHolder
+import vn.icheck.android.util.ick.simpleText
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.io.File
 
@@ -228,7 +229,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         })
 
         viewModel.onUpdatePVCombank.observe(viewLifecycleOwner, Observer {
-            homeAdapter.updatePVCombank(it)
+//            homeAdapter.updatePVCombank(it)
             for (i in homeAdapter.listData.indices) {
                 recyclerView.findViewHolderForAdapterPosition(i)?.let { viewHolder ->
                     if (viewHolder is HomeFunctionHolder) {
@@ -396,7 +397,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
 
     private fun checkPVCombank(type: Int) {
         CreatePVCardViewModel().apply {
-            checkHasCard(5000L).observe(this@HomePageFragment, Observer {checkCardRes ->
+            checkHasCard(5000L).observe(this@HomePageFragment, Observer { checkCardRes ->
                 this@HomePageFragment.apply {
                     when (checkCardRes.status) {
                         Status.LOADING -> {
@@ -415,7 +416,8 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                                 if (SettingManager.getSessionPvcombank.isEmpty()) {
                                     getFormAuth(5000L).observe(this, Observer { formAuthRes ->
                                         when (formAuthRes.status) {
-                                            Status.LOADING -> {}
+                                            Status.LOADING -> {
+                                            }
                                             Status.SUCCESS -> {
                                                 DialogHelper.closeLoading(this)
                                                 if (formAuthRes.data?.data?.redirectUrl.isNullOrEmpty() || formAuthRes.data?.data?.authUrl.isNullOrEmpty()) {
@@ -434,11 +436,11 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                                     })
                                 } else {
                                     DialogHelper.closeLoading(this)
-                                    goToPVCombank()
+                                    goToPVCombank(type)
                                 }
                             } else {
                                 DialogHelper.closeLoading(this)
-                                goToPVCombank()
+                                goToPVCombank(type)
                             }
                         }
                     }
@@ -447,8 +449,8 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         }
     }
 
-    private fun goToPVCombank() {
-        when (pvCombankType) {
+    private fun goToPVCombank(type: Int) {
+        when (type) {
             1 -> {
 
             }
@@ -538,7 +540,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                 viewModel.getPVCombank()
             }
             ICMessageEvent.Type.FINISH_CREATE_PVCOMBANK -> {
-                goToPVCombank()
+                goToPVCombank(pvCombankType)
             }
             else -> {
             }
@@ -712,6 +714,10 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
+        if (requestCode == requestPVCombank) {
+            viewModel.getPVCombank()
+        }
+
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
                 requestBannerSurvey -> {
@@ -728,18 +734,6 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                         homeAdapter.removeReviewProduct(idReview)
                     }
                 }
-//                9 -> {
-//                    data?.getSerializableExtra(Constant.DATA_1)?.let { obj ->
-//                        obj.toString()
-//                    }
-//                }
-//                requestOpenCart -> {
-//                    data?.getLongExtra("id", 0L)?.let {
-//                        SuccessConfirmShipDialog(it).apply {
-//                            isCancelable = false
-//                        }.show(childFragmentManager, null)
-//                    }
-//                }
             }
         }
     }
