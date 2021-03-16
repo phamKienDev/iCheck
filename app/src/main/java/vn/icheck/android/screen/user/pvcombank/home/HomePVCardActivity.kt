@@ -20,7 +20,7 @@ import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.network.base.Status
 import vn.icheck.android.screen.user.contact.ContactActivity
 import vn.icheck.android.screen.user.newslistv2.NewsListV2Activity
-import vn.icheck.android.screen.user.pvcombank.card_history.HistoryPVCardActivity
+import vn.icheck.android.screen.user.pvcombank.cardhistory.HistoryPVCardActivity
 import vn.icheck.android.screen.user.pvcombank.listcard.ListPVCardActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.util.kotlin.ToastUtils

@@ -27,8 +27,9 @@ class ConfirmUnlockPVCardViewModel : ViewModel() {
     var fullcard: String? = null
 
     val dataUnLockCard = MutableLiveData<ICLockCard>()
-    val unlockCardSuccess = MutableLiveData<ICLockCard>()
+    val unlockCardSuccess = MutableLiveData<String>()
     val errorData = MutableLiveData<String>()
+    val verifyError = MutableLiveData<String>()
     val statusCode = MutableLiveData<ICMessageEvent.Type>()
 
     fun getData(intent: Intent?) {
@@ -126,17 +127,16 @@ class ConfirmUnlockPVCardViewModel : ViewModel() {
         interactor.verifyOtp(requestId, otp, otptranid, object : ICNewApiListener<ICResponse<ICInfoPVCard>> {
             override fun onSuccess(obj: ICResponse<ICInfoPVCard>) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                if (obj.data?.code == 200) {
-                    val icLockCard = ICLockCard(obj.data?.verification, fullcard)
-                    unlockCardSuccess.postValue(icLockCard)
+                if (!obj.data?.fullCard.isNullOrEmpty()) {
+                    unlockCardSuccess.postValue(obj.data!!.fullCard)
                 } else {
-                    errorData.postValue(obj.data?.message?:ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                    verifyError.postValue(obj.data?.message?:ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 }
             }
 
             override fun onError(error: ICResponseCode?) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                errorData.postValue(error?.message?:ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                verifyError.postValue(error?.message?:ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         })
     }

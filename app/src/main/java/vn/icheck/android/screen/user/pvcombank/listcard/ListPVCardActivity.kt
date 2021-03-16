@@ -3,7 +3,6 @@ package vn.icheck.android.screen.user.pvcombank.listcard
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.view.ViewTreeObserver
 import android.widget.LinearLayout
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
@@ -20,11 +19,9 @@ import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
-import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.network.base.Status
 import vn.icheck.android.network.models.pvcombank.ICListCardPVBank
-import vn.icheck.android.network.models.pvcombank.ICLockCard
 import vn.icheck.android.screen.user.pvcombank.confirmunlockcard.ConfirmUnlockPVCardActivity
 import vn.icheck.android.screen.user.pvcombank.home.HomePVCardActivity
 import vn.icheck.android.screen.user.pvcombank.listcard.adapter.ListCardPVComBankAdapter
@@ -332,14 +329,12 @@ class ListPVCardActivity : BaseActivityMVVM(), CardPVComBankListener {
                         adapter.setLockCard(id, viewModel.pos, false)
                     }
                 }
-
                 requestFullCard -> {
-                    val cardFull = data?.getSerializableExtra(Constant.DATA_1) as ICLockCard
-                    val id = data.getStringExtra(Constant.DATA_2)
-                    if (id != null) {
-                        if (!cardFull.fullCard.isNullOrEmpty()) {
-                            adapter.showHide(id, true, viewModel.pos, cardFull.fullCard!!)
-                        }
+                    val fullCard = data?.getStringExtra(Constant.DATA_1)
+                    val cardID = data?.getStringExtra(Constant.DATA_2)
+
+                    if (cardID != null && !fullCard.isNullOrEmpty()) {
+                        adapter.showHide(cardID, true, viewModel.pos, fullCard)
                     }
                 }
             }

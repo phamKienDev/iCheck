@@ -198,7 +198,7 @@
             android:theme="@style/AppTheme_White"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".screen.user.pvcombank.card_history.HistoryPVCardActivity"
+            android:name=".screen.user.pvcombank.cardhistory.HistoryPVCardActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme_White" />
         <activity
