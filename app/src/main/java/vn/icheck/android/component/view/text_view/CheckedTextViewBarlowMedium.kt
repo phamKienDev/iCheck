@@ -1,10 +1,10 @@
 package vn.icheck.android.component.view.text_view
 
 import android.content.Context
-import android.graphics.Typeface
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatCheckedTextView
-import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.content.res.ResourcesCompat
+import vn.icheck.android.R
 
 class CheckedTextViewBarlowMedium : AppCompatCheckedTextView {
 
@@ -13,7 +13,7 @@ class CheckedTextViewBarlowMedium : AppCompatCheckedTextView {
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
     init {
-        typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
+        typeface = ResourcesCompat.getFont(context, R.font.barlow_medium)
         includeFontPadding = false
     }
 }

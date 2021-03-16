@@ -543,7 +543,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+        <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
             android:id="@id/txtTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

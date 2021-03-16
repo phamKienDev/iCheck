@@ -206,10 +206,14 @@ object TextHelper {
      * @param value String
      * @return String
      */
-    fun formatMoney(value: String): String {
-        val clearString = value.replace("[\\,,\\.]".toRegex(), "")
-        val valueNumber = parserValueMonneyFomat(clearString)
-        return formatMoney(valueNumber)
+    fun formatMoney(value: String?): String {
+        return if (!value.isNullOrEmpty()) {
+            val clearString = value.replace("[\\,,\\.]".toRegex(), "")
+            formatMoney(parserValueMonneyFomat(clearString))
+        } else {
+            ""
+        }
+
     }
 
     /**

@@ -23,6 +23,7 @@ open class BaseViewModel : ViewModel() {
 
     fun <T : ICResponseCode> request(call: suspend () -> T) = liveData(Dispatchers.IO) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
+            emit(Result.stopLoading())
             emit(Result.errorNetwork(data = null, message = ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
             return@liveData
         }
@@ -31,9 +32,11 @@ open class BaseViewModel : ViewModel() {
 
         try {
             val response = withTimeoutOrNull(30000L) { call.invoke() }
+            emit(Result.stopLoading())
             emit(Result.success(data = response))
         } catch (exception: Exception) {
             ResultHelper.checkRequestError(exception)?.message?.let { message ->
+                emit(Result.stopLoading())
                 emit(Result.errorRequest(data = null, message = message))
             }
         }
@@ -41,6 +44,7 @@ open class BaseViewModel : ViewModel() {
 
     fun <T : ICResponseCode> request(timeOut: Long, call: suspend () -> T) = liveData(Dispatchers.IO) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
+            emit(Result.stopLoading())
             emit(Result.errorNetwork(data = null, message = ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
             return@liveData
         }
@@ -49,9 +53,11 @@ open class BaseViewModel : ViewModel() {
 
         try {
             val response = withTimeoutOrNull(timeOut) { call.invoke() }
+            emit(Result.stopLoading())
             emit(Result.success(data = response))
         } catch (exception: Exception) {
             ResultHelper.checkRequestError(exception)?.message?.let { message ->
+                emit(Result.stopLoading())
                 emit(Result.errorRequest(data = null, message = message))
             }
         }
