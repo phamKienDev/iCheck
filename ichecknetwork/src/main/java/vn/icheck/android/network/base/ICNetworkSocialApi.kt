@@ -105,6 +105,9 @@ interface ICNetworkSocialApi {
     @GET
     fun getProductShareLink(@Url url: String): Observable<ICResponse<String>>
 
+    @GET
+    suspend fun getProductsECommerce(@Url url: String): ICResponse<ICListResponse<ICProductECommerce>>
+
     /*
     * End Product Detail
     */
