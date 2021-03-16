@@ -45,8 +45,6 @@ class ListPVCardActivity : BaseActivityMVVM(), CardPVComBankListener {
     private val requestUnLockCard = 2
     private val requestFullCard = 3
 
-    private var isInit = false
-
     override fun isRegisterEventBus(): Boolean {
         return true
     }
@@ -80,10 +78,16 @@ class ListPVCardActivity : BaseActivityMVVM(), CardPVComBankListener {
         val snapHelper: SnapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(recyclerView)
         adapter = ListCardPVComBankAdapter(this)
+
         val manager = ZoomCenterCardLayoutManager(this)
         manager.orientation = LinearLayoutManager.HORIZONTAL
         recyclerView.layoutManager = manager
         recyclerView.adapter = adapter
+
+        recyclerView.addOnScrollListener(CenterScrollListener())
+        recyclerView.setHasFixedSize(true)
+        recyclerView.smoothScrollBy(5, 0)
+        recyclerView.addItemDecoration(LinePagerIndicatorBankDecoration())
     }
 
     private fun initViewModel() {
@@ -91,16 +95,6 @@ class ListPVCardActivity : BaseActivityMVVM(), CardPVComBankListener {
         * Set list data
         */
         viewModel.listData.observe(this, Observer {
-            if (!isInit) {
-                recyclerView.addOnScrollListener(CenterScrollListener())
-                recyclerView.setPadding(SizeHelper.dpToPx(3.5), 0, SizeHelper.dpToPx(3.5), 0)
-                recyclerView.clipToPadding = false
-                recyclerView.setHasFixedSize(true)
-                recyclerView.smoothScrollBy(5, 0)
-                recyclerView.addItemDecoration(LinePagerIndicatorBankDecoration())
-                isInit = true
-            }
-
             adapter.setListData(it)
         })
 
@@ -318,7 +312,6 @@ class ListPVCardActivity : BaseActivityMVVM(), CardPVComBankListener {
     override fun onClickChangePassword(item: ICListCardPVBank, position: Int) {
         showShortSuccess(getString(R.string.tinh_nang_dang_phat_trien))
     }
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

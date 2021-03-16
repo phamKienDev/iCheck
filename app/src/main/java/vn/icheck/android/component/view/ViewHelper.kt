@@ -50,7 +50,7 @@ import vn.icheck.android.component.avatar_user.AvatarUserComponent
 import vn.icheck.android.component.image.LayoutImageInPostComponent
 import vn.icheck.android.component.postofuser.ProductInFeedComponent
 import vn.icheck.android.component.rating_star.RatingStarComponent
-import vn.icheck.android.component.view.text_view.TextViewBarlowBold
+import vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
 import vn.icheck.android.component.view.text_view.TextViewBarlowMedium
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ui.colorcardview.ColorCardView
@@ -637,7 +637,7 @@ object ViewHelper {
         layoutParent.addView(ratingLayout)
 
         //TextView Price
-        val tvPrice = TextViewBarlowBold(context)
+        val tvPrice = TextViewBarlowSemiBold(context)
         tvPrice.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1f).also {
             it.topMargin = SizeHelper.size4
         }
@@ -1269,7 +1269,7 @@ object ViewHelper {
             it.setBackgroundColor(Color.WHITE)
         }
 
-        val tvTitle = TextViewBarlowBold(context)
+        val tvTitle = TextViewBarlowSemiBold(context)
         tvTitle.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT).also {
             it.bottomMargin = SizeHelper.size5
         }
@@ -1290,7 +1290,7 @@ object ViewHelper {
             it.setBackgroundColor(ContextCompat.getColor(context, R.color.darkGray6))
         }
 
-        val title = TextViewBarlowBold(context)
+        val title = TextViewBarlowSemiBold(context)
         title.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
         title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
         title.setTextColor(ContextCompat.getColor(context, R.color.blue))
@@ -1338,7 +1338,7 @@ object ViewHelper {
                 layoutTitle.orientation = LinearLayout.HORIZONTAL
                 layoutTitle.gravity = Gravity.CENTER_VERTICAL
 
-                layoutTitle.addView(TextViewBarlowBold(context).also { title ->
+                layoutTitle.addView(TextViewBarlowSemiBold(context).also { title ->
                     title.layoutParams = createLayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
                     title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
                     title.setTextColor(ContextCompat.getColor(context, R.color.blue))
@@ -1346,7 +1346,7 @@ object ViewHelper {
                     title.text = "Hình ảnh"
                 })
 
-                layoutTitle.addView(TextViewBarlowBold(context).also { tvMore ->
+                layoutTitle.addView(TextViewBarlowSemiBold(context).also { tvMore ->
                     tvMore.layoutParams = createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
                     tvMore.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
                     tvMore.setTextColor(ContextCompat.getColor(context, R.color.blue))
@@ -1374,7 +1374,7 @@ object ViewHelper {
                 layoutTitle.gravity = Gravity.CENTER_HORIZONTAL
                 layoutTitle.orientation = LinearLayout.HORIZONTAL
 
-                layoutTitle.addView(TextViewBarlowBold(context).also { title ->
+                layoutTitle.addView(TextViewBarlowSemiBold(context).also { title ->
                     title.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f))
                     title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
                     title.setTextColor(ContextCompat.getColor(context, R.color.blue))

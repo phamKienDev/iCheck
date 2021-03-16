@@ -26,7 +26,7 @@
             android:paddingStart="@dimen/size_12"
             android:paddingEnd="@dimen/size_12">
 
-            <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+            <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
                 android:id="@id/tvTitle"
                 android:layout_width="@dimen/size_0"
                 android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/imgImage" />
 
-            <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+            <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
                 android:layout_width="@dimen/size_0"
                 android:layout_height="wrap_content"
                 android:text="@string/so_du_ví"
@@ -91,7 +91,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvMessage">
 
-                <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+                <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
