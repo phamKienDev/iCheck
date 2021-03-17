@@ -194,16 +194,6 @@ class ProductHistoryHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutIn
                     intent.putExtra("avatarShop", nearestShop.shop?.avatar)
                     ActivityHelper.startActivity(activity, intent)
                 }
-
-//                ICheckApplication.currentActivity()?.let { activity ->
-//                    val intent = Intent(activity, MapScanHistoryActivity::class.java)
-//                    intent.putExtra(Constant.DATA_1, JsonHelper.toJson(mutableListOf(nearestShop)))
-//                    intent.putExtra(Constant.DATA_2, nearestShop.shop?.id)
-//                    intent.putExtra(Constant.DATA_3, nearestShop.shop?.location?.lat)
-//                    intent.putExtra(Constant.DATA_4, nearestShop.shop?.location?.lon)
-//                    intent.putExtra("avatarShop", nearestShop.shop?.avatar)
-//                    ActivityHelper.startActivity(activity, intent)
-//                }
             }
         }
     }
