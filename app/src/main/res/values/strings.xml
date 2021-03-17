@@ -895,4 +895,10 @@
     <string name="force_update_title">Thông báo cập nhật</string>
     <string name="force_update_content">Có phiên bản mới của ứng dụng. Vui lòng cập nhật để trải nghiệm các tính năng mới nhất</string>
     <string name="ban_khong_co_the_nao">Bạn không có thẻ nào</string>
+    <string name="chuc_mung_ban">Chúc mừng bạn!</string>
+    <string name="khoe_ban_be">Khoe bạn bè</string>
+    <string name="xem_kho_qua">Xem kho quà</string>
+    <string name="tai_ngay">Tải ngay</string>
+    <string name="app_de_tham_gia_chuong_trinh">app để tham gia chương trình</string>
+    <string name="xem_lich_boc_tham">Xem lịch bốc thăm</string>
 </resources>
