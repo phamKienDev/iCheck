@@ -32,6 +32,7 @@ import vn.icheck.android.R
 import vn.icheck.android.RelationshipManager
 import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.base.model.ICMessageEvent
+import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.component.view.ViewHelper.setScrollSpeed
 import vn.icheck.android.constant.Constant
@@ -60,7 +61,7 @@ import vn.icheck.android.screen.user.listnotification.ListNotificationActivity
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.screen.user.pvcombank.authen.CreatePVCardActivity
 import vn.icheck.android.screen.user.pvcombank.authen.CreatePVCardViewModel
-import vn.icheck.android.screen.user.pvcombank.card_history.HistoryPVCardActivity
+import vn.icheck.android.screen.user.pvcombank.cardhistory.HistoryPVCardActivity
 import vn.icheck.android.screen.user.pvcombank.listcard.ListPVCardActivity
 import vn.icheck.android.screen.user.search_home.main.SearchHomeActivity
 import vn.icheck.android.screen.user.shipping.ship.ShipActivity
@@ -229,13 +230,22 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         })
 
         viewModel.onUpdatePVCombank.observe(viewLifecycleOwner, Observer {
-//            homeAdapter.updatePVCombank(it)
             for (i in homeAdapter.listData.indices) {
-                recyclerView.findViewHolderForAdapterPosition(i)?.let { viewHolder ->
-                    if (viewHolder is HomeFunctionHolder) {
-                        viewHolder.updateHomePVCombank(it)
-                        return@Observer
+                if (homeAdapter.listData[i].viewType == ICViewTypes.HOME_PRIMARY_FUNC) {
+                    if (homeAdapter.listData[i].data != null) {
+                        val viewHolder = recyclerView.findViewHolderForAdapterPosition(i)
+                        if (viewHolder is HomeFunctionHolder) {
+                            viewHolder.updateHomePVCombank(it)
+                        } else {
+                            (homeAdapter.listData[i].data as  MutableList<Any?>).apply {
+                                if (size > 1) {
+                                    removeLast()
+                                }
+                                add(it)
+                            }
+                        }
                     }
+                    return@Observer
                 }
             }
         })

@@ -3,7 +3,6 @@ package vn.icheck.android.screen.user.pvcombank.listcard
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.view.ViewTreeObserver
 import android.widget.LinearLayout
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
@@ -20,11 +19,9 @@ import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
-import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.network.base.Status
 import vn.icheck.android.network.models.pvcombank.ICListCardPVBank
-import vn.icheck.android.network.models.pvcombank.ICLockCard
 import vn.icheck.android.screen.user.pvcombank.confirmunlockcard.ConfirmUnlockPVCardActivity
 import vn.icheck.android.screen.user.pvcombank.home.HomePVCardActivity
 import vn.icheck.android.screen.user.pvcombank.listcard.adapter.ListCardPVComBankAdapter
@@ -44,8 +41,6 @@ class ListPVCardActivity : BaseActivityMVVM(), CardPVComBankListener {
     //    private val requestLockCard = 1
     private val requestUnLockCard = 2
     private val requestFullCard = 3
-
-    private var isInit = false
 
     override fun isRegisterEventBus(): Boolean {
         return true
@@ -80,10 +75,16 @@ class ListPVCardActivity : BaseActivityMVVM(), CardPVComBankListener {
         val snapHelper: SnapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(recyclerView)
         adapter = ListCardPVComBankAdapter(this)
+
         val manager = ZoomCenterCardLayoutManager(this)
         manager.orientation = LinearLayoutManager.HORIZONTAL
         recyclerView.layoutManager = manager
         recyclerView.adapter = adapter
+
+        recyclerView.addOnScrollListener(CenterScrollListener())
+        recyclerView.setHasFixedSize(true)
+        recyclerView.smoothScrollBy(5, 0)
+        recyclerView.addItemDecoration(LinePagerIndicatorBankDecoration())
     }
 
     private fun initViewModel() {
@@ -91,16 +92,6 @@ class ListPVCardActivity : BaseActivityMVVM(), CardPVComBankListener {
         * Set list data
         */
         viewModel.listData.observe(this, Observer {
-            if (!isInit) {
-                recyclerView.addOnScrollListener(CenterScrollListener())
-                recyclerView.setPadding(SizeHelper.dpToPx(3.5), 0, SizeHelper.dpToPx(3.5), 0)
-                recyclerView.clipToPadding = false
-                recyclerView.setHasFixedSize(true)
-                recyclerView.smoothScrollBy(5, 0)
-                recyclerView.addItemDecoration(LinePagerIndicatorBankDecoration())
-                isInit = true
-            }
-
             adapter.setListData(it)
         })
 
@@ -319,7 +310,6 @@ class ListPVCardActivity : BaseActivityMVVM(), CardPVComBankListener {
         showShortSuccess(getString(R.string.tinh_nang_dang_phat_trien))
     }
 
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
@@ -339,14 +329,12 @@ class ListPVCardActivity : BaseActivityMVVM(), CardPVComBankListener {
                         adapter.setLockCard(id, viewModel.pos, false)
                     }
                 }
-
                 requestFullCard -> {
-                    val cardFull = data?.getSerializableExtra(Constant.DATA_1) as ICLockCard
-                    val id = data.getStringExtra(Constant.DATA_2)
-                    if (id != null) {
-                        if (!cardFull.fullCard.isNullOrEmpty()) {
-                            adapter.showHide(id, true, viewModel.pos, cardFull.fullCard!!)
-                        }
+                    val fullCard = data?.getStringExtra(Constant.DATA_1)
+                    val cardID = data?.getStringExtra(Constant.DATA_2)
+
+                    if (cardID != null && !fullCard.isNullOrEmpty()) {
+                        adapter.showHide(cardID, true, viewModel.pos, fullCard)
                     }
                 }
             }

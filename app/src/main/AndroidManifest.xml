@@ -79,6 +79,11 @@
         tools:targetApi="m">
         <activity android:name=".TestActivity"></activity>
         <activity
+            android:name=".screen.user.listproductecommerce.ListProductsECommerceActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
             android:name=".screen.user.gift_history.v2.GiftHistoryV2Activity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme_White" />
@@ -193,7 +198,7 @@
             android:theme="@style/AppTheme_White"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".screen.user.pvcombank.card_history.HistoryPVCardActivity"
+            android:name=".screen.user.pvcombank.cardhistory.HistoryPVCardActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme_White" />
         <activity

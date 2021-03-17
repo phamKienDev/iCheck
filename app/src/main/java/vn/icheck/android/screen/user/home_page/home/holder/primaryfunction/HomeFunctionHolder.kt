@@ -241,20 +241,11 @@ class HomeFunctionHolder(parent: ViewGroup, isExistTheme: Boolean, listener: IHo
         inner class DetailHolder(parent: ViewGroup, val binding: ItemHomeFunctionDetailPvcombankBinding = ItemHomeFunctionDetailPvcombankBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : BaseViewHolder<ICListCardPVBank>(binding.root) {
 
             override fun bind(obj: ICListCardPVBank) {
-                binding.tvMoney.text = if (binding.tvMoney.isChecked) {
-                    TextHelper.formatMoney(obj.avlBalance ?: "").replace("[0-9]".toRegex(), "*") + "**"
-                } else {
-                    TextHelper.formatMoney(obj.avlBalance ?: "") + " đ"
-                }
+                setMoney(obj)
 
                 binding.tvMoney.setOnClickListener {
                     binding.tvMoney.isChecked = !binding.tvMoney.isChecked
-
-                    binding.tvMoney.text = if (binding.tvMoney.isChecked) {
-                        TextHelper.formatMoney(obj.avlBalance ?: "").replace("[0-9]".toRegex(), "*") + "**"
-                    } else {
-                        TextHelper.formatMoney(obj.avlBalance ?: "") + " đ"
-                    }
+                    setMoney(obj)
                 }
 
                 binding.tvRecharge.setOnClickListener {
@@ -267,6 +258,14 @@ class HomeFunctionHolder(parent: ViewGroup, isExistTheme: Boolean, listener: IHo
 
                 binding.tvTransaction.setOnClickListener {
                     listener.onTransactionCombank()
+                }
+            }
+
+            private fun setMoney(obj: ICListCardPVBank) {
+                binding.tvMoney.text = if (binding.tvMoney.isChecked) {
+                    TextHelper.formatMoney(obj.avlBalance ?: "").replace("[0-9]".toRegex(), "*") + "**"
+                } else {
+                    TextHelper.formatMoney(obj.avlBalance ?: "") + " đ"
                 }
             }
         }
@@ -282,134 +281,6 @@ class HomeFunctionHolder(parent: ViewGroup, isExistTheme: Boolean, listener: IHo
                     listener.onCreatePVCombank()
                 }
             }
-        }
-    }
-
-    class HomePrimaryAdapter(private val listener: IHomePageView) : PagerAdapter() {
-        private val listData = mutableListOf<Any?>()
-
-        private val primaryAdapter = HomeFunctionAdapter()
-
-        fun setData(list: MutableList<Any?>) {
-            listData.clear()
-            listData.addAll(list)
-            notifyDataSetChanged()
-        }
-
-        override fun isViewFromObject(view: View, obj: Any): Boolean = obj == view
-
-        override fun getCount(): Int = listData.size
-
-        override fun instantiateItem(container: ViewGroup, position: Int): Any {
-            val itemView = when (val obj = listData[position]) {
-                is ICTheme -> {
-                    val user = SessionManager.session.user
-                    ItemHomeFunctionInfoBinding.inflate(LayoutInflater.from(container.context), container, false).apply {
-                        avatarUser.apply {
-                            avatarSize = SizeHelper.size32
-                            rankSize = SizeHelper.size12
-                            setData(user?.avatar, user?.rank?.level, R.drawable.ic_avatar_default_84px)
-
-                            setOnClickListener {
-                                if (SessionManager.isUserLogged) {
-                                    ICheckApplication.currentActivity()?.let { activity ->
-                                        FirebaseDynamicLinksActivity.startDestinationUrl(activity, "icheck://user")
-                                    }
-                                } else {
-                                    EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_REQUIRE_LOGIN))
-                                }
-                            }
-                        }
-
-                        tvName.apply {
-                            text = if (user != null && SessionManager.isUserLogged) {
-                                if (user.getName == "Chưa cập nhật") {
-                                    user.getPhoneOnly()
-                                } else {
-                                    user.getName
-                                }
-                            } else {
-                                context.getString(R.string.nguoi_la)
-                            }
-                            setOnClickListener {
-                                ICheckApplication.currentActivity()?.let { activity ->
-                                    FirebaseDynamicLinksActivity.startDestinationUrl(activity, "icheck://user")
-                                }
-                            }
-                        }
-
-                        tvIcheckXu.text = TextHelper.formatMoneyPhay(SessionManager.getCoin())
-
-                        imgShowOrHidePassword.setOnClickListener {
-                            if (tvIcheckXu.visibility == View.GONE) {
-                                imgShowOrHidePassword.setImageResource(R.drawable.ic_eye_off_gray_24dp)
-                                tvHide.visibility = View.GONE
-                                tvIcheckXu.visibility = View.VISIBLE
-                            } else {
-                                imgShowOrHidePassword.setImageResource(R.drawable.ic_eye_on_24px)
-                                tvHide.visibility = View.VISIBLE
-                                tvIcheckXu.visibility = View.GONE
-                            }
-                        }
-
-                        rcvPrimary.apply {
-                            if (!obj.primary_functions.isNullOrEmpty()) {
-                                setVisible()
-                                layoutManager = if (obj.primary_functions!!.size >= 4) {
-                                    GridLayoutManager(context, 4)
-                                } else {
-                                    GridLayoutManager(context, obj.primary_functions!!.size)
-                                }
-                                adapter = primaryAdapter.apply {
-                                    setData(obj.primary_functions!!)
-                                }
-                            } else {
-                                setGone()
-                            }
-                        }
-                    }.root
-                }
-                is ICListCardPVBank -> {
-                    ItemHomeFunctionDetailPvcombankBinding.inflate(LayoutInflater.from(container.context), container, false).apply {
-                        tvMoney.text = if (tvMoney.isChecked) {
-                            TextHelper.formatMoney(obj.avlBalance
-                                    ?: "").replace("[0-9]".toRegex(), "*")
-                        } else {
-                            TextHelper.formatMoney(obj.avlBalance ?: "")
-                        }
-
-                        tvRecharge.setOnClickListener {
-                            listener.onRechargePVCombank()
-                        }
-
-                        tvInfo.setOnClickListener {
-                            listener.onInfoPVCombank()
-                        }
-
-                        tvTransaction.setOnClickListener {
-                            listener.onTransactionCombank()
-                        }
-                    }.root
-                }
-                else -> {
-                    ItemHomeFunctionCreatePvcombankBinding.inflate(LayoutInflater.from(container.context), container, false).apply {
-                        imgImage.setOnClickListener {
-                            listener.onCreatePVCombank()
-                        }
-
-                        btnCreate.setOnClickListener {
-                            listener.onCreatePVCombank()
-                        }
-                    }.root
-                }
-            }
-
-            container.addView(itemView)
-            return itemView
-        }
-
-        override fun destroyItem(container: ViewGroup, position: Int, view: Any) {
-            container.removeView(view as View)
         }
     }
 }

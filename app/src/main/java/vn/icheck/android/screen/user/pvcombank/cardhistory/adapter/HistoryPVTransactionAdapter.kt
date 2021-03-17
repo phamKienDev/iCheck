@@ -1,4 +1,4 @@
-package vn.icheck.android.screen.user.pvcombank.card_history.adapter
+package vn.icheck.android.screen.user.pvcombank.cardhistory.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +8,6 @@ import vn.icheck.android.R
 import vn.icheck.android.base.adapter.RecyclerViewAdapter
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.callback.IRecyclerViewCallback
-import vn.icheck.android.network.models.pvcombank.ICItemPVCard
 import vn.icheck.android.network.models.pvcombank.ICTransactionPVCard
 
 class HistoryPVTransactionAdapter(callback: IRecyclerViewCallback) : RecyclerViewAdapter<ICTransactionPVCard.ICItemTransaction>(callback) {

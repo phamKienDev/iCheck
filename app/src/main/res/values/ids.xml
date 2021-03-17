@@ -390,4 +390,5 @@
     <item name="tvRecharge" type="id" />
     <item name="tvInfo" type="id" />
     <item name="tvTransaction" type="id" />
+    <item name="tvCardNumber" type="id" />
 </resources>

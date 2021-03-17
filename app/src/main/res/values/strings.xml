@@ -376,7 +376,7 @@
     <string name="vui_long_chon_dia_chi">Vui lòng chọn địa chỉ</string>
     <string name="xem_chi_tiet">Xem chi tiết</string>
     <string name="chat_ngay">Chat ngay</string>
-    <string name="du_lieu_trong">Không có dữ liệu</string>
+    <string name="khong_co_du_lieu">Không có dữ liệu</string>
     <string name="vui_long_cap_quyen_truy_cap_danh_ba_de_su_dung_chuc_nang_nay">Vui lòng cấp quyền truy cập danh bạ để sử dụng chức năng này</string>
     <string name="lien_he_nay_khong_co_so_dien_thoai">Liên hệ này không có số điện thoại</string>
     <string name="diem_ban_khong_duoc_de_trong">Điểm bán không được để trống</string>
@@ -907,4 +907,5 @@
     <string name="trang_thai_the">Trạng thái thẻ</string>
     <string name="chua_dinh_danh">Chưa định danh</string>
     <string name="dinh_danh_ngay">Định danh ngay</string>
+    <string name="thuong_mai_dien_tu">Thương mại điện tử</string>
 </resources>

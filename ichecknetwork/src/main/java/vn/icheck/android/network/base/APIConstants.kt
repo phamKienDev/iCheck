@@ -202,7 +202,6 @@ object APIConstants {
         const val DELETE_BOOKMARK = "social/api/products/{id}/bookmark/delete"
         const val LIST_DISTRIBUTORS = "social/api/products/{id}/distributors"
         const val REGISTER_BUY_PRODUCT = "social/api/cms/order/purchase-reserved"
-
     }
 
     object Category {
@@ -553,6 +552,7 @@ object APIConstants {
     external fun trackingAppIdDev(): String
     external fun themeSettingLive(): String
     external fun themeSettingDev(): String
+    external fun productsECommerce(): String
 
     fun checkErrorString(code: String): String {
         return when (code) {

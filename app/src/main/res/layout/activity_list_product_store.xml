@@ -43,14 +43,14 @@
             android:layout_weight="3"
             android:orientation="vertical">
 
-            <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+            <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/tam_tinh"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
 
-            <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+            <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
                 android:id="@+id/tvPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

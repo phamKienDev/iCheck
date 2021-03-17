@@ -16,6 +16,7 @@ import android.text.style.ForegroundColorSpan
 import android.view.View
 import androidx.activity.viewModels
 import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.activity_confirm_unlock_pvcard.*
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
@@ -28,9 +29,10 @@ import vn.icheck.android.screen.user.pvcombank.confirmunlockcard.viewModel.Confi
 import vn.icheck.android.util.ick.forceHideKeyboard
 
 class ConfirmUnlockPVCardActivity : BaseActivityMVVM() {
-
     private val viewModel: ConfirmUnlockPVCardViewModel by viewModels()
+
     var timer: CountDownTimer? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_confirm_unlock_pvcard)
@@ -105,7 +107,7 @@ class ConfirmUnlockPVCardActivity : BaseActivityMVVM() {
     }
 
     private fun initViewModel() {
-        viewModel.dataUnLockCard.observe(this, {
+        viewModel.dataUnLockCard.observe(this, Observer {
             if (!it.verification?.requestId.isNullOrEmpty()) {
                 viewModel.requestId = it.verification?.requestId!!
             }
@@ -115,7 +117,7 @@ class ConfirmUnlockPVCardActivity : BaseActivityMVVM() {
             }
         })
 
-        viewModel.unlockCardSuccess.observe(this, {
+        viewModel.unlockCardSuccess.observe(this, Observer {
             val intent = Intent()
             intent.putExtra(Constant.DATA_1, it)
             intent.putExtra(Constant.DATA_2, viewModel.objCard?.cardId)
@@ -123,7 +125,7 @@ class ConfirmUnlockPVCardActivity : BaseActivityMVVM() {
             onBackPressed()
         })
 
-        viewModel.statusCode.observe(this, {
+        viewModel.statusCode.observe(this, Observer {
             when (it) {
                 ICMessageEvent.Type.ON_NO_INTERNET -> {
                     DialogHelper.showConfirm(this, R.string.khong_co_ket_noi_mang_vui_long_thu_lai_sau, R.string.huy_bo, R.string.thu_lai, object : ConfirmDialogListener {
@@ -147,9 +149,13 @@ class ConfirmUnlockPVCardActivity : BaseActivityMVVM() {
             }
         })
 
-        viewModel.errorData.observe(this, {
+        viewModel.errorData.observe(this, Observer {
             showLongError(it)
             onBackPressed()
+        })
+
+        viewModel.verifyError.observe(this, Observer {
+            showLongError(it)
         })
     }
 
