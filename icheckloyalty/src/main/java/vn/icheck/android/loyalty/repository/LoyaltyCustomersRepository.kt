@@ -159,20 +159,20 @@ internal class LoyaltyCustomersRepository : BaseRepository() {
     /**
      * Api Đổi quà tích điểm ngắn hạn
      */
-    fun exchangeCardGiftTDNH(campaignId: Long, giftId: Long, phone: String, listener: ICApiListener<ICKResponse<ICKRedemptionHistory>>) {
+    fun exchangeCardGiftTDNH(serviceId: Long, giftId: Long, phone: String, listener: ICApiListener<ICKResponse<ICKRedemptionHistory>>) {
         val user = SessionManager.session.user
 
         val params = hashMapOf<String, Any>()
 
-        params["campaign_id"] = campaignId
-        params["gift_id"] = giftId
+        params["serviceId"] = serviceId
+        params["winner_id"] = giftId
 
         if (!user?.name.isNullOrEmpty()) {
             params["name"] = user?.name!!
         }
 
         if (phone.isNotEmpty()) {
-            params["phone"] = phone
+            params["receiver_phone"] = phone
         }
 
         if (!user?.email.isNullOrEmpty()) {
@@ -211,7 +211,7 @@ internal class LoyaltyCustomersRepository : BaseRepository() {
             params["avatar"] = user?.avatar!!
         }
 
-        val url = APIConstants.LOYALTY_HOST + "loyalty/customer/campaign/exchange/gift"
+        val url = APIConstants.LOYALTY_HOST + "public/loyalty/campaign/receive-gift "
         requestApi(ICNetworkClient.getApiClientLoyalty().exchangeGift(url, params), listener)
     }
 

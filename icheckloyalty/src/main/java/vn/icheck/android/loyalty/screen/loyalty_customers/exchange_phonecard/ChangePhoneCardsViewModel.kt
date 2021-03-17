@@ -64,40 +64,8 @@ class ChangePhoneCardsViewModel : BaseViewModel<Any>() {
             return
         }
 
-//        when (typeGift) {
-//            ConstantsLoyalty.TDNH->{
-//                repository.exchangeCardGiftTDNH(1,serviceId, phone , object : ICApiListener<ICKResponse<ICKRedemptionHistory>> {
-//                    override fun onSuccess(obj: ICKResponse<ICKRedemptionHistory>) {
-//                        if (obj.statusCode == 200) {
-//                            onExchangeSuccess.postValue(obj.data)
-//                        } else {
-//                            showDialogError.postValue(obj.data?.message
-//                                    ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
-//                        }
-//                    }
-//
-//                    override fun onError(error: ICKBaseResponse?) {
-//                        checkError(true, error?.message)
-//                    }
-//                })
-//            }
-//            ConstantsLoyalty.VQMM -> {
-//                repository.exchangeCardGiftTDNH(SharedLoyaltyHelper(ApplicationHelper.getApplicationByReflect()).getLong(ConstantsLoyalty.CAMPAIGN_ID),collectionID, phone, object : ICApiListener<ICKResponse<ICKRedemptionHistory>> {
-//                    override fun onSuccess(obj: ICKResponse<ICKRedemptionHistory>) {
-//                        if (obj.statusCode == 200) {
-//                            onExchangeSuccess.postValue(obj.data)
-//                        } else {
-//                            showDialogError.postValue(obj.data?.message
-//                                    ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
-//                        }
-//                    }
-//
-//                    override fun onError(error: ICKBaseResponse?) {
-//                        checkError(true, error?.message)
-//                    }
-//                })
-//            }
-//            else -> {
+        when (typeGift) {
+            ConstantsLoyalty.TDDH -> {
                 repository.exchangeGift(collectionID, phone, serviceId, object : ICApiListener<ICKResponse<ICKRedemptionHistory>> {
                     override fun onSuccess(obj: ICKResponse<ICKRedemptionHistory>) {
                         if (obj.statusCode == 200) {
@@ -112,7 +80,23 @@ class ChangePhoneCardsViewModel : BaseViewModel<Any>() {
                         checkError(true, error?.message)
                     }
                 })
-//            }
-//        }
+            }
+            else -> {
+                repository.exchangeCardGiftTDNH(serviceId, collectionID, phone, object : ICApiListener<ICKResponse<ICKRedemptionHistory>> {
+                    override fun onSuccess(obj: ICKResponse<ICKRedemptionHistory>) {
+                        if (obj.statusCode == 200) {
+                            onExchangeSuccess.postValue(obj.data)
+                        } else {
+                            showDialogError.postValue(obj.data?.message
+                                    ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                        }
+                    }
+
+                    override fun onError(error: ICKBaseResponse?) {
+                        checkError(true, error?.message)
+                    }
+                })
+            }
+        }
     }
 }

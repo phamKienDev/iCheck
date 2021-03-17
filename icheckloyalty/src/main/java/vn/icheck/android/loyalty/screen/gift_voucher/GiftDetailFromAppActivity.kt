@@ -156,9 +156,8 @@ class GiftDetailFromAppActivity : BaseActivityGame() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
         if (resultCode == RESULT_OK) {
-            if (resultCode == requestCard) {
+            if (requestCode == requestCard) {
                 getData()
                 val phone = data?.getStringExtra("phone")
                 val provider = data?.getStringExtra("provider")

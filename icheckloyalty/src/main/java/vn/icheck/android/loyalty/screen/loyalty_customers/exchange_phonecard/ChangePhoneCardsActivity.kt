@@ -114,9 +114,9 @@ class ChangePhoneCardsActivity : BaseActivityGame() {
             finish()
         })
 
-        viewModel.showDialogError.observe(this@ChangePhoneCardsActivity, Observer {
+        viewModel.showDialogError.observe(this@ChangePhoneCardsActivity, {
             DialogHelperGame.closeLoading()
-            ExchangePhonecardFailDialog().show(supportFragmentManager, null)
+            ExchangePhonecardFailDialog(it).show(supportFragmentManager, null)
         })
     }
 }

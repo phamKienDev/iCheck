@@ -8,7 +8,7 @@ import androidx.fragment.app.DialogFragment
 import kotlinx.android.synthetic.main.dialog_exchange_phonecard_fail.*
 import vn.icheck.android.loyalty.R
 
-class ExchangePhonecardFailDialog: DialogFragment() {
+class ExchangePhonecardFailDialog(val message: String?=null) : DialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.dialog_exchange_phonecard_fail, container, false)
@@ -16,6 +16,9 @@ class ExchangePhonecardFailDialog: DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (!message.isNullOrEmpty()) {
+            tvMessage.text = message
+        }
         imgClose.setOnClickListener {
             dismiss()
         }
