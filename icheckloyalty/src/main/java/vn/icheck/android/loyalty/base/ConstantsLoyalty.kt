@@ -17,4 +17,9 @@ object ConstantsLoyalty {
     const val COUNT_GIFT = "COUNT_GIFT"
     const val POINT_USER_LOYALTY = "POINT_USER_LOYALTY"
     const val OWNER_NAME = "POINT_USER_LOYALTY"
+
+    const val VQMM = "VONG_QUAY_MAY_MAN"
+    const val TDNH = "TICH_DIEM_NGAN_HAN"
+    const val TDDH = "TICH_DIEM_DAI_HAN"
+
 }
