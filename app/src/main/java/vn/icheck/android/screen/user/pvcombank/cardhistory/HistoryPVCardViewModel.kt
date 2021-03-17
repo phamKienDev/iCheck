@@ -1,4 +1,4 @@
-package vn.icheck.android.screen.user.pvcombank.card_history
+package vn.icheck.android.screen.user.pvcombank.cardhistory
 
 import androidx.lifecycle.MutableLiveData
 import vn.icheck.android.ICheckApplication
@@ -11,13 +11,11 @@ import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
 import vn.icheck.android.network.feature.pvcombank.PVcomBankRepository
-import vn.icheck.android.network.models.pvcombank.ICListCardPVBank
 import vn.icheck.android.network.models.pvcombank.ICTransactionPVCard
 
 class HistoryPVCardViewModel : BaseViewModel() {
     private val interactor = PVcomBankRepository()
 
-    val onListCard = MutableLiveData<MutableList<ICListCardPVBank>>()
     val onSetTransaction = MutableLiveData<MutableList<ICTransactionPVCard.ICItemTransaction>>()
     val onAddTransaction = MutableLiveData<MutableList<ICTransactionPVCard.ICItemTransaction>>()
     val statusCode = MutableLiveData<ICMessageEvent.Type>()

@@ -10,11 +10,13 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.util.Util
 import com.google.gson.JsonObject
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withTimeoutOrNull
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.model.ICError
 import vn.icheck.android.base.model.ICMessageEvent
+import vn.icheck.android.base.viewmodel.BaseViewModel
 import vn.icheck.android.component.BottomModel
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.component.commentpost.ICCommentPostMore
@@ -58,7 +60,7 @@ import vn.icheck.android.screen.user.home_page.home.model.ICListHomeItem
 import vn.icheck.android.screen.user.product_detail.product.model.IckReviewSummaryModel
 import vn.icheck.android.util.kotlin.HideWebUtils
 
-class IckProductDetailViewModel : ViewModel() {
+class IckProductDetailViewModel : BaseViewModel() {
     private val productRepository = ProductInteractor()
     private val reviewInteraction = ProductReviewInteractor()
     private val settingInteraction = SettingRepository()
@@ -69,7 +71,6 @@ class IckProductDetailViewModel : ViewModel() {
     var isScan = false
     var productID = 0L
     var typeReload: String? = null
-
 
     private val layoutHelper = LayoutHelper()
 
@@ -114,7 +115,6 @@ class IckProductDetailViewModel : ViewModel() {
 
     private var totalRequest = 0
     private var totalError = 0
-
 
     val onShareLink = MutableLiveData<Any?>()
     val onShareLinkProduct = MutableLiveData<String>()
@@ -390,6 +390,9 @@ class IckProductDetailViewModel : ViewModel() {
                         if (!isUpdate) {
                             getContributionInfo(obj.data, layout)
                         }
+                    }
+                    "ecommerce-1" -> {
+                        if (!isUpdate) getProductsECommerce(layout)
                     }
                 }
             }
@@ -1081,6 +1084,28 @@ class IckProductDetailViewModel : ViewModel() {
                 addAll(listInfo)
             })
             onAddLayout.value = layout
+        }
+    }
+
+    private fun getProductsECommerce(layout: ICLayout) {
+        layout.viewType = ICViewTypes.PRODUCT_ECCOMMERCE_TYPE
+        onAddLayout.value = layout
+
+        viewModelScope.launch {
+            val productsECommerce = withTimeoutOrNull(5000) {
+                try {
+                    productRepository.getProductsECommerce(barcode)
+                } catch (e: Exception) {
+                    null
+                }
+            }
+
+            if (!productsECommerce?.data?.rows.isNullOrEmpty()) {
+                layout.data = productsECommerce!!.data!!.rows
+                layout.key = barcode
+            }
+
+            onUpdateLayout.value
         }
     }
 

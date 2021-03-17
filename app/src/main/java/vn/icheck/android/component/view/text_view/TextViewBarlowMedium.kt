@@ -1,13 +1,19 @@
 package vn.icheck.android.component.view.text_view
 
 import android.content.Context
-import android.graphics.Typeface
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.content.res.ResourcesCompat
+import vn.icheck.android.R
 
-class TextViewBarlowMedium(context: Context?, attrs: AttributeSet? = null) : AppCompatTextView(context!!, attrs) {
+open class TextViewBarlowMedium : AppCompatTextView {
+
+    constructor(context: Context) : super(context)
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
+
     init {
-        typeface = Typeface.createFromAsset(getContext().assets, "font/barlow_medium.ttf")
+        typeface = ResourcesCompat.getFont(context, R.font.barlow_medium)
         includeFontPadding = false
     }
 }

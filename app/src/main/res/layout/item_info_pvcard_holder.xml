@@ -4,114 +4,149 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="3.5sp"
-    android:layout_marginTop="@dimen/size_20"
-    android:layout_marginRight="3.5sp"
-    android:layout_marginBottom="@dimen/size_20"
+    android:layout_marginStart="@dimen/size_16"
+    android:layout_marginTop="@dimen/size_16"
+    android:layout_marginEnd="@dimen/size_16"
     app:cardCornerRadius="@dimen/size_12">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/bg_history_pv_card">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tvMoney"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/size_18"
-            android:layout_marginTop="70dp"
-            android:fontFamily="@font/barlow_semi_bold"
-            android:includeFontPadding="false"
-            android:text="254.***.000 đ"
-            android:gravity="bottom"
-            android:textColor="@color/white"
-            android:textSize="24sp"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@id/imgBackground"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/bg_history_pv_card"
+            app:layout_constraintDimensionRatio="H,340:215"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tvCardNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size_14"
-            android:fontFamily="@font/barlow_semi_bold"
-            android:includeFontPadding="false"
-            android:text="254.241.000 đ"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="@id/tvMoney"
-            app:layout_constraintTop_toBottomOf="@id/tvMoney" />
+        <View
+            android:id="@id/view5"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="@dimen/size_0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.063" />
 
-        <TextView
-            android:id="@+id/tvTimeEnd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:fontFamily="@font/barlow_medium"
-            android:includeFontPadding="false"
-            android:text="10/24"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@id/tvCardNumber"
-            app:layout_constraintTop_toBottomOf="@id/tvCardNumber" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="@dimen/size_0"
+            android:layout_height="@dimen/size_0"
+            android:layout_marginEnd="@dimen/size_23"
+            app:layout_constraintBottom_toBottomOf="@id/imgBackground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/view5"
+            app:layout_constraintTop_toTopOf="@id/imgBackground"
+            app:layout_constraintWidth_percent="0.877">
 
-        <TextView
-            android:id="@+id/tvCCV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/size_40"
-            android:fontFamily="@font/barlow_medium"
-            android:includeFontPadding="false"
-            android:text="CCV:"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@id/tvTimeEnd"
-            app:layout_constraintStart_toEndOf="@id/tvTimeEnd"
-            app:layout_constraintTop_toTopOf="@id/tvTimeEnd" />
+            <vn.icheck.android.component.view.text_view.AutoResizeTextView
+                android:id="@id/tvMoney"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/size_0"
+                android:layout_marginTop="70dp"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:includeFontPadding="false"
+                android:shadowColor="#59000000"
+                android:shadowDy="1"
+                android:shadowRadius="1"
+                android:textColor="@color/white"
+                android:textSize="100sp"
+                app:layout_constraintBottom_toTopOf="@id/view4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.16"
+                app:layout_constraintStart_toStartOf="@id/tvName"
+                tools:text="4563 9780 0249 4937 " />
 
-        <TextView
-            android:id="@+id/tvCCVContent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/size_8"
-            android:fontFamily="@font/barlow_medium"
-            android:gravity="center"
-            android:includeFontPadding="false"
-            android:text="***"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@id/tvTimeEnd"
-            app:layout_constraintStart_toEndOf="@id/tvCCV"
-            app:layout_constraintTop_toTopOf="@id/tvTimeEnd" />
+            <View
+                android:id="@id/view4"
+                android:layout_width="@dimen/size_0"
+                android:layout_height="@dimen/size_0"
+                app:layout_constraintBottom_toTopOf="@id/tvCardNumber"
+                app:layout_constraintHeight_percent="0.068"
+                app:layout_constraintStart_toStartOf="parent" />
 
+            <vn.icheck.android.component.view.text_view.AutoResizeTextView
+                android:id="@+id/tvCardNumber"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_0"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:includeFontPadding="false"
+                android:shadowColor="#59000000"
+                android:shadowDy="1"
+                android:shadowRadius="1"
+                android:textColor="@color/white"
+                android:textSize="100sp"
+                app:layout_constraintBottom_toTopOf="@id/view3"
+                app:layout_constraintHeight_percent="0.1"
+                tools:text="5119 6288 8888 8888" />
 
-        <ImageView
-            android:id="@+id/btnShowHide"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/size_36"
-            app:layout_constraintBottom_toBottomOf="@id/tvCCVContent"
-            app:layout_constraintStart_toEndOf="@id/tvCCVContent"
-            app:layout_constraintTop_toTopOf="@id/tvCCVContent"
-            app:srcCompat="@drawable/ic_eye_on_white_24px" />
+            <View
+                android:id="@id/view3"
+                android:layout_width="@dimen/size_0"
+                android:layout_height="@dimen/size_0"
+                app:layout_constraintBottom_toTopOf="@id/tvDateEnd"
+                app:layout_constraintHeight_percent="0.045"
+                app:layout_constraintStart_toStartOf="parent" />
 
+            <vn.icheck.android.component.view.text_view.AutoResizeTextView
+                android:id="@+id/tvDateEnd"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_0"
+                android:fontFamily="@font/barlow_medium"
+                android:textColor="@color/white"
+                android:textSize="100sp"
+                app:layout_constraintBottom_toTopOf="@id/view2"
+                app:layout_constraintHeight_percent="0.073"
+                app:layout_constraintStart_toStartOf="@+id/tvName"
+                tools:text="10/24" />
 
-        <TextView
-            android:id="@+id/tvName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="@dimen/size_16"
-            android:fontFamily="@font/barlow_semi_bold"
-            android:text="NGUYEN HOANG BAO ANH"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@id/tvTimeEnd"
-            app:layout_constraintTop_toBottomOf="@id/tvTimeEnd" />
+            <vn.icheck.android.component.view.text_view.AutoResizeTextView
+                android:id="@+id/tvCCV"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_0"
+                android:layout_marginStart="50dp"
+                android:fontFamily="@font/barlow_medium"
+                android:textColor="@color/white"
+                android:textSize="100sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="@id/tvDateEnd"
+                app:layout_constraintStart_toEndOf="@id/tvDateEnd"
+                app:layout_constraintTop_toTopOf="@id/tvDateEnd"
+                tools:text="CCV: ***" />
 
+            <View
+                android:id="@id/view2"
+                android:layout_width="@dimen/size_0"
+                android:layout_height="@dimen/size_0"
+                app:layout_constraintBottom_toTopOf="@id/tvName"
+                app:layout_constraintHeight_percent="0.07"
+                app:layout_constraintStart_toStartOf="parent" />
 
+            <vn.icheck.android.component.view.text_view.AutoResizeTextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/size_0"
+                android:fontFamily="@font/barlow_medium"
+                android:shadowColor="#59000000"
+                android:shadowDy="1"
+                android:shadowRadius="1"
+                android:textColor="@color/white"
+                android:textSize="100sp"
+                app:layout_constraintBottom_toTopOf="@id/view1"
+                app:layout_constraintHeight_percent="0.073"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="TOLU AROWOSELU" />
+
+            <View
+                android:id="@id/view1"
+                android:layout_width="@dimen/size_0"
+                android:layout_height="@dimen/size_0"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHeight_percent="0.087"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.cardview.widget.CardView>

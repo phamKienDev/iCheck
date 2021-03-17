@@ -1,16 +1,14 @@
-package vn.icheck.android.screen.user.pvcombank.card_history
+package vn.icheck.android.screen.user.pvcombank.cardhistory
 
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.view.ViewTreeObserver
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_history_p_v_card.*
-import kotlinx.android.synthetic.main.item_message.*
 import kotlinx.android.synthetic.main.toolbar_pvcombank.*
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
@@ -20,15 +18,13 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.network.base.Status
 import vn.icheck.android.network.models.pvcombank.ICListCardPVBank
-import vn.icheck.android.screen.user.pvcombank.card_history.adapter.HistoryPVCardAdapter
-import vn.icheck.android.screen.user.pvcombank.card_history.adapter.HistoryPVTransactionAdapter
+import vn.icheck.android.screen.user.pvcombank.cardhistory.adapter.HistoryPVCardAdapter
+import vn.icheck.android.screen.user.pvcombank.cardhistory.adapter.HistoryPVTransactionAdapter
 import vn.icheck.android.screen.user.pvcombank.confirmunlockcard.ConfirmUnlockPVCardActivity
-import vn.icheck.android.ui.carousel_recyclerview.CenterScrollListener
 import vn.icheck.android.ui.carousel_recyclerview.ZoomCenterCardLayoutManager
-import vn.icheck.android.util.ick.beGone
-import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.util.ick.visibleOrGone
 
 class HistoryPVCardActivity : BaseActivityMVVM(), IRecyclerViewCallback {
@@ -85,55 +81,6 @@ class HistoryPVCardActivity : BaseActivityMVVM(), IRecyclerViewCallback {
     }
 
     private fun initData() {
-        viewModel.onListCard.observe(this, Observer {
-            if (!isInit) {
-                recyclerviewCard.addOnScrollListener(CenterScrollListener())
-                recyclerviewCard.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
-                    override fun onGlobalLayout() {
-                        recyclerviewCard.viewTreeObserver.removeOnGlobalLayoutListener(this)
-                        val range = resources.getDimension(R.dimen.width_your_card_item_horizontal).toInt()
-                        val margin = resources.getDimension(R.dimen.margin_your_card_item_horizontal).toInt()
-                        val extent: Int = (recyclerviewCard.width - range) / 2 - margin
-                        recyclerviewCard.setPadding(extent, 0, extent, 0)
-                    }
-                })
-                recyclerviewCard.clipToPadding = false
-                recyclerviewCard.setHasFixedSize(true)
-                isInit = true
-            }
-
-            recyclerviewCard.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                    super.onScrollStateChanged(recyclerView, newState)
-                    when (newState) {
-                        RecyclerView.SCROLL_STATE_IDLE -> {
-                            val view = snapHelper.findSnapView(manager)
-                            val position = view?.let { mView -> manager.getPosition(mView) }
-                            if (position != oldPosition && actionScroll) {
-                                actionScroll = false
-                                oldPosition = position ?: -1
-                                cardId = it[position!!].cardId
-                                viewModel.getListTransaction(cardId)
-                            }
-                        }
-                        RecyclerView.SCROLL_STATE_DRAGGING -> {
-                            actionScroll = true
-                        }
-                        RecyclerView.SCROLL_STATE_SETTLING -> {
-                            actionScroll = true
-                        }
-                        else -> {
-                        }
-                    }
-                }
-            })
-
-            cardId = it.firstOrNull()?.cardId
-            cardAdapter.disableLoadMore()
-            cardAdapter.setListData(it)
-            viewModel.getListTransaction(cardId)
-        })
-
         viewModel.onSetTransaction.observe(this, Observer {
             if (it.isNullOrEmpty()) {
                 transactionAdapter.setError(R.drawable.ic_group_120dp, "Chưa có lịch sử giao dịch", -1)
@@ -149,9 +96,7 @@ class HistoryPVCardActivity : BaseActivityMVVM(), IRecyclerViewCallback {
 
         viewModel.onError.observe(this, Observer {
             if (cardAdapter.isEmpty && transactionAdapter.isEmpty) {
-                layoutMessage.beVisible()
-                imgIcon.setImageResource(it.icon)
-                txtMessage.text = it.message
+                transactionAdapter.setError(R.drawable.ic_group_120dp, "Chưa có lịch sử giao dịch", -1)
             } else {
                 showShortError(it.message ?: "")
             }
@@ -188,16 +133,17 @@ class HistoryPVCardActivity : BaseActivityMVVM(), IRecyclerViewCallback {
                     val listCards = result.data?.data?.rows ?: mutableListOf()
 
                     if (!isInit) {
-                        recyclerviewCard.addOnScrollListener(CenterScrollListener())
-                        recyclerviewCard.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
-                            override fun onGlobalLayout() {
-                                recyclerviewCard.viewTreeObserver.removeOnGlobalLayoutListener(this)
-                                val range = resources.getDimension(R.dimen.width_your_card_item_horizontal).toInt()
-                                val margin = resources.getDimension(R.dimen.margin_your_card_item_horizontal).toInt()
-                                val extent: Int = (recyclerviewCard.width - range) / 2 - margin
-                                recyclerviewCard.setPadding(extent, 0, extent, 0)
-                            }
-                        })
+//                        recyclerviewCard.addOnScrollListener(CenterScrollListener())
+//                        recyclerviewCard.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+//                            override fun onGlobalLayout() {
+//                                recyclerviewCard.viewTreeObserver.removeOnGlobalLayoutListener(this)
+//                                val range = resources.getDimension(R.dimen.width_your_card_item_horizontal).toInt()
+//                                val margin = resources.getDimension(R.dimen.margin_your_card_item_horizontal).toInt()
+//                                val extent: Int = (recyclerviewCard.width - range) / 2 - margin
+//                                recyclerviewCard.setPadding(extent, 0, extent, 0)
+//                            }
+//                        })
+                        recyclerviewCard.setPadding(SizeHelper.dpToPx(3.5), 0, SizeHelper.dpToPx(3.5), 0)
                         recyclerviewCard.clipToPadding = false
                         recyclerviewCard.setHasFixedSize(true)
                         isInit = true
@@ -258,7 +204,7 @@ class HistoryPVCardActivity : BaseActivityMVVM(), IRecyclerViewCallback {
                 if (event.data != null && event.data is ICListCardPVBank) {
                     if (event.data.isShow) {
                         //Ẩn thông tin
-                        cardAdapter.showOrHide(event.data.cardId, false)
+                        cardAdapter.showOrHide(event.data.cardId, false, "")
                     } else {
                         //Request để lấy full thông tin
                         val intent = Intent(this@HistoryPVCardActivity, ConfirmUnlockPVCardActivity::class.java)
@@ -278,9 +224,11 @@ class HistoryPVCardActivity : BaseActivityMVVM(), IRecyclerViewCallback {
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
                 requestFullCard -> {
-                    val id = data?.getStringExtra(Constant.DATA_2)
-                    if (id != null) {
-                        cardAdapter.showOrHide(id, true)
+                    val fullCard = data?.getStringExtra(Constant.DATA_1)
+                    val cardID = data?.getStringExtra(Constant.DATA_2)
+
+                    if (cardID != null && !fullCard.isNullOrEmpty()) {
+                        cardAdapter.showOrHide(cardID, true, fullCard)
                     }
                 }
             }

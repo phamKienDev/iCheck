@@ -26,7 +26,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_star_effect"
-        app:srcCompat="@drawable/bg_light_gift_game" />
+        app:srcCompat="@drawable/bg_light" />
 
     <LinearLayout
         android:id="@+id/img_frame"
