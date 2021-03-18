@@ -73,6 +73,55 @@ internal class RedeemPointRepository : BaseRepository() {
         requestApi(ICNetworkClient.getApiClientLoyalty().postNhapMaTichDiem(host, params), listener)
     }
 
+
+    fun exchangeCardGiftTDNH(campaignId: Long, giftID: Long, serviceId: Long, receiverPhone: String, listener: ICApiListener<ICKResponse<ICKBoxGifts>>) {
+        val params = hashMapOf<String, Any>()
+
+        val user = SessionManager.session.user
+
+        params["campaign_id"] = campaignId
+        params["gift_id"] = giftID
+        params["serviceId"] = serviceId
+        params["receiver_phone"] = receiverPhone
+
+        if (!user?.name.isNullOrEmpty()) {
+            params["name"] = user?.name!!
+        }
+        if (!user?.phone.isNullOrEmpty()) {
+            params["phone"] = user?.phone!!
+        }
+        if (!user?.email.isNullOrEmpty()) {
+            params["email"] = user?.email!!
+        }
+        if (user?.city_id != null) {
+            params["city_id"] = user.city_id!!
+        }
+        if (user?.district_id != null) {
+            params["district_id"] = user.district_id!!
+        }
+        if (user?.ward_id != null) {
+            params["ward_id"] = user.ward_id!!
+        }
+        if (!user?.address.isNullOrEmpty()) {
+            params["address"] = user?.address!!
+        }
+        if (!user?.city?.name.isNullOrEmpty()) {
+            params["city_name"] = user?.city?.name!!
+        }
+        if (!user?.district?.name.isNullOrEmpty()) {
+            params["district_name"] = user?.district?.name!!
+        }
+        if (!user?.ward?.name.isNullOrEmpty()) {
+            params["ward_name"] = user?.ward?.name!!
+        }
+        if (!user?.avatar.isNullOrEmpty()) {
+            params["avatar"] = user?.avatar!!
+        }
+
+        val host = APIConstants.LOYALTY_HOST + "loyalty/customer/campaign/exchange/gift"
+        requestApi(ICNetworkClient.getApiClientLoyalty().postExchangeGift(host, params), listener)
+    }
+
     /**
      * Api Lấy danh sách quà đã đổi của người dùng tích điểm đổi quà
      */
@@ -170,6 +219,7 @@ internal class RedeemPointRepository : BaseRepository() {
         val host = APIConstants.LOYALTY_HOST + "loyalty/customer/campaign/exchange/gift"
         requestApi(ICNetworkClient.getApiClientLoyalty().postExchangeGift(host, params), listener)
     }
+
 
     fun getPointHistoryAll(campaignId: Long, offset: Int, target: String, type: String?, listener: ICApiListener<ICKResponse<ICKListResponse<ICKPointHistory>>>) {
         val params = hashMapOf<String, Any>()

@@ -3,9 +3,11 @@ package vn.icheck.android.loyalty.dialog
 import android.content.Context
 import android.content.Intent
 import kotlinx.android.synthetic.main.dialog_confirm_exchange_gifts.*
+import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.dialog.base.BaseDialog
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
+import vn.icheck.android.loyalty.base.ICMessageEvent
 import vn.icheck.android.loyalty.dialog.base.DialogHelperGame
 import vn.icheck.android.loyalty.helper.NetworkHelper
 import vn.icheck.android.loyalty.helper.TextHelper
@@ -19,7 +21,7 @@ import vn.icheck.android.loyalty.network.SessionManager
 import vn.icheck.android.loyalty.repository.RedeemPointRepository
 import vn.icheck.android.loyalty.screen.game_from_labels.redeem_points.accept_ship_gift.AcceptShipGiftLoyaltyActivity
 
-open class DialogConfirmExchangeGifts(context: Context, val obj: ICKBoxGifts, val id: Long) : BaseDialog(context, R.style.DialogTheme) {
+open class DialogConfirmExchangeGifts(context: Context, val obj: ICKBoxGifts, val campaignId: Long) : BaseDialog(context, R.style.DialogTheme) {
     private val repository = RedeemPointRepository()
 
     override val getLayoutID: Int
@@ -57,12 +59,12 @@ open class DialogConfirmExchangeGifts(context: Context, val obj: ICKBoxGifts, va
                     exchangeGift()
                 }
                 "PHONE_CARD" -> {
-                    ToastHelper.showLongWarning(context, "Chưa làm")
+                    EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.EXCHANGE_PHONE_CARD, obj.gift_id))
                 }
                 "PRODUCT" -> {
                     val intent = Intent(context, AcceptShipGiftLoyaltyActivity::class.java)
                     intent.putExtra(ConstantsLoyalty.DATA_2, obj)
-                    intent.putExtra(ConstantsLoyalty.DATA_3, id)
+                    intent.putExtra(ConstantsLoyalty.DATA_3, campaignId)
                     context.startActivity(intent)
                 }
             }
@@ -77,7 +79,7 @@ open class DialogConfirmExchangeGifts(context: Context, val obj: ICKBoxGifts, va
 
         val user = SessionManager.session.user
 
-        repository.postExchangeGift(id, obj.gift_id ?: -1,
+        repository.postExchangeGift(campaignId, obj.gift_id ?: -1,
                 user?.name,
                 user?.phone,
                 user?.email,
@@ -92,7 +94,7 @@ open class DialogConfirmExchangeGifts(context: Context, val obj: ICKBoxGifts, va
                     override fun onSuccess(obj: ICKResponse<ICKBoxGifts>) {
                         when (obj.data?.gift?.type) {
                             "ICOIN" -> {
-                                DialogHelperGame.dialogExchangeGiftsPointSuccess(context, obj.data?.gift?.icoin, id, R.drawable.bg_gradient_button_orange_yellow)
+                                DialogHelperGame.dialogExchangeGiftsPointSuccess(context, obj.data?.gift?.icoin, campaignId, R.drawable.bg_gradient_button_orange_yellow)
                             }
                             "PHONE_CARD" -> {
                                 ToastHelper.showLongWarning(context, "Chưa làm")
