@@ -18,6 +18,7 @@ import vn.icheck.android.loyalty.dialog.base.DialogHelperGame
 import vn.icheck.android.loyalty.helper.StatusBarHelper
 import vn.icheck.android.loyalty.helper.WidgetHelper
 import vn.icheck.android.loyalty.model.ICKBoxGifts
+import vn.icheck.android.loyalty.model.ICKPointUser
 import vn.icheck.android.loyalty.network.SessionManager
 import vn.icheck.android.loyalty.screen.game_from_labels.redeem_points.point_history.PointHistoryLoyaltyActivity
 import vn.icheck.android.loyalty.screen.game_from_labels.redeem_points.the_winner_point.TheWinnerPointActivity
