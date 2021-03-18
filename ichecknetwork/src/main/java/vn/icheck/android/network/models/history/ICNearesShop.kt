@@ -5,7 +5,7 @@ import vn.icheck.android.network.models.ICShop
 import java.io.Serializable
 
 data class ICNearesShop(
-        @Expose val id: Int? = null,
+        @Expose val id: Long? = null,
         @Expose val shop: ICShop? = null,
         @Expose val distance : Long? = null,
         var isClick : Boolean = false
