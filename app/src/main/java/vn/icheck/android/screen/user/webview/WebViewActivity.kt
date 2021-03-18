@@ -138,8 +138,6 @@ class WebViewActivity : BaseActivityMVVM() {
         }
     }
 
-    private val loctionPermission = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)
-
     @SuppressLint("SetJavaScriptEnabled")
     private fun setupWebView(url: String, title: String?) {
         webView.settings.apply {
@@ -152,6 +150,9 @@ class WebViewActivity : BaseActivityMVVM() {
             javaScriptCanOpenWindowsAutomatically = true
             allowFileAccess = true
             mediaPlaybackRequiresUserGesture = false
+            // Full with
+            loadWithOverviewMode = true
+            useWideViewPort = true
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
             }
