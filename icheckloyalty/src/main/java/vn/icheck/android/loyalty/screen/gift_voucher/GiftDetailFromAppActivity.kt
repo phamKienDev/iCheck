@@ -115,10 +115,10 @@ class GiftDetailFromAppActivity : BaseActivityGame() {
                 layoutButton.setGone()
             }
             "CARD" -> {
-                if (obj.state == 4) {
-                    layoutButton.setVisible()
-                } else {
+                if (obj.state == 4 || obj.state == 2 || obj.state == 3) {
                     layoutButton.setGone()
+                } else {
+                    layoutButton.setVisible()
                 }
             }
             else -> {

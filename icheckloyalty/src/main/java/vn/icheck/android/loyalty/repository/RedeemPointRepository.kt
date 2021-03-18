@@ -74,13 +74,15 @@ internal class RedeemPointRepository : BaseRepository() {
     }
 
 
-    fun exchangeCardGiftTDNH(campaignId: Long, giftID: Long, listener: ICApiListener<ICKResponse<ICKBoxGifts>>) {
+    fun exchangeCardGiftTDNH(campaignId: Long, giftID: Long, serviceId: Long, receiverPhone: String, listener: ICApiListener<ICKResponse<ICKBoxGifts>>) {
         val params = hashMapOf<String, Any>()
 
         val user = SessionManager.session.user
 
         params["campaign_id"] = campaignId
         params["gift_id"] = giftID
+        params["serviceId"] = serviceId
+        params["receiver_phone"] = receiverPhone
 
         if (!user?.name.isNullOrEmpty()) {
             params["name"] = user?.name!!

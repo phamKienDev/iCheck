@@ -7,6 +7,7 @@ import vn.icheck.android.loyalty.base.BaseViewModel
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.helper.ApplicationHelper
 import vn.icheck.android.loyalty.helper.NetworkHelper
+import vn.icheck.android.loyalty.helper.SharedLoyaltyHelper
 import vn.icheck.android.loyalty.model.*
 import vn.icheck.android.loyalty.network.ICApiListener
 import vn.icheck.android.loyalty.repository.LoyaltyCustomersRepository
@@ -21,6 +22,7 @@ class ChangePhoneCardsViewModel : BaseViewModel<Any>() {
     val onExchangeSuccess = MutableLiveData<ICKRedemptionHistory>()
 
     private var typeGift = ConstantsLoyalty.TDDH
+    private var campaignId: Long? = null
 
     fun getDataIntent(intent: Intent?) {
         collectionID = try {
@@ -30,6 +32,7 @@ class ChangePhoneCardsViewModel : BaseViewModel<Any>() {
         }
 
         typeGift = intent?.getStringExtra(ConstantsLoyalty.DATA_2) ?: ConstantsLoyalty.TDDH
+        campaignId = intent?.getLongExtra(ConstantsLoyalty.DATA_3, -1)
 
         if (collectionID != -1L) {
             getTopUpService()
@@ -81,8 +84,27 @@ class ChangePhoneCardsViewModel : BaseViewModel<Any>() {
                     }
                 })
             }
+            ConstantsLoyalty.TDNH -> {
+                if (campaignId != null) {
+                    repository.exchangeCardGiftTDNH(campaignId!!, collectionID, serviceId, phone, object : ICApiListener<ICKResponse<ICKRedemptionHistory>> {
+                        override fun onSuccess(obj: ICKResponse<ICKRedemptionHistory>) {
+                            if (obj.statusCode == 200) {
+                                onExchangeSuccess.postValue(obj.data)
+                            } else {
+                                showDialogError.postValue(obj.data?.message
+                                        ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                            }
+                        }
+
+                        override fun onError(error: ICKBaseResponse?) {
+                            checkError(true, error?.message)
+                        }
+
+                    })
+                }
+            }
             else -> {
-                repository.exchangeCardGiftTDNH(serviceId, collectionID, phone, object : ICApiListener<ICKResponse<ICKRedemptionHistory>> {
+                repository.exchangeCardGiftVQMM(serviceId, collectionID, phone, object : ICApiListener<ICKResponse<ICKRedemptionHistory>> {
                     override fun onSuccess(obj: ICKResponse<ICKRedemptionHistory>) {
                         if (obj.statusCode == 200) {
                             onExchangeSuccess.postValue(obj.data)

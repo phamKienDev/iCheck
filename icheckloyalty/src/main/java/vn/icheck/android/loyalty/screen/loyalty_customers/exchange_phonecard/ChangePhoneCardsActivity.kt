@@ -26,6 +26,14 @@ class ChangePhoneCardsActivity : BaseActivityGame() {
             activity.startActivityForResult(intent, requestCode)
             activity.overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
         }
+        fun start(activity: Activity, id: Long, typeGift: String,campaignId:Long, requestCode: Int) {
+            val intent = Intent(activity, ChangePhoneCardsActivity::class.java)
+            intent.putExtra(ConstantsLoyalty.DATA_1, id)
+            intent.putExtra(ConstantsLoyalty.DATA_2, typeGift)
+            intent.putExtra(ConstantsLoyalty.DATA_3, campaignId)
+            activity.startActivityForResult(intent, requestCode)
+            activity.overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
+        }
     }
 
     private val viewModel by viewModels<ChangePhoneCardsViewModel>()
