@@ -82,7 +82,7 @@ class TheWinnerPointActivity : BaseActivityGame(), IRecyclerViewCallback {
     }
 
     private fun initListener() {
-        viewModel.onError.observe(this, Observer {
+        viewModel.onError.observe(this, {
             swipeLayout.isRefreshing = false
 
             if (adapter.isEmpty) {
@@ -92,7 +92,7 @@ class TheWinnerPointActivity : BaseActivityGame(), IRecyclerViewCallback {
             }
         })
 
-        viewModel.onTopWinner.observe(this, Observer {
+        viewModel.onTopWinner.observe(this, {
             if (!it.listData.isNullOrEmpty()) {
                 linearLayout.setGone()
                 recyclerView.setVisible()
@@ -104,12 +104,12 @@ class TheWinnerPointActivity : BaseActivityGame(), IRecyclerViewCallback {
             }
         })
 
-        viewModel.onSetData.observe(this, Observer {
+        viewModel.onSetData.observe(this, {
             swipeLayout.isRefreshing = false
             adapter.setTheWinner(it)
         })
 
-        viewModel.onAddData.observe(this, Observer {
+        viewModel.onAddData.observe(this, {
             adapter.addTheWinner(it)
         })
     }

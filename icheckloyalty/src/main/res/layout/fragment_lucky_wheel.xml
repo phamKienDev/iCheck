@@ -131,8 +131,10 @@
         android:src="@drawable/tv_quay"
         app:layout_constraintBottom_toBottomOf="@+id/img_center_wheel"
         app:layout_constraintEnd_toEndOf="@+id/img_center_wheel"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/img_center_wheel"
-        app:layout_constraintTop_toTopOf="@+id/img_center_wheel" />
+        app:layout_constraintTop_toTopOf="@+id/img_center_wheel"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/img_cursor"
