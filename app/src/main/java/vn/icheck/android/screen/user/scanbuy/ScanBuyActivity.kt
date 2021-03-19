@@ -113,6 +113,7 @@ class ScanBuyActivity : BaseActivity<ScanBuyPresenter>(), OnScanListener, IScanB
             val settings = ScanSettings.create()
             Barcode.ALL_SYMBOLOGIES.forEach {
                 settings.setSymbologyEnabled(it, true)
+                settings.getSymbologySettings(it).isColorInvertedEnabled = true
             }
             return settings
         }

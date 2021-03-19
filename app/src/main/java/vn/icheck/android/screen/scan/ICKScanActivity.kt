@@ -104,10 +104,6 @@ class ICKScanActivity : BaseActivityMVVM() {
         })
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        //No call for super(). Bug on API Level > 11.
-    }
-
     private fun selectTab() {
         when (intent.getIntExtra(Constant.DATA_1, -1)) {
             2 -> {
@@ -148,6 +144,7 @@ class ICKScanActivity : BaseActivityMVVM() {
             windowManager.defaultDisplay.getMetrics(displayMetrics)
             Barcode.ALL_SYMBOLOGIES.forEach {
                 settings.setSymbologyEnabled(it, true)
+                settings.getSymbologySettings(it).isColorInvertedEnabled = true
             }
             val width = ((displayMetrics.widthPixels - 294.toPx()) / 2).toFloat()
             val height = ((displayMetrics.heightPixels - 221.toPx()) / 2).toFloat()
@@ -161,6 +158,7 @@ class ICKScanActivity : BaseActivityMVVM() {
             windowManager.defaultDisplay.getMetrics(displayMetrics)
             Barcode.ALL_SYMBOLOGIES.forEach {
                 settings.setSymbologyEnabled(it, true)
+                settings.getSymbologySettings(it).isColorInvertedEnabled = true
             }
             ickScanViewModel.mPicker = BarcodePicker(this, settings)
             logError(e)

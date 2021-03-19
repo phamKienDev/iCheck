@@ -37,7 +37,7 @@
         app:layout_constraintEnd_toStartOf="@+id/tv_follow_shop"
         app:layout_constraintStart_toEndOf="@+id/img_avatar"
         app:layout_constraintTop_toTopOf="@+id/img_avatar"
-        tools:text="Nguyễn Quang Hải Nguyễn Quang Hải" />
+        tools:text="Nguyễn Quang Hải Nguyễn Quang Hải Nguyễn Quang Hải Nguyễn Quang Hải" />
 
     <TextView
         android:id="@+id/tv_count_like"

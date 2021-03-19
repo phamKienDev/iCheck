@@ -151,6 +151,9 @@ class WebViewActivity : BaseActivityMVVM() {
             javaScriptCanOpenWindowsAutomatically = true
             allowFileAccess = true
             mediaPlaybackRequiresUserGesture = false
+            // Full with
+            loadWithOverviewMode = true
+            useWideViewPort = true
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
             }

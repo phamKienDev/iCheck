@@ -68,6 +68,7 @@ class ScanForGameFragment : Fragment(), OnScanListener {
 
         Barcode.ALL_SYMBOLOGIES.forEach {
             settings.setSymbologyEnabled(it, true)
+            settings.getSymbologySettings(it).isColorInvertedEnabled = true
         }
         mPicker = BarcodePicker(context, settings)
 

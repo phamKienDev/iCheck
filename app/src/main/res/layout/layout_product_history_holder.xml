@@ -39,23 +39,22 @@
             android:drawablePadding="5dp"
             android:ellipsize="end"
             android:fontFamily="@font/barlow_medium"
-            android:textStyle="italic"
-            android:visibility="invisible"
             android:includeFontPadding="false"
             android:maxLines="1"
+            android:text="Tên đang cập nhật"
             android:textColor="@color/darkGray2"
             android:textSize="14sp"
+            android:textStyle="italic"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgAvaProduct"
-            app:layout_constraintTop_toTopOf="@+id/imgAvaProduct"
-            android:text="Tên đang cập nhật" />
+            app:layout_constraintTop_toTopOf="@+id/imgAvaProduct" />
 
         <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
             android:id="@+id/tvNameProduct"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_10"
-            android:layout_marginLeft="@dimen/size_10"
             android:drawableStart="@drawable/ic_home_verify_16dp"
             android:drawablePadding="5dp"
             android:ellipsize="end"
@@ -69,27 +68,15 @@
             app:layout_constraintTop_toTopOf="@+id/imgAvaProduct"
             tools:text="Nước hoa hồng Langege dung tích 201..." />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:id="@+id/layoutBarcode"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="@id/tvNameProduct"
             app:layout_constraintTop_toBottomOf="@id/tvNameProduct">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_history_qrcode_18px"
-                android:drawablePadding="8dp"
-                android:fontFamily="@font/barlow_medium"
-                android:visibility="gone"
-                android:textColor="#828282"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="0544A585214A" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvCountRating"
@@ -99,52 +86,45 @@
                 android:drawablePadding="5dp"
                 android:fontFamily="@font/barlow_medium"
                 android:textColor="#4f4f4f"
+                android:includeFontPadding="false"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 tools:text="8,9" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@id/tvCountReview"
                 android:layout_width="wrap_content"
+                android:includeFontPadding="false"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/barlow_medium"
                 android:layout_marginStart="5.2dp"
-                android:textSize="12sp"
+                android:visibility="gone"
+                android:fontFamily="@font/barlow_medium"
                 android:textColor="#828282"
-                app:layout_constraintStart_toEndOf="@id/tvCountRating"
-                app:layout_constraintTop_toTopOf="@id/tvCountRating"
-                app:layout_constraintBottom_toBottomOf="@id/tvCountRating"
-                tools:text="(999+)"/>
+                android:textSize="12sp"
+                tools:text="(999+)" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvBarcodeProduct"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="18.8dp"
+                android:layout_marginStart="@dimen/size_18"
                 android:drawableStart="@drawable/ic_barcode_blue_18px"
-                android:drawableLeft="@drawable/ic_barcode_blue_18px"
                 android:drawablePadding="@dimen/size_4"
                 android:fontFamily="@font/barlow_medium"
                 android:includeFontPadding="false"
                 android:textColor="#bdbdbd"
-                android:textSize="12sp"
-                app:layout_constraintStart_toEndOf="@+id/tvCountReview"
-                app:layout_constraintTop_toTopOf="@+id/tvCountReview" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:textSize="12sp" />
+        </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvCountShop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="18dp"
+            android:drawableEnd="@drawable/ic_down_blue_9px"
+            android:drawablePadding="4dp"
             android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
-            android:drawablePadding="4dp"
+            android:paddingTop="18dp"
             android:textColor="#3c5a99"
-            android:drawableEnd="@drawable/ic_down_blue_9px"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/imgAvaProduct"
             app:layout_constraintStart_toStartOf="@+id/tvNameProduct"
@@ -217,12 +197,12 @@
         android:background="@drawable/bg_corner_top_8_blue_20opac"
         android:fontFamily="@font/barlow_medium"
         android:gravity="center"
+        android:text="Tìm kiếm quanh đây"
         android:textColor="#3c5a99"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/layoutShop"
         app:layout_constraintStart_toStartOf="@+id/layoutShop"
-        app:layout_constraintTop_toBottomOf="@id/layoutShop"
-        android:text="Tìm kiếm quanh đây" />
+        app:layout_constraintTop_toBottomOf="@id/layoutShop" />
 
 </LinearLayout>
