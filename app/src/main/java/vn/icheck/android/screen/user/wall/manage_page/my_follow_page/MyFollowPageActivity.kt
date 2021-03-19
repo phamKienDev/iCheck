@@ -128,7 +128,7 @@ class MyFollowPageActivity : BaseActivityMVVM(), IRecyclerViewCallback {
     override fun onMessageEvent(event: ICMessageEvent) {
         super.onMessageEvent(event)
         when (event.type) {
-            ICMessageEvent.Type.UPDATE_FOLLOW_PAGE -> {
+            ICMessageEvent.Type.UNFOLLOW_PAGE -> {
                 pageId = event.data as Long
                 countPage -= 1
                 tvPageCount.text = TextHelper.formatMoneyPhay(countPage) + " Trang đang theo dõi"

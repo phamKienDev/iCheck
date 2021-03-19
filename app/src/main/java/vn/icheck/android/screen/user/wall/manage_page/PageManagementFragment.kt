@@ -1,5 +1,6 @@
 package vn.icheck.android.screen.user.wall.manage_page
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -11,9 +12,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
+import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.base.model.ICError
+import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.databinding.FragmentPageManagementBinding
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
@@ -36,6 +42,7 @@ class PageManagementFragment : Fragment() {
     lateinit var ownerAdaper: MyOwnerPageAdapter
 
     private val requestChangeFollow = 1
+    private var pageFollowCount = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentPageManagementBinding.inflate(inflater, container, false)
@@ -45,6 +52,8 @@ class PageManagementFragment : Fragment() {
         initView()
         initSwipeLayout()
         initRecyclerview()
+
+        EventBus.getDefault().register(this)
 
         getData()
         return binding.root
@@ -139,12 +148,14 @@ class PageManagementFragment : Fragment() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setFollowPage(it: ICListResponse<ICPage>?) {
         if (it?.rows.isNullOrEmpty()) {
             binding.containerFollow.beGone()
         } else {
+            pageFollowCount = it?.count ?: 0
             binding.containerFollow.beVisible()
-            binding.tvFollowTitle.text = "Trang đang theo dõi (${it?.count})"
+            binding.tvFollowTitle.text = "Trang đang theo dõi (${pageFollowCount})"
             followAdaper.setListData(it!!.rows)
         }
     }
@@ -180,8 +191,20 @@ class PageManagementFragment : Fragment() {
         }
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(event: ICMessageEvent) {
+        when (event.type) {
+            ICMessageEvent.Type.UNFOLLOW_PAGE -> {
+                if (event.data != null && event.data is Long) {
+                    getFollowPage()
+                }
+            }
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
+        EventBus.getDefault().unregister(this)
         _binding = null
     }
 }
