@@ -144,7 +144,7 @@ class ShakeBoxSuccessActivity : BaseActivityMVVM() {
 
     @SuppressLint("SetTextI18n")
     private fun initViewModel() {
-        viewModel.objCampaign.observe(this, {
+        viewModel.objCampaign.observe(this, Observer {
             tvThank.text = Html.fromHtml("<font color=#828282>Cảm ơn bạn đã tham gia sự kiện</font>" + "<br>" + "${it.title}" + "</br>")
             if (it.businessName == "iCheck") {
                 imgLogo.borderColor = ContextCompat.getColor(this, R.color.gray)
@@ -188,7 +188,7 @@ class ShakeBoxSuccessActivity : BaseActivityMVVM() {
                     tvNameGift.text = it.name
                     btnMyGift.text = getString(R.string.nhan_qua)
                     btnMyGift.setOnClickListener { _ ->
-                        giftViewModel.getDetailReward(it.rewardId).observe(this, { reward ->
+                        giftViewModel.getDetailReward(it.rewardId).observe(this, Observer { reward ->
                             TrackingAllHelper.tagOpenGiftBoxProceedCtaClicked(viewModel.campaign?.id, viewModel.shakeGift?.rewardType)
                             startActivity(Intent(this, ShipActivity::class.java).apply {
                                 putExtra("gift", reward)
@@ -242,7 +242,7 @@ class ShakeBoxSuccessActivity : BaseActivityMVVM() {
                     tvNameGift.text = it.name
                     tvCodeVoucher.text = it.code
 
-                    btnMyGift.text = "Xem lịch bốc thăm"
+                    btnMyGift.setText(R.string.xem_lich_boc_tham)
                     btnMyGift.setOnClickListener { _ ->
                         TrackingAllHelper.tagOpenGiftBoxProceedCtaClicked(viewModel.campaign?.id, viewModel.shakeGift?.rewardType)
                         val intent = Intent(this, CampaignOnboardingActivity::class.java)

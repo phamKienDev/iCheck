@@ -52,6 +52,7 @@ internal class ListOfGiftsReceivedAdapter(callback: IRecyclerViewCallback) : Rec
                     else -> {
                         itemView.context.startActivity(Intent(itemView.context, GiftDetailFromAppActivity::class.java).apply {
                             putExtra(ConstantsLoyalty.DATA_1, obj.winner_id)
+                            putExtra(ConstantsLoyalty.DATA_2, obj.campaignId)
                         })
                     }
                 }

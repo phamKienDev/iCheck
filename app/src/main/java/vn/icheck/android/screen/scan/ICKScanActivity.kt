@@ -144,6 +144,7 @@ class ICKScanActivity : BaseActivityMVVM() {
             windowManager.defaultDisplay.getMetrics(displayMetrics)
             Barcode.ALL_SYMBOLOGIES.forEach {
                 settings.setSymbologyEnabled(it, true)
+                settings.getSymbologySettings(it).isColorInvertedEnabled = true
             }
             val width = ((displayMetrics.widthPixels - 294.toPx()) / 2).toFloat()
             val height = ((displayMetrics.heightPixels - 221.toPx()) / 2).toFloat()
@@ -157,6 +158,7 @@ class ICKScanActivity : BaseActivityMVVM() {
             windowManager.defaultDisplay.getMetrics(displayMetrics)
             Barcode.ALL_SYMBOLOGIES.forEach {
                 settings.setSymbologyEnabled(it, true)
+                settings.getSymbologySettings(it).isColorInvertedEnabled = true
             }
             ickScanViewModel.mPicker = BarcodePicker(this, settings)
             logError(e)

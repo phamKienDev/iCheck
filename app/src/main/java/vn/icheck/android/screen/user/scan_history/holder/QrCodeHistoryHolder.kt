@@ -12,7 +12,7 @@ import vn.icheck.android.screen.user.scan_history.view.IScanHistoryView
 class QrCodeHistoryHolder(parent: ViewGroup, val listener: IScanHistoryView) : BaseViewHolder<ICItemHistory>(LayoutInflater.from(parent.context).inflate(R.layout.layout_qrcode_history_holder, parent, false)) {
 
     override fun bind(obj: ICItemHistory) {
-        itemView.tvName.text = obj.actionData?.qrBarcode
+        itemView.tvName.text = obj.actionData?.qrBarcode?.trim()
 
         if (obj.actionData?.qrBarcode?.startsWith("BEGIN:VEVENT", true) == true) {
             itemView.imgAva.setImageResource(R.drawable.history_event)
@@ -24,8 +24,7 @@ class QrCodeHistoryHolder(parent: ViewGroup, val listener: IScanHistoryView) : B
             itemView.imgAva.setImageResource(R.drawable.history_location)
         } else if (obj.actionData?.qrBarcode?.startsWith("tel", true) == true) {
             itemView.imgAva.setImageResource(R.drawable.history_phone)
-        } else if (obj.actionData?.qrBarcode?.startsWith("MATMSG:TO", true) == true || obj.actionData?.qrBarcode?.startsWith("mailto:email", true) == true ||
-                obj.actionData?.qrBarcode?.startsWith("MAILTO:", true) == true) {
+        } else if (obj.actionData?.qrBarcode?.startsWith("MATMSG:TO", true) == true || obj.actionData?.qrBarcode?.startsWith("mailto:email", true) == true || obj.actionData?.qrBarcode?.startsWith("MAILTO:", true) == true) {
             itemView.imgAva.setImageResource(R.drawable.history_email)
         } else if (obj.actionData?.qrBarcode?.startsWith("smsto", true) == true) {
             itemView.imgAva.setImageResource(R.drawable.history_sms)

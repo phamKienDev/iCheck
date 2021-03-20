@@ -29,6 +29,7 @@ class SplashScreenActivity : Activity() {
         SettingManager.setDeviceID(DeviceUtils.getUDID(this))
         SettingManager.appVersion = BuildConfig.VERSION_NAME
 
+
         val targetFull = intent?.getStringExtra(Constant.DATA_3)
         if (!targetFull.isNullOrEmpty()) {
             FirebaseDynamicLinksActivity.startDestinationUrl(this, targetFull)
@@ -66,6 +67,7 @@ class SplashScreenActivity : Activity() {
 
         Handler().postDelayed({
             TrackingAllHelper.trackAppStarted()
+            InsiderHelper.setUserAttributes()
         }, 500)
     }
 }
