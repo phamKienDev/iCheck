@@ -8,6 +8,7 @@ import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.BitmapFactory
 import android.net.*
 import android.net.wifi.WifiConfiguration
 import android.net.wifi.WifiManager
@@ -21,6 +22,7 @@ import android.provider.ContactsContract
 import android.util.Base64
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
@@ -28,6 +30,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
 import com.scandit.datacapture.barcode.capture.*
 import com.scandit.datacapture.barcode.data.Symbology
 import com.scandit.datacapture.barcode.data.SymbologyDescription
@@ -35,20 +38,19 @@ import com.scandit.datacapture.core.capture.DataCaptureContext
 import com.scandit.datacapture.core.capture.DataCaptureContextSettings
 import com.scandit.datacapture.core.data.FrameData
 import com.scandit.datacapture.core.internal.sdk.utils.jsonFromObject
-import com.scandit.datacapture.core.source.Camera
-import com.scandit.datacapture.core.source.CameraSettings
-import com.scandit.datacapture.core.source.FrameSourceState
-import com.scandit.datacapture.core.source.TorchState
+import com.scandit.datacapture.core.source.*
 import com.scandit.datacapture.core.ui.DataCaptureView
 import com.scandit.datacapture.core.ui.control.TorchSwitchControl
 import com.scandit.recognition.Barcode
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import vn.icheck.android.BuildConfig
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.dialog.notify.internal_stamp.InternalStampDialog
+import vn.icheck.android.component.take_media.TakeMediaDialog
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.constant.ICK_REQUEST_CAMERA
 import vn.icheck.android.constant.SCAN_REVIEW
@@ -68,6 +70,7 @@ import vn.icheck.android.network.models.ICValidStampSocial
 import vn.icheck.android.network.util.DeviceUtils
 import vn.icheck.android.screen.scan.viewmodel.ICKScanViewModel
 import vn.icheck.android.screen.scan.viewmodel.V6ViewModel
+import vn.icheck.android.screen.user.contribute_product.CONTRIBUTE_REQUEST
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.DetailStampHoaPhatActivity
 import vn.icheck.android.screen.user.detail_stamp_thinh_long.home.DetailStampThinhLongActivity
 import vn.icheck.android.screen.user.detail_stamp_v5.home.DetailStampV5Activity
@@ -81,6 +84,7 @@ import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.ick.*
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.ContactUtils
+import java.io.File
 import java.net.URL
 
 class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
@@ -122,13 +126,19 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     private val requestPhone = 2
     private var phoneNumber: String = ""
 
+    private lateinit var takeImageListener:TakeMediaDialog.TakeImageListener
+
+    private lateinit var takeImageDialog:TakeMediaDialog
+    var currentMediaDialog: TakeMediaDialog? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         request()
     }
 
     private fun initDataCapture() {
-        dataCaptureContext = DataCaptureContext.forLicenseKey(getString(R.string.scandit_v6_key_dev))
+        val key = if(BuildConfig.FLAVOR.contentEquals("dev")) getString(R.string.scandit_v6_key_dev) else  getString(R.string.scandit_v6_key_live)
+        dataCaptureContext = DataCaptureContext.forLicenseKey(key)
         val settings = BarcodeCaptureSettings().apply {
             enableSymbology(Symbology.CODE128, true)
             enableSymbology(Symbology.CODE39, true)
@@ -142,10 +152,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         barcodeCapture.addListener(this)
         cameraSettings = BarcodeCapture.createRecommendedCameraSettings()
         camera = Camera.getDefaultCamera(cameraSettings)
-        dataCaptureContext.setFrameSource(camera)
-        if (camera != null) {
-            camera?.switchToDesiredState(FrameSourceState.ON);
-        }
+        resetCamera()
 
         val dataCaptureView = DataCaptureView.newInstance(this, dataCaptureContext)
 
@@ -153,6 +160,39 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         dataCaptureView.addView(binding.root, getDeviceWidth(), getDeviceHeight())
         setContentView(dataCaptureView)
         initViews()
+        takeImageListener = object : TakeMediaDialog.TakeImageListener{
+            override fun onPickMediaSucess(file: File) {
+                try {
+                    val source = BitmapFrameSource.of(BitmapFactory.decodeFile(file.getAbsolutePath()))
+                    source?.switchToDesiredState(FrameSourceState.ON)
+                    dataCaptureContext.setFrameSource(source)
+                } catch (e: Exception) {
+                    logError(e)
+                }
+            }
+
+            override fun onPickMuliMediaSucess(file: MutableList<File>) {
+
+            }
+
+            override fun onTakeMediaSuccess(file: File?) {
+                try {
+                    val source = BitmapFrameSource.of(BitmapFactory.decodeFile(file?.getAbsolutePath()))
+                    source?.switchToDesiredState(FrameSourceState.ON)
+                    dataCaptureContext.setFrameSource(source)
+                } catch (e: Exception) {
+                    logError(e)
+                }
+            }
+        }
+        takeImageDialog = TakeMediaDialog(takeImageListener, false, cropImage = false, isVideo = false)
+    }
+
+    private fun resetCamera() {
+        dataCaptureContext.setFrameSource(camera)
+        if (camera != null) {
+            camera?.switchToDesiredState(FrameSourceState.ON);
+        }
     }
 
     fun initViews() {
@@ -182,6 +222,9 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         }
         binding?.root?.setOnClickListener {
             viewModel.offGuide()
+        }
+        binding.imgSdha.setOnClickListener {
+            request(takeImageDialog)
         }
         binding?.imgNmbt?.setOnClickListener {
             binding.imgNmbt.isEnabled = false
@@ -334,6 +377,53 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         initListener()
     }
 
+    inline fun delayAfterAction(crossinline action: () -> Unit, timeout:Long = 200L) {
+        job = if (job?.isActive == true) {
+            job?.cancel()
+            lifecycleScope.launch {
+                action()
+                delay(timeout)
+            }
+        } else {
+            lifecycleScope.launch {
+                action()
+                delay(timeout)
+            }
+        }
+    }
+
+    fun request(dialog: TakeMediaDialog) {
+        delayAfterAction({
+            if (ContextCompat.checkSelfPermission(
+                            this,
+                            Manifest.permission.READ_EXTERNAL_STORAGE
+                    ) != PackageManager.PERMISSION_GRANTED ||
+                    ContextCompat.checkSelfPermission(
+                            this,
+                            Manifest.permission.CAMERA
+                    ) != PackageManager.PERMISSION_GRANTED) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    requestPermissions(
+                            arrayOf(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                            CONTRIBUTE_REQUEST
+                    )
+                }
+            } else {
+                try {
+                    currentMediaDialog = dialog
+                    if (currentMediaDialog?.isAdded == false) {
+                        currentMediaDialog?.show(supportFragmentManager, null)
+                    } else {
+                        currentMediaDialog?.dismiss()
+                        currentMediaDialog?.show(supportFragmentManager, null)
+                    }
+                } catch (e: Exception) {
+                    logError(e)
+                }
+            }
+        })
+    }
+
     override fun onBarcodeScanned(barcodeCapture: BarcodeCapture, session: BarcodeCaptureSession, data: FrameData) {
         if (session.newlyRecognizedBarcodes.isEmpty()) return
         val barcode = session.newlyRecognizedBarcodes[0]
@@ -473,6 +563,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     override fun onResume() {
         super.onResume()
         barcodeCapture.isEnabled = true
+        resetCamera()
     }
 
     private fun request() {

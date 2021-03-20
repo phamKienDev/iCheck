@@ -19,6 +19,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <View
+        android:id="@+id/view11"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/bg_scan"
@@ -185,9 +186,9 @@
         android:layout_height="wrap_content"
         android:alpha="0"
         android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/view37"
         app:layout_constraintEnd_toStartOf="@+id/view42"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_scan_focus"
         app:srcCompat="@drawable/ic_dmsp"
         tools:visibility="visible" />
 
@@ -237,6 +238,16 @@
         app:layout_constraintBottom_toTopOf="@+id/btn_my_code"
         app:layout_constraintEnd_toEndOf="@+id/btn_my_code"
         app:srcCompat="@drawable/ic_xmdd" />
+
+    <ImageView
+        android:id="@+id/img_sdha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toStartOf="@+id/view42"
+        app:layout_constraintStart_toEndOf="@+id/view11"
+        app:layout_constraintTop_toTopOf="@+id/view43"
+        app:srcCompat="@drawable/ic_sdha" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
