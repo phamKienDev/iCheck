@@ -51,7 +51,7 @@
                 android:includeFontPadding="false"
                 android:textColor="@color/black_21"
                 android:textSize="18sp"
-                tools:text="Xuyến Đỗ ( tên giới hạn 2 dòng) giới hạn cách lề trái phải 40" />
+                tools:text="Xuyến Đỗ ( tên giới hạn 2 dòng) giới hạn ccách lề trái phải 40" />
 
             <View
                 android:layout_width="match_parent"
@@ -143,6 +143,7 @@
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvTitleImage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"

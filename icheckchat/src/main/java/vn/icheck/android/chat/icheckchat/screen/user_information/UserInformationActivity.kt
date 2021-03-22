@@ -148,7 +148,7 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
                         setVisible()
 
                         if (toType.contains("page")) {
-                            binding.layoutImage.setGone()
+                            binding.layoutImage.setVisible()
                             text = getString(R.string.xem_trang_doanh_nghiep)
 
                             setOnClickListener {

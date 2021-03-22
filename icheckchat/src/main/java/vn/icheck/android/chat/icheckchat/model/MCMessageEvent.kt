@@ -6,6 +6,7 @@ data class MCMessageEvent(val type: Type, val data: Any? = null) {
         UPDATE_DATA,
         BACK,
         BLOCK,
-        ON_FINISH_ALL_CHAT
+        ON_FINISH_ALL_CHAT,
+        HIDE_KEYBOARD
     }
 }

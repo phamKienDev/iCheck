@@ -665,6 +665,9 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 binding.layoutChat.setGone()
                 binding.layoutBlock.setVisible()
             }
+            MCMessageEvent.Type.HIDE_KEYBOARD -> {
+                this@ChatSocialDetailActivity.hideKeyboard()
+            }
         }
     }
 

@@ -14,6 +14,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
+import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.chat.icheckchat.R
 import vn.icheck.android.chat.icheckchat.base.recyclerview.BaseRecyclerView
 import vn.icheck.android.chat.icheckchat.base.recyclerview.IRecyclerViewCallback
@@ -24,6 +25,7 @@ import vn.icheck.android.chat.icheckchat.base.view.MCViewType.TYPE_SENDER
 import vn.icheck.android.chat.icheckchat.databinding.ItemReceiverBinding
 import vn.icheck.android.chat.icheckchat.databinding.ItemSenderBinding
 import vn.icheck.android.chat.icheckchat.model.MCDetailMessage
+import vn.icheck.android.chat.icheckchat.model.MCMessageEvent
 import vn.icheck.android.chat.icheckchat.screen.detail_image.ImageDetailActivity
 
 class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerView<MCDetailMessage>(callback) {
@@ -75,6 +77,7 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
             setGoneView(binding.layoutProduct, binding.layoutImageDetail.root, binding.tvMessage, binding.layoutImageDetail.imgView, binding.layoutImageDetail.layoutOneImage, binding.layoutImageDetail.layoutTwoImage, binding.layoutImageDetail.layoutImage, binding.layoutImageDetail.tvCountImage, binding.layoutImageDetail.tvCountImage1)
 
             binding.layoutImageDetail.root.setOnClickListener {
+                EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.HIDE_KEYBOARD))
                 obj.listMedia?.let { it1 -> ImageDetailActivity.startImageDetail(itemView.context, it1) }
             }
 
@@ -132,8 +135,13 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
             }
 
             binding.tvTime.text = convertDateTimeSvToCurrentDay(obj.time)
+
+            binding.root.setOnClickListener {
+                EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.HIDE_KEYBOARD))
+            }
         }
     }
+
 
     inner class ReceiverHolder(val binding: ItemReceiverBinding) : BaseViewHolder<MCDetailMessage>(binding) {
         @SuppressLint("RtlHardcoded")
@@ -145,6 +153,7 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
             setGoneView(binding.layoutProduct, binding.layoutImageDetail.root, binding.tvMessage, binding.layoutImageDetail.imgView, binding.layoutImageDetail.layoutOneImage, binding.layoutImageDetail.layoutTwoImage, binding.layoutImageDetail.layoutImage, binding.layoutImageDetail.tvCountImage, binding.layoutImageDetail.tvCountImage1)
 
             binding.layoutImageDetail.root.setOnClickListener {
+                EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.HIDE_KEYBOARD))
                 obj.listMedia?.let { it1 -> ImageDetailActivity.startImageDetail(itemView.context, it1) }
             }
 
@@ -202,10 +211,14 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
             }
 
             binding.tvTime.text = convertDateTimeSvToCurrentDay(obj.time)
+
+            binding.root.setOnClickListener {
+                EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.HIDE_KEYBOARD))
+            }
         }
     }
 
-    private fun setUpContentAndLink(view: AppCompatTextView, obj: MCDetailMessage, context: Context){
+    private fun setUpContentAndLink(view: AppCompatTextView, obj: MCDetailMessage, context: Context) {
         view.apply {
             if (!obj.content.isNullOrEmpty()) {
                 setVisible()
@@ -218,6 +231,7 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
                     paintFlags = paintFlags or Paint.UNDERLINE_TEXT_FLAG
 
                     setOnClickListener {
+                        EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.HIDE_KEYBOARD))
                         context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(obj.link)))
                     }
                 } else {

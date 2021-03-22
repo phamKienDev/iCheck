@@ -49,6 +49,7 @@
             <vn.icheck.android.component.view.text_view.TextViewBarlowBold
                 android:id="@id/tvNamePage"
                 android:layout_width="wrap_content"
+                android:drawableEnd="@drawable/ic_verified_18px"
                 android:layout_height="wrap_content"
                 android:drawablePadding="@dimen/size_8"
                 android:gravity="center_vertical"

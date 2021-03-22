@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="16dp"
-    android:layout_marginEnd="55dp"
-    android:layout_marginRight="55dp"
+    android:paddingTop="16dp"
+    android:paddingEnd="55dp"
+    android:paddingRight="55dp"
     android:paddingStart="12dp"
     android:paddingLeft="12dp"
     tools:ignore="RtlSymmetry">

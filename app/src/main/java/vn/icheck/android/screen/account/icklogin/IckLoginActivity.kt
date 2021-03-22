@@ -91,7 +91,9 @@ class IckLoginActivity : BaseCoroutineActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ick_login)
         nav_host_fragment.view?.background = ResourcesCompat.getDrawable(resources, R.drawable.ick_bg_top_corner_20, null)
-        EventBus.getDefault().register(this)
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this)
+        }
         btn_exit.setOnClickListener {
             setResult(Activity.RESULT_CANCELED)
             finish()
