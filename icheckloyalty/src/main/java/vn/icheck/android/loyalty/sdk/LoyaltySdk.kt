@@ -2,6 +2,10 @@ package vn.icheck.android.loyalty.sdk
 
 import android.app.Activity
 import android.content.Intent
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withTimeoutOrNull
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.base.network.APIConstants
 import vn.icheck.android.loyalty.dialog.DialogGlobalLoginLoyalty
@@ -10,6 +14,7 @@ import vn.icheck.android.loyalty.helper.ApplicationHelper
 import vn.icheck.android.loyalty.helper.SharedLoyaltyHelper
 import vn.icheck.android.loyalty.model.*
 import vn.icheck.android.loyalty.network.SessionManager
+import vn.icheck.android.loyalty.repository.VQMMRepository
 import vn.icheck.android.loyalty.screen.game_from_labels.game_list.GameFromLabelsListActivity
 import vn.icheck.android.loyalty.screen.game_from_labels.redeem_points.onboarding.OnBoardingActivity
 import vn.icheck.android.loyalty.screen.game_from_labels.vqmm.GameActivity
@@ -50,11 +55,42 @@ object LoyaltySdk {
     /**
      * Mở màn vòng quay may mắn của Loyalty
      */
-    fun startActivityVQMM(activity: Activity, id: String?) {
+    fun startActivityVQMM(activity: FragmentActivity, id: String?, isFinishActivity: Boolean = false) {
         if (!id.isNullOrEmpty()) {
-            ActivityHelper.startActivity<GameActivity, Long>(activity, ConstantsLoyalty.DATA_1, id.toLong())
+            activity.lifecycleScope.launch {
+                val data = withTimeoutOrNull(3000) {
+                    try {
+                        VQMMRepository().getGameInfoRep(id.toLong())
+                    } catch (e: Exception) {
+                        null
+                    }
+                }
+
+                data?.data?.campaign?.let { obj ->
+                    val rowItem = RowsItem(data.data.play, obj.updatedAt, obj.owner?.icheckId, null, null, obj.createdAt, data.data.campaign, obj.id, obj.deletedAt, obj.id)
+
+                    activity.startActivity(Intent(activity, GameActivity::class.java).apply {
+                        putExtra(ConstantsLoyalty.DATA_1, obj.id)
+                        putExtra("owner", obj.owner?.name)
+                        putExtra("banner", obj.image?.original)
+                        putExtra("state", obj.statusTime)
+                        putExtra("campaignName", obj.name)
+                        putExtra("landing", obj.landingPage)
+                        putExtra("titleButton", obj.titleButton)
+                        putExtra("schema", obj.schemaButton)
+                        putExtra("data", rowItem)
+                    })
+                }
+
+                if (isFinishActivity) {
+                    activity.finish()
+                }
+            }
         } else {
             startActivityGameFromLabelsList(activity)
+            if (isFinishActivity) {
+                activity.finish()
+            }
         }
     }
 
