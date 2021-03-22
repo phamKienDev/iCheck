@@ -27,6 +27,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.scale
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
@@ -35,6 +36,7 @@ import com.scandit.datacapture.barcode.capture.*
 import com.scandit.datacapture.barcode.data.Symbology
 import com.scandit.datacapture.barcode.data.SymbologyDescription
 import com.scandit.datacapture.core.capture.DataCaptureContext
+import com.scandit.datacapture.core.capture.DataCaptureContextListener
 import com.scandit.datacapture.core.capture.DataCaptureContextSettings
 import com.scandit.datacapture.core.data.FrameData
 import com.scandit.datacapture.core.internal.sdk.utils.jsonFromObject
@@ -146,6 +148,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
             enableSymbology(Symbology.EAN8, true)
             enableSymbology(Symbology.UPCE, true)
             enableSymbology(Symbology.EAN13_UPCA, true)
+            setProperty("remove_leading_upca_zero", true)
         }
         barcodeCapture = BarcodeCapture.forDataCaptureContext(dataCaptureContext, settings)
 
@@ -163,9 +166,23 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         takeImageListener = object : TakeMediaDialog.TakeImageListener{
             override fun onPickMediaSucess(file: File) {
                 try {
-                    val source = BitmapFrameSource.of(BitmapFactory.decodeFile(file.getAbsolutePath()))
-                    source?.switchToDesiredState(FrameSourceState.ON)
-                    dataCaptureContext.setFrameSource(source)
+                    val bm = BitmapFactory.decodeFile(file.getAbsolutePath())
+                    val width = bm.width
+                    val height = bm.height
+                    val ruler = if(width >= height) width else height
+                    if (ruler > 500) {
+                        val scale = ruler / 500
+                        val scaled = bm.scale(width / scale, height / scale)
+                        val source = BitmapFrameSource.of(scaled)
+                        source?.switchToDesiredState(FrameSourceState.ON)
+
+                        dataCaptureContext.setFrameSource(source)
+                    } else {
+                        val source = BitmapFrameSource.of(bm)
+                        source?.switchToDesiredState(FrameSourceState.ON)
+                        dataCaptureContext.setFrameSource(source)
+                    }
+
                 } catch (e: Exception) {
                     logError(e)
                 }
@@ -177,9 +194,21 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
             override fun onTakeMediaSuccess(file: File?) {
                 try {
-                    val source = BitmapFrameSource.of(BitmapFactory.decodeFile(file?.getAbsolutePath()))
-                    source?.switchToDesiredState(FrameSourceState.ON)
-                    dataCaptureContext.setFrameSource(source)
+                    val bm = BitmapFactory.decodeFile(file?.getAbsolutePath())
+                    val width = bm.width
+                    val height = bm.height
+                    val ruler = if(width >= height) width else height
+                    if (ruler > 500) {
+                        val scale = ruler / 500
+                        val scaled = bm.scale(width / scale, height / scale)
+                        val source = BitmapFrameSource.of(scaled)
+                        source?.switchToDesiredState(FrameSourceState.ON)
+                        dataCaptureContext.setFrameSource(source)
+                    } else {
+                        val source = BitmapFrameSource.of(bm)
+                        source?.switchToDesiredState(FrameSourceState.ON)
+                        dataCaptureContext.setFrameSource(source)
+                    }
                 } catch (e: Exception) {
                     logError(e)
                 }
@@ -393,7 +422,6 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     }
 
     fun request(dialog: TakeMediaDialog) {
-        delayAfterAction({
             if (ContextCompat.checkSelfPermission(
                             this,
                             Manifest.permission.READ_EXTERNAL_STORAGE
@@ -421,7 +449,6 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                     logError(e)
                 }
             }
-        })
     }
 
     override fun onBarcodeScanned(barcodeCapture: BarcodeCapture, session: BarcodeCaptureSession, data: FrameData) {
