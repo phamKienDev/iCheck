@@ -110,47 +110,6 @@ object RelationshipHelper {
         }
     }
 
-    private fun checkFollow(tvFollow: LinearLayout?,tvUnFollow: LinearLayout?, isFollow: Boolean) {
-        // Text follow
-            if (isFollow) {
-                tvFollow?.visibility = View.GONE
-                tvUnFollow?.visibility = View.VISIBLE
-                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.UPDATE_FOLLOW_PAGE, true))
-            } else {
-                tvFollow?.visibility = View.VISIBLE
-                tvUnFollow?.visibility = View.GONE
-                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.UPDATE_FOLLOW_PAGE, false))
-            }
-    }
-
-    private fun followPage(tvFollow: LinearLayout?,tvUnFollow: LinearLayout?, pageID: Long, isFollow: Boolean, obj: ICPageOverview) {
-        postFollowPage(pageID, object : ClickFollowPage {
-            override fun onClickFollowPage() {
-                obj.isFollow = !isFollow
-                checkFollow(tvFollow,tvUnFollow, !isFollow)
-            }
-        })
-    }
-
-    fun initListener(tvFollow: LinearLayout?,tvUnFollow:LinearLayout?, obj: ICPageOverview) {
-        if (obj.isFollow) {
-            ICheckApplication.currentActivity()?.let { activity ->
-                DialogHelper.showConfirm(activity,
-                        activity.getString(R.string.bo_theo_doi_trang),
-                        activity.getString(R.string.ban_chac_chan_bo_theo_doi_trang_xxx_chu, obj.name),
-                        object : ConfirmDialogListener {
-                            override fun onDisagree() {}
-
-                            override fun onAgree() {
-                                followPage(tvFollow,tvUnFollow, obj.id!!, obj.isFollow, obj)
-                            }
-                        })
-            }
-        } else {
-            followPage(tvFollow,tvUnFollow, obj.id!!, obj.isFollow, obj)
-        }
-    }
-
     fun isFollowPage(obj: ICPageOverview, context: Context) {
         val pageDao = AppDatabase.getDatabase(context).pageFollowsDao()
 

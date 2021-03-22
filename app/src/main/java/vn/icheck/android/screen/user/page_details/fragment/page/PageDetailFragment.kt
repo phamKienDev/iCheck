@@ -446,8 +446,16 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
                     ExoPlayerManager.checkPlayVideoBase(recyclerView, layoutToolbarAlpha.height)
                 }
             }
-            ICMessageEvent.Type.UPDATE_FOLLOW_PAGE -> {
-                updateFollowState(event.data as Boolean)
+            ICMessageEvent.Type.FOLLOW_PAGE -> {
+                updateFollowState(true)
+                val index = adapter.getListData.indexOfFirst { it.viewType == ICViewTypes.INVITE_FOLLOW_TYPE }
+                if (index != -1) {
+                    adapter.getListData[index].data = viewModel.pageOverview
+                    adapter.notifyItemChanged(index)
+                }
+            }
+            ICMessageEvent.Type.UNFOLLOW_PAGE -> {
+                updateFollowState(false)
                 val index = adapter.getListData.indexOfFirst { it.viewType == ICViewTypes.INVITE_FOLLOW_TYPE }
                 if (index != -1) {
                     adapter.getListData[index].data = viewModel.pageOverview

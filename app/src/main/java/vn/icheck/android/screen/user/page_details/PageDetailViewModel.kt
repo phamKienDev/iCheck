@@ -10,6 +10,7 @@ import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.util.Util
 import com.google.gson.JsonObject
+import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
@@ -593,7 +594,7 @@ open class PageDetailViewModel : ViewModel() {
                 override fun onSuccess(obj: ICResponse<Boolean>) {
                     pageOverview?.isFollow = true
                     isFollowPage = true
-                    EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.UPDATE_FOLLOW_PAGE, true))
+                    EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.FOLLOW_PAGE, id))
                 }
 
                 override fun onError(error: ICResponseCode?) {
@@ -616,7 +617,7 @@ open class PageDetailViewModel : ViewModel() {
                 override fun onSuccess(obj: ICResponse<Boolean>) {
                     pageOverview?.isFollow = false
                     isFollowPage = false
-                    EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.UPDATE_FOLLOW_PAGE, false))
+                    EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.UNFOLLOW_PAGE, id))
                 }
 
                 override fun onError(error: ICResponseCode?) {

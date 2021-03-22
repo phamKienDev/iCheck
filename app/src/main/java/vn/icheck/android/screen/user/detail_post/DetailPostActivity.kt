@@ -630,12 +630,11 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
                     startActivityForResult(intent, requestMedia)
                 }
             }
-            ICMessageEvent.Type.UPDATE_FOLLOW_PAGE -> {
-                if (event.data as Boolean) {
-                    DialogHelper.showDialogSuccessBlack(this, this.getString(R.string.ban_da_theo_doi_trang_nay))
-                } else {
-                    DialogHelper.showDialogSuccessBlack(this, this.getString(R.string.ban_da_huy_theo_doi_trang_nay))
-                }
+            ICMessageEvent.Type.FOLLOW_PAGE -> {
+                DialogHelper.showDialogSuccessBlack(this, this.getString(R.string.ban_da_theo_doi_trang_nay))
+            }
+            ICMessageEvent.Type.UNFOLLOW_PAGE->{
+                DialogHelper.showDialogSuccessBlack(this, this.getString(R.string.ban_da_huy_theo_doi_trang_nay))
             }
             ICMessageEvent.Type.PIN_POST -> {
                 DialogHelper.showDialogSuccessBlack(this, this.getString(R.string.ghim_bai_viet_thanh_cong))

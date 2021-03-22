@@ -21,6 +21,7 @@ class ICExoMedia(val src: String?, val type: String?) {
     var progressiveMediaSource: MediaSource? = null
     var exoPlayer: SimpleExoPlayer? = null
     var mediaError: Boolean = false
+    var resetImage: Boolean = false
 
 
     //Minimum Video you want to buffer while Playing

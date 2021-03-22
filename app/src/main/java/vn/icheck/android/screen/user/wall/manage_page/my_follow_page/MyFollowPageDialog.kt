@@ -83,7 +83,8 @@ class MyFollowPageDialog(val pageId: Long) : BaseBottomSheetDialogFragment() {
 
                                     override fun onError(error: ICResponseCode?) {
                                         DialogHelper.closeLoading(this@MyFollowPageDialog)
-                                        ToastUtils.showLongError(activity, error?.message ?: ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                                        ToastUtils.showLongError(activity, error?.message
+                                                ?: ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                                     }
                                 })
                             }
@@ -96,7 +97,8 @@ class MyFollowPageDialog(val pageId: Long) : BaseBottomSheetDialogFragment() {
 
             override fun onError(error: ICResponseCode?) {
                 DialogHelper.closeLoading(this@MyFollowPageDialog)
-                ToastUtils.showLongError(requireContext(), error?.message ?: ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                ToastUtils.showLongError(requireContext(), error?.message
+                        ?: ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         })
     }
@@ -109,7 +111,9 @@ class MyFollowPageDialog(val pageId: Long) : BaseBottomSheetDialogFragment() {
 
         DialogHelper.showConfirm(requireContext(), requireContext().getString(R.string.ban_chac_chan_bo_theo_doi_trang_nay), null,
                 requireContext().getString(R.string.de_sau), requireContext().getString(R.string.dong_y), true, object : ConfirmDialogListener {
-            override fun onDisagree() {}
+            override fun onDisagree() {
+                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.DISMISS_DIALOG))
+            }
 
             override fun onAgree() {
                 interactor.unFollowPage(pageId, object : ICNewApiListener<ICResponse<Boolean>> {
@@ -119,7 +123,7 @@ class MyFollowPageDialog(val pageId: Long) : BaseBottomSheetDialogFragment() {
                             pageDao.deletePageFollowById(pageId)
 
                         DialogHelper.showDialogSuccessBlack(requireContext(), requireContext().getString(R.string.ban_da_huy_theo_doi_trang_nay))
-                        EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.UPDATE_FOLLOW_PAGE, pageId))
+                        EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.UNFOLLOW_PAGE, pageId))
                     }
 
                     override fun onError(error: ICResponseCode?) {
