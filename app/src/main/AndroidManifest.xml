@@ -525,10 +525,6 @@
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme_White" />
-        <activity
-            android:name=".screen.user.home_page.my_gift_warehouse.open_reward_box_tet.OpenRewardBoxTetActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/TranslucentStatusBarDapQua" />
         <activity android:name=".activities.chat.group.NewCreateGroupChatActivity" />
         <activity
             android:name=".screen.user.qr_code_marketing.QrCodeMarketingActivity"
