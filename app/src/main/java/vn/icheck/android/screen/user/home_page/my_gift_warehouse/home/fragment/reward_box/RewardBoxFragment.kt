@@ -9,13 +9,11 @@ import kotlinx.android.synthetic.main.fragment_box_reward.*
 import vn.icheck.android.R
 import vn.icheck.android.base.fragment.BaseFragment
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.models.ICBoxReward
 import vn.icheck.android.screen.user.home_page.my_gift_warehouse.home.fragment.reward_box.adapter.BoxRewardAdapter
 import vn.icheck.android.screen.user.home_page.my_gift_warehouse.home.fragment.reward_box.presenter.RewardBoxPresenter
 import vn.icheck.android.screen.user.home_page.my_gift_warehouse.home.fragment.reward_box.view.IRewardBoxView
 import vn.icheck.android.screen.user.home_page.my_gift_warehouse.open_reward_box.OpenRewardBoxActivity
-import vn.icheck.android.screen.user.home_page.my_gift_warehouse.open_reward_box_tet.OpenRewardBoxTetActivity
 
 class RewardBoxFragment : BaseFragment<RewardBoxPresenter>(), IRewardBoxView {
 

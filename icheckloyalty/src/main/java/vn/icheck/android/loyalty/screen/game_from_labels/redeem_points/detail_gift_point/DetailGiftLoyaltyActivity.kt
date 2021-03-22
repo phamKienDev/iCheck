@@ -32,6 +32,10 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
 
     private var campaignID: Long = -1L
     private var countExchanceGift = 0L
+    
+    companion object {
+        var obj: ICKBoxGifts? = null
+    }
 
     override fun onInitView() {
         StatusBarHelper.setOverStatusBarDark(this@DetailGiftLoyaltyActivity)
@@ -47,7 +51,6 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
 
     @SuppressLint("SetTextI18n", "SetJavaScriptEnabled")
     private fun initListener() {
-        val obj = intent.getSerializableExtra(ConstantsLoyalty.DATA_1) as ICKBoxGifts
         campaignID = intent.getLongExtra(ConstantsLoyalty.DATA_3, -1)
         val type = intent.getIntExtra(ConstantsLoyalty.DATA_7, 1) // phân biệt vào từ màn lịch sử hay không?
 
@@ -56,7 +59,7 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
             tvStatus.visibility = View.INVISIBLE
             btnDoiQua.setVisible()
 
-            when (obj.gift?.type) {
+            when (obj?.gift?.type) {
                 "ICOIN" -> {
                     layoutPhiVanChuyen.setGone()
                     btnDoiQua.setVisible()
@@ -83,7 +86,7 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
             layoutPhiVanChuyen.setGone()
             btnDoiQua.setGone()
 
-            when (obj.gift?.type) {
+            when (obj?.gift?.type) {
                 "ICOIN" -> {
                     layoutCountGift.setGone()
                     tvStatus.setVisible()
@@ -105,15 +108,15 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
 
         WidgetHelper.loadImageUrl(imgBanner, intent.getStringExtra(ConstantsLoyalty.DATA_2))
 
-        WidgetHelper.loadImageUrl(imgProduct, obj.gift?.image?.medium)
+        WidgetHelper.loadImageUrl(imgProduct, obj?.gift?.image?.medium)
 
-        tvDateTime.text = if (!obj.export_gift_from.isNullOrEmpty() && !obj.export_gift_to.isNullOrEmpty()) {
-            TimeHelper.convertDateTimeSvToDateVn(obj.export_gift_to)
+        tvDateTime.text = if (!obj?.export_gift_from.isNullOrEmpty() && !obj?.export_gift_to.isNullOrEmpty()) {
+            TimeHelper.convertDateTimeSvToDateVn(obj?.export_gift_to)
         } else {
             getString(R.string.dang_cap_nhat)
         }
 
-        when (obj.gift?.type) {
+        when (obj?.gift?.type) {
             "ICOIN" -> {
                 tvVanChuyen.text = "Quà Xu iCheck"
             }
@@ -131,29 +134,29 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
             }
         }
 
-        setStatusGift(obj.state)
+        setStatusGift(obj?.state)
 
-        tvProduct.text = if (!obj.gift?.name.isNullOrEmpty()) {
-            obj.gift?.name
+        tvProduct.text = if (!obj?.gift?.name.isNullOrEmpty()) {
+            obj?.gift?.name
         } else {
             getString(R.string.dang_cap_nhat)
         }
 
         tvCountGift.text = "${SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.COUNT_GIFT)} Quà"
 
-        tvPoin.text = if (obj.points != null) {
-            TextHelper.formatMoneyPhay(obj.points)
+        tvPoin.text = if (obj?.points != null) {
+            TextHelper.formatMoneyPhay(obj?.points)
         } else {
             getString(R.string.dang_cap_nhat)
         }
 
         tvDetailGift.settings.javaScriptEnabled = true
-        tvDetailGift.loadData(obj.gift?.description ?: "", "text/html; charset=utf-8", "UTF-8")
+        tvDetailGift.loadData(obj?.gift?.description ?: "", "text/html; charset=utf-8", "UTF-8")
 
-        WidgetHelper.loadImageUrl(imgAvatar, obj.gift?.owner?.logo?.medium)
+        WidgetHelper.loadImageUrl(imgAvatar, obj?.gift?.owner?.logo?.medium)
 
-        tvNameShop.text = if (!obj.gift?.owner?.name.isNullOrEmpty()) {
-            obj.gift?.owner?.name
+        tvNameShop.text = if (!obj?.gift?.owner?.name.isNullOrEmpty()) {
+            obj?.gift?.owner?.name
         } else {
             getString(R.string.dang_cap_nhat)
         }
@@ -167,14 +170,16 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
         }
 
         btnDoiQua.setOnClickListener {
-            if (obj.points != null) {
-                when (obj.gift?.type) {
+            if (obj?.points != null) {
+                when (obj?.gift?.type) {
                     "RECEIVE_STORE" -> {
                         DialogHelperGame.dialogTutorialLoyalty(this, R.drawable.bg_gradient_button_orange_yellow)
                     }
                     "PHONE_CARD" -> {
-                        if (obj.points!! <= SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.POINT_USER_LOYALTY)) {
-                            DialogHelperGame.dialogConfirmExchangeGifts(this@DetailGiftLoyaltyActivity, obj, campaignID)
+                        if (obj?.points!! <= SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.POINT_USER_LOYALTY)) {
+                            obj?.let { data ->
+                                DialogHelperGame.dialogConfirmExchangeGifts(this@DetailGiftLoyaltyActivity, data, campaignID)
+                            }
                         } else {
                             DialogHelperGame.dialogScanLoyaltyError(this@DetailGiftLoyaltyActivity,
                                     R.drawable.ic_error_scan_game, "Bạn không đủ điểm đổi quà!",
@@ -195,8 +200,10 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
 //                        viewModel.postExchangeCardGift()
                     }
                     else -> {
-                        if (obj.points!! <= SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.POINT_USER_LOYALTY)) {
-                            DialogHelperGame.dialogConfirmExchangeGifts(this@DetailGiftLoyaltyActivity, obj, campaignID)
+                        if (obj?.points!! <= SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.POINT_USER_LOYALTY)) {
+                            obj?.let { data ->
+                                DialogHelperGame.dialogConfirmExchangeGifts(this@DetailGiftLoyaltyActivity, data, campaignID)
+                            }
                         } else {
                             if (SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getBoolean(ConstantsLoyalty.HAS_CHANGE_CODE_REDEEM_POINTS)) {
                                 DialogHelperGame.dialogNotEnoughPoints(this, "Bạn không đủ điểm rồi!",
@@ -258,7 +265,7 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
         }
     }
 
-    private fun setStatusGift(state: Int) {
+    private fun setStatusGift(state: Int?) {
         tvStatus.run {
             when (state) {
                 1 -> {
@@ -327,4 +334,8 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        obj = null
+    }
 }
