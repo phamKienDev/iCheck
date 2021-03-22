@@ -9,6 +9,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.yarolegovich.discretescrollview.DiscreteScrollView
 import kotlinx.android.synthetic.main.activity_detail_media2.*
+import kotlinx.android.synthetic.main.ic_image_holder2.view.*
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.model.ICMessageEvent
@@ -20,7 +21,6 @@ import vn.icheck.android.network.models.ICMedia
 import vn.icheck.android.network.util.JsonHelper
 import vn.icheck.android.screen.user.media_in_post.ICExoMedia
 import vn.icheck.android.screen.user.media_in_post.MediaInPostAdapter
-import vn.icheck.android.ui.layout.CustomGridLayoutManager
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -61,7 +61,13 @@ class DetailMediaActivity : BaseActivityMVVM(), View.OnClickListener {
     }
 
     private fun initRecyclerView() {
-       val listData = JsonHelper.parseListAttachment(intent.getStringExtra(Constant.DATA_1))
+//       val listData = JsonHelper.parseListAttachment(intent.getStringExtra(Constant.DATA_1))
+        val listData = mutableListOf<ICMedia>()
+        listData.add(ICMedia("https://preetpalk.files.wordpress.com/2018/08/mini1.jpg", Constant.IMAGE))
+        listData.add(ICMedia("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4", Constant.VIDEO))
+        listData.add(ICMedia("https://tinypng.com/images/social/website.jpg", Constant.IMAGE))
+        listData.add(ICMedia("https://www.paintshoppro.com/static/psp/images/pages/seo/ui-screenshot.jpg", Constant.IMAGE))
+        listData.add(ICMedia("ttp://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4", Constant.VIDEO))
 
         if (listData.isNullOrEmpty()) {
             showShortError(getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
@@ -87,6 +93,12 @@ class DetailMediaActivity : BaseActivityMVVM(), View.OnClickListener {
                 override fun onScrollEnd(p0: RecyclerView.ViewHolder, p1: Int) {
                     adapter.getListData[p1].exoPlayer?.playWhenReady = true
                     tvSlide.text = "${p1 + 1}/${listExo.size}"
+                    if (positionView != p1) {
+                        if (adapter.getListData.get(positionView).type == Constant.IMAGE) {
+                            adapter.getListData.get(positionView).resetImage = true
+                            adapter.notifyItemChanged(positionView)
+                        }
+                    }
                     positionView = p1
                 }
 
