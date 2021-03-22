@@ -42,8 +42,9 @@ class ProductHomeRedeemPointLoyaltyHolder(parent: ViewGroup) : BaseViewHolder<IC
 
         itemView.setOnClickListener {
             SharedLoyaltyHelper(itemView.context).putLong(ConstantsLoyalty.COUNT_GIFT, obj.quota ?: 0)
+            DetailGiftLoyaltyActivity.obj = obj
             itemView.context.startActivity(Intent(itemView.context, DetailGiftLoyaltyActivity::class.java).apply {
-                putExtra(ConstantsLoyalty.DATA_1, obj)
+//                putExtra(ConstantsLoyalty.DATA_1, obj)
                 putExtra(ConstantsLoyalty.DATA_2, HomeRedeemPointActivity.banner)
                 putExtra(ConstantsLoyalty.DATA_3, HomeRedeemPointActivity.campaignID)
             })

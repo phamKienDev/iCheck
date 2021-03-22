@@ -113,8 +113,8 @@ class WebViewActivity : BaseActivityGame() {
                     header["source"] = "icheck"
 
                     SessionManager.session.user?.let { user ->
-                        header["userid"] = user.id.toString()
-                        header["icheckid"] = "i-${user.id}"
+                        header["userId"] = user.id.toString()
+                        header["icheckId"] = "i-${user.id}"
 
                         if (!user.name.isNullOrEmpty()) {
                             header["name"] = user.name.toString()
