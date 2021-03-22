@@ -28,7 +28,6 @@ class ListOfGiftsReceivedViewModel : BaseViewModel<ICKRewardGameVQMMLoyalty>() {
             repository.dispose()
         }
 
-        SharedLoyaltyHelper(ApplicationHelper.getApplicationByReflect()).putLong(ConstantsLoyalty.CAMPAIGN_ID, collectionID)
         repository.getListOfGiftsReceived(collectionID, offset, object : ICApiListener<ICKResponse<ICKListResponse<ICKRewardGameVQMMLoyalty>>> {
             override fun onSuccess(obj: ICKResponse<ICKListResponse<ICKRewardGameVQMMLoyalty>>) {
                 offset += APIConstants.LIMIT

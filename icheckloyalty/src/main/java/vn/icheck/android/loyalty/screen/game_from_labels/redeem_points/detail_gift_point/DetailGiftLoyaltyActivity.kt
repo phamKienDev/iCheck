@@ -17,6 +17,9 @@ import vn.icheck.android.loyalty.dialog.listener.IDismissDialog
 import vn.icheck.android.loyalty.helper.*
 import vn.icheck.android.loyalty.model.*
 import vn.icheck.android.loyalty.screen.game_from_labels.game_list.GameFromLabelsListActivity
+import vn.icheck.android.loyalty.screen.loyalty_customers.campaign_of_business.CampaignOfBusinessActivity
+import vn.icheck.android.loyalty.screen.loyalty_customers.exchange_phonecard.ChangePhoneCardsActivity
+import vn.icheck.android.loyalty.screen.loyalty_customers.exchange_phonecard.ExchangePhonecardSuccessDialog
 import vn.icheck.android.loyalty.screen.scan.ScanLoyaltyActivity
 import vn.icheck.android.loyalty.sdk.LoyaltySdk
 

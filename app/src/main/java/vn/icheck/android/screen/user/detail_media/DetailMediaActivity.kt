@@ -61,13 +61,7 @@ class DetailMediaActivity : BaseActivityMVVM(), View.OnClickListener {
     }
 
     private fun initRecyclerView() {
-//       val listData = JsonHelper.parseListAttachment(intent.getStringExtra(Constant.DATA_1))
-        val listData = mutableListOf<ICMedia>()
-        listData.add(ICMedia("https://preetpalk.files.wordpress.com/2018/08/mini1.jpg", Constant.IMAGE))
-        listData.add(ICMedia("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4", Constant.VIDEO))
-        listData.add(ICMedia("https://tinypng.com/images/social/website.jpg", Constant.IMAGE))
-        listData.add(ICMedia("https://www.paintshoppro.com/static/psp/images/pages/seo/ui-screenshot.jpg", Constant.IMAGE))
-        listData.add(ICMedia("ttp://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4", Constant.VIDEO))
+       val listData = JsonHelper.parseListAttachment(intent.getStringExtra(Constant.DATA_1))
 
         if (listData.isNullOrEmpty()) {
             showShortError(getString(R.string.co_loi_xay_ra_vui_long_thu_lai))

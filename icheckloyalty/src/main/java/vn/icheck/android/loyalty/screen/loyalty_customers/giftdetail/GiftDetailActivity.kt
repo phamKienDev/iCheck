@@ -21,7 +21,6 @@ import vn.icheck.android.loyalty.screen.loyalty_customers.exchange_phonecard.Exc
 class GiftDetailActivity : BaseActivityGame() {
     private val requestCard = 111
 
-    private val requestCard = 111
 
     companion object {
         fun startActivityGiftDetail(context: Context, idGift: Long, type: Int? = null) {
