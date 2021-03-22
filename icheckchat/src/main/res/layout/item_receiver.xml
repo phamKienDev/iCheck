@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    android:layout_marginEnd="55dp"
+    android:layout_marginRight="55dp"
+    android:paddingStart="12dp"
+    android:paddingLeft="12dp"
+    tools:ignore="RtlSymmetry">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgAvatarUser"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@color/lightBlue" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:gravity="start"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imgAvatarUser"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_corner_10_gray_f0"
+            android:fontFamily="@font/barlow_medium"
+            android:includeFontPadding="false"
+            android:lineHeight="20dp"
+            android:padding="10dp"
+            android:textColor="@color/black_21"
+            android:textSize="14sp"
+            android:visibility="visible"
+            tools:targetApi="p"
+            tools:text="Tôi muốn mua sản phẩm này với giá tốt nhất ở đâu? ( độ rộng maximum)" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutProduct"
+            android:layout_width="228dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_corner_10_gray_f0"
+            android:paddingBottom="10dp"
+            android:visibility="gone">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgProduct"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="H, 228:119"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@color/lightBlue" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvNameProduct"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="6dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:includeFontPadding="false"
+                android:maxLines="2"
+                android:minLines="1"
+                android:textColor="@color/black_21"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@id/imgProduct"
+                app:layout_constraintStart_toStartOf="@id/imgProduct"
+                app:layout_constraintTop_toBottomOf="@id/imgProduct"
+                tools:text="German example for ( tên sản phẩm tối đa 2 dòng)..." />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvBarcode"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="6dp"
+                android:drawableStart="@drawable/ic_scan_gray_24dp_chat"
+                android:drawableLeft="@drawable/ic_scan_gray_24dp_chat"
+                android:drawablePadding="6dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/barlow_medium"
+                android:gravity="center_vertical"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:textColor="@color/gray_75"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@id/imgProduct"
+                app:layout_constraintStart_toStartOf="@id/imgProduct"
+                app:layout_constraintTop_toBottomOf="@id/tvNameProduct"
+                tools:text="03514364161461" />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/gray_D8"
+                app:layout_constraintEnd_toEndOf="@id/tvBarcode"
+                app:layout_constraintStart_toStartOf="@id/tvBarcode"
+                app:layout_constraintTop_toBottomOf="@id/tvBarcode" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvPrice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:textColor="@color/lightBlue"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@id/view"
+                app:layout_constraintStart_toStartOf="@id/view"
+                app:layout_constraintTop_toBottomOf="@id/view"
+                tools:text="247,141,000đ" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/btnProductDetail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_corner_4_light_blue"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:padding="4dp"
+                android:text="@string/xem_san_pham"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@id/tvPrice"
+                app:layout_constraintStart_toStartOf="@id/tvPrice"
+                app:layout_constraintTop_toBottomOf="@id/tvPrice" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutPage"
+            android:layout_width="228dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_corner_10_gray_f0"
+            android:paddingBottom="10dp"
+            android:visibility="gone">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgAvatar"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@color/lightBlue" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvNamePage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginRight="6dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:textColor="@color/black_21"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/imgAvatar"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Adidas Store (tối 1 dòng)..." />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvCountFollow"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/barlow_medium"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:textColor="@color/gray_75"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@id/tvNamePage"
+                app:layout_constraintStart_toStartOf="@id/tvNamePage"
+                app:layout_constraintTop_toBottomOf="@id/tvNamePage"
+                tools:text="1,241,021 Người theo dõi" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="6dp"
+                android:background="@drawable/bg_corner_4_light_blue"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:gravity="center"
+                android:padding="4dp"
+                android:text="@string/ghe_tham"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imgAvatar" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutVoucher"
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_corner_10_gray_f0"
+            android:paddingBottom="10dp"
+            android:visibility="gone">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgVoucher"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="H, 270:141"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@color/lightBlue" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvNameVoucher"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="6dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:includeFontPadding="false"
+                android:maxLines="2"
+                android:minLines="1"
+                android:textColor="@color/black_21"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@id/imgVoucher"
+                app:layout_constraintStart_toStartOf="@id/imgVoucher"
+                app:layout_constraintTop_toBottomOf="@id/imgVoucher"
+                tools:text="Mã giảm giá 10% khi mua iphone 12 (Tên voucher  - 2 dòng) ..." />
+
+            <LinearLayout
+                android:id="@+id/linear"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                app:layout_constraintEnd_toEndOf="@id/tvNameVoucher"
+                app:layout_constraintStart_toStartOf="@id/tvNameVoucher"
+                app:layout_constraintTop_toBottomOf="@id/tvNameVoucher">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvVoucher"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/barlow_semi_bold"
+                    android:gravity="center_vertical"
+                    android:includeFontPadding="false"
+                    android:letterSpacing="0.15"
+                    android:singleLine="true"
+                    android:textColor="@color/black_21"
+                    android:textSize="20sp"
+                    tools:targetApi="lollipop"
+                    tools:text="SACH10GHFC" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/btnCopy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/barlow_semi_bold"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:singleLine="true"
+                    android:text="@string/sao_chep"
+                    android:textColor="@color/lightBlue"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/btnViewProductApply"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_corner_4_light_blue"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:padding="4dp"
+                android:text="@string/xem_san_pham_ap_dung"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@id/linear"
+                app:layout_constraintStart_toStartOf="@id/linear"
+                app:layout_constraintTop_toBottomOf="@id/linear" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <include
+            android:id="@+id/layoutImageDetail"
+            layout="@layout/item_image_chat_detail" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="start"
+            android:includeFontPadding="false"
+            android:singleLine="true"
+            android:textColor="@color/gray_b4"
+            android:textSize="12sp"
+            tools:text="12:34, 13/09/2020" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

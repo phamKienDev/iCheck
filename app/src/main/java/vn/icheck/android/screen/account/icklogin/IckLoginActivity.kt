@@ -235,8 +235,9 @@ class IckLoginActivity : BaseCoroutineActivity() {
         }
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onMessageEvent(event: ICMessageEvent) {
+    override fun onMessageEvent(event: ICMessageEvent) {
+        super.onMessageEvent(event)
+         
         try {
             if (event.type == ICMessageEvent.Type.ON_LOG_IN) {
                 setResult(Activity.RESULT_OK)

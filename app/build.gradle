@@ -117,6 +117,7 @@ dependencies {
     api "com.google.maps.android:android-maps-utils:0.5"
 
     /** iCheck network and apis **/
+    api project(path: ':icheckchat')
     api project(path: ':ichecknetwork')
     api project(path: ':icheckloyalty')
 

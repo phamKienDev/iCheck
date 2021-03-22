@@ -21,6 +21,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
+import vn.icheck.android.chat.icheckchat.sdk.ChatSdk
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.constant.ICK_TOKEN
 import vn.icheck.android.helper.DialogHelper
@@ -30,6 +31,7 @@ import vn.icheck.android.helper.ShareSessionToModule
 import vn.icheck.android.loyalty.helper.StatusBarHelper
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.models.*
+import vn.icheck.android.network.util.DeviceUtils
 import vn.icheck.android.screen.user.welcome.WelcomeActivity
 import vn.icheck.android.util.ick.openAppInGooglePlay
 import java.io.File
@@ -104,6 +106,8 @@ class CheckThemeActivity : BaseActivityMVVM() {
     }
 
     private fun getThemeSetting() {
+        ChatSdk.shareIntent(SessionManager.session.firebaseToken, SessionManager.session.user?.id, SessionManager.session.token, DeviceUtils.getUniqueDeviceId())
+
         lifecycleScope.launch {
             var themeSettingRes: ICResponse<ICThemeSetting>? = null
             var domainMarketingRes: ICResponse<ICListResponse<ICClientSetting>>? = null

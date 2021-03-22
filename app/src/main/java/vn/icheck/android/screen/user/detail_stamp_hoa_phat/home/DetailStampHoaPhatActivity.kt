@@ -24,6 +24,7 @@ import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
+import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.fragments.ProductReviewsBottomDialog
 import vn.icheck.android.helper.DialogHelper
@@ -41,7 +42,6 @@ import vn.icheck.android.screen.user.home.HomeActivity
 import vn.icheck.android.screen.user.list_product_review.ListProductReviewActivity
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
-import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 import vn.icheck.android.screen.user.view_item_image_stamp.ViewItemImageActivity
 import vn.icheck.android.util.kotlin.ContactUtils
 
@@ -243,10 +243,12 @@ class DetailStampHoaPhatActivity : BaseActivityMVVM(), SlideHeaderStampHoaPhatLi
             if (SessionManager.isUserLogged || SessionManager.isDeviceLogged) {
                 viewModel.barcodeProduct?.let {
                     it.manager?.let { manager ->
-                        SocialChatActivity.createPageChat(this, manager.id)
+//                        SocialChatActivity.createPageChat(this, manager.id)
+                        ChatSocialDetailActivity.createRoomChat(this@DetailStampHoaPhatActivity, manager.id, "page")
 //                        ChatV2Activity.createChatBot(manager.id, it.barcode, this)
                     } ?: run {
-                        SocialChatActivity.createPageChat(this,viewModel.barcodeProduct?.owner?.id, it.barcode)
+//                        SocialChatActivity.createPageChat(this,viewModel.barcodeProduct?.owner?.id, it.barcode)
+                        ChatSocialDetailActivity.createRoomChat(this@DetailStampHoaPhatActivity, viewModel.barcodeProduct?.owner?.id ?: -1, "page")
 //                        ChatV2Activity.createChatBotIcheck(it.barcode, this)
                     }
                 }

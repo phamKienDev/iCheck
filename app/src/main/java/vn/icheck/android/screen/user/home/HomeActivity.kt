@@ -54,6 +54,8 @@ import vn.icheck.android.base.dialog.notify.confirm.ConfirmDialog
 import vn.icheck.android.base.model.ICFragment
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.ISettingListener
+import vn.icheck.android.chat.icheckchat.screen.ChatSocialFragment
+import vn.icheck.android.chat.icheckchat.sdk.ChatSdk
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.Constant
@@ -66,6 +68,7 @@ import vn.icheck.android.network.models.ICClientSetting
 import vn.icheck.android.network.models.ICUser
 import vn.icheck.android.network.models.history.ICBigCorp
 import vn.icheck.android.network.models.history.ICTypeHistory
+import vn.icheck.android.network.util.DeviceUtils
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.account.icklogin.viewmodel.IckLoginViewModel
 import vn.icheck.android.screen.account.registeruser.register.RegisterUserActivity
@@ -217,7 +220,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
         listPage.add(ICFragment(null, HomePageFragment()))
         listPage.add(ICFragment(null, ListNewsFragment.newInstance(false)))
         listPage.add(ICFragment(null, ScanHistoryFragment()))
-        listPage.add(ICFragment(null, SocialChatFragment()))
+        listPage.add(ICFragment(null, ChatSocialFragment()))
 
         viewPager.offscreenPageLimit = 5
         viewPager.setPagingEnabled(false)
@@ -1051,8 +1054,10 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                     ickLoginViewModel.loginDevice(token).observe(this) { _ ->
                     }
                 }
+                ChatSdk.shareIntent(SessionManager.session.firebaseToken, SessionManager.session.user?.id, SessionManager.session.token, DeviceUtils.getUniqueDeviceId())
             }
             ICMessageEvent.Type.ON_LOG_OUT -> {
+                ChatSdk.shareIntent(SessionManager.session.firebaseToken, SessionManager.session.user?.id, SessionManager.session.token, DeviceUtils.getUniqueDeviceId())
                 tvChatCount.visibility = View.GONE
                 RelationshipManager.removeListener()
             }
@@ -1067,6 +1072,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                         .into(imgAvatar)
                 RelationshipManager.removeListener()
                 RelationshipManager.refreshToken(true)
+                ChatSdk.shareIntent(SessionManager.session.firebaseToken, SessionManager.session.user?.id, SessionManager.session.token, DeviceUtils.getUniqueDeviceId())
             }
             ICMessageEvent.Type.INIT_MENU_HISTORY -> {
                 recyclerViewMenu.layoutManager = LinearLayoutManager(this)
