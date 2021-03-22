@@ -2,7 +2,6 @@ package vn.icheck.android.screen.user.detail_stamp_thinh_long.home.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import vn.icheck.android.activities.chat.v2.ChatPagedAdapter
 import vn.icheck.android.activities.product.contribute.NullHolder
 import vn.icheck.android.callback.ItemClickListener
 import vn.icheck.android.network.models.ICCriteria

@@ -13,6 +13,8 @@ class PVcomBankRepository : BaseInteractor() {
         requestNewApi(ICNetworkClient.getNewSocialApi().getLinkFormAuth(), listener)
     }
 
+    suspend fun getFormAuth() = ICNetworkClient.getNewSocialApi().getLinkFormAuthV2()
+
     fun getMyListCard(listener: ICNewApiListener<ICResponse<ICListResponse<ICListCardPVBank>>>) {
         val fullName = SessionManager.session.user?.getNamePVCombank ?: ""
         requestNewApi(ICNetworkClient.getNewSocialApi().getListCardPVComBank(fullName), listener)
@@ -40,7 +42,7 @@ class PVcomBankRepository : BaseInteractor() {
         requestNewApi(ICNetworkClient.getNewSocialApi().lockCard(cardId), listener)
     }
 
-    fun verifyOtp(requestId: String, otp: String, otptranid: String, listener: ICNewApiListener<ICResponse<ICLockCard>>) {
+    fun verifyOtp(requestId: String, otp: String, otptranid: String, listener: ICNewApiListener<ICResponse<ICInfoPVCard>>) {
         val body = hashMapOf<String, Any>()
         body["requestId"] = requestId
         body["otpcode"] = otp

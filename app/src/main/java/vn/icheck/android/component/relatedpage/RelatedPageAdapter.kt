@@ -39,7 +39,7 @@ class RelatedPageAdapter() : RecyclerView.Adapter<RelatedPageAdapter.ViewHolder>
         override fun bind(obj: ICRelatedPage) {
             WidgetUtils.loadImageUrlRounded(binding.imgBanner, obj.corver, R.drawable.ic_default_horizontal)
 
-            WidgetUtils.loadImageUrl(binding.imgAvatar, obj.avatar, R.drawable.img_default_business_logo)
+            WidgetUtils.loadImageUrl(binding.imgAvatar, obj.avatar, R.drawable.ic_business_v2)
 
             binding.tvName.text=obj.name
             if (obj.isVerify) {

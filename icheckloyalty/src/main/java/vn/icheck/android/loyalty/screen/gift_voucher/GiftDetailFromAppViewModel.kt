@@ -12,16 +12,15 @@ import vn.icheck.android.loyalty.helper.ApplicationHelper
 import vn.icheck.android.loyalty.helper.NetworkHelper
 import vn.icheck.android.loyalty.helper.TimeHelper
 import vn.icheck.android.loyalty.helper.ToastHelper
-import vn.icheck.android.loyalty.model.ICKBaseResponse
-import vn.icheck.android.loyalty.model.ICKGift
-import vn.icheck.android.loyalty.model.ICKResponse
-import vn.icheck.android.loyalty.model.ICKWinner
+import vn.icheck.android.loyalty.model.*
 import vn.icheck.android.loyalty.network.ICApiListener
 import vn.icheck.android.loyalty.repository.CampaignRepository
+import vn.icheck.android.loyalty.repository.RedeemPointRepository
 import java.lang.Exception
 
 class GiftDetailFromAppViewModel : BaseViewModel<Any>() {
     private val repository = CampaignRepository()
+    private val exchangeRepository = RedeemPointRepository()
 
     val onErrorString = MutableLiveData<String>()
     val onSuccess = MutableLiveData<ICKGift>()
@@ -81,7 +80,7 @@ class GiftDetailFromAppViewModel : BaseViewModel<Any>() {
             override fun onSuccess(obj: ICKResponse<ICKWinner>) {
                 if (obj.statusCode == 200) {
                     onActionSuccess.postValue("")
-                }else{
+                } else {
                     ToastHelper.showLongError(ApplicationHelper.getApplicationByReflect(), getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 }
             }

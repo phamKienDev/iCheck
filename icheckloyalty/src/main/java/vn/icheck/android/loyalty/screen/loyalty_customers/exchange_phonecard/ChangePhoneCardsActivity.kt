@@ -1,6 +1,7 @@
 package vn.icheck.android.loyalty.screen.loyalty_customers.exchange_phonecard
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Intent
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.activity_change_phone_cards.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.loyalty.R
+import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.base.activity.BaseActivityGame
 import vn.icheck.android.loyalty.dialog.DialogNotification
 import vn.icheck.android.loyalty.dialog.base.DialogHelperGame
@@ -15,6 +17,25 @@ import vn.icheck.android.loyalty.model.TopupServices
 import vn.icheck.android.loyalty.utils.KeyboardUtils
 
 class ChangePhoneCardsActivity : BaseActivityGame() {
+
+    companion object {
+        fun start(activity: Activity, id: Long, typeGift: String, requestCode: Int) {
+            val intent = Intent(activity, ChangePhoneCardsActivity::class.java)
+            intent.putExtra(ConstantsLoyalty.DATA_1, id)
+            intent.putExtra(ConstantsLoyalty.DATA_2, typeGift)
+            activity.startActivityForResult(intent, requestCode)
+            activity.overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
+        }
+        fun start(activity: Activity, id: Long, typeGift: String,campaignId:Long, requestCode: Int) {
+            val intent = Intent(activity, ChangePhoneCardsActivity::class.java)
+            intent.putExtra(ConstantsLoyalty.DATA_1, id)
+            intent.putExtra(ConstantsLoyalty.DATA_2, typeGift)
+            intent.putExtra(ConstantsLoyalty.DATA_3, campaignId)
+            activity.startActivityForResult(intent, requestCode)
+            activity.overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
+        }
+    }
+
     private val viewModel by viewModels<ChangePhoneCardsViewModel>()
 
     private val adapter = ChangePhoneCardsAdapter()
@@ -103,7 +124,7 @@ class ChangePhoneCardsActivity : BaseActivityGame() {
 
         viewModel.showDialogError.observe(this@ChangePhoneCardsActivity, Observer {
             DialogHelperGame.closeLoading()
-            ExchangePhonecardFailDialog().show(supportFragmentManager, null)
+            ExchangePhonecardFailDialog(it).show(supportFragmentManager, null)
         })
     }
 }

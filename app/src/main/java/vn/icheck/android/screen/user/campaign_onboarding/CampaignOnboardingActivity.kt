@@ -7,6 +7,7 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Patterns
 import android.webkit.WebResourceRequest
+import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.lifecycle.ViewModelProvider
@@ -191,7 +192,29 @@ class CampaignOnboardingActivity : BaseActivityMVVM() {
         var loadingFinished = true
         var redirect = false
 
-        webView.settings.javaScriptEnabled = true
+        webView.settings.apply {
+            javaScriptEnabled = true
+            domStorageEnabled = true
+            allowFileAccessFromFileURLs = true
+            allowUniversalAccessFromFileURLs = true
+            setAppCacheEnabled(true)
+            loadsImagesAutomatically = true
+            javaScriptCanOpenWindowsAutomatically = true
+            allowFileAccess = true
+            mediaPlaybackRequiresUserGesture = false
+            loadWithOverviewMode = true
+            useWideViewPort = true
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
+            }
+            layoutAlgorithm = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
+            } else {
+                WebSettings.LayoutAlgorithm.SINGLE_COLUMN
+            }
+            setGeolocationEnabled(true)
+        }
+
         webView.webViewClient = object : WebViewClient() {
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                 super.onPageStarted(view, url, favicon)

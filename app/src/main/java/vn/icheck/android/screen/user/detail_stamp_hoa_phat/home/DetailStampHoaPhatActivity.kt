@@ -243,13 +243,9 @@ class DetailStampHoaPhatActivity : BaseActivityMVVM(), SlideHeaderStampHoaPhatLi
             if (SessionManager.isUserLogged || SessionManager.isDeviceLogged) {
                 viewModel.barcodeProduct?.let {
                     it.manager?.let { manager ->
-//                        SocialChatActivity.createPageChat(this, manager.id)
-                        ChatSocialDetailActivity.createRoomChat(this@DetailStampHoaPhatActivity, manager.id, "page")
-//                        ChatV2Activity.createChatBot(manager.id, it.barcode, this)
+                        SocialChatActivity.createPageChat(this, manager.id)
                     } ?: run {
-//                        SocialChatActivity.createPageChat(this,viewModel.barcodeProduct?.owner?.id, it.barcode)
-                        ChatSocialDetailActivity.createRoomChat(this@DetailStampHoaPhatActivity, viewModel.barcodeProduct?.owner?.id ?: -1, "page")
-//                        ChatV2Activity.createChatBotIcheck(it.barcode, this)
+                        SocialChatActivity.createPageChat(this,viewModel.barcodeProduct?.owner?.id, it.barcode)
                     }
                 }
             } else {

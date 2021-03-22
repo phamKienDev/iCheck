@@ -9,6 +9,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.yarolegovich.discretescrollview.DiscreteScrollView
 import kotlinx.android.synthetic.main.activity_detail_media2.*
+import kotlinx.android.synthetic.main.ic_image_holder2.view.*
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.model.ICMessageEvent
@@ -20,7 +21,6 @@ import vn.icheck.android.network.models.ICMedia
 import vn.icheck.android.network.util.JsonHelper
 import vn.icheck.android.screen.user.media_in_post.ICExoMedia
 import vn.icheck.android.screen.user.media_in_post.MediaInPostAdapter
-import vn.icheck.android.ui.layout.CustomGridLayoutManager
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -87,6 +87,12 @@ class DetailMediaActivity : BaseActivityMVVM(), View.OnClickListener {
                 override fun onScrollEnd(p0: RecyclerView.ViewHolder, p1: Int) {
                     adapter.getListData[p1].exoPlayer?.playWhenReady = true
                     tvSlide.text = "${p1 + 1}/${listExo.size}"
+                    if (positionView != p1) {
+                        if (adapter.getListData.get(positionView).type == Constant.IMAGE) {
+                            adapter.getListData.get(positionView).resetImage = true
+                            adapter.notifyItemChanged(positionView)
+                        }
+                    }
                     positionView = p1
                 }
 

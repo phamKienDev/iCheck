@@ -40,11 +40,11 @@ internal class LoyaltyCustomersRepository : BaseRepository() {
 
         params["business_loyalty_gift_id"] = businessGiftId
 
-        if (!receiver_phone.isNullOrEmpty()){
+        if (!receiver_phone.isNullOrEmpty()) {
             params["receiver_phone"] = receiver_phone
         }
 
-        if (serviceId != null){
+        if (serviceId != null) {
             params["serviceId"] = serviceId
         }
 
@@ -93,6 +93,241 @@ internal class LoyaltyCustomersRepository : BaseRepository() {
         }
 
         val url = APIConstants.LOYALTY_HOST + "loyalty/customer/campaign/accumulate-member/exchange/gift"
+        requestApi(ICNetworkClient.getApiClientLoyalty().exchangeGift(url, params), listener)
+    }
+
+
+    /**
+     * Api Đổi quà tích điểm ngắn hạn
+     */
+    fun exchangeCardGiftVQMM(serviceId: Long, giftId: Long, phone: String, listener: ICApiListener<ICKResponse<ICKRedemptionHistory>>) {
+        val user = SessionManager.session.user
+
+        val params = hashMapOf<String, Any>()
+
+        params["serviceId"] = serviceId
+        params["winner_id"] = giftId
+
+
+        if (!user?.name.isNullOrEmpty()) {
+            params["name"] = user?.name!!
+        }
+
+        if (phone.isNotEmpty()) {
+            params["receiver_phone"] = phone
+        }
+
+        if (!user?.email.isNullOrEmpty()) {
+            params["email"] = user?.email!!
+        }
+
+        if (user?.city_id != null) {
+            params["city_id"] = user.city_id!!
+        }
+
+        if (!user?.city?.name.isNullOrEmpty()) {
+            params["city_name"] = user?.city?.name!!
+        }
+
+        if (user?.district_id != null) {
+            params["district_id"] = user.district_id!!
+        }
+
+        if (!user?.district?.name.isNullOrEmpty()) {
+            params["district_name"] = user?.district?.name!!
+        }
+
+        if (user?.ward_id != null) {
+            params["ward_id"] = user.ward_id!!
+        }
+
+        if (!user?.ward?.name.isNullOrEmpty()) {
+            params["ward_name"] = user?.ward?.name!!
+        }
+
+        if (!user?.address.isNullOrEmpty()) {
+            params["address"] = user?.address!!
+        }
+
+        if (!user?.avatar.isNullOrEmpty()) {
+            params["avatar"] = user?.avatar!!
+        }
+
+
+        val url = APIConstants.LOYALTY_HOST + "loyalty/customer/campaign/receive-gift "
+        requestApi(ICNetworkClient.getApiClientLoyalty().exchangeGift(url, params), listener)
+    }
+
+
+    /**
+     * Api Đổi điểm lấy quà tích điểm ngắn hạn
+     */
+
+        fun exchangeCardGiftTDNH(campaignId: Long, giftID: Long, serviceId: Long, receiverPhone: String, listener: ICApiListener<ICKResponse<ICKRedemptionHistory>>) {
+        val params = hashMapOf<String, Any>()
+
+        val user = SessionManager.session.user
+
+        params["campaign_id"] = campaignId
+        params["gift_id"] = giftID
+        params["serviceId"] = serviceId
+        params["receiver_phone"] = receiverPhone
+
+        if (!user?.name.isNullOrEmpty()) {
+            params["name"] = user?.name!!
+        }
+        if (!user?.phone.isNullOrEmpty()) {
+            params["phone"] = user?.phone!!
+        }
+        if (!user?.email.isNullOrEmpty()) {
+            params["email"] = user?.email!!
+        }
+        if (user?.city_id != null) {
+            params["city_id"] = user.city_id!!
+        }
+        if (user?.district_id != null) {
+            params["district_id"] = user.district_id!!
+        }
+        if (user?.ward_id != null) {
+            params["ward_id"] = user.ward_id!!
+        }
+        if (!user?.address.isNullOrEmpty()) {
+            params["address"] = user?.address!!
+        }
+        if (!user?.city?.name.isNullOrEmpty()) {
+            params["city_name"] = user?.city?.name!!
+        }
+        if (!user?.district?.name.isNullOrEmpty()) {
+            params["district_name"] = user?.district?.name!!
+        }
+        if (!user?.ward?.name.isNullOrEmpty()) {
+            params["ward_name"] = user?.ward?.name!!
+        }
+        if (!user?.avatar.isNullOrEmpty()) {
+            params["avatar"] = user?.avatar!!
+        }
+
+        val host = APIConstants.LOYALTY_HOST + "loyalty/customer/campaign/exchange/gift"
+        requestApi(ICNetworkClient.getApiClientLoyalty().exchangeGift(host, params), listener)
+    }
+
+
+    /**
+     * Api Đổi quà vòng quay may mắn
+     */
+    fun exchangeCardGiftVQMM(giftId: Long, phone: String, listener: ICApiListener<ICKResponse<ICKRedemptionHistory>>) {
+        val user = SessionManager.session.user
+
+        val params = hashMapOf<String, Any>()
+
+        params["status"] = "waiting_receive_gift"
+
+        if (phone.isNotEmpty()) {
+            params["phone"] = phone
+        }
+
+        if (!user?.name.isNullOrEmpty()) {
+            params["name"] = user?.name!!
+        }
+
+        if (!user?.email.isNullOrEmpty()) {
+            params["email"] = user?.email!!
+        }
+
+        params["city_id"] =78
+
+        if (user?.city_id != null) {
+            params["city_id"] = user.city_id!!
+        }
+
+        if (!user?.city?.name.isNullOrEmpty()) {
+            params["city_name"] = user?.city?.name!!
+        }
+
+        if (user?.district_id != null) {
+            params["district_id"] = user.district_id!!
+        }
+
+        if (!user?.district?.name.isNullOrEmpty()) {
+            params["district_name"] = user?.district?.name!!
+        }
+
+        if (user?.ward_id != null) {
+            params["ward_id"] = user.ward_id!!
+        }
+
+        if (!user?.ward?.name.isNullOrEmpty()) {
+            params["ward_name"] = user?.ward?.name!!
+        }
+
+        if (!user?.address.isNullOrEmpty()) {
+            params["address"] = user?.address!!
+        }
+
+        if (!user?.avatar.isNullOrEmpty()) {
+            params["avatar"] = user?.avatar!!
+        }
+
+        val url = APIConstants.LOYALTY_HOST + "loyalty/winner/$giftId/customer-update"
+        requestApi(ICNetworkClient.getApiClientLoyalty().exchangeCardGiftVQMM(url, params), listener)
+    }
+
+    /**
+     * Api Đổi quà tích điểm ngắn hạn
+     */
+    fun exchangeCardGiftTDNH(serviceId: Long, giftId: Long, phone: String, listener: ICApiListener<ICKResponse<ICKRedemptionHistory>>) {
+        val user = SessionManager.session.user
+
+        val params = hashMapOf<String, Any>()
+
+        params["serviceId"] = serviceId
+        params["winner_id"] = giftId
+
+        if (!user?.name.isNullOrEmpty()) {
+            params["name"] = user?.name!!
+        }
+
+        if (phone.isNotEmpty()) {
+            params["receiver_phone"] = phone
+        }
+
+        if (!user?.email.isNullOrEmpty()) {
+            params["email"] = user?.email!!
+        }
+
+        if (user?.city_id != null) {
+            params["city_id"] = user.city_id!!
+        }
+
+        if (!user?.city?.name.isNullOrEmpty()) {
+            params["city_name"] = user?.city?.name!!
+        }
+
+        if (user?.district_id != null) {
+            params["district_id"] = user.district_id!!
+        }
+
+        if (!user?.district?.name.isNullOrEmpty()) {
+            params["district_name"] = user?.district?.name!!
+        }
+
+        if (user?.ward_id != null) {
+            params["ward_id"] = user.ward_id!!
+        }
+
+        if (!user?.ward?.name.isNullOrEmpty()) {
+            params["ward_name"] = user?.ward?.name!!
+        }
+
+        if (!user?.address.isNullOrEmpty()) {
+            params["address"] = user?.address!!
+        }
+
+        if (!user?.avatar.isNullOrEmpty()) {
+            params["avatar"] = user?.avatar!!
+        }
+
+        val url = APIConstants.LOYALTY_HOST + "public/loyalty/campaign/receive-gift "
         requestApi(ICNetworkClient.getApiClientLoyalty().exchangeGift(url, params), listener)
     }
 

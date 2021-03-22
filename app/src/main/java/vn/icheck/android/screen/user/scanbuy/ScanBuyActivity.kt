@@ -23,7 +23,6 @@ import com.scandit.barcodepicker.*
 import com.scandit.recognition.Barcode
 import kotlinx.android.synthetic.main.activity_scan_buy.*
 import vn.icheck.android.R
-import vn.icheck.android.activities.chat.v2.ChatV2Activity
 import vn.icheck.android.base.activity.BaseActivity
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.dialog.notify.callback.IScanBuyPopupListener
@@ -366,7 +365,7 @@ class ScanBuyActivity : BaseActivity<ScanBuyPresenter>(), OnScanListener, IScanB
                 }
 
                 override fun onClickChat() {
-                    ChatV2Activity.createChatIcheck( this@ScanBuyActivity)
+//                    ChatV2Activity.createChatIcheck( this@ScanBuyActivity)
                 }
             })
         }

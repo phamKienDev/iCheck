@@ -85,7 +85,6 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
 
     private val adapter = IckProductDetailAdapter(this, this, this, this, this, this)
 
-    private lateinit var takeMediaDialog: TakeMediaDialog
     private val permissionCamera = 98
     private var positionSubmit = -1
 
@@ -98,11 +97,32 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
     private val requestMediaInPost = 8
 
     private var isActivityVisible = true
-    private var isVoteContribution: Boolean? = null
     private var productViewedInsider = true
     private var reviewStartInsider = true
 
     private var obj: ICKLoyalty? = null
+    private val takeMediaListener = object : TakeMediaDialog.TakeImageListener {
+        override fun onPickMediaSucess(file: File) {
+            val holder = recyclerView.findViewHolderForAdapterPosition(positionSubmit)
+            if (holder != null && holder is SubmitReviewHolder) {
+                holder.setImage(file)
+            }
+        }
+
+        override fun onPickMuliMediaSucess(file: MutableList<File>) {
+            val holder = recyclerView.findViewHolderForAdapterPosition(positionSubmit)
+            if (holder != null && holder is SubmitReviewHolder) {
+                holder.setImage(file)
+            }
+        }
+
+        override fun onTakeMediaSuccess(file: File?) {
+            val holder = recyclerView.findViewHolderForAdapterPosition(positionSubmit)
+            if (holder != null && holder is SubmitReviewHolder) {
+                file?.let { holder.setImage(it) }
+            }
+        }
+    }
 
     private val mBroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -172,7 +192,6 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         setupViewModel()
         setupSwipeLayout()
         setupListener()
-        setupTakeImage()
 
         viewModel.getData(intent)
         barcode = intent.getStringExtra("barcode") ?: ""
@@ -688,30 +707,6 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         viewModel.getProductLayout()
     }
 
-    private fun setupTakeImage() {
-        takeMediaDialog = TakeMediaDialog(object : TakeMediaDialog.TakeImageListener {
-            override fun onPickMediaSucess(file: File) {
-                val holder = recyclerView.findViewHolderForAdapterPosition(positionSubmit)
-                if (holder != null && holder is SubmitReviewHolder) {
-                    holder.setImage(file)
-                }
-            }
-
-            override fun onPickMuliMediaSucess(file: MutableList<File>) {
-                val holder = recyclerView.findViewHolderForAdapterPosition(positionSubmit)
-                if (holder != null && holder is SubmitReviewHolder) {
-                    holder.setImage(file)
-                }
-            }
-
-            override fun onTakeMediaSuccess(file: File?) {
-                val holder = recyclerView.findViewHolderForAdapterPosition(positionSubmit)
-                if (holder != null && holder is SubmitReviewHolder) {
-                    file?.let { holder.setImage(it) }
-                }
-            }
-        }, true)
-    }
 
     private fun removeLoading() {
         swipeLayout.isRefreshing = false
@@ -773,7 +768,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         }
 
         positionSubmit = positionHolder
-        takeMediaDialog.show(supportFragmentManager, null)
+        TakeMediaDialog.show(supportFragmentManager,takeMediaListener,selectMulti = true)
     }
 
     override fun onPostReviewSuccess(obj: ICPost) {
@@ -913,7 +908,6 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        takeMediaDialog.takeMediaHelper?.onActivityResult(requestCode, resultCode)
 
         if (resultCode == RESULT_OK) {
             when (requestCode) {

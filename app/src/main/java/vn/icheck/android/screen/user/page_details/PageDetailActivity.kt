@@ -307,8 +307,11 @@ class PageDetailActivity : BaseActivityMVVM(), View.OnClickListener {
                 isShowLayoutFollow = event.data as Boolean
                 showLayoutAction(isShowLayoutFollow)
             }
-            ICMessageEvent.Type.UPDATE_FOLLOW_PAGE -> {
-                checkFollowState(event.data as Boolean)
+            ICMessageEvent.Type.FOLLOW_PAGE -> {
+                checkFollowState(true)
+            }
+            ICMessageEvent.Type.UNFOLLOW_PAGE -> {
+                checkFollowState(false)
             }
             ICMessageEvent.Type.ON_REQUIRE_LOGIN -> {
                 if (isActivityVisible) {

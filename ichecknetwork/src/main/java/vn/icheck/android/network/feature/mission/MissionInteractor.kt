@@ -16,7 +16,7 @@ class MissionInteractor : BaseInteractor() {
 
     fun getListMissionActive(id: String, listener: ICNewApiListener<ICResponse<ICListResponse<ICMission>>>) {
         val params = hashMapOf<String, Any?>()
-        params["rank"] = 1
+        params["rank"] = SessionManager.session.user?.rank?.level ?: 1
 
         requestNewApi(ICNetworkClient.getSocialApi().getListMissionActive(id, params), listener)
     }

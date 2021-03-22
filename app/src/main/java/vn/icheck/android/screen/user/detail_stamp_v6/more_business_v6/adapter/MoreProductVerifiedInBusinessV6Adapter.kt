@@ -1,7 +1,6 @@
 package vn.icheck.android.screen.user.detail_stamp_v6.more_business_v6.adapter
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -123,10 +122,10 @@ class MoreProductVerifiedInBusinessV6Adapter(val view: IMoreBusinessV6View) : Re
                     itemView.context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                 }
                 Constant.ERROR_EMPTY -> {
-                    itemView.context.getString(R.string.du_lieu_trong)
+                    itemView.context.getString(R.string.khong_co_du_lieu)
                 }
                 else -> {
-                    itemView.context.getString(R.string.du_lieu_trong)
+                    itemView.context.getString(R.string.khong_co_du_lieu)
                 }
             }
             itemView.txtMessage.text = message

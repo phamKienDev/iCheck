@@ -22,9 +22,9 @@ class TakeMediaDialog(val listener: TakeImageListener, private val selectMulti: 
         var INSTANCE: TakeMediaDialog? = null
         const val CROP_IMAGE_GALLERY = 1
 
-        fun show(fragmentManager: FragmentManager, listener: TakeImageListener, selectMulti: Boolean = false) {
+        fun show(fragmentManager: FragmentManager, listener: TakeImageListener, selectMulti: Boolean = false, cropImage: Boolean = false, ratio: String? = null, isVideo: Boolean = false) {
             if (fragmentManager.findFragmentByTag(TakeMediaDialog::class.java.simpleName)?.isAdded != true) {
-                TakeMediaDialog(listener, selectMulti).show(fragmentManager, TakeMediaDialog::class.java.simpleName)
+                TakeMediaDialog(listener, selectMulti, cropImage, ratio, isVideo).show(fragmentManager, TakeMediaDialog::class.java.simpleName)
             }
         }
     }

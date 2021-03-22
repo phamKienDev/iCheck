@@ -86,8 +86,8 @@ class HeaderInforPageHolder(parent: ViewGroup, val view: IListReportView) : Recy
             itemView.viewbg.beGone()
         }
 
-        WidgetUtils.loadImageUrl(itemView.imgAvaPage, data.avatar, R.drawable.img_default_business_logo_big, R.drawable.img_default_business_logo_big)
-        WidgetUtils.loadImageUrl(itemView.user_avatar, data.avatar, R.drawable.img_default_business_logo_big, R.drawable.img_default_business_logo_big)
+        WidgetUtils.loadImageUrl(itemView.imgAvaPage, data.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
+        WidgetUtils.loadImageUrl(itemView.user_avatar, data.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
         itemView.tvNamePage.text = data.name
         if (data.isVerify) {
             itemView.tvNamePage.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_18px, 0)

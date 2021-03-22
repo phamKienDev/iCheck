@@ -1,7 +1,6 @@
 package vn.icheck.android.network.feature.product
 
 import com.google.gson.JsonObject
-import okhttp3.ResponseBody
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.base.BaseInteractor
 import vn.icheck.android.network.models.*
@@ -431,5 +430,10 @@ class ProductInteractor : BaseInteractor() {
         val body = hashMapOf<String, Any>()
         body["referenceIds"] = list
         requestNewApi(ICNetworkClient.getSocialApi().getIdPageSocial(body), listener)
+    }
+
+    suspend fun getProductsECommerce(barcode: String): ICResponse<ICListResponse<ICProductECommerce>> {
+        val url = APIConstants.socialHost + APIConstants.productsECommerce().replace("{barcode}", barcode)
+        return ICNetworkClient.getNewSocialApi().getProductsECommerce(url)
     }
 }
