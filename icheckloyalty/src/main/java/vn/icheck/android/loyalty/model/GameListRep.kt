@@ -13,7 +13,7 @@ data class GameListRep(
 
         @field:SerializedName("status")
         val status: String? = null
-)
+) : Serializable
 
 data class ListGameCampaign(
 
@@ -129,8 +129,10 @@ data class ListGameCampaign(
         val header_image_rotation: ICThumbnail?,
 
         @field:SerializedName("title_button")
-        val titleButton: String? = null
+        val titleButton: String? = null,
 
+        @field:SerializedName("box")
+        val box: InfoBox? = null,
 ) : Serializable
 
 data class Owner(

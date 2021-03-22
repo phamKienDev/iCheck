@@ -162,7 +162,7 @@
             android:layout_marginTop="@dimen/size_20"
             android:background="@drawable/bg_outline_gray_1_corners_4"
             android:orientation="vertical"
-            tools:visibility="gone">
+            tools:visibility="visible">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"

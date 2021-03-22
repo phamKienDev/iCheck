@@ -16,10 +16,10 @@ object ConstantsLoyalty {
     const val HAS_CHANGE_CODE_POINT_LONG_TIME = "HAS_CHANGE_CODE_POINT_LONG_TIME"
     const val COUNT_GIFT = "COUNT_GIFT"
     const val POINT_USER_LOYALTY = "POINT_USER_LOYALTY"
-    const val CAMPAIGN_ID = "CAMPAIGN_ID"
     const val OWNER_NAME = "POINT_USER_LOYALTY"
 
     const val VQMM = "VONG_QUAY_MAY_MAN"
     const val TDNH = "TICH_DIEM_NGAN_HAN"
     const val TDDH = "TICH_DIEM_DAI_HAN"
+
 }

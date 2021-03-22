@@ -124,7 +124,7 @@ public class ICNetworkClient {
         Request.Builder builder = original.newBuilder();
 
         builder.addHeader("Content-Type", "application/json")
-                .addHeader("User-Agent", DeviceUtils.getModel())
+                .addHeader("User-Agent", "Model: " + DeviceUtils.getModel() + " + AppVersion:" + SettingManager.INSTANCE.getAppVersion())
                 .addHeader("device-id", DeviceUtils.getUniqueDeviceId())
                 .addHeader("appVersion", SettingManager.INSTANCE.getAppVersion());
 
@@ -158,7 +158,7 @@ public class ICNetworkClient {
         ICSessionData sessionData = SessionManager.INSTANCE.getSession();
 
         builder.addHeader("Content-Type", "application/json")
-                .addHeader("User-Agent", DeviceUtils.getModel())
+                .addHeader("User-Agent", "Model: " + DeviceUtils.getModel() + " + AppVersion:" + SettingManager.INSTANCE.getAppVersion())
                 .addHeader("device_id", DeviceUtils.getUniqueDeviceId())
                 .addHeader("appVersion", SettingManager.INSTANCE.getAppVersion());
 
@@ -185,6 +185,7 @@ public class ICNetworkClient {
 
         builder.addHeader("Content-Type", "application/json")
                 .addHeader("device-id", DeviceUtils.getUniqueDeviceId())
+                .addHeader("User-Agent", "Model: " + DeviceUtils.getModel() + " + AppVersion:" + SettingManager.INSTANCE.getAppVersion())
                 .addHeader("appVersion", SettingManager.INSTANCE.getAppVersion());
 
         if (APIConstants.LATITUDE != 0.0 && APIConstants.LONGITUDE != 00.0) {
@@ -205,7 +206,7 @@ public class ICNetworkClient {
         Request.Builder builder = original.newBuilder();
 
         builder.addHeader("Content-Type", "application/json")
-                .addHeader("User-Agent", DeviceUtils.getModel())
+                .addHeader("User-Agent", "Model: " + DeviceUtils.getModel() + " + AppVersion:" + SettingManager.INSTANCE.getAppVersion())
                 .addHeader("device-id", DeviceUtils.getUniqueDeviceId())
                 .addHeader("appVersion", SettingManager.INSTANCE.getAppVersion());
 
@@ -227,7 +228,7 @@ public class ICNetworkClient {
         Request.Builder builder = original.newBuilder();
 
         builder.addHeader("Content-Type", "application/json")
-                .addHeader("User-Agent", DeviceUtils.getModel())
+                .addHeader("User-Agent", "Model: " + DeviceUtils.getModel() + " + AppVersion:" + SettingManager.INSTANCE.getAppVersion())
                 .addHeader("device-id", DeviceUtils.getUniqueDeviceId())
                 .addHeader("appVersion", SettingManager.INSTANCE.getAppVersion());
 

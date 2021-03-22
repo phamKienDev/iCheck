@@ -52,6 +52,11 @@ class OnBoardingGameFragment : Fragment(), NavigateOnBoardListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        if (gameListViewModel.state.isNullOrEmpty()) {
+            requireActivity().finish()
+            return
+        }
+
         val id = LoyaltyDatabase.getDatabase(ApplicationHelper.getApplicationByReflect()).idCampaignDao().getIDCampaignByID(gameListViewModel.campaignId)?.id
         if (id == gameListViewModel.campaignId) {
             if (gameListViewModel.data != null) {

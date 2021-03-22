@@ -47,7 +47,7 @@ class ICKGift: Serializable {
     val expired_at: String? = null
 
     @Expose
-    val state: Int? = null
+    var state: Int? = null // 1- chưa nhận , 2 -đã nhận, 3 - từ chối , 4- xác nhận ship
 
     @Expose
     val created_at: String? = null

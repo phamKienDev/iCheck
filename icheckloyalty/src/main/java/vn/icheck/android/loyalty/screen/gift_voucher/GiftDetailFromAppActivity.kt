@@ -26,11 +26,11 @@ import vn.icheck.android.loyalty.screen.loyalty_customers.exchange_phonecard.Exc
  */
 class GiftDetailFromAppActivity : BaseActivityGame() {
 
+    private val requestCard = 111
+
     private val viewModel by viewModels<GiftDetailFromAppViewModel>()
 
     private val adapter = GiftDetailFromAppAdapter()
-
-    private val requestCard = 111
 
     override val getLayoutID: Int
         get() = R.layout.activity_gift_detail_from_app
@@ -99,31 +99,33 @@ class GiftDetailFromAppActivity : BaseActivityGame() {
     }
 
     private fun setUpButton(obj: ICKGift) {
-        if (obj.state==2 || obj.state ==3) {
-            layoutButton.setGone()
-        }else{
-            when (obj.rewardType) {
-                "spirit" -> {
-                    layoutButton.setGone()
-                }
-                "product" -> {
-                    if (obj.state == 1) {
-                        layoutButton.setVisible()
-                    } else {
-                        layoutButton.setGone()
-                    }
-                }
-                "PRODUCT_IN_SHOP" -> {
-                    layoutButton.setGone()
-                }
-                "CARD" -> {
+
+        when (obj.rewardType) {
+            "spirit" -> {
+                layoutButton.setGone()
+            }
+            "product" -> {
+                if (obj.state == 1) {
                     layoutButton.setVisible()
-                }
-                else -> {
+                } else {
                     layoutButton.setGone()
                 }
             }
+            "PRODUCT_IN_SHOP" -> {
+                layoutButton.setGone()
+            }
+            "CARD" -> {
+                if (obj.state == 4 || obj.state == 2 || obj.state == 3) {
+                    layoutButton.setGone()
+                } else {
+                    layoutButton.setVisible()
+                }
+            }
+            else -> {
+                layoutButton.setGone()
+            }
         }
+
 
         btnCancel.setOnClickListener {
             object : ConfirmLoyaltyDialog(this@GiftDetailFromAppActivity, "Từ chối nhận quà", "Bạn sẽ không thể nhận quà này nếu\nxác nhận từ chối", "Hủy", "Xác nhận", false) {
@@ -151,22 +153,10 @@ class GiftDetailFromAppActivity : BaseActivityGame() {
                     putExtra(ConstantsLoyalty.TYPE, 2)
                 })
             }
+
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == RESULT_OK) {
-            if (requestCode == requestCard) {
-                getData()
-                val phone = data?.getStringExtra("phone")
-                val provider = data?.getStringExtra("provider")
-
-                val dialog = ExchangePhonecardSuccessDialog(phone, provider)
-                dialog.show(supportFragmentManager, null)
-            }
-        }
-    }
 
     private fun getData() {
         swipeLayout.isRefreshing = true
@@ -179,5 +169,26 @@ class GiftDetailFromAppActivity : BaseActivityGame() {
         } else {
             super.onMessageEvent(event)
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == RESULT_OK) {
+            if (requestCode == requestCard) {
+                val phone = data?.getStringExtra("phone")
+                val provider = data?.getStringExtra("provider")
+
+                val dialog = ExchangePhonecardSuccessDialog(phone, provider)
+                dialog.show(supportFragmentManager, null)
+
+                //set lại giao diện
+                layoutButton.setGone()
+                adapter.listData.firstOrNull()?.let {
+                    it.state = 2
+                    adapter.setData(it)
+                }
+            }
+        }
+
     }
 }

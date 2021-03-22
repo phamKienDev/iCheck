@@ -5,7 +5,9 @@ import android.content.Intent
 import android.os.Handler
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_detail_gift_loyalty.*
+import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.*
 import vn.icheck.android.loyalty.base.activity.BaseActivityGame
@@ -13,24 +15,27 @@ import vn.icheck.android.loyalty.dialog.base.DialogHelperGame
 import vn.icheck.android.loyalty.dialog.listener.IClickButtonDialog
 import vn.icheck.android.loyalty.dialog.listener.IDismissDialog
 import vn.icheck.android.loyalty.helper.*
-import vn.icheck.android.loyalty.model.ICKAccumulatePoint
-import vn.icheck.android.loyalty.model.ICKBoxGifts
-import vn.icheck.android.loyalty.model.ICKNone
+import vn.icheck.android.loyalty.model.*
 import vn.icheck.android.loyalty.screen.game_from_labels.game_list.GameFromLabelsListActivity
-import vn.icheck.android.loyalty.screen.loyalty_customers.campaign_of_business.CampaignOfBusinessActivity
-import vn.icheck.android.loyalty.screen.loyalty_customers.exchange_phonecard.ChangePhoneCardsActivity
-import vn.icheck.android.loyalty.screen.loyalty_customers.exchange_phonecard.ExchangePhonecardSuccessDialog
 import vn.icheck.android.loyalty.screen.scan.ScanLoyaltyActivity
+import vn.icheck.android.loyalty.sdk.LoyaltySdk
 
 class DetailGiftLoyaltyActivity : BaseActivityGame() {
 
     private val requestCard = 111
+
     override val getLayoutID: Int
         get() = R.layout.activity_detail_gift_loyalty
 
+    private var campaignID: Long = -1L
+    private var countExchanceGift = 0L
+
+    companion object {
+        var obj: ICKBoxGifts? = null
+    }
+
     override fun onInitView() {
         StatusBarHelper.setOverStatusBarDark(this@DetailGiftLoyaltyActivity)
-
         initToolbar()
         initListener()
     }
@@ -43,17 +48,15 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
 
     @SuppressLint("SetTextI18n", "SetJavaScriptEnabled")
     private fun initListener() {
-        val obj = intent.getSerializableExtra(ConstantsLoyalty.DATA_1) as ICKBoxGifts
-        val id = intent.getLongExtra(ConstantsLoyalty.DATA_3, -1)
-
-        val type = intent.getIntExtra(ConstantsLoyalty.DATA_7, 1)
+        campaignID = intent.getLongExtra(ConstantsLoyalty.DATA_3, -1)
+        val type = intent.getIntExtra(ConstantsLoyalty.DATA_7, 1) // phân biệt vào từ màn lịch sử hay không?
 
         if (type == 1) {
             layoutCountGift.setVisible()
             tvStatus.visibility = View.INVISIBLE
             btnDoiQua.setVisible()
 
-            when (obj.gift?.type) {
+            when (obj?.gift?.type) {
                 "ICOIN" -> {
                     layoutPhiVanChuyen.setGone()
                     btnDoiQua.setVisible()
@@ -80,7 +83,7 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
             layoutPhiVanChuyen.setGone()
             btnDoiQua.setGone()
 
-            when (obj.gift?.type) {
+            when (obj?.gift?.type) {
                 "ICOIN" -> {
                     layoutCountGift.setGone()
                     tvStatus.setVisible()
@@ -102,15 +105,15 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
 
         WidgetHelper.loadImageUrl(imgBanner, intent.getStringExtra(ConstantsLoyalty.DATA_2))
 
-        WidgetHelper.loadImageUrl(imgProduct, obj.gift?.image?.medium)
+        WidgetHelper.loadImageUrl(imgProduct, obj?.gift?.image?.medium)
 
-        tvDateTime.text = if (!obj.export_gift_from.isNullOrEmpty() && !obj.export_gift_to.isNullOrEmpty()) {
-            TimeHelper.convertDateTimeSvToDateVn(obj.export_gift_to)
+        tvDateTime.text = if (!obj?.export_gift_from.isNullOrEmpty() && !obj?.export_gift_to.isNullOrEmpty()) {
+            TimeHelper.convertDateTimeSvToDateVn(obj?.export_gift_to)
         } else {
             getString(R.string.dang_cap_nhat)
         }
 
-        when (obj.gift?.type) {
+        when (obj?.gift?.type) {
             "ICOIN" -> {
                 tvVanChuyen.text = "Quà Xu iCheck"
             }
@@ -128,29 +131,29 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
             }
         }
 
-        setStatusGift(obj.state)
+        setStatusGift(obj?.state)
 
-        tvProduct.text = if (!obj.gift?.name.isNullOrEmpty()) {
-            obj.gift?.name
+        tvProduct.text = if (!obj?.gift?.name.isNullOrEmpty()) {
+            obj?.gift?.name
         } else {
             getString(R.string.dang_cap_nhat)
         }
 
         tvCountGift.text = "${SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.COUNT_GIFT)} Quà"
 
-        tvPoin.text = if (obj.points != null) {
-            TextHelper.formatMoneyPhay(obj.points)
+        tvPoin.text = if (obj?.points != null) {
+            TextHelper.formatMoneyPhay(obj?.points)
         } else {
             getString(R.string.dang_cap_nhat)
         }
 
         tvDetailGift.settings.javaScriptEnabled = true
-        tvDetailGift.loadData(obj.gift?.description ?: "", "text/html; charset=utf-8", "UTF-8")
+        tvDetailGift.loadData(obj?.gift?.description ?: "", "text/html; charset=utf-8", "UTF-8")
 
-        WidgetHelper.loadImageUrl(imgAvatar, obj.gift?.owner?.logo?.medium)
+        WidgetHelper.loadImageUrl(imgAvatar, obj?.gift?.owner?.logo?.medium)
 
-        tvNameShop.text = if (!obj.gift?.owner?.name.isNullOrEmpty()) {
-            obj.gift?.owner?.name
+        tvNameShop.text = if (!obj?.gift?.owner?.name.isNullOrEmpty()) {
+            obj?.gift?.owner?.name
         } else {
             getString(R.string.dang_cap_nhat)
         }
@@ -164,14 +167,16 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
         }
 
         btnDoiQua.setOnClickListener {
-            if (obj.points != null) {
-                when (obj.gift?.type) {
+            if (obj?.points != null) {
+                when (obj?.gift?.type) {
                     "RECEIVE_STORE" -> {
                         DialogHelperGame.dialogTutorialLoyalty(this, R.drawable.bg_gradient_button_orange_yellow)
                     }
                     "PHONE_CARD" -> {
-                        if (obj.points!! <= SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.POINT_USER_LOYALTY)) {
-                            DialogHelperGame.dialogConfirmExchangeGifts(this@DetailGiftLoyaltyActivity, obj, id)
+                        if (obj?.points!! <= SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.POINT_USER_LOYALTY)) {
+                            obj?.let { data ->
+                                DialogHelperGame.dialogConfirmExchangeGifts(this@DetailGiftLoyaltyActivity, data, campaignID)
+                            }
                         } else {
                             DialogHelperGame.dialogScanLoyaltyError(this@DetailGiftLoyaltyActivity,
                                     R.drawable.ic_error_scan_game, "Bạn không đủ điểm đổi quà!",
@@ -180,7 +185,7 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
                                     object : IClickButtonDialog<ICKNone> {
                                         override fun onClickButtonData(data: ICKNone?) {
                                             startActivity(Intent(this@DetailGiftLoyaltyActivity, CampaignOfBusinessActivity::class.java).apply {
-                                                putExtra(ConstantsLoyalty.DATA_1, id)
+                                                putExtra(ConstantsLoyalty.DATA_1, campaignID)
                                             })
                                         }
                                     }, object : IDismissDialog {
@@ -189,10 +194,13 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
                                 }
                             })
                         }
+//                        viewModel.postExchangeCardGift()
                     }
                     else -> {
-                        if (obj.points!! <= SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.POINT_USER_LOYALTY)) {
-                            DialogHelperGame.dialogConfirmExchangeGifts(this@DetailGiftLoyaltyActivity, obj, id)
+                        if (obj?.points!! <= SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.POINT_USER_LOYALTY)) {
+                            obj?.let { data ->
+                                DialogHelperGame.dialogConfirmExchangeGifts(this@DetailGiftLoyaltyActivity, data, campaignID)
+                            }
                         } else {
                             if (SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getBoolean(ConstantsLoyalty.HAS_CHANGE_CODE_REDEEM_POINTS)) {
                                 DialogHelperGame.dialogNotEnoughPoints(this, "Bạn không đủ điểm rồi!",
@@ -205,7 +213,7 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
                                                             R.drawable.ic_nhap_ma_cong_diem,
                                                             "Nhập mã được dán trên sản phẩm\nđể nhận điểm tích lũy đổi quà!",
                                                             getString(R.string.nhap_ma_vao_day),
-                                                            "Vui lòng nhập mã code", id, R.drawable.bg_gradient_button_orange_yellow,
+                                                            "Vui lòng nhập mã code", campaignID, R.drawable.bg_gradient_button_orange_yellow,
                                                             object : IClickButtonDialog<ICKAccumulatePoint> {
                                                                 override fun onClickButtonData(obj: ICKAccumulatePoint?) {
 
@@ -241,7 +249,7 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
                                         "Quét tem QRcode được dán trên bao bì\nsản phẩm để nhận điểm tích lũy đổi quà nhé!", R.drawable.ic_onboarding_scan, "Quét tem ngay", true, R.drawable.bg_button_not_enough_point, R.color.orange_red,
                                         object : IClickButtonDialog<ICKNone> {
                                             override fun onClickButtonData(obj: ICKNone?) {
-                                                startActivity<ScanLoyaltyActivity, Long>(ConstantsLoyalty.DATA_1, id)
+                                                startActivity<ScanLoyaltyActivity, Long>(ConstantsLoyalty.DATA_1, campaignID)
                                             }
                                         })
                             }
@@ -254,7 +262,7 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
         }
     }
 
-    private fun setStatusGift(state: Int) {
+    private fun setStatusGift(state: Int?) {
         tvStatus.run {
             when (state) {
                 1 -> {
@@ -287,14 +295,15 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
         }
     }
 
+
     @SuppressLint("SetTextI18n")
     override fun onMessageEvent(event: ICMessageEvent) {
         super.onMessageEvent(event)
-
-        if (event.type == ICMessageEvent.Type.ON_COUNT_GIFT) {
-            tvCountGift.text = "${SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.COUNT_GIFT)} Quà"
-        } else if (event.type == ICMessageEvent.Type.EXCHANGE_PHONE_CARD) {
-            ChangePhoneCardsActivity.start(this, event.data as Long, ConstantsLoyalty.TDNH, requestCard)
+        if (event.type == ICMessageEvent.Type.ON_COUNT_GIFT) tvCountGift.text = "${SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.COUNT_GIFT)} Quà"
+        else if (event.type == ICMessageEvent.Type.EXCHANGE_PHONE_CARD) {
+            if (event.data is Long) {
+                ChangePhoneCardsActivity.start(this, event.data, ConstantsLoyalty.TDNH, campaignID, requestCard)
+            }
         }
     }
 
@@ -310,9 +319,20 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
 
                 SharedLoyaltyHelper(this).putLong(ConstantsLoyalty.COUNT_GIFT, SharedLoyaltyHelper(this).getLong(ConstantsLoyalty.COUNT_GIFT) - 1)
                 tvCountGift.text = "${SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.COUNT_GIFT)} Quà"
-                setStatusGift(3)
-                btnDoiQua.setGone()
+                countExchanceGift++
             }
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if (countExchanceGift > 0) {
+            EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_UPDATE_POINT, countExchanceGift))
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        obj = null
     }
 }
