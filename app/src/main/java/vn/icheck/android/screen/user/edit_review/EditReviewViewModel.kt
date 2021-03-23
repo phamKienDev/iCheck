@@ -3,7 +3,9 @@ package vn.icheck.android.screen.user.edit_review
 import android.content.Intent
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.google.gson.JsonObject
+import kotlinx.coroutines.*
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.model.ICError
@@ -13,11 +15,11 @@ import vn.icheck.android.helper.ImageHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.product_review.ProductReviewInteractor
-import vn.icheck.android.network.models.upload.UploadResponse
 import vn.icheck.android.network.feature.product.ProductInteractor
 import vn.icheck.android.network.models.*
 import vn.icheck.android.network.models.product_detail.ICDataProductDetail
 import vn.icheck.android.network.util.JsonHelper
+import vn.icheck.android.util.ick.logError
 import java.io.File
 import java.lang.Exception
 
@@ -166,21 +168,28 @@ class EditReviewViewModel : ViewModel() {
     }
 
     private fun uploadImageToServer() {
-        if (listImageFile.isNullOrEmpty()) {
-            postReview(messageCriteria, listCriteria)
-        } else {
-            ImageHelper.uploadMedia(listImageFile[0], object : ICApiListener<UploadResponse> {
-                override fun onSuccess(obj: UploadResponse) {
-                    listImageString.add(obj.src)
-                    listImageFile.removeAt(0)
-                    uploadImageToServer()
-                }
+        viewModelScope.launch {
+            val listCall = mutableListOf<Deferred<Any?>>()
+            listImageFile.forEach {
+                listCall.add(async {
+                    try {
+                        val response = withTimeout(60000) { ImageHelper.uploadMediaV2(it) }
+                        if (!response.data?.src.isNullOrEmpty()) {
+                            listImageString.add(response.data?.src!!)
+                        }
+                    } catch (e: Exception) {
+                        logError(e)
+                    }
+                })
+            }
+            listCall.awaitAll()
 
-                override fun onError(error: ICBaseResponse?) {
-                    listImageFile.removeAt(0)
-                    uploadImageToServer()
-                }
-            })
+            if (!listImageString.isNullOrEmpty()) {
+                postReview(messageCriteria, listCriteria)
+            }else{
+                onStatusMessage.postValue(ICMessageEvent(ICMessageEvent.Type.MESSAGE_ERROR,
+                        ICError(R.drawable.ic_error_request, ICheckApplication.getInstance().applicationContext.getString(R.string.co_loi_xay_ra_vui_long_thu_lai), null, -1)))
+            }
         }
     }
 

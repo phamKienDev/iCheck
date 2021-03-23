@@ -768,7 +768,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         }
 
         positionSubmit = positionHolder
-        TakeMediaDialog.show(supportFragmentManager,takeMediaListener,selectMulti = true)
+        TakeMediaDialog.show(supportFragmentManager, takeMediaListener, selectMulti = true, isVideo = true)
     }
 
     override fun onPostReviewSuccess(obj: ICPost) {
