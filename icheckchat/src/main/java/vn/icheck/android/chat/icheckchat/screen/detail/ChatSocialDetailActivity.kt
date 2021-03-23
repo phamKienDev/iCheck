@@ -17,6 +17,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_chat_social_detail.*
 import kotlinx.coroutines.launch
 import vn.icheck.android.chat.icheckchat.R
 import vn.icheck.android.chat.icheckchat.base.BaseActivityChat
@@ -210,7 +211,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 //        if (binding.edtMessage.text.toString().trim().contains("http://") || binding.edtMessage.text.toString().trim().contains("https://")) {
 //            element.link = binding.edtMessage.text.toString().trim()
 //        } else {
-            element.content = binding.edtMessage.text.toString().trim()
+        element.content = binding.edtMessage.text.toString().trim()
 //        }
 
         if (!adapterImage.isEmpty) {
@@ -326,8 +327,9 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         viewModel.getChatMessage(key,
                 { obj ->
                     val listChatMessage = mutableListOf<MCDetailMessage>()
+                    var oldItem = MCDetailMessage()
                     if (obj.hasChildren()) {
-                        for (item in obj.children) {
+                        for (item in obj.children.reversed()) {
                             if (item.child("time").value.toString().toLong() > deleteAt) {
                                 val element = MCDetailMessage().apply {
                                     time = item.child("time").value as Long?
@@ -335,6 +337,11 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                                     userId = FirebaseAuth.getInstance().currentUser?.uid
                                     type = item.child("message").child("type").value.toString()
                                     avatarSender = conversation?.imageTargetUser
+                                    showTime = if (senderId != oldItem.senderId) {
+                                        true
+                                    } else {
+                                        chenhLechGio(time, oldItem.time, 1)
+                                    }
 
                                     if (item.child("message").value != null) {
                                         if (item.child("message").child("media").hasChildren()) {
@@ -373,9 +380,9 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 //                                        }
 
                                         if (!item.child("message").child("text").value.toString().contains("null")) {
-                                            if (item.child("message").child("text").value.toString().trim().contains("https://") || item.child("message").child("link").value.toString().trim().contains("http://")){
+                                            if (item.child("message").child("text").value.toString().trim().contains("https://") || item.child("message").child("link").value.toString().trim().contains("http://")) {
                                                 link = item.child("message").child("text").value.toString()
-                                            }else{
+                                            } else {
                                                 content = item.child("message").child("text").value.toString()
                                             }
                                         }
@@ -387,11 +394,12 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                                 }
 
                                 listChatMessage.add(element)
+                                oldItem = element
                             }
                         }
 
                         if (!listChatMessage.isNullOrEmpty()) {
-                            adapter.setData(listChatMessage)
+                            adapter.setData(listChatMessage.reversed().toMutableList())
                             binding.recyclerView.smoothScrollToPosition(adapter.getListData.size)
                         }
 
@@ -673,7 +681,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 binding.layoutBlock.setVisible()
             }
             MCMessageEvent.Type.HIDE_KEYBOARD -> {
-                this@ChatSocialDetailActivity.hideKeyboard()
+                val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                inputMethodManager.hideSoftInputFromWindow(binding.edtMessage.windowToken, 0)
             }
         }
     }

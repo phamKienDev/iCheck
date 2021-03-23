@@ -136,6 +136,7 @@ class MyFollowPageActivity : BaseActivityMVVM(), IRecyclerViewCallback {
                 isChange = true
                 if (countPage <= 0) {
                     tvPageCount.beGone()
+                    edtSearch.beGone()
                     adapter.setError(R.drawable.ic_group_120dp, "Bạn chưa có trang nào", -1)
                 }
             }
