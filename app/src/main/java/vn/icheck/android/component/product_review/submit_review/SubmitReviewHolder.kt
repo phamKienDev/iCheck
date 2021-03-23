@@ -1,6 +1,5 @@
 package vn.icheck.android.component.product_review.submit_review
 
-import android.os.Handler
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
@@ -27,9 +26,9 @@ import vn.icheck.android.network.feature.product_review.ProductReviewInteractor
 import vn.icheck.android.network.models.ICMedia
 import vn.icheck.android.network.models.ICPost
 import vn.icheck.android.network.models.ICReqCriteriaReview
-import vn.icheck.android.network.models.upload.UploadResponse
 import vn.icheck.android.network.models.ICCommentPermission
 import vn.icheck.android.ui.layout.CustomLinearLayoutManager
+import vn.icheck.android.util.ick.logError
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.io.File
@@ -191,23 +190,31 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
         }
 
         CoroutineScope(Dispatchers.Main).launch {
-            val listApi = mutableListOf<Deferred<ICResponse<UploadResponse>>>()
+            val listCall = mutableListOf<Deferred<Any?>>()
             listImageSend.forEach {
-                listApi.add(async {
-                    ImageHelper.uploadMediaV2(it)
+                listCall.add(async {
+                    try {
+                        val response = withTimeout(60000) { ImageHelper.uploadMediaV2(it) }
+                        if (!response.data?.src.isNullOrEmpty()) {
+                            listImageString.add(response.data?.src!!)
+                        }
+                    } catch (e: Exception) {
+                        logError(e)
+                    }
                 })
             }
 
-            for (call in listApi) {
-                try {
-                    val response = call.await()
-                    if (!response.data?.src.isNullOrEmpty()) {
-                        listImageString.add(response.data?.src!!)
-                    }
-                } catch (e: Exception) {
+            listCall.awaitAll()
+
+            if (!listImageString.isNullOrEmpty()) {
+                postReview(objReview, message, criteria)
+            }else{
+                ICheckApplication.currentActivity()?.let { activity ->
+                    DialogHelper.closeLoading(activity)
                 }
+                btnSubmit.isClickable = true
+                ToastUtils.showShortError(ICheckApplication.getInstance(), ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
-            postReview(objReview, message, criteria)
         }
     }
 

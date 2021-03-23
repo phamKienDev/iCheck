@@ -15,7 +15,7 @@ import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.post.PostInteractor
 import vn.icheck.android.network.models.ICPost
 import vn.icheck.android.network.models.ICPrivacy
-import vn.icheck.android.network.models.upload.UploadResponse
+import vn.icheck.android.util.ick.logError
 import java.io.File
 import java.lang.Exception
 
@@ -150,31 +150,35 @@ class CreateOrUpdatePostViewModel : ViewModel() {
 
     private fun uploadImage(privacyID: Long?, content: String, productID: Long?, listFile: MutableList<String>) {
         viewModelScope.launch {
-            val listApi = mutableListOf<Deferred<ICResponse<UploadResponse>>>()
+            val listCall = mutableListOf<Deferred<Any?>>()
             listFile.forEach {
                 if (it.startsWith("http")) {
                     listImage.add(it)
                 } else {
-                    listApi.add(async {
-                        ImageHelper.uploadMediaV2(File(it))
+                    listCall.add(async {
+                        try {
+                            val response = withTimeout(60000) { ImageHelper.uploadMediaV2(File(it)) }
+                            if (!response.data?.src.isNullOrEmpty()) {
+                                listImage.add(response.data?.src!!)
+                            }
+                        } catch (e: Exception) {
+                            logError(e)
+                        }
                     })
                 }
             }
 
-            for (call in listApi) {
-                try {
-                    val response = call.await()
-                    if (!response.data?.src.isNullOrEmpty()) {
-                        listImage.add(response.data?.src!!)
-                    }
-                } catch (e: Exception) {
-                }
-            }
+            listCall.awaitAll()
 
-            if (postDetail?.id == null) {
-                createPost(privacyID, content, productID)
+            if (!listImage.isNullOrEmpty()) {
+                if (postDetail?.id == null) {
+                    createPost(privacyID, content, productID)
+                } else {
+                    updatePost(postDetail!!.id, privacyID, content, productID)
+                }
             } else {
-                updatePost(postDetail!!.id, privacyID, content, productID)
+                onStatus.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
+                onShowMessage.postValue(ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         }
     }
