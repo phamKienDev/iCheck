@@ -144,25 +144,6 @@ interface ICNetworkAPI {
      * */
 
     /*
-     * Follow
-     * */
-    @GET(APIConstants.Follow.FOLLOWINGS)
-    fun getUserFollowings(@QueryMap params: HashMap<String, Any>): Observable<ICListResponse<ICUserFollowing>>
-
-    @POST(APIConstants.Follow.FOLLOWINGS)
-    fun addFollow(@Body body: HashMap<String, Any>): Observable<ICUserFollowing>
-
-    @HTTP(method = "DELETE", path = APIConstants.Follow.FOLLOWINGS, hasBody = true)
-    fun deleteFollow(@Body body: HashMap<String, Any>): Observable<ICRespDelete>
-
-    @GET(APIConstants.Follow.FOLLOWERS)
-    fun getUserFollowers(@QueryMap params: HashMap<String, Any>): Observable<ICListResponse<ICUserFollower>>
-
-    /*
-     * End Follow
-     * */
-
-    /*
      * Auth
      * */
 // LOGIN ACCOUNT KIT

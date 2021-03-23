@@ -85,8 +85,6 @@ import vn.icheck.android.screen.user.history_loading_card.home.HistoryCardActivi
 import vn.icheck.android.screen.user.home_page.home.HomePageFragment
 import vn.icheck.android.screen.user.newslistv2.ListNewsFragment
 import vn.icheck.android.screen.user.orderhistory.OrderHistoryActivity
-import vn.icheck.android.screen.user.profile.ProfileActivity
-import vn.icheck.android.screen.user.profile.updateprofile.UpdateProfileActivity
 import vn.icheck.android.screen.user.rank_of_user.RankOfUserActivity
 import vn.icheck.android.screen.user.scan_history.ScanHistoryFragment
 import vn.icheck.android.screen.user.scan_history.adapter.ScanMenuHistoryAdapter
@@ -94,7 +92,6 @@ import vn.icheck.android.screen.user.scan_history.model.ICScanHistory
 import vn.icheck.android.screen.user.scan_history.view.IScanHistoryView
 import vn.icheck.android.screen.user.scan_history.view_model.ScanHistoryViewModel
 import vn.icheck.android.screen.user.setting.SettingsActivity
-import vn.icheck.android.screen.user.social_chat.SocialChatFragment
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.screen.user.welcome.WelcomeActivity
@@ -113,8 +110,6 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
 
     private val requestProfile = 1
     private val requestUpdateProfile = 2
-
-    private val requestLoginUpdateProfile = 3
     private val requestLoginProfile = 4
     private val requestLoginCoinHistory = 5
     private val requestLoginOrderHistory = 6
@@ -602,14 +597,9 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
         super.onRequireLoginSuccess(requestCode)
 
         when (requestCode) {
-            requestLoginUpdateProfile -> {
-                startActivityForResult<UpdateProfileActivity, Boolean>(Constant.DATA_1, true, requestUpdateProfile)
-            }
             requestLoginProfile -> {
-                val user = SessionManager.session.user
-
-                if (user != null) {
-                    startActivityForResult<ProfileActivity>(requestProfile)
+                SessionManager.session.user?.id?.let { userID ->
+                    IckUserWallActivity.create(userID, this)
                 }
             }
             requestLoginOrderHistory -> {
@@ -718,16 +708,10 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                 }
             }
             R.id.imgAvatar, R.id.tv_username -> {
-//                if (SessionManager.isLogged) {
-//                    onRequireLoginSuccess(requestLoginUpdateProfile)
-//                } else {
-//                    onRequireLogin(requestLoginUpdateProfile)
-//                }
                 if (!SessionManager.isUserLogged) {
                     onRequireLogin()
                 } else {
                     IckUserWallActivity.create(SessionManager.session.user?.id, this)
-//                    simpleStartActivity(GiftWaitingActivity::class.java)
                 }
             }
             R.id.btn_icheck_xu -> {
