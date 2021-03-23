@@ -21,10 +21,12 @@ import kotlinx.android.synthetic.main.activity_chat_social_detail.*
 import kotlinx.coroutines.launch
 import vn.icheck.android.chat.icheckchat.R
 import vn.icheck.android.chat.icheckchat.base.BaseActivityChat
+import vn.icheck.android.chat.icheckchat.base.ConstantChat
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.BARCODE
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.DATA_1
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.DATA_2
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.DATA_3
+import vn.icheck.android.chat.icheckchat.base.ConstantChat.KEY
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.QR_CODE
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.SCAN
 import vn.icheck.android.chat.icheckchat.base.recyclerview.IRecyclerViewCallback
@@ -35,6 +37,7 @@ import vn.icheck.android.chat.icheckchat.databinding.ActivityChatSocialDetailBin
 import vn.icheck.android.chat.icheckchat.dialog.TakeMediaBottomSheetChat
 import vn.icheck.android.chat.icheckchat.helper.NetworkHelper
 import vn.icheck.android.chat.icheckchat.helper.PermissionChatHelper
+import vn.icheck.android.chat.icheckchat.helper.ShareHelperChat
 import vn.icheck.android.chat.icheckchat.model.*
 import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
 import vn.icheck.android.chat.icheckchat.screen.detail.adapter.ChatSocialDetailAdapter
@@ -52,6 +55,14 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 putExtra(DATA_3, type)
             })
         }
+
+        fun openRoomChatWithKey(context: Context, key: String) {
+            context.startActivity(Intent(context, ChatSocialDetailActivity::class.java).apply {
+                putExtra(KEY, key)
+            })
+        }
+
+        var isDetailChatOpen = false
     }
 
     private lateinit var viewModel: ChatSocialDetailViewModel
@@ -72,6 +83,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
     private var userId: Long? = null
     private var userType = "user"
+    private var key: String? = null
 
     var deleteAt = -1L
 
@@ -79,6 +91,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         get() = ActivityChatSocialDetailBinding::inflate
 
     override fun onInitView() {
+        isDetailChatOpen = true
         ListConversationFragment.isOpenChat = true
 
         viewModel = ViewModelProvider(this@ChatSocialDetailActivity)[ChatSocialDetailViewModel::class.java]
@@ -96,19 +109,28 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         conversation = intent.getSerializableExtra(DATA_1) as MCConversation?
         userId = intent.getLongExtra(DATA_2, -1)
         userType = intent.getStringExtra(DATA_3) ?: "user"
+        key = intent.getStringExtra(KEY)
 
-        if (conversation == null) {
-            createRoom()
-        } else {
-            binding.layoutToolbar.txtTitle.text = conversation?.targetUserName
+        when {
+            conversation != null -> {
+                binding.layoutToolbar.txtTitle.text = conversation?.targetUserName
 
-            viewModel.loginFirebase({
-                if (!conversation?.key.isNullOrEmpty()) {
-                    getChatRoom(conversation?.key!!)
-                }
-            }, {
+                viewModel.loginFirebase({
+                    if (!conversation?.key.isNullOrEmpty()) {
+                        markReadMessage(conversation?.key!!)
+                        getChatRoom(conversation?.key!!)
+                    }
+                }, {
 
-            })
+                })
+            }
+            !key.isNullOrEmpty() -> {
+                markReadMessage(key!!)
+                getChatRoom(key!!)
+            }
+            else -> {
+                createRoom()
+            }
         }
 
         binding.layoutToolbar.imgAction.setVisible()
@@ -150,6 +172,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                         conversation?.keyRoom = it.data.data.room_id
 
                         if (!it.data.data.room_id.isNullOrEmpty()) {
+                            markReadMessage(it.data.data.room_id)
                             getChatRoom(it.data.data.room_id)
                         }
                     }
@@ -267,12 +290,14 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                     if (obj.value != null) {
                         var toId = ""
                         var toType = ""
+                        var name = ""
 
                         if (obj.child("members").hasChildren()) {
                             for (item in obj.child("members").children) {
                                 if (!FirebaseAuth.getInstance().uid.toString().contains(item.child("source_id").value.toString())) {
                                     toId = item.child("source_id").value.toString()
                                     toType = item.child("type").value.toString()
+                                    name = item.child("name").value.toString()
                                 } else {
                                     deleteAt = if (item.child("deleted_at").value != null) {
                                         item.child("deleted_at").value.toString().toLong()
@@ -282,6 +307,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                                 }
                             }
                         }
+
+                        binding.layoutToolbar.txtTitle.text = name
 
                         getChatMessage(key)
 
@@ -615,6 +642,24 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         })
     }
 
+    private fun markReadMessage(key: String) {
+        viewModel.markReadMessage("user|${ShareHelperChat.getLong(ConstantChat.USER_ID)}", key).observe(this@ChatSocialDetailActivity, {
+            when (it.status) {
+                MCStatus.ERROR_NETWORK -> {
+                    showToastError(it.message)
+                }
+                MCStatus.ERROR_REQUEST -> {
+                    showToastError(it.message)
+                }
+                MCStatus.SUCCESS -> {
+                    if (it.data?.data.isNullOrEmpty()) {
+                        markReadMessage(key)
+                    }
+                }
+            }
+        })
+    }
+
     override fun onMessageClicked() {
 
     }
@@ -745,5 +790,15 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         } else {
             //keyboard is hidden
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        isDetailChatOpen = false
+    }
+
+    override fun onStop() {
+        super.onStop()
+        isDetailChatOpen = false
     }
 }

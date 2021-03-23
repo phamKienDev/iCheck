@@ -60,18 +60,20 @@ class ListConversationAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
 
             checkNullOrEmpty(binding.tvMessage, obj.lastMessage)
 
-            if (obj.isVerified) {
-                binding.tvNameUser.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_18px, 0)
-            } else {
-                binding.tvNameUser.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
-            }
-
             binding.imgAvatar.apply {
                 if (obj.type == "user") {
                     setBackgroundResource(0)
                     loadImageUrl(this@apply, obj.imageTargetUser, R.drawable.ic_user_default_52dp, R.drawable.ic_user_default_52dp)
+                    binding.tvNameUser.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                 } else {
-                    setBackgroundResource(R.drawable.ic_bg_avatar_page)
+
+                    if (obj.isVerified) {
+                        setBackgroundResource(R.drawable.ic_bg_avatar_page)
+                        binding.tvNameUser.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_18px, 0)
+                    } else {
+                        setBackgroundResource(0)
+                        binding.tvNameUser.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                    }
 
                     loadImageUrl(this@apply, obj.imageTargetUser, R.drawable.ic_default_avatar_page_chat, R.drawable.ic_default_avatar_page_chat)
                 }

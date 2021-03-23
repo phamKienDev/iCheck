@@ -119,14 +119,12 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
                 }
 
                 if (toType.contains("page")) {
-                    binding.imgAvatar.setBackgroundResource(R.drawable.ic_bg_avatar_page)
                     loadImageUrl(binding.imgAvatar, conversation?.imageTargetUser, R.drawable.ic_default_avatar_page_chat, R.drawable.ic_default_avatar_page_chat)
                 } else {
-                    binding.imgAvatar.setBackgroundResource(0)
                     loadImageUrl(binding.imgAvatar, conversation?.imageTargetUser, R.drawable.ic_user_default_52dp, R.drawable.ic_user_default_52dp)
                 }
 
-                getChatSender(id)
+                getChatSender(id, toType)
 
                 binding.btnViewProfile.apply {
                     if (obj.child("members").hasChildren()) {
@@ -201,7 +199,7 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
         })
     }
 
-    private fun getImage(key: String){
+    private fun getImage(key: String) {
         val listContent = mutableListOf<MCMedia>()
 
         viewModel.getImage(key,
@@ -227,15 +225,25 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
                 })
     }
 
-    private fun getChatSender(key: String) {
+    private fun getChatSender(key: String, toType: String) {
         viewModel.getChatSender(key, { success ->
             if (success.exists()) {
-                if (success.child("is_verify").value != null && success.child("is_verify").value.toString().toBoolean()) {
-                    val ssb = SpannableStringBuilder(conversation?.targetUserName + "   ")
-                    ssb.setSpan(getImageSpan(R.drawable.ic_verified_24dp_chat), ssb.length - 1, ssb.length, 0)
-                    binding.tvNameUser.setText(ssb, TextView.BufferType.SPANNABLE)
-                } else {
-                    binding.tvNameUser.text = conversation?.targetUserName
+                binding.imgAvatar.apply {
+                    if (success.child("is_verify").value != null && success.child("is_verify").value.toString().toBoolean()) {
+                        val ssb = SpannableStringBuilder(conversation?.targetUserName + "   ")
+                        ssb.setSpan(getImageSpan(R.drawable.ic_verified_24dp_chat), ssb.length - 1, ssb.length, 0)
+                        binding.tvNameUser.setText(ssb, TextView.BufferType.SPANNABLE)
+
+                        if (toType.contains("page")) {
+                            setBackgroundResource(R.drawable.ic_bg_avatar_page)
+                        } else {
+                            setBackgroundResource(0)
+                        }
+
+                    } else {
+                        setBackgroundResource(0)
+                        binding.tvNameUser.text = conversation?.targetUserName
+                    }
                 }
             } else {
                 binding.tvNameUser.text = conversation?.targetUserName
