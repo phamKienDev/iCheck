@@ -25,4 +25,8 @@ class MCConversation : Serializable {
     var members = mutableListOf<String>()
 
     var isNotification: Boolean = true
+
+    var type: String = "user"
+
+    var isVerified: Boolean = false
 }

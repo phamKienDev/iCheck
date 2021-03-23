@@ -153,14 +153,14 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
                                     viewModel.getChatSender(i.child("id").value.toString(), { success ->
                                         element.targetUserName = success.child("name").value.toString()
                                         element.imageTargetUser = success.child("image").value.toString()
+                                        element.isVerified = success.child("is_verify").value.toString().toBoolean()
 
                                         adapter.refreshItem(element)
                                     }, {
 
                                     })
-                                }else{
                                     element.isNotification = i.child("is_subscribe").value.toString().toBoolean()
-                                    adapter.refreshItem(element)
+                                    element.type = i.child("type").value.toString().trim()
                                 }
                             }
                         }
