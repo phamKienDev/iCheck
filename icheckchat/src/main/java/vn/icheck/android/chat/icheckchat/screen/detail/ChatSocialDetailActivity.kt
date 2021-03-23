@@ -207,11 +207,11 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
             senderId = "user|${FirebaseAuth.getInstance().currentUser?.uid}"
         }
 
-        if (binding.edtMessage.text.toString().trim().contains("http://") || binding.edtMessage.text.toString().trim().contains("https://")) {
-            element.link = binding.edtMessage.text.toString().trim()
-        } else {
+//        if (binding.edtMessage.text.toString().trim().contains("http://") || binding.edtMessage.text.toString().trim().contains("https://")) {
+//            element.link = binding.edtMessage.text.toString().trim()
+//        } else {
             element.content = binding.edtMessage.text.toString().trim()
-        }
+//        }
 
         if (!adapterImage.isEmpty) {
             binding.recyclerViewImage.setGone()
@@ -304,6 +304,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                                     })
                                 }
                             } else {
+                                adapterImage.clearData()
+                                listImageSrc.clear()
                                 setGoneView(binding.layoutChat, binding.layoutBlock)
                                 binding.layoutUserBlock.setVisible()
                                 binding.tvUserTitle.text = "Bạn đã bị ${conversation?.targetUserName} chặn tin nhắn"
@@ -366,12 +368,16 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                                             }
                                         }
 
-                                        if (!item.child("message").child("link").value.toString().contains("null")) {
-                                            link = item.child("message").child("link").value.toString()
-                                        }
+//                                        if (!item.child("message").child("link").value.toString().contains("null")) {
+//                                            link = item.child("message").child("link").value.toString()
+//                                        }
 
                                         if (!item.child("message").child("text").value.toString().contains("null")) {
-                                            content = item.child("message").child("text").value.toString()
+                                            if (item.child("message").child("text").value.toString().trim().contains("https://") || item.child("message").child("link").value.toString().trim().contains("http://")){
+                                                link = item.child("message").child("text").value.toString()
+                                            }else{
+                                                content = item.child("message").child("text").value.toString()
+                                            }
                                         }
 
                                         if (!item.child("message").child("sticker").value.toString().contains("null")) {
@@ -386,6 +392,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
                         if (!listChatMessage.isNullOrEmpty()) {
                             adapter.setData(listChatMessage)
+                            binding.recyclerView.smoothScrollToPosition(adapter.getListData.size)
                         }
 
 //                            if (!isLoadMore) {
@@ -692,7 +699,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
             }
             R.id.imgSticker -> {
                 checkKeyboard()
-                selectedTextView(binding.imgSticker, binding.layoutSticker, false)
+                selectedTextView(binding.imgSticker, binding.layoutSticker, true)
+                binding.recyclerViewImage.setVisible()
             }
             R.id.edtMessage -> {
                 binding.imgSticker.isChecked = false
@@ -728,11 +736,5 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         } else {
             //keyboard is hidden
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-
-        this@ChatSocialDetailActivity.hideKeyboard()
     }
 }
