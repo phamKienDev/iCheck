@@ -101,6 +101,7 @@ data class ICMessageEvent(val type: Type, val data: Any? = null) {
         SOCKET_TIMEOUT,
         UNFRIEND,
         ON_KYC_SUCCESS,
-        ON_DESTROY_PVCOMBANK
+        ON_DESTROY_PVCOMBANK,
+        ON_FINISH_ALL_CHAT
     }
 }
