@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".screen.user_information.UserInformationActivity">
+
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_light_blue_chat" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@drawable/shadow_bottom_chat" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgAvatar"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:padding="5dp"
+                android:background="@drawable/ic_bg_avatar_page"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                tools:src="@color/lightBlue" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvNameUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="40dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:textColor="@color/black_21"
+                android:textSize="18sp"
+                tools:text="Xuyến Đỗ ( tên giới hạn 2 dòng) giới hạn ccách lề trái phải 40" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/gray_f0" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/btnViewProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_arrow_right_blue_24dp_chat"
+                android:drawableRight="@drawable/ic_arrow_right_blue_24dp_chat"
+                android:fontFamily="@font/barlow_medium"
+                android:gravity="center_vertical"
+                android:includeFontPadding="false"
+                android:paddingStart="12dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="10dp"
+                android:textColor="@color/black_21"
+                tools:text="Xem trang cá nhân" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_f0" />
+
+            <androidx.appcompat.widget.AppCompatCheckedTextView
+                android:id="@+id/btnCheckedNotification"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/drawable_checked_switch"
+                android:drawableRight="@drawable/drawable_checked_switch"
+                android:fontFamily="@font/barlow_medium"
+                android:gravity="center_vertical"
+                android:includeFontPadding="false"
+                android:paddingStart="12dp"
+                android:paddingTop="8dp"
+                android:checked="true"
+                android:paddingEnd="12dp"
+                android:paddingBottom="8dp"
+                android:text="@string/thong_bao_tin_nhan_moi"
+                android:textColor="@color/black_21" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_f0" />
+
+            <androidx.appcompat.widget.AppCompatCheckedTextView
+                android:id="@+id/btnBlock"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/barlow_medium"
+                android:includeFontPadding="false"
+                android:paddingStart="12dp"
+                android:checked="false"
+                android:paddingTop="14dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="14dp"
+                android:text="@string/chan_tin_nhan_tu_nguoi_nay"
+                android:textColor="@color/black_21" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_f0" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/btnDeleteMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/barlow_medium"
+                android:includeFontPadding="false"
+                android:paddingStart="12dp"
+                android:paddingTop="14dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="14dp"
+                android:text="@string/xoa_cuoc_tro_chuyen"
+                android:textColor="@color/red" />
+
+            <LinearLayout
+                android:id="@+id/layoutImage"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/gray_f0"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvTitleImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/barlow_semi_bold"
+                    android:includeFontPadding="false"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:text="@string/thu_vien_anh"
+                    android:textColor="@color/blue" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:paddingBottom="20dp"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="3" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>
