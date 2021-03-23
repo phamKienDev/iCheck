@@ -1093,10 +1093,11 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
             luckyWheel -> {
                 if (!SessionManager.isUserLogged) {
                     showLoginDialog()
-                    return
                 } else {
-                    LoyaltySdk.startActivityVQMM(this@FirebaseDynamicLinksActivity, deepLink?.getQueryParameter("id"))
+                    DialogHelper.showLoading(this@FirebaseDynamicLinksActivity)
+                    LoyaltySdk.startActivityVQMM(this@FirebaseDynamicLinksActivity, deepLink?.getQueryParameter("id"), true)
                 }
+                return
             }
             accumulatePoint -> {
                 if (!SessionManager.isUserLogged) {

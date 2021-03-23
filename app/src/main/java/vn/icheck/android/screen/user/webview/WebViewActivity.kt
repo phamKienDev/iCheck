@@ -3,7 +3,6 @@ package vn.icheck.android.screen.user.webview
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -24,19 +23,14 @@ import kotlinx.android.synthetic.main.toolbar_light_blue.*
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
-import vn.icheck.android.base.activity.BaseActivity
-import vn.icheck.android.base.activity.BaseActivityPresenter
-import vn.icheck.android.base.activity.BaseActivityView
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.helper.PermissionHelper
-import vn.icheck.android.network.base.APIConstants
-import vn.icheck.android.network.base.SessionManager
-import vn.icheck.android.network.base.SettingManager
-import vn.icheck.android.screen.user.pvcombank.authen.CreatePVCardActivity
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.helper.PermissionHelper
+import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.network.base.*
+import vn.icheck.android.screen.user.pvcombank.authen.CreatePVCardActivity
 import vn.icheck.android.screen.user.pvcombank.home.HomePVCardActivity
 import vn.icheck.android.screen.user.pvcombank.listcard.ListPVCardActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
@@ -44,14 +38,15 @@ import java.net.URL
 import java.util.*
 import java.util.regex.Pattern
 
-
 class WebViewActivity : BaseActivityMVVM() {
     private var countUrl = 0
-
     private var url = ""
 
     private var webViewRequest: PermissionRequest? = null
+    private var filePathCallback: ValueCallback<Array<Uri>>? = null
+
     private val requestPermission = 1
+    private val requestChooseFile = 2
 
     companion object {
         fun start(fragmentActivity: FragmentActivity?, url: String?, isScan: Int? = null, title: String? = null, isMarketing: Boolean? = null) {
@@ -174,11 +169,11 @@ class WebViewActivity : BaseActivityMVVM() {
                 urlBuilder.appendQueryParameter("source", "icheck")
 
                 SessionManager.session.user?.let { user ->
-                    header["userid"] = user.id.toString()
-                    urlBuilder.appendQueryParameter("userid", user.id.toString())
+                    header["userId"] = user.id.toString()
+                    urlBuilder.appendQueryParameter("userId", user.id.toString())
 
-                    header["icheckid"] = "i-${user.id}"
-                    urlBuilder.appendQueryParameter("icheckid", "i-${user.id}")
+                    header["icheckId"] = "i-${user.id}"
+                    urlBuilder.appendQueryParameter("icheckId", "i-${user.id}")
 
                     if (!user.name.isNullOrEmpty()) {
                         header["name"] = user.name.toString()
@@ -267,6 +262,19 @@ class WebViewActivity : BaseActivityMVVM() {
 
                     }
                 })
+            }
+
+            override fun onShowFileChooser(webView: WebView?, filePathCallback: ValueCallback<Array<Uri>>?, fileChooserParams: WebChromeClient.FileChooserParams?): Boolean {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    fileChooserParams?.createIntent()?.let { intent ->
+//                        val chooserIntent = Intent.createChooser(intent, getString(R.string.chon_anh))
+//                        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, listOf(Intent(MediaStore.ACTION_IMAGE_CAPTURE)).toTypedArray())
+                        ActivityHelper.startActivityForResult(this@WebViewActivity, intent, requestChooseFile)
+                        this@WebViewActivity.filePathCallback = filePathCallback
+                    }
+                    return true
+                }
+                return super.onShowFileChooser(webView, filePathCallback, fileChooserParams)
             }
         }
     }
@@ -389,6 +397,19 @@ class WebViewActivity : BaseActivityMVVM() {
                     } else {
                         webViewRequest!!.deny()
                     }
+                }
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        when (requestCode) {
+            requestChooseFile -> {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    filePathCallback?.onReceiveValue(WebChromeClient.FileChooserParams.parseResult(resultCode, data))
+                    filePathCallback = null
                 }
             }
         }

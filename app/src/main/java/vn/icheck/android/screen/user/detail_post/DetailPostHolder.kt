@@ -8,6 +8,7 @@ import androidx.core.app.ShareCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_post_detail.view.*
+import kotlinx.coroutines.coroutineScope
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R

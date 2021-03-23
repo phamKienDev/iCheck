@@ -38,8 +38,8 @@ android {
         applicationId "vn.icheck.android"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 21031801
-        versionName "6.12.1"
+        versionCode 21032201
+        versionName "6.13.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled = true
         signingConfig signingConfigs.release
@@ -61,7 +61,7 @@ android {
     aaptOptions { cruncherEnabled = false }
     buildTypes {
         release {
-            debuggable false
+            debuggable true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             manifestPlaceholders = [partner: "icheckvn"]
@@ -120,6 +120,7 @@ dependencies {
     api "com.google.maps.android:android-maps-utils:0.5"
 
     /** iCheck network and apis **/
+    api project(path: ':icheckchat')
     api project(path: ':ichecknetwork')
     api project(path: ':icheckloyalty')
 

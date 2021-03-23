@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="6dp"
+    android:layout_marginLeft="6dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgUpload"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgVideo"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:padding="25dp"
+        android:visibility="invisible"
+        android:src="@drawable/ic_video_white_40dp_chat"
+        android:background="@drawable/bg_corner_4_black_opacity_50"
+        app:layout_constraintBottom_toBottomOf="@id/imgUpload"
+        app:layout_constraintEnd_toEndOf="@id/imgUpload"
+        app:layout_constraintStart_toStartOf="@id/imgUpload"
+        app:layout_constraintTop_toTopOf="@id/imgUpload" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgClose"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="67dp"
+        android:layout_marginLeft="67dp"
+        android:src="@drawable/ic_delete_red_24dp_chat"
+        app:layout_constraintStart_toStartOf="@id/imgUpload"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
