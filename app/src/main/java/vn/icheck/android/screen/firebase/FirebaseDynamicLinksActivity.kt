@@ -97,6 +97,7 @@ import vn.icheck.android.util.kotlin.ActivityUtils
 import java.net.URL
 import java.util.*
 import androidx.lifecycle.Observer
+import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 
 class FirebaseDynamicLinksActivity : AppCompatActivity() {
     private val requestLogin = 1
@@ -803,7 +804,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                         showLoginDialog()
                         return
                     } else {
-//                        ActivityUtils.startActivity<ChatV2Activity, String>(this, "id", id)
+                        ChatSocialDetailActivity.openRoomChatWithKey(this@FirebaseDynamicLinksActivity, id)
                     }
                 }
             }
@@ -811,7 +812,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                 val id = deepLink?.getQueryParameter("id")
 
                 if (!id.isNullOrEmpty()) {
-//                    ChatV2Activity.createChatUser(id.toLong(), this)
+                    ChatSocialDetailActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong(), "user")
                 }
             }
             user -> {
@@ -1001,7 +1002,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                     return
                 } else {
                     CreatePVCardViewModel().apply {
-                        checkHasCard(5000L).observe(this@FirebaseDynamicLinksActivity, Observer {checkCardRes ->
+                        checkHasCard(5000L).observe(this@FirebaseDynamicLinksActivity, Observer { checkCardRes ->
                             this@FirebaseDynamicLinksActivity.apply {
                                 when (checkCardRes.status) {
                                     Status.LOADING -> {
@@ -1022,7 +1023,8 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                                             if (SettingManager.getSessionPvcombank.isEmpty()) {
                                                 getFormAuth(5000L).observe(this, Observer { formAuthRes ->
                                                     when (formAuthRes.status) {
-                                                        Status.LOADING -> {}
+                                                        Status.LOADING -> {
+                                                        }
                                                         Status.SUCCESS -> {
                                                             DialogHelper.closeLoading(this)
                                                             if (formAuthRes.data?.data?.redirectUrl.isNullOrEmpty() || formAuthRes.data?.data?.authUrl.isNullOrEmpty()) {

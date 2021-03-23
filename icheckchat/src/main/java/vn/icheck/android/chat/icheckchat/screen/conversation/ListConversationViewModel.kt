@@ -15,7 +15,5 @@ class ListConversationViewModel : BaseViewModelChat() {
 
     fun getChatSender(child: String, success: (snapshot: DataSnapshot) -> Unit, cancel: (error: DatabaseError) -> Unit) = firebaseHelper.getChatSender(child, success, cancel)
 
-    fun markReadMessage(senderId: String, roomId: String) = request { repository.markReadMessage(senderId, roomId) }
-
     fun getChatRoom(key: String, success: (snapshot: DataSnapshot) -> Unit, cancel: (error: DatabaseError) -> Unit) = firebaseHelper.getChatRoom(key, success, cancel)
 }
