@@ -462,6 +462,12 @@ interface ICNetworkAPI {
     @Multipart
     @POST(APIConstants.Image.UPLOAD)
     fun uploadImage(@Part body: MultipartBody.Part): Call<ICResponse<UploadResponse>>
+
+    @Headers("multipart: true")
+    @Multipart
+    @POST(APIConstants.Image.UPLOAD)
+    suspend fun uploadImageV2(@Part body: MultipartBody.Part): ICResponse<UploadResponse>
+
     /*
     * End Image
     * */

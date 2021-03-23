@@ -134,7 +134,12 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
                 loadImageUrlRounded(binding.layoutImageDetail.img, obj.sticker, R.drawable.ic_default_image_upload_150_chat, dpToPx(10))
             }
 
-            binding.tvTime.text = convertDateTimeSvToCurrentDay(obj.time)
+            if (obj.showTime) {
+                binding.tvTime.setVisible()
+                binding.tvTime.text = convertDateTimeSvToCurrentDay(obj.time)
+            }else{
+                binding.tvTime.setGone()
+            }
 
             binding.root.setOnClickListener {
                 EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.HIDE_KEYBOARD))
@@ -210,7 +215,12 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
                 loadImageUrlRounded(binding.layoutImageDetail.img, obj.sticker, R.drawable.ic_default_image_upload_150_chat, dpToPx(10))
             }
 
-            binding.tvTime.text = convertDateTimeSvToCurrentDay(obj.time)
+            if (obj.showTime) {
+                binding.tvTime.setVisible()
+                binding.tvTime.text = convertDateTimeSvToCurrentDay(obj.time)
+            }else{
+                binding.tvTime.setGone()
+            }
 
             binding.root.setOnClickListener {
                 EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.HIDE_KEYBOARD))

@@ -23,4 +23,6 @@ class MCDetailMessage : Serializable {
     var listMedia: MutableList<MCMedia>? = null
 
     var product: MCProductFirebase? = null
+
+    var showTime: Boolean = false
 }
