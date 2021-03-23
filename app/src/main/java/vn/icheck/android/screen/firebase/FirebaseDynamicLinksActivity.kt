@@ -384,31 +384,17 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                 }
             }
             scan -> {
-                if (ContextCompat.checkSelfPermission(
-                                this,
-                                Manifest.permission.CAMERA
-                        ) != PackageManager.PERMISSION_GRANTED) {
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                        requestPermissions(arrayOf(Manifest.permission.CAMERA), ICK_REQUEST_CAMERA)
-                    } else {
-                        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), ICK_REQUEST_CAMERA)
-                    }
-                } else {
+                if (PermissionHelper.checkPermission(this@FirebaseDynamicLinksActivity, Manifest.permission.CAMERA, ICK_REQUEST_CAMERA)) {
                     ICKScanActivity.create(this)
+                } else {
+                    return
                 }
             }
             scanAndBuy -> {
-                if (ContextCompat.checkSelfPermission(
-                                this,
-                                Manifest.permission.CAMERA
-                        ) != PackageManager.PERMISSION_GRANTED) {
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                        requestPermissions(arrayOf(Manifest.permission.CAMERA), ICK_REQUEST_CAMERA)
-                    } else {
-                        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), ICK_REQUEST_CAMERA)
-                    }
-                } else {
+                if (PermissionHelper.checkPermission(this@FirebaseDynamicLinksActivity, Manifest.permission.CAMERA, ICK_REQUEST_CAMERA)) {
                     ICKScanActivity.create(this, 2)
+                } else {
+                    return
                 }
             }
             login -> {
@@ -653,19 +639,11 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                     showLoginDialog()
                     return
                 } else {
-                    if (ContextCompat.checkSelfPermission(
-                                    this,
-                                    Manifest.permission.CAMERA
-                            ) != PackageManager.PERMISSION_GRANTED) {
-                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                            requestPermissions(arrayOf(Manifest.permission.CAMERA), ICK_REQUEST_CAMERA)
-                        } else {
-                            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), ICK_REQUEST_CAMERA)
-                        }
-                    } else {
+                    if (PermissionHelper.checkPermission(this@FirebaseDynamicLinksActivity, Manifest.permission.CAMERA, ICK_REQUEST_CAMERA)) {
                         ICKScanActivity.create(this, 3)
+                    } else {
+                        return
                     }
-//                    ActivityUtils.startActivity<QrCodeMarketingActivity>(this)
                 }
             }
             vouchers -> {
@@ -1286,5 +1264,18 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                 finishActivity()
             }
         }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if (PermissionHelper.checkResult(grantResults)) {
+            if (requestCode == ICK_REQUEST_CAMERA) {
+                checkTarget()
+                return
+            }
+        }
+
+        finishActivity()
     }
 }
