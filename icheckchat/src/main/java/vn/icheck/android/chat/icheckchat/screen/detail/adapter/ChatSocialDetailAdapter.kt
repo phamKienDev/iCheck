@@ -222,7 +222,7 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
         view.apply {
             if (!obj.content.isNullOrEmpty()) {
                 setVisible()
-                text = obj.content
+                text = obj.content!!.replace("\r", "\n")
                 paintFlags = 0
             } else {
                 if (!obj.link.isNullOrEmpty()) {

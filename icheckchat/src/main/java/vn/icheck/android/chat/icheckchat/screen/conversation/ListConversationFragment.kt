@@ -31,6 +31,8 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
     companion object {
         var isOpenChat = false
 
+        var isOpenConversation = false
+
         fun finishAllChat() {
             EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.ON_FINISH_ALL_CHAT))
         }
@@ -41,6 +43,7 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
     }
 
     override fun onInitView() {
+        isOpenConversation = true
         viewModel = ViewModelProvider(this@ListConversationFragment)[ListConversationViewModel::class.java]
 
         initRecyclerView()
@@ -97,31 +100,9 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
     private fun setOnClick() {
         adapter.setListener(object : ListConversationAdapter.IListener {
             override fun onClickConversation(obj: MCConversation) {
-                if (obj.unreadCount != null && obj.unreadCount!! > 0L) {
-                    markReadMessage(obj)
-                }
                 startActivity(Intent(requireContext(), ChatSocialDetailActivity::class.java).apply {
                     putExtra(ConstantChat.DATA_1, obj)
                 })
-            }
-        })
-    }
-
-    private fun markReadMessage(obj: MCConversation) {
-        viewModel.markReadMessage("user|${ShareHelperChat.getLong(USER_ID)}", obj.key
-                ?: "").observe(this@ListConversationFragment, {
-            when (it.status) {
-                MCStatus.ERROR_NETWORK -> {
-                    requireContext().showToastError(it.message)
-                }
-                MCStatus.ERROR_REQUEST -> {
-                    requireContext().showToastError(it.message)
-                }
-                MCStatus.SUCCESS -> {
-                    if (it.data?.data.isNullOrEmpty()) {
-                        markReadMessage(obj)
-                    }
-                }
             }
         })
     }
@@ -228,5 +209,15 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
     override fun onResume() {
         super.onResume()
         isOpenChat = false
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        isOpenConversation = false
+    }
+
+    override fun onStop() {
+        super.onStop()
+        isOpenConversation = false
     }
 }
