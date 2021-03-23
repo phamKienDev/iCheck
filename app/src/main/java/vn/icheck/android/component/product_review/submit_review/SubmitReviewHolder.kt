@@ -10,6 +10,7 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import de.hdodenhof.circleimageview.CircleImageView
+import kotlinx.coroutines.*
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
@@ -32,6 +33,7 @@ import vn.icheck.android.ui.layout.CustomLinearLayoutManager
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.io.File
+import java.lang.Exception
 
 class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.RecycledViewPool?, val listener: ISubmitReviewListener) : RecyclerView.ViewHolder(ViewHelper.createFormSubmitReview(parent.context)) {
     lateinit var rcvRating: RecyclerView
@@ -85,11 +87,9 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
             })
         }
 
-
         imgCamera.setOnClickListener {
             listener.onTakeImage(adapterPosition)
         }
-
         imgPermission.setOnClickListener {
             showSelectPermission()
         }
@@ -180,11 +180,7 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
         listImageSend.add(file)
     }
 
-    fun postReview() {
-        btnSubmit.performClick()
-    }
-
-    fun uploadImageToServer(objReview: SubmitReviewModel, message: String, criteria: MutableList<ICReqCriteriaReview>) {
+    private fun uploadImageToServer(objReview: SubmitReviewModel, message: String, criteria: MutableList<ICReqCriteriaReview>) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance().applicationContext)) {
             ICheckApplication.currentActivity()?.let { activity ->
                 DialogHelper.closeLoading(activity)
@@ -194,20 +190,24 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
             return
         }
 
-        if (listImageSend.isEmpty()) {
-            postReview(objReview, message, criteria)
-        } else {
-            ImageHelper.uploadMedia(listImageSend[0], object : ICApiListener<UploadResponse> {
-                override fun onSuccess(obj: UploadResponse) {
-                    listImageString.add(obj.src)
-                    listImageSend.removeAt(0)
-                    uploadImageToServer(objReview, message, criteria)
-                }
+        CoroutineScope(Dispatchers.Main).launch {
+            val listApi = mutableListOf<Deferred<ICResponse<UploadResponse>>>()
+            listImageSend.forEach {
+                listApi.add(async {
+                    ImageHelper.uploadMediaV2(it)
+                })
+            }
 
-                override fun onError(error: ICBaseResponse?) {
-                    uploadImageToServer(objReview, message, criteria)
+            for (call in listApi) {
+                try {
+                    val response = call.await()
+                    if (!response.data?.src.isNullOrEmpty()) {
+                        listImageString.add(response.data?.src!!)
+                    }
+                } catch (e: Exception) {
                 }
-            })
+            }
+            postReview(objReview, message, criteria)
         }
     }
 

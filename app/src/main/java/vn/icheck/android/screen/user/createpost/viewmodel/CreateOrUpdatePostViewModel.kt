@@ -3,6 +3,8 @@ package vn.icheck.android.screen.user.createpost.viewmodel
 import android.content.Intent
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.*
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.model.ICMessageEvent
@@ -15,6 +17,7 @@ import vn.icheck.android.network.models.ICPost
 import vn.icheck.android.network.models.ICPrivacy
 import vn.icheck.android.network.models.upload.UploadResponse
 import java.io.File
+import java.lang.Exception
 
 /**
  * Created by VuLCL on 8/6/2020.
@@ -146,26 +149,28 @@ class CreateOrUpdatePostViewModel : ViewModel() {
     }
 
     private fun uploadImage(privacyID: Long?, content: String, productID: Long?, listFile: MutableList<String>) {
-        if (listFile.isNotEmpty()) {
-            if (listFile[0].startsWith("http")) {
-                listImage.add(listFile[0])
-                listFile.removeAt(0)
-                uploadImage(privacyID, content, productID, listFile)
-            } else {
-                ImageHelper.uploadMedia(File(listFile[0]), object : ICApiListener<UploadResponse> {
-                    override fun onSuccess(obj: UploadResponse) {
-                        listFile.removeAt(0)
-                        listImage.add(obj.src)
-                        uploadImage(privacyID, content, productID, listFile)
-                    }
-
-                    override fun onError(error: ICBaseResponse?) {
-                        onStatus.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                        onShowMessage.postValue(ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
-                    }
-                })
+        viewModelScope.launch {
+            val listApi = mutableListOf<Deferred<ICResponse<UploadResponse>>>()
+            listFile.forEach {
+                if (it.startsWith("http")) {
+                    listImage.add(it)
+                } else {
+                    listApi.add(async {
+                        ImageHelper.uploadMediaV2(File(it))
+                    })
+                }
             }
-        } else {
+
+            for (call in listApi) {
+                try {
+                    val response = call.await()
+                    if (!response.data?.src.isNullOrEmpty()) {
+                        listImage.add(response.data?.src!!)
+                    }
+                } catch (e: Exception) {
+                }
+            }
+
             if (postDetail?.id == null) {
                 createPost(privacyID, content, productID)
             } else {
