@@ -9,7 +9,6 @@ import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ItemListProductsEcommerceBinding
 import vn.icheck.android.loyalty.helper.ActivityHelper
-import vn.icheck.android.network.models.ICLayout
 import vn.icheck.android.network.models.ICProductECommerce
 import vn.icheck.android.network.util.JsonHelper
 import vn.icheck.android.screen.user.listproductecommerce.ListProductsECommerceActivity
