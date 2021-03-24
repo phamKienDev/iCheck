@@ -257,25 +257,25 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
     }
 
     fun getPVCombank() {
-        var response: ICResponse<ICListResponse<ICListCardPVBank>>? = null
-
-        if (SessionManager.isUserLogged && SettingManager.getSessionPvcombank.isNotEmpty()) {
-            viewModelScope.launch {
-                response = try {
-                    withTimeoutOrNull(5000) { pvcombankRepository.getMyListCards() }
-                } catch (e: Exception) {
-                    null
-                }
-
-                if (response?.data?.rows?.firstOrNull() == null) {
-                    SettingManager.setSessionIdPvcombank("")
-                }
-
-                onUpdatePVCombank.value = response?.data?.rows?.firstOrNull()
-            }
-        } else {
-            onUpdatePVCombank.value = response?.data?.rows?.firstOrNull()
-        }
+//        var response: ICResponse<ICListResponse<ICListCardPVBank>>? = null
+//
+//        if (SessionManager.isUserLogged && SettingManager.getSessionPvcombank.isNotEmpty()) {
+//            viewModelScope.launch {
+//                response = try {
+//                    withTimeoutOrNull(5000) { pvcombankRepository.getMyListCards() }
+//                } catch (e: Exception) {
+//                    null
+//                }
+//
+//                if (response?.data?.rows?.firstOrNull() == null) {
+//                    SettingManager.setSessionIdPvcombank("")
+//                }
+//
+//                onUpdatePVCombank.value = response?.data?.rows?.firstOrNull()
+//            }
+//        } else {
+//            onUpdatePVCombank.value = response?.data?.rows?.firstOrNull()
+//        }
     }
 
     fun getAds(isOnResume: Boolean) {
