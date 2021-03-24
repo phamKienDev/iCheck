@@ -29,4 +29,6 @@ class ChatSocialDetailViewModel : BaseViewModelChat() {
     fun createRoom(members: MutableList<MCMember>) = request { repository.createRoomChat(members) }
 
     fun getChatSender(child: String, success: (snapshot: DataSnapshot) -> Unit, cancel: (error: DatabaseError) -> Unit) = firebaseHelper.getChatSender(child, success, cancel)
+
+    fun markReadMessage(senderId: String, roomId: String) = request { repository.markReadMessage(senderId, roomId) }
 }

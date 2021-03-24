@@ -1,7 +1,6 @@
 package vn.icheck.android.screen.user.home_page.campaign.detail_campaign.fragment.winner_campaign
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,15 +8,12 @@ import kotlinx.android.synthetic.main.fragment_the_winner_fragment.*
 import vn.icheck.android.R
 import vn.icheck.android.base.fragment.BaseFragment
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.network.models.ICCampaign
 import vn.icheck.android.network.models.ICCampaign_User_Reward
 import vn.icheck.android.network.models.ICDetail_Campaign
-import vn.icheck.android.screen.account.home.AccountActivity
-import vn.icheck.android.screen.user.home_page.campaign.detail_campaign.fragment.infor_campaign.InforCampaignFragment
 import vn.icheck.android.screen.user.home_page.campaign.detail_campaign.fragment.winner_campaign.adapter.UserRewardCampaignAdapter
 import vn.icheck.android.screen.user.home_page.campaign.detail_campaign.fragment.winner_campaign.presenter.TheWinnerCampaignPresenter
 import vn.icheck.android.screen.user.home_page.campaign.detail_campaign.fragment.winner_campaign.view.ITheWinnerCampaignView
-import vn.icheck.android.screen.user.profile.ProfileActivity
+import vn.icheck.android.screen.user.wall.IckUserWallActivity
 
 class TheWinnerCampaignFragment : BaseFragment<TheWinnerCampaignPresenter>(), ITheWinnerCampaignView {
 
@@ -65,9 +61,7 @@ class TheWinnerCampaignFragment : BaseFragment<TheWinnerCampaignPresenter>(), IT
     }
 
     override fun onClickItem(item: ICCampaign_User_Reward) {
-        val intent = Intent(context,ProfileActivity::class.java)
-        intent.putExtra(Constant.DATA_1,item.user_id)
-        startActivity(intent)
+        IckUserWallActivity.create(item.user_id, requireActivity())
     }
 
     @SuppressLint("SetTextI18n")

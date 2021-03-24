@@ -33,4 +33,5 @@ object ConstantChat {
     const val QR_CODE = "QR_CODE"
     const val VIDEO = "video"
     const val IMAGE = "image"
+    const val KEY = "KEY"
 }

@@ -572,12 +572,6 @@
             android:theme="@style/AppTheme_White"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".screen.user.profile.updateprofile.UpdateProfileActivity"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme_White"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
             android:name=".screen.user.profile.confirmphone.ConfirmNewPhoneActivity"
             android:exported="true"
             android:screenOrientation="portrait"
@@ -903,18 +897,6 @@
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.OverStatusBar"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".screen.user.follow.FollowActivity"
-            android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|orientation|screenLayout|touchscreen|uiMode"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme_White"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".screen.user.profile.ProfileActivity"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme_White"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".screen.account.registeruser.inputotp.RegisterUserOtpActivity"

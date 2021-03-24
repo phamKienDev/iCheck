@@ -97,6 +97,8 @@ import vn.icheck.android.util.kotlin.ActivityUtils
 import java.net.URL
 import java.util.*
 import androidx.lifecycle.Observer
+import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
+import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 
 class FirebaseDynamicLinksActivity : AppCompatActivity() {
     private val requestLogin = 1
@@ -384,31 +386,17 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                 }
             }
             scan -> {
-                if (ContextCompat.checkSelfPermission(
-                                this,
-                                Manifest.permission.CAMERA
-                        ) != PackageManager.PERMISSION_GRANTED) {
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                        requestPermissions(arrayOf(Manifest.permission.CAMERA), ICK_REQUEST_CAMERA)
-                    } else {
-                        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), ICK_REQUEST_CAMERA)
-                    }
-                } else {
+                if (PermissionHelper.checkPermission(this@FirebaseDynamicLinksActivity, Manifest.permission.CAMERA, ICK_REQUEST_CAMERA)) {
                     ICKScanActivity.create(this)
+                } else {
+                    return
                 }
             }
             scanAndBuy -> {
-                if (ContextCompat.checkSelfPermission(
-                                this,
-                                Manifest.permission.CAMERA
-                        ) != PackageManager.PERMISSION_GRANTED) {
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                        requestPermissions(arrayOf(Manifest.permission.CAMERA), ICK_REQUEST_CAMERA)
-                    } else {
-                        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), ICK_REQUEST_CAMERA)
-                    }
-                } else {
+                if (PermissionHelper.checkPermission(this@FirebaseDynamicLinksActivity, Manifest.permission.CAMERA, ICK_REQUEST_CAMERA)) {
                     ICKScanActivity.create(this, 2)
+                } else {
+                    return
                 }
             }
             login -> {
@@ -653,19 +641,11 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                     showLoginDialog()
                     return
                 } else {
-                    if (ContextCompat.checkSelfPermission(
-                                    this,
-                                    Manifest.permission.CAMERA
-                            ) != PackageManager.PERMISSION_GRANTED) {
-                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                            requestPermissions(arrayOf(Manifest.permission.CAMERA), ICK_REQUEST_CAMERA)
-                        } else {
-                            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), ICK_REQUEST_CAMERA)
-                        }
-                    } else {
+                    if (PermissionHelper.checkPermission(this@FirebaseDynamicLinksActivity, Manifest.permission.CAMERA, ICK_REQUEST_CAMERA)) {
                         ICKScanActivity.create(this, 3)
+                    } else {
+                        return
                     }
-//                    ActivityUtils.startActivity<QrCodeMarketingActivity>(this)
                 }
             }
             vouchers -> {
@@ -825,7 +805,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                         showLoginDialog()
                         return
                     } else {
-//                        ActivityUtils.startActivity<ChatV2Activity, String>(this, "id", id)
+                        ChatSocialDetailActivity.openRoomChatWithKey(this@FirebaseDynamicLinksActivity, id)
                     }
                 }
             }
@@ -833,7 +813,12 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                 val id = deepLink?.getQueryParameter("id")
 
                 if (!id.isNullOrEmpty()) {
-//                    ChatV2Activity.createChatUser(id.toLong(), this)
+                    if (!SessionManager.isUserLogged) {
+                        showLoginDialog()
+                        return
+                    } else if (ValidHelper.validNumber(id)) {
+                        ChatSocialDetailActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong(), "user")
+                    }
                 }
             }
             user -> {
@@ -1023,7 +1008,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                     return
                 } else {
                     CreatePVCardViewModel().apply {
-                        checkHasCard(5000L).observe(this@FirebaseDynamicLinksActivity, Observer {checkCardRes ->
+                        checkHasCard(5000L).observe(this@FirebaseDynamicLinksActivity, Observer { checkCardRes ->
                             this@FirebaseDynamicLinksActivity.apply {
                                 when (checkCardRes.status) {
                                     Status.LOADING -> {
@@ -1044,7 +1029,8 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                                             if (SettingManager.getSessionPvcombank.isEmpty()) {
                                                 getFormAuth(5000L).observe(this, Observer { formAuthRes ->
                                                     when (formAuthRes.status) {
-                                                        Status.LOADING -> {}
+                                                        Status.LOADING -> {
+                                                        }
                                                         Status.SUCCESS -> {
                                                             DialogHelper.closeLoading(this)
                                                             if (formAuthRes.data?.data?.redirectUrl.isNullOrEmpty() || formAuthRes.data?.data?.authUrl.isNullOrEmpty()) {
@@ -1286,5 +1272,18 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                 finishActivity()
             }
         }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if (PermissionHelper.checkResult(grantResults)) {
+            if (requestCode == ICK_REQUEST_CAMERA) {
+                checkTarget()
+                return
+            }
+        }
+
+        finishActivity()
     }
 }

@@ -16,17 +16,11 @@ import vn.icheck.android.R
 import vn.icheck.android.activities.image.DetailImagesActivity
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.base.model.ICMessageEvent
-import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.network.base.*
-import vn.icheck.android.network.feature.user.UserInteractor
 import vn.icheck.android.network.models.ICProductReviews
-import vn.icheck.android.network.models.ICUserId
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.adapter.criteria.CriteriaAdapter
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.adapter.criteria.CriteriaChild
-import vn.icheck.android.screen.user.page_details.PageDetailActivity
-import vn.icheck.android.screen.user.profile.ProfileActivity
-import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 import vn.icheck.android.util.text.ReviewsTimeUtils
 import vn.icheck.android.util.ui.GlideUtil
