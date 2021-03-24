@@ -1,5 +1,6 @@
 package vn.icheck.android.chat.icheckchat.model
 
+import java.io.File
 import java.io.Serializable
 
 class MCDetailMessage : Serializable {
@@ -22,7 +23,13 @@ class MCDetailMessage : Serializable {
 
     var listMedia: MutableList<MCMedia>? = null
 
+    var listMediaFile: MutableList<File>? = null
+
     var product: MCProductFirebase? = null
 
     var showTime: Boolean = false
+
+    var status: MCStatus? = MCStatus.SUCCESS
+
+    var messageId: String? = null
 }
