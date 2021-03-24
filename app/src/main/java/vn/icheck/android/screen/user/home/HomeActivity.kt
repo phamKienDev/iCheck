@@ -54,6 +54,8 @@ import vn.icheck.android.base.dialog.notify.confirm.ConfirmDialog
 import vn.icheck.android.base.model.ICFragment
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.ISettingListener
+import vn.icheck.android.chat.icheckchat.screen.ChatSocialFragment
+import vn.icheck.android.chat.icheckchat.sdk.ChatSdk
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.Constant
@@ -66,6 +68,7 @@ import vn.icheck.android.network.models.ICClientSetting
 import vn.icheck.android.network.models.ICUser
 import vn.icheck.android.network.models.history.ICBigCorp
 import vn.icheck.android.network.models.history.ICTypeHistory
+import vn.icheck.android.network.util.DeviceUtils
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.account.icklogin.viewmodel.IckLoginViewModel
 import vn.icheck.android.screen.account.registeruser.register.RegisterUserActivity
@@ -82,8 +85,6 @@ import vn.icheck.android.screen.user.history_loading_card.home.HistoryCardActivi
 import vn.icheck.android.screen.user.home_page.home.HomePageFragment
 import vn.icheck.android.screen.user.newslistv2.ListNewsFragment
 import vn.icheck.android.screen.user.orderhistory.OrderHistoryActivity
-import vn.icheck.android.screen.user.profile.ProfileActivity
-import vn.icheck.android.screen.user.profile.updateprofile.UpdateProfileActivity
 import vn.icheck.android.screen.user.rank_of_user.RankOfUserActivity
 import vn.icheck.android.screen.user.scan_history.ScanHistoryFragment
 import vn.icheck.android.screen.user.scan_history.adapter.ScanMenuHistoryAdapter
@@ -91,8 +92,6 @@ import vn.icheck.android.screen.user.scan_history.model.ICScanHistory
 import vn.icheck.android.screen.user.scan_history.view.IScanHistoryView
 import vn.icheck.android.screen.user.scan_history.view_model.ScanHistoryViewModel
 import vn.icheck.android.screen.user.setting.SettingsActivity
-import vn.icheck.android.screen.user.social_chat.SocialChatFragment
-import vn.icheck.android.screen.user.support.ContactAndSupportActivity
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.screen.user.welcome.WelcomeActivity
@@ -111,8 +110,6 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
 
     private val requestProfile = 1
     private val requestUpdateProfile = 2
-
-    private val requestLoginUpdateProfile = 3
     private val requestLoginProfile = 4
     private val requestLoginCoinHistory = 5
     private val requestLoginOrderHistory = 6
@@ -217,7 +214,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
         listPage.add(ICFragment(null, HomePageFragment()))
         listPage.add(ICFragment(null, ListNewsFragment.newInstance(false)))
         listPage.add(ICFragment(null, ScanHistoryFragment()))
-        listPage.add(ICFragment(null, SocialChatFragment()))
+        listPage.add(ICFragment(null, ChatSocialFragment()))
 
         viewPager.offscreenPageLimit = 5
         viewPager.setPagingEnabled(false)
@@ -600,14 +597,9 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
         super.onRequireLoginSuccess(requestCode)
 
         when (requestCode) {
-            requestLoginUpdateProfile -> {
-                startActivityForResult<UpdateProfileActivity, Boolean>(Constant.DATA_1, true, requestUpdateProfile)
-            }
             requestLoginProfile -> {
-                val user = SessionManager.session.user
-
-                if (user != null) {
-                    startActivityForResult<ProfileActivity>(requestProfile)
+                SessionManager.session.user?.id?.let { userID ->
+                    IckUserWallActivity.create(userID, this)
                 }
             }
             requestLoginOrderHistory -> {
@@ -716,16 +708,10 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                 }
             }
             R.id.imgAvatar, R.id.tv_username -> {
-//                if (SessionManager.isLogged) {
-//                    onRequireLoginSuccess(requestLoginUpdateProfile)
-//                } else {
-//                    onRequireLogin(requestLoginUpdateProfile)
-//                }
                 if (!SessionManager.isUserLogged) {
                     onRequireLogin()
                 } else {
                     IckUserWallActivity.create(SessionManager.session.user?.id, this)
-//                    simpleStartActivity(GiftWaitingActivity::class.java)
                 }
             }
             R.id.btn_icheck_xu -> {
@@ -835,11 +821,6 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                         WebViewActivity.start(this, obj.link)
                         return
                     }
-                }
-            }
-            R.id.txtSupport -> {
-                if (!SettingManager.clientSetting?.supports.isNullOrEmpty()) {
-                    startActivity<ContactAndSupportActivity>()
                 }
             }
             R.id.btn_manage_page -> {
@@ -1051,8 +1032,10 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                     ickLoginViewModel.loginDevice(token).observe(this) { _ ->
                     }
                 }
+                ChatSdk.shareIntent(SessionManager.session.firebaseToken, SessionManager.session.user?.id, SessionManager.session.token, DeviceUtils.getUniqueDeviceId())
             }
             ICMessageEvent.Type.ON_LOG_OUT -> {
+                ChatSdk.shareIntent(SessionManager.session.firebaseToken, SessionManager.session.user?.id, SessionManager.session.token, DeviceUtils.getUniqueDeviceId())
                 tvChatCount.visibility = View.GONE
                 RelationshipManager.removeListener()
             }
@@ -1067,6 +1050,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                         .into(imgAvatar)
                 RelationshipManager.removeListener()
                 RelationshipManager.refreshToken(true)
+                ChatSdk.shareIntent(SessionManager.session.firebaseToken, SessionManager.session.user?.id, SessionManager.session.token, DeviceUtils.getUniqueDeviceId())
             }
             ICMessageEvent.Type.INIT_MENU_HISTORY -> {
                 recyclerViewMenu.layoutManager = LinearLayoutManager(this)

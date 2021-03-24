@@ -43,7 +43,7 @@ class OldFocusableEditText: AppCompatEditText {
 
     private val drawableClear =  ResourcesCompat.getDrawable(context.resources, R.drawable.ic_delete_gray_vector, null)
 
-    private val drawableEyeOff =  ResourcesCompat.getDrawable(context.resources, R.drawable.ic_eye_off_vector, null)
+    private val drawableEyeOff =  ResourcesCompat.getDrawable(context.resources, R.drawable.ic_eye_off_gray_24dp, null)
 
     private val drawableEye  =  ResourcesCompat.getDrawable(context.resources, R.drawable.ic_eye_on_vector, null)
 

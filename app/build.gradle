@@ -50,6 +50,9 @@ android {
                 arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
             }
         }
+        ndk {
+            abiFilters 'arm64-v8a', 'armeabi-v7a'
+        }
     }
     buildFeatures {
         dataBinding true
@@ -58,7 +61,7 @@ android {
     aaptOptions { cruncherEnabled = false }
     buildTypes {
         release {
-            debuggable false
+            debuggable true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             manifestPlaceholders = [partner: "icheckvn"]
@@ -117,6 +120,7 @@ dependencies {
     api "com.google.maps.android:android-maps-utils:0.5"
 
     /** iCheck network and apis **/
+    api project(path: ':icheckchat')
     api project(path: ':ichecknetwork')
     api project(path: ':icheckloyalty')
 

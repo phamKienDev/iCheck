@@ -32,7 +32,7 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
 
     private var campaignID: Long = -1L
     private var countExchanceGift = 0L
-    
+
     companion object {
         var obj: ICKBoxGifts? = null
     }

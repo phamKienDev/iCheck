@@ -18,7 +18,7 @@ import org.greenrobot.eventbus.ThreadMode
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
 import vn.icheck.android.base.model.ICMessageEvent
-import vn.icheck.android.constant.Constant
+import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.network.base.*
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
@@ -104,6 +104,10 @@ abstract class BaseActivity<P : BaseActivityPresenter> : AppCompatActivity(), Ba
     open fun onMessageEvent(event: ICMessageEvent) {
         if (event.type == ICMessageEvent.Type.GO_TO_HOME) {
             if (!isHomeActivity()) {
+                ActivityUtils.finishActivity(this)
+            }
+        } else if (event.type == ICMessageEvent.Type.ON_FINISH_ALL_CHAT) {
+            if (!isHomeActivity() && ListConversationFragment.isOpenChat) {
                 ActivityUtils.finishActivity(this)
             }
         }

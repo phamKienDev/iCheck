@@ -12,7 +12,7 @@ import vn.icheck.android.util.kotlin.WidgetUtils
 abstract class ProductNoticeOptionDialog(context: Context) : BaseBottomSheetDialog(context, R.layout.dialog_product_notice_option, true) {
 
     fun show(obj: ICNotification) {
-        WidgetUtils.loadImageUrl(dialog.imgAvatar, obj.sourceUser?.firstOrNull()?.avatar, R.drawable.img_default_business_logo)
+        WidgetUtils.loadImageUrl(dialog.imgAvatar, obj.sourceUser?.firstOrNull()?.avatar, R.drawable.ic_business_v2)
 
         val name = obj.sourceUser?.firstOrNull()?.getName
         dialog.tvTitle.text = Html.fromHtml(dialog.context.getString(R.string.html_bold_xxx_xxx, name, obj.description))

@@ -59,14 +59,22 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
     private lateinit var dialog: ReportWrongContributionDialog
 
     private var typeEditImage: Int? = null
-
     private var pageOverViewPosition = -1
-
     private var companyViewInsider = true
-
     private val requestPermissionImage = 1
-
     private var isActivityVisible = false
+
+    private val takeMediaListener = object : TakeMediaDialog.TakeImageListener {
+        override fun onPickMediaSucess(file: File) {
+            viewModel.uploadImage(typeEditImage!!, file)
+        }
+
+        override fun onPickMuliMediaSucess(file: MutableList<File>) {}
+
+        override fun onTakeMediaSuccess(file: File?) {
+            file?.let { viewModel.uploadImage(typeEditImage!!, it) }
+        }
+    }
 
     companion object {
         fun newInstance(pageID: Long, pageType: Int): PageDetailFragment {
@@ -438,8 +446,16 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
                     ExoPlayerManager.checkPlayVideoBase(recyclerView, layoutToolbarAlpha.height)
                 }
             }
-            ICMessageEvent.Type.UPDATE_FOLLOW_PAGE -> {
-                updateFollowState(event.data as Boolean)
+            ICMessageEvent.Type.FOLLOW_PAGE -> {
+                updateFollowState(true)
+                val index = adapter.getListData.indexOfFirst { it.viewType == ICViewTypes.INVITE_FOLLOW_TYPE }
+                if (index != -1) {
+                    adapter.getListData[index].data = viewModel.pageOverview
+                    adapter.notifyItemChanged(index)
+                }
+            }
+            ICMessageEvent.Type.UNFOLLOW_PAGE -> {
+                updateFollowState(false)
                 val index = adapter.getListData.indexOfFirst { it.viewType == ICViewTypes.INVITE_FOLLOW_TYPE }
                 if (index != -1) {
                     adapter.getListData[index].data = viewModel.pageOverview
@@ -594,33 +610,9 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
         if (requestCode == requestPermissionImage) {
             if (PermissionHelper.checkResult(grantResults)) {
                 if (typeEditImage == ICViewTypes.HEADER_INFOR_PAGE) {
-                    TakeMediaDialog(object : TakeMediaDialog.TakeImageListener {
-                        override fun onPickMediaSucess(file: File) {
-                            viewModel.uploadImage(typeEditImage!!, file)
-                        }
-
-                        override fun onPickMuliMediaSucess(file: MutableList<File>) {}
-
-                        override fun onTakeMediaSuccess(file: File?) {
-                            file?.let { viewModel.uploadImage(typeEditImage!!, it) }
-                        }
-                    }, selectMulti = false, cropImage = false, ratio = "1:1", isVideo = false).apply {
-                        show(this@PageDetailFragment.requireActivity().supportFragmentManager, null)
-                    }
+                    TakeMediaDialog.show(this@PageDetailFragment.requireActivity().supportFragmentManager, takeMediaListener, selectMulti = false, cropImage = false, ratio = "1:1", isVideo = false)
                 } else {
-                    TakeMediaDialog(object : TakeMediaDialog.TakeImageListener {
-                        override fun onPickMediaSucess(file: File) {
-                            viewModel.uploadImage(typeEditImage!!, file)
-                        }
-
-                        override fun onPickMuliMediaSucess(file: MutableList<File>) {}
-
-                        override fun onTakeMediaSuccess(file: File?) {
-                            file?.let { viewModel.uploadImage(typeEditImage!!, it) }
-                        }
-                    }, selectMulti = false, cropImage = false, ratio = "375:192", isVideo = false).apply {
-                        show(this@PageDetailFragment.requireActivity().supportFragmentManager, null)
-                    }
+                    TakeMediaDialog.show(this@PageDetailFragment.requireActivity().supportFragmentManager, takeMediaListener, selectMulti = false, cropImage = false, ratio = "375:192", isVideo = false)
                 }
             } else {
                 showLongWarning(R.string.khong_the_thuc_hien_tac_vu_vi_ban_chua_cap_quyen)

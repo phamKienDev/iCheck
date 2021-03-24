@@ -27,7 +27,6 @@ class ListProductActivity : BaseActivity<ListProductPresenter>(), IListProductVi
     private val adapter = ListProductAdapter(this)
 
     companion object {
-
         /**
          * @param url - Request Api (GET)
          * @param hashMap - VD collection_id, page_id, ko cần truyền offset và limit

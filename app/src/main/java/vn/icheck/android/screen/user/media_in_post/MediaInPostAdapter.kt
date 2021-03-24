@@ -124,13 +124,9 @@ class MediaInPostAdapter(val isFullMedia: Boolean) : RecyclerView.Adapter<Recycl
     inner class ImageFullHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(media: ICExoMedia) {
             WidgetUtils.loadImageUrlNotTransform(itemView.imgFull, media.src, R.drawable.img_default_loading_icheck)
-
-            itemView.imgFull.setOnTouchImageViewListener {
-                if (!itemView.imgFull.isZoomed) {
-                    EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.IS_SCROLL_MEDIA, "scroll"))
-                } else {
-                    EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.IS_SCROLL_MEDIA, null))
-                }
+            if (media.resetImage) {
+                itemView.imgFull.resetZoom()
+                media.resetImage = false
             }
         }
     }

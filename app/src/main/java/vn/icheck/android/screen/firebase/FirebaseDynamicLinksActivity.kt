@@ -21,7 +21,6 @@ import com.tripi.hotel.config.HotelSDK
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
-import vn.icheck.android.activities.chat.v2.ChatV2Activity
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.base.viewmodel.BaseViewModel
@@ -70,6 +69,7 @@ import vn.icheck.android.screen.user.page_details.PageDetailActivity
 import vn.icheck.android.screen.user.payment_topup_success.BuyTopupSuccessActivity
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.screen.user.pvcombank.authen.CreatePVCardActivity
+import vn.icheck.android.screen.user.pvcombank.authen.CreatePVCardViewModel
 import vn.icheck.android.screen.user.pvcombank.home.HomePVCardActivity
 import vn.icheck.android.screen.user.rank_of_user.RankOfUserActivity
 import vn.icheck.android.screen.user.recharge_phone.RechargePhoneActivity
@@ -96,6 +96,9 @@ import vn.icheck.android.util.kotlin.ActivityUtils
 //import vn.teko.terra.core.android.terra.TerraApp
 import java.net.URL
 import java.util.*
+import androidx.lifecycle.Observer
+import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
+import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 
 class FirebaseDynamicLinksActivity : AppCompatActivity() {
     private val requestLogin = 1
@@ -166,7 +169,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
     private val rechargeCard = "recharge_card"
     private val loyaltyCampaign = "loyalty_campaign"
     private val vinmart = "vinmart"
-    private val digital_bank = "digital_bank"
+    private val digitalBank = "digital_bank"
     private val flightBooking = "flight_booking"
     private val hotelBooking = "hotel_booking"
     private val utilities = "utilities"
@@ -802,7 +805,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                         showLoginDialog()
                         return
                     } else {
-                        ActivityUtils.startActivity<ChatV2Activity, String>(this, "id", id)
+                        ChatSocialDetailActivity.openRoomChatWithKey(this@FirebaseDynamicLinksActivity, id)
                     }
                 }
             }
@@ -810,7 +813,12 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                 val id = deepLink?.getQueryParameter("id")
 
                 if (!id.isNullOrEmpty()) {
-                    ChatV2Activity.createChatUser(id.toLong(), this)
+                    if (!SessionManager.isUserLogged) {
+                        showLoginDialog()
+                        return
+                    } else if (ValidHelper.validNumber(id)) {
+                        ChatSocialDetailActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong(), "user")
+                    }
                 }
             }
             user -> {
@@ -994,15 +1002,15 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                     overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
                 }
             }
-            digital_bank -> {
+            digitalBank -> {
                 if (!SessionManager.isUserLogged) {
                     showLoginDialog()
                     return
                 } else {
-                    BaseViewModel().apply {
-                        request(5000) { PVcomBankRepository().checkHasCard() }.observe(this@FirebaseDynamicLinksActivity, androidx.lifecycle.Observer {
+                    CreatePVCardViewModel().apply {
+                        checkHasCard(5000L).observe(this@FirebaseDynamicLinksActivity, Observer { checkCardRes ->
                             this@FirebaseDynamicLinksActivity.apply {
-                                when (it.status) {
+                                when (checkCardRes.status) {
                                     Status.LOADING -> {
                                         DialogHelper.showLoading(this)
                                     }
@@ -1013,14 +1021,40 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                                     }
                                     Status.ERROR_REQUEST -> {
                                         DialogHelper.closeLoading(this)
-                                        ToastHelper.showLongError(this, ICheckApplication.getError(it.message))
+                                        ToastHelper.showLongError(this, ICheckApplication.getError(checkCardRes.message))
                                         finishActivity()
                                     }
                                     Status.SUCCESS -> {
-                                        DialogHelper.closeLoading(this)
-                                        if (it.data?.data == true) {
-                                            ActivityUtils.startActivityAndFinish<HomePVCardActivity>(this)
+                                        if (checkCardRes.data?.data == true) {
+                                            if (SettingManager.getSessionPvcombank.isEmpty()) {
+                                                getFormAuth(5000L).observe(this, Observer { formAuthRes ->
+                                                    when (formAuthRes.status) {
+                                                        Status.LOADING -> {
+                                                        }
+                                                        Status.SUCCESS -> {
+                                                            DialogHelper.closeLoading(this)
+                                                            if (formAuthRes.data?.data?.redirectUrl.isNullOrEmpty() || formAuthRes.data?.data?.authUrl.isNullOrEmpty()) {
+                                                                ToastHelper.showLongError(this, getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                                                                finishActivity()
+                                                            } else {
+                                                                CreatePVCardActivity.redirectUrl = formAuthRes.data!!.data!!.redirectUrl
+                                                                WebViewActivity.start(this, formAuthRes.data!!.data!!.authUrl)
+                                                                finishActivity()
+                                                            }
+                                                        }
+                                                        else -> {
+                                                            DialogHelper.closeLoading(this)
+                                                            ToastHelper.showLongError(this, ICheckApplication.getError(checkCardRes.message))
+                                                            finishActivity()
+                                                        }
+                                                    }
+                                                })
+                                            } else {
+                                                DialogHelper.closeLoading(this)
+                                                ActivityUtils.startActivityAndFinish<HomePVCardActivity>(this)
+                                            }
                                         } else {
+                                            DialogHelper.closeLoading(this)
                                             ActivityUtils.startActivityAndFinish<CreatePVCardActivity>(this)
                                         }
                                     }
@@ -1143,9 +1177,10 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                 val responseCode = deepLink?.getQueryParameter("vnp_ResponseCode")
                 val orderInfo = deepLink?.getQueryParameter("vnp_OrderInfo")
 
-                if (responseCode == "00"){
-                    ActivityHelper.startActivity<BuyTopupSuccessActivity, Long>(this@FirebaseDynamicLinksActivity, Constant.DATA_2, (orderInfo ?: "-1").toLong())
-                }else{
+                if (responseCode == "00") {
+                    ActivityHelper.startActivity<BuyTopupSuccessActivity, Long>(this@FirebaseDynamicLinksActivity, Constant.DATA_2, (orderInfo
+                            ?: "-1").toLong())
+                } else {
                     ActivityHelper.startActivity<BuyTopupSuccessActivity, Long>(this@FirebaseDynamicLinksActivity, Constant.DATA_2, -1)
                 }
             }
@@ -1153,9 +1188,10 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                 val responseCode = deepLink?.getQueryParameter("vnp_ResponseCode")
                 val orderInfo = deepLink?.getQueryParameter("vnp_OrderInfo")
 
-                if (responseCode == "00"){
-                    ActivityHelper.startActivity<BuyCardSuccessActivity, Long>(this@FirebaseDynamicLinksActivity, Constant.DATA_2, (orderInfo ?: "-1").toLong())
-                }else{
+                if (responseCode == "00") {
+                    ActivityHelper.startActivity<BuyCardSuccessActivity, Long>(this@FirebaseDynamicLinksActivity, Constant.DATA_2, (orderInfo
+                            ?: "-1").toLong())
+                } else {
                     ActivityHelper.startActivity<BuyCardSuccessActivity, Long>(this@FirebaseDynamicLinksActivity, Constant.DATA_2, -1)
                 }
             }

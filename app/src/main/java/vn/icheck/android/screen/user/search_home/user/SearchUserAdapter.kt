@@ -12,11 +12,11 @@ import kotlinx.android.synthetic.main.item_user_search_result.view.*
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
-import vn.icheck.android.activities.chat.v2.ChatV2Activity
 import vn.icheck.android.base.adapter.RecyclerViewSearchAdapter
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.IRecyclerViewSearchCallback
+import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
@@ -26,9 +26,7 @@ import vn.icheck.android.network.base.ICResponseCode
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.feature.relationship.RelationshipInteractor
 import vn.icheck.android.network.models.ICSearchUser
-import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 import vn.icheck.android.util.ick.beGone
-import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.util.kotlin.ToastUtils
 
 class SearchUserAdapter(val typeView: Int, val callback: IRecyclerViewSearchCallback? = null) : RecyclerViewSearchAdapter<ICSearchUser>(callback) {
@@ -76,7 +74,8 @@ class SearchUserAdapter(val typeView: Int, val callback: IRecyclerViewSearchCall
             }
 
             itemView.tvMessage.setOnClickListener {
-                SocialChatActivity.createRoomChat(it.context, obj.id)
+//                SocialChatActivity.createRoomChat(it.context, obj.id)
+                ChatSocialDetailActivity.createRoomChat(it.context, obj.id, "user")
             }
 
             itemView.setOnClickListener {

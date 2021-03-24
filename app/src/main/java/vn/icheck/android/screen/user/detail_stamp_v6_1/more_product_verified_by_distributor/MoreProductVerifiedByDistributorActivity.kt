@@ -84,7 +84,7 @@ class MoreProductVerifiedByDistributorActivity : BaseActivity<MoreProductVerifie
                 if (DetailStampActivity.isVietNamLanguage == false){
                     adapter.setErrorCode("No Data")
                 } else {
-                    adapter.setErrorCode(getString(R.string.du_lieu_trong))
+                    adapter.setErrorCode(getString(R.string.khong_co_du_lieu))
                 }
             }
 

@@ -93,7 +93,7 @@ class EditReviewActivity : BaseActivityMVVM() {
             override fun onTakeMediaSuccess(file: File?) {
                 file?.let { listImageAdapter.addItem(it) }
             }
-        }, true)
+        }, true, isVideo = true)
     }
 
 

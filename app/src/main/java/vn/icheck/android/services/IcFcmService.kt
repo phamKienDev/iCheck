@@ -11,6 +11,8 @@ import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.model.ICMessageEvent
+import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
+import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.RingtoneHelper
 import vn.icheck.android.tracking.teko.TekoHelper
@@ -61,13 +63,15 @@ class IcFcmService : FirebaseMessagingService() {
         logDebug("$title - $body - $targetType - $targetID - $action - $path")
 
         playNotificationSound()
-        when {
-            path.contains("completed_mission") -> {
-                val pathUri = Uri.parse(path).getQueryParameter("id")
-                getMissionDetail(pathUri)
-            }
-            path.contains("level_up") -> {
-                ICheckApplication.currentActivity()?.let { act ->
+
+        if (!ListConversationFragment.isOpenConversation && !ChatSocialDetailActivity.isDetailChatOpen) {
+            when {
+                path.contains("completed_mission") -> {
+                    val pathUri = Uri.parse(path).getQueryParameter("id")
+                    getMissionDetail(pathUri)
+                }
+                path.contains("level_up") -> {
+                    ICheckApplication.currentActivity()?.let { act ->
 //                    Alerter.create(act)
 //                            .setBackgroundColorRes(R.color.green_popup_notifi)
 //                            .setDuration(3000)
@@ -76,21 +80,22 @@ class IcFcmService : FirebaseMessagingService() {
 //                                FirebaseDynamicLinksActivity.startTargetPath(act, path)
 //                            }
 //                            .show()
-                    startActivity(Intent(act, RankUpActivity::class.java).apply {
-                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    })
+                        startActivity(Intent(act, RankUpActivity::class.java).apply {
+                            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        })
+                    }
                 }
-            }
-            else -> {
-                ICheckApplication.currentActivity()?.let { act ->
-                    Alerter.create(act)
-                            .setBackgroundColorRes(R.color.green_popup_notifi)
-                            .setDuration(3000)
-                            .setText(body)
-                            .setOnClickListener {
-                                FirebaseDynamicLinksActivity.startTargetPath(act, path)
-                            }
-                            .show()
+                else -> {
+                    ICheckApplication.currentActivity()?.let { act ->
+                        Alerter.create(act)
+                                .setBackgroundColorRes(R.color.green_popup_notifi)
+                                .setDuration(3000)
+                                .setText(body)
+                                .setOnClickListener {
+                                    FirebaseDynamicLinksActivity.startTargetPath(act, path)
+                                }
+                                .show()
+                    }
                 }
             }
         }

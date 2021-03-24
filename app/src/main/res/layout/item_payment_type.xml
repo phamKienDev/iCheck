@@ -40,7 +40,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/imgType">
 
-        <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+        <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
             android:id="@+id/tvNameType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

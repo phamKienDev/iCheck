@@ -2,8 +2,8 @@ package vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import vn.icheck.android.activities.chat.v2.ChatPagedAdapter
 import vn.icheck.android.callback.ItemClickListener
+import vn.icheck.android.component.`null`.NullHolder
 import vn.icheck.android.network.models.ICCriteria
 import vn.icheck.android.network.models.ICRelatedProduct
 import vn.icheck.android.network.models.ICProductReviews
@@ -111,7 +111,7 @@ class DetailStampHoaPhatAdapter(private val headerImagelistener: SlideHeaderStam
             ICViewType.RELATED_PRODUCT_STAMP -> {
                 ProductRelatedStampHolder(parent,headerImagelistener)
             }
-            else -> ChatPagedAdapter.NullHolder.create(parent)
+            else -> NullHolder(parent)
         }
     }
 

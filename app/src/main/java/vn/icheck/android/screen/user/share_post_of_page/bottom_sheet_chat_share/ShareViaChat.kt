@@ -25,7 +25,7 @@ class ShareViaChat(val obj: ICPost) : BaseBottomSheetDialogFragment() {
     }
 
     private fun initView(){
-        avatarUserPost.setData(obj.page?.avatar, -1, R.drawable.img_default_business_logo)
+        avatarUserPost.setData(obj.page?.avatar, -1, R.drawable.ic_business_v2)
         tvName.text = obj.page?.name
         tvDesc.text = obj.content
 

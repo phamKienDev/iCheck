@@ -59,11 +59,28 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
     private lateinit var viewModel: CreateOrUpdatePostViewModel
 
     private val takeMediaHelper = TakeMediaHelper(this, true)
-    private var takeMediaDialog: TakeMediaDialog? = null
 
     private val permissionCamera = 1
     private val permissionWallpaper = 2
     private val requestScanProduct = 1
+
+    private val takeMediaListener = object : TakeMediaDialog.TakeImageListener {
+        override fun onPickMediaSucess(file: File) {
+            addImage(file)
+        }
+
+        override fun onPickMuliMediaSucess(file: MutableList<File>) {
+            for (i in 0 until file.size) {
+                addImage(file[i])
+            }
+        }
+
+        override fun onTakeMediaSuccess(file: File?) {
+            file?.let {
+                addImage(it)
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -87,7 +104,7 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
     private fun setupView() {
         if (intent?.getLongExtra(Constant.DATA_2, -1) != -1L) {
             tvName.text = intent.getStringExtra(Constant.DATA_3)
-            WidgetUtils.loadImageUrl(imgAvatar, intent.getStringExtra(Constant.DATA_4), R.drawable.img_default_business_logo_big)
+            WidgetUtils.loadImageUrl(imgAvatar, intent.getStringExtra(Constant.DATA_4), R.drawable.ic_business_v2)
             edtContent.hint = "Hãy chia sẻ những thông tin hữu ích nào!"
             tvType.beGone()
             imgStatus.beGone()
@@ -265,27 +282,7 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
     }
 
     private fun pickWallpaper() {
-        takeMediaDialog?.dismiss()
-        takeMediaDialog = TakeMediaDialog(object : TakeMediaDialog.TakeImageListener {
-            override fun onPickMediaSucess(file: File) {
-                addImage(file)
-            }
-
-            override fun onPickMuliMediaSucess(file: MutableList<File>) {
-                for (i in 0 until file.size) {
-                    addImage(file[i])
-                }
-            }
-
-            override fun onTakeMediaSuccess(file: File?) {
-                file?.let {
-                    addImage(it)
-                }
-            }
-        }, selectMulti = true, isVideo = true).apply {
-            show(supportFragmentManager, tag)
-        }
-
+        TakeMediaDialog.show(supportFragmentManager, takeMediaListener, selectMulti = true, isVideo = true)
     }
 
     private fun addProduct(product: ICProductDetail) {
