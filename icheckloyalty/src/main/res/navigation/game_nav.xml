@@ -67,11 +67,11 @@
             android:name="hasChanceCode"
             android:defaultValue="true"
             app:argType="boolean" />
-        <action
-            android:id="@+id/action_fragmentLuckyWheelGame_to_scanForGameFragment"
-            app:destination="@id/scanForGameFragment"
-            app:enterAnim="@anim/anim_slide_in_left"
-            app:exitAnim="@anim/anim_slide_out_left" />
+<!--        <action-->
+<!--            android:id="@+id/action_fragmentLuckyWheelGame_to_scanForGameFragment"-->
+<!--            app:destination="@id/scanForGameFragment"-->
+<!--            app:enterAnim="@anim/anim_slide_in_left"-->
+<!--            app:exitAnim="@anim/anim_slide_out_left" />-->
         <argument
             android:name="owner"
             app:argType="string" />
@@ -206,32 +206,32 @@
             android:name="campaignId"
             app:argType="long" />
     </dialog>
-    <fragment
-        android:id="@+id/scanForGameFragment"
-        android:name="vn.icheck.android.loyalty.screen.game_from_labels.vqmm.fragment.ScanForGameFragment"
-        android:label="ScanForGameFragment"
-        tools:layout="@layout/custom_scan_loyalty">
-        <action
-            android:id="@+id/action_scanForGameFragment_to_congratsDialogFragment"
-            app:destination="@id/congratsDialogFragment"
-            app:popUpTo="@id/scanForGameFragment"
-            app:popUpToInclusive="true" />
-        <argument
-            android:name="currentCount"
-            app:argType="integer" />
-        <argument
-            android:name="campaignId"
-            app:argType="long" />
-        <argument
-            android:name="nameCampaign"
-            app:argType="string" />
-        <argument
-            android:name="nameShop"
-            app:argType="string" />
-        <argument
-            android:name="avatarShop"
-            app:argType="string" />
-    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/scanForGameFragment"-->
+<!--        android:name="vn.icheck.android.loyalty.screen.game_from_labels.vqmm.fragment.ScanForGameFragment"-->
+<!--        android:label="ScanForGameFragment"-->
+<!--        tools:layout="@layout/custom_scan_loyalty">-->
+<!--        <action-->
+<!--            android:id="@+id/action_scanForGameFragment_to_congratsDialogFragment"-->
+<!--            app:destination="@id/congratsDialogFragment"-->
+<!--            app:popUpTo="@id/scanForGameFragment"-->
+<!--            app:popUpToInclusive="true" />-->
+<!--        <argument-->
+<!--            android:name="currentCount"-->
+<!--            app:argType="integer" />-->
+<!--        <argument-->
+<!--            android:name="campaignId"-->
+<!--            app:argType="long" />-->
+<!--        <argument-->
+<!--            android:name="nameCampaign"-->
+<!--            app:argType="string" />-->
+<!--        <argument-->
+<!--            android:name="nameShop"-->
+<!--            app:argType="string" />-->
+<!--        <argument-->
+<!--            android:name="avatarShop"-->
+<!--            app:argType="string" />-->
+<!--    </fragment>-->
     <fragment
         android:id="@+id/helpGameFragment"
         android:name="vn.icheck.android.loyalty.screen.game_from_labels.vqmm.fragment.HelpGameFragment"
@@ -255,9 +255,9 @@
         <argument
             android:name="currentCount"
             app:argType="integer" />
-        <action
-            android:id="@+id/action_historyGameFragment_to_scanForGameFragment"
-            app:destination="@id/scanForGameFragment" />
+<!--        <action-->
+<!--            android:id="@+id/action_historyGameFragment_to_scanForGameFragment"-->
+<!--            app:destination="@id/scanForGameFragment" />-->
     </fragment>
     <fragment
         android:id="@+id/listOfGiftReceived"
@@ -270,8 +270,8 @@
         <argument
             android:name="currentCount"
             app:argType="integer" />
-        <action
-            android:id="@+id/action_listOfGiftReceived_to_scanForGameFragment"
-            app:destination="@id/scanForGameFragment" />
+<!--        <action-->
+<!--            android:id="@+id/action_listOfGiftReceived_to_scanForGameFragment"-->
+<!--            app:destination="@id/scanForGameFragment" />-->
     </fragment>
 </navigation>

@@ -14,7 +14,7 @@ import androidx.work.Configuration
 import com.facebook.FacebookSdk
 import com.facebook.appevents.AppEventsLogger
 import com.google.firebase.FirebaseApp
-import com.scandit.barcodepicker.ScanditLicense
+import com.scandit.datacapture.core.capture.DataCaptureContext
 import com.useinsider.insider.Insider
 import com.useinsider.insider.InsiderCallbackType
 import dagger.hilt.android.HiltAndroidApp
@@ -73,13 +73,15 @@ class ICheckApplication : Application(), Configuration.Provider {
 //        friendList.addAll(friendIdList)
 //    }
 
-
+    lateinit var dataCaptureContext: DataCaptureContext
     override fun onCreate() {
         super.onCreate()
+        val key = if (BuildConfig.FLAVOR.contentEquals("dev")) getString(R.string.scandit_v6_key_dev) else getString(R.string.scandit_v6_key_live)
+        dataCaptureContext = DataCaptureContext.forLicenseKey(key)
         FirebaseApp.initializeApp(this)
         FacebookSdk.sdkInitialize(this)
         AppEventsLogger.activateApp(this)
-        ScanditLicense.setAppKey(APIConstants.scanditLicenseKey())
+//        ScanditLicense.setAppKey(APIConstants.scanditLicenseKey())
 
         INSTANCE = this
         mFirebase = FirebaseContainer()

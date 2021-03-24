@@ -1,6 +1,7 @@
 package vn.icheck.android.component.take_media
 
 import android.app.Activity
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.provider.MediaStore
@@ -9,9 +10,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import kotlinx.android.synthetic.main.layout_choose_image_dialog.*
+import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialogFragment
+import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.screen.user.cropimage.CropImageActivity
 import java.io.File
@@ -32,6 +35,11 @@ class TakeMediaDialog(val listener: TakeImageListener, private val selectMulti: 
     var takeMediaHelper: TakeMediaHelper? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.layout_choose_image_dialog, container, false)
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_DISMISS))
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

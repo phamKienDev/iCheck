@@ -43,7 +43,6 @@ import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFra
 import vn.icheck.android.chat.icheckchat.screen.detail.adapter.ChatSocialDetailAdapter
 import vn.icheck.android.chat.icheckchat.screen.detail.adapter.ImageAdapter
 import vn.icheck.android.chat.icheckchat.screen.detail.adapter.StickerAdapter
-import vn.icheck.android.chat.icheckchat.screen.scan.ScanSocialChatActivity
 import vn.icheck.android.chat.icheckchat.screen.user_information.UserInformationActivity
 import java.io.File
 
@@ -742,7 +741,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
             }
             R.id.imgScan -> {
                 if (!binding.imgScan.isChecked) {
-                    startActivityForResult(Intent(this@ChatSocialDetailActivity, ScanSocialChatActivity::class.java), SCAN)
+//                    startActivityForResult(Intent(this@ChatSocialDetailActivity, ScanSocialChatActivity::class.java), SCAN)
                 }
             }
             R.id.imgCamera -> {

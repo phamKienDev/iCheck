@@ -70,9 +70,6 @@ dependencies {
     api 'com.squareup.retrofit2:retrofit:2.7.2'
     api 'com.squareup.retrofit2:converter-gson:2.7.2'
 
-    // ScanDit
-    api files('src/main/jniLibs/scanditsdk-android-5.13.1.jar')
-    
     api 'com.airbnb.android:lottie:3.4.0'
 
     /** RX */

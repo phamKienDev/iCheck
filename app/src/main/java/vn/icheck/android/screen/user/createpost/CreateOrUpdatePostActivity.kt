@@ -38,7 +38,7 @@ import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICPrivacy
 import vn.icheck.android.network.models.ICProduct
 import vn.icheck.android.network.models.ICProductDetail
-import vn.icheck.android.screen.scan.ICKScanActivity
+import vn.icheck.android.screen.scan.V6ScanditActivity
 import vn.icheck.android.screen.user.createpost.dialog.SelectPostPrivacyDialog
 import vn.icheck.android.screen.user.createpost.viewmodel.CreateOrUpdatePostViewModel
 import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
@@ -236,7 +236,7 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
                     ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), ICK_REQUEST_CAMERA)
                 }
             } else {
-                ICKScanActivity.scanOnly(this, requestScanProduct)
+                V6ScanditActivity.scanOnly(this, requestScanProduct)
             }
 
         }

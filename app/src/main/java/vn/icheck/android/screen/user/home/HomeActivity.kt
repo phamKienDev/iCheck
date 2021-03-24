@@ -75,7 +75,6 @@ import vn.icheck.android.screen.account.registeruser.register.RegisterUserActivi
 import vn.icheck.android.screen.dialog.PermissionDialog
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.info.AppInfoActivity
-import vn.icheck.android.screen.scan.ICKScanActivity
 import vn.icheck.android.screen.scan.V6ScanditActivity
 import vn.icheck.android.screen.user.bookmark.BookMarkV2Activity
 import vn.icheck.android.screen.user.bookmark_history.BookmarkHistoryActivity

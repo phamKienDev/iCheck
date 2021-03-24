@@ -28,9 +28,7 @@ import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.models.ICClientSetting
 import vn.icheck.android.network.models.ICUser
-import vn.icheck.android.screen.scan.viewmodel.ICKScanViewModel
 import vn.icheck.android.screen.scan.viewmodel.V6ViewModel
-import vn.icheck.android.screen.user.barcode_qr_of_me.QrAndBarcodeOfMeFragment
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.ui.RoundedCornersTransformation
 import vn.icheck.android.util.ick.*
@@ -97,7 +95,7 @@ class MyQrActivity : AppCompatActivity() {
         listKey.add("MY_QR_CAMPAIGN_DESCRIPTION")
         listKey.add("MY_QR_CAMPAIGN_BANNER")
         binding.btnScan.setOnClickListener {
-            simpleStartActivity(ICKScanActivity::class.java)
+            simpleStartActivity(V6ScanditActivity::class.java)
         }
         viewModel.getMyID()
         createQrCodeMarketing()

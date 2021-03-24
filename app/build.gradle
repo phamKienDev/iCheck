@@ -194,9 +194,6 @@ dependencies {
 
     api 'com.squareup.retrofit2:converter-gson:2.9.0'
 
-    // ScanDit
-    api files('src/main/jniLibs/scanditsdk-android-5.13.1.jar')
-
     api 'com.github.ome450901:SimpleRatingBar:1.4.3'
     api 'com.yarolegovich:discrete-scrollview:1.4.9'
 

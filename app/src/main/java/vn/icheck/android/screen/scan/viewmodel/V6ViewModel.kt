@@ -115,7 +115,11 @@ class V6ViewModel: ViewModel() {
         ickScanModel.isFlash = !ickScanModel.isFlash
         ickScanModelLiveData.postValue(ickScanModel)
     }
-
+    enum class ScanScreen {
+        SCAN,
+        SCAN_BUY,
+        MY_CODE
+    }
     fun dispose() {
         repository.dispose()
     }
