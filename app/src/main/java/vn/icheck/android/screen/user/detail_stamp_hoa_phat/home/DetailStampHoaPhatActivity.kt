@@ -123,41 +123,6 @@ class DetailStampHoaPhatActivity : BaseActivityMVVM(), SlideHeaderStampHoaPhatLi
 
         viewModel.onDetailStamp.observe(this, Observer {
             tv_title.text = it.barcode
-
-//            if (it.product?.image != null && it.product?.name != null && it.product?.price != null && it.barcode != null) {
-//                qrScanViewModel.update(ICQrScan(viewModel.codeTem
-//                        , null
-//                        , null
-//                        , 1
-//                        , it.product?.id
-//                        , "http://icheckcdn.net/images/480x480/${it.product?.image}.jpg"
-//                        , it.product?.name
-//                        , null
-//                        , TextHelper.formatMoneyComma(it.product?.price!!) + "đ"
-//                        , null
-//                        , it.seller_id
-//                        , it.barcode
-//                        , false
-//                        , null
-//                        , "HoaPhat"))
-//            } else {
-//                qrScanViewModel.update(ICQrScan(viewModel.codeTem
-//                        , null
-//                        , null
-//                        , 1
-//                        , it.product?.id
-//                        , null
-//                        , getString(R.string.dang_cap_nhat)
-//                        , null
-//                        , getString(R.string.dang_cap_nhat)
-//                        , null
-//                        , it.seller_id
-//                        , getString(R.string.dang_cap_nhat)
-//                        , false
-//                        , null
-//                        , "HoaPhat"))
-//            }
-//            EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REFRESH_DATA_HISTORY_QR))
         })
 
         viewModel.statusCode.observe(this, Observer {
@@ -253,14 +218,6 @@ class DetailStampHoaPhatActivity : BaseActivityMVVM(), SlideHeaderStampHoaPhatLi
                 startActivity(account)
             }
         }
-
-//        btnAddToCart.setOnClickListener {
-//            if (SessionManager.isUserLogged) {
-//                onRequireLoginSuccess(requestAddToCart)
-//            } else {
-//                onRequireLogin(requestAddToCart)
-//            }
-//        }
 
         layoutBuyNow.setOnClickListener {
             if (SessionManager.isUserLogged) {

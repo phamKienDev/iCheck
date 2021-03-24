@@ -391,9 +391,9 @@ class IckProductDetailViewModel : BaseViewModel() {
                             getContributionInfo(obj.data, layout)
                         }
                     }
-//                    "ecommerce-1" -> {
-//                        if (!isUpdate) getProductsECommerce(layout)
-//                    }
+                    "ecommerce-1" -> {
+                        if (!isUpdate) getProductsECommerce(layout)
+                    }
                 }
             }
         }
