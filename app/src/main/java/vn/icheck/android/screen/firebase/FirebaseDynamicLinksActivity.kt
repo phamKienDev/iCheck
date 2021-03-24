@@ -98,6 +98,7 @@ import java.net.URL
 import java.util.*
 import androidx.lifecycle.Observer
 import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
+import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 
 class FirebaseDynamicLinksActivity : AppCompatActivity() {
     private val requestLogin = 1
@@ -812,7 +813,12 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                 val id = deepLink?.getQueryParameter("id")
 
                 if (!id.isNullOrEmpty()) {
-                    ChatSocialDetailActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong(), "user")
+                    if (!SessionManager.isUserLogged) {
+                        showLoginDialog()
+                        return
+                    } else if (ValidHelper.validNumber(id)) {
+                        ChatSocialDetailActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong(), "user")
+                    }
                 }
             }
             user -> {

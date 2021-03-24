@@ -3667,7 +3667,7 @@ object ViewHelper {
                 params.layoutParams = ConstraintLayout.LayoutParams(0, ConstraintLayout.LayoutParams.WRAP_CONTENT).also {
                     it.topMargin = SizeHelper.size4
                 }
-                params.id = R.id.txtFollower
+                params.id = R.id.tvFollower
                 params.isSingleLine = true
                 params.includeFontPadding = false
                 params.typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")

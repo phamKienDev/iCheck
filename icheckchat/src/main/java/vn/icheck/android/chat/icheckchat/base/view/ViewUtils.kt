@@ -381,6 +381,15 @@ fun convertDateTimeSvToCurrentDay(millisecond: Long?): String {
     }
 }
 
+fun chenhLechGio(time: Long?, oldTime: Long?, hour: Int): Boolean {
+    return if (time != null && oldTime != null) {
+        (oldTime - time) > (hour * intervalHour)
+    } else {
+        true
+    }
+}
+
+
 fun convertMillisecondToTime(millisecond: Long): String {
     val hour = millisecond / AlarmManager.INTERVAL_HOUR
     val minute = (millisecond - (hour * AlarmManager.INTERVAL_HOUR)) / 60000
