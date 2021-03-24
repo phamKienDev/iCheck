@@ -229,26 +229,26 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
             layoutHeader.beVisible()
         })
 
-        viewModel.onUpdatePVCombank.observe(viewLifecycleOwner, Observer {
-            for (i in homeAdapter.listData.indices) {
-                if (homeAdapter.listData[i].viewType == ICViewTypes.HOME_PRIMARY_FUNC) {
-                    if (homeAdapter.listData[i].data != null) {
-                        val viewHolder = recyclerView.findViewHolderForAdapterPosition(i)
-                        if (viewHolder is HomeFunctionHolder) {
-                            viewHolder.updateHomePVCombank(it)
-                        } else {
-                            (homeAdapter.listData[i].data as  MutableList<Any?>).apply {
-                                if (size > 1) {
-                                    removeLast()
-                                }
-                                add(it)
-                            }
-                        }
-                    }
-                    return@Observer
-                }
-            }
-        })
+//        viewModel.onUpdatePVCombank.observe(viewLifecycleOwner, Observer {
+//            for (i in homeAdapter.listData.indices) {
+//                if (homeAdapter.listData[i].viewType == ICViewTypes.HOME_PRIMARY_FUNC) {
+//                    if (homeAdapter.listData[i].data != null) {
+//                        val viewHolder = recyclerView.findViewHolderForAdapterPosition(i)
+//                        if (viewHolder is HomeFunctionHolder) {
+//                            viewHolder.updateHomePVCombank(it)
+//                        } else {
+//                            (homeAdapter.listData[i].data as  MutableList<Any?>).apply {
+//                                if (size > 1) {
+//                                    removeLast()
+//                                }
+//                                add(it)
+//                            }
+//                        }
+//                    }
+//                    return@Observer
+//                }
+//            }
+//        })
     }
 
     private fun setupRecyclerView() {
@@ -520,7 +520,8 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                 getReminders()
             }
             ICMessageEvent.Type.ON_LOG_OUT -> {
-                viewModel.onUpdatePVCombank.value = null
+//                viewModel.onUpdatePVCombank.value = null
+                homeAdapter.notifyItemChanged(0)
                 getCoin()
                 layoutContainer.setTransition(R.id.no_reminder)
                 tvCartCount.beGone()
