@@ -31,6 +31,8 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
 
     var conversation: MCConversation? = null
 
+    var deleteAt = -1L
+
     override val bindingInflater: (LayoutInflater) -> ActivityUserInformationBinding
         get() = ActivityUserInformationBinding::inflate
 
@@ -54,8 +56,6 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
 
         binding.recyclerView.layoutManager = GridLayoutManager(this@UserInformationActivity, 3, LinearLayoutManager.VERTICAL, false)
         binding.recyclerView.adapter = adapter
-
-        loadImageUrl(binding.imgAvatar, conversation?.imageTargetUser, R.drawable.ic_user_default_52dp, R.drawable.ic_user_default_52dp)
 
         viewModel.loginFirebase({
             binding.btnDeleteMessage.setOnClickListener {
@@ -89,28 +89,6 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
         })
 
         if (!conversation?.key.isNullOrEmpty()) {
-            val listContent = mutableListOf<MCMedia>()
-
-            viewModel.getImage(conversation?.key!!,
-                    { success ->
-                        if (success.hasChildren()) {
-                            for (item in success.children) {
-                                if (item.child("message").child("media").hasChildren()) {
-                                    for (i in item.child("message").child("media").children) {
-                                        listContent.add(MCMedia(i.child("content").value.toString(), i.child("type").value.toString()))
-                                    }
-                                }
-                            }
-
-                            if (!listContent.isNullOrEmpty()) {
-                                adapter.setData(listContent.asReversed())
-                            }
-                        }
-                    },
-                    { error ->
-                        showToastError(error.message)
-                    })
-
             getChatRoom(conversation?.key!!)
         }
     }
@@ -129,19 +107,24 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
                             id = item.child("id").value.toString().trim()
                             toId = item.child("source_id").value.toString()
                             toType = item.child("type").value.toString()
-                        }else{
-                            notification = item.child("is_subscribe")?.value.toString().toBoolean()
+                            notification = item.child("is_subscribe").value.toString().toBoolean()
+                        } else {
+                            deleteAt = if (item.child("deleted_at").value != null) {
+                                item.child("deleted_at").value.toString().toLong()
+                            } else {
+                                -1
+                            }
                         }
                     }
                 }
 
                 if (toType.contains("page")) {
-                    binding.imgAvatar.setBackgroundResource(R.drawable.ic_bg_avatar_page)
+                    loadImageUrl(binding.imgAvatar, conversation?.imageTargetUser, R.drawable.ic_default_avatar_page_chat, R.drawable.ic_default_avatar_page_chat)
                 } else {
-                    binding.imgAvatar.setBackgroundResource(0)
+                    loadImageUrl(binding.imgAvatar, conversation?.imageTargetUser, R.drawable.ic_user_default_52dp, R.drawable.ic_user_default_52dp)
                 }
 
-                getChatSender(id)
+                getChatSender(id, toType)
 
                 binding.btnViewProfile.apply {
                     if (obj.child("members").hasChildren()) {
@@ -201,28 +184,66 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
                     setOnClickListener {
                         if (isChecked) {
                             isChecked = false
-                            FirebaseAuth.getInstance().uid?.let { it1 -> turnOffNotification(key, it1, toType) }
+                            turnOffNotification(key, toId, toType)
                         } else {
                             isChecked = true
-                            FirebaseAuth.getInstance().uid?.let { it1 -> turnOnNotification(key, it1, toType) }
+                            turnOnNotification(key, toId, toType)
                         }
                     }
                 }
+
+                getImage(key)
             }
         }, { error ->
             showToastError(error.message)
         })
     }
 
-    private fun getChatSender(key: String) {
+    private fun getImage(key: String) {
+        val listContent = mutableListOf<MCMedia>()
+
+        viewModel.getImage(key,
+                { success ->
+                    if (success.hasChildren()) {
+                        for (item in success.children) {
+                            if (item.child("time").value.toString().toLong() > deleteAt) {
+                                if (item.child("message").child("media").hasChildren()) {
+                                    for (i in item.child("message").child("media").children) {
+                                        listContent.add(MCMedia(i.child("content").value.toString(), i.child("type").value.toString()))
+                                    }
+                                }
+                            }
+                        }
+
+                        if (!listContent.isNullOrEmpty()) {
+                            adapter.setData(listContent.asReversed())
+                        }
+                    }
+                },
+                { error ->
+                    showToastError(error.message)
+                })
+    }
+
+    private fun getChatSender(key: String, toType: String) {
         viewModel.getChatSender(key, { success ->
             if (success.exists()) {
-                if (success.child("is_verify").value != null && success.child("is_verify").value.toString().toBoolean()) {
-                    val ssb = SpannableStringBuilder(conversation?.targetUserName + "   ")
-                    ssb.setSpan(getImageSpan(R.drawable.ic_verified_24dp_chat), ssb.length - 1, ssb.length, 0)
-                    binding.tvNameUser.setText(ssb, TextView.BufferType.SPANNABLE)
-                } else {
-                    binding.tvNameUser.text = conversation?.targetUserName
+                binding.imgAvatar.apply {
+                    if (success.child("is_verify").value != null && success.child("is_verify").value.toString().toBoolean()) {
+                        val ssb = SpannableStringBuilder(conversation?.targetUserName + "   ")
+                        ssb.setSpan(getImageSpan(R.drawable.ic_verified_24dp_chat), ssb.length - 1, ssb.length, 0)
+                        binding.tvNameUser.setText(ssb, TextView.BufferType.SPANNABLE)
+
+                        if (toType.contains("page")) {
+                            setBackgroundResource(R.drawable.ic_bg_avatar_page)
+                        } else {
+                            setBackgroundResource(0)
+                        }
+
+                    } else {
+                        setBackgroundResource(0)
+                        binding.tvNameUser.text = conversation?.targetUserName
+                    }
                 }
             } else {
                 binding.tvNameUser.text = conversation?.targetUserName
@@ -260,7 +281,6 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
                     showToastError(it.message)
                 }
                 MCStatus.SUCCESS -> {
-                    showToastSuccess("Thành Công!")
                 }
             }
         })
@@ -276,7 +296,6 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
                     showToastError(it.message)
                 }
                 MCStatus.SUCCESS -> {
-                    showToastSuccess("Thành Công!")
                 }
             }
         })

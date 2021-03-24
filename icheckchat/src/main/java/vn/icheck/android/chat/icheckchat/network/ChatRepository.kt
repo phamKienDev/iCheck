@@ -130,9 +130,9 @@ class ChatRepository {
         if (!obj.content.isNullOrEmpty()) {
             message["text"] = obj.content!!.replace("\r", "\n")
         }
-        if (!obj.link.isNullOrEmpty()) {
-            message["link"] = obj.link!!
-        }
+//        if (!obj.link.isNullOrEmpty()) {
+//            message["link"] = obj.link!!
+//        }
         if (!obj.sticker.isNullOrEmpty()) {
             message["sticker"] = obj.sticker!!
         }

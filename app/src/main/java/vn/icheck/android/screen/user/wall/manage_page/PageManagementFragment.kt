@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -144,7 +145,13 @@ class PageManagementFragment : Fragment() {
                 } catch (e: Exception) {
                 }
             }
-            setFollowPage(myFollowPage?.data)
+            if (myFollowPage?.data?.rows.isNullOrEmpty() && binding.containerOwner.isGone) {
+                binding.containerFollow.beGone()
+                binding.containerOwner.beGone()
+                setError(ICError(R.drawable.ic_group_120dp, ICheckApplication.getString(R.string.ban_chua_co_trang_nao)))
+            } else {
+                setFollowPage(myFollowPage?.data)
+            }
         }
     }
 

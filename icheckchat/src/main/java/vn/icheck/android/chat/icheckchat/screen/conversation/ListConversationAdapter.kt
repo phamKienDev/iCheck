@@ -60,7 +60,24 @@ class ListConversationAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
 
             checkNullOrEmpty(binding.tvMessage, obj.lastMessage)
 
-            loadImageUrl(binding.imgAvatar, obj.imageTargetUser, R.drawable.ic_user_default_52dp, R.drawable.ic_user_default_52dp)
+            binding.imgAvatar.apply {
+                if (obj.type == "user") {
+                    setBackgroundResource(0)
+                    loadImageUrl(this@apply, obj.imageTargetUser, R.drawable.ic_user_default_52dp, R.drawable.ic_user_default_52dp)
+                    binding.tvNameUser.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                } else {
+
+                    if (obj.isVerified) {
+                        setBackgroundResource(R.drawable.ic_bg_avatar_page)
+                        binding.tvNameUser.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_18px, 0)
+                    } else {
+                        setBackgroundResource(0)
+                        binding.tvNameUser.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                    }
+
+                    loadImageUrl(this@apply, obj.imageTargetUser, R.drawable.ic_default_avatar_page_chat, R.drawable.ic_default_avatar_page_chat)
+                }
+            }
 
             binding.tvTime.text = convertDateTimeSvToCurrentDay(obj.time)
 
@@ -95,7 +112,7 @@ class ListConversationAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
                 } else {
                     if (!obj.isNotification) {
                         setVisible()
-                    }else{
+                    } else {
                         setGone()
                     }
                 }

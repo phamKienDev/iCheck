@@ -14,12 +14,15 @@
         android:layout_marginLeft="12dp"
         android:layout_marginTop="13dp"
         android:layout_marginBottom="13dp"
+        android:background="@drawable/ic_bg_avatar_page"
+        android:padding="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@color/lightBlue" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvNameUser"
+    <LinearLayout
+        android:id="@+id/layoutName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -27,17 +30,28 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
-        android:ellipsize="end"
-        android:fontFamily="@font/barlow_semi_bold"
-        android:hint="@string/dang_cap_nhat"
-        android:includeFontPadding="false"
-        android:singleLine="true"
-        android:textColor="@color/black_21"
-        android:textSize="16sp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toStartOf="@+id/tvTime"
         app:layout_constraintStart_toEndOf="@id/imgAvatar"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Mai Lan Nguyễn" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvNameUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_verified_18px"
+            android:drawableRight="@drawable/ic_verified_18px"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:drawablePadding="4dp"
+            android:hint="@string/dang_cap_nhat"
+            android:includeFontPadding="false"
+            android:singleLine="true"
+            android:textColor="@color/black_21"
+            android:textSize="16sp"
+            tools:text="Mai Lan Nguyễn s;kdja;skldj ksjadklaskldsaj d" />
+    </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvMessage"
@@ -50,9 +64,9 @@
         android:singleLine="true"
         android:textColor="@color/gray_75"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@id/tvNameUser"
-        app:layout_constraintStart_toStartOf="@id/tvNameUser"
-        app:layout_constraintTop_toBottomOf="@id/tvNameUser"
+        app:layout_constraintEnd_toEndOf="@id/layoutName"
+        app:layout_constraintStart_toStartOf="@id/layoutName"
+        app:layout_constraintTop_toBottomOf="@id/layoutName"
         tools:text="Alo???" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -73,8 +87,8 @@
         android:layout_width="28dp"
         android:layout_height="28dp"
         android:layout_marginTop="3dp"
-        android:visibility="gone"
         android:src="@drawable/ic_turn_off_28dp_chat"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@id/tvTime"
         app:layout_constraintTop_toBottomOf="@id/tvTime" />
 

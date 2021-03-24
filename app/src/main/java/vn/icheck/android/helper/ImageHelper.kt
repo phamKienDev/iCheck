@@ -122,6 +122,16 @@ object ImageHelper : BaseInteractor() {
         })
     }
 
+    suspend fun uploadMediaV2(file: File): ICResponse<UploadResponse> {
+        val requestBody = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), file)
+        var fileName = file.toString()
+        if (!fileName.endsWith(".mp4") && !fileName.endsWith(".png") && !fileName.endsWith(".jpg") && !fileName.endsWith(".gif")) {
+            fileName += ".jpg"
+        }
+        val body = MultipartBody.Part.createFormData("key", fileName, requestBody)
+        return ICNetworkClient.getNewUploadClient().uploadImageV2(body)
+    }
+
 
     fun downloadFileByDownloadManager(context: Context, url: String): Long {
         val folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
