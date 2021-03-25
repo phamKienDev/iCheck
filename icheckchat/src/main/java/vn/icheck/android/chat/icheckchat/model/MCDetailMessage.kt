@@ -27,9 +27,11 @@ class MCDetailMessage : Serializable {
 
     var product: MCProductFirebase? = null
 
-    var showTime: Boolean = false
+    var showStatus: Boolean = false
 
     var status: MCStatus? = MCStatus.SUCCESS
+
+    var timeText: String? = null
 
     var messageId: String? = null
 }

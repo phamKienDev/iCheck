@@ -5,12 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical|right"
-    android:orientation="vertical"
-    android:paddingStart="90dp"
-    android:paddingLeft="90dp"
-    android:paddingTop="16dp"
-    android:paddingEnd="12dp"
-    android:paddingRight="12dp">
+    android:orientation="vertical">
 
 
     <LinearLayout
@@ -41,6 +36,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_corner_10_gray_f0"
                 android:paddingBottom="10dp"
+                android:layout_marginBottom="4dp"
                 android:visibility="visible">
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -143,7 +139,6 @@
                 android:id="@+id/tvMessage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
                 android:background="@drawable/bg_corner_10_blue"
                 android:fontFamily="@font/barlow_medium"
                 android:includeFontPadding="false"

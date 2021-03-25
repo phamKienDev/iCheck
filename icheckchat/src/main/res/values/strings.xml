@@ -7,6 +7,7 @@
     <string name="khong_co_du_lieu">Không có dữ liệu!</string>
     <string name="dang_cap_nhat">Đang cập nhật</string>
     <string name="dang_gui">Đang gửi...</string>
+    <string name="vua_xong">Vừa xong</string>
     <string name="loi_gui_tin_nhan">Lỗi gửi tin nhắn</string>
     <string name="ten_dang_cap_nhat">Tên đang cập nhật</string>
     <string name="gia_dang_cap_nhat">Giá đang cập nhật</string>

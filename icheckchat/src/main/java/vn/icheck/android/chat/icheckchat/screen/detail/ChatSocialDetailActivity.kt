@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
@@ -17,6 +18,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_chat_social_detail.*
 import kotlinx.android.synthetic.main.item_sender.*
@@ -321,67 +323,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                     if (obj.hasChildren()) {
                         for (item in obj.children.reversed()) {
                             if (item.child("time").value.toString().toLong() > deleteAt) {
-                                val element = MCDetailMessage().apply {
-                                    time = item.child("time").value as Long?
-                                    senderId = item.child("sender").child("source_id").value.toString()
-                                    userId = FirebaseAuth.getInstance().currentUser?.uid
-                                    type = item.child("message").child("type").value.toString()
-                                    avatarSender = conversation?.imageTargetUser
-                                    showTime = if (senderId != oldItem.senderId) {
-                                        true
-                                    } else {
-                                        chenhLechGio(time, oldItem.time, 1)
-                                    }
-
-                                    if (item.child("message").value != null) {
-                                        if (item.child("message").child("media").hasChildren()) {
-                                            val listImage = mutableListOf<MCMedia>()
-
-                                            for (i in item.child("message").child("media").children) {
-                                                listImage.add(MCMedia(i.child("content").value.toString(), i.child("type").value.toString()))
-                                            }
-
-                                            listMedia = listImage
-                                        }
-
-                                        if (item.child("message").child("product").value != null) {
-                                            val itemProduct = item.child("message").child("product")
-
-                                            product = MCProductFirebase().apply {
-                                                barcode = itemProduct.child("barcode").value.toString()
-                                                image = itemProduct.child("image").value.toString()
-                                                name = itemProduct.child("name").value.toString()
-                                                state = itemProduct.child("state").value.toString()
-                                                productId = if (itemProduct.child("product_id").value is Long) {
-                                                    itemProduct.child("product_id").value as Long?
-                                                } else {
-                                                    -1
-                                                }
-                                                price = if (itemProduct.child("price").value is Long) {
-                                                    itemProduct.child("price").value as Long?
-                                                } else {
-                                                    -1
-                                                }
-                                            }
-                                        }
-
-//                                        if (!item.child("message").child("link").value.toString().contains("null")) {
-//                                            link = item.child("message").child("link").value.toString()
-//                                        }
-
-                                        if (!item.child("message").child("text").value.toString().contains("null")) {
-                                            if (item.child("message").child("text").value.toString().trim().contains("https://") || item.child("message").child("link").value.toString().trim().contains("http://")) {
-                                                link = item.child("message").child("text").value.toString()
-                                            } else {
-                                                content = item.child("message").child("text").value.toString()
-                                            }
-                                        }
-
-                                        if (!item.child("message").child("sticker").value.toString().contains("null")) {
-                                            sticker = item.child("message").child("sticker").value.toString()
-                                        }
-                                    }
-                                }
+                                val element = convertDataFirebase(item, oldItem)
 
                                 listChatMessage.add(element)
                                 oldItem = element
@@ -393,6 +335,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                             binding.recyclerView.smoothScrollToPosition(adapter.getListData.size)
                         }
                         isSetData = true
+                        listenChangeMessage(key)
+
 
 //                            if (!isLoadMore) {
 //                                if (listChatMessage.isNullOrEmpty()) {
@@ -407,24 +351,107 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 },
                 { error ->
                     isSetData = true
+                    listenChangeMessage(key)
                     showToastError(error.message ?: getString(R.string.error_default))
                 })
 
 
-        listenChangeMessage(key)
     }
 
     private fun listenChangeMessage(key: String) {
         viewModel.getChangeMessageChat(key) { data ->
             if (isSetData) {
-                val index = adapter.getListData.indexOfFirst { it.messageId == data.key }
-                if (index != -1) {
-                    adapter.getListData[index].status = MCStatus.SUCCESS
-                    adapter.getListData[index].time = data.child("time").value as Long?
-                    adapter.notifyItemChanged(index)
+//                if (FirebaseAuth.getInstance().currentUser?.uid == data.child("sender").child("source_id").value.toString()) {
+                    val index = adapter.getListData.indexOfFirst { it.messageId == data.key }
+                    if (index != -1) {
+                        adapter.getListData[index].status = MCStatus.SUCCESS
+                        adapter.getListData[index].time = data.child("time").value as Long?
+
+                        //xóa status tin nhắn trước đó
+                        if (adapter.getListData[index.minus(1)].timeText == getString(R.string.vua_xong)) {
+                            val holder = recyclerView.findViewHolderForAdapterPosition(index.minus(1))
+                            adapter.getListData[index.minus(1)].showStatus = false
+
+                            if (holder is ChatSocialDetailAdapter.SenderHolder) {
+                                holder.setupShowStatus(adapter.getListData[index.minus(1)])
+                            } else {
+                                adapter.notifyItemChanged(index.minus(1))
+                            }
+                        }
+
+                        adapter.notifyItemChanged(index)
+                    }
+//                } else {
+//                    val lastMessageReceive = adapter.getListData.lastOrNull { it.senderId != FirebaseAuth.getInstance().currentUser?.uid }
+//                    val message = convertDataFirebase(data, lastMessageReceive ?: MCDetailMessage())
+//                    adapter.getListData.add(message)
+//                    adapter.notifyItemInserted(adapter.getListData.size - 1)
+//                }
+                binding.recyclerView.smoothScrollToPosition(adapter.getListData.size)
+
+            }
+        }
+    }
+
+    private fun convertDataFirebase(item: DataSnapshot, oldItem: MCDetailMessage): MCDetailMessage {
+        val element = MCDetailMessage().apply {
+            time = item.child("time").value as Long?
+            senderId = item.child("sender").child("source_id").value.toString()
+            userId = FirebaseAuth.getInstance().currentUser?.uid
+            type = item.child("message").child("type").value.toString()
+            avatarSender = conversation?.imageTargetUser
+            showStatus = if (senderId != oldItem.senderId) {
+                true
+            } else {
+                chenhLechGio(time, oldItem.time, 1)
+            }
+
+            if (item.child("message").value != null) {
+                if (item.child("message").child("media").hasChildren()) {
+                    val listImage = mutableListOf<MCMedia>()
+
+                    for (i in item.child("message").child("media").children) {
+                        listImage.add(MCMedia(i.child("content").value.toString(), i.child("type").value.toString()))
+                    }
+
+                    listMedia = listImage
+                }
+
+                if (item.child("message").child("product").value != null) {
+                    val itemProduct = item.child("message").child("product")
+
+                    product = MCProductFirebase().apply {
+                        barcode = itemProduct.child("barcode").value.toString()
+                        image = itemProduct.child("image").value.toString()
+                        name = itemProduct.child("name").value.toString()
+                        state = itemProduct.child("state").value.toString()
+                        productId = if (itemProduct.child("product_id").value is Long) {
+                            itemProduct.child("product_id").value as Long?
+                        } else {
+                            -1
+                        }
+                        price = if (itemProduct.child("price").value is Long) {
+                            itemProduct.child("price").value as Long?
+                        } else {
+                            -1
+                        }
+                    }
+                }
+
+                if (!item.child("message").child("text").value.toString().contains("null")) {
+                    if (item.child("message").child("text").value.toString().trim().contains("https://") || item.child("message").child("link").value.toString().trim().contains("http://")) {
+                        link = item.child("message").child("text").value.toString()
+                    } else {
+                        content = item.child("message").child("text").value.toString()
+                    }
+                }
+
+                if (!item.child("message").child("sticker").value.toString().contains("null")) {
+                    sticker = item.child("message").child("sticker").value.toString()
                 }
             }
         }
+        return element
     }
 
     private fun selectedTextView(view: AppCompatCheckedTextView, layout: View, isEnabled: Boolean = false) {
@@ -481,8 +508,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
     private fun checkSendMessage(key: String, obj: MCDetailMessage) {
         if (NetworkHelper.isNotConnected(this)) {
             obj.status = MCStatus.ERROR_NETWORK
-            adapter.getListData.add(obj)
-            adapter.notifyItemInserted(adapter.getListData.size)
+            addMessageAdapter(obj)
         } else {
             val idFirebase = FirebaseDatabase.getInstance().reference.push().key.toString()
             obj.messageId = idFirebase
@@ -491,13 +517,14 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
             if (adapter.getListData.contains(obj)) {
                 val index = adapter.getListData.indexOfFirst { it == obj }
                 if (index != -1) {
-                    adapter.getListData[index].status = MCStatus.LOADING
-                    adapter.notifyItemChanged(index)
+                    adapter.getListData.removeAt(index)
+                    adapter.notifyItemRemoved(index)
                 }
+                obj.status = MCStatus.LOADING
+                addMessageAdapter(obj)
             } else {
                 obj.status = MCStatus.LOADING
-                adapter.getListData.add(obj)
-                adapter.notifyItemInserted(adapter.getListData.size)
+                addMessageAdapter(obj)
             }
 
             if (obj.type == "media") {
@@ -509,6 +536,25 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 sendMessage(key, "user", obj)
             }
         }
+    }
+
+    private fun addMessageAdapter(obj: MCDetailMessage) {
+        obj.showStatus = true
+        adapter.getListData.add(obj)
+        adapter.notifyItemInserted(adapter.getListData.size - 1)
+
+
+        if (adapter.getListData[adapter.getListData.size - 2].status == obj.status) {
+            val holder = recyclerView.findViewHolderForAdapterPosition(adapter.getListData.size - 2)
+            adapter.getListData[adapter.getListData.size - 2].showStatus = false
+
+            if (holder is ChatSocialDetailAdapter.SenderHolder) {
+                holder.setupShowStatus(adapter.getListData[adapter.getListData.size - 2])
+            } else {
+                adapter.notifyItemChanged(adapter.getListData.size - 2)
+            }
+        }
+
         binding.recyclerView.smoothScrollToPosition(adapter.getListData.size)
     }
 

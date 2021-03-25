@@ -5,10 +5,12 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Paint
 import android.net.Uri
+import android.util.Size
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
@@ -24,6 +26,7 @@ import vn.icheck.android.chat.icheckchat.base.view.MCViewType.TYPE_RECEIVER
 import vn.icheck.android.chat.icheckchat.base.view.MCViewType.TYPE_SENDER
 import vn.icheck.android.chat.icheckchat.databinding.ItemReceiverBinding
 import vn.icheck.android.chat.icheckchat.databinding.ItemSenderBinding
+import vn.icheck.android.chat.icheckchat.helper.SizeHelper
 import vn.icheck.android.chat.icheckchat.model.MCDetailMessage
 import vn.icheck.android.chat.icheckchat.model.MCMedia
 import vn.icheck.android.chat.icheckchat.model.MCMessageEvent
@@ -87,6 +90,7 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
                 }
             }
             setupStickers(obj)
+            setupShowStatus(obj)
             setupStatus(obj)
             initClick(obj)
         }
@@ -128,17 +132,12 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
                 MCStatus.SUCCESS -> {
                     binding.imgRetry.setGone()
                     binding.tvTime.setTextColor(ContextCompat.getColor(itemView.context, R.color.gray_b4))
-                    //                    if (obj.showTime) {
-                    binding.tvTime.setVisible()
-                    binding.tvTime.text = convertDateTimeSvToCurrentDay(obj.time)
-                    //                    } else {
-                    //                        binding.tvTime.setGone()
-                    //                    }
+                    obj.timeText = convertDateTimeSvToCurrentDay(obj.time)
+                    binding.tvTime.text = obj.timeText
                     binding.tvMessage.setBackgroundDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_10_blue))
                 }
                 MCStatus.LOADING -> {
                     binding.imgRetry.setGone()
-                    binding.tvTime.setVisible()
                     binding.tvTime.setTextColor(ContextCompat.getColor(itemView.context, R.color.gray_b4))
                     binding.tvTime.text = itemView.context.getString(R.string.dang_gui)
                     binding.tvMessage.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.blue_opactity))
@@ -146,11 +145,20 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
                 }
                 else -> {
                     binding.imgRetry.setVisible()
-                    binding.tvTime.setVisible()
                     binding.tvTime.setTextColor(ContextCompat.getColor(itemView.context, R.color.red))
                     binding.tvTime.text = itemView.context.getString(R.string.loi_gui_tin_nhan)
                     binding.tvMessage.setBackgroundDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_10_blue_opacity))
                 }
+            }
+        }
+
+        fun setupShowStatus(obj: MCDetailMessage) {
+            if (obj.showStatus) {
+                binding.tvTime.setVisible()
+                binding.root.setPadding(SizeHelper.dpToPx(90), 0, SizeHelper.dpToPx(12), SizeHelper.dpToPx(16))
+            } else {
+                binding.tvTime.setGone()
+                binding.root.setPadding(SizeHelper.dpToPx(90), 0, SizeHelper.dpToPx(12), SizeHelper.dpToPx(3))
             }
         }
 
@@ -205,7 +213,6 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
 
         }
 
-
         private fun initClick(obj: MCDetailMessage) {
             binding.layoutImageDetail.root.setOnClickListener {
                 EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.HIDE_KEYBOARD))
@@ -217,8 +224,7 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
             }
 
             binding.imgRetry.setOnClickListener {
-                EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.SEND_RETRY_CHAT,obj))
-
+                EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.SEND_RETRY_CHAT, obj))
             }
         }
     }
@@ -291,11 +297,13 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
                 loadImageUrlRounded(binding.layoutImageDetail.img, obj.sticker, R.drawable.ic_default_image_upload_150_chat, dpToPx(10))
             }
 
-            if (obj.showTime) {
+            if (obj.showStatus) {
                 binding.tvTime.setVisible()
                 binding.tvTime.text = convertDateTimeSvToCurrentDay(obj.time)
+                binding.root.setPadding(SizeHelper.dpToPx(12), 0, SizeHelper.dpToPx(55), SizeHelper.dpToPx(16))
             } else {
                 binding.tvTime.setGone()
+                binding.root.setPadding(SizeHelper.dpToPx(12), 0, SizeHelper.dpToPx(55), SizeHelper.dpToPx(3))
             }
 
             binding.root.setOnClickListener {
