@@ -188,7 +188,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                 }
             }
         }
-        takeImageDialog = TakeMediaDialog(takeImageListener, false, cropImage = false, isVideo = false)
+        takeImageDialog = TakeMediaDialog(takeImageListener, false, cropImage = true, isVideo = false)
 
         val key = if (BuildConfig.FLAVOR.contentEquals("dev")) getString(R.string.scandit_v6_key_dev) else getString(R.string.scandit_v6_key_live)
         dataCaptureContext = DataCaptureContext.forLicenseKey(key)
@@ -199,8 +199,17 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
             enableSymbology(Symbology.EAN8, true)
             enableSymbology(Symbology.UPCE, true)
             enableSymbology(Symbology.EAN13_UPCA, true)
+
             setProperty("remove_leading_upca_zero", true)
+
         }
+        settings.getSymbologySettings(Symbology.CODE128).isColorInvertedEnabled = true
+        settings.getSymbologySettings(Symbology.CODE39).isColorInvertedEnabled = true
+        settings.getSymbologySettings(Symbology.QR).isColorInvertedEnabled = true
+        settings.getSymbologySettings(Symbology.EAN8).isColorInvertedEnabled = true
+        settings.getSymbologySettings(Symbology.UPCE).isColorInvertedEnabled = true
+        settings.getSymbologySettings(Symbology.EAN13_UPCA).isColorInvertedEnabled = true
+
         barcodeCapture = BarcodeCapture.forDataCaptureContext(dataCaptureContext, settings)
 
         barcodeCapture.addListener(this)
@@ -212,7 +221,12 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
         _binding = IckScanCustomViewBinding.inflate(layoutInflater, dataCaptureView, false)
         dataCaptureView.addView(binding.root, getDeviceWidth(), getDeviceHeight())
+
         setContentView(dataCaptureView)
+
+        val lp = dataCaptureView.layoutParams
+        lp.height = getDeviceHeight() + 50.toPx()
+        dataCaptureView.layoutParams = lp
         initViews()
 
 

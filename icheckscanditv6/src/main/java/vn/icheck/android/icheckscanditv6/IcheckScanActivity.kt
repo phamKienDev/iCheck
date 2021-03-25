@@ -171,6 +171,14 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
             enableSymbology(Symbology.EAN13_UPCA, true)
             setProperty("remove_leading_upca_zero", true)
         }
+
+        settings.getSymbologySettings(Symbology.CODE128).isColorInvertedEnabled = true
+        settings.getSymbologySettings(Symbology.CODE39).isColorInvertedEnabled = true
+        settings.getSymbologySettings(Symbology.QR).isColorInvertedEnabled = true
+        settings.getSymbologySettings(Symbology.EAN8).isColorInvertedEnabled = true
+        settings.getSymbologySettings(Symbology.UPCE).isColorInvertedEnabled = true
+        settings.getSymbologySettings(Symbology.EAN13_UPCA).isColorInvertedEnabled = true
+
         barcodeCapture = BarcodeCapture.forDataCaptureContext(dataCaptureContext, settings)
 
         barcodeCapture.addListener(this)
@@ -266,14 +274,13 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
                 override fun onSubmit(code: String) {
                     binding.imgNmbt.isEnabled = true
 
-//                    if (viewModel.scanOnlyChat) {
-//                        setResult(Activity.RESULT_OK, Intent().apply {
-//                            putExtra(Constant.DATA_1, false)
-//                            putExtra(Constant.DATA_2, code)
-//                        })
-//                        finish()
-//                        return
-//                    }
+                    if (viewModel.scanOnlyChat) {
+                        setResult(Activity.RESULT_OK, Intent().apply {
+                            putExtra("BARCODE", code)
+                        })
+                        finish()
+                        return
+                    }
 //                    if (code.startsWith("u-")) {
 //                        val id = code.replace("u-", "").toLongOrNull()
 //                        if (id != null) {
@@ -447,11 +454,10 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
                 if (viewModel.scanOnlyChat) {
                     setResult(Activity.RESULT_OK, Intent().apply {
                         if (symbology == Symbology.QR) {
-                            putExtra(Constant.DATA_1, true)
+                            putExtra("QR_CODE", code)
                         } else {
-                            putExtra(Constant.DATA_1, false)
+                            putExtra("BARCODE", code)
                         }
-                        putExtra(Constant.DATA_2, code)
                     })
                     finish()
                 }

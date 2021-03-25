@@ -44,6 +44,7 @@ import vn.icheck.android.chat.icheckchat.screen.detail.adapter.ChatSocialDetailA
 import vn.icheck.android.chat.icheckchat.screen.detail.adapter.ImageAdapter
 import vn.icheck.android.chat.icheckchat.screen.detail.adapter.StickerAdapter
 import vn.icheck.android.chat.icheckchat.screen.user_information.UserInformationActivity
+import vn.icheck.android.icheckscanditv6.IcheckScanActivity
 import java.io.File
 
 class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBinding>(), IRecyclerViewCallback, View.OnClickListener {
@@ -741,7 +742,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
             }
             R.id.imgScan -> {
                 if (!binding.imgScan.isChecked) {
-//                    startActivityForResult(Intent(this@ChatSocialDetailActivity, ScanSocialChatActivity::class.java), SCAN)
+                    IcheckScanActivity.scanOnlyChat(this, SCAN)
+//                    startActivityForResult(Intent(this@ChatSocialDetailActivity, IcheckScanActivity::class.java), SCAN)
                 }
             }
             R.id.imgCamera -> {
