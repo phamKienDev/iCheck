@@ -1,4 +1,7 @@
+include ':ichecklibs'
 include ':icheckchat'
 include ':icheckloyalty'
-include ':app', ':ichecknetwork'
+include ':ichecknetwork'
+include ':icheckscanditv6'
+include ':app'
 rootProject.name='iCheck'

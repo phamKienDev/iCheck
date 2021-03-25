@@ -2,6 +2,7 @@ package vn.icheck.android.screen.user.social_chat
 
 import androidx.paging.DataSource
 import androidx.paging.PagingSource
+import androidx.paging.PagingState
 import vn.icheck.android.network.api.ICKApi
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.wall.RowsItem
@@ -19,6 +20,13 @@ class UserFriendSource(val ickApi: ICKApi):PagingSource<Int, RowsItem>() {
 
         } catch (e: Exception) {
             LoadResult.Error(e)
+        }
+    }
+
+    override fun getRefreshKey(state: PagingState<Int, RowsItem>): Int? {
+        return state.anchorPosition?.let { anchorPosition ->
+            val anchorPage = state.closestPageToPosition(anchorPosition)
+            anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
         }
     }
 }

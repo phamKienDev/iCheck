@@ -214,3 +214,4 @@ package vn.icheck.android.chat.icheckchat.screen.scan
 //        }
 //    }
 //}
+

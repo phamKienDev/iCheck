@@ -2,9 +2,7 @@ package vn.icheck.android.screen.info
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.play.core.appupdate.AppUpdateManagerFactory
-import com.google.android.play.core.install.model.AppUpdateType
-import com.google.android.play.core.install.model.UpdateAvailability
+
 import vn.icheck.android.BuildConfig
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.databinding.ActivityAppInfoBinding
