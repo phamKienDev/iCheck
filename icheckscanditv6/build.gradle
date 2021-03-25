@@ -49,7 +49,7 @@ dependencies {
     api fileTree(dir: 'libs', include: ['*.jar','*.aar'])
     api project(path: ':ichecklibs')
     api project(path: ':ichecknetwork')
-    compileOnly files('src/main/libs/ScanditCaptureCore.aar')
-    compileOnly files('src/main/libs/ScanditBarcodeCapture.aar')
+    api files('src/main/libs/ScanditCaptureCore.aar')
+    api files('src/main/libs/ScanditBarcodeCapture.aar')
 
 }

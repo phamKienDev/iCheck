@@ -82,6 +82,7 @@ import vn.icheck.android.util.kotlin.ContactUtils
 import java.io.File
 import java.net.URL
 import java.util.concurrent.atomic.AtomicBoolean
+import vn.icheck.android.BuildConfig
 
 class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
@@ -189,8 +190,8 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         }
         takeImageDialog = TakeMediaDialog(takeImageListener, false, cropImage = false, isVideo = false)
 
-//        val key = if (BuildConfig.FLAVOR.contentEquals("dev")) getString(R.string.scandit_v6_key_dev) else getString(R.string.scandit_v6_key_live)
-        dataCaptureContext = ICheckApplication.getInstance().dataCaptureContext
+        val key = if (BuildConfig.FLAVOR.contentEquals("dev")) getString(R.string.scandit_v6_key_dev) else getString(R.string.scandit_v6_key_live)
+        dataCaptureContext = DataCaptureContext.forLicenseKey(key)
         val settings = BarcodeCaptureSettings().apply {
             enableSymbology(Symbology.CODE128, true)
             enableSymbology(Symbology.CODE39, true)
