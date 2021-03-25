@@ -100,7 +100,14 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
             }
         } else {
             WidgetUtils.loadImageUrl(itemView.imgLogo, obj.user?.avatar, R.drawable.ic_avatar_default_84px)
-            itemView.tvPageName.text = obj.user?.getName
+            itemView.tvPageName.apply {
+                text = obj.user?.getName
+                if (obj.user?.isKyc == true) {
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_24dp, 0)
+                } else {
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                }
+            }
             itemView.imgRank.beVisible()
             itemView.imgVerify.beGone()
             itemView.imgRank.setRankUser(obj.user?.rank?.level)

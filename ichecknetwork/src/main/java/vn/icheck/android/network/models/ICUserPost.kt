@@ -12,6 +12,7 @@ data class ICUserPost(
         @Expose var lastName: String?,
         @Expose var rank: ICRankOfUser,
         @Expose var userPrivacyConfig: ICUserPrivacyConfig? = null,
+        @Expose val isKyc: Boolean? = null
         ): Serializable {
     val getName: String
         get() {

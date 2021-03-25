@@ -1,5 +1,6 @@
 package vn.icheck.android.network.models.wall
 
+import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import vn.icheck.android.network.base.ICBaseResponse
 import vn.icheck.android.network.models.ICRankOfUser
@@ -64,7 +65,9 @@ data class RowsItem(
 	val email: String? = null,
 
 	@field:SerializedName("updatedAt")
-	val updatedAt: String? = null
+	val updatedAt: String? = null,
+
+	@Expose val isKyc: Boolean? = null
 ){
 	fun getPhoneOnly(): String {
 		return if (phone != null) {

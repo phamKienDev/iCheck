@@ -206,7 +206,9 @@ data class IckUserInfoData @JvmOverloads constructor(
         val myFollowingUserCount:Int? = null,
 
         @field:SerializedName("userFollowingMeCount")
-        val userFollowingMeCount:Int? = null
+        val userFollowingMeCount:Int? = null,
+
+        @Expose val isKyc: Boolean? = null
 
 ) : Parcelable {
 

@@ -1,5 +1,6 @@
 package vn.icheck.android.network.models
 
+import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import vn.icheck.android.network.models.wall.ICUserPrivacyConfig
 
@@ -35,7 +36,8 @@ data class ICSearchUser(
         @SerializedName("updatedAt") val updatedAt: String?,
         @SerializedName("relateFriendCount") val relateFriendCount: Int = 0,
         @SerializedName("wall") val wall: ICWall,
-        @SerializedName("userPrivacyConfig") val userPrivacyConfig: ICUserPrivacyConfig?=null,
+        @SerializedName("userPrivacyConfig") val userPrivacyConfig: ICUserPrivacyConfig? = null,
+        @Expose val isKyc: Boolean? = null,
 
         var requestStatus: Int = 0,
         var statusClient: Int = 0

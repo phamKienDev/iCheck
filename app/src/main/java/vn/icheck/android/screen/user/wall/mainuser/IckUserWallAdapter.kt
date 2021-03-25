@@ -2,6 +2,8 @@ package vn.icheck.android.screen.user.wall.mainuser
 
 import android.content.Intent
 import android.graphics.Color
+import android.text.SpannableString
+import android.text.style.ImageSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -149,10 +151,19 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
                 DetailImagesActivity.start(arrayListOf(data?.avatar), it.context)
             }
         }
-        binding.tvUsername.text = if (!data?.getName()?.trim().isNullOrEmpty()) {
-            data?.getName()
-        } else {
-            data?.getPhoneOnly()
+
+        binding.tvName.apply {
+            text = if (!data?.getName()?.trim().isNullOrEmpty()) {
+                data?.getName()
+            } else {
+                data?.getPhoneOnly()
+            }
+
+            if (data?.isKyc == true) {
+                setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_24dp, 0)
+            } else {
+                setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+            }
         }
 
         if (!data?.background.isNullOrEmpty()) {

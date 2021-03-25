@@ -901,4 +901,5 @@
     <string name="tai_ngay">Tải ngay</string>
     <string name="app_de_tham_gia_chuong_trinh">app để tham gia chương trình</string>
     <string name="xem_lich_boc_tham">Xem lịch bốc thăm</string>
+    <string name="quan_ly_danh_sach_nguoi_theo_doi">Quản lý danh sách người theo dõi</string>
 </resources>

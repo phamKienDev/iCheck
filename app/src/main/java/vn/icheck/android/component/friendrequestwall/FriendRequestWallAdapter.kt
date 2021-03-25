@@ -74,7 +74,14 @@ class FriendRequestWallAdapter : RecyclerView.Adapter<FriendRequestWallAdapter.V
         override fun bind(obj: ICSearchUser) {
             WidgetUtils.loadImageUrlRounded(itemView.imgAvatar, obj.avatar, R.drawable.ic_user_svg, SizeHelper.size4)
 
-            itemView.tvName.text = obj.getName
+            itemView.tvName.apply {
+                text = obj.getName
+                if (obj.isKyc == true) {
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_24dp, 0)
+                } else {
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                }
+            }
 
             itemView.btnAgree.setOnClickListener {
                 acceptFriendRequest(obj)
