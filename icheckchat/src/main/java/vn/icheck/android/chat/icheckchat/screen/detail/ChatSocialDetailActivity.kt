@@ -141,7 +141,19 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         binding.layoutToolbar.imgAction.setImageResource(R.drawable.ic_setting_blue_24dp_chat)
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun initRecyclerView() {
+        binding.viewClick.setOnTouchListener { v, event ->
+            binding.viewClick.setGone()
+
+            binding.imgSticker.isChecked = false
+            binding.layoutSticker.setGone()
+
+            val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(binding.edtMessage.windowToken, 0)
+            true
+        }
+
         binding.recyclerView.layoutManager = LinearLayoutManager(this@ChatSocialDetailActivity).apply {
             stackFromEnd = true
         }
@@ -326,6 +338,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                                 oldItem = element
                             }
                         }
+
+                        markReadMessage(key)
 
                         if (!listChatMessage.isNullOrEmpty()) {
                             adapter.setData(listChatMessage.reversed().toMutableList())
@@ -820,10 +834,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 unCheckAll()
                 binding.layoutChat.setGone()
                 binding.layoutBlock.setVisible()
-            }
-            MCMessageEvent.Type.HIDE_KEYBOARD -> {
-                val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                inputMethodManager.hideSoftInputFromWindow(binding.edtMessage.windowToken, 0)
             }
             MCMessageEvent.Type.SEND_RETRY_CHAT -> {
                 if (!conversation?.key.isNullOrEmpty()) {

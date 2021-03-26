@@ -215,7 +215,6 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
 
         private fun initClick(obj: MCDetailMessage) {
             binding.layoutImageDetail.root.setOnClickListener {
-                EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.HIDE_KEYBOARD))
                 obj.listMedia?.let { it1 -> ImageDetailActivity.startImageDetail(itemView.context, it1) }
             }
 
@@ -300,10 +299,6 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
             }
 
             setupShowStatus(obj)
-
-            binding.root.setOnClickListener {
-                EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.HIDE_KEYBOARD))
-            }
         }
 
         fun setupShowStatus(obj: MCDetailMessage) {
