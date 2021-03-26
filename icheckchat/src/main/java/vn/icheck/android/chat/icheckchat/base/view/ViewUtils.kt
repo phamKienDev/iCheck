@@ -152,6 +152,24 @@ fun loadImageUrlRounded(image: AppCompatImageView, url: String?, error: Int, rou
             .into(image)
 }
 
+fun loadImageFileRounded(image: AppCompatImageView, file: File?, error: Int, roundCorners: Int) {
+    if (file == null || !file.exists()) {
+        Glide.with(image.context.applicationContext)
+                .load(error)
+                .transform(CenterCrop())
+                .into(image)
+        return
+    }
+
+    Glide.with(image.context.applicationContext)
+            .load(file)
+            .placeholder(R.drawable.ic_default_image_upload_150_chat)
+            .error(error)
+            .transform(CenterCrop(), RoundedCorners(roundCorners))
+            .into(image)
+}
+
+
 fun loadImageUrl(image: CircleImageView, url: String?, error: Int, placeholder: Int) {
     if (url.isNullOrEmpty()) {
         Glide.with(image.context)
@@ -362,6 +380,20 @@ fun convertMillisecondToDateVn(millisecond: Long?): String? {
     }
 }
 
+fun convertDateTimeSvToTimeDateVn(millisecond: Long?): String? {
+    if (millisecond == null || millisecond == -1L)
+        return null
+
+    val sdfVn = SimpleDateFormat("HH:mm, dd/MM/yyyy")
+    sdfVn.timeZone = TimeZone.getTimeZone("GMT+07")
+
+    return try {
+        sdfVn.format(Date(millisecond))
+    } catch (e: Exception) {
+        null
+    }
+}
+
 fun convertDateTimeSvToCurrentDay(millisecond: Long?): String {
     val time = System.currentTimeMillis().minus(millisecond ?: 0)
 
@@ -376,7 +408,7 @@ fun convertDateTimeSvToCurrentDay(millisecond: Long?): String {
             (time / intervalHour).toString() + " giờ trước"
         }
         else -> {
-            convertMillisecondToDateVn(millisecond) ?: ""
+            convertDateTimeSvToTimeDateVn(millisecond) ?: ""
         }
     }
 }
