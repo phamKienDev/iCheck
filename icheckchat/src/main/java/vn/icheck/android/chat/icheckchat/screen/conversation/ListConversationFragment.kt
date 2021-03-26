@@ -1,6 +1,8 @@
 package vn.icheck.android.chat.icheckchat.screen.conversation
 
 import android.content.Intent
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
@@ -19,14 +21,17 @@ import vn.icheck.android.chat.icheckchat.databinding.FragmentListConversationBin
 import vn.icheck.android.chat.icheckchat.helper.ShareHelperChat
 import vn.icheck.android.chat.icheckchat.model.MCConversation
 import vn.icheck.android.chat.icheckchat.model.MCMessageEvent
-import vn.icheck.android.chat.icheckchat.model.MCStatus
 import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
+import java.util.*
 
-class ListConversationFragment : BaseFragmentChat<FragmentListConversationBinding>(), IRecyclerViewCallback {
+class ListConversationFragment(val listener: ICountMessageListener) : BaseFragmentChat<FragmentListConversationBinding>(), IRecyclerViewCallback {
 
     private val adapter = ListConversationAdapter(this@ListConversationFragment)
 
     private lateinit var viewModel: ListConversationViewModel
+
+    private val conversationList = mutableListOf<MCConversation>()
+    private val listData = mutableListOf<MCConversation>()
 
     companion object {
         var isOpenChat = false
@@ -35,6 +40,10 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
 
         fun finishAllChat() {
             EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.ON_FINISH_ALL_CHAT))
+        }
+
+        interface ICountMessageListener {
+            fun getCountMessage(count: Long)
         }
     }
 
@@ -49,6 +58,7 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
         initRecyclerView()
         initSwipeLayout()
         initListener()
+        initEditText()
         setOnClick()
     }
 
@@ -71,6 +81,7 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
         viewModel.onError.observe(this@ListConversationFragment, {
             binding.swipeRefresh.isRefreshing = false
             binding.recyclerView.visibleOrGone(it.title.isNullOrEmpty())
+//            binding.edtSearch.visibleOrGone(it.title.isNullOrEmpty())
             binding.layoutNoData.visibleOrGone(!it.title.isNullOrEmpty())
 
             if (adapter.isEmpty) {
@@ -89,11 +100,57 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
     private fun getData() {
         binding.swipeRefresh.isRefreshing = true
 
+        listData.clear()
+        conversationList.clear()
+        binding.edtSearch.setText("")
+
         viewModel.loginFirebase({
             getConversation()
             getChatSender()
         }, {
             binding.swipeRefresh.isRefreshing = false
+        })
+    }
+
+    private fun initEditText() {
+        binding.edtSearch.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                binding.recyclerView.setGone()
+                binding.layoutNoData.setGone()
+
+                if (!s.isNullOrEmpty()) {
+                    listData.clear()
+                    for (item in conversationList) {
+                        if (item.targetUserName?.toLowerCase(Locale.ROOT)?.contains(s.toString().trim().toLowerCase(Locale.ROOT)) == true) {
+                            listData.add(item)
+                        }
+                    }
+
+                    if (listData.isNullOrEmpty()) {
+                        binding.layoutNoData.setVisible()
+                    } else {
+                        binding.recyclerView.setVisible()
+
+                        adapter.setData(listData)
+                    }
+                } else {
+                    if (!conversationList.isNullOrEmpty()) {
+                        binding.recyclerView.setVisible()
+
+                        adapter.setData(conversationList)
+                    } else {
+                        binding.layoutNoData.setVisible()
+                    }
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
         })
     }
 
@@ -109,8 +166,7 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
 
     private fun getConversation(isLoadMore: Boolean = false) {
         viewModel.getConversation(isLoadMore, { snapshot ->
-            val conversationList = mutableListOf<MCConversation>()
-
+            conversationList.clear()
             if (snapshot.hasChildren()) {
                 for (item in snapshot.children.reversed()) {
                     val element = MCConversation().apply {
@@ -158,8 +214,10 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
             if (!conversationList.isNullOrEmpty()) {
                 binding.recyclerView.setVisible()
                 binding.layoutNoData.setGone()
+
                 adapter.setData(conversationList)
             }
+
 //            if (!isLoadMore) {
 //                if (conversationList.isNullOrEmpty()) {
 //                    viewModel.checkError(true, dataEmpty = true)
@@ -180,10 +238,10 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
 
     private fun getChatSender() {
         viewModel.getChatSender("user|${ShareHelperChat.getLong(USER_ID)}", { snapshot ->
-            viewModel.unreadCount = try {
+            listener.getCountMessage(try {
                 if (snapshot.hasChildren()) {
                     if (snapshot.child("unread_count").exists()) {
-                        snapshot.child("unread_count").value as Long
+                        snapshot.child("unread_count").value.toString().toLong()
                     } else {
                         0
                     }
@@ -192,9 +250,9 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
                 }
             } catch (e: Exception) {
                 0
-            }
+            })
         }, {
-            viewModel.unreadCount = 0
+            listener.getCountMessage(0)
         })
     }
 
@@ -211,13 +269,13 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
         isOpenChat = false
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onStop() {
+        super.onStop()
         isOpenConversation = false
     }
 
-    override fun onStop() {
-        super.onStop()
+    override fun onPause() {
+        super.onPause()
         isOpenConversation = false
     }
 }

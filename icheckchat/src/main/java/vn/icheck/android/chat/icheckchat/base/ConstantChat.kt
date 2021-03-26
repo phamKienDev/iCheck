@@ -34,4 +34,6 @@ object ConstantChat {
     const val VIDEO = "video"
     const val IMAGE = "image"
     const val KEY = "KEY"
+    const val NAME = "NAME"
+    const val POSITION = "POSITION"
 }

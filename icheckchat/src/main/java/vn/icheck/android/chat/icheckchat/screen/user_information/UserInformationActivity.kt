@@ -15,6 +15,8 @@ import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.chat.icheckchat.R
 import vn.icheck.android.chat.icheckchat.base.BaseActivityChat
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.DATA_1
+import vn.icheck.android.chat.icheckchat.base.ConstantChat.KEY
+import vn.icheck.android.chat.icheckchat.base.ConstantChat.NAME
 import vn.icheck.android.chat.icheckchat.base.view.*
 import vn.icheck.android.chat.icheckchat.databinding.ActivityUserInformationBinding
 import vn.icheck.android.chat.icheckchat.model.MCConversation
@@ -29,9 +31,10 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
 
     val adapter = UserInformationAdapter()
 
-    var conversation: MCConversation? = null
-
     var deleteAt = -1L
+
+    private var key: String? = null
+    private var nameUser: String? = null
 
     override val bindingInflater: (LayoutInflater) -> ActivityUserInformationBinding
         get() = ActivityUserInformationBinding::inflate
@@ -52,7 +55,8 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
     }
 
     private fun setUpView() {
-        conversation = intent.getSerializableExtra(DATA_1) as MCConversation?
+        key = intent.getStringExtra(KEY)
+        nameUser = intent.getStringExtra(NAME)
 
         binding.recyclerView.layoutManager = GridLayoutManager(this@UserInformationActivity, 3, LinearLayoutManager.VERTICAL, false)
         binding.recyclerView.adapter = adapter
@@ -65,8 +69,8 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
                     }
 
                     override fun onAgree() {
-                        if (!conversation?.key.isNullOrEmpty()) {
-                            viewModel.deleteConversation(conversation?.key!!).observe(this@UserInformationActivity, {
+                        if (!key.isNullOrEmpty()) {
+                            viewModel.deleteConversation(key!!).observe(this@UserInformationActivity, {
                                 when (it.status) {
                                     MCStatus.ERROR_NETWORK -> {
                                         showToastError(it.message)
@@ -88,8 +92,8 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
 
         })
 
-        if (!conversation?.key.isNullOrEmpty()) {
-            getChatRoom(conversation?.key!!)
+        if (!key.isNullOrEmpty()) {
+            getChatRoom(key!!)
         }
     }
 
@@ -116,12 +120,6 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
                             }
                         }
                     }
-                }
-
-                if (toType.contains("page")) {
-                    loadImageUrl(binding.imgAvatar, conversation?.imageTargetUser, R.drawable.ic_default_avatar_page_chat, R.drawable.ic_default_avatar_page_chat)
-                } else {
-                    loadImageUrl(binding.imgAvatar, conversation?.imageTargetUser, R.drawable.ic_user_default_52dp, R.drawable.ic_user_default_52dp)
                 }
 
                 getChatSender(id, toType)
@@ -227,10 +225,23 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
 
     private fun getChatSender(key: String, toType: String) {
         viewModel.getChatSender(key, { success ->
+
+            if (if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                        !this@UserInformationActivity.isDestroyed
+                    } else {
+                        TODO("VERSION.SDK_INT < JELLY_BEAN_MR1")
+                    }) {
+                if (toType.contains("page")) {
+                    loadImageUrl(binding.imgAvatar, success.child("image").value.toString(), R.drawable.ic_default_avatar_page_chat, R.drawable.ic_default_avatar_page_chat)
+                } else {
+                    loadImageUrl(binding.imgAvatar, success.child("image").value.toString(), R.drawable.ic_user_default_52dp, R.drawable.ic_user_default_52dp)
+                }
+            }
+
             if (success.exists()) {
                 binding.imgAvatar.apply {
                     if (success.child("is_verify").value != null && success.child("is_verify").value.toString().toBoolean()) {
-                        val ssb = SpannableStringBuilder(conversation?.targetUserName + "   ")
+                        val ssb = SpannableStringBuilder(success.child("name").value.toString().replace("null", "")+ "   ")
                         ssb.setSpan(getImageSpan(R.drawable.ic_verified_24dp_chat), ssb.length - 1, ssb.length, 0)
                         binding.tvNameUser.setText(ssb, TextView.BufferType.SPANNABLE)
 
@@ -242,14 +253,14 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
 
                     } else {
                         setBackgroundResource(0)
-                        binding.tvNameUser.text = conversation?.targetUserName
+                        binding.tvNameUser.text = success.child("name").value.toString().replace("null", "")
                     }
                 }
             } else {
-                binding.tvNameUser.text = conversation?.targetUserName
+                binding.tvNameUser.text = success.child("name").value.toString().replace("null", "")
             }
         }, { error ->
-            binding.tvNameUser.text = conversation?.targetUserName
+            binding.tvNameUser.text = nameUser
         })
     }
 

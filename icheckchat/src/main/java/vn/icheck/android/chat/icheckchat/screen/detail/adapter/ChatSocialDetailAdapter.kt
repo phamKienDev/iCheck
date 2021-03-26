@@ -77,7 +77,7 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
             setGoneView(binding.layoutProduct, binding.layoutImageDetail.root, binding.tvMessage, binding.layoutImageDetail.imgView, binding.layoutImageDetail.layoutOneImage, binding.layoutImageDetail.layoutTwoImage, binding.layoutImageDetail.layoutImage, binding.layoutImageDetail.tvCountImage, binding.layoutImageDetail.tvCountImage1)
 
             binding.layoutImageDetail.root.setOnClickListener {
-                EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.HIDE_KEYBOARD))
+                
                 obj.listMedia?.let { it1 -> ImageDetailActivity.startImageDetail(itemView.context, it1) }
             }
 
@@ -131,6 +131,8 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
 
                 binding.layoutImageDetail.layoutOneImage.setVisible()
 
+                binding.layoutImageDetail.layoutOneImage.setBackgroundResource(0)
+
                 loadImageUrlRounded(binding.layoutImageDetail.img, obj.sticker, R.drawable.ic_default_image_upload_150_chat, dpToPx(10))
             }
 
@@ -142,7 +144,7 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
             }
 
             binding.root.setOnClickListener {
-                EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.HIDE_KEYBOARD))
+                
             }
         }
     }
@@ -158,7 +160,7 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
             setGoneView(binding.layoutProduct, binding.layoutImageDetail.root, binding.tvMessage, binding.layoutImageDetail.imgView, binding.layoutImageDetail.layoutOneImage, binding.layoutImageDetail.layoutTwoImage, binding.layoutImageDetail.layoutImage, binding.layoutImageDetail.tvCountImage, binding.layoutImageDetail.tvCountImage1)
 
             binding.layoutImageDetail.root.setOnClickListener {
-                EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.HIDE_KEYBOARD))
+                
                 obj.listMedia?.let { it1 -> ImageDetailActivity.startImageDetail(itemView.context, it1) }
             }
 
@@ -212,6 +214,8 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
 
                 binding.layoutImageDetail.layoutOneImage.setVisible()
 
+                binding.layoutImageDetail.layoutOneImage.setBackgroundResource(0)
+
                 loadImageUrlRounded(binding.layoutImageDetail.img, obj.sticker, R.drawable.ic_default_image_upload_150_chat, dpToPx(10))
             }
 
@@ -223,7 +227,7 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
             }
 
             binding.root.setOnClickListener {
-                EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.HIDE_KEYBOARD))
+                
             }
         }
     }
@@ -241,7 +245,7 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
                     paintFlags = paintFlags or Paint.UNDERLINE_TEXT_FLAG
 
                     setOnClickListener {
-                        EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.HIDE_KEYBOARD))
+                        
                         context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(obj.link)))
                     }
                 } else {

@@ -8,6 +8,7 @@ import android.content.Intent
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.widget.AppCompatCheckedTextView
@@ -27,6 +28,7 @@ import vn.icheck.android.chat.icheckchat.base.ConstantChat.DATA_1
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.DATA_2
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.DATA_3
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.KEY
+import vn.icheck.android.chat.icheckchat.base.ConstantChat.NAME
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.QR_CODE
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.SCAN
 import vn.icheck.android.chat.icheckchat.base.recyclerview.IRecyclerViewCallback
@@ -96,7 +98,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
         viewModel = ViewModelProvider(this@ChatSocialDetailActivity)[ChatSocialDetailViewModel::class.java]
 
-        setClickListener(this@ChatSocialDetailActivity, binding.imgDelete, binding.imgScan, binding.imgCamera, binding.imgSticker, binding.edtMessage, binding.imgSend, binding.layoutToolbar.imgBack, binding.layoutToolbar.imgAction)
+        setClickListener(this@ChatSocialDetailActivity, binding.tvMessage, binding.imgDelete, binding.imgScan, binding.imgCamera, binding.imgSticker, binding.edtMessage, binding.imgSend, binding.layoutToolbar.imgBack, binding.layoutToolbar.imgAction)
 
         initToolbar()
         initRecyclerView()
@@ -113,11 +115,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
         when {
             conversation != null -> {
-                binding.layoutToolbar.txtTitle.text = conversation?.targetUserName
-
                 viewModel.loginFirebase({
                     if (!conversation?.key.isNullOrEmpty()) {
-                        markReadMessage(conversation?.key!!)
                         getChatRoom(conversation?.key!!)
                     }
                 }, {
@@ -125,7 +124,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 })
             }
             !key.isNullOrEmpty() -> {
-                markReadMessage(key!!)
                 getChatRoom(key!!)
             }
             else -> {
@@ -160,8 +158,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                                 viewModel.getChatSender(i.id.toString(), { success ->
                                     conversation?.targetUserName = success.child("name").value.toString()
                                     conversation?.imageTargetUser = success.child("image").value.toString()
-
-                                    binding.layoutToolbar.txtTitle.text = conversation?.targetUserName
                                 }, {
 
                                 })
@@ -172,7 +168,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                         conversation?.keyRoom = it.data.data.room_id
 
                         if (!it.data.data.room_id.isNullOrEmpty()) {
-                            markReadMessage(it.data.data.room_id)
                             getChatRoom(it.data.data.room_id)
                         }
                     }
@@ -191,6 +186,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
             unCheckAll()
             view.isChecked = true
             layout.setVisible()
+
+            binding.viewClick.setVisible()
             binding.imgSend.isChecked = isEnabled
             binding.imgSend.isEnabled = isEnabled
         }
@@ -212,7 +209,42 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         binding.layoutUserBlock.setGone()
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun initRecyclerView() {
+        var x = 0F
+        var y = 0F
+
+//        binding.recyclerView.setOnTouchListener { v, event ->
+//            when (event.action) {
+//                MotionEvent.ACTION_DOWN -> {
+//                    x = event.x
+//                    y = event.y
+//                }
+//                MotionEvent.ACTION_UP -> {
+//                    binding.imgSticker.isChecked = false
+//                    binding.layoutSticker.setGone()
+//
+//                    val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+//                    inputMethodManager.hideSoftInputFromWindow(binding.edtMessage.windowToken, 0)
+//
+//                    return@setOnTouchListener event.x == x && event.y == y
+//                }
+//            }
+//
+//            false
+//        }
+
+        binding.viewClick.setOnTouchListener { v, event ->
+            binding.viewClick.setGone()
+
+            binding.imgSticker.isChecked = false
+            binding.layoutSticker.setGone()
+
+            val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(binding.edtMessage.windowToken, 0)
+            true
+        }
+
         binding.recyclerView.layoutManager = LinearLayoutManager(this@ChatSocialDetailActivity).apply {
             stackFromEnd = true
         }
@@ -290,14 +322,18 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                     if (obj.value != null) {
                         var toId = ""
                         var toType = ""
-                        var name = ""
 
                         if (obj.child("members").hasChildren()) {
                             for (item in obj.child("members").children) {
                                 if (!FirebaseAuth.getInstance().uid.toString().contains(item.child("source_id").value.toString())) {
                                     toId = item.child("source_id").value.toString()
                                     toType = item.child("type").value.toString()
-                                    name = item.child("name").value.toString()
+
+                                    viewModel.getChatSender(item.child("id").value.toString(), { success ->
+                                        binding.layoutToolbar.txtTitle.text = success.child("name").value.toString()
+                                    }, {
+
+                                    })
                                 } else {
                                     deleteAt = if (item.child("deleted_at").value != null) {
                                         item.child("deleted_at").value.toString().toLong()
@@ -307,8 +343,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                                 }
                             }
                         }
-
-                        binding.layoutToolbar.txtTitle.text = name
 
                         getChatMessage(key)
 
@@ -424,6 +458,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                                 oldItem = element
                             }
                         }
+
+                        markReadMessage(key)
 
                         if (!listChatMessage.isNullOrEmpty()) {
                             adapter.setData(listChatMessage.reversed().toMutableList())
@@ -725,10 +761,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 binding.layoutChat.setGone()
                 binding.layoutBlock.setVisible()
             }
-            MCMessageEvent.Type.HIDE_KEYBOARD -> {
-                val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                inputMethodManager.hideSoftInputFromWindow(binding.edtMessage.windowToken, 0)
-            }
         }
     }
 
@@ -759,6 +791,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
             R.id.edtMessage -> {
                 binding.imgSticker.isChecked = false
                 binding.layoutSticker.setGone()
+
+                binding.viewClick.setVisible()
             }
             R.id.imgSend -> {
                 if (!conversation?.key.isNullOrEmpty()) {
@@ -771,8 +805,22 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
             R.id.imgAction -> {
                 binding.edtMessage.setText("")
                 startActivity(Intent(this@ChatSocialDetailActivity, UserInformationActivity::class.java).apply {
-                    putExtra(DATA_1, conversation)
+                    putExtra(KEY, key ?: conversation?.key)
+                    putExtra(NAME, conversation?.targetUserName)
                 })
+            }
+            R.id.tvMessage -> {
+                binding.imgSticker.isChecked = false
+                binding.layoutSticker.setGone()
+
+                binding.edtMessage.setVisible()
+                binding.tvMessage.setGone()
+                binding.edtMessage.requestFocus()
+
+                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
+
+                binding.viewClick.setVisible()
             }
         }
     }
@@ -782,14 +830,18 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         val windowHeightMethod = InputMethodManager::class.java.getMethod("getInputMethodWindowVisibleHeight")
         val height = windowHeightMethod.invoke(imm) as Int
 
-//        val imm by lazy { this@ChatSocialDetailActivity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager }
-
         if (height > 0) {
             //keyboard is shown
-            this@ChatSocialDetailActivity.hideKeyboard()
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(binding.edtMessage.windowToken, 0)
         } else {
             //keyboard is hidden
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        checkKeyboard()
     }
 
     override fun onDestroy() {

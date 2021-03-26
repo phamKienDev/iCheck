@@ -40,18 +40,35 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
 
     var offset = 0
 
+    private var isCreated = false
+
     override fun setBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentContactBinding {
         return FragmentContactBinding.inflate(inflater, container, false)
     }
 
     override fun onInitView() {
-        viewModel = ViewModelProvider(this@ContactFragment)[ContactViewModel::class.java]
+//        viewModel = ViewModelProvider(this@ContactFragment)[ContactViewModel::class.java]
+//
+//        initRecyclerView()
+//        initSwipeLayout()
+//
+//        binding.btnRequest.setOnClickListener {
+//            showDialog()
+//        }
+    }
 
-        initRecyclerView()
-        initSwipeLayout()
+    override fun onResume() {
+        super.onResume()
+        if (!isCreated){
+            isCreated = true
+            viewModel = ViewModelProvider(this@ContactFragment)[ContactViewModel::class.java]
 
-        binding.btnRequest.setOnClickListener {
-            showDialog()
+            initRecyclerView()
+            initSwipeLayout()
+
+            binding.btnRequest.setOnClickListener {
+                showDialog()
+            }
         }
     }
 
