@@ -391,6 +391,9 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                         adapter.notifyItemChanged(index)
                     }
                 } else {
+
+                    markReadMessage(key)
+                    0
                     val lastMessageReceive = adapter.getListData.lastOrNull { it.senderId != FirebaseAuth.getInstance().currentUser?.uid }
                     val message = convertDataFirebase(data, lastMessageReceive ?: MCDetailMessage())
                     message.showStatus = true
