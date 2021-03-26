@@ -334,8 +334,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                             adapter.setData(listChatMessage.reversed().toMutableList())
                             binding.recyclerView.smoothScrollToPosition(adapter.getListData.size)
                         }
-                        isSetData = true
-                        listenChangeMessage(key)
+                        listenChangeMessage(key, listChatMessage.first().time ?: 0)
 
 
 //                            if (!isLoadMore) {
@@ -350,25 +349,24 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                     }
                 },
                 { error ->
-                    isSetData = true
-                    listenChangeMessage(key)
-                    showToastError(error.message ?: getString(R.string.error_default))
+                    listenChangeMessage(key, 0)
+                    showToastError(error.message)
                 })
 
 
     }
 
-    private fun listenChangeMessage(key: String) {
-        viewModel.getChangeMessageChat(key) { data ->
+    private fun listenChangeMessage(key: String, timeStart: Long) {
+        viewModel.getChangeMessageChat(key, { data ->
             if (isSetData) {
-//                if (FirebaseAuth.getInstance().currentUser?.uid == data.child("sender").child("source_id").value.toString()) {
+                if (FirebaseAuth.getInstance().currentUser?.uid == data.child("sender").child("source_id").value.toString()) {
                     val index = adapter.getListData.indexOfFirst { it.messageId == data.key }
                     if (index != -1) {
                         adapter.getListData[index].status = MCStatus.SUCCESS
                         adapter.getListData[index].time = data.child("time").value as Long?
 
                         //xóa status tin nhắn trước đó
-                        if (adapter.getListData[index.minus(1)].timeText == getString(R.string.vua_xong)) {
+                        if (adapter.getListData[index.minus(1)].senderId == adapter.getListData[index].senderId && adapter.getListData[index.minus(1)].timeText == getString(R.string.vua_xong)) {
                             val holder = recyclerView.findViewHolderForAdapterPosition(index.minus(1))
                             adapter.getListData[index.minus(1)].showStatus = false
 
@@ -381,16 +379,29 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
                         adapter.notifyItemChanged(index)
                     }
-//                } else {
-//                    val lastMessageReceive = adapter.getListData.lastOrNull { it.senderId != FirebaseAuth.getInstance().currentUser?.uid }
-//                    val message = convertDataFirebase(data, lastMessageReceive ?: MCDetailMessage())
-//                    adapter.getListData.add(message)
-//                    adapter.notifyItemInserted(adapter.getListData.size - 1)
-//                }
-                binding.recyclerView.smoothScrollToPosition(adapter.getListData.size)
+                } else {
+                    val lastMessageReceive = adapter.getListData.lastOrNull { it.senderId != FirebaseAuth.getInstance().currentUser?.uid }
+                    val message = convertDataFirebase(data, lastMessageReceive ?: MCDetailMessage())
+                    message.showStatus = true
+                    adapter.getListData.add(message)
+                    adapter.notifyItemInserted(adapter.getListData.size - 1)
 
+                    //xóa status tin nhắn trước đó
+                    if (adapter.getListData[adapter.getListData.size - 2].senderId == message.senderId && adapter.getListData[adapter.getListData.size - 2].timeText == getString(R.string.vua_xong)) {
+                        val holder = recyclerView.findViewHolderForAdapterPosition(adapter.getListData.size - 2)
+                        adapter.getListData[adapter.getListData.size - 2].showStatus = false
+
+                        if (holder is ChatSocialDetailAdapter.ReceiverHolder) {
+                            holder.setupShowStatus(adapter.getListData[adapter.getListData.size - 2])
+                        } else {
+                            adapter.notifyItemChanged(adapter.getListData.size - 2)
+                        }
+                    }
+                }
+                binding.recyclerView.smoothScrollToPosition(adapter.getListData.size)
             }
-        }
+            isSetData = true
+        }, timeStart)
     }
 
     private fun convertDataFirebase(item: DataSnapshot, oldItem: MCDetailMessage): MCDetailMessage {

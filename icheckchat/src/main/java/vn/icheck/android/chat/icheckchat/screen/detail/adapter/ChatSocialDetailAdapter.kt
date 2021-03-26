@@ -297,17 +297,22 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
                 loadImageUrlRounded(binding.layoutImageDetail.img, obj.sticker, R.drawable.ic_default_image_upload_150_chat, dpToPx(10))
             }
 
+            setupShowStatus(obj)
+
+            binding.root.setOnClickListener {
+                EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.HIDE_KEYBOARD))
+            }
+        }
+
+        fun setupShowStatus(obj: MCDetailMessage) {
             if (obj.showStatus) {
                 binding.tvTime.setVisible()
-                binding.tvTime.text = convertDateTimeSvToCurrentDay(obj.time)
+                obj.timeText = convertDateTimeSvToCurrentDay(obj.time)
+                binding.tvTime.text = obj.timeText
                 binding.root.setPadding(SizeHelper.dpToPx(12), 0, SizeHelper.dpToPx(55), SizeHelper.dpToPx(16))
             } else {
                 binding.tvTime.setGone()
                 binding.root.setPadding(SizeHelper.dpToPx(12), 0, SizeHelper.dpToPx(55), SizeHelper.dpToPx(3))
-            }
-
-            binding.root.setOnClickListener {
-                EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.HIDE_KEYBOARD))
             }
         }
     }

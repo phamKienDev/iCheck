@@ -1,5 +1,6 @@
 package vn.icheck.android.chat.icheckchat.helper
 
+import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.TOKEN_FIREBASE
@@ -114,8 +115,8 @@ class FirebaseHelper {
         })
     }
 
-    fun getChangeMessageChat(key: String, onAdd: (snapshot: DataSnapshot) -> Unit) {
-        firebaseDatabase.getReference("chat-details-v2/$key").orderByChild("time").addChildEventListener(object : ChildEventListener {
+    fun getChangeMessageChat(key: String, onAdd: (snapshot: DataSnapshot) -> Unit, timeStart: Long) {
+        firebaseDatabase.getReference("chat-details-v2/$key").orderByChild("time").startAt(timeStart.toDouble()).addChildEventListener(object : ChildEventListener {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                 onAdd(snapshot)
             }
@@ -133,6 +134,7 @@ class FirebaseHelper {
             }
 
             override fun onCancelled(error: DatabaseError) {
+                Log.d("onCancelled", "onCancelled: $error")
             }
         })
     }
