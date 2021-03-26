@@ -515,7 +515,8 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                         ViewHelper.createDrawableStateList(ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_bottombar_home_unchecked_27dp)!!,
                                 BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, SizeHelper.size27, SizeHelper.size27, false))),
                         null, null)
-                tvHome.setTextColor(ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.darkGray2), Color.parseColor(bottomBarSelectedTextColor)))
+                if (!bottomBarSelectedTextColor.isNullOrEmpty())
+                    tvHome.setTextColor(ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.darkGray2), Color.parseColor(bottomBarSelectedTextColor)))
             }
 
             BitmapFactory.decodeFile(path + FileHelper.newsIcon)?.let { bitmap ->
@@ -523,7 +524,8 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                         ViewHelper.createDrawableStateList(ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_bottombar_feed_unchecked_27dp)!!,
                                 BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, SizeHelper.size27, SizeHelper.size27, false))),
                         null, null)
-                tvFeed.setTextColor(ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.darkGray2), Color.parseColor(bottomBarSelectedTextColor)))
+                if (!bottomBarSelectedTextColor.isNullOrEmpty())
+                    tvFeed.setTextColor(ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.darkGray2), Color.parseColor(bottomBarSelectedTextColor)))
             }
 
             BitmapFactory.decodeFile(path + FileHelper.scanIcon)?.let { bitmap ->
@@ -535,7 +537,8 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                         ViewHelper.createDrawableStateList(ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_bottombar_history_unchecked_27dp)!!,
                                 BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, SizeHelper.size27, SizeHelper.size27, false))),
                         null, null)
-                tvHistory.setTextColor(ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.darkGray2), Color.parseColor(bottomBarSelectedTextColor)))
+                if (!bottomBarSelectedTextColor.isNullOrEmpty())
+                    tvHistory.setTextColor(ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.darkGray2), Color.parseColor(bottomBarSelectedTextColor)))
             }
 
             BitmapFactory.decodeFile(path + FileHelper.messageIcon)?.let { bitmap ->
@@ -543,7 +546,8 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                         ViewHelper.createDrawableStateList(ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_bottombar_chat_unchecked_27dp)!!,
                                 BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, SizeHelper.size27, SizeHelper.size27, false))),
                         null, null)
-                tvChat.setTextColor(ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.darkGray2), Color.parseColor(bottomBarSelectedTextColor)))
+                if (!bottomBarSelectedTextColor.isNullOrEmpty())
+                    tvChat.setTextColor(ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.darkGray2), Color.parseColor(bottomBarSelectedTextColor)))
             }
         }
     }
