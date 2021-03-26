@@ -24,6 +24,7 @@
             android:id="@+id/imgView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/bg_black_opacity_50_corner_10"
             android:padding="55dp"
             android:src="@drawable/ic_video_white_40dp_chat" />
 
@@ -52,6 +53,7 @@
                 android:id="@+id/imgView1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@drawable/bg_black_opacity_50_corner_10"
                 android:padding="30dp"
                 android:visibility="gone"
                 android:src="@drawable/ic_video_white_40dp_chat" />
@@ -76,7 +78,7 @@
                 android:id="@+id/imgView2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/black_opacity_50"
+                android:background="@drawable/bg_black_opacity_50_corner_10"
                 android:padding="30dp"
                 android:visibility="gone"
                 android:src="@drawable/ic_video_white_40dp_chat" />
@@ -87,7 +89,7 @@
                 android:layout_height="match_parent"
                 android:ellipsize="end"
                 android:visibility="gone"
-                android:background="@drawable/bg_black_35_corner_10"
+                android:background="@drawable/bg_black_opacity_50_corner_10"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:includeFontPadding="false"
@@ -123,7 +125,7 @@
                 android:id="@+id/imgView3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/black_opacity_50"
+                android:background="@drawable/bg_black_opacity_50_corner_10"
                 android:padding="30dp"
                 android:visibility="gone"
                 android:src="@drawable/ic_video_white_40dp_chat" />
@@ -148,7 +150,7 @@
                 android:id="@+id/imgView4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/black_opacity_50"
+                android:background="@drawable/bg_black_opacity_50_corner_10"
                 android:padding="30dp"
                 android:visibility="gone"
                 android:src="@drawable/ic_video_white_40dp_chat" />
@@ -159,7 +161,7 @@
                 android:layout_height="match_parent"
                 android:ellipsize="end"
                 android:visibility="gone"
-                android:background="@drawable/bg_black_35_corner_10"
+                android:background="@drawable/bg_black_opacity_50_corner_10"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:includeFontPadding="false"

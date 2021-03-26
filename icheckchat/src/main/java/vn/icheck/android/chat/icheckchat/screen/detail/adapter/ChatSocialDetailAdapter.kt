@@ -5,12 +5,10 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Paint
 import android.net.Uri
-import android.util.Size
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
@@ -26,7 +24,6 @@ import vn.icheck.android.chat.icheckchat.base.view.MCViewType.TYPE_RECEIVER
 import vn.icheck.android.chat.icheckchat.base.view.MCViewType.TYPE_SENDER
 import vn.icheck.android.chat.icheckchat.databinding.ItemReceiverBinding
 import vn.icheck.android.chat.icheckchat.databinding.ItemSenderBinding
-import vn.icheck.android.chat.icheckchat.helper.SizeHelper
 import vn.icheck.android.chat.icheckchat.model.MCDetailMessage
 import vn.icheck.android.chat.icheckchat.model.MCMedia
 import vn.icheck.android.chat.icheckchat.model.MCMessageEvent
@@ -155,10 +152,10 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
         fun setupShowStatus(obj: MCDetailMessage) {
             if (obj.showStatus) {
                 binding.tvTime.setVisible()
-                binding.root.setPadding(SizeHelper.dpToPx(90), 0, SizeHelper.dpToPx(12), SizeHelper.dpToPx(16))
+                binding.root.setPadding(dpToPx(90), 0, dpToPx(12), dpToPx(16))
             } else {
                 binding.tvTime.setGone()
-                binding.root.setPadding(SizeHelper.dpToPx(90), 0, SizeHelper.dpToPx(12), SizeHelper.dpToPx(3))
+                binding.root.setPadding(dpToPx(90), 0, dpToPx(12), dpToPx(3))
             }
         }
 
@@ -215,12 +212,11 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
 
         private fun initClick(obj: MCDetailMessage) {
             binding.layoutImageDetail.root.setOnClickListener {
-                EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.HIDE_KEYBOARD))
                 obj.listMedia?.let { it1 -> ImageDetailActivity.startImageDetail(itemView.context, it1) }
             }
 
             binding.root.setOnClickListener {
-                EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.HIDE_KEYBOARD))
+
             }
 
             binding.imgRetry.setOnClickListener {
@@ -240,7 +236,7 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
             setGoneView(binding.layoutProduct, binding.layoutImageDetail.root, binding.tvMessage, binding.layoutImageDetail.imgView, binding.layoutImageDetail.layoutOneImage, binding.layoutImageDetail.layoutTwoImage, binding.layoutImageDetail.layoutImage, binding.layoutImageDetail.tvCountImage, binding.layoutImageDetail.tvCountImage1)
 
             binding.layoutImageDetail.root.setOnClickListener {
-                EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.HIDE_KEYBOARD))
+
                 obj.listMedia?.let { it1 -> ImageDetailActivity.startImageDetail(itemView.context, it1) }
             }
 
@@ -294,14 +290,12 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
 
                 binding.layoutImageDetail.layoutOneImage.setVisible()
 
+                binding.layoutImageDetail.layoutOneImage.setBackgroundResource(0)
+
                 loadImageUrlRounded(binding.layoutImageDetail.img, obj.sticker, R.drawable.ic_default_image_upload_150_chat, dpToPx(10))
             }
 
             setupShowStatus(obj)
-
-            binding.root.setOnClickListener {
-                EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.HIDE_KEYBOARD))
-            }
         }
 
         fun setupShowStatus(obj: MCDetailMessage) {
@@ -309,10 +303,10 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
                 binding.tvTime.setVisible()
                 obj.timeText = convertDateTimeSvToCurrentDay(obj.time)
                 binding.tvTime.text = obj.timeText
-                binding.root.setPadding(SizeHelper.dpToPx(12), 0, SizeHelper.dpToPx(55), SizeHelper.dpToPx(16))
+                binding.root.setPadding(dpToPx(12), 0, dpToPx(55), dpToPx(16))
             } else {
                 binding.tvTime.setGone()
-                binding.root.setPadding(SizeHelper.dpToPx(12), 0, SizeHelper.dpToPx(55), SizeHelper.dpToPx(3))
+                binding.root.setPadding(dpToPx(12), 0, dpToPx(55), dpToPx(3))
             }
         }
     }
@@ -330,7 +324,7 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
                     paintFlags = paintFlags or Paint.UNDERLINE_TEXT_FLAG
 
                     setOnClickListener {
-                        EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.HIDE_KEYBOARD))
+
                         context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(obj.link)))
                     }
                 } else {
