@@ -262,11 +262,15 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
         }
         binding.btnClear.setOnClickListener {
             barcodeCapture.isEnabled = false
+            if (viewModel.scanOnlyChat) {
+                setResult(Activity.RESULT_CANCELED)
+            }
             finish()
         }
         binding?.root?.setOnClickListener {
             viewModel.offGuide()
         }
+        binding.imgSdha.beGone()
         binding.imgSdha.setOnClickListener {
 //            request(takeImageDialog)
         }
@@ -572,9 +576,6 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
         super.onDestroy()
         _binding = null
         barcodeCapture.isEnabled = false
-        if (viewModel.scanOnlyChat) {
-            setResult(Activity.RESULT_CANCELED)
-        }
     }
 
     override fun onPause() {

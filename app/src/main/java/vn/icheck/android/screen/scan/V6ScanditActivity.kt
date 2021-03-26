@@ -8,6 +8,7 @@ import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.*
 import android.net.wifi.WifiConfiguration
@@ -34,6 +35,9 @@ import com.scandit.datacapture.barcode.capture.*
 import com.scandit.datacapture.barcode.data.Barcode
 import com.scandit.datacapture.barcode.data.Symbology
 import com.scandit.datacapture.core.capture.DataCaptureContext
+import com.scandit.datacapture.core.common.geometry.FloatWithUnit
+import com.scandit.datacapture.core.common.geometry.MarginsWithUnit
+import com.scandit.datacapture.core.common.geometry.MeasureUnit
 import com.scandit.datacapture.core.data.FrameData
 import com.scandit.datacapture.core.source.*
 import com.scandit.datacapture.core.ui.DataCaptureView
@@ -83,6 +87,7 @@ import java.io.File
 import java.net.URL
 import java.util.concurrent.atomic.AtomicBoolean
 import vn.icheck.android.BuildConfig
+import vn.icheck.android.ichecklibs.getDeviceWidth
 
 class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
@@ -188,7 +193,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                 }
             }
         }
-        takeImageDialog = TakeMediaDialog(takeImageListener, false, cropImage = true, isVideo = false)
+        takeImageDialog = TakeMediaDialog(takeImageListener, false, cropImage = false, isVideo = false)
 
         val key = if (BuildConfig.FLAVOR.contentEquals("dev")) getString(R.string.scandit_v6_key_dev) else getString(R.string.scandit_v6_key_live)
         dataCaptureContext = DataCaptureContext.forLicenseKey(key)
@@ -218,7 +223,6 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         resetCamera()
 
         val dataCaptureView = DataCaptureView.newInstance(this, dataCaptureContext)
-
         _binding = IckScanCustomViewBinding.inflate(layoutInflater, dataCaptureView, false)
         dataCaptureView.addView(binding.root, getDeviceWidth(), getDeviceHeight())
 
@@ -252,19 +256,16 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
             Handler().postDelayed({
                 if (session.newlyRecognizedBarcodes.isEmpty()){
                     runOnUiThread {
-                        DialogHelper.showConfirm(this, null, "Không thể tìm thấy mã vạch hoặc mã QR từ ảnh được chọn. Vui lòng thử lại với ảnh khác!", object :ConfirmDialogListener{
-                            override fun onDisagree() {
-                                resetCamera()
-                            }
+                        DialogHelper.showNotification(this, R.string.thong_bao, R.string.khong_thay_ma_vach,true,object :NotificationDialogListener{
 
-                            override fun onAgree() {
+                            override fun onDone() {
                                 resetCamera()
                             }
                         })
 
                     }
                 }
-            }, 200)
+            }, 800)
 
         }
     }

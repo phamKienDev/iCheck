@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="default_notification_channel_id">Base</string>
     <string name="default_notification_channel_name">iCheck</string>
@@ -317,6 +317,7 @@
     <string name="ban_muon_xoa_xxx_khoi_gio_hang"><![CDATA[Bạn muốn xóa <b>%s</b> khỏi giỏ hàng?]]></string>
     <string name="cap_nhat_so_dien_thoai">Cập nhật số điện thoại</string>
     <string name="thong_bao">Thông báo</string>
+    <string name="khong_thay_ma_vach" tools:ignore="ExtraTranslation">Không thể tìm thấy mã vạch hoặc mã QR từ ảnh được chọn. Vui lòng thử lại với ảnh khác!</string>
     <string name="ban_da_doc_tat_ca_cac_thong_bao">Bạn đã đọc tất cả các thông báo.</string>
     <string name="khong_co_tin_tuc_nao">Không có bản tin nào!</string>
 

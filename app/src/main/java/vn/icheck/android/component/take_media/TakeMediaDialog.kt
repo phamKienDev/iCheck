@@ -19,7 +19,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.screen.user.cropimage.CropImageActivity
 import java.io.File
 
-class TakeMediaDialog(val listener: TakeImageListener, private val selectMulti: Boolean = false, private val cropImage: Boolean = false, private val ratio: String? = null, private val isVideo: Boolean = true) : BaseBottomSheetDialogFragment() {
+class TakeMediaDialog(val listener: TakeImageListener, private val selectMulti: Boolean = false, private val cropImage: Boolean = false, private val ratio: String? = null, private val isVideo: Boolean = true, val showBottom:Boolean = false) : BaseBottomSheetDialogFragment() {
 
     companion object {
         var INSTANCE: TakeMediaDialog? = null
@@ -44,7 +44,7 @@ class TakeMediaDialog(val listener: TakeImageListener, private val selectMulti: 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        CropImageActivity.showBottom = showBottom
         imgClose.setOnClickListener {
             dismiss()
         }
