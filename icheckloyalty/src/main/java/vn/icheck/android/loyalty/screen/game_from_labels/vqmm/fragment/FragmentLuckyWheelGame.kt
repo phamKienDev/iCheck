@@ -169,8 +169,8 @@ class FragmentLuckyWheelGame : Fragment() {
                         }, 400)
                     } else {
                         Handler().postDelayed({
-//                            val action = FragmentLuckyWheelGameDirections.actionFragmentLuckyWheelGameToScanForGameFragment(luckyGameViewModel.currentCount, args.campaignId, args.campaignName, args.shopName, args.avatarShop)
-//                            findNavController().navigate(action)
+                            val action = FragmentLuckyWheelGameDirections.actionFragmentLuckyWheelGameToScanForGameFragment(luckyGameViewModel.currentCount, args.campaignId, args.campaignName, args.shopName, args.avatarShop)
+                            findNavController().navigate(action)
                         }, 400)
                     }
                 }
@@ -181,8 +181,8 @@ class FragmentLuckyWheelGame : Fragment() {
                 }
                 ICMessageEvent.Type.SCAN_GAME -> {
                     Handler().postDelayed({
-//                        val action = FragmentLuckyWheelGameDirections.actionFragmentLuckyWheelGameToScanForGameFragment(luckyGameViewModel.currentCount, args.campaignId, args.campaignName, args.shopName, args.avatarShop)
-//                        findNavController().navigate(action)
+                        val action = FragmentLuckyWheelGameDirections.actionFragmentLuckyWheelGameToScanForGameFragment(luckyGameViewModel.currentCount, args.campaignId, args.campaignName, args.shopName, args.avatarShop)
+                        findNavController().navigate(action)
                     }, 400)
                 }
             }
@@ -495,8 +495,8 @@ class FragmentLuckyWheelGame : Fragment() {
                                         override fun onClick() {
                                             object : DialogGuidePlayGame(requireContext()) {
                                                 override fun onClick() {
-//                                                    val action = FragmentLuckyWheelGameDirections.actionFragmentLuckyWheelGameToScanForGameFragment(luckyGameViewModel.currentCount, args.campaignId, args.campaignName, args.shopName, args.avatarShop)
-//                                                    findNavController().navigate(action)
+                                                    val action = FragmentLuckyWheelGameDirections.actionFragmentLuckyWheelGameToScanForGameFragment(luckyGameViewModel.currentCount, args.campaignId, args.campaignName, args.shopName, args.avatarShop)
+                                                    findNavController().navigate(action)
                                                 }
                                             }.show()
                                         }
@@ -532,8 +532,8 @@ class FragmentLuckyWheelGame : Fragment() {
                     } else {
                         object : DialogGuidePlayGame(requireContext()) {
                             override fun onClick() {
-//                                val action = FragmentLuckyWheelGameDirections.actionFragmentLuckyWheelGameToScanForGameFragment(luckyGameViewModel.currentCount, args.campaignId, args.campaignName, args.shopName, args.avatarShop)
-//                                findNavController().navigate(action)
+                                val action = FragmentLuckyWheelGameDirections.actionFragmentLuckyWheelGameToScanForGameFragment(luckyGameViewModel.currentCount, args.campaignId, args.campaignName, args.shopName, args.avatarShop)
+                                findNavController().navigate(action)
                             }
                         }.show()
                     }

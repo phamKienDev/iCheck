@@ -100,6 +100,9 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (intent.getBooleanExtra("scan_only_chat", false)) {
+            viewModel.scanOnlyChat = true
+        }
         request()
     }
 
@@ -191,6 +194,9 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
         _binding = IckScanCustomViewBinding.inflate(layoutInflater, dataCaptureView, false)
         dataCaptureView.addView(binding.root, getDeviceWidth(), getDeviceHeight())
         setContentView(dataCaptureView)
+        val lp = dataCaptureView.layoutParams
+        lp.height = getDeviceHeight() + 50.toPx(resources)
+        dataCaptureView.layoutParams = lp
         initViews()
 
 
@@ -566,6 +572,9 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
         super.onDestroy()
         _binding = null
         barcodeCapture.isEnabled = false
+        if (viewModel.scanOnlyChat) {
+            setResult(Activity.RESULT_CANCELED)
+        }
     }
 
     override fun onPause() {
@@ -912,6 +921,13 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
                 }
                 barcodeCapture.isEnabled = true
             }
+        }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if (viewModel.scanOnlyChat) {
+            setResult(Activity.RESULT_CANCELED)
         }
     }
 

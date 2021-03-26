@@ -50,6 +50,6 @@ android {
 }
 
 dependencies {
-    api project(path: ':ichecklibs')
-    api project(path: ':icheckscanditv6')
+    implementation project(path: ':ichecklibs')
+    implementation project(path: ':icheckscanditv6')
 }

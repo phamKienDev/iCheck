@@ -1,5 +1,34 @@
 package vn.icheck.android.loyalty.screen.game_from_labels.vqmm.fragment
 
+import android.app.Activity
+import android.content.Intent
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
+import vn.icheck.android.ichecklibs.Constant.BARCODE
+import vn.icheck.android.icheckscanditv6.IcheckScanActivity
+import vn.icheck.android.loyalty.R
+import vn.icheck.android.loyalty.base.ICMessageEvent
+import vn.icheck.android.loyalty.dialog.DialogErrorScanGame
+import vn.icheck.android.loyalty.dialog.DialogSuccessScanGame
+import vn.icheck.android.loyalty.helper.ToastHelper
+import vn.icheck.android.loyalty.model.ICKBaseResponse
+import vn.icheck.android.loyalty.model.ReceiveGameResp
+import vn.icheck.android.loyalty.network.ICApiListener
+import vn.icheck.android.loyalty.screen.game_from_labels.vqmm.viewmodel.LuckyGameViewModel
+import vn.icheck.android.loyalty.screen.game_from_labels.vqmm.viewmodel.ScanGameViewModel
+
 //import android.Manifest
 //import android.content.Context
 //import android.os.Build
@@ -298,3 +327,119 @@ package vn.icheck.android.loyalty.screen.game_from_labels.vqmm.fragment
 //        }
 //    }
 //}
+class ScanForGameFragment : Fragment() {
+
+    var update = false
+
+    private val args: ScanForGameFragmentArgs by navArgs()
+    private val scanGameViewModel: ScanGameViewModel by activityViewModels()
+    val luckyGameViewModel: LuckyGameViewModel by activityViewModels()
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().unregister(this)
+        if (!update) {
+            luckyGameViewModel.updatePlay(args.currentCount)
+        }
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_barcode_scan, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        EventBus.getDefault().register(this)
+        IcheckScanActivity.scanOnlyChat(requireActivity(), 77)
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+     fun onMessageEvent(event: ICMessageEvent) {
+        if (event.type == ICMessageEvent.Type.QR_SCANNED) {
+            checkCode(event.data.toString())
+        }else if (event.type == ICMessageEvent.Type.SCAN_FAILED) {
+            findNavController().popBackStack()
+        }
+    }
+
+
+    private fun checkCode(code: String) {
+        lifecycleScope.launch(Dispatchers.Main) {
+            val nc: String = when {
+                code.contains("https://qcheck-dev.vn/") -> {
+                    code.replace("https://qcheck-dev.vn/", "")
+                }
+                code.contains("https://qcheck.vn/") -> {
+                    code.replace("https://qcheck.vn/", "")
+                }
+                code.contains("http://qcheck.vn/") -> {
+                    code.replace("http://qcheck.vn/", "")
+                }
+                code.contains("http://qcheck-dev.vn/") -> {
+                    code.replace("http://qcheck-dev.vn/", "")
+                }
+                else -> {
+                    code
+                }
+            }
+            if (code == nc) {
+                ToastHelper.showLongError(requireContext(), "Đây không phải là QR code vui lòng quét lại!")
+            } else {
+                scanGameViewModel.scanGameRepository.getGamePlay(args.campaignId, nc, object : ICApiListener<ReceiveGameResp> {
+                    override fun onSuccess(obj: ReceiveGameResp) {
+                        if (obj.statusCode == 200 && obj.data?.play != null) {
+
+                            object : DialogSuccessScanGame(requireContext(), "Bạn có thêm ${obj.data.play} lượt quay", obj.data.campaign?.name
+                                    ?: args.nameCampaign, args.nameShop, args.avatarShop) {
+                                override fun onDone() {
+                                    dismiss()
+                                    update = true
+                                    findNavController().popBackStack()
+                                    EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.UPDATE_COUNT_GAME, obj.data.play + args.currentCount))
+                                }
+
+                                override fun onDismiss() {
+                                    findNavController().popBackStack()
+                                }
+                            }.show()
+                        } else {
+
+                            when (obj.status) {
+                                "OUT_OF_TURN" -> {
+                                    object : DialogErrorScanGame(requireContext(), R.drawable.ic_error_scan_game,
+                                            "Mã QRcode của sản phẩm này không còn lượt quay", "Thử quét với những mã QRcode khác để thêm lượt quay nhận ngàn quà hay nhé") {
+                                        override fun onDismiss() {
+                                            findNavController().popBackStack()
+                                        }
+
+                                    }.show()
+                                }
+                                "INVALID_PARAM" -> {
+                                    object : DialogErrorScanGame(requireContext(), R.drawable.ic_error_scan_game_1,
+                                            "Mã QRcode của sản phẩm này không thuộc chương trình", "Thử quét với những mã QRcode khác để thêm lượt quay nhận ngàn quà hay nhé") {
+                                        override fun onDismiss() {
+                                            findNavController().popBackStack()
+                                        }
+
+                                    }.show()
+                                }
+                                else -> {
+                                    ToastHelper.showShortError(requireContext(), obj.data?.message)
+                                }
+                            }
+                        }
+                    }
+
+                    override fun onError(error: ICKBaseResponse?) {
+                        ToastHelper.showShortError(requireContext(), error?.message
+                                ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                        findNavController().popBackStack()
+                    }
+                })
+            }
+        }
+    }
+
+
+}

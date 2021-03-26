@@ -55,7 +55,7 @@ android {
 }
 
 dependencies {
-    api project(path: ':ichecklibs')
+    implementation project(path: ':ichecklibs')
 }
 repositories {
     mavenCentral()

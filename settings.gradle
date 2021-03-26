@@ -1,3 +1,5 @@
+include ':ScanditCaptureCore'
+include ':ScanditBarcodeCapture'
 include ':ichecklibs'
 include ':icheckchat'
 include ':icheckloyalty'

@@ -46,10 +46,10 @@ android {
 }
 
 dependencies {
-    api fileTree(dir: 'libs', include: ['*.jar','*.aar'])
-    api project(path: ':ichecklibs')
-    api project(path: ':ichecknetwork')
-    api files('src/main/libs/ScanditCaptureCore.aar')
-    api files('src/main/libs/ScanditBarcodeCapture.aar')
+    implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
+    implementation project(path: ':ichecklibs')
+    implementation project(path: ':ichecknetwork')
+    implementation project(path: ':ScanditBarcodeCapture')
+    implementation project(path: ':ScanditCaptureCore')
 
 }

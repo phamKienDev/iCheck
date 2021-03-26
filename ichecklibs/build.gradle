@@ -97,9 +97,6 @@ dependencies {
         exclude group: 'glide-parent'
     }
 
-    /** Room database **/
-    api "androidx.room:room-runtime:2.2.6"
-    kapt "androidx.room:room-compiler:2.2.6"
 
     //paging library
     //Paging
