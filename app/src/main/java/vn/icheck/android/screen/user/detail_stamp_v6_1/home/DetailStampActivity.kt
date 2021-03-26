@@ -49,6 +49,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.base.listener.IClickListener
+import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.loyalty.helper.CampaignLoyaltyHelper
 import vn.icheck.android.loyalty.model.ICKLoyalty
 import vn.icheck.android.loyalty.screen.url_gift_detail.UrlGiftDetailActivity
@@ -71,6 +72,7 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.more_information_product.
 import vn.icheck.android.screen.user.detail_stamp_v6_1.more_product_verified_by_distributor.MoreProductVerifiedByDistributorActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.UpdateInformationFirstActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.verified_phone.VerifiedPhoneActivity
+import vn.icheck.android.screen.user.listproductecommerce.ListProductsECommerceActivity
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.screen.user.shipping.ship.ShipActivity
 import vn.icheck.android.screen.user.view_item_image_stamp.ViewItemImageActivity
@@ -78,6 +80,7 @@ import vn.icheck.android.screen.user.viewimage.ViewImageActivity
 import vn.icheck.android.util.AdsUtils
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
+import vn.icheck.android.util.ick.visibleOrInvisible
 import vn.icheck.android.util.kotlin.ContactUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.text.SimpleDateFormat
@@ -859,6 +862,11 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
                 adapter.disableLoadMore()
                 recyclerView.adapter = adapter
                 adapter.setListData(obj.data!!.product_link!!)
+
+                tvViewMore.visibleOrInvisible(adapter.getListData.size > 3)
+                tvViewMore.setOnClickListener {
+                    ActivityHelper.startActivity<ListProductsECommerceActivity>(this@DetailStampActivity, Constant.DATA_1, JsonHelper.toJson(adapter.getListData))
+                }
             }
 
 //      check show hide floating action button

@@ -12,6 +12,7 @@ import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.network.models.ICProductECommerce
 import vn.icheck.android.network.util.JsonHelper
 import vn.icheck.android.screen.user.listproductecommerce.ListProductsECommerceActivity
+import vn.icheck.android.util.ick.visibleOrInvisible
 
 class ListProductsECommerceHolder(parent: ViewGroup, val binding: ItemListProductsEcommerceBinding = ItemListProductsEcommerceBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : BaseViewHolder<MutableList<ICProductECommerce>>(binding.root) {
     private val adapter = object : RecyclerViewAdapter<ICProductECommerce>() {
@@ -31,8 +32,12 @@ class ListProductsECommerceHolder(parent: ViewGroup, val binding: ItemListProduc
     }
 
     override fun bind(obj: MutableList<ICProductECommerce>) {
+        adapter.disableLoading()
+        adapter.disableLoadMore()
         binding.recyclerView.adapter = adapter
         adapter.setListData(obj)
+
+        binding.tvViewMore.visibleOrInvisible(adapter.getListData.size > 3)
 
         binding.tvViewMore.setOnClickListener {
             ICheckApplication.currentActivity()?.let { activity ->

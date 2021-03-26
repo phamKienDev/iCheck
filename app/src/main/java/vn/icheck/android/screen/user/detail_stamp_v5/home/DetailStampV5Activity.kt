@@ -41,6 +41,7 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.network.models.ICProductLink
 import vn.icheck.android.network.models.detail_stamp_v6.ICDetailStampV6
 import vn.icheck.android.network.models.detail_stamp_v6.ICObjectBusinessV6
@@ -59,9 +60,11 @@ import vn.icheck.android.screen.user.detail_stamp_v5.home.view.IDetailStampV5Vie
 import vn.icheck.android.screen.user.detail_stamp_v5.more_business_v5.MoreBusinessV5Activity
 import vn.icheck.android.screen.user.detail_stamp_v5.update_information_guarantee_v5.UpdateInformationStampV5Activity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.contact_support.ContactSupportActivity
+import vn.icheck.android.screen.user.listproductecommerce.ListProductsECommerceActivity
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
 import vn.icheck.android.screen.user.viewimage.ViewImageActivity
 import vn.icheck.android.util.ick.beVisible
+import vn.icheck.android.util.ick.visibleOrInvisible
 import vn.icheck.android.util.kotlin.ContactUtils
 import vn.icheck.android.util.kotlin.GlideImageGetter
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -494,6 +497,11 @@ class DetailStampV5Activity : BaseActivity<DetailStampV5Presenter>(), IDetailSta
             adapter.disableLoadMore()
             recyclerView.adapter = adapter
             adapter.setListData(obj.data!!.product_link!!)
+
+            tvViewMore.visibleOrInvisible(adapter.getListData.size > 3)
+            tvViewMore.setOnClickListener {
+                ActivityHelper.startActivity<ListProductsECommerceActivity>(this@DetailStampV5Activity, Constant.DATA_1, JsonHelper.toJson(adapter.getListData))
+            }
         }
 
         //check nha san xuat

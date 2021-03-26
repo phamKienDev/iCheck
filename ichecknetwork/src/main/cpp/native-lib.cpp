@@ -59,7 +59,7 @@ extern "C" JNIEXPORT jstring JNICALL Java_vn_icheck_android_network_base_APICons
 extern "C" JNIEXPORT jstring JNICALL Java_vn_icheck_android_network_base_APIConstants_PRODUCTDETAIL(JNIEnv* env,jobject /* this */) { return env->NewStringUTF("products/{id}"); }
 extern "C" JNIEXPORT jstring JNICALL Java_vn_icheck_android_network_base_APIConstants_themeSettingLive(JNIEnv* env, jobject /* this */) { return env->NewStringUTF("icheck-social-cdn/theme.json"); }
 extern "C" JNIEXPORT jstring JNICALL Java_vn_icheck_android_network_base_APIConstants_themeSettingDev(JNIEnv* env, jobject /* this */) { return env->NewStringUTF("theme.json"); }
-extern "C" JNIEXPORT jstring JNICALL Java_vn_icheck_android_network_base_APIConstants_productsECommerce(JNIEnv* env, jobject /* this */) { return env->NewStringUTF("social/api/products/ecommerce/{barcode}"); }
+extern "C" JNIEXPORT jstring JNICALL Java_vn_icheck_android_network_base_APIConstants_productsECommerce(JNIEnv* env, jobject /* this */) { return env->NewStringUTF("social/api/products/ecommerce//products/ecommerce/{id}"); }
 
 
 
