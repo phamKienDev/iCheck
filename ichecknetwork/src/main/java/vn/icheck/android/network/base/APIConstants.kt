@@ -551,8 +551,7 @@ object APIConstants {
     external fun trackingTekoUrlProd(): String
     external fun trackingAppIdProd(): String
     external fun trackingAppIdDev(): String
-    external fun themeSettingLive(): String
-    external fun themeSettingDev(): String
+    external fun themeSetting(): String
 
     fun checkErrorString(code: String): String {
         return when (code) {
