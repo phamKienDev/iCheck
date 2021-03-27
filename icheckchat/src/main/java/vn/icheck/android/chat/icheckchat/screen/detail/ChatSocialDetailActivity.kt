@@ -376,6 +376,16 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                         adapter.getListData[index].status = MCStatus.SUCCESS
                         adapter.getListData[index].time = data.child("time").value as Long?
 
+                        if (data.child("message").child("media").hasChildren()) {
+                            val listImage = mutableListOf<MCMedia>()
+
+                            for (i in data.child("message").child("media").children) {
+                                listImage.add(MCMedia(i.child("content").value.toString(), i.child("type").value.toString()))
+                            }
+
+                            adapter.getListData[index].listMedia = listImage
+                        }
+
                         //xóa status tin nhắn trước đó
                         if (adapter.getListData[index.minus(1)].senderId == adapter.getListData[index].senderId && adapter.getListData[index.minus(1)].timeText == getString(R.string.vua_xong)) {
                             val holder = recyclerView.findViewHolderForAdapterPosition(index.minus(1))
@@ -393,7 +403,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 } else {
 
                     markReadMessage(key)
-                    0
                     val lastMessageReceive = adapter.getListData.lastOrNull { it.senderId != FirebaseAuth.getInstance().currentUser?.uid }
                     val message = convertDataFirebase(data, lastMessageReceive ?: MCDetailMessage())
                     message.showStatus = true
@@ -532,6 +541,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
     }
 
     private fun checkSendMessage(key: String, obj: MCDetailMessage) {
+
         if (NetworkHelper.isNotConnected(this)) {
             obj.status = MCStatus.ERROR_NETWORK
             addMessageAdapter(obj)
@@ -881,6 +891,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 binding.viewClick.setVisible()
             }
             R.id.imgSend -> {
+                listImageSrc.clear()
                 if (!conversation?.key.isNullOrEmpty()) {
                     formatMessage(conversation?.key!!)
                 }

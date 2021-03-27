@@ -16,6 +16,7 @@ class ListFriendOfWallViewModel : ViewModel() {
     private val interactor = UserInteractor()
 
     private var page = 0
+    var friendCount = 0
 
     val errorData = MutableLiveData<Int>()
     val errorDataPut = MutableLiveData<Int>()
@@ -50,6 +51,7 @@ class ListFriendOfWallViewModel : ViewModel() {
                     if (!isLoadMore) {
                         isLoadMoreData.postValue(true)
                     }
+                    friendCount = obj.data?.count ?: 0
                     listData.postValue(obj.data?.rows)
                 } else {
                     if (!isLoadMore) {
