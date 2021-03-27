@@ -72,7 +72,7 @@ class PageIntroductionHolder private constructor(val binding: HolderPageIntroduc
             }
         }
 
-        if (pageDetail?.phone.isNullOrEmpty()) {
+        if (pageDetail?.phone.isNullOrBlank()) {
             binding.tvPagePhone.beGone()
         } else {
             binding.tvPagePhone.beVisible()

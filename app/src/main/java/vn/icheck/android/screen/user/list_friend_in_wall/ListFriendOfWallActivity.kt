@@ -110,7 +110,7 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
             viewModel.listData.observe(this, Observer {
                 adapter.addListData(it)
                 tv_total_friend.visibility = View.VISIBLE
-                tv_total_friend simpleText if (it.size > 0) "${it.size} Bạn bè" else "Bạn bè"
+                tv_total_friend simpleText if (viewModel.friendCount > 0) "${viewModel.friendCount} Bạn bè" else "Bạn bè"
             })
 
             viewModel.isLoadMoreData.observe(this, Observer {
