@@ -2,13 +2,14 @@ package vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import vn.icheck.android.base.holder.ListStampECommerceHolder
 import vn.icheck.android.callback.ItemClickListener
 import vn.icheck.android.component.`null`.NullHolder
 import vn.icheck.android.network.models.ICCriteria
-import vn.icheck.android.network.models.ICRelatedProduct
 import vn.icheck.android.network.models.ICProductReviews
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICDetailStampV6_1
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICObjectInfo
+import vn.icheck.android.network.models.ICProductLink
 import vn.icheck.android.network.models.v1.ICBarcodeProductV1
 import vn.icheck.android.network.models.v1.ICRelatedProductV1
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.call_back.*
@@ -76,6 +77,9 @@ class DetailStampHoaPhatAdapter(private val headerImagelistener: SlideHeaderStam
             ICViewType.ACCURACY_STAMP -> {
                 AccuracyStampHolder(parent)
             }
+            ICViewType.PRODUCT_ECCOMMERCE_TYPE -> {
+                ListStampECommerceHolder(parent)
+            }
             ICViewType.METHOD_STAMP -> {
                 MethodStampHolder(parent,headerImagelistener)
             }
@@ -125,6 +129,9 @@ class DetailStampHoaPhatAdapter(private val headerImagelistener: SlideHeaderStam
             }
             is AccuracyStampHolder -> {
                 holder.bind(listData[position].data as ICDetailStampV6_1.ICObjectDetailStamp)
+            }
+            is ListStampECommerceHolder -> {
+                holder.bind(listData[position] as MutableList<ICProductLink>)
             }
             is StepBuildProductStampHolder -> {
                 holder.bind(listData[position].data as MutableList<ICObjectInfo>)

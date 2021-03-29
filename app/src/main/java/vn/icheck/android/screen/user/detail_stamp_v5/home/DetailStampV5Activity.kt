@@ -14,29 +14,31 @@ import android.os.Build
 import android.os.Handler
 import android.text.Html
 import android.text.Spannable
-import android.util.Log
 import android.view.View
 import android.view.ViewAnimationUtils
+import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.core.widget.NestedScrollView
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.LocationSettingsRequest
 import kotlinx.android.synthetic.main.activity_detail_stamp_v5.*
-import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.adapter.RecyclerViewAdapter
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
+import vn.icheck.android.base.holder.StampECommerceHolder
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.fragments.scan.QrScanViewModel
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.loyalty.helper.ActivityHelper
+import vn.icheck.android.network.models.ICProductLink
 import vn.icheck.android.network.models.detail_stamp_v6.ICDetailStampV6
 import vn.icheck.android.network.models.detail_stamp_v6.ICObjectBusinessV6
 import vn.icheck.android.network.models.detail_stamp_v6.ICObjectImageProductV6
@@ -45,7 +47,6 @@ import vn.icheck.android.network.models.detail_stamp_v6_1.ICObjectCustomerHistor
 import vn.icheck.android.network.models.detail_stamp_v6_1.IC_Config_Error
 import vn.icheck.android.network.models.v1.ICBarcodeProductV1
 import vn.icheck.android.network.util.JsonHelper
-import vn.icheck.android.room.entity.ICQrScan
 import vn.icheck.android.screen.user.detail_stamp_v5.history_guarantee_v5.HistoryGuaranteeV5Activity
 import vn.icheck.android.screen.user.detail_stamp_v5.home.adapter.BannerV5Adapter
 import vn.icheck.android.screen.user.detail_stamp_v5.home.adapter.ConfigErrorV5Adapter
@@ -54,8 +55,11 @@ import vn.icheck.android.screen.user.detail_stamp_v5.home.view.IDetailStampV5Vie
 import vn.icheck.android.screen.user.detail_stamp_v5.more_business_v5.MoreBusinessV5Activity
 import vn.icheck.android.screen.user.detail_stamp_v5.update_information_guarantee_v5.UpdateInformationStampV5Activity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.contact_support.ContactSupportActivity
+import vn.icheck.android.screen.user.listproductecommerce.ListProductsECommerceActivity
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
 import vn.icheck.android.screen.user.viewimage.ViewImageActivity
+import vn.icheck.android.util.ick.beVisible
+import vn.icheck.android.util.ick.visibleOrInvisible
 import vn.icheck.android.util.kotlin.ContactUtils
 import vn.icheck.android.util.kotlin.GlideImageGetter
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -387,7 +391,7 @@ class DetailStampV5Activity : BaseActivity<DetailStampV5Presenter>(), IDetailSta
             layoutGurantee.visibility = View.GONE
         }
 
-//Check verified
+        //Check verified
         if (!obj.data?.messages.isNullOrEmpty()) {
             for (i in obj.data?.messages!!) {
                 when (i.service?.id) {
@@ -466,14 +470,39 @@ class DetailStampV5Activity : BaseActivity<DetailStampV5Presenter>(), IDetailSta
                 }
             }
         }
+
         obj.data?.product?.sku?.let {
             presenter.getProductBySku(it)
         }
 
-//check nha san xuat
+        if (!obj.data?.product_link.isNullOrEmpty()) {
+            layoutProductLink.beVisible()
+            val adapter = object : RecyclerViewAdapter<ICProductLink>() {
+                override fun viewHolder(parent: ViewGroup) = StampECommerceHolder(parent)
+
+                override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+                    if (holder is StampECommerceHolder) {
+                        holder.bind(listData[position])
+                    } else {
+                        super.onBindViewHolder(holder, position)
+                    }
+                }
+            }
+            adapter.disableLoading()
+            adapter.disableLoadMore()
+            recyclerView.adapter = adapter
+            adapter.setListData(obj.data!!.product_link!!)
+
+            tvViewMore.visibleOrInvisible(adapter.getListData.size > 3)
+            tvViewMore.setOnClickListener {
+                ActivityHelper.startActivity<ListProductsECommerceActivity>(this@DetailStampV5Activity, Constant.DATA_1, JsonHelper.toJson(adapter.getListData))
+            }
+        }
+
+        //check nha san xuat
         showVendor = obj.data?.stamp?.show_vendor
 
-//check nha phan phoi
+        //check nha phan phoi
         showDistributor = obj.data?.stamp?.show_business
         if (showDistributor == 1) {
             if (obj.data?.business != null) {
@@ -522,7 +551,7 @@ class DetailStampV5Activity : BaseActivity<DetailStampV5Presenter>(), IDetailSta
             layoutDistributor.visibility = View.GONE
         }
 
-//bind Mo ta san pham
+        //bind Mo ta san pham
         if (!obj.data?.product?.description.isNullOrEmpty()) {
             tvSubInfomation.visibility = View.VISIBLE
             layoutInformaion.visibility = View.VISIBLE

@@ -76,7 +76,7 @@ import vn.icheck.android.screen.account.registeruser.register.RegisterUserActivi
 import vn.icheck.android.screen.dialog.PermissionDialog
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.info.AppInfoActivity
-import vn.icheck.android.screen.scan.ICKScanActivity
+import vn.icheck.android.screen.scan.V6ScanditActivity
 import vn.icheck.android.screen.user.bookmark.BookMarkV2Activity
 import vn.icheck.android.screen.user.bookmark_history.BookmarkHistoryActivity
 import vn.icheck.android.screen.user.coinhistory.CoinHistoryActivity
@@ -282,7 +282,8 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                         ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), ICK_REQUEST_CAMERA)
                     }
                 } else {
-                    ICKScanActivity.create(this)
+//                    ICKScanActivity.create(this)
+                    V6ScanditActivity.create(this)
                 }
             }
         }
@@ -539,7 +540,8 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                         ViewHelper.createDrawableStateList(ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_bottombar_home_unchecked_27dp)!!,
                                 BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, SizeHelper.size27, SizeHelper.size27, false))),
                         null, null)
-                tvHome.setTextColor(ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.darkGray2), Color.parseColor(bottomBarSelectedTextColor)))
+                if (!bottomBarSelectedTextColor.isNullOrEmpty())
+                    tvHome.setTextColor(ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.darkGray2), Color.parseColor(bottomBarSelectedTextColor)))
             }
 
             BitmapFactory.decodeFile(path + FileHelper.newsIcon)?.let { bitmap ->
@@ -547,7 +549,8 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                         ViewHelper.createDrawableStateList(ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_bottombar_feed_unchecked_27dp)!!,
                                 BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, SizeHelper.size27, SizeHelper.size27, false))),
                         null, null)
-                tvFeed.setTextColor(ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.darkGray2), Color.parseColor(bottomBarSelectedTextColor)))
+                if (!bottomBarSelectedTextColor.isNullOrEmpty())
+                    tvFeed.setTextColor(ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.darkGray2), Color.parseColor(bottomBarSelectedTextColor)))
             }
 
             BitmapFactory.decodeFile(path + FileHelper.scanIcon)?.let { bitmap ->
@@ -559,7 +562,8 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                         ViewHelper.createDrawableStateList(ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_bottombar_history_unchecked_27dp)!!,
                                 BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, SizeHelper.size27, SizeHelper.size27, false))),
                         null, null)
-                tvHistory.setTextColor(ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.darkGray2), Color.parseColor(bottomBarSelectedTextColor)))
+                if (!bottomBarSelectedTextColor.isNullOrEmpty())
+                    tvHistory.setTextColor(ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.darkGray2), Color.parseColor(bottomBarSelectedTextColor)))
             }
 
             BitmapFactory.decodeFile(path + FileHelper.messageIcon)?.let { bitmap ->
@@ -567,7 +571,8 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                         ViewHelper.createDrawableStateList(ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_bottombar_chat_unchecked_27dp)!!,
                                 BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, SizeHelper.size27, SizeHelper.size27, false))),
                         null, null)
-                tvChat.setTextColor(ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.darkGray2), Color.parseColor(bottomBarSelectedTextColor)))
+                if (!bottomBarSelectedTextColor.isNullOrEmpty())
+                    tvChat.setTextColor(ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.darkGray2), Color.parseColor(bottomBarSelectedTextColor)))
             }
         }
     }
@@ -587,7 +592,8 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == ICK_REQUEST_CAMERA) {
             if (PermissionHelper.checkResult(grantResults)) {
-                ICKScanActivity.create(this)
+//                ICKScanActivity.create(this)
+                V6ScanditActivity.create(this)
             }
         }
     }

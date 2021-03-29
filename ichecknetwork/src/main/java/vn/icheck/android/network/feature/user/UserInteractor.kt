@@ -10,7 +10,7 @@ import vn.icheck.android.network.models.wall.ICUserPublicInfor
 /**
  * Created by VuLCL on 28/10/2019.
  */
-class UserInteractor : BaseInteractor() {
+public class UserInteractor : BaseInteractor() {
 
     fun sendOtpConfirmPhoneStamp(phone: String, listener: ICApiListener<ICStatus>) {
         val body = hashMapOf<String, String>()

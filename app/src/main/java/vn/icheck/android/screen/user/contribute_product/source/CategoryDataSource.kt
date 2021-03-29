@@ -1,6 +1,7 @@
 package vn.icheck.android.screen.user.contribute_product.source
 
 import androidx.paging.PagingSource
+import androidx.paging.PagingState
 import vn.icheck.android.model.category.CategoryItem
 import vn.icheck.android.network.api.ICKApi
 import javax.inject.Inject
@@ -23,6 +24,13 @@ class CategoryDataSource @Inject constructor(val ickApi: ICKApi):PagingSource<In
             // Handle errors in this block and return LoadResult.Error if it is an
             // expected error (such as a network failure).
             LoadResult.Error(e)
+        }
+    }
+
+    override fun getRefreshKey(state: PagingState<Int, CategoryItem>): Int? {
+        return state.anchorPosition?.let { anchorPosition ->
+            val anchorPage = state.closestPageToPosition(anchorPosition)
+            anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
         }
     }
 }

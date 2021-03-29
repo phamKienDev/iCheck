@@ -93,6 +93,7 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
             setupShowStatus(obj)
             setupStatus(obj)
             initClick(obj)
+
         }
 
         private fun setupProduct(obj: MCDetailMessage) {
@@ -158,7 +159,7 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
                 binding.root.setPadding(dpToPx(90), 0, dpToPx(12), dpToPx(16))
             } else {
                 binding.tvTime.setGone()
-                binding.root.setPadding(dpToPx(90), 0, dpToPx(12), dpToPx(3))
+                binding.root.setPadding(dpToPx(90), 0, dpToPx(12), dpToPx(2))
             }
         }
 
@@ -307,9 +308,11 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
                 obj.timeText = convertDateTimeSvToCurrentDay(obj.time)
                 binding.tvTime.text = obj.timeText
                 binding.root.setPadding(dpToPx(12), 0, dpToPx(55), dpToPx(16))
+                binding.imgAvatarUser.setVisible()
             } else {
                 binding.tvTime.setGone()
-                binding.root.setPadding(dpToPx(12), 0, dpToPx(55), dpToPx(3))
+                binding.root.setPadding(dpToPx(12), 0, dpToPx(55), dpToPx(2))
+                binding.imgAvatarUser.setInvisible()
             }
         }
     }

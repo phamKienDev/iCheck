@@ -47,8 +47,8 @@ import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFra
 import vn.icheck.android.chat.icheckchat.screen.detail.adapter.ChatSocialDetailAdapter
 import vn.icheck.android.chat.icheckchat.screen.detail.adapter.ImageAdapter
 import vn.icheck.android.chat.icheckchat.screen.detail.adapter.StickerAdapter
-import vn.icheck.android.chat.icheckchat.screen.scan.ScanSocialChatActivity
 import vn.icheck.android.chat.icheckchat.screen.user_information.UserInformationActivity
+import vn.icheck.android.icheckscanditv6.IcheckScanActivity
 import java.io.File
 
 class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBinding>(), IRecyclerViewCallback, View.OnClickListener {
@@ -379,6 +379,16 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                         adapter.getListData[index].status = MCStatus.SUCCESS
                         adapter.getListData[index].time = data.child("time").value as Long?
 
+                        if (data.child("message").child("media").hasChildren()) {
+                            val listImage = mutableListOf<MCMedia>()
+
+                            for (i in data.child("message").child("media").children) {
+                                listImage.add(MCMedia(i.child("content").value.toString(), i.child("type").value.toString()))
+                            }
+
+                            adapter.getListData[index].listMedia = listImage
+                        }
+
                         //xóa status tin nhắn trước đó
                         if (adapter.getListData[index.minus(1)].senderId == adapter.getListData[index].senderId && adapter.getListData[index.minus(1)].timeText == getString(R.string.vua_xong)) {
                             val holder = recyclerView.findViewHolderForAdapterPosition(index.minus(1))
@@ -396,7 +406,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 } else {
 
                     markReadMessage(key)
-                    0
                     val lastMessageReceive = adapter.getListData.lastOrNull { it.senderId != FirebaseAuth.getInstance().currentUser?.uid }
                     val message = convertDataFirebase(data, lastMessageReceive ?: MCDetailMessage())
                     message.showStatus = true
@@ -531,6 +540,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
     }
 
     private fun checkSendMessage(key: String, obj: MCDetailMessage) {
+
         if (NetworkHelper.isNotConnected(this)) {
             obj.status = MCStatus.ERROR_NETWORK
             addMessageAdapter(obj)
@@ -859,7 +869,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
             }
             R.id.imgScan -> {
                 if (!binding.imgScan.isChecked) {
-                    startActivityForResult(Intent(this@ChatSocialDetailActivity, ScanSocialChatActivity::class.java), SCAN)
+                    IcheckScanActivity.scanOnlyChat(this, SCAN)
+//                    startActivityForResult(Intent(this@ChatSocialDetailActivity, IcheckScanActivity::class.java), SCAN)
                 }
             }
             R.id.imgCamera -> {
@@ -880,6 +891,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 binding.viewClick.setVisible()
             }
             R.id.imgSend -> {
+                listImageSrc.clear()
                 if (!conversation?.key.isNullOrEmpty()) {
                     formatMessage(conversation?.key!!)
                 }

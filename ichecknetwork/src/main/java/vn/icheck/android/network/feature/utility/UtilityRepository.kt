@@ -17,7 +17,7 @@ class UtilityRepository : BaseInteractor() {
         requestNewApi(ICNetworkClient.getSocialApi().getAllUtility(url), listener)
     }
 
-    fun getHomeFunc(url: String, listener: ICNewApiListener<ICResponse<ICTheme>>) {
-        requestNewApi(ICNetworkClient.getSocialApi().getHomeFunc(url), listener)
+    suspend fun getHomeFunc(url: String): ICResponse<ICTheme> {
+        return ICNetworkClient.getSocialApi().getHomeFunc(APIConstants.socialHost + APIConstants.PATH + url)
     }
 }

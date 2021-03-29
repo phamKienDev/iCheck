@@ -189,6 +189,18 @@ object TextHelper {
         }
     }
 
+    fun formatMoneyPhay(value: Float?): String {
+        return try {
+            val symbols = DecimalFormatSymbols()
+            symbols.decimalSeparator = ','
+            symbols.groupingSeparator = ','
+            val format = DecimalFormat("###,###,###,###", symbols)
+            format.format(value)
+        } catch (e: Exception) {
+            "0"
+        }
+    }
+
     fun formatMoneyPhay(value: Int?): String {
         return try {
             val symbols = DecimalFormatSymbols()
@@ -214,6 +226,15 @@ object TextHelper {
             ""
         }
 
+    }
+
+    fun formatMoneyPhay(value: String?): String {
+        return if (!value.isNullOrEmpty()) {
+            val clearString = value.replace("[\\,,\\.]".toRegex(), "")
+            formatMoneyPhay(parserValueMonneyFomat(clearString))
+        } else {
+            ""
+        }
     }
 
     /**

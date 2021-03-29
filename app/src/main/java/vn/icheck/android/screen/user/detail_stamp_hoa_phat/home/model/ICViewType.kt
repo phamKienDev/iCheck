@@ -19,4 +19,5 @@ object ICViewType {
     const val REVIEWS_COMMENT = 16
     const val REVIEWS_VIEW_MORE = 17
     const val NO_REVIEWS = 18
+    const val PRODUCT_ECCOMMERCE_TYPE = 19
 }

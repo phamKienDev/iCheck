@@ -18,6 +18,7 @@ import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
 import android.view.ViewAnimationUtils
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.annotation.RequiresApi
@@ -27,6 +28,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -38,13 +40,16 @@ import kotlinx.android.synthetic.main.activity_detail_stamp.*
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.adapter.RecyclerViewAdapter
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
+import vn.icheck.android.base.holder.StampECommerceHolder
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.component.banner.ListBannerAdapter
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.base.listener.IClickListener
+import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.loyalty.helper.CampaignLoyaltyHelper
 import vn.icheck.android.loyalty.model.ICKLoyalty
 import vn.icheck.android.loyalty.screen.url_gift_detail.UrlGiftDetailActivity
@@ -67,6 +72,7 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.more_information_product.
 import vn.icheck.android.screen.user.detail_stamp_v6_1.more_product_verified_by_distributor.MoreProductVerifiedByDistributorActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.UpdateInformationFirstActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.verified_phone.VerifiedPhoneActivity
+import vn.icheck.android.screen.user.listproductecommerce.ListProductsECommerceActivity
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.screen.user.shipping.ship.ShipActivity
 import vn.icheck.android.screen.user.view_item_image_stamp.ViewItemImageActivity
@@ -74,6 +80,7 @@ import vn.icheck.android.screen.user.viewimage.ViewImageActivity
 import vn.icheck.android.util.AdsUtils
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
+import vn.icheck.android.util.ick.visibleOrInvisible
 import vn.icheck.android.util.kotlin.ContactUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.text.SimpleDateFormat
@@ -835,6 +842,30 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
                     mSerial = getSerialNumber(it.prefix, it.number)
                     verfiedSerial = getSerialNumber(it.prefix, it.number)
                     tvSerialVerifiedChongGia.text = "Serial: $verfiedSerial"
+                }
+            }
+
+            if (!obj.data?.product_link.isNullOrEmpty()) {
+                layoutProductLink.beVisible()
+                val adapter = object : RecyclerViewAdapter<ICProductLink>() {
+                    override fun viewHolder(parent: ViewGroup) = StampECommerceHolder(parent)
+
+                    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+                        if (holder is StampECommerceHolder) {
+                            holder.bind(listData[position])
+                        } else {
+                            super.onBindViewHolder(holder, position)
+                        }
+                    }
+                }
+                adapter.disableLoading()
+                adapter.disableLoadMore()
+                recyclerView.adapter = adapter
+                adapter.setListData(obj.data!!.product_link!!)
+
+                tvViewMore.visibleOrInvisible(adapter.getListData.size > 3)
+                tvViewMore.setOnClickListener {
+                    ActivityHelper.startActivity<ListProductsECommerceActivity>(this@DetailStampActivity, Constant.DATA_1, JsonHelper.toJson(adapter.getListData))
                 }
             }
 
