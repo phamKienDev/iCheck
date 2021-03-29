@@ -8,9 +8,9 @@
         <activity
             android:name=".screen.detail_image.ImageDetailActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".screen.scan.ScanSocialChatActivity"
-            android:screenOrientation="portrait" />
+<!--        <activity-->
+<!--            android:name=".screen.scan.ScanSocialChatActivity"-->
+<!--            android:screenOrientation="portrait" />-->
         <activity
             android:name=".screen.user_information.UserInformationActivity"
             android:screenOrientation="portrait" />
