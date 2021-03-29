@@ -11,6 +11,7 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.observe
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,6 +25,8 @@ import kotlinx.android.synthetic.main.fragment_home.swipeLayout
 import kotlinx.android.synthetic.main.fragment_home.tvCartCount
 import kotlinx.android.synthetic.main.fragment_home.viewShadow
 import kotlinx.android.synthetic.main.fragment_page_detail.*
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -700,7 +703,13 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                             tv_action.setText(R.string.xem_chi_tiet)
                         }
                         tv_action.setOnClickListener { _ ->
-                            FirebaseDynamicLinksActivity.startTargetPath(requireActivity(), it?.data?.rows?.firstOrNull()?.redirectPath)
+                            lifecycleScope.launch {
+                                tv_action.isEnabled = false
+                                FirebaseDynamicLinksActivity.startTargetPath(requireActivity(), it?.data?.rows?.firstOrNull()?.redirectPath)
+                                delay(400)
+                                tv_action.isEnabled = true
+                            }
+
                         }
                         imageView14.loadImageWithHolder(it?.data?.rows?.firstOrNull()?.icon, R.drawable.ic_reminder_item)
                     }

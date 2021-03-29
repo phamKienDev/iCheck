@@ -166,21 +166,15 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
         val key = if (BuildConfig.FLAVOR.contentEquals("dev")) getString(R.string.scandit_v6_key_dev) else getString(R.string.scandit_v6_key_live)
         dataCaptureContext = DataCaptureContext.forLicenseKey(key)
         val settings = BarcodeCaptureSettings().apply {
-            enableSymbology(Symbology.CODE128, true)
-            enableSymbology(Symbology.CODE39, true)
-            enableSymbology(Symbology.QR, true)
-            enableSymbology(Symbology.EAN8, true)
-            enableSymbology(Symbology.UPCE, true)
-            enableSymbology(Symbology.EAN13_UPCA, true)
-            setProperty("remove_leading_upca_zero", true)
+            Symbology.values().forEach {
+                if (it != Symbology.MICRO_PDF417 && it != Symbology.PDF417) {
+                    enableSymbology(it, true)
+                    getSymbologySettings(it).isColorInvertedEnabled = true
+                }
+            }
         }
-
-        settings.getSymbologySettings(Symbology.CODE128).isColorInvertedEnabled = true
-        settings.getSymbologySettings(Symbology.CODE39).isColorInvertedEnabled = true
-        settings.getSymbologySettings(Symbology.QR).isColorInvertedEnabled = true
-        settings.getSymbologySettings(Symbology.EAN8).isColorInvertedEnabled = true
-        settings.getSymbologySettings(Symbology.UPCE).isColorInvertedEnabled = true
-        settings.getSymbologySettings(Symbology.EAN13_UPCA).isColorInvertedEnabled = true
+        settings.getSymbologySettings(Symbology.EAN13_UPCA).setExtensionEnabled("remove_leading_upca_zero", true)
+        settings.getSymbologySettings(Symbology.UPCE).setExtensionEnabled("remove_leading_upca_zero", true)
 
         barcodeCapture = BarcodeCapture.forDataCaptureContext(dataCaptureContext, settings)
 
