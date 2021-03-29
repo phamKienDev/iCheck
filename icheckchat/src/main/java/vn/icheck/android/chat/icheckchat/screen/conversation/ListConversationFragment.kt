@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.chat.icheckchat.base.BaseFragmentChat
 import vn.icheck.android.chat.icheckchat.base.ConstantChat
@@ -30,7 +31,6 @@ class ListConversationFragment(val listener: ICountMessageListener) : BaseFragme
 
     private lateinit var viewModel: ListConversationViewModel
 
-    private val conversationList = mutableListOf<MCConversation>()
     private val listData = mutableListOf<MCConversation>()
 
     companion object {
@@ -101,11 +101,10 @@ class ListConversationFragment(val listener: ICountMessageListener) : BaseFragme
         binding.swipeRefresh.isRefreshing = true
 
         listData.clear()
-        conversationList.clear()
         binding.edtSearch.setText("")
 
         viewModel.loginFirebase({
-            getConversation()
+            getConversation(0)
             getChatSender()
         }, {
             binding.swipeRefresh.isRefreshing = false
@@ -121,27 +120,33 @@ class ListConversationFragment(val listener: ICountMessageListener) : BaseFragme
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 binding.recyclerView.setGone()
                 binding.layoutNoData.setGone()
+                binding.layoutNoDataSearch.setGone()
+                binding.imgDelete.setGone()
 
                 if (!s.isNullOrEmpty()) {
                     listData.clear()
-                    for (item in conversationList) {
+                    binding.imgDelete.setVisible()
+
+                    for (item in adapter.getListData) {
                         if (item.targetUserName?.toLowerCase(Locale.ROOT)?.contains(s.toString().trim().toLowerCase(Locale.ROOT)) == true) {
                             listData.add(item)
                         }
                     }
 
                     if (listData.isNullOrEmpty()) {
-                        binding.layoutNoData.setVisible()
+                        binding.layoutNoDataSearch.setVisible()
                     } else {
                         binding.recyclerView.setVisible()
 
                         adapter.setData(listData)
                     }
                 } else {
-                    if (!conversationList.isNullOrEmpty()) {
+                    binding.imgDelete.setGone()
+
+                    if (!adapter.getListData.isNullOrEmpty()) {
                         binding.recyclerView.setVisible()
 
-                        adapter.setData(conversationList)
+                        getConversation(0)
                     } else {
                         binding.layoutNoData.setVisible()
                     }
@@ -152,6 +157,10 @@ class ListConversationFragment(val listener: ICountMessageListener) : BaseFragme
 
             }
         })
+
+        binding.imgDelete.setOnClickListener {
+            binding.edtSearch.setText("")
+        }
     }
 
     private fun setOnClick() {
@@ -164,73 +173,71 @@ class ListConversationFragment(val listener: ICountMessageListener) : BaseFragme
         })
     }
 
-    private fun getConversation(isLoadMore: Boolean = false) {
-        viewModel.getConversation(isLoadMore, { snapshot ->
-            conversationList.clear()
-            if (snapshot.hasChildren()) {
-                for (item in snapshot.children.reversed()) {
-                    val element = MCConversation().apply {
-                        key = item?.key.toString()
-                        enableAlert = item.child("enable_alert").value.toString().toBoolean()
-                        keyRoom = item?.key.toString()
-                        unreadCount = item.child("unread_count").value as Long? ?: 0L
-                        time = item.child("last_activity").child("time").value as Long?
-                                ?: System.currentTimeMillis()
-                        lastMessage = if (item.child("last_activity").child("content").value != null) {
-                            item.child("last_activity").child("content").value.toString()
-                        } else {
-                            ""
-                        }
+    private fun loadData(snapshot: DataSnapshot, lastTimeStamp: Long){
+        val conversationList = mutableListOf<MCConversation>()
+
+        if (snapshot.hasChildren()) {
+
+            for (item in snapshot.children.reversed()) {
+                val element = MCConversation().apply {
+                    key = item?.key.toString()
+                    enableAlert = item.child("enable_alert").value.toString().toBoolean()
+                    keyRoom = item?.key.toString()
+                    unreadCount = item.child("unread_count").value as Long? ?: 0L
+                    time = item.child("last_activity").child("time").value as Long?
+                            ?: System.currentTimeMillis()
+                    lastMessage = if (item.child("last_activity").child("content").value != null) {
+                        item.child("last_activity").child("content").value.toString()
+                    } else {
+                        ""
                     }
+                }
 
-                    viewModel.getChatRoom(element.keyRoom ?: "", {
-                        if (it.hasChildren()) {
-                            for (i in it.child("members").children) {
-                                if (!FirebaseAuth.getInstance().uid.toString().contains(i.child("source_id").value.toString())) {
-                                    viewModel.getChatSender(i.child("id").value.toString(), { success ->
-                                        element.targetUserName = success.child("name").value.toString()
-                                        element.imageTargetUser = success.child("image").value.toString()
-                                        element.isVerified = success.child("is_verify").value.toString().toBoolean()
+                viewModel.getChatRoom(element.keyRoom ?: "", {
+                    if (it.hasChildren()) {
+                        for (i in it.child("members").children) {
+                            if (!FirebaseAuth.getInstance().uid.toString().contains(i.child("source_id").value.toString())) {
+                                viewModel.getChatSender(i.child("id").value.toString(), { success ->
+                                    element.targetUserName = success.child("name").value.toString()
+                                    element.imageTargetUser = success.child("image").value.toString()
+                                    element.isVerified = success.child("is_verify").value.toString().toBoolean()
 
-                                        adapter.refreshItem(element)
-                                    }, {
+                                    adapter.refreshItem(element)
+                                }, {
 
-                                    })
-                                    element.isNotification = i.child("is_subscribe").value.toString().toBoolean()
-                                    element.type = i.child("type").value.toString().trim()
-                                }
+                                })
+                                element.isNotification = i.child("is_subscribe").value.toString().toBoolean()
+                                element.type = i.child("type").value.toString().trim()
                             }
                         }
-                    }, {
+                    }
+                }, {
 
-                    })
+                })
 
-                    conversationList.add(element)
-                }
+                conversationList.add(element)
             }
+        }
 
-            binding.swipeRefresh.isRefreshing = false
+        binding.swipeRefresh.isRefreshing = false
 
-            if (!conversationList.isNullOrEmpty()) {
+        if (lastTimeStamp == 0L) {
+            if (conversationList.isNullOrEmpty()) {
+                viewModel.checkError(true, dataEmpty = true)
+            } else {
                 binding.recyclerView.setVisible()
                 binding.layoutNoData.setGone()
-
-                adapter.setData(conversationList)
+                binding.swipeRefresh.isRefreshing = false
+                adapter.setListData(conversationList)
             }
+        } else {
+            adapter.addListData(conversationList)
+        }
+    }
 
-//            if (!isLoadMore) {
-//                if (conversationList.isNullOrEmpty()) {
-//                    viewModel.checkError(true, dataEmpty = true)
-//                } else {
-//                    binding.recyclerView.setVisible()
-//                    binding.layoutNoData.setGone()
-//                    binding.swipeRefresh.isRefreshing = false
-//
-//                    adapter.setListData(conversationList)
-//                }
-//            } else {
-//                adapter.addListData(conversationList)
-//            }
+    private fun getConversation(lastTimeStamp: Long) {
+        viewModel.getConversation(lastTimeStamp, { snapshot ->
+            loadData(snapshot, lastTimeStamp)
         }, { error ->
             viewModel.checkError(true, message = error.message)
         })
@@ -261,12 +268,15 @@ class ListConversationFragment(val listener: ICountMessageListener) : BaseFragme
     }
 
     override fun onLoadMore() {
-        getConversation(true)
+        adapter.getListData.lastOrNull()?.let { obj ->
+            getConversation(obj.time ?: 0)
+        }
     }
 
     override fun onResume() {
         super.onResume()
         isOpenChat = false
+        isOpenConversation = true
     }
 
     override fun onStop() {

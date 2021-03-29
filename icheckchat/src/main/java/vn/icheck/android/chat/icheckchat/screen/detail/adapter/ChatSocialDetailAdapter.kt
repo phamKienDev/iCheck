@@ -1,7 +1,10 @@
 package vn.icheck.android.chat.icheckchat.screen.detail.adapter
 
 import android.annotation.SuppressLint
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
+import android.content.Context.CLIPBOARD_SERVICE
 import android.content.Intent
 import android.graphics.Paint
 import android.net.Uri
@@ -213,9 +216,7 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
 
         private fun initClick(obj: MCDetailMessage) {
             binding.layoutImageDetail.root.setOnClickListener {
-                if (!obj.listMedia.isNullOrEmpty()) {
-                    ImageDetailActivity.startImageDetail(itemView.context, obj.listMedia!!)
-                }
+                obj.listMedia?.let { it1 -> ImageDetailActivity.startImageDetail(itemView.context, it1, 0) }
             }
 
             binding.root.setOnClickListener {
@@ -240,7 +241,7 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
 
             binding.layoutImageDetail.root.setOnClickListener {
 
-                obj.listMedia?.let { it1 -> ImageDetailActivity.startImageDetail(itemView.context, it1) }
+                obj.listMedia?.let { it1 -> ImageDetailActivity.startImageDetail(itemView.context, it1, 0) }
             }
 
             setUpContentAndLink(binding.tvMessage, obj, itemView.context)
@@ -320,23 +321,35 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
         view.apply {
             if (!obj.content.isNullOrEmpty()) {
                 setVisible()
-                text = obj.content!!.replace("\r", "\n")
-                paintFlags = 0
-            } else {
-                if (!obj.link.isNullOrEmpty()) {
-                    setVisible()
-                    text = obj.link
+
+                if (obj.content!!.contains("http://") || obj.content!!.contains("https://")) {
+                    text = obj.content
                     paintFlags = paintFlags or Paint.UNDERLINE_TEXT_FLAG
 
                     setOnClickListener {
-
-                        context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(obj.link)))
+                        context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(obj.content)))
                     }
                 } else {
-                    setGone()
+                    text = obj.content!!.replace("\r", "\n")
+                    paintFlags = 0
                 }
+
+                setOnLongClickListener {
+                    copyText(context, obj.content!!)
+
+                    true
+                }
+            } else {
+                setGone()
             }
         }
+    }
+
+    private fun copyText(context: Context, text: String) {
+        val myClipboard = context.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+        val myClip = ClipData.newPlainText("note_copy", text)
+        myClipboard.setPrimaryClip(myClip)
+        context.showToastSuccess(context.getString(R.string.copy_success))
     }
 
     private fun setUpImageUrl(obj: MCDetailMessage, layoutTwoImage: View, img1: AppCompatImageView, iconVideo1: AppCompatImageView, img2: AppCompatImageView, iconVideo2: AppCompatImageView, tvCountImage: AppCompatTextView) {

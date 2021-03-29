@@ -10,6 +10,7 @@ import vn.icheck.android.chat.icheckchat.base.view.MCViewType.TYPE_IMAGE
 import vn.icheck.android.chat.icheckchat.base.view.loadImageUrl
 import vn.icheck.android.chat.icheckchat.databinding.ItemImageChatBinding
 import vn.icheck.android.chat.icheckchat.model.MCMedia
+import vn.icheck.android.chat.icheckchat.screen.detail_image.ImageDetailActivity
 
 class UserInformationAdapter : BaseRecyclerView<MCMedia>() {
 
@@ -40,6 +41,10 @@ class UserInformationAdapter : BaseRecyclerView<MCMedia>() {
     inner class ImageInformationViewHolder(val binding: ItemImageChatBinding) : BaseViewHolder<MCMedia>(binding) {
         override fun bind(obj: MCMedia) {
             loadImageUrl(binding.imgChat, obj.content, R.drawable.ic_default_image_upload_150_chat, R.drawable.ic_default_image_upload_150_chat)
+
+            binding.imgChat.setOnClickListener {
+                ImageDetailActivity.startImageDetail(itemView.context, listData, adapterPosition)
+            }
         }
     }
 }
