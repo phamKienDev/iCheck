@@ -27,4 +27,10 @@
         <item name="android:windowIsFloating">false</item>
         <item name="android:statusBarColor" tools:ignore="NewApi">@android:color/transparent</item>
     </style>
+
+    <style name="AppTheme_Black" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/black_21</item>
+        <item name="colorPrimaryDark">@color/black_21</item>
+        <item name="colorAccent">@color/lightBlue</item>
+    </style>
 </resources>

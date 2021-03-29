@@ -11,12 +11,14 @@ import com.yarolegovich.discretescrollview.DiscreteScrollView
 import vn.icheck.android.chat.icheckchat.R
 import vn.icheck.android.chat.icheckchat.base.BaseActivityChat
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.DATA_1
+import vn.icheck.android.chat.icheckchat.base.view.MCViewType.TYPE_IMAGE
 import vn.icheck.android.chat.icheckchat.base.view.showToastError
 import vn.icheck.android.chat.icheckchat.databinding.ActivityImageDetailBinding
 import vn.icheck.android.chat.icheckchat.helper.MCExoMedia
 import vn.icheck.android.chat.icheckchat.helper.NetworkHelper.parseListAttachment
 import vn.icheck.android.chat.icheckchat.helper.NetworkHelper.toJson
 import vn.icheck.android.chat.icheckchat.model.MCMedia
+import vn.icheck.android.chat.icheckchat.model.MCMessageEvent
 
 class ImageDetailActivity : BaseActivityChat<ActivityImageDetailBinding>() {
 
@@ -46,7 +48,11 @@ class ImageDetailActivity : BaseActivityChat<ActivityImageDetailBinding>() {
 
     @SuppressLint("SetTextI18n")
     private fun initRecyclerView() {
-        val listData = parseListAttachment(intent.getStringExtra(DATA_1))
+//        val listData = parseListAttachment(intent.getStringExtra(DATA_1))
+        val listData = mutableListOf<MCMedia>()
+        listData.add(MCMedia("https://i.stack.imgur.com/5G8Fo.png", "image"))
+        listData.add(MCMedia("https://i.stack.imgur.com/5G8Fo.png", "image"))
+        listData.add(MCMedia("https://i.stack.imgur.com/5G8Fo.png", "image"))
 
         if (listData.isNullOrEmpty()) {
             showToastError(getString(R.string.error_default))
@@ -81,6 +87,21 @@ class ImageDetailActivity : BaseActivityChat<ActivityImageDetailBinding>() {
             })
 
             binding.recyclerView.adapter = adapter
+        }
+    }
+
+    override fun onMessageEvent(event: MCMessageEvent) {
+        super.onMessageEvent(event)
+        when (event.type) {
+            MCMessageEvent.Type.IS_SCROLL_MEDIA -> {
+                binding.recyclerView.post {
+                    if (event.data != null) {
+                        binding.recyclerView.suppressLayout(false)
+                    } else {
+                        binding.recyclerView.suppressLayout(true)
+                    }
+                }
+            }
         }
     }
 

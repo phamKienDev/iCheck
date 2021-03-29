@@ -77,7 +77,7 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
             binding.layoutImageDetail.root.gravity = Gravity.RIGHT
             setGoneView(binding.layoutProduct, binding.layoutImageDetail.root, binding.tvMessage, binding.layoutImageDetail.imgView, binding.layoutImageDetail.layoutOneImage, binding.layoutImageDetail.layoutTwoImage, binding.layoutImageDetail.layoutImage, binding.layoutImageDetail.tvCountImage, binding.layoutImageDetail.tvCountImage1)
 
-            setUpContentAndLink(binding.tvMessage, obj, itemView.context)
+            setUpContentAndLink(binding.tvMessage, binding.tvTime, binding.root, obj)
             setupProduct(obj)
             if (!obj.listMedia.isNullOrEmpty()) {
                 setupMediaUrl(obj)
@@ -90,7 +90,6 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
             setupShowStatus(obj)
             setupStatus(obj)
             initClick(obj)
-
         }
 
         private fun setupProduct(obj: MCDetailMessage) {
@@ -243,7 +242,7 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
                 obj.listMedia?.let { it1 -> ImageDetailActivity.startImageDetail(itemView.context, it1) }
             }
 
-            setUpContentAndLink(binding.tvMessage, obj, itemView.context)
+            setUpContentAndLink(binding.tvMessage, binding.tvTime, binding.root, obj)
 
             if (obj.product != null) {
                 binding.layoutProduct.setVisible()
@@ -316,12 +315,25 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
         }
     }
 
-    private fun setUpContentAndLink(view: AppCompatTextView, obj: MCDetailMessage, context: Context) {
-        view.apply {
+    private fun setUpContentAndLink(tvContent: AppCompatTextView, tvTime: AppCompatTextView, root: View, obj: MCDetailMessage) {
+        tvContent.apply {
             if (!obj.content.isNullOrEmpty()) {
                 setVisible()
                 text = obj.content!!.replace("\r", "\n")
                 paintFlags = 0
+                setOnClickListener {
+                    if (!obj.showStatus) {
+                        obj.showStatus = true
+                        tvTime.setVisible()
+                        obj.timeText = convertDateTimeSvToCurrentDay(obj.time)
+                        tvTime.text = obj.timeText
+                        if (obj.senderId == FirebaseAuth.getInstance().currentUser?.uid) {
+                            root.setPadding(dpToPx(90), 0, dpToPx(12), dpToPx(8))
+                        } else {
+                            root.setPadding(dpToPx(12), 0, dpToPx(55), dpToPx(8))
+                        }
+                    }
+                }
             } else {
                 if (!obj.link.isNullOrEmpty()) {
                     setVisible()
@@ -329,8 +341,7 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
                     paintFlags = paintFlags or Paint.UNDERLINE_TEXT_FLAG
 
                     setOnClickListener {
-
-                        context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(obj.link)))
+                        this.context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(obj.link)))
                     }
                 } else {
                     setGone()

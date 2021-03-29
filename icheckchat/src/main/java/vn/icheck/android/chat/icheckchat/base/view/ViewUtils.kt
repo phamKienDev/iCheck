@@ -377,12 +377,29 @@ fun convertDateTimeSvToCurrentDay(millisecond: Long?): String {
             (time / intervalMinute).toString() + " phút trước"
         }
         time < AlarmManager.INTERVAL_DAY -> {
-            convertMillisecondToTimeVn(millisecond) ?: ""
+            if (soSanhCungNgay(millisecond)) {
+                (time / intervalHour).toString() + " giờ trước"
+            } else {
+                convertDateTimeSvToTimeDateVn(millisecond) ?: ""
+            }
         }
         else -> {
             convertDateTimeSvToTimeDateVn(millisecond) ?: ""
         }
     }
+}
+
+fun soSanhCungNgay(millisecond: Long?): Boolean {
+    var mDate = Date()
+    val sdf = SimpleDateFormat("dd/MM/yyyy")
+    sdf.timeZone = TimeZone.getTimeZone("GMT+07")
+    if (millisecond != null) {
+        mDate = Date(millisecond)
+    }
+    val currenDay = sdf.format(Date(System.currentTimeMillis()))
+    val customDay = sdf.format(mDate)
+
+    return currenDay.equals(customDay)
 }
 
 fun chenhLechGio(time: Long?, oldTime: Long?, hour: Int): Boolean {
