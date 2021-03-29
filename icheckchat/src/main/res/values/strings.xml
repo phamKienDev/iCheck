@@ -43,6 +43,8 @@
     <string name="dong_bo_danh_ba_de_trao_doi">Đồng bộ danh bạ để trao đổi với những người\nbạn đang sử dụng app iCheck nhé!</string>
     <string name="dong_bo_danh_ba">Đồng bộ danh bạ</string>
     <string name="tim_kiem_ban_be_trong_tin_nhan">Tìm kiếm bạn bè trong tin nhắn</string>
+    <string name="tim_kiem_tin_nhan_loi">Xin lỗi chúng tôi không thể tìm được kết quả\nphù hợp với tìm kiếm của bạn</string>
+    <string name="copy_success">Copy thành công</string>
 
     //Lỗi
     <string name="co_loi_xay_ra_vui_long_thu_lai">Có lỗi xảy ra. Vui lòng thử lại.</string>

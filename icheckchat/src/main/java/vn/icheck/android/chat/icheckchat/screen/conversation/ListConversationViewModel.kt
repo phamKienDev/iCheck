@@ -7,11 +7,10 @@ import vn.icheck.android.chat.icheckchat.base.BaseViewModelChat
 import vn.icheck.android.chat.icheckchat.network.ChatRepository
 
 class ListConversationViewModel : BaseViewModelChat() {
-    private val repository = ChatRepository()
 
     val conversationError = MutableLiveData<String>()
 
-    fun getConversation(isLoadMore: Boolean = false, success: (snapshot: DataSnapshot) -> Unit, cancel: (error: DatabaseError) -> Unit) = firebaseHelper.getConversation(isLoadMore, success, cancel)
+    fun getConversation(lastTimeStamp: Long, success: (snapshot: DataSnapshot) -> Unit, cancel: (error: DatabaseError) -> Unit) = firebaseHelper.getConversation(lastTimeStamp, success, cancel)
 
     fun getChatSender(child: String, success: (snapshot: DataSnapshot) -> Unit, cancel: (error: DatabaseError) -> Unit) = firebaseHelper.getChatSender(child, success, cancel)
 

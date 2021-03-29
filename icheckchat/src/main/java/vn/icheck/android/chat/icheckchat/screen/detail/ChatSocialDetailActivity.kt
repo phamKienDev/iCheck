@@ -5,11 +5,9 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.widget.AppCompatCheckedTextView
@@ -67,8 +65,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 putExtra(KEY, key)
             })
         }
-
-        var isDetailChatOpen = false
     }
 
     private lateinit var viewModel: ChatSocialDetailViewModel
@@ -87,6 +83,11 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
     private val listImageSrc = mutableListOf<MCMedia>()
 
+    var inboxRoomID: String? = null
+    var inboxUserID: String? = null
+    private var toId = ""
+    private var keyRoom = ""
+
     private var userId: Long? = null
     private var userType = "user"
     private var key: String? = null
@@ -98,7 +99,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         get() = ActivityChatSocialDetailBinding::inflate
 
     override fun onInitView() {
-        isDetailChatOpen = true
         ListConversationFragment.isOpenChat = true
 
         viewModel = ViewModelProvider(this@ChatSocialDetailActivity)[ChatSocialDetailViewModel::class.java]
@@ -254,13 +254,15 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
     @SuppressLint("SetTextI18n")
     private fun getChatRoom(key: String) {
+        keyRoom = key
+        inboxRoomID = key
+
         setGoneView(binding.layoutChat, binding.layoutUserBlock, binding.layoutBlock)
         binding.layoutToolbar.imgAction.setVisible()
 
         viewModel.getChatRoom(key,
                 { obj ->
                     if (obj.value != null) {
-                        var toId = ""
                         var toType = ""
 
                         if (obj.child("members").hasChildren()) {
@@ -268,6 +270,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                                 if (!FirebaseAuth.getInstance().uid.toString().contains(item.child("source_id").value.toString())) {
                                     toId = item.child("source_id").value.toString()
                                     toType = item.child("type").value.toString()
+                                    inboxUserID = toId
 
                                     viewModel.getChatSender(item.child("id").value.toString(), { success ->
                                         binding.layoutToolbar.txtTitle.text = success.child("name").value.toString()
@@ -464,11 +467,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 }
 
                 if (!item.child("message").child("text").value.toString().contains("null")) {
-                    if (item.child("message").child("text").value.toString().trim().contains("https://") || item.child("message").child("link").value.toString().trim().contains("http://")) {
-                        link = item.child("message").child("text").value.toString()
-                    } else {
-                        content = item.child("message").child("text").value.toString()
-                    }
+                    content = item.child("message").child("text").value.toString()
                 }
 
                 if (!item.child("message").child("sticker").value.toString().contains("null")) {
@@ -885,6 +884,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                     formatMessage(conversation?.key!!)
                 }
 
+                binding.edtMessage.setText("")
+
                 binding.imgSend.isChecked = false
                 binding.imgSend.isEnabled = false
             }
@@ -932,11 +933,19 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
     override fun onDestroy() {
         super.onDestroy()
-        isDetailChatOpen = false
+        inboxRoomID = null
+        inboxUserID = null
     }
 
     override fun onStop() {
         super.onStop()
-        isDetailChatOpen = false
+        inboxRoomID = null
+        inboxUserID = null
+    }
+
+    override fun onResume() {
+        super.onResume()
+        inboxRoomID = keyRoom
+        inboxUserID = toId
     }
 }
