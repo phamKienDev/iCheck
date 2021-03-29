@@ -48,7 +48,7 @@ class ListProductsECommerceActivity : BaseActivityMVVM() {
     private fun getData() {
         val json = intent.getStringExtra(Constant.DATA_1) ?: ""
 
-        val listECommerce = JsonHelper.parseList<ICProductECommerce>(json)
+        val listECommerce = JsonHelper.parseProductECommerce(json)
         if (!listECommerce.isNullOrEmpty()) {
             val adapter = object : RecyclerViewAdapter<ICProductECommerce>() {
                 override fun viewHolder(parent: ViewGroup) = ProductsECommerceHolder(parent)

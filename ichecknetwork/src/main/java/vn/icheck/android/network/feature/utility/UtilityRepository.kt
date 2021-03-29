@@ -18,6 +18,6 @@ class UtilityRepository : BaseInteractor() {
     }
 
     suspend fun getHomeFunc(url: String): ICResponse<ICTheme> {
-        return ICNetworkClient.getSocialApi().getHomeFunc(url)
+        return ICNetworkClient.getSocialApi().getHomeFunc(APIConstants.socialHost + APIConstants.PATH + url)
     }
 }

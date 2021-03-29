@@ -320,7 +320,6 @@ class IckProductDetailViewModel : BaseViewModel() {
             totalRequest = obj.layout?.size ?: 0
             totalError = 0
 
-
             for (layout in obj.layout ?: mutableListOf()) {
                 when (layout.id.toString()) {
                     "attachment-1" -> {
@@ -1091,22 +1090,35 @@ class IckProductDetailViewModel : BaseViewModel() {
         layout.viewType = ICViewTypes.PRODUCT_ECCOMMERCE_TYPE
         onAddLayout.value = layout
 
-        viewModelScope.launch {
-            val productsECommerce = withTimeoutOrNull(5000) {
-                try {
-                    productRepository.getProductsECommerce(layout.request.url, productID)
-                } catch (e: Exception) {
-                    null
+        productRepository.getProductsECommerce(layout.request.url, productID, object : ICNewApiListener<ICResponse<ICListResponse<ICProductECommerce>>> {
+            override fun onSuccess(obj: ICResponse<ICListResponse<ICProductECommerce>>) {
+                if (!obj.data?.rows.isNullOrEmpty()) {
+                    layout.data = obj.data!!.rows
+                    layout.key = barcode
                 }
+
+                onUpdateLayout.value
             }
 
-            if (!productsECommerce?.data?.rows.isNullOrEmpty()) {
-                layout.data = productsECommerce!!.data!!.rows
-                layout.key = barcode
+            override fun onError(error: ICResponseCode?) {
+                checkTotalError(layout)
             }
+        })
 
-            onUpdateLayout.value
-        }
+//        viewModelScope.launch {
+//            val productsECommerce = try {
+//                    productRepository.getProductsECommerce(layout.request.url, productID)
+//                } catch (e: Exception) {
+//                    null
+//                }
+//
+//            if (!productsECommerce?.data?.rows.isNullOrEmpty()) {
+//                layout.data = productsECommerce!!.data!!.rows
+//                layout.key = barcode
+//            }
+//
+//            onUpdateLayout.value
+//        }
     }
 
     @Synchronized

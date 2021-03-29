@@ -440,4 +440,13 @@ class ProductInteractor : BaseInteractor() {
         }
         return ICNetworkClient.getNewSocialApi().getProductsECommerce(url)
     }
+
+    fun getProductsECommerce(path: String?, productID: Long = 0, listener: ICNewApiListener<ICResponse<ICListResponse<ICProductECommerce>>>) {
+        val url = if (!path.isNullOrEmpty()) {
+            APIConstants.socialHost + APIConstants.PATH + path
+        } else {
+            APIConstants.socialHost + APIConstants.productsECommerce().replace("{id}", productID.toString())
+        }
+        requestNewApi(ICNetworkClient.getNewSocialApi().getProductsECommerceV2(url), listener)
+    }
 }

@@ -83,46 +83,6 @@ public class ICNetworkClient {
             .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .addInterceptor(ICNetworkClient::requireLoginCallbackStamp).build();
 
-    private static OkHttpClient clientSsl() {
-        try {
-            final HostnameVerifier verifier = (hostname, session) -> {
-//                HostnameVerifier hv = HttpsURLConnection.getDefaultHostnameVerifier();
-//                return hv.verify("proxy-pvcombank.dev.icheck.vn", session);
-                return true;
-            };
-
-            final TrustManager[] trustAllCerts = new TrustManager[]{
-                    new X509TrustManager() {
-                        @Override
-                        public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType) {
-                        }
-
-                        @Override
-                        public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType) {
-                        }
-
-                        @Override
-                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-                            return new java.security.cert.X509Certificate[]{};
-                        }
-                    }
-            };
-            final SSLContext sslContext = SSLContext.getInstance("SSL");
-            sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
-            return new OkHttpClient.Builder()
-                    .connectTimeout(30, TimeUnit.SECONDS)
-                    .readTimeout(30, TimeUnit.SECONDS)
-                    .writeTimeout(30, TimeUnit.SECONDS)
-                    .hostnameVerifier(verifier)
-                    .sslSocketFactory(sslContext.getSocketFactory())
-                    .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-                    .addInterceptor(ICNetworkClient::requireLoginCallback4).build();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return client;
-        }
-    }
-
     private static final OkHttpClient uploadClient = new OkHttpClient.Builder()
             .connectTimeout(60, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
@@ -224,7 +184,6 @@ public class ICNetworkClient {
 
         builder.addHeader("Content-Type", "application/json")
                 .addHeader("device-id", DeviceUtils.getUniqueDeviceId())
-                .addHeader("User-Agent", "Model: " + DeviceUtils.getModel() + " + AppVersion:" + SettingManager.INSTANCE.getAppVersion())
                 .addHeader("appVersion", SettingManager.INSTANCE.getAppVersion());
 
         if (APIConstants.LATITUDE != 0.0 && APIConstants.LONGITUDE != 00.0) {
@@ -569,21 +528,21 @@ public class ICNetworkClient {
                             }
 
                             @Override
-                            public void onNext(@NotNull ICSessionData icSessionData) {
+                            public void onNext(ICSessionData icSessionData) {
                                 if (icSessionData.getToken() != null && !icSessionData.getToken().isEmpty() && icSessionData.getTokenType() != null && !icSessionData.getTokenType().isEmpty()) {
                                     SessionManager.INSTANCE.setSession(icSessionData);
                                 }
                             }
 
                             @Override
-                            public void onError(@NotNull Throwable e) {
+                            public void onError(Throwable e) {
                             }
 
                             @Override
                             public void onComplete() {
                                 ICSessionData sessionData = SessionManager.INSTANCE.getSession();
 
-                                if (sessionData.getTokenType() != null && sessionData.getToken() != null) {
+                                if (sessionData != null && sessionData.getTokenType() != null && sessionData.getToken() != null) {
                                     builder[0] = response.request().newBuilder()
                                             .addHeader("Content-Type", "application/json")
                                             .addHeader("User-Agent", DeviceUtils.getModel())
