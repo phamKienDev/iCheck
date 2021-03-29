@@ -56,7 +56,6 @@
     <uses-permission-sdk-23 android:name="android.permission.READ_CALENDAR" />
     <uses-permission-sdk-23 android:name="android.permission.WRITE_CALENDAR" /> <!-- Insider Required -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-
     <uses-permission
         android:name="android.permission.ACCESS_BACKGROUND_LOCATION"
         tools:node="remove" />
@@ -77,7 +76,9 @@
         tools:ignore="GoogleAppIndexingWarning,HardcodedDebugMode"
         tools:replace="android:allowBackup"
         tools:targetApi="m">
-        <activity android:name=".TestActivity"></activity>
+        <activity android:name=".screen.scan.MyQrActivity"></activity>
+        <activity android:name=".screen.scan.V6ScanditActivity" />
+        <activity android:name=".TestActivity" />
         <activity
             android:name=".screen.user.listproductecommerce.ListProductsECommerceActivity"
             android:screenOrientation="portrait"
@@ -304,10 +305,6 @@
             android:theme="@style/AppTheme_White"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".screen.user.scanproduct.ScanProductActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.OverStatusBar" />
-        <activity
             android:name=".screen.user.list_facebook_friend.ListFacebookFriendActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme_White" />
@@ -482,9 +479,6 @@
             android:name=".screen.user.search_home.main.SearchHomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme_White" />
-        <activity
-            android:name=".screen.scan.ICKScanActivity"
-            android:screenOrientation="portrait" />
         <activity
             android:name=".screen.user.information_product.InformationProductActivity"
             android:screenOrientation="portrait" />
@@ -839,19 +833,11 @@
             android:theme="@style/AppTheme_White"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".screen.user.scanbuy.ScanBuyActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustNothing" />
-
-        <activity
             android:name=".screen.user.detail_stamp_v6_1.home.DetailStampActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".screen.user.setting.SettingsActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activities.QrResultActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".screen.user.missiondetail.MissionDetailActivity"
@@ -951,11 +937,6 @@
             android:theme="@style/AppTheme.OverStatusBar"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" /> <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
         <!-- </intent-filter> -->
-        <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/app_id"
-            tools:replace="android:value" />
-
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
@@ -1030,11 +1011,15 @@
         <meta-data
             android:name="vn.map4d.map.ACCESS_KEY"
             android:value="34347084052b21748cbe3dd3fe1ce7a3" />
+
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
+
         <meta-data
             android:name="firebase_performance_logcat_enabled"
             android:value="true" />
+
     </application>
+
 </manifest>

@@ -76,7 +76,7 @@ import vn.icheck.android.screen.account.registeruser.register.RegisterUserActivi
 import vn.icheck.android.screen.dialog.PermissionDialog
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.info.AppInfoActivity
-import vn.icheck.android.screen.scan.ICKScanActivity
+import vn.icheck.android.screen.scan.V6ScanditActivity
 import vn.icheck.android.screen.user.bookmark.BookMarkV2Activity
 import vn.icheck.android.screen.user.bookmark_history.BookmarkHistoryActivity
 import vn.icheck.android.screen.user.coinhistory.CoinHistoryActivity
@@ -282,7 +282,8 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                         ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), ICK_REQUEST_CAMERA)
                     }
                 } else {
-                    ICKScanActivity.create(this)
+//                    ICKScanActivity.create(this)
+                    V6ScanditActivity.create(this)
                 }
             }
         }
@@ -587,7 +588,8 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == ICK_REQUEST_CAMERA) {
             if (PermissionHelper.checkResult(grantResults)) {
-                ICKScanActivity.create(this)
+//                ICKScanActivity.create(this)
+                V6ScanditActivity.create(this)
             }
         }
     }

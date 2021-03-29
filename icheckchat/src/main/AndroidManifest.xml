@@ -9,9 +9,9 @@
             android:name=".screen.detail_image.ImageDetailActivity"
             android:theme="@style/AppTheme_Black"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".screen.scan.ScanSocialChatActivity"
-            android:screenOrientation="portrait" />
+<!--        <activity-->
+<!--            android:name=".screen.scan.ScanSocialChatActivity"-->
+<!--            android:screenOrientation="portrait" />-->
         <activity
             android:name=".screen.user_information.UserInformationActivity"
             android:screenOrientation="portrait" />

@@ -23,7 +23,7 @@ import retrofit2.Retrofit
 import retrofit2.http.Body
 import retrofit2.http.POST
 import vn.icheck.android.constant.FIREBASE_REGISTER_DEVICE
-import vn.icheck.android.network.BuildConfig
+//import vn.icheck.android.network.BuildConfig
 import vn.icheck.android.network.base.ICLoginProtocol
 import vn.icheck.android.network.base.ICNetworkManager2
 import vn.icheck.android.network.base.SessionManager
@@ -132,11 +132,13 @@ class FirebaseContainer: ICLoginProtocol {
 
     //Register fcmToken to own Old Server
     private fun registerFCMTokenToOldServer(fcmToken: String) {
-        val baseUrl = if (BuildConfig.FLAVOR == "dev") {
-            "https://api.dev.icheck.vn/api/v1/"
-        } else {
-            "https://api.icheck.com.vn/api/v1/"
-        }
+        val baseUrl =   "https://api.dev.icheck.vn/api/v1/"
+
+//                if (BuildConfig.FLAVOR == "dev") {
+//            "https://api.dev.icheck.vn/api/v1/"
+//        } else {
+//            "https://api.icheck.com.vn/api/v1/"
+//        }
         val retrofitBuilder = Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .client(OkHttpClient())
