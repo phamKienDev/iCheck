@@ -108,6 +108,9 @@ interface ICNetworkSocialApi {
     @GET
     suspend fun getProductsECommerce(@Url url: String): ICResponse<ICListResponse<ICProductECommerce>>
 
+    @GET
+    fun getProductsECommerceV2(@Url url: String): Observable<ICResponse<ICListResponse<ICProductECommerce>>>
+
     /*
     * End Product Detail
     */
