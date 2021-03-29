@@ -4,17 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="16dp"
-    android:paddingEnd="55dp"
-    android:paddingRight="55dp"
-    android:paddingStart="12dp"
-    android:paddingLeft="12dp"
     tools:ignore="RtlSymmetry">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imgAvatarUser"
         android:layout_width="30dp"
         android:layout_height="30dp"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@color/lightBlue" />

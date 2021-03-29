@@ -90,7 +90,7 @@
     </fragment>
     <fragment
         android:id="@+id/pageManagementFragment"
-        tools:layout="@layout/fragment_page_management"
+        tools:layout="@layout/fragment_page _management"
         android:name="vn.icheck.android.screen.user.wall.manage_page.PageManagementFragment"
         android:label="PageManagementFragment" />
     <fragment

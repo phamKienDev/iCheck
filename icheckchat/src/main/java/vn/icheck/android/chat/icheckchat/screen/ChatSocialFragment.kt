@@ -12,7 +12,7 @@ import vn.icheck.android.chat.icheckchat.databinding.FragmentChatSocialBinding
 import vn.icheck.android.chat.icheckchat.screen.contact.ContactFragment
 import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
 
-class ChatSocialFragment : BaseFragmentChat<FragmentChatSocialBinding>() {
+class ChatSocialFragment(val callback: ListConversationFragment.Companion.ICountMessageListener) : BaseFragmentChat<FragmentChatSocialBinding>() {
 
     override fun setBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentChatSocialBinding {
         return FragmentChatSocialBinding.inflate(inflater, container, false)
@@ -53,7 +53,7 @@ class ChatSocialFragment : BaseFragmentChat<FragmentChatSocialBinding>() {
     private fun setupViewPager() {
         val listPage = mutableListOf<Fragment>()
 
-        listPage.add(ListConversationFragment())
+        listPage.add(ListConversationFragment(callback))
         listPage.add(ContactFragment())
 
         binding.viewPager.offscreenPageLimit = 2

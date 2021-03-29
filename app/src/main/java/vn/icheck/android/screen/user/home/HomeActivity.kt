@@ -55,6 +55,7 @@ import vn.icheck.android.base.model.ICFragment
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.ISettingListener
 import vn.icheck.android.chat.icheckchat.screen.ChatSocialFragment
+import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
 import vn.icheck.android.chat.icheckchat.sdk.ChatSdk
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.component.view.ViewHelper
@@ -214,7 +215,24 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
         listPage.add(ICFragment(null, HomePageFragment()))
         listPage.add(ICFragment(null, ListNewsFragment.newInstance(false)))
         listPage.add(ICFragment(null, ScanHistoryFragment()))
-        listPage.add(ICFragment(null, ChatSocialFragment()))
+        listPage.add(ICFragment(null, ChatSocialFragment(object : ListConversationFragment.Companion.ICountMessageListener {
+            override fun getCountMessage(count: Long) {
+
+                tvChatCount.post {
+                    tvChatCount.visibility = if (count != 0L) {
+                        View.VISIBLE
+                    } else {
+                        View.GONE
+                    }
+
+                    tvChatCount.text = if (count > 9) {
+                        "+9"
+                    } else {
+                        "$count"
+                    }
+                }
+            }
+        })))
 
         viewPager.offscreenPageLimit = 5
         viewPager.setPagingEnabled(false)
@@ -225,29 +243,38 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
     private fun selectTab(position: Int) {
         when (position) {
             1 -> {
-                isChecked(tvHome)
-                TrackingAllHelper.trackHomePageViewed()
-                viewPager.setCurrentItem(0, false)
-                HideWebUtils.showWeb("Home")
+                if (!isChecked(tvHome)) {
+                    TrackingAllHelper.trackHomePageViewed()
+                    viewPager.setCurrentItem(0, false)
+                    HideWebUtils.showWeb("Home")
+                }
             }
             2 -> {
-                isChecked(tvFeed)
-                TekoHelper.tagMallViewed()
-                viewPager.setCurrentItem(1, false)
+                if (!isChecked(tvFeed)) {
+                    TekoHelper.tagMallViewed()
+                    viewPager.setCurrentItem(1, false)
+                }
             }
             3 -> {
-                isChecked(tvHistory)
-                viewPager.setCurrentItem(2, false)
+                if (!isChecked(tvHistory)) {
+                    viewPager.setCurrentItem(2, false)
+                }
             }
             4 -> {
-                isChecked(tvChat)
-                TrackingAllHelper.trackMessageViewed()
-                viewPager.setCurrentItem(3, false)
-//                WebViewActivity.start(this,"http://chat.icheck.vn/detail?firebase_token=eyJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJodHRwczovL2lkZW50aXR5dG9vbGtpdC5nb29nbGVhcGlzLmNvbS9nb29nbGUuaWRlbnRpdHkuaWRlbnRpdHl0b29sa2l0LnYxLklkZW50aXR5VG9vbGtpdCIsImNsYWltcyI6eyJzeXN0ZW0iOiJTT0NJQUwiLCJ1c2VyVHlwZSI6MiwidXNlcklkIjoxMjh9LCJleHAiOjE2MDczNjI5NjUsImlhdCI6MTYwNzM1OTM2NSwiaXNzIjoiZmlyZWJhc2UtYWRtaW5zZGstbG1ma21AaWNoZWNrLWRldi1kOWY3MC5pYW0uZ3NlcnZpY2VhY2NvdW50LmNvbSIsInN1YiI6ImZpcmViYXNlLWFkbWluc2RrLWxtZmttQGljaGVjay1kZXYtZDlmNzAuaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20iLCJ1aWQiOiIxMjgifQ.GxNj5fXv155I5JkdWF5LVXbKji9yDUBoyOMPuUIHKjnJwNvZLuSZ2J3SL9TD9eGWPqHhvaiEzN-CudciKGL_XSE5AxddTSRgyFW7Hsd7231_zDYipsYCF1DeNx4oK-1I-Cw38x5hK6EJpkRCAPl2g9CLM0nsyQNvkEFk3p48xFqbrBYc1DxTC_nS6isLqYBKSBA47033x2P-OoxemBV2OHMJYqMUs3Z805t4z-Elmf3-yUZPkX39D-STKjARAewQgKvPVtA9mSQuo9ZSLEkJ1oHLXTF_lG2coB-QUsnrsc2xGSuiIfw15g4waYZbR-5zHCYkLC9HSCxMrrZxpp1e_Q")
+                if (SessionManager.isUserLogged || SessionManager.isDeviceLogged) {
+                    if (!isChecked(tvChat)) {
+                        TrackingAllHelper.trackMessageViewed()
+                        viewPager.setCurrentItem(3, false)
+                        ListConversationFragment.isOpenConversation = true
+                    }
+                } else {
+                    onRequireLogin(requestLoginChat)
+                }
             }
             5 -> {
                 unCheckAll()
                 isScan = true
+
                 if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         requestPermissions(arrayOf(Manifest.permission.CAMERA), ICK_REQUEST_CAMERA)
@@ -568,15 +595,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
     }
 
     override fun onUpdateMessageCount(count: String?) {
-        tvChatCount.post {
-            tvChatCount.visibility = if (count.isNullOrEmpty()) {
-                View.GONE
-            } else {
-                View.VISIBLE
-            }
 
-            tvChatCount.text = count
-        }
     }
 
     override fun onShowLoading(isShow: Boolean) {
@@ -664,51 +683,23 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
 
             R.id.tvHome -> {
                 ringtoneHelper.playAudio(R.raw.pull_out)
-
-                if (!isChecked(view as AppCompatCheckedTextView)) {
-                    TrackingAllHelper.trackHomePageViewed()
-                    viewPager.setCurrentItem(0, false)
-                }
-                HideWebUtils.showWeb("Home")
+                selectTab(1)
             }
             R.id.tvFeed -> {
                 ringtoneHelper.playAudio(R.raw.pull_out)
-                if (!isChecked(view as AppCompatCheckedTextView)) {
-                    TekoHelper.tagMallViewed()
-                    viewPager.setCurrentItem(1, false)
-                }
+                selectTab(2)
             }
             R.id.imgScanQr -> {
                 ringtoneHelper.playAudio(R.raw.pull_out)
-                if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        requestPermissions(arrayOf(Manifest.permission.CAMERA), ICK_REQUEST_CAMERA)
-                    } else {
-                        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), ICK_REQUEST_CAMERA)
-                    }
-                } else {
-//                    ICKScanActivity.create(this)
-                    V6ScanditActivity.create(this)
-                }
+                selectTab(5)
             }
             R.id.tvHistory -> {
                 ringtoneHelper.playAudio(R.raw.pull_out)
-
-                if (!isChecked(view as AppCompatCheckedTextView)) {
-                    viewPager.setCurrentItem(2, false)
-                }
+                selectTab(3)
             }
             R.id.tvChat -> {
                 ringtoneHelper.playAudio(R.raw.pull_out)
-                TrackingAllHelper.trackMessageViewed()
-                if (SessionManager.isUserLogged || SessionManager.isDeviceLogged) {
-                    if (!isChecked(view as AppCompatCheckedTextView)) {
-                        viewPager.setCurrentItem(3, false)
-//                        WebViewActivity.start(this,"http://chat.icheck.vn/detail?firebase_token=eyJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJodHRwczovL2lkZW50aXR5dG9vbGtpdC5nb29nbGVhcGlzLmNvbS9nb29nbGUuaWRlbnRpdHkuaWRlbnRpdHl0b29sa2l0LnYxLklkZW50aXR5VG9vbGtpdCIsImNsYWltcyI6eyJzeXN0ZW0iOiJTT0NJQUwiLCJ1c2VyVHlwZSI6MiwidXNlcklkIjoxMjh9LCJleHAiOjE2MDczNjI5NjUsImlhdCI6MTYwNzM1OTM2NSwiaXNzIjoiZmlyZWJhc2UtYWRtaW5zZGstbG1ma21AaWNoZWNrLWRldi1kOWY3MC5pYW0uZ3NlcnZpY2VhY2NvdW50LmNvbSIsInN1YiI6ImZpcmViYXNlLWFkbWluc2RrLWxtZmttQGljaGVjay1kZXYtZDlmNzAuaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20iLCJ1aWQiOiIxMjgifQ.GxNj5fXv155I5JkdWF5LVXbKji9yDUBoyOMPuUIHKjnJwNvZLuSZ2J3SL9TD9eGWPqHhvaiEzN-CudciKGL_XSE5AxddTSRgyFW7Hsd7231_zDYipsYCF1DeNx4oK-1I-Cw38x5hK6EJpkRCAPl2g9CLM0nsyQNvkEFk3p48xFqbrBYc1DxTC_nS6isLqYBKSBA47033x2P-OoxemBV2OHMJYqMUs3Z805t4z-Elmf3-yUZPkX39D-STKjARAewQgKvPVtA9mSQuo9ZSLEkJ1oHLXTF_lG2coB-QUsnrsc2xGSuiIfw15g4waYZbR-5zHCYkLC9HSCxMrrZxpp1e_Q")
-                    }
-                } else {
-                    onRequireLogin(requestLoginChat)
-                }
+                selectTab(4)
             }
             R.id.imgAvatar, R.id.tv_username -> {
                 if (!SessionManager.isUserLogged) {

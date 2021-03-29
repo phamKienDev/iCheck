@@ -121,7 +121,9 @@ class ChatRepository {
 
         body["roomId"] = key
 
-        body["messageId"] = FirebaseDatabase.getInstance().reference.push().key.toString()
+        if (!obj.messageId.isNullOrEmpty()) {
+            body["messageId"] = obj.messageId!!
+        }
 
         body["memberType"] = memberType
 

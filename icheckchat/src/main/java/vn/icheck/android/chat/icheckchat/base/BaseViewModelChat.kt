@@ -18,8 +18,6 @@ open class BaseViewModelChat : ViewModel() {
 
     val firebaseHelper = FirebaseHelper()
 
-    var unreadCount = 0L
-
     var offset = 0
 
     val onError = MutableLiveData<MCError>()
