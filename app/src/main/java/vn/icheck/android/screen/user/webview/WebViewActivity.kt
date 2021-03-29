@@ -3,6 +3,7 @@ package vn.icheck.android.screen.user.webview
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -21,6 +22,7 @@ import androidx.fragment.app.FragmentActivity
 import kotlinx.android.synthetic.main.activity_web_view.*
 import kotlinx.android.synthetic.main.toolbar_light_blue.*
 import org.greenrobot.eventbus.EventBus
+import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
@@ -85,6 +87,21 @@ class WebViewActivity : BaseActivityMVVM() {
                 intent.putExtra(Constant.DATA_3, title)
 
             ActivityUtils.startActivity(activity, intent)
+        }
+
+        fun openChrome(link: String?) {
+            if (!link.isNullOrEmpty()) {
+                ICheckApplication.currentActivity()?.let { activity ->
+                    try {
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        intent.setPackage("com.android.chrome")
+                        ActivityHelper.startActivity(activity, intent)
+                    } catch (ex: ActivityNotFoundException) {
+                        start(activity, link)
+                    }
+                }
+            }
         }
     }
 
