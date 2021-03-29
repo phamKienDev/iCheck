@@ -1,6 +1,5 @@
 package vn.icheck.android.network.feature.setting
 
-import vn.icheck.android.network.BuildConfig
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.base.BaseInteractor
 import vn.icheck.android.network.models.ICClientSetting
@@ -11,11 +10,7 @@ import vn.icheck.android.network.models.ICThemeSetting
 class SettingRepository : BaseInteractor() {
 
     suspend fun getThemeSetting(): ICResponse<ICThemeSetting> {
-        val url = APIConstants.adsSocialHost + if (BuildConfig.FLAVOR.contentEquals("dev")) {
-            APIConstants.themeSettingDev()
-        } else {
-            APIConstants.themeSettingLive()
-        }
+        val url = APIConstants.socialHost + APIConstants.themeSetting()
         return ICNetworkClient.getApiClient(5).getThemeSetting(url)
     }
 

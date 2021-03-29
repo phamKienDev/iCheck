@@ -83,6 +83,45 @@ public class ICNetworkClient {
             .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .addInterceptor(ICNetworkClient::requireLoginCallbackStamp).build();
 
+    private static OkHttpClient clientSsl() {
+        try {
+            final HostnameVerifier verifier = (hostname, session) -> {
+//                HostnameVerifier hv = HttpsURLConnection.getDefaultHostnameVerifier();
+//                return hv.verify("proxy-pvcombank.dev.icheck.vn", session);
+                return true;
+            };
+
+            final TrustManager[] trustAllCerts = new TrustManager[]{
+                    new X509TrustManager() {
+                        @Override
+                        public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType) {
+                        }
+
+                        @Override
+                        public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType) {
+                        }
+
+                        @Override
+                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                            return new java.security.cert.X509Certificate[]{};
+                        }
+                    }
+            };
+            final SSLContext sslContext = SSLContext.getInstance("SSL");
+            sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
+            return new OkHttpClient.Builder()
+                    .connectTimeout(30, TimeUnit.SECONDS)
+                    .readTimeout(30, TimeUnit.SECONDS)
+                    .writeTimeout(30, TimeUnit.SECONDS)
+                    .hostnameVerifier(verifier)
+                    .sslSocketFactory(sslContext.getSocketFactory())
+                    .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                    .addInterceptor(ICNetworkClient::requireLoginCallback4).build();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return client;
+        }
+    }
 
     private static final OkHttpClient uploadClient = new OkHttpClient.Builder()
             .connectTimeout(60, TimeUnit.SECONDS)
