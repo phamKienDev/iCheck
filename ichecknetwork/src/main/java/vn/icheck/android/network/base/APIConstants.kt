@@ -106,9 +106,8 @@ object APIConstants {
 
     object Settings {
         const val SETTING = "settings/client"
-        const val THEME = "settings/system/key/theme"
-        const val SETTING_SOCIAL = "social/api/cms/system-settings"
-        const val NOTIFY_SETTING = "social/api/notifications/turnoff"
+        const val SETTING_SOCIAL = "$PATH/cms/system-settings"
+        const val NOTIFY_SETTING = "$PATH/notifications/turnoff"
         const val CONFIG_UPDATE_APP = "$PATH/cms/config-update-app"
     }
 

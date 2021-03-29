@@ -123,6 +123,14 @@ object SettingManager {
             SPStaticUtils.put(TagConstants.TRUST_DOMAIN, JsonHelper.toJson(value))
         }
 
+    var productContact: List<ICClientSetting>
+        get() {
+            return JsonHelper.parseDomainQr(SPStaticUtils.getString(TagConstants.PRODUCT_CONTACT))
+        }
+        set(value) {
+            SPStaticUtils.put(TagConstants.PRODUCT_CONTACT, JsonHelper.toJson(value))
+        }
+
     var configUpdateApp: ICConfigUpdateApp?
         get() {
             return JsonHelper.parseJson(SPStaticUtils.getString(TagConstants.CONFIG_UPDATE_APP), ICConfigUpdateApp::class.java)
