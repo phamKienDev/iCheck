@@ -1434,7 +1434,7 @@ interface ICNetworkAPI {
     fun getAllUtility(@Url url: String): Observable<ICResponse<MutableList<ICTheme>>>
 
     @GET
-    fun getHomeFunc(@Url url: String): Observable<ICResponse<ICTheme>>
+    suspend fun getHomeFunc(@Url url: String): ICResponse<ICTheme>
 
     /*
     * Qr Code

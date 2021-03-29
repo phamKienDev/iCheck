@@ -391,9 +391,9 @@ class IckProductDetailViewModel : BaseViewModel() {
                             getContributionInfo(obj.data, layout)
                         }
                     }
-//                    "ecommerce-1" -> {
-//                        if (!isUpdate) getProductsECommerce(layout)
-//                    }
+                    "ecommerce-1" -> {
+                        if (!isUpdate) getProductsECommerce(layout)
+                    }
                 }
             }
         }
@@ -1094,7 +1094,7 @@ class IckProductDetailViewModel : BaseViewModel() {
         viewModelScope.launch {
             val productsECommerce = withTimeoutOrNull(5000) {
                 try {
-                    productRepository.getProductsECommerce(barcode)
+                    productRepository.getProductsECommerce(layout.request.url, productID)
                 } catch (e: Exception) {
                     null
                 }
