@@ -20,10 +20,9 @@ class ProductsECommerceHolder(parent: ViewGroup, val binding: ItemProductEcommer
 
         binding.tvName.text = obj.name
 
-        binding.tvOldPrice.text = (TextHelper.formatMoney(obj.sellPrice) + " đ")
+        binding.tvOldPrice.text = (TextHelper.formatMoneyPhay(obj.sellPrice) + " đ")
         binding.tvOldPrice.paintFlags = binding.tvOldPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-
-        binding.tvPrice.text = (TextHelper.formatMoney(obj.finalPrice) + " đ")
+        binding.tvPrice.text = (TextHelper.formatMoneyPhay(obj.finalPrice) + " đ")
 
         itemView.setOnClickListener {
             if (!obj.link.isNullOrEmpty()) {

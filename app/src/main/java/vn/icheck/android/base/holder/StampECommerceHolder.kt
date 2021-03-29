@@ -19,10 +19,9 @@ class StampECommerceHolder(parent: ViewGroup, val binding: ItemProductEcommerceB
 
         binding.tvName.text = obj.name
 
-        binding.tvOldPrice.text = (TextHelper.formatMoney(obj.promotionPrice) + " đ")
+        binding.tvOldPrice.text = (TextHelper.formatMoneyPhay(obj.promotionPrice) + " đ")
         binding.tvOldPrice.paintFlags = binding.tvOldPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-
-        binding.tvPrice.text = (TextHelper.formatMoney(obj.listPrice) + " đ")
+        binding.tvPrice.text = (TextHelper.formatMoneyPhay(obj.listPrice) + " đ")
 
         itemView.setOnClickListener {
             if (!obj.link.isNullOrEmpty()) {
