@@ -11,21 +11,15 @@
         android:id="@id/layoutToolbar"
         layout="@layout/toolbar_light_blue" />
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@id/swipeLayout"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_0"
+        android:descendantFocusability="blocksDescendants"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layoutToolbar">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:descendantFocusability="blocksDescendants"
-            tools:listitem="@layout/item_friend_request"
-            tools:visibility="gone" />
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        app:layout_constraintTop_toBottomOf="@id/layoutToolbar"
+        tools:listitem="@layout/item_friend_request"
+        tools:visibility="gone" />
 
     <View
         android:layout_width="match_parent"
