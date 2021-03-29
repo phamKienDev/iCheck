@@ -1,19 +1,26 @@
 package vn.icheck.android.screen.firebase
 
+//import vn.teko.android.auth.core.TerraAuth
+//import vn.teko.android.auth.login.TerraLogin
+//import vn.teko.android.auth.login.provider.AUTH_MANAGER_EXTRA_CUSTOM_TOKEN_IDTOKEN
+//import vn.teko.android.auth.login.provider.AUTH_MANAGER_EXTRA_CUSTOM_TOKEN_PROVIDER
+//import vn.teko.android.auth.login.provider.AUTH_MANAGER_RC_LOGIN
+//import vn.teko.android.auth.login.provider.LoginType
+//import vn.teko.hestia.android.TerraHestia
+//import vn.teko.hestia.android.utils.uiHelper.DefaultAndroidHestiaUIHelper
+//import vn.teko.terra.core.android.terra.TerraApp
 import android.Manifest
 import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.util.Base64
 import androidx.annotation.MainThread
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.Observer
 import com.tripi.flight.config.Flight
 import com.tripi.flight.config.FlightConfig
 import com.tripi.hotel.config.HotelConfig
@@ -23,8 +30,8 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
 import vn.icheck.android.base.model.ICMessageEvent
-import vn.icheck.android.base.viewmodel.BaseViewModel
 import vn.icheck.android.callback.ISettingListener
+import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.constant.ICK_REQUEST_CAMERA
 import vn.icheck.android.helper.*
@@ -36,13 +43,12 @@ import vn.icheck.android.loyalty.screen.url_gift_detail.UrlGiftDetailActivity
 import vn.icheck.android.loyalty.sdk.LoyaltySdk
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.campaign.ListCampaignInteractor
-import vn.icheck.android.network.feature.pvcombank.PVcomBankRepository
 import vn.icheck.android.network.feature.user.UserInteractor
 import vn.icheck.android.network.models.ICCampaign
 import vn.icheck.android.network.models.ICClientSetting
 import vn.icheck.android.network.models.ICLink
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
-import vn.icheck.android.screen.scan.ICKScanActivity
+import vn.icheck.android.screen.scan.V6ScanditActivity
 import vn.icheck.android.screen.user.buy_mobile_card.BuyMobileCardV2Activity
 import vn.icheck.android.screen.user.buy_mobile_card_success.BuyCardSuccessActivity
 import vn.icheck.android.screen.user.coinhistory.CoinHistoryActivity
@@ -85,20 +91,8 @@ import vn.icheck.android.tracking.insider.InsiderHelper
 import vn.icheck.android.util.ick.logDebug
 import vn.icheck.android.util.ick.simpleStartForResultActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
-//import vn.teko.android.auth.core.TerraAuth
-//import vn.teko.android.auth.login.TerraLogin
-//import vn.teko.android.auth.login.provider.AUTH_MANAGER_EXTRA_CUSTOM_TOKEN_IDTOKEN
-//import vn.teko.android.auth.login.provider.AUTH_MANAGER_EXTRA_CUSTOM_TOKEN_PROVIDER
-//import vn.teko.android.auth.login.provider.AUTH_MANAGER_RC_LOGIN
-//import vn.teko.android.auth.login.provider.LoginType
-//import vn.teko.hestia.android.TerraHestia
-//import vn.teko.hestia.android.utils.uiHelper.DefaultAndroidHestiaUIHelper
-//import vn.teko.terra.core.android.terra.TerraApp
 import java.net.URL
 import java.util.*
-import androidx.lifecycle.Observer
-import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
-import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 
 class FirebaseDynamicLinksActivity : AppCompatActivity() {
     private val requestLogin = 1
@@ -387,14 +381,14 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
             }
             scan -> {
                 if (PermissionHelper.checkPermission(this@FirebaseDynamicLinksActivity, Manifest.permission.CAMERA, ICK_REQUEST_CAMERA)) {
-                    ICKScanActivity.create(this)
+                    V6ScanditActivity.create(this)
                 } else {
                     return
                 }
             }
             scanAndBuy -> {
                 if (PermissionHelper.checkPermission(this@FirebaseDynamicLinksActivity, Manifest.permission.CAMERA, ICK_REQUEST_CAMERA)) {
-                    ICKScanActivity.create(this, 2)
+                    V6ScanditActivity.create(this, 2)
                 } else {
                     return
                 }
@@ -642,7 +636,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                     return
                 } else {
                     if (PermissionHelper.checkPermission(this@FirebaseDynamicLinksActivity, Manifest.permission.CAMERA, ICK_REQUEST_CAMERA)) {
-                        ICKScanActivity.create(this, 3)
+                        V6ScanditActivity.create(this, 3)
                     } else {
                         return
                     }

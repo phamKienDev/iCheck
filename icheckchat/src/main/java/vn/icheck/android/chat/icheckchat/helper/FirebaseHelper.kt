@@ -1,12 +1,10 @@
 package vn.icheck.android.chat.icheckchat.helper
 
+import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import vn.icheck.android.chat.icheckchat.R
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.TOKEN_FIREBASE
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.USER_ID
-import vn.icheck.android.chat.icheckchat.model.MCDetailMessage
-import vn.icheck.android.chat.icheckchat.model.MCMedia
 import vn.icheck.android.chat.icheckchat.model.MCResponse
 import vn.icheck.android.chat.icheckchat.model.MCResponseCode
 import vn.icheck.android.chat.icheckchat.network.MCNetworkClient
@@ -38,7 +36,7 @@ class FirebaseHelper {
                             FirebaseDatabase.getInstance().goOffline()
                             ShareHelperChat.putString(TOKEN_FIREBASE, obj.data)
                             loginFirebase(success, cancel)
-                        }else{
+                        } else {
                             cancel()
                         }
                     }, { error ->
@@ -104,8 +102,9 @@ class FirebaseHelper {
         })
     }
 
+
     fun getMessageDetail(key: String, success: (snapshot: DataSnapshot) -> Unit, cancel: (error: DatabaseError) -> Unit) {
-        firebaseDatabase.getReference("chat-details-v2/$key").orderByChild("time").addValueEventListener(object : ValueEventListener {
+        firebaseDatabase.getReference("chat-details-v2/$key").orderByChild("time").addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 success(snapshot)
             }
@@ -116,7 +115,31 @@ class FirebaseHelper {
         })
     }
 
-    fun getChatRoom(key: String, success: (snapshot: DataSnapshot) -> Unit, cancel: (error: DatabaseError) -> Unit){
+    fun getChangeMessageChat(key: String, onAdd: (snapshot: DataSnapshot) -> Unit, timeStart: Long) {
+        firebaseDatabase.getReference("chat-details-v2/$key").orderByChild("time").startAt(timeStart.toDouble()).addChildEventListener(object : ChildEventListener {
+            override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                onAdd(snapshot)
+            }
+
+            override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onChildRemoved(snapshot: DataSnapshot) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.d("onCancelled", "onCancelled: $error")
+            }
+        })
+    }
+
+    fun getChatRoom(key: String, success: (snapshot: DataSnapshot) -> Unit, cancel: (error: DatabaseError) -> Unit) {
         firebaseDatabase.getReference("chat-rooms-v2/$key").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 success(snapshot)

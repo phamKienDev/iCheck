@@ -1,16 +1,13 @@
 package vn.icheck.android.chat.icheckchat.base.view
 
-import android.app.Activity
 import android.app.AlarmManager
 import android.content.Context
 import android.content.res.Resources
 import android.media.MediaMetadataRetriever
-import android.os.Bundle
-import android.os.Handler
-import android.os.ResultReceiver
-import android.view.*
-import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.annotation.MainThread
@@ -152,6 +149,24 @@ fun loadImageUrlRounded(image: AppCompatImageView, url: String?, error: Int, rou
             .into(image)
 }
 
+fun loadImageFileRounded(image: AppCompatImageView, file: File?, error: Int, roundCorners: Int) {
+    if (file == null || !file.exists()) {
+        Glide.with(image.context.applicationContext)
+                .load(error)
+                .transform(CenterCrop())
+                .into(image)
+        return
+    }
+
+    Glide.with(image.context.applicationContext)
+            .load(file)
+            .placeholder(R.drawable.ic_default_image_upload_150_chat)
+            .error(error)
+            .transform(CenterCrop(), RoundedCorners(roundCorners))
+            .into(image)
+}
+
+
 fun loadImageUrl(image: CircleImageView, url: String?, error: Int, placeholder: Int) {
     if (url.isNullOrEmpty()) {
         Glide.with(image.context)
@@ -291,44 +306,6 @@ fun formatMoney(value: Long?): String {
     }
 }
 
-fun Activity.hideKeyboard() {
-    var view = this.currentFocus
-    if (view == null) {
-        val decorView = this.window.decorView
-        val focusView = decorView.findViewWithTag<View>("keyboardTagView")
-        if (focusView == null) {
-            view = EditText(this)
-            view.setTag("keyboardTagView")
-            (decorView as ViewGroup).addView(view, 0, 0)
-        } else {
-            view = focusView
-        }
-        view.requestFocus()
-    }
-    toggleSoftInput()
-}
-
-fun Activity.toggleSoftInput() {
-    val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-    imm.toggleSoftInput(0, 0)
-}
-
-fun Activity.showSoftInput(view: View, flags: Int) {
-    val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-    view.isFocusable = true
-    view.isFocusableInTouchMode = true
-    view.requestFocus()
-    imm.showSoftInput(view, flags, object : ResultReceiver(Handler()) {
-        override fun onReceiveResult(resultCode: Int, resultData: Bundle) {
-            if (resultCode == InputMethodManager.RESULT_UNCHANGED_HIDDEN
-                    || resultCode == InputMethodManager.RESULT_HIDDEN) {
-                toggleSoftInput()
-            }
-        }
-    })
-    imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
-}
-
 fun AppCompatImageView.setRankUserBig(rank: Int?) {
     when (rank) {
         USER_LEVEL_SILVER -> {
@@ -353,10 +330,37 @@ fun convertMillisecondToDateVn(millisecond: Long?): String? {
     if (millisecond == null || millisecond == -1L)
         return null
 
-    val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+    val sdf = SimpleDateFormat("HH:mm, dd/MM/yyyy", Locale.getDefault())
 
     return try {
         sdf.format(Date(millisecond))
+    } catch (e: Exception) {
+        null
+    }
+}
+
+fun convertMillisecondToTimeVn(millisecond: Long?): String? {
+    if (millisecond == null || millisecond == -1L)
+        return null
+
+    val sdf = SimpleDateFormat("HH:mm", Locale.getDefault())
+
+    return try {
+        sdf.format(Date(millisecond))
+    } catch (e: Exception) {
+        null
+    }
+}
+
+fun convertDateTimeSvToTimeDateVn(millisecond: Long?): String? {
+    if (millisecond == null || millisecond == -1L)
+        return null
+
+    val sdfVn = SimpleDateFormat("HH:mm, dd/MM/yyyy")
+    sdfVn.timeZone = TimeZone.getTimeZone("GMT+07")
+
+    return try {
+        sdfVn.format(Date(millisecond))
     } catch (e: Exception) {
         null
     }
@@ -373,10 +377,10 @@ fun convertDateTimeSvToCurrentDay(millisecond: Long?): String {
             (time / intervalMinute).toString() + " phút trước"
         }
         time < AlarmManager.INTERVAL_DAY -> {
-            (time / intervalHour).toString() + " giờ trước"
+            convertMillisecondToTimeVn(millisecond) ?: ""
         }
         else -> {
-            convertMillisecondToDateVn(millisecond) ?: ""
+            convertDateTimeSvToTimeDateVn(millisecond) ?: ""
         }
     }
 }

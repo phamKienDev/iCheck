@@ -64,7 +64,7 @@ class PaymentViewModel : BaseViewModel() {
                 listValue.add(ICNameValue("Nạp cho số:", phoneNumber))
             }
         }
-        listValue.add(ICNameValue("Mệnh giá:", TextHelper.formatMoneyPhay(value.toLong()) + "đ"))
+        listValue.add(ICNameValue("Mệnh giá:", TextHelper.formatMoneyPhay(value?.toLong()) + "đ"))
         listValue.add(ICNameValue("Phí dịch vụ:", "Miễn phí"))
 
 //        dataIntent.postValue(ICPaymentLocal(value, card?.serviceId, card, listValue, phoneNumber, type))

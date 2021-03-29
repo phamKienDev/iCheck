@@ -14,13 +14,11 @@ import android.os.Build
 import android.os.Handler
 import android.text.Html
 import android.text.Spannable
-import android.util.Log
 import android.view.View
 import android.view.ViewAnimationUtils
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.core.widget.NestedScrollView
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
@@ -28,7 +26,6 @@ import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.LocationSettingsRequest
 import kotlinx.android.synthetic.main.activity_detail_stamp_v5.*
-import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivity
 import vn.icheck.android.base.adapter.RecyclerViewAdapter
@@ -36,7 +33,6 @@ import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.holder.StampECommerceHolder
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.fragments.scan.QrScanViewModel
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.TextHelper
@@ -51,7 +47,6 @@ import vn.icheck.android.network.models.detail_stamp_v6_1.ICObjectCustomerHistor
 import vn.icheck.android.network.models.detail_stamp_v6_1.IC_Config_Error
 import vn.icheck.android.network.models.v1.ICBarcodeProductV1
 import vn.icheck.android.network.util.JsonHelper
-import vn.icheck.android.room.entity.ICQrScan
 import vn.icheck.android.screen.user.detail_stamp_v5.history_guarantee_v5.HistoryGuaranteeV5Activity
 import vn.icheck.android.screen.user.detail_stamp_v5.home.adapter.BannerV5Adapter
 import vn.icheck.android.screen.user.detail_stamp_v5.home.adapter.ConfigErrorV5Adapter

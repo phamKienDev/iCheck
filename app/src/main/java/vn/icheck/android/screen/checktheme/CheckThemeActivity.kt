@@ -113,6 +113,7 @@ class CheckThemeActivity : BaseActivityMVVM() {
             var domainMarketingRes: ICResponse<ICListResponse<ICClientSetting>>? = null
             var domainVerifyRes: ICResponse<ICListResponse<ICClientSetting>>? = null
             var appInitRes: ICResponse<ICListResponse<ICClientSetting>>? = null
+            var productContactRes: ICResponse<ICListResponse<ICClientSetting>>? = null
             var relationshipInformationRes: ICResponse<ICRelationshipsInformation>? = null
             var configUpdateAppRes: ICResponse<ICConfigUpdateApp>? = null
 
@@ -125,19 +126,25 @@ class CheckThemeActivity : BaseActivityMVVM() {
                     },
                     lifecycleScope.async {
                         try {
-                            domainMarketingRes = withTimeoutOrNull(5000L) { viewModel.getClientSetting("domain-marketing", null) }
+                            domainMarketingRes = withTimeoutOrNull(5000L) { viewModel.getClientSetting("domain-marketing") }
                         } catch (e: Exception) {
                         }
                     },
                     lifecycleScope.async {
                         try {
-                            domainVerifyRes = withTimeoutOrNull(5000L) { viewModel.getClientSetting("domain-verify", null) }
+                            domainVerifyRes = withTimeoutOrNull(5000L) { viewModel.getClientSetting("domain-verify") }
                         } catch (e: Exception) {
                         }
                     },
                     lifecycleScope.async {
                         try {
                             appInitRes = withTimeoutOrNull(5000L) { viewModel.getClientSetting("app-init", "app-default-scheme") }
+                        } catch (e: Exception) {
+                        }
+                    },
+                    lifecycleScope.async {
+                        try {
+                            productContactRes = withTimeoutOrNull(5000L) { viewModel.getClientSetting("product-contact") }
                         } catch (e: Exception) {
                         }
                     },
@@ -180,6 +187,9 @@ class CheckThemeActivity : BaseActivityMVVM() {
                 if (!it.value.isNullOrEmpty()) {
                     viewModel.appInitScheme = it.value!!
                 }
+            }
+            productContactRes?.data?.rows?.let {
+                SettingManager.productContact = it
             }
             relationshipInformationRes?.let {
                 if (it.data != null) {

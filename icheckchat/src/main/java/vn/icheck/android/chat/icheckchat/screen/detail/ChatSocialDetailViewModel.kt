@@ -12,6 +12,8 @@ class ChatSocialDetailViewModel : BaseViewModelChat() {
 
     fun getChatMessage(key: String, success: (obj: DataSnapshot) -> Unit, error: (error: DatabaseError) -> Unit) = firebaseHelper.getMessageDetail(key, success, error)
 
+    fun getChangeMessageChat(key: String, onAdd: (obj: DataSnapshot) -> Unit, timeStart: Long) = firebaseHelper.getChangeMessageChat(key, onAdd, timeStart)
+
     fun uploadImage(file: File, success: (obj: MCUploadResponse) -> Unit, cancel: (error: MCBaseResponse) -> Unit) = repository.uploadMedia(file, success, cancel)
 
     fun getProductBarcode(barcode: String) = request { repository.getProductBarcode(barcode) }

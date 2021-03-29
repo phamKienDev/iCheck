@@ -2,6 +2,7 @@ package vn.icheck.android.lib.keyboard
 
 import android.app.Activity
 import android.graphics.Rect
+import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
@@ -27,6 +28,10 @@ object KeyboardVisibilityEvent {
             .registerActivityLifecycleCallbacks(object : AutoActivityLifecycleCallback(activity) {
                 override fun onTargetActivityDestroyed() {
                     unregistrar.unregister()
+                }
+
+                override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
+                    super.onActivityCreated(activity, savedInstanceState)
                 }
             })
     }
