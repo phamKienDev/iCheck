@@ -1,4 +1,4 @@
-package vn.icheck.android.component.take_media
+package vn.icheck.android.ichecklibs.take_media
 
 import android.graphics.Color
 import android.graphics.Typeface
@@ -15,13 +15,8 @@ import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
 import androidx.core.view.setPadding
 import androidx.recyclerview.widget.RecyclerView
-import vn.icheck.android.R
-import vn.icheck.android.component.view.ViewHelper
-import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.helper.TimeHelper
-import vn.icheck.android.util.ick.beGone
-import vn.icheck.android.util.ick.beVisible
-import vn.icheck.android.util.kotlin.WidgetUtils
+import vn.icheck.android.ichecklibs.*
+import vn.icheck.android.ichecklibs.util.LoadImageUtils
 
 class TakeMediaAdapter(val listData: MutableList<TakeMediaDialog.ICIMageFile>, val selectMulti: Boolean = false, val isVideo: Boolean) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val cameraType = 1
@@ -77,7 +72,7 @@ class TakeMediaAdapter(val listData: MutableList<TakeMediaDialog.ICIMageFile>, v
                 tvCount = getChildAt(3) as AppCompatTextView
                 tvDuration = getChildAt(4) as AppCompatTextView
 
-                WidgetUtils.loadImageFileNotRounded(image, obj.src)
+                LoadImageUtils.loadImageFileNotRounded(image, obj.src)
 
                 if (obj.type == 3) {
                     if (obj.duration > 0) {

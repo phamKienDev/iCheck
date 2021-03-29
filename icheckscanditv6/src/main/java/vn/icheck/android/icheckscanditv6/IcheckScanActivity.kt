@@ -8,10 +8,8 @@ import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.BitmapFactory
 import android.net.*
 import android.net.wifi.WifiConfiguration
-import android.net.wifi.WifiManager
 import android.net.wifi.WifiNetworkSpecifier
 import android.os.Build
 import android.os.Bundle
@@ -26,7 +24,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.scale
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
@@ -42,6 +39,7 @@ import com.scandit.datacapture.core.ui.DataCaptureView
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import vn.icheck.android.ichecklibs.*
+import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.icheckscanditv6.databinding.IckScanCustomViewBinding
 import vn.icheck.android.network.BuildConfig
 import vn.icheck.android.network.base.ICNewApiListener
@@ -49,9 +47,6 @@ import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICProductDetail
-import vn.icheck.android.network.models.ICValidStampSocial
-import vn.icheck.android.network.util.DeviceUtils
-import java.io.File
 import java.net.URL
 import java.util.concurrent.atomic.AtomicBoolean
 const val CONTRIBUTE_REQUEST = 1

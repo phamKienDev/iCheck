@@ -11,6 +11,7 @@ import com.yarolegovich.discretescrollview.DiscreteScrollView
 import vn.icheck.android.chat.icheckchat.R
 import vn.icheck.android.chat.icheckchat.base.BaseActivityChat
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.DATA_1
+import vn.icheck.android.chat.icheckchat.base.ConstantChat.IMAGE
 import vn.icheck.android.chat.icheckchat.base.view.MCViewType.TYPE_IMAGE
 import vn.icheck.android.chat.icheckchat.base.view.showToastError
 import vn.icheck.android.chat.icheckchat.databinding.ActivityImageDetailBinding
@@ -48,11 +49,7 @@ class ImageDetailActivity : BaseActivityChat<ActivityImageDetailBinding>() {
 
     @SuppressLint("SetTextI18n")
     private fun initRecyclerView() {
-//        val listData = parseListAttachment(intent.getStringExtra(DATA_1))
-        val listData = mutableListOf<MCMedia>()
-        listData.add(MCMedia("https://i.stack.imgur.com/5G8Fo.png", "image"))
-        listData.add(MCMedia("https://i.stack.imgur.com/5G8Fo.png", "image"))
-        listData.add(MCMedia("https://i.stack.imgur.com/5G8Fo.png", "image"))
+        val listData = parseListAttachment(intent.getStringExtra(DATA_1))
 
         if (listData.isNullOrEmpty()) {
             showToastError(getString(R.string.error_default))
@@ -78,6 +75,12 @@ class ImageDetailActivity : BaseActivityChat<ActivityImageDetailBinding>() {
                 override fun onScrollEnd(p0: RecyclerView.ViewHolder, p1: Int) {
                     adapter.getListData[p1].exoPlayer?.playWhenReady = true
                     binding.tvSlide.text = "${p1 + 1}/${listExo.size}"
+                    if (positionView != p1) {
+                        if (adapter.getListData.get(positionView).type == IMAGE) {
+                            adapter.getListData.get(positionView).resetImage = true
+                            adapter.notifyItemChanged(positionView)
+                        }
+                    }
                     positionView = p1
                 }
 

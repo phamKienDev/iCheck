@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_list_product_history.*
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class ListProductHistoryActivity : BaseActivityMVVM(), View.OnClickListener {
