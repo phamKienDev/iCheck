@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="chup_anh">Chụp ảnh</string>
+    <string name="chon_anh">Chọn ảnh</string>
+    <string name="quay_video">Quay video</string>
+    <string name="bo_qua">Bỏ qua</string>
+    <string name="xong">Xong</string>
+    <string name="chon_anh_video">Chọn ảnh, video</string>
+    <string name="chup_anh_video">Chụp ảnh, video</string>
+
+</resources>
