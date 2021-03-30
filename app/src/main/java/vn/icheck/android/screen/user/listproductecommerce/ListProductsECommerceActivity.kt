@@ -47,27 +47,30 @@ class ListProductsECommerceActivity : BaseActivityMVVM() {
 
     private fun getData() {
         val json = intent.getStringExtra(Constant.DATA_1) ?: ""
+        val isProductECommerce = intent.getBooleanExtra(Constant.DATA_2, false)
 
-        val listECommerce = JsonHelper.parseProductECommerce(json)
-        if (!listECommerce.isNullOrEmpty()) {
-            val adapter = object : RecyclerViewAdapter<ICProductECommerce>() {
-                override fun viewHolder(parent: ViewGroup) = ProductsECommerceHolder(parent)
+        if (isProductECommerce) {
+            val listECommerce = JsonHelper.parseProductECommerce(json)
+            if (!listECommerce.isNullOrEmpty()) {
+                val adapter = object : RecyclerViewAdapter<ICProductECommerce>() {
+                    override fun viewHolder(parent: ViewGroup) = ProductsECommerceHolder(parent)
 
-                override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-                    if (holder is ProductsECommerceHolder) {
-                        holder.bind(listData[position])
-                    } else {
-                        super.onBindViewHolder(holder, position)
+                    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+                        if (holder is ProductsECommerceHolder) {
+                            holder.bind(listData[position])
+                        } else {
+                            super.onBindViewHolder(holder, position)
+                        }
                     }
                 }
+                adapter.disableLoading()
+                adapter.disableLoadMore()
+                recyclerView.adapter = adapter
+                adapter.setListData(listECommerce)
+                return
             }
-            adapter.disableLoading()
-            adapter.disableLoadMore()
-            recyclerView.adapter = adapter
-            adapter.setListData(listECommerce)
-            return
         } else {
-            val listProductLink = JsonHelper.parseList<ICProductLink>(json)
+            val listProductLink = JsonHelper.parseStampECommerce(json)
             if (!listProductLink.isNullOrEmpty()) {
                 val adapter = object : RecyclerViewAdapter<ICProductLink>() {
                     override fun viewHolder(parent: ViewGroup) = StampECommerceHolder(parent)

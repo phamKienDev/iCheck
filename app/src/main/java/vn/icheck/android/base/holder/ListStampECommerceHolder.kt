@@ -15,9 +15,7 @@ import vn.icheck.android.util.ick.visibleOrInvisible
 
 class ListStampECommerceHolder(parent: ViewGroup, val binding: ItemListProductsEcommerceBinding = ItemListProductsEcommerceBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : BaseViewHolder<MutableList<ICProductLink>>(binding.root) {
     private val adapter = object : RecyclerViewAdapter<ICProductLink>() {
-        override fun getItemCount(): Int {
-            return if (listData.size > 3) 3 else listData.size
-        }
+        override fun getItemCount() = if (listData.size > 3) 3 else listData.size
 
         override fun viewHolder(parent: ViewGroup) = StampECommerceHolder(parent)
 
@@ -40,7 +38,7 @@ class ListStampECommerceHolder(parent: ViewGroup, val binding: ItemListProductsE
 
         binding.tvViewMore.setOnClickListener {
             ICheckApplication.currentActivity()?.let { activity ->
-                ActivityHelper.startActivity<ListProductsECommerceActivity>(activity, Constant.DATA_1, JsonHelper.toJson(adapter.getListData))
+                ActivityHelper.startActivity<ListProductsECommerceActivity>(activity, Constant.DATA_1, JsonHelper.toJson(obj))
             }
         }
     }
