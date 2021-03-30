@@ -623,7 +623,7 @@
     <string name="tong_dai_icheck"><![CDATA[Tổng đài: <font color="#057dda">%s</font>]]></string>
     <string name="email_icheck"><![CDATA[Email: <font color="#057dda">%s</font>]]></string>
     <string name="ma_so_thue_icheck">MST: %s</string>
-    <string name="hotline_dang_ky"><![CDATA[Hotline đăng ký: <font color="#057dda">0902195488</font>]]></string>
+    <string name="hotline_dang_ky"><![CDATA[Hotline đăng ký: <font color="#057dda">%s</font>]]></string>
     <string name="dang_ky_ma_so_ma_vach">Đăng ký mã số mã vạch</string>
     <string name="thong_tin_thuong_pham">Thông tin thương phẩm</string>
     <string name="tem_dien_tu_chong_gia">Tem điện tử chống giả</string>
