@@ -208,7 +208,7 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
 
             if (!listImageString.isNullOrEmpty()) {
                 postReview(objReview, message, criteria)
-            }else{
+            } else {
                 ICheckApplication.currentActivity()?.let { activity ->
                     DialogHelper.closeLoading(activity)
                 }
@@ -221,7 +221,11 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
     private fun postReview(objReview: SubmitReviewModel, message: String, criteria: MutableList<ICReqCriteriaReview>) {
         val listImage = mutableListOf<ICMedia>()
         listImageString.forEach {
-            listImage.add(ICMedia(it, Constant.IMAGE))
+            listImage.add(ICMedia(it, if (it.contains(".mp4")) {
+                Constant.VIDEO
+            } else {
+                Constant.IMAGE
+            }))
         }
 
         val pageId = if (SettingManager.getPostPermission() != null) {

@@ -6,6 +6,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
@@ -43,10 +44,11 @@ import vn.icheck.android.component.product_review.my_review.MyReviewModel
 import vn.icheck.android.component.product_review.submit_review.ISubmitReviewListener
 import vn.icheck.android.component.product_review.submit_review.SubmitReviewHolder
 import vn.icheck.android.component.product_review.submit_review.SubmitReviewModel
-import vn.icheck.android.component.take_media.TakeMediaDialog
 import vn.icheck.android.constant.*
 import vn.icheck.android.fragments.ReviewTributeDialog
 import vn.icheck.android.helper.*
+import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
+import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.loyalty.base.listener.IClickListener
 import vn.icheck.android.loyalty.helper.CampaignLoyaltyHelper
 import vn.icheck.android.loyalty.model.ICKLoyalty
@@ -101,7 +103,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
     private var reviewStartInsider = true
 
     private var obj: ICKLoyalty? = null
-    private val takeMediaListener = object : TakeMediaDialog.TakeImageListener {
+    private val takeMediaListener = object : TakeMediaListener {
         override fun onPickMediaSucess(file: File) {
             val holder = recyclerView.findViewHolderForAdapterPosition(positionSubmit)
             if (holder != null && holder is SubmitReviewHolder) {
@@ -114,6 +116,13 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
             if (holder != null && holder is SubmitReviewHolder) {
                 holder.setImage(file)
             }
+        }
+
+        override fun onStartCrop(filePath: String?, uri: Uri?, ratio: String?, requestCode: Int?) {
+
+        }
+
+        override fun onDismiss() {
         }
 
         override fun onTakeMediaSuccess(file: File?) {
@@ -768,7 +777,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         }
 
         positionSubmit = positionHolder
-        TakeMediaDialog.show(supportFragmentManager, takeMediaListener, selectMulti = true, isVideo = true)
+        TakeMediaDialog.show(supportFragmentManager, this, takeMediaListener, selectMulti = true, isVideo = true)
     }
 
     override fun onPostReviewSuccess(obj: ICPost) {

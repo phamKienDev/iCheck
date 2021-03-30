@@ -8,7 +8,6 @@ import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.*
 import android.net.wifi.WifiConfiguration
@@ -16,7 +15,6 @@ import android.net.wifi.WifiManager
 import android.net.wifi.WifiNetworkSpecifier
 import android.os.Build
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.os.Handler
 import android.provider.CalendarContract
 import android.provider.ContactsContract
@@ -32,25 +30,20 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.scandit.datacapture.barcode.capture.*
-import com.scandit.datacapture.barcode.data.Barcode
 import com.scandit.datacapture.barcode.data.Symbology
 import com.scandit.datacapture.core.capture.DataCaptureContext
-import com.scandit.datacapture.core.common.geometry.FloatWithUnit
-import com.scandit.datacapture.core.common.geometry.MarginsWithUnit
-import com.scandit.datacapture.core.common.geometry.MeasureUnit
 import com.scandit.datacapture.core.data.FrameData
 import com.scandit.datacapture.core.source.*
 import com.scandit.datacapture.core.ui.DataCaptureView
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import vn.icheck.android.BuildConfig
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
-import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.dialog.notify.internal_stamp.InternalStampDialog
 import vn.icheck.android.base.model.ICMessageEvent
-import vn.icheck.android.component.take_media.TakeMediaDialog
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.constant.ICK_REQUEST_CAMERA
 import vn.icheck.android.constant.SCAN_REVIEW
@@ -60,6 +53,9 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.helper.ValidHelper
+import vn.icheck.android.ichecklibs.getDeviceWidth
+import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
+import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
@@ -86,8 +82,6 @@ import vn.icheck.android.util.kotlin.ContactUtils
 import java.io.File
 import java.net.URL
 import java.util.concurrent.atomic.AtomicBoolean
-import vn.icheck.android.BuildConfig
-import vn.icheck.android.ichecklibs.getDeviceWidth
 
 class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
@@ -128,7 +122,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     private val requestPhone = 2
     private var phoneNumber: String = ""
 
-    private lateinit var takeImageListener: TakeMediaDialog.TakeImageListener
+    private lateinit var takeImageListener: TakeMediaListener
 
     private lateinit var takeImageDialog: TakeMediaDialog
     val scanImage = AtomicBoolean(false)
@@ -139,7 +133,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     }
 
     private fun initDataCapture() {
-        takeImageListener = object : TakeMediaDialog.TakeImageListener {
+        takeImageListener = object : TakeMediaListener {
             override fun onPickMediaSucess(file: File) {
                 try {
                     val bm = BitmapFactory.decodeFile(file.getAbsolutePath())
@@ -169,6 +163,13 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
             }
 
+            override fun onStartCrop(filePath: String?, uri: Uri?, ratio: String?, requestCode: Int?) {
+
+            }
+
+            override fun onDismiss() {
+            }
+
             override fun onTakeMediaSuccess(file: File?) {
                 try {
                     val bm = BitmapFactory.decodeFile(file?.getAbsolutePath())
@@ -193,7 +194,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                 }
             }
         }
-        takeImageDialog = TakeMediaDialog(takeImageListener, false, cropImage = false, isVideo = false)
+        takeImageDialog = TakeMediaDialog(this, takeImageListener, selectMulti = false, cropImage = false, isVideo = false)
 
         val key = if (BuildConfig.FLAVOR.contentEquals("dev")) getString(R.string.scandit_v6_key_dev) else getString(R.string.scandit_v6_key_live)
         dataCaptureContext = DataCaptureContext.forLicenseKey(key)
@@ -254,9 +255,9 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         if (scanImage.get()) {
             scanImage.set(false)
             Handler().postDelayed({
-                if (session.newlyRecognizedBarcodes.isEmpty()){
+                if (session.newlyRecognizedBarcodes.isEmpty()) {
                     runOnUiThread {
-                        DialogHelper.showNotification(this, R.string.thong_bao, R.string.khong_thay_ma_vach,true,object :NotificationDialogListener{
+                        DialogHelper.showNotification(this, R.string.thong_bao, R.string.khong_thay_ma_vach, true, object : NotificationDialogListener {
 
                             override fun onDone() {
                                 resetCamera()
@@ -485,7 +486,10 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         } else {
             try {
 //                    offCamera()
-                takeImageDialog?.show(supportFragmentManager, null)
+                if (supportFragmentManager.findFragmentByTag(TakeMediaDialog::class.java.simpleName)?.isAdded != true) {
+                    takeImageDialog?.show(supportFragmentManager, null)
+                }
+
 //                    currentMediaDialog = dialog
 //                    if (currentMediaDialog?.isAdded == false) {
 //                        currentMediaDialog?.show(supportFragmentManager, null)

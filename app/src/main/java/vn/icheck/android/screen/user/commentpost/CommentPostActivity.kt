@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.res.Resources
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -34,13 +35,14 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.ItemClickListener
 import vn.icheck.android.component.commentpost.ICCommentPostMore
 import vn.icheck.android.component.commentpost.ICommentPostView
-import vn.icheck.android.component.take_media.TakeMediaDialog
 import vn.icheck.android.component.view.ViewHelper.onDelayClick
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
+import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.lib.keyboard.KeyboardVisibilityEvent
 import vn.icheck.android.lib.keyboard.KeyboardVisibilityEventListener
 import vn.icheck.android.lib.keyboard.Unregistrar
@@ -115,12 +117,19 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
 
     }
 
-    private val takeMediaListener = object : TakeMediaDialog.TakeImageListener {
+    private val takeMediaListener = object : TakeMediaListener {
         override fun onPickMediaSucess(file: File) {
             showLayoutImage(file)
         }
 
         override fun onPickMuliMediaSucess(file: MutableList<File>) {
+        }
+
+        override fun onStartCrop(filePath: String?, uri: Uri?, ratio: String?, requestCode: Int?) {
+
+        }
+
+        override fun onDismiss() {
         }
 
         override fun onTakeMediaSuccess(file: File?) {
@@ -479,7 +488,7 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
 
         imgCamera.onDelayClick({
             if (PermissionHelper.checkPermission(this, arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE), requestTakePicture)) {
-                TakeMediaDialog.show(supportFragmentManager,takeMediaListener)
+                TakeMediaDialog.show(supportFragmentManager,this,takeMediaListener)
             }
         }, 2000)
 

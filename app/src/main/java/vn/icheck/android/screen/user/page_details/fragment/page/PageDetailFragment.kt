@@ -2,6 +2,7 @@ package vn.icheck.android.screen.user.page_details.fragment.page
 
 import android.Manifest
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
@@ -26,10 +27,11 @@ import vn.icheck.android.component.image_video_slider.ICImageVideoSliderModel
 import vn.icheck.android.component.image_video_slider.ICMediaType
 import vn.icheck.android.component.image_video_slider.MediaLogic
 import vn.icheck.android.component.post.IPostListener
-import vn.icheck.android.component.take_media.TakeMediaDialog
 import vn.icheck.android.component.view.ViewHelper.setScrollSpeed
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
+import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
+import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICMedia
@@ -64,12 +66,17 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
     private val requestPermissionImage = 1
     private var isActivityVisible = false
 
-    private val takeMediaListener = object : TakeMediaDialog.TakeImageListener {
+    private val takeMediaListener = object : TakeMediaListener {
         override fun onPickMediaSucess(file: File) {
             viewModel.uploadImage(typeEditImage!!, file)
         }
 
         override fun onPickMuliMediaSucess(file: MutableList<File>) {}
+        override fun onStartCrop(filePath: String?, uri: Uri?, ratio: String?, requestCode: Int?) {
+        }
+
+        override fun onDismiss() {
+        }
 
         override fun onTakeMediaSuccess(file: File?) {
             file?.let { viewModel.uploadImage(typeEditImage!!, it) }
@@ -610,9 +617,9 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
         if (requestCode == requestPermissionImage) {
             if (PermissionHelper.checkResult(grantResults)) {
                 if (typeEditImage == ICViewTypes.HEADER_INFOR_PAGE) {
-                    TakeMediaDialog.show(this@PageDetailFragment.requireActivity().supportFragmentManager, takeMediaListener, selectMulti = false, cropImage = false, ratio = "1:1", isVideo = false)
+                    TakeMediaDialog.show(this@PageDetailFragment.requireActivity().supportFragmentManager, this@PageDetailFragment.requireActivity(), takeMediaListener, selectMulti = false, cropImage = false, ratio = "1:1", isVideo = false)
                 } else {
-                    TakeMediaDialog.show(this@PageDetailFragment.requireActivity().supportFragmentManager, takeMediaListener, selectMulti = false, cropImage = false, ratio = "375:192", isVideo = false)
+                    TakeMediaDialog.show(this@PageDetailFragment.requireActivity().supportFragmentManager, this@PageDetailFragment.requireActivity(), takeMediaListener, selectMulti = false, cropImage = false, ratio = "375:192", isVideo = false)
                 }
             } else {
                 showLongWarning(R.string.khong_the_thuc_hien_tac_vu_vi_ban_chua_cap_quyen)

@@ -6,11 +6,9 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.widget.AppCompatCheckedTextView
@@ -41,7 +39,6 @@ import vn.icheck.android.chat.icheckchat.base.view.*
 import vn.icheck.android.chat.icheckchat.base.view.MCViewType.TYPE_PACKAGE
 import vn.icheck.android.chat.icheckchat.base.view.MCViewType.TYPE_STICKER
 import vn.icheck.android.chat.icheckchat.databinding.ActivityChatSocialDetailBinding
-import vn.icheck.android.chat.icheckchat.dialog.TakeMediaBottomSheetChat
 import vn.icheck.android.chat.icheckchat.helper.NetworkHelper
 import vn.icheck.android.chat.icheckchat.helper.PermissionChatHelper
 import vn.icheck.android.chat.icheckchat.helper.ShareHelperChat
@@ -94,9 +91,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
     private var isSetData = false
 
     var deleteAt = -1L
-
-    private lateinit var takeMediaDialog: TakeMediaDialog
-
 
     override val bindingInflater: (LayoutInflater) -> ActivityChatSocialDetailBinding
         get() = ActivityChatSocialDetailBinding::inflate
@@ -561,7 +555,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         adapter.notifyItemInserted(adapter.getListData.size - 1)
 
 
-        if (adapter.getListData[adapter.getListData.size - 2].status == obj.status) {
+        if (adapter.getListData[adapter.getListData.size - 2].status == obj.status && adapter.getListData[adapter.getListData.size - 2].status != MCStatus.LOADING) {
             val holder = recyclerView.findViewHolderForAdapterPosition(adapter.getListData.size - 2)
             adapter.getListData[adapter.getListData.size - 2].showStatus = false
 
@@ -776,7 +770,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        takeMediaDialog.takeMediaHelper?.onActivityResult(requestCode, resultCode)
 
         when (requestCode) {
             SCAN -> {
@@ -806,7 +799,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
             requestCameraPermission -> {
                 if (PermissionChatHelper.checkResult(grantResults)) {
                     try {
-                        takeMediaDialog.show(supportFragmentManager, null)
+                        showTakeMedia()
                     } catch (e: Exception) {
 
                     }
@@ -858,32 +851,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
             R.id.imgCamera -> {
                 val permission = arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
                 if (PermissionChatHelper.checkPermission(this, permission, requestCameraPermission)) {
-                    val listener = object : TakeMediaListener {
-                        override fun onPickMediaSucess(file: File) {
-                            selectedTextView(binding.imgCamera, binding.recyclerViewImage, true)
-                            adapterImage.setImage(file)
-                        }
-
-                        override fun onPickMuliMediaSucess(file: MutableList<File>) {
-                            selectedTextView(binding.imgCamera, binding.recyclerViewImage, true)
-                            adapterImage.setListImage(file)
-                        }
-
-                        override fun onStartCrop(filePath: String?, uri: Uri?, ratio: String?, requestCode: Int?) {
-                        }
-
-                        override fun onDismiss() {
-                        }
-
-                        override fun onTakeMediaSuccess(file: File?) {
-                            if (file != null) {
-                                selectedTextView(binding.imgCamera, binding.recyclerViewImage, true)
-                                adapterImage.setImage(file)
-                            }
-                        }
-                    }
-
-                    TakeMediaDialog.show(supportFragmentManager, this, listener, selectMulti = true, isVideo = true)
+                    showTakeMedia()
                 }
             }
             R.id.imgSticker -> {
@@ -927,6 +895,35 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 binding.viewClick.setVisible()
             }
         }
+    }
+
+    private fun showTakeMedia() {
+        val listener = object : TakeMediaListener {
+            override fun onPickMediaSucess(file: File) {
+                selectedTextView(binding.imgCamera, binding.recyclerViewImage, true)
+                adapterImage.setImage(file)
+            }
+
+            override fun onPickMuliMediaSucess(file: MutableList<File>) {
+                selectedTextView(binding.imgCamera, binding.recyclerViewImage, true)
+                adapterImage.setListImage(file)
+            }
+
+            override fun onStartCrop(filePath: String?, uri: Uri?, ratio: String?, requestCode: Int?) {
+            }
+
+            override fun onDismiss() {
+            }
+
+            override fun onTakeMediaSuccess(file: File?) {
+                if (file != null) {
+                    selectedTextView(binding.imgCamera, binding.recyclerViewImage, true)
+                    adapterImage.setImage(file)
+                }
+            }
+        }
+
+        TakeMediaDialog.show(supportFragmentManager, this, listener, selectMulti = true, isVideo = true)
     }
 
     private fun checkKeyboard() {

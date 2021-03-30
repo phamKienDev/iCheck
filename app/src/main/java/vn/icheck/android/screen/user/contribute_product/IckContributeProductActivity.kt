@@ -9,6 +9,7 @@ import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.MotionEvent
@@ -33,10 +34,11 @@ import kotlinx.android.synthetic.main.activity_list_product_question.*
 import kotlinx.coroutines.*
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseCoroutineActivity
-import vn.icheck.android.component.take_media.TakeMediaDialog
 import vn.icheck.android.constant.*
 import vn.icheck.android.databinding.ActivityIckContributeProductBinding
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
+import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.screen.user.contribute_product.adapter.*
 import vn.icheck.android.screen.user.contribute_product.dialog.IckCategoryBottomDialog
 import vn.icheck.android.screen.user.contribute_product.viewmodel.CategoryAttributesModel
@@ -77,10 +79,9 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
         var instance: IckContributeProductActivity? = null
     }
 
-    private val takeImageListener = object : TakeMediaDialog.TakeImageListener {
+    private val takeImageListener = object : TakeMediaListener {
         var currentView: View? = null
         override fun onPickMediaSucess(file: File) {
-
             loadImageIntoView(file)
         }
 
@@ -105,15 +106,23 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
             ickContributeProductViewModel.addImage(file)
         }
 
+        override fun onStartCrop(filePath: String?, uri: Uri?, ratio: String?, requestCode: Int?) {
+            CropImageActivity.start(this@IckContributeProductActivity, filePath, null, ratio, TakeMediaDialog.CROP_IMAGE_GALLERY)
+        }
+
+        override fun onDismiss() {
+        }
+
         override fun onTakeMediaSuccess(file: File?) {
             ickContributeProductViewModel.addImage(file)
             loadImageIntoView(file)
         }
     }
 
+
     var currentMediaDialog: TakeMediaDialog? = null
 
-    private val takeImageDialog = TakeMediaDialog(takeImageListener, false, cropImage = true, isVideo = false, showBottom = true)
+    private val takeImageDialog = TakeMediaDialog(this, takeImageListener, selectMulti = false, cropImage = true, isVideo = false, showBottom = true)
 
     val ickContributeProductViewModel: IckContributeProductViewModel by viewModels()
     val ickCategoryBottomDialog = IckCategoryBottomDialog()
@@ -130,7 +139,7 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
                     when (it) {
                         TAKE_IMAGE -> {
                             val position = intent.getIntExtra(TAKE_IMAGE, 0)
-                            val imageDialog = TakeMediaDialog(object : TakeMediaDialog.TakeImageListener {
+                            val imageDialog = TakeMediaDialog(this@IckContributeProductActivity, object : TakeMediaListener {
                                 override fun onPickMediaSucess(file: File) {
                                     ickContributeProductViewModel.categoryAttributes[position].values = file
                                     categoryAttributesAdapter.notifyItemChanged(position)
@@ -138,6 +147,13 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
 
                                 override fun onPickMuliMediaSucess(file: MutableList<File>) {
 
+                                }
+
+                                override fun onStartCrop(filePath: String?, uri: Uri?, ratio: String?, requestCode: Int?) {
+
+                                }
+
+                                override fun onDismiss() {
                                 }
 
                                 override fun onTakeMediaSuccess(file: File?) {
@@ -152,7 +168,7 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
                         }
                         ADD_IMAGE -> {
                             val position = intent.getIntExtra(ADD_IMAGE, 0)
-                            val imageDialog2 = TakeMediaDialog(object : TakeMediaDialog.TakeImageListener {
+                            val imageDialog2 = TakeMediaDialog(this@IckContributeProductActivity, object : TakeMediaListener {
                                 override fun onPickMediaSucess(file: File) {
                                     ickContributeProductViewModel.listImageModel.add(ImageModel(file))
                                     listImageAdapter.notifyDataSetChanged()
@@ -163,6 +179,12 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
                                         ickContributeProductViewModel.listImageModel.add(ImageModel(item))
                                     }
                                     listImageAdapter.notifyDataSetChanged()
+                                }
+
+                                override fun onStartCrop(filePath: String?, uri: Uri?, ratio: String?, requestCode: Int?) {
+                                }
+
+                                override fun onDismiss() {
                                 }
 
                                 override fun onTakeMediaSuccess(file: File?) {
@@ -190,7 +212,7 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
                             parent = intent.getIntExtra(PARENT_POSITION, 0)
                             try {
                                 val categoryAttributesModel = ickContributeProductViewModel.categoryAttributes[parent]
-                                val imageDialog2 = TakeMediaDialog(object : TakeMediaDialog.TakeImageListener {
+                                val imageDialog2 = TakeMediaDialog(this@IckContributeProductActivity, object : TakeMediaListener {
                                     override fun onPickMediaSucess(file: File) {
 
                                         if (categoryAttributesModel.categoryItem.type == "image-single") {
@@ -204,6 +226,13 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
                                     override fun onPickMuliMediaSucess(file: MutableList<File>) {
                                         ickContributeProductViewModel.categoryAttributes[parent].addAllImage(file)
                                         categoryAttributesAdapter.notifyItemChanged(parent)
+                                    }
+
+                                    override fun onStartCrop(filePath: String?, uri: Uri?, ratio: String?, requestCode: Int?) {
+
+                                    }
+
+                                    override fun onDismiss() {
                                     }
 
                                     override fun onTakeMediaSuccess(file: File?) {
@@ -853,8 +882,15 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        currentMediaDialog?.takeMediaHelper?.onActivityResult(requestCode, resultCode)
         when (requestCode) {
+            TakeMediaDialog.CROP_IMAGE_GALLERY -> {
+                if (resultCode == RESULT_OK) {
+                    data?.getStringExtra(Constant.DATA_1)?.let { url ->
+                        takeImageListener.onPickMediaSucess(File(url))
+                        currentMediaDialog?.dismiss()
+                    }
+                }
+            }
             EDIT_IMAGE_1 -> {
                 if (resultCode == RESULT_OK) {
                     data?.getStringExtra(Constant.DATA_1)?.let { result ->
