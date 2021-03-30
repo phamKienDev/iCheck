@@ -18,7 +18,6 @@ object APIConstants {
     const val PATH = "social/api"
     const val PATH_CDN = "icheck-social-cdn/"
 
-    const val GET = "GET"
     const val POST = "POST"
 
     external fun STAMPDETAIL(): String
@@ -454,9 +453,7 @@ object APIConstants {
         const val LIKE_POST = "social/api/posts/{id}/expressive"
     }
 
-    object Utility {
-        const val ALL_UTILITY = "icon_more.json"
-    }
+    external fun allUtilities(): String
 
     object PVCombank {
         const val PATH_PVCBANK = "pvcombank/api/cards"

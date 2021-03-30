@@ -215,22 +215,11 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
         }
     }
 
-    private var disposable: Disposable? = null
+//    private var disposable: Disposable? = null
 
     private fun getFunc(layout: ICLayout, url: String) {
-        disposable?.dispose()
-        disposable = Observable.timer(3, TimeUnit.SECONDS)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    getFunc(layout, url.replace(APIConstants.adsSocialHostOnly(), APIConstants.adsOriginSocialHostOnly()))
-                }
-
         functionInteractor.getHomeFunc(url, object : ICNewApiListener<ICResponse<ICTheme>> {
             override fun onSuccess(obj: ICResponse<ICTheme>) {
-                disposable?.dispose()
-                disposable = null
-
                 if (!obj.data?.secondary_functions.isNullOrEmpty()) {
                     layout.data = obj.data
                 }
@@ -238,15 +227,8 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
             }
 
             override fun onError(error: ICResponseCode?) {
-                disposable?.dispose()
-                disposable = null
-
-                if (url.contains(APIConstants.adsSocialHostOnly())) {
-                    getFunc(layout, url.replace(APIConstants.adsSocialHostOnly(), APIConstants.adsOriginSocialHostOnly()))
-                } else {
-                    finishRequest(false)
-                    onUpdateData.value = layout
-                }
+                finishRequest(false)
+                onUpdateData.value = layout
             }
         })
     }
@@ -578,6 +560,6 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
         adsInteractor.dispose()
         settingInteraction.dispose()
         cartHelper.dispose()
-        disposable?.dispose()
+//        disposable?.dispose()
     }
 }
