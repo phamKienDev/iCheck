@@ -1,6 +1,5 @@
 package vn.icheck.android.screen.user.home
 
-
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -34,6 +33,7 @@ import androidx.core.view.children
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -44,6 +44,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.ick_left_menu.*
 import kotlinx.android.synthetic.main.right_menu_history.*
+import kotlinx.coroutines.async
+import kotlinx.coroutines.withTimeoutOrNull
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
 import vn.icheck.android.RelationshipManager
@@ -69,6 +71,7 @@ import vn.icheck.android.network.models.history.ICTypeHistory
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.account.icklogin.viewmodel.IckLoginViewModel
 import vn.icheck.android.screen.account.registeruser.register.RegisterUserActivity
+import vn.icheck.android.screen.checktheme.CheckThemeViewModel
 import vn.icheck.android.screen.dialog.PermissionDialog
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.info.AppInfoActivity
@@ -102,6 +105,7 @@ import vn.icheck.android.util.ick.*
 import vn.icheck.android.util.kotlin.HideWebUtils
 import vn.icheck.android.util.kotlin.StatusBarUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
+import java.io.File
 
 @AndroidEntryPoint
 class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView, View.OnClickListener {
@@ -507,48 +511,83 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
     }
 
     private fun setupTheme() {
-        SettingManager.themeSetting?.theme?.apply {
-            val path = FileHelper.getPath(this@HomeActivity)
+        val theme = SettingManager.themeSetting?.theme
+        val bottomBarTextColor = if (!theme?.bottomBarSelectedTextColor.isNullOrEmpty()) {
+            ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.darkGray2), Color.parseColor(theme!!.bottomBarSelectedTextColor))
+        } else {
+            ContextCompat.getColorStateList(this@HomeActivity, R.color.text_color_home_tab)
+        }
+        tvHome.setTextColor(bottomBarTextColor)
+        tvFeed.setTextColor(bottomBarTextColor)
+        tvHistory.setTextColor(bottomBarTextColor)
+        tvChat.setTextColor(bottomBarTextColor)
 
-            BitmapFactory.decodeFile(path + FileHelper.homeIcon)?.let { bitmap ->
-                tvHome.setCompoundDrawablesWithIntrinsicBounds(null,
-                        ViewHelper.createDrawableStateList(ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_bottombar_home_unchecked_27dp)!!,
-                                BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, SizeHelper.size27, SizeHelper.size27, false))),
-                        null, null)
-                if (!bottomBarSelectedTextColor.isNullOrEmpty())
-                    tvHome.setTextColor(ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.darkGray2), Color.parseColor(bottomBarSelectedTextColor)))
-            }
+        val path = FileHelper.getPath(this@HomeActivity)
+        val homeBitmap = BitmapFactory.decodeFile(path + FileHelper.homeIcon)
+        if (homeBitmap != null) {
+            tvHome.setCompoundDrawablesWithIntrinsicBounds(null, ViewHelper.createDrawableStateList(
+                    ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_bottombar_home_unchecked_27dp)!!,
+                    BitmapDrawable(resources, Bitmap.createScaledBitmap(homeBitmap, SizeHelper.size27, SizeHelper.size27, false))),
+                    null, null)
+        } else {
+            tvHome.setCompoundDrawablesWithIntrinsicBounds(null, ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_selected_home_page_27), null, null)
+        }
 
-            BitmapFactory.decodeFile(path + FileHelper.newsIcon)?.let { bitmap ->
-                tvFeed.setCompoundDrawablesWithIntrinsicBounds(null,
-                        ViewHelper.createDrawableStateList(ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_bottombar_feed_unchecked_27dp)!!,
-                                BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, SizeHelper.size27, SizeHelper.size27, false))),
-                        null, null)
-                if (!bottomBarSelectedTextColor.isNullOrEmpty())
-                    tvFeed.setTextColor(ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.darkGray2), Color.parseColor(bottomBarSelectedTextColor)))
-            }
+        val feedBitmap = BitmapFactory.decodeFile(path + FileHelper.newsIcon)
+        if (feedBitmap != null) {
+            tvFeed.setCompoundDrawablesWithIntrinsicBounds(null, ViewHelper.createDrawableStateList(
+                    ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_bottombar_feed_unchecked_27dp)!!,
+                    BitmapDrawable(resources, Bitmap.createScaledBitmap(feedBitmap, SizeHelper.size27, SizeHelper.size27, false))),
+                    null, null)
+        } else {
+            tvFeed.setCompoundDrawablesWithIntrinsicBounds(null, ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_selected_feed_27), null, null)
+        }
 
-            BitmapFactory.decodeFile(path + FileHelper.scanIcon)?.let { bitmap ->
-                imgScanQr.setImageBitmap(Bitmap.createScaledBitmap(bitmap, SizeHelper.size66, SizeHelper.size66, false))
-            }
+        val historyBitmap = BitmapFactory.decodeFile(path + FileHelper.historyIcon)
+        if (historyBitmap != null) {
+            tvHistory.setCompoundDrawablesWithIntrinsicBounds(null, ViewHelper.createDrawableStateList(
+                    ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_bottombar_history_unchecked_27dp)!!,
+                    BitmapDrawable(resources, Bitmap.createScaledBitmap(historyBitmap, SizeHelper.size27, SizeHelper.size27, false))),
+                    null, null)
+        } else {
+            tvHistory.setCompoundDrawablesWithIntrinsicBounds(null, ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_selected_history_27), null, null)
+        }
 
-            BitmapFactory.decodeFile(path + FileHelper.historyIcon)?.let { bitmap ->
-                tvHistory.setCompoundDrawablesWithIntrinsicBounds(null,
-                        ViewHelper.createDrawableStateList(ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_bottombar_history_unchecked_27dp)!!,
-                                BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, SizeHelper.size27, SizeHelper.size27, false))),
-                        null, null)
-                if (!bottomBarSelectedTextColor.isNullOrEmpty())
-                    tvHistory.setTextColor(ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.darkGray2), Color.parseColor(bottomBarSelectedTextColor)))
-            }
+        val chatBitmap = BitmapFactory.decodeFile(path + FileHelper.messageIcon)
+        if (chatBitmap != null) {
+            tvChat.setCompoundDrawablesWithIntrinsicBounds(null, ViewHelper.createDrawableStateList(
+                    ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_bottombar_chat_unchecked_27dp)!!,
+                    BitmapDrawable(resources, Bitmap.createScaledBitmap(chatBitmap, SizeHelper.size27, SizeHelper.size27, false))),
+                    null, null)
+        } else {
+            tvChat.setCompoundDrawablesWithIntrinsicBounds(null, ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_selected_chat_27), null, null)
+        }
 
-            BitmapFactory.decodeFile(path + FileHelper.messageIcon)?.let { bitmap ->
-                tvChat.setCompoundDrawablesWithIntrinsicBounds(null,
-                        ViewHelper.createDrawableStateList(ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_bottombar_chat_unchecked_27dp)!!,
-                                BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, SizeHelper.size27, SizeHelper.size27, false))),
-                        null, null)
-                if (!bottomBarSelectedTextColor.isNullOrEmpty())
-                    tvChat.setTextColor(ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.darkGray2), Color.parseColor(bottomBarSelectedTextColor)))
+        val scanBitmap = BitmapFactory.decodeFile(path + FileHelper.scanIcon)
+        if (scanBitmap != null) {
+            imgScanQr.setImageBitmap(Bitmap.createScaledBitmap(scanBitmap, SizeHelper.size66, SizeHelper.size66, false))
+        } else {
+            imgScanQr.setImageResource(R.drawable.ic_bottombar_scan_66dp)
+        }
+    }
+
+    private fun checkkNewTheme() {
+        lifecycleScope.async {
+            val file = File(FileHelper.getPath(this@HomeActivity) + FileHelper.imageFolder)
+            if (file.exists()) {
+                FileHelper.deleteTheme(file)
             }
+            SettingManager.themeSetting = null
+            setupTheme()
+
+            val themeSettingRes = try {
+                withTimeoutOrNull(10000L) { CheckThemeViewModel().getThemeSetting() }
+            } catch (e: Exception) {
+                null
+            }
+            SettingManager.themeSetting = themeSettingRes?.data
+
+            viewModel.downloadTheme()
         }
     }
 
@@ -1059,10 +1098,10 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
             ICMessageEvent.Type.ON_LOG_OUT -> {
                 tvChatCount.visibility = View.GONE
                 RelationshipManager.removeListener()
+                checkkNewTheme()
             }
             ICMessageEvent.Type.ON_LOG_IN -> {
                 tv_username.text = SessionManager.session.user?.getName
-
                 tv_user_rank.text = SessionManager.session.user?.phone
                 Glide.with(this.applicationContext)
                         .load(SessionManager.session.user?.avatar)
@@ -1071,6 +1110,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                         .into(imgAvatar)
                 RelationshipManager.removeListener()
                 RelationshipManager.refreshToken(true)
+                checkkNewTheme()
             }
             ICMessageEvent.Type.INIT_MENU_HISTORY -> {
                 recyclerViewMenu.layoutManager = LinearLayoutManager(this)

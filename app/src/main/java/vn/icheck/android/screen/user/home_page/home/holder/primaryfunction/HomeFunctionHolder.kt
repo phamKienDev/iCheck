@@ -1,5 +1,6 @@
 package vn.icheck.android.screen.user.home_page.home.holder.primaryfunction
 
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,38 +17,39 @@ import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.loyalty.base.setGone
 import vn.icheck.android.loyalty.base.setVisible
 import vn.icheck.android.network.base.SessionManager
-import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.models.ICTheme
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.user.home_page.home.holder.secondfunction.HomeSecondaryFunctionAdapter
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.io.File
 
-class HomeFunctionHolder(parent: ViewGroup, private val isExistTheme: Boolean) : BaseViewHolder<ICTheme>(LayoutInflater.from(parent.context).inflate(R.layout.item_home_function, parent, false)) {
+class HomeFunctionHolder(parent: ViewGroup, isExistTheme: Boolean) : BaseViewHolder<ICTheme>(LayoutInflater.from(parent.context).inflate(R.layout.item_home_function, parent, false)) {
     private val primaryAdapter = HomeFunctionAdapter()
     private val secondaryAdapter = HomeSecondaryFunctionAdapter(mutableListOf(), isExistTheme)
 
     override fun bind(obj: ICTheme) {
         val user = SessionManager.session.user
-
         val path = FileHelper.getPath(itemView.context)
-        File(path + FileHelper.homeBackgroundImage).let {
-            if (it.exists()) {
-                itemView.imgBackground.apply {
-                    setVisible()
-                    WidgetUtils.loadImageFile(this, it)
-                }
-            } else {
-                itemView.imgBackground.setGone()
+
+        itemView.imgBackground.requestLayout()
+        val backgroundImage = BitmapFactory.decodeFile(path + FileHelper.homeBackgroundImage)
+        if (backgroundImage != null) {
+            itemView.imgBackground.apply {
+                setVisible()
+                setImageBitmap(backgroundImage)
             }
+        } else {
+            itemView.imgBackground.setGone()
         }
 
-        File(path + FileHelper.homeHeaderImage).let {
-            if (it.exists()) {
-                itemView.imgHeader.apply {
-                    WidgetUtils.loadImageFileFitCenter(this, it)
-                }
+        itemView.imgHeader.apply {
+            val headerImage = BitmapFactory.decodeFile(path + FileHelper.homeHeaderImage)
+            if (headerImage != null) {
+                itemView.imgHeader.setImageBitmap(headerImage)
+            } else {
+                itemView.imgHeader.setImageResource(R.drawable.ic_header_home_page)
             }
+            itemView.imgHeader.requestLayout()
         }
 
         itemView.avatarUser.apply {
@@ -56,7 +58,6 @@ class HomeFunctionHolder(parent: ViewGroup, private val isExistTheme: Boolean) :
             setData(user?.avatar, user?.rank?.level, R.drawable.ic_avatar_default_84px)
 
             setOnClickListener {
-
                 if (SessionManager.isUserLogged) {
                     ICheckApplication.currentActivity()?.let { activity ->
                         FirebaseDynamicLinksActivity.startDestinationUrl(activity, "icheck://user")

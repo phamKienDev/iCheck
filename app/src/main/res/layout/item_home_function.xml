@@ -23,12 +23,19 @@
         android:src="@drawable/ic_header_home_page"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <View
+        android:id="@id/viewTop"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="@dimen/size_0_5"
+        android:layout_marginBottom="@dimen/size_28"
+        app:layout_constraintBottom_toBottomOf="@id/imgHeader"
+        app:layout_constraintStart_toStartOf="@id/imgHeader" />
+
     <vn.icheck.android.ui.colorcardview.ColorCardView
         android:id="@id/layoutContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="@dimen/size_168"
         android:layout_marginEnd="25dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="@dimen/size_4"
@@ -38,7 +45,7 @@
         app:cardShadowColorStart="@color/elevation_color_card"
         app:cardUseCompatPadding="false"
         app:contentPadding="0dp"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="@id/viewTop">
 
         <!--Layout content-->
         <LinearLayout
