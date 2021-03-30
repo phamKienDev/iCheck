@@ -131,7 +131,7 @@ class DetailStampHoaPhatAdapter(private val headerImagelistener: SlideHeaderStam
                 holder.bind(listData[position].data as ICDetailStampV6_1.ICObjectDetailStamp)
             }
             is ListStampECommerceHolder -> {
-                holder.bind(listData[position] as MutableList<ICProductLink>)
+                holder.bind(listData[position].data as MutableList<ICProductLink>)
             }
             is StepBuildProductStampHolder -> {
                 holder.bind(listData[position].data as MutableList<ICObjectInfo>)

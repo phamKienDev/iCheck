@@ -11,6 +11,7 @@ import vn.icheck.android.adapters.base.BaseHolder
 import vn.icheck.android.component.BottomModel
 import vn.icheck.android.component.product.ProductDetailListener
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.network.base.SettingManager
 
 class BottomInfoHolder(parent: ViewGroup,val listener: ProductDetailListener) : BaseHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_product_bottom_info, parent, false)) {
@@ -27,11 +28,11 @@ class BottomInfoHolder(parent: ViewGroup,val listener: ProductDetailListener) : 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             itemView.tvPhone.text = Html.fromHtml(itemView.context.getString(R.string.tong_dai_icheck, productContact.find { it.key == "product-contact.phone" }?.value ?: "0902195488"), Html.FROM_HTML_MODE_COMPACT)
             itemView.tvEmail.text = Html.fromHtml(itemView.context.getString(R.string.email_icheck, productContact.find { it.key == "product-contact.mail" }?.value ?: "cskh@icheck.vn"), Html.FROM_HTML_MODE_COMPACT)
-            itemView.tvHotline.text = Html.fromHtml(itemView.context.getString(R.string.ma_so_thue_icheck, productContact.find { it.key == "product-contact.hot-line" }?.value ?: "0902195488"), Html.FROM_HTML_MODE_COMPACT)
+            itemView.tvHotline.text = Html.fromHtml(itemView.context.getString(R.string.hotline_dang_ky, productContact.find { it.key == "product-contact.hot-line" }?.value ?: "0902195488"), Html.FROM_HTML_MODE_COMPACT)
         } else {
             itemView.tvPhone.text = Html.fromHtml(itemView.context.getString(R.string.tong_dai_icheck, productContact.find { it.key == "product-contact.phone" }?.value ?: "0902195488"))
             itemView.tvEmail.text = Html.fromHtml(itemView.context.getString(R.string.email_icheck, productContact.find { it.key == "product-contact.mail" }?.value ?: "cskh@icheck.vn"))
-            itemView.tvHotline.text = Html.fromHtml(itemView.context.getString(R.string.ma_so_thue_icheck, productContact.find { it.key == "product-contact.hot-line" }?.value ?: "0902195488"))
+            itemView.tvHotline.text = Html.fromHtml(itemView.context.getString(R.string.hotline_dang_ky, productContact.find { it.key == "product-contact.hot-line" }?.value ?: "0902195488"))
         }
 
         itemView.tvPhone.setOnClickListener {
@@ -41,7 +42,7 @@ class BottomInfoHolder(parent: ViewGroup,val listener: ProductDetailListener) : 
             Constant.sendEmail(productContact.find { it.key == "product-contact.mail" }?.value ?: "cskh@icheck.vn")
         }
         itemView.tvHotline.setOnClickListener {
-            Constant.callPhone(productContact.find { it.key == "product-contact.phone" }?.value ?: "0902195488")
+            Constant.callPhone(productContact.find { it.key == "product-contact.hot-line" }?.value ?: "0902195488")
         }
     }
 }

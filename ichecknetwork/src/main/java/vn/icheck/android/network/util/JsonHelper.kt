@@ -211,4 +211,13 @@ object JsonHelper {
             mutableListOf()
         }
     }
+
+    fun parseStampECommerce(json: String?): MutableList<ICProductLink> {
+        return try {
+            val listType = object : TypeToken<MutableList<ICProductLink>>() {}.type
+            gson.fromJson(json, listType)
+        } catch (e: Exception) {
+            mutableListOf()
+        }
+    }
 }
