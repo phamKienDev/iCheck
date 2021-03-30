@@ -435,10 +435,9 @@ object Constant {
         return Pattern.compile(regex).matcher(Uri.parse(http).host ?: "").matches()
     }
 
-
     fun callPhone(phone: String) {
         ICheckApplication.currentActivity()?.let { activity ->
-            val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:${phone}"))
+            val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:${phone.replace(" ".toRegex(), "")}"))
             ActivityUtils.startActivity(activity, intent)
         }
     }
