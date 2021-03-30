@@ -193,22 +193,37 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
     private fun setUpTakeImage() {
         takeMediaDialog = TakeMediaBottomSheetChat(object : TakeMediaBottomSheetChat.TakeImageListener {
             override fun onPickMediaSucess(file: File) {
-                selectedTextView(binding.imgCamera, binding.recyclerViewImage, true)
                 adapterImage.setImage(file)
+                chooseImage()
             }
 
             override fun onPickMuliMediaSucess(file: MutableList<File>) {
-                selectedTextView(binding.imgCamera, binding.recyclerViewImage, true)
                 adapterImage.setListImage(file)
+                chooseImage()
             }
 
             override fun onTakeMediaSuccess(file: File?) {
                 if (file != null) {
-                    selectedTextView(binding.imgCamera, binding.recyclerViewImage, true)
                     adapterImage.setImage(file)
+                    chooseImage()
                 }
             }
         }, true, activity = this@ChatSocialDetailActivity)
+    }
+
+    private fun chooseImage(){
+        binding.imgCamera.isChecked = true
+        binding.imgSend.isChecked = true
+        binding.imgSend.isEnabled = true
+
+        binding.imgSticker.isChecked = false
+        binding.layoutSticker.setGone()
+
+        binding.imgScan.isChecked = false
+        binding.layoutProduct.setGone()
+        binding.layoutUserBlock.setGone()
+        binding.layoutBlock.setGone()
+        product = null
     }
 
 
@@ -225,6 +240,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 MCStatus.ERROR_REQUEST -> {
                     showToastError(it.message)
                 }
+                MCStatus.LOADING -> TODO()
                 MCStatus.SUCCESS -> {
                     if (it.data?.data != null) {
                         conversation = MCConversation()

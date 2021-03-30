@@ -13,13 +13,13 @@ import java.io.File
 class ImageAdapter : BaseRecyclerView<File>() {
 
     fun setListImage(obj: MutableList<File>) {
-        listData.clear()
 
         listData.addAll(obj)
         notifyDataSetChanged()
     }
 
     fun setImage(obj: File) {
+
         listData.add(obj)
         notifyDataSetChanged()
     }
