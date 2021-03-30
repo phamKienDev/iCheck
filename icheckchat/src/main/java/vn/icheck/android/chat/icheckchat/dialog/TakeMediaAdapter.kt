@@ -134,8 +134,12 @@ class TakeMediaAdapter(val listData: MutableList<TakeMediaBottomSheetChat.ICIMag
                             listSelected.remove(obj)
                             obj.selected = false
                         } else {
-                            obj.selected = true
-                            listSelected.add(obj)
+                            if (listSelected.size < 20) {
+                                obj.selected = true
+                                listSelected.add(obj)
+                            } else {
+                                itemView.context.showToastError(itemView.context.getString(R.string.chon_20_anh))
+                            }
                         }
                     }
                     notifyDataSetChanged()

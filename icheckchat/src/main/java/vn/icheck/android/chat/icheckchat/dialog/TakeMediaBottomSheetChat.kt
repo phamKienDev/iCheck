@@ -94,7 +94,7 @@ class TakeMediaBottomSheetChat(val listener: TakeImageListener, private val sele
     private fun getImageFromGallery(): MutableList<ICIMageFile> {
         val listOfAllImages = mutableListOf<ICIMageFile>()
 
-        ShareHelperChat.getApplicationByReflect()?.let {
+        ShareHelperChat.getApplicationByReflect().let {
             val orderBy = MediaStore.Images.ImageColumns.DATE_ADDED + " DESC"
             val uri = MediaStore.Files.getContentUri("external")
             val selection = if (isVideo) {
