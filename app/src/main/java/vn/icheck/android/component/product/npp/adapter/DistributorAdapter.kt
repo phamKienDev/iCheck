@@ -90,7 +90,7 @@ class DistributorAdapter(val listData: MutableList<ICPage>, val url: String) : R
 
             initListener(obj)
 
-            WidgetUtils.loadImageUrlRounded4(itemView.findViewById<AppCompatImageView>(R.id.imgAvatar), obj.avatar, R.drawable.img_default_business_logo, R.drawable.img_default_business_logo)
+            WidgetUtils.loadImageUrlRounded4(itemView.findViewById<AppCompatImageView>(R.id.imgAvatar), obj.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
 
             itemView.findViewById<AppCompatTextView>(R.id.tvNamePage).text = if (obj.name.isNullOrEmpty()) {
                 itemView.context.getString(R.string.dang_cap_nhat)

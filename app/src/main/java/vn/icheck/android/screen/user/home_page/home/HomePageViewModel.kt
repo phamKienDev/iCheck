@@ -2,14 +2,12 @@ package vn.icheck.android.screen.user.home_page.home
 
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.liveData
+import androidx.lifecycle.*
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withTimeoutOrNull
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
@@ -31,13 +29,14 @@ import vn.icheck.android.network.feature.campaign.CampainsInteractor
 import vn.icheck.android.network.feature.mall.MallInteractor
 import vn.icheck.android.network.feature.news.NewsInteractor
 import vn.icheck.android.network.feature.product.ProductInteractor
+import vn.icheck.android.network.feature.pvcombank.PVcomBankRepository
 import vn.icheck.android.network.feature.setting.SettingRepository
 import vn.icheck.android.network.feature.utility.UtilityRepository
 import vn.icheck.android.network.models.*
 import vn.icheck.android.network.models.product_need_review.ICProductNeedReview
+import vn.icheck.android.network.models.pvcombank.ICListCardPVBank
 import vn.icheck.android.screen.user.home_page.home.model.ICListHomeItem
 import vn.icheck.android.util.ick.logError
-import java.util.concurrent.TimeUnit
 import kotlin.collections.set
 
 class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHandle: SavedStateHandle, val ickApi: ICKApi) : BaseViewModel() {
@@ -48,6 +47,7 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
     private val adsInteractor = AdsRepository()
     private val functionInteractor = UtilityRepository()
     private val settingInteraction = SettingRepository()
+    private val pvcombankRepository = PVcomBankRepository()
 
     private val cartHelper = CartHelper()
 
@@ -57,6 +57,7 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
     val onAddData = MutableLiveData<ICLayout>()
     val onUpdateData = MutableLiveData<ICLayout>()
     val onUpdateListData = MutableLiveData<ICListHomeItem>()
+    val onUpdatePVCombank = MutableLiveData<ICListCardPVBank?>()
     val onUpdateAds = MutableLiveData<Boolean>()
 
     private var totalRequest = 0
@@ -222,6 +223,7 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
             override fun onSuccess(obj: ICResponse<ICTheme>) {
                 if (!obj.data?.secondary_functions.isNullOrEmpty()) {
                     layout.data = obj.data
+                    getPVCombank()
                 }
                 onUpdateData.value = layout
             }
@@ -230,7 +232,29 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
                 finishRequest(false)
                 onUpdateData.value = layout
             }
-        })
+        }
+    }
+
+    fun getPVCombank() {
+//        var response: ICResponse<ICListResponse<ICListCardPVBank>>? = null
+//
+//        if (SessionManager.isUserLogged && SettingManager.getSessionPvcombank.isNotEmpty()) {
+//            viewModelScope.launch {
+//                response = try {
+//                    withTimeoutOrNull(5000) { pvcombankRepository.getMyListCards() }
+//                } catch (e: Exception) {
+//                    null
+//                }
+//
+//                if (response?.data?.rows?.firstOrNull() == null) {
+//                    SettingManager.setSessionIdPvcombank("")
+//                }
+//
+//                onUpdatePVCombank.value = response?.data?.rows?.firstOrNull()
+//            }
+//        } else {
+//            onUpdatePVCombank.value = response?.data?.rows?.firstOrNull()
+//        }
     }
 
     fun getAds(isOnResume: Boolean) {
@@ -560,6 +584,6 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
         adsInteractor.dispose()
         settingInteraction.dispose()
         cartHelper.dispose()
-//        disposable?.dispose()
+        pvcombankRepository.dispose()
     }
 }

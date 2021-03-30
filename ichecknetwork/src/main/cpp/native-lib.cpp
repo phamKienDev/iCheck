@@ -58,7 +58,7 @@ extern "C" JNIEXPORT jstring JNICALL Java_vn_icheck_android_network_base_APICons
 extern "C" JNIEXPORT jstring JNICALL Java_vn_icheck_android_network_base_APIConstants_CRITERIALISTPRODUCTCOMMENT(JNIEnv* env,jobject /* this */) { return env->NewStringUTF("criteria/customer-review-product/{id}/comment"); }
 extern "C" JNIEXPORT jstring JNICALL Java_vn_icheck_android_network_base_APIConstants_PRODUCTDETAIL(JNIEnv* env,jobject /* this */) { return env->NewStringUTF("products/{id}"); }
 extern "C" JNIEXPORT jstring JNICALL Java_vn_icheck_android_network_base_APIConstants_themeSetting(JNIEnv* env, jobject /* this */) { return env->NewStringUTF("social/api/cms/system-setting-design/theme/my-theme"); }
-
+extern "C" JNIEXPORT jstring JNICALL Java_vn_icheck_android_network_base_APIConstants_productsECommerce(JNIEnv* env, jobject /* this */) { return env->NewStringUTF("social/api/products/ecommerce//products/ecommerce/{id}"); }
 
 /*
  * Utilities

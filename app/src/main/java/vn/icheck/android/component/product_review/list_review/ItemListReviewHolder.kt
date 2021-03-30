@@ -69,7 +69,7 @@ class ItemListReviewHolder(context: Context) : RecyclerView.ViewHolder(ViewHelpe
             }
         }
         if (data.page != null) {
-            imgAvatar.setData(data.page!!.avatar, null, R.drawable.img_default_business_logo_big, true)
+            imgAvatar.setData(data.page!!.avatar, null, R.drawable.ic_business_v2, true)
             tvName.text = data.page!!.name
         } else {
             imgAvatar.setData(data.user?.avatar, data.user?.rank?.level, R.drawable.ic_avatar_default_84px)

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context=".screen.user.pvcombank.card_history.HistoryPVCardActivity">
+    tools:context=".screen.user.pvcombank.cardhistory.HistoryPVCardActivity">
 
     <include
         android:id="@+id/toolbar"
@@ -21,14 +21,19 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerviewCard"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:background="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/viewShadow" />
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/viewShadow"
+        tools:listitem="@layout/item_info_pvcard_holder" />
 
     <View
         android:id="@+id/viewMid"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_10"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/size_10"
         android:background="@color/gray_e5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/recyclerviewCard" />
@@ -36,16 +41,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerviewTransaction"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:background="@color/white"
         app:layout_constraintTop_toBottomOf="@id/viewMid" />
 
-    <include
-        android:id="@+id/layoutMessage"
-        layout="@layout/item_message"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/viewShadow" />
 </androidx.constraintlayout.widget.ConstraintLayout>

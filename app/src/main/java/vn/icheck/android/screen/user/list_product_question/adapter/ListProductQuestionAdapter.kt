@@ -221,7 +221,7 @@ class ListProductQuestionAdapter(val callback: IListProductQuestionView) : Recyc
                 itemView.tvTitle.text = obj.user?.getName
                 itemView.imgVerify.beGone()
             } else {
-                WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.page!!.avatar, R.drawable.img_default_business_logo_big)
+                WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.page!!.avatar, R.drawable.ic_business_v2)
                 itemView.imgLevel.beGone()
                 itemView.tvTitle.text = obj.page?.getName
                 if (obj.page!!.isVerify) {

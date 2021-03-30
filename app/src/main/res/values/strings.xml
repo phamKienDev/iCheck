@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="default_notification_channel_id">Base</string>
     <string name="default_notification_channel_name">iCheck</string>
@@ -317,6 +317,7 @@
     <string name="ban_muon_xoa_xxx_khoi_gio_hang"><![CDATA[Bạn muốn xóa <b>%s</b> khỏi giỏ hàng?]]></string>
     <string name="cap_nhat_so_dien_thoai">Cập nhật số điện thoại</string>
     <string name="thong_bao">Thông báo</string>
+    <string name="khong_thay_ma_vach" tools:ignore="ExtraTranslation">Không thể tìm thấy mã vạch hoặc mã QR từ ảnh được chọn. Vui lòng thử lại với ảnh khác!</string>
     <string name="ban_da_doc_tat_ca_cac_thong_bao">Bạn đã đọc tất cả các thông báo.</string>
     <string name="khong_co_tin_tuc_nao">Không có bản tin nào!</string>
 
@@ -376,7 +377,7 @@
     <string name="vui_long_chon_dia_chi">Vui lòng chọn địa chỉ</string>
     <string name="xem_chi_tiet">Xem chi tiết</string>
     <string name="chat_ngay">Chat ngay</string>
-    <string name="du_lieu_trong">Không có dữ liệu</string>
+    <string name="khong_co_du_lieu">Không có dữ liệu</string>
     <string name="vui_long_cap_quyen_truy_cap_danh_ba_de_su_dung_chuc_nang_nay">Vui lòng cấp quyền truy cập danh bạ để sử dụng chức năng này</string>
     <string name="lien_he_nay_khong_co_so_dien_thoai">Liên hệ này không có số điện thoại</string>
     <string name="diem_ban_khong_duoc_de_trong">Điểm bán không được để trống</string>
@@ -619,10 +620,10 @@
     <string name="lien_he_doanh_nghiep">Liên hệ doanh nghiệp</string>
     <string name="lien_he">Liên hệ</string>
     <string name="dia_chi_icheck">Tầng 12, Diamond Flower Tower, 48 Lê Văn Lương, P.Nhân Chính, Q.Thanh Xuân, TP.Hà Nội</string>
-    <string name="tong_dai_icheck">Tổng đài: <font color="#057dda">0902 195 488</font></string>
-    <string name="email_icheck">Email: <font color="#057dda">cskh@icheck.vn</font></string>
-    <string name="ma_so_thue_icheck">MST: 0106875900</string>
-    <string name="hotline_dang_ky">Hotline đăng ký: <font color="#057dda">0902195488</font></string>
+    <string name="tong_dai_icheck"><![CDATA[Tổng đài: <font color="#057dda">%s</font>]]></string>
+    <string name="email_icheck"><![CDATA[Email: <font color="#057dda">%s</font>]]></string>
+    <string name="ma_so_thue_icheck">MST: %s</string>
+    <string name="hotline_dang_ky"><![CDATA[Hotline đăng ký: <font color="#057dda">%s</font>]]></string>
     <string name="dang_ky_ma_so_ma_vach">Đăng ký mã số mã vạch</string>
     <string name="thong_tin_thuong_pham">Thông tin thương phẩm</string>
     <string name="tem_dien_tu_chong_gia">Tem điện tử chống giả</string>
@@ -895,10 +896,25 @@
     <string name="force_update_title">Thông báo cập nhật</string>
     <string name="force_update_content">Có phiên bản mới của ứng dụng. Vui lòng cập nhật để trải nghiệm các tính năng mới nhất</string>
     <string name="ban_khong_co_the_nao">Bạn không có thẻ nào</string>
+    <string name="scandit_v6_key_dev">AV7PBT7THAAAO8A7TABOY2kQyTxUswD/gFxKWDd4jMF5Z++3ogKprSp7cEXRM2O+6GxGvwJt3DbDa8GMYH91gOZ8Y1kmNWAkWHG1GJxDsrvTf6OM31DUaa0RZVywZnp12CaIOioHqoETEDMRnSONdblmsRSkrtYQI57NdSfU5evSWrBbpZiZJzTzZF7RoS+Ad6yw61FtBwEoYNtylhcG+e7AshXwFvYZRp/kFTmsar3gXv5d1nkDNMeP22WDZNfLFkYM7NGm6Hu1p3BGAB6H0hkOo2m5RCQX11++LmcWkhGkvdOuV95OTnBeG5uXXQCWa+KGdLOJGAdbMv74Lzw23m6LdcpwDiI3x5KUPysn71D3y4AlKkQJDQrIbD1pBatF0vjAEUITANACCCRGXMoTleOoW96JWKjA7Xg/2DOf7sFgb8xXeP4s0VZR9AAVXLpwZnAQbuTAovynnj9TcQz/gh/0fvZqDorVRc197A4IxwArmA/Z3wBmiNQrGz/rzKcWlIYOfrRxubefAxqm+3HOImBaxLFRPxZTiIV9UPb7W6VjzVaPtxBViCRmQSTK+4Jpo5gev0FFDjpZH4XauU5q7qlT4C9OQTpBx/DXPGsAaTgO+ZNCh2/oE21upoD+RNMEonmsisG1+Kmhnc45sj0mfhvAtWHqcN2y5fvui2HcVjAkwUQn0uCVzZjYSCqXNDqabE/W8K5siPIPCLGB0zSr2J84w1RLQGVXk8l2xKirgtJTmSReshD7842JA3HKxHE9dNJ1G4XMk3z1of2uiU5eM7S6oI7vil96m1H+HMr3e4Elg7Oo6g+74Mc6HT7jWMNfFQ==</string>
+    <string name="scandit_v6_key_live">Ace/fq2BOQOwL4B3ngCcF9Igknkppw3+Vm0sW/h4oyqpZ4/5KToiqxNrOXmHKBLlUHkdL4wPT+6FTLWzPVUgogIVcLLkSXKswlnPiZci2ZPVXPW1eVYSf7s5AnKMByw0UB8QdVQOVANy5iow3IFo3gTJURasQi0QxSb1mwpWVITNiQbLgJ++DuPrAML8FmuUHvv2fMcXLMTVCwFIuo7gLrVIkYEoXl7Z3BoWEcP4RkPZe0HoOX2AoCnwz+3RtKH/ZklgB9c9AyZxfECPDxdgdPAk288LDep1zBqcdhQ7qgO4SLGQjJn23k3AhJWVB50Kf0eaUHSxRz2TyXLGpne4P/T0U2Zw+4fg9ynSwYWe5vv6vxICrlG9UmAPdeHQwZwNGnsUzBO1AWEehfhM0wgKY2Pcf/GdgAtVtcUuiSV/KXV0E00NNtV05Nks9hw+zAzk86GDPrvrck0gS68AYFprsFwKKoRZyWWPos8eKj4gy9VR6xQJPWrq2f7tqByAS57R5acfv0J5jh92eboFCXvlIqTQ1Pv6KwySpeUNaIT5mQGzryvnrksO+FvGbehSIPwjG3Xtt6ypJFSxsYr+RM4qxSx4B3Z51xBYivQTXuJLRYzGqz/nX4Rx3fTHPQn8hXZdNtfUBRBUN7oXRWFTZ8qrVQbvkGMqqlaUtJUrq4XOWrsK407Kbmos9/7rk0F6ZDLFDT5AEikCikYyfRdJpDg/EzWt9T/yZB0WkrjsR7LwsIbIXaIPN8OxIqbaGeCyHhL9bQ556QlbJvqb/RqLQkoRuZvPzt64Kz01jzaY2yAE/Q74RweWA2v4UQ==</string>
     <string name="chuc_mung_ban">Chúc mừng bạn!</string>
     <string name="khoe_ban_be">Khoe bạn bè</string>
     <string name="xem_kho_qua">Xem kho quà</string>
     <string name="tai_ngay">Tải ngay</string>
     <string name="app_de_tham_gia_chuong_trinh">app để tham gia chương trình</string>
     <string name="xem_lich_boc_tham">Xem lịch bốc thăm</string>
+    <string name="so_du_ví">Số dư ví</string>
+    <string name="mo_the_va_kich_hoat_vi_de_thanh_toan_moi_luc_moi_noi">Mở thẻ và kích hoạt ví để thanh toán mọi lúc mọi nơi</string>
+    <string name="mo_the_ngay">Mở thẻ ngay</string>
+    <string name="nap_tien">Nạp tiền</string>
+    <string name="giao_dich">Giao dịch</string>
+    <string name="so_du_the">Số dư thẻ</string>
+    <string name="thong_tin_the">Thông tin thẻ</string>
+    <string name="so_the">Số thẻ</string>
+    <string name="han_su_dung">Hạn sử dụng</string>
+    <string name="trang_thai_the">Trạng thái thẻ</string>
+    <string name="chua_dinh_danh">Chưa định danh</string>
+    <string name="dinh_danh_ngay">Định danh ngay</string>
+    <string name="thuong_mai_dien_tu">Thương mại điện tử</string>
 </resources>

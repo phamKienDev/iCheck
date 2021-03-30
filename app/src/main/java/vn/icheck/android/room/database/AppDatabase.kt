@@ -5,24 +5,18 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import dagger.hilt.DefineComponent
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.activities.chat.sticker.StickerDao
 import vn.icheck.android.activities.chat.sticker.StickerPackages
 import vn.icheck.android.activities.chat.sticker.StickerPackagesDao
 import vn.icheck.android.activities.chat.sticker.StickerView
-import vn.icheck.android.room.dao.ChatMessageDao
-import vn.icheck.android.activities.chat.v2.model.ICChatMessage
-import vn.icheck.android.fragments.message.model.ICMessage
-import vn.icheck.android.fragments.message.model.MessageDao
 import vn.icheck.android.model.chat.ChatConversation
 import vn.icheck.android.room.dao.*
 import vn.icheck.android.room.entity.*
 
 @Database(entities = [ICProvince::class, ICDistrict::class, ICWard::class, ICCart::class, ICQrScan::class,
-    ICMessage::class, ICChatMessage::class, StickerView::class, StickerPackages::class, ICMyFollowingPage::class,
-    ICOwnerPage::class, ICMeFollowUser::class, ICMyFriendIdUser::class, ICMyFriendInvitationUserId::class, ICFriendInvitationMeUserId::class,
-    ChatConversation::class, ICProductIdInCart::class], version = 25)
+    StickerView::class, StickerPackages::class, ICMyFollowingPage::class,ChatConversation::class,
+    ICOwnerPage::class, ICMeFollowUser::class, ICMyFriendIdUser::class, ICMyFriendInvitationUserId::class, ICFriendInvitationMeUserId::class, ICProductIdInCart::class], version = 26)
 @TypeConverters(ShopCartConverter::class, ItemsConverter::class)
 abstract class AppDatabase : RoomDatabase() {
 
@@ -31,8 +25,6 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun wardDao(): WardDao
     abstract fun cartDao(): CartDao
     abstract fun qrScanDao(): QrScanDao
-    abstract fun messageDao(): MessageDao
-    abstract fun chatMessageDao(): ChatMessageDao
     abstract fun stickerDao(): StickerDao
     abstract fun stickerPackagesDao(): StickerPackagesDao
     abstract fun pageFollowsDao(): PageFollowDao

@@ -266,7 +266,7 @@ class PageRepository : BaseInteractor() {
 
     suspend fun getMyOwnerPageV2(filterString: String?, limit: Int, offset: Int):ICResponse<ICListResponse<ICPage>> {
         val param = hashMapOf<String, Any>()
-        if (filterString != null) {
+        if (!filterString.isNullOrEmpty()) {
             param["filterString"] = filterString
         }
         param["limit"] = limit
@@ -275,19 +275,9 @@ class PageRepository : BaseInteractor() {
         return ICNetworkClient.getNewSocialApi().getMyOwnerPageV2(param)
     }
 
-    fun getMyFollowPage(filterString: String?, limit: Int, offset: Int, listener: ICNewApiListener<ICResponse<ICListResponse<ICPage>>>) {
-        val param = hashMapOf<String, Any>()
-        if (filterString != null) {
-            param["filterString"] = filterString
-        }
-        param["limit"] = limit
-        param["offset"] = offset
-        requestNewApi(ICNetworkClient.getNewSocialApi().getMyFollowPage(param), listener)
-    }
-
     suspend fun getMyFollowPageV2(filterString: String?, limit: Int, offset: Int): ICResponse<ICListResponse<ICPage>> {
         val param = hashMapOf<String, Any>()
-        if (filterString != null) {
+        if (!filterString.isNullOrEmpty()) {
             param["filterString"] = filterString
         }
         param["limit"] = limit

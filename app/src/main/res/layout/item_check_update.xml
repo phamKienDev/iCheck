@@ -7,7 +7,7 @@
     android:layout_marginBottom="@dimen/size_10"
     android:background="@android:color/white">
 
-    <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+    <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
         android:id="@+id/textView75"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -22,7 +22,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/imgImage" />
 
-    <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+    <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
         android:id="@id/btnUpdate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

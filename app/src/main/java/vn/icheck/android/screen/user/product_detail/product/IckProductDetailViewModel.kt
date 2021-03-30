@@ -10,11 +10,13 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.util.Util
 import com.google.gson.JsonObject
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withTimeoutOrNull
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.model.ICError
 import vn.icheck.android.base.model.ICMessageEvent
+import vn.icheck.android.base.viewmodel.BaseViewModel
 import vn.icheck.android.component.BottomModel
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.component.commentpost.ICCommentPostMore
@@ -58,7 +60,7 @@ import vn.icheck.android.screen.user.home_page.home.model.ICListHomeItem
 import vn.icheck.android.screen.user.product_detail.product.model.IckReviewSummaryModel
 import vn.icheck.android.util.kotlin.HideWebUtils
 
-class IckProductDetailViewModel : ViewModel() {
+class IckProductDetailViewModel : BaseViewModel() {
     private val productRepository = ProductInteractor()
     private val reviewInteraction = ProductReviewInteractor()
     private val settingInteraction = SettingRepository()
@@ -69,7 +71,6 @@ class IckProductDetailViewModel : ViewModel() {
     var isScan = false
     var productID = 0L
     var typeReload: String? = null
-
 
     private val layoutHelper = LayoutHelper()
 
@@ -114,7 +115,6 @@ class IckProductDetailViewModel : ViewModel() {
 
     private var totalRequest = 0
     private var totalError = 0
-
 
     val onShareLink = MutableLiveData<Any?>()
     val onShareLinkProduct = MutableLiveData<String>()
@@ -320,7 +320,6 @@ class IckProductDetailViewModel : ViewModel() {
             totalRequest = obj.layout?.size ?: 0
             totalError = 0
 
-
             for (layout in obj.layout ?: mutableListOf()) {
                 when (layout.id.toString()) {
                     "attachment-1" -> {
@@ -390,6 +389,9 @@ class IckProductDetailViewModel : ViewModel() {
                         if (!isUpdate) {
                             getContributionInfo(obj.data, layout)
                         }
+                    }
+                    "ecommerce-1" -> {
+                        if (!isUpdate) getProductsECommerce(layout)
                     }
                 }
             }
@@ -1082,6 +1084,41 @@ class IckProductDetailViewModel : ViewModel() {
             })
             onAddLayout.value = layout
         }
+    }
+
+    private fun getProductsECommerce(layout: ICLayout) {
+        layout.viewType = ICViewTypes.PRODUCT_ECCOMMERCE_TYPE
+        onAddLayout.value = layout
+
+        productRepository.getProductsECommerce(layout.request.url, productID, object : ICNewApiListener<ICResponse<ICListResponse<ICProductECommerce>>> {
+            override fun onSuccess(obj: ICResponse<ICListResponse<ICProductECommerce>>) {
+                if (!obj.data?.rows.isNullOrEmpty()) {
+                    layout.data = obj.data!!.rows
+                    layout.key = barcode
+                }
+
+                onUpdateLayout.value
+            }
+
+            override fun onError(error: ICResponseCode?) {
+                checkTotalError(layout)
+            }
+        })
+
+//        viewModelScope.launch {
+//            val productsECommerce = try {
+//                    productRepository.getProductsECommerce(layout.request.url, productID)
+//                } catch (e: Exception) {
+//                    null
+//                }
+//
+//            if (!productsECommerce?.data?.rows.isNullOrEmpty()) {
+//                layout.data = productsECommerce!!.data!!.rows
+//                layout.key = barcode
+//            }
+//
+//            onUpdateLayout.value
+//        }
     }
 
     @Synchronized

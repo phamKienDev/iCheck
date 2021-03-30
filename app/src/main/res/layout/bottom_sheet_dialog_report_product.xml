@@ -13,7 +13,7 @@
         android:layout_marginTop="31.8dp"
         app:srcCompat="@drawable/ic_feed_report_success" />
 
-    <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+    <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="18.6dp"

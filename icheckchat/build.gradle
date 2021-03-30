@@ -1,0 +1,55 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        viewBinding {
+            enabled = true
+        }
+    }
+
+    flavorDimensions 'default'
+
+    productFlavors {
+        dev {
+            resValue "string", "scandit_license_key", "2LhYrxig6g0rt//PrMHQsuVdVnq2z4XJDlYQdgBRUi0"
+        }
+        prod {
+            resValue "string", "scandit_license_key", "2LhYrxig6g0rt//PrMHQsuVdVnq2z4XJDlYQdgBRUi0"
+        }
+    }
+}
+
+dependencies {
+    implementation project(path: ':ichecklibs')
+    implementation project(path: ':icheckscanditv6')
+}

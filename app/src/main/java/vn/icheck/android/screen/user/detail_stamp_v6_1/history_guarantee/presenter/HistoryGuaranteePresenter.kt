@@ -27,7 +27,7 @@ class HistoryGuaranteePresenter(val view: IHistoryGuaranteeView) : BaseActivityP
             ""
         }
 
-        serial = serial.replace("Serial: ","").replace(" ","")
+        serial = serial?.replace("Serial: ","")?.replace(" ","")
 
         if (!serial.isNullOrEmpty()){
             getDataHistoryGuarantee(serial)

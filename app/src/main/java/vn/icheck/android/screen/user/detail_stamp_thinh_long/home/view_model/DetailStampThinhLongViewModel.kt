@@ -193,6 +193,10 @@ class DetailStampThinhLongViewModel : ViewModel() {
             listData.add(ICStampItem(ICViewType.ACCURACY_STAMP, stampDetail))
         }
 
+        if (!stampDetail?.product_link.isNullOrEmpty()) {
+            listData.add(ICStampItem(ICViewType.PRODUCT_ECCOMMERCE_TYPE, stampDetail!!.product_link))
+        }
+
         listData.add(ICStampItem(ICViewType.METHOD_STAMP))
 
         if (!barcodeProduct?.informations.isNullOrEmpty()) {

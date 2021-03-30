@@ -105,9 +105,8 @@ object APIConstants {
 
     object Settings {
         const val SETTING = "settings/client"
-        const val THEME = "settings/system/key/theme"
-        const val SETTING_SOCIAL = "social/api/cms/system-settings"
-        const val NOTIFY_SETTING = "social/api/notifications/turnoff"
+        const val SETTING_SOCIAL = "$PATH/cms/system-settings"
+        const val NOTIFY_SETTING = "$PATH/notifications/turnoff"
         const val CONFIG_UPDATE_APP = "$PATH/cms/config-update-app"
     }
 
@@ -201,7 +200,6 @@ object APIConstants {
         const val DELETE_BOOKMARK = "social/api/products/{id}/bookmark/delete"
         const val LIST_DISTRIBUTORS = "social/api/products/{id}/distributors"
         const val REGISTER_BUY_PRODUCT = "social/api/cms/order/purchase-reserved"
-
     }
 
     object Category {
@@ -549,6 +547,7 @@ object APIConstants {
     external fun trackingAppIdProd(): String
     external fun trackingAppIdDev(): String
     external fun themeSetting(): String
+    external fun productsECommerce(): String
 
     fun checkErrorString(code: String): String {
         return when (code) {

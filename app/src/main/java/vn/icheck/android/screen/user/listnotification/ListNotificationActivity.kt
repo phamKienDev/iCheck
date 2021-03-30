@@ -128,7 +128,7 @@ class ListNotificationActivity : BaseActivityMVVM(), IMessageListener {
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-                if (!recyclerView.canScrollVertically(1) && viewModel.updateNotify == 0 && viewModel.arrNotify.size < viewModel.totalNotify) {
+                if (!recyclerView.canScrollVertically(1) && viewModel.updateNotify == 0 && viewModel.arrNotify.size < viewModel.totalNotify && viewModel.arrNotify.size > 0) {
                     viewModel.getPosts()
                     viewModel.currentOffsetPost += 10
                 }

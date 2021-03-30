@@ -17,7 +17,7 @@ class CheckThemeViewModel: BaseViewModel() {
 
     suspend fun getThemeSetting() = settingRepository.getThemeSetting()
 
-    suspend fun getClientSetting(keyGroup: String, key: String?) = settingRepository.getClientSetting(keyGroup, key)
+    suspend fun getClientSetting(keyGroup: String, key: String? = null) = settingRepository.getClientSetting(keyGroup, key)
 
     suspend fun getRelationshipInformation() = pageRepository.getRelationshipInformation()
 

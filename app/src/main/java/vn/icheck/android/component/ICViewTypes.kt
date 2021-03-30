@@ -181,6 +181,8 @@ object ICViewTypes {
     const val MORALE_CAMPAIGN_TYPE = 104
     const val CAMPAIGN_365_TYPE = 105
     const val CAMPAIGN_TYPE = 106
+    const val PVCOMBANK_TYPE = 107
+    const val PRODUCT_ECCOMMERCE_TYPE = 108
 
 
     /*

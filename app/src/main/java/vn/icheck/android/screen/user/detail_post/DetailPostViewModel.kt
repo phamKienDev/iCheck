@@ -120,9 +120,6 @@ class DetailPostViewModel : ViewModel() {
         })
     }
 
-    suspend fun getPostDetailV2(id: Long){
-
-    }
 
     fun getListComment(isLoadMore: Boolean = false) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {

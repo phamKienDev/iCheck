@@ -62,7 +62,7 @@ class VerifiedPhonePresenter(val view: IVerifiedPhoneView) : BaseActivityPresent
             null
         }
 
-        serial = mSerial.replace("Serial: ", "").replace(" ", "")
+        serial = mSerial?.replace("Serial: ", "")?.replace(" ", "")
 
         if (serial.isNullOrEmpty()) {
             view.onErrorIntent()

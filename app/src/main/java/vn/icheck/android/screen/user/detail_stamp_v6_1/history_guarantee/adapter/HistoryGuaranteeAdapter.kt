@@ -114,7 +114,7 @@ class HistoryGuaranteeAdapter(val listener: IHistoryGuaranteeView, val vietNamLa
                     if (vietNamLanguage == false) {
                         "No Data"
                     } else {
-                        itemView.context.getString(R.string.du_lieu_trong)
+                        itemView.context.getString(R.string.khong_co_du_lieu)
                     }
                 }
                 else -> {

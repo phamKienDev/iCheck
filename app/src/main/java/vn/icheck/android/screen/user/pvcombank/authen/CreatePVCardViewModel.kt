@@ -6,6 +6,7 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.model.ICError
 import vn.icheck.android.base.model.ICMessageEvent
+import vn.icheck.android.base.viewmodel.BaseViewModel
 import vn.icheck.android.callback.ISettingListener
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SettingHelper
@@ -16,7 +17,7 @@ import vn.icheck.android.network.feature.pvcombank.PVcomBankRepository
 import vn.icheck.android.network.models.pvcombank.ICAuthenPVCard
 import vn.icheck.android.network.models.ICClientSetting
 
-class CreatePVCardViewModel : ViewModel() {
+class CreatePVCardViewModel : BaseViewModel() {
     private val interactor = PVcomBankRepository()
     val onLinkAuth = MutableLiveData<ICAuthenPVCard>()
 
@@ -41,6 +42,10 @@ class CreatePVCardViewModel : ViewModel() {
             }
         })
     }
+
+    fun checkHasCard(timeout: Long = 30000) = request(timeout) { interactor.checkHasCard() }
+
+    fun getFormAuth(timeout: Long = 30000) = request(timeout) { interactor.getFormAuth() }
 
     fun getLinkFormAuth() {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {

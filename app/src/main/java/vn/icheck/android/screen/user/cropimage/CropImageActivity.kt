@@ -21,6 +21,8 @@ import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
+import vn.icheck.android.util.ick.beGone
+import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.util.kotlin.ActivityUtils
 import java.io.File
 import java.io.FileOutputStream
@@ -43,6 +45,10 @@ class CropImageActivity : BaseActivityMVVM() {
     private val requestPermission = 1
 
     companion object {
+
+        var showBottom = false
+
+
         fun start(activity: Activity, filePath: String?, uri: Uri?, widthRatio: String?, heightRatio: String?, requestCode: Int? = null) {
             if (!widthRatio.isNullOrEmpty() && !heightRatio.isNullOrEmpty()) {
                 start(activity, filePath, uri, "$widthRatio:$heightRatio", requestCode)
@@ -106,6 +112,11 @@ class CropImageActivity : BaseActivityMVVM() {
 
         setupCropper()
         setupListener()
+        if (showBottom) {
+            layoutBottom.beVisible()
+        } else {
+            layoutBottom.beGone()
+        }
     }
 
     private fun setupCropper() {

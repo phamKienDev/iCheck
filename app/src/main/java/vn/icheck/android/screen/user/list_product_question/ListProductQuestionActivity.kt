@@ -67,12 +67,44 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
     private lateinit var childEmojiAdapter: EmojiAdapter
     private lateinit var permissionAdapter: CommentPermissionAdapter
 
-    private lateinit var takeMediaDialog: TakeMediaDialog
     private var unregistrar: Unregistrar? = null
 
     private val permissionImage = 1
     private val requestEditQuestion = 1
     private val requestLogin = 2
+
+    private val takeMediaListener = object : TakeMediaDialog.TakeImageListener {
+        override fun onPickMediaSucess(file: File) {
+            layoutImage.visibility = View.VISIBLE
+            layoutImage.tag = file
+            if (file.absolutePath.contains(".mp4")) {
+                btnPlay.beVisible()
+            } else {
+                btnPlay.beInvisible()
+            }
+            imgImage.loadImageFromVideoFile(file, null, SizeHelper.size4)
+            enableCamera(true)
+            checkSendStatus()
+        }
+
+        override fun onPickMuliMediaSucess(file: MutableList<File>) {
+        }
+
+        override fun onTakeMediaSuccess(file: File?) {
+            file?.let {
+                layoutImage.visibility = View.VISIBLE
+                layoutImage.tag = file
+                imgImage.loadImageFromVideoFile(file, null, SizeHelper.size4)
+                if (file.absolutePath.contains(".mp4")) {
+                    btnPlay.beVisible()
+                } else {
+                    btnPlay.beInvisible()
+                }
+                enableCamera(true)
+                checkSendStatus()
+            }
+        }
+    }
 
     companion object {
         fun start(activity: Activity, productId: Long, barcode: String?, isShowKeyboard: Boolean?, requestCode: Int?) {
@@ -112,7 +144,6 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
 
         setupListener()
         setupRecyclerView()
-        setUpTakeImage()
         setRecyclerViewPermission()
         setupSwipeLayout()
         setupViewModel()
@@ -161,39 +192,8 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
         rcvChildEmoji.adapter = childEmojiAdapter
     }
 
-    private fun setUpTakeImage() {
-        takeMediaDialog = TakeMediaDialog(object : TakeMediaDialog.TakeImageListener {
-            override fun onPickMediaSucess(file: File) {
-                layoutImage.visibility = View.VISIBLE
-                layoutImage.tag = file
-                if (file.absolutePath.contains(".mp4")) {
-                    btnPlay.beVisible()
-                } else {
-                    btnPlay.beInvisible()
-                }
-                imgImage.loadImageFromVideoFile(file, null, SizeHelper.size4)
-                enableCamera(true)
-                checkSendStatus()
-            }
-
-            override fun onPickMuliMediaSucess(file: MutableList<File>) {
-            }
-
-            override fun onTakeMediaSuccess(file: File?) {
-                file?.let {
-                    layoutImage.visibility = View.VISIBLE
-                    layoutImage.tag = file
-                    imgImage.loadImageFromVideoFile(file, null, SizeHelper.size4)
-                    if (file.absolutePath.contains(".mp4")) {
-                        btnPlay.beVisible()
-                    } else {
-                        btnPlay.beInvisible()
-                    }
-                    enableCamera(true)
-                    checkSendStatus()
-                }
-            }
-        })
+    private fun selectPicture() {
+        TakeMediaDialog.show(supportFragmentManager, takeMediaListener)
     }
 
     private fun setRecyclerViewPermission() {
@@ -361,7 +361,7 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
     private fun setPermission(obj: ICCommentPermission) {
         imgAvatar.tag = obj
         if (obj.type == Constant.PAGE) {
-            WidgetUtils.loadImageUrl(imgAvatar, obj.avatar, R.drawable.img_default_business_logo_big)
+            WidgetUtils.loadImageUrl(imgAvatar, obj.avatar, R.drawable.ic_business_v2)
         } else {
             WidgetUtils.loadImageUrl(imgAvatar, obj.avatar, R.drawable.ic_user_orange_circle)
         }
@@ -500,7 +500,7 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
             R.id.imgCamera -> {
                 val permission = arrayOf(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 if (PermissionHelper.checkPermission(this, permission, permissionImage)) {
-                    takeMediaDialog.show(supportFragmentManager, takeMediaDialog.tag)
+                    selectPicture()
                 }
             }
             R.id.tvActor -> {
@@ -543,7 +543,7 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
         when (requestCode) {
             permissionImage -> {
                 if (PermissionHelper.checkResult(grantResults)) {
-                    takeMediaDialog.show(supportFragmentManager, takeMediaDialog.tag)
+                    selectPicture()
                 } else {
                     showLongError(getString(R.string.khong_the_thuc_hien_tac_vu_vi_ban_chua_cap_quyen))
                 }
@@ -553,7 +553,6 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        takeMediaDialog.takeMediaHelper?.onActivityResult(requestCode, resultCode)
 
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == requestEditQuestion) {

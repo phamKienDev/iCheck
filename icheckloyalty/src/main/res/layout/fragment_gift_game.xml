@@ -26,7 +26,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_star_effect"
-        app:srcCompat="@drawable/bg_light_gift_game" />
+        app:srcCompat="@drawable/bg_light" />
 
     <LinearLayout
         android:id="@+id/img_frame"
@@ -78,7 +78,8 @@
                 android:id="@+id/imgBusiness"
                 android:layout_width="@dimen/size_46"
                 android:layout_height="@dimen/size_46"
-                android:src="@drawable/img_default_business_logo"
+                app:civ_circle_background_color="@color/white"
+                android:src="@drawable/ic_business_v2"
                 app:civ_border_color="@color/white"
                 app:civ_border_width="@dimen/size_2" />
         </androidx.cardview.widget.CardView>
