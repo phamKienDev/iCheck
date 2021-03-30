@@ -30,9 +30,9 @@ class BottomInfoHolder(parent: ViewGroup,val listener: ProductDetailListener) : 
             itemView.tvEmail.text = Html.fromHtml(itemView.context.getString(R.string.email_icheck, productContact.find { it.key == "product-contact.mail" }?.value ?: "cskh@icheck.vn"), Html.FROM_HTML_MODE_COMPACT)
             itemView.tvHotline.text = Html.fromHtml(itemView.context.getString(R.string.hotline_dang_ky, productContact.find { it.key == "product-contact.hot-line" }?.value ?: "0902195488"), Html.FROM_HTML_MODE_COMPACT)
         } else {
-            itemView.tvPhone.text = itemView.context.getString(R.string.tong_dai_icheck, Constant.formatPhone(productContact.find { it.key == "product-contact.phone" }?.value ?: "0902195488"))
-            itemView.tvEmail.text = itemView.context.getString(R.string.email_icheck, productContact.find { it.key == "product-contact.mail" }?.value ?: "cskh@icheck.vn")
-            itemView.tvHotline.text = itemView.context.getString(R.string.hotline_dang_ky, productContact.find { it.key == "product-contact.hot-line" }?.value ?: "0902195488")
+            itemView.tvPhone.text = Html.fromHtml(itemView.context.getString(R.string.tong_dai_icheck, Constant.formatPhone(productContact.find { it.key == "product-contact.phone" }?.value ?: "0902195488")))
+            itemView.tvEmail.text = Html.fromHtml(itemView.context.getString(R.string.email_icheck, productContact.find { it.key == "product-contact.mail" }?.value ?: "cskh@icheck.vn"))
+            itemView.tvHotline.text = Html.fromHtml(itemView.context.getString(R.string.hotline_dang_ky, productContact.find { it.key == "product-contact.hot-line" }?.value ?: "0902195488"))
         }
 
         itemView.tvPhone.setOnClickListener {
@@ -42,7 +42,7 @@ class BottomInfoHolder(parent: ViewGroup,val listener: ProductDetailListener) : 
             Constant.sendEmail(productContact.find { it.key == "product-contact.mail" }?.value ?: "cskh@icheck.vn")
         }
         itemView.tvHotline.setOnClickListener {
-            Constant.callPhone(productContact.find { it.key == "product-contact.phone" }?.value ?: "0902195488")
+            Constant.callPhone(productContact.find { it.key == "product-contact.hot-line" }?.value ?: "0902195488")
         }
     }
 }
