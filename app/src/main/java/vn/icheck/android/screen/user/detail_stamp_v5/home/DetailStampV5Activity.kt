@@ -478,6 +478,8 @@ class DetailStampV5Activity : BaseActivity<DetailStampV5Presenter>(), IDetailSta
         if (!obj.data?.product_link.isNullOrEmpty()) {
             layoutProductLink.beVisible()
             val adapter = object : RecyclerViewAdapter<ICProductLink>() {
+                override fun getItemCount() = if (listData.size > 3) 3 else listData.size
+
                 override fun viewHolder(parent: ViewGroup) = StampECommerceHolder(parent)
 
                 override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -495,7 +497,7 @@ class DetailStampV5Activity : BaseActivity<DetailStampV5Presenter>(), IDetailSta
 
             tvViewMore.visibleOrInvisible(adapter.getListData.size > 3)
             tvViewMore.setOnClickListener {
-                ActivityHelper.startActivity<ListProductsECommerceActivity>(this@DetailStampV5Activity, Constant.DATA_1, JsonHelper.toJson(adapter.getListData))
+                ActivityHelper.startActivity<ListProductsECommerceActivity>(this@DetailStampV5Activity, Constant.DATA_1, JsonHelper.toJson(obj.data?.product_link ?: mutableListOf()))
             }
         }
 
