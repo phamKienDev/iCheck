@@ -11,6 +11,8 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.hardware.camera2.CameraCaptureSession
 import android.net.*
 import android.net.wifi.WifiConfiguration
 import android.net.wifi.WifiManager
@@ -40,13 +42,17 @@ import com.scandit.datacapture.barcode.capture.*
 import com.scandit.datacapture.barcode.data.Barcode
 import com.scandit.datacapture.barcode.data.Symbology
 import com.scandit.datacapture.core.capture.DataCaptureContext
+import com.scandit.datacapture.core.capture.DataCaptureContextFrameListener
+import com.scandit.datacapture.core.capture.DataCaptureContextListener
 import com.scandit.datacapture.core.common.async.Callback
 import com.scandit.datacapture.core.common.geometry.FloatWithUnit
 import com.scandit.datacapture.core.common.geometry.MarginsWithUnit
 import com.scandit.datacapture.core.common.geometry.MeasureUnit
 import com.scandit.datacapture.core.data.FrameData
+import com.scandit.datacapture.core.internal.sdk.extensions.SurfaceRotation
 import com.scandit.datacapture.core.source.*
 import com.scandit.datacapture.core.ui.DataCaptureView
+import com.scandit.datacapture.core.ui.DataCaptureViewListener
 import kotlinx.android.synthetic.main.item_ads_product_grid.view.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -148,47 +154,49 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     private fun initDataCapture() {
         takeImageListener = object : TakeMediaDialog.TakeImageListener {
             override fun onPickMediaSucess(file: File) {
-                dataCaptureContext.setFrameSource(null){
-                    try {
-                        lifecycleScope.launch {
-//                            offCamera()
-                            _binding?.root?.setBackgroundColor(Color.BLACK)
-                            delay(200)
-                            val bm = BitmapFactory.decodeFile(file.getAbsolutePath())
-                            val width = bm.width
-                            val height = bm.height
-                            val ruler = if (width >= height) width else height
-                            if (ruler > 500) {
-                                val scale = ruler / 500
-                                val scaled = bm.scale(width / scale, height / scale)
-                                val source = BitmapFrameSource.of(scaled)
-                                source?.switchToDesiredState(FrameSourceState.ON, object : Callback<Boolean> {
-                                    override fun run(result: Boolean) {
-                                        if (result) {
-                                            dataCaptureContext.setFrameSource(source)
+                try {
+                    camera?.switchToDesiredState(FrameSourceState.OFF, object : Callback<Boolean> {
+                        override fun run(result: Boolean) {
+                            lifecycleScope.launch {
+                                _binding?.bg?.alpha = 1f
+                                delay(400)
+                                val bm = BitmapFactory.decodeFile(file.getAbsolutePath())
+                                val width = bm.width
+                                val height = bm.height
+                                val ruler = if (width >= height) width else height
+                                if (ruler > 500) {
+                                    val scale = ruler / 500
+                                    val scaled = bm.scale(width / scale, height / scale)
+                                    val source = BitmapFrameSource.of(scaled)
+                                    source?.switchToDesiredState(FrameSourceState.ON, object : Callback<Boolean> {
+                                        override fun run(result: Boolean) {
+                                            if (result) {
+                                                dataCaptureContext.setFrameSource(source)
+                                            }
                                         }
-                                    }
-                                })
+                                    })
 
 
-                            } else {
-                                val source = BitmapFrameSource.of(bm)
-                                source?.switchToDesiredState(FrameSourceState.ON, object : Callback<Boolean> {
-                                    override fun run(result: Boolean) {
-                                        if (result) {
-                                            dataCaptureContext.setFrameSource(source)
+                                } else {
+                                    val source = BitmapFrameSource.of(bm)
+                                    source?.switchToDesiredState(FrameSourceState.ON, object : Callback<Boolean> {
+                                        override fun run(result: Boolean) {
+                                            if (result) {
+                                                dataCaptureContext.setFrameSource(source)
+                                            }
                                         }
-                                    }
-                                })
+                                    })
+                                }
+                                scanImage.set(true)
                             }
-                            scanImage.set(true)
-                        }
 
-                    } catch (e: Exception) {
-                        resetCamera()
-                        logError(e)
-                        barcodeCapture.isEnabled = true
-                    }
+                        }
+                    })
+
+                } catch (e: Exception) {
+                    resetCamera()
+                    logError(e)
+                    barcodeCapture.isEnabled = true
                 }
 
             }
@@ -199,39 +207,44 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
             override fun onTakeMediaSuccess(file: File?) {
                 try {
-                    lifecycleScope.launch {
-//                        offCamera()
-                        _binding?.root?.setBackgroundColor(Color.BLACK)
-                        delay(200)
-                        val bm = BitmapFactory.decodeFile(file?.getAbsolutePath())
-                        val width = bm.width
-                        val height = bm.height
-                        val ruler = if (width >= height) width else height
-                        if (ruler > 500) {
-                            val scale = ruler / 500
-                            val scaled = bm.scale(width / scale, height / scale)
-                            val source = BitmapFrameSource.of(scaled)
-                            source?.switchToDesiredState(FrameSourceState.ON, object : Callback<Boolean> {
-                                override fun run(result: Boolean) {
-                                    if (result) {
-                                        dataCaptureContext.setFrameSource(source)
-                                    }
-                                }
-                            })
+                    camera?.switchToDesiredState(FrameSourceState.OFF, object : Callback<Boolean> {
+                        override fun run(result: Boolean) {
+                            lifecycleScope.launch {
+                                offCamera()
+                                _binding?.bg?.alpha = 1f
+                                delay(400)
+                                val bm = BitmapFactory.decodeFile(file?.getAbsolutePath())
+                                val width = bm.width
+                                val height = bm.height
+                                val ruler = if (width >= height) width else height
+                                if (ruler > 500) {
+                                    val scale = ruler / 500
+                                    val scaled = bm.scale(width / scale, height / scale)
+                                    val source = BitmapFrameSource.of(scaled)
+                                    source?.switchToDesiredState(FrameSourceState.ON, object : Callback<Boolean> {
+                                        override fun run(result: Boolean) {
+                                            if (result) {
+                                                dataCaptureContext.setFrameSource(source)
+                                            }
+                                        }
+                                    })
 
 
-                        } else {
-                            val source = BitmapFrameSource.of(bm)
-                            source?.switchToDesiredState(FrameSourceState.ON, object : Callback<Boolean> {
-                                override fun run(result: Boolean) {
-                                    if (result) {
-                                        dataCaptureContext.setFrameSource(source)
-                                    }
+                                } else {
+                                    val source = BitmapFrameSource.of(bm)
+                                    source?.switchToDesiredState(FrameSourceState.ON, object : Callback<Boolean> {
+                                        override fun run(result: Boolean) {
+                                            if (result) {
+                                                dataCaptureContext.setFrameSource(source)
+                                            }
+                                        }
+                                    })
                                 }
-                            })
+                                scanImage.set(true)
+                            }
                         }
-                        scanImage.set(true)
-                    }
+                    })
+
                 } catch (e: Exception) {
                     logError(e)
                     resetCamera()
@@ -242,6 +255,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
         val key = if (BuildConfig.FLAVOR.contentEquals("dev")) getString(R.string.scandit_v6_key_dev) else getString(R.string.scandit_v6_key_live)
         dataCaptureContext = DataCaptureContext.forLicenseKey(key)
+
         val settings = BarcodeCaptureSettings().apply {
             Symbology.values().forEach {
                 if (it != Symbology.MICRO_PDF417 && it != Symbology.PDF417) {
@@ -257,7 +271,6 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
         barcodeCapture.addListener(this)
         cameraSettings = BarcodeCapture.createRecommendedCameraSettings()
-        cameraSettings.shouldPreferSmoothAutoFocus = true
         cameraSettings.preferredResolution = VideoResolution.HD
         camera = Camera.getDefaultCamera(cameraSettings)
         resetCamera()
@@ -275,35 +288,51 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     }
 
     private fun resetCamera() {
-        if (camera != null) {
-            dataCaptureContext.setFrameSource(camera)
-            camera?.switchToDesiredState(FrameSourceState.ON);
+        lifecycleScope.launch {
+            delay(400)
+            if (camera != null) {
+                camera?.switchToDesiredState(FrameSourceState.ON, object : Callback<Boolean> {
+                    override fun run(result: Boolean) {
+                        if (result) {
+                            dataCaptureContext.setFrameSource(camera)
+                            barcodeCapture.isEnabled = true
+                            _binding?.bg?.alpha = 0f
+                        } else {
+                            resetCamera()
+                        }
+                    }
+                })
+
+            }
         }
-        _binding?.root?.setBackgroundColor(Color.TRANSPARENT)
-        barcodeCapture.isEnabled = true
     }
 
+
     private fun offCamera() {
-        camera?.switchToDesiredState(FrameSourceState.OFF, null);
+        camera?.switchToDesiredState(FrameSourceState.OFF, object : Callback<Boolean> {
+            override fun run(result: Boolean) {
+                if (!result) {
+                    offCamera()
+                }
+            }
+        })
     }
 
     override fun onSessionUpdated(barcodeCapture: BarcodeCapture, session: BarcodeCaptureSession, data: FrameData) {
         super.onSessionUpdated(barcodeCapture, session, data)
         if (scanImage.get()) {
             scanImage.set(false)
-            Handler().postDelayed({
-                if (session.newlyRecognizedBarcodes.isEmpty()){
-                    runOnUiThread {
-                        DialogHelper.showNotification(this, R.string.thong_bao, R.string.khong_thay_ma_vach,true,object :NotificationDialogListener{
+            if (session.newlyRecognizedBarcodes.isEmpty()) {
+                runOnUiThread {
+                    DialogHelper.showNotification(this, R.string.thong_bao, R.string.khong_thay_ma_vach, true, object : NotificationDialogListener {
 
-                            override fun onDone() {
-                                resetCamera()
-                            }
-                        })
+                        override fun onDone() {
+                            resetCamera()
+                        }
+                    })
 
-                    }
                 }
-            }, 200)
+            }
 
         }
     }
@@ -665,12 +694,13 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
-        barcodeCapture.isEnabled = false
+        dataCaptureContext.release()
+        offCamera()
     }
 
     override fun onPause() {
         super.onPause()
-        barcodeCapture.isEnabled = false
+        offCamera()
     }
 
     override fun onResume() {
