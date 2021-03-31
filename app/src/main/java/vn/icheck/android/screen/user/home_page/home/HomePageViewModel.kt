@@ -217,38 +217,20 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
     }
 
     private fun getFunc(layout: ICLayout, url: String) {
-        viewModelScope.launch {
-            val timeOut = if (url.contains(APIConstants.adsSocialHostOnly())) 3000L else 30000L
-
-            val response = withTimeoutOrNull(timeOut) {
-                try {
-                    functionInteractor.getHomeFunc(url)
-                } catch (e: Exception) {
-                    null
+        functionInteractor.getHomeFunc(url, object : ICNewApiListener<ICResponse<ICTheme>> {
+            override fun onSuccess(obj: ICResponse<ICTheme>) {
+                if (!obj.data?.secondary_functions.isNullOrEmpty()) {
+                    layout.data = mutableListOf(obj.data)
                 }
-            }
-
-            if (response?.statusCode == "200" || response?.code == 1) {
-                if (!response.data?.secondary_functions.isNullOrEmpty()) {
-                    layout.data = mutableListOf(response.data)
-                }
-
                 onUpdateData.value = layout
                 getPVCombank()
-            } else {
-                if (response?.statusCode == "P401") {
-                    SettingManager.setSessionIdPvcombank("")
-                    ICNetworkManager2.onEndOfPVCombankToken()
-                }
-
-                if (url.contains(APIConstants.adsSocialHostOnly())) {
-                    getFunc(layout, url.replace(APIConstants.adsSocialHostOnly(), APIConstants.adsOriginSocialHostOnly()))
-                } else {
-                    finishRequest(false)
-                    onUpdateData.value = layout
-                }
             }
-        }
+
+            override fun onError(error: ICResponseCode?) {
+                finishRequest(false)
+                onUpdateData.value = layout
+            }
+        })
     }
 
     fun getPVCombank() {
