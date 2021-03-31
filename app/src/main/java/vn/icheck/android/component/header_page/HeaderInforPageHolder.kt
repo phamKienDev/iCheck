@@ -17,6 +17,8 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
+import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
+import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.component.header_page.bottom_sheet_header_page.IListReportView
 import vn.icheck.android.component.header_page.bottom_sheet_header_page.MoreActionPageBottomSheet
@@ -88,8 +90,8 @@ class HeaderInforPageHolder(parent: ViewGroup, val view: IListReportView) : Recy
             itemView.viewbg.beGone()
         }
 
-        WidgetUtils.loadImageUrl(itemView.imgAvaPage, data.avatar, R.drawable.img_default_business_logo_big, R.drawable.img_default_business_logo_big)
-        WidgetUtils.loadImageUrl(itemView.user_avatar, data.avatar, R.drawable.img_default_business_logo_big, R.drawable.img_default_business_logo_big)
+        WidgetUtils.loadImageUrl(itemView.imgAvaPage, data.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
+        WidgetUtils.loadImageUrl(itemView.user_avatar, data.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
         if (data.isVerify) {
             val drawable = ContextCompat.getDrawable(itemView.context, R.drawable.ic_verified_18px)
             drawable?.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)

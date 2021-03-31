@@ -91,7 +91,7 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
 
     private fun setupHeader(obj: ICPost) {
         if (obj.page != null) {
-            WidgetUtils.loadImageUrl(itemView.imgLogo, obj.page?.avatar, R.drawable.img_default_business_logo_big)
+            WidgetUtils.loadImageUrl(itemView.imgLogo, obj.page?.avatar, R.drawable.ic_business_v2)
             itemView.imgLogo.layoutParams = ConstraintLayout.LayoutParams(SizeHelper.size40, SizeHelper.size40).also {
                 it.topMargin = 0
             }
@@ -273,7 +273,7 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
             itemView.divider39.beVisible()
 
             if (comments.page != null) {
-                WidgetUtils.loadImageUrl(itemView.imgAvatar, comments.page?.avatar, R.drawable.img_default_business_logo_big)
+                WidgetUtils.loadImageUrl(itemView.imgAvatar, comments.page?.avatar, R.drawable.ic_business_v2)
                 itemView.tvName.text = comments.page?.getName
                 itemView.imgLevel.beGone()
                 if (comments.page!!.isVerify) {

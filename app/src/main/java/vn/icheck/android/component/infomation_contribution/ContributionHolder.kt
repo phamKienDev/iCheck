@@ -77,7 +77,7 @@ class ContributionHolder(parent: ViewGroup) : BaseViewHolder<ContributrionModel>
         checkProductVerify(obj)
         if (obj.productVerify) {
             if (obj.manager != null) {
-                WidgetUtils.loadImageUrl(imgAvatarUser, obj.manager.avatar, R.drawable.img_default_business_logo_big, R.drawable.img_default_business_logo_big)
+                WidgetUtils.loadImageUrl(imgAvatarUser, obj.manager.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
                 tvNameUser.text = if (obj.manager.name.isNullOrEmpty())
                     itemView.context.getString(R.string.chua_cap_nhat)
                 else
