@@ -77,7 +77,8 @@
         tools:replace="android:allowBackup"
         tools:targetApi="m">
         <activity android:name=".screen.scan.MyQrActivity"></activity>
-        <activity android:name=".screen.scan.V6ScanditActivity" />
+        <activity android:name=".screen.scan.V6ScanditActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
         <activity android:name=".TestActivity" />
         <activity
             android:name=".screen.user.listproductecommerce.ListProductsECommerceActivity"
