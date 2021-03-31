@@ -2,11 +2,15 @@ package vn.icheck.android.screen.user.wall.mainuser
 
 import android.content.Intent
 import android.graphics.Color
+import android.text.Spannable
 import android.text.SpannableString
+import android.text.SpannableStringBuilder
 import android.text.style.ImageSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
@@ -39,6 +43,7 @@ import vn.icheck.android.room.database.AppDatabase
 import vn.icheck.android.screen.user.wall.ICWallModel
 import vn.icheck.android.screen.user.wall.holder.friend.FriendWallHolder
 import vn.icheck.android.util.ick.*
+
 
 class IckUserWallAdapter(val listener: IPostListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val listData = arrayListOf<ICViewModel>()
@@ -153,11 +158,15 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
             }
         }
 
+
         binding.tvName.apply {
-            text = if (!data?.getName()?.trim().isNullOrEmpty()) {
-                data?.getName()
-            } else {
+            text = if (data?.lastName.isNullOrEmpty() && data?.firstName.isNullOrEmpty()) {
                 data?.getPhoneOnly()
+            } else {
+                Constant.getName(data?.lastName, data?.firstName)
+//                val spannableString = SpannableString(Constant.getName(data?.lastName, data?.firstName) + "  ")
+//                spannableString.setSpan(ImageSpan(itemView.context, R.drawable.ic_verified_user_24dp, ImageSpan.ALIGN_BASELINE), spannableString.length - 1, spannableString.length, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+//                setText(spannableString, TextView.BufferType.SPANNABLE)
             }
 
             if (data?.kycStatus == 2) {

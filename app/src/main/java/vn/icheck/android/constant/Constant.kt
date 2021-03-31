@@ -462,8 +462,8 @@ object Constant {
     }
 
     fun getName(lastName: String?, firstName: String?): String {
-        return if (!lastName.isNullOrEmpty()) {
-            lastName + if (!firstName.isNullOrEmpty()) " $firstName" else ""
+        return if (!lastName.isNullOrEmpty() || !firstName.isNullOrEmpty()) {
+            "${lastName ?: ""} ${firstName ?: ""}".trim()
         } else {
             ICheckApplication.getString(R.string.dang_cap_nhat)
         }
