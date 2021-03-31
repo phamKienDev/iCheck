@@ -51,7 +51,7 @@ class  ManagerUserFollowActivity : BaseActivityMVVM(), IUserFollowWallView {
     }
 
     private fun initView() {
-        txtTitle.text = "Quản lý danh sách người theo dõi"
+        txtTitle.setText(R.string.quan_ly_danh_sach_nguoi_theo_doi)
     }
 
     private fun initSwipeLayput() {

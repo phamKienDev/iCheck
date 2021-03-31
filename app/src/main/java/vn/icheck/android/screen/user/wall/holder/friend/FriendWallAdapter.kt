@@ -35,14 +35,22 @@ class FriendWallAdapter(val listData: MutableList<RowsItem>) : RecyclerView.Adap
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: RowsItem) {
             WidgetUtils.loadImageUrl(itemView.imgAvatar, item.avatar, R.drawable.ic_square_avatar_default)
-            itemView.tvName.text = if (!item.lastName.isNullOrEmpty() && !item.firstName.isNullOrEmpty()) {
-                item.lastName + " " + item.firstName
-            } else if (!item.firstName.isNullOrEmpty()) {
-                item.firstName
-            } else if (!item.lastName.isNullOrEmpty()) {
-                item.lastName
-            } else {
-                itemView.context.getString(R.string.dang_cap_nhat)
+            itemView.tvName.apply {
+                text = if (!item.lastName.isNullOrEmpty() && !item.firstName.isNullOrEmpty()) {
+                    item.lastName + " " + item.firstName
+                } else if (!item.firstName.isNullOrEmpty()) {
+                    item.firstName
+                } else if (!item.lastName.isNullOrEmpty()) {
+                    item.lastName
+                } else {
+                    itemView.context.getString(R.string.dang_cap_nhat)
+                }
+
+                if (item.kycStatus == 2) {
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_24dp, 0)
+                } else {
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                }
             }
         }
     }

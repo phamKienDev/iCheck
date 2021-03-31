@@ -190,9 +190,6 @@ data class IckUserInfoData @JvmOverloads constructor(
         @field:SerializedName("wall")
         val wall: Wall? = null,
 
-        @field:SerializedName("kycStatus")
-        var kycStatus: Int? = null,
-
         @field:SerializedName("status")
         val status: Int? = null,
 
@@ -206,7 +203,9 @@ data class IckUserInfoData @JvmOverloads constructor(
         val myFollowingUserCount:Int? = null,
 
         @field:SerializedName("userFollowingMeCount")
-        val userFollowingMeCount:Int? = null
+        val userFollowingMeCount:Int? = null,
+
+        @Expose var kycStatus: Int? = null // 0= chưa gửi kyc, 1=đã gửi kyc, 2=kyc đã verify, 3=kyc bị từ chối
 
 ) : Parcelable {
 

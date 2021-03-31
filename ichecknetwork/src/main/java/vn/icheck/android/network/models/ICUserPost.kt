@@ -12,6 +12,7 @@ data class ICUserPost(
         @Expose var lastName: String?,
         @Expose var rank: ICRankOfUser,
         @Expose var userPrivacyConfig: ICUserPrivacyConfig? = null,
+        @Expose val kycStatus: Int? = null // 0= chưa gửi kyc, 1=đã gửi kyc, 2=kyc đã verify, 3=kyc bị từ chối
         ): Serializable {
     val getName: String
         get() {
