@@ -28,6 +28,7 @@
             android:layout_width="@dimen/size_40"
             android:layout_height="@dimen/size_40"
             android:layout_marginStart="@dimen/size_8"
+            app:civ_circle_background_color="@color/white"
             android:layout_marginLeft="@dimen/size_8"
             android:layout_marginTop="@dimen/size_8"
             android:layout_marginBottom="@dimen/size_10"
@@ -36,7 +37,7 @@
             app:layout_constraintBottom_toBottomOf="@id/imgImage"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imgImage"
-            tools:src="@drawable/img_default_business_logo" />
+            tools:src="@drawable/ic_business_v2" />
 
         <LinearLayout
             android:id="@+id/layoutName"

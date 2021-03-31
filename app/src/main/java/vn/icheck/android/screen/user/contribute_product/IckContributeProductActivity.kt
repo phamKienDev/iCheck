@@ -11,9 +11,6 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
-import android.os.Environment
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
@@ -28,8 +25,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.observe
 import androidx.work.WorkInfo
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DecodeFormat
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.gson.Gson
 import com.google.gson.internal.LinkedTreeMap
 import com.google.gson.reflect.TypeToken
@@ -42,9 +37,6 @@ import vn.icheck.android.component.take_media.TakeMediaDialog
 import vn.icheck.android.constant.*
 import vn.icheck.android.databinding.ActivityIckContributeProductBinding
 import vn.icheck.android.helper.DialogHelper
-import vn.icheck.android.lib.keyboard.KeyboardVisibilityEvent
-import vn.icheck.android.lib.keyboard.KeyboardVisibilityEventListener
-import vn.icheck.android.util.toICBaseResponse
 import vn.icheck.android.screen.user.contribute_product.adapter.*
 import vn.icheck.android.screen.user.contribute_product.dialog.IckCategoryBottomDialog
 import vn.icheck.android.screen.user.contribute_product.viewmodel.CategoryAttributesModel
@@ -52,12 +44,12 @@ import vn.icheck.android.screen.user.contribute_product.viewmodel.ImageModel
 import vn.icheck.android.screen.user.cropimage.CropImageActivity
 import vn.icheck.android.ui.layout.CustomLinearLayoutManager
 import vn.icheck.android.util.ick.*
+import vn.icheck.android.util.toICBaseResponse
 import java.io.File
 import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
 import kotlin.math.abs
 
 const val CONTRIBUTE_REQUEST = 1
@@ -121,7 +113,7 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
 
     var currentMediaDialog: TakeMediaDialog? = null
 
-    private val takeImageDialog = TakeMediaDialog(takeImageListener, false, cropImage = true, isVideo = false)
+    private val takeImageDialog = TakeMediaDialog(takeImageListener, false, cropImage = true, isVideo = false, showBottom = true)
 
     val ickContributeProductViewModel: IckContributeProductViewModel by viewModels()
     val ickCategoryBottomDialog = IckCategoryBottomDialog()

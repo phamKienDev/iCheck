@@ -91,7 +91,9 @@ class IckLoginActivity : BaseCoroutineActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ick_login)
         nav_host_fragment.view?.background = ResourcesCompat.getDrawable(resources, R.drawable.ick_bg_top_corner_20, null)
-        EventBus.getDefault().register(this)
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this)
+        }
         btn_exit.setOnClickListener {
             setResult(Activity.RESULT_CANCELED)
             finish()
@@ -235,8 +237,9 @@ class IckLoginActivity : BaseCoroutineActivity() {
         }
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onMessageEvent(event: ICMessageEvent) {
+    override fun onMessageEvent(event: ICMessageEvent) {
+        super.onMessageEvent(event)
+         
         try {
             if (event.type == ICMessageEvent.Type.ON_LOG_IN) {
                 setResult(Activity.RESULT_OK)

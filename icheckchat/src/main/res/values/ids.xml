@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="layoutParent" type="id" />
+    <item name="imgGift" type="id" />
+    <item name="bgCover" type="id" />
+    <item name="imgChecked" type="id" />
+    <item name="tvCount" type="id" />
+    <item name="tvTimeDuration" type="id" />
+</resources>

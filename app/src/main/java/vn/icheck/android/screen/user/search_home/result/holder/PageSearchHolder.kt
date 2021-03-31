@@ -31,7 +31,7 @@ class PageSearchHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflat
     private var isFollow: Boolean? = null
 
     fun bind(obj: ICPageQuery) {
-        WidgetUtils.loadImageUrl(itemView.img_avatar, obj.avatar, R.drawable.img_default_business_logo_big)
+        WidgetUtils.loadImageUrl(itemView.img_avatar, obj.avatar, R.drawable.ic_business_v2)
         itemView.tv_name.text = if (!obj.name.isNullOrEmpty()) {
             obj.name
         } else {

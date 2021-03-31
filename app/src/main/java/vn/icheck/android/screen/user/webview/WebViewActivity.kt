@@ -3,6 +3,7 @@ package vn.icheck.android.screen.user.webview
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -21,6 +22,7 @@ import androidx.fragment.app.FragmentActivity
 import kotlinx.android.synthetic.main.activity_web_view.*
 import kotlinx.android.synthetic.main.toolbar_light_blue.*
 import org.greenrobot.eventbus.EventBus
+import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
@@ -34,6 +36,7 @@ import vn.icheck.android.screen.user.pvcombank.authen.CreatePVCardActivity
 import vn.icheck.android.screen.user.pvcombank.home.HomePVCardActivity
 import vn.icheck.android.screen.user.pvcombank.listcard.ListPVCardActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
+import java.net.URL
 import java.util.*
 import java.util.regex.Pattern
 
@@ -84,6 +87,21 @@ class WebViewActivity : BaseActivityMVVM() {
                 intent.putExtra(Constant.DATA_3, title)
 
             ActivityUtils.startActivity(activity, intent)
+        }
+
+        fun openChrome(link: String?) {
+            if (!link.isNullOrEmpty()) {
+                ICheckApplication.currentActivity()?.let { activity ->
+                    try {
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        intent.setPackage("com.android.chrome")
+                        ActivityHelper.startActivity(activity, intent)
+                    } catch (ex: ActivityNotFoundException) {
+                        start(activity, link)
+                    }
+                }
+            }
         }
     }
 
@@ -236,7 +254,7 @@ class WebViewActivity : BaseActivityMVVM() {
                         when (permission) {
                             PermissionRequest.RESOURCE_VIDEO_CAPTURE -> {
                                 if (PermissionHelper.checkPermission(this@WebViewActivity, Manifest.permission.CAMERA, requestPermission)) {
-                                    request.grant(arrayOf(permission))
+                                    confirmAllowCamera(request)
                                 } else {
                                     webViewRequest = request
                                 }
@@ -276,6 +294,22 @@ class WebViewActivity : BaseActivityMVVM() {
                 return super.onShowFileChooser(webView, filePathCallback, fileChooserParams)
             }
         }
+    }
+
+    private fun confirmAllowCamera(request: PermissionRequest?) {
+        DialogHelper.showConfirm(this@WebViewActivity, null, "'${URL(webView.url).host}' muốn sử dụng camera của bạn", "Từ chối", "Cho phép", true, null, R.color.blue, object : ConfirmDialogListener {
+            override fun onDisagree() {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    request?.deny()
+                }
+            }
+
+            override fun onAgree() {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    request?.grant(request.resources)
+                }
+            }
+        })
     }
 
     private fun handleNewUrl(view: WebView?, uri: Uri) {
@@ -376,7 +410,7 @@ class WebViewActivity : BaseActivityMVVM() {
             if (requestCode == requestPermission) {
                 if (webViewRequest != null) {
                     if (PermissionHelper.checkResult(grantResults)) {
-                        webViewRequest!!.grant(webViewRequest!!.resources)
+                        confirmAllowCamera(webViewRequest)
                     } else {
                         webViewRequest!!.deny()
                     }

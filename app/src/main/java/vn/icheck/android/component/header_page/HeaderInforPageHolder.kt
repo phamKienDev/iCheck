@@ -26,7 +26,6 @@ import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.network.models.ICMedia
 import vn.icheck.android.network.models.ICPageOverview
 import vn.icheck.android.network.models.feed.ICAvatarOfFriend
-import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 import vn.icheck.android.screen.user.user_follow_page.UserFollowPageActivity
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
@@ -146,7 +145,9 @@ class HeaderInforPageHolder(parent: ViewGroup, val view: IListReportView) : Recy
 
         itemView.tvChinh.setOnClickListener {
             if (!itemView.tvChinh.text.contains("Theo dõi")) {
-                SocialChatActivity.createPageChat(it.context, data.id)
+                ListConversationFragment.finishAllChat()
+                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_FINISH_ALL_CHAT))
+                ChatSocialDetailActivity.createRoomChat(it.context, data.id ?: -1, "page")
             } else {
                 view.followAndUnFollowPage(data)
             }

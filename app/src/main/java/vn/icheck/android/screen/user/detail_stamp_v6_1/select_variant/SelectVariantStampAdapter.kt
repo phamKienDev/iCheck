@@ -1,7 +1,6 @@
 package vn.icheck.android.screen.user.detail_stamp_v6_1.select_variant
 
 import android.annotation.SuppressLint
-import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -159,7 +158,7 @@ class SelectVariantStampAdapter constructor(val view: ISelectVariantView) : Recy
             itemView.txtMessage.text = if (errorCode.isNotEmpty())
                 errorCode
             else
-                itemView.context.getString(R.string.du_lieu_trong)
+                itemView.context.getString(R.string.khong_co_du_lieu)
         }
     }
 

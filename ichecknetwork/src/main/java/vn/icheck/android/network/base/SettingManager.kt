@@ -105,6 +105,7 @@ object SettingManager {
     fun clear() {
         setUserCoin(0L)
         setRankLevel(1)
+        setSessionIdPvcombank("")
     }
 
     var domainQr: List<ICClientSetting>
@@ -121,6 +122,14 @@ object SettingManager {
         }
         set(value) {
             SPStaticUtils.put(TagConstants.TRUST_DOMAIN, JsonHelper.toJson(value))
+        }
+
+    var productContact: List<ICClientSetting>
+        get() {
+            return JsonHelper.parseDomainQr(SPStaticUtils.getString(TagConstants.PRODUCT_CONTACT))
+        }
+        set(value) {
+            SPStaticUtils.put(TagConstants.PRODUCT_CONTACT, JsonHelper.toJson(value))
         }
 
     var configUpdateApp: ICConfigUpdateApp?

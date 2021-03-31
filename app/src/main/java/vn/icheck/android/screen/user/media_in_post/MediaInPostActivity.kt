@@ -136,7 +136,7 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
 
         viewModel.onPostData.observe(this, {
             if (it.page != null) {
-                WidgetUtils.loadImageUrl(imgAvatar, it.page!!.avatar, R.drawable.img_default_business_logo)
+                WidgetUtils.loadImageUrl(imgAvatar, it.page!!.avatar, R.drawable.ic_business_v2)
                 if (it.page!!.isVerify) {
                     tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
                 } else {

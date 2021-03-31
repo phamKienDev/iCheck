@@ -6,19 +6,17 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_load_more.view.*
-import kotlinx.android.synthetic.main.item_user_follow.view.*
 import kotlinx.android.synthetic.main.item_message_campaign.view.*
-import kotlinx.android.synthetic.main.item_user_follow.view.imgAvatar
-import kotlinx.android.synthetic.main.item_user_follow.view.tvName
+import kotlinx.android.synthetic.main.item_user_follow.view.*
 import vn.icheck.android.R
 import vn.icheck.android.RelationshipManager
+import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.constant.MAIN_USER
 import vn.icheck.android.constant.MAIN_USER_FRIEND
 import vn.icheck.android.constant.MAIN_USER_NOT_FRIEND
 import vn.icheck.android.loyalty.base.setGone
 import vn.icheck.android.network.models.wall.ICUserFollowWall
-import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
 import vn.icheck.android.util.checkTypeUser
 import vn.icheck.android.util.ick.beGone
@@ -144,7 +142,8 @@ class UserFollowAdapter constructor(val view: IUserFollowWallView) : RecyclerVie
                 }
 
                 holder.itemView.btnMessenger.setOnClickListener {
-                    SocialChatActivity.createRoomChat(holder.itemView.context, item.id)
+//                    SocialChatActivity.createRoomChat(holder.itemView.context, item.id)
+                    ChatSocialDetailActivity.createRoomChat(holder.itemView.context, item.id ?: -1, "user")
                 }
             }
             is LoadHolder -> {
@@ -167,7 +166,14 @@ class UserFollowAdapter constructor(val view: IUserFollowWallView) : RecyclerVie
     private class ViewHolder constructor(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(item: ICUserFollowWall) {
             itemView.imgAvatar.setData(item.avatar, item.rank?.level, R.drawable.ic_square_avatar_default)
-            itemView.tvName.text = item.getUserName()
+            itemView.tvName.apply {
+                text = item.getUserName()
+                if (item.kycStatus == 2) {
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_24dp, 0)
+                } else {
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                }
+            }
 
             if (item.relateFriendCount > 0) {
                 itemView.tv_related_friend.beVisible()

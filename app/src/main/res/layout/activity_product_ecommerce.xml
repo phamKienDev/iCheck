@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="@color/white">
+
+    <include
+        android:id="@id/layoutToolbar"
+        layout="@layout/toolbar_light_blue" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@id/swipeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutToolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@id/edtSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginTop="@dimen/size_10"
+                android:layout_marginEnd="@dimen/size_12"
+                android:background="@drawable/bg_corner_4_gray"
+                android:drawableStart="@drawable/ic_search_gray_24dp"
+                android:drawableLeft="@drawable/ic_search_gray_24dp"
+                android:drawablePadding="@dimen/size_8"
+                android:gravity="center_vertical"
+                android:hint="@string/tim_kiem_trong_danh_sach_nay"
+                android:paddingStart="@dimen/size_8"
+                android:paddingTop="@dimen/size_5"
+                android:paddingEnd="@dimen/size_8"
+                android:paddingBottom="@dimen/size_5"
+                android:textAlignment="gravity"
+                android:textColor="@color/collection_product_name"
+                android:textColorHint="@color/darkGray2"
+                android:textSize="16sp"
+                tools:visibility="gone" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:descendantFocusability="blocksDescendants"
+                tools:listitem="@layout/item_friend_request"
+                tools:visibility="gone" />
+        </LinearLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_4"
+        android:background="@drawable/shadow_bottom"
+        app:layout_constraintTop_toBottomOf="@id/layoutToolbar" />
+</androidx.constraintlayout.widget.ConstraintLayout>

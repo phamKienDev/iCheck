@@ -150,9 +150,9 @@ class AdsMoreAdapter : RecyclerViewCustomAdapter<ICAdsData>() {
             }
 
             if (!obj.owner?.avatar?.content.isNullOrEmpty()) {
-                WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.owner?.avatar?.content, R.drawable.img_default_business_logo)
+                WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.owner?.avatar?.content, R.drawable.ic_business_v2)
             } else {
-                WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.owner?.avatar?.content, R.drawable.img_default_business_logo)
+                WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.owner?.avatar?.content, R.drawable.ic_business_v2)
             }
 
 

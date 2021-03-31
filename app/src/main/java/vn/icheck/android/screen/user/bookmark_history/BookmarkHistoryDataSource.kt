@@ -2,6 +2,7 @@ package vn.icheck.android.screen.user.bookmark_history
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagingSource
+import androidx.paging.PagingState
 import vn.icheck.android.model.bookmark.BookmarkHistoryResponse
 import vn.icheck.android.network.api.ICKApi
 import javax.inject.Inject
@@ -24,6 +25,13 @@ class BookmarkHistoryDataSource @Inject constructor(val ickApi: ICKApi):PagingSo
 
         } catch (e: Exception) {
             LoadResult.Error(e)
+        }
+    }
+
+    override fun getRefreshKey(state: PagingState<Int, BookmarkHistoryResponse>): Int? {
+        return state.anchorPosition?.let { anchorPosition ->
+            val anchorPage = state.closestPageToPosition(anchorPosition)
+            anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
         }
     }
 }

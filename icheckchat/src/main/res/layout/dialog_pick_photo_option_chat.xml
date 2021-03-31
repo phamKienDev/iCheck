@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp"
+    android:paddingBottom="12dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_corner_8_white"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:text="@string/chon_anh"
+            android:visibility="gone"
+            android:textColor="#b4b4b4"
+            android:textSize="14sp"
+            android:textStyle="normal" />
+
+        <View style="@style/Line_Gray.Horizontal" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtCamera"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_white_top_corners_10"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center"
+            android:text="@string/chup_anh"
+            android:textColor="@color/lightBlue"
+            android:textSize="18sp"
+            android:textStyle="normal" />
+
+        <View style="@style/Line_Gray.Horizontal" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtDocument"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_white_bottom_corners_8"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center"
+            android:text="@string/quay_video"
+            android:textColor="@color/lightBlue"
+            android:textSize="18sp"
+            android:textStyle="normal" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtCancel"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/btn_white_corners_8"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:gravity="center"
+        android:text="@string/bo_qua"
+        android:textColor="@color/lightBlue"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+</LinearLayout>

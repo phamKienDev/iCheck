@@ -63,7 +63,7 @@
             app:civ_border_width="0.5dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imgImage"
-            tools:src="@drawable/img_default_business_logo" />
+            tools:src="@drawable/ic_business_v2" />
 
 
         <LinearLayout

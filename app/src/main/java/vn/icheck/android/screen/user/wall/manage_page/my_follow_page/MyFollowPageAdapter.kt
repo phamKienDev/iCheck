@@ -22,13 +22,6 @@ import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class MyFollowPageAdapter(val typeHome: Boolean, callback: IRecyclerViewCallback? = null) : RecyclerViewAdapter<ICPage>(callback) {
-    var dialog: MyFollowPageDialog? = null
-
-    fun dismissDialog() {
-        dialog?.dismiss()
-        dialog = null
-    }
-
     fun deleteItem(pageId: Long) {
         for (i in listData.size - 1 downTo 0) {
             if (listData[i].id == pageId) {
@@ -71,7 +64,7 @@ class MyFollowPageAdapter(val typeHome: Boolean, callback: IRecyclerViewCallback
                 itemView.imgMore.beVisible()
             }
 
-            WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.avatar, R.drawable.img_default_business_logo_big, R.drawable.img_default_business_logo_big)
+            WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
             itemView.tvName.text = obj.name ?: ""
             itemView.tvCountFollow.text = if (obj.followCount ?: 0 > 0) {
                 "${TextHelper.formatMoneyPhay(obj.followCount)} Người đang theo dõi"

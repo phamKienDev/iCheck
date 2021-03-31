@@ -3,20 +3,16 @@ package vn.icheck.android.screen.user.list_friend_in_wall
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_load_more.view.*
-import kotlinx.android.synthetic.main.item_list_friend_of_wall.view.*
 import kotlinx.android.synthetic.main.item_error_history_topup.view.*
-import kotlinx.android.synthetic.main.item_friend_in_wall.view.*
-import kotlinx.android.synthetic.main.item_list_friend_of_wall.view.tvName
+import kotlinx.android.synthetic.main.item_list_friend_of_wall.view.*
+import kotlinx.android.synthetic.main.item_load_more.view.*
 import vn.icheck.android.R
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.network.models.wall.ICUserFollowWall
-import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 
 class ListFriendOfWallAdapter(val view: ListFriendListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -215,7 +211,14 @@ class ListFriendOfWallAdapter(val view: ListFriendListener) : RecyclerView.Adapt
             }
 
             itemView.avatar_friend.setData(item.avatar, item.rank?.level, R.drawable.ic_square_avatar_default)
-            itemView.tvName.text = item.getUserName()
+            itemView.tvName.apply {
+                text = item.getUserName()
+                if (item.kycStatus == 2) {
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_24dp, 0)
+                } else {
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                }
+            }
         }
     }
 

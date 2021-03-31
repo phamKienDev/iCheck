@@ -79,7 +79,7 @@ object ContactUtils {
                 ContactsContract.AUTHORITY,
                 cntProOper
             ) //apply above data insertion into contacts list
-            return Integer.parseInt(results[0].uri.lastPathSegment!!)
+            return Integer.parseInt(results[0].uri?.lastPathSegment.toString())
         } catch (exp: RemoteException) {
             //logs;
             return -1

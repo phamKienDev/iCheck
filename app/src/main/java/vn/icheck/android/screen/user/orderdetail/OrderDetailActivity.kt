@@ -8,7 +8,6 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import kotlinx.android.synthetic.main.activity_order_detail.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.activities.chat.v2.ChatV2Activity
 import vn.icheck.android.base.activity.BaseActivity
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
@@ -281,7 +280,7 @@ class OrderDetailActivity : BaseActivity<OrderDetailPresenter>(), IOrderDetailVi
                     }
                     R.id.btnActionTwo -> {
                         adapter.getOrderDetail?.shop?.let { shop ->
-                            ChatV2Activity.createChatUser(shop.id, this)
+//                            ChatV2Activity.createChatUser(shop.id, this)
                         }
                     }
                 }

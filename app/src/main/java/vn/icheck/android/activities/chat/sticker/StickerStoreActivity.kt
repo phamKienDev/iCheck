@@ -10,8 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.R
-import vn.icheck.android.activities.chat.v2.ChatV2Activity
-import vn.icheck.android.room.database.AppDatabase
 
 class StickerStoreActivity : AppCompatActivity() {
 

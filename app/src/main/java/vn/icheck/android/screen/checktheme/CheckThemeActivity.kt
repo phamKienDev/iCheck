@@ -21,6 +21,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
+import vn.icheck.android.chat.icheckchat.sdk.ChatSdk
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.constant.ICK_TOKEN
 import vn.icheck.android.helper.DialogHelper
@@ -30,6 +31,7 @@ import vn.icheck.android.helper.ShareSessionToModule
 import vn.icheck.android.loyalty.helper.StatusBarHelper
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.models.*
+import vn.icheck.android.network.util.DeviceUtils
 import vn.icheck.android.screen.user.welcome.WelcomeActivity
 import vn.icheck.android.util.ick.openAppInGooglePlay
 import java.io.File
@@ -104,11 +106,14 @@ class CheckThemeActivity : BaseActivityMVVM() {
     }
 
     private fun getThemeSetting() {
+        ChatSdk.shareIntent(SessionManager.session.firebaseToken, SessionManager.session.user?.id, SessionManager.session.token, DeviceUtils.getUniqueDeviceId())
+
         lifecycleScope.launch {
             var themeSettingRes: ICResponse<ICThemeSetting>? = null
             var domainMarketingRes: ICResponse<ICListResponse<ICClientSetting>>? = null
             var domainVerifyRes: ICResponse<ICListResponse<ICClientSetting>>? = null
             var appInitRes: ICResponse<ICListResponse<ICClientSetting>>? = null
+            var productContactRes: ICResponse<ICListResponse<ICClientSetting>>? = null
             var relationshipInformationRes: ICResponse<ICRelationshipsInformation>? = null
             var configUpdateAppRes: ICResponse<ICConfigUpdateApp>? = null
 
@@ -121,19 +126,25 @@ class CheckThemeActivity : BaseActivityMVVM() {
                     },
                     lifecycleScope.async {
                         try {
-                            domainMarketingRes = withTimeoutOrNull(5000L) { viewModel.getClientSetting("domain-marketing", null) }
+                            domainMarketingRes = withTimeoutOrNull(5000L) { viewModel.getClientSetting("domain-marketing") }
                         } catch (e: Exception) {
                         }
                     },
                     lifecycleScope.async {
                         try {
-                            domainVerifyRes = withTimeoutOrNull(5000L) { viewModel.getClientSetting("domain-verify", null) }
+                            domainVerifyRes = withTimeoutOrNull(5000L) { viewModel.getClientSetting("domain-verify") }
                         } catch (e: Exception) {
                         }
                     },
                     lifecycleScope.async {
                         try {
                             appInitRes = withTimeoutOrNull(5000L) { viewModel.getClientSetting("app-init", "app-default-scheme") }
+                        } catch (e: Exception) {
+                        }
+                    },
+                    lifecycleScope.async {
+                        try {
+                            productContactRes = withTimeoutOrNull(5000L) { viewModel.getClientSetting("product-contact") }
                         } catch (e: Exception) {
                         }
                     },
@@ -176,6 +187,9 @@ class CheckThemeActivity : BaseActivityMVVM() {
                 if (!it.value.isNullOrEmpty()) {
                     viewModel.appInitScheme = it.value!!
                 }
+            }
+            productContactRes?.data?.rows?.let {
+                SettingManager.productContact = it
             }
             relationshipInformationRes?.let {
                 if (it.data != null) {

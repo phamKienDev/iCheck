@@ -23,11 +23,9 @@ import vn.icheck.android.databinding.ActivitySocialChatBinding
 import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
-import vn.icheck.android.screen.scan.ICKScanActivity
-import vn.icheck.android.util.ick.forceShowKeyboard
+import vn.icheck.android.screen.scan.V6ScanditActivity
 import vn.icheck.android.util.ick.logDebug
 import vn.icheck.android.util.ick.showSimpleSuccessToast
-import vn.map4d.map.BuildConfig
 
 
 @Retention(AnnotationRetention.SOURCE)
@@ -269,7 +267,7 @@ class SocialChatActivity : ViewBindingActivity<ActivitySocialChatBinding>() {
                     ActivityCompat.requestPermissions(context, arrayOf(Manifest.permission.CAMERA), ICK_REQUEST_CAMERA)
                 }
             } else {
-                ICKScanActivity.scanOnlyChat(context, requestCode)
+                V6ScanditActivity.scanOnlyChat(context, requestCode)
             }
 
         }

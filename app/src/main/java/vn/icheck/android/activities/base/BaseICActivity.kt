@@ -9,10 +9,7 @@ import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.disposables.CompositeDisposable
-import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
-import vn.icheck.android.activities.QrResultActivity
-import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.screen.account.home.AccountActivity

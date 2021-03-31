@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgAvatar"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginBottom="13dp"
+        android:background="@drawable/ic_bg_avatar_page"
+        android:padding="3dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@color/lightBlue" />
+
+    <LinearLayout
+        android:id="@+id/layoutName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toStartOf="@+id/tvTime"
+        app:layout_constraintStart_toEndOf="@id/imgAvatar"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvNameUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_verified_18px"
+            android:drawableRight="@drawable/ic_verified_18px"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:drawablePadding="4dp"
+            android:hint="@string/dang_cap_nhat"
+            android:includeFontPadding="false"
+            android:singleLine="true"
+            android:textColor="@color/black_21"
+            android:textSize="16sp"
+            tools:text="Mai Lan Nguyễn s;kdja;skldj ksjadklaskldsaj d" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvMessage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/barlow_medium"
+        android:includeFontPadding="false"
+        android:singleLine="true"
+        android:textColor="@color/gray_75"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@id/layoutName"
+        app:layout_constraintStart_toStartOf="@id/layoutName"
+        app:layout_constraintTop_toBottomOf="@id/layoutName"
+        tools:text="Alo???" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:textColor="@color/gray_75"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="22:22" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgMuteNotification"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="3dp"
+        android:src="@drawable/ic_turn_off_28dp_chat"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@id/tvTime"
+        app:layout_constraintTop_toBottomOf="@id/tvTime" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvCountMessage"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="3dp"
+        android:background="@drawable/bg_red_corner_4dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@id/tvTime"
+        app:layout_constraintTop_toBottomOf="@id/tvTime"
+        tools:text="9+" />
+</androidx.constraintlayout.widget.ConstraintLayout>
