@@ -159,7 +159,7 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
                 data?.getPhoneOnly()
             }
 
-            if (data?.isKyc == true) {
+            if (data?.kycStatus == 2) {
                 setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_24dp, 0)
             } else {
                 setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)

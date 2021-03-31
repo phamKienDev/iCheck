@@ -64,7 +64,7 @@ class DetailPostHolder(val binding: ItemPostDetailBinding, val listener: IDetail
             WidgetUtils.loadImageUrl(binding.imgLogo, obj.user?.avatar, R.drawable.ic_avatar_default_84px)
             binding.tvName.apply {
                 text = obj.user?.getName
-                if (obj.user?.isKyc == true) {
+                if (obj.user?.kycStatus == 2) {
                     setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_24dp, 0)
                 } else {
                     setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)

@@ -102,7 +102,7 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
             WidgetUtils.loadImageUrl(itemView.imgLogo, obj.user?.avatar, R.drawable.ic_avatar_default_84px)
             itemView.tvPageName.apply {
                 text = obj.user?.getName
-                if (obj.user?.isKyc == true) {
+                if (obj.user?.kycStatus == 2) {
                     setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_24dp, 0)
                 } else {
                     setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)

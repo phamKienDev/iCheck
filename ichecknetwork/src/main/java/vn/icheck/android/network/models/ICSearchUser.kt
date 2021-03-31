@@ -37,7 +37,7 @@ data class ICSearchUser(
         @SerializedName("relateFriendCount") val relateFriendCount: Int = 0,
         @SerializedName("wall") val wall: ICWall,
         @SerializedName("userPrivacyConfig") val userPrivacyConfig: ICUserPrivacyConfig? = null,
-        @Expose val isKyc: Boolean? = null,
+        @Expose val kycStatus: Int? = null, // 0= chưa gửi kyc, 1=đã gửi kyc, 2=kyc đã verify, 3=kyc bị từ chối
 
         var requestStatus: Int = 0,
         var statusClient: Int = 0

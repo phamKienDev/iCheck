@@ -46,7 +46,7 @@ class FriendWallAdapter(val listData: MutableList<RowsItem>) : RecyclerView.Adap
                     itemView.context.getString(R.string.dang_cap_nhat)
                 }
 
-                if (item.isKyc == true) {
+                if (item.kycStatus == 2) {
                     setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_24dp, 0)
                 } else {
                     setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)

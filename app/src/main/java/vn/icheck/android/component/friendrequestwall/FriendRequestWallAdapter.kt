@@ -76,7 +76,7 @@ class FriendRequestWallAdapter : RecyclerView.Adapter<FriendRequestWallAdapter.V
 
             itemView.tvName.apply {
                 text = obj.getName
-                if (obj.isKyc == true) {
+                if (obj.kycStatus == 2) {
                     setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_24dp, 0)
                 } else {
                     setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)

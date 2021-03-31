@@ -23,7 +23,7 @@ data class ICUserFollowWall(
         @Expose var deletedAt: String?,
         @Expose var userRelationStatus: Int?,
         @Expose var userPrivacyConfig: ICUserPrivacyConfig? = null,
-        @Expose var isKyc: Boolean? = null,
+        @Expose var kycStatus: Int? = null, // 0= chưa gửi kyc, 1=đã gửi kyc, 2=kyc đã verify, 3=kyc bị từ chối
         var sendAddFriend:Boolean?,
         @SerializedName("relateFriendCount") val relateFriendCount: Int=0
 ){

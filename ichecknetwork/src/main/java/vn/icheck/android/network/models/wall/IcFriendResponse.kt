@@ -67,7 +67,7 @@ data class RowsItem(
 	@field:SerializedName("updatedAt")
 	val updatedAt: String? = null,
 
-	@Expose val isKyc: Boolean? = null
+	@Expose val kycStatus: Int? = null // 0= chưa gửi kyc, 1=đã gửi kyc, 2=kyc đã verify, 3=kyc bị từ chối
 ){
 	fun getPhoneOnly(): String {
 		return if (phone != null) {
