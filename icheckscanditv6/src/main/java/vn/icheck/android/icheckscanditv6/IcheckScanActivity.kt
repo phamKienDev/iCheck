@@ -36,6 +36,7 @@ import com.scandit.datacapture.barcode.capture.BarcodeCaptureSession
 import com.scandit.datacapture.barcode.capture.BarcodeCaptureSettings
 import com.scandit.datacapture.barcode.data.Symbology
 import com.scandit.datacapture.core.capture.DataCaptureContext
+import com.scandit.datacapture.core.common.async.Callback
 import com.scandit.datacapture.core.data.FrameData
 import com.scandit.datacapture.core.source.*
 import com.scandit.datacapture.core.ui.DataCaptureView
@@ -180,6 +181,7 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
 
         barcodeCapture.addListener(this)
         cameraSettings = BarcodeCapture.createRecommendedCameraSettings()
+        cameraSettings.preferredResolution = VideoResolution.HD
         camera = Camera.getDefaultCamera(cameraSettings)
         resetCamera()
 
@@ -197,15 +199,33 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
     }
 
     private fun resetCamera() {
-        dataCaptureContext.setFrameSource(camera)
-        if (camera != null) {
-            camera?.switchToDesiredState(FrameSourceState.ON);
+        lifecycleScope.launch {
+            delay(400)
+            if (camera?.currentState != FrameSourceState.ON) {
+                camera?.switchToDesiredState(FrameSourceState.ON, object : Callback<Boolean> {
+                    override fun run(result: Boolean) {
+                        if (result) {
+                            dataCaptureContext.setFrameSource(camera)
+                            barcodeCapture.isEnabled = true
+                        } else {
+                            resetCamera()
+                        }
+                    }
+                })
+
+            }
         }
     }
 
     private fun offCamera() {
-        if (camera != null) {
-            camera?.switchToDesiredState(FrameSourceState.OFF);
+        if (camera?.currentState != FrameSourceState.OFF) {
+            camera?.switchToDesiredState(FrameSourceState.OFF, object : Callback<Boolean> {
+                override fun run(result: Boolean) {
+                    if (!result) {
+                        offCamera()
+                    }
+                }
+            })
         }
     }
 
@@ -569,12 +589,13 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
-        barcodeCapture.isEnabled = false
+        offCamera()
+        dataCaptureContext.release()
     }
 
     override fun onPause() {
         super.onPause()
-        barcodeCapture.isEnabled = false
+        offCamera()
     }
 
     override fun onResume() {

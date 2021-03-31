@@ -55,14 +55,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/imgLevel" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imgVerified"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_verified_16px"
-                app:layout_constraintBottom_toBottomOf="@id/layoutAvatar"
-                app:layout_constraintEnd_toEndOf="@id/layoutAvatar" />
-
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@id/edtComment"
                 android:layout_width="@dimen/size_0"

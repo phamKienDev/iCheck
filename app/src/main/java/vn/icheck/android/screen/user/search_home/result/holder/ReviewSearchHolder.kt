@@ -72,7 +72,7 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
         if (obj.page == null) {
             WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.user?.avatar, R.drawable.ic_avatar_default_84px)
             itemView.tvNameUser.text = obj.user?.getName
-            itemView.imgVerified.beGone()
+            itemView.tvNameUser.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             itemView.imgRank.beVisible()
             itemView.imgRank.setRankUser(obj.user?.rank?.level)
         } else {
@@ -80,9 +80,9 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
             itemView.imgRank.beGone()
             itemView.tvNameUser.text = obj.page?.getName
             if (obj.page?.isVerify == true) {
-                itemView.imgVerified.beVisible()
+                itemView.tvNameUser.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
             } else {
-                itemView.imgVerified.beGone()
+                itemView.tvNameUser.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
         }
     }
@@ -146,9 +146,9 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
             } else {
                 itemView.containerMeta.beVisible()
                 if (!obj.meta?.product?.media.isNullOrEmpty()) {
-                    WidgetUtils.loadImageUrlRounded(itemView.imgProduct, obj.meta?.product?.media!![0].content, R.drawable.img_default_product_big,SizeHelper.size4)
+                    WidgetUtils.loadImageUrlRounded(itemView.imgProduct, obj.meta?.product?.media!![0].content, R.drawable.img_default_product_big, SizeHelper.size4)
                 } else {
-                    WidgetUtils.loadImageUrlRounded(itemView.imgProduct, "", R.drawable.img_default_product_big,SizeHelper.size4)
+                    WidgetUtils.loadImageUrlRounded(itemView.imgProduct, "", R.drawable.img_default_product_big, SizeHelper.size4)
                 }
                 itemView.tvProduct.setTextNameProductInPost(obj.meta?.product?.name)
                 itemView.tvShop.text = obj.meta?.product?.owner?.name ?: ""
