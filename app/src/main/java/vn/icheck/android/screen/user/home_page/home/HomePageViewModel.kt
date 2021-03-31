@@ -216,23 +216,21 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
         }
     }
 
-//    private var disposable: Disposable? = null
-
     private fun getFunc(layout: ICLayout, url: String) {
         functionInteractor.getHomeFunc(url, object : ICNewApiListener<ICResponse<ICTheme>> {
             override fun onSuccess(obj: ICResponse<ICTheme>) {
                 if (!obj.data?.secondary_functions.isNullOrEmpty()) {
-                    layout.data = obj.data
-                    getPVCombank()
+                    layout.data = mutableListOf(obj.data)
                 }
                 onUpdateData.value = layout
+                getPVCombank()
             }
 
             override fun onError(error: ICResponseCode?) {
                 finishRequest(false)
                 onUpdateData.value = layout
             }
-        }
+        })
     }
 
     fun getPVCombank() {

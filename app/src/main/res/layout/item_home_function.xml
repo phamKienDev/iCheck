@@ -34,7 +34,6 @@
         android:id="@id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="160dp"
         android:orientation="horizontal"
         android:clipToPadding="false"
         app:layout_constraintTop_toTopOf="@id/viewTop" />

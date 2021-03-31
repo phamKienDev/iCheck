@@ -1,14 +1,11 @@
 package vn.icheck.android.screen.user.home_page.home.holder.primaryfunction
 
-import android.graphics.Rect
 import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.*
-import androidx.viewpager.widget.PagerAdapter
-import androidx.viewpager2.widget.MarginPageTransformer
-import androidx.viewpager2.widget.ViewPager2
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_home_function.view.*
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
@@ -30,9 +27,6 @@ import vn.icheck.android.network.models.pvcombank.ICListCardPVBank
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.user.home_page.home.callback.IHomePageView
 import vn.icheck.android.screen.user.home_page.home.holder.secondfunction.HomeSecondaryFunctionAdapter
-import vn.icheck.android.util.kotlin.WidgetUtils
-import java.io.File
-import kotlin.math.abs
 
 class HomeFunctionHolder(parent: ViewGroup, isExistTheme: Boolean, listener: IHomePageView,
                          val binding: ItemHomeFunctionBinding = ItemHomeFunctionBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : BaseViewHolder<MutableList<Any?>>(binding.root) {
@@ -268,7 +262,8 @@ class HomeFunctionHolder(parent: ViewGroup, isExistTheme: Boolean, listener: IHo
 
             private fun setMoney(obj: ICListCardPVBank) {
                 binding.tvMoney.text = if (binding.tvMoney.isChecked) {
-                    TextHelper.formatMoney(obj.avlBalance ?: "").replace("[0-9]".toRegex(), "*") + "**"
+                    TextHelper.formatMoney(obj.avlBalance
+                            ?: "").replace("[0-9]".toRegex(), "*") + "**"
                 } else {
                     TextHelper.formatMoney(obj.avlBalance ?: "") + " đ"
                 }
