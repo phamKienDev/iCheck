@@ -290,7 +290,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     private fun resetCamera() {
         lifecycleScope.launch {
             delay(400)
-            if (camera != null) {
+            if (camera?.currentState != FrameSourceState.ON) {
                 camera?.switchToDesiredState(FrameSourceState.ON, object : Callback<Boolean> {
                     override fun run(result: Boolean) {
                         if (result) {
@@ -309,13 +309,15 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
 
     private fun offCamera() {
-        camera?.switchToDesiredState(FrameSourceState.OFF, object : Callback<Boolean> {
-            override fun run(result: Boolean) {
-                if (!result) {
-                    offCamera()
+        if (camera?.currentState != FrameSourceState.OFF) {
+            camera?.switchToDesiredState(FrameSourceState.OFF, object : Callback<Boolean> {
+                override fun run(result: Boolean) {
+                    if (!result) {
+                        offCamera()
+                    }
                 }
-            }
-        })
+            })
+        }
     }
 
     override fun onSessionUpdated(barcodeCapture: BarcodeCapture, session: BarcodeCaptureSession, data: FrameData) {
@@ -366,7 +368,12 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
             viewModel.offGuide()
         }
         binding.imgSdha.setOnClickListener {
-            request(takeImageDialog)
+            lifecycleScope.launch {
+                binding.imgSdha.isEnabled = false
+                request(takeImageDialog)
+                delay(400)
+                binding.imgSdha.isEnabled = true
+            }
         }
         binding?.imgNmbt?.setOnClickListener {
             binding.imgNmbt.isEnabled = false
@@ -552,7 +559,9 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         } else {
             try {
 //                    offCamera()
-                takeImageDialog?.show(supportFragmentManager, null)
+                if (!takeImageDialog?.isAdded) {
+                    takeImageDialog?.show(supportFragmentManager, null)
+                }
 //                    currentMediaDialog = dialog
 //                    if (currentMediaDialog?.isAdded == false) {
 //                        currentMediaDialog?.show(supportFragmentManager, null)

@@ -201,7 +201,7 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
     private fun resetCamera() {
         lifecycleScope.launch {
             delay(400)
-            if (camera != null) {
+            if (camera?.currentState != FrameSourceState.ON) {
                 camera?.switchToDesiredState(FrameSourceState.ON, object : Callback<Boolean> {
                     override fun run(result: Boolean) {
                         if (result) {
@@ -218,13 +218,15 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
     }
 
     private fun offCamera() {
-        camera?.switchToDesiredState(FrameSourceState.OFF, object : Callback<Boolean> {
-            override fun run(result: Boolean) {
-                if (!result) {
-                    offCamera()
+        if (camera?.currentState != FrameSourceState.OFF) {
+            camera?.switchToDesiredState(FrameSourceState.OFF, object : Callback<Boolean> {
+                override fun run(result: Boolean) {
+                    if (!result) {
+                        offCamera()
+                    }
                 }
-            }
-        })
+            })
+        }
     }
 
     override fun onSessionUpdated(barcodeCapture: BarcodeCapture, session: BarcodeCaptureSession, data: FrameData) {
