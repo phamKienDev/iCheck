@@ -76,7 +76,7 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
             itemView.imgRank.beVisible()
             itemView.imgRank.setRankUser(obj.user?.rank?.level)
         } else {
-            WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.page?.avatar, R.drawable.img_default_business_logo_big)
+            WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.page?.avatar, R.drawable.ic_business_v2)
             itemView.imgRank.beGone()
             itemView.tvNameUser.text = obj.page?.getName
             if (obj.page?.isVerify == true) {

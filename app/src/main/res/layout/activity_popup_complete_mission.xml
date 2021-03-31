@@ -13,8 +13,8 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_0"
-        android:scaleType="fitXY"
-        android:src="@drawable/ic_anh_dep"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_light"
         app:layout_constraintBottom_toBottomOf="@id/linearLayout14"
         app:layout_constraintTop_toTopOf="@id/viewBow" />
 

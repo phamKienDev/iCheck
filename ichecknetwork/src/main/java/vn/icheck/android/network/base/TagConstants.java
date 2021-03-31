@@ -15,6 +15,7 @@ public final class TagConstants {
     public static final String PERMISSION_IN_POST = "PERMISSION_IN_POST";
     public static final String DOMAIN_QR = "DOMAIN_QR";
     public static final String TRUST_DOMAIN = "TRUST_DOMAIN";
+    public static final String PRODUCT_CONTACT = "PRODUCT_CONTACT";
     public static final String CONFIG_UPDATE_APP = "CONFIG_UPDATE_APP";
     public static final String APP_VERSION = "APP_VERSION";
 }

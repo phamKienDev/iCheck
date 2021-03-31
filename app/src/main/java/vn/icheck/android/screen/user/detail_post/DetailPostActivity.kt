@@ -72,7 +72,6 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
     lateinit var parentEmojiAdapter: ListEmojiAdapter
     lateinit var permissionAdapter: CommentPermissionAdapter
 
-    lateinit var takeMediaDialog: TakeMediaDialog
     private var postDialog: PostOptionDialog? = null
 
     private val requestCamera = 19
@@ -84,6 +83,24 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
 
     private var isActivityVisible = true
 
+
+    private val takeMediaListener = object : TakeMediaDialog.TakeImageListener {
+        override fun onPickMediaSucess(file: File) {
+            showLayoutImage(true, file)
+            showLayoutEmoji(false)
+            showBtnSend(true)
+        }
+
+        override fun onPickMuliMediaSucess(file: MutableList<File>) {
+        }
+
+        override fun onTakeMediaSuccess(file: File?) {
+            showLayoutImage(true, file)
+            showBtnSend(true)
+            showLayoutEmoji(false)
+        }
+
+    }
 
     companion object {
         fun start(activity: Activity, postId: Long, showKeyboard: Boolean = false, requestCode: Int = -1) {
@@ -117,7 +134,6 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
         initView()
         initRecyclerView()
 //        setUpEmoji()
-        setUpTakeImage()
         setUpPermission()
         listenerData()
         viewModel.getData(intent)
@@ -186,7 +202,7 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
             override fun onItemClick(position: Int, item: ICCommentPermission?) {
                 if (item != null) {
                     if (item.type == Constant.PAGE) {
-                        WidgetUtils.loadImageUrl(imgAvatar, item.avatar, R.drawable.img_default_business_logo_big)
+                        WidgetUtils.loadImageUrl(imgAvatar, item.avatar, R.drawable.ic_business_v2)
                     } else {
                         WidgetUtils.loadImageUrl(imgAvatar, item.avatar, R.drawable.ic_user_orange_circle)
                     }
@@ -198,25 +214,6 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
         rcvPermission.adapter = permissionAdapter
     }
 
-    private fun setUpTakeImage() {
-        takeMediaDialog = TakeMediaDialog(object : TakeMediaDialog.TakeImageListener {
-            override fun onPickMediaSucess(file: File) {
-                showLayoutImage(true, file)
-                showLayoutEmoji(false)
-                showBtnSend(true)
-            }
-
-            override fun onPickMuliMediaSucess(file: MutableList<File>) {
-            }
-
-            override fun onTakeMediaSuccess(file: File?) {
-                showLayoutImage(true, file)
-                showBtnSend(true)
-                showLayoutEmoji(false)
-            }
-
-        })
-    }
 
     private fun listenerData() {
         viewModel.onDetailPost.observe(this, {
@@ -533,7 +530,7 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
                 val permissions = arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 imgCamera.delayTimeoutClick(2000)
                 if (PermissionHelper.isAllowPermission(this, permissions)) {
-                    takeMediaDialog.show(supportFragmentManager, null)
+                    TakeMediaDialog.show(supportFragmentManager,takeMediaListener)
                 } else {
                     PermissionHelper.checkPermission(this, permissions, requestCamera)
                 }
@@ -633,12 +630,11 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
                     startActivityForResult(intent, requestMedia)
                 }
             }
-            ICMessageEvent.Type.UPDATE_FOLLOW_PAGE -> {
-                if (event.data as Boolean) {
-                    DialogHelper.showDialogSuccessBlack(this, this.getString(R.string.ban_da_theo_doi_trang_nay))
-                } else {
-                    DialogHelper.showDialogSuccessBlack(this, this.getString(R.string.ban_da_huy_theo_doi_trang_nay))
-                }
+            ICMessageEvent.Type.FOLLOW_PAGE -> {
+                DialogHelper.showDialogSuccessBlack(this, this.getString(R.string.ban_da_theo_doi_trang_nay))
+            }
+            ICMessageEvent.Type.UNFOLLOW_PAGE->{
+                DialogHelper.showDialogSuccessBlack(this, this.getString(R.string.ban_da_huy_theo_doi_trang_nay))
             }
             ICMessageEvent.Type.PIN_POST -> {
                 DialogHelper.showDialogSuccessBlack(this, this.getString(R.string.ghim_bai_viet_thanh_cong))
@@ -665,7 +661,6 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        takeMediaDialog.takeMediaHelper?.onActivityResult(requestCode, resultCode)
 
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {

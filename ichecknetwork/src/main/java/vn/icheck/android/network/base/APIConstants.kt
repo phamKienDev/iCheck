@@ -18,7 +18,6 @@ object APIConstants {
     const val PATH = "social/api"
     const val PATH_CDN = "icheck-social-cdn/"
 
-    const val GET = "GET"
     const val POST = "POST"
 
     external fun STAMPDETAIL(): String
@@ -106,9 +105,8 @@ object APIConstants {
 
     object Settings {
         const val SETTING = "settings/client"
-        const val THEME = "settings/system/key/theme"
-        const val SETTING_SOCIAL = "social/api/cms/system-settings"
-        const val NOTIFY_SETTING = "social/api/notifications/turnoff"
+        const val SETTING_SOCIAL = "$PATH/cms/system-settings"
+        const val NOTIFY_SETTING = "$PATH/notifications/turnoff"
         const val CONFIG_UPDATE_APP = "$PATH/cms/config-update-app"
     }
 
@@ -202,7 +200,6 @@ object APIConstants {
         const val DELETE_BOOKMARK = "social/api/products/{id}/bookmark/delete"
         const val LIST_DISTRIBUTORS = "social/api/products/{id}/distributors"
         const val REGISTER_BUY_PRODUCT = "social/api/cms/order/purchase-reserved"
-
     }
 
     object Category {
@@ -454,9 +451,7 @@ object APIConstants {
         const val LIKE_POST = "social/api/posts/{id}/expressive"
     }
 
-    object Utility {
-        const val ALL_UTILITY = "icon_more.json"
-    }
+    external fun allUtilities(): String
 
     object PVCombank {
         const val PATH_PVCBANK = "pvcombank/api/cards"
@@ -551,8 +546,8 @@ object APIConstants {
     external fun trackingTekoUrlProd(): String
     external fun trackingAppIdProd(): String
     external fun trackingAppIdDev(): String
-    external fun themeSettingLive(): String
-    external fun themeSettingDev(): String
+    external fun themeSetting(): String
+    external fun productsECommerce(): String
 
     fun checkErrorString(code: String): String {
         return when (code) {

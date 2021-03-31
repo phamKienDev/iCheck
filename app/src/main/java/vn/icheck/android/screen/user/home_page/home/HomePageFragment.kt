@@ -5,12 +5,14 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.observe
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,6 +26,9 @@ import kotlinx.android.synthetic.main.fragment_home.swipeLayout
 import kotlinx.android.synthetic.main.fragment_home.tvCartCount
 import kotlinx.android.synthetic.main.fragment_home.viewShadow
 import kotlinx.android.synthetic.main.fragment_page_detail.*
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -32,12 +37,16 @@ import vn.icheck.android.R
 import vn.icheck.android.RelationshipManager
 import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.base.model.ICMessageEvent
+import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.component.view.ViewHelper.setScrollSpeed
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.ExoPlayerManager
 import vn.icheck.android.helper.FileHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.loyalty.helper.ActivityHelper
+import vn.icheck.android.loyalty.helper.ToastHelper
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.base.Status
@@ -49,14 +58,24 @@ import vn.icheck.android.screen.user.campaign.calback.IProductNeedReviewListener
 import vn.icheck.android.screen.user.edit_review.EditReviewActivity
 import vn.icheck.android.screen.user.home.HomeActivity
 import vn.icheck.android.screen.user.home_page.home.adapter.HomePageAdapter
+import vn.icheck.android.screen.user.home_page.home.callback.IHomePageView
+import vn.icheck.android.screen.user.home_page.home.holder.primaryfunction.HomeFunctionHolder
 import vn.icheck.android.screen.user.home_page.home.reminders.ReminderHomeDialog
 import vn.icheck.android.screen.user.list_trending_products.ListTrendingProductsActivity
 import vn.icheck.android.screen.user.listnotification.ListNotificationActivity
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
+import vn.icheck.android.screen.user.pvcombank.authen.CreatePVCardActivity
+import vn.icheck.android.screen.user.pvcombank.authen.CreatePVCardViewModel
+import vn.icheck.android.screen.user.pvcombank.cardhistory.HistoryPVCardActivity
+import vn.icheck.android.screen.user.pvcombank.listcard.ListPVCardActivity
 import vn.icheck.android.screen.user.search_home.main.SearchHomeActivity
 import vn.icheck.android.screen.user.shipping.ship.ShipActivity
+import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.util.AdsUtils
-import vn.icheck.android.util.ick.*
+import vn.icheck.android.util.ick.beGone
+import vn.icheck.android.util.ick.beVisible
+import vn.icheck.android.util.ick.loadImageWithHolder
+import vn.icheck.android.util.ick.simpleText
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.io.File
 
@@ -66,8 +85,8 @@ import java.io.File
  * Email: vulcl@icheck.vn
  */
 @AndroidEntryPoint
-class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener, IProductNeedReviewListener, View.OnClickListener {
-    private var homeAdapter = HomePageAdapter(this, this, this)
+class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener, IProductNeedReviewListener, IHomePageView, View.OnClickListener {
+    private var homeAdapter = HomePageAdapter(this, this, this, this)
 
     private val viewModel: HomePageViewModel by activityViewModels()
 
@@ -76,7 +95,9 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
     private val requestLoginCart = 3
     private val requestProductNeedReview = 4
     private val requestOpenCart = 5
+    private val requestPVCombank = 6
 
+    private var pvCombankType = 0
     private var isViewCreated = false
 
     private val broadcastReceiver = object : BroadcastReceiver() {
@@ -110,10 +131,10 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
     private fun setupView() {
         layoutHeader.setPadding(0, getStatusBarHeight + SizeHelper.size16, 0, 0)
 
-        txtSearch.background = ViewHelper.createDrawableStateList(
-                ViewHelper.createShapeDrawable(ContextCompat.getColor(requireContext(), R.color.white_opacity_unknow), SizeHelper.size4.toFloat()),
-                ViewHelper.createShapeDrawable(ContextCompat.getColor(requireContext(), R.color.darkGray6), SizeHelper.size4.toFloat())
-        )
+//        txtSearch.background = ViewHelper.createDrawableStateList(
+//                ViewHelper.createShapeDrawable(ContextCompat.getColor(requireContext(), R.color.white_opacity_unknow), SizeHelper.size4.toFloat()),
+//                ViewHelper.createShapeDrawable(ContextCompat.getColor(requireContext(), R.color.darkGray6), SizeHelper.size4.toFloat())
+//        )
 
         tv_show_all_reminders.setOnClickListener {
             ICheckApplication.currentActivity()?.let { activity ->
@@ -140,30 +161,55 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
 
     private fun checkTheme() {
         homeAdapter.notifyDataSetChanged()
-        File(FileHelper.getPath(this@HomePageFragment.requireContext()) + FileHelper.homeBackgroundImage).let {
-            if (it.exists() && imgThemeBackground != null) {
-                WidgetUtils.loadImageFile(imgThemeBackground, it)
 
-                SettingManager.themeSetting?.theme?.apply {
-                    txtSearch.background = ViewHelper.createShapeDrawable(ContextCompat.getColor(requireContext(), R.color.white_opacity_unknow), SizeHelper.size4.toFloat())
-                    txtSearch.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.getDrawableFillColor(R.drawable.ic_icheck_70dp_17dp, homeHeaderIconColor!!), null, null, null)
+        val backgroundImage = BitmapFactory.decodeFile(FileHelper.getPath(this@HomePageFragment.requireContext()) + FileHelper.homeBackgroundImage)
+        imgThemeBackground?.apply {
+            if (backgroundImage != null) {
+                setImageBitmap(backgroundImage)
+            } else {
+                setImageResource(0)
+            }
+            requestLayout()
+        }
 
-                    if (!homeHeaderIconColor.isNullOrEmpty()) {
-                        txtAvatar.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.createDrawableStateList(
-                                ContextCompat.getDrawable(requireContext(), R.drawable.ic_home_menu_white_24dp),
-                                ViewHelper.getDrawableFillColor(R.drawable.ic_home_menu_white_24dp, homeHeaderIconColor!!)
-                        ), null, null, null)
+        val theme = SettingManager.themeSetting?.theme
+        if (theme != null) {
+            txtSearch.background = ViewHelper.createShapeDrawable(ContextCompat.getColor(requireContext(), R.color.white_opacity_unknow), SizeHelper.size4.toFloat())
+            txtSearch.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.getDrawableFillColor(R.drawable.ic_icheck_70dp_17dp, theme.homeHeaderIconColor!!), null, null, null)
+        } else {
+            txtSearch.background = ViewHelper.createDrawableStateList(
+                    ViewHelper.createShapeDrawable(ContextCompat.getColor(requireContext(), R.color.white_opacity_unknow), SizeHelper.size4.toFloat()),
+                    ViewHelper.createShapeDrawable(ContextCompat.getColor(requireContext(), R.color.darkGray6), SizeHelper.size4.toFloat())
+            )
+            txtSearch.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(requireContext(), R.drawable.ic_icheck_70dp_17dp), null, null, null)
+        }
 
-                        tvViewCart.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.createDrawableStateList(
-                                ContextCompat.getDrawable(requireContext(), R.drawable.ic_home_shop_white_24dp),
-                                ViewHelper.getDrawableFillColor(R.drawable.ic_home_shop_white_24dp, homeHeaderIconColor!!)
-                        ), null, null, null)
+        if (!theme?.homeHeaderIconColor.isNullOrEmpty()) {
+            txtAvatar.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.createDrawableStateList(
+                    ContextCompat.getDrawable(requireContext(), R.drawable.ic_home_menu_white_24dp),
+                    ViewHelper.getDrawableFillColor(R.drawable.ic_home_menu_white_24dp, theme!!.homeHeaderIconColor!!)
+            ), null, null, null)
 
-                        txtNotification.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.createDrawableStateList(
-                                ContextCompat.getDrawable(requireContext(), R.drawable.ic_notification_white_24),
-                                ViewHelper.getDrawableFillColor(R.drawable.ic_notification_white_24, homeHeaderIconColor!!)
-                        ), null, null, null)
-                    }
+            tvViewCart.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.createDrawableStateList(
+                    ContextCompat.getDrawable(requireContext(), R.drawable.ic_home_shop_white_24dp),
+                    ViewHelper.getDrawableFillColor(R.drawable.ic_home_shop_white_24dp, theme.homeHeaderIconColor!!)
+            ), null, null, null)
+
+            txtNotification.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.createDrawableStateList(
+                    ContextCompat.getDrawable(requireContext(), R.drawable.ic_notification_white_24),
+                    ViewHelper.getDrawableFillColor(R.drawable.ic_notification_white_24, theme.homeHeaderIconColor!!)
+            ), null, null, null)
+        } else {
+            txtAvatar.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(requireContext(), R.drawable.ic_home_menu_white_24dp), null, null, null)
+            tvViewCart.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(requireContext(), R.drawable.ic_home_shop_white_24dp), null, null, null)
+            txtNotification.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(requireContext(), R.drawable.ic_notification_white_24), null, null, null)
+        }
+
+        for (i in homeAdapter.listData.indices) {
+            recyclerView.findViewHolderForAdapterPosition(i)?.let { viewHolder ->
+                if (viewHolder is HomeFunctionHolder) {
+                    viewHolder.updateTheme()
+                    return
                 }
             }
         }
@@ -204,6 +250,27 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
             homeAdapter.updateItem(it)
             layoutHeader.beVisible()
         })
+
+//        viewModel.onUpdatePVCombank.observe(viewLifecycleOwner, Observer {
+//            for (i in homeAdapter.listData.indices) {
+//                if (homeAdapter.listData[i].viewType == ICViewTypes.HOME_PRIMARY_FUNC) {
+//                    if (homeAdapter.listData[i].data != null) {
+//                        val viewHolder = recyclerView.findViewHolderForAdapterPosition(i)
+//                        if (viewHolder is HomeFunctionHolder) {
+//                            viewHolder.updateHomePVCombank(it)
+//                        } else {
+//                            (homeAdapter.listData[i].data as  MutableList<Any?>).apply {
+//                                if (size > 1) {
+//                                    removeLast()
+//                                }
+//                                add(it)
+//                            }
+//                        }
+//                    }
+//                    return@Observer
+//                }
+//            }
+//        })
     }
 
     private fun setupRecyclerView() {
@@ -305,6 +372,17 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         }
     }
 
+    private fun updateHomeHeader() {
+        for (i in homeAdapter.listData.indices) {
+            recyclerView.findViewHolderForAdapterPosition(i)?.let { viewHolder ->
+                if (viewHolder is HomeFunctionHolder) {
+                    viewHolder.updateHomeHeader()
+                    return
+                }
+            }
+        }
+    }
+
     override fun onBannerSurveyClicked(id: Long) {
         AdsUtils.bannerSurveyClicked(this, requestBannerSurvey, id)
     }
@@ -331,6 +409,92 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                 IckProductDetailActivity.start(it, item.barcode!!)
             }
         }
+    }
+
+    override fun onCreatePVCombank() {
+        FirebaseDynamicLinksActivity.startDestinationUrl(this@HomePageFragment.requireActivity(), "digital_bank")
+    }
+
+    override fun onRechargePVCombank() {
+        checkPVCombank(1)
+    }
+
+    override fun onInfoPVCombank() {
+        checkPVCombank(2)
+    }
+
+    override fun onTransactionCombank() {
+        checkPVCombank(3)
+    }
+
+    private fun checkPVCombank(type: Int) {
+        CreatePVCardViewModel().apply {
+            checkHasCard(5000L).observe(this@HomePageFragment, Observer { checkCardRes ->
+                this@HomePageFragment.apply {
+                    when (checkCardRes.status) {
+                        Status.LOADING -> {
+                            DialogHelper.showLoading(this)
+                        }
+                        Status.ERROR_NETWORK -> {
+                            DialogHelper.closeLoading(this)
+                            ToastHelper.showLongError(requireContext(), R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
+                        }
+                        Status.ERROR_REQUEST -> {
+                            DialogHelper.closeLoading(this)
+                            ToastHelper.showLongError(requireContext(), ICheckApplication.getError(checkCardRes.message))
+                        }
+                        Status.SUCCESS -> {
+                            if (checkCardRes.data?.data == true) {
+                                if (SettingManager.getSessionPvcombank.isEmpty()) {
+                                    getFormAuth(5000L).observe(this, Observer { formAuthRes ->
+                                        when (formAuthRes.status) {
+                                            Status.LOADING -> {
+                                            }
+                                            Status.SUCCESS -> {
+                                                DialogHelper.closeLoading(this)
+                                                if (formAuthRes.data?.data?.redirectUrl.isNullOrEmpty() || formAuthRes.data?.data?.authUrl.isNullOrEmpty()) {
+                                                    ToastHelper.showLongError(requireContext(), getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                                                } else {
+                                                    pvCombankType = type
+                                                    CreatePVCardActivity.redirectUrl = formAuthRes.data!!.data!!.redirectUrl
+                                                    WebViewActivity.start(requireActivity(), formAuthRes.data!!.data!!.authUrl)
+                                                }
+                                            }
+                                            else -> {
+                                                DialogHelper.closeLoading(this)
+                                                ToastHelper.showLongError(requireContext(), ICheckApplication.getError(checkCardRes.message))
+                                            }
+                                        }
+                                    })
+                                } else {
+                                    DialogHelper.closeLoading(this)
+                                    goToPVCombank(type)
+                                }
+                            } else {
+                                DialogHelper.closeLoading(this)
+                                goToPVCombank(type)
+                            }
+                        }
+                    }
+                }
+            })
+        }
+    }
+
+    private fun goToPVCombank(type: Int) {
+        when (type) {
+            1 -> {
+
+            }
+            2 -> {
+                ActivityHelper.startActivityForResult<ListPVCardActivity>(this, requestPVCombank)
+            }
+            3 -> {
+                ActivityHelper.startActivityForResult<HistoryPVCardActivity>(this, requestPVCombank)
+            }
+        }
+
+        pvCombankType = 0
     }
 
     override fun onRequireLoginSuccess(requestCode: Int) {
@@ -366,7 +530,8 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                 }
             }
             ICMessageEvent.Type.UPDATE_COIN_AND_RANK -> {
-                homeAdapter.notifyItemChanged(0)
+//                homeAdapter.notifyItemChanged(0)
+                updateHomeHeader()
             }
 //            ICMessageEvent.Type.UPDATE_COUNT_CART -> {
 //                val count = event.data as String?
@@ -375,9 +540,24 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
 //            }
             ICMessageEvent.Type.ON_LOG_IN -> {
                 getReminders()
+                lifecycleScope.launch {
+                    val file = File(FileHelper.getPath(requireContext()) + FileHelper.imageFolder)
+                    if (file.exists()) {
+                        FileHelper.deleteTheme(file)
+                    }
+                    homeAdapter.notifyDataSetChanged()
+                    checkTheme()
+                }
             }
             ICMessageEvent.Type.ON_LOG_OUT -> {
-                homeAdapter.notifyItemChanged(0)
+                lifecycleScope.launch {
+                    val file = File(FileHelper.getPath(requireContext()) + FileHelper.imageFolder)
+                    if (file.exists()) {
+                        FileHelper.deleteTheme(file)
+                    }
+                    homeAdapter.notifyDataSetChanged()
+                    checkTheme()
+                }
                 getCoin()
                 layoutContainer.setTransition(R.id.no_reminder)
                 tvCartCount.beGone()
@@ -402,6 +582,12 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                 if (isVisible && !SessionManager.isUserLogged) {
                     onRequireLogin()
                 }
+            }
+            ICMessageEvent.Type.ON_DESTROY_PVCOMBANK -> {
+                viewModel.getPVCombank()
+            }
+            ICMessageEvent.Type.FINISH_CREATE_PVCOMBANK -> {
+                goToPVCombank(pvCombankType)
             }
             else -> {
             }
@@ -495,7 +681,8 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
 //            })
 //        }
 
-        homeAdapter.notifyItemChanged(0)
+//        homeAdapter.notifyItemChanged(0)
+        updateHomeHeader()
         getCoin()
         getReminders()
 
@@ -549,7 +736,13 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                             tv_action.setText(R.string.xem_chi_tiet)
                         }
                         tv_action.setOnClickListener { _ ->
-                            FirebaseDynamicLinksActivity.startTargetPath(requireActivity(), it?.data?.rows?.firstOrNull()?.redirectPath)
+                            lifecycleScope.launch {
+                                tv_action.isEnabled = false
+                                FirebaseDynamicLinksActivity.startTargetPath(requireActivity(), it?.data?.rows?.firstOrNull()?.redirectPath)
+                                delay(400)
+                                tv_action.isEnabled = true
+                            }
+
                         }
                         imageView14.loadImageWithHolder(it?.data?.rows?.firstOrNull()?.icon, R.drawable.ic_reminder_item)
                     }
@@ -574,6 +767,10 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
+        if (requestCode == requestPVCombank) {
+            viewModel.getPVCombank()
+        }
+
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
                 requestBannerSurvey -> {
@@ -590,18 +787,6 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                         homeAdapter.removeReviewProduct(idReview)
                     }
                 }
-//                9 -> {
-//                    data?.getSerializableExtra(Constant.DATA_1)?.let { obj ->
-//                        obj.toString()
-//                    }
-//                }
-//                requestOpenCart -> {
-//                    data?.getLongExtra("id", 0L)?.let {
-//                        SuccessConfirmShipDialog(it).apply {
-//                            isCancelable = false
-//                        }.show(childFragmentManager, null)
-//                    }
-//                }
             }
         }
     }

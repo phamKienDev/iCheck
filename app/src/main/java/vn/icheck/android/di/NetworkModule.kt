@@ -38,7 +38,9 @@ object NetworkModule {
                         val request = chain.request().newBuilder()
                                 .addHeader("Authorization", "Bearer ${sharedPreferences.getString(ICK_TOKEN, "")}")
                                 .addHeader("device-id", DeviceUtils.getUniqueDeviceId())
+                                .addHeader("User-Agent", "Model:${DeviceUtils.getModel()}  +  AppVersion:${SettingManager.appVersion}")
                                 .addHeader("appVersion", SettingManager.appVersion)
+
                                 .build()
                         val hasMultipart = request.headers.names().contains("multipart")
 //                        if (hasMultipart) httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.NONE) else httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
@@ -49,6 +51,7 @@ object NetworkModule {
                                 .addHeader("Authorization", "Bearer ${sharedPreferences.getString(ICK_TOKEN, "")}")
                                 .addHeader("device-id", DeviceUtils.getUniqueDeviceId())
                                 .addHeader("appVersion", SettingManager.appVersion)
+                                .addHeader("User-Agent", "Model:${DeviceUtils.getModel()}  +  AppVersion:${SettingManager.appVersion}")
                                 .build()
                         val hasMultipart = request.headers.names().contains("multipart")
 //                        if (hasMultipart) httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.NONE) else httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)

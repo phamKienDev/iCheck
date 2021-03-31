@@ -64,7 +64,7 @@ class ItemGiftOfCampaignAdapter(private val listData: MutableList<ICGiftOfCampai
             when (type) {
                 ICViewTypes.PRODUCT_CAMPAIGN_TYPE -> {
                     WidgetUtils.loadImageUrl(itemView.imgICoin, obj.image)
-                    WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.logo, R.drawable.img_default_business_logo)
+                    WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.logo, R.drawable.ic_business_v2)
 
                     itemView.imgAvatar.layoutParams = ConstraintLayout.LayoutParams(SizeHelper.size32, SizeHelper.size32).also {
                         it.topMargin = SizeHelper.size10
@@ -73,7 +73,7 @@ class ItemGiftOfCampaignAdapter(private val listData: MutableList<ICGiftOfCampai
                 }
                 ICViewTypes.VOUCHER_CAMPAIGN_TYPE -> {
                     WidgetUtils.loadImageUrl(itemView.imgICoin, obj.image)
-                    WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.logo, R.drawable.img_default_business_logo)
+                    WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.logo, R.drawable.ic_business_v2)
 
                     itemView.tvPrice.text = "${TextHelper.formatMoneyPhay(obj.rewardValue)}đ"
                 }

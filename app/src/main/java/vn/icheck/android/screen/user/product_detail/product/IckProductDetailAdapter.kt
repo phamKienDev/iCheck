@@ -66,6 +66,7 @@ import vn.icheck.android.loyalty.holder.LoyaltyViewHolder
 import vn.icheck.android.loyalty.model.ICKLoyalty
 import vn.icheck.android.network.models.*
 import vn.icheck.android.screen.user.home_page.home.model.ICListHomeItem
+import vn.icheck.android.screen.user.listproductecommerce.holder.ListProductsECommerceHolder
 import vn.icheck.android.screen.user.product_detail.product.model.IckReviewSummaryModel
 import vn.icheck.android.util.KeyboardUtils
 
@@ -283,6 +284,7 @@ class IckProductDetailAdapter(listener: IRecyclerViewCallback, private val produ
             ICViewTypes.MY_CONTRIBUTION -> MyContributionHolder.create(parent)
             ICViewTypes.HOLDER_NO_IMAGE -> NoImageHolder.create(parent)
             ICViewTypes.LOYALTY_HOLDER_TYPE -> LoyaltyViewHolder(parent)
+            ICViewTypes.PRODUCT_ECCOMMERCE_TYPE -> ListProductsECommerceHolder(parent)
             else -> NullHolder(parent)
         }
     }
@@ -322,6 +324,7 @@ class IckProductDetailAdapter(listener: IRecyclerViewCallback, private val produ
                     (holder as LoyaltyViewHolder).bind(listData[position].data as ICKLoyalty, IckProductDetailActivity.barcode, activity, listenerLoyalty, listenerLogin)
                 }
             }
+            ICViewTypes.PRODUCT_ECCOMMERCE_TYPE -> (holder as ListProductsECommerceHolder).bind(listData[position].data as MutableList<ICProductECommerce>)
             else -> super.onBindViewHolder(holder, position)
         }
     }

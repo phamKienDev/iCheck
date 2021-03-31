@@ -2,6 +2,7 @@ package vn.icheck.android.loyalty.screen.loyalty_customers.history.datasource
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagingSource
+import androidx.paging.PagingState
 import vn.icheck.android.loyalty.model.LoyaltyGiftItem
 import vn.icheck.android.loyalty.network.ICNetworkAPI
 
@@ -27,6 +28,13 @@ class GiftShopDataSource(private val icNetworkAPI: ICNetworkAPI, private val sho
 
         } catch (e: Exception) {
             LoadResult.Error(e)
+        }
+    }
+
+    override fun getRefreshKey(state: PagingState<Int, LoyaltyGiftItem>): Int? {
+        return state.anchorPosition?.let { anchorPosition ->
+            val anchorPage = state.closestPageToPosition(anchorPosition)
+            anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
         }
     }
 }

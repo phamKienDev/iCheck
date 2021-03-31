@@ -168,7 +168,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fillViewport="true"
-            android:visibility="gone">
+            android:visibility="gone"
+            tools:visibility="visible">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -551,7 +552,8 @@
                     android:layout_marginEnd="13dp"
                     android:layout_marginBottom="8dp"
                     android:visibility="gone"
-                    app:cardCornerRadius="10dp">
+                    app:cardCornerRadius="10dp"
+                    tools:visibility="gone">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -620,7 +622,8 @@
                     android:layout_marginEnd="13dp"
                     android:layout_marginBottom="8dp"
                     android:visibility="gone"
-                    app:cardCornerRadius="10dp">
+                    app:cardCornerRadius="10dp"
+                    tools:visibility="gone">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -679,6 +682,51 @@
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layoutProductLink"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="13dp"
+                    android:layout_marginTop="@dimen/size_8"
+                    android:layout_marginEnd="13dp"
+                    android:layout_marginBottom="@dimen/size_8"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+                        android:id="@id/tvTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/thuong_mai_dien_tu"
+                        android:textColor="@color/blue"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+                        android:id="@id/tvViewMore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/size_9"
+                        android:padding="@dimen/size_3"
+                        android:text="@string/xem_tat_ca"
+                        android:textColor="@color/blue"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="@id/tvTitle"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tvTitle" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@id/recyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_2"
+                        android:orientation="vertical"
+                        android:paddingBottom="@dimen/size_10"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <!--Layout Gurantee-->
                 <androidx.cardview.widget.CardView

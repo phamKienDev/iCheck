@@ -32,7 +32,7 @@ class TopTendencyPageAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             typeItem -> TopTendencyBusinessHolder(parent)
-            else -> MessageShortHolder(parent, R.drawable.img_default_business_logo)
+            else -> MessageShortHolder(parent, R.drawable.ic_business_v2)
         }
     }
 

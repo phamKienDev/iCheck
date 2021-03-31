@@ -14,7 +14,6 @@ import vn.icheck.android.loyalty.model.ICKAccumulatePoint
 import vn.icheck.android.loyalty.model.ICKBoxGifts
 import vn.icheck.android.loyalty.model.ICKNone
 import vn.icheck.android.loyalty.screen.loyalty_customers.gift_shop.GiftShopActivity
-import vn.icheck.android.loyalty.screen.scan.ScanLoyaltyActivity
 
 object DialogHelperGame {
 
@@ -191,9 +190,9 @@ object DialogHelperGame {
                     "Quét tem QRcode được dán trên bao bì\nsản phẩm để nhận điểm tích lũy đổi quà nhé!", R.drawable.ic_onboarding_scan, "Quét tem ngay", false, R.drawable.bg_button_not_enough_point, R.color.orange_red,
                     object : IClickButtonDialog<ICKNone> {
                         override fun onClickButtonData(obj: ICKNone?) {
-                            context.startActivity(Intent(context, ScanLoyaltyActivity::class.java).apply {
-                                putExtra(ConstantsLoyalty.DATA_1, id)
-                            })
+//                            context.startActivity(Intent(context, ScanLoyaltyActivity::class.java).apply {
+//                                putExtra(ConstantsLoyalty.DATA_1, id)
+//                            })
                         }
                     })
         }
@@ -252,11 +251,11 @@ object DialogHelperGame {
                     "Quét tem QR code trên sản phẩm để\nnhận điểm thành viên và đổi quà!", R.drawable.ic_onboarding_scan, "Quét tem ngay", false, R.drawable.bg_button_not_enough_point_blue, R.color.blueVip,
                     object : IClickButtonDialog<ICKNone> {
                         override fun onClickButtonData(obj: ICKNone?) {
-                            context.startActivity(Intent(context, ScanLoyaltyActivity::class.java).apply {
-                                putExtra(ConstantsLoyalty.DATA_1, id)
-                                putExtra(ConstantsLoyalty.DATA_2, 1)
-                                putExtra(ConstantsLoyalty.DATA_3, name)
-                            })
+//                            context.startActivity(Intent(context, ScanLoyaltyActivity::class.java).apply {
+//                                putExtra(ConstantsLoyalty.DATA_1, id)
+//                                putExtra(ConstantsLoyalty.DATA_2, 1)
+//                                putExtra(ConstantsLoyalty.DATA_3, name)
+//                            })
                         }
                     })
         }

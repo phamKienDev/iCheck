@@ -104,11 +104,11 @@
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme_White" />
-        <activity
-            android:name=".screen.scan.ScanLoyaltyActivity"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme_White" />
+<!--        <activity-->
+<!--            android:name=".screen.scan.ScanLoyaltyActivity"-->
+<!--            android:exported="true"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:theme="@style/AppTheme_White" />-->
         <activity
             android:name=".screen.game_from_labels.redeem_points.home.HomeRedeemPointActivity"
             android:exported="true"

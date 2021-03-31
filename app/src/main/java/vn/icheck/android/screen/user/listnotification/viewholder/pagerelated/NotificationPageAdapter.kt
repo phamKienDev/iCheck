@@ -47,7 +47,7 @@ class NotificationPageAdapter : RecyclerView.Adapter<NotificationPageAdapter.Pag
 
         override fun bind(obj: ICNotificationPage) {
             (itemView as ViewGroup).apply {
-                WidgetUtils.loadImageUrlRounded(getChildAt(0) as SquareImageView, obj.avatar, R.drawable.img_default_business_logo_big, SizeHelper.size4)
+                WidgetUtils.loadImageUrlRounded(getChildAt(0) as SquareImageView, obj.avatar, R.drawable.ic_business_v2, SizeHelper.size4)
                 getChildAt(0).setOnClickListener {
                     PageDetailActivity.start(itemView.context, obj.id)
                 }

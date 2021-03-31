@@ -19,8 +19,8 @@ import vn.icheck.android.loyalty.screen.loyalty_customers.exchange_phonecard.Exc
  * putExtra(Constant.DATA_2, 1) nếu muốn vào màn chi tiết quà của shop
  */
 class GiftDetailActivity : BaseActivityGame() {
-
     private val requestCard = 111
+
 
     companion object {
         fun startActivityGiftDetail(context: Context, idGift: Long, type: Int? = null) {

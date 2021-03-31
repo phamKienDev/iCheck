@@ -1,6 +1,7 @@
 package vn.icheck.android.network.models.detail_stamp_v6
 
 import com.google.gson.annotations.Expose
+import vn.icheck.android.network.models.ICProductLink
 import java.io.Serializable
 
 class ICDetailStampV6 : Serializable {
@@ -26,5 +27,7 @@ class ICDetailStampV6 : Serializable {
         var product: ICObjectProductV6? = null
         @Expose
         var other_product:MutableList<ICObjectOtherProductV6>? = null
+        @Expose
+        val product_link: MutableList<ICProductLink>? = null
     }
 }

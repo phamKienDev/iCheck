@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import vn.icheck.android.ICheckApplication
+import vn.icheck.android.R
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.NetworkHelper
@@ -11,6 +12,7 @@ import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
 import vn.icheck.android.network.feature.pvcombank.PVcomBankRepository
+import vn.icheck.android.network.models.pvcombank.ICInfoPVCard
 import vn.icheck.android.network.models.pvcombank.ICListCardPVBank
 import vn.icheck.android.network.models.pvcombank.ICLockCard
 
@@ -22,10 +24,12 @@ class ConfirmUnlockPVCardViewModel : ViewModel() {
 
     var requestId = ""
     var otptranid = ""
+    var fullcard: String? = null
 
     val dataUnLockCard = MutableLiveData<ICLockCard>()
-    val unlockCardSuccess = MutableLiveData<ICLockCard>()
-    val errorData = MutableLiveData<Int>()
+    val unlockCardSuccess = MutableLiveData<String>()
+    val errorData = MutableLiveData<String>()
+    val verifyError = MutableLiveData<String>()
     val statusCode = MutableLiveData<ICMessageEvent.Type>()
 
     fun getData(intent: Intent?) {
@@ -58,7 +62,7 @@ class ConfirmUnlockPVCardViewModel : ViewModel() {
         }
 
         if (cardId.isNullOrEmpty()) {
-            errorData.postValue(Constant.ERROR_UNKNOW)
+            errorData.postValue(ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             return
         }
 
@@ -68,45 +72,46 @@ class ConfirmUnlockPVCardViewModel : ViewModel() {
             override fun onSuccess(obj: ICResponse<ICLockCard>) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                 if (obj.data != null) {
+                    fullcard = obj.data?.fullCard
                     dataUnLockCard.postValue(obj.data)
                 } else {
-                    errorData.postValue(Constant.ERROR_EMPTY)
+                    errorData.postValue(ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 }
             }
 
             override fun onError(error: ICResponseCode?) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                errorData.postValue(Constant.ERROR_SERVER)
+                errorData.postValue(error?.message?:ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         })
     }
 
-    fun showFullCard(cardId: String?) {
+    private fun showFullCard(cardId: String?) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
             statusCode.postValue(ICMessageEvent.Type.ON_NO_INTERNET)
             return
         }
 
         if (cardId.isNullOrEmpty()) {
-            errorData.postValue(Constant.ERROR_UNKNOW)
+            errorData.postValue(ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             return
         }
 
         statusCode.postValue(ICMessageEvent.Type.ON_SHOW_LOADING)
 
-        interactor.getFullCard(cardId,object :ICNewApiListener<ICResponse<ICLockCard>>{
+        interactor.getFullCard(cardId, object : ICNewApiListener<ICResponse<ICLockCard>> {
             override fun onSuccess(obj: ICResponse<ICLockCard>) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                if (obj.data != null){
+                if (obj.data != null) {
                     dataUnLockCard.postValue(obj.data)
                 } else {
-                    errorData.postValue(Constant.ERROR_EMPTY)
+                    errorData.postValue(ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 }
             }
 
             override fun onError(error: ICResponseCode?) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                errorData.postValue(Constant.ERROR_SERVER)
+                errorData.postValue(error?.message?:ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         })
     }
@@ -119,19 +124,19 @@ class ConfirmUnlockPVCardViewModel : ViewModel() {
 
         statusCode.postValue(ICMessageEvent.Type.ON_SHOW_LOADING)
 
-        interactor.verifyOtp(requestId, otp, otptranid, object : ICNewApiListener<ICResponse<ICLockCard>> {
-            override fun onSuccess(obj: ICResponse<ICLockCard>) {
+        interactor.verifyOtp(requestId, otp, otptranid, object : ICNewApiListener<ICResponse<ICInfoPVCard>> {
+            override fun onSuccess(obj: ICResponse<ICInfoPVCard>) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                if (obj.data != null) {
-                    unlockCardSuccess.postValue(obj.data)
+                if (!obj.data?.fullCard.isNullOrEmpty()) {
+                    unlockCardSuccess.postValue(obj.data!!.fullCard)
                 } else {
-                    errorData.postValue(Constant.ERROR_EMPTY)
+                    verifyError.postValue(obj.data?.message?:ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 }
             }
 
             override fun onError(error: ICResponseCode?) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                errorData.postValue(Constant.ERROR_SERVER)
+                verifyError.postValue(error?.message?:ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         })
     }

@@ -59,7 +59,7 @@ class ApplyMisssionAdapter : RecyclerViewAdapter<Any>() {
                     appCompatImageView.beGone()
                     circleImageView.beVisible()
 
-                    WidgetUtils.loadImageUrl(circleImageView, obj.image, R.drawable.img_default_business_logo_big)
+                    WidgetUtils.loadImageUrl(circleImageView, obj.image, R.drawable.ic_business_v2)
                     textView.text = obj.name
                 }
             }

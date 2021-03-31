@@ -64,7 +64,7 @@ class DetailImagesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         pos = intent.getIntExtra(POSITION, 0)
         instance = this
-        listData.addAll(intent.getStringArrayListExtra(DATA))
+        listData.addAll(intent.getStringArrayListExtra(DATA) ?: arrayListOf())
 
         if (listData.size > 1) {
             binding = ActivityDetailImagesBinding.inflate(layoutInflater)
