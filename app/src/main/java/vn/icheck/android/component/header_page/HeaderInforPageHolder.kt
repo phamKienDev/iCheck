@@ -1,8 +1,12 @@
 package vn.icheck.android.component.header_page
 
 import android.os.Build
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ImageSpan
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -87,13 +91,17 @@ class HeaderInforPageHolder(parent: ViewGroup, val view: IListReportView) : Recy
 
         WidgetUtils.loadImageUrl(itemView.imgAvaPage, data.avatar, R.drawable.img_default_business_logo_big, R.drawable.img_default_business_logo_big)
         WidgetUtils.loadImageUrl(itemView.user_avatar, data.avatar, R.drawable.img_default_business_logo_big, R.drawable.img_default_business_logo_big)
-        itemView.tvNamePage.text = data.name
         if (data.isVerify) {
-            itemView.tvNamePage.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_18px, 0)
-            itemView.imgVerified2.beVisible()
+            val drawable = ContextCompat.getDrawable(itemView.context, R.drawable.ic_verified_18px)
+            drawable?.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)
+
+            val spannableString = SpannableString("${data.name} ") // cộng thêm khoảng trắng
+            val imageSpan = ImageSpan(drawable!!, ImageSpan.ALIGN_BASELINE)
+            spannableString.setSpan(imageSpan, (data.name?:"").length, (data.name?:"").length+1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+            itemView.tvNamePage.text = spannableString
         } else {
+            itemView.tvNamePage.text = data.name
             itemView.tvNamePage.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
-            itemView.imgVerified2.beGone()
         }
 
         itemView.tvCount.text = (data.productCount ?: 0).toString()

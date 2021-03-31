@@ -92,9 +92,9 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
             tvType.beGone()
             imgStatus.beGone()
             if (intent?.getBooleanExtra(Constant.DATA_5, false) == true) {
-                imgVerified.beVisible()
+                tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
             } else {
-                imgVerified.beGone()
+                tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
         } else {
             SessionManager.session.user?.let { user ->
@@ -103,7 +103,7 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
                 tvName.text = user.getName
                 edtContent.hint = "Bạn đã sử dụng sản phẩm nào? Hãy chia sẻ cảm nhận nhé!"
                 tvType.beVisible()
-                imgVerified.beGone()
+                tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
         }
     }

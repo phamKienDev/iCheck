@@ -43,10 +43,9 @@ class MyOwnerPageAdapter(val typeHome: Boolean, callback: IRecyclerViewCallback?
             }
 
             if (obj.isVerify) {
-                itemView.tv_verified.beVisible()
-                itemView.tv_verified.setBackgroundResource(R.drawable.ic_verified_16px)
+                itemView.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
             } else {
-                itemView.tv_verified.beGone()
+                itemView.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
 
             WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.avatar, R.drawable.img_default_business_logo_big, R.drawable.img_default_business_logo_big)

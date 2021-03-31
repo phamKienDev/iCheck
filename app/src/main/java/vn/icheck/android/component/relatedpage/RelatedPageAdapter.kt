@@ -41,14 +41,14 @@ class RelatedPageAdapter() : RecyclerView.Adapter<RelatedPageAdapter.ViewHolder>
 
             WidgetUtils.loadImageUrl(binding.imgAvatar, obj.avatar, R.drawable.img_default_business_logo)
 
-            binding.tvName.text=obj.name
+            binding.tvName.text = obj.name
             if (obj.isVerify) {
-                binding.imgVerified.beVisible()
+                binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
             } else {
-                binding.imgVerified.beGone()
+                binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
             if (obj.followCount > 0) {
-                binding.tvFollowCount.text =TextHelper.formatMoneyPhay(obj.followCount) + " Người theo dõi"
+                binding.tvFollowCount.text = TextHelper.formatMoneyPhay(obj.followCount) + " Người theo dõi"
             }
 
             binding.tvAction.setOnClickListener {

@@ -130,9 +130,9 @@ class AdsPageAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             WidgetUtils.loadImageUrl(binding.imgAvatar, obj.avatar?.content, R.drawable.img_default_business_logo)
 
             if (obj.verified == true) {
-                binding.imgVerified.visibility = View.VISIBLE
+                binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
             } else {
-                binding.imgVerified.visibility = View.GONE
+                binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
 
             binding.tvName.text = obj.name
@@ -224,9 +224,9 @@ class AdsPageAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
             WidgetUtils.loadImageUrl(binding.imgAvatar, obj.avatar?.content, R.drawable.img_default_business_logo)
             if (obj.verified == true) {
-                binding.imgVerified.visibility = View.VISIBLE
+                binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
             } else {
-                binding.imgVerified.visibility = View.GONE
+                binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
 
             binding.tvName.text = obj.name
@@ -305,9 +305,9 @@ class AdsPageAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
             WidgetUtils.loadImageUrl(binding.imgAvatar, obj.avatar?.content, R.drawable.img_default_business_logo)
             if (obj.verified == true) {
-                binding.imgVerified.visibility = View.VISIBLE
+                binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
             } else {
-                binding.imgVerified.visibility = View.GONE
+                binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
 
             binding.tvName.text = obj.name

@@ -79,15 +79,9 @@ class EditCommentActivity : BaseActivityMVVM() {
             if (it.page != null) {
                 WidgetUtils.loadImageUrl(layoutAvatar, it.page?.avatar, R.drawable.img_default_business_logo_big)
                 imgLevel.beGone()
-                if (it.page!!.isVerify) {
-                    imgVerified.beVisible()
-                } else {
-                    imgVerified.beGone()
-                }
             } else {
                 WidgetUtils.loadImageUrl(layoutAvatar, it.user?.avatar, R.drawable.ic_avatar_default_84px)
                 imgLevel.setImageResource(Constant.getAvatarLevelIcon16(it.user?.rank?.level))
-                imgVerified.beGone()
             }
 
             edtComment.setText(it.content)
@@ -105,15 +99,9 @@ class EditCommentActivity : BaseActivityMVVM() {
             if (it.page != null) {
                 WidgetUtils.loadImageUrl(layoutAvatar, it.page?.avatar, R.drawable.img_default_business_logo_big)
                 imgLevel.beGone()
-                if (it.page!!.isVerify) {
-                    imgVerified.beVisible()
-                } else {
-                    imgVerified.beGone()
-                }
             } else {
                 WidgetUtils.loadImageUrl(layoutAvatar, it.user?.avatar, R.drawable.ic_avatar_default_84px)
                 imgLevel.setImageResource(Constant.getAvatarLevelIcon16(it.user?.rank?.level))
-                imgVerified.beGone()
             }
 
             edtComment.setText(it.content)

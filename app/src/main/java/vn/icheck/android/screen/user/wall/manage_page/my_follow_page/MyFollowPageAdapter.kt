@@ -1,14 +1,9 @@
 package vn.icheck.android.screen.user.wall.manage_page.my_follow_page
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_me_follow_page_holder.view.*
-import kotlinx.android.synthetic.main.item_me_follow_page_holder.view.tv_verified
-import kotlinx.android.synthetic.main.layout_page_search_result_holder.view.*
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
@@ -65,10 +60,9 @@ class MyFollowPageAdapter(val typeHome: Boolean, callback: IRecyclerViewCallback
             }
 
             if (obj.isVerify) {
-                itemView.tv_verified.beVisible()
-                itemView.tv_verified.setBackgroundResource(R.drawable.ic_verified_16px)
+                itemView.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
             } else {
-                itemView.tv_verified.beGone()
+                itemView.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
 
             if (typeHome) {
