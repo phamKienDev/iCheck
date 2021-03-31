@@ -19,6 +19,7 @@ import vn.icheck.android.component.view.ListAvatar
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.product.ProductInteractor
 import vn.icheck.android.network.models.ICProductContribution
@@ -75,19 +76,18 @@ class ContributionHolder(parent: ViewGroup) : BaseViewHolder<ContributrionModel>
 
         checkProductVerify(obj)
         if (obj.productVerify) {
-            if (obj.owner?.verified == true) {
-                WidgetUtils.loadImageUrl(imgAvatarUser, obj.owner.avatar, R.drawable.img_default_business_logo_big, R.drawable.img_default_business_logo_big)
-                tvNameUser.text = if (obj.owner.name.isNullOrEmpty())
+            if (obj.manager != null) {
+                WidgetUtils.loadImageUrl(imgAvatarUser, obj.manager.avatar, R.drawable.img_default_business_logo_big, R.drawable.img_default_business_logo_big)
+                tvNameUser.text = if (obj.manager.name.isNullOrEmpty())
                     itemView.context.getString(R.string.chua_cap_nhat)
                 else
-                    obj.owner.name
+                    obj.manager.name
             } else {
-                if (obj.manager != null) {
-                    WidgetUtils.loadImageUrl(imgAvatarUser, obj.manager.avatar, R.drawable.img_default_business_logo_big, R.drawable.img_default_business_logo_big)
-                    tvNameUser.text = if (obj.manager.name.isNullOrEmpty())
-                        itemView.context.getString(R.string.chua_cap_nhat)
-                    else
-                        obj.manager.name
+                for (i in 0 until itemView.childCount - 1) {
+                    itemView.getChildAt(i).visibility = View.GONE
+                }
+                itemView.layoutParams = ViewHelper.createLayoutParams(0, 0).also {
+                    it.topMargin = 0
                 }
             }
         } else {
