@@ -63,7 +63,14 @@ class DetailPostHolder(val binding: ItemPostDetailBinding, val listener: IDetail
             }
         } else {
             WidgetUtils.loadImageUrl(binding.imgLogo, obj.user?.avatar, R.drawable.ic_avatar_default_84px)
-            binding.tvName.text = obj.user?.getName
+            binding.tvName.apply {
+                text = obj.user?.getName
+                if (obj.user?.kycStatus == 2) {
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_24dp, 0)
+                } else {
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                }
+            }
             binding.imgRank.beVisible()
             binding.imgVerified.beGone()
             binding.imgRank.setRankUser(obj.user?.rank?.level)

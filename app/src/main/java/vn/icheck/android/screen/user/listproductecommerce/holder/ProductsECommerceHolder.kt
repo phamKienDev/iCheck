@@ -3,7 +3,6 @@ package vn.icheck.android.screen.user.listproductecommerce.holder
 import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.databinding.ItemProductEcommerceBinding
@@ -22,23 +21,31 @@ class ProductsECommerceHolder(parent: ViewGroup, val binding: ItemProductEcommer
 
         binding.tvName.text = obj.name
 
-        if (obj.sellPrice != null) {
-            binding.tvOldPrice.apply {
-                text = (TextHelper.formatMoneyPhay(obj.sellPrice) + "đ")
-                paintFlags = binding.tvOldPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-                beVisible()
+        if (obj.finalPrice != null) {
+            if (obj.sellPrice != null) {
+                binding.tvOldPrice.apply {
+                    text = (TextHelper.formatMoneyPhay(obj.sellPrice) + "đ")
+                    paintFlags = binding.tvOldPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                    beVisible()
+                }
+            } else {
+                binding.tvOldPrice.beGone()
+            }
+
+            if (obj.finalPrice != null) {
+                binding.tvPrice.apply {
+                    text = (TextHelper.formatMoneyPhay(obj.finalPrice) + "đ")
+                    beVisible()
+                }
+            } else {
+                binding.tvPrice.beGone()
             }
         } else {
             binding.tvOldPrice.beGone()
-        }
-
-        if (obj.finalPrice != null) {
             binding.tvPrice.apply {
-                text = (TextHelper.formatMoneyPhay(obj.finalPrice) + "đ")
+                text = (TextHelper.formatMoneyPhay(obj.sellPrice) + "đ")
                 beVisible()
             }
-        } else {
-            binding.tvPrice.beGone()
         }
 
         itemView.setOnClickListener {

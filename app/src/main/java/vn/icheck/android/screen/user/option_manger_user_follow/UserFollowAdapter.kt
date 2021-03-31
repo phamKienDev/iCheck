@@ -166,7 +166,14 @@ class UserFollowAdapter constructor(val view: IUserFollowWallView) : RecyclerVie
     private class ViewHolder constructor(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(item: ICUserFollowWall) {
             itemView.imgAvatar.setData(item.avatar, item.rank?.level, R.drawable.ic_square_avatar_default)
-            itemView.tvName.text = item.getUserName()
+            itemView.tvName.apply {
+                text = item.getUserName()
+                if (item.kycStatus == 2) {
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_24dp, 0)
+                } else {
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                }
+            }
 
             if (item.relateFriendCount > 0) {
                 itemView.tv_related_friend.beVisible()

@@ -48,7 +48,14 @@ class FriendRequestHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInf
         }
 
         // Text name
-        itemView.tvName.text = obj.getName
+        itemView.tvName.apply {
+            text = obj.getName
+            if (obj.kycStatus == 2) {
+                setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_24dp, 0)
+            } else {
+                setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+            }
+        }
 
         // Text agree
         itemView.btnAgree.setOnClickListener {
