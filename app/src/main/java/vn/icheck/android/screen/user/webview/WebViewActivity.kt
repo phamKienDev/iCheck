@@ -30,11 +30,14 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
+import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.network.base.*
 import vn.icheck.android.screen.user.pvcombank.authen.CreatePVCardActivity
 import vn.icheck.android.screen.user.pvcombank.home.HomePVCardActivity
 import vn.icheck.android.screen.user.pvcombank.listcard.ListPVCardActivity
+import vn.icheck.android.util.ick.spToPx
+import vn.icheck.android.util.ick.toPx
 import vn.icheck.android.util.kotlin.ActivityUtils
 import java.net.URL
 import java.util.*
@@ -219,6 +222,7 @@ class WebViewActivity : BaseActivityMVVM() {
                 webView.loadUrl(url)
             }
         } else {
+            webView.settings.defaultFontSize = 14f.spToPx().toInt()
             webView.loadData(Constant.getHtmlData(url), "text/html; charset=utf-8", "UTF-8")
         }
 

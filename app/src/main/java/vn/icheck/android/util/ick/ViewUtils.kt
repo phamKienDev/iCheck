@@ -228,9 +228,7 @@ fun Bitmap.resizeBitmap(newWidth: Int, newHeight: Int, isCenterCrop:Boolean = fa
 
 
 fun Int.toPx(): Int {
-    val res = ICheckApplication.getInstance().resources
-//    return this * (res.displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT)
-    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this.toFloat(), res.displayMetrics).toInt()
+    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this.toFloat(), ICheckApplication.getInstance().resources.displayMetrics).toInt()
 }
 
 fun Int.dpToPx(): Int {
@@ -241,11 +239,13 @@ fun Float.dpToPx(): Int {
     return (this * Resources.getSystem().displayMetrics.density).toInt()
 }
 
+fun Float.spToPx(): Float {
+    return (this * Resources.getSystem().displayMetrics.scaledDensity)
+}
+
 
 fun Float.toPx(): Float {
-    val res = ICheckApplication.getInstance().resources
-//    return this * (res.displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT)
-    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this.toFloat(), res.displayMetrics)
+    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this, ICheckApplication.getInstance().resources.displayMetrics)
 }
 
 fun Int.toDp(): Int {
