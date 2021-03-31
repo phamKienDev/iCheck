@@ -435,10 +435,9 @@ object Constant {
         return Pattern.compile(regex).matcher(Uri.parse(http).host ?: "").matches()
     }
 
-
     fun callPhone(phone: String) {
         ICheckApplication.currentActivity()?.let { activity ->
-            val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:${phone}"))
+            val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:${phone.replace(" ".toRegex(), "")}"))
             ActivityUtils.startActivity(activity, intent)
         }
     }
@@ -463,8 +462,8 @@ object Constant {
     }
 
     fun getName(lastName: String?, firstName: String?): String {
-        return if (!lastName.isNullOrEmpty()) {
-            lastName + if (!firstName.isNullOrEmpty()) " $firstName" else ""
+        return if (!lastName.isNullOrEmpty() || !firstName.isNullOrEmpty()) {
+            "${lastName ?: ""} ${firstName ?: ""}".trim()
         } else {
             ICheckApplication.getString(R.string.dang_cap_nhat)
         }

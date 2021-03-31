@@ -11,11 +11,11 @@
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="@dimen/size_4"
     app:cardElevation="4dp"
-    app:cardUseCompatPadding="false"
     app:cardPreventCornerOverlap="false"
-    app:contentPadding="0dp"
     app:cardShadowColorEnd="@color/app_selector_shadow_end"
-    app:cardShadowColorStart="@color/elevation_color_card">
+    app:cardShadowColorStart="@color/elevation_color_card"
+    app:cardUseCompatPadding="false"
+    app:contentPadding="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -68,42 +68,42 @@
             android:layout_marginStart="@dimen/size_8"
             android:layout_marginLeft="@dimen/size_8"
             android:layout_marginTop="@dimen/size_8"
-            app:civ_border_width="0.5dp"
             app:civ_border_color="#D8D8D8"
+            app:civ_border_width="0.5dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imgImage"
             tools:src="@drawable/ic_business_v2" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/imgVerified"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/size_27"
-            android:layout_marginLeft="@dimen/size_27"
-            android:layout_marginTop="@dimen/size_27"
-            app:layout_constraintStart_toStartOf="@id/imgAvatar"
-            app:layout_constraintTop_toTopOf="@id/imgAvatar"
-            tools:src="@drawable/ic_verified_16px" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@id/tvName"
-            android:layout_width="@dimen/size_0"
+        <LinearLayout
+            android:id="@+id/layoutName"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_8"
-            android:layout_marginLeft="@dimen/size_8"
             android:layout_marginEnd="@dimen/size_4"
-            android:layout_marginRight="@dimen/size_4"
-            android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
-            android:includeFontPadding="false"
-            android:singleLine="true"
-            android:textColor="@color/collection_product_name"
-            android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@id/tvStatus"
             app:layout_constraintEnd_toStartOf="@id/btnAction"
             app:layout_constraintStart_toEndOf="@id/imgAvatar"
-            app:layout_constraintTop_toTopOf="@id/imgAvatar"
-            tools:text="Adidas Store (tối 1 dòng)..." />
+            app:layout_constraintTop_toTopOf="@id/imgAvatar">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/size_2"
+                android:ellipsize="middle"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:textColor="@color/collection_product_name"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@id/tvStatus"
+                app:layout_constraintEnd_toStartOf="@id/btnAction"
+                app:layout_constraintStart_toEndOf="@id/imgAvatar"
+                app:layout_constraintTop_toTopOf="@id/imgAvatar"
+                tools:drawableEnd="@drawable/ic_verified_16px"
+                tools:text="Adidas Store (tối 1 dòng)..." />
+
+        </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@id/tvStatus"
@@ -116,9 +116,9 @@
             android:textColor="#757575"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
-            app:layout_constraintEnd_toEndOf="@id/tvName"
-            app:layout_constraintStart_toStartOf="@id/tvName"
-            app:layout_constraintTop_toBottomOf="@id/tvName"
+            app:layout_constraintEnd_toEndOf="@id/layoutName"
+            app:layout_constraintStart_toStartOf="@id/layoutName"
+            app:layout_constraintTop_toBottomOf="@id/layoutName"
             tools:text="1,241,021 Người theo dõi" />
 
         <androidx.appcompat.widget.AppCompatTextView

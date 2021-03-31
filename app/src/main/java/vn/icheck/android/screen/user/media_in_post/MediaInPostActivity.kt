@@ -138,18 +138,18 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
             if (it.page != null) {
                 WidgetUtils.loadImageUrl(imgAvatar, it.page!!.avatar, R.drawable.ic_business_v2)
                 if (it.page!!.isVerify) {
-                    imgVerified.beVisible()
+                    tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
                 } else {
-                    imgVerified.beGone()
+                    tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                 }
                 tvName.text = it.page!!.name
                 imgRank.beInvisible()
             } else {
                 WidgetUtils.loadImageUrl(imgAvatar, it.user!!.avatar, R.drawable.ic_avatar_default_84px)
-                imgVerified.beGone()
                 imgRank.beVisible()
                 imgRank.setRankUser(it.user?.rank?.level)
                 tvName.text = it.user!!.getName
+                tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
             if (!it.customerCriteria.isNullOrEmpty() && it.avgPoint != 0f) {
                 containerRating.beVisible()

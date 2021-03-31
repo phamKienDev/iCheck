@@ -43,8 +43,7 @@
                 android:textAlignment="gravity"
                 android:textColor="@color/collection_product_name"
                 android:textColorHint="@color/darkGray2"
-                android:textSize="16sp"
-                tools:visibility="gone" />
+                android:textSize="16sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@id/recyclerView"

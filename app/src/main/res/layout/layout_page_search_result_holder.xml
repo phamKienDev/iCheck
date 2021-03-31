@@ -6,9 +6,9 @@
     android:layout_height="wrap_content"
     android:layout_marginLeft="@dimen/size_12"
     android:layout_marginTop="@dimen/size_12"
-    android:paddingBottom="@dimen/size_12"
     android:layout_marginRight="@dimen/size_12"
-    android:background="@drawable/bg_white_stroke_gray_corners_4">
+    android:background="@drawable/bg_white_stroke_gray_corners_4"
+    android:paddingBottom="@dimen/size_12">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/img_avatar"
@@ -22,22 +22,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_name"
+    <LinearLayout
+        android:id="@+id/layoutName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginEnd="@dimen/size_10"
-        android:layout_marginRight="@dimen/size_10"
-        android:fontFamily="@font/barlow_semi_bold"
-        android:includeFontPadding="false"
-        android:textColor="@color/collection_product_name"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@+id/tv_follow_shop"
-        app:layout_constraintStart_toEndOf="@+id/img_avatar"
-        app:layout_constraintTop_toTopOf="@+id/img_avatar"
-        tools:text="Nguyễn Quang Hải Nguyễn Quang Hải Nguyễn Quang Hải Nguyễn Quang Hải" />
+        app:layout_constraintEnd_toStartOf="@id/tv_follow_shop"
+        app:layout_constraintStart_toEndOf="@id/img_avatar"
+        app:layout_constraintTop_toTopOf="@id/img_avatar">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/size_5"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:includeFontPadding="false"
+            android:textColor="@color/collection_product_name"
+            android:textSize="14sp"
+            tools:text="Nguyễn Quang Hải Nguyễn Quang Hải Nguyễn Quang Hải Nguyễn Quang Hải" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tv_count_like"
@@ -46,13 +52,13 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="@dimen/size_10"
         android:layout_marginRight="@dimen/size_10"
+        android:fontFamily="@font/barlow_medium"
         android:includeFontPadding="false"
         android:textColor="@color/fast_survey_gray"
         android:textSize="12sp"
-        android:fontFamily="@font/barlow_medium"
         app:layout_constraintEnd_toStartOf="@+id/tv_follow_shop"
-        app:layout_constraintStart_toStartOf="@+id/tv_name"
-        app:layout_constraintTop_toBottomOf="@+id/tv_name"
+        app:layout_constraintStart_toStartOf="@+id/layoutName"
+        app:layout_constraintTop_toBottomOf="@+id/layoutName"
         tools:text="89K người thích trang này 89K người thích trang này" />
 
     <TextView
@@ -73,7 +79,7 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/tv_count_like"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_name" />
+        app:layout_constraintTop_toTopOf="@+id/layoutName" />
 
     <TextView
         android:id="@+id/tv_follow_shop"
@@ -92,13 +98,4 @@
         app:layout_constraintEnd_toEndOf="@id/tv_following"
         app:layout_constraintStart_toStartOf="@id/tv_following"
         app:layout_constraintTop_toTopOf="@+id/tv_following" />
-
-
-    <ImageView
-        android:id="@+id/tv_verified"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/img_avatar"
-        app:layout_constraintEnd_toEndOf="@+id/img_avatar"
-        app:srcCompat="@drawable/ic_verified_page_16dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -480,6 +480,8 @@ class DetailStampV6Activity : BaseActivity<DetailStampV6Presenter>(), IDetailSta
         if (!obj.data?.product_link.isNullOrEmpty()) {
             layoutProductLink.beVisible()
             val adapter = object : RecyclerViewAdapter<ICProductLink>() {
+                override fun getItemCount() = if (listData.size > 3) 3 else listData.size
+
                 override fun viewHolder(parent: ViewGroup) = StampECommerceHolder(parent)
 
                 override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {

@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ShareCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
@@ -91,18 +92,24 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
     private fun setupHeader(obj: ICPost) {
         if (obj.page != null) {
             WidgetUtils.loadImageUrl(itemView.imgLogo, obj.page?.avatar, R.drawable.ic_business_v2)
+            itemView.imgLogo.layoutParams = ConstraintLayout.LayoutParams(SizeHelper.size40, SizeHelper.size40).also {
+                it.topMargin = 0
+            }
             itemView.tvPageName.text = obj.page?.getName
             itemView.imgRank.beGone()
             if (obj.page!!.isVerify) {
-                itemView.imgVerify.beVisible()
+                itemView.tvPageName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
             } else {
-                itemView.imgVerify.beGone()
+                itemView.tvPageName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
         } else {
             WidgetUtils.loadImageUrl(itemView.imgLogo, obj.user?.avatar, R.drawable.ic_avatar_default_84px)
+            itemView.imgLogo.layoutParams = ConstraintLayout.LayoutParams(SizeHelper.size40, SizeHelper.size40).also {
+                it.topMargin = SizeHelper.size8
+            }
             itemView.tvPageName.text = obj.user?.getName
             itemView.imgRank.beVisible()
-            itemView.imgVerify.beGone()
+            itemView.tvPageName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             itemView.imgRank.setRankUser(obj.user?.rank?.level)
         }
 

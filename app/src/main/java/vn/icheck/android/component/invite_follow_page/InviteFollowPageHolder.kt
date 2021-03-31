@@ -37,8 +37,12 @@ class InviteFollowPageHolder(parent: ViewGroup) : BaseViewHolder<ICPageOverview>
 
 
             WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
-            itemView.imgVerified.visibleOrInvisible(obj.isVerify)
             itemView.tvName.text = "Bạn đã theo dõi ${obj.name}"
+            if (obj.isVerify) {
+                itemView.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
+            } else {
+                itemView.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+            }
 
             itemView.tvInvite.setOnClickListener {
                 ICheckApplication.currentActivity()?.let {
