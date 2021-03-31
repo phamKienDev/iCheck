@@ -22,22 +22,30 @@ class StampECommerceHolder(parent: ViewGroup, val binding: ItemProductEcommerceB
         binding.tvName.text = obj.name
 
         if (obj.promotionPrice != null) {
-            binding.tvOldPrice.apply {
-                text = (TextHelper.formatMoneyPhay(obj.promotionPrice) + "đ")
-                paintFlags = binding.tvOldPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-                beVisible()
+            if (obj.listPrice != null) {
+                binding.tvOldPrice.apply {
+                    text = (TextHelper.formatMoneyPhay(obj.listPrice) + "đ")
+                    paintFlags = binding.tvOldPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                    beVisible()
+                }
+            } else {
+                binding.tvOldPrice.beGone()
+            }
+
+            if (obj.promotionPrice != null) {
+                binding.tvPrice.apply {
+                    text = (TextHelper.formatMoneyPhay(obj.promotionPrice) + "đ")
+                    beVisible()
+                }
+            } else {
+                binding.tvPrice.beGone()
             }
         } else {
             binding.tvOldPrice.beGone()
-        }
-
-        if (obj.listPrice != null) {
             binding.tvPrice.apply {
                 text = (TextHelper.formatMoneyPhay(obj.listPrice) + "đ")
                 beVisible()
             }
-        } else {
-            binding.tvPrice.beGone()
         }
 
         itemView.setOnClickListener {
