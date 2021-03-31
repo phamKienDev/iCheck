@@ -16,6 +16,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.item_ads_product_grid.view.*
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseVideoViewHolder
@@ -259,9 +260,9 @@ class AdsProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
             if (obj.owner?.verified == true) {
-                binding.imgVerified.visibility = View.VISIBLE
+                itemView.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
             } else {
-                binding.imgVerified.visibility = View.GONE
+                itemView.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
 
             binding.tvName.text = obj.owner?.name ?: ""

@@ -219,15 +219,15 @@ class ListProductQuestionAdapter(val callback: IListProductQuestionView) : Recyc
                 WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.user?.avatar, R.drawable.ic_circle_avatar_default)
                 itemView.imgLevel.setRankUser(obj.user?.rank?.level)
                 itemView.tvTitle.text = obj.user?.getName
-                itemView.imgVerify.beGone()
+                itemView.tvTitle.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0)
             } else {
                 WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.page!!.avatar, R.drawable.ic_business_v2)
                 itemView.imgLevel.beGone()
                 itemView.tvTitle.text = obj.page?.getName
                 if (obj.page!!.isVerify) {
-                    itemView.imgVerify.beVisible()
+                    itemView.tvTitle.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.ic_verified_16px,0)
                 } else {
-                    itemView.imgVerify.beGone()
+                    itemView.tvTitle.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0)
                 }
             }
 

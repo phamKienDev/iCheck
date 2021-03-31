@@ -43,10 +43,10 @@ class PageSearchHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflat
 
         checkFollowCount(obj)
 
-        itemView.tv_verified.visibility = if (obj.isVerify) {
-            View.VISIBLE
+        if (obj.isVerify) {
+            itemView.tv_name.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
         } else {
-            View.GONE
+            itemView.tv_name.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
         }
 
         itemView.setOnClickListener {

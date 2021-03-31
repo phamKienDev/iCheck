@@ -96,6 +96,7 @@ class MyQrActivity : AppCompatActivity() {
         listKey.add("MY_QR_CAMPAIGN_BANNER")
         binding.btnScan.setOnClickListener {
             simpleStartActivity(V6ScanditActivity::class.java)
+            finish()
         }
         viewModel.getMyID()
         createQrCodeMarketing()
