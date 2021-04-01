@@ -38,6 +38,7 @@ abstract class NotificationDialog(
         }
     }
 
+
     fun hideTitle() {
         findViewById<AppCompatTextView>(R.id.txtTitle).visibility = View.GONE
     }

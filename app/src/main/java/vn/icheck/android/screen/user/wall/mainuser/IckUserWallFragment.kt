@@ -116,9 +116,7 @@ class IckUserWallFragment : Fragment(), IPostListener {
                                 ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.CAMERA), ICK_REQUEST_CAMERA)
                             }
                         } else {
-                            val i = Intent(context, V6ScanditActivity::class.java)
-                            i.putExtra("review_only", true)
-                            startActivityForResult(i, SCAN_REVIEW)
+                            V6ScanditActivity.reviewOnly(requireActivity())
                         }
 
 //                        ICKScanActivity.reviewOnly(requireActivity())
