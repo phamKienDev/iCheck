@@ -1,12 +1,8 @@
 package vn.icheck.android.component.header_page
 
 import android.os.Build
-import android.text.Spannable
-import android.text.SpannableString
-import android.text.style.ImageSpan
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -18,16 +14,17 @@ import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
-import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.component.header_page.bottom_sheet_header_page.IListReportView
 import vn.icheck.android.component.header_page.bottom_sheet_header_page.MoreActionPageBottomSheet
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.network.models.ICMedia
 import vn.icheck.android.network.models.ICPageOverview
 import vn.icheck.android.network.models.feed.ICAvatarOfFriend
+import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 import vn.icheck.android.screen.user.user_follow_page.UserFollowPageActivity
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
@@ -93,13 +90,7 @@ class HeaderInforPageHolder(parent: ViewGroup, val view: IListReportView) : Recy
         WidgetUtils.loadImageUrl(itemView.imgAvaPage, data.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
         WidgetUtils.loadImageUrl(itemView.user_avatar, data.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
         if (data.isVerify) {
-            val drawable = ContextCompat.getDrawable(itemView.context, R.drawable.ic_verified_18px)
-            drawable?.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)
-
-            val spannableString = SpannableString("${data.name} ") // cộng thêm khoảng trắng
-            val imageSpan = ImageSpan(drawable!!, ImageSpan.ALIGN_BASELINE)
-            spannableString.setSpan(imageSpan, (data.name?:"").length, (data.name?:"").length+1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
-            itemView.tvNamePage.text = spannableString
+            itemView.tvNamePage.setDrawbleNextEndText(data.name ?: "", R.drawable.ic_verified_18px)
         } else {
             itemView.tvNamePage.text = data.name
             itemView.tvNamePage.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
@@ -147,9 +138,11 @@ class HeaderInforPageHolder(parent: ViewGroup, val view: IListReportView) : Recy
 
         itemView.tvChinh.setOnClickListener {
             if (!itemView.tvChinh.text.contains("Theo dõi")) {
-                ListConversationFragment.finishAllChat()
-                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_FINISH_ALL_CHAT))
-                ChatSocialDetailActivity.createRoomChat(it.context, data.id ?: -1, "page")
+//                ListConversationFragment.finishAllChat()
+//                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_FINISH_ALL_CHAT))
+//                ChatSocialDetailActivity.createRoomChat(it.context, data.id ?: -1, "page")
+
+                SocialChatActivity.createRoomChat(it.context, data.id)
             } else {
                 view.followAndUnFollowPage(data)
             }

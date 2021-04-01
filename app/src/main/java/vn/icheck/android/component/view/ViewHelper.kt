@@ -1309,7 +1309,6 @@ object ViewHelper {
 
     fun createRecyclerViewWithTitleHolder(context: Context): View {
         val layoutParent = LinearLayout(context)
-        layoutParent.layoutParams = createLayoutParams()
         layoutParent.setBackgroundColor(Color.WHITE)
         layoutParent.orientation = LinearLayout.VERTICAL
 

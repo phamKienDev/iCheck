@@ -104,6 +104,7 @@ data class ICMessageEvent(val type: Type, val data: Any? = null) {
         ON_DESTROY_PVCOMBANK,
         ON_FINISH_ALL_CHAT,
         ON_DISMISS,
-        TAKE_IMAGE
+        TAKE_IMAGE,
+        OPEN_SEARCH_REVIEW_OR_PAGE
     }
 }

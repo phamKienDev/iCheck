@@ -51,7 +51,14 @@ class NotificationPageAdapter : RecyclerView.Adapter<NotificationPageAdapter.Pag
                 getChildAt(0).setOnClickListener {
                     PageDetailActivity.start(itemView.context, obj.id)
                 }
-                (getChildAt(1) as AppCompatTextView).text = obj.name
+                (getChildAt(1) as AppCompatTextView).also {
+                    it.text = obj.name
+                    if (obj.isVerify) {
+                        it.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
+                    } else {
+                        it.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                    }
+                }
 
                 getChildAt(2).setOnClickListener {
                     followPage(obj)

@@ -49,7 +49,7 @@ class SlideBannerV2Holder(parent: ViewGroup) : RecyclerView.ViewHolder(ViewHelpe
             }
 
             if (!obj.data.isNullOrEmpty()){
-                if (obj.data.size > 2){
+                if (obj.data.size > 1){
                     (getChildAt(1) as IndicatorLineHorizontal).beVisible()
                 } else {
                     (getChildAt(1) as IndicatorLineHorizontal).beInvisible()
