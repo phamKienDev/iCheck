@@ -8,8 +8,10 @@ import android.os.Environment
 import android.provider.MediaStore
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
+import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.BuildConfig
 import vn.icheck.android.ICheckApplication
+import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.screen.dialog.PickPhotoOptionDialog
 import java.io.File
@@ -64,6 +66,7 @@ class TakeMediaHelper(val callback: TakeCameraListener, private val selectVideo:
 
                 // Continue only if the File was successfully created
                 photoFile?.also {
+                    EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.TAKE_IMAGE))
                     val photoURI: Uri = FileProvider.getUriForFile(activity, fileProvider, it)
                     takeMediaIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
                     if (fragment != null) {
