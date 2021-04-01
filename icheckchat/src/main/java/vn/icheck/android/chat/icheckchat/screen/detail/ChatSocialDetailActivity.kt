@@ -539,10 +539,22 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
             }
 
             if (obj.type == "media") {
-                uploadImage {
-                    obj.listMedia = listImageSrc
+                viewModel.uploadImage(adapterImage.getListData)
+
+                viewModel.listMediaData.observe(this, {media->
+                    adapterImage.clearData()
+                    val listMedia = mutableListOf<MCMedia>()
+                    media.forEach {
+                        listMedia.add(MCMedia(it.src, if (it.src.endsWith(".mp4")) {
+                            "video"
+                        } else {
+                            "image"
+                        }))
+                    }
+                    obj.listMedia = listMedia
                     sendMessage(key, "user", obj)
-                }
+                })
+
             } else {
                 sendMessage(key, "user", obj)
             }
@@ -611,32 +623,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
             }
         })
     }
-
-    private fun uploadImage(success: () -> Unit) {
-        if (NetworkHelper.isNotConnected(this@ChatSocialDetailActivity)) {
-            showToastError(getString(R.string.khong_co_mang))
-            return
-        }
-
-        if (!adapterImage.isEmpty) {
-            viewModel.uploadImage(adapterImage.getListData[0], { obj ->
-                val type = if (obj.src.endsWith(".mp4")) {
-                    "video"
-                } else {
-                    "image"
-                }
-                listImageSrc.add(MCMedia(obj.src, type))
-                adapterImage.getListData.removeAt(0)
-                uploadImage(success)
-            }, { error ->
-                uploadImage(success)
-            })
-        } else {
-            adapterImage.clearData()
-            success()
-        }
-    }
-
 
     private fun getProductBarcode(barcode: String) {
         viewModel.getProductBarcode(barcode).observe(this, {
