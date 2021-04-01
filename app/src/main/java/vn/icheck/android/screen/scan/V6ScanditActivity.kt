@@ -34,7 +34,11 @@ import androidx.lifecycle.lifecycleScope
 import com.scandit.datacapture.barcode.capture.*
 import com.scandit.datacapture.barcode.data.Symbology
 import com.scandit.datacapture.barcode.feedback.BarcodeCaptureFeedback
+import com.scandit.datacapture.barcode.ui.overlay.BarcodeCaptureOverlay
 import com.scandit.datacapture.core.capture.DataCaptureContext
+import com.scandit.datacapture.core.capture.DataCaptureContextListener
+import com.scandit.datacapture.core.capture.DataCaptureMode
+import com.scandit.datacapture.core.common.ContextStatus
 import com.scandit.datacapture.core.common.async.Callback
 import com.scandit.datacapture.core.common.feedback.Feedback
 import com.scandit.datacapture.core.common.feedback.Sound
@@ -118,6 +122,12 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
             i.putExtra("review_only", true)
             context.startActivityForResult(i, 1)
         }
+
+        fun reviewOnly(context: FragmentActivity, requestCode: Int) {
+            val i = Intent(context, V6ScanditActivity::class.java)
+            i.putExtra("review_only", true)
+            context.startActivityForResult(i, requestCode)
+        }
     }
 
     lateinit var dataCaptureContext: DataCaptureContext
@@ -130,12 +140,12 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     private val guideArr = arrayListOf<View?>()
     private val requestPhone = 2
     private var phoneNumber: String = ""
+    lateinit var dataCaptureView:DataCaptureView
 
     private lateinit var takeImageListener: TakeMediaDialog.TakeImageListener
 
     private lateinit var takeImageDialog: TakeMediaDialog
     val scanImage = AtomicBoolean(false)
-    val takeImage = AtomicBoolean(false)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -194,9 +204,8 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
             override fun onTakeMediaSuccess(file: File?) {
                 try {
                     lifecycleScope.launch {
-                        takeImage.set(true)
                         _binding?.bg?.alpha = 1f
-                        delay(400)
+                        delay(2000)
                         val bm = BitmapFactory.decodeFile(file?.getAbsolutePath())
                         val width = bm.width
                         val height = bm.height
@@ -235,50 +244,74 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         takeImageDialog = TakeMediaDialog(takeImageListener, false, cropImage = true, isVideo = false)
 
         val key = if (BuildConfig.FLAVOR.contentEquals("dev")) getString(R.string.scandit_v6_key_dev) else getString(R.string.scandit_v6_key_live)
-        dataCaptureContext = DataCaptureContext.forLicenseKey(key)
+//        dataCaptureContext = DataCaptureContext.Companion.forLicenseKey(key)
+        dataCaptureContext = ICheckApplication.getInstance().dataCaptureContext
+//        val settings = BarcodeCaptureSettings().apply {
+//            Symbology.values().forEach {
+//                if (it != Symbology.MICRO_PDF417 && it != Symbology.PDF417) {
+//                    enableSymbology(it, true)
+//                    getSymbologySettings(it).isColorInvertedEnabled = true
+//                }
+//            }
+//        }
+//        settings.getSymbologySettings(Symbology.EAN13_UPCA).setExtensionEnabled("remove_leading_upca_zero", true)
+//        settings.getSymbologySettings(Symbology.UPCE).setExtensionEnabled("remove_leading_upca_zero", true)
 
-        val settings = BarcodeCaptureSettings().apply {
-            Symbology.values().forEach {
-                if (it != Symbology.MICRO_PDF417 && it != Symbology.PDF417) {
-                    enableSymbology(it, true)
-                    getSymbologySettings(it).isColorInvertedEnabled = true
-                }
-            }
-        }
-        settings.getSymbologySettings(Symbology.EAN13_UPCA).setExtensionEnabled("remove_leading_upca_zero", true)
-        settings.getSymbologySettings(Symbology.UPCE).setExtensionEnabled("remove_leading_upca_zero", true)
-
-        barcodeCapture = BarcodeCapture.forDataCaptureContext(dataCaptureContext, settings)
-        val vib:Vibration? = if(SettingManager.getVibrateSetting) Vibration() else null
-        val sound: Sound? = if(SettingManager.getSoundSetting) Sound(R.raw.success) else null
-        barcodeCapture.feedback.success = Feedback(vib,sound)
+//        barcodeCapture = BarcodeCapture.forDataCaptureContext(dataCaptureContext, settings)
+        barcodeCapture = ICheckApplication.getInstance().barcodeCapture
+        val vib: Vibration? = if (SettingManager.getVibrateSetting) Vibration() else null
+        val sound: Sound? = if (SettingManager.getSoundSetting) Sound(R.raw.success) else null
+        barcodeCapture.feedback.success = Feedback(vib, sound)
         barcodeCapture.addListener(this)
         cameraSettings = BarcodeCapture.createRecommendedCameraSettings()
         cameraSettings.preferredResolution = VideoResolution.HD
         camera = Camera.getDefaultCamera(cameraSettings)
         resetCamera()
-        val dataCaptureView = DataCaptureView.newInstance(this, dataCaptureContext)
+        dataCaptureView = DataCaptureView.newInstance(this, dataCaptureContext)
+//        dataCaptureView.addOverlay( BarcodeCaptureOverlay.newInstance(barcodeCapture, dataCaptureView).apply {
+//            shouldShowScanAreaGuides = true
+//        })
         _binding = IckScanCustomViewBinding.inflate(layoutInflater, dataCaptureView, false)
         dataCaptureView.addView(binding.root, getDeviceWidth(), getDeviceHeight())
         setContentView(dataCaptureView)
         dataCaptureView.get(0)
-        if (getUserCountry(this)?.contains("vn", true) == true) {
-            val lp = dataCaptureView.layoutParams
-            lp.height = getDeviceHeight() + 50.toPx()
-            dataCaptureView.layoutParams = lp
+        if (getUserCountry(this).contains("vn", false)) {
+            pushUp()
         }
         if (intent.getBooleanExtra("review_only", false)) {
+            viewModel.reviewOnly = true
             _binding?.btnMyCode.beGone()
             _binding?.btnQm.beGone()
+        } else {
+            viewModel.reviewOnly = false
+        }
+        if (intent.getBooleanExtra("scan_only", false)) {
+            viewModel.scanOnly = true
+            _binding?.btnMyCode.beGone()
+            _binding?.btnQm.beGone()
+        } else {
+            viewModel.scanOnly = false
         }
         initViews()
 
 
     }
 
+    private fun pushUp() {
+        val lp = dataCaptureView.layoutParams
+        lp.height = getDeviceHeight() + 50.toPx()
+        dataCaptureView.layoutParams = lp
+    }
+
+    fun reset() {
+        val lp = dataCaptureView.layoutParams
+        lp.height = getDeviceHeight()
+        dataCaptureView.layoutParams = lp
+    }
+
     private fun resetCamera() {
         lifecycleScope.launch {
-            delay(400)
+            delay(2000)
             camera?.switchToDesiredState(FrameSourceState.ON, object : Callback<Boolean> {
                 override fun run(result: Boolean) {
                     if (result) {
@@ -305,7 +338,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         })
     }
 
-    fun getUserCountry(context: Context): String? {
+    fun getUserCountry(context: Context): String {
         try {
             val tm: TelephonyManager = context.getSystemService(TELEPHONY_SERVICE) as TelephonyManager
             val simCountry: String = tm.getSimCountryIso()
@@ -318,36 +351,14 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                 }
             }
         } catch (e: java.lang.Exception) {
+            return ""
         }
-        return null
+        return ""
     }
 
     override fun onSessionUpdated(barcodeCapture: BarcodeCapture, session: BarcodeCaptureSession, data: FrameData) {
-        super.onSessionUpdated(barcodeCapture, session, data)
         if (scanImage.get()) {
             scanImage.set(false)
-            if (!takeImage.get()) {
-                job = lifecycleScope.launch {
-                    delay(400)
-                    if (session.newlyRecognizedBarcodes.isEmpty()) {
-                        resetCamera()
-                        runOnUiThread {
-                            DialogHelper.showNotification(this@V6ScanditActivity, R.string.thong_bao, R.string.khong_thay_ma_vach, true, object : NotificationDialogListener {
-
-                                override fun onDone() {
-
-                                }
-
-                            })
-
-                        }
-                    }
-
-                }
-            }
-        }
-        if(takeImage.get()) {
-            takeImage.set(false)
             job = lifecycleScope.launch {
                 delay(400)
                 if (session.newlyRecognizedBarcodes.isEmpty()) {
@@ -406,6 +417,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
             lifecycleScope.launch {
                 binding.imgSdha.isEnabled = false
                 offCamera()
+                reset()
                 request(takeImageDialog)
                 delay(400)
                 binding.imgSdha.isEnabled = true
@@ -443,13 +455,50 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                         }
                     }
 
-                        when {
+                    when {
                         viewModel.scanOnly -> {
                             viewModel.repository.getProductDetailByBarcode(code, object : ICNewApiListener<ICResponse<ICProductDetail>> {
                                 override fun onSuccess(obj: ICResponse<ICProductDetail>) {
                                     if (obj.data != null) {
-                                        setResult(Activity.RESULT_OK, Intent().apply { putExtra(Constant.DATA_1, obj.data) })
-                                        finish()
+
+                                        if (obj.data?.state == null || obj.data?.state == null) {
+                                            TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
+                                            showSimpleErrorToast("Không tìm thấy sản phẩm")
+                                            barcodeCapture.isEnabled = true
+                                        } else {
+                                            when (obj.data?.status) {
+                                                "notFound" -> {
+                                                    TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
+                                                    showSimpleErrorToast("Không tìm thấy sản phẩm")
+                                                    barcodeCapture.isEnabled = true
+                                                }
+                                                else -> {
+
+                                                    when (obj.data?.state) {
+                                                        "businessDeactive" -> {
+                                                            TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
+                                                            showSimpleErrorToast("Sản phẩm bị ẩn bởi doanh nghiệp sở hữu")
+                                                            barcodeCapture.isEnabled = true
+                                                        }
+                                                        "adminDeactive" -> {
+                                                            TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
+                                                            showSimpleErrorToast("Sản phẩm không cho quét")
+                                                            barcodeCapture.isEnabled = true
+                                                        }
+                                                        else -> {
+                                                            setResult(Activity.RESULT_OK, Intent().apply { putExtra(Constant.DATA_1, obj.data) })
+                                                            finish()
+                                                        }
+                                                    }
+                                                }
+                                            }
+
+                                        }
+
+                                    } else {
+                                        TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
+                                        showSimpleErrorToast("Không tìm thấy sản phẩm")
+                                        barcodeCapture.isEnabled = true
                                     }
                                 }
 
@@ -668,7 +717,13 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                 }
                 if (symbology == Symbology.QR || symbology == Symbology.MICRO_QR) {
                     TrackingAllHelper.trackScanStart(Constant.MA_QR)
-                    viewModel.checkQrStampSocial()
+                    when{
+                        viewModel.scanOnly || viewModel.reviewOnly -> {
+                            showSimpleErrorToast("Không tìm thấy sản phẩm")
+                            return@runOnUiThread
+                        }
+                        else ->    viewModel.checkQrStampSocial()
+                    }
                 } else {
                     TrackingAllHelper.trackScanStart(Constant.MA_VACH)
                     when {
@@ -676,8 +731,44 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                             viewModel.repository.getProductDetailByBarcode(code, object : ICNewApiListener<ICResponse<ICProductDetail>> {
                                 override fun onSuccess(obj: ICResponse<ICProductDetail>) {
                                     if (obj.data != null) {
-                                        setResult(Activity.RESULT_OK, Intent().apply { putExtra(Constant.DATA_1, obj.data) })
-                                        finish()
+                                        if (obj.data?.state == null || obj.data?.state == null) {
+                                            TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
+                                            showSimpleErrorToast("Không tìm thấy sản phẩm")
+                                            barcodeCapture.isEnabled = true
+                                        } else {
+                                            when (obj.data?.status) {
+                                                "notFound" -> {
+                                                    TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
+                                                    showSimpleErrorToast("Không tìm thấy sản phẩm")
+                                                    barcodeCapture.isEnabled = true
+                                                }
+                                                else -> {
+
+                                                    when (obj.data?.state) {
+                                                        "businessDeactive" -> {
+                                                            TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
+                                                            showSimpleErrorToast("Sản phẩm bị ẩn bởi doanh nghiệp sở hữu")
+                                                            barcodeCapture.isEnabled = true
+                                                        }
+                                                        "adminDeactive" -> {
+                                                            TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
+                                                            showSimpleErrorToast("Sản phẩm không cho quét")
+                                                            barcodeCapture.isEnabled = true
+                                                        }
+                                                        else -> {
+                                                            setResult(Activity.RESULT_OK, Intent().apply { putExtra(Constant.DATA_1, obj.data) })
+                                                            finish()
+                                                        }
+                                                    }
+                                                }
+                                            }
+
+                                        }
+
+                                    } else {
+                                        TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
+                                        showSimpleErrorToast("Không tìm thấy sản phẩm")
+                                        barcodeCapture.isEnabled = true
                                     }
                                 }
 
@@ -686,6 +777,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                                     showSimpleErrorToast(error?.message)
                                 }
                             })
+                            return@runOnUiThread
                         }
                         viewModel.reviewOnly -> {
                             viewModel.repository.getProductDetailByBarcode(code, object : ICNewApiListener<ICResponse<ICProductDetail>> {
@@ -738,6 +830,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                                     barcodeCapture.isEnabled = true
                                 }
                             })
+                            return@runOnUiThread
                         }
                         else -> {
                             if (code.startsWith("u-") || code.startsWith("U-")) {
@@ -754,6 +847,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                                 }
                             } else {
                                 IckProductDetailActivity.start(this, code, true)
+                                return@runOnUiThread
                             }
                         }
                     }
@@ -766,6 +860,8 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         super.onDestroy()
         _binding = null
         offCamera()
+        viewModel.scanOnly = false
+        viewModel.reviewOnly = false
     }
 
     override fun onPause() {
@@ -1160,10 +1256,8 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         super.onMessageEvent(event)
         if (event.type == ICMessageEvent.Type.ON_DISMISS) {
             takeImageDialog.dismiss()
+            pushUp()
             resetCamera()
-        }
-        if (event.type == ICMessageEvent.Type.TAKE_IMAGE) {
-            takeImage.set(true)
         }
     }
 
@@ -1179,4 +1273,17 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == SCAN_REVIEW) {
+            if (resultCode == Activity.RESULT_OK) {
+                setResult(Activity.RESULT_OK)
+                finish()
+            } else {
+                setResult(Activity.RESULT_CANCELED)
+                finish()
+            }
+        }
+
+    }
 }

@@ -38,8 +38,8 @@ android {
         applicationId "vn.icheck.android"
         minSdkVersion 19
         targetSdkVersion 30
-        versionCode 21032201
-        versionName "6.13.1"
+        versionCode 21040101
+        versionName "6.14.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled = true
         signingConfig signingConfigs.release
@@ -61,13 +61,13 @@ android {
     aaptOptions { cruncherEnabled = false }
     buildTypes {
         release {
-            debuggable true
+            debuggable false
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             manifestPlaceholders = [partner: "icheckvn"]
         }
         debug {
-            debuggable true
+            debuggable false
             manifestPlaceholders = [partner: "icheckvntest"]
         }
     }
