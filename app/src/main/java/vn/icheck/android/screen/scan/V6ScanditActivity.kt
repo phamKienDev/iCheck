@@ -49,6 +49,7 @@ import vn.icheck.android.BuildConfig
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
+import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.dialog.notify.internal_stamp.InternalStampDialog
 import vn.icheck.android.base.model.ICMessageEvent
@@ -59,6 +60,11 @@ import vn.icheck.android.constant.SCAN_REVIEW
 import vn.icheck.android.databinding.IckScanCustomViewBinding
 import vn.icheck.android.fragments.BarcodeBottomDialog
 import vn.icheck.android.helper.*
+import vn.icheck.android.ichecklibs.getDeviceWidth
+import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.helper.PermissionHelper
+import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.helper.ValidHelper
 import vn.icheck.android.ichecklibs.getDeviceWidth
 import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.network.base.*
@@ -317,8 +323,8 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     }
 
     override fun onSessionUpdated(barcodeCapture: BarcodeCapture, session: BarcodeCaptureSession, data: FrameData) {
-
-        if (scanImage.get() && !takeImage.get()) {
+        super.onSessionUpdated(barcodeCapture, session, data)
+        if (scanImage.get()) {
             scanImage.set(false)
             if (!takeImage.get()) {
                 job = lifecycleScope.launch {
