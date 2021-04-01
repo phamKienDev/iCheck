@@ -103,6 +103,7 @@ data class ICMessageEvent(val type: Type, val data: Any? = null) {
         ON_KYC_SUCCESS,
         ON_DESTROY_PVCOMBANK,
         ON_FINISH_ALL_CHAT,
-        ON_DISMISS
+        ON_DISMISS,
+        TAKE_IMAGE
     }
 }
