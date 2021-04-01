@@ -1,5 +1,6 @@
 package vn.icheck.android.screen.user.wall.manage_page.my_follow_page
 
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +15,7 @@ import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.network.models.ICPage
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
 import vn.icheck.android.util.ick.beGone
@@ -52,10 +54,11 @@ class MyFollowPageAdapter(val typeHome: Boolean, callback: IRecyclerViewCallback
                     SizeHelper.size16
             }
 
+            itemView.tvName.text = obj.name ?: ""
             if (obj.isVerify) {
-                itemView.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
-            } else {
-                itemView.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                Handler().postDelayed({
+                    itemView.tvName.setDrawbleNextEndText(itemView.tvName.text.toString(),R.drawable.ic_verified_16px)
+                },100)
             }
 
             if (typeHome) {
@@ -65,7 +68,6 @@ class MyFollowPageAdapter(val typeHome: Boolean, callback: IRecyclerViewCallback
             }
 
             WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
-            itemView.tvName.text = obj.name ?: ""
             itemView.tvCountFollow.text = if (obj.followCount ?: 0 > 0) {
                 "${TextHelper.formatMoneyPhay(obj.followCount)} Người đang theo dõi"
             } else {

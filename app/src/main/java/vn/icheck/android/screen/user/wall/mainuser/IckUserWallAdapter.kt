@@ -40,6 +40,7 @@ import vn.icheck.android.network.base.ICListResponse
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICSearchUser
 import vn.icheck.android.room.database.AppDatabase
+import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 import vn.icheck.android.screen.user.wall.ICWallModel
 import vn.icheck.android.screen.user.wall.holder.friend.FriendWallHolder
 import vn.icheck.android.util.ick.*
@@ -202,10 +203,10 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
 //            arrMember.add(ChatMember(data?.id))
 //            SocialChatActivity.createRoomChat(it.context, arrMember.toTypedArray())
             if (SessionManager.isUserLogged) {
-//                SocialChatActivity.createRoomChat(it.context, data?.id)
-                ListConversationFragment.finishAllChat()
-                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_FINISH_ALL_CHAT))
-                ChatSocialDetailActivity.createRoomChat(it.context, data?.id ?: -1, "user")
+                SocialChatActivity.createRoomChat(it.context, data?.id)
+//                ListConversationFragment.finishAllChat()
+//                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_FINISH_ALL_CHAT))
+//                ChatSocialDetailActivity.createRoomChat(it.context, data?.id ?: -1, "user")
             } else {
                 ICheckApplication.currentActivity()?.let { act ->
                     (act as FragmentActivity).showLogin()

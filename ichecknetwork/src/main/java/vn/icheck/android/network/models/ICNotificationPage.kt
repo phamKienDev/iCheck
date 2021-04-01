@@ -10,12 +10,13 @@ data class ICNotificationPage(
         @SerializedName("pageOverview") val pageOverview: ICPage?,
         @SerializedName("pageDetail") val pageDetail: ICPage?,
         @SerializedName("ownerId") val ownerId: Long?,
-        @SerializedName("userFollowIdList") val userFollowIdList:List<Long>? = null,
+        @SerializedName("userFollowIdList") val userFollowIdList: List<Long>? = null,
         @SerializedName("owner") val owner: ICOwner?,
         @SerializedName("templateId") val templateId: Long?,
         @SerializedName("createdAt") val createdAt: String?,
         @SerializedName("updatedAt") val updatedAt: String?,
         @SerializedName("deletedAt") val deletedAt: String?,
-        @SerializedName("avatar") val avatar:String?,
+        @SerializedName("avatar") val avatar: String?,
+        @SerializedName("isVerify") val isVerify: Boolean = false,
         var isFollow: Boolean? = null
 )

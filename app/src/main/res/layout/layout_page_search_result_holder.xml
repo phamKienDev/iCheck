@@ -27,7 +27,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="@dimen/size_10"
+        android:layout_marginEnd="@dimen/size_6"
         app:layout_constraintEnd_toStartOf="@id/tv_follow_shop"
         app:layout_constraintStart_toEndOf="@id/img_avatar"
         app:layout_constraintTop_toTopOf="@id/img_avatar">
@@ -36,7 +36,6 @@
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawablePadding="@dimen/size_5"
             android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
             android:textColor="@color/collection_product_name"

@@ -43,15 +43,15 @@ class SlideBannerV2Adapter(val listData: MutableList<ICAdsData>, private val top
                     itemView.imgPlay.visibility = View.GONE
                 }
             }
-            WidgetUtils.loadImageUrlRoundedFitCenter(itemView.imgImage, banner.media!![0].content, SizeHelper.size4)
+            WidgetUtils.loadImageUrlRoundedNotTransform(itemView.imgImage, banner.media!![0].content, R.drawable.img_default_loading_icheck,SizeHelper.size4)
         }
 
         itemView.setOnClickListener {
             if (!banner.media.isNullOrEmpty()){
-                if (banner.media!![position].type == "video") {
-                    if (!banner.media!![position].content.isNullOrEmpty()) {
+                if (banner.media!![0].type == "video") {
+                    if (!banner.media!![0].content.isNullOrEmpty()) {
                         ICheckApplication.currentActivity()?.let {
-                            DetailMediaActivity.start(it, banner.media!![position].content!!, Constant.VIDEO)
+                            DetailMediaActivity.start(it, banner.media!![0].content!!, Constant.VIDEO)
                         }
                     }
                 } else {

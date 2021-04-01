@@ -14,8 +14,7 @@ class UtilityRepository : BaseInteractor() {
         requestNewApi(ICNetworkClient.getSocialApi().getAllUtility(url), listener)
     }
 
-    fun getHomeFunc(path: String, listener: ICNewApiListener<ICResponse<ICTheme>>) {
-        val url = APIConstants.socialHost + APIConstants.PATH + path
+    fun getHomeFunc(url: String, listener: ICNewApiListener<ICResponse<ICTheme>>) {
         requestNewApi(ICNetworkClient.getSocialApi().getHomeFunc(url), listener)
     }
 }

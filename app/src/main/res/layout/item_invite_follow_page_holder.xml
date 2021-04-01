@@ -48,7 +48,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgAvatar"
         tools:drawableEnd="@drawable/ic_verified_16px"
-        tools:text="Bạn đã theo dõi Coca-cola Việt Nam Bạn đã theo dõi Coca-cola Việt Nam Bạn đã theo dõi Coca-cola Việt Nam"
         tools:visibility="visible" />
 
     <TextView
