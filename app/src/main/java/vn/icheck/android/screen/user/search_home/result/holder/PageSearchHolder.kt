@@ -1,5 +1,6 @@
 package vn.icheck.android.screen.user.search_home.result.holder
 
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -44,9 +46,7 @@ class PageSearchHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflat
         checkFollowCount(obj)
 
         if (obj.isVerify) {
-            itemView.tv_name.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
-        } else {
-            itemView.tv_name.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+            itemView.tv_name.setDrawbleNextEndText(itemView.tv_name.text.toString(), R.drawable.ic_verified_16px)
         }
 
         itemView.setOnClickListener {

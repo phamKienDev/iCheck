@@ -81,11 +81,17 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
             val layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT).apply {
                 setMargins(0, SizeHelper.dpToPx(10), 0, 0)
             }
+            itemView.tvPageName.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).apply {
+                setMargins(0, 0, SizeHelper.dpToPx(22), 0)
+            }
             itemView.containerPost.layoutParams = layoutParams
         } else {
             itemView.imgPin.beGone()
             val layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
             itemView.containerPost.layoutParams = layoutParams
+            itemView.tvPageName.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).apply {
+                setMargins(0, 0, 0, 0)
+            }
         }
     }
 
