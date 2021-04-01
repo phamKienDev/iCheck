@@ -34,8 +34,10 @@ import androidx.lifecycle.lifecycleScope
 import com.scandit.datacapture.barcode.capture.*
 import com.scandit.datacapture.barcode.data.Symbology
 import com.scandit.datacapture.barcode.feedback.BarcodeCaptureFeedback
+import com.scandit.datacapture.barcode.ui.overlay.BarcodeCaptureOverlay
 import com.scandit.datacapture.core.capture.DataCaptureContext
 import com.scandit.datacapture.core.capture.DataCaptureContextListener
+import com.scandit.datacapture.core.capture.DataCaptureMode
 import com.scandit.datacapture.core.common.ContextStatus
 import com.scandit.datacapture.core.common.async.Callback
 import com.scandit.datacapture.core.common.feedback.Feedback
@@ -138,6 +140,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     private val guideArr = arrayListOf<View?>()
     private val requestPhone = 2
     private var phoneNumber: String = ""
+    lateinit var dataCaptureView:DataCaptureView
 
     private lateinit var takeImageListener: TakeMediaDialog.TakeImageListener
 
@@ -202,7 +205,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                 try {
                     lifecycleScope.launch {
                         _binding?.bg?.alpha = 1f
-                        delay(400)
+                        delay(2000)
                         val bm = BitmapFactory.decodeFile(file?.getAbsolutePath())
                         val width = bm.width
                         val height = bm.height
@@ -264,15 +267,16 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         cameraSettings.preferredResolution = VideoResolution.HD
         camera = Camera.getDefaultCamera(cameraSettings)
         resetCamera()
-        val dataCaptureView = DataCaptureView.newInstance(this, dataCaptureContext)
+        dataCaptureView = DataCaptureView.newInstance(this, dataCaptureContext)
+//        dataCaptureView.addOverlay( BarcodeCaptureOverlay.newInstance(barcodeCapture, dataCaptureView).apply {
+//            shouldShowScanAreaGuides = true
+//        })
         _binding = IckScanCustomViewBinding.inflate(layoutInflater, dataCaptureView, false)
         dataCaptureView.addView(binding.root, getDeviceWidth(), getDeviceHeight())
         setContentView(dataCaptureView)
         dataCaptureView.get(0)
         if (getUserCountry(this).contains("vn", false)) {
-            val lp = dataCaptureView.layoutParams
-            lp.height = getDeviceHeight() + 50.toPx()
-            dataCaptureView.layoutParams = lp
+            pushUp()
         }
         if (intent.getBooleanExtra("review_only", false)) {
             viewModel.reviewOnly = true
@@ -293,9 +297,21 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
     }
 
+    private fun pushUp() {
+        val lp = dataCaptureView.layoutParams
+        lp.height = getDeviceHeight() + 50.toPx()
+        dataCaptureView.layoutParams = lp
+    }
+
+    fun reset() {
+        val lp = dataCaptureView.layoutParams
+        lp.height = getDeviceHeight()
+        dataCaptureView.layoutParams = lp
+    }
+
     private fun resetCamera() {
         lifecycleScope.launch {
-            delay(400)
+            delay(2000)
             camera?.switchToDesiredState(FrameSourceState.ON, object : Callback<Boolean> {
                 override fun run(result: Boolean) {
                     if (result) {
@@ -344,7 +360,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         if (scanImage.get()) {
             scanImage.set(false)
             job = lifecycleScope.launch {
-                delay(800)
+                delay(400)
                 if (session.newlyRecognizedBarcodes.isEmpty()) {
                     resetCamera()
                     runOnUiThread {
@@ -401,6 +417,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
             lifecycleScope.launch {
                 binding.imgSdha.isEnabled = false
                 offCamera()
+                reset()
                 request(takeImageDialog)
                 delay(400)
                 binding.imgSdha.isEnabled = true
@@ -1239,6 +1256,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         super.onMessageEvent(event)
         if (event.type == ICMessageEvent.Type.ON_DISMISS) {
             takeImageDialog.dismiss()
+            pushUp()
             resetCamera()
         }
     }

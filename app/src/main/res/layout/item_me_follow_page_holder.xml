@@ -27,7 +27,7 @@
         app:layout_constraintStart_toEndOf="@id/imgAvatar"
         app:layout_constraintTop_toTopOf="@id/imgAvatar">
 
-        <vn.icheck.android.ichecklibs.MiddleMultilineTextView
+        <TextView
             android:id="@+id/tvName"
             android:layout_width="0dp"
             android:layout_weight="1"
