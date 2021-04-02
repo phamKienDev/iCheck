@@ -19,7 +19,14 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.screen.user.cropimage.CropImageActivity
 import java.io.File
 
-class TakeMediaDialog(val listener: TakeImageListener, private val selectMulti: Boolean = false, private val cropImage: Boolean = false, private val ratio: String? = null, private val isVideo: Boolean = true, val showBottom:Boolean = false) : BaseBottomSheetDialogFragment() {
+class TakeMediaDialog(val listener: TakeImageListener,
+                      private val selectMulti: Boolean = false,
+                      private val cropImage: Boolean = false,
+                      private val ratio: String? = null,
+                      private val isVideo: Boolean = true,
+                      val showBottom: Boolean = false,
+                      val disableTakeImage: Boolean = false
+) : BaseBottomSheetDialogFragment() {
 
     companion object {
         var INSTANCE: TakeMediaDialog? = null
@@ -73,7 +80,7 @@ class TakeMediaDialog(val listener: TakeImageListener, private val selectMulti: 
         if (listImage.isEmpty()) {
             startCamera()
         } else {
-            val adapter = TakeMediaAdapter(listImage, selectMulti, isVideo)
+            val adapter = TakeMediaAdapter(listImage, selectMulti, isVideo, disableTakeImage = this.disableTakeImage)
             rcvImage.adapter = adapter
 
             btnSubmit.setOnClickListener {
@@ -128,7 +135,9 @@ class TakeMediaDialog(val listener: TakeImageListener, private val selectMulti: 
                     selection,
                     null, orderBy)
 
-            listOfAllImages.add(ICIMageFile(File("")))
+            if (!disableTakeImage) {
+                listOfAllImages.add(ICIMageFile(File("")))
+            }
             val dataColumn = cursor!!.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA)
             val typeColumn = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.MEDIA_TYPE)
             val duration = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DURATION)
