@@ -29,6 +29,7 @@ import vn.icheck.android.databinding.ItemAdsProductSlideBinding
 import vn.icheck.android.helper.ExoPlayerManager
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.models.ICAdsData
@@ -260,12 +261,10 @@ class AdsProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
             if (obj.owner?.verified == true) {
-                itemView.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
+                itemView.tvName.setDrawbleNextEndText(obj.owner?.name, R.drawable.ic_verified_16px)
             } else {
-                itemView.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                binding.tvName.text = obj.owner?.name ?: ""
             }
-
-            binding.tvName.text = obj.owner?.name ?: ""
 
             if (!obj.name.isNullOrEmpty()) {
                 binding.tvContent.text = obj.name

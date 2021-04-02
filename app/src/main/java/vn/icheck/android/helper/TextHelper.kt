@@ -1,15 +1,12 @@
 package vn.icheck.android.helper
 
+import android.graphics.BitmapFactory
 import android.graphics.Color
-import android.graphics.Typeface
 import android.text.*
-import android.text.style.DynamicDrawableSpan
 import android.text.style.ImageSpan
 import android.widget.TextView
-import androidx.annotation.DrawableRes
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import kotlinx.android.synthetic.main.activity_search_review.*
 import kotlinx.android.synthetic.main.activity_search_users.*
 import kotlinx.android.synthetic.main.item_header_infor_page.view.*
@@ -28,7 +25,6 @@ import java.text.ParseException
 import java.util.*
 import java.util.concurrent.TimeUnit
 import java.util.regex.Pattern
-import kotlin.math.floor
 
 object TextHelper {
 
@@ -347,7 +343,7 @@ object TextHelper {
         }
     }
 
-    fun AppCompatTextView.setDrawbleNextEndText(text: String, icon: Int) {
+    fun AppCompatTextView.setDrawbleNextEndText(text: String?, icon: Int) {
         val drawable = ContextCompat.getDrawable(this.context, icon)
         drawable?.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)
 
@@ -357,8 +353,7 @@ object TextHelper {
         } else {
             ImageSpan(drawable!!, ImageSpan.ALIGN_BASELINE)
         }
-        spannableString.setSpan(imageSpan, text.length + 1, text.length + 2, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+        spannableString.setSpan(imageSpan, (text?:"").length + 1, (text?:"").length + 2, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
         this.text = spannableString
     }
-
 }

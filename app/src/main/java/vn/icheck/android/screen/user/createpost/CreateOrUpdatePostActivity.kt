@@ -33,6 +33,7 @@ import vn.icheck.android.constant.ICK_REQUEST_CAMERA
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.helper.TextHelper.setTextNameProductInPost
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICPrivacy
@@ -103,15 +104,15 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
 
     private fun setupView() {
         if (intent?.getLongExtra(Constant.DATA_2, -1) != -1L) {
-            tvName.text = intent.getStringExtra(Constant.DATA_3)
+
             WidgetUtils.loadImageUrl(imgAvatar, intent.getStringExtra(Constant.DATA_4), R.drawable.ic_business_v2)
             edtContent.hint = "Hãy chia sẻ những thông tin hữu ích nào!"
             tvType.beGone()
             imgStatus.beGone()
             if (intent?.getBooleanExtra(Constant.DATA_5, false) == true) {
-                tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
+                tvName.setDrawbleNextEndText(intent.getStringExtra(Constant.DATA_3), R.drawable.ic_verified_16px)
             } else {
-                tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                tvName.text = intent.getStringExtra(Constant.DATA_3)
             }
         } else {
             SessionManager.session.user?.let { user ->

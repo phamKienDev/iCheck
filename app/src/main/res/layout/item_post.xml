@@ -55,7 +55,7 @@
                     android:id="@id/tvPageName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableEnd="@drawable/ic_verified_16px"
+                    tools:drawableEnd="@drawable/ic_verified_16px"
                     android:ellipsize="middle"
                     android:fontFamily="@font/barlow_semi_bold"
                     android:includeFontPadding="false"

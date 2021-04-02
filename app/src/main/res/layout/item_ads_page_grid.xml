@@ -50,7 +50,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imgAvatar">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.MiddleMultilineTextView
                 android:id="@id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -63,7 +63,6 @@
                 android:drawablePadding="@dimen/size_4"
                 android:textColor="@color/collection_product_name"
                 android:textSize="14sp"
-                tools:drawableEnd="@drawable/ic_verified_16px"
                 tools:text=" dòng)... Adidas Store (tối 1 dòng)... Adidas Store (tối 1 dòng)... Adidas Store (tối 1 dòng)... Adidas Store (tối 1 dòng)... Adidas Store (tối 1 dòng)..." />
 
         </LinearLayout>
