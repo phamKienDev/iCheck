@@ -38,17 +38,12 @@ import com.scandit.datacapture.core.common.async.Callback
 import com.scandit.datacapture.core.common.feedback.Feedback
 import com.scandit.datacapture.core.common.feedback.Sound
 import com.scandit.datacapture.core.common.feedback.Vibration
-import com.scandit.datacapture.core.common.geometry.FloatWithUnit
-import com.scandit.datacapture.core.common.geometry.MarginsWithUnit
-import com.scandit.datacapture.core.common.geometry.MeasureUnit
-import com.scandit.datacapture.core.common.geometry.PointWithUnit
 import com.scandit.datacapture.core.data.FrameData
 import com.scandit.datacapture.core.source.*
 import com.scandit.datacapture.core.ui.DataCaptureView
 import kotlinx.android.synthetic.main.item_ads_product_grid.view.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import vn.icheck.android.BuildConfig
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
@@ -204,9 +199,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         initCamera()
         resetCamera()
         initDataCaptureView()
-        if (getUserCountry(this).contains("vn", false)) {
-            pushUp()
-        }
+        pushUpHeight()
         checkIsReview()
         checkIsScan()
         initViews()
@@ -233,7 +226,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     }
 
     private fun initTakeImageDialog() {
-        takeImageDialog = TakeMediaDialog(takeImageListener, false, cropImage = true, isVideo = false)
+        takeImageDialog = TakeMediaDialog(takeImageListener, false, cropImage = true, isVideo = false, disableTakeImage = true)
     }
 
     private fun initBarcodeCapture() {
@@ -261,17 +254,18 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         setContentView(dataCaptureView)
     }
 
-    private fun pushUp() {
-        dataCaptureView.post {
-            val lp = dataCaptureView.layoutParams
-            lp.height = getDeviceHeight() + 50.toPx()
-            lp.width = getDeviceWidth()
-            dataCaptureView.layoutParams = lp
+    private fun pushUpHeight() {
+        if (getUserCountry(this).contains("vn", false)) {
+            dataCaptureView.post {
+                val lp = dataCaptureView.layoutParams
+                lp.height = getDeviceHeight() + 50.toPx()
+                lp.width = getDeviceWidth()
+                dataCaptureView.layoutParams = lp
+            }
         }
-
     }
 
-    fun reset() {
+    private fun resetHeight() {
         dataCaptureView.post {
             val lp = dataCaptureView.layoutParams
             lp.height = getDeviceHeight()
@@ -310,22 +304,14 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         })
     }
 
-    fun getUserCountry(context: Context): String {
-        try {
+    private fun getUserCountry(context: Context): String {
+        return try {
             val tm: TelephonyManager = context.getSystemService(TELEPHONY_SERVICE) as TelephonyManager
-            val simCountry: String = tm.getSimCountryIso()
-            if (simCountry != null && simCountry.length == 2) { // SIM country code is available
-                return simCountry.toLowerCase(Locale.US)
-            } else if (tm.getPhoneType() !== TelephonyManager.PHONE_TYPE_CDMA) { // device is not 3G (would be unreliable)
-                val networkCountry: String = tm.getNetworkCountryIso()
-                if (networkCountry != null && networkCountry.length == 2) { // network country code is available
-                    return networkCountry.toLowerCase(Locale.US)
-                }
-            }
+            val simCountry: String = tm.simCountryIso
+            simCountry.toLowerCase(Locale.US)
         } catch (e: java.lang.Exception) {
-            return ""
+            ""
         }
-        return ""
     }
 
     override fun onSessionUpdated(barcodeCapture: BarcodeCapture, session: BarcodeCaptureSession, data: FrameData) {
@@ -389,7 +375,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
             lifecycleScope.launch {
                 binding.imgSdha.isEnabled = false
                 offCamera()
-                reset()
+                resetHeight()
                 request(takeImageDialog)
                 delay(400)
                 binding.imgSdha.isEnabled = true
@@ -560,7 +546,6 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                 } else {
                     camera?.desiredTorchState = TorchState.OFF
                 }
-//                mPicker?.switchTorchOn(model.isFlash)
 
                 if (model.showGuide) {
                     binding.root.setAllEnabled(false)
@@ -630,19 +615,29 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
             if (!code.isNullOrEmpty()) {
                 if (code.startsWith("u-") || code.startsWith("U-")) {
-                    if (code.count { "-".contains(it) } == 1) {
-                        try {
-                            val userID = code.split("-")[1]
-                            if (userID.isNotEmpty() && ValidHelper.validNumber(userID)) {
-                                IckUserWallActivity.create(userID.toLong(), this)
+                    when {
+                        viewModel.scanOnly || viewModel.reviewOnly -> {
+                            showSimpleErrorToast("Không tìm thấy sản phẩm")
+                            enableCapture(barcodeCapture)
+                            return@runOnUiThread
+                        }
+                        else -> {
+                            if (code.count { "-".contains(it) } == 1) {
+                                try {
+                                    val userID = code.split("-")[1]
+                                    if (userID.isNotEmpty() && ValidHelper.validNumber(userID)) {
+                                        IckUserWallActivity.create(userID.toLong(), this)
+                                    }
+                                } catch (e: Exception) {
+                                    TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
+                                    e.printStackTrace()
+                                }
                             }
-                        } catch (e: Exception) {
-                            TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
-                            e.printStackTrace()
+                            enableCapture(barcodeCapture)
+                            return@runOnUiThread
                         }
                     }
-                    enableCapture(barcodeCapture)
-                    return@runOnUiThread
+
                 }
 
 
@@ -659,12 +654,6 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                         putExtra(Constant.DATA_2, code)
                     })
                     finish()
-                }
-                if (code.startsWith("u-")) {
-                    val id = code.replace("u-", "").toLongOrNull()
-                    if (id != null) {
-                        IckUserWallActivity.create(id, this)
-                    }
                 }
                 if (symbology == Symbology.QR || symbology == Symbology.MICRO_QR) {
                     TrackingAllHelper.trackScanStart(Constant.MA_QR)
@@ -819,10 +808,12 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
-        offCamera()
         viewModel.scanOnly = false
         viewModel.reviewOnly = false
-        barcodeCapture.removeListener(this)
+        offCamera()
+        if (::barcodeCapture.isInitialized) {
+            barcodeCapture.removeListener(this)
+        }
     }
 
     override fun onPause() {
@@ -1217,7 +1208,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         super.onMessageEvent(event)
         if (event.type == ICMessageEvent.Type.ON_DISMISS) {
             takeImageDialog.dismiss()
-            pushUp()
+            pushUpHeight()
             resetCamera()
         }
     }

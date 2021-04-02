@@ -7,6 +7,7 @@ import android.graphics.Canvas
 import android.graphics.Matrix
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.TransitionDrawable
+import android.media.ThumbnailUtils
 import android.text.Editable
 import android.text.InputType
 import android.util.DisplayMetrics
@@ -220,9 +221,30 @@ fun Bitmap.resizeBitmap(newWidth: Int, newHeight: Int, isCenterCrop:Boolean = fa
     return if (!isCenterCrop) {
         createScaledBitmap
     } else {
-        val scale = newWidth.toFloat() / this.width
-        val newBitmap = Bitmap.createScaledBitmap(this, newWidth, (this.height * scale).toInt(), false)
-        Bitmap.createBitmap(newBitmap, 0, 0,newWidth,  newHeight)
+        ThumbnailUtils.extractThumbnail(this, newWidth, newHeight, ThumbnailUtils.OPTIONS_RECYCLE_INPUT)
+    }
+}
+
+fun Bitmap.centerCrop(newWidth: Int, newHeight: Int):Bitmap {
+    return if (this.getWidth() >= this.getHeight()){
+
+         Bitmap.createBitmap(
+                this,
+                 newWidth/2 - newHeight/2,
+                0,
+                 newWidth,
+                newHeight
+        );
+
+    }else{
+
+       Bitmap.createBitmap(
+                this,
+                0,
+               newHeight/2 - newWidth/2,
+                newWidth,
+                newHeight
+        );
     }
 }
 
