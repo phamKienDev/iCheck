@@ -23,23 +23,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@id/imgRank"
-                android:layout_width="@dimen/size_16"
-                android:layout_height="@dimen/size_16"
-                app:layout_constraintEnd_toEndOf="@id/imgLogo"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@id/imgLogo"
                 android:layout_width="@dimen/size_40"
                 android:layout_height="@dimen/size_40"
-                android:layout_marginTop="@dimen/size_8"
                 android:src="@color/blue"
+                android:layout_marginTop="@dimen/size_8"
                 app:civ_border_color="@color/gray"
                 app:civ_border_width="@dimen/size_0_5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/imgRank" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@id/imgRank"
+                android:layout_width="@dimen/size_16"
+                android:layout_height="@dimen/size_16"
+                android:src="@drawable/ic_avatar_rank_diamond_16dp"
+                app:layout_constraintEnd_toEndOf="@id/imgLogo"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
                 android:id="@+id/layoutName"
@@ -319,14 +320,6 @@
                 app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
                 app:layout_constraintStart_toStartOf="@id/imgAvatar"
                 tools:src="@drawable/ic_avatar_rank_silver_16dp" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imgVerify2"
-                android:layout_width="@dimen/size_14"
-                android:layout_height="@dimen/size_14"
-                android:src="@drawable/ic_verified_16px"
-                app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
-                app:layout_constraintEnd_toEndOf="@id/imgAvatar" />
 
             <LinearLayout
                 android:id="@id/layoutContent"
