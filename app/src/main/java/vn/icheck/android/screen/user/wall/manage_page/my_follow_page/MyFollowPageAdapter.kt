@@ -55,11 +55,11 @@ class MyFollowPageAdapter(val typeHome: Boolean, callback: IRecyclerViewCallback
             }
 
             itemView.tvName.text = obj.name ?: ""
-//            if (obj.isVerify) {
-//                Handler().postDelayed({
-//                    itemView.tvName.setDrawbleNextEndText(itemView.tvName.text.toString(),R.drawable.ic_verified_16px)
-//                },100)
-//            }
+            if (obj.isVerify) {
+                Handler().postDelayed({
+                    itemView.tvName.setDrawbleNextEndText(itemView.tvName.text.toString(),R.drawable.ic_verified_16px)
+                },100)
+            }
 
             if (typeHome) {
                 itemView.imgMore.beGone()
