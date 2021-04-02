@@ -808,10 +808,12 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
-        offCamera()
         viewModel.scanOnly = false
         viewModel.reviewOnly = false
-        barcodeCapture.removeListener(this)
+        offCamera()
+        if (::barcodeCapture.isInitialized) {
+            barcodeCapture.removeListener(this)
+        }
     }
 
     override fun onPause() {
