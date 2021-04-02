@@ -22,6 +22,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.helper.TextHelper.setTextNameProductInPost
 import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.network.base.ICNewApiListener
@@ -78,11 +79,11 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
         } else {
             WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.page?.avatar, R.drawable.ic_business_v2)
             itemView.imgRank.beGone()
-            itemView.tvNameUser.text = obj.page?.getName
             if (obj.page?.isVerify == true) {
-                itemView.tvNameUser.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
+                itemView.tvNameUser.setDrawbleNextEndText(obj.page?.getName, R.drawable.ic_verified_16px)
             } else {
-                itemView.tvNameUser.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                itemView.tvNameUser.text = obj.page?.getName
+
             }
         }
     }

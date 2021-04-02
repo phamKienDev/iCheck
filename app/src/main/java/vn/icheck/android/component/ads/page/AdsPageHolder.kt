@@ -1,5 +1,6 @@
 package vn.icheck.android.component.ads.page
 
+import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,7 @@ import vn.icheck.android.helper.ExoPlayerManager
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.network.models.ICAdsNew
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
+import vn.icheck.android.screen.user.ads_more.AdsMoreActivity
 import vn.icheck.android.ui.layout.CustomGridLayoutManager
 
 class AdsPageHolder (parent: ViewGroup) : BaseVideoViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_ads_page, parent, false)) {
@@ -92,6 +94,10 @@ class AdsPageHolder (parent: ViewGroup) : BaseVideoViewHolder(LayoutInflater.fro
             ICheckApplication.currentActivity()?.let { activity ->
                 if (!obj.targetType.isNullOrEmpty()) {
                     FirebaseDynamicLinksActivity.startTarget(activity, obj.targetType, obj.targetId)
+                }else {
+                    itemView.context.startActivity(Intent(itemView.context, AdsMoreActivity::class.java).apply {
+                        putExtra(Constant.DATA_1, obj)
+                    })
                 }
             }
         }

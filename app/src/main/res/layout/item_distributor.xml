@@ -146,6 +146,8 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvAddress"
                 style="@style/style_text_barlow_page"
+                android:maxLines="2"
+                android:ellipsize="end"
                 tools:text="Tầng 12, Diamond Flower Tower, 48 Lê Văn Lương, Nhân Chính, Thanh Xuân, Hà Nội" />
 
             <LinearLayout

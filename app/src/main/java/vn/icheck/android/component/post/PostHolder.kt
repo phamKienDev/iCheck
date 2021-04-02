@@ -28,6 +28,7 @@ import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.component.view.ViewHelper.onDelayClick
 import vn.icheck.android.constant.*
 import vn.icheck.android.helper.*
+import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.helper.TextHelper.setTextNameProductInPost
 import vn.icheck.android.model.posts.PostViewModel
 import vn.icheck.android.network.base.ICNewApiListener
@@ -101,12 +102,11 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
             itemView.imgLogo.layoutParams = ConstraintLayout.LayoutParams(SizeHelper.size40, SizeHelper.size40).also {
                 it.topMargin = 0
             }
-            itemView.tvPageName.text = obj.page?.getName
             itemView.imgRank.beGone()
             if (obj.page!!.isVerify) {
-                itemView.tvPageName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
+                itemView.tvPageName.setDrawbleNextEndText(obj.page?.getName,R.drawable.ic_verified_16px)
             } else {
-                itemView.tvPageName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                itemView.tvPageName.text = obj.page?.getName
             }
         } else {
             WidgetUtils.loadImageUrl(itemView.imgLogo, obj.user?.avatar, R.drawable.ic_avatar_default_84px)

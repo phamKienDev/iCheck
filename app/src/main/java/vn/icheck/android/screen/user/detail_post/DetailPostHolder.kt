@@ -22,6 +22,7 @@ import vn.icheck.android.databinding.ItemPostDetailBinding
 import vn.icheck.android.helper.*
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.helper.TextHelper.setTextNameProductInPost
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
@@ -54,12 +55,11 @@ class DetailPostHolder(val binding: ItemPostDetailBinding, val listener: IDetail
     private fun setupHeader(obj: ICPost) {
         if (obj.page != null) {
             WidgetUtils.loadImageUrl(binding.imgLogo, obj.page?.avatar, R.drawable.ic_business_v2)
-            binding.tvName.text = obj.page?.getName
             binding.imgRank.beGone()
             if (obj.page!!.isVerify) {
-                binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.ic_verified_16px,0)
+                binding.tvName.setDrawbleNextEndText(obj.page?.getName, R.drawable.ic_verified_16px)
             } else {
-                binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0)
+                binding.tvName.text = obj.page?.getName
             }
         } else {
             WidgetUtils.loadImageUrl(binding.imgLogo, obj.user?.avatar, R.drawable.ic_avatar_default_84px)
