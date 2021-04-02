@@ -769,7 +769,7 @@ object WidgetUtils {
                 .into(image)
     }
 
-    fun loadImageUrlRoundedNotTransform(image: AppCompatImageView, url: String?, error: Int?, roundCorners: Int) {
+    fun loadImageUrlRoundedNotTransform(image: AppCompatImageView, url: String?, drawble: Int?, error: Int?, roundCorners: Int) {
         if (url.isNullOrEmpty()) {
             Glide.with(image.context.applicationContext)
                     .load(error ?: defaultError)
@@ -780,7 +780,7 @@ object WidgetUtils {
 
         Glide.with(image.context.applicationContext)
                 .load(url)
-                .placeholder(defaultHolder)
+                .placeholder(drawble ?: defaultHolder)
                 .error(error ?: defaultError)
                 .transform(RoundedCorners(roundCorners))
                 .into(image)
