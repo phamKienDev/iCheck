@@ -12,7 +12,7 @@ import vn.icheck.android.util.ick.beGone
 class ContactBusinessDialog(context: Context) : BaseBottomSheetDialog(context, R.layout.dialog_contact_business, true) {
 
     fun show(id: Long?, phone: String?, email: String?) {
-        if (id == null && phone.isNullOrEmpty() && email.isNullOrEmpty()) {
+        if (id == null && phone.isNullOrBlank() && email.isNullOrBlank()) {
             return
         }
 
