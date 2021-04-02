@@ -126,7 +126,11 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
                         DialogHelper.showLoading(activity)
                     }
                     listImageString.clear()
-                    uploadImageToServer(obj, edtEnter.text.toString(), criteria)
+                    if (!listImageSend.isNullOrEmpty()) {
+                        uploadImageToServer(obj, edtEnter.text.toString(), criteria)
+                    }else{
+                        postReview(obj, edtEnter.text.toString(), criteria)
+                    }
                 } else {
                     btnSubmit.isClickable = true
                     EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REQUEST_POST_REVIEW, adapterPosition))

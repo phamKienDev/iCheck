@@ -114,20 +114,30 @@ class ListProductQuestionAdapter(val callback: IListProductQuestionView) : Recyc
     private fun deleteQuestion(obj: ICProductQuestion) {
         for (i in listData.size - 1 downTo 0) {
             if (listData[i] is ICProductQuestion) {
-                if ((listData[i] as ICProductQuestion).id == obj.id) {
-                    if ((listData[i] as ICProductQuestion).replyCount > 0) {
-                        deleteAllAnswer((listData[i] as ICProductQuestion).id)
+                if ((listData[i] as ICProductQuestion).parentID != null) {
+                    if ((listData[i] as ICProductQuestion).parentID == obj.id) {
+                        listData.removeAt(i)
+                        notifyItemRemoved(i)
                     }
+                } else {
+                    if ((listData[i] as ICProductQuestion).id == obj.id) {
+                        listData.removeAt(i)
+                        notifyItemRemoved(i)
+                    }
+                }
+            } else if (listData[i] is ICCommentPostMore) {
+                if ((listData[i] as ICCommentPostMore).parentID == obj.id) {
                     listData.removeAt(i)
                     notifyItemRemoved(i)
-                    notifyItemChanged(if (i > 0) {
-                        i - 1
-                    } else 0, itemCount)
-                    return
                 }
             }
         }
+
+        if (listData.isNullOrEmpty()) {
+            setError(R.drawable.ic_empty_questions, "Chưa có câu hỏi cho sản phẩm này.\nHãy đặt câu hỏi để được giải đáp thắc mắc ở đây", -1)
+        }
     }
+
 
     private fun deleteAllAnswer(parentID: Long) {
         for (i in listData.size - 1 downTo 0) {

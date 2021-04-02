@@ -221,7 +221,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
         listPage.add(ICFragment(null, HomePageFragment()))
         listPage.add(ICFragment(null, ListNewsFragment.newInstance(false)))
         listPage.add(ICFragment(null, ScanHistoryFragment()))
-        listPage.add(ICFragment(null, SocialMessagesFragment()))
+        listPage.add(ICFragment(null, SocialChatFragment()))
 //        listPage.add(ICFragment(null, ChatSocialFragment(object : ListConversationFragment.Companion.ICountMessageListener {
 //            override fun getCountMessage(count: Long) {
 //
