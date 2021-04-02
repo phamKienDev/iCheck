@@ -31,7 +31,7 @@ import vn.icheck.android.util.kotlin.StatusBarUtils
 
 const val USER_ID = "user_id"
 const val OPEN_INFOR = "open_infor"
-const val EDIT_MY_PUBLIC_INFO = 1
+const val EDIT_MY_PUBLIC_INFO = 1222
 
 @AndroidEntryPoint
 class IckUserWallActivity : BaseCoroutineActivity() {

@@ -14,24 +14,23 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:scaleType="centerInside"
         android:padding="@dimen/size_12"
+        android:scaleType="centerInside"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_clear_16px" />
 
     <LinearLayout
+        android:id="@+id/linearLayout20"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
 
-        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="32dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/btn_scan_buy"
+        app:layout_constraintBottom_toTopOf="@+id/btn_scan"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,6 +48,7 @@
                 android:id="@+id/img_banner"
                 android:layout_width="0dp"
                 android:layout_height="70dp"
+                android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -131,12 +131,12 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:textColor="#333333"
-                    android:gravity="center"
                     android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/barlow_semi_bold"
+                    android:gravity="center"
+                    android:textColor="#333333"
                     tools:text="Đưa mã barcode hoặc QR này cho nhân viên để kích hoạt" />
 
                 <TextView
@@ -157,15 +157,17 @@
 
     <TextView
         android:id="@+id/btn_scan"
-        android:layout_width="110dp"
+        android:layout_width="0dp"
         android:layout_height="36dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
-        android:text="Quét mã"
-        android:gravity="center"
-        android:textColor="@android:color/white"
         android:fontFamily="@font/barlow_medium"
+        android:gravity="center"
+        android:text="Quét mã"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_scan_buy"
+        app:layout_constraintEnd_toStartOf="@+id/btn_my_code"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -178,24 +180,25 @@
         android:gravity="center"
         android:text="Scan &amp; buy"
         android:textColor="@android:color/white"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_my_code"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btn_scan" />
 
     <TextView
         android:id="@+id/btn_my_code"
-        android:layout_width="110dp"
+        android:layout_width="0dp"
         android:layout_height="36dp"
-        android:background="@drawable/bg_selected_scan_text"
-        android:gravity="center"
+        android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
+        android:background="@drawable/bg_selected_scan_text"
+        android:fontFamily="@font/barlow_medium"
+        android:gravity="center"
         android:text="Mã của tôi"
         android:textColor="@android:color/white"
-        android:fontFamily="@font/barlow_medium"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_scan_buy" />
+        app:layout_constraintStart_toEndOf="@+id/btn_scan" />
 </androidx.constraintlayout.widget.ConstraintLayout>
