@@ -178,7 +178,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                     ViewHelper.createShapeDrawable(ContextCompat.getColor(requireContext(), R.color.white_opacity_unknow), SizeHelper.size4.toFloat()),
                     ViewHelper.createShapeDrawable(ContextCompat.getColor(requireContext(), R.color.darkGray6), SizeHelper.size4.toFloat())
             )
-            txtSearch.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.getDrawableFillColor(R.drawable.ic_icheck_70dp_17dp, theme.homeHeaderIconColor!!), null, null, null)
+            txtSearch.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(requireContext(), R.drawable.ic_icheck_70dp_17dp), null, null, null)
         } else {
             txtSearch.background = ViewHelper.createDrawableStateList(
                     ViewHelper.createShapeDrawable(ContextCompat.getColor(requireContext(), R.color.white_opacity_unknow), SizeHelper.size4.toFloat()),
