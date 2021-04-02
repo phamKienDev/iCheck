@@ -1,5 +1,6 @@
 package vn.icheck.android.network.feature.utility
 
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.ICNetworkClient
 import vn.icheck.android.network.base.ICNewApiListener
@@ -14,7 +15,12 @@ class UtilityRepository : BaseInteractor() {
         requestNewApi(ICNetworkClient.getSocialApi().getAllUtility(url), listener)
     }
 
-    fun getHomeFunc(url: String, listener: ICNewApiListener<ICResponse<ICTheme>>) {
+    fun getHomeFunc(path: String, listener: ICNewApiListener<ICResponse<ICTheme>>) {
+        val url = if (path.startsWith("http")) {
+            path.substring(path.lastIndexOf(APIConstants.PATH) - 1, path.length)
+        } else {
+            APIConstants.socialHost + APIConstants.PATH + path
+        }
         requestNewApi(ICNetworkClient.getSocialApi().getHomeFunc(url), listener)
     }
 }

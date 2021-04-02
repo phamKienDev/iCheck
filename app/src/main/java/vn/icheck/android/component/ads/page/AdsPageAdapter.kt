@@ -19,6 +19,7 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.ExoPlayerManager
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -113,9 +114,9 @@ class AdsPageAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 if (obj.media!![0].type == Constant.VIDEO) {
                     binding.imgPlay.visibility = View.VISIBLE
                     if (!obj.media!![0].content.isNullOrEmpty()) {
-                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, obj.media!![0].content,getDrawable(), getDrawable(), SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, obj.media!![0].content, getDrawable(), getDrawable(), SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
                     } else {
-                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null,getDrawable(), getDrawable(), SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, getDrawable(), getDrawable(), SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
                     }
                 } else {
                     binding.imgPlay.visibility = View.INVISIBLE
@@ -132,12 +133,11 @@ class AdsPageAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             WidgetUtils.loadImageUrl(binding.imgAvatar, obj.avatar?.content, R.drawable.ic_business_v2)
 
             if (obj.verified == true) {
-                binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
+                binding.tvName.setDrawbleNextEndText(obj.name, R.drawable.ic_verified_16px)
             } else {
                 binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                binding.tvName.text = obj.name
             }
-
-            binding.tvName.text = obj.name
 
             if (obj.followCount != null && obj.followCount!! > 0) {
                 binding.tvStatus.text = binding.tvStatus.context.getString(R.string.xxx_nguoi_theo_doi, TextHelper.formatMoney(obj.followCount))
@@ -221,18 +221,15 @@ class AdsPageAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     }
                 }
             } else {
-                WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, getDrawable(),getDrawable(), SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, getDrawable(), getDrawable(), SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
             }
 
             WidgetUtils.loadImageUrl(binding.imgAvatar, obj.avatar?.content, R.drawable.ic_business_v2)
             if (obj.verified == true) {
-                binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
+                binding.tvName.setDrawbleNextEndText(obj.name ?: "", R.drawable.ic_verified_16px)
             } else {
-                binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                binding.tvName.text = obj.name
             }
-
-            binding.tvName.text = obj.name
-
             if (obj.followCount != null && obj.followCount!! > 0) {
                 binding.tvStatus.text = binding.tvStatus.context.getString(R.string.xxx_nguoi_theo_doi, TextHelper.formatMoney(obj.followCount))
             } else {
@@ -306,13 +303,11 @@ class AdsPageAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
 
             WidgetUtils.loadImageUrl(binding.imgAvatar, obj.avatar?.content, R.drawable.ic_business_v2)
-            if (obj.verified == true) {
-                binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
+            if (obj.isVerify == true) {
+                binding.tvName.setDrawbleNextEndText(obj.name ?: "", R.drawable.ic_verified_16px)
             } else {
-                binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                binding.tvName.text = obj.name
             }
-
-            binding.tvName.text = obj.name
 
             if (obj.followCount != null && obj.followCount!! > 0) {
                 binding.tvStatus.text = binding.tvStatus.context.getString(R.string.xxx_nguoi_theo_doi, TextHelper.formatMoney(obj.followCount))

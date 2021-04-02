@@ -95,6 +95,7 @@ object Constant {
 
     const val USER = "user"
     const val PAGE = "page"
+    const val PRODUCT = "product"
     const val ENTERPRISE = "enterprise"
     const val SHOP = "shop"
 
