@@ -99,9 +99,9 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
     private fun setupHeader(obj: ICPost) {
         if (obj.page != null) {
             WidgetUtils.loadImageUrl(itemView.imgLogo, obj.page?.avatar, R.drawable.ic_business_v2)
-            itemView.imgLogo.layoutParams = ConstraintLayout.LayoutParams(SizeHelper.size40, SizeHelper.size40).also {
-                it.topMargin = 0
-            }
+//            itemView.imgLogo.layoutParams = ConstraintLayout.LayoutParams(SizeHelper.size40, SizeHelper.size40).also {
+//                it.topMargin = 0
+//            }
             itemView.imgRank.beGone()
             if (obj.page!!.isVerify) {
                 itemView.tvPageName.setDrawbleNextEndText(obj.page?.getName,R.drawable.ic_verified_16px)
@@ -110,12 +110,11 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
             }
         } else {
             WidgetUtils.loadImageUrl(itemView.imgLogo, obj.user?.avatar, R.drawable.ic_avatar_default_84px)
-            itemView.imgLogo.layoutParams = ConstraintLayout.LayoutParams(SizeHelper.size40, SizeHelper.size40).also {
-                it.topMargin = SizeHelper.size8
-            }
+//            itemView.imgLogo.layoutParams = ConstraintLayout.LayoutParams(SizeHelper.size40, SizeHelper.size40).also {
+//                it.topMargin = SizeHelper.size8
+//            }
             itemView.tvPageName.text = obj.user?.getName
             itemView.imgRank.beVisible()
-            itemView.tvPageName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             itemView.imgRank.setRankUser(obj.user?.rank?.level)
         }
 
@@ -283,15 +282,14 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
                 itemView.tvName.text = comments.page?.getName
                 itemView.imgLevel.beGone()
                 if (comments.page!!.isVerify) {
-                    itemView.imgVerify2.beVisible()
+                    itemView.tvName.setDrawbleNextEndText(comments.page?.getName,R.drawable.ic_verified_16px)
                 } else {
-                    itemView.imgVerify2.beGone()
+                    itemView.tvName.text = comments.page?.getName
                 }
             } else {
                 WidgetUtils.loadImageUrl(itemView.imgAvatar, comments.user?.avatar, R.drawable.ic_user_svg)
                 itemView.imgLevel.setImageResource(Constant.getAvatarLevelIcon16(comments.user?.rank?.level))
                 itemView.tvName.text = comments.user?.getName
-                itemView.imgVerify2.beGone()
             }
 
             if (comments.content.isNullOrEmpty()) {

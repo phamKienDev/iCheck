@@ -98,7 +98,6 @@ class AdsCampaignHolder(parent: ViewGroup) : BaseVideoViewHolder(LayoutInflater.
                     val position = it.findFirstVisibleItemPosition()
                     if (position < adsAdapter.itemCount - 1) {
                         itemView.rcvCampaign.smoothScrollToPosition(position + 1)
-
                     } else {
                         itemView.rcvCampaign.smoothScrollToPosition(0)
 
