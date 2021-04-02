@@ -38,7 +38,7 @@ android {
         applicationId "vn.icheck.android"
         minSdkVersion 19
         targetSdkVersion 30
-        versionCode 21040101
+        versionCode 21040204
         versionName "6.14.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled = true

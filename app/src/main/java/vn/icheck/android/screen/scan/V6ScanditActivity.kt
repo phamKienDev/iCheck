@@ -605,7 +605,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         if (session.newlyRecognizedBarcodes.isEmpty()) return
         barcodeCapture.isEnabled = false
         if (SettingManager.getSoundSetting) {
-            RingtoneHelper(ICheckApplication.getInstance()).playAudio(R.raw.new_notification)
+            RingtoneHelper(ICheckApplication.getInstance()).playAudio(R.raw.click)
         }
         job?.cancel()
         val barcode = session.newlyRecognizedBarcodes[0]

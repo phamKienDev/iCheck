@@ -149,6 +149,7 @@
                     android:fontFamily="@font/barlow_semi_bold"
                     android:padding="8dp"
                     android:textColor="@android:color/white"
+                    android:visibility="gone"
                     tools:text="Tham gia ngay"
                     tools:visibility="gone" />
             </LinearLayout>
