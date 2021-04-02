@@ -43,11 +43,11 @@ class SlideBannerV2Adapter(val listData: MutableList<ICAdsData>, private val top
                     itemView.imgPlay.visibility = View.GONE
                 }
             }
-            WidgetUtils.loadImageUrlRoundedNotTransform(itemView.imgImage, banner.media!![0].content, R.drawable.img_default_loading_icheck,SizeHelper.size4)
+            WidgetUtils.loadImageUrlRoundedNotTransform(itemView.imgImage, banner.media!![0].content, R.drawable.img_default_loading_icheck, R.drawable.img_default_loading_icheck, SizeHelper.size4)
         }
 
         itemView.setOnClickListener {
-            if (!banner.media.isNullOrEmpty()){
+            if (!banner.media.isNullOrEmpty()) {
                 if (banner.media!![0].type == "video") {
                     if (!banner.media!![0].content.isNullOrEmpty()) {
                         ICheckApplication.currentActivity()?.let {
@@ -56,9 +56,9 @@ class SlideBannerV2Adapter(val listData: MutableList<ICAdsData>, private val top
                     }
                 } else {
                     if (!banner.targetId.isNullOrEmpty()) {
-                       ICheckApplication.currentActivity()?.let {
-                           FirebaseDynamicLinksActivity.startTarget(it,banner.targetType,banner.targetId)
-                       }
+                        ICheckApplication.currentActivity()?.let {
+                            FirebaseDynamicLinksActivity.startTarget(it, banner.targetType, banner.targetId)
+                        }
 
 //                        val deepLink = Uri.parse(banner.targetType)
 //                        val targetType = try {
