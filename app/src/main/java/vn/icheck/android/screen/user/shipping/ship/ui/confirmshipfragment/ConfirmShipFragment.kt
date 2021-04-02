@@ -276,7 +276,7 @@ class ConfirmShipFragment : Fragment() {
                         binding.btnConfirm.setBackgroundResource(R.drawable.bg_stroke_blue_corner_4)
                         binding.tvReport.beVisible()
                         binding.btnConfirm.setOnClickListener {
-                            DialogHelper.showConfirm(requireContext(),"Bạn chắc chắn muốn hủy \\n đơn hàng này?",null ,getString(R.string.de_sau), getString(R.string.dong_y),true, object : ConfirmDialogListener{
+                            DialogHelper.showConfirm(requireContext(),"Bạn chắc chắn muốn hủy \n đơn hàng này?",null ,getString(R.string.de_sau), getString(R.string.dong_y),true, object : ConfirmDialogListener{
                                 override fun onDisagree() {
                                 }
 
