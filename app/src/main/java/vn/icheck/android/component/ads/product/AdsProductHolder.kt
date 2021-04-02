@@ -78,7 +78,7 @@ class AdsProductHolder(parent: ViewGroup) : BaseVideoViewHolder(LayoutInflater.f
                     itemView.viewBackground.visibility = View.GONE
                     itemView.tvStart.visibility = View.GONE
                     itemView.tvEnd.visibility = View.GONE
-                    setPadding(0, SizeHelper.size10, 0, SizeHelper.size10)
+                    setPadding(0, 0, 0, 0)
                     setBackgroundColor(Color.WHITE)
                     layoutManager = CustomGridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
 

@@ -115,7 +115,6 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
             }
             itemView.tvPageName.text = obj.user?.getName
             itemView.imgRank.beVisible()
-            itemView.tvPageName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             itemView.imgRank.setRankUser(obj.user?.rank?.level)
         }
 
