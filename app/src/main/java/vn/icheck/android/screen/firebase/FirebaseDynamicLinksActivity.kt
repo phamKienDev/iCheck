@@ -48,6 +48,7 @@ import vn.icheck.android.network.models.ICCampaign
 import vn.icheck.android.network.models.ICClientSetting
 import vn.icheck.android.network.models.ICLink
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
+import vn.icheck.android.screen.scan.MyQrActivity
 import vn.icheck.android.screen.scan.V6ScanditActivity
 import vn.icheck.android.screen.user.buy_mobile_card.BuyMobileCardV2Activity
 import vn.icheck.android.screen.user.buy_mobile_card_success.BuyCardSuccessActivity
@@ -637,7 +638,8 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                     return
                 } else {
                     if (PermissionHelper.checkPermission(this@FirebaseDynamicLinksActivity, Manifest.permission.CAMERA, ICK_REQUEST_CAMERA)) {
-                        V6ScanditActivity.create(this, 3)
+//                        V6ScanditActivity.create(this, 3)
+                        MyQrActivity.createOnly(this)
                     } else {
                         return
                     }
