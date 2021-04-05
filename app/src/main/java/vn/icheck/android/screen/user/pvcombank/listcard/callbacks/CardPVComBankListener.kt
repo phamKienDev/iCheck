@@ -7,7 +7,8 @@ interface CardPVComBankListener {
     fun onClickLockCard(item: ICListCardPVBank, position: Int)
     fun onClickUnLockCard(item: ICListCardPVBank, position: Int)
     fun onClickChangePassword(item: ICListCardPVBank, position: Int)
-    fun onClickSecuriryCard(item: ICListCardPVBank, position: Int)
-    fun onClickShowHide(item: ICListCardPVBank, position: Int)
+    fun onClickShowOrHide(item: ICListCardPVBank, position: Int)
+    fun onClickShow(item: ICListCardPVBank, position: Int)
+    fun onAuthenCard(item: ICListCardPVBank)
     fun onRefresh()
 }

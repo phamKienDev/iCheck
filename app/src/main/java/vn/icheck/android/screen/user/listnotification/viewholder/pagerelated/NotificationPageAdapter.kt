@@ -10,6 +10,7 @@ import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -47,11 +48,17 @@ class NotificationPageAdapter : RecyclerView.Adapter<NotificationPageAdapter.Pag
 
         override fun bind(obj: ICNotificationPage) {
             (itemView as ViewGroup).apply {
-                WidgetUtils.loadImageUrlRounded(getChildAt(0) as SquareImageView, obj.avatar, R.drawable.img_default_business_logo_big, SizeHelper.size4)
+                WidgetUtils.loadImageUrlRounded(getChildAt(0) as SquareImageView, obj.avatar, R.drawable.ic_business_v2, SizeHelper.size4)
                 getChildAt(0).setOnClickListener {
                     PageDetailActivity.start(itemView.context, obj.id)
                 }
-                (getChildAt(1) as AppCompatTextView).text = obj.name
+                (getChildAt(1) as AppCompatTextView).also {
+                    if (obj.isVerify) {
+                        it.setDrawbleNextEndText(obj.name, R.drawable.ic_verified_16px)
+                    } else {
+                        it.text = obj.name
+                    }
+                }
 
                 getChildAt(2).setOnClickListener {
                     followPage(obj)

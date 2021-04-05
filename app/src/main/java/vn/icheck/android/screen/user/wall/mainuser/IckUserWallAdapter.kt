@@ -2,17 +2,27 @@ package vn.icheck.android.screen.user.wall.mainuser
 
 import android.content.Intent
 import android.graphics.Color
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.SpannableStringBuilder
+import android.text.style.ImageSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.RelationshipManager
 import vn.icheck.android.activities.image.DetailImagesActivity
+import vn.icheck.android.base.model.ICMessageEvent
+import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
+import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.component.ICViewModel
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.component.`null`.NullHolder
@@ -30,12 +40,11 @@ import vn.icheck.android.network.base.ICListResponse
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICSearchUser
 import vn.icheck.android.room.database.AppDatabase
-import vn.icheck.android.screen.user.social_chat.ADMIN
-import vn.icheck.android.screen.user.social_chat.ChatMember
 import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 import vn.icheck.android.screen.user.wall.ICWallModel
 import vn.icheck.android.screen.user.wall.holder.friend.FriendWallHolder
 import vn.icheck.android.util.ick.*
+
 
 class IckUserWallAdapter(val listener: IPostListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val listData = arrayListOf<ICViewModel>()
@@ -149,10 +158,23 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
                 DetailImagesActivity.start(arrayListOf(data?.avatar), it.context)
             }
         }
-        binding.tvUsername.text = if (!data?.getName()?.trim().isNullOrEmpty()) {
-            data?.getName()
-        } else {
-            data?.getPhoneOnly()
+
+
+        binding.tvName.apply {
+            text = if (data?.lastName.isNullOrEmpty() && data?.firstName.isNullOrEmpty()) {
+                data?.getPhoneOnly()
+            } else {
+                Constant.getName(data?.lastName, data?.firstName)
+//                val spannableString = SpannableString(Constant.getName(data?.lastName, data?.firstName) + "  ")
+//                spannableString.setSpan(ImageSpan(itemView.context, R.drawable.ic_verified_user_24dp, ImageSpan.ALIGN_BASELINE), spannableString.length - 1, spannableString.length, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+//                setText(spannableString, TextView.BufferType.SPANNABLE)
+            }
+
+            if (data?.kycStatus == 2) {
+                setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_24dp, 0)
+            } else {
+                setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+            }
         }
 
         if (!data?.background.isNullOrEmpty()) {
@@ -182,6 +204,9 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
 //            SocialChatActivity.createRoomChat(it.context, arrMember.toTypedArray())
             if (SessionManager.isUserLogged) {
                 SocialChatActivity.createRoomChat(it.context, data?.id)
+//                ListConversationFragment.finishAllChat()
+//                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_FINISH_ALL_CHAT))
+//                ChatSocialDetailActivity.createRoomChat(it.context, data?.id ?: -1, "user")
             } else {
                 ICheckApplication.currentActivity()?.let { act ->
                     (act as FragmentActivity).showLogin()

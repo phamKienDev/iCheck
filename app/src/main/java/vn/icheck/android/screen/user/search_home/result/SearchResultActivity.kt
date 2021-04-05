@@ -267,6 +267,15 @@ class SearchResultActivity : BaseActivityMVVM(), View.OnClickListener {
                     val id = event.data as Long
                     ActivityUtils.startActivityForResult<PageDetailActivity, Long>(this, Constant.DATA_1, id, requestPageOrShop)
                 }
+                ICMessageEvent.Type.OPEN_SEARCH_REVIEW_OR_PAGE -> {
+                    if (event.data is Int) {
+                        if (event.data < adapter.listData.size - 1) {
+                            ActivityUtils.startActivity<SearchReviewActivity>(this, Constant.DATA_1, edtSearch.text.toString())
+                        } else {
+                            ActivityUtils.startActivity<SearchPageActivity>(this, Constant.DATA_1, edtSearch.text.toString())
+                        }
+                    }
+                }
                 else -> {
                 }
             }

@@ -4,7 +4,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/pr"
     android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/bg"
+        android:background="@android:color/black"
+        android:layout_width="match_parent"
+        android:alpha="0"
+        android:layout_height="match_parent" />
 
     <View
         android:id="@+id/view37"
@@ -19,6 +27,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <View
+        android:id="@+id/view11"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/bg_scan"
@@ -101,13 +110,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_scan_focus_svg" />
+        app:srcCompat="@drawable/focus_v2" />
 
     <View
         android:id="@+id/divider23"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/img_scan_focus" />
@@ -116,8 +124,6 @@
         android:id="@+id/divider24"
         android:layout_width="1dp"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/img_scan_focus"
         app:layout_constraintTop_toTopOf="parent" />
@@ -126,8 +132,6 @@
         android:id="@+id/divider25"
         android:layout_width="1dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/img_scan_focus"
         app:layout_constraintTop_toTopOf="parent" />
@@ -136,25 +140,26 @@
         android:id="@+id/divider26"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/img_scan_focus"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/btn_qm"
-        android:layout_width="110dp"
+        android:layout_width="0dp"
         android:layout_height="36dp"
-        android:background="@drawable/bg_selected_scan_text"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="32dp"
+        android:background="@drawable/bg_selected_scan_text"
+        android:fontFamily="@font/barlow_medium"
+        android:gravity="center"
+        android:text="Quét mã"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_scan_buy"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="Quét mã"
-        android:gravity="center"
-        android:textColor="@android:color/white"
-        android:fontFamily="@font/barlow_medium" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/btn_scan_buy"
@@ -165,7 +170,7 @@
         android:gravity="center"
         android:text="Scan &amp; buy"
         android:textColor="@android:color/white"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_my_code"
         app:layout_constraintHorizontal_bias="0.5"
@@ -173,17 +178,19 @@
 
     <TextView
         android:id="@+id/btn_my_code"
-        android:layout_width="110dp"
+        android:layout_width="0dp"
         android:layout_height="36dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:fontFamily="@font/barlow_medium"
+        android:gravity="center"
+        android:text="Mã của tôi"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_scan_buy"
-        android:gravity="center"
-        android:layout_marginBottom="32dp"
-        android:text="Mã của tôi"
-        android:textColor="@android:color/white"
-        android:fontFamily="@font/barlow_medium" />
+        app:layout_constraintStart_toEndOf="@+id/btn_scan_buy" />
 
     <ImageView
         android:id="@+id/img_scan_tip"
@@ -191,9 +198,9 @@
         android:layout_height="wrap_content"
         android:alpha="0"
         android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/view37"
         app:layout_constraintEnd_toStartOf="@+id/view42"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_scan_focus"
         app:srcCompat="@drawable/ic_dmsp"
         tools:visibility="visible" />
 
@@ -243,6 +250,16 @@
         app:layout_constraintBottom_toTopOf="@+id/btn_my_code"
         app:layout_constraintEnd_toEndOf="@+id/btn_my_code"
         app:srcCompat="@drawable/ic_xmdd" />
+
+    <ImageView
+        android:id="@+id/img_sdha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toStartOf="@+id/view42"
+        app:layout_constraintStart_toEndOf="@+id/view11"
+        app:layout_constraintTop_toTopOf="@+id/view43"
+        app:srcCompat="@drawable/ic_sdha" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

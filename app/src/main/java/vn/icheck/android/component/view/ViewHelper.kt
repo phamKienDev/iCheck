@@ -50,7 +50,7 @@ import vn.icheck.android.component.avatar_user.AvatarUserComponent
 import vn.icheck.android.component.image.LayoutImageInPostComponent
 import vn.icheck.android.component.postofuser.ProductInFeedComponent
 import vn.icheck.android.component.rating_star.RatingStarComponent
-import vn.icheck.android.component.view.text_view.TextViewBarlowBold
+import vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
 import vn.icheck.android.component.view.text_view.TextViewBarlowMedium
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ui.colorcardview.ColorCardView
@@ -637,7 +637,7 @@ object ViewHelper {
         layoutParent.addView(ratingLayout)
 
         //TextView Price
-        val tvPrice = TextViewBarlowBold(context)
+        val tvPrice = TextViewBarlowSemiBold(context)
         tvPrice.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1f).also {
             it.topMargin = SizeHelper.size4
         }
@@ -1269,7 +1269,7 @@ object ViewHelper {
             it.setBackgroundColor(Color.WHITE)
         }
 
-        val tvTitle = TextViewBarlowBold(context)
+        val tvTitle = TextViewBarlowSemiBold(context)
         tvTitle.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT).also {
             it.bottomMargin = SizeHelper.size5
         }
@@ -1290,7 +1290,7 @@ object ViewHelper {
             it.setBackgroundColor(ContextCompat.getColor(context, R.color.darkGray6))
         }
 
-        val title = TextViewBarlowBold(context)
+        val title = TextViewBarlowSemiBold(context)
         title.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
         title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
         title.setTextColor(ContextCompat.getColor(context, R.color.blue))
@@ -1309,7 +1309,6 @@ object ViewHelper {
 
     fun createRecyclerViewWithTitleHolder(context: Context): View {
         val layoutParent = LinearLayout(context)
-        layoutParent.layoutParams = createLayoutParams()
         layoutParent.setBackgroundColor(Color.WHITE)
         layoutParent.orientation = LinearLayout.VERTICAL
 
@@ -1338,7 +1337,7 @@ object ViewHelper {
                 layoutTitle.orientation = LinearLayout.HORIZONTAL
                 layoutTitle.gravity = Gravity.CENTER_VERTICAL
 
-                layoutTitle.addView(TextViewBarlowBold(context).also { title ->
+                layoutTitle.addView(TextViewBarlowSemiBold(context).also { title ->
                     title.layoutParams = createLayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
                     title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
                     title.setTextColor(ContextCompat.getColor(context, R.color.blue))
@@ -1346,7 +1345,7 @@ object ViewHelper {
                     title.text = "Hình ảnh"
                 })
 
-                layoutTitle.addView(TextViewBarlowBold(context).also { tvMore ->
+                layoutTitle.addView(TextViewBarlowSemiBold(context).also { tvMore ->
                     tvMore.layoutParams = createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
                     tvMore.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
                     tvMore.setTextColor(ContextCompat.getColor(context, R.color.blue))
@@ -1374,7 +1373,7 @@ object ViewHelper {
                 layoutTitle.gravity = Gravity.CENTER_HORIZONTAL
                 layoutTitle.orientation = LinearLayout.HORIZONTAL
 
-                layoutTitle.addView(TextViewBarlowBold(context).also { title ->
+                layoutTitle.addView(TextViewBarlowSemiBold(context).also { title ->
                     title.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f))
                     title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
                     title.setTextColor(ContextCompat.getColor(context, R.color.blue))
@@ -3667,7 +3666,7 @@ object ViewHelper {
                 params.layoutParams = ConstraintLayout.LayoutParams(0, ConstraintLayout.LayoutParams.WRAP_CONTENT).also {
                     it.topMargin = SizeHelper.size4
                 }
-                params.id = R.id.txtFollower
+                params.id = R.id.tvFollower
                 params.isSingleLine = true
                 params.includeFontPadding = false
                 params.typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
@@ -3752,52 +3751,6 @@ object ViewHelper {
 
             constraintSet.applyTo(layoutParams)
         }
-    }
-
-    fun createListBannerHolder(context: Context, marginTop: Int = 0, marginBottom: Int = 0): View {
-        val layoutParent = LinearLayout(context)
-        val parentParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-        parentParams.setMargins(SizeHelper.size12, marginTop, SizeHelper.size12, marginBottom)
-        layoutParent.layoutParams = parentParams
-        layoutParent.orientation = LinearLayout.VERTICAL
-        layoutParent.gravity = Gravity.CENTER_HORIZONTAL
-
-        val viewPager = HeightWrappingViewPager(context)
-        viewPager.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-        layoutParent.addView(viewPager)
-
-        val indicator = LayoutInflater.from(context).inflate(R.layout.item_indicator, layoutParent, false) as PageIndicatorView
-        val indicatorParams = indicator.layoutParams as LinearLayout.LayoutParams
-        indicatorParams.setMargins(0, SizeHelper.size12, 0, 0)
-        indicator.layoutParams = indicatorParams
-        indicator.id = R.id.indicator
-        indicator.setDynamicCount(true)
-        indicator.setInteractiveAnimation(true)
-        indicator.setAnimationType(AnimationType.WORM)
-        indicator.selectedColor = ContextCompat.getColor(context, R.color.home_indicator_selected)
-        indicator.unselectedColor = ContextCompat.getColor(context, R.color.home_indicator_unselected)
-        indicator.setViewPager(viewPager)
-        layoutParent.addView(indicator)
-
-        return layoutParent
-    }
-
-    fun setExpandTextWithoutActionNotClick(textView: TextView, maxLine: Int, expandText: String) {
-        if (textView.tag == null) {
-            textView.tag = textView.text
-        }
-
-        textView.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
-            override fun onGlobalLayout() {
-                textView.viewTreeObserver.removeOnGlobalLayoutListener(this)
-
-                if (textView.lineCount >= maxLine) {
-                    val lineEndIndex = textView.layout.getLineStart(maxLine)
-                    val text = (textView.text.subSequence(0, lineEndIndex - expandText.length * 2).toString() + "… " + expandText)
-                    textView.setText(addClickablePartTextViewResizableColor(text, "#3C5A99", expandText), TextView.BufferType.SPANNABLE)
-                }
-            }
-        })
     }
 
     private fun addClickablePartTextViewResizableColor(strSpanned: String, textColor: String, spanableText: String): SpannableStringBuilder? {

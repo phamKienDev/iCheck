@@ -117,6 +117,9 @@ interface ICNetworkAPI {
     @POST
     fun exchangeGift(@Url url: String, @Body body: HashMap<String, Any>): Observable<ICKResponse<ICKRedemptionHistory>>
 
+    @PATCH
+    fun exchangeCardGiftVQMM(@Url url: String, @Body body: HashMap<String, Any>): Observable<ICKResponse<ICKRedemptionHistory>>
+
     @GET
     fun getLongTermProgramList(@Url url: String, @QueryMap params: HashMap<String, Any>): Observable<ICKResponse<ICKListResponse<ICKLongTermProgram>>>
 

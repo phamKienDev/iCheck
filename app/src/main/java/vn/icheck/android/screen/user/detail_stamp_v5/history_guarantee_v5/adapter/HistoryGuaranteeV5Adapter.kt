@@ -10,10 +10,7 @@ import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.network.models.detail_stamp_v6.RESP_Log_History_v6
-import vn.icheck.android.network.models.detail_stamp_v6_1.ICListHistoryGuarantee
 import vn.icheck.android.screen.user.detail_stamp_v5.history_guarantee_v5.view.IHistoryGuaranteeV5View
-import vn.icheck.android.screen.user.detail_stamp_v6.history_guarantee_v6.view.IHistoryGuaranteeV6View
-import vn.icheck.android.screen.user.detail_stamp_v6_1.history_guarantee.view.IHistoryGuaranteeView
 
 class HistoryGuaranteeV5Adapter(val listener: IHistoryGuaranteeV5View) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -124,10 +121,10 @@ class HistoryGuaranteeV5Adapter(val listener: IHistoryGuaranteeV5View) : Recycle
                     itemView.context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                 }
                 Constant.ERROR_EMPTY -> {
-                    itemView.context.getString(R.string.du_lieu_trong)
+                    itemView.context.getString(R.string.khong_co_du_lieu)
                 }
                 else -> {
-                    itemView.context.getString(R.string.du_lieu_trong)
+                    itemView.context.getString(R.string.khong_co_du_lieu)
                 }
             }
             itemView.txtMessage.text = message

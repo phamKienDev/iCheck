@@ -15,6 +15,7 @@ data class ICAdsData(
         @SerializedName("price") val price: Long?,
         @SerializedName("sellPrice ") val sellPrice: Long?,
         @SerializedName("verified") val verified: Boolean?,
+        @SerializedName("isVerify") val isVerify: Boolean?,
         @SerializedName("rating") val rating: Double?,
         @SerializedName("ratingText") val ratingText: String?,
         @SerializedName("reviewCount") val reviewCount: Long?,

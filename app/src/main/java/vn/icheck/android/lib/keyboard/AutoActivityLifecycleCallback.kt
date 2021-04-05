@@ -5,7 +5,7 @@ import android.app.Activity
 import android.os.Bundle
 
 abstract class AutoActivityLifecycleCallback(private val mTargetActivity: Activity) : Application.ActivityLifecycleCallbacks {
-    override fun onActivityCreated(activity: Activity, bundle: Bundle) {
+    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
 
     }
 

@@ -64,30 +64,32 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/imgRank" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/imgVerified"
-            android:layout_width="@dimen/size_16"
-            android:layout_height="@dimen/size_16"
-            android:src="@drawable/ic_verified_16px"
-            app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
-            app:layout_constraintEnd_toEndOf="@id/imgAvatar" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvName"
+        <LinearLayout
+            android:id="@+id/layoutName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
-            android:includeFontPadding="false"
-            android:singleLine="true"
-            android:textColor="@color/white"
-            android:textSize="16sp"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgAvatar"
-            app:layout_constraintTop_toTopOf="@id/imgAvatar"
-            tools:text="Hà Linh" />
+            app:layout_constraintTop_toTopOf="@id/imgAvatar">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/size_4"
+                android:ellipsize="middle"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                tools:text="Hà Linh layout_constraintTop_toTopOf layout_constraintTop_toTopOf" />
+
+        </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTime"
@@ -99,8 +101,8 @@
             android:textColor="#b4b4b4"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tvName"
-            app:layout_constraintTop_toBottomOf="@+id/tvName"
+            app:layout_constraintStart_toStartOf="@id/layoutName"
+            app:layout_constraintTop_toBottomOf="@id/layoutName"
             tools:text="43 phút trước" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -132,8 +134,8 @@
         android:layout_marginBottom="@dimen/size_10"
         android:fontFamily="@font/barlow_medium"
         android:includeFontPadding="false"
-        android:textColor="@color/white"
         android:maxLines="2"
+        android:textColor="@color/white"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@id/layoutIcon"
         app:layout_constraintEnd_toEndOf="@id/layoutIcon"
@@ -241,19 +243,19 @@
             app:srcCompat="@drawable/ic_arrow_down_light_white_24px" />
 
         <LinearLayout
-            android:layout_width="0dp"
             android:id="@+id/layoutComment"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginLeft="@dimen/size_12"
             android:layout_marginEnd="@dimen/size_12"
             android:layout_marginRight="@dimen/size_12"
-            android:visibility="gone"
             android:layout_weight="1"
             android:background="@drawable/bg_border_gray_4dp_shop"
             android:orientation="horizontal"
             android:paddingTop="@dimen/size_8"
-            android:paddingBottom="@dimen/size_8">
+            android:paddingBottom="@dimen/size_8"
+            android:visibility="gone">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textView55"
@@ -278,8 +280,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/size_14"
-                android:visibility="gone"
                 android:layout_marginRight="@dimen/size_14"
+                android:visibility="gone"
                 app:srcCompat="@drawable/ic_imoji_24px" />
         </LinearLayout>
     </LinearLayout>

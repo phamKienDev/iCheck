@@ -1,19 +1,26 @@
 package vn.icheck.android.screen.firebase
 
+//import vn.teko.android.auth.core.TerraAuth
+//import vn.teko.android.auth.login.TerraLogin
+//import vn.teko.android.auth.login.provider.AUTH_MANAGER_EXTRA_CUSTOM_TOKEN_IDTOKEN
+//import vn.teko.android.auth.login.provider.AUTH_MANAGER_EXTRA_CUSTOM_TOKEN_PROVIDER
+//import vn.teko.android.auth.login.provider.AUTH_MANAGER_RC_LOGIN
+//import vn.teko.android.auth.login.provider.LoginType
+//import vn.teko.hestia.android.TerraHestia
+//import vn.teko.hestia.android.utils.uiHelper.DefaultAndroidHestiaUIHelper
+//import vn.teko.terra.core.android.terra.TerraApp
 import android.Manifest
 import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.util.Base64
 import androidx.annotation.MainThread
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.Observer
 import com.tripi.flight.config.Flight
 import com.tripi.flight.config.FlightConfig
 import com.tripi.hotel.config.HotelConfig
@@ -21,11 +28,10 @@ import com.tripi.hotel.config.HotelSDK
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
-import vn.icheck.android.activities.chat.v2.ChatV2Activity
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
 import vn.icheck.android.base.model.ICMessageEvent
-import vn.icheck.android.base.viewmodel.BaseViewModel
 import vn.icheck.android.callback.ISettingListener
+import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.constant.ICK_REQUEST_CAMERA
 import vn.icheck.android.helper.*
@@ -37,13 +43,13 @@ import vn.icheck.android.loyalty.screen.url_gift_detail.UrlGiftDetailActivity
 import vn.icheck.android.loyalty.sdk.LoyaltySdk
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.campaign.ListCampaignInteractor
-import vn.icheck.android.network.feature.pvcombank.PVcomBankRepository
 import vn.icheck.android.network.feature.user.UserInteractor
 import vn.icheck.android.network.models.ICCampaign
 import vn.icheck.android.network.models.ICClientSetting
 import vn.icheck.android.network.models.ICLink
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
-import vn.icheck.android.screen.scan.ICKScanActivity
+import vn.icheck.android.screen.scan.MyQrActivity
+import vn.icheck.android.screen.scan.V6ScanditActivity
 import vn.icheck.android.screen.user.buy_mobile_card.BuyMobileCardV2Activity
 import vn.icheck.android.screen.user.buy_mobile_card_success.BuyCardSuccessActivity
 import vn.icheck.android.screen.user.coinhistory.CoinHistoryActivity
@@ -70,10 +76,12 @@ import vn.icheck.android.screen.user.page_details.PageDetailActivity
 import vn.icheck.android.screen.user.payment_topup_success.BuyTopupSuccessActivity
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.screen.user.pvcombank.authen.CreatePVCardActivity
+import vn.icheck.android.screen.user.pvcombank.authen.CreatePVCardViewModel
 import vn.icheck.android.screen.user.pvcombank.home.HomePVCardActivity
 import vn.icheck.android.screen.user.rank_of_user.RankOfUserActivity
 import vn.icheck.android.screen.user.recharge_phone.RechargePhoneActivity
 import vn.icheck.android.screen.user.shipping.ship.ShipActivity
+import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 import vn.icheck.android.screen.user.surveydetail.answer.SurveyDetailActivity
 import vn.icheck.android.screen.user.utilities.UtilitiesActivity
 import vn.icheck.android.screen.user.vinmart.VinMartActivity
@@ -85,15 +93,6 @@ import vn.icheck.android.tracking.insider.InsiderHelper
 import vn.icheck.android.util.ick.logDebug
 import vn.icheck.android.util.ick.simpleStartForResultActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
-//import vn.teko.android.auth.core.TerraAuth
-//import vn.teko.android.auth.login.TerraLogin
-//import vn.teko.android.auth.login.provider.AUTH_MANAGER_EXTRA_CUSTOM_TOKEN_IDTOKEN
-//import vn.teko.android.auth.login.provider.AUTH_MANAGER_EXTRA_CUSTOM_TOKEN_PROVIDER
-//import vn.teko.android.auth.login.provider.AUTH_MANAGER_RC_LOGIN
-//import vn.teko.android.auth.login.provider.LoginType
-//import vn.teko.hestia.android.TerraHestia
-//import vn.teko.hestia.android.utils.uiHelper.DefaultAndroidHestiaUIHelper
-//import vn.teko.terra.core.android.terra.TerraApp
 import java.net.URL
 import java.util.*
 
@@ -145,6 +144,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
     private val survey = "survey"
     private val inbox = "inbox"
     private val inboxUser = "inbox_user"
+    private val inboxPage = "inbox_page"
     private val user = "user"
     private val review = "review"
     private val news = "news"
@@ -166,7 +166,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
     private val rechargeCard = "recharge_card"
     private val loyaltyCampaign = "loyalty_campaign"
     private val vinmart = "vinmart"
-    private val digital_bank = "digital_bank"
+    private val digitalBank = "digital_bank"
     private val flightBooking = "flight_booking"
     private val hotelBooking = "hotel_booking"
     private val utilities = "utilities"
@@ -384,14 +384,14 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
             }
             scan -> {
                 if (PermissionHelper.checkPermission(this@FirebaseDynamicLinksActivity, Manifest.permission.CAMERA, ICK_REQUEST_CAMERA)) {
-                    ICKScanActivity.create(this)
+                    V6ScanditActivity.create(this)
                 } else {
                     return
                 }
             }
             scanAndBuy -> {
                 if (PermissionHelper.checkPermission(this@FirebaseDynamicLinksActivity, Manifest.permission.CAMERA, ICK_REQUEST_CAMERA)) {
-                    ICKScanActivity.create(this, 2)
+                    V6ScanditActivity.create(this, 2)
                 } else {
                     return
                 }
@@ -639,7 +639,8 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                     return
                 } else {
                     if (PermissionHelper.checkPermission(this@FirebaseDynamicLinksActivity, Manifest.permission.CAMERA, ICK_REQUEST_CAMERA)) {
-                        ICKScanActivity.create(this, 3)
+//                        V6ScanditActivity.create(this, 3)
+                        MyQrActivity.createOnly(this)
                     } else {
                         return
                     }
@@ -802,7 +803,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                         showLoginDialog()
                         return
                     } else {
-                        ActivityUtils.startActivity<ChatV2Activity, String>(this, "id", id)
+                        ChatSocialDetailActivity.openRoomChatWithKey(this@FirebaseDynamicLinksActivity, id)
                     }
                 }
             }
@@ -810,7 +811,25 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                 val id = deepLink?.getQueryParameter("id")
 
                 if (!id.isNullOrEmpty()) {
-                    ChatV2Activity.createChatUser(id.toLong(), this)
+                    if (!SessionManager.isUserLogged) {
+                        showLoginDialog()
+                        return
+                    } else if (ValidHelper.validNumber(id)) {
+//                        ChatSocialDetailActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong(), "user")
+                        SocialChatActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong())
+                    }
+                }
+            }
+            inboxPage -> {
+                val id = deepLink?.getQueryParameter("id")
+
+                if (!id.isNullOrEmpty()) {
+                    if (!SessionManager.isUserLogged) {
+                        showLoginDialog()
+                        return
+                    } else if (ValidHelper.validNumber(id)) {
+                        ChatSocialDetailActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong(), "page")
+                    }
                 }
             }
             user -> {
@@ -994,15 +1013,15 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                     overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
                 }
             }
-            digital_bank -> {
+            digitalBank -> {
                 if (!SessionManager.isUserLogged) {
                     showLoginDialog()
                     return
                 } else {
-                    BaseViewModel().apply {
-                        request(5000) { PVcomBankRepository().checkHasCard() }.observe(this@FirebaseDynamicLinksActivity, androidx.lifecycle.Observer {
+                    CreatePVCardViewModel().apply {
+                        checkHasCard(5000L).observe(this@FirebaseDynamicLinksActivity, Observer { checkCardRes ->
                             this@FirebaseDynamicLinksActivity.apply {
-                                when (it.status) {
+                                when (checkCardRes.status) {
                                     Status.LOADING -> {
                                         DialogHelper.showLoading(this)
                                     }
@@ -1013,14 +1032,40 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                                     }
                                     Status.ERROR_REQUEST -> {
                                         DialogHelper.closeLoading(this)
-                                        ToastHelper.showLongError(this, ICheckApplication.getError(it.message))
+                                        ToastHelper.showLongError(this, ICheckApplication.getError(checkCardRes.message))
                                         finishActivity()
                                     }
                                     Status.SUCCESS -> {
-                                        DialogHelper.closeLoading(this)
-                                        if (it.data?.data == true) {
-                                            ActivityUtils.startActivityAndFinish<HomePVCardActivity>(this)
+                                        if (checkCardRes.data?.data == true) {
+                                            if (SettingManager.getSessionPvcombank.isEmpty()) {
+                                                getFormAuth(5000L).observe(this, Observer { formAuthRes ->
+                                                    when (formAuthRes.status) {
+                                                        Status.LOADING -> {
+                                                        }
+                                                        Status.SUCCESS -> {
+                                                            DialogHelper.closeLoading(this)
+                                                            if (formAuthRes.data?.data?.redirectUrl.isNullOrEmpty() || formAuthRes.data?.data?.authUrl.isNullOrEmpty()) {
+                                                                ToastHelper.showLongError(this, getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                                                                finishActivity()
+                                                            } else {
+                                                                CreatePVCardActivity.redirectUrl = formAuthRes.data!!.data!!.redirectUrl
+                                                                WebViewActivity.start(this, formAuthRes.data!!.data!!.authUrl)
+                                                                finishActivity()
+                                                            }
+                                                        }
+                                                        else -> {
+                                                            DialogHelper.closeLoading(this)
+                                                            ToastHelper.showLongError(this, ICheckApplication.getError(checkCardRes.message))
+                                                            finishActivity()
+                                                        }
+                                                    }
+                                                })
+                                            } else {
+                                                DialogHelper.closeLoading(this)
+                                                ActivityUtils.startActivityAndFinish<HomePVCardActivity>(this)
+                                            }
                                         } else {
+                                            DialogHelper.closeLoading(this)
                                             ActivityUtils.startActivityAndFinish<CreatePVCardActivity>(this)
                                         }
                                     }
@@ -1143,9 +1188,10 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                 val responseCode = deepLink?.getQueryParameter("vnp_ResponseCode")
                 val orderInfo = deepLink?.getQueryParameter("vnp_OrderInfo")
 
-                if (responseCode == "00"){
-                    ActivityHelper.startActivity<BuyTopupSuccessActivity, Long>(this@FirebaseDynamicLinksActivity, Constant.DATA_2, (orderInfo ?: "-1").toLong())
-                }else{
+                if (responseCode == "00") {
+                    ActivityHelper.startActivity<BuyTopupSuccessActivity, Long>(this@FirebaseDynamicLinksActivity, Constant.DATA_2, (orderInfo
+                            ?: "-1").toLong())
+                } else {
                     ActivityHelper.startActivity<BuyTopupSuccessActivity, Long>(this@FirebaseDynamicLinksActivity, Constant.DATA_2, -1)
                 }
             }
@@ -1153,9 +1199,10 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                 val responseCode = deepLink?.getQueryParameter("vnp_ResponseCode")
                 val orderInfo = deepLink?.getQueryParameter("vnp_OrderInfo")
 
-                if (responseCode == "00"){
-                    ActivityHelper.startActivity<BuyCardSuccessActivity, Long>(this@FirebaseDynamicLinksActivity, Constant.DATA_2, (orderInfo ?: "-1").toLong())
-                }else{
+                if (responseCode == "00") {
+                    ActivityHelper.startActivity<BuyCardSuccessActivity, Long>(this@FirebaseDynamicLinksActivity, Constant.DATA_2, (orderInfo
+                            ?: "-1").toLong())
+                } else {
                     ActivityHelper.startActivity<BuyCardSuccessActivity, Long>(this@FirebaseDynamicLinksActivity, Constant.DATA_2, -1)
                 }
             }

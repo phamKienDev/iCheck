@@ -146,13 +146,7 @@ class SearchResultAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     itemView.beVisible()
                 }
                 itemView.setOnClickListener {
-                    ICheckApplication.currentActivity()?.let {
-                        if (adapterPosition < listData.size - 1) {
-                            ActivityUtils.startActivity<SearchReviewActivity>(it)
-                        } else {
-                            ActivityUtils.startActivity<SearchPageActivity>(it)
-                        }
-                    }
+                    EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.OPEN_SEARCH_REVIEW_OR_PAGE,adapterPosition))
                 }
                 if (adapterPosition == listData.size - 1) {
                     itemView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT).also {

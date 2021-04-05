@@ -15,10 +15,12 @@ import androidx.fragment.app.activityViewModels
 import com.google.gson.JsonObject
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
+import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.FragmentConfirmShipBinding
 import vn.icheck.android.databinding.ItemConfirmShipBinding
+import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.tracking.teko.TekoHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
@@ -274,11 +276,19 @@ class ConfirmShipFragment : Fragment() {
                         binding.btnConfirm.setBackgroundResource(R.drawable.bg_stroke_blue_corner_4)
                         binding.tvReport.beVisible()
                         binding.btnConfirm.setOnClickListener {
-                            viewModel.cancelOrder().observe(viewLifecycleOwner, { res ->
-                                if (res.statusCode == "200") {
-                                    viewModel.moveToConfirm()
+                            DialogHelper.showConfirm(requireContext(),"Bạn chắc chắn muốn hủy \n đơn hàng này?",null ,getString(R.string.de_sau), getString(R.string.dong_y),true, object : ConfirmDialogListener{
+                                override fun onDisagree() {
+                                }
+
+                                override fun onAgree() {
+                                    viewModel.cancelOrder().observe(viewLifecycleOwner, { res ->
+                                        if (res.statusCode == "200") {
+                                            viewModel.moveToConfirm()
+                                        }
+                                    })
                                 }
                             })
+
                         }
                         binding.tvReport.setOnClickListener {
                             ReportActivity.start(ReportActivity.order, detailOrderResponse.id, "Báo lỗi đơn hàng", requireActivity())

@@ -18,6 +18,7 @@ import org.greenrobot.eventbus.ThreadMode
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
 import vn.icheck.android.base.model.ICMessageEvent
+import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.base.ICRequireLogin
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
@@ -76,6 +77,10 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin {
             if (!isHomeActivity()) {
                 ActivityUtils.finishActivity(this)
             }
+        } else if (event.type == ICMessageEvent.Type.ON_FINISH_ALL_CHAT) {
+            if (!isHomeActivity() && ListConversationFragment.isOpenChat) {
+                ActivityUtils.finishActivity(this)
+            }
         }
     }
 
@@ -131,11 +136,12 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin {
 
     override fun onRequireLoginCancel() {
     }
+
     /**
      * End ICRequireLogin
      * */
 
-    inline fun delayAction(crossinline action: () -> Unit, timeout:Long = 200L) {
+    inline fun delayAction(crossinline action: () -> Unit, timeout: Long = 200L) {
         job = if (job?.isActive == true) {
             job?.cancel()
             lifecycleScope.launch {

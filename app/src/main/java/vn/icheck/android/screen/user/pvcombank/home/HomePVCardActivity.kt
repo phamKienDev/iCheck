@@ -7,29 +7,24 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_detail_pvcard.*
 import kotlinx.android.synthetic.main.toolbar_pvcombank.*
+import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.model.ICError
 import vn.icheck.android.base.model.ICMessageEvent
-import vn.icheck.android.screen.user.pvcombank.listcard.ListPVCardActivity
-import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.network.base.Status
+import vn.icheck.android.screen.user.contact.ContactActivity
 import vn.icheck.android.screen.user.newslistv2.NewsListV2Activity
-import vn.icheck.android.screen.user.pvcombank.card_history.HistoryPVCardActivity
-import vn.icheck.android.screen.user.support.ContactAndSupportActivity
+import vn.icheck.android.screen.user.pvcombank.cardhistory.HistoryPVCardActivity
+import vn.icheck.android.screen.user.pvcombank.listcard.ListPVCardActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
-import java.util.concurrent.TimeUnit
 
 class HomePVCardActivity : BaseActivityMVVM(), View.OnClickListener {
     private val pvCardPreferences = "pvCardPreference"
@@ -63,7 +58,7 @@ class HomePVCardActivity : BaseActivityMVVM(), View.OnClickListener {
         sharedPreferences = getSharedPreferences(pvCardPreferences, Context.MODE_PRIVATE)
         editor = sharedPreferences.edit()
 
-        WidgetUtils.setClickListener(this, imgBack, tvEye, tvNapTien, tvDanhSachThe, tvSuaTaiKhoan, tvTaoThemThe, btnSpecialOffers, btnUsagePolicy, btnContact, btnHistory, btnKyc)
+        WidgetUtils.setClickListener(this, imgBack, tvEye, tvNapTien, tvDanhSachThe, tvSuaTaiKhoan, btnSpecialOffers, btnUsagePolicy, btnContact, btnHistory, btnKyc)
     }
 
     private fun initData() {
@@ -114,7 +109,7 @@ class HomePVCardActivity : BaseActivityMVVM(), View.OnClickListener {
             tvMoney.text = ("${TextHelper.formatMoney(avlBalance)} đ")
         } else {
             tvEye.setImageResource(R.drawable.ic_eye_off_white_24px)
-            tvMoney.text = "***"
+            tvMoney.text = "*****"
         }
     }
 
@@ -169,7 +164,7 @@ class HomePVCardActivity : BaseActivityMVVM(), View.OnClickListener {
                 viewModel.getUrlUsagePolicy()
             }
             R.id.btnContact -> {
-                startActivity<ContactAndSupportActivity>()
+                startActivity<ContactActivity>()
             }
             R.id.btnHistory -> {
                 startActivity<HistoryPVCardActivity>()
@@ -198,5 +193,10 @@ class HomePVCardActivity : BaseActivityMVVM(), View.OnClickListener {
             else -> {
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_DESTROY_PVCOMBANK))
     }
 }

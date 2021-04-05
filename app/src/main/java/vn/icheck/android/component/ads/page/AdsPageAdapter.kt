@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.DrawableRes
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.ICheckApplication
@@ -18,6 +19,7 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.ExoPlayerManager
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -31,6 +33,7 @@ import vn.icheck.android.ui.RoundedCornersTransformation
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
+import kotlin.random.Random
 
 class AdsPageAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val listData = mutableListOf<ICAdsData>()
@@ -111,31 +114,30 @@ class AdsPageAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 if (obj.media!![0].type == Constant.VIDEO) {
                     binding.imgPlay.visibility = View.VISIBLE
                     if (!obj.media!![0].content.isNullOrEmpty()) {
-                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, obj.media!![0].content, R.drawable.bg_default_page, R.drawable.bg_default_page, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, obj.media!![0].content, getDrawable(), getDrawable(), SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
                     } else {
-                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, R.drawable.bg_default_page, R.drawable.bg_default_page, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, getDrawable(), getDrawable(), SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
                     }
                 } else {
                     binding.imgPlay.visibility = View.INVISIBLE
                     if (!obj.media!![0].content.isNullOrEmpty()) {
-                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, obj.media!![0].content, R.drawable.bg_default_page, R.drawable.bg_default_page, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, obj.media!![0].content, getDrawable(), getDrawable(), SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
                     } else {
-                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, R.drawable.bg_default_page, R.drawable.bg_default_page, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, getDrawable(), getDrawable(), SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
                     }
                 }
             } else {
-                WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, R.drawable.bg_default_page, R.drawable.bg_default_page, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, getDrawable(), getDrawable(), SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
             }
 
-            WidgetUtils.loadImageUrl(binding.imgAvatar, obj.avatar?.content, R.drawable.img_default_business_logo)
+            WidgetUtils.loadImageUrl(binding.imgAvatar, obj.avatar?.content, R.drawable.ic_business_v2)
 
             if (obj.verified == true) {
-                binding.imgVerified.visibility = View.VISIBLE
+                binding.tvName.setDrawbleNextEndText(obj.name, R.drawable.ic_verified_16px)
             } else {
-                binding.imgVerified.visibility = View.GONE
+                binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                binding.tvName.text = obj.name
             }
-
-            binding.tvName.text = obj.name
 
             if (obj.followCount != null && obj.followCount!! > 0) {
                 binding.tvStatus.text = binding.tvStatus.context.getString(R.string.xxx_nguoi_theo_doi, TextHelper.formatMoney(obj.followCount))
@@ -206,31 +208,28 @@ class AdsPageAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 if (obj.media!![0].type == Constant.VIDEO) {
                     binding.imgPlay.visibility = View.VISIBLE
                     if (!obj.media!![0].content.isNullOrEmpty()) {
-                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, obj.media!![0].content, R.drawable.bg_default_page, R.drawable.bg_default_page, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, obj.media!![0].content, getDrawable(), getDrawable(), SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
                     } else {
-                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, R.drawable.bg_default_page, R.drawable.bg_default_page, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, getDrawable(), getDrawable(), SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
                     }
                 } else {
                     binding.imgPlay.visibility = View.INVISIBLE
                     if (!obj.media!![0].content.isNullOrEmpty()) {
-                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, obj.media!![0].content, R.drawable.bg_default_page, R.drawable.bg_default_page, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, obj.media!![0].content, getDrawable(), getDrawable(), SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
                     } else {
-                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, R.drawable.bg_default_page, R.drawable.bg_default_page, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, getDrawable(), getDrawable(), SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
                     }
                 }
             } else {
-                WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, R.drawable.bg_default_page, R.drawable.bg_default_page, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, getDrawable(), getDrawable(), SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
             }
 
-            WidgetUtils.loadImageUrl(binding.imgAvatar, obj.avatar?.content, R.drawable.img_default_business_logo)
+            WidgetUtils.loadImageUrl(binding.imgAvatar, obj.avatar?.content, R.drawable.ic_business_v2)
             if (obj.verified == true) {
-                binding.imgVerified.visibility = View.VISIBLE
+                binding.tvName.setDrawbleNextEndText(obj.name ?: "", R.drawable.ic_verified_16px)
             } else {
-                binding.imgVerified.visibility = View.GONE
+                binding.tvName.text = obj.name
             }
-
-            binding.tvName.text = obj.name
-
             if (obj.followCount != null && obj.followCount!! > 0) {
                 binding.tvStatus.text = binding.tvStatus.context.getString(R.string.xxx_nguoi_theo_doi, TextHelper.formatMoney(obj.followCount))
             } else {
@@ -295,22 +294,20 @@ class AdsPageAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
             if (!obj.media.isNullOrEmpty()) {
                 if (!obj.media!![0].content.isNullOrEmpty()) {
-                    WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, obj.media!![0].content, R.drawable.bg_default_page, R.drawable.bg_default_page, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                    WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, obj.media!![0].content, getDrawable(), getDrawable(), SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
                 } else {
-                    WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, R.drawable.bg_default_page, R.drawable.bg_default_page, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                    WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, getDrawable(), getDrawable(), SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
                 }
             } else {
-                WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, R.drawable.bg_default_page, R.drawable.bg_default_page, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, getDrawable(), getDrawable(), SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
             }
 
-            WidgetUtils.loadImageUrl(binding.imgAvatar, obj.avatar?.content, R.drawable.img_default_business_logo)
-            if (obj.verified == true) {
-                binding.imgVerified.visibility = View.VISIBLE
+            WidgetUtils.loadImageUrl(binding.imgAvatar, obj.avatar?.content, R.drawable.ic_business_v2)
+            if (obj.isVerify == true) {
+                binding.tvName.setDrawbleNextEndText(obj.name ?: "", R.drawable.ic_verified_16px)
             } else {
-                binding.imgVerified.visibility = View.GONE
+                binding.tvName.text = obj.name
             }
-
-            binding.tvName.text = obj.name
 
             if (obj.followCount != null && obj.followCount!! > 0) {
                 binding.tvStatus.text = binding.tvStatus.context.getString(R.string.xxx_nguoi_theo_doi, TextHelper.formatMoney(obj.followCount))
@@ -341,6 +338,16 @@ class AdsPageAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         fun updateFollow(isFollow: Boolean) {
             setButtonText(binding.tvAction, isFollow, 0)
+        }
+    }
+
+    @DrawableRes
+    fun getDrawable(): Int {
+        return when ((0..3).random()) {
+            0 -> R.drawable.page_cover_1
+            1 -> R.drawable.page_cover_3
+            2 -> R.drawable.page_cover_2
+            else -> R.drawable.page_cover_4
         }
     }
 

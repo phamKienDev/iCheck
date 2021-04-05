@@ -1,6 +1,7 @@
 package vn.icheck.android.component.take_media
 
 import android.app.Activity
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.provider.MediaStore
@@ -9,22 +10,31 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import kotlinx.android.synthetic.main.layout_choose_image_dialog.*
+import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialogFragment
+import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.screen.user.cropimage.CropImageActivity
 import java.io.File
 
-class TakeMediaDialog(val listener: TakeImageListener, private val selectMulti: Boolean = false, private val cropImage: Boolean = false, private val ratio: String? = null, private val isVideo: Boolean = true) : BaseBottomSheetDialogFragment() {
+class TakeMediaDialog(val listener: TakeImageListener,
+                      private val selectMulti: Boolean = false,
+                      private val cropImage: Boolean = false,
+                      private val ratio: String? = null,
+                      private val isVideo: Boolean = true,
+                      val showBottom: Boolean = false,
+                      val disableTakeImage: Boolean = false
+) : BaseBottomSheetDialogFragment() {
 
     companion object {
         var INSTANCE: TakeMediaDialog? = null
         const val CROP_IMAGE_GALLERY = 1
 
-        fun show(fragmentManager: FragmentManager, listener: TakeImageListener, selectMulti: Boolean = false) {
+        fun show(fragmentManager: FragmentManager, listener: TakeImageListener, selectMulti: Boolean = false, cropImage: Boolean = false, ratio: String? = null, isVideo: Boolean = false) {
             if (fragmentManager.findFragmentByTag(TakeMediaDialog::class.java.simpleName)?.isAdded != true) {
-                TakeMediaDialog(listener, selectMulti).show(fragmentManager, TakeMediaDialog::class.java.simpleName)
+                TakeMediaDialog(listener, selectMulti, cropImage, ratio, isVideo).show(fragmentManager, TakeMediaDialog::class.java.simpleName)
             }
         }
     }
@@ -34,9 +44,14 @@ class TakeMediaDialog(val listener: TakeImageListener, private val selectMulti: 
         return inflater.inflate(R.layout.layout_choose_image_dialog, container, false)
     }
 
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_DISMISS))
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        CropImageActivity.showBottom = showBottom
         imgClose.setOnClickListener {
             dismiss()
         }
@@ -65,7 +80,7 @@ class TakeMediaDialog(val listener: TakeImageListener, private val selectMulti: 
         if (listImage.isEmpty()) {
             startCamera()
         } else {
-            val adapter = TakeMediaAdapter(listImage, selectMulti, isVideo)
+            val adapter = TakeMediaAdapter(listImage, selectMulti, isVideo, disableTakeImage = this.disableTakeImage)
             rcvImage.adapter = adapter
 
             btnSubmit.setOnClickListener {
@@ -120,7 +135,9 @@ class TakeMediaDialog(val listener: TakeImageListener, private val selectMulti: 
                     selection,
                     null, orderBy)
 
-            listOfAllImages.add(ICIMageFile(File("")))
+            if (!disableTakeImage) {
+                listOfAllImages.add(ICIMageFile(File("")))
+            }
             val dataColumn = cursor!!.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA)
             val typeColumn = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.MEDIA_TYPE)
             val duration = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DURATION)

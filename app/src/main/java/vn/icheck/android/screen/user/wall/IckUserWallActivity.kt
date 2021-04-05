@@ -25,19 +25,20 @@ import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.screen.user.home.HomeActivity
 import vn.icheck.android.screen.user.wall.mainuser.IckUserWallFragment
 import vn.icheck.android.screen.user.wall.mainuser.IckUserWallFragmentDirections
+import vn.icheck.android.screen.user.wall.manage_page.PageManagementFragment
 import vn.icheck.android.util.ick.startClearTopActivity
 import vn.icheck.android.util.kotlin.StatusBarUtils
 
 const val USER_ID = "user_id"
 const val OPEN_INFOR = "open_infor"
-const val EDIT_MY_PUBLIC_INFO = 1
+const val EDIT_MY_PUBLIC_INFO = 1222
 
 @AndroidEntryPoint
 class IckUserWallActivity : BaseCoroutineActivity() {
     private lateinit var binding: ActivityIckUserWallBinding
-    private val ickUserWallViewModel:IckUserWallViewModel by viewModels()
+    private val ickUserWallViewModel: IckUserWallViewModel by viewModels()
 
-    companion object{
+    companion object {
         fun create(id: Long?, activity: Activity) {
             val i = Intent(activity, IckUserWallActivity::class.java)
             i.putExtra(USER_ID, id)
@@ -50,10 +51,10 @@ class IckUserWallActivity : BaseCoroutineActivity() {
             context.startActivity(i)
         }
 
-        fun openInfor(id: Long?,context: Context){
+        fun openInfor(id: Long?, context: Context) {
             val i = Intent(context, IckUserWallActivity::class.java)
             i.putExtra(USER_ID, id)
-            i.putExtra(OPEN_INFOR,true)
+            i.putExtra(OPEN_INFOR, true)
             context.startActivity(i)
         }
 
@@ -151,9 +152,22 @@ class IckUserWallActivity : BaseCoroutineActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == EDIT_MY_PUBLIC_INFO) {
-            if (resultCode == AppCompatActivity.RESULT_OK) {
+            if (resultCode == RESULT_OK) {
                 ickUserWallViewModel.updateUser.postValue(RESULT_OK)
             }
+        }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val navFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
+        if (navFragment?.childFragmentManager?.fragments?.last() is PageManagementFragment) {
+            binding.btnMyPage.setTextColor(Color.parseColor("#057DDA"))
+            binding.btnMyPage.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_bottom_wall_fc_27px, 0, 0)
+            binding.btnManagePage.setTextColor(Color.parseColor("#b4b4b4"))
+            binding.btnManagePage.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_bottombar_group_page_unfc_27px, 0, 0)
+        } else {
+            finish()
         }
     }
 }

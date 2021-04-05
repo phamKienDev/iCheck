@@ -1,6 +1,5 @@
 package vn.icheck.android.screen.user.home
 
-
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -34,6 +33,7 @@ import androidx.core.view.children
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -44,6 +44,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.ick_left_menu.*
 import kotlinx.android.synthetic.main.right_menu_history.*
+import kotlinx.coroutines.async
+import kotlinx.coroutines.withTimeoutOrNull
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
 import vn.icheck.android.RelationshipManager
@@ -54,6 +56,9 @@ import vn.icheck.android.base.dialog.notify.confirm.ConfirmDialog
 import vn.icheck.android.base.model.ICFragment
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.ISettingListener
+import vn.icheck.android.chat.icheckchat.screen.ChatSocialFragment
+import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
+import vn.icheck.android.chat.icheckchat.sdk.ChatSdk
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.Constant
@@ -66,13 +71,15 @@ import vn.icheck.android.network.models.ICClientSetting
 import vn.icheck.android.network.models.ICUser
 import vn.icheck.android.network.models.history.ICBigCorp
 import vn.icheck.android.network.models.history.ICTypeHistory
+import vn.icheck.android.network.util.DeviceUtils
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.account.icklogin.viewmodel.IckLoginViewModel
 import vn.icheck.android.screen.account.registeruser.register.RegisterUserActivity
+import vn.icheck.android.screen.checktheme.CheckThemeViewModel
 import vn.icheck.android.screen.dialog.PermissionDialog
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.info.AppInfoActivity
-import vn.icheck.android.screen.scan.ICKScanActivity
+import vn.icheck.android.screen.scan.V6ScanditActivity
 import vn.icheck.android.screen.user.bookmark.BookMarkV2Activity
 import vn.icheck.android.screen.user.bookmark_history.BookmarkHistoryActivity
 import vn.icheck.android.screen.user.coinhistory.CoinHistoryActivity
@@ -82,8 +89,6 @@ import vn.icheck.android.screen.user.history_loading_card.home.HistoryCardActivi
 import vn.icheck.android.screen.user.home_page.home.HomePageFragment
 import vn.icheck.android.screen.user.newslistv2.ListNewsFragment
 import vn.icheck.android.screen.user.orderhistory.OrderHistoryActivity
-import vn.icheck.android.screen.user.profile.ProfileActivity
-import vn.icheck.android.screen.user.profile.updateprofile.UpdateProfileActivity
 import vn.icheck.android.screen.user.rank_of_user.RankOfUserActivity
 import vn.icheck.android.screen.user.scan_history.ScanHistoryFragment
 import vn.icheck.android.screen.user.scan_history.adapter.ScanMenuHistoryAdapter
@@ -92,7 +97,7 @@ import vn.icheck.android.screen.user.scan_history.view.IScanHistoryView
 import vn.icheck.android.screen.user.scan_history.view_model.ScanHistoryViewModel
 import vn.icheck.android.screen.user.setting.SettingsActivity
 import vn.icheck.android.screen.user.social_chat.SocialChatFragment
-import vn.icheck.android.screen.user.support.ContactAndSupportActivity
+import vn.icheck.android.screen.user.social_chat.SocialMessagesFragment
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.screen.user.welcome.WelcomeActivity
@@ -102,6 +107,7 @@ import vn.icheck.android.util.ick.*
 import vn.icheck.android.util.kotlin.HideWebUtils
 import vn.icheck.android.util.kotlin.StatusBarUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
+import java.io.File
 
 @AndroidEntryPoint
 class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView, View.OnClickListener {
@@ -111,8 +117,6 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
 
     private val requestProfile = 1
     private val requestUpdateProfile = 2
-
-    private val requestLoginUpdateProfile = 3
     private val requestLoginProfile = 4
     private val requestLoginCoinHistory = 5
     private val requestLoginOrderHistory = 6
@@ -217,7 +221,25 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
         listPage.add(ICFragment(null, HomePageFragment()))
         listPage.add(ICFragment(null, ListNewsFragment.newInstance(false)))
         listPage.add(ICFragment(null, ScanHistoryFragment()))
-        listPage.add(ICFragment(null, SocialChatFragment()))
+//        listPage.add(ICFragment(null, SocialChatFragment()))
+        listPage.add(ICFragment(null, ChatSocialFragment(object : ListConversationFragment.Companion.ICountMessageListener {
+            override fun getCountMessage(count: Long) {
+
+                tvChatCount.post {
+                    tvChatCount.visibility = if (count != 0L) {
+                        View.VISIBLE
+                    } else {
+                        View.GONE
+                    }
+
+                    tvChatCount.text = if (count > 9) {
+                        "+9"
+                    } else {
+                        "$count"
+                    }
+                }
+            }
+        })))
 
         viewPager.offscreenPageLimit = 5
         viewPager.setPagingEnabled(false)
@@ -228,29 +250,38 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
     private fun selectTab(position: Int) {
         when (position) {
             1 -> {
-                isChecked(tvHome)
-                TrackingAllHelper.trackHomePageViewed()
-                viewPager.setCurrentItem(0, false)
-                HideWebUtils.showWeb("Home")
+                if (!isChecked(tvHome)) {
+                    TrackingAllHelper.trackHomePageViewed()
+                    viewPager.setCurrentItem(0, false)
+                    HideWebUtils.showWeb("Home")
+                }
             }
             2 -> {
-                isChecked(tvFeed)
-                TekoHelper.tagMallViewed()
-                viewPager.setCurrentItem(1, false)
+                if (!isChecked(tvFeed)) {
+                    TekoHelper.tagMallViewed()
+                    viewPager.setCurrentItem(1, false)
+                }
             }
             3 -> {
-                isChecked(tvHistory)
-                viewPager.setCurrentItem(2, false)
+                if (!isChecked(tvHistory)) {
+                    viewPager.setCurrentItem(2, false)
+                }
             }
             4 -> {
-                isChecked(tvChat)
-                TrackingAllHelper.trackMessageViewed()
-                viewPager.setCurrentItem(3, false)
-//                WebViewActivity.start(this,"http://chat.icheck.vn/detail?firebase_token=eyJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJodHRwczovL2lkZW50aXR5dG9vbGtpdC5nb29nbGVhcGlzLmNvbS9nb29nbGUuaWRlbnRpdHkuaWRlbnRpdHl0b29sa2l0LnYxLklkZW50aXR5VG9vbGtpdCIsImNsYWltcyI6eyJzeXN0ZW0iOiJTT0NJQUwiLCJ1c2VyVHlwZSI6MiwidXNlcklkIjoxMjh9LCJleHAiOjE2MDczNjI5NjUsImlhdCI6MTYwNzM1OTM2NSwiaXNzIjoiZmlyZWJhc2UtYWRtaW5zZGstbG1ma21AaWNoZWNrLWRldi1kOWY3MC5pYW0uZ3NlcnZpY2VhY2NvdW50LmNvbSIsInN1YiI6ImZpcmViYXNlLWFkbWluc2RrLWxtZmttQGljaGVjay1kZXYtZDlmNzAuaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20iLCJ1aWQiOiIxMjgifQ.GxNj5fXv155I5JkdWF5LVXbKji9yDUBoyOMPuUIHKjnJwNvZLuSZ2J3SL9TD9eGWPqHhvaiEzN-CudciKGL_XSE5AxddTSRgyFW7Hsd7231_zDYipsYCF1DeNx4oK-1I-Cw38x5hK6EJpkRCAPl2g9CLM0nsyQNvkEFk3p48xFqbrBYc1DxTC_nS6isLqYBKSBA47033x2P-OoxemBV2OHMJYqMUs3Z805t4z-Elmf3-yUZPkX39D-STKjARAewQgKvPVtA9mSQuo9ZSLEkJ1oHLXTF_lG2coB-QUsnrsc2xGSuiIfw15g4waYZbR-5zHCYkLC9HSCxMrrZxpp1e_Q")
+                if (SessionManager.isUserLogged || SessionManager.isDeviceLogged) {
+                    if (!isChecked(tvChat)) {
+                        TrackingAllHelper.trackMessageViewed()
+                        viewPager.setCurrentItem(3, false)
+                        ListConversationFragment.isOpenConversation = true
+                    }
+                } else {
+                    onRequireLogin(requestLoginChat)
+                }
             }
             5 -> {
                 unCheckAll()
                 isScan = true
+
                 if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         requestPermissions(arrayOf(Manifest.permission.CAMERA), ICK_REQUEST_CAMERA)
@@ -258,7 +289,8 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                         ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), ICK_REQUEST_CAMERA)
                     }
                 } else {
-                    ICKScanActivity.create(this)
+//                    ICKScanActivity.create(this)
+                    V6ScanditActivity.create(this)
                 }
             }
         }
@@ -507,44 +539,83 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
     }
 
     private fun setupTheme() {
-        SettingManager.themeSetting?.theme?.apply {
-            val path = FileHelper.getPath(this@HomeActivity)
+        val theme = SettingManager.themeSetting?.theme
+        val bottomBarTextColor = if (!theme?.bottomBarSelectedTextColor.isNullOrEmpty()) {
+            ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.darkGray2), Color.parseColor(theme!!.bottomBarSelectedTextColor))
+        } else {
+            ContextCompat.getColorStateList(this@HomeActivity, R.color.text_color_home_tab)
+        }
+        tvHome.setTextColor(bottomBarTextColor)
+        tvFeed.setTextColor(bottomBarTextColor)
+        tvHistory.setTextColor(bottomBarTextColor)
+        tvChat.setTextColor(bottomBarTextColor)
 
-            BitmapFactory.decodeFile(path + FileHelper.homeIcon)?.let { bitmap ->
-                tvHome.setCompoundDrawablesWithIntrinsicBounds(null,
-                        ViewHelper.createDrawableStateList(ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_bottombar_home_unchecked_27dp)!!,
-                                BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, SizeHelper.size27, SizeHelper.size27, false))),
-                        null, null)
-                tvHome.setTextColor(ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.darkGray2), Color.parseColor(bottomBarSelectedTextColor)))
-            }
+        val path = FileHelper.getPath(this@HomeActivity)
+        val homeBitmap = BitmapFactory.decodeFile(path + FileHelper.homeIcon)
+        if (homeBitmap != null) {
+            tvHome.setCompoundDrawablesWithIntrinsicBounds(null, ViewHelper.createDrawableStateList(
+                    ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_bottombar_home_unchecked_27dp)!!,
+                    BitmapDrawable(resources, Bitmap.createScaledBitmap(homeBitmap, SizeHelper.size27, SizeHelper.size27, false))),
+                    null, null)
+        } else {
+            tvHome.setCompoundDrawablesWithIntrinsicBounds(null, ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_selected_home_page_27), null, null)
+        }
 
-            BitmapFactory.decodeFile(path + FileHelper.newsIcon)?.let { bitmap ->
-                tvFeed.setCompoundDrawablesWithIntrinsicBounds(null,
-                        ViewHelper.createDrawableStateList(ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_bottombar_feed_unchecked_27dp)!!,
-                                BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, SizeHelper.size27, SizeHelper.size27, false))),
-                        null, null)
-                tvFeed.setTextColor(ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.darkGray2), Color.parseColor(bottomBarSelectedTextColor)))
-            }
+        val feedBitmap = BitmapFactory.decodeFile(path + FileHelper.newsIcon)
+        if (feedBitmap != null) {
+            tvFeed.setCompoundDrawablesWithIntrinsicBounds(null, ViewHelper.createDrawableStateList(
+                    ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_bottombar_feed_unchecked_27dp)!!,
+                    BitmapDrawable(resources, Bitmap.createScaledBitmap(feedBitmap, SizeHelper.size27, SizeHelper.size27, false))),
+                    null, null)
+        } else {
+            tvFeed.setCompoundDrawablesWithIntrinsicBounds(null, ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_selected_feed_27), null, null)
+        }
 
-            BitmapFactory.decodeFile(path + FileHelper.scanIcon)?.let { bitmap ->
-                imgScanQr.setImageBitmap(Bitmap.createScaledBitmap(bitmap, SizeHelper.size66, SizeHelper.size66, false))
-            }
+        val historyBitmap = BitmapFactory.decodeFile(path + FileHelper.historyIcon)
+        if (historyBitmap != null) {
+            tvHistory.setCompoundDrawablesWithIntrinsicBounds(null, ViewHelper.createDrawableStateList(
+                    ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_bottombar_history_unchecked_27dp)!!,
+                    BitmapDrawable(resources, Bitmap.createScaledBitmap(historyBitmap, SizeHelper.size27, SizeHelper.size27, false))),
+                    null, null)
+        } else {
+            tvHistory.setCompoundDrawablesWithIntrinsicBounds(null, ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_selected_history_27), null, null)
+        }
 
-            BitmapFactory.decodeFile(path + FileHelper.historyIcon)?.let { bitmap ->
-                tvHistory.setCompoundDrawablesWithIntrinsicBounds(null,
-                        ViewHelper.createDrawableStateList(ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_bottombar_history_unchecked_27dp)!!,
-                                BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, SizeHelper.size27, SizeHelper.size27, false))),
-                        null, null)
-                tvHistory.setTextColor(ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.darkGray2), Color.parseColor(bottomBarSelectedTextColor)))
-            }
+        val chatBitmap = BitmapFactory.decodeFile(path + FileHelper.messageIcon)
+        if (chatBitmap != null) {
+            tvChat.setCompoundDrawablesWithIntrinsicBounds(null, ViewHelper.createDrawableStateList(
+                    ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_bottombar_chat_unchecked_27dp)!!,
+                    BitmapDrawable(resources, Bitmap.createScaledBitmap(chatBitmap, SizeHelper.size27, SizeHelper.size27, false))),
+                    null, null)
+        } else {
+            tvChat.setCompoundDrawablesWithIntrinsicBounds(null, ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_selected_chat_27), null, null)
+        }
 
-            BitmapFactory.decodeFile(path + FileHelper.messageIcon)?.let { bitmap ->
-                tvChat.setCompoundDrawablesWithIntrinsicBounds(null,
-                        ViewHelper.createDrawableStateList(ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_bottombar_chat_unchecked_27dp)!!,
-                                BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, SizeHelper.size27, SizeHelper.size27, false))),
-                        null, null)
-                tvChat.setTextColor(ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.darkGray2), Color.parseColor(bottomBarSelectedTextColor)))
+        val scanBitmap = BitmapFactory.decodeFile(path + FileHelper.scanIcon)
+        if (scanBitmap != null) {
+            imgScanQr.setImageBitmap(Bitmap.createScaledBitmap(scanBitmap, SizeHelper.size66, SizeHelper.size66, false))
+        } else {
+            imgScanQr.setImageResource(R.drawable.ic_bottombar_scan_66dp)
+        }
+    }
+
+    private fun checkkNewTheme() {
+        lifecycleScope.async {
+            val file = File(FileHelper.getPath(this@HomeActivity) + FileHelper.imageFolder)
+            if (file.exists()) {
+                FileHelper.deleteTheme(file)
             }
+            SettingManager.themeSetting = null
+            setupTheme()
+
+            val themeSettingRes = try {
+                withTimeoutOrNull(10000L) { CheckThemeViewModel().getThemeSetting() }
+            } catch (e: Exception) {
+                null
+            }
+            SettingManager.themeSetting = themeSettingRes?.data
+
+            viewModel.downloadTheme()
         }
     }
 
@@ -563,21 +634,14 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == ICK_REQUEST_CAMERA) {
             if (PermissionHelper.checkResult(grantResults)) {
-                ICKScanActivity.create(this)
+//                ICKScanActivity.create(this)
+                V6ScanditActivity.create(this)
             }
         }
     }
 
     override fun onUpdateMessageCount(count: String?) {
-        tvChatCount.post {
-            tvChatCount.visibility = if (count.isNullOrEmpty()) {
-                View.GONE
-            } else {
-                View.VISIBLE
-            }
 
-            tvChatCount.text = count
-        }
     }
 
     override fun onShowLoading(isShow: Boolean) {
@@ -600,14 +664,9 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
         super.onRequireLoginSuccess(requestCode)
 
         when (requestCode) {
-            requestLoginUpdateProfile -> {
-                startActivityForResult<UpdateProfileActivity, Boolean>(Constant.DATA_1, true, requestUpdateProfile)
-            }
             requestLoginProfile -> {
-                val user = SessionManager.session.user
-
-                if (user != null) {
-                    startActivityForResult<ProfileActivity>(requestProfile)
+                SessionManager.session.user?.id?.let { userID ->
+                    IckUserWallActivity.create(userID, this)
                 }
             }
             requestLoginOrderHistory -> {
@@ -670,62 +729,29 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
 
             R.id.tvHome -> {
                 ringtoneHelper.playAudio(R.raw.pull_out)
-
-                if (!isChecked(view as AppCompatCheckedTextView)) {
-                    TrackingAllHelper.trackHomePageViewed()
-                    viewPager.setCurrentItem(0, false)
-                }
-                HideWebUtils.showWeb("Home")
+                selectTab(1)
             }
             R.id.tvFeed -> {
                 ringtoneHelper.playAudio(R.raw.pull_out)
-                if (!isChecked(view as AppCompatCheckedTextView)) {
-                    TekoHelper.tagMallViewed()
-                    viewPager.setCurrentItem(1, false)
-                }
+                selectTab(2)
             }
             R.id.imgScanQr -> {
                 ringtoneHelper.playAudio(R.raw.pull_out)
-                if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        requestPermissions(arrayOf(Manifest.permission.CAMERA), ICK_REQUEST_CAMERA)
-                    } else {
-                        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), ICK_REQUEST_CAMERA)
-                    }
-                } else {
-                    ICKScanActivity.create(this)
-                }
+                selectTab(5)
             }
             R.id.tvHistory -> {
                 ringtoneHelper.playAudio(R.raw.pull_out)
-
-                if (!isChecked(view as AppCompatCheckedTextView)) {
-                    viewPager.setCurrentItem(2, false)
-                }
+                selectTab(3)
             }
             R.id.tvChat -> {
                 ringtoneHelper.playAudio(R.raw.pull_out)
-                TrackingAllHelper.trackMessageViewed()
-                if (SessionManager.isUserLogged || SessionManager.isDeviceLogged) {
-                    if (!isChecked(view as AppCompatCheckedTextView)) {
-                        viewPager.setCurrentItem(3, false)
-//                        WebViewActivity.start(this,"http://chat.icheck.vn/detail?firebase_token=eyJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJodHRwczovL2lkZW50aXR5dG9vbGtpdC5nb29nbGVhcGlzLmNvbS9nb29nbGUuaWRlbnRpdHkuaWRlbnRpdHl0b29sa2l0LnYxLklkZW50aXR5VG9vbGtpdCIsImNsYWltcyI6eyJzeXN0ZW0iOiJTT0NJQUwiLCJ1c2VyVHlwZSI6MiwidXNlcklkIjoxMjh9LCJleHAiOjE2MDczNjI5NjUsImlhdCI6MTYwNzM1OTM2NSwiaXNzIjoiZmlyZWJhc2UtYWRtaW5zZGstbG1ma21AaWNoZWNrLWRldi1kOWY3MC5pYW0uZ3NlcnZpY2VhY2NvdW50LmNvbSIsInN1YiI6ImZpcmViYXNlLWFkbWluc2RrLWxtZmttQGljaGVjay1kZXYtZDlmNzAuaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20iLCJ1aWQiOiIxMjgifQ.GxNj5fXv155I5JkdWF5LVXbKji9yDUBoyOMPuUIHKjnJwNvZLuSZ2J3SL9TD9eGWPqHhvaiEzN-CudciKGL_XSE5AxddTSRgyFW7Hsd7231_zDYipsYCF1DeNx4oK-1I-Cw38x5hK6EJpkRCAPl2g9CLM0nsyQNvkEFk3p48xFqbrBYc1DxTC_nS6isLqYBKSBA47033x2P-OoxemBV2OHMJYqMUs3Z805t4z-Elmf3-yUZPkX39D-STKjARAewQgKvPVtA9mSQuo9ZSLEkJ1oHLXTF_lG2coB-QUsnrsc2xGSuiIfw15g4waYZbR-5zHCYkLC9HSCxMrrZxpp1e_Q")
-                    }
-                } else {
-                    onRequireLogin(requestLoginChat)
-                }
+                selectTab(4)
             }
             R.id.imgAvatar, R.id.tv_username -> {
-//                if (SessionManager.isLogged) {
-//                    onRequireLoginSuccess(requestLoginUpdateProfile)
-//                } else {
-//                    onRequireLogin(requestLoginUpdateProfile)
-//                }
                 if (!SessionManager.isUserLogged) {
                     onRequireLogin()
                 } else {
                     IckUserWallActivity.create(SessionManager.session.user?.id, this)
-//                    simpleStartActivity(GiftWaitingActivity::class.java)
                 }
             }
             R.id.btn_icheck_xu -> {
@@ -835,11 +861,6 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                         WebViewActivity.start(this, obj.link)
                         return
                     }
-                }
-            }
-            R.id.txtSupport -> {
-                if (!SettingManager.clientSetting?.supports.isNullOrEmpty()) {
-                    startActivity<ContactAndSupportActivity>()
                 }
             }
             R.id.btn_manage_page -> {
@@ -1051,14 +1072,16 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                     ickLoginViewModel.loginDevice(token).observe(this) { _ ->
                     }
                 }
+                ChatSdk.shareIntent(SessionManager.session.firebaseToken, SessionManager.session.user?.id, SessionManager.session.token, DeviceUtils.getUniqueDeviceId())
             }
             ICMessageEvent.Type.ON_LOG_OUT -> {
+                ChatSdk.shareIntent(SessionManager.session.firebaseToken, SessionManager.session.user?.id, SessionManager.session.token, DeviceUtils.getUniqueDeviceId())
                 tvChatCount.visibility = View.GONE
                 RelationshipManager.removeListener()
+                checkkNewTheme()
             }
             ICMessageEvent.Type.ON_LOG_IN -> {
                 tv_username.text = SessionManager.session.user?.getName
-
                 tv_user_rank.text = SessionManager.session.user?.phone
                 Glide.with(this.applicationContext)
                         .load(SessionManager.session.user?.avatar)
@@ -1067,6 +1090,8 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                         .into(imgAvatar)
                 RelationshipManager.removeListener()
                 RelationshipManager.refreshToken(true)
+                ChatSdk.shareIntent(SessionManager.session.firebaseToken, SessionManager.session.user?.id, SessionManager.session.token, DeviceUtils.getUniqueDeviceId())
+                checkkNewTheme()
             }
             ICMessageEvent.Type.INIT_MENU_HISTORY -> {
                 recyclerViewMenu.layoutManager = LinearLayoutManager(this)

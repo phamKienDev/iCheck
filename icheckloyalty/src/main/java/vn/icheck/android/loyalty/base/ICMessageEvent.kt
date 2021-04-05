@@ -10,6 +10,8 @@ data class ICMessageEvent(val type: Type, val data: Any? = null) {
         ON_COUNT_GIFT,
         EXCHANGE_PHONE_CARD,
         OPEN_DETAIL_GIFT,
-        BACK
+        BACK,
+        QR_SCANNED,
+        SCAN_FAILED
     }
 }

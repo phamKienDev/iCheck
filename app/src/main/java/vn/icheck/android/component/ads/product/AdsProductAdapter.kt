@@ -16,6 +16,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.item_ads_product_grid.view.*
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseVideoViewHolder
@@ -28,6 +29,7 @@ import vn.icheck.android.databinding.ItemAdsProductSlideBinding
 import vn.icheck.android.helper.ExoPlayerManager
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.models.ICAdsData
@@ -252,19 +254,17 @@ class AdsProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
 
             if (!obj.owner?.avatar?.content.isNullOrEmpty()) {
-                WidgetUtils.loadImageUrl(binding.imgAvatar, obj.owner?.avatar?.content, R.drawable.img_default_business_logo)
+                WidgetUtils.loadImageUrl(binding.imgAvatar, obj.owner?.avatar?.content, R.drawable.ic_business_v2)
             } else {
-                WidgetUtils.loadImageUrl(binding.imgAvatar, obj.owner?.avatar?.content, R.drawable.img_default_business_logo)
+                WidgetUtils.loadImageUrl(binding.imgAvatar, obj.owner?.avatar?.content, R.drawable.ic_business_v2)
             }
 
 
             if (obj.owner?.verified == true) {
-                binding.imgVerified.visibility = View.VISIBLE
+                itemView.tvName.setDrawbleNextEndText(obj.owner?.name, R.drawable.ic_verified_16px)
             } else {
-                binding.imgVerified.visibility = View.GONE
+                binding.tvName.text = obj.owner?.name ?: ""
             }
-
-            binding.tvName.text = obj.owner?.name ?: ""
 
             if (!obj.name.isNullOrEmpty()) {
                 binding.tvContent.text = obj.name

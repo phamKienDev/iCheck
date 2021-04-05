@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.Intent
 import android.net.Uri
 import androidx.recyclerview.widget.GridLayoutManager
-import kotlinx.android.synthetic.main.activity_detail_stamp.*
 import kotlinx.android.synthetic.main.activity_more_business.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import kotlinx.android.synthetic.main.toolbar_blue.imgBack

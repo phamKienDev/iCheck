@@ -46,7 +46,7 @@ import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.room.database.AppDatabase
 import vn.icheck.android.room.entity.ICFriendInvitationMeUserId
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
-import vn.icheck.android.screen.scan.ICKScanActivity
+import vn.icheck.android.screen.scan.V6ScanditActivity
 import vn.icheck.android.screen.user.commentpost.CommentPostActivity
 import vn.icheck.android.screen.user.createpost.CreateOrUpdatePostActivity
 import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
@@ -116,9 +116,7 @@ class IckUserWallFragment : Fragment(), IPostListener {
                                 ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.CAMERA), ICK_REQUEST_CAMERA)
                             }
                         } else {
-                            val i = Intent(context, ICKScanActivity::class.java)
-                            i.putExtra("review_only", true)
-                            startActivityForResult(i, SCAN_REVIEW)
+                            V6ScanditActivity.reviewOnly(requireActivity())
                         }
 
 //                        ICKScanActivity.reviewOnly(requireActivity())

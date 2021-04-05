@@ -11,36 +11,34 @@
         android:id="@+id/imgAvatar"
         android:layout_width="@dimen/size_60"
         android:layout_height="@dimen/size_60"
-        app:civ_border_width="1dp"
         app:civ_border_color="#D8D8D8"
+        app:civ_border_width="1dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/tv_verified"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
-        app:layout_constraintEnd_toEndOf="@id/imgAvatar" />
-
-    <TextView
-        android:id="@+id/tvName"
+    <LinearLayout
+        android:id="@+id/layoutName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginEnd="@dimen/size_8"
-        android:layout_marginRight="@dimen/size_8"
-        android:ellipsize="end"
-        android:fontFamily="@font/barlow_semi_bold"
-        android:includeFontPadding="false"
-        android:maxLines="2"
-        android:textColor="@color/collection_product_name"
-        android:textSize="16sp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toStartOf="@id/imgMore"
-        app:layout_constraintStart_toEndOf="@+id/imgAvatar"
-        app:layout_constraintTop_toTopOf="@+id/imgAvatar"
-        tools:text="Trang sức hàng ngày (tối đa2 dòng)...Trang sức hàng ngày (tối đa2 dòng)..." />
+        app:layout_constraintStart_toEndOf="@id/imgAvatar"
+        app:layout_constraintTop_toTopOf="@id/imgAvatar">
+
+        <vn.icheck.android.ichecklibs.MiddleMultilineTextView
+            android:id="@+id/tvName"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:includeFontPadding="false"
+            android:maxLines="2"
+            android:textColor="@color/collection_product_name"
+            android:textSize="16sp"
+            tools:text="Công ty Thư 1141222222222222222222222" />
+    </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/imgMore"
@@ -48,9 +46,9 @@
         android:layout_height="@dimen/size_44"
         android:background="@color/transparent"
         android:src="@drawable/ic_more_disable_24dp"
-        app:layout_constraintBottom_toBottomOf="@id/tvName"
+        app:layout_constraintBottom_toBottomOf="@id/layoutName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvName" />
+        app:layout_constraintTop_toTopOf="@id/layoutName" />
 
     <TextView
         android:id="@+id/tvCountFollow"
@@ -63,8 +61,8 @@
         android:maxLines="1"
         android:textColor="@color/fast_survey_gray"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@id/tvName"
-        app:layout_constraintTop_toBottomOf="@id/tvName"
+        app:layout_constraintStart_toStartOf="@id/layoutName"
+        app:layout_constraintTop_toBottomOf="@id/layoutName"
         tools:text="147,214 Người đang theo dõi" />
 
     <View

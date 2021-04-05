@@ -1,5 +1,6 @@
 package vn.icheck.android.screen.user.search_home.result.holder
 
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -31,7 +33,7 @@ class PageSearchHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflat
     private var isFollow: Boolean? = null
 
     fun bind(obj: ICPageQuery) {
-        WidgetUtils.loadImageUrl(itemView.img_avatar, obj.avatar, R.drawable.img_default_business_logo_big)
+        WidgetUtils.loadImageUrl(itemView.img_avatar, obj.avatar, R.drawable.ic_business_v2)
         itemView.tv_name.text = if (!obj.name.isNullOrEmpty()) {
             obj.name
         } else {
@@ -43,10 +45,8 @@ class PageSearchHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflat
 
         checkFollowCount(obj)
 
-        itemView.tv_verified.visibility = if (obj.isVerify) {
-            View.VISIBLE
-        } else {
-            View.GONE
+        if (obj.isVerify) {
+            itemView.tv_name.setDrawbleNextEndText(itemView.tv_name.text.toString(), R.drawable.ic_verified_16px)
         }
 
         itemView.setOnClickListener {

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <View
+                android:id="@+id/view37"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/black_opacity_40"
+                app:layout_constraintBottom_toBottomOf="@+id/divider23"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/black_opacity_40"
+                app:layout_constraintBottom_toTopOf="@+id/view43"
+                app:layout_constraintEnd_toEndOf="@+id/divider24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider23" />
+
+            <View
+                android:id="@+id/view43"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/black_opacity_40"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider26" />
+
+            <View
+                android:id="@+id/view42"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/black_opacity_40"
+                app:layout_constraintBottom_toTopOf="@+id/view43"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/divider25"
+                app:layout_constraintTop_toBottomOf="@+id/view37" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/btn_clear"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:scaleType="centerInside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_close_white_24dp_chat" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_nmbt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginLeft="40dp"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_clear"
+                app:layout_constraintEnd_toStartOf="@+id/img_help"
+                app:layout_constraintStart_toEndOf="@+id/btn_clear"
+                app:layout_constraintTop_toTopOf="@+id/btn_clear"
+                app:srcCompat="@drawable/ic_nmbt_white_chat" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_flash"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:scaleType="centerInside"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_flash_off_24dp_chat" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_help"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                android:scaleType="centerInside"
+                app:layout_constraintEnd_toStartOf="@+id/img_flash"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_scan_help_24dp_chat" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_scan_focus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_scan_focus_chat" />
+
+            <View
+                android:id="@+id/divider23"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/img_scan_focus" />
+
+            <View
+                android:id="@+id/divider24"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/img_scan_focus"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/divider25"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/img_scan_focus"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/divider26"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/img_scan_focus"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_scan_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="0"
+                android:visibility="visible"
+                app:layout_constraintEnd_toStartOf="@+id/view42"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img_scan_focus"
+                app:srcCompat="@drawable/ic_dmsp_white_chat"
+                tools:visibility="visible" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_nmsp_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="52dp"
+                android:layout_marginRight="52dp"
+                android:alpha="0"
+                android:src="@drawable/ic_nmsp_white_chat"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="@+id/img_nmbt"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_torch_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="0"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img_flash"
+                app:srcCompat="@drawable/ic_torch_tip_white_chat"
+                tools:visibility="visible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

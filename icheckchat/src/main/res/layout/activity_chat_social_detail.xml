@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/layoutToolbar"
+        layout="@layout/toolbar_light_blue_chat" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@drawable/shadow_bottom_chat" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"/>
+
+        <View
+            android:id="@+id/viewClick"
+            android:clickable="false"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray_f0"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="9dp"
+        android:clipToPadding="false"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@drawable/shadow_bottom_chat" />
+
+    <LinearLayout
+        android:id="@+id/layoutChat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="12dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="10dp">
+
+        <LinearLayout
+            android:id="@+id/layoutEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_corner_4_gray"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtMessage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:fontFamily="@font/barlow_medium"
+                android:hint="@string/viet_loi_nhan"
+                android:inputType="textMultiLine"
+                android:maxHeight="113dp"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:textSize="14sp"
+                android:visibility="gone"
+                tools:ignore="NestedWeights,RtlSymmetry" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvMessage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/barlow_medium"
+                android:hint="@string/viet_loi_nhan"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_gravity="bottom"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="1dp"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatCheckedTextView
+                    android:id="@+id/imgScan"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:checked="false"
+                    android:drawableStart="@drawable/drawable_checked_barcode"
+                    android:drawableLeft="@drawable/drawable_checked_barcode"
+                    android:includeFontPadding="false"
+                    android:padding="4dp" />
+
+                <androidx.appcompat.widget.AppCompatCheckedTextView
+                    android:id="@+id/imgCamera"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom"
+                    android:checked="false"
+                    android:drawableStart="@drawable/drawable_checked_camera"
+                    android:drawableLeft="@drawable/drawable_checked_camera"
+                    android:includeFontPadding="false"
+                    android:padding="4dp" />
+
+                <androidx.appcompat.widget.AppCompatCheckedTextView
+                    android:id="@+id/imgSticker"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom"
+                    android:checked="false"
+                    android:drawableStart="@drawable/drawable_checked_sticker"
+                    android:drawableLeft="@drawable/drawable_checked_sticker"
+                    android:includeFontPadding="false"
+                    android:padding="4dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatCheckedTextView
+            android:id="@+id/imgSend"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="1dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:checked="false"
+            android:drawableStart="@drawable/drawable_checked_send"
+            android:drawableLeft="@drawable/drawable_checked_send"
+            android:enabled="false"
+            android:padding="4dp" />
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutProduct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="12dp"
+        android:visibility="gone">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgDelete"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_delete_red_24dp_chat"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgProduct"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@color/lightBlue" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvBarcode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="17dp"
+            android:layout_marginEnd="17dp"
+            android:drawableStart="@drawable/ic_scan_gray_24dp_chat"
+            android:drawableLeft="@drawable/ic_scan_gray_24dp_chat"
+            android:drawablePadding="6dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center_vertical"
+            android:includeFontPadding="false"
+            android:singleLine="true"
+            android:textColor="@color/gray_75"
+            app:layout_constraintEnd_toStartOf="@id/imgDelete"
+            app:layout_constraintStart_toEndOf="@id/imgProduct"
+            app:layout_constraintTop_toTopOf="@id/imgProduct"
+            tools:text="03514364161461" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvNameProduct"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:includeFontPadding="false"
+            android:maxLines="2"
+            android:minLines="1"
+            android:textColor="@color/black_21"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tvBarcode"
+            app:layout_constraintTop_toBottomOf="@id/tvBarcode"
+            tools:text="German example for ( tên sản phẩm tối đa 2 dòng)..." />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutSticker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewSticker"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:background="@color/gray_f0"
+            android:paddingStart="2dp"
+            android:paddingLeft="2dp"
+            android:paddingEnd="12dp"
+            android:paddingRight="12dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewPackageSticker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:background="@color/white"
+            android:orientation="horizontal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutBlock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="38dp"
+        android:layout_marginRight="38dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:textColor="@color/black_21"
+            android:textSize="14sp"
+            tools:text="Bạn đã chặn tin nhắn của Mai Lan Nguyễn" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="Các bạn sẽ không thể nhắn tin trong mục Chat\n Hãy bỏ chặn để tiếp tục cuộc trò chuyện này."
+            android:textColor="@color/gray_75"
+            android:textSize="14sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btnUnBlock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/bg_corner_4_light_blue"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="Bỏ chặn"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutUserBlock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="38dp"
+        android:layout_marginRight="38dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvUserTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:textColor="@color/black_21"
+            android:textSize="14sp"
+            tools:text="Bạn đã bị Xuyến Đỗ chặn tin nhắn" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="Các bạn sẽ không thể nhắn tin trong mục Chat"
+            android:textColor="@color/gray_75"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+</LinearLayout>

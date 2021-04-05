@@ -5,11 +5,11 @@ package vn.icheck.android.util.kotlin
 import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ValueAnimator
-import android.graphics.*
-import android.graphics.Shader.TileMode
+import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.media.MediaMetadataRetriever
 import android.text.method.PasswordTransformationMethod
+import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatImageButton
@@ -18,6 +18,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.DecodeFormat
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
@@ -32,6 +33,7 @@ import vn.icheck.android.R
 import vn.icheck.android.callback.LoadImageListener
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ui.RoundedCornersTransformation
+import vn.icheck.android.util.ick.logDebug
 import vn.icheck.android.util.ick.logError
 import java.io.File
 import java.io.FileInputStream
@@ -88,7 +90,7 @@ object WidgetUtils {
             textHide.visibility = View.VISIBLE
             editText.visibility = View.GONE
         } else {
-            imgShow.setImageResource(R.drawable.ic_eye_off_24px)
+            imgShow.setImageResource(R.drawable.ic_eye_off_gray_24dp)
             textHide.visibility = View.GONE
             editText.visibility = View.VISIBLE
         }
@@ -659,14 +661,14 @@ object WidgetUtils {
                     .into(image)
             return
         }
-
+        val time1 = System.currentTimeMillis()
         Glide.with(image.context.applicationContext)
                 .asBitmap()
                 .load(url)
                 .placeholder(placeHolder)
                 .error(error)
-                .apply(RequestOptions().frame(1000*1000))
                 .transform(CenterCrop(), RoundedCorners(roundCorners))
+                .format(DecodeFormat.PREFER_RGB_565)
                 .into(image)
     }
 
@@ -764,6 +766,23 @@ object WidgetUtils {
                 .placeholder(placeHolder)
                 .error(error)
                 .transform(FitCenter(), RoundedCorners(roundCorners))
+                .into(image)
+    }
+
+    fun loadImageUrlRoundedNotTransform(image: AppCompatImageView, url: String?, drawble: Int?, error: Int?, roundCorners: Int) {
+        if (url.isNullOrEmpty()) {
+            Glide.with(image.context.applicationContext)
+                    .load(error ?: defaultError)
+                    .transform(CenterCrop(), RoundedCorners(roundCorners))
+                    .into(image)
+            return
+        }
+
+        Glide.with(image.context.applicationContext)
+                .load(url)
+                .placeholder(drawble ?: defaultHolder)
+                .error(error ?: defaultError)
+                .transform(RoundedCorners(roundCorners))
                 .into(image)
     }
 

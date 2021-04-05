@@ -1,6 +1,5 @@
 package vn.icheck.android.component.product_review.submit_review
 
-import android.os.Handler
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
@@ -10,6 +9,7 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import de.hdodenhof.circleimageview.CircleImageView
+import kotlinx.coroutines.*
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
@@ -26,12 +26,13 @@ import vn.icheck.android.network.feature.product_review.ProductReviewInteractor
 import vn.icheck.android.network.models.ICMedia
 import vn.icheck.android.network.models.ICPost
 import vn.icheck.android.network.models.ICReqCriteriaReview
-import vn.icheck.android.network.models.upload.UploadResponse
 import vn.icheck.android.network.models.ICCommentPermission
 import vn.icheck.android.ui.layout.CustomLinearLayoutManager
+import vn.icheck.android.util.ick.logError
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.io.File
+import java.lang.Exception
 
 class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.RecycledViewPool?, val listener: ISubmitReviewListener) : RecyclerView.ViewHolder(ViewHelper.createFormSubmitReview(parent.context)) {
     lateinit var rcvRating: RecyclerView
@@ -81,15 +82,13 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
             WidgetUtils.loadImageUrl(imgPermission, SettingManager.getPostPermission()?.avatar, if (SettingManager.getPostPermission()?.type == Constant.USER) {
                 R.drawable.ic_avatar_default_84px
             } else {
-                R.drawable.img_default_business_logo_big
+                R.drawable.ic_business_v2
             })
         }
-
 
         imgCamera.setOnClickListener {
             listener.onTakeImage(adapterPosition)
         }
-
         imgPermission.setOnClickListener {
             showSelectPermission()
         }
@@ -127,7 +126,11 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
                         DialogHelper.showLoading(activity)
                     }
                     listImageString.clear()
-                    uploadImageToServer(obj, edtEnter.text.toString(), criteria)
+                    if (!listImageSend.isNullOrEmpty()) {
+                        uploadImageToServer(obj, edtEnter.text.toString(), criteria)
+                    }else{
+                        postReview(obj, edtEnter.text.toString(), criteria)
+                    }
                 } else {
                     btnSubmit.isClickable = true
                     EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REQUEST_POST_REVIEW, adapterPosition))
@@ -159,7 +162,7 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
                         WidgetUtils.loadImageUrl(imgPermission, SettingManager.getPostPermission()?.avatar, if (permission.type == Constant.USER) {
                             R.drawable.ic_user_orange_circle
                         } else {
-                            R.drawable.img_default_business_logo_big
+                            R.drawable.ic_business_v2
                         })
                         listener.onClickReviewPermission()
                     }
@@ -180,11 +183,7 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
         listImageSend.add(file)
     }
 
-    fun postReview() {
-        btnSubmit.performClick()
-    }
-
-    fun uploadImageToServer(objReview: SubmitReviewModel, message: String, criteria: MutableList<ICReqCriteriaReview>) {
+    private fun uploadImageToServer(objReview: SubmitReviewModel, message: String, criteria: MutableList<ICReqCriteriaReview>) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance().applicationContext)) {
             ICheckApplication.currentActivity()?.let { activity ->
                 DialogHelper.closeLoading(activity)
@@ -194,20 +193,32 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
             return
         }
 
-        if (listImageSend.isEmpty()) {
-            postReview(objReview, message, criteria)
-        } else {
-            ImageHelper.uploadMedia(listImageSend[0], object : ICApiListener<UploadResponse> {
-                override fun onSuccess(obj: UploadResponse) {
-                    listImageString.add(obj.src)
-                    listImageSend.removeAt(0)
-                    uploadImageToServer(objReview, message, criteria)
-                }
+        CoroutineScope(Dispatchers.Main).launch {
+            val listCall = mutableListOf<Deferred<Any?>>()
+            listImageSend.forEach {
+                listCall.add(async {
+                    try {
+                        val response = withTimeout(60000) { ImageHelper.uploadMediaV2(it) }
+                        if (!response.data?.src.isNullOrEmpty()) {
+                            listImageString.add(response.data?.src!!)
+                        }
+                    } catch (e: Exception) {
+                        logError(e)
+                    }
+                })
+            }
 
-                override fun onError(error: ICBaseResponse?) {
-                    uploadImageToServer(objReview, message, criteria)
+            listCall.awaitAll()
+
+            if (!listImageString.isNullOrEmpty()) {
+                postReview(objReview, message, criteria)
+            }else{
+                ICheckApplication.currentActivity()?.let { activity ->
+                    DialogHelper.closeLoading(activity)
                 }
-            })
+                btnSubmit.isClickable = true
+                ToastUtils.showShortError(ICheckApplication.getInstance(), ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+            }
         }
     }
 

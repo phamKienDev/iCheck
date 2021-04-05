@@ -46,15 +46,14 @@
             app:layout_constraintStart_toEndOf="@id/imgAvaPage"
             app:layout_constraintTop_toTopOf="@id/imgAvaPage">
 
-            <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+            <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
                 android:id="@id/tvNamePage"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawablePadding="@dimen/size_8"
                 android:gravity="center_vertical"
                 android:textColor="#000000"
                 android:textSize="20sp"
-                tools:text="Unilever Vietnam Official Unilever Vietnam Official  " />
+                tools:text="Unilever Vietnam Official Unilever Vietnam Official  Unilever Vietnam Official Unilever Vietnam Official  " />
         </LinearLayout>
 
         <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
@@ -90,7 +89,7 @@
             android:background="@drawable/bg_corners_4_light_blue_solid"
             android:gravity="center">
 
-            <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+            <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
                 android:id="@+id/tvChinh"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -185,7 +184,7 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+            <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
                 android:id="@id/tvCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -209,7 +208,7 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+            <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
                 android:id="@id/tvRating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -233,7 +232,7 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <vn.icheck.android.component.view.text_view.TextViewBarlowBold
+            <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
                 android:id="@+id/tvCountScan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -283,20 +282,13 @@
             android:layout_height="@dimen/size_40"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="18dp"
-            android:src="@drawable/img_default_business_logo"
+            android:src="@drawable/ic_business_v2"
             app:civ_border_color="@color/gray"
             app:civ_border_width="@dimen/size_0_5"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/textView36"
             app:layout_constraintTop_toBottomOf="@+id/textView36" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/imgVerified2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_verified_16px"
-            app:layout_constraintBottom_toBottomOf="@id/user_avatar"
-            app:layout_constraintEnd_toEndOf="@id/user_avatar" />
 
         <TextView
             android:id="@+id/textView45"

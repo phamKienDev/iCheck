@@ -2,6 +2,7 @@ package vn.icheck.android.loyalty.screen.loyalty_customers.history.datasource
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagingSource
+import androidx.paging.PagingState
 import vn.icheck.android.loyalty.model.TransactionHistoryResponse
 import vn.icheck.android.loyalty.network.ICNetworkAPI
 
@@ -22,6 +23,13 @@ class TransactionHistoryFilterDataSource (private val icNetworkAPI: ICNetworkAPI
 
         } catch (e: Exception) {
             LoadResult.Error(e)
+        }
+    }
+
+    override fun getRefreshKey(state: PagingState<Int, TransactionHistoryResponse>): Int? {
+        return state.anchorPosition?.let { anchorPosition ->
+            val anchorPage = state.closestPageToPosition(anchorPosition)
+            anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
         }
     }
 }

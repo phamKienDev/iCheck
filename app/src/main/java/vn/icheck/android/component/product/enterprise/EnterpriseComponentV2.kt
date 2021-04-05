@@ -44,7 +44,7 @@ class EnterpriseComponentV2(parent: ViewGroup, val recycledViewPool: RecyclerVie
     override fun bind(obj: EnterpriseModelV2) {
         initListener(obj.business!!)
 
-        WidgetUtils.loadImageUrlRounded4(itemView.imgAvatar, obj.business.avatar, R.drawable.img_default_business_logo_big, R.drawable.img_default_business_logo_big)
+        WidgetUtils.loadImageUrlRounded4(itemView.imgAvatar, obj.business.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
 
         itemView.tvNamePage.text = if (obj.business.name.isNullOrEmpty()) {
             itemView.context.getString(R.string.dang_cap_nhat)

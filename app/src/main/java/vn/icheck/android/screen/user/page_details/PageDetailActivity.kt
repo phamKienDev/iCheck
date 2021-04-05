@@ -21,6 +21,7 @@ import vn.icheck.android.base.adapter.ViewPagerAdapter
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.model.ICFragment
 import vn.icheck.android.base.model.ICMessageEvent
+import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.component.header_page.bottom_sheet_header_page.MoreActionPageBottomSheet
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
@@ -176,6 +177,7 @@ class PageDetailActivity : BaseActivityMVVM(), View.OnClickListener {
             if (SessionManager.isUserLogged) {
                 if (viewModel.isFollowPage) {
                     SocialChatActivity.createPageChat(this, pageID)
+//                    ChatSocialDetailActivity.createRoomChat(this@PageDetailActivity, pageID, "page")
                 } else {
                     viewModel.pageOverview?.let { page ->
                         viewModel.followPage(page.id)
@@ -306,8 +308,11 @@ class PageDetailActivity : BaseActivityMVVM(), View.OnClickListener {
                 isShowLayoutFollow = event.data as Boolean
                 showLayoutAction(isShowLayoutFollow)
             }
-            ICMessageEvent.Type.UPDATE_FOLLOW_PAGE -> {
-                checkFollowState(event.data as Boolean)
+            ICMessageEvent.Type.FOLLOW_PAGE -> {
+                checkFollowState(true)
+            }
+            ICMessageEvent.Type.UNFOLLOW_PAGE -> {
+                checkFollowState(false)
             }
             ICMessageEvent.Type.ON_REQUIRE_LOGIN -> {
                 if (isActivityVisible) {

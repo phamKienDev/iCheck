@@ -17,6 +17,7 @@ import vn.icheck.android.component.commentpost.ICCommentPostMore
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponseCode
@@ -113,20 +114,30 @@ class ListProductQuestionAdapter(val callback: IListProductQuestionView) : Recyc
     private fun deleteQuestion(obj: ICProductQuestion) {
         for (i in listData.size - 1 downTo 0) {
             if (listData[i] is ICProductQuestion) {
-                if ((listData[i] as ICProductQuestion).id == obj.id) {
-                    if ((listData[i] as ICProductQuestion).replyCount > 0) {
-                        deleteAllAnswer((listData[i] as ICProductQuestion).id)
+                if ((listData[i] as ICProductQuestion).parentID != null) {
+                    if ((listData[i] as ICProductQuestion).parentID == obj.id) {
+                        listData.removeAt(i)
+                        notifyItemRemoved(i)
                     }
+                } else {
+                    if ((listData[i] as ICProductQuestion).id == obj.id) {
+                        listData.removeAt(i)
+                        notifyItemRemoved(i)
+                    }
+                }
+            } else if (listData[i] is ICCommentPostMore) {
+                if ((listData[i] as ICCommentPostMore).parentID == obj.id) {
                     listData.removeAt(i)
                     notifyItemRemoved(i)
-                    notifyItemChanged(if (i > 0) {
-                        i - 1
-                    } else 0, itemCount)
-                    return
                 }
             }
         }
+
+        if (listData.isNullOrEmpty()) {
+            setError(R.drawable.ic_empty_questions, "Chưa có câu hỏi cho sản phẩm này.\nHãy đặt câu hỏi để được giải đáp thắc mắc ở đây", -1)
+        }
     }
+
 
     private fun deleteAllAnswer(parentID: Long) {
         for (i in listData.size - 1 downTo 0) {
@@ -219,15 +230,15 @@ class ListProductQuestionAdapter(val callback: IListProductQuestionView) : Recyc
                 WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.user?.avatar, R.drawable.ic_circle_avatar_default)
                 itemView.imgLevel.setRankUser(obj.user?.rank?.level)
                 itemView.tvTitle.text = obj.user?.getName
-                itemView.imgVerify.beGone()
+                itemView.tvTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             } else {
-                WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.page!!.avatar, R.drawable.img_default_business_logo_big)
+                WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.page!!.avatar, R.drawable.ic_business_v2)
                 itemView.imgLevel.beGone()
-                itemView.tvTitle.text = obj.page?.getName
+
                 if (obj.page!!.isVerify) {
-                    itemView.imgVerify.beVisible()
+                    itemView.tvTitle.setDrawbleNextEndText(obj.page?.getName, R.drawable.ic_verified_16px)
                 } else {
-                    itemView.imgVerify.beGone()
+                    itemView.tvTitle.text = obj.page?.getName
                 }
             }
 

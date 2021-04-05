@@ -14,12 +14,16 @@ import androidx.work.Configuration
 import com.facebook.FacebookSdk
 import com.facebook.appevents.AppEventsLogger
 import com.google.firebase.FirebaseApp
-import com.scandit.barcodepicker.ScanditLicense
+import com.scandit.datacapture.barcode.capture.BarcodeCapture
+import com.scandit.datacapture.barcode.capture.BarcodeCaptureSettings
+import com.scandit.datacapture.barcode.data.Symbology
+import com.scandit.datacapture.core.capture.DataCaptureContext
 import com.useinsider.insider.Insider
 import com.useinsider.insider.InsiderCallbackType
 import dagger.hilt.android.HiltAndroidApp
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.base.model.ICMessageEvent
+import vn.icheck.android.chat.icheckchat.sdk.ChatSdk
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.loyalty.helper.CampaignLoyaltyHelper
 import vn.icheck.android.loyalty.model.ICKLoyalty
@@ -39,6 +43,7 @@ import vn.teko.hestia.trackingbridge.AppTrackingBridgeManager
 //import vn.teko.terra.core.android.terra.TerraApp
 //import vn.teko.terra.core.android.terra.TerraApp
 import javax.inject.Inject
+import vn.icheck.android.BuildConfig
 
 @HiltAndroidApp
 class ICheckApplication : Application(), Configuration.Provider {
@@ -72,13 +77,28 @@ class ICheckApplication : Application(), Configuration.Provider {
 //        friendList.addAll(friendIdList)
 //    }
 
-
+    lateinit var dataCaptureContext: DataCaptureContext
+    lateinit var barcodeCapture: BarcodeCapture
     override fun onCreate() {
         super.onCreate()
+        val key = if (BuildConfig.FLAVOR.contentEquals("dev")) getString(R.string.scandit_v6_key_dev) else getString(R.string.scandit_v6_key_live)
+        dataCaptureContext = DataCaptureContext.forLicenseKey(key)
+        val settings = BarcodeCaptureSettings().apply {
+            Symbology.values().forEach {
+                if (it != Symbology.MICRO_PDF417 && it != Symbology.PDF417) {
+                    enableSymbology(it, true)
+                    getSymbologySettings(it).isColorInvertedEnabled = true
+                }
+            }
+        }
+        settings.getSymbologySettings(Symbology.EAN13_UPCA).setExtensionEnabled("remove_leading_upca_zero", true)
+        settings.getSymbologySettings(Symbology.UPCE).setExtensionEnabled("remove_leading_upca_zero", true)
+
+        barcodeCapture = BarcodeCapture.forDataCaptureContext(dataCaptureContext, settings)
         FirebaseApp.initializeApp(this)
         FacebookSdk.sdkInitialize(this)
         AppEventsLogger.activateApp(this)
-        ScanditLicense.setAppKey(APIConstants.scanditLicenseKey())
+//        ScanditLicense.setAppKey(APIConstants.scanditLicenseKey())
 
         INSTANCE = this
         mFirebase = FirebaseContainer()
@@ -102,6 +122,14 @@ class ICheckApplication : Application(), Configuration.Provider {
             override fun startActivityForResultLogin(obj: ICKLoyalty, code: String) {
                 currentActivity()?.let { activity ->
                     LoyaltySdk.showDialogLogin<IckLoginActivity, Int>(activity, "requestCode", 1, CampaignLoyaltyHelper.REQUEST_CHECK_CODE, obj, code)
+                }
+            }
+        })
+
+        ChatSdk.startFirebaseDynamicLinksActivity(object : ChatSdk.SdkChatListener {
+            override fun startActivity(schema: String?) {
+                currentActivity()?.let { activity ->
+                    FirebaseDynamicLinksActivity.startDestinationUrl(activity, schema)
                 }
             }
         })

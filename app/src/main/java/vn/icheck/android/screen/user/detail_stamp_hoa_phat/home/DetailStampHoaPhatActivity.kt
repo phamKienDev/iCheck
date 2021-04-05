@@ -24,6 +24,7 @@ import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
+import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.fragments.ProductReviewsBottomDialog
 import vn.icheck.android.helper.DialogHelper
@@ -41,7 +42,6 @@ import vn.icheck.android.screen.user.home.HomeActivity
 import vn.icheck.android.screen.user.list_product_review.ListProductReviewActivity
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
-import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 import vn.icheck.android.screen.user.view_item_image_stamp.ViewItemImageActivity
 import vn.icheck.android.util.kotlin.ContactUtils
 
@@ -123,41 +123,6 @@ class DetailStampHoaPhatActivity : BaseActivityMVVM(), SlideHeaderStampHoaPhatLi
 
         viewModel.onDetailStamp.observe(this, Observer {
             tv_title.text = it.barcode
-
-//            if (it.product?.image != null && it.product?.name != null && it.product?.price != null && it.barcode != null) {
-//                qrScanViewModel.update(ICQrScan(viewModel.codeTem
-//                        , null
-//                        , null
-//                        , 1
-//                        , it.product?.id
-//                        , "http://icheckcdn.net/images/480x480/${it.product?.image}.jpg"
-//                        , it.product?.name
-//                        , null
-//                        , TextHelper.formatMoneyComma(it.product?.price!!) + "đ"
-//                        , null
-//                        , it.seller_id
-//                        , it.barcode
-//                        , false
-//                        , null
-//                        , "HoaPhat"))
-//            } else {
-//                qrScanViewModel.update(ICQrScan(viewModel.codeTem
-//                        , null
-//                        , null
-//                        , 1
-//                        , it.product?.id
-//                        , null
-//                        , getString(R.string.dang_cap_nhat)
-//                        , null
-//                        , getString(R.string.dang_cap_nhat)
-//                        , null
-//                        , it.seller_id
-//                        , getString(R.string.dang_cap_nhat)
-//                        , false
-//                        , null
-//                        , "HoaPhat"))
-//            }
-//            EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REFRESH_DATA_HISTORY_QR))
         })
 
         viewModel.statusCode.observe(this, Observer {
@@ -241,28 +206,18 @@ class DetailStampHoaPhatActivity : BaseActivityMVVM(), SlideHeaderStampHoaPhatLi
 
         btnChat.setOnClickListener {
             if (SessionManager.isUserLogged || SessionManager.isDeviceLogged) {
-                viewModel.barcodeProduct?.let {
-                    it.manager?.let { manager ->
-                        SocialChatActivity.createPageChat(this, manager.id)
-//                        ChatV2Activity.createChatBot(manager.id, it.barcode, this)
-                    } ?: run {
-                        SocialChatActivity.createPageChat(this,viewModel.barcodeProduct?.owner?.id, it.barcode)
-//                        ChatV2Activity.createChatBotIcheck(it.barcode, this)
-                    }
-                }
+//                viewModel.barcodeProduct?.let {
+//                    it.manager?.let { manager ->
+//                        SocialChatActivity.createPageChat(this, manager.id)
+//                    } ?: run {
+//                        SocialChatActivity.createPageChat(this,viewModel.barcodeProduct?.owner?.id, it.barcode)
+//                    }
+//                }
             } else {
                 val account = Intent(this, AccountActivity::class.java)
                 startActivity(account)
             }
         }
-
-//        btnAddToCart.setOnClickListener {
-//            if (SessionManager.isUserLogged) {
-//                onRequireLoginSuccess(requestAddToCart)
-//            } else {
-//                onRequireLogin(requestAddToCart)
-//            }
-//        }
 
         layoutBuyNow.setOnClickListener {
             if (SessionManager.isUserLogged) {

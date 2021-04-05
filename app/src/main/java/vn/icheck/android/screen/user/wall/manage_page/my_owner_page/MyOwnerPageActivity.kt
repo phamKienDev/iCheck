@@ -1,24 +1,24 @@
 package vn.icheck.android.screen.user.wall.manage_page.my_owner_page
 
 import android.os.Bundle
-import android.view.View
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_my_owner_page.*
+import kotlinx.coroutines.launch
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
-import vn.icheck.android.base.model.ICError
-import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.network.base.APIConstants
+import vn.icheck.android.network.base.Status
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
-import vn.icheck.android.util.ick.showShortError
+import vn.icheck.android.util.kotlin.StatusBarUtils
 import java.util.concurrent.TimeUnit
 
 class MyOwnerPageActivity : BaseActivityMVVM(), IRecyclerViewCallback {
@@ -26,15 +26,16 @@ class MyOwnerPageActivity : BaseActivityMVVM(), IRecyclerViewCallback {
     lateinit var adapter: MyOwnerPageAdapter
     private var disposable: Disposable? = null
 
+    private var offset: Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_owner_page)
 
         viewModel = ViewModelProvider(this).get(MyOwnerPageViewModel::class.java)
-        DialogHelper.showLoading(this)
         initView()
         initRecyclerView()
-        listenerData()
+        listenData()
     }
 
     private fun initView() {
@@ -46,9 +47,7 @@ class MyOwnerPageActivity : BaseActivityMVVM(), IRecyclerViewCallback {
             edtSearch.setText("")
         }
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-        }
+        StatusBarUtils.setOverStatusBarDark(this)
 
         swipe_layout.setColorSchemeColors(ContextCompat.getColor(this, R.color.blue), ContextCompat.getColor(this, R.color.blue), ContextCompat.getColor(this, R.color.lightBlue))
         swipe_layout.setOnRefreshListener {
@@ -68,42 +67,39 @@ class MyOwnerPageActivity : BaseActivityMVVM(), IRecyclerViewCallback {
         rcvContent.adapter = adapter
     }
 
-    private fun listenerData() {
-        viewModel.getData(edtSearch.text.toString())
-
-        viewModel.onSetData.observe(this, Observer {
-            swipe_layout.isRefreshing = false
-            if (it.rows.isNullOrEmpty()) {
-                tvPageCount.beGone()
-                adapter.setError(R.drawable.ic_search_90dp, "Xin lỗi chúng tôi không thể tìm được kết quả phù hợp với tìm kiếm của bạn", -1)
-            } else {
-                tvPageCount.beVisible()
-                tvPageCount.setText(TextHelper.formatMoneyPhay(it.count) + " Trang của tôi")
-                adapter.setListData(it.rows)
-            }
-        })
-
-        viewModel.onAddData.observe(this, Observer {
-            adapter.addListData(it)
-        })
-
-        viewModel.onState.observe(this, Observer {
-            swipe_layout.isRefreshing = false
-            when (it.type) {
-                ICMessageEvent.Type.ON_CLOSE_LOADING -> {
-                    DialogHelper.closeLoading(this)
-                }
-                else -> {
-                    DialogHelper.closeLoading(this)
-                    val error = it.data as ICError
-                    if (adapter.isEmpty) {
-                        error.message?.let { it1 -> adapter.setError(error.icon, it1, R.string.thu_lai) }
+    private fun listenData() {
+        lifecycleScope.launch {
+            viewModel.getData(edtSearch.text.toString(), offset).observe(this@MyOwnerPageActivity, {
+                swipe_layout.isRefreshing = false
+                if (it.status == Status.SUCCESS) {
+                    if (offset == 0) {
+                        if (it.data?.data?.rows.isNullOrEmpty()) {
+                            tvPageCount.beGone()
+                            adapter.setError(R.drawable.ic_search_90dp, "Xin lỗi chúng tôi không thể tìm được kết quả phù hợp với tìm kiếm của bạn", -1)
+                        } else {
+                            tvPageCount.beVisible()
+                            tvPageCount.text = TextHelper.formatMoneyPhay(it.data?.data?.count) + " Trang của tôi"
+                            adapter.setListData(it.data?.data?.rows ?: mutableListOf())
+                        }
                     } else {
-                        showShortError(error.message)
+                        adapter.addListData(it.data?.data?.rows ?: mutableListOf())
+                    }
+                    offset += APIConstants.LIMIT
+                } else if (it.status == Status.ERROR_NETWORK || it.status == Status.ERROR_REQUEST) {
+                    if (adapter.isEmpty) {
+                        adapter.setError(if (it.status == Status.ERROR_NETWORK) {
+                            R.drawable.ic_error_network
+                        } else {
+                            R.drawable.ic_error_request
+                        }, it.message
+                                ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai), R.string.thu_lai)
+                    } else {
+                        showShortError(it.message
+                                ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                     }
                 }
-            }
-        })
+            })
+        }
     }
 
     private fun getData() {
@@ -114,7 +110,8 @@ class MyOwnerPageActivity : BaseActivityMVVM(), IRecyclerViewCallback {
         }
 
         swipe_layout.isRefreshing = true
-        viewModel.getData(edtSearch.text.toString())
+        offset = 0
+        listenData()
     }
 
     override fun onDestroy() {
@@ -127,6 +124,6 @@ class MyOwnerPageActivity : BaseActivityMVVM(), IRecyclerViewCallback {
     }
 
     override fun onLoadMore() {
-        viewModel.getData(edtSearch.text.toString(), true)
+        listenData()
     }
 }

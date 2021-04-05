@@ -13,11 +13,14 @@ import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_list_friend_of_wall.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.dialog.notify.confirm.ConfirmDialog
 import vn.icheck.android.base.model.ICMessageEvent
+import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
+import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.network.models.wall.ICUserFollowWall
@@ -108,7 +111,7 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
             viewModel.listData.observe(this, Observer {
                 adapter.addListData(it)
                 tv_total_friend.visibility = View.VISIBLE
-                tv_total_friend simpleText if (it.size > 0) "${it.size} Bạn bè" else "Bạn bè"
+                tv_total_friend simpleText if (viewModel.friendCount > 0) "${viewModel.friendCount} Bạn bè" else "Bạn bè"
             })
 
             viewModel.isLoadMoreData.observe(this, Observer {
@@ -231,6 +234,12 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
     }
 
     override fun goToChat(item: ICUserFollowWall) {
+//        if (ListConversationFragment.isOpenChat) {
+//            ListConversationFragment.finishAllChat()
+//            EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_FINISH_ALL_CHAT))
+//            finishActivity()
+//        }
+//        ChatSocialDetailActivity.createRoomChat(this@ListFriendOfWallActivity, item.id ?: -1, "user")
         SocialChatActivity.createRoomChat(this, item.id)
     }
 

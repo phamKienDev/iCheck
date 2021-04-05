@@ -101,7 +101,7 @@ class GiftHistoryAdapterV2(callback: IRecyclerViewCallback) : RecyclerViewCustom
         @SuppressLint("SetTextI18n")
         override fun bind(obj: ICItemReward) {
 
-            WidgetUtils.loadImageUrl(itemView.imgLogoPage, obj.logo, R.drawable.img_default_business_logo_big)
+            WidgetUtils.loadImageUrl(itemView.imgLogoPage, obj.logo, R.drawable.ic_business_v2)
 
             itemView.tvNamePage.text = TimeHelper.convertDateTimeSvToTimeDateVnPhay(obj.receiveAt)
 

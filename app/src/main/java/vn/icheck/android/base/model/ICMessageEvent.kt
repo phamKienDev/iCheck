@@ -31,7 +31,8 @@ data class ICMessageEvent(val type: Type, val data: Any? = null) {
         ON_CLOSE_LOADING,
         ON_REGISTER_FACEBOOK_PHONE,
         HIDE_OR_SHOW_FOLLOW,
-        UPDATE_FOLLOW_PAGE,
+        FOLLOW_PAGE,
+        UNFOLLOW_PAGE,
         UPDATE_FOLLOW_USER,
         UPDATE_SUBCRIBE_STATUS,
         SHOW_BOTTOM_SHEET_REPORT,
@@ -99,6 +100,11 @@ data class ICMessageEvent(val type: Type, val data: Any? = null) {
         ON_CHECK_UPDATE_LOCATION,
         SOCKET_TIMEOUT,
         UNFRIEND,
-        ON_KYC_SUCCESS
+        ON_KYC_SUCCESS,
+        ON_DESTROY_PVCOMBANK,
+        ON_FINISH_ALL_CHAT,
+        ON_DISMISS,
+        TAKE_IMAGE,
+        OPEN_SEARCH_REVIEW_OR_PAGE
     }
 }

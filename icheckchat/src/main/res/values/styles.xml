@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Line_Gray">
+        <item name="android:background">@color/gray_D8</item>
+    </style>
+
+    <style name="Line_Gray.Horizontal">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+    </style>
+
+    <style name="BottomSheetDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/bottom_sheet_enter</item>
+        <item name="android:windowExitAnimation">@anim/bottom_sheet_exit</item>
+    </style>
+
+    <style name="BottomSheetDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <!-- removing the dialog's action bar -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@style/BottomSheetDialogAnimation</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor" tools:ignore="NewApi">@android:color/transparent</item>
+    </style>
+</resources>

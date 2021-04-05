@@ -150,16 +150,16 @@ class AdsMoreAdapter : RecyclerViewCustomAdapter<ICAdsData>() {
             }
 
             if (!obj.owner?.avatar?.content.isNullOrEmpty()) {
-                WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.owner?.avatar?.content, R.drawable.img_default_business_logo)
+                WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.owner?.avatar?.content, R.drawable.ic_business_v2)
             } else {
-                WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.owner?.avatar?.content, R.drawable.img_default_business_logo)
+                WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.owner?.avatar?.content, R.drawable.ic_business_v2)
             }
 
 
             if (obj.owner?.verified == true) {
-                itemView.imgVerified.visibility = View.VISIBLE
+                itemView.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
             } else {
-                itemView.imgVerified.visibility = View.GONE
+                itemView.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
 
             itemView.tvName.text = obj.owner?.name ?: ""
@@ -188,7 +188,7 @@ class AdsMoreAdapter : RecyclerViewCustomAdapter<ICAdsData>() {
                     itemView.tvPriceOriginal.beVisible()
                     itemView.tvPriceOriginal.text = TextHelper.formatMoney(obj.sellPrice) + "đ"
                     itemView.tvPriceOriginal.paintFlags = itemView.tvPriceOriginal.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-                }else{
+                } else {
                     itemView.tvPriceOriginal.beGone()
                 }
             }
