@@ -144,6 +144,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
     private val survey = "survey"
     private val inbox = "inbox"
     private val inboxUser = "inbox_user"
+    private val inboxPage = "inbox_page"
     private val user = "user"
     private val review = "review"
     private val news = "news"
@@ -816,6 +817,18 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                     } else if (ValidHelper.validNumber(id)) {
 //                        ChatSocialDetailActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong(), "user")
                         SocialChatActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong())
+                    }
+                }
+            }
+            inboxPage -> {
+                val id = deepLink?.getQueryParameter("id")
+
+                if (!id.isNullOrEmpty()) {
+                    if (!SessionManager.isUserLogged) {
+                        showLoginDialog()
+                        return
+                    } else if (ValidHelper.validNumber(id)) {
+                        ChatSocialDetailActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong(), "page")
                     }
                 }
             }
