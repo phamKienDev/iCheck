@@ -391,6 +391,7 @@ class IckUserWallFragment : Fragment(), IPostListener {
         binding.notify.setOnClickListener {
             if (checkTypeUser(ickUserWallViewModel.userInfo?.data?.id) != MAIN_USER) {
                 requireActivity().startClearTopActivity(HomeActivity::class.java)
+                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.GO_TO_HOME, 1))
             } else {
                 requireActivity() simpleStartActivity ListNotificationActivity::class.java
             }

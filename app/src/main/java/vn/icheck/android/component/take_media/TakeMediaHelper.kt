@@ -1,12 +1,17 @@
 package vn.icheck.android.component.take_media
 
+import android.R.attr.bitmap
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Matrix
 import android.net.Uri
 import android.os.Environment
 import android.provider.MediaStore
 import androidx.core.content.FileProvider
+import androidx.exifinterface.media.ExifInterface
 import androidx.fragment.app.Fragment
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.BuildConfig
@@ -14,16 +19,21 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.screen.dialog.PickPhotoOptionDialog
-import java.io.File
-import java.io.IOException
-import kotlin.jvm.Throws
+import java.io.*
 
-class TakeMediaHelper(val callback: TakeCameraListener, private val selectVideo: Boolean = false) {
+
+class TakeMediaHelper(
+        val callback: TakeCameraListener,
+        private val selectVideo: Boolean = false
+
+) {
     private val requestImage = 89
     private val requestVideo = 90
     private var currentImagePath: String? = null
     private var currentVideoPath: String? = null
     var onTakeImageSuccess: ((File?) -> Unit)? = null
+    var saveImageToGallery:Boolean = false
+    var context:Context? = null
 
     private val fileProvider = if (BuildConfig.FLAVOR.contentEquals("prod")) {
         "vn.icheck.android.fileprovider"
@@ -113,6 +123,7 @@ class TakeMediaHelper(val callback: TakeCameraListener, private val selectVideo:
         }
     }
 
+
     private val getPhotoFile: File?
         get() {
             return if (!currentImagePath.isNullOrEmpty()) {
@@ -145,10 +156,18 @@ class TakeMediaHelper(val callback: TakeCameraListener, private val selectVideo:
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
                 requestImage -> {
-                    if (onTakeImageSuccess != null) {
-                        onTakeImageSuccess!!(getPhotoFile)
+                    if (saveImageToGallery) {
+                        val f = getEi()
+                        MediaStore.Images.Media.insertImage(context?.contentResolver, BitmapFactory.decodeFile(f?.path), f?.name, "");
+                        if (onTakeImageSuccess != null) {
+                            onTakeImageSuccess!!(f)
+                        }
                     } else {
-                        callback.onTakeMediaSuccess(getPhotoFile)
+                        if (onTakeImageSuccess != null) {
+                            onTakeImageSuccess!!(getPhotoFile)
+                        } else {
+                            callback.onTakeMediaSuccess(getPhotoFile)
+                        }
                     }
                 }
                 requestVideo -> {
@@ -160,6 +179,46 @@ class TakeMediaHelper(val callback: TakeCameraListener, private val selectVideo:
                 }
             }
         }
+    }
+
+    fun getBitmap():Bitmap {
+        return BitmapFactory.decodeFile(getPhotoFile?.path)
+    }
+
+    fun getEi():File {
+        val ei = ExifInterface(getPhotoFile?.path.toString())
+        val orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION,
+                ExifInterface.ORIENTATION_UNDEFINED)
+        val rotatedBitmap:Bitmap? = when (orientation) {
+            ExifInterface.ORIENTATION_ROTATE_90 -> {
+                rotateImage(getBitmap(), 90f)
+            }
+            ExifInterface.ORIENTATION_ROTATE_180 -> {
+                rotateImage(getBitmap(), 180f)
+            }
+            ExifInterface.ORIENTATION_ROTATE_270 -> {
+                rotateImage(getBitmap(), 270f)
+            }
+            else -> {
+                getBitmap()
+            }
+        }
+        return  createFile(rotatedBitmap)
+    }
+
+    fun createFile(bitmap: Bitmap?):File {
+        val file = File(getPhotoFile?.path.toString())
+        val os: OutputStream = BufferedOutputStream(FileOutputStream(file))
+        bitmap?.compress(Bitmap.CompressFormat.JPEG, 100, os)
+        os.close()
+        return file
+    }
+
+    fun rotateImage(source: Bitmap, angle: Float): Bitmap? {
+        val matrix = Matrix()
+        matrix.postRotate(angle)
+        return Bitmap.createBitmap(source, 0, 0, source.width, source.height,
+                matrix, true)
     }
 
     interface TakeCameraListener {
