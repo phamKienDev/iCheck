@@ -103,10 +103,12 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_marginEnd="55dp"
+                    android:orientation="vertical"
+                    tools:visibility="gone">
 
                     <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
-                        android:id="@+id/tv_price"
+                        android:id="@+id/tv_sale_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/barlow_semi_bold"
@@ -115,11 +117,11 @@
                         tools:text="23,004,000đ" />
 
                     <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
-                        android:id="@+id/tv_sale_price"
+                        android:id="@+id/tv_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#b4b4b4"
                         android:fontFamily="@font/barlow_medium"
+                        android:textColor="#b4b4b4"
                         android:textSize="12sp"
                         tools:text="23,504,000đ" />
 
@@ -130,18 +132,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="32dp"
                     android:layout_gravity="center|end"
-                    android:layout_marginStart="55dp"
                     android:background="@drawable/bg_corners_4_light_blue_no_solid"
                     android:gravity="center"
-                    android:visibility="gone">
+                    android:visibility="gone"
+                    tools:visibility="visible">
 
                     <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:drawableStart="@drawable/ic_location_item_shop_variant"
                         android:drawablePadding="8dp"
-                        android:gravity="center_vertical"
                         android:fontFamily="@font/barlow_semi_bold"
+                        android:gravity="center_vertical"
                         android:text="Chỉ đường"
                         android:textColor="#057dda"
                         android:textSize="16sp" />

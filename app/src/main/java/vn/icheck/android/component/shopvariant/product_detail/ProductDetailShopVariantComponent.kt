@@ -23,6 +23,9 @@ import vn.icheck.android.helper.CartHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.beGone
+import vn.icheck.android.ichecklibs.beInvisible
+import vn.icheck.android.ichecklibs.beVisible
 import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.network.base.ICApiListener
 import vn.icheck.android.network.base.ICBaseResponse
@@ -116,23 +119,37 @@ class ProductDetailShopVariantComponent : LinearLayout {
             adapterService.setListData(listService)
         }
 
-        if (productRow.saleOff != null) {
-            if (productRow.saleOff == true) {
-                if (productRow.specialPrice != 0L) {
-                    tv_sale_price?.visibility = View.VISIBLE
-                    ICheckTextUtils.setSalePrice(tv_sale_price, productRow.price!!)
-                    ICheckTextUtils.setPrice(tv_price, productRow.specialPrice!!)
-                } else {
-                    tv_sale_price?.visibility = View.INVISIBLE
-                    ICheckTextUtils.setPrice(tv_price, productRow.price!!)
-                }
+//        if (productRow.saleOff != null) {
+//            if (productRow.saleOff == true) {
+//                if (productRow.specialPrice != 0L) {
+//                    tv_sale_price?.visibility = View.VISIBLE
+//                    ICheckTextUtils.setSalePrice(tv_sale_price, productRow.price!!)z
+//                    ICheckTextUtils.setPrice(tv_price, productRow.specialPrice!!)
+//                } else {
+//                    tv_sale_price?.visibility = View.INVISIBLE
+//                    ICheckTextUtils.setPrice(tv_price, productRow.price!!)
+//                }
+//            } else {
+//                tv_sale_price?.visibility = View.INVISIBLE
+//                ICheckTextUtils.setPrice(tv_price, productRow.price!!)
+//            }
+//        } else {
+//            tv_sale_price?.visibility = View.INVISIBLE
+//            ICheckTextUtils.setPrice(tv_price, productRow.price ?: 0)
+//        }
+
+        if (productRow.price != null) {
+            layoutPrice.beVisible()
+            if (productRow.saleOff == true && productRow.specialPrice != null) {
+                tv_price?.beVisible()
+                ICheckTextUtils.setPrice(tv_sale_price, productRow.specialPrice!!)
+                ICheckTextUtils.setSalePrice(tv_price, productRow.price!!)
             } else {
-                tv_sale_price?.visibility = View.INVISIBLE
-                ICheckTextUtils.setPrice(tv_price, productRow.price!!)
+                ICheckTextUtils.setPrice(tv_sale_price, productRow.price!!)
+                tv_price?.beInvisible()
             }
         } else {
-            tv_sale_price?.visibility = View.INVISIBLE
-            ICheckTextUtils.setPrice(tv_price, productRow.price ?: 0)
+            layoutPrice.beGone()
         }
 
 
