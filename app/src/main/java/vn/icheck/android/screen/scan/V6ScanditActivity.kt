@@ -226,7 +226,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     }
 
     private fun initTakeImageDialog() {
-        takeImageDialog = TakeMediaDialog(takeImageListener, false, cropImage = true, isVideo = false, disableTakeImage = true)
+        takeImageDialog = TakeMediaDialog(takeImageListener, false, cropImage = true, isVideo = false, saveImageToGallery = true)
     }
 
     private fun initBarcodeCapture() {
