@@ -277,7 +277,6 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
     private fun resetCamera() {
         lifecycleScope.launch {
-            delay(2000)
             camera?.switchToDesiredState(FrameSourceState.ON, object : Callback<Boolean> {
                 override fun run(result: Boolean) {
                     if (result) {
@@ -295,6 +294,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
 
     private fun offCamera() {
+        barcodeCapture.isEnabled = false
         camera?.switchToDesiredState(FrameSourceState.OFF, object : Callback<Boolean> {
             override fun run(result: Boolean) {
                 if (!result) {
@@ -318,7 +318,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         if (scanImage.get()) {
             scanImage.set(false)
             job = lifecycleScope.launch {
-                delay(400)
+                delay(700)
                 if (session.newlyRecognizedBarcodes.isEmpty()) {
 
                     runOnUiThread {
