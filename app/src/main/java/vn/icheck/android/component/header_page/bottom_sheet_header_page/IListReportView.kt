@@ -5,6 +5,7 @@ import vn.icheck.android.network.models.ICPageOverview
 
 interface IListReportView {
     fun onShowReportForm()
+    fun onRequireLogin()
     fun followAndUnFollowPage(obj: ICPageOverview)
     fun unSubcribeNotification(obj: ICPageOverview)
     fun subcribeNotification(obj: ICPageOverview)
