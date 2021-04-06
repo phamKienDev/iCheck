@@ -48,6 +48,7 @@ import vn.icheck.android.network.models.ICCampaign
 import vn.icheck.android.network.models.ICClientSetting
 import vn.icheck.android.network.models.ICLink
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
+import vn.icheck.android.screen.scan.MyQrActivity
 import vn.icheck.android.screen.scan.V6ScanditActivity
 import vn.icheck.android.screen.user.buy_mobile_card.BuyMobileCardV2Activity
 import vn.icheck.android.screen.user.buy_mobile_card_success.BuyCardSuccessActivity
@@ -143,6 +144,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
     private val survey = "survey"
     private val inbox = "inbox"
     private val inboxUser = "inbox_user"
+    private val inboxPage = "inbox_page"
     private val user = "user"
     private val review = "review"
     private val news = "news"
@@ -637,7 +639,8 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                     return
                 } else {
                     if (PermissionHelper.checkPermission(this@FirebaseDynamicLinksActivity, Manifest.permission.CAMERA, ICK_REQUEST_CAMERA)) {
-                        V6ScanditActivity.create(this, 3)
+//                        V6ScanditActivity.create(this, 3)
+                        MyQrActivity.createOnly(this)
                     } else {
                         return
                     }
@@ -814,6 +817,18 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                     } else if (ValidHelper.validNumber(id)) {
 //                        ChatSocialDetailActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong(), "user")
                         SocialChatActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong())
+                    }
+                }
+            }
+            inboxPage -> {
+                val id = deepLink?.getQueryParameter("id")
+
+                if (!id.isNullOrEmpty()) {
+                    if (!SessionManager.isUserLogged) {
+                        showLoginDialog()
+                        return
+                    } else if (ValidHelper.validNumber(id)) {
+                        ChatSocialDetailActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong(), "page")
                     }
                 }
             }

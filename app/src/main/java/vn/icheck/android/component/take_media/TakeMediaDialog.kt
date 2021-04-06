@@ -9,13 +9,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.lifecycleScope
 import kotlinx.android.synthetic.main.layout_choose_image_dialog.*
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialogFragment
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.screen.user.cropimage.CropImageActivity
 import java.io.File
 
@@ -25,7 +29,8 @@ class TakeMediaDialog(val listener: TakeImageListener,
                       private val ratio: String? = null,
                       private val isVideo: Boolean = true,
                       val showBottom: Boolean = false,
-                      val disableTakeImage: Boolean = false
+                      val disableTakeImage: Boolean = false,
+                      val saveImageToGallery:Boolean = false
 ) : BaseBottomSheetDialogFragment() {
 
     companion object {
@@ -40,6 +45,8 @@ class TakeMediaDialog(val listener: TakeImageListener,
     }
 
     var takeMediaHelper: TakeMediaHelper? = null
+    val listImage = arrayListOf<ICIMageFile>()
+    lateinit var adapter :TakeMediaAdapter
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.layout_choose_image_dialog, container, false)
     }
@@ -59,7 +66,13 @@ class TakeMediaDialog(val listener: TakeImageListener,
         if (cropImage) {
             takeMediaHelper = TakeMediaHelper(listener).apply {
                 onTakeImageSuccess = {
-                    CropImageActivity.start(this@TakeMediaDialog, it?.absolutePath, null, ratio, CROP_IMAGE_GALLERY)
+                    if (saveImageToGallery) {
+                        getImageFromGallery()
+                        adapter.notifyItemInserted(1)
+                    } else {
+                        CropImageActivity.start(this@TakeMediaDialog, it?.absolutePath, null, ratio, CROP_IMAGE_GALLERY)
+                    }
+
                 }
             }
         } else {
@@ -69,6 +82,10 @@ class TakeMediaDialog(val listener: TakeImageListener,
                 }
             }
         }
+        if (saveImageToGallery) {
+            takeMediaHelper?.context = requireContext()
+            takeMediaHelper?.saveImageToGallery = true
+        }
 
         if (isVideo) {
             tvTile.setText(R.string.chon_anh_video)
@@ -76,11 +93,11 @@ class TakeMediaDialog(val listener: TakeImageListener,
             tvTile.setText(R.string.chon_anh)
         }
 
-        val listImage = getImageFromGallery()
+        getImageFromGallery()
         if (listImage.isEmpty()) {
             startCamera()
         } else {
-            val adapter = TakeMediaAdapter(listImage, selectMulti, isVideo, disableTakeImage = this.disableTakeImage)
+            adapter = TakeMediaAdapter(listImage, selectMulti, isVideo, disableTakeImage = this.disableTakeImage)
             rcvImage.adapter = adapter
 
             btnSubmit.setOnClickListener {
@@ -111,7 +128,8 @@ class TakeMediaDialog(val listener: TakeImageListener,
         INSTANCE = this
     }
 
-    private fun getImageFromGallery(): MutableList<ICIMageFile> {
+    private fun getImageFromGallery() {
+        listImage.clear()
         val listOfAllImages = mutableListOf<ICIMageFile>()
 
         ICheckApplication.currentActivity()?.let {
@@ -153,7 +171,7 @@ class TakeMediaDialog(val listener: TakeImageListener,
             }
         }
 
-        return listOfAllImages
+        listImage.addAll(listOfAllImages)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

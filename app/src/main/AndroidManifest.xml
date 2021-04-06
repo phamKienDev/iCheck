@@ -78,6 +78,7 @@
         tools:targetApi="m">
         <activity android:name=".screen.scan.MyQrActivity"></activity>
         <activity android:name=".screen.scan.V6ScanditActivity"
+            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden|screenSize"/>
         <activity android:name=".TestActivity" />
         <activity

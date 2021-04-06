@@ -226,14 +226,14 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     }
 
     private fun initTakeImageDialog() {
-        takeImageDialog = TakeMediaDialog(takeImageListener, false, cropImage = true, isVideo = false, disableTakeImage = true)
+        takeImageDialog = TakeMediaDialog(takeImageListener, false, cropImage = true, isVideo = false, saveImageToGallery = true)
     }
 
     private fun initBarcodeCapture() {
         dataCaptureContext = ICheckApplication.getInstance().dataCaptureContext
         barcodeCapture = ICheckApplication.getInstance().barcodeCapture
         val vib: Vibration? = if (SettingManager.getVibrateSetting) Vibration() else null
-        val sound: Sound? = if (SettingManager.getSoundSetting) Sound(R.raw.success) else null
+        val sound: Sound? = if (SettingManager.getSoundSetting) Sound.defaultSound() else null
         barcodeCapture.feedback.success = Feedback(vib, sound)
         barcodeCapture.addListener(this)
     }
@@ -604,9 +604,6 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     override fun onBarcodeScanned(barcodeCapture: BarcodeCapture, session: BarcodeCaptureSession, data: FrameData) {
         if (session.newlyRecognizedBarcodes.isEmpty()) return
         barcodeCapture.isEnabled = false
-        if (SettingManager.getSoundSetting) {
-            RingtoneHelper(ICheckApplication.getInstance()).playAudio(R.raw.new_notification)
-        }
         job?.cancel()
         val barcode = session.newlyRecognizedBarcodes[0]
 
