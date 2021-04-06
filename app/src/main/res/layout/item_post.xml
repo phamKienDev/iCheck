@@ -67,7 +67,7 @@
                     app:layout_constraintEnd_toStartOf="@id/imgMore"
                     app:layout_constraintStart_toEndOf="@id/imgLogo"
                     app:layout_constraintTop_toTopOf="@id/imgLogo"
-                    tools:text=" Unilever Vietnam Official Vietnam Official  Unilever Vietnam Official  Unilever Vietnam Official Vietnam Official  Unilever Vietnam Official " />
+                    tools:text="tnam Official  Unilever Vietnam Official " />
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -343,7 +343,7 @@
                         android:id="@id/tvName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:ellipsize="end"
+                        android:ellipsize="middle"
                         android:fontFamily="@font/barlow_semi_bold"
                         android:includeFontPadding="false"
                         android:singleLine="true"

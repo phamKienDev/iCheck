@@ -109,10 +109,11 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
             edtContent.hint = "Hãy chia sẻ những thông tin hữu ích nào!"
             tvType.beGone()
             imgStatus.beGone()
+            tvName.text = intent.getStringExtra(Constant.DATA_3)
             if (intent?.getBooleanExtra(Constant.DATA_5, false) == true) {
-                tvName.setDrawbleNextEndText(intent.getStringExtra(Constant.DATA_3), R.drawable.ic_verified_16px)
+                tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
             } else {
-                tvName.text = intent.getStringExtra(Constant.DATA_3)
+                tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
         } else {
             SessionManager.session.user?.let { user ->

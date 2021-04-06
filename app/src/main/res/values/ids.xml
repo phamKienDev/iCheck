@@ -392,4 +392,5 @@
     <item name="tvTransaction" type="id" />
     <item name="tvCardNumber" type="id" />
     <item name="tvFollower" type="id" />
+    <item name="layoutPrice" type="id" />
 </resources>

@@ -19,6 +19,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.IRecyclerViewSearchCallback
 import vn.icheck.android.component.view.ViewHelper.onDelayClick
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.TextHelper.setTextChooseSearch
 import vn.icheck.android.helper.TextHelper.setTextDataSearch
 import vn.icheck.android.helper.TextHelper.setTextEmpitySearch
@@ -103,7 +104,9 @@ class SearchReviewActivity : BaseActivityMVVM(), View.OnClickListener, IRecycler
     }
 
     private fun getData() {
+        DialogHelper.showLoading(this)
         viewModel.getData(edtSearch.text.toString(), offset).observe(this, {
+            DialogHelper.closeLoading(this)
             swipe_container.isRefreshing = false
             when (it.status) {
                 Status.ERROR_NETWORK, Status.ERROR_REQUEST -> {
@@ -148,7 +151,7 @@ class SearchReviewActivity : BaseActivityMVVM(), View.OnClickListener, IRecycler
         super.onMessageEvent(event)
         if (isActivityVisible) {
             when (event.type) {
-                ICMessageEvent.Type.ON_LOG_IN -> {
+                ICMessageEvent.Type.ON_REQUIRE_LOGIN -> {
                     onRequireLogin(requestLogin)
                 }
                 ICMessageEvent.Type.OPEN_DETAIL_POST -> {

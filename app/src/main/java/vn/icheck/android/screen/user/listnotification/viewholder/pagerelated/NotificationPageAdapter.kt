@@ -53,10 +53,12 @@ class NotificationPageAdapter : RecyclerView.Adapter<NotificationPageAdapter.Pag
                     PageDetailActivity.start(itemView.context, obj.id)
                 }
                 (getChildAt(1) as AppCompatTextView).also {
+                    it.text = obj.name
+
                     if (obj.isVerify) {
-                        it.setDrawbleNextEndText(obj.name, R.drawable.ic_verified_16px)
+                        it.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
                     } else {
-                        it.text = obj.name
+                        it.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                     }
                 }
 

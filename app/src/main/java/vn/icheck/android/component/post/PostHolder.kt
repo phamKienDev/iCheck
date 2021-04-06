@@ -102,11 +102,12 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
 //            itemView.imgLogo.layoutParams = ConstraintLayout.LayoutParams(SizeHelper.size40, SizeHelper.size40).also {
 //                it.topMargin = 0
 //            }
+            itemView.tvPageName.text = obj.page?.getName
             itemView.imgRank.beGone()
             if (obj.page!!.isVerify) {
-                itemView.tvPageName.setDrawbleNextEndText(obj.page?.getName,R.drawable.ic_verified_16px)
+                itemView.tvPageName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
             } else {
-                itemView.tvPageName.text = obj.page?.getName
+                itemView.tvPageName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
         } else {
             WidgetUtils.loadImageUrl(itemView.imgLogo, obj.user?.avatar, R.drawable.ic_avatar_default_84px)
@@ -114,6 +115,7 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
 //                it.topMargin = SizeHelper.size8
 //            }
             itemView.tvPageName.text = obj.user?.getName
+            itemView.tvPageName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             itemView.imgRank.beVisible()
             itemView.imgRank.setRankUser(obj.user?.rank?.level)
         }
@@ -282,14 +284,15 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
                 itemView.tvName.text = comments.page?.getName
                 itemView.imgLevel.beGone()
                 if (comments.page!!.isVerify) {
-                    itemView.tvName.setDrawbleNextEndText(comments.page?.getName,R.drawable.ic_verified_16px)
+                    itemView.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
                 } else {
-                    itemView.tvName.text = comments.page?.getName
+                    itemView.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                 }
             } else {
                 WidgetUtils.loadImageUrl(itemView.imgAvatar, comments.user?.avatar, R.drawable.ic_user_svg)
                 itemView.imgLevel.setImageResource(Constant.getAvatarLevelIcon16(comments.user?.rank?.level))
                 itemView.tvName.text = comments.user?.getName
+                itemView.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
 
             if (comments.content.isNullOrEmpty()) {
