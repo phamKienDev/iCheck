@@ -12,7 +12,7 @@
     <vn.icheck.android.component.view.TabLayoutWidthIndicator
         android:id="@id/tabLayout"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/size_40"
         android:background="@color/white"
         app:tabGravity="fill"
         app:tabIndicatorHeight="@dimen/size_3"

@@ -4,15 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_marginTop="10dp"
+    android:layout_marginTop="@dimen/size_10"
     android:background="@color/white">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/barlow_semi_bold"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="12dp"
+        android:layout_marginTop="@dimen/size_10"
+        android:layout_marginStart="@dimen/size_12"
         android:textColor="#3c5a99"
         android:textSize="@dimen/font_16"
         android:text="Điều kiện nhận quà" />
@@ -21,9 +21,9 @@
         android:id="@id/rcvConditions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:layout_marginEnd="12dp"
-        android:paddingTop="2dp"
-        android:paddingBottom="2dp"/>
+        android:layout_marginStart="@dimen/size_7"
+        android:layout_marginEnd="@dimen/size_12"
+        android:paddingTop="@dimen/size_2"
+        android:paddingBottom="@dimen/size_2"/>
 
 </LinearLayout>

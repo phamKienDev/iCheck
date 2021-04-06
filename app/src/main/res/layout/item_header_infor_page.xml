@@ -13,13 +13,13 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgAvaPage"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="@dimen/size_70"
+            android:layout_height="@dimen/size_70"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginLeft="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_16"
             app:civ_border_color="#D8D8D8"
-            app:civ_border_width="1dp"
+            app:civ_border_width="@dimen/size_1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@color/lightBlue" />
@@ -37,10 +37,10 @@
             android:id="@+id/layoutName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginRight="12dp"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginLeft="@dimen/size_12"
+            android:layout_marginEnd="@dimen/size_12"
+            android:layout_marginRight="@dimen/size_12"
             app:layout_constraintBottom_toTopOf="@id/tvNameTypePage"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/imgAvaPage"
@@ -76,15 +76,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_16"
+        android:layout_marginEnd="@dimen/size_12"
         android:orientation="horizontal">
 
         <LinearLayout
             android:id="@+id/btnChinh"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/size_40"
             android:layout_weight="1"
             android:background="@drawable/bg_corners_4_light_blue_solid"
             android:gravity="center">
@@ -107,28 +107,28 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/btnPhu"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
+            android:layout_height="@dimen/size_40"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginLeft="@dimen/size_8"
             android:background="@drawable/bg_corners_4_light_blue_no_solid"
             android:drawableStart="@drawable/ic_phone_blue_16dp"
             android:drawableLeft="@drawable/ic_phone_blue_16dp"
             android:gravity="center"
-            android:paddingStart="23dp"
-            android:paddingEnd="23dp" />
+            android:paddingStart="@dimen/size_23"
+            android:paddingEnd="@dimen/size_23" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/btnMore"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
+            android:layout_height="@dimen/size_40"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginLeft="@dimen/size_8"
             android:background="@drawable/bg_corners_4_light_blue_no_solid"
             android:drawableStart="@drawable/ic_more_blue_16"
             android:drawableLeft="@drawable/ic_more_blue_16"
             android:gravity="center"
-            android:paddingStart="23dp"
-            android:paddingEnd="23dp" />
+            android:paddingStart="@dimen/size_23"
+            android:paddingEnd="@dimen/size_23" />
 
     </LinearLayout>
 
@@ -136,9 +136,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_14"
+        android:layout_marginEnd="@dimen/size_12"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -152,8 +152,8 @@
             android:id="@id/tv_number_follow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="@dimen/size_10"
+            android:layout_marginLeft="@dimen/size_10"
             android:ellipsize="end"
             android:maxLines="2"
             android:textColor="#757575"
@@ -172,8 +172,8 @@
         android:id="@+id/containerOverview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginTop="@dimen/size_12"
+        android:layout_marginBottom="@dimen/size_12"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -266,9 +266,9 @@
             android:id="@+id/textView36"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginLeft="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_10"
             android:fontFamily="@font/barlow_medium"
             android:text="Đăng bài mới"
             android:textColor="#3C5A99"
@@ -280,8 +280,8 @@
             android:id="@+id/user_avatar"
             android:layout_width="@dimen/size_40"
             android:layout_height="@dimen/size_40"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="18dp"
+            android:layout_marginTop="@dimen/size_10"
+            android:layout_marginBottom="@dimen/size_18"
             android:src="@drawable/ic_business_v2"
             app:civ_border_color="@color/gray"
             app:civ_border_width="@dimen/size_0_5"
@@ -294,10 +294,10 @@
             android:id="@+id/textView45"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginLeft="@dimen/size_8"
+            android:layout_marginEnd="@dimen/size_8"
+            android:layout_marginRight="@dimen/size_8"
             android:gravity="center_vertical"
             android:text="Hãy chia sẻ những thông tin hữu ích nào!"
             android:textColor="#B4B4B4"

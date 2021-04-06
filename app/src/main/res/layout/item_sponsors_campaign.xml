@@ -4,15 +4,15 @@
     xmlns:cardview="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    android:layout_marginBottom="10dp"
+    android:layout_marginTop="@dimen/size_10"
+    android:layout_marginBottom="@dimen/size_10"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imgSponsors"
         android:layout_gravity="center"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="@dimen/size_64"
+        android:layout_height="@dimen/size_64"
         android:scaleType="fitCenter"/>
 
 </LinearLayout>

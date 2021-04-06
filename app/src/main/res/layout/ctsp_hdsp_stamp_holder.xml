@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="12dp"
-    android:paddingBottom="12dp"
+    android:paddingTop="@dimen/size_12"
+    android:paddingBottom="@dimen/size_12"
     android:background="@color/white"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
@@ -11,9 +11,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginEnd="@dimen/size_12"
+        android:layout_marginBottom="@dimen/size_10"
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -36,10 +36,10 @@
         android:id="@+id/tv_first_question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginEnd="@dimen/size_12"
         android:drawableStart="@drawable/comment_question_outline"
-        android:drawablePadding="12dp"
+        android:drawablePadding="@dimen/size_12"
         tools:text="Cho em hỏi sản phẩm dùng thế nào ạ?"
         android:textColor="#434343" />
 
@@ -47,11 +47,11 @@
         android:id="@+id/tv_second_question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginTop="@dimen/size_4"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginEnd="@dimen/size_12"
         android:drawableStart="@drawable/outline_question_answer_24px"
-        android:drawablePadding="12dp"
+        android:drawablePadding="@dimen/size_12"
         tools:text="Sản phẩm có nguồn gốc xuất xứ rõ ràng
 mình đã dùng và thấy rất ổn"
         android:textColor="#434343" />

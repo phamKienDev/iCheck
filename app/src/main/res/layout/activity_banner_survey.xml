@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingBottom="76dp">
+            android:paddingBottom="@dimen/size_76">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@id/imgBanner"
@@ -88,7 +88,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/size_6"
                             android:layout_marginStart="@dimen/size_12"
-                            android:layout_marginTop="13dp"
+                            android:layout_marginTop="@dimen/size_13"
                             android:layout_marginEnd="@dimen/size_12"
                             android:layout_marginBottom="@dimen/size_12"
                             android:max="100"

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/root"
-    android:layout_width="160dp"
+    android:layout_width="@dimen/size_160"
     android:layout_height="wrap_content"
     android:background="@drawable/bg_contact_ic_dialog"
     android:orientation="horizontal">
@@ -11,17 +11,17 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:paddingTop="6dp"
-        android:layout_marginStart="3dp"
+        android:paddingTop="@dimen/size_6"
+        android:layout_marginStart="@dimen/size_3"
         android:scaleType="center"
         app:srcCompat="@drawable/ic_chat_admin_24px" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="@dimen/size_4"
         android:gravity="center"
-        android:paddingTop="6dp"
+        android:paddingTop="@dimen/size_6"
         android:text="Liên hệ Admin iCheck"
         android:textColor="@android:color/white"
         android:textSize="@dimen/font_12" />

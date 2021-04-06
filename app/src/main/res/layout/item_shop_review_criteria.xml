@@ -22,6 +22,6 @@
         app:srb_drawableFilled="@drawable/star_full_24px"
         app:srb_numStars="5"
         app:srb_rating="4"
-        app:srb_starHeight="20dp"
-        app:srb_starWidth="20dp" />
+        app:srb_starHeight="@dimen/size_20"
+        app:srb_starWidth="@dimen/size_20" />
 </TableRow>

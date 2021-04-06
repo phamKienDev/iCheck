@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/rounded_dialog"
-    android:paddingBottom="20dp">
+    android:paddingBottom="@dimen/size_20">
 
     <include
         android:id="@+id/layoutHeader"
@@ -14,7 +14,7 @@
     <View
         android:id="@+id/divider27"
         android:layout_width="0dp"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/size_1"
         android:background="#D8D8D8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +37,7 @@
             android:layout_marginTop="@dimen/size_13"
             android:layout_marginBottom="@dimen/size_13"
             android:drawableStart="@drawable/ic_location_filer_12dp"
-            android:drawablePadding="8dp"
+            android:drawablePadding="@dimen/size_8"
             android:fontFamily="@font/barlow_medium"
             android:text="@string/tinh_thanh_pho"
             android:textColor="@color/collection_product_name"
@@ -52,7 +52,7 @@
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginEnd="@dimen/size_12"
             android:layout_weight="1"
-            android:drawablePadding="8dp"
+            android:drawablePadding="@dimen/size_8"
             android:ellipsize="end"
             android:fontFamily="@font/barlow_medium"
             android:gravity="right"
@@ -73,8 +73,8 @@
     <View
         android:id="@+id/divider28"
         android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="12dp"
+        android:layout_height="@dimen/size_1"
+        android:layout_marginStart="@dimen/size_12"
         android:background="#D8D8D8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -85,7 +85,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_14"
-        android:drawablePadding="8dp"
+        android:drawablePadding="@dimen/size_8"
         android:fontFamily="@font/barlow_medium"
         android:text="@string/da_xac_thuc"
         android:textColor="#212121"
@@ -109,9 +109,9 @@
     <View
         android:id="@+id/divider29"
         android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="13dp"
+        android:layout_height="@dimen/size_1"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_13"
         android:background="#D8D8D8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -132,7 +132,7 @@
             android:layout_marginStart="@dimen/size_14"
             android:layout_marginTop="@dimen/size_13"
             android:layout_marginBottom="@dimen/size_13"
-            android:drawablePadding="8dp"
+            android:drawablePadding="@dimen/size_8"
             android:fontFamily="@font/barlow_medium"
             android:text="@string/danh_muc"
             android:textColor="#212121"
@@ -147,7 +147,7 @@
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginEnd="@dimen/size_12"
             android:layout_weight="1"
-            android:drawablePadding="8dp"
+            android:drawablePadding="@dimen/size_8"
             android:ellipsize="end"
             android:fontFamily="@font/barlow_medium"
             android:gravity="right"
@@ -169,8 +169,8 @@
     <View
         android:id="@+id/divider30"
         android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="12dp"
+        android:layout_height="@dimen/size_1"
+        android:layout_marginStart="@dimen/size_12"
         android:background="#D8D8D8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -178,7 +178,7 @@
 
     <TextView
         android:id="@+id/tv_clear"
-        android:layout_width="120dp"
+        android:layout_width="@dimen/size_120"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_20"
         android:layout_marginEnd="@dimen/size_12"

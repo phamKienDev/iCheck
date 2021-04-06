@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_44"
         android:background="@color/white"
-        android:elevation="4dp">
+        android:elevation="@dimen/size_4">
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@id/imgBack"
@@ -39,9 +39,9 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingStart="12dp"
-        android:paddingTop="10dp"
-        android:paddingEnd="12dp"
+        android:paddingStart="@dimen/size_12"
+        android:paddingTop="@dimen/size_10"
+        android:paddingEnd="@dimen/size_12"
         android:background="@color/white"
         tools:listitem="@layout/item_exlusive_privileges"/>
 

@@ -22,7 +22,7 @@
             android:id="@+id/imgDefault"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="@dimen/size_35"
             app:srcCompat="@drawable/ic_out_of_gifts" />
 
         <androidx.appcompat.widget.AppCompatTextView

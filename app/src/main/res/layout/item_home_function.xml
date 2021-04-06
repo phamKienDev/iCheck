@@ -42,12 +42,12 @@
     <!--        android:id="@id/layoutContent"-->
     <!--        android:layout_width="match_parent"-->
     <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginStart="25dp"-->
+    <!--        android:layout_marginStart="@dimen/size_25"-->
     <!--        android:layout_marginTop="@dimen/size_168"-->
-    <!--        android:layout_marginEnd="25dp"-->
+    <!--        android:layout_marginEnd="@dimen/size_25"-->
     <!--        app:cardBackgroundColor="@color/white"-->
     <!--        app:cardCornerRadius="@dimen/size_4"-->
-    <!--        app:cardElevation="4dp"-->
+    <!--        app:cardElevation="@dimen/size_4"-->
     <!--        app:cardPreventCornerOverlap="false"-->
     <!--        app:cardShadowColorEnd="@color/app_selector_shadow_end"-->
     <!--        app:cardShadowColorStart="@color/elevation_color_card"-->
@@ -65,7 +65,7 @@
     <!--            <LinearLayout-->
     <!--                android:layout_width="match_parent"-->
     <!--                android:layout_height="wrap_content"-->
-    <!--                android:layout_marginTop="10dp"-->
+    <!--                android:layout_marginTop="@dimen/size_10"-->
     <!--                android:gravity="center"-->
     <!--                android:orientation="horizontal"-->
     <!--                android:paddingStart="@dimen/size_12"-->
@@ -79,8 +79,8 @@
     <!--                <LinearLayout-->
     <!--                    android:layout_width="0dp"-->
     <!--                    android:layout_height="wrap_content"-->
-    <!--                    android:layout_marginStart="7dp"-->
-    <!--                    android:layout_marginEnd="7dp"-->
+    <!--                    android:layout_marginStart="@dimen/size_7"-->
+    <!--                    android:layout_marginEnd="@dimen/size_7"-->
     <!--                    android:layout_weight="1"-->
     <!--                    android:orientation="vertical">-->
 
@@ -134,7 +134,7 @@
     <!--                <androidx.appcompat.widget.AppCompatTextView-->
     <!--                    android:layout_width="wrap_content"-->
     <!--                    android:layout_height="wrap_content"-->
-    <!--                    android:layout_marginStart="3dp"-->
+    <!--                    android:layout_marginStart="@dimen/size_3"-->
     <!--                    android:fontFamily="@font/barlow_semi_bold"-->
     <!--                    android:gravity="center"-->
     <!--                    android:includeFontPadding="false"-->
@@ -146,10 +146,10 @@
     <!--                    android:id="@id/imgShowOrHidePassword"-->
     <!--                    android:layout_width="wrap_content"-->
     <!--                    android:layout_height="wrap_content"-->
-    <!--                    android:layout_marginEnd="4dp"-->
+    <!--                    android:layout_marginEnd="@dimen/size_4"-->
     <!--                    android:background="?android:attr/selectableItemBackgroundBorderless"-->
-    <!--                    android:paddingStart="8dp"-->
-    <!--                    android:paddingEnd="8dp"-->
+    <!--                    android:paddingStart="@dimen/size_8"-->
+    <!--                    android:paddingEnd="@dimen/size_8"-->
     <!--                    app:srcCompat="@drawable/ic_eye_on_24px"-->
     <!--                    tools:targetApi="lollipop" />-->
     <!--            </LinearLayout>-->

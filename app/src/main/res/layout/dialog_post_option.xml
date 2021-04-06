@@ -227,8 +227,8 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imgPrivacy"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/size_40"
+            android:layout_height="@dimen/size_40"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_privacy_40px" />
@@ -237,8 +237,8 @@
             android:id="@+id/tv_privacy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="@dimen/size_10"
+            android:layout_marginLeft="@dimen/size_10"
             android:fontFamily="@font/barlow_medium"
             android:text="Chỉnh sửa quyền riêng tư"
             android:textColor="#212121"

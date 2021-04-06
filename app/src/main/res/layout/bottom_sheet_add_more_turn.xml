@@ -16,9 +16,9 @@
             android:id="@+id/imgCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginLeft="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_10"
             android:src="@drawable/ic_cancel_light_blue_24dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -39,7 +39,7 @@
         <View
             android:id="@id/view"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/size_1"
             android:layout_marginTop="8.6dp"
             android:background="#d8d8d8"
             app:layout_constraintTop_toBottomOf="@id/imgCancel" />
@@ -62,11 +62,11 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/btnInforCampaign"
             android:layout_width="200dp"
-            android:layout_height="36dp"
+            android:layout_height="@dimen/size_36"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
-            android:layout_marginBottom="23dp"
+            android:layout_marginBottom="@dimen/size_23"
             android:background="@drawable/bg_corners_4_light_blue_no_solid"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"

@@ -24,8 +24,8 @@
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="@dimen/size_100"
+                android:layout_height="@dimen/size_100"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/size_40"
                 app:cardBackgroundColor="@color/white"
@@ -33,8 +33,8 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@id/imgAvatar"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="@dimen/size_100"
+                    android:layout_height="@dimen/size_100"
                     app:civ_border_color="@color/white"
                     app:civ_border_width="@dimen/size_2" />
             </androidx.cardview.widget.CardView>
@@ -59,7 +59,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@id/layoutInputPhone"
                 style="@style/Account_TextInputLayout.Register"
-                android:layout_marginTop="90dp"
+                android:layout_marginTop="@dimen/size_90"
                 android:background="@android:color/transparent"
                 app:errorEnabled="true"
                 app:hintEnabled="false">

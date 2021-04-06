@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:paddingTop="41dp"
+        android:paddingTop="@dimen/size_41"
         android:paddingBottom="@dimen/size_12">
 
         <androidx.appcompat.widget.AppCompatImageButton

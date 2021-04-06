@@ -9,8 +9,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginEnd="@dimen/size_12"
         android:background="@drawable/bg_corner_top_gray_10"
         android:orientation="vertical">
 
@@ -18,8 +18,8 @@
             android:id="@id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="11dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="@dimen/size_11"
+            android:layout_marginTop="@dimen/size_8"
             android:fontFamily="@font/barlow_semi_bold"
             android:textColor="@color/blue"
             android:textSize="@dimen/font_18"
@@ -32,9 +32,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
+                android:layout_marginTop="@dimen/size_10"
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginEnd="@dimen/size_12"
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -51,7 +51,7 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="@dimen/size_12"
                     android:scaleType="fitCenter"
                     android:adjustViewBounds="true"/>
 
@@ -61,7 +61,7 @@
                 android:id="@+id/tvGradient"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:maxHeight="102dp"
+                android:maxHeight="@dimen/size_102"
                 android:gravity="bottom"
                 android:background="@drawable/bg_gra_bottom_to_top_white"
                 android:layout_gravity="bottom"/>
@@ -75,10 +75,10 @@
         android:layout_height="wrap_content"
         android:textSize="@dimen/font_14"
         android:gravity="center_horizontal"
-        android:paddingTop="4dp"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
-        android:paddingBottom="12dp"
+        android:paddingTop="@dimen/size_4"
+        android:paddingStart="@dimen/size_12"
+        android:paddingEnd="@dimen/size_12"
+        android:paddingBottom="@dimen/size_12"
         android:fontFamily="@font/barlow_semi_bold"
         android:drawableEnd="@drawable/ic_next_blue_18px"
         android:layout_gravity="center"

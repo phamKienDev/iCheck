@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:layout_marginBottom="10dp"
+    android:layout_marginBottom="@dimen/size_10"
     android:orientation="vertical">
 
     <LinearLayout
@@ -16,23 +16,23 @@
             android:id="@+id/tvCountFriend"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_10"
             android:layout_weight="1"
             android:fontFamily="@font/barlow_semi_bold"
             android:textColor="@color/blue"
             android:textSize="@dimen/font_18"
             tools:text="Bạn bè (34)"
-            android:layout_marginLeft="12dp" />
+            android:layout_marginLeft="@dimen/size_12" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_more_friends"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_10"
             android:gravity="end"
-            android:layout_marginEnd="12dp"
+            android:layout_marginEnd="@dimen/size_12"
             android:layout_weight="1"
             android:fontFamily="@font/barlow_semi_bold"
             android:textColor="@color/blue"
@@ -45,5 +45,5 @@
         android:id="@+id/rcv_friends_wall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp"/>
+        android:padding="@dimen/size_8"/>
 </LinearLayout>

@@ -7,19 +7,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
     <TextView
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="12dp"
+        android:layout_marginTop="@dimen/size_10"
+        android:layout_marginStart="@dimen/size_12"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Thông báo khác"
         android:textColor="#3C5A99"
         android:fontFamily="@font/barlow_medium"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="@dimen/size_10"
         android:textSize="@dimen/font_18"
         android:visibility="gone"
         tools:visibility="visible"
         android:id="@+id/title"
-        android:layout_marginLeft="12dp" />
+        android:layout_marginLeft="@dimen/size_12" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/root"

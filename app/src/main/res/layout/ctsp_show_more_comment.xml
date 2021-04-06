@@ -9,8 +9,8 @@
         android:id="@+id/tv_more"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="@dimen/size_48"
+        android:layout_marginTop="@dimen/size_8"
         android:textColor="@color/blue"
         tools:text="Xem thêm 12 trả lời khác" />
 </LinearLayout>

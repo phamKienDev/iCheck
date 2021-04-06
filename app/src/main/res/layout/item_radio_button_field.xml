@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp"
+    android:layout_marginTop="@dimen/size_5"
+    android:layout_marginBottom="@dimen/size_5"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.AppCompatCheckedTextView
@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/font_14"
-        android:drawablePadding="15dp"
+        android:drawablePadding="@dimen/size_15"
         android:checked="false"
         android:gravity="center"
         android:drawableStart="@drawable/state_radio_field_guarantee"

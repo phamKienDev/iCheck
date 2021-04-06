@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/size_12"
-    android:layout_marginTop="8dp"
+    android:layout_marginTop="@dimen/size_8"
     android:layout_marginEnd="@dimen/size_12"
-    android:layout_marginBottom="8dp"
+    android:layout_marginBottom="@dimen/size_8"
     android:background="@drawable/bg_corners_white_4_border_05"
     android:orientation="vertical">
 
@@ -16,15 +16,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_10"
         android:layout_marginLeft="@dimen/size_10"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="@dimen/size_12"
         android:layout_marginEnd="@dimen/size_10"
         android:layout_marginRight="@dimen/size_10"
-        android:layout_marginBottom="12dp">
+        android:layout_marginBottom="@dimen/size_12">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imgAvaProduct"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="@dimen/size_60"
+            android:layout_height="@dimen/size_60"
             app:layout_constraintBottom_toTopOf="@+id/viewLine1"
             app:layout_constraintEnd_toStartOf="@+id/tvNameProduct"
             app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_10"
             android:layout_marginLeft="@dimen/size_10"
-            android:drawablePadding="5dp"
+            android:drawablePadding="@dimen/size_5"
             android:ellipsize="end"
             android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
@@ -70,7 +70,7 @@
             android:id="@+id/layoutBarcode"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="@dimen/size_6"
             app:layout_constraintStart_toStartOf="@id/tvNameProduct"
             app:layout_constraintTop_toBottomOf="@id/tvNameProduct">
 
@@ -79,7 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_history_qrcode_18px"
-                android:drawablePadding="8dp"
+                android:drawablePadding="@dimen/size_8"
                 android:fontFamily="@font/barlow_medium"
                 android:textColor="#828282"
                 android:textSize="@dimen/font_14"

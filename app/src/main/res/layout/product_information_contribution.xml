@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
+    android:layout_marginTop="@dimen/size_10"
     android:background="@color/white">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/appCompatTextView11"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginLeft="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_16"
         android:fontFamily="@font/barlow_semi_bold"
         android:lineSpacingExtra="@dimen/font_6"
         android:text="Đóng góp thông tin doanh nghiệp nếu bạn biết về sản phẩm này nhé!"
@@ -25,9 +25,9 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/btn_contribution"
-        android:layout_width="173dp"
-        android:layout_height="28dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="@dimen/size_173"
+        android:layout_height="@dimen/size_28"
+        android:layout_marginTop="@dimen/size_10"
         android:includeFontPadding="false"
         android:background="@drawable/bg_corners_4_light_blue_solid"
         android:fontFamily="@font/barlow_semi_bold"
@@ -42,9 +42,9 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="17dp"
-        android:layout_marginRight="17dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="@dimen/size_17"
+        android:layout_marginRight="@dimen/size_17"
+        android:layout_marginBottom="@dimen/size_10"
         android:src="@drawable/bg_infor_contribution"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +54,7 @@
         android:id="@+id/btn_cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="8dp"
+        android:padding="@dimen/size_8"
         android:src="@drawable/ic_delete_gray_24px"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

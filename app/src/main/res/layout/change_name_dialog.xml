@@ -11,7 +11,7 @@
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/size_20"
         android:text="Đổi tên nhóm"
         android:textAlignment="center"
         android:textColor="#424242"
@@ -20,11 +20,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginRight="12dp"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginLeft="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_20"
+        android:layout_marginEnd="@dimen/size_12"
+        android:layout_marginRight="@dimen/size_12"
         android:background="@drawable/gray_stroke_corner_18"
         android:orientation="horizontal">
 
@@ -38,14 +38,14 @@
             android:hint="Nhập tên"
             android:inputType="textPersonName"
             android:maxLines="1"
-            android:padding="10dp"
+            android:padding="@dimen/size_10"
             android:textColor="#35384B"
             android:textSize="@dimen/font_14" />
 
         <ImageView
             android:id="@+id/btn_clear"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_width="@dimen/size_36"
+            android:layout_height="@dimen/size_36"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
             android:scaleType="centerInside"
@@ -54,8 +54,8 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="@dimen/size_1"
+        android:layout_marginTop="@dimen/size_20"
         android:background="#E0E0E0" />
 
 
@@ -68,8 +68,8 @@
             android:id="@+id/btn_yes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginTop="@dimen/size_15"
+            android:layout_marginBottom="@dimen/size_15"
             android:layout_weight="1"
             android:textAlignment="center"
             android:text="Huỷ"
@@ -77,7 +77,7 @@
             android:textSize="@dimen/font_16" />
 
         <View
-            android:layout_width="1dp"
+            android:layout_width="@dimen/size_1"
             android:layout_height="match_parent"
             android:background="#E0E0E0" />
 
@@ -88,8 +88,8 @@
             android:layout_weight="1"
             android:textAlignment="center"
             android:text="Đồng ý"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginTop="@dimen/size_15"
+            android:layout_marginBottom="@dimen/size_15"
             android:textColor="@color/blue"
             android:textSize="@dimen/font_16" />
     </LinearLayout>

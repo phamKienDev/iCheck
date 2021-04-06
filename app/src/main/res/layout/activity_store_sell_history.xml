@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_44"
         android:background="@color/white"
-        android:elevation="4dp">
+        android:elevation="@dimen/size_4">
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@id/imgBack"
@@ -44,8 +44,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#f0f0f0"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp" />
+            android:paddingTop="@dimen/size_8"
+            android:paddingBottom="@dimen/size_8" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

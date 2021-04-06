@@ -8,7 +8,7 @@
     android:layout_marginTop="@dimen/size_12"
     android:layout_marginEnd="@dimen/size_6"
     android:layout_marginBottom="@dimen/size_20"
-    app:cardCornerRadius="4dp"
+    app:cardCornerRadius="@dimen/size_4"
     app:cardBackgroundColor="@color/white"
     android:orientation="vertical">
 
@@ -25,8 +25,8 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@id/imgAvatar"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
+                android:layout_width="@dimen/size_64"
+                android:layout_height="@dimen/size_64"
                 tools:src="@drawable/product_images_new_placeholder"
                 android:layout_marginTop="@dimen/size_12"
                 android:layout_marginStart="@dimen/size_10"/>
@@ -76,7 +76,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:srb_isIndicator="true"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="@dimen/size_10"
                 android:layout_marginBottom="@dimen/size_9"
                 app:srb_drawableEmpty="@drawable/ic_star_yellow_32"
                 android:layout_gravity="center_horizontal"

@@ -9,7 +9,7 @@
         android:id="@+id/tvTitleRadiobox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="@dimen/size_24"
         android:fontFamily="sans-serif"
         android:textColor="#434343"
         android:textSize="@dimen/font_14"
@@ -19,7 +19,7 @@
         android:id="@+id/rcvRadioBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/size_8"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginEnd="@dimen/size_12"/>
 

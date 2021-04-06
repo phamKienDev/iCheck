@@ -9,9 +9,9 @@
         android:id="@+id/rcvGiftCampaign"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="6dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
+        android:paddingTop="@dimen/size_6"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginEnd="@dimen/size_12"
         tools:listitem="@layout/item_reward_campaign" />
 
 </LinearLayout>

@@ -2,19 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:id="@+id/root"
-    android:layout_height="50dp">
+    android:layout_height="@dimen/size_50">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="49dp"
+        android:layout_height="@dimen/size_49"
         android:orientation="horizontal" >
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/user_avar"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="@dimen/size_30"
+            android:layout_height="@dimen/size_30"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_8"
             android:layout_weight="0"
             android:src="@drawable/user_placeholder" />
 
@@ -26,29 +26,29 @@
             android:singleLine="true"
             android:ellipsize="end"
             android:textColor="@android:color/black"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="13dp"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_13"
             android:layout_marginEnd="@dimen/size_20"
              />
 
         <TextView
             android:id="@+id/btn_invite_user"
-            android:layout_width="50dp"
+            android:layout_width="@dimen/size_50"
             android:layout_height="@dimen/size_26"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="@dimen/size_12"
             android:layout_weight="0"
             android:background="@drawable/bg_invite_btn"
-            android:paddingTop="2dp"
+            android:paddingTop="@dimen/size_2"
             android:text="Mời"
             android:textAlignment="center"
             android:textColor="#3C5A99"
             android:visibility="gone" />
     </LinearLayout>
     <View
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginEnd="@dimen/size_12"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/size_1"
         android:background="@color/gray"
         />
 </LinearLayout>

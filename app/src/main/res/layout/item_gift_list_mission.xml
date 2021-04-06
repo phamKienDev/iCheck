@@ -11,7 +11,7 @@
     app:cardBackgroundColor="@color/white"
     app:cardShadowColorEnd="@color/app_selector_shadow_end"
     app:cardShadowColorStart="@color/elevation_color_card"
-    app:cardElevation="3dp"
+    app:cardElevation="@dimen/size_3"
     app:cardCornerRadius="@dimen/size_4">
 
     <androidx.constraintlayout.widget.ConstraintLayout

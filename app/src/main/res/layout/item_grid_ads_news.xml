@@ -3,17 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="6dp"
-    android:layout_marginTop="5dp"
-    android:layout_marginEnd="6dp"
-    android:layout_marginBottom="5dp"
+    android:layout_marginStart="@dimen/size_6"
+    android:layout_marginTop="@dimen/size_5"
+    android:layout_marginEnd="@dimen/size_6"
+    android:layout_marginBottom="@dimen/size_5"
     android:background="@drawable/bg_corner_gray_solid_white"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imgVerticalNews"
         android:layout_width="match_parent"
-        android:layout_height="92dp"
+        android:layout_height="@dimen/size_92"
         tools:background="@color/light_blue" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -24,10 +24,10 @@
         android:fontFamily="@font/barlow_semi_bold"
         android:lineSpacingExtra="@dimen/font_6"
         android:maxLines="3"
-        android:paddingStart="6dp"
-        android:paddingTop="8dp"
-        android:paddingEnd="6dp"
-        android:paddingBottom="10dp"
+        android:paddingStart="@dimen/size_6"
+        android:paddingTop="@dimen/size_8"
+        android:paddingEnd="@dimen/size_6"
+        android:paddingBottom="@dimen/size_10"
         android:textColor="#212121"
         android:textSize="@dimen/font_14"
         tools:text="Sự kiện đáng mong đợi nhất năm: Mừng iCheck (tối đa 3 dòng)..." />

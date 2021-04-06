@@ -36,14 +36,14 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="27dp">
+            android:layout_marginStart="@dimen/size_32"
+            android:layout_marginTop="@dimen/size_32"
+            android:layout_marginEnd="@dimen/size_27">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@id/imgLogo"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="@dimen/size_100"
+                android:layout_height="@dimen/size_100"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@mipmap/ic_launcher" />
@@ -62,7 +62,7 @@
                 android:id="@id/tvNameProduct"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="@dimen/size_10"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:textColor="@color/blue"
                 android:textSize="@dimen/font_16"
@@ -75,7 +75,7 @@
                 android:id="@+id/tvCongty"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="@dimen/size_4"
                 android:fontFamily="@font/barlow_medium"
                 android:lineSpacingExtra="@dimen/font_14"
                 android:textColor="@color/fast_survey_gray"
@@ -90,15 +90,15 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="48dp"
-            android:layout_marginEnd="27dp">
+            android:layout_marginStart="@dimen/size_32"
+            android:layout_marginTop="@dimen/size_48"
+            android:layout_marginEnd="@dimen/size_27">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvState"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
+                android:layout_marginBottom="@dimen/size_4"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:textColor="#057dda"
                 android:textSize="@dimen/font_16"
@@ -110,10 +110,10 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvRefuse"
-                android:layout_width="120dp"
+                android:layout_width="@dimen/size_120"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_6"
-                android:layout_marginBottom="4dp"
+                android:layout_marginBottom="@dimen/size_4"
                 android:fontFamily="@font/barlow_medium"
                 android:lineSpacingExtra="@dimen/font_6"
                 android:textColor="#757575"
@@ -141,7 +141,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvTime"
-                android:layout_width="120dp"
+                android:layout_width="@dimen/size_120"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_6"
                 android:fontFamily="@font/barlow_medium"

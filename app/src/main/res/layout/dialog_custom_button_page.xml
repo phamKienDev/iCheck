@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/rounded_dialog"
-    android:paddingBottom="20dp">
+    android:paddingBottom="@dimen/size_20">
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/imgClose"
@@ -20,7 +20,7 @@
         android:id="@+id/tv_filter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="@dimen/size_14"
         android:fontFamily="@font/barlow_semi_bold"
         android:text="Tùy chỉnh nút"
         android:textColor="@color/lightBlue"
@@ -45,8 +45,8 @@
     <View
         android:id="@+id/divider27"
         android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="14dp"
+        android:layout_height="@dimen/size_1"
+        android:layout_marginTop="@dimen/size_14"
         android:background="#D8D8D8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,8 +79,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/size_12"
-            android:layout_marginTop="2dp"
-            android:layout_marginRight="12dp"
+            android:layout_marginTop="@dimen/size_2"
+            android:layout_marginRight="@dimen/size_12"
             android:fontFamily="@font/barlow_medium"
             android:text="Là nút nổi bật màu xanh trên trang Doanh nghiệp của bạn, đây sẽ là hành động chính người dùng thực hiện với trang của bạn"
             android:textColor="@color/fast_survey_gray"
@@ -136,8 +136,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/size_12"
-            android:layout_marginTop="2dp"
-            android:layout_marginRight="12dp"
+            android:layout_marginTop="@dimen/size_2"
+            android:layout_marginRight="@dimen/size_12"
             android:fontFamily="@font/barlow_medium"
             android:text="Là nút thứ cấp trên trang Doanh nghiệp của bạn, đây là hành động phụ người dùng có thể thực hiện với trang của bạn"
             android:textColor="@color/fast_survey_gray"

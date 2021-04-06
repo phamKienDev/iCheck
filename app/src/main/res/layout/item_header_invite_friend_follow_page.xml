@@ -71,7 +71,7 @@
         android:id="@+id/tvFriendCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="@dimen/size_14"
         android:fontFamily="@font/barlow_semi_bold"
         android:textColor="@color/blue"
         android:textSize="@dimen/font_16"

@@ -26,7 +26,7 @@
             <View
                 android:id="@+id/viewBlue"
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
+                android:layout_height="@dimen/size_140"
                 android:background="@drawable/bg_home_detail_card"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -84,10 +84,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/size_12"
-                android:layout_marginTop="108dp"
+                android:layout_marginTop="@dimen/size_108"
                 android:layout_marginRight="@dimen/size_12"
                 app:cardCornerRadius="@dimen/size_10"
-                app:cardElevation="4dp"
+                app:cardElevation="@dimen/size_4"
                 app:cardPreventCornerOverlap="false"
                 app:cardShadowColorEnd="@color/app_selector_shadow_end"
                 app:cardShadowColorStart="@color/elevation_color_card"
@@ -202,7 +202,7 @@
                     android:layout_marginLeft="@dimen/size_16"
                     android:layout_marginRight="@dimen/size_16"
                     app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="4dp"
+                    app:cardCornerRadius="@dimen/size_4"
                     app:cardShadowColorEnd="#0D000000">
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -228,7 +228,7 @@
                     android:layout_marginLeft="@dimen/size_16"
                     android:layout_marginRight="@dimen/size_16"
                     app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="4dp"
+                    app:cardCornerRadius="@dimen/size_4"
                     app:cardShadowColorEnd="#0D000000">
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -254,7 +254,7 @@
                     android:layout_marginTop="@dimen/size_10"
                     android:layout_marginRight="@dimen/size_16"
                     app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="4dp"
+                    app:cardCornerRadius="@dimen/size_4"
                     app:cardShadowColorEnd="#0D000000">
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -280,7 +280,7 @@
                     android:layout_marginTop="@dimen/size_10"
                     android:layout_marginRight="@dimen/size_16"
                     app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="4dp"
+                    app:cardCornerRadius="@dimen/size_4"
                     app:cardShadowColorEnd="#0D000000">
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -307,7 +307,7 @@
                     android:layout_marginRight="@dimen/size_16"
                     android:layout_marginBottom="@dimen/size_10"
                     app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="4dp"
+                    app:cardCornerRadius="@dimen/size_4"
                     app:cardShadowColorEnd="#0D000000">
 
                     <androidx.appcompat.widget.AppCompatTextView

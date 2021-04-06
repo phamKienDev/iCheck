@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/img_menu"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/size_50"
+        android:layout_height="@dimen/size_50"
         android:scaleType="centerInside"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -30,8 +30,8 @@
 
     <ImageView
         android:id="@+id/img_add"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/size_50"
+        android:layout_height="@dimen/size_50"
         android:scaleType="centerInside"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,8 +41,8 @@
     <View
         android:id="@+id/div"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="40dp"
+        android:layout_height="@dimen/size_1"
+        android:layout_marginTop="@dimen/size_40"
         android:background="#b4b4b4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,8 +76,8 @@
 
     <View
         android:id="@+id/div_selector"
-        android:layout_width="80dp"
-        android:layout_height="3dp"
+        android:layout_width="@dimen/size_80"
+        android:layout_height="@dimen/size_3"
         android:background="@drawable/div_selector_bg"
         app:layout_constraintBottom_toTopOf="@+id/div"
         app:layout_constraintEnd_toEndOf="@+id/tv_message"

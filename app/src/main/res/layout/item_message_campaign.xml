@@ -49,7 +49,7 @@
         android:layout_marginEnd="@dimen/size_38"
         android:fontFamily="@font/barlow_medium"
         android:gravity="center_horizontal"
-        android:lineSpacingExtra="6dp"
+        android:lineSpacingExtra="@dimen/size_6"
         android:textColor="@color/fast_survey_gray"
         android:textSize="@dimen/font_14"
         tools:text="Thường xuyên theo dõi các sự kiện hấp dẫn trên iCheck để tham gia và nhận quà nhé!"/>

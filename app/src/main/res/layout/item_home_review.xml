@@ -61,7 +61,7 @@
             android:layout_height="@dimen/size_46"
             app:civ_border_color="#D9D9D9"
             app:civ_border_overlay="true"
-            app:civ_border_width="2dp"
+            app:civ_border_width="@dimen/size_2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -109,7 +109,7 @@
         android:id="@id/txtContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
+        android:layout_marginStart="@dimen/size_60"
         android:layout_marginTop="@dimen/size_5"
         android:maxLines="3"
         tools:text="Content" />
@@ -118,7 +118,7 @@
         android:id="@id/layoutImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
+        android:layout_marginStart="@dimen/size_60"
         android:layout_marginTop="@dimen/size_10"
         android:visibility="gone">
 
@@ -179,6 +179,6 @@
     <!--        android:id="@id/recyclerView"-->
     <!--        android:layout_width="match_parent"-->
     <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginStart="60dp"-->
+    <!--        android:layout_marginStart="@dimen/size_60"-->
     <!--        android:layout_marginTop="@dimen/size_10" />-->
 </LinearLayout>

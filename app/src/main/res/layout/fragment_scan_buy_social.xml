@@ -132,7 +132,7 @@
                 android:id="@+id/imgGift"
                 android:layout_width="@dimen/size_0"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="52dp"
+                android:layout_marginTop="@dimen/size_52"
                 app:layout_constraintDimensionRatio="W, 321:248"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -154,7 +154,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout5"
         android:layout_width="match_parent"
-        android:layout_height="72dp"
+        android:layout_height="@dimen/size_72"
         android:background="@color/lightBlue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layoutContainer">

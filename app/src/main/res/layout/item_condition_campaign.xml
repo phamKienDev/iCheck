@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
-    android:layout_marginBottom="8dp"
+    android:layout_marginTop="@dimen/size_8"
+    android:layout_marginBottom="@dimen/size_8"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -15,7 +15,7 @@
         android:textSize="@dimen/font_14"
         android:textColor="#212121"
         android:drawableStart="@drawable/ic_list_blue_12px"
-        android:drawablePadding="2dp"
+        android:drawablePadding="@dimen/size_2"
         tools:text="Scan 10 sản phẩm (tên nhiệm vụ" />
 
 </LinearLayout>

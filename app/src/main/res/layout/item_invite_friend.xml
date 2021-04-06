@@ -6,22 +6,22 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/size_50"
         android:orientation="horizontal">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/img_user"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="14dp"
-            android:layout_marginTop="14dp"
+            android:layout_width="@dimen/size_24"
+            android:layout_height="@dimen/size_24"
+            android:layout_marginStart="@dimen/size_14"
+            android:layout_marginTop="@dimen/size_14"
             android:src="@drawable/ic_user_man_blue_24px" />
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="14dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginStart="@dimen/size_14"
+            android:layout_marginTop="@dimen/size_4"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -43,12 +43,12 @@
 
         <TextView
             android:id="@+id/btn_invite_user"
-            android:layout_width="50dp"
+            android:layout_width="@dimen/size_50"
             android:layout_height="@dimen/size_26"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="@dimen/size_12"
             android:background="@drawable/bg_invite_btn"
-            android:paddingTop="2dp"
-            android:layout_marginEnd="14dp"
+            android:paddingTop="@dimen/size_2"
+            android:layout_marginEnd="@dimen/size_14"
             android:text="Mời"
             android:textAlignment="center"
             android:textColor="#3C5A99" />
@@ -56,6 +56,6 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/size_1"
         android:background="@color/gray" />
 </LinearLayout>

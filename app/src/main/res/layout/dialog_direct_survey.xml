@@ -106,7 +106,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:background="@drawable/btn_dark_gray_2_corners_18"
-                        android:minWidth="100dp"
+                        android:minWidth="@dimen/size_100"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
                         tools:text="Câu 1" />
@@ -121,7 +121,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:background="@drawable/btn_blue_corners_26"
-                        android:minWidth="100dp"
+                        android:minWidth="@dimen/size_100"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
                         tools:text="Tiếp theo" />

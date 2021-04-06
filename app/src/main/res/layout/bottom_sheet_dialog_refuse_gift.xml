@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="?android:attr/selectableItemBackground"
-            android:padding="10dp"
+            android:padding="@dimen/size_10"
             android:src="@drawable/ic_cancel_light_blue_24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -39,44 +39,44 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/size_1"
         android:background="#d8d8d8" />
 
     <LinearLayout
         android:id="@+id/layoutCheckbox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="@dimen/size_20"
+        android:layout_marginBottom="@dimen/size_10"
         android:orientation="vertical"/>
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@id/edtContent"
         android:layout_width="match_parent"
-        android:layout_height="76dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
+        android:layout_height="@dimen/size_76"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginEnd="@dimen/size_12"
         android:textSize="@dimen/font_14"
         android:background="@drawable/rectangle_corner_stroke_gray_4"
         android:fontFamily="@font/barlow_medium"
         android:gravity="top|start"
         android:hint="Mô tả nội dung khác"
-        android:paddingStart="10dp"
-        android:paddingTop="6dp"
-        android:paddingBottom="6dp"
-        android:paddingEnd="10dp"
+        android:paddingStart="@dimen/size_10"
+        android:paddingTop="@dimen/size_6"
+        android:paddingBottom="@dimen/size_6"
+        android:paddingEnd="@dimen/size_10"
         android:visibility="gone" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/btnSendRefuse"
         android:layout_width="match_parent"
-        android:layout_height="36dp"
+        android:layout_height="@dimen/size_36"
         android:textSize="@dimen/font_16"
         android:textColor="@color/white"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginEnd="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_16"
+        android:layout_marginBottom="@dimen/size_12"
         android:gravity="center"
         android:fontFamily="@font/barlow_semi_bold"
         android:background="@drawable/bg_corners_4_light_blue_solid"

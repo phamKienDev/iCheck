@@ -25,9 +25,9 @@
     <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="63dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="62dp"
+        android:layout_marginStart="@dimen/size_63"
+        android:layout_marginTop="@dimen/size_6"
+        android:layout_marginEnd="@dimen/size_62"
         android:gravity="center"
         android:lineSpacingExtra="@dimen/font_6"
         android:text="Đội ngũ iCheck sẽ kiểm tra và giải quyết báo cáo của bạn sớm."
@@ -37,17 +37,17 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="9.5dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginEnd="@dimen/size_12"
         android:background="#d8d8d8" />
 
     <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_16"
+        android:layout_marginEnd="@dimen/size_12"
         android:lineSpacingExtra="@dimen/font_6"
         android:text="Nội dung tố cáo:"
         android:textColor="#757575"
@@ -57,18 +57,18 @@
         android:id="@id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"/>
+        android:layout_marginEnd="@dimen/size_8"
+        android:layout_marginStart="@dimen/size_8"/>
 
     <vn.icheck.android.component.view.ButtonLightBlueCorners4
         android:id="@id/btnCancel"
         android:layout_width="match_parent"
-        android:layout_height="36dp"
+        android:layout_height="@dimen/size_36"
         android:layout_gravity="center"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_20"
+        android:layout_marginEnd="@dimen/size_12"
+        android:layout_marginBottom="@dimen/size_20"
         android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center"
         android:text="Xong"

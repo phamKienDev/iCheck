@@ -47,7 +47,7 @@
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/imgCart"
             android:layout_width="@dimen/size_44"
-            android:layout_height="44dp"
+            android:layout_height="@dimen/size_44"
             android:background="@color/transparent"
             android:src="@drawable/ic_cart_blue_no_bg_24"
             app:layout_constraintBottom_toBottomOf="@id/edtSearch"

@@ -10,9 +10,9 @@
         android:id="@id/tvCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="11dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginStart="@dimen/size_11"
+        android:layout_marginTop="@dimen/size_16"
+        android:layout_marginBottom="@dimen/size_10"
         android:textColor="#3c5a99"
         android:textSize="@dimen/font_18"
         tools:text="14 Điểm bán gần đây" />
@@ -25,19 +25,19 @@
             android:id="@+id/vg_shop_top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="@dimen/size_12"
+            android:layout_marginBottom="@dimen/size_10"
             android:background="@color/white">
 
             <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
                 android:id="@+id/tv_shop_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="64dp"
-                android:layout_marginLeft="64dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="14dp"
-                android:layout_marginRight="14dp"
+                android:layout_marginStart="@dimen/size_64"
+                android:layout_marginLeft="@dimen/size_64"
+                android:layout_marginTop="@dimen/size_5"
+                android:layout_marginEnd="@dimen/size_14"
+                android:layout_marginRight="@dimen/size_14"
                 android:textColor="#3c5a99"
                 android:textSize="@dimen/font_16"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +49,7 @@
                 android:id="@+id/tv_distance"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="@dimen/size_6"
                 android:textColor="#757575"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintEnd_toEndOf="@+id/tv_shop_name"
@@ -61,9 +61,9 @@
                 android:id="@id/view"
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="@dimen/size_8"
                 android:layout_marginTop="9.5dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="@dimen/size_8"
                 android:background="#d8d8d8"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -128,9 +128,9 @@
                 <LinearLayout
                     android:id="@+id/layoutLocation"
                     android:layout_width="match_parent"
-                    android:layout_height="32dp"
+                    android:layout_height="@dimen/size_32"
                     android:layout_gravity="center|end"
-                    android:layout_marginStart="55dp"
+                    android:layout_marginStart="@dimen/size_55"
                     android:background="@drawable/bg_corners_4_light_blue_no_solid"
                     android:gravity="center"
                     android:visibility="gone">
@@ -139,7 +139,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:drawableStart="@drawable/ic_location_item_shop_variant"
-                        android:drawablePadding="8dp"
+                        android:drawablePadding="@dimen/size_8"
                         android:gravity="center_vertical"
                         android:fontFamily="@font/barlow_semi_bold"
                         android:text="Chỉ đường"
@@ -151,10 +151,10 @@
                 <LinearLayout
                     android:id="@+id/layoutLocation2"
                     android:layout_width="wrap_content"
-                    android:layout_height="32dp"
+                    android:layout_height="@dimen/size_32"
                     android:layout_gravity="center"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="@dimen/size_25"
+                    android:layout_marginEnd="@dimen/size_10"
                     android:visibility="gone">
 
                     <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
@@ -163,17 +163,17 @@
                         android:background="@drawable/bg_corners_4_light_blue_no_solid"
                         android:drawableStart="@drawable/ic_location_item_shop_variant"
                         android:gravity="center"
-                        android:paddingStart="11dp"
-                        android:paddingEnd="11dp" />
+                        android:paddingStart="@dimen/size_11"
+                        android:paddingEnd="@dimen/size_11" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/layoutAddToCart"
                     android:layout_width="match_parent"
-                    android:layout_height="32dp"
+                    android:layout_height="@dimen/size_32"
                     android:layout_gravity="center|end"
-                    android:layout_marginStart="38dp"
+                    android:layout_marginStart="@dimen/size_38"
                     android:background="@drawable/bg_corners_4_light_blue_solid"
                     android:gravity="center"
                     android:visibility="gone">
@@ -183,7 +183,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:drawableStart="@drawable/ic_add_to_cart_item_shop_variant"
-                        android:drawablePadding="16dp"
+                        android:drawablePadding="@dimen/size_16"
                         android:gravity="center_vertical"
                         android:singleLine="true"
                         android:text="Thêm vào giỏ hàng"
@@ -198,9 +198,9 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginLeft="@dimen/size_8"
+            android:layout_marginTop="@dimen/size_4"
             android:background="@drawable/bg_rating_shop_variant"
             android:gravity="center"
             android:orientation="horizontal">
@@ -209,7 +209,7 @@
                 android:id="@+id/tv_score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="@dimen/size_5"
                 android:textColor="#ffffff"
                 android:textSize="@dimen/font_16"
                 android:textStyle="bold"
@@ -218,7 +218,7 @@
             <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="@dimen/size_6"
                 android:text="/5"
                 android:textColor="#ffffff"
                 android:textSize="@dimen/font_12" />

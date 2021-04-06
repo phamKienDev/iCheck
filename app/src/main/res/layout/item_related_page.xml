@@ -82,7 +82,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvAction"
-            android:layout_width="80dp"
+            android:layout_width="@dimen/size_80"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/size_8"
             android:layout_marginRight="@dimen/size_8"

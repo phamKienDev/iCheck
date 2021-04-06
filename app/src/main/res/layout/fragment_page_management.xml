@@ -9,7 +9,7 @@
     <TextView
         android:id="@+id/textView56"
         android:layout_width="0dp"
-        android:layout_height="44dp"
+        android:layout_height="@dimen/size_44"
         android:background="@android:color/white"
         android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center"

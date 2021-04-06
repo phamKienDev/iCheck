@@ -10,7 +10,7 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imgNews"
-        android:layout_width="105dp"
+        android:layout_width="@dimen/size_105"
         android:layout_height="@dimen/size_70"
         android:layout_marginTop="@dimen/size_10"
         android:layout_marginEnd="@dimen/size_12"

@@ -16,11 +16,11 @@
             android:id="@+id/imgCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="12dp"
-            android:paddingLeft="12dp"
-            android:paddingEnd="12dp"
-            android:paddingRight="12dp"
-            android:paddingTop="10dp"
+            android:paddingStart="@dimen/size_12"
+            android:paddingLeft="@dimen/size_12"
+            android:paddingEnd="@dimen/size_12"
+            android:paddingRight="@dimen/size_12"
+            android:paddingTop="@dimen/size_10"
             android:src="@drawable/ic_cancel_light_blue_24dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -28,7 +28,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTitleCampaign"
             android:layout_width="match_parent"
-            android:paddingTop="5dp"
+            android:paddingTop="@dimen/size_5"
             android:layout_height="wrap_content"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
@@ -36,8 +36,8 @@
             android:textColor="#212121"
             android:maxLines="1"
             android:ellipsize="end"
-            android:paddingStart="44dp"
-            android:paddingEnd="44dp"
+            android:paddingStart="@dimen/size_44"
+            android:paddingEnd="@dimen/size_44"
             android:textSize="@dimen/font_16"
             app:layout_constraintBottom_toBottomOf="@id/imgCancel"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,9 +48,9 @@
             android:id="@id/view"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="12dp"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_10"
+            android:layout_marginEnd="@dimen/size_12"
             android:background="#d8d8d8"
             app:layout_constraintTop_toBottomOf="@id/imgCancel" />
 
@@ -60,22 +60,22 @@
         android:id="@+id/layoutHistoryShake"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_10"
+        android:layout_marginEnd="@dimen/size_12"
         android:gravity="center"
         android:orientation="horizontal">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/size_40"
+            android:layout_height="@dimen/size_40"
             android:src="@drawable/ic_box_shake_40"
             app:civ_circle_background_color="#f0f0f0" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="@dimen/size_10"
             android:fontFamily="@font/barlow_medium"
             android:text="Lịch sử mở quà"
             android:textColor="#212121"
@@ -87,22 +87,22 @@
         android:id="@+id/layoutHistoryReward"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_16"
+        android:layout_marginEnd="@dimen/size_12"
         android:gravity="center"
         android:orientation="horizontal">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/size_40"
+            android:layout_height="@dimen/size_40"
             android:src="@drawable/ic_history_reward_gift"
             app:civ_circle_background_color="#f0f0f0" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="@dimen/size_10"
             android:fontFamily="@font/barlow_medium"
             android:text="Quà tặng đang chờ bạn"
             android:textColor="#212121"
@@ -114,22 +114,22 @@
         android:id="@+id/layoutTutorialShake"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_16"
+        android:layout_marginEnd="@dimen/size_12"
         android:gravity="center"
         android:orientation="horizontal">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/size_40"
+            android:layout_height="@dimen/size_40"
             android:src="@drawable/ic_rank_winner"
             app:civ_circle_background_color="#f0f0f0" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="@dimen/size_10"
             android:fontFamily="@font/barlow_medium"
             android:text="Xếp hạng người chơi"
             android:textColor="#212121"
@@ -141,23 +141,23 @@
         android:id="@+id/layoutInformationShake"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="18dp"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_16"
+        android:layout_marginEnd="@dimen/size_12"
+        android:layout_marginBottom="@dimen/size_18"
         android:gravity="center"
         android:orientation="horizontal">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/size_40"
+            android:layout_height="@dimen/size_40"
             android:src="@drawable/ic_information_event_shake"
             app:civ_circle_background_color="#f0f0f0" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="@dimen/size_10"
             android:fontFamily="@font/barlow_medium"
             android:text="Thông tin sự kiện"
             android:textColor="#212121"

@@ -8,13 +8,13 @@
 
     <TextView
         android:id="@+id/tv_score"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="@dimen/size_50"
+        android:layout_height="@dimen/size_50"
+        android:layout_marginStart="@dimen/size_32"
+        android:layout_marginTop="@dimen/size_10"
         android:background="@drawable/ic_rating_star_holder"
         android:gravity="center"
-        android:padding="12dp"
+        android:padding="@dimen/size_12"
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:textSize="@dimen/font_16"
@@ -26,7 +26,7 @@
         android:id="@+id/tv_quality"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="@dimen/size_12"
         android:textColor="#3C5A99"
         android:textSize="@dimen/font_16"
         android:fontFamily="sans-serif-medium"
@@ -39,7 +39,7 @@
         android:id="@+id/tv_total_reviews"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="@dimen/size_4"
         android:textColor="#828282"
         app:layout_constraintEnd_toStartOf="@+id/btn_clear"
         app:layout_constraintStart_toStartOf="@+id/tv_quality"
@@ -48,10 +48,10 @@
 
     <ImageButton
         android:id="@+id/btn_clear"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="12dp"
+        android:layout_width="@dimen/size_25"
+        android:layout_height="@dimen/size_25"
+        android:layout_marginTop="@dimen/size_12"
+        android:layout_marginEnd="@dimen/size_12"
         android:adjustViewBounds="true"
         android:background="@null"
         android:scaleType="centerCrop"
@@ -62,10 +62,10 @@
     <View
         android:id="@+id/divider"
         android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="12dp"
+        android:layout_height="@dimen/size_1"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_8"
+        android:layout_marginEnd="@dimen/size_12"
         android:background="#00BAF2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,16 +78,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:paddingBottom="12dp"
+        android:paddingBottom="@dimen/size_12"
         app:layout_constraintTop_toBottomOf="@+id/divider">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/bottom_rcv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="1dp" />
+            android:layout_marginStart="@dimen/size_32"
+            android:layout_marginTop="@dimen/size_12"
+            android:layout_marginEnd="@dimen/size_32"
+            android:layout_marginBottom="@dimen/size_1" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

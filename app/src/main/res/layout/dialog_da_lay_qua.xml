@@ -13,7 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="12dp">
+        android:layout_margin="@dimen/size_12">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,15 +28,15 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/size_20"
                 android:src="@drawable/ic_speaker_124px" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="25dp"
-                android:layout_marginEnd="25dp"
+                android:layout_marginTop="@dimen/size_16"
+                android:layout_marginStart="@dimen/size_25"
+                android:layout_marginEnd="@dimen/size_25"
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center"
                 android:text="Bạn cần đến địa điểm nhận quà để nhân viên kiểm tra trạng thái trực tiếp trước khi trao quà."
@@ -48,9 +48,9 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="9dp"
-                android:layout_marginStart="25dp"
-                android:layout_marginEnd="25dp"
+                android:layout_marginTop="@dimen/size_9"
+                android:layout_marginStart="@dimen/size_25"
+                android:layout_marginEnd="@dimen/size_25"
                 android:fontFamily="sans-serif"
                 android:gravity="center"
                 android:text=" Việc bạn tự chuyển trạng thái quà sẽ khiến phần quà này không còn hiệu lực!"
@@ -63,12 +63,12 @@
                 android:id="@+id/btnComfirmDaLay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="21dp"
-                android:layout_marginStart="28dp"
-                android:layout_marginEnd="28dp"
-                android:layout_marginBottom="12dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
+                android:layout_marginTop="@dimen/size_21"
+                android:layout_marginStart="@dimen/size_28"
+                android:layout_marginEnd="@dimen/size_28"
+                android:layout_marginBottom="@dimen/size_12"
+                android:paddingTop="@dimen/size_8"
+                android:paddingBottom="@dimen/size_8"
                 android:gravity="center"
                 android:background="@drawable/bg_corner_brown_40"
                 android:textSize="@dimen/font_16"

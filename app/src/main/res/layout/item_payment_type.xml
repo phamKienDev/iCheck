@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
-    android:layout_marginBottom="8dp"
-    android:layout_marginStart="12dp"
-    android:layout_marginEnd="12dp"
+    android:layout_marginTop="@dimen/size_8"
+    android:layout_marginBottom="@dimen/size_8"
+    android:layout_marginStart="@dimen/size_12"
+    android:layout_marginEnd="@dimen/size_12"
     android:background="?android:attr/selectableItemBackground"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -21,10 +21,10 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@id/imgType"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="@dimen/size_40"
+        android:layout_height="@dimen/size_40"
         android:src="@mipmap/ic_launcher"
-        android:layout_marginStart="13dp"
+        android:layout_marginStart="@dimen/size_13"
         app:layout_constraintStart_toEndOf="@id/radioButton1"
         app:layout_constraintTop_toTopOf="@id/radioButton1"
         app:layout_constraintBottom_toBottomOf="@id/radioButton1"/>
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center|start"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="@dimen/size_8"
         app:layout_constraintStart_toEndOf="@id/imgType"
         app:layout_constraintTop_toTopOf="@id/imgType"
         app:layout_constraintEnd_toEndOf="parent"

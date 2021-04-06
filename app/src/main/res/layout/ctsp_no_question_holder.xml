@@ -7,13 +7,13 @@
     android:layout_marginStart="@dimen/size_12"
     android:layout_marginEnd="@dimen/size_12"
     android:background="@drawable/bg_gray_corner_10"
-    android:elevation="2dp"
+    android:elevation="@dimen/size_2"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="12dp"
+        android:padding="@dimen/size_12"
         android:text="Hỏi đáp về sản phẩm (0)"
         android:textAlignment="center"
         android:textColor="#3C5A99"
@@ -21,15 +21,15 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_height="@dimen/size_1"
+        android:layout_marginStart="@dimen/size_8"
+        android:layout_marginEnd="@dimen/size_8"
         android:background="@color/gray" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="12dp"
+        android:padding="@dimen/size_12"
         android:text="Hiện chưa có câu hỏi cho sản phẩm này"
         android:textAlignment="center"
         android:textColor="#4F4F4F" />
@@ -38,6 +38,6 @@
         android:id="@+id/btn_ask_question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="12dp"
+        android:layout_margin="@dimen/size_12"
         app:srcCompat="@drawable/ask_question" />
 </LinearLayout>

@@ -11,7 +11,7 @@
         android:id="@id/imgError"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="93dp"
+        android:layout_marginTop="@dimen/size_93"
         tools:srcCompat="@drawable/ic_emty_qrcode_history"/>
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/font_14"
-        android:layout_margin="12dp"
+        android:layout_margin="@dimen/size_12"
         android:gravity="center"
         android:textAlignment="center"
         android:fontFamily="@font/barlow_medium"

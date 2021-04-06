@@ -12,7 +12,7 @@
         android:layout_width="@dimen/size_56"
         android:layout_height="@dimen/size_56"
         android:layout_marginTop="@dimen/size_12"
-        app:avatarSize="56dp"
+        app:avatarSize="@dimen/size_56"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/tvIcoin"
         app:rankSize="@dimen/size_24"

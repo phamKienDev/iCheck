@@ -120,7 +120,7 @@
             android:gravity="center"
             android:includeFontPadding="false"
             android:lineSpacingExtra="@dimen/font_6"
-            android:minWidth="80dp"
+            android:minWidth="@dimen/size_80"
             android:paddingStart="@dimen/size_8"
             android:paddingEnd="@dimen/size_8"
             android:textColor="@color/text_color_light_blue"

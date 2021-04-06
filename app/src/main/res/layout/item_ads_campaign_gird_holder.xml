@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="4dp"
-    android:layout_marginEnd="4dp"
-    android:layout_marginTop="6dp"
-    android:layout_marginBottom="6dp"
+    android:layout_marginStart="@dimen/size_4"
+    android:layout_marginEnd="@dimen/size_4"
+    android:layout_marginTop="@dimen/size_6"
+    android:layout_marginBottom="@dimen/size_6"
     android:background="@drawable/bg_corner_gray_solid_white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,7 +18,7 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imgCampaign"
             android:layout_width="match_parent"
-            android:layout_height="92dp"
+            android:layout_height="@dimen/size_92"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"

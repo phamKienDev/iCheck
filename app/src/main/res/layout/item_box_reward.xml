@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="9dp"
-    android:layout_marginEnd="9dp"
-    android:layout_marginBottom="8dp">
+    android:layout_marginStart="@dimen/size_9"
+    android:layout_marginEnd="@dimen/size_9"
+    android:layout_marginBottom="@dimen/size_8">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/viewLeft"
@@ -19,7 +19,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="13dp"
+        android:layout_margin="@dimen/size_13"
         android:background="@drawable/bg_white_corners_4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/viewCenter"
@@ -38,9 +38,9 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imgGiftFromVendor"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginTop="9dp"/>
+                android:layout_width="@dimen/size_32"
+                android:layout_height="@dimen/size_32"
+                android:layout_marginTop="@dimen/size_9"/>
 
         </LinearLayout>
 
@@ -62,9 +62,9 @@
             android:id="@+id/tvTitleGift"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="45dp"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginTop="@dimen/size_10"
+            android:layout_marginEnd="@dimen/size_45"
             android:ellipsize="end"
             android:fontFamily="sans-serif"
             android:maxLines="1"
@@ -82,9 +82,9 @@
             android:id="@+id/tvCampaignName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="@dimen/size_5"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginEnd="@dimen/size_8"
             android:ellipsize="end"
             android:fontFamily="sans-serif"
             android:maxLines="1"
@@ -102,9 +102,9 @@
             android:id="@+id/tvVendor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="@dimen/size_5"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginEnd="@dimen/size_8"
             android:fontFamily="sans-serif"
             android:textColor="@color/blue"
             android:textSize="@dimen/font_12"
@@ -123,7 +123,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_clock_gray_12"
-            android:drawablePadding="5dp"
+            android:drawablePadding="@dimen/size_5"
             android:fontFamily="sans-serif"
             android:textColor="#828282"
             android:textSize="@dimen/font_12"
@@ -139,12 +139,12 @@
             android:layout_height="wrap_content"
             android:background="@drawable/bg_orange_corners_26"
             android:fontFamily="sans-serif-medium"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="13dp"
-            android:paddingStart="18dp"
-            android:paddingTop="2dp"
-            android:paddingEnd="18dp"
-            android:paddingBottom="2dp"
+            android:layout_marginTop="@dimen/size_5"
+            android:layout_marginBottom="@dimen/size_13"
+            android:paddingStart="@dimen/size_18"
+            android:paddingTop="@dimen/size_2"
+            android:paddingEnd="@dimen/size_18"
+            android:paddingBottom="@dimen/size_2"
             android:textColor="#ffffff"
             android:textSize="@dimen/font_14"
             android:textStyle="normal"
@@ -158,8 +158,8 @@
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="4dp"
+        android:layout_marginTop="@dimen/size_2"
+        android:layout_marginEnd="@dimen/size_4"
         app:layout_constraintEnd_toEndOf="@+id/viewRight"
         app:layout_constraintTop_toTopOf="@+id/viewRight">
 
@@ -170,9 +170,9 @@
             android:background="@drawable/bg_gift_count"
             android:fontFamily="sans-serif-medium"
             android:maxLength="4"
-            android:paddingStart="3dp"
+            android:paddingStart="@dimen/size_3"
             android:gravity="center"
-            android:paddingBottom="5dp"
+            android:paddingBottom="@dimen/size_5"
             android:textColor="#ffffff"
             android:textSize="@dimen/font_12"
             android:textStyle="normal"

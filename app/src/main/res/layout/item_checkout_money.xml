@@ -120,7 +120,7 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="@dimen/size_8"
         android:layout_marginTop="@dimen/size_14"
         android:layout_marginBottom="@dimen/size_14"
         android:fontFamily="sans-serif-medium"

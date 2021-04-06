@@ -10,8 +10,8 @@
         android:layout_height="wrap_content"
         android:background="#F5F5F5"
         android:drawableStart="@drawable/ic_invite_friend"
-        android:drawablePadding="9dp"
-        android:padding="9dp"
+        android:drawablePadding="@dimen/size_9"
+        android:padding="@dimen/size_9"
         android:text="Mời bạn bè"
         android:textAlignment="textStart"
         android:textAllCaps="false"
@@ -19,7 +19,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="@dimen/size_2"
         android:background="@android:color/white" />
 
     <Button
@@ -28,15 +28,15 @@
         android:layout_height="wrap_content"
         android:background="#F5F5F5"
         android:drawableStart="@drawable/ic_sync_contacts"
-        android:drawablePadding="9dp"
-        android:padding="9dp"
+        android:drawablePadding="@dimen/size_9"
+        android:padding="@dimen/size_9"
         android:text="@string/dong_bo_danh_ba"
         android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textColor="#3C5A99" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/size_8"
         android:id="@+id/rcv_contacts"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

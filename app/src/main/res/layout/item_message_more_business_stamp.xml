@@ -23,7 +23,7 @@
         android:id="@id/txtMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="@dimen/size_25"
         android:fontFamily="sans-serif"
         android:gravity="center_horizontal"
         android:includeFontPadding="false"

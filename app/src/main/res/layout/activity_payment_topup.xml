@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_44"
         android:background="@color/white"
-        android:elevation="4dp">
+        android:elevation="@dimen/size_4">
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@id/imgBack"
@@ -46,8 +46,8 @@
             android:id="@id/tv1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_12"
             android:fontFamily="@font/barlow_semi_bold"
             android:text="Hình thức thanh toán"
             android:textColor="#3c5a99"
@@ -59,23 +59,23 @@
             android:id="@+id/recyclerPaymentType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="4dp"
-            android:paddingBottom="2dp" />
+            android:paddingTop="@dimen/size_4"
+            android:paddingBottom="@dimen/size_2" />
 
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/size_10"
         android:background="@color/white">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/appCompatTextView26"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_10"
             android:fontFamily="@font/barlow_semi_bold"
             android:text="Chi tiết giao dịch"
             android:textColor="#3c5a99"
@@ -87,8 +87,8 @@
             android:id="@id/recyclerView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="12dp"
-            android:paddingTop="5dp"
+            android:layout_marginEnd="@dimen/size_12"
+            android:paddingTop="@dimen/size_5"
             app:layout_constraintTop_toBottomOf="@id/appCompatTextView26"
             app:layout_constraintStart_toStartOf="@id/appCompatTextView26"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -96,8 +96,8 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@id/view"
             android:layout_width="0dp"
-            android:layout_height="3dp"
-            android:layout_marginTop="4dp"
+            android:layout_height="@dimen/size_3"
+            android:layout_marginTop="@dimen/size_4"
             android:layerType="software"
             android:src="@drawable/line_dotted"
             app:layout_constraintEnd_toEndOf="@+id/recyclerView"
@@ -107,8 +107,8 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="13dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="@dimen/size_13"
+            android:layout_marginBottom="@dimen/size_10"
             android:fontFamily="@font/barlow_medium"
             android:text="Thành tiền:"
             android:textColor="#057dda"
@@ -122,8 +122,8 @@
             android:id="@+id/tvTotalMoney"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="13dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="@dimen/size_13"
+            android:layout_marginBottom="@dimen/size_10"
             android:fontFamily="@font/barlow_medium"
             android:textColor="#057dda"
             android:textSize="@dimen/font_16"
@@ -138,8 +138,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginEnd="@dimen/size_12"
         android:gravity="bottom"
         android:layout_height="match_parent">
 
@@ -156,9 +156,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:layout_marginBottom="20dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="9dp"
+            android:layout_marginBottom="@dimen/size_20"
+            android:paddingTop="@dimen/size_8"
+            android:paddingBottom="@dimen/size_9"
             android:background="@drawable/bg_corners_4_light_blue_solid"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"

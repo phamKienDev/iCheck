@@ -9,7 +9,7 @@
     android:layout_marginStart="@dimen/size_16"
     android:layout_marginTop="@dimen/size_16"
     android:layout_marginEnd="@dimen/size_16"
-    android:layout_marginBottom="28dp"
+    android:layout_marginBottom="@dimen/size_28"
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="@dimen/size_12">
 
@@ -55,7 +55,7 @@
                     android:id="@id/tvMoney"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/size_0"
-                    android:layout_marginTop="70dp"
+                    android:layout_marginTop="@dimen/size_70"
                     android:fontFamily="@font/barlow_semi_bold"
                     android:includeFontPadding="false"
                     android:shadowColor="#59000000"
@@ -116,7 +116,7 @@
                     android:id="@+id/tvCCV"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/size_0"
-                    android:layout_marginStart="50dp"
+                    android:layout_marginStart="@dimen/size_50"
                     android:fontFamily="@font/barlow_medium"
                     tools:text="CCV: ***"
                     android:textColor="@color/white"
@@ -130,7 +130,7 @@
                     android:id="@+id/btnShowHide"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp"
+                    android:layout_marginStart="@dimen/size_40"
                     app:layout_constraintBottom_toBottomOf="@id/tvDateEnd"
                     app:layout_constraintStart_toEndOf="@id/tvCCV"
                     app:layout_constraintTop_toTopOf="@id/tvDateEnd"
@@ -177,10 +177,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="12dp"
+                android:layout_marginStart="@dimen/size_16"
+                android:layout_marginTop="@dimen/size_8"
+                android:layout_marginEnd="@dimen/size_16"
+                android:layout_marginBottom="@dimen/size_12"
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -205,17 +205,17 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_height="@dimen/size_2"
+                android:layout_marginStart="@dimen/size_16"
+                android:layout_marginEnd="@dimen/size_16"
                 android:layerType="software"
                 android:src="@drawable/line_dotted_horizontal_gray" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginStart="@dimen/size_16"
+                android:layout_marginTop="@dimen/size_12"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:text="@string/thong_tin_the"
                 android:textColor="@color/blue"
@@ -224,9 +224,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="@dimen/size_16"
+                android:layout_marginTop="@dimen/size_8"
+                android:layout_marginEnd="@dimen/size_16"
                 android:layout_marginBottom="9.5dp"
                 android:gravity="center"
                 android:orientation="horizontal">
@@ -254,7 +254,7 @@
                     android:id="@+id/btnCopyCard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
+                    android:layout_marginStart="@dimen/size_6"
                     android:src="@drawable/ic_copy_24px" />
 
             </LinearLayout>
@@ -262,16 +262,16 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="@dimen/size_16"
+                android:layout_marginEnd="@dimen/size_16"
                 android:background="#d8d8d8" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="@dimen/size_16"
+                android:layout_marginTop="@dimen/size_8"
+                android:layout_marginEnd="@dimen/size_16"
                 android:layout_marginBottom="9.5dp"
                 android:gravity="center"
                 android:orientation="horizontal">
@@ -299,7 +299,7 @@
                     android:id="@+id/btnEndDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
+                    android:layout_marginStart="@dimen/size_6"
                     android:src="@drawable/ic_copy_24px" />
 
             </LinearLayout>
@@ -307,16 +307,16 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="@dimen/size_16"
+                android:layout_marginEnd="@dimen/size_16"
                 android:background="#d8d8d8" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="12dp"
+                android:layout_marginStart="@dimen/size_16"
+                android:layout_marginTop="@dimen/size_8"
+                android:layout_marginEnd="@dimen/size_12"
                 android:layout_marginBottom="9.5dp"
                 android:gravity="center"
                 android:orientation="horizontal">
@@ -364,8 +364,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp">
+                android:layout_marginTop="@dimen/size_16"
+                android:layout_marginBottom="@dimen/size_16">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvUnLockCard"
@@ -373,7 +373,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:drawableTop="@drawable/ic_pv_unlock_32_px"
-                    android:drawablePadding="6dp"
+                    android:drawablePadding="@dimen/size_6"
                     android:fontFamily="@font/barlow_medium"
                     android:gravity="center"
                     android:text="Mở khóa thẻ"
@@ -387,7 +387,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:drawableTop="@drawable/ic_pv_lock_32_px"
-                    android:drawablePadding="6dp"
+                    android:drawablePadding="@dimen/size_6"
                     android:fontFamily="@font/barlow_medium"
                     android:gravity="center"
                     android:text="Khóa thẻ"
@@ -401,7 +401,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:drawableTop="@drawable/ic_pv_lock_32_px"
-                    android:drawablePadding="6dp"
+                    android:drawablePadding="@dimen/size_6"
                     android:fontFamily="@font/barlow_medium"
                     android:gravity="center"
                     android:text="Thông tin thẻ"
@@ -414,7 +414,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:drawableTop="@drawable/ic_pv_changepass_32_px"
-                    android:drawablePadding="6dp"
+                    android:drawablePadding="@dimen/size_6"
                     android:fontFamily="@font/barlow_medium"
                     android:gravity="center"
                     android:text="Đổi mật khẩu"
@@ -426,10 +426,10 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/btnUseDefault"
                 android:layout_width="match_parent"
-                android:layout_height="36dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="12dp"
+                android:layout_height="@dimen/size_36"
+                android:layout_marginStart="@dimen/size_16"
+                android:layout_marginEnd="@dimen/size_16"
+                android:layout_marginBottom="@dimen/size_12"
                 android:background="@drawable/bg_corners_4_light_blue_solid"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
@@ -440,13 +440,13 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@id/tvUsed"
-                android:layout_width="89dp"
-                android:layout_height="20dp"
+                android:layout_width="@dimen/size_89"
+                android:layout_height="@dimen/size_20"
                 android:layout_gravity="end"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="12dp"
+                android:layout_marginStart="@dimen/size_16"
+                android:layout_marginTop="@dimen/size_16"
+                android:layout_marginEnd="@dimen/size_16"
+                android:layout_marginBottom="@dimen/size_12"
                 android:background="@drawable/bg_corners_4_green"
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center"

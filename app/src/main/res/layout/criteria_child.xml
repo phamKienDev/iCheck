@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
+    android:layout_marginTop="@dimen/size_8"
     android:orientation="horizontal">
 
     <TextView
@@ -12,7 +12,7 @@
         android:layout_width="@dimen/size_0"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:padding="8dp"
+        android:padding="@dimen/size_8"
         android:singleLine="true"
         android:ellipsize="end"
         android:gravity="start"
@@ -31,6 +31,6 @@
         app:srb_drawableEmpty="@drawable/star_empty_layer_24"
         app:srb_drawableFilled="@drawable/star_filled_layer_24"
         app:srb_numStars="5"
-        app:srb_starHeight="24dp"
-        app:srb_starWidth="24dp" />
+        app:srb_starHeight="@dimen/size_24"
+        app:srb_starWidth="@dimen/size_24" />
 </LinearLayout>

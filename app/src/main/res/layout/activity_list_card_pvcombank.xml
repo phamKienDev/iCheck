@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_44"
         android:background="@color/white"
-        android:elevation="4dp">
+        android:elevation="@dimen/size_4">
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@id/imgBack"
@@ -35,8 +35,8 @@
             android:layout_width="@dimen/size_52"
             android:layout_height="match_parent"
             android:layout_gravity="end"
-            android:layout_marginEnd="12dp"
-            android:layout_marginRight="12dp"
+            android:layout_marginEnd="@dimen/size_12"
+            android:layout_marginRight="@dimen/size_12"
             android:background="?android:attr/selectableItemBackground"
             android:src="@drawable/ic_logo_pvcbank_icheck_52dp"
             android:visibility="visible" />
@@ -46,5 +46,5 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="@dimen/size_16" />
 </LinearLayout>

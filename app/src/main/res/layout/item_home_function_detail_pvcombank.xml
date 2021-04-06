@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="@dimen/size_4"
-        app:cardElevation="4dp"
+        app:cardElevation="@dimen/size_4"
         app:cardPreventCornerOverlap="false"
         app:cardShadowColorEnd="@color/app_selector_shadow_end"
         app:cardShadowColorStart="@color/elevation_color_card"

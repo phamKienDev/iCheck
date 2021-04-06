@@ -123,8 +123,8 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imgImage"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="@dimen/size_80"
+                    android:layout_height="@dimen/size_80"
                     android:layout_marginStart="@dimen/size_12"
                     android:layout_marginTop="@dimen/size_13"
                     android:layout_marginEnd="@dimen/size_10"
@@ -152,7 +152,7 @@
                     android:id="@id/imgCloseImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="68dp"
+                    android:layout_marginStart="@dimen/size_68"
                     android:layout_marginTop="@dimen/size_3"
                     android:visibility="gone"
                     android:drawableStart="@drawable/ic_delete_red_24px"
@@ -220,7 +220,7 @@
                         android:id="@id/edtContent"
                         android:layout_width="@dimen/size_0"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="46dp"
+                        android:layout_marginEnd="@dimen/size_46"
                         android:background="@android:color/transparent"
                         android:fontFamily="@font/barlow_medium"
                         android:gravity="center_vertical"

@@ -5,17 +5,17 @@
     android:id="@+id/linearLayout10"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="10dp"
+    android:layout_marginBottom="@dimen/size_10"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/tv_total_gifts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_16"
         android:fontFamily="@font/barlow_medium"
-        android:paddingBottom="8dp"
+        android:paddingBottom="@dimen/size_8"
         android:textColor="#757575"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,35 +35,35 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imgProduct"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_width="@dimen/size_80"
+            android:layout_height="@dimen/size_80"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_16"
+            android:layout_marginBottom="@dimen/size_16"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:layout_conversion_absoluteHeight="80dp"
-            tools:layout_conversion_absoluteWidth="80dp" />
+            tools:layout_conversion_absoluteHeight="@dimen/size_80"
+            tools:layout_conversion_absoluteWidth="@dimen/size_80" />
 
         <View
             android:id="@+id/view"
-            android:layout_width="1dp"
+            android:layout_width="@dimen/size_1"
             android:layout_height="0dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="@dimen/size_10"
             android:background="@drawable/line_dotted_vertical_gray_2"
             app:layout_constraintBottom_toBottomOf="@id/imgProduct"
             app:layout_constraintStart_toEndOf="@id/imgProduct"
             app:layout_constraintTop_toTopOf="@+id/imgProduct"
-            tools:layout_conversion_absoluteHeight="92dp"
-            tools:layout_conversion_absoluteWidth="2dp" />
+            tools:layout_conversion_absoluteHeight="@dimen/size_92"
+            tools:layout_conversion_absoluteWidth="@dimen/size_2" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvProduct"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="12dp"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginEnd="@dimen/size_12"
             android:ellipsize="end"
             android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
@@ -73,7 +73,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/view"
             app:layout_constraintTop_toTopOf="@+id/imgProduct"
-            tools:layout_conversion_absoluteHeight="17dp"
+            tools:layout_conversion_absoluteHeight="@dimen/size_17"
             tools:layout_conversion_absoluteWidth="286dp"
             tools:text="Bánh trung thu đậu xanh (quà ship tận nơi) (tối đa 2 dòng)..." />
 
@@ -81,7 +81,7 @@
             android:id="@+id/tvPage"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="@dimen/size_4"
             android:ellipsize="end"
             android:fontFamily="@font/barlow_regular"
             android:includeFontPadding="false"
@@ -99,8 +99,8 @@
             android:id="@+id/tvState"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginTop="@dimen/size_4"
             android:background="@drawable/gray_stroke_corner_4"
             android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
@@ -115,16 +115,16 @@
             app:layout_constraintStart_toEndOf="@+id/view"
             app:layout_constraintTop_toBottomOf="@+id/tvPage"
             app:layout_constraintVertical_bias="0.04000002"
-            tools:layout_conversion_absoluteHeight="23dp"
-            tools:layout_conversion_absoluteWidth="85dp"
+            tools:layout_conversion_absoluteHeight="@dimen/size_23"
+            tools:layout_conversion_absoluteWidth="@dimen/size_85"
             tools:text="Đã từ chối" />
 
         <TextView
             android:id="@+id/tv_gift_state"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginTop="@dimen/size_8"
             android:background="@drawable/gray_stroke_corner_4"
             android:textColor="#FF0000"
             android:textSize="@dimen/font_12"

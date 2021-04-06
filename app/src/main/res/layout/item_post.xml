@@ -133,9 +133,9 @@
                     android:focusable="false"
                     android:isIndicator="true"
                     app:srb_numStars="5"
-                    app:srb_starHeight="10dp"
-                    app:srb_starPadding="2dp"
-                    app:srb_starWidth="10dp"
+                    app:srb_starHeight="@dimen/size_10"
+                    app:srb_starPadding="@dimen/size_2"
+                    app:srb_starWidth="@dimen/size_10"
                     app:srb_stepSize="0.5" />
 
                 <androidx.appcompat.widget.AppCompatImageButton
@@ -287,8 +287,8 @@
         <View
             android:id="@+id/divider39"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="10dp"
+            android:layout_height="@dimen/size_1"
+            android:layout_marginTop="@dimen/size_10"
             android:background="?android:attr/listDivider" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -304,7 +304,7 @@
                 android:layout_height="@dimen/size_30"
                 android:layout_marginTop="@dimen/size_6"
                 app:civ_border_color="#D8D8D8"
-                app:civ_border_width="1dp"
+                app:civ_border_width="@dimen/size_1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@drawable/ic_circle_avatar_default" />
@@ -371,8 +371,8 @@
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@id/imgImage"
-                        android:layout_width="115dp"
-                        android:layout_height="115dp"
+                        android:layout_width="@dimen/size_115"
+                        android:layout_height="@dimen/size_115"
                         android:layout_marginTop="@dimen/size_4"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />

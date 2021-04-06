@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="12dp"
-    android:layout_marginBottom="12dp">
+    android:layout_marginTop="@dimen/size_12"
+    android:layout_marginBottom="@dimen/size_12">
 
     <vn.icheck.android.component.avatar_user.AvatarUserComponent
         android:id="@id/imgAvatar"
@@ -17,10 +17,10 @@
 
     <LinearLayout
         android:id="@+id/layoutAddFriend"
-        android:layout_width="100dp"
-        android:layout_height="28dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_width="@dimen/size_100"
+        android:layout_height="@dimen/size_28"
+        android:layout_marginEnd="@dimen/size_8"
+        android:layout_marginRight="@dimen/size_8"
         android:background="@drawable/bg_corners_4_light_blue_solid"
         android:gravity="center"
         android:visibility="invisible"
@@ -32,9 +32,9 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="@dimen/size_8"
             android:drawableStart="@drawable/ic_add_white_12dp"
-            android:drawablePadding="8dp"
+            android:drawablePadding="@dimen/size_8"
             android:fontFamily="@font/barlow_medium"
             android:gravity="center"
             android:text="Kết bạn"
@@ -45,9 +45,9 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/btnDaGuiLoiMoi"
-        android:layout_width="100dp"
-        android:layout_height="28dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="@dimen/size_100"
+        android:layout_height="@dimen/size_28"
+        android:layout_marginEnd="@dimen/size_8"
         android:background="@drawable/bg_corner_f0f0f0_4"
         android:gravity="center"
         android:text="Đã gửi lời mời"
@@ -61,9 +61,9 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/btnMessenger"
-        android:layout_width="100dp"
-        android:layout_height="28dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="@dimen/size_100"
+        android:layout_height="@dimen/size_28"
+        android:layout_marginEnd="@dimen/size_8"
         android:background="@drawable/bg_corners_4_light_blue_no_solid"
         android:gravity="center"
         android:text="Nhắn tin"
@@ -80,9 +80,9 @@
         android:id="@+id/root_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="@dimen/size_8"
+        android:layout_marginLeft="@dimen/size_8"
+        android:layout_marginEnd="@dimen/size_8"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/imgAvatar"
         app:layout_constraintEnd_toStartOf="@+id/btnDaGuiLoiMoi"

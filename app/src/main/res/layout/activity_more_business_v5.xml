@@ -11,7 +11,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/size_1"
         android:background="@drawable/shadow_bottom" />
 
     <androidx.core.widget.NestedScrollView
@@ -28,8 +28,8 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginTop="@dimen/size_20"
                 android:fontFamily="sans-serif"
                 android:text="Thông tin "
                 android:textColor="#3c5a99"
@@ -39,9 +39,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="12dp"
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginTop="@dimen/size_8"
+                android:layout_marginEnd="@dimen/size_12"
                 android:background="@drawable/bg_gray_corner_10"
                 android:orientation="vertical">
 
@@ -53,8 +53,8 @@
                         android:id="@+id/appCompatTextView21"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="@dimen/size_8"
+                        android:layout_marginTop="@dimen/size_8"
                         android:drawableStart="@drawable/ic_company_blue_18px"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -63,9 +63,9 @@
                         android:id="@+id/tvName"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:drawablePadding="8dp"
+                        android:layout_marginStart="@dimen/size_8"
+                        android:layout_marginEnd="@dimen/size_8"
+                        android:drawablePadding="@dimen/size_8"
                         android:fontFamily="sans-serif-medium"
                         android:textColor="#434343"
                         android:textSize="@dimen/font_14"
@@ -86,8 +86,8 @@
                         android:id="@+id/appCompatTextView22"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="@dimen/size_8"
+                        android:layout_marginTop="@dimen/size_8"
                         android:drawableStart="@drawable/ic_outline_phone_blue_18px"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -96,9 +96,9 @@
                         android:id="@id/tvPhone"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:drawablePadding="8dp"
+                        android:layout_marginStart="@dimen/size_8"
+                        android:layout_marginEnd="@dimen/size_8"
+                        android:drawablePadding="@dimen/size_8"
                         android:fontFamily="sans-serif"
                         android:textColor="#434343"
                         android:textSize="@dimen/font_14"
@@ -118,8 +118,8 @@
                         android:id="@+id/appCompatTextView23"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="@dimen/size_8"
+                        android:layout_marginTop="@dimen/size_8"
                         android:drawableStart="@drawable/ic_outline_place_blue_18px"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -128,9 +128,9 @@
                         android:id="@id/tvAddress"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:drawablePadding="8dp"
+                        android:layout_marginStart="@dimen/size_8"
+                        android:layout_marginEnd="@dimen/size_8"
+                        android:drawablePadding="@dimen/size_8"
                         android:fontFamily="sans-serif"
                         android:textColor="#434343"
                         android:textSize="@dimen/font_14"
@@ -151,8 +151,8 @@
                         android:id="@+id/appCompatTextView24"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="@dimen/size_8"
+                        android:layout_marginTop="@dimen/size_8"
                         android:drawableStart="@drawable/ic_outline_local_blue_18px"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -161,9 +161,9 @@
                         android:id="@+id/tvEmail"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:drawablePadding="8dp"
+                        android:layout_marginStart="@dimen/size_8"
+                        android:layout_marginEnd="@dimen/size_8"
+                        android:drawablePadding="@dimen/size_8"
                         android:fontFamily="sans-serif"
                         android:textColor="#434343"
                         android:textSize="@dimen/font_14"
@@ -179,14 +179,14 @@
                     android:id="@+id/layoutWeb"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp">
+                    android:layout_marginBottom="@dimen/size_12">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/appCompatTextView25"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="@dimen/size_8"
+                        android:layout_marginTop="@dimen/size_8"
                         android:drawableStart="@drawable/ic_website_blue_18px"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -195,9 +195,9 @@
                         android:id="@+id/tvWebsite"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:drawablePadding="8dp"
+                        android:layout_marginStart="@dimen/size_8"
+                        android:layout_marginEnd="@dimen/size_8"
+                        android:drawablePadding="@dimen/size_8"
                         android:fontFamily="sans-serif"
                         android:textColor="#434343"
                         android:textSize="@dimen/font_14"
@@ -212,11 +212,11 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="@dimen/size_8"
+                    android:layout_marginTop="@dimen/size_8"
+                    android:layout_marginEnd="@dimen/size_8"
                     android:drawableStart="@drawable/ic_barcode_blue_18px"
-                    android:drawablePadding="8dp"
+                    android:drawablePadding="@dimen/size_8"
                     android:fontFamily="sans-serif"
                     android:textColor="#434343"
                     android:textSize="@dimen/font_14"
@@ -227,11 +227,11 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="@dimen/size_8"
+                    android:layout_marginTop="@dimen/size_8"
+                    android:layout_marginEnd="@dimen/size_8"
                     android:drawableStart="@drawable/ic_star_empty_blue_18px"
-                    android:drawablePadding="8dp"
+                    android:drawablePadding="@dimen/size_8"
                     android:fontFamily="sans-serif"
                     android:textColor="#434343"
                     android:textSize="@dimen/font_14"
@@ -243,12 +243,12 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="12dp"
+                    android:layout_marginStart="@dimen/size_8"
+                    android:layout_marginTop="@dimen/size_8"
+                    android:layout_marginEnd="@dimen/size_8"
+                    android:layout_marginBottom="@dimen/size_12"
                     android:drawableStart="@drawable/ic_scan_blue_18px"
-                    android:drawablePadding="8dp"
+                    android:drawablePadding="@dimen/size_8"
                     android:fontFamily="sans-serif"
                     android:textColor="#434343"
                     android:textSize="@dimen/font_14"
@@ -260,8 +260,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="11dp"
+                android:layout_height="@dimen/size_1"
+                android:layout_marginTop="@dimen/size_11"
                 android:background="#d8d8d8" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -272,8 +272,8 @@
                     android:id="@+id/appCompatTextView7"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="@dimen/size_12"
+                    android:layout_marginTop="@dimen/size_8"
                     android:fontFamily="sans-serif-medium"
                     android:text="Sản phẩm xác thực"
                     android:textColor="#3c5a99"
@@ -291,7 +291,7 @@
                 <!--                    android:drawableEnd="@drawable/ic_next_gray_18_px"-->
                 <!--                    android:fontFamily="sans-serif"-->
                 <!--                    android:gravity="end"-->
-                <!--                    android:paddingEnd="12dp"-->
+                <!--                    android:paddingEnd="@dimen/size_12"-->
                 <!--                    android:text="Xem tất cả"-->
                 <!--                    android:textColor="#828282"-->
                 <!--                    android:textSize="@dimen/font_14"-->
@@ -307,7 +307,7 @@
                 android:id="@+id/rcvProductVerified"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="@dimen/size_12"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="2"

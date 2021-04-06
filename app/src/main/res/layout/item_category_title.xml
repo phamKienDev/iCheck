@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="30dp">
+    android:layout_height="@dimen/size_30">
 
     <ImageView
         android:id="@+id/img_arr"
@@ -19,7 +19,7 @@
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="@dimen/size_8"
         android:fontFamily="@font/barlow_medium"
         android:gravity="center"
         android:textColor="#757575"

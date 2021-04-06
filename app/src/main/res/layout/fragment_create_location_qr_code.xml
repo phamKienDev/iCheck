@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:elevation="4dp"
+        android:elevation="@dimen/size_4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -142,12 +142,12 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/size_12"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="@dimen/size_12"
         android:clickable="true"
         android:focusable="true"
         android:visibility="invisible"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/btnCreate"
         app:layout_constraintTop_toBottomOf="@id/layoutHeader"
-        tools:layout_editor_absoluteX="12dp" />
+        tools:layout_editor_absoluteX="@dimen/size_12" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp"
+    android:layout_marginTop="@dimen/size_5"
+    android:layout_marginBottom="@dimen/size_5"
     android:background="@color/white"
     android:orientation="vertical">
 
@@ -17,8 +17,8 @@
             android:id="@+id/layoutImg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_8"
             android:background="@drawable/rectangle_corner_stroke_gray_8"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
@@ -26,9 +26,9 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imgTopup"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:padding="5dp" />
+                android:layout_width="@dimen/size_50"
+                android:layout_height="@dimen/size_50"
+                android:padding="@dimen/size_5" />
 
         </LinearLayout>
 
@@ -36,7 +36,7 @@
             android:id="@+id/tvNameNetwork"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="@dimen/size_8"
             android:fontFamily="@font/barlow_semi_bold"
             android:textSize="@dimen/font_14"
             android:textColor="#212121"
@@ -49,7 +49,7 @@
             android:id="@+id/tvPriceTopup"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="@dimen/size_8"
             android:fontFamily="@font/barlow_semi_bold"
             android:textColor="#3c5a99"
             android:textSize="@dimen/font_16"
@@ -63,7 +63,7 @@
             android:id="@+id/tvDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="@dimen/size_4"
             android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:textColor="#757575"
@@ -77,8 +77,8 @@
             android:id="@id/line"
             android:layout_width="0dp"
             android:layout_height="2.5dp"
-            android:layout_marginTop="9dp"
-            android:layout_marginEnd="12dp"
+            android:layout_marginTop="@dimen/size_9"
+            android:layout_marginEnd="@dimen/size_12"
             android:layerType="software"
             android:src="@drawable/line_dotted"
             app:layout_constraintBottom_toBottomOf="@id/layoutImg"
@@ -90,7 +90,7 @@
             android:id="@+id/tvSubMaThe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/size_10"
             android:fontFamily="@font/barlow_medium"
             android:text="Mã thẻ:"
             android:textColor="#757575"
@@ -113,8 +113,8 @@
             android:id="@+id/tvSubSoSeri"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="@dimen/size_4"
+            android:layout_marginBottom="@dimen/size_8"
             android:fontFamily="@font/barlow_medium"
             android:text="Số seri:"
             android:textColor="#757575"
@@ -141,13 +141,13 @@
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:layout_marginTop="15.5dp"
-        android:layout_marginEnd="9dp"
-        android:layout_marginStart="9dp"
+        android:layout_marginEnd="@dimen/size_9"
+        android:layout_marginStart="@dimen/size_9"
         android:background="#d8d8d8"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="36dp">
+        android:layout_height="@dimen/size_36">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvSelectUsed"
@@ -167,7 +167,7 @@
         <View
             android:id="@id/view"
             android:layout_width="1.5dp"
-            android:layout_height="16dp"
+            android:layout_height="@dimen/size_16"
             android:background="#cccccc"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="@id/tvSelectUsed"
@@ -196,8 +196,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
-            android:paddingTop="8dp"
-            android:paddingBottom="10dp"
+            android:paddingTop="@dimen/size_8"
+            android:paddingBottom="@dimen/size_10"
             android:text="Mã thẻ đã dùng"
             android:textColor="#757575"
             android:textSize="@dimen/font_14"

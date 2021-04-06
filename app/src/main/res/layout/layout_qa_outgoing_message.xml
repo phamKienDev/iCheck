@@ -7,8 +7,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="@dimen/size_20"
+        android:layout_height="@dimen/size_20"
         android:layout_gravity="bottom"
         tools:src="@mipmap/ic_launcher"/>
 
@@ -17,8 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/lightBlue"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginStart="@dimen/size_10"
+        android:layout_marginEnd="@dimen/size_10"
         android:textSize="@dimen/font_14"
         android:maxLines="3"
         android:ellipsize="end"

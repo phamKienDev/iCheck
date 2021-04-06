@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
-    android:layout_marginBottom="8dp"
-    android:layout_marginEnd="12dp"
-    android:layout_marginStart="12dp"
+    android:layout_marginTop="@dimen/size_8"
+    android:layout_marginBottom="@dimen/size_8"
+    android:layout_marginEnd="@dimen/size_12"
+    android:layout_marginStart="@dimen/size_12"
     android:gravity="center|start"
     android:orientation="horizontal">
 
@@ -22,16 +22,16 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="@dimen/size_8"
+        android:layout_marginEnd="@dimen/size_8"
         android:lineSpacingExtra="@dimen/font_6"
         android:textColor="#212121"
         android:textSize="@dimen/font_14"
         tools:text="Xuyến Đỗ" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="100dp"
-        android:layout_height="28dp"
+        android:layout_width="@dimen/size_100"
+        android:layout_height="@dimen/size_28"
         android:background="@drawable/bg_corners_4_light_blue_no_solid"
         android:gravity="center"
         android:lineSpacingExtra="@dimen/font_6"
