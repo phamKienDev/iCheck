@@ -234,11 +234,11 @@ class ListProductQuestionAdapter(val callback: IListProductQuestionView) : Recyc
             } else {
                 WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.page!!.avatar, R.drawable.ic_business_v2)
                 itemView.imgLevel.beGone()
-
+                itemView.tvTitle.text = obj.page?.getName
                 if (obj.page!!.isVerify) {
-                    itemView.tvTitle.setDrawbleNextEndText(obj.page?.getName, R.drawable.ic_verified_16px)
+                    itemView.tvTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
                 } else {
-                    itemView.tvTitle.text = obj.page?.getName
+                    itemView.tvTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                 }
             }
 
