@@ -357,13 +357,13 @@
                     android:id="@+id/tvSerial"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="13dp"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginEnd="12dp"
                     android:layout_gravity="center"
-                    android:textAlignment="center"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginEnd="12dp"
                     android:fontFamily="sans-serif-medium"
                     android:gravity="start|center"
+                    android:textAlignment="center"
                     android:textColor="#434343"
                     android:textSize="16sp"
                     android:textStyle="normal"
@@ -700,6 +700,51 @@
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layoutProductLink"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="13dp"
+                    android:layout_marginTop="@dimen/size_8"
+                    android:layout_marginEnd="13dp"
+                    android:layout_marginBottom="@dimen/size_8"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+                        android:id="@id/tvTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/thuong_mai_dien_tu"
+                        android:textColor="@color/blue"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+                        android:id="@id/tvViewMore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/size_9"
+                        android:padding="@dimen/size_3"
+                        android:text="@string/xem_tat_ca"
+                        android:textColor="@color/blue"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="@id/tvTitle"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tvTitle" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@id/recyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_2"
+                        android:orientation="vertical"
+                        android:paddingBottom="@dimen/size_10"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
                 <!--Layout Gurantee-->
                 <androidx.cardview.widget.CardView
                     android:id="@+id/layoutGurantee"
@@ -710,7 +755,8 @@
                     android:layout_marginEnd="13dp"
                     android:layout_marginBottom="8dp"
                     android:visibility="gone"
-                    app:cardCornerRadius="10dp">
+                    app:cardCornerRadius="10dp"
+                    tools:visibility="visible">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -874,7 +920,8 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="12dp"
                     android:layout_marginBottom="8dp"
-                    android:visibility="gone">
+                    android:visibility="gone"
+                    tools:visibility="visible">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/appCompatTextView6"
@@ -1010,7 +1057,8 @@
                     android:textColor="#3c5a99"
                     android:textSize="18sp"
                     android:textStyle="normal"
-                    android:visibility="gone" />
+                    android:visibility="gone"
+                    tools:visibility="visible" />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/layoutVendor"
@@ -1021,7 +1069,8 @@
                     android:layout_marginEnd="12dp"
                     android:layout_marginBottom="8dp"
                     android:visibility="gone"
-                    app:cardCornerRadius="10dp">
+                    app:cardCornerRadius="10dp"
+                    tools:visibility="visible">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -1110,7 +1159,8 @@
                     android:textColor="#3c5a99"
                     android:textSize="18sp"
                     android:textStyle="normal"
-                    android:visibility="gone" />
+                    android:visibility="gone"
+                    tools:visibility="visible" />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/layoutDistributor"
@@ -1121,7 +1171,8 @@
                     android:layout_marginEnd="12dp"
                     android:layout_marginBottom="8dp"
                     android:visibility="gone"
-                    app:cardCornerRadius="10dp">
+                    app:cardCornerRadius="10dp"
+                    tools:visibility="visible">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -1243,7 +1294,8 @@
                     android:textColor="#3c5a99"
                     android:textSize="18sp"
                     android:textStyle="normal"
-                    android:visibility="gone" />
+                    android:visibility="gone"
+                    tools:visibility="visible" />
 
                 <LinearLayout
                     android:id="@+id/layoutInformaion"
@@ -1255,7 +1307,8 @@
                     android:layout_marginBottom="8dp"
                     android:background="@drawable/bg_corner_gray_10"
                     android:orientation="vertical"
-                    android:visibility="gone">
+                    android:visibility="gone"
+                    tools:visibility="visible">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/expandTextView"
@@ -1288,7 +1341,8 @@
                     android:layout_marginStart="12dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="12dp"
-                    android:visibility="gone">
+                    android:visibility="gone"
+                    tools:visibility="visible">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/appCompatTextView9"

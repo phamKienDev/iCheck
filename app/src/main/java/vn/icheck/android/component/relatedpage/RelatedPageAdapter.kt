@@ -10,6 +10,7 @@ import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ItemRelatedPageBinding
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.network.models.ICRelatedPage
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
 import vn.icheck.android.util.ick.beGone
@@ -41,14 +42,15 @@ class RelatedPageAdapter() : RecyclerView.Adapter<RelatedPageAdapter.ViewHolder>
 
             WidgetUtils.loadImageUrl(binding.imgAvatar, obj.avatar, R.drawable.ic_business_v2)
 
-            binding.tvName.text=obj.name
+            binding.tvName.text = obj.name
             if (obj.isVerify) {
-                binding.imgVerified.beVisible()
+                binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
             } else {
-                binding.imgVerified.beGone()
+                binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
+
             if (obj.followCount > 0) {
-                binding.tvFollowCount.text =TextHelper.formatMoneyPhay(obj.followCount) + " Người theo dõi"
+                binding.tvFollowCount.text = TextHelper.formatMoneyPhay(obj.followCount) + " Người theo dõi"
             }
 
             binding.tvAction.setOnClickListener {

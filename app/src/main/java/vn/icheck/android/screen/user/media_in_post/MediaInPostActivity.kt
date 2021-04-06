@@ -28,6 +28,7 @@ import vn.icheck.android.component.view.ViewHelper.delayTimeoutClick
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICPost
 import vn.icheck.android.network.models.criterias.ICReviewBottom
@@ -137,19 +138,20 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
         viewModel.onPostData.observe(this, {
             if (it.page != null) {
                 WidgetUtils.loadImageUrl(imgAvatar, it.page!!.avatar, R.drawable.ic_business_v2)
-                if (it.page!!.isVerify) {
-                    imgVerified.beVisible()
-                } else {
-                    imgVerified.beGone()
-                }
                 tvName.text = it.page!!.name
+                if (it.page!!.isVerify) {
+                    tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
+                } else {
+                    tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                }
+
                 imgRank.beInvisible()
             } else {
                 WidgetUtils.loadImageUrl(imgAvatar, it.user!!.avatar, R.drawable.ic_avatar_default_84px)
-                imgVerified.beGone()
                 imgRank.beVisible()
                 imgRank.setRankUser(it.user?.rank?.level)
                 tvName.text = it.user!!.getName
+                tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
             if (!it.customerCriteria.isNullOrEmpty() && it.avgPoint != 0f) {
                 containerRating.beVisible()

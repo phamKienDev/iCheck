@@ -39,32 +39,33 @@
             app:layout_constraintTop_toTopOf="@id/imgRank"
             tools:srcCompat="@tools:sample/avatars" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/imgVerified"
-            android:layout_width="@dimen/size_16"
-            android:layout_height="@dimen/size_16"
-            android:src="@drawable/ic_verified_16px"
-            app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
-            app:layout_constraintEnd_toEndOf="@id/imgAvatar" />
-
-        <TextView
-            android:id="@+id/tvNameUser"
+        <LinearLayout
+            android:id="@+id/layoutName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginEnd="@dimen/size_8"
             android:layout_marginRight="@dimen/size_8"
-            android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
-            android:includeFontPadding="false"
-            android:singleLine="true"
-            android:textColor="@color/collection_product_name"
-            android:textSize="16sp"
             app:layout_constraintEnd_toStartOf="@id/tvLike"
             app:layout_constraintStart_toEndOf="@+id/imgAvatar"
-            app:layout_constraintTop_toTopOf="@id/imgAvatar"
-            tools:text="Quỳnh Hoa" />
+            app:layout_constraintTop_toTopOf="@id/imgAvatar">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvNameUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/size_4"
+                android:ellipsize="middle"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:textColor="@color/collection_product_name"
+                android:textSize="16sp"
+                tools:drawableEnd="@drawable/ic_verified_16px"
+                tools:text="Quỳnh Hoa sadf adfasd asdfsadf ádfsadf" />
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tvTime"
@@ -75,8 +76,8 @@
             android:includeFontPadding="false"
             android:textColor="@color/fast_survey_gray"
             android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="@+id/tvNameUser"
-            app:layout_constraintTop_toBottomOf="@+id/tvNameUser"
+            app:layout_constraintStart_toStartOf="@+id/layoutName"
+            app:layout_constraintTop_toBottomOf="@+id/layoutName"
             tools:text="43 phút trước" />
 
         <TextView

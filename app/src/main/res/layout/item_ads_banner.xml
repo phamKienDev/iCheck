@@ -8,7 +8,7 @@
         android:id="@id/imgImage"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_0"
-        android:scaleType="centerCrop"
+        android:scaleType="fitXY"
         app:layout_constraintDimensionRatio="H, 351:117"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -7,7 +7,7 @@ assembleDevDebug:
     - autobuild
   only:
     refs:
-      - merge_code
+      - develop
   stage: build
   script:
     - ./gradlew clean
@@ -20,7 +20,7 @@ assembleProdRelease:
     - autobuild
   only:
     refs:
-      - merge_code
+      - develop
   stage: build
   script:
     - ./gradlew clean

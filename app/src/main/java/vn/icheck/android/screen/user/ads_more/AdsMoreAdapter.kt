@@ -2,6 +2,7 @@ package vn.icheck.android.screen.user.ads_more
 
 import android.annotation.SuppressLint
 import android.graphics.Paint
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,6 +25,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.ExoPlayerManager
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.loyalty.base.BaseViewHolder
 import vn.icheck.android.loyalty.base.ICKViewType
 import vn.icheck.android.network.models.ICAdsData
@@ -157,12 +159,14 @@ class AdsMoreAdapter : RecyclerViewCustomAdapter<ICAdsData>() {
 
 
             if (obj.owner?.verified == true) {
-                itemView.imgVerified.visibility = View.VISIBLE
+                itemView.tvName.setDrawbleNextEndText(obj.owner?.name ?: "",R.drawable.ic_verified_16px)
+                Handler().postDelayed({
+                    itemView.tvName.setDrawbleNextEndText(obj.owner?.name ?: "",R.drawable.ic_verified_16px)
+                },100)
             } else {
-                itemView.imgVerified.visibility = View.GONE
+                itemView.tvName.text = obj.owner?.name ?: ""
             }
 
-            itemView.tvName.text = obj.owner?.name ?: ""
 
             if (!obj.name.isNullOrEmpty()) {
                 itemView.tvContent.text = obj.name
@@ -188,7 +192,7 @@ class AdsMoreAdapter : RecyclerViewCustomAdapter<ICAdsData>() {
                     itemView.tvPriceOriginal.beVisible()
                     itemView.tvPriceOriginal.text = TextHelper.formatMoney(obj.sellPrice) + "đ"
                     itemView.tvPriceOriginal.paintFlags = itemView.tvPriceOriginal.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-                }else{
+                } else {
                     itemView.tvPriceOriginal.beGone()
                 }
             }

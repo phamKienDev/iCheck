@@ -1,6 +1,7 @@
 package vn.icheck.android.screen.user.page_details.fragment.page
 
 import android.Manifest
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -18,6 +19,7 @@ import org.greenrobot.eventbus.ThreadMode
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
+import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
 import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.IRecyclerViewCallback
@@ -39,6 +41,7 @@ import vn.icheck.android.network.models.ICMediaPage
 import vn.icheck.android.network.models.ICPageOverview
 import vn.icheck.android.network.models.ICPost
 import vn.icheck.android.network.models.product.report.ICReportForm
+import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.user.createpost.CreateOrUpdatePostActivity
 import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
 import vn.icheck.android.screen.user.edit_review.EditReviewActivity
@@ -64,6 +67,7 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
     private var pageOverViewPosition = -1
     private var companyViewInsider = true
     private val requestPermissionImage = 1
+    private val requireLogin = 2
     private var isActivityVisible = false
 
     private val takeMediaListener = object : TakeMediaListener {
@@ -355,6 +359,10 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
         viewModel.getListReportFormPage()
     }
 
+    override fun onRequireLogin() {
+        showRequireLogin()
+    }
+
     override fun followAndUnFollowPage(obj: ICPageOverview) {
         obj.id?.let {
             actionFollowAndUnfollow(it)
@@ -375,7 +383,7 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
                 viewModel.followPage(id)
             }
         } else {
-            EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_REQUIRE_LOGIN))
+            showRequireLogin()
         }
     }
 
@@ -558,6 +566,37 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
         } else {
             DialogHelper.showDialogSuccessBlack(requireContext(), requireContext().getString(R.string.ban_da_huy_theo_doi_trang_nay))
             adapter.skipInviteFollowWidget()
+        }
+    }
+
+    private fun showRequireLogin() {
+        context?.let { context ->
+            object : RewardLoginDialog(context) {
+                override fun onLogin() {
+                    val intent = Intent(context, IckLoginActivity::class.java)
+                    startActivityForResult(intent, requireLogin)
+                }
+
+                override fun onRegister() {
+                    val intent = Intent(context, IckLoginActivity::class.java)
+                    intent.putExtra(Constant.DATA_1, Constant.REGISTER_TYPE)
+                    startActivityForResult(intent, requireLogin)
+                }
+
+                override fun onDismiss() {
+                    onRequireLoginCancel()
+                }
+            }.show()
+        }
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == requireLogin) {
+                viewModel.getLayoutPage()
+            }
         }
     }
 

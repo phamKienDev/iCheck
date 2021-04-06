@@ -67,8 +67,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 putExtra(KEY, key)
             })
         }
-
-        var isDetailChatOpen = false
     }
 
     private lateinit var viewModel: ChatSocialDetailViewModel
@@ -85,6 +83,11 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
     private val listImageSrc = mutableListOf<MCMedia>()
 
+    var inboxRoomID: String? = null
+    var inboxUserID: String? = null
+    private var toId = ""
+    private var keyRoom = ""
+
     private var userId: Long? = null
     private var userType = "user"
     private var key: String? = null
@@ -96,7 +99,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         get() = ActivityChatSocialDetailBinding::inflate
 
     override fun onInitView() {
-        isDetailChatOpen = true
         ListConversationFragment.isOpenChat = true
 
         viewModel = ViewModelProvider(this@ChatSocialDetailActivity)[ChatSocialDetailViewModel::class.java]
@@ -200,6 +202,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 MCStatus.ERROR_REQUEST -> {
                     showToastError(it.message)
                 }
+                MCStatus.LOADING -> TODO()
                 MCStatus.SUCCESS -> {
                     if (it.data?.data != null) {
                         conversation = MCConversation()
@@ -229,13 +232,15 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
     @SuppressLint("SetTextI18n")
     private fun getChatRoom(key: String) {
+        keyRoom = key
+        inboxRoomID = key
+
         setGoneView(binding.layoutChat, binding.layoutUserBlock, binding.layoutBlock)
         binding.layoutToolbar.imgAction.setVisible()
 
         viewModel.getChatRoom(key,
                 { obj ->
                     if (obj.value != null) {
-                        var toId = ""
                         var toType = ""
 
                         if (obj.child("members").hasChildren()) {
@@ -243,6 +248,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                                 if (!FirebaseAuth.getInstance().uid.toString().contains(item.child("source_id").value.toString())) {
                                     toId = item.child("source_id").value.toString()
                                     toType = item.child("type").value.toString()
+                                    inboxUserID = toId
 
                                     viewModel.getChatSender(item.child("id").value.toString(), { success ->
                                         binding.layoutToolbar.txtTitle.text = success.child("name").value.toString()
@@ -448,11 +454,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 }
 
                 if (!item.child("message").child("text").value.toString().contains("null")) {
-                    if (item.child("message").child("text").value.toString().trim().contains("https://") || item.child("message").child("link").value.toString().trim().contains("http://")) {
-                        link = item.child("message").child("text").value.toString()
-                    } else {
-                        content = item.child("message").child("text").value.toString()
-                    }
+                    content = item.child("message").child("text").value.toString()
                 }
 
                 if (!item.child("message").child("sticker").value.toString().contains("null")) {
@@ -857,6 +859,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                     formatMessage(conversation?.key!!)
                 }
 
+                binding.edtMessage.setText("")
+
                 binding.imgSend.isChecked = false
                 binding.imgSend.isEnabled = false
             }
@@ -888,11 +892,13 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
             override fun onPickMediaSucess(file: File) {
                 selectedTextView(binding.imgCamera, binding.recyclerViewImage, true)
                 adapterImage.setImage(file)
+                chooseImage()
             }
 
             override fun onPickMuliMediaSucess(file: MutableList<File>) {
                 selectedTextView(binding.imgCamera, binding.recyclerViewImage, true)
                 adapterImage.setListImage(file)
+                chooseImage()
             }
 
             override fun onStartCrop(filePath: String?, uri: Uri?, ratio: String?, requestCode: Int?) {
@@ -905,11 +911,27 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 if (file != null) {
                     selectedTextView(binding.imgCamera, binding.recyclerViewImage, true)
                     adapterImage.setImage(file)
+                    chooseImage()
                 }
             }
         }
 
         TakeMediaDialog.show(supportFragmentManager, this, listener, selectMulti = true, isVideo = true)
+    }
+
+    private fun chooseImage(){
+        binding.imgCamera.isChecked = true
+        binding.imgSend.isChecked = true
+        binding.imgSend.isEnabled = true
+
+        binding.imgSticker.isChecked = false
+        binding.layoutSticker.setGone()
+
+        binding.imgScan.isChecked = false
+        binding.layoutProduct.setGone()
+        binding.layoutUserBlock.setGone()
+        binding.layoutBlock.setGone()
+        product = null
     }
 
     private fun checkKeyboard() {
@@ -933,11 +955,19 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
     override fun onDestroy() {
         super.onDestroy()
-        isDetailChatOpen = false
+        inboxRoomID = null
+        inboxUserID = null
     }
 
     override fun onStop() {
         super.onStop()
-        isDetailChatOpen = false
+        inboxRoomID = null
+        inboxUserID = null
+    }
+
+    override fun onResume() {
+        super.onResume()
+        inboxRoomID = keyRoom
+        inboxUserID = toId
     }
 }

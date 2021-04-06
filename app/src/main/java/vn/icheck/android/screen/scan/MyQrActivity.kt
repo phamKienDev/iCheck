@@ -1,5 +1,7 @@
 package vn.icheck.android.screen.scan
 
+import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
@@ -41,14 +43,24 @@ class MyQrActivity : AppCompatActivity() {
     var qrWidth = 200.toPx()
     var qrHeight = 200.toPx()
     val viewModel by viewModels<V6ViewModel>()
+
+    companion object{
+        fun createOnly(context: Context) {
+            context.startActivity(Intent(context, MyQrActivity::class.java).apply {
+                putExtra(Constant.DATA_1, 3)
+            })
+
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = FragmentQrAndBarcodeOfMeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         showLoadingTimeOut(10000)
         if (intent.getIntExtra(Constant.DATA_1, -1) == 3) {
-            binding.btnScan.beGone()
-            binding.btnMyCode.beGone()
+            binding.btnScan.beInvisible()
+            binding.btnMyCode.beInvisible()
         }
 
         binding.imgBarcode.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
@@ -96,6 +108,7 @@ class MyQrActivity : AppCompatActivity() {
         listKey.add("MY_QR_CAMPAIGN_BANNER")
         binding.btnScan.setOnClickListener {
             simpleStartActivity(V6ScanditActivity::class.java)
+            finish()
         }
         viewModel.getMyID()
         createQrCodeMarketing()
@@ -155,6 +168,7 @@ class MyQrActivity : AppCompatActivity() {
                                 }
                                 "my-qr-campaign.button-label" -> {
                                     binding.btnCampaign simpleText item.value
+                                    binding.btnCampaign.beVisible()
                                 }
                                 "my-qr-campaign.button-target" -> {
                                     binding.btnCampaign.setOnClickListener {

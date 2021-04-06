@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="310dp"
     android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/size_12"
+    android:layout_marginLeft="@dimen/size_12"
+    android:layout_marginTop="@dimen/size_10"
+    android:layout_marginBottom="@dimen/size_10"
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="@dimen/size_4"
-    android:layout_marginBottom="@dimen/size_10"
-    app:cardElevation="@dimen/size_3"
-    android:layout_marginTop="@dimen/size_10"
-    android:layout_marginLeft="@dimen/size_12">
+    app:cardElevation="@dimen/size_3">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -39,33 +38,33 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imgBanner" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/imgVerified"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_verified_16px"
-            app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
-            app:layout_constraintEnd_toEndOf="@id/imgAvatar" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@id/tvName"
+        <LinearLayout
+            android:id="@+id/layoutName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_8"
-            android:layout_marginLeft="@dimen/size_8"
             android:layout_marginTop="@dimen/size_12"
             android:layout_marginEnd="@dimen/size_4"
-            android:layout_marginRight="@dimen/size_4"
-            android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
-            android:includeFontPadding="false"
-            android:maxLines="1"
-            android:textColor="@color/black"
-            android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@id/tvAction"
             app:layout_constraintStart_toEndOf="@id/imgAvatar"
-            app:layout_constraintTop_toBottomOf="@id/imgBanner"
-            tools:text="Công ty cổ phần OMO Việt Nam - Chuyên đồ gia dụng" />
+            app:layout_constraintTop_toBottomOf="@id/imgBanner">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/size_2"
+                android:ellipsize="middle"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                tools:drawableEnd="@drawable/ic_verified_16px"
+                tools:text="Côn đồ gia dụng" />
+
+        </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvFollowCount"
@@ -78,8 +77,8 @@
             android:textColor="@color/fast_survey_gray"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
-            app:layout_constraintEnd_toEndOf="@id/tvName"
-            app:layout_constraintStart_toStartOf="@id/tvName" />
+            app:layout_constraintEnd_toEndOf="@id/layoutName"
+            app:layout_constraintStart_toStartOf="@id/layoutName" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvAction"

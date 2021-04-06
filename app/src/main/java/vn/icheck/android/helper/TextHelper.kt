@@ -1,13 +1,15 @@
 package vn.icheck.android.helper
 
+import android.graphics.BitmapFactory
 import android.graphics.Color
-import android.graphics.Typeface
-import android.text.Html
+import android.text.*
+import android.text.style.ImageSpan
+import android.widget.TextView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import kotlinx.android.synthetic.main.activity_search_review.*
 import kotlinx.android.synthetic.main.activity_search_users.*
+import kotlinx.android.synthetic.main.item_header_infor_page.view.*
 import kotlinx.android.synthetic.main.item_product_search_result.view.*
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
@@ -189,6 +191,18 @@ object TextHelper {
         }
     }
 
+    fun formatMoneyPhay(value: Float?): String {
+        return try {
+            val symbols = DecimalFormatSymbols()
+            symbols.decimalSeparator = ','
+            symbols.groupingSeparator = ','
+            val format = DecimalFormat("###,###,###,###", symbols)
+            format.format(value)
+        } catch (e: Exception) {
+            "0"
+        }
+    }
+
     fun formatMoneyPhay(value: Int?): String {
         return try {
             val symbols = DecimalFormatSymbols()
@@ -214,6 +228,15 @@ object TextHelper {
             ""
         }
 
+    }
+
+    fun formatMoneyPhay(value: String?): String {
+        return if (!value.isNullOrEmpty()) {
+            val clearString = value.replace("[\\,,\\.]".toRegex(), "")
+            formatMoneyPhay(parserValueMonneyFomat(clearString))
+        } else {
+            ""
+        }
     }
 
     /**
@@ -320,4 +343,14 @@ object TextHelper {
         }
     }
 
+    fun AppCompatTextView.setDrawbleNextEndText(text: String?, icon: Int) {
+        val drawable = ContextCompat.getDrawable(this.context, icon)
+        drawable?.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)
+
+        val spannableString = SpannableString("$text  ") // cộng thêm khoảng trắng
+        val imageSpan = ImageSpan(drawable!!, ImageSpan.ALIGN_BASELINE)
+
+        spannableString.setSpan(imageSpan, (text?:"").length + 1, (text?:"").length + 2, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+        this.text = spannableString
+    }
 }

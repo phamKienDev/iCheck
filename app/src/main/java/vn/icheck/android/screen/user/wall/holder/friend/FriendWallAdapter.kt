@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_friend_in_wall.view.*
 import vn.icheck.android.R
+import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.models.wall.ICUserFollowWall
 import vn.icheck.android.network.models.wall.RowsItem
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
@@ -35,14 +36,14 @@ class FriendWallAdapter(val listData: MutableList<RowsItem>) : RecyclerView.Adap
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: RowsItem) {
             WidgetUtils.loadImageUrl(itemView.imgAvatar, item.avatar, R.drawable.ic_square_avatar_default)
-            itemView.tvName.text = if (!item.lastName.isNullOrEmpty() && !item.firstName.isNullOrEmpty()) {
-                item.lastName + " " + item.firstName
-            } else if (!item.firstName.isNullOrEmpty()) {
-                item.firstName
-            } else if (!item.lastName.isNullOrEmpty()) {
-                item.lastName
-            } else {
-                itemView.context.getString(R.string.dang_cap_nhat)
+            itemView.tvName.apply {
+                text = Constant.getName(item.lastName, item.firstName)
+
+                if (item.kycStatus == 2) {
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_24dp, 0)
+                } else {
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                }
             }
         }
     }

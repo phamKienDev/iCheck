@@ -22,6 +22,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.helper.TextHelper.setTextNameProductInPost
 import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.network.base.ICNewApiListener
@@ -72,7 +73,7 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
         if (obj.page == null) {
             WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.user?.avatar, R.drawable.ic_avatar_default_84px)
             itemView.tvNameUser.text = obj.user?.getName
-            itemView.imgVerified.beGone()
+            itemView.tvNameUser.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             itemView.imgRank.beVisible()
             itemView.imgRank.setRankUser(obj.user?.rank?.level)
         } else {
@@ -80,9 +81,9 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
             itemView.imgRank.beGone()
             itemView.tvNameUser.text = obj.page?.getName
             if (obj.page?.isVerify == true) {
-                itemView.imgVerified.beVisible()
+                itemView.tvNameUser.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
             } else {
-                itemView.imgVerified.beGone()
+                itemView.tvNameUser.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
         }
     }
@@ -146,9 +147,9 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
             } else {
                 itemView.containerMeta.beVisible()
                 if (!obj.meta?.product?.media.isNullOrEmpty()) {
-                    WidgetUtils.loadImageUrlRounded(itemView.imgProduct, obj.meta?.product?.media!![0].content, R.drawable.img_default_product_big,SizeHelper.size4)
+                    WidgetUtils.loadImageUrlRounded(itemView.imgProduct, obj.meta?.product?.media!![0].content, R.drawable.img_default_product_big, SizeHelper.size4)
                 } else {
-                    WidgetUtils.loadImageUrlRounded(itemView.imgProduct, "", R.drawable.img_default_product_big,SizeHelper.size4)
+                    WidgetUtils.loadImageUrlRounded(itemView.imgProduct, "", R.drawable.img_default_product_big, SizeHelper.size4)
                 }
                 itemView.tvProduct.setTextNameProductInPost(obj.meta?.product?.name)
                 itemView.tvShop.text = obj.meta?.product?.owner?.name ?: ""
@@ -236,11 +237,6 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
 
     private fun postLikeReview(objReview: ICPost) {
         ICheckApplication.currentActivity()?.let { activity ->
-//            if (!SessionManager.isUserLogged) {
-//                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_LOG_IN))
-//                return
-//            }
-
             if (NetworkHelper.isNotConnected(ICheckApplication.getInstance().applicationContext)) {
                 ToastUtils.showShortError(ICheckApplication.getInstance(), ICheckApplication.getInstance().applicationContext.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
                 return
@@ -266,9 +262,6 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
                     } else {
                         itemView.context.showSimpleErrorToast(error?.message)
                     }
-
-//                    ToastUtils.showShortError(ICheckApplication.getInstance(), error?.message
-//                            ?: ICheckApplication.getInstance().applicationContext.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 }
             })
         }

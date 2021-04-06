@@ -157,6 +157,46 @@ class TakeMediaHelper(val activity: Activity?, val callback: TakeCameraListener,
         }
     }
 
+    fun getBitmap():Bitmap {
+        return BitmapFactory.decodeFile(getPhotoFile?.path)
+    }
+
+    fun getEi():File {
+        val ei = ExifInterface(getPhotoFile?.path.toString())
+        val orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION,
+                ExifInterface.ORIENTATION_UNDEFINED)
+        val rotatedBitmap:Bitmap? = when (orientation) {
+            ExifInterface.ORIENTATION_ROTATE_90 -> {
+                rotateImage(getBitmap(), 90f)
+            }
+            ExifInterface.ORIENTATION_ROTATE_180 -> {
+                rotateImage(getBitmap(), 180f)
+            }
+            ExifInterface.ORIENTATION_ROTATE_270 -> {
+                rotateImage(getBitmap(), 270f)
+            }
+            else -> {
+                getBitmap()
+            }
+        }
+        return  createFile(rotatedBitmap)
+    }
+
+    fun createFile(bitmap: Bitmap?):File {
+        val file = File(getPhotoFile?.path.toString())
+        val os: OutputStream = BufferedOutputStream(FileOutputStream(file))
+        bitmap?.compress(Bitmap.CompressFormat.JPEG, 100, os)
+        os.close()
+        return file
+    }
+
+    fun rotateImage(source: Bitmap, angle: Float): Bitmap? {
+        val matrix = Matrix()
+        matrix.postRotate(angle)
+        return Bitmap.createBitmap(source, 0, 0, source.width, source.height,
+                matrix, true)
+    }
+
     interface TakeCameraListener {
         fun onTakeMediaSuccess(file: File?)
     }

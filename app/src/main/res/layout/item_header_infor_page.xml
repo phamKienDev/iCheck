@@ -48,14 +48,12 @@
 
             <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
                 android:id="@id/tvNamePage"
-                android:layout_width="wrap_content"
-                android:drawableEnd="@drawable/ic_verified_18px"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawablePadding="@dimen/size_8"
                 android:gravity="center_vertical"
                 android:textColor="#000000"
                 android:textSize="20sp"
-                tools:text="Unilever Vietnam Official Unilever Vietnam Official  " />
+                tools:text="Công ty Thư 11412222222222222222222221 1" />
         </LinearLayout>
 
         <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
@@ -291,13 +289,6 @@
             app:layout_constraintStart_toStartOf="@+id/textView36"
             app:layout_constraintTop_toBottomOf="@+id/textView36" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/imgVerified2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_verified_16px"
-            app:layout_constraintBottom_toBottomOf="@id/user_avatar"
-            app:layout_constraintEnd_toEndOf="@id/user_avatar" />
 
         <TextView
             android:id="@+id/textView45"

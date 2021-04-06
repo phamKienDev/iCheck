@@ -20,7 +20,7 @@ const val TYPE_OTP = 2
 const val TYPE_FACEBOOK = 3
 
 
-const val ICK_REQUEST_CAMERA = 1
+const val ICK_REQUEST_CAMERA = 100001
 // Social base Url
 const val BASE_URL_DEV = "https://apiv2.dev.icheck.vn/"
 const val BASE_URL_RELEASE = "https://api-social.icheck.com.vn/"

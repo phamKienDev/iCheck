@@ -3,8 +3,10 @@ package vn.icheck.android.screen.user.detail_stamp_thinh_long.home.adapter
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.activities.product.contribute.NullHolder
+import vn.icheck.android.base.holder.ListStampECommerceHolder
 import vn.icheck.android.callback.ItemClickListener
 import vn.icheck.android.network.models.ICCriteria
+import vn.icheck.android.network.models.ICProductLink
 import vn.icheck.android.network.models.ICRelatedProduct
 import vn.icheck.android.network.models.ICProductReviews
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICDetailStampV6_1
@@ -74,6 +76,9 @@ class DetailStampThinhLongAdapter(private val headerImagelistener: SlideHeaderSt
             ICViewType.ACCURACY_STAMP -> {
                 AccuracyStampHolder(parent)
             }
+            ICViewType.PRODUCT_ECCOMMERCE_TYPE -> {
+                ListStampECommerceHolder(parent)
+            }
 //            ICViewType.METHOD_STAMP -> {
 //                MethodStampHolder(parent,headerImagelistener)
 //            }
@@ -123,6 +128,9 @@ class DetailStampThinhLongAdapter(private val headerImagelistener: SlideHeaderSt
             }
             is AccuracyStampHolder -> {
                 holder.bind(listData[position].data as ICDetailStampV6_1.ICObjectDetailStamp)
+            }
+            is ListStampECommerceHolder -> {
+                holder.bind(listData[position].data as MutableList<ICProductLink>)
             }
 //            is StepBuildProductStampHolder -> {
 //                holder.bind(listData[position].data as MutableList<ICObjectInfo>)

@@ -51,15 +51,6 @@
                     app:layout_constraintTop_toTopOf="@id/imgStatus"
                     tools:src="@drawable/ic_circle_avatar_default" />
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@id/imgVerified"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_verified_16px"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@id/imgAvatar" />
-
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -72,11 +63,12 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@id/tvName"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/size_8"
-                        android:layout_marginLeft="@dimen/size_8"
-                        android:ellipsize="end"
+                        android:layout_marginEnd="@dimen/size_8"
+                        android:drawablePadding="@dimen/size_4"
+                        android:ellipsize="middle"
                         android:fontFamily="@font/barlow_semi_bold"
                         android:includeFontPadding="false"
                         android:singleLine="true"
@@ -85,7 +77,8 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/imgAvatar"
                         app:layout_constraintTop_toTopOf="@id/imgAvatar"
-                        tools:text="Hà Linh" />
+                        tools:drawableEnd="@drawable/ic_verified_16px"
+                        tools:text="Hà Linh  " />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@id/tvType"

@@ -1,7 +1,10 @@
 package vn.icheck.android.chat.icheckchat.screen.detail.adapter
 
 import android.annotation.SuppressLint
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
+import android.content.Context.CLIPBOARD_SERVICE
 import android.content.Intent
 import android.graphics.Paint
 import android.net.Uri
@@ -77,7 +80,7 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
             binding.layoutImageDetail.root.gravity = Gravity.RIGHT
             setGoneView(binding.layoutProduct, binding.layoutImageDetail.root, binding.tvMessage, binding.layoutImageDetail.imgView, binding.layoutImageDetail.layoutOneImage, binding.layoutImageDetail.layoutTwoImage, binding.layoutImageDetail.layoutImage, binding.layoutImageDetail.tvCountImage, binding.layoutImageDetail.tvCountImage1)
 
-            setUpContentAndLink(binding.tvMessage, binding.tvTime, binding.root, obj)
+            setUpContentAndLink(binding.tvMessage, obj, itemView.context)
             setupProduct(obj)
             if (!obj.listMedia.isNullOrEmpty()) {
                 setupMediaUrl(obj)
@@ -212,9 +215,7 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
 
         private fun initClick(obj: MCDetailMessage) {
             binding.layoutImageDetail.root.setOnClickListener {
-                if (!obj.listMedia.isNullOrEmpty()) {
-                    ImageDetailActivity.startImageDetail(itemView.context, obj.listMedia!!)
-                }
+                obj.listMedia?.let { it1 -> ImageDetailActivity.startImageDetail(itemView.context, it1, 0) }
             }
 
             binding.root.setOnClickListener {
@@ -239,10 +240,10 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
 
             binding.layoutImageDetail.root.setOnClickListener {
 
-                obj.listMedia?.let { it1 -> ImageDetailActivity.startImageDetail(itemView.context, it1) }
+                obj.listMedia?.let { it1 -> ImageDetailActivity.startImageDetail(itemView.context, it1, 0) }
             }
 
-            setUpContentAndLink(binding.tvMessage, binding.tvTime, binding.root, obj)
+            setUpContentAndLink(binding.tvMessage, obj, itemView.context)
 
             if (obj.product != null) {
                 binding.layoutProduct.setVisible()
@@ -315,39 +316,39 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
         }
     }
 
-    private fun setUpContentAndLink(tvContent: AppCompatTextView, tvTime: AppCompatTextView, root: View, obj: MCDetailMessage) {
-        tvContent.apply {
+    private fun setUpContentAndLink(view: AppCompatTextView, obj: MCDetailMessage, context: Context) {
+        view.apply {
             if (!obj.content.isNullOrEmpty()) {
                 setVisible()
-                text = obj.content!!.replace("\r", "\n")
-                paintFlags = 0
-                setOnClickListener {
-                    if (!obj.showStatus) {
-                        obj.showStatus = true
-                        tvTime.setVisible()
-                        obj.timeText = convertDateTimeSvToCurrentDay(obj.time)
-                        tvTime.text = obj.timeText
-                        if (obj.senderId == FirebaseAuth.getInstance().currentUser?.uid) {
-                            root.setPadding(dpToPx(90), 0, dpToPx(12), dpToPx(8))
-                        } else {
-                            root.setPadding(dpToPx(12), 0, dpToPx(55), dpToPx(8))
-                        }
-                    }
-                }
-            } else {
-                if (!obj.link.isNullOrEmpty()) {
-                    setVisible()
-                    text = obj.link
+
+                if (obj.content!!.contains("http://") || obj.content!!.contains("https://")) {
+                    text = obj.content
                     paintFlags = paintFlags or Paint.UNDERLINE_TEXT_FLAG
 
                     setOnClickListener {
-                        this.context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(obj.link)))
+                        context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(obj.content)))
                     }
                 } else {
-                    setGone()
+                    text = obj.content!!.replace("\r", "\n")
+                    paintFlags = 0
                 }
+
+                setOnLongClickListener {
+                    copyText(context, obj.content!!)
+
+                    true
+                }
+            } else {
+                setGone()
             }
         }
+    }
+
+    private fun copyText(context: Context, text: String) {
+        val myClipboard = context.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+        val myClip = ClipData.newPlainText("note_copy", text)
+        myClipboard.setPrimaryClip(myClip)
+        context.showToastSuccess(context.getString(R.string.copy_success))
     }
 
     private fun setUpImageUrl(obj: MCDetailMessage, layoutTwoImage: View, img1: AppCompatImageView, iconVideo1: AppCompatImageView, img2: AppCompatImageView, iconVideo2: AppCompatImageView, tvCountImage: AppCompatTextView) {

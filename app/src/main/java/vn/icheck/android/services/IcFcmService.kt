@@ -15,13 +15,16 @@ import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFra
 import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.RingtoneHelper
-import vn.icheck.android.tracking.teko.TekoHelper
-import vn.icheck.android.network.base.*
+import vn.icheck.android.network.base.ICNewApiListener
+import vn.icheck.android.network.base.ICResponse
+import vn.icheck.android.network.base.ICResponseCode
+import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.feature.mission.MissionInteractor
 import vn.icheck.android.network.models.ICMissionDetail
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.user.popup_complete_mission.PopupCompleteMissionActivity
 import vn.icheck.android.screen.user.rank_of_user.RankUpActivity
+import vn.icheck.android.tracking.teko.TekoHelper
 import vn.icheck.android.util.ick.logDebug
 
 
@@ -64,14 +67,36 @@ class IcFcmService : FirebaseMessagingService() {
 
         playNotificationSound()
 
-        if (!ListConversationFragment.isOpenConversation && !ChatSocialDetailActivity.isDetailChatOpen) {
-            when {
-                path.contains("completed_mission") -> {
-                    val pathUri = Uri.parse(path).getQueryParameter("id")
-                    getMissionDetail(pathUri)
+        if (path.contains("inbox") || path.contains("inbox_user")) {
+            if (ListConversationFragment.isOpenConversation) {
+                return
+            }
+
+            val activity = ICheckApplication.currentActivity()
+            if (activity != null && activity is ChatSocialDetailActivity) {
+                // ID của user gửi tin nhắn đến
+                val inboxFromID = Uri.parse(path).getQueryParameter("id")
+
+                // Trường hợp fcm là tin nhắn đến
+                if (path.contains("inbox")) {
+                    if (activity.inboxRoomID == inboxFromID) {
+                        return
+                    }
+                } else if (path.contains("inbox_user")) {
+                    if (activity.inboxUserID == inboxFromID) {
+                        return
+                    }
                 }
-                path.contains("level_up") -> {
-                    ICheckApplication.currentActivity()?.let { act ->
+            }
+        }
+
+        when {
+            path.contains("completed_mission") -> {
+                val pathUri = Uri.parse(path).getQueryParameter("id")
+                getMissionDetail(pathUri)
+            }
+            path.contains("level_up") -> {
+                ICheckApplication.currentActivity()?.let { act ->
 //                    Alerter.create(act)
 //                            .setBackgroundColorRes(R.color.green_popup_notifi)
 //                            .setDuration(3000)
@@ -80,22 +105,21 @@ class IcFcmService : FirebaseMessagingService() {
 //                                FirebaseDynamicLinksActivity.startTargetPath(act, path)
 //                            }
 //                            .show()
-                        startActivity(Intent(act, RankUpActivity::class.java).apply {
-                            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                        })
-                    }
+                    startActivity(Intent(act, RankUpActivity::class.java).apply {
+                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    })
                 }
-                else -> {
-                    ICheckApplication.currentActivity()?.let { act ->
-                        Alerter.create(act)
-                                .setBackgroundColorRes(R.color.green_popup_notifi)
-                                .setDuration(3000)
-                                .setText(body)
-                                .setOnClickListener {
-                                    FirebaseDynamicLinksActivity.startTargetPath(act, path)
-                                }
-                                .show()
-                    }
+            }
+            else -> {
+                ICheckApplication.currentActivity()?.let { act ->
+                    Alerter.create(act)
+                            .setBackgroundColorRes(R.color.green_popup_notifi)
+                            .setDuration(3000)
+                            .setText(body)
+                            .setOnClickListener {
+                                FirebaseDynamicLinksActivity.startTargetPath(act, path)
+                            }
+                            .show()
                 }
             }
         }

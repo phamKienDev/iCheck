@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.ichecklibs.*
 import vn.icheck.android.ichecklibs.util.LoadImageUtils
 
-class TakeMediaAdapter(val listData: MutableList<TakeMediaDialog.ICIMageFile>, val selectMulti: Boolean = false, val isVideo: Boolean) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class TakeMediaAdapter(val listData: MutableList<TakeMediaDialog.ICIMageFile>, val selectMulti: Boolean = false, val isVideo: Boolean, val disableTakeImage:Boolean = false) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val cameraType = 1
     private val imageType = 2
 
@@ -46,8 +46,12 @@ class TakeMediaAdapter(val listData: MutableList<TakeMediaDialog.ICIMageFile>, v
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (position == 0) {
-            cameraType
+        return if (!disableTakeImage) {
+            if (position == 0) {
+                cameraType
+            } else {
+                imageType
+            }
         } else {
             imageType
         }

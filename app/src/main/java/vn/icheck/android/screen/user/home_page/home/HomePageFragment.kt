@@ -5,12 +5,15 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.observe
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,6 +27,9 @@ import kotlinx.android.synthetic.main.fragment_home.swipeLayout
 import kotlinx.android.synthetic.main.fragment_home.tvCartCount
 import kotlinx.android.synthetic.main.fragment_home.viewShadow
 import kotlinx.android.synthetic.main.fragment_page_detail.*
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -126,28 +132,38 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
     private fun setupView() {
         layoutHeader.setPadding(0, getStatusBarHeight + SizeHelper.size16, 0, 0)
 
-        txtSearch.background = ViewHelper.createDrawableStateList(
-                ViewHelper.createShapeDrawable(ContextCompat.getColor(requireContext(), R.color.white_opacity_unknow), SizeHelper.size4.toFloat()),
-                ViewHelper.createShapeDrawable(ContextCompat.getColor(requireContext(), R.color.darkGray6), SizeHelper.size4.toFloat())
-        )
+//        txtSearch.background = ViewHelper.createDrawableStateList(
+//                ViewHelper.createShapeDrawable(ContextCompat.getColor(requireContext(), R.color.white_opacity_unknow), SizeHelper.size4.toFloat()),
+//                ViewHelper.createShapeDrawable(ContextCompat.getColor(requireContext(), R.color.darkGray6), SizeHelper.size4.toFloat())
+//        )
 
         tv_show_all_reminders.setOnClickListener {
-            ICheckApplication.currentActivity()?.let { activity ->
-                if (activity is HomeActivity) {
-                    ReminderHomeDialog().apply {
-                        show(activity.supportFragmentManager, null)
+            lifecycleScope.launch {
+                tv_show_all_reminders.isEnabled = false
+                ICheckApplication.currentActivity()?.let { activity ->
+                    if (activity is HomeActivity) {
+                        ReminderHomeDialog().apply {
+                            show(activity.supportFragmentManager, null)
+                        }
                     }
                 }
+                delay(200)
+                tv_show_all_reminders.isEnabled = true
             }
         }
 
         group_notification.setOnClickListener {
-            ICheckApplication.currentActivity()?.let { activity ->
-                if (activity is HomeActivity) {
-                    ReminderHomeDialog().apply {
-                        show(activity.supportFragmentManager, null)
+            lifecycleScope.launch {
+                group_notification.isEnabled = false
+                ICheckApplication.currentActivity()?.let { activity ->
+                    if (activity is HomeActivity) {
+                        ReminderHomeDialog().apply {
+                            show(activity.supportFragmentManager, null)
+                        }
                     }
                 }
+                delay(200)
+                group_notification.isEnabled = true
             }
         }
 
@@ -155,32 +171,52 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
     }
 
     private fun checkTheme() {
-        File(FileHelper.getPath(this@HomePageFragment.requireContext()) + FileHelper.homeBackgroundImage).let {
-            if (it.exists() && imgThemeBackground != null) {
-                WidgetUtils.loadImageFile(imgThemeBackground, it)
+        homeAdapter.notifyDataSetChanged()
 
-                SettingManager.themeSetting?.theme?.apply {
-                    txtSearch.background = ViewHelper.createShapeDrawable(ContextCompat.getColor(requireContext(), R.color.white_opacity_unknow), SizeHelper.size4.toFloat())
-                    txtSearch.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.getDrawableFillColor(R.drawable.ic_icheck_70dp_17dp, homeHeaderIconColor!!), null, null, null)
-
-                    if (!homeHeaderIconColor.isNullOrEmpty()) {
-                        txtAvatar.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.createDrawableStateList(
-                                ContextCompat.getDrawable(requireContext(), R.drawable.ic_home_menu_white_24dp),
-                                ViewHelper.getDrawableFillColor(R.drawable.ic_home_menu_white_24dp, homeHeaderIconColor!!)
-                        ), null, null, null)
-
-                        tvViewCart.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.createDrawableStateList(
-                                ContextCompat.getDrawable(requireContext(), R.drawable.ic_home_shop_white_24dp),
-                                ViewHelper.getDrawableFillColor(R.drawable.ic_home_shop_white_24dp, homeHeaderIconColor!!)
-                        ), null, null, null)
-
-                        txtNotification.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.createDrawableStateList(
-                                ContextCompat.getDrawable(requireContext(), R.drawable.ic_notification_white_24),
-                                ViewHelper.getDrawableFillColor(R.drawable.ic_notification_white_24, homeHeaderIconColor!!)
-                        ), null, null, null)
-                    }
-                }
+        val backgroundImage = BitmapFactory.decodeFile(FileHelper.getPath(this@HomePageFragment.requireContext()) + FileHelper.homeBackgroundImage)
+        imgThemeBackground?.apply {
+            if (backgroundImage != null) {
+                setImageBitmap(backgroundImage)
+            } else {
+                setImageResource(0)
             }
+            requestLayout()
+        }
+
+        val theme = SettingManager.themeSetting?.theme
+        if (theme != null) {
+            txtSearch.background = ViewHelper.createDrawableStateList(
+                    ViewHelper.createShapeDrawable(ContextCompat.getColor(requireContext(), R.color.white_opacity_unknow), SizeHelper.size4.toFloat()),
+                    ViewHelper.createShapeDrawable(ContextCompat.getColor(requireContext(), R.color.darkGray6), SizeHelper.size4.toFloat())
+            )
+            txtSearch.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(requireContext(), R.drawable.ic_icheck_70dp_17dp), null, null, null)
+        } else {
+            txtSearch.background = ViewHelper.createDrawableStateList(
+                    ViewHelper.createShapeDrawable(ContextCompat.getColor(requireContext(), R.color.white_opacity_unknow), SizeHelper.size4.toFloat()),
+                    ViewHelper.createShapeDrawable(ContextCompat.getColor(requireContext(), R.color.darkGray6), SizeHelper.size4.toFloat())
+            )
+            txtSearch.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(requireContext(), R.drawable.ic_icheck_70dp_17dp), null, null, null)
+        }
+
+        if (!theme?.homeHeaderIconColor.isNullOrEmpty()) {
+            txtAvatar.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.createDrawableStateList(
+                    ContextCompat.getDrawable(requireContext(), R.drawable.ic_home_menu_white_24dp),
+                    ViewHelper.getDrawableFillColor(R.drawable.ic_home_menu_white_24dp, theme!!.homeHeaderIconColor!!)
+            ), null, null, null)
+
+            tvViewCart.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.createDrawableStateList(
+                    ContextCompat.getDrawable(requireContext(), R.drawable.ic_home_shop_white_24dp),
+                    ViewHelper.getDrawableFillColor(R.drawable.ic_home_shop_white_24dp, theme.homeHeaderIconColor!!)
+            ), null, null, null)
+
+            txtNotification.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.createDrawableStateList(
+                    ContextCompat.getDrawable(requireContext(), R.drawable.ic_notification_white_24),
+                    ViewHelper.getDrawableFillColor(R.drawable.ic_notification_white_24, theme.homeHeaderIconColor!!)
+            ), null, null, null)
+        } else {
+            txtAvatar.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(requireContext(), R.drawable.ic_home_menu_white_24dp), null, null, null)
+            tvViewCart.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(requireContext(), R.drawable.ic_home_shop_white_24dp), null, null, null)
+            txtNotification.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(requireContext(), R.drawable.ic_notification_white_24), null, null, null)
         }
 
         for (i in homeAdapter.listData.indices) {
@@ -494,6 +530,9 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: ICMessageEvent) {
         when (event.type) {
+            ICMessageEvent.Type.GO_TO_HOME -> {
+                recyclerView.smoothScrollToPosition(0)
+            }
             ICMessageEvent.Type.UPDATE_UNREAD_NOTIFICATION -> {
 
                 tvNotificationCount.visibility = if (event.data as Long > 0) {
@@ -518,10 +557,24 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
 //            }
             ICMessageEvent.Type.ON_LOG_IN -> {
                 getReminders()
+                lifecycleScope.launch {
+                    val file = File(FileHelper.getPath(requireContext()) + FileHelper.imageFolder)
+                    if (file.exists()) {
+                        FileHelper.deleteTheme(file)
+                    }
+                    homeAdapter.notifyDataSetChanged()
+                    checkTheme()
+                }
             }
             ICMessageEvent.Type.ON_LOG_OUT -> {
-//                viewModel.onUpdatePVCombank.value = null
-                homeAdapter.notifyItemChanged(0)
+                lifecycleScope.launch {
+                    val file = File(FileHelper.getPath(requireContext()) + FileHelper.imageFolder)
+                    if (file.exists()) {
+                        FileHelper.deleteTheme(file)
+                    }
+                    homeAdapter.notifyDataSetChanged()
+                    checkTheme()
+                }
                 getCoin()
                 layoutContainer.setTransition(R.id.no_reminder)
                 tvCartCount.beGone()
@@ -543,7 +596,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                 checkTheme()
             }
             ICMessageEvent.Type.ON_REQUIRE_LOGIN -> {
-                if (isVisible && !SessionManager.isUserLogged) {
+                if (isViewCreated && !SessionManager.isUserLogged) {
                     onRequireLogin()
                 }
             }
@@ -700,7 +753,13 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                             tv_action.setText(R.string.xem_chi_tiet)
                         }
                         tv_action.setOnClickListener { _ ->
-                            FirebaseDynamicLinksActivity.startTargetPath(requireActivity(), it?.data?.rows?.firstOrNull()?.redirectPath)
+                            lifecycleScope.launch {
+                                tv_action.isEnabled = false
+                                FirebaseDynamicLinksActivity.startTargetPath(requireActivity(), it?.data?.rows?.firstOrNull()?.redirectPath)
+                                delay(400)
+                                tv_action.isEnabled = true
+                            }
+
                         }
                         imageView14.loadImageWithHolder(it?.data?.rows?.firstOrNull()?.icon, R.drawable.ic_reminder_item)
                     }
@@ -720,6 +779,11 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
             e.printStackTrace()
         }
         super.onDestroy()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        isViewCreated = false
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -749,3 +813,4 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         }
     }
 }
+

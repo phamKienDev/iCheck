@@ -769,6 +769,23 @@ object WidgetUtils {
                 .into(image)
     }
 
+    fun loadImageUrlRoundedNotTransform(image: AppCompatImageView, url: String?, drawble: Int?, error: Int?, roundCorners: Int) {
+        if (url.isNullOrEmpty()) {
+            Glide.with(image.context.applicationContext)
+                    .load(error ?: defaultError)
+                    .transform(CenterCrop(), RoundedCorners(roundCorners))
+                    .into(image)
+            return
+        }
+
+        Glide.with(image.context.applicationContext)
+                .load(url)
+                .placeholder(drawble ?: defaultHolder)
+                .error(error ?: defaultError)
+                .transform(RoundedCorners(roundCorners))
+                .into(image)
+    }
+
     fun loadImageUrlRoundedFitCenter(image: AppCompatImageButton, url: String?, roundCorners: Int) {
         loadImageUrlRoundedFitCenter(image, url, defaultError, roundCorners)
     }

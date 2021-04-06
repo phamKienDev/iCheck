@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ShareCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
@@ -27,6 +28,7 @@ import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.component.view.ViewHelper.onDelayClick
 import vn.icheck.android.constant.*
 import vn.icheck.android.helper.*
+import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.helper.TextHelper.setTextNameProductInPost
 import vn.icheck.android.model.posts.PostViewModel
 import vn.icheck.android.network.base.ICNewApiListener
@@ -80,29 +82,41 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
             val layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT).apply {
                 setMargins(0, SizeHelper.dpToPx(10), 0, 0)
             }
+            itemView.tvPageName.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).apply {
+                setMargins(0, 0, SizeHelper.dpToPx(22), 0)
+            }
             itemView.containerPost.layoutParams = layoutParams
         } else {
             itemView.imgPin.beGone()
             val layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
             itemView.containerPost.layoutParams = layoutParams
+            itemView.tvPageName.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).apply {
+                setMargins(0, 0, 0, 0)
+            }
         }
     }
 
     private fun setupHeader(obj: ICPost) {
         if (obj.page != null) {
             WidgetUtils.loadImageUrl(itemView.imgLogo, obj.page?.avatar, R.drawable.ic_business_v2)
+//            itemView.imgLogo.layoutParams = ConstraintLayout.LayoutParams(SizeHelper.size40, SizeHelper.size40).also {
+//                it.topMargin = 0
+//            }
             itemView.tvPageName.text = obj.page?.getName
             itemView.imgRank.beGone()
             if (obj.page!!.isVerify) {
-                itemView.imgVerify.beVisible()
+                itemView.tvPageName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
             } else {
-                itemView.imgVerify.beGone()
+                itemView.tvPageName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
         } else {
             WidgetUtils.loadImageUrl(itemView.imgLogo, obj.user?.avatar, R.drawable.ic_avatar_default_84px)
+//            itemView.imgLogo.layoutParams = ConstraintLayout.LayoutParams(SizeHelper.size40, SizeHelper.size40).also {
+//                it.topMargin = SizeHelper.size8
+//            }
             itemView.tvPageName.text = obj.user?.getName
+            itemView.tvPageName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             itemView.imgRank.beVisible()
-            itemView.imgVerify.beGone()
             itemView.imgRank.setRankUser(obj.user?.rank?.level)
         }
 
@@ -270,15 +284,15 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
                 itemView.tvName.text = comments.page?.getName
                 itemView.imgLevel.beGone()
                 if (comments.page!!.isVerify) {
-                    itemView.imgVerify2.beVisible()
+                    itemView.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
                 } else {
-                    itemView.imgVerify2.beGone()
+                    itemView.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                 }
             } else {
                 WidgetUtils.loadImageUrl(itemView.imgAvatar, comments.user?.avatar, R.drawable.ic_user_svg)
                 itemView.imgLevel.setImageResource(Constant.getAvatarLevelIcon16(comments.user?.rank?.level))
                 itemView.tvName.text = comments.user?.getName
-                itemView.imgVerify2.beGone()
+                itemView.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
 
             if (comments.content.isNullOrEmpty()) {

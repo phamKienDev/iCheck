@@ -65,7 +65,7 @@ class HomeFunctionAdapter(private val listData: MutableList<ICThemeFunction> = m
                 }
 
                 (getChildAt(1) as AppCompatTextView).run {
-                    text = Html.fromHtml(obj.label ?: "")
+                    text =obj.label ?: ""
                 }
 
                 (getChildAt(2) as AppCompatImageView).run {

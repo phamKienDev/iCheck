@@ -17,6 +17,7 @@ import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponseCode
@@ -96,15 +97,15 @@ class ItemQuestionAdapter(val questionListener: ProductDetailListener) : Recycle
                 WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.user?.avatar, R.drawable.ic_avatar_default_84px)
                 itemView.imgLevel.setRankUser(obj.user?.rank?.level)
                 itemView.tvTitle.text = obj.user?.getName
-                itemView.imgVerify.beGone()
+                itemView.tvTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             } else {
                 WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.page!!.avatar, R.drawable.ic_business_v2)
                 itemView.imgLevel.beGone()
                 itemView.tvTitle.text = obj.page?.getName
                 if (obj.page!!.isVerify) {
-                    itemView.imgVerify.beVisible()
+                    itemView.tvTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
                 } else {
-                    itemView.imgVerify.beGone()
+                    itemView.tvTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                 }
             }
 

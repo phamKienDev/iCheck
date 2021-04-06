@@ -31,15 +31,6 @@
         tools:src="@drawable/ic_avatar_rank_silver_16dp" />
 
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imgVerify"
-        android:layout_width="@dimen/size_12"
-        android:layout_height="@dimen/size_12"
-        android:src="@drawable/ic_verified_16px"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
-        app:layout_constraintEnd_toEndOf="@id/imgAvatar" />
-
     <LinearLayout
         android:id="@id/layoutContent"
         android:layout_width="@dimen/size_0"
@@ -62,13 +53,15 @@
                 android:id="@id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ellipsize="end"
+                android:drawablePadding="@dimen/size_2"
+                android:ellipsize="middle"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:includeFontPadding="false"
                 android:singleLine="true"
                 android:textColor="@color/collection_product_name"
                 android:textSize="14sp"
-                tools:text="Trần Văn Lâm" />
+                tools:drawableEnd="@drawable/ic_verified_16px"
+                tools:text="Trần  Văn  Lâm Trần Văn Lâm" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@id/tvContent"
@@ -98,9 +91,9 @@
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/btnPlay"
                 android:layout_width="0dp"
-                android:visibility="gone"
                 android:layout_height="0dp"
                 android:background="@drawable/bg_black_20_corners_4"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@id/imageView"
                 app:layout_constraintEnd_toEndOf="@id/imageView"
                 app:layout_constraintStart_toStartOf="@id/imageView"

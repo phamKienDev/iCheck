@@ -16,6 +16,7 @@ import vn.icheck.android.databinding.ItemCommentPostBinding
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
@@ -42,19 +43,20 @@ class CommentPostHolder(val binding: ItemCommentPostBinding, val listener: IComm
 
         if (obj.page != null) {
             WidgetUtils.loadImageUrl(binding.imgAvatar, obj.page?.avatar, R.drawable.ic_business_v2)
-            binding.tvTitle.text = obj.page?.name
             binding.imgLevel.beGone()
+            binding.tvTitle.text = obj.page?.name
+
             if (obj.page!!.isVerify) {
-                binding.imgVerify.beVisible()
+                binding.tvTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
             } else {
-                binding.imgVerify.beGone()
+                binding.tvTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
         } else {
             WidgetUtils.loadImageUrl(binding.imgAvatar, obj.user?.avatar, R.drawable.ic_avatar_default_84px, R.drawable.ic_avatar_default_84px)
             binding.tvTitle.text = obj.user?.getName
             binding.imgLevel.setImageResource(Constant.getAvatarLevelIcon16(obj.user?.rank?.level))
+            binding.tvTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             binding.imgLevel.beVisible()
-            binding.imgVerify.beGone()
         }
 
         if (obj.content.isNullOrEmpty()) {
@@ -73,7 +75,7 @@ class CommentPostHolder(val binding: ItemCommentPostBinding, val listener: IComm
                 binding.btnPlay.visibility = View.GONE
             }
             binding.imageView.visibility = View.VISIBLE
-            WidgetUtils.loadImageUrlRounded(binding.imageView, obj.media!![0]!!.content,R.drawable.img_default_loading_icheck,R.drawable.img_default_loading_icheck, SizeHelper.size4)
+            WidgetUtils.loadImageUrlRounded(binding.imageView, obj.media!![0]!!.content, R.drawable.img_default_loading_icheck, R.drawable.img_default_loading_icheck, SizeHelper.size4)
         }
 
 

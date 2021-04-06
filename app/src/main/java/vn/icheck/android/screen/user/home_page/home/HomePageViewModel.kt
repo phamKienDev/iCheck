@@ -5,7 +5,6 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withTimeoutOrNull
@@ -38,7 +37,6 @@ import vn.icheck.android.network.models.product_need_review.ICProductNeedReview
 import vn.icheck.android.network.models.pvcombank.ICListCardPVBank
 import vn.icheck.android.screen.user.home_page.home.model.ICListHomeItem
 import vn.icheck.android.util.ick.logError
-import java.util.concurrent.TimeUnit
 import kotlin.collections.set
 
 class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHandle: SavedStateHandle, val ickApi: ICKApi) : BaseViewModel() {
@@ -218,40 +216,19 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
         }
     }
 
-    private var disposable: Disposable? = null
-
     private fun getFunc(layout: ICLayout, url: String) {
-        disposable?.dispose()
-        disposable = Observable.timer(3, TimeUnit.SECONDS)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    getFunc(layout, url.replace(APIConstants.adsSocialHostOnly(), APIConstants.adsOriginSocialHostOnly()))
-                }
-
         functionInteractor.getHomeFunc(url, object : ICNewApiListener<ICResponse<ICTheme>> {
             override fun onSuccess(obj: ICResponse<ICTheme>) {
-                disposable?.dispose()
-                disposable = null
-
                 if (!obj.data?.secondary_functions.isNullOrEmpty()) {
                     layout.data = mutableListOf(obj.data)
                 }
-
                 onUpdateData.value = layout
                 getPVCombank()
             }
 
             override fun onError(error: ICResponseCode?) {
-                disposable?.dispose()
-                disposable = null
-
-                if (url.contains(APIConstants.adsSocialHostOnly())) {
-                    getFunc(layout, url.replace(APIConstants.adsSocialHostOnly(), APIConstants.adsOriginSocialHostOnly()))
-                } else {
-                    finishRequest(false)
-                    onUpdateData.value = layout
-                }
+                finishRequest(false)
+                onUpdateData.value = layout
             }
         })
     }
@@ -605,7 +582,6 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
         adsInteractor.dispose()
         settingInteraction.dispose()
         cartHelper.dispose()
-        disposable?.dispose()
         pvcombankRepository.dispose()
     }
 }

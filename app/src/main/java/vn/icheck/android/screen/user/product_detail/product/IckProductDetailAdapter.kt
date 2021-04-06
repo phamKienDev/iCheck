@@ -324,7 +324,7 @@ class IckProductDetailAdapter(listener: IRecyclerViewCallback, private val produ
                     (holder as LoyaltyViewHolder).bind(listData[position].data as ICKLoyalty, IckProductDetailActivity.barcode, activity, listenerLoyalty, listenerLogin)
                 }
             }
-            ICViewTypes.PRODUCT_ECCOMMERCE_TYPE -> (holder as ListProductsECommerceHolder).bind(listData[position])
+            ICViewTypes.PRODUCT_ECCOMMERCE_TYPE -> (holder as ListProductsECommerceHolder).bind(listData[position].data as MutableList<ICProductECommerce>)
             else -> super.onBindViewHolder(holder, position)
         }
     }

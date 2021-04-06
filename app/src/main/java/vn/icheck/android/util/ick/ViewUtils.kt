@@ -7,6 +7,7 @@ import android.graphics.Canvas
 import android.graphics.Matrix
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.TransitionDrawable
+import android.media.ThumbnailUtils
 import android.text.Editable
 import android.text.InputType
 import android.util.DisplayMetrics
@@ -220,17 +221,36 @@ fun Bitmap.resizeBitmap(newWidth: Int, newHeight: Int, isCenterCrop:Boolean = fa
     return if (!isCenterCrop) {
         createScaledBitmap
     } else {
-        val scale = newWidth.toFloat() / this.width
-        val newBitmap = Bitmap.createScaledBitmap(this, newWidth, (this.height * scale).toInt(), false)
-        Bitmap.createBitmap(newBitmap, 0, 0,newWidth,  newHeight)
+        ThumbnailUtils.extractThumbnail(this, newWidth, newHeight, ThumbnailUtils.OPTIONS_RECYCLE_INPUT)
+    }
+}
+
+fun Bitmap.centerCrop(newWidth: Int, newHeight: Int):Bitmap {
+    return if (this.getWidth() >= this.getHeight()){
+
+         Bitmap.createBitmap(
+                this,
+                 newWidth/2 - newHeight/2,
+                0,
+                 newWidth,
+                newHeight
+        );
+
+    }else{
+
+       Bitmap.createBitmap(
+                this,
+                0,
+               newHeight/2 - newWidth/2,
+                newWidth,
+                newHeight
+        );
     }
 }
 
 
 fun Int.toPx(): Int {
-    val res = ICheckApplication.getInstance().resources
-//    return this * (res.displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT)
-    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this.toFloat(), res.displayMetrics).toInt()
+    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this.toFloat(), ICheckApplication.getInstance().resources.displayMetrics).toInt()
 }
 
 fun Int.dpToPx(): Int {
@@ -241,11 +261,13 @@ fun Float.dpToPx(): Int {
     return (this * Resources.getSystem().displayMetrics.density).toInt()
 }
 
+fun Float.spToPx(): Float {
+    return (this * Resources.getSystem().displayMetrics.scaledDensity)
+}
+
 
 fun Float.toPx(): Float {
-    val res = ICheckApplication.getInstance().resources
-//    return this * (res.displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT)
-    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this.toFloat(), res.displayMetrics)
+    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this, ICheckApplication.getInstance().resources.displayMetrics)
 }
 
 fun Int.toDp(): Int {

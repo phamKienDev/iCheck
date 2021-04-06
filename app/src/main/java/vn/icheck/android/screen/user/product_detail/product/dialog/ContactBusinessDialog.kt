@@ -6,12 +6,13 @@ import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialog
 import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 import vn.icheck.android.util.ick.beGone
 
 class ContactBusinessDialog(context: Context) : BaseBottomSheetDialog(context, R.layout.dialog_contact_business, true) {
 
     fun show(id: Long?, phone: String?, email: String?) {
-        if (id == null && phone.isNullOrEmpty() && email.isNullOrEmpty()) {
+        if (id == null && phone.isNullOrBlank() && email.isNullOrBlank()) {
             return
         }
 
@@ -44,8 +45,8 @@ class ContactBusinessDialog(context: Context) : BaseBottomSheetDialog(context, R
         }
 
         dialog.btnChat.setOnClickListener {
-//            SocialChatActivity.createPageChat(dialog.context, id)
-            ChatSocialDetailActivity.createRoomChat(dialog.context, id ?: -1, "page")
+            SocialChatActivity.createPageChat(dialog.context, id)
+//            ChatSocialDetailActivity.createRoomChat(dialog.context, id ?: -1, "page")
         }
 
         dialog.imgCancel.setOnClickListener {

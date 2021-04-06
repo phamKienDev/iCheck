@@ -28,48 +28,46 @@
             android:layout_width="@dimen/size_40"
             android:layout_height="@dimen/size_40"
             android:layout_marginStart="@dimen/size_8"
-            app:civ_circle_background_color="@color/white"
             android:layout_marginLeft="@dimen/size_8"
             android:layout_marginTop="@dimen/size_8"
             android:layout_marginBottom="@dimen/size_10"
             app:civ_border_color="@color/gray"
             app:civ_border_width="@dimen/size_0_5"
+            app:civ_circle_background_color="@color/white"
             app:layout_constraintBottom_toBottomOf="@id/imgImage"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imgImage"
             tools:src="@drawable/ic_business_v2" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/imgVerified"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/size_27"
-            android:layout_marginLeft="@dimen/size_27"
-            android:layout_marginTop="@dimen/size_27"
-            app:layout_constraintStart_toStartOf="@id/imgAvatar"
-            app:layout_constraintTop_toTopOf="@id/imgAvatar"
-            tools:src="@drawable/ic_verified_16px" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@id/tvName"
-            android:layout_width="@dimen/size_0"
+        <LinearLayout
+            android:id="@+id/layoutName"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_6"
             android:layout_marginTop="@dimen/size_6"
             android:layout_marginEnd="@dimen/size_6"
-            android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
-            android:includeFontPadding="false"
-            android:maxHeight="40dp"
-            android:maxLines="2"
-            android:minHeight="40dp"
-            android:singleLine="true"
-            android:textColor="@color/collection_product_name"
-            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imgAvatar"
-            tools:text="Adidas Store (tối 1 dòng)..." />
+            app:layout_constraintTop_toBottomOf="@id/imgAvatar">
+
+            <vn.icheck.android.ichecklibs.MiddleMultilineTextView
+                android:id="@id/tvName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawablePadding="@dimen/size_4"
+                android:ellipsize="middle"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:includeFontPadding="false"
+                android:maxHeight="40dp"
+                android:maxLines="2"
+                android:minHeight="40dp"
+                android:textColor="@color/collection_product_name"
+                android:textSize="14sp"
+                tools:text=" dòng)... Adidas Store (tối 1 dòng)... Adidas Store (tối 1 dòng)... Adidas Store (tối 1 dòng)... Adidas Store (tối 1 dòng)... Adidas Store (tối 1 dòng)..." />
+
+        </LinearLayout>
+
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@id/tvStatus"
@@ -82,9 +80,9 @@
             android:singleLine="true"
             android:textColor="#757575"
             android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="@id/tvName"
-            app:layout_constraintStart_toStartOf="@id/tvName"
-            app:layout_constraintTop_toBottomOf="@id/tvName"
+            app:layout_constraintEnd_toEndOf="@id/layoutName"
+            app:layout_constraintStart_toStartOf="@id/layoutName"
+            app:layout_constraintTop_toBottomOf="@id/layoutName"
             tools:text="1,241,021 Người theo dõi" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -98,8 +96,8 @@
             android:focusable="true"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/tvName"
-            app:layout_constraintStart_toStartOf="@id/tvName"
+            app:layout_constraintEnd_toEndOf="@id/layoutName"
+            app:layout_constraintStart_toStartOf="@id/layoutName"
             app:layout_constraintTop_toBottomOf="@id/tvStatus" />
 
         <androidx.appcompat.widget.AppCompatTextView

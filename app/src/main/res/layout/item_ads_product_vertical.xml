@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/size_12"
-    android:layout_marginEnd="@dimen/size_12"
     android:layout_marginTop="@dimen/size_10"
+    android:layout_marginEnd="@dimen/size_12"
     android:background="@drawable/bg_corner_gray_solid_white">
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -57,41 +57,40 @@
         android:layout_marginStart="@dimen/size_8"
         android:layout_marginLeft="@dimen/size_8"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvName"
-        tools:src="@drawable/ic_business_v2" />
+        app:layout_constraintTop_toTopOf="@id/layoutName"
+        tools:src="@drawable/img_default_business_logo" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imgVerified"
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:id="@+id/layoutName"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/size_27"
-        android:layout_marginLeft="@dimen/size_27"
-        android:layout_marginTop="@dimen/size_27"
-        app:layout_constraintStart_toStartOf="@id/imgAvatar"
-        app:layout_constraintTop_toTopOf="@id/imgAvatar"
-        tools:src="@drawable/ic_verified_16px" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@id/tvName"
-        android:layout_width="@dimen/size_0"
-        android:layout_height="0dp"
         android:layout_marginStart="@dimen/size_8"
-        android:layout_marginLeft="@dimen/size_8"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:ellipsize="end"
-        android:fontFamily="@font/barlow_semi_bold"
-        android:gravity="center|start"
-        android:includeFontPadding="false"
-        android:maxLines="2"
-        android:textColor="@color/collection_product_name"
-        android:textSize="14sp"
+        android:layout_marginEnd="@dimen/size_4"
         app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/imgAvatar"
-        app:layout_constraintTop_toBottomOf="@id/imgImage"
-        tools:text="Adidas Store (tối 2 dòng)..." />
+        app:layout_constraintTop_toBottomOf="@id/imgImage">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="8dp"
+            android:drawablePadding="2dp"
+            android:ellipsize="middle"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center|start"
+            android:includeFontPadding="false"
+            android:maxLines="2"
+            android:textColor="@color/collection_product_name"
+            android:textSize="14sp"
+            tools:drawableEnd="@drawable/ic_verified_16px"
+            tools:text="Adidas Store (tối 2 dòng) Adidas Store (tối 2 dòng) Adidas Store (tối 2 dòng) Adidas Store (tối 2 dòng)" />
+
+    </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@id/tvContent"
@@ -105,7 +104,7 @@
         android:maxLines="2"
         android:textColor="@color/collection_product_name"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/tvName"
+        app:layout_constraintEnd_toEndOf="@+id/layoutName"
         app:layout_constraintStart_toStartOf="@+id/imgAvatar"
         app:layout_constraintTop_toBottomOf="@id/imgAvatar"
         tools:text="Học cách sáng tạo trên TikTok để nhãn hàng của bạn nổi bật và thu hút khách hàng- Tối đa 2 dòng..." />
@@ -119,14 +118,14 @@
         android:gravity="center|start"
         android:includeFontPadding="false"
         android:lineSpacingExtra="4sp"
+        android:text="Tên đang cập nhật"
         android:textColor="#b4b4b4"
         android:textSize="14sp"
         android:textStyle="italic"
         android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="@+id/tvName"
+        app:layout_constraintEnd_toEndOf="@+id/layoutName"
         app:layout_constraintStart_toStartOf="@+id/imgAvatar"
-        app:layout_constraintTop_toBottomOf="@id/imgAvatar"
-        android:text="Tên đang cập nhật" />
+        app:layout_constraintTop_toBottomOf="@id/imgAvatar" />
 
     <LinearLayout
         android:id="@+id/linearLayout5"
@@ -149,12 +148,12 @@
                 android:id="@+id/tvPriceUpdating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
                 android:fontFamily="@font/barlow_medium"
-                android:textStyle="italic"
-                android:textSize="14sp"
+                android:text="Giá đang cập nhật"
                 android:textColor="#b4b4b4"
-                android:text="Giá đang cập nhật"/>
+                android:textSize="14sp"
+                android:textStyle="italic"
+                android:visibility="gone" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvPriceSpecial"

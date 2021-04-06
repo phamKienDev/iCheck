@@ -14,16 +14,18 @@ import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
-import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.component.header_page.bottom_sheet_header_page.IListReportView
 import vn.icheck.android.component.header_page.bottom_sheet_header_page.MoreActionPageBottomSheet
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
+import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICMedia
 import vn.icheck.android.network.models.ICPageOverview
 import vn.icheck.android.network.models.feed.ICAvatarOfFriend
+import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 import vn.icheck.android.screen.user.user_follow_page.UserFollowPageActivity
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
@@ -88,13 +90,10 @@ class HeaderInforPageHolder(parent: ViewGroup, val view: IListReportView) : Recy
 
         WidgetUtils.loadImageUrl(itemView.imgAvaPage, data.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
         WidgetUtils.loadImageUrl(itemView.user_avatar, data.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
-        itemView.tvNamePage.text = data.name
         if (data.isVerify) {
-            itemView.tvNamePage.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_18px, 0)
-            itemView.imgVerified2.beVisible()
+            itemView.tvNamePage.setDrawbleNextEndText(data.name ?: "", R.drawable.ic_verified_18px)
         } else {
-            itemView.tvNamePage.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
-            itemView.imgVerified2.beGone()
+            itemView.tvNamePage.text = data.name
         }
 
         itemView.tvCount.text = (data.productCount ?: 0).toString()
@@ -139,9 +138,11 @@ class HeaderInforPageHolder(parent: ViewGroup, val view: IListReportView) : Recy
 
         itemView.tvChinh.setOnClickListener {
             if (!itemView.tvChinh.text.contains("Theo dõi")) {
-                ListConversationFragment.finishAllChat()
-                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_FINISH_ALL_CHAT))
-                ChatSocialDetailActivity.createRoomChat(it.context, data.id ?: -1, "page")
+//                ListConversationFragment.finishAllChat()
+//                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_FINISH_ALL_CHAT))
+//                ChatSocialDetailActivity.createRoomChat(it.context, data.id ?: -1, "page")
+
+                SocialChatActivity.createRoomChat(it.context, data.id)
             } else {
                 view.followAndUnFollowPage(data)
             }
@@ -180,7 +181,11 @@ class HeaderInforPageHolder(parent: ViewGroup, val view: IListReportView) : Recy
                 }
 
                 override fun onClickReportPage() {
-                    view.onShowReportForm()
+                    if (SessionManager.isUserLogged) {
+                        view.onShowReportForm()
+                    }else{
+                        view.onRequireLogin()
+                    }
                 }
             }.show()
         }

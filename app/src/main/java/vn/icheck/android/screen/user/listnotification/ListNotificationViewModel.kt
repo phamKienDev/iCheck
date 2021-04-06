@@ -274,7 +274,7 @@ class ListNotificationViewModel @ViewModelInject constructor(val ickApi: ICKApi,
                 if (!obj.data?.rows.isNullOrEmpty()) {
                     obj.data?.rows?.forEach {
                         val icHome = ICHomeItem(ICViewTypes.OTHER_NOTIFICATION_TYPE, widget.id.toString())
-                        if (obj.data?.rows?.firstOrNull()?.id == it.id) {
+                        if (arrNotify.isEmpty()) {
                             it.showTitle = true
                         }
                         icHome.data = it

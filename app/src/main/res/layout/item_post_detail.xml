@@ -34,30 +34,30 @@
             app:layout_constraintTop_toTopOf="@id/imgRank"
             tools:src="@color/blue" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/imgVerified"
-            android:layout_width="@dimen/size_16"
-            android:layout_height="@dimen/size_16"
-            android:src="@drawable/ic_verified_16px"
-            app:layout_constraintBottom_toBottomOf="@id/imgLogo"
-            app:layout_constraintEnd_toEndOf="@id/imgLogo" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@id/tvName"
-            android:layout_width="@dimen/size_0"
+        <LinearLayout
+            android:id="@+id/layoutName"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_8"
             android:layout_marginEnd="@dimen/size_8"
-            android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
-            android:includeFontPadding="false"
-            android:singleLine="true"
-            android:textColor="@color/collection_product_name"
-            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/imgLogo"
-            app:layout_constraintTop_toTopOf="@id/imgLogo"
-            tools:text="Unilever Vietnam OfficialUnilever Vietnam Official Unilever Vietnam Official" />
+            app:layout_constraintTop_toTopOf="@id/imgLogo">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/size_4"
+                android:ellipsize="middle"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:textColor="@color/collection_product_name"
+                android:textSize="16sp"
+                tools:text="Unilever Vietnam OfficialUnilever Vietnam Official Unilever Vietnam Official" />
+
+        </LinearLayout>
 
 
         <LinearLayout
@@ -117,8 +117,8 @@
             android:singleLine="true"
             android:textColor="@color/fast_survey_gray"
             android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="@id/tvName"
-            app:layout_constraintTop_toBottomOf="@id/tvName"
+            app:layout_constraintStart_toStartOf="@id/layoutName"
+            app:layout_constraintTop_toBottomOf="@id/layoutName"
             tools:text="43 phút trước" />
 
         <androidx.appcompat.widget.AppCompatTextView

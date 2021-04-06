@@ -15,8 +15,6 @@ class FirebaseHelper {
 
     private var userID = ""
 
-    private var myConversation: DatabaseReference? = null
-
     var offset = 0
 
     fun loginFirebase(success: () -> Unit, cancel: () -> Unit) {
@@ -26,7 +24,6 @@ class FirebaseHelper {
             FirebaseAuth.getInstance().signInWithCustomToken(token).addOnSuccessListener {
                 FirebaseDatabase.getInstance().goOnline()
                 userID = it.user?.uid ?: ShareHelperChat.getLong(USER_ID).toString()
-                myConversation = firebaseDatabase.getReference("chat-conversations-v2/user|$userID")
                 success()
             }.addOnFailureListener {
                 FirebaseDatabase.getInstance().goOnline()
@@ -59,16 +56,18 @@ class FirebaseHelper {
         requestNewApi(MCNetworkClient.getNewSocialApi().updateFirebaseToken(body), success, cancel)
     }
 
-    fun getConversation(isLoadMore: Boolean = false, success: (snapshot: DataSnapshot) -> Unit, cancel: (error: DatabaseError) -> Unit) {
-        if (!isLoadMore) {
-            offset = 0
+    fun getConversation(lastTimeStamp: Long, success: (snapshot: DataSnapshot) -> Unit, cancel: (error: DatabaseError) -> Unit) {
+        val myConversation = if (lastTimeStamp > 0) {
+            firebaseDatabase.getReference("chat-conversations-v2/user|$userID").orderByChild("last_activity/time")
+                    .startAt(0.0).endAt(lastTimeStamp.toDouble() - 1)
+                    .limitToLast(10)
+        } else {
+            firebaseDatabase.getReference("chat-conversations-v2/user|$userID").orderByChild("last_activity/time")
+                    .limitToLast(10)
         }
 
-//        myConversation?.orderByChild("last_activity/time")?.limitToFirst(10)?.startAt(offset.toDouble())?.addValueEventListener(object : ValueEventListener {
-        myConversation?.orderByChild("last_activity/time")?.addValueEventListener(object : ValueEventListener {
+        myConversation.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                offset += 10
-
                 success(snapshot)
             }
 

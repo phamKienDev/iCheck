@@ -30,21 +30,27 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/tv_username"
-            android:layout_width="match_parent"
+            android:id="@id/tvName"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="84dp"
+            android:drawablePadding="@dimen/size_4"
+            android:ellipsize="middle"
             android:fontFamily="@font/barlow_semi_bold"
-            android:gravity="center"
+            android:gravity="center_vertical"
+            android:textAlignment="gravity"
             android:textColor="#212121"
+            android:includeFontPadding="false"
             android:textSize="18sp"
-            tools:text="Mai Lan Nguyễn" />
+            tools:text="Mai Lan Nguyễn"
+            android:singleLine="true" />
 
         <LinearLayout
             android:id="@+id/group_friend"
             android:layout_width="match_parent"
-            android:layout_marginTop="12dp"
             android:layout_height="35dp"
+            android:layout_marginTop="12dp"
             android:orientation="horizontal"
             android:visibility="gone"
             tools:visibility="visible">
@@ -112,53 +118,53 @@
                 app:srcCompat="@drawable/ic_more_blue_24px" />
         </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/group_main_user"
-                    android:layout_width="match_parent"
+        <LinearLayout
+            android:id="@+id/group_main_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="12dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/btn_review"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_light_blue_corners_4"
+                android:gravity="center"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/imageView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    app:srcCompat="@drawable/ic_scan_white_24px" />
+
+                <TextView
+                    android:id="@+id/button2"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="12dp"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:id="@+id/btn_review"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/btn_light_blue_corners_4"
-                        android:gravity="center"
-                        android:padding="8dp">
-
-                        <ImageView
-                            android:id="@+id/imageView11"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_marginEnd="8dp"
-                            android:layout_marginRight="8dp"
-                            app:srcCompat="@drawable/ic_scan_white_24px" />
-
-                        <TextView
-                            android:id="@+id/button2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/barlow_semi_bold"
-                            android:text="Đánh giá sản phẩm"
-                            android:textColor="@android:color/white"
-                            android:textSize="16sp" />
-                    </LinearLayout>
+                    android:fontFamily="@font/barlow_semi_bold"
+                    android:text="Đánh giá sản phẩm"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp" />
+            </LinearLayout>
 
 
-                    <ImageView
-                        android:id="@+id/btn_setting"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:scaleType="fitXY"
-                        android:text="Button"
-                        app:srcCompat="@drawable/ic_btn_setting_blue" />
-                </LinearLayout>
+            <ImageView
+                android:id="@+id/btn_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:text="Button"
+                app:srcCompat="@drawable/ic_btn_setting_blue" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/group_address"
@@ -185,9 +191,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:paddingBottom="2dp"
                 android:layout_marginLeft="12dp"
                 android:fontFamily="@font/barlow_semi_bold"
+                android:paddingBottom="2dp"
                 android:textColor="#212121"
                 tools:text="Hà Nội" />
         </LinearLayout>

@@ -3,6 +3,7 @@ package vn.icheck.android.screen.user.webview
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -21,6 +22,7 @@ import androidx.fragment.app.FragmentActivity
 import kotlinx.android.synthetic.main.activity_web_view.*
 import kotlinx.android.synthetic.main.toolbar_light_blue.*
 import org.greenrobot.eventbus.EventBus
+import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
@@ -28,11 +30,14 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
+import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.network.base.*
 import vn.icheck.android.screen.user.pvcombank.authen.CreatePVCardActivity
 import vn.icheck.android.screen.user.pvcombank.home.HomePVCardActivity
 import vn.icheck.android.screen.user.pvcombank.listcard.ListPVCardActivity
+import vn.icheck.android.util.ick.spToPx
+import vn.icheck.android.util.ick.toPx
 import vn.icheck.android.util.kotlin.ActivityUtils
 import java.net.URL
 import java.util.*
@@ -85,6 +90,21 @@ class WebViewActivity : BaseActivityMVVM() {
                 intent.putExtra(Constant.DATA_3, title)
 
             ActivityUtils.startActivity(activity, intent)
+        }
+
+        fun openChrome(link: String?) {
+            if (!link.isNullOrEmpty()) {
+                ICheckApplication.currentActivity()?.let { activity ->
+                    try {
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        intent.setPackage("com.android.chrome")
+                        ActivityHelper.startActivity(activity, intent)
+                    } catch (ex: ActivityNotFoundException) {
+                        start(activity, link)
+                    }
+                }
+            }
         }
     }
 
@@ -202,6 +222,7 @@ class WebViewActivity : BaseActivityMVVM() {
                 webView.loadUrl(url)
             }
         } else {
+            webView.settings.defaultFontSize = 14f.spToPx().toInt()
             webView.loadData(Constant.getHtmlData(url), "text/html; charset=utf-8", "UTF-8")
         }
 

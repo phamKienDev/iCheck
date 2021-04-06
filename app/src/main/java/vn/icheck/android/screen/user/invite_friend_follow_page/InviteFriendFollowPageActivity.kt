@@ -48,8 +48,16 @@ class InviteFriendFollowPageActivity : BaseActivityMVVM(), InviteFriendFollowPag
         editor = sharedPreferences.edit()
 
         initView()
+        initSwipeLayout()
         initRecyclerView()
         listenerData()
+    }
+
+    private fun initSwipeLayout() {
+        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.blue), ContextCompat.getColor(this, R.color.blue), ContextCompat.getColor(this, R.color.lightBlue))
+        swipeLayout.setOnRefreshListener {
+            findListUser(edtSearch.text.toString())
+        }
     }
 
     private fun initView() {
@@ -85,6 +93,7 @@ class InviteFriendFollowPageActivity : BaseActivityMVVM(), InviteFriendFollowPag
         viewModel.getData(intent)
 
         viewModel.onSetData.observe(this, {
+            swipeLayout.isRefreshing = false
             if (!it.rows.isNullOrEmpty()) {
                 adapter.addItem(it.also {
                     it.listHideIds = sharedPreferences.getStringSet(keyPreferencesInvite, HashSet<String>())
@@ -133,6 +142,7 @@ class InviteFriendFollowPageActivity : BaseActivityMVVM(), InviteFriendFollowPag
         })
 
         viewModel.onError.observe(this, {
+            swipeLayout.isRefreshing = false
             DialogHelper.closeLoading(this)
             if (!adapter.isEmpty) {
                 ToastUtils.showShortError(this, it.message)

@@ -1,13 +1,12 @@
 package vn.icheck.android.screen.user.home_page.home.holder.primaryfunction
 
-import android.graphics.Rect
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.*
-import androidx.viewpager.widget.PagerAdapter
-import androidx.viewpager2.widget.MarginPageTransformer
-import androidx.viewpager2.widget.ViewPager2
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.item_home_function.view.*
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
@@ -28,9 +27,6 @@ import vn.icheck.android.network.models.pvcombank.ICListCardPVBank
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.user.home_page.home.callback.IHomePageView
 import vn.icheck.android.screen.user.home_page.home.holder.secondfunction.HomeSecondaryFunctionAdapter
-import vn.icheck.android.util.kotlin.WidgetUtils
-import java.io.File
-import kotlin.math.abs
 
 class HomeFunctionHolder(parent: ViewGroup, isExistTheme: Boolean, listener: IHomePageView,
                          val binding: ItemHomeFunctionBinding = ItemHomeFunctionBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : BaseViewHolder<MutableList<Any?>>(binding.root) {
@@ -80,23 +76,26 @@ class HomeFunctionHolder(parent: ViewGroup, isExistTheme: Boolean, listener: IHo
 
     fun updateTheme() {
         val path = FileHelper.getPath(itemView.context)
-        File(path + FileHelper.homeBackgroundImage).let {
-            if (it.exists()) {
-                binding.imgBackground.apply {
-                    setVisible()
-                    WidgetUtils.loadImageFile(this, it)
-                }
-            } else {
-                binding.imgBackground.setGone()
+
+        itemView.imgBackground.requestLayout()
+        val backgroundImage = BitmapFactory.decodeFile(path + FileHelper.homeBackgroundImage)
+        if (backgroundImage != null) {
+            itemView.imgBackground.apply {
+                setVisible()
+                setImageBitmap(backgroundImage)
             }
+        } else {
+            itemView.imgBackground.setGone()
         }
 
-        File(path + FileHelper.homeHeaderImage).let {
-            if (it.exists()) {
-                binding.imgHeader.apply {
-                    WidgetUtils.loadImageFileFitCenter(this, it)
-                }
+        itemView.imgHeader.apply {
+            val headerImage = BitmapFactory.decodeFile(path + FileHelper.homeHeaderImage)
+            if (headerImage != null) {
+                itemView.imgHeader.setImageBitmap(headerImage)
+            } else {
+                itemView.imgHeader.setImageResource(R.drawable.ic_header_home_page)
             }
+            itemView.imgHeader.requestLayout()
         }
     }
 
@@ -263,7 +262,8 @@ class HomeFunctionHolder(parent: ViewGroup, isExistTheme: Boolean, listener: IHo
 
             private fun setMoney(obj: ICListCardPVBank) {
                 binding.tvMoney.text = if (binding.tvMoney.isChecked) {
-                    TextHelper.formatMoney(obj.avlBalance ?: "").replace("[0-9]".toRegex(), "*") + "**"
+                    TextHelper.formatMoney(obj.avlBalance
+                            ?: "").replace("[0-9]".toRegex(), "*") + "**"
                 } else {
                     TextHelper.formatMoney(obj.avlBalance ?: "") + " đ"
                 }

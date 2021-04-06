@@ -1,5 +1,6 @@
 package vn.icheck.android.screen.user.search_home.result.holder
 
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -43,10 +45,8 @@ class PageSearchHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflat
 
         checkFollowCount(obj)
 
-        itemView.tv_verified.visibility = if (obj.isVerify) {
-            View.VISIBLE
-        } else {
-            View.GONE
+        if (obj.isVerify) {
+            itemView.tv_name.setDrawbleNextEndText(itemView.tv_name.text.toString(), R.drawable.ic_verified_16px)
         }
 
         itemView.setOnClickListener {
@@ -112,7 +112,7 @@ class PageSearchHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflat
     private fun followPage(objPage: ICPageQuery) {
         ICheckApplication.currentActivity()?.let { activity ->
             if (!SessionManager.isUserLogged) {
-                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_LOG_IN))
+                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_REQUIRE_LOGIN))
                 return
             }
 
@@ -141,7 +141,7 @@ class PageSearchHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflat
     private fun unFollow(objPage: ICPageQuery) {
         ICheckApplication.currentActivity()?.let { activity ->
             if (!SessionManager.isUserLogged) {
-                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_LOG_IN))
+                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_REQUIRE_LOGIN))
                 return
             }
 

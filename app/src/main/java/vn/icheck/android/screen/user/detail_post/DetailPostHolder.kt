@@ -22,6 +22,7 @@ import vn.icheck.android.databinding.ItemPostDetailBinding
 import vn.icheck.android.helper.*
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.helper.TextHelper.setTextNameProductInPost
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
@@ -54,18 +55,25 @@ class DetailPostHolder(val binding: ItemPostDetailBinding, val listener: IDetail
     private fun setupHeader(obj: ICPost) {
         if (obj.page != null) {
             WidgetUtils.loadImageUrl(binding.imgLogo, obj.page?.avatar, R.drawable.ic_business_v2)
-            binding.tvName.text = obj.page?.getName
             binding.imgRank.beGone()
+            binding.tvName.text = obj.page?.getName
             if (obj.page!!.isVerify) {
-                binding.imgVerified.beVisible()
+                binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
             } else {
-                binding.imgVerified.beGone()
+                binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
         } else {
             WidgetUtils.loadImageUrl(binding.imgLogo, obj.user?.avatar, R.drawable.ic_avatar_default_84px)
-            binding.tvName.text = obj.user?.getName
+            binding.tvName.apply {
+                text = obj.user?.getName
+                if (obj.user?.kycStatus == 2) {
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_24dp, 0)
+                } else {
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                }
+            }
             binding.imgRank.beVisible()
-            binding.imgVerified.beGone()
+            binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             binding.imgRank.setRankUser(obj.user?.rank?.level)
         }
 

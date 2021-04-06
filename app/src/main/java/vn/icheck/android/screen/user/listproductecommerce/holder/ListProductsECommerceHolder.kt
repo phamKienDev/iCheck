@@ -1,5 +1,6 @@
 package vn.icheck.android.screen.user.listproductecommerce.holder
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -9,15 +10,14 @@ import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ItemListProductsEcommerceBinding
 import vn.icheck.android.loyalty.helper.ActivityHelper
-import vn.icheck.android.network.models.ICLayout
 import vn.icheck.android.network.models.ICProductECommerce
+import vn.icheck.android.network.util.JsonHelper
 import vn.icheck.android.screen.user.listproductecommerce.ListProductsECommerceActivity
+import vn.icheck.android.util.ick.visibleOrInvisible
 
-class ListProductsECommerceHolder(parent: ViewGroup, val binding: ItemListProductsEcommerceBinding = ItemListProductsEcommerceBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : BaseViewHolder<ICLayout>(binding.root) {
+class ListProductsECommerceHolder(parent: ViewGroup, val binding: ItemListProductsEcommerceBinding = ItemListProductsEcommerceBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : BaseViewHolder<MutableList<ICProductECommerce>>(binding.root) {
     private val adapter = object : RecyclerViewAdapter<ICProductECommerce>() {
-        override fun getItemCount(): Int {
-            return if (listData.size > 3) 3 else listData.size
-        }
+        override fun getItemCount() = if (listData.size > 3) 3 else listData.size
 
         override fun viewHolder(parent: ViewGroup) = ProductsECommerceHolder(parent)
 
@@ -30,13 +30,20 @@ class ListProductsECommerceHolder(parent: ViewGroup, val binding: ItemListProduc
         }
     }
 
-    override fun bind(obj: ICLayout) {
+    override fun bind(obj: MutableList<ICProductECommerce>) {
+        adapter.disableLoading()
+        adapter.disableLoadMore()
         binding.recyclerView.adapter = adapter
-        adapter.setListData(obj.data as MutableList<ICProductECommerce>)
+        adapter.setListData(obj)
+
+        binding.tvViewMore.visibleOrInvisible(adapter.getListData.size > 3)
 
         binding.tvViewMore.setOnClickListener {
             ICheckApplication.currentActivity()?.let { activity ->
-                ActivityHelper.startActivity<ListProductsECommerceActivity>(activity, Constant.DATA_1, obj.key)
+                val intent = Intent(activity, ListProductsECommerceActivity::class.java)
+                intent.putExtra(Constant.DATA_1, JsonHelper.toJson(obj))
+                intent.putExtra(Constant.DATA_2, true)
+                ActivityHelper.startActivity(activity, intent)
             }
         }
     }

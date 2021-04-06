@@ -33,6 +33,7 @@ import com.scandit.datacapture.barcode.capture.BarcodeCaptureSession
 import com.scandit.datacapture.barcode.capture.BarcodeCaptureSettings
 import com.scandit.datacapture.barcode.data.Symbology
 import com.scandit.datacapture.core.capture.DataCaptureContext
+import com.scandit.datacapture.core.common.async.Callback
 import com.scandit.datacapture.core.data.FrameData
 import com.scandit.datacapture.core.source.*
 import com.scandit.datacapture.core.ui.DataCaptureView
@@ -161,26 +162,21 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
         val key = if (BuildConfig.FLAVOR.contentEquals("dev")) getString(R.string.scandit_v6_key_dev) else getString(R.string.scandit_v6_key_live)
         dataCaptureContext = DataCaptureContext.forLicenseKey(key)
         val settings = BarcodeCaptureSettings().apply {
-            enableSymbology(Symbology.CODE128, true)
-            enableSymbology(Symbology.CODE39, true)
-            enableSymbology(Symbology.QR, true)
-            enableSymbology(Symbology.EAN8, true)
-            enableSymbology(Symbology.UPCE, true)
-            enableSymbology(Symbology.EAN13_UPCA, true)
-            setProperty("remove_leading_upca_zero", true)
+            Symbology.values().forEach {
+                if (it != Symbology.MICRO_PDF417 && it != Symbology.PDF417) {
+                    enableSymbology(it, true)
+                    getSymbologySettings(it).isColorInvertedEnabled = true
+                }
+            }
         }
-
-        settings.getSymbologySettings(Symbology.CODE128).isColorInvertedEnabled = true
-        settings.getSymbologySettings(Symbology.CODE39).isColorInvertedEnabled = true
-        settings.getSymbologySettings(Symbology.QR).isColorInvertedEnabled = true
-        settings.getSymbologySettings(Symbology.EAN8).isColorInvertedEnabled = true
-        settings.getSymbologySettings(Symbology.UPCE).isColorInvertedEnabled = true
-        settings.getSymbologySettings(Symbology.EAN13_UPCA).isColorInvertedEnabled = true
+        settings.getSymbologySettings(Symbology.EAN13_UPCA).setExtensionEnabled("remove_leading_upca_zero", true)
+        settings.getSymbologySettings(Symbology.UPCE).setExtensionEnabled("remove_leading_upca_zero", true)
 
         barcodeCapture = BarcodeCapture.forDataCaptureContext(dataCaptureContext, settings)
 
         barcodeCapture.addListener(this)
         cameraSettings = BarcodeCapture.createRecommendedCameraSettings()
+        cameraSettings.preferredResolution = VideoResolution.HD
         camera = Camera.getDefaultCamera(cameraSettings)
         resetCamera()
 
@@ -198,15 +194,33 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
     }
 
     private fun resetCamera() {
-        dataCaptureContext.setFrameSource(camera)
-        if (camera != null) {
-            camera?.switchToDesiredState(FrameSourceState.ON);
+        lifecycleScope.launch {
+            delay(400)
+            if (camera?.currentState != FrameSourceState.ON) {
+                camera?.switchToDesiredState(FrameSourceState.ON, object : Callback<Boolean> {
+                    override fun run(result: Boolean) {
+                        if (result) {
+                            dataCaptureContext.setFrameSource(camera)
+                            barcodeCapture.isEnabled = true
+                        } else {
+                            resetCamera()
+                        }
+                    }
+                })
+
+            }
         }
     }
 
     private fun offCamera() {
-        if (camera != null) {
-            camera?.switchToDesiredState(FrameSourceState.OFF);
+        if (camera?.currentState != FrameSourceState.OFF) {
+            camera?.switchToDesiredState(FrameSourceState.OFF, object : Callback<Boolean> {
+                override fun run(result: Boolean) {
+                    if (!result) {
+                        offCamera()
+                    }
+                }
+            })
         }
     }
 
@@ -570,12 +584,13 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
-        barcodeCapture.isEnabled = false
+        offCamera()
+        dataCaptureContext.release()
     }
 
     override fun onPause() {
         super.onPause()
-        barcodeCapture.isEnabled = false
+        offCamera()
     }
 
     override fun onResume() {
