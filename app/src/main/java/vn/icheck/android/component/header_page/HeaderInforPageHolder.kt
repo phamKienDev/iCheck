@@ -21,6 +21,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
+import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICMedia
 import vn.icheck.android.network.models.ICPageOverview
 import vn.icheck.android.network.models.feed.ICAvatarOfFriend
@@ -180,7 +181,11 @@ class HeaderInforPageHolder(parent: ViewGroup, val view: IListReportView) : Recy
                 }
 
                 override fun onClickReportPage() {
-                    view.onShowReportForm()
+                    if (SessionManager.isUserLogged) {
+                        view.onShowReportForm()
+                    }else{
+                        view.onRequireLogin()
+                    }
                 }
             }.show()
         }

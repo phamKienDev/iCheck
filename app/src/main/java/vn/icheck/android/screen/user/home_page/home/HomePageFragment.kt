@@ -531,7 +531,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
     fun onMessageEvent(event: ICMessageEvent) {
         when (event.type) {
             ICMessageEvent.Type.GO_TO_HOME -> {
-               recyclerView.smoothScrollToPosition(0)
+                recyclerView.smoothScrollToPosition(0)
             }
             ICMessageEvent.Type.UPDATE_UNREAD_NOTIFICATION -> {
 
@@ -596,7 +596,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                 checkTheme()
             }
             ICMessageEvent.Type.ON_REQUIRE_LOGIN -> {
-                if (isVisible && !SessionManager.isUserLogged) {
+                if (isViewCreated && !SessionManager.isUserLogged) {
                     onRequireLogin()
                 }
             }
@@ -779,6 +779,11 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
             e.printStackTrace()
         }
         super.onDestroy()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        isViewCreated = false
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
