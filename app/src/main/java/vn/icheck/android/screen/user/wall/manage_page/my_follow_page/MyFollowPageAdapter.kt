@@ -3,7 +3,9 @@ package vn.icheck.android.screen.user.wall.manage_page.my_follow_page
 import android.os.Handler
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.item_city.view.*
 import kotlinx.android.synthetic.main.item_me_follow_page_holder.view.*
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
@@ -20,6 +22,7 @@ import vn.icheck.android.network.models.ICPage
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
+import vn.icheck.android.util.ick.logDebug
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -46,6 +49,7 @@ class MyFollowPageAdapter(val typeHome: Boolean, callback: IRecyclerViewCallback
     }
 
     inner class ViewHolder(parent: ViewGroup) : BaseViewHolder<ICPage>(LayoutInflater.from(parent.context).inflate(R.layout.item_me_follow_page_holder, parent, false)) {
+
         override fun bind(obj: ICPage) {
             itemView.layoutParams = (itemView.layoutParams as RecyclerView.LayoutParams).apply {
                 topMargin = if (typeHome)
@@ -54,12 +58,15 @@ class MyFollowPageAdapter(val typeHome: Boolean, callback: IRecyclerViewCallback
                     SizeHelper.size16
             }
 
-            itemView.tvName.text = obj.name ?: ""
-            if (obj.isVerify) {
+            if (!obj.isVerify) {
+                itemView.tvName.text = obj.name
+            } else {
+                itemView.tvName.setDrawbleNextEndText(obj.name, R.drawable.ic_verified_16px)
                 Handler().postDelayed({
-                    itemView.tvName.setDrawbleNextEndText(itemView.tvName.text.toString(),R.drawable.ic_verified_16px)
-                },100)
+                    itemView.tvName.setDrawbleNextEndText(itemView.tvName.text.toString(), R.drawable.ic_verified_16px)
+                }, 100)
             }
+
 
             if (typeHome) {
                 itemView.imgMore.beGone()
@@ -86,5 +93,7 @@ class MyFollowPageAdapter(val typeHome: Boolean, callback: IRecyclerViewCallback
                 }
             }
         }
+
+
     }
 }

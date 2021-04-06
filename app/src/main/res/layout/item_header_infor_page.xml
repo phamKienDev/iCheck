@@ -53,7 +53,7 @@
                 android:gravity="center_vertical"
                 android:textColor="#000000"
                 android:textSize="20sp"
-                tools:text="Unilever Vietnam Official Unilever Vietnam Official  Unilever Vietnam Official Unilever Vietnam Official  " />
+                tools:text="Công ty Thư 11412222222222222222222221 1" />
         </LinearLayout>
 
         <vn.icheck.android.component.view.text_view.TextViewBarlowMedium

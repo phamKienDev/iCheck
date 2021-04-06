@@ -79,15 +79,15 @@
             android:layout_marginStart="@dimen/size_8"
             android:layout_marginTop="6dp"
             android:layout_marginEnd="8dp"
-            tools:drawableEnd="@drawable/ic_verified_16px"
             android:drawablePadding="2dp"
-            android:ellipsize="end"
+            android:ellipsize="middle"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center|start"
             android:includeFontPadding="false"
             android:maxLines="2"
             android:textColor="@color/collection_product_name"
             android:textSize="14sp"
+            tools:drawableEnd="@drawable/ic_verified_16px"
             tools:text="Adidas Store (tối 2 dòng) Adidas Store (tối 2 dòng) Adidas Store (tối 2 dòng) Adidas Store (tối 2 dòng)" />
 
     </LinearLayout>

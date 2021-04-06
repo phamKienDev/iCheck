@@ -138,10 +138,11 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
         viewModel.onPostData.observe(this, {
             if (it.page != null) {
                 WidgetUtils.loadImageUrl(imgAvatar, it.page!!.avatar, R.drawable.ic_business_v2)
+                tvName.text = it.page!!.name
                 if (it.page!!.isVerify) {
-                    tvName.setDrawbleNextEndText(  it.page!!.name, R.drawable.ic_verified_16px)
+                    tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
                 } else {
-                    tvName.text = it.page!!.name
+                    tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                 }
 
                 imgRank.beInvisible()

@@ -93,7 +93,6 @@ class HeaderInforPageHolder(parent: ViewGroup, val view: IListReportView) : Recy
             itemView.tvNamePage.setDrawbleNextEndText(data.name ?: "", R.drawable.ic_verified_18px)
         } else {
             itemView.tvNamePage.text = data.name
-            itemView.tvNamePage.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
         }
 
         itemView.tvCount.text = (data.productCount ?: 0).toString()

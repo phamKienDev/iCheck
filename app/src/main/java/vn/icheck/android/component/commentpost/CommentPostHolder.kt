@@ -44,10 +44,12 @@ class CommentPostHolder(val binding: ItemCommentPostBinding, val listener: IComm
         if (obj.page != null) {
             WidgetUtils.loadImageUrl(binding.imgAvatar, obj.page?.avatar, R.drawable.ic_business_v2)
             binding.imgLevel.beGone()
+            binding.tvTitle.text = obj.page?.name
+
             if (obj.page!!.isVerify) {
-                binding.tvTitle.setDrawbleNextEndText(obj.page?.name,R.drawable.ic_verified_16px)
+                binding.tvTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
             } else {
-                binding.tvTitle.text = obj.page?.name
+                binding.tvTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
         } else {
             WidgetUtils.loadImageUrl(binding.imgAvatar, obj.user?.avatar, R.drawable.ic_avatar_default_84px, R.drawable.ic_avatar_default_84px)

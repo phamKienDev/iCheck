@@ -43,11 +43,11 @@ class MyOwnerPageAdapter(val typeHome: Boolean, callback: IRecyclerViewCallback?
                     SizeHelper.size16
                 }
             }
-
+            itemView.tvName.text = obj.name ?: ""
             if (obj.isVerify) {
-                itemView.tvName.setDrawbleNextEndText(obj.name, R.drawable.ic_verified_16px)
+                itemView.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
             } else {
-                itemView.tvName.setText(obj.name ?: "")
+                itemView.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
 
             WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
