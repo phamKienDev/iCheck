@@ -30,7 +30,7 @@
             android:singleLine="true"
             android:text="Chương trình ưu đãi"
             android:textColor="@color/lightBlue"
-            android:textSize="18sp" />
+            android:textSize="@dimen/font_18" />
     </FrameLayout>
 
     <WebView
@@ -58,7 +58,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

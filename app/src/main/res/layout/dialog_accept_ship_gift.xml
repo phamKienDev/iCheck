@@ -34,7 +34,7 @@
             android:text="Cảm ơn bạn đã sử dụng dịch vụ của iCheck.\nCửa hàng sẽ liên lạc với bạn sớm để xác nhận đơn quà này!"
             android:textAlignment="center"
             android:textColor="#434343"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -52,7 +52,7 @@
             android:paddingBottom="@dimen/size_10"
             android:text="Xem chi tiết đơn hàng"
             android:textColor="#ffffff"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             android:textStyle="normal" />
 
     </LinearLayout>

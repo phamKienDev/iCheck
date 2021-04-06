@@ -51,7 +51,7 @@
                 android:layout_marginLeft="10dp"
                 android:fontFamily="@font/barlow_medium"
                 android:textColor="#212121"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 app:layout_constraintStart_toEndOf="@id/imgUnfollow"
                 app:layout_constraintTop_toTopOf="@id/imgUnfollow"
                 tools:text="Bỏ theo dõi Xuyến Đỗ" />
@@ -62,7 +62,7 @@
                 android:fontFamily="@font/barlow_regular"
                 android:text="Khi bỏ theo dõi, các bài viết của người này sẽ không hiển thị trên trang chủ của bạn nữa."
                 android:textColor="#757575"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:visibility="visible"
                 app:fontFamily="@font/barlow_medium"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -96,7 +96,7 @@
                 android:layout_marginLeft="10dp"
                 android:fontFamily="@font/barlow_medium"
                 android:textColor="#212121"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 app:layout_constraintStart_toEndOf="@id/imgNotify"
                 app:layout_constraintTop_toTopOf="@id/imgNotify"
                 tools:text="Hủy kết bạn Tùng Thanh" />
@@ -107,7 +107,7 @@
                 android:fontFamily="@font/barlow_regular"
                 android:text="Lời mời kết bạn trước đó sẽ bị hủy bỏ. Bạn vẫn có thể gửi lại  lời mời kết bạn cho người này."
                 android:textColor="#757575"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:visibility="visible"
                 app:fontFamily="@font/barlow_medium"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -143,7 +143,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:text="Báo cáo người dùng"
                 android:textColor="#212121"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 app:layout_constraintStart_toEndOf="@id/imgReport"
                 app:layout_constraintTop_toTopOf="@id/imgReport" />
 
@@ -153,7 +153,7 @@
                 android:fontFamily="@font/barlow_regular"
                 android:text="Bạn nhận thấy người dùng này có những hoạt động mang nội dung spam, nhạy cảm? Hãy cho chúng tôi biết."
                 android:textColor="#757575"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:visibility="visible"
                 app:fontFamily="@font/barlow_medium"
                 app:layout_constraintBottom_toBottomOf="parent"

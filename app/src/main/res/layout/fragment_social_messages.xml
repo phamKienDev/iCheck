@@ -43,7 +43,7 @@
             android:fontFamily="@font/barlow_medium"
             android:hint="Tìm kiếm bạn bè trong tin nhắn"
             android:padding="6dp"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

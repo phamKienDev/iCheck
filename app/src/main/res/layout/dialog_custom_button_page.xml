@@ -24,7 +24,7 @@
         android:fontFamily="@font/barlow_semi_bold"
         android:text="Tùy chỉnh nút"
         android:textColor="@color/lightBlue"
-        android:textSize="18sp"
+        android:textSize="@dimen/font_18"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -38,7 +38,7 @@
         android:fontFamily="@font/barlow_semi_bold"
         android:text="@string/xong"
         android:textColor="@color/lightBlue"
-        android:textSize="18sp"
+        android:textSize="@dimen/font_18"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/tv_filter" />
 
@@ -70,7 +70,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:text="Nút chính"
             android:textColor="@color/blue"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider27" />
 
@@ -129,7 +129,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:text="Nút phụ"
             android:textColor="@color/blue"
-            android:textSize="14sp" />
+            android:textSize="@dimen/font_14" />
 
         <TextView
             android:id="@+id/textView61"

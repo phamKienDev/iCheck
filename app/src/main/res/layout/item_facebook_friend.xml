@@ -38,7 +38,7 @@
         android:includeFontPadding="false"
         android:singleLine="true"
         android:textColor="@color/collection_product_name"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/avatar"
         app:layout_constraintTop_toTopOf="@+id/avatar"
@@ -55,7 +55,7 @@
         android:paddingBottom="@dimen/size_4"
         android:text="@string/nhan_tin"
         android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toBottomOf="@id/avatar"
         app:layout_constraintStart_toStartOf="@+id/tvName" />
 

@@ -40,7 +40,7 @@
             android:includeFontPadding="false"
             android:text="@string/chia_se_qr_code_nay_toi_ban_be_cua_ban"
             android:textColor="#35384b"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal" />
 
         <androidx.appcompat.widget.AppCompatImageButton
@@ -71,7 +71,7 @@
         android:fontFamily="sans-serif"
         android:text="@string/tao_moi"
         android:textColor="#ffffff"
-        android:textSize="12sp"
+        android:textSize="@dimen/font_12"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="@id/imgCreate"
         app:layout_constraintStart_toStartOf="@id/imgCreate"
@@ -95,7 +95,7 @@
         android:fontFamily="sans-serif"
         android:text="@string/tai_xuong"
         android:textColor="#ffffff"
-        android:textSize="12sp"
+        android:textSize="@dimen/font_12"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="@id/imgDownload"
         app:layout_constraintStart_toStartOf="@id/imgDownload"
@@ -118,7 +118,7 @@
         android:fontFamily="sans-serif"
         android:text="@string/chia_se"
         android:textColor="#ffffff"
-        android:textSize="12sp"
+        android:textSize="@dimen/font_12"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="@id/imgSave"
         app:layout_constraintStart_toStartOf="@id/imgSave"

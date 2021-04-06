@@ -14,7 +14,7 @@
         android:layout_marginTop="18dp"
         android:fontFamily="@font/barlow_medium"
         android:textColor="#212121"
-        android:textSize="12sp"
+        android:textSize="@dimen/font_12"
         tools:text="Tên sản phẩm (*)" />
 
     <EditText
@@ -30,6 +30,6 @@
         android:padding="8dp"
         android:textColor="#757575"
         android:textColorHint="#B4B4B4"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         tools:hint="Nhập tên sản phẩm" />
 </LinearLayout>

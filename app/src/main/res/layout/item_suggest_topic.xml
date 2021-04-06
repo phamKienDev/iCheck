@@ -27,7 +27,7 @@
         android:paddingLeft="@dimen/size_7"
         android:paddingRight="@dimen/size_7"
         android:textColor="@color/white"
-        android:textSize="12sp"
+        android:textSize="@dimen/font_12"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

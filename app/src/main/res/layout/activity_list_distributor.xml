@@ -32,7 +32,7 @@
             android:layout_weight="1"
             android:ellipsize="end"
             android:fontFamily="sans-serif-medium"
-            android:textSize="18sp"
+            android:textSize="@dimen/font_18"
             android:gravity="center"
             android:includeFontPadding="false"
             android:paddingStart="@dimen/size_12"

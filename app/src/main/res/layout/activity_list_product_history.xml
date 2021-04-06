@@ -27,7 +27,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:text="@string/danh_sach_san_pham_title"
             android:textColor="@color/lightBlue"
-            android:textSize="18sp"
+            android:textSize="@dimen/font_18"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

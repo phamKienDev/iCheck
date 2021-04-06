@@ -9,7 +9,7 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         android:layout_marginTop="10dp"
         android:layout_marginStart="12dp"
         android:fontFamily="@font/barlow_semi_bold"
@@ -25,11 +25,11 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:fontFamily="@font/barlow_medium"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:maxLines="5"
         android:ellipsize="end"
         android:textColor="#212121"
-        android:lineSpacingExtra="6sp"
+        android:lineSpacingExtra="@dimen/font_6"
         tools:text="Theo tổ chức y tế thế giới, mỗi năm có khoảng 10% dân số thế giới bị ngộ độc do thức ăn thức nhiễm độc, ở mức độ khác nhau, kể cả tử vong. Việt Nam có 35% số người mắc ung thu, là do sử dụng thực phẩm không an toàn. Thực phẩm bẩn (Hiển thị dạng thu gọn tối đa 5 dòng)..." />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -37,13 +37,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/barlow_semi_bold"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:layout_marginBottom="9dp"
         android:gravity="center"
         android:layout_gravity="center"
         android:drawableEnd="@drawable/ic_arrow_down_blue_24px"
         android:textColor="#3c5a99"
-        android:lineSpacingExtra="6sp"
+        android:lineSpacingExtra="@dimen/font_6"
         android:text="Xem thêm" />
 
 </LinearLayout>

@@ -32,7 +32,7 @@
             android:singleLine="true"
             android:text="Đặc quyền riêng"
             android:textColor="@color/lightBlue"
-            android:textSize="18sp" />
+            android:textSize="@dimen/font_18" />
     </FrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView

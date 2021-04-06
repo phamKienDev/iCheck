@@ -29,7 +29,7 @@
         android:includeFontPadding="false"
         android:text="@string/chinh_sua_quyen_rieng_tu"
         android:textColor="#057dda"
-        android:textSize="18sp"
+        android:textSize="@dimen/font_18"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -89,7 +89,7 @@
                 android:paddingBottom="@dimen/size_10"
                 android:text="@string/xong"
                 android:textColor="@android:color/white"
-                android:textSize="18sp" />
+                android:textSize="@dimen/font_18" />
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

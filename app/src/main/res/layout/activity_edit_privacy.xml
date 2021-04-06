@@ -24,7 +24,7 @@
         android:gravity="center_horizontal"
         android:text="@string/ai_co_the_xem_bai_viet_nay_cua_ban"
         android:textColor="@color/collection_product_name"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         app:fontFamily="@font/barlow_semi_bold" />
 
     <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
@@ -53,7 +53,7 @@
     <!--            android:includeFontPadding="false"-->
     <!--            android:text="@string/cong_khai"-->
     <!--            android:textColor="@color/collection_product_name"-->
-    <!--            android:textSize="14sp"-->
+    <!--            android:textSize="@dimen/font_14"-->
     <!--            app:fontFamily="@font/barlow_medium"-->
     <!--            app:layout_constraintStart_toEndOf="@id/btnPublic"-->
     <!--            app:layout_constraintTop_toTopOf="parent" />-->
@@ -66,7 +66,7 @@
     <!--            android:includeFontPadding="false"-->
     <!--            android:text="Tất cả mọi người đều xem được"-->
     <!--            android:textColor="@color/fast_survey_gray"-->
-    <!--            android:textSize="14sp"-->
+    <!--            android:textSize="@dimen/font_14"-->
     <!--            app:layout_constraintStart_toStartOf="@id/tvTitlePublic"-->
     <!--            app:layout_constraintTop_toBottomOf="@id/tvTitlePublic" />-->
     <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
@@ -97,7 +97,7 @@
     <!--            android:includeFontPadding="false"-->
     <!--            android:text="@string/rieng_tu"-->
     <!--            android:textColor="@color/collection_product_name"-->
-    <!--            android:textSize="14sp"-->
+    <!--            android:textSize="@dimen/font_14"-->
     <!--            app:fontFamily="@font/barlow_medium"-->
     <!--            app:layout_constraintStart_toEndOf="@id/btnPrivate"-->
     <!--            app:layout_constraintTop_toTopOf="parent" />-->
@@ -110,7 +110,7 @@
     <!--            android:includeFontPadding="false"-->
     <!--            android:text="Chỉ mình bạn xem được"-->
     <!--            android:textColor="@color/fast_survey_gray"-->
-    <!--            android:textSize="14sp"-->
+    <!--            android:textSize="@dimen/font_14"-->
     <!--            app:layout_constraintStart_toStartOf="@id/tvTitlePrivate"-->
     <!--            app:layout_constraintTop_toBottomOf="@id/tvTitlePrivate" />-->
     <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
@@ -141,7 +141,7 @@
     <!--            android:includeFontPadding="false"-->
     <!--            android:text="@string/ban_be"-->
     <!--            android:textColor="@color/collection_product_name"-->
-    <!--            android:textSize="14sp"-->
+    <!--            android:textSize="@dimen/font_14"-->
     <!--            app:fontFamily="@font/barlow_medium"-->
     <!--            app:layout_constraintStart_toEndOf="@id/btnFriend"-->
     <!--            app:layout_constraintTop_toTopOf="parent" />-->
@@ -154,7 +154,7 @@
     <!--            android:includeFontPadding="false"-->
     <!--            android:text="Bạn bè của bạn có thể xem được"-->
     <!--            android:textColor="@color/fast_survey_gray"-->
-    <!--            android:textSize="14sp"-->
+    <!--            android:textSize="@dimen/font_14"-->
     <!--            app:layout_constraintStart_toStartOf="@id/tvTitleFriend"-->
     <!--            app:layout_constraintTop_toBottomOf="@id/tvTitleFriend" />-->
     <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
@@ -215,5 +215,5 @@
         android:paddingBottom="@dimen/size_8"
         android:text="@string/xong"
         android:textColor="@color/white"
-        android:textSize="16sp" />
+        android:textSize="@dimen/font_16" />
 </LinearLayout>

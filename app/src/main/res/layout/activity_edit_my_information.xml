@@ -114,7 +114,7 @@
                                 android:includeFontPadding="false"
                                 android:text="@string/update_profile_note_title"
                                 android:textColor="#434343"
-                                android:textSize="12sp"
+                                android:textSize="@dimen/font_12"
                                 android:textStyle="normal"
                                 app:layout_constraintEnd_toStartOf="@id/tvClose"
                                 app:layout_constraintStart_toEndOf="@id/tvIcon"
@@ -128,7 +128,7 @@
                                 android:includeFontPadding="false"
                                 android:text="@string/update_profile_note_content"
                                 android:textColor="#828282"
-                                android:textSize="12sp"
+                                android:textSize="@dimen/font_12"
                                 android:textStyle="normal"
                                 app:layout_constraintEnd_toStartOf="@id/tvClose"
                                 app:layout_constraintStart_toEndOf="@id/tvIcon"
@@ -247,7 +247,7 @@
                     android:inputType="textCapWords"
                     android:maxLength="30"
                     android:textColorHint="#b4b4b4"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/font_14" />
 
             </TableRow>
 
@@ -277,7 +277,7 @@
                     android:inputType="textCapWords"
                     android:maxLength="30"
                     android:textColorHint="#b4b4b4"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/font_14" />
 
             </TableRow>
 
@@ -382,7 +382,7 @@
                     android:maxLength="255"
                     android:inputType="textEmailAddress"
                     android:textColorHint="#b4b4b4"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/font_14" />
             </TableRow>
 
             <TableRow>
@@ -487,7 +487,7 @@
                     android:inputType="text"
                     android:maxLength="512"
                     android:textColorHint="#b4b4b4"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/font_14" />
             </TableRow>
 
             <TableRow>
@@ -579,7 +579,7 @@
                         android:paddingRight="@dimen/size_8"
                         android:paddingBottom="@dimen/size_3"
                         android:text="@string/da_lien_ket"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/font_14"
                         android:visibility="gone" />
 
                     <LinearLayout
@@ -691,7 +691,7 @@
         android:gravity="center"
         android:text="@string/luu_thay_doi"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

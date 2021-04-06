@@ -16,7 +16,7 @@
         android:fontFamily="sans-serif"
         tools:text="Mô tả sản phẩm"
         android:textColor="#3c5a99"
-        android:textSize="18sp"
+        android:textSize="@dimen/font_18"
         android:textStyle="normal" />
 
     <LinearLayout

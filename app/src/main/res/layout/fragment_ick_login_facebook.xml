@@ -33,7 +33,7 @@
                 android:fontFamily="@font/barlow_semi_bold"
                 android:text="Việt Nam"
                 android:textColor="#b4b4b4"
-                android:textSize="18sp"
+                android:textSize="@dimen/font_18"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_username" />
 
@@ -68,7 +68,7 @@
                 android:paddingBottom="20dp"
                 android:hint="+84"
                 android:textColor="#757575"
-                android:textSize="20sp"
+                android:textSize="@dimen/font_20"
                 app:layout_constraintStart_toStartOf="@+id/divider18"
                 app:layout_constraintTop_toBottomOf="@+id/divider18" />
 
@@ -87,7 +87,7 @@
                 android:inputType="phone"
                 android:paddingBottom="20dp"
                 android:textColor="#212121"
-                android:textSize="20sp"
+                android:textSize="@dimen/font_20"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_phone_head"
                 app:layout_constraintEnd_toEndOf="@+id/divider18"
                 app:layout_constraintStart_toEndOf="@+id/tv_phone_head"
@@ -110,7 +110,7 @@
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:textColor="#057DDA"
-                android:textSize="18sp"
+                android:textSize="@dimen/font_18"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/user_avatar"
@@ -132,7 +132,7 @@
         android:text="Tiếp tục"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

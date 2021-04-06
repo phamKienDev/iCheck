@@ -22,14 +22,14 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:fontFamily="@font/barlow_semi_bold"
-        android:lineSpacingExtra="6sp"
+        android:lineSpacingExtra="@dimen/font_6"
         android:maxLines="3"
         android:paddingStart="6dp"
         android:paddingTop="8dp"
         android:paddingEnd="6dp"
         android:paddingBottom="10dp"
         android:textColor="#212121"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         tools:text="Sự kiện đáng mong đợi nhất năm: Mừng iCheck (tối đa 3 dòng)..." />
 
 </LinearLayout>

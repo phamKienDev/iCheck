@@ -42,7 +42,7 @@
                 android:includeFontPadding="false"
                 android:singleLine="true"
                 android:textColor="#3c5a99"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -81,9 +81,9 @@
                 android:layout_marginEnd="@dimen/size_16"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif"
-                android:lineSpacingExtra="5sp"
+                android:lineSpacingExtra="@dimen/font_5"
                 android:textColor="#434343"
-                android:textSize="10sp"
+                android:textSize="@dimen/font_10"
                 android:textStyle="normal" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -100,7 +100,7 @@
                 android:text="Mua thêm"
                 android:textAlignment="gravity"
                 android:textColor="#ff7800"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
         </LinearLayout>
 
@@ -134,7 +134,7 @@
             android:fontFamily="sans-serif"
             android:includeFontPadding="false"
             android:textColor="#3c5a99"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal"
             app:layout_constraintBottom_toBottomOf="@id/tvShippingUnit"
             app:layout_constraintEnd_toEndOf="@id/tvShippingUnit"
@@ -157,7 +157,7 @@
             android:singleLine="true"
             android:text="@string/don_vi_van_chuyen"
             android:textColor="#3c5a99"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -173,7 +173,7 @@
             android:singleLine="true"
             android:text="@string/xxx_xxx"
             android:textColor="#434343"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal"
             app:layout_constraintTop_toBottomOf="@id/tvShippingUnit" />
 
@@ -188,7 +188,7 @@
             android:includeFontPadding="false"
             android:text="@string/du_kien_nhan_hang_xxx"
             android:textColor="#828282"
-            android:textSize="12sp"
+            android:textSize="@dimen/font_12"
             android:textStyle="normal"
             app:layout_constraintTop_toBottomOf="@id/tvShippingName" />
 
@@ -210,7 +210,7 @@
             android:includeFontPadding="false"
             android:text="@string/thanh_tien"
             android:textColor="#3c5a99"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             android:textStyle="normal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/viewLine" />
@@ -223,7 +223,7 @@
             android:fontFamily="sans-serif-medium"
             android:includeFontPadding="false"
             android:textColor="#ff0000"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             android:textStyle="normal"
             app:layout_constraintBottom_toBottomOf="@id/tvAmount"
             app:layout_constraintEnd_toEndOf="parent"
@@ -255,7 +255,7 @@
             android:maxLines="2"
             android:textColor="#434343"
             android:textColorHint="#b4b4b4"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvMoney" />

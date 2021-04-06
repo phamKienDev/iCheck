@@ -89,7 +89,7 @@
                 android:maxLines="1"
                 android:ellipsize="end"
                 android:gravity="center"
-                android:textSize="18sp"
+                android:textSize="@dimen/font_18"
                 android:textColor="@color/titleToolbar"/>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>

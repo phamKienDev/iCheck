@@ -44,7 +44,7 @@
             android:id="@+id/tvNameType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textColor="#212121"
             android:fontFamily="@font/barlow_semi_bold"
             tools:text="iCheck Xu"/>
@@ -53,7 +53,7 @@
             android:id="@id/tvValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
+            android:textSize="@dimen/font_12"
             android:textColor="#757575"
             android:fontFamily="@font/barlow_medium"
             tools:text="Số dư hiện tại: 34,970 Xu"/>

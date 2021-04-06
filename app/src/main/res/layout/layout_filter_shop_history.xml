@@ -16,7 +16,7 @@
         android:paddingEnd="12dp"
         android:text="Lọc theo cửa hàng"
         android:textColor="#212121"
-        android:textSize="14sp" />
+        android:textSize="@dimen/font_14" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@id/recyclerView"
@@ -37,6 +37,6 @@
         android:fontFamily="@font/barlow_medium"
         android:text="Hiển thị thêm"
         android:textColor="#757575"
-        android:textSize="12sp" />
+        android:textSize="@dimen/font_12" />
 
 </LinearLayout>

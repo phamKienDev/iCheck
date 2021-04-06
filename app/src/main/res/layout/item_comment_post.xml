@@ -59,7 +59,7 @@
                 android:includeFontPadding="false"
                 android:singleLine="true"
                 android:textColor="@color/collection_product_name"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 tools:drawableEnd="@drawable/ic_verified_16px"
                 tools:text="Trần  Văn Lâm Trần Văn Văn Lâm Trần Văn Lâm Trần Văn Lâm Trần Văn Lâm Trần Văn Lâm" />
 
@@ -71,7 +71,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:includeFontPadding="false"
                 android:textColor="@color/collection_product_name"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 tools:text="Tôi thấy loại này hơi đắt so với giá thị trường. Có nhiều chỗ bán rẻ hơn thì đó có phải hàng fake k?" />
         </LinearLayout>
 
@@ -110,7 +110,7 @@
         android:fontFamily="@font/barlow_medium"
         android:includeFontPadding="false"
         android:textColor="@color/fast_survey_gray"
-        android:textSize="12sp"
+        android:textSize="@dimen/font_12"
         app:layout_constraintStart_toStartOf="@id/layoutContent"
         app:layout_constraintTop_toBottomOf="@id/layoutContent"
         tools:text="7 phút trước" />
@@ -125,7 +125,7 @@
         android:includeFontPadding="false"
         android:text="@string/thich"
         android:textColor="@color/fast_survey_gray"
-        android:textSize="12sp"
+        android:textSize="@dimen/font_12"
         app:layout_constraintBottom_toBottomOf="@id/tvTime"
         app:layout_constraintStart_toEndOf="@id/tvTime"
         app:layout_constraintTop_toTopOf="@id/tvTime" />
@@ -140,7 +140,7 @@
         android:includeFontPadding="false"
         android:text="@string/tra_loi"
         android:textColor="@color/fast_survey_gray"
-        android:textSize="12sp"
+        android:textSize="@dimen/font_12"
         app:layout_constraintBottom_toBottomOf="@id/tvTime"
         app:layout_constraintStart_toEndOf="@id/tvLike"
         app:layout_constraintTop_toTopOf="@id/tvTime" />

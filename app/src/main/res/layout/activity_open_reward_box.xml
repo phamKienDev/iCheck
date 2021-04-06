@@ -67,7 +67,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center"
                 android:textColor="#ffffff"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:textStyle="normal"
                 tools:text="Bạn đang có 154 hộp quà từ iCheck" />
 
@@ -76,7 +76,7 @@
                 android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
+                android:textSize="@dimen/font_18"
                 android:gravity="center"
                 android:fontFamily="sans-serif-medium"
                 android:textStyle="normal"
@@ -88,7 +88,7 @@
                 android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:gravity="center"
                 android:fontFamily="sans-serif"
                 android:textStyle="normal"
@@ -100,7 +100,7 @@
                 android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:gravity="center"
                 android:fontFamily="sans-serif"
                 android:textStyle="normal"
@@ -112,7 +112,7 @@
                 android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
+                android:textSize="@dimen/font_18"
                 android:gravity="center"
                 android:fontFamily="sans-serif-medium"
                 android:textStyle="normal"
@@ -149,7 +149,7 @@
                 android:fontFamily="sans-serif-black"
                 android:gravity="center"
                 android:textColor="#eb5757"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_16"
                 android:visibility="gone"
                 android:textStyle="normal"
                 android:text="Tiếp tục" />
@@ -163,7 +163,7 @@
                 android:fontFamily="sans-serif-black"
                 android:gravity="center"
                 android:textColor="#eb5757"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_16"
                 android:textStyle="normal"
                 tools:text="Đập quà 12/154" />
 

@@ -53,7 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#3C5A99"
-        android:textSize="18sp"
+        android:textSize="@dimen/font_18"
         android:layout_marginStart="16dp"
         android:text="Thông tin nhóm" />
 
@@ -66,7 +66,7 @@
         android:background="@drawable/bg_group_name"
         android:layout_marginTop="8dp"
         android:hint="Tên nhóm (Bắt buộc)"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:inputType="textPersonName"
         android:paddingBottom="10dp"
         android:paddingStart="16dp"

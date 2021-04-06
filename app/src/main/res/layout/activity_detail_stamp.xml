@@ -41,7 +41,7 @@
                 android:singleLine="true"
                 android:text="Xác thực sản phẩm"
                 android:textColor="@color/blue"
-                android:textSize="18sp"
+                android:textSize="@dimen/font_18"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -96,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
                 android:textColor="#828282"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -110,7 +110,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:text="Thử Lại"
                 android:textColor="#3c5a99"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_16"
                 android:textStyle="normal" />
 
         </LinearLayout>
@@ -138,7 +138,7 @@
                 android:gravity="center"
                 android:textAlignment="center"
                 android:textColor="#828282"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:textStyle="normal"
                 tools:text="Để hiển thị dữ liệu Cửa hàng, vui lòng bật GPS" />
 
@@ -156,7 +156,7 @@
                 android:paddingBottom="11dp"
                 android:text="@string/bat_gps"
                 android:textColor="#3c5a99"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_16"
                 android:textStyle="normal" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -173,7 +173,7 @@
                 android:paddingBottom="11dp"
                 android:text="@string/bat_vi_tri"
                 android:textColor="#3c5a99"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_16"
                 android:textStyle="normal"
                 android:visibility="gone" />
 
@@ -215,7 +215,7 @@
                         android:fontFamily="sans-serif-medium"
                         android:gravity="center"
                         android:textColor="#ffffff"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/font_14"
                         android:textStyle="normal"
                         tools:text="CẢNH BÁO! \n MÃ TEM KHÔNG HỢP LỆ (TEXT KHÔNG CỐ ĐỊNH)" />
 
@@ -256,9 +256,9 @@
                     android:fontFamily="@font/roboto_regular"
                     android:gravity="center"
                     android:includeFontPadding="false"
-                    android:lineSpacingExtra="4sp"
+                    android:lineSpacingExtra="@dimen/font_14"
                     android:textColor="@color/white"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/appCompatImageView4"
                     app:layout_constraintStart_toStartOf="parent"
@@ -288,7 +288,7 @@
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/roboto_bold"
                 android:paddingStart="8dp"
-                android:textSize="16sp" />
+                android:textSize="@dimen/font_16" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvAddressBussiness"
@@ -298,7 +298,7 @@
                 android:fontFamily="@font/roboto_regular"
                 android:paddingStart="8dp"
                 android:textColor="#838383"
-                android:textSize="14sp" />
+                android:textSize="@dimen/font_14" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -313,7 +313,7 @@
                     android:fontFamily="@font/roboto_regular"
                     android:paddingStart="8dp"
                     android:textColor="#838383"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/font_14" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvEmailBussiness"
@@ -321,7 +321,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_regular"
                     android:textColor="#838383"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/font_14" />
 
             </LinearLayout>
         </LinearLayout>
@@ -382,7 +382,7 @@
                             android:layout_marginTop="@dimen/size_10"
                             android:text="Mã dự thưởng chương trình:"
                             android:textColor="@color/darkGray1"
-                            android:textSize="14sp" />
+                            android:textSize="@dimen/font_14" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -395,7 +395,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/size_4"
                                 android:textColor="@color/blue"
-                                android:textSize="16sp"
+                                android:textSize="@dimen/font_16"
                                 android:textStyle="bold" />
                         </LinearLayout>
 
@@ -418,7 +418,7 @@
                                 android:inputType="textCapCharacters"
                                 android:singleLine="true"
                                 android:textAllCaps="true"
-                                android:textSize="14sp" />
+                                android:textSize="@dimen/font_14" />
 
                             <androidx.appcompat.widget.AppCompatButton
                                 android:id="@+id/btnCheckCode"
@@ -475,7 +475,7 @@
                         android:layout_marginTop="8dp"
                         android:fontFamily="sans-serif"
                         android:textColor="#f7923b"
-                        android:textSize="24sp"
+                        android:textSize="@dimen/font_24"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/indicatorProduct"
@@ -498,7 +498,7 @@
                         android:fontFamily="sans-serif"
                         android:gravity="end|center"
                         android:textColor="#434343"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/font_14"
                         android:textStyle="normal"
                         app:layout_constraintBottom_toBottomOf="@+id/tvPriceProduct"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -513,7 +513,7 @@
                         android:fontFamily="sans-serif-medium"
                         android:gravity="start|center"
                         android:textColor="#434343"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/font_16"
                         android:textStyle="normal"
                         app:layout_constraintEnd_toEndOf="@+id/tvRegion"
                         app:layout_constraintStart_toStartOf="@+id/tvPriceProduct"
@@ -538,7 +538,7 @@
                         android:layout_marginTop="8dp"
                         android:fontFamily="sans-serif"
                         android:textColor="#828282"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/font_14"
                         android:textStyle="normal"
                         app:layout_constraintEnd_toEndOf="@+id/tvNameProduct"
                         app:layout_constraintStart_toEndOf="@+id/appCompatTextView8"
@@ -585,7 +585,7 @@
                                 android:layout_marginTop="8dp"
                                 android:fontFamily="sans-serif-medium"
                                 android:textColor="#ffffff"
-                                android:textSize="16sp"
+                                android:textSize="@dimen/font_16"
                                 android:textStyle="normal"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
@@ -599,7 +599,7 @@
                                 android:layout_marginBottom="6dp"
                                 android:fontFamily="sans-serif-medium"
                                 android:textColor="#ffffff"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/font_14"
                                 android:textStyle="normal"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toStartOf="@+id/view"
@@ -627,7 +627,7 @@
                                 android:drawablePadding="8dp"
                                 android:fontFamily="sans-serif-medium"
                                 android:textColor="#ffffff"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/font_14"
                                 android:textStyle="normal"
                                 app:layout_constraintBottom_toBottomOf="@+id/view"
                                 app:layout_constraintStart_toEndOf="@+id/view"
@@ -657,7 +657,7 @@
                                     android:layout_marginBottom="10dp"
                                     android:fontFamily="sans-serif"
                                     android:textColor="#434343"
-                                    android:textSize="12sp"
+                                    android:textSize="@dimen/font_12"
                                     android:textStyle="normal"
                                     tools:text="Số 50, Ngõ 125 Nguyễn Ngọc Vũ, Trung Hòa, Cầu Giấy, Hà Nội (tên dài không giới hạn)" />
 
@@ -688,7 +688,7 @@
                                     android:gravity="center"
                                     android:text="Giỏ hàng"
                                     android:textColor="#4f4f4f"
-                                    android:textSize="14sp"
+                                    android:textSize="@dimen/font_14"
                                     android:textStyle="normal"
                                     android:visibility="invisible"
                                     app:layout_constraintBottom_toBottomOf="parent"
@@ -724,7 +724,7 @@
                                             android:fontFamily="sans-serif"
                                             android:gravity="center"
                                             android:textColor="#d8d8d8"
-                                            android:textSize="14sp"
+                                            android:textSize="@dimen/font_14"
                                             android:textStyle="normal"
                                             tools:text="130,000" />
 
@@ -735,7 +735,7 @@
                                             android:layout_marginEnd="8dp"
                                             android:fontFamily="sans-serif"
                                             android:textColor="#ffffff"
-                                            android:textSize="16sp"
+                                            android:textSize="@dimen/font_16"
                                             android:textStyle="bold"
                                             tools:text="90,000đ" />
 
@@ -781,7 +781,7 @@
                                 android:fontFamily="sans-serif-medium"
                                 android:textAlignment="center"
                                 android:textColor="#ffffff"
-                                android:textSize="16sp"
+                                android:textSize="@dimen/font_16"
                                 android:textStyle="normal"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -803,7 +803,7 @@
                                 android:layout_marginTop="8dp"
                                 android:fontFamily="sans-serif"
                                 android:textColor="#3c5a99"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/font_14"
                                 android:textStyle="bold"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -832,7 +832,7 @@
                                 android:fontFamily="sans-serif-medium"
                                 android:gravity="center"
                                 android:textColor="#434343"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/font_14"
                                 android:textStyle="normal"
                                 app:layout_constraintEnd_toStartOf="@id/viewNotVerify"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -846,7 +846,7 @@
                                 android:layout_marginBottom="19dp"
                                 android:fontFamily="sans-serif-medium"
                                 android:textColor="#3c5a99"
-                                android:textSize="18sp"
+                                android:textSize="@dimen/font_18"
                                 android:textStyle="normal"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="@+id/appCompatTextView12"
@@ -876,7 +876,7 @@
                                 android:fontFamily="sans-serif-medium"
                                 android:gravity="center"
                                 android:textColor="#434343"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/font_14"
                                 android:textStyle="normal"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toEndOf="@id/viewNotVerify"
@@ -890,7 +890,7 @@
                                 android:layout_marginBottom="19dp"
                                 android:fontFamily="sans-serif-medium"
                                 android:textColor="#3c5a99"
-                                android:textSize="18sp"
+                                android:textSize="@dimen/font_18"
                                 android:textStyle="normal"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="@+id/appCompatTextView13"
@@ -938,7 +938,7 @@
                                 android:fontFamily="sans-serif-medium"
                                 android:textAlignment="center"
                                 android:textColor="#ffffff"
-                                android:textSize="16sp"
+                                android:textSize="@dimen/font_16"
                                 android:textStyle="normal"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -960,7 +960,7 @@
                                 android:layout_marginTop="8dp"
                                 android:fontFamily="sans-serif"
                                 android:textColor="#3c5a99"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/font_14"
                                 android:textStyle="bold"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -989,7 +989,7 @@
                                 android:fontFamily="sans-serif-medium"
                                 android:gravity="center"
                                 android:textColor="#434343"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/font_14"
                                 android:textStyle="normal"
                                 app:layout_constraintEnd_toStartOf="@id/viewVerify"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -1003,7 +1003,7 @@
                                 android:layout_marginBottom="19dp"
                                 android:fontFamily="sans-serif-medium"
                                 android:textColor="#3c5a99"
-                                android:textSize="18sp"
+                                android:textSize="@dimen/font_18"
                                 android:textStyle="normal"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="@+id/appCompatTextView15"
@@ -1033,7 +1033,7 @@
                                 android:fontFamily="sans-serif-medium"
                                 android:gravity="center"
                                 android:textColor="#434343"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/font_14"
                                 android:textStyle="normal"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toEndOf="@id/viewVerify"
@@ -1047,7 +1047,7 @@
                                 android:layout_marginBottom="19dp"
                                 android:fontFamily="sans-serif-medium"
                                 android:textColor="#3c5a99"
-                                android:textSize="18sp"
+                                android:textSize="@dimen/font_18"
                                 android:textStyle="normal"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="@+id/appCompatTextView16"
@@ -1096,7 +1096,7 @@
                                 android:fontFamily="sans-serif-medium"
                                 android:textAlignment="center"
                                 android:textColor="#ffffff"
-                                android:textSize="16sp"
+                                android:textSize="@dimen/font_16"
                                 android:textStyle="normal"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -1119,7 +1119,7 @@
                                 android:layout_marginBottom="8dp"
                                 android:fontFamily="sans-serif"
                                 android:textColor="#3c5a99"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/font_14"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -1166,7 +1166,7 @@
                                 android:gravity="center_horizontal"
                                 android:textAlignment="center"
                                 android:textColor="#434343"
-                                android:textSize="16sp"
+                                android:textSize="@dimen/font_16"
                                 android:textStyle="normal"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -1188,7 +1188,7 @@
                                 android:layout_marginTop="8dp"
                                 android:fontFamily="sans-serif"
                                 android:textColor="#3c5a99"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/font_14"
                                 android:textStyle="bold"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -1217,7 +1217,7 @@
                                 android:fontFamily="sans-serif-medium"
                                 android:gravity="center"
                                 android:textColor="#434343"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/font_14"
                                 android:textStyle="normal"
                                 app:layout_constraintEnd_toStartOf="@id/viewBaoHanh"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -1231,7 +1231,7 @@
                                 android:layout_marginBottom="19dp"
                                 android:fontFamily="sans-serif-medium"
                                 android:textColor="#3c5a99"
-                                android:textSize="18sp"
+                                android:textSize="@dimen/font_18"
                                 android:textStyle="normal"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="@+id/appCompatTextView19"
@@ -1261,7 +1261,7 @@
                                 android:fontFamily="sans-serif-medium"
                                 android:gravity="center"
                                 android:textColor="#434343"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/font_14"
                                 android:textStyle="normal"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toEndOf="@id/viewBaoHanh"
@@ -1275,7 +1275,7 @@
                                 android:layout_marginBottom="19dp"
                                 android:fontFamily="sans-serif-medium"
                                 android:textColor="#3c5a99"
-                                android:textSize="18sp"
+                                android:textSize="@dimen/font_18"
                                 android:textStyle="normal"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="@+id/appCompatTextView20"
@@ -1304,7 +1304,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/thuong_mai_dien_tu"
                         android:textColor="@color/blue"
-                        android:textSize="18sp"
+                        android:textSize="@dimen/font_18"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -1316,7 +1316,7 @@
                         android:padding="@dimen/size_3"
                         android:text="@string/xem_tat_ca"
                         android:textColor="@color/blue"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/font_14"
                         app:layout_constraintBottom_toBottomOf="@id/tvTitle"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@id/tvTitle" />
@@ -1385,7 +1385,7 @@
                                 android:layout_marginBottom="13dp"
                                 android:fontFamily="sans-serif-medium"
                                 android:textColor="#ffffff"
-                                android:textSize="16sp"
+                                android:textSize="@dimen/font_16"
                                 android:textStyle="normal"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -1403,7 +1403,7 @@
                             android:layout_marginBottom="8dp"
                             android:fontFamily="sans-serif-medium"
                             android:textColor="#3c5a99"
-                            android:textSize="16sp"
+                            android:textSize="@dimen/font_16"
                             android:textStyle="normal" />
 
                         <androidx.appcompat.widget.AppCompatTextView
@@ -1414,7 +1414,7 @@
                             android:layout_marginBottom="4dp"
                             android:fontFamily="sans-serif"
                             android:textColor="#000000"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/font_14"
                             android:textStyle="normal"
                             tools:text="Thời gian bảo hành: 3 năm" />
 
@@ -1426,7 +1426,7 @@
                             android:layout_marginBottom="4dp"
                             android:fontFamily="sans-serif"
                             android:textColor="#000000"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/font_14"
                             android:textStyle="normal"
                             tools:text="Hạn bảo hành: 29/04/2018" />
 
@@ -1438,7 +1438,7 @@
                             android:layout_marginBottom="4dp"
                             android:fontFamily="sans-serif"
                             android:textColor="#000000"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/font_14"
                             android:textStyle="normal"
                             tools:text="Số ngày bảo hành còn lại: 15 ngày" />
 
@@ -1449,7 +1449,7 @@
                             android:layout_marginStart="12dp"
                             android:fontFamily="sans-serif"
                             android:textColor="#000000"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/font_14"
                             android:textStyle="normal"
                             tools:text="Ngày kích hoạt bảo hành: 20/11/2017" />
 
@@ -1473,7 +1473,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
                         android:textColor="#3c5a99"
-                        android:textSize="18sp"
+                        android:textSize="@dimen/font_18"
                         android:textStyle="normal"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -1485,7 +1485,7 @@
                         android:fontFamily="sans-serif"
                         android:gravity="end"
                         android:textColor="#434343"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/font_14"
                         android:textStyle="normal"
                         app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView6"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -1517,7 +1517,7 @@
                     android:layout_marginEnd="12dp"
                     android:fontFamily="sans-serif"
                     android:textColor="#3c5a99"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/font_18"
                     android:textStyle="normal"
                     android:visibility="gone" />
 
@@ -1557,7 +1557,7 @@
                                 android:maxLines="1"
                                 android:singleLine="true"
                                 android:textColor="#ffffff"
-                                android:textSize="16sp"
+                                android:textSize="@dimen/font_16"
                                 android:textStyle="normal"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toStartOf="@+id/appCompatImageView8"
@@ -1585,7 +1585,7 @@
                             android:layout_marginTop="9dp"
                             android:fontFamily="sans-serif-medium"
                             android:textColor="#000000"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/font_14"
                             android:textStyle="normal"
                             android:visibility="gone"
                             tools:text="MST: 0106875900" />
@@ -1599,7 +1599,7 @@
                             android:layout_marginEnd="12dp"
                             android:fontFamily="sans-serif"
                             android:textColor="#000000"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/font_14"
                             android:textStyle="normal"
                             tools:text="Số 50, Ngõ 125 Nguyễn Ngọc Vũ, Trung Hòa,Cầu Giấy, Hà Nội" />
 
@@ -1611,7 +1611,7 @@
                             android:layout_marginTop="4dp"
                             android:fontFamily="sans-serif"
                             android:textColor="#3c5a99"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/font_14"
                             android:textStyle="normal"
                             tools:text="www.icheck.com.vn" />
 
@@ -1631,7 +1631,7 @@
                                 android:layout_weight="1"
                                 android:fontFamily="sans-serif"
                                 android:textColor="#3c5a99"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/font_14"
                                 android:textStyle="normal"
                                 tools:text="0902195488" />
 
@@ -1646,7 +1646,7 @@
                                 android:maxLines="1"
                                 android:singleLine="true"
                                 android:textColor="#3c5a99"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/font_14"
                                 android:textStyle="normal"
                                 tools:text="cskh@icheck.vn" />
 
@@ -1664,7 +1664,7 @@
                     android:layout_marginEnd="12dp"
                     android:fontFamily="sans-serif"
                     android:textColor="#3c5a99"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/font_18"
                     android:textStyle="normal"
                     android:visibility="gone" />
 
@@ -1700,7 +1700,7 @@
                                 android:layout_marginBottom="7dp"
                                 android:fontFamily="sans-serif-medium"
                                 android:textColor="#ffffff"
-                                android:textSize="16sp"
+                                android:textSize="@dimen/font_16"
                                 android:textStyle="normal"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -1728,7 +1728,7 @@
                             android:layout_marginTop="9dp"
                             android:fontFamily="sans-serif-medium"
                             android:textColor="#000000"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/font_14"
                             android:textStyle="normal"
                             android:visibility="gone"
                             tools:text="MST: 0106875900" />
@@ -1742,7 +1742,7 @@
                             android:layout_marginEnd="12dp"
                             android:fontFamily="sans-serif"
                             android:textColor="#000000"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/font_14"
                             android:textStyle="normal"
                             tools:text="Số 50, Ngõ 125 Nguyễn Ngọc Vũ, Trung Hòa,Cầu Giấy, Hà Nội" />
 
@@ -1754,7 +1754,7 @@
                             android:layout_marginTop="4dp"
                             android:fontFamily="sans-serif"
                             android:textColor="#3c5a99"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/font_14"
                             android:textStyle="normal"
                             tools:text="www.icheck.com.vn" />
 
@@ -1774,7 +1774,7 @@
                                 android:layout_weight="1"
                                 android:fontFamily="sans-serif"
                                 android:textColor="#3c5a99"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/font_14"
                                 android:textStyle="normal"
                                 tools:text="0902195488" />
 
@@ -1789,7 +1789,7 @@
                                 android:maxLines="1"
                                 android:singleLine="true"
                                 android:textColor="#3c5a99"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/font_14"
                                 android:textStyle="normal"
                                 tools:text="cskh@icheck.vn" />
 
@@ -1820,7 +1820,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-medium"
                         android:textColor="#3c5a99"
-                        android:textSize="18sp"
+                        android:textSize="@dimen/font_18"
                         android:textStyle="normal"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -1832,7 +1832,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
                         android:textColor="#434343"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/font_14"
                         android:textStyle="normal"
                         app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView9"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -1875,7 +1875,7 @@
         android:paddingEnd="12dp"
         android:paddingBottom="10dp"
         android:textColor="#ffffff"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         android:textStyle="normal"
         android:visibility="invisible" />
 
@@ -1903,7 +1903,7 @@
             android:paddingTop="8dp"
             android:paddingEnd="8dp"
             android:textColor="#ffffff"
-            android:textSize="12sp"
+            android:textSize="@dimen/font_12"
             android:textStyle="normal" />
     </LinearLayout>
 
@@ -1937,7 +1937,7 @@
                 android:drawablePadding="3dp"
                 android:fontFamily="sans-serif-medium"
                 android:textColor="#ffffff"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -1966,7 +1966,7 @@
             <!--                android:drawablePadding="3dp"-->
             <!--                android:fontFamily="sans-serif-medium"-->
             <!--                android:textColor="#ffffff"-->
-            <!--                android:textSize="12sp"-->
+            <!--                android:textSize="@dimen/font_12"-->
             <!--                android:textStyle="normal"-->
             <!--                app:layout_constraintBottom_toBottomOf="parent"-->
             <!--                app:layout_constraintEnd_toEndOf="parent"-->
@@ -1991,7 +1991,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
                 android:textColor="#ffffff"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_16"
                 android:textStyle="normal" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

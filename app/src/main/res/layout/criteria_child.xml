@@ -17,7 +17,7 @@
         android:ellipsize="end"
         android:gravity="start"
         android:fontFamily="sans-serif-medium"
-        android:textSize="@dimen/font_size_4"
+        android:textSize="@dimen/font_14"
         android:textColor="@color/darkGray1"
         tools:text="Chất lượng sản phẩm" />
 

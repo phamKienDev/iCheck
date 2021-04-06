@@ -27,7 +27,7 @@
         android:paddingEnd="57dp"
         android:singleLine="true"
         android:textColor="@color/blue"
-        android:textSize="18sp"
+        android:textSize="@dimen/font_18"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

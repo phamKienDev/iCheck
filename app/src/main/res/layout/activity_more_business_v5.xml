@@ -33,7 +33,7 @@
                 android:fontFamily="sans-serif"
                 android:text="Thông tin "
                 android:textColor="#3c5a99"
-                android:textSize="18sp"
+                android:textSize="@dimen/font_18"
                 android:textStyle="normal" />
 
             <LinearLayout
@@ -68,7 +68,7 @@
                         android:drawablePadding="8dp"
                         android:fontFamily="sans-serif-medium"
                         android:textColor="#434343"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/font_14"
                         android:textStyle="normal"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/appCompatTextView21"
@@ -101,7 +101,7 @@
                         android:drawablePadding="8dp"
                         android:fontFamily="sans-serif"
                         android:textColor="#434343"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/font_14"
                         android:textStyle="normal"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/appCompatTextView22"
@@ -133,7 +133,7 @@
                         android:drawablePadding="8dp"
                         android:fontFamily="sans-serif"
                         android:textColor="#434343"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/font_14"
                         android:textStyle="normal"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/appCompatTextView23"
@@ -166,7 +166,7 @@
                         android:drawablePadding="8dp"
                         android:fontFamily="sans-serif"
                         android:textColor="#434343"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/font_14"
                         android:textStyle="normal"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/appCompatTextView24"
@@ -200,7 +200,7 @@
                         android:drawablePadding="8dp"
                         android:fontFamily="sans-serif"
                         android:textColor="#434343"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/font_14"
                         android:textStyle="normal"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/appCompatTextView25"
@@ -219,7 +219,7 @@
                     android:drawablePadding="8dp"
                     android:fontFamily="sans-serif"
                     android:textColor="#434343"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     android:textStyle="normal"
                     android:visibility="gone"
                     tools:text="Số sản phẩm: 10" />
@@ -234,7 +234,7 @@
                     android:drawablePadding="8dp"
                     android:fontFamily="sans-serif"
                     android:textColor="#434343"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     android:textStyle="normal"
                     android:visibility="gone"
 
@@ -251,7 +251,7 @@
                     android:drawablePadding="8dp"
                     android:fontFamily="sans-serif"
                     android:textColor="#434343"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     android:textStyle="normal"
                     android:visibility="gone"
                     tools:text="Số lượt quét: 12,345" />
@@ -277,7 +277,7 @@
                     android:fontFamily="sans-serif-medium"
                     android:text="Sản phẩm xác thực"
                     android:textColor="#3c5a99"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/font_16"
                     android:textStyle="normal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -294,7 +294,7 @@
                 <!--                    android:paddingEnd="12dp"-->
                 <!--                    android:text="Xem tất cả"-->
                 <!--                    android:textColor="#828282"-->
-                <!--                    android:textSize="14sp"-->
+                <!--                    android:textSize="@dimen/font_14"-->
                 <!--                    android:textStyle="normal"-->
                 <!--                    app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView7"-->
                 <!--                    app:layout_constraintEnd_toEndOf="parent"-->

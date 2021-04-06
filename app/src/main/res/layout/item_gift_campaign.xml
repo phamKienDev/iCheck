@@ -40,10 +40,10 @@
             android:includeFontPadding="false"
             android:maxLines="2"
             android:minLines="2"
-            android:paddingLeft="@dimen/font_size_2"
-            android:paddingRight="@dimen/font_size_2"
+            android:paddingLeft="@dimen/font_12"
+            android:paddingRight="@dimen/font_12"
             android:textColor="@color/black_21_v2"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:visibility="visible"
             tools:text="Điện thoại iphone 11 - Chính hãng (tên 2 dòng)..." />
 
@@ -109,7 +109,7 @@
             android:paddingLeft="@dimen/size_6"
             android:paddingRight="@dimen/size_6"
             android:textColor="@color/white"
-            android:textSize="12sp"
+            android:textSize="@dimen/font_12"
             android:visibility="visible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

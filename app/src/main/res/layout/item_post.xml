@@ -63,7 +63,7 @@
                     android:singleLine="true"
                     android:drawablePadding="@dimen/size_2"
                     android:textColor="@color/collection_product_name"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/font_16"
                     app:layout_constraintEnd_toStartOf="@id/imgMore"
                     app:layout_constraintStart_toEndOf="@id/imgLogo"
                     app:layout_constraintTop_toTopOf="@id/imgLogo"
@@ -79,7 +79,7 @@
                 android:includeFontPadding="false"
                 android:singleLine="true"
                 android:textColor="@color/fast_survey_gray"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 app:layout_constraintBottom_toBottomOf="@id/imgLogo"
                 app:layout_constraintEnd_toEndOf="@id/layoutName"
                 app:layout_constraintStart_toStartOf="@id/layoutName"
@@ -113,7 +113,7 @@
                 android:includeFontPadding="false"
                 android:paddingStart="@dimen/size_6"
                 android:paddingEnd="@dimen/size_6"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 tools:text="Trên cả Tuyệt vời" />
 
             <LinearLayout
@@ -156,7 +156,7 @@
             android:includeFontPadding="false"
             android:maxLines="3"
             android:textColor="@color/collection_product_name"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintTop_toBottomOf="@id/imgLogo"
             tools:text="Sản phẩm tốt, chất lượng cao. Chính hãng nên đảm bảo lắm nhé. Mọi người đều nên sử dụng thử một lần! nhưng phải dùng lâu dài mới tác dụng (Tối đa 3 dòng)..." />
 
@@ -194,7 +194,7 @@
                 android:includeFontPadding="false"
                 android:maxLines="2"
                 android:textColor="@color/darkGray1"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/imgProduct"
                 app:layout_constraintTop_toTopOf="parent"
@@ -210,7 +210,7 @@
                 android:includeFontPadding="false"
                 android:maxLines="2"
                 android:textColor="@color/fast_survey_gray"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 app:layout_constraintEnd_toEndOf="@id/tvProduct"
                 app:layout_constraintStart_toStartOf="@id/tvProduct"
                 app:layout_constraintTop_toBottomOf="@id/tvProduct"
@@ -234,7 +234,7 @@
                 android:includeFontPadding="false"
                 android:textAlignment="gravity"
                 android:textColor="@color/text_color_post"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 tools:drawableStart="@drawable/ic_like_checked_state_24dp"
                 tools:text="12,7811" />
 
@@ -250,7 +250,7 @@
                 android:includeFontPadding="false"
                 android:textAlignment="gravity"
                 android:textColor="@color/fast_survey_gray"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 tools:text="12,781" />
 
             <androidx.appcompat.widget.AppCompatCheckedTextView
@@ -265,7 +265,7 @@
                 android:includeFontPadding="false"
                 android:textAlignment="gravity"
                 android:textColor="@color/fast_survey_gray"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 tools:text="12,781" />
 
             <androidx.appcompat.widget.AppCompatCheckedTextView
@@ -280,7 +280,7 @@
                 android:includeFontPadding="false"
                 android:textAlignment="gravity"
                 android:textColor="@color/fast_survey_gray"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 tools:text="12,781" />
         </LinearLayout>
 
@@ -348,7 +348,7 @@
                         android:includeFontPadding="false"
                         android:singleLine="true"
                         android:textColor="@color/collection_product_name"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/font_14"
                         tools:text="Trần Văn Lâm" />
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -360,7 +360,7 @@
                         android:includeFontPadding="false"
                         android:singleLine="true"
                         android:textColor="@color/collection_product_name"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/font_14"
                         tools:text="" />
                 </LinearLayout>
 
@@ -401,7 +401,7 @@
                 android:includeFontPadding="false"
                 android:text="@string/xem_them_cac_binh_luan"
                 android:textColor="@color/blue"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/layoutContent" />

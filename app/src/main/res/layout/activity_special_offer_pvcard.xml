@@ -30,7 +30,7 @@
             android:singleLine="true"
             android:text="Chương trình ưu đãi"
             android:textColor="@color/lightBlue"
-            android:textSize="18sp" />
+            android:textSize="@dimen/font_18" />
     </FrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView

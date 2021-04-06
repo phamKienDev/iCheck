@@ -22,7 +22,7 @@
             android:id="@+id/tv_contact_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:singleLine="true"
             android:ellipsize="end"
             android:textColor="@android:color/black"
@@ -34,7 +34,7 @@
         <TextView
             android:id="@+id/btn_invite_user"
             android:layout_width="50dp"
-            android:layout_height="26dp"
+            android:layout_height="@dimen/size_26"
             android:layout_marginTop="12dp"
             android:layout_weight="0"
             android:background="@drawable/bg_invite_btn"

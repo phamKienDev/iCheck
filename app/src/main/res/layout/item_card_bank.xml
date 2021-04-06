@@ -62,7 +62,7 @@
                     android:shadowDy="1"
                     android:shadowRadius="1"
                     android:textColor="@color/white"
-                    android:textSize="100sp"
+                    android:textSize="@dimen/font_100"
                     app:layout_constraintBottom_toTopOf="@id/view4"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHeight_percent="0.16"
@@ -87,7 +87,7 @@
                     android:shadowDy="1"
                     android:shadowRadius="1"
                     android:textColor="@color/white"
-                    android:textSize="100sp"
+                    android:textSize="@dimen/font_100"
                     app:layout_constraintBottom_toTopOf="@id/view3"
                     app:layout_constraintHeight_percent="0.1"
                     tools:text="5119 6288 8888 8888" />
@@ -107,7 +107,7 @@
                     android:fontFamily="@font/barlow_medium"
                     tools:text="10/24"
                     android:textColor="@color/white"
-                    android:textSize="100sp"
+                    android:textSize="@dimen/font_100"
                     app:layout_constraintBottom_toTopOf="@id/view2"
                     app:layout_constraintHeight_percent="0.073"
                     app:layout_constraintStart_toStartOf="@+id/tvName" />
@@ -120,7 +120,7 @@
                     android:fontFamily="@font/barlow_medium"
                     tools:text="CCV: ***"
                     android:textColor="@color/white"
-                    android:textSize="100sp"
+                    android:textSize="@dimen/font_100"
                     android:textStyle="normal"
                     app:layout_constraintBottom_toBottomOf="@id/tvDateEnd"
                     app:layout_constraintStart_toEndOf="@id/tvDateEnd"
@@ -153,7 +153,7 @@
                     android:shadowDy="1"
                     android:shadowRadius="1"
                     android:textColor="@color/white"
-                    android:textSize="100sp"
+                    android:textSize="@dimen/font_100"
                     app:layout_constraintBottom_toTopOf="@id/view1"
                     app:layout_constraintHeight_percent="0.073"
                     app:layout_constraintStart_toStartOf="parent"
@@ -190,7 +190,7 @@
                     android:gravity="center"
                     android:text="@string/so_du_the"
                     android:textColor="@color/blue"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/font_16" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvAvlBalance"
@@ -200,7 +200,7 @@
                     android:gravity="center|end"
                     tools:text="254.241.000 đ"
                     android:textColor="#ffb800"
-                    android:textSize="20sp" />
+                    android:textSize="@dimen/font_20" />
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -219,7 +219,7 @@
                 android:fontFamily="@font/barlow_semi_bold"
                 android:text="@string/thong_tin_the"
                 android:textColor="@color/blue"
-                android:textSize="16sp" />
+                android:textSize="@dimen/font_16" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -237,7 +237,7 @@
                     android:fontFamily="@font/barlow_medium"
                     android:text="@string/so_the"
                     android:textColor="#757575"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/font_12" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvNumberCard"
@@ -248,7 +248,7 @@
                     android:gravity="end"
                     tools:text="2541 1145 1114 2225"
                     android:textColor="#212121"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/font_14" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/btnCopyCard"
@@ -282,7 +282,7 @@
                     android:fontFamily="@font/barlow_medium"
                     android:text="@string/han_su_dung"
                     android:textColor="#757575"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/font_12" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvExpDate"
@@ -293,7 +293,7 @@
                     android:gravity="end"
                     tools:text="10/28"
                     android:textColor="#212121"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/font_14" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/btnEndDate"
@@ -327,7 +327,7 @@
                     android:fontFamily="@font/barlow_medium"
                     android:text="@string/trang_thai_the"
                     android:textColor="#757575"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/font_12" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -344,7 +344,7 @@
                         android:gravity="end"
                         android:text="@string/chua_dinh_danh"
                         android:textColor="#EB5757"
-                        android:textSize="14sp" />
+                        android:textSize="@dimen/font_14" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvActionAuthen"
@@ -356,7 +356,7 @@
                         android:src="@drawable/ic_copy_24px"
                         android:text="@string/dinh_danh_ngay"
                         android:textColor="@color/lightBlue"
-                        android:textSize="14sp" />
+                        android:textSize="@dimen/font_14" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -378,7 +378,7 @@
                     android:gravity="center"
                     android:text="Mở khóa thẻ"
                     android:textColor="#212121"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     android:visibility="gone" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -392,7 +392,7 @@
                     android:gravity="center"
                     android:text="Khóa thẻ"
                     android:textColor="#212121"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     android:visibility="gone" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -406,7 +406,7 @@
                     android:gravity="center"
                     android:text="Thông tin thẻ"
                     android:textColor="#212121"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/font_14" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvChangePassword"
@@ -419,7 +419,7 @@
                     android:gravity="center"
                     android:text="Đổi mật khẩu"
                     android:textColor="#212121"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/font_14" />
 
             </LinearLayout>
 
@@ -435,7 +435,7 @@
                 android:gravity="center"
                 android:text="Đặt làm thẻ chính"
                 android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_16"
                 android:visibility="gone" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -453,7 +453,7 @@
                 android:includeFontPadding="false"
                 android:text="Thẻ mặc định"
                 android:textColor="#85c440"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 android:visibility="gone" />
         </LinearLayout>
     </LinearLayout>

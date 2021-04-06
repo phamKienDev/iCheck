@@ -12,7 +12,7 @@
         android:layout_marginStart="24dp"
         android:fontFamily="sans-serif"
         android:textColor="#434343"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:textStyle="normal" />
 
     <androidx.appcompat.widget.AppCompatEditText
@@ -31,7 +31,7 @@
         android:paddingBottom="10dp"
         android:textColor="#000000"
         android:textColorHint="#b4b4b4"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:textStyle="normal" />
 
 </LinearLayout>

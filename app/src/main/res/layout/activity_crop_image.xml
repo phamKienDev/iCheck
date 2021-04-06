@@ -28,7 +28,7 @@
         android:padding="@dimen/size_12"
         android:text="@string/huy"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,7 +43,7 @@
         android:padding="@dimen/size_12"
         android:text="@string/xong"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -75,7 +75,7 @@
             android:includeFontPadding="false"
             android:text="@string/crop_image_message"
             android:textColor="@color/white"
-            android:textSize="14sp" />
+            android:textSize="@dimen/font_14" />
     </LinearLayout>
 
     <FrameLayout

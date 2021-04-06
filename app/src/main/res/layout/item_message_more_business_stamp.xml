@@ -29,7 +29,7 @@
         android:includeFontPadding="false"
         android:textAlignment="gravity"
         android:textColor="#828282"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:textStyle="normal"
         app:layout_constraintTop_toBottomOf="@+id/imgIcon"/>
 
@@ -42,7 +42,7 @@
         android:fontFamily="sans-serif-medium"
         android:textAllCaps="false"
         android:textColor="#3c5a99"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

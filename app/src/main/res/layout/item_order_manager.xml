@@ -23,7 +23,7 @@
             android:gravity="center"
             android:includeFontPadding="false"
             android:textColor="@color/collection_product_name"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:drawableEndCompat="@drawable/ic_mission_gift_24dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -37,7 +37,7 @@
             android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:textColor="@color/fast_survey_gray"
-            android:textSize="12sp"
+            android:textSize="@dimen/font_12"
             app:layout_constraintStart_toStartOf="@id/tvOrderId"
             app:layout_constraintTop_toBottomOf="@id/tvOrderId"
             tools:text="Ngày tạo đơn: 12:43, 14/02/2020" />
@@ -53,7 +53,7 @@
             android:includeFontPadding="false"
             android:text="@string/huy_don"
             android:textColor="@color/lightBlue"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toBottomOf="@id/tvTime"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/tvOrderId" />
@@ -116,7 +116,7 @@
             android:paddingBottom="@dimen/size_8"
             android:text="@string/bao_loi"
             android:textColor="@color/light_blue"
-            android:textSize="16sp" />
+            android:textSize="@dimen/font_16" />
 
         <TextView
             android:id="@+id/tvConfirm"
@@ -132,7 +132,7 @@
             android:paddingBottom="@dimen/size_8"
             android:text="@string/xac_nhan_da_nhan_hang"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textSize="@dimen/font_16" />
     </LinearLayout>
 
 </LinearLayout>

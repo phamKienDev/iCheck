@@ -99,7 +99,7 @@
                                 android:includeFontPadding="false"
                                 android:text="@string/update_profile_note_title"
                                 android:textColor="#434343"
-                                android:textSize="12sp"
+                                android:textSize="@dimen/font_12"
                                 android:textStyle="normal"
                                 app:layout_constraintEnd_toStartOf="@id/tvClose"
                                 app:layout_constraintStart_toEndOf="@id/tvIcon"
@@ -113,7 +113,7 @@
                                 android:includeFontPadding="false"
                                 android:text="@string/update_profile_note_content"
                                 android:textColor="#828282"
-                                android:textSize="12sp"
+                                android:textSize="@dimen/font_12"
                                 android:textStyle="normal"
                                 app:layout_constraintEnd_toStartOf="@id/tvClose"
                                 app:layout_constraintStart_toEndOf="@id/tvIcon"
@@ -468,7 +468,7 @@
                         android:textColor="#85C440"
                         android:paddingBottom="@dimen/size_3"
                         android:text="Đã xác thực"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/font_14"
                         android:visibility="gone"
                         tools:visibility="visible" />
 

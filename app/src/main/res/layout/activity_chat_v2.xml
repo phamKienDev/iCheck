@@ -55,7 +55,7 @@
                 android:singleLine="true"
                 android:textAlignment="center"
                 android:textColor="#3C5A99"
-                android:textSize="18sp" />
+                android:textSize="@dimen/font_18" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imgType"
@@ -88,7 +88,7 @@
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
             android:textColor="#828282"
-            android:textSize="12sp"
+            android:textSize="@dimen/font_12"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -159,7 +159,7 @@
             android:layout_marginRight="8dp"
             android:text="Nước tắm gội thảo dược Bé Bơ"
             android:textColor="@android:color/black"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toTopOf="@+id/imageView5"
             app:layout_constraintEnd_toStartOf="@+id/img_close_barcode"
             app:layout_constraintStart_toEndOf="@+id/img_barcode_product"
@@ -185,7 +185,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:text="893123456789"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView5"
@@ -356,7 +356,7 @@
             android:visibility="gone"
             android:text="Vui lòng chọn thêm sticker"
             app:layout_constraintTop_toBottomOf="@id/img_empity_sticker"
-            android:textSize="16sp" />
+            android:textSize="@dimen/font_16" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
@@ -400,6 +400,6 @@
         android:paddingBottom="@dimen/size_8"
         android:text="Sao chép"
         android:textColor="@color/black"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:visibility="gone" />
 </LinearLayout>

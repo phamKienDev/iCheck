@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/barlow_medium"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:textColor="#212121"
         android:drawableStart="@drawable/ic_list_blue_12px"
         android:drawablePadding="2dp"

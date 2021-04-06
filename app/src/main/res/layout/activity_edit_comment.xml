@@ -70,7 +70,7 @@
                 android:minLines="5"
                 android:padding="@dimen/size_4"
                 android:textColor="@color/collection_product_name"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/layoutAvatar"
                 app:layout_constraintTop_toTopOf="@id/layoutAvatar" />
@@ -104,7 +104,7 @@
         android:layout_marginBottom="@dimen/size_10"
         android:fontFamily="@font/barlow_semi_bold"
         android:text="@string/huy"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btnUpdate"
         app:layout_constraintStart_toStartOf="parent" />

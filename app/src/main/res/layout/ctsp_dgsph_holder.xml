@@ -17,7 +17,7 @@
         android:layout_weight="1"
         android:text="Đánh giá sản phẩm"
         android:textColor="#3C5A99"
-        android:textSize="18sp" />
+        android:textSize="@dimen/font_18" />
 
     <TextView
         android:id="@+id/tv_xtcrv"

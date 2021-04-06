@@ -47,7 +47,7 @@
             android:fontFamily="sans-serif-medium"
             android:text="@string/tong_thanh_toan_xxx_d"
             android:textColor="#ffffff"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -66,7 +66,7 @@
             android:paddingBottom="@dimen/size_8"
             android:text="@string/dat_hang"
             android:textColor="#ffffff"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal" />
     </LinearLayout>
 

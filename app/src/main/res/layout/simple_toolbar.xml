@@ -28,7 +28,7 @@
             android:maxLines="1"
             android:ellipsize="end"
             android:textColor="#057DDA"
-            android:textSize="18sp"
+            android:textSize="@dimen/font_18"
             android:textStyle="bold"
             tools:text="08936124250323"
             android:paddingRight="50dp" />

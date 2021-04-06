@@ -9,6 +9,7 @@
     <dimen name="size_1_5">1dp</dimen>
     <dimen name="size_2">2dp</dimen>
     <dimen name="size_3">3dp</dimen>
+    <dimen name="size_3_5">3.5dp</dimen>
     <dimen name="size_4">4dp</dimen>
     <dimen name="size_5">5dp</dimen>
     <dimen name="size_6">6dp</dimen>
@@ -44,19 +45,36 @@
     <dimen name="size_46">46dp</dimen>
     <dimen name="size_48">48dp</dimen>
     <dimen name="size_50">50dp</dimen>
+    <dimen name="size_52">52dp</dimen>
     <dimen name="size_56">56dp</dimen>
     <dimen name="size_60">60dp</dimen>
     <dimen name="size_70">70dp</dimen>
     <dimen name="size_77">77dp</dimen>
     <dimen name="size_100">100dp</dimen>
     <dimen name="size_168">168dp</dimen>
+    <dimen name="size_331">331dp</dimen>
 
     <!--Font Size-->
-    <dimen name="font_size_2">12sp</dimen>
-    <dimen name="font_size_4">14sp</dimen>
-    <dimen name="font_size_6">18sp</dimen>
-    <dimen name="recycle_list_spacing">1dp</dimen>
-    <dimen name="size_52">52dp</dimen>
-    <dimen name="width_your_card_item_horizontal">331dp</dimen>
-    <dimen name="margin_your_card_item_horizontal">3.5dp</dimen>
+    <dimen name="font_2">2sp</dimen>
+    <dimen name="font_2_7">2.7sp</dimen>
+    <dimen name="font_4">4sp</dimen>
+    <dimen name="font_4_8">4.8sp</dimen>
+    <dimen name="font_5_6">5.6sp</dimen>
+    <dimen name="font_5">5sp</dimen>
+    <dimen name="font_6">6sp</dimen>
+    <dimen name="font_7_6">7.6sp</dimen>
+    <dimen name="font_8">8sp</dimen>
+    <dimen name="font_9_2">9.2sp</dimen>
+    <dimen name="font_10">10sp</dimen>
+    <dimen name="font_12">12sp</dimen>
+    <dimen name="font_13">13sp</dimen>
+    <dimen name="font_14">14sp</dimen>
+    <dimen name="font_15">15sp</dimen>
+    <dimen name="font_16">16sp</dimen>
+    <dimen name="font_18">18sp</dimen>
+    <dimen name="font_20">20sp</dimen>
+    <dimen name="font_24">24sp</dimen>
+    <dimen name="font_28">28sp</dimen>
+    <dimen name="font_36">36sp</dimen>
+    <dimen name="font_100">100sp</dimen>
 </resources>

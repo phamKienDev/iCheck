@@ -22,7 +22,7 @@
         android:fontFamily="@font/barlow_semi_bold"
         android:text="@string/trang_dang_theo_doi"
         android:textColor="@color/lightBlue"
-        android:textSize="18sp"
+        android:textSize="@dimen/font_18"
         app:layout_constraintBottom_toBottomOf="@id/img_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,7 +57,7 @@
         android:singleLine="true"
         android:textColor="@color/collection_product_name"
         android:textColorHint="@color/darkGray2"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/view41" />
@@ -82,7 +82,7 @@
         android:layout_marginTop="@dimen/size_10"
         android:fontFamily="@font/barlow_semi_bold"
         android:textColor="@color/blue"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edtSearch"
         tools:text="12 Trang của tôi" />

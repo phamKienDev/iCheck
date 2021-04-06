@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
             android:textColor="#828282"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -66,7 +66,7 @@
             android:fontFamily="sans-serif-medium"
             android:text="Thử Lại"
             android:textColor="#3c5a99"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             android:textStyle="normal" />
 
     </LinearLayout>

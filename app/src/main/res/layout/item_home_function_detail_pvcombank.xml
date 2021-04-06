@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/so_du_ví"
                 android:textColor="@color/collection_product_name"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_16"
                 app:layout_constraintBottom_toBottomOf="@id/tvMoney"
                 app:layout_constraintEnd_toStartOf="@id/tvMoney"
                 app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +48,7 @@
                 android:gravity="center_vertical"
                 android:textAlignment="gravity"
                 android:textColor="@color/yellow"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -75,7 +75,7 @@
                 android:text="@string/nap_tien"
                 android:textAlignment="gravity"
                 android:textColor="@color/collection_product_name"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 app:layout_constraintEnd_toStartOf="@id/tvInfo"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/viewLine" />
@@ -95,7 +95,7 @@
                 android:text="@string/thong_tin"
                 android:textAlignment="gravity"
                 android:textColor="@color/collection_product_name"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 app:layout_constraintEnd_toStartOf="@id/tvTransaction"
                 app:layout_constraintStart_toEndOf="@id/tvRecharge"
                 app:layout_constraintTop_toBottomOf="@id/viewLine" />
@@ -115,7 +115,7 @@
                 android:text="@string/giao_dich"
                 android:textAlignment="gravity"
                 android:textColor="@color/collection_product_name"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tvInfo"
                 app:layout_constraintTop_toBottomOf="@id/viewLine" />

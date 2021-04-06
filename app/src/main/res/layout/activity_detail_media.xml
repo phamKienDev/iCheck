@@ -86,7 +86,7 @@
                 android:includeFontPadding="false"
                 android:singleLine="true"
                 android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_16"
                 tools:text="Hà Linh layout_constraintTop_toTopOf layout_constraintTop_toTopOf" />
 
         </LinearLayout>
@@ -99,7 +99,7 @@
             android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:textColor="#b4b4b4"
-            android:textSize="12sp"
+            android:textSize="@dimen/font_12"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/layoutName"
             app:layout_constraintTop_toBottomOf="@id/layoutName"
@@ -136,7 +136,7 @@
         android:includeFontPadding="false"
         android:maxLines="2"
         android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toTopOf="@id/layoutIcon"
         app:layout_constraintEnd_toEndOf="@id/layoutIcon"
         app:layout_constraintStart_toStartOf="@id/layoutIcon"
@@ -165,7 +165,7 @@
             android:includeFontPadding="false"
             android:textAlignment="gravity"
             android:textColor="@color/white"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             tools:text="12,781" />
 
         <androidx.appcompat.widget.AppCompatCheckedTextView
@@ -181,7 +181,7 @@
             android:includeFontPadding="false"
             android:textAlignment="gravity"
             android:textColor="@color/white"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             tools:text="12,781" />
 
         <androidx.appcompat.widget.AppCompatCheckedTextView
@@ -197,7 +197,7 @@
             android:includeFontPadding="false"
             android:textAlignment="gravity"
             android:textColor="@color/white"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             tools:text="12,781" />
 
         <androidx.appcompat.widget.AppCompatCheckedTextView
@@ -213,7 +213,7 @@
             android:includeFontPadding="false"
             android:textAlignment="gravity"
             android:textColor="@color/white"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             tools:text="12,781" />
     </LinearLayout>
 
@@ -267,7 +267,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:text="@string/viet_binh_luan"
                 android:textColor="#b4b4b4"
-                android:textSize="14sp" />
+                android:textSize="@dimen/font_14" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"

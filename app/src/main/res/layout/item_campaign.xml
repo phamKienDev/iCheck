@@ -79,7 +79,7 @@
                     android:includeFontPadding="false"
                     android:text="Thời gian"
                     android:textColor="#757575"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/font_12" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@id/txtDate"
@@ -89,9 +89,9 @@
                     android:layout_marginBottom="@dimen/size_6"
                     android:fontFamily="@font/barlow_medium"
                     android:includeFontPadding="false"
-                    android:lineSpacingExtra="6sp"
+                    android:lineSpacingExtra="@dimen/font_6"
                     android:textColor="#212121"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     tools:text="Đến 31/12" />
             </LinearLayout>
 
@@ -123,10 +123,10 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/barlow_medium"
                     android:includeFontPadding="false"
-                    android:lineSpacingExtra="4sp"
+                    android:lineSpacingExtra="@dimen/font_14"
                     android:text="@string/nguoi_tham_gia"
                     android:textColor="#757575"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/font_12" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txtCountUserJoin"
@@ -138,9 +138,9 @@
                     android:drawablePadding="5dp"
                     android:fontFamily="@font/barlow_medium"
                     android:includeFontPadding="false"
-                    android:lineSpacingExtra="6sp"
+                    android:lineSpacingExtra="@dimen/font_6"
                     android:textColor="#212121"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     tools:text="27,254" />
             </LinearLayout>
 
@@ -198,7 +198,7 @@
                 android:gravity="center"
                 android:text="@string/da_ket_thuc"
                 android:textColor="#B4B4B4"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_16"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

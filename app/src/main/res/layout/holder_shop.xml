@@ -30,7 +30,7 @@
             android:maxLines="1"
             android:ellipsize="end"
             android:singleLine="true"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:textColor="#757575"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="@+id/tv_shop_name"
             app:layout_constraintStart_toStartOf="@+id/tv_shop_name"
             app:layout_constraintTop_toBottomOf="@+id/tv_shop_name"
@@ -102,7 +102,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="#ff0000"
                     android:fontFamily="@font/barlow_semi_bold"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/font_16"
                     tools:text="23,004,000đ" />
 
                 <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
@@ -111,7 +111,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="#b4b4b4"
                     android:fontFamily="@font/barlow_medium"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/font_12"
                     tools:text="23,504,000đ" />
 
             </LinearLayout>
@@ -135,7 +135,7 @@
                     android:gravity="center_vertical"
                     android:text="Chỉ đường"
                     android:textColor="#057dda"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/font_16" />
 
             </LinearLayout>
 
@@ -179,7 +179,7 @@
                     android:drawablePadding="16dp"
                     android:text="Thêm vào giỏ hàng"
                     android:textColor="#ffffff"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/font_16" />
 
             </LinearLayout>
 
@@ -201,7 +201,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:textColor="#ffffff"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             android:textStyle="bold"
             tools:text="4,3" />
 
@@ -211,7 +211,7 @@
             android:layout_marginTop="6dp"
             android:text="/5"
             android:textColor="#ffffff"
-            android:textSize="12sp" />
+            android:textSize="@dimen/font_12" />
 
     </LinearLayout>
 

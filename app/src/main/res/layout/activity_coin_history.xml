@@ -35,7 +35,7 @@
             android:singleLine="true"
             android:text="@string/icheck_xu"
             android:textColor="@color/lightBlue"
-            android:textSize="18sp"
+            android:textSize="@dimen/font_18"
             android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

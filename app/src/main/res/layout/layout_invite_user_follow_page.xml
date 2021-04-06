@@ -32,7 +32,7 @@
         android:fontFamily="@font/barlow_medium"
         android:gravity="center_vertical"
         android:textColor="@color/collection_product_name"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:maxLines="1"
         android:ellipsize="end"
         tools:text="Dung Nguyen Dung Dung Nguyen Dung Dung Nguyen Dung " />

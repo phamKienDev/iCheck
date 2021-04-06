@@ -17,7 +17,7 @@
         android:fontFamily="@font/roboto_regular"
         android:text="Doanh nghiệp sở hữu"
         android:textColor="@color/blue"
-        android:textSize="18sp" />
+        android:textSize="@dimen/font_18" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/root"
@@ -56,7 +56,7 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/roboto_medium"
                     android:textColor="@color/white"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/font_16"
                     tools:text="Công ty CP Thương mại quốc tế Thịnh Long"
                     android:layout_marginRight="14dp" />
 

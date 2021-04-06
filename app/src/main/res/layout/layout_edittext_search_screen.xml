@@ -35,7 +35,7 @@
         android:singleLine="true"
         android:textColor="@color/collection_product_name"
         android:textColorHint="@color/darkGray2"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/imgBack"
         app:layout_constraintTop_toTopOf="parent" />

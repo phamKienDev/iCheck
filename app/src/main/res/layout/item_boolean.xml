@@ -17,7 +17,7 @@
         android:fontFamily="@font/barlow_medium"
         android:gravity="center_vertical"
         android:textColor="#212121"
-        android:textSize="12sp"
+        android:textSize="@dimen/font_12"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_switch"

@@ -30,7 +30,7 @@
             android:gravity="start|center"
             android:text="Tiếc quá,\nBạn không thể mua hàng tại nhà sản xuất!"
             android:textColor="#ffffff"
-            android:textSize="14sp" />
+            android:textSize="@dimen/font_14" />
 
     </LinearLayout>
 

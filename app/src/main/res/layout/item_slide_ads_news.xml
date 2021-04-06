@@ -54,7 +54,7 @@
             android:fontFamily="@font/barlow_medium"
             android:maxLines="2"
             android:textColor="@color/collection_product_name"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

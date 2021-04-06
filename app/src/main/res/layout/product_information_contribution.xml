@@ -15,10 +15,10 @@
         android:layout_marginLeft="12dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/barlow_semi_bold"
-        android:lineSpacingExtra="6sp"
+        android:lineSpacingExtra="@dimen/font_6"
         android:text="Đóng góp thông tin doanh nghiệp nếu bạn biết về sản phẩm này nhé!"
         android:textColor="#212121"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="@id/btn_contribution"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,10 +32,10 @@
         android:background="@drawable/bg_corners_4_light_blue_solid"
         android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center"
-        android:lineSpacingExtra="6sp"
+        android:lineSpacingExtra="@dimen/font_6"
         android:text="Đóng góp ngay"
         android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         app:layout_constraintStart_toStartOf="@+id/appCompatTextView11"
         app:layout_constraintTop_toBottomOf="@+id/appCompatTextView11" />
 

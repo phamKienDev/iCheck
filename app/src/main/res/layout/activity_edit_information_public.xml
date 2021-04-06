@@ -31,7 +31,7 @@
             android:gravity="center"
             android:singleLine="true"
             android:textColor="@color/lightBlue"
-            android:textSize="18sp"
+            android:textSize="@dimen/font_18"
             tools:text="Tiêu đề" />
     </FrameLayout>
 
@@ -57,7 +57,7 @@
             android:fontFamily="@font/barlow_medium"
             android:text="Thông tin cá nhân của bạn chưa được cập nhật"
             android:textColor="#757575"
-            android:textSize="14sp" />
+            android:textSize="@dimen/font_14" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/btnUpdateInfor"
@@ -71,7 +71,7 @@
             android:gravity="center"
             android:text="Cập nhật thông tin cá nhân"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textSize="@dimen/font_16" />
 
     </LinearLayout>
 
@@ -91,10 +91,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/barlow_medium"
-            android:lineSpacingExtra="6sp"
+            android:lineSpacingExtra="@dimen/font_6"
             android:text="Thông tin công khai là những thông tin cá nhân bạn cho phép người khác nhìn thấy trên trang cá nhân của mình."
             android:textColor="#757575"
-            android:textSize="14sp" />
+            android:textSize="@dimen/font_14" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@id/recyclerView"
@@ -117,7 +117,7 @@
         <!--                android:fontFamily="@font/barlow_medium"-->
         <!--                android:text="Ngày tháng năm sinh"-->
         <!--                android:textColor="#434343"-->
-        <!--                android:textSize="14sp"-->
+        <!--                android:textSize="@dimen/font_14"-->
         <!--                app:layout_constraintStart_toStartOf="parent"-->
         <!--                app:layout_constraintTop_toTopOf="parent" />-->
 
@@ -129,7 +129,7 @@
         <!--                android:fontFamily="@font/barlow_medium"-->
         <!--                android:paddingStart="14dp"-->
         <!--                android:textColor="#757575"-->
-        <!--                android:textSize="14sp"-->
+        <!--                android:textSize="@dimen/font_14"-->
         <!--                app:layout_constraintTop_toBottomOf="@id/tvTitleBirthDay"-->
         <!--                app:layout_constraintStart_toStartOf="@id/tvTitleBirthDay"-->
         <!--                tools:text="10/05/2000" />-->
@@ -159,7 +159,7 @@
         <!--                android:fontFamily="@font/barlow_medium"-->
         <!--                android:text="Thành phố "-->
         <!--                android:textColor="#434343"-->
-        <!--                android:textSize="14sp"-->
+        <!--                android:textSize="@dimen/font_14"-->
         <!--                app:layout_constraintStart_toStartOf="parent"-->
         <!--                app:layout_constraintTop_toTopOf="parent" />-->
 
@@ -171,7 +171,7 @@
         <!--                android:fontFamily="@font/barlow_medium"-->
         <!--                android:paddingStart="14dp"-->
         <!--                android:textColor="#757575"-->
-        <!--                android:textSize="14sp"-->
+        <!--                android:textSize="@dimen/font_14"-->
         <!--                app:layout_constraintTop_toBottomOf="@id/tvTitleCity"-->
         <!--                app:layout_constraintStart_toStartOf="@id/tvTitleCity"-->
         <!--                tools:text="Hà Nội" />-->
@@ -201,7 +201,7 @@
         <!--                android:fontFamily="@font/barlow_medium"-->
         <!--                android:text="Số điện thoại"-->
         <!--                android:textColor="#434343"-->
-        <!--                android:textSize="14sp"-->
+        <!--                android:textSize="@dimen/font_14"-->
         <!--                app:layout_constraintStart_toStartOf="parent"-->
         <!--                app:layout_constraintTop_toTopOf="parent" />-->
 
@@ -213,7 +213,7 @@
         <!--                android:fontFamily="@font/barlow_medium"-->
         <!--                android:paddingStart="14dp"-->
         <!--                android:textColor="#757575"-->
-        <!--                android:textSize="14sp"-->
+        <!--                android:textSize="@dimen/font_14"-->
         <!--                app:layout_constraintTop_toBottomOf="@id/tvTitlePhone"-->
         <!--                app:layout_constraintStart_toStartOf="@id/tvTitlePhone"-->
         <!--                tools:text="0254 220 210" />-->
@@ -243,7 +243,7 @@
         <!--                android:fontFamily="@font/barlow_medium"-->
         <!--                android:text="Email"-->
         <!--                android:textColor="#434343"-->
-        <!--                android:textSize="14sp"-->
+        <!--                android:textSize="@dimen/font_14"-->
         <!--                app:layout_constraintStart_toStartOf="parent"-->
         <!--                app:layout_constraintTop_toTopOf="parent" />-->
 
@@ -255,7 +255,7 @@
         <!--                android:fontFamily="@font/barlow_medium"-->
         <!--                android:paddingStart="14dp"-->
         <!--                android:textColor="#757575"-->
-        <!--                android:textSize="14sp"-->
+        <!--                android:textSize="@dimen/font_14"-->
         <!--                app:layout_constraintTop_toBottomOf="@id/tvTitleEmail"-->
         <!--                app:layout_constraintStart_toStartOf="@id/tvTitleEmail"-->
         <!--                tools:text="vnkdjs@gmail.com" />-->

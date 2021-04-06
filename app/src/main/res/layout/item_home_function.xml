@@ -91,7 +91,7 @@
     <!--                        android:includeFontPadding="false"-->
     <!--                        android:text="@string/xin_chao"-->
     <!--                        android:textColor="#757575"-->
-    <!--                        android:textSize="12sp" />-->
+    <!--                        android:textSize="@dimen/font_12" />-->
 
     <!--                    <androidx.appcompat.widget.AppCompatTextView-->
     <!--                        android:id="@id/tvName"-->
@@ -102,7 +102,7 @@
     <!--                        android:gravity="center_vertical"-->
     <!--                        android:maxLines="1"-->
     <!--                        android:textColor="#212121"-->
-    <!--                        android:textSize="16sp"-->
+    <!--                        android:textSize="@dimen/font_16"-->
     <!--                        tools:text="Mai Lan Nguyễn" />-->
     <!--                </LinearLayout>-->
 
@@ -116,7 +116,7 @@
     <!--                    android:maxLines="1"-->
     <!--                    android:text="***"-->
     <!--                    android:textColor="#FFB800"-->
-    <!--                    android:textSize="16sp"-->
+    <!--                    android:textSize="@dimen/font_16"-->
     <!--                    android:visibility="visible" />-->
 
     <!--                <androidx.appcompat.widget.AppCompatTextView-->
@@ -128,7 +128,7 @@
     <!--                    android:includeFontPadding="false"-->
     <!--                    android:maxLines="1"-->
     <!--                    android:textColor="#FFB800"-->
-    <!--                    android:textSize="16sp"-->
+    <!--                    android:textSize="@dimen/font_16"-->
     <!--                    android:visibility="gone" />-->
 
     <!--                <androidx.appcompat.widget.AppCompatTextView-->
@@ -140,7 +140,7 @@
     <!--                    android:includeFontPadding="false"-->
     <!--                    android:text="Xu"-->
     <!--                    android:textColor="#FFB800"-->
-    <!--                    android:textSize="16sp" />-->
+    <!--                    android:textSize="@dimen/font_16" />-->
 
     <!--                <androidx.appcompat.widget.AppCompatImageButton-->
     <!--                    android:id="@id/imgShowOrHidePassword"-->

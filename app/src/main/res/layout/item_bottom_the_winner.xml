@@ -21,7 +21,7 @@
         android:singleLine="true"
         android:text="Cập nhật mới nhất"
         android:textColor="@color/fast_survey_gray"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         android:visibility="gone" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -48,7 +48,7 @@
             android:includeFontPadding="false"
             android:singleLine="true"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             app:layout_constraintEnd_toStartOf="@id/imgReward"
             app:layout_constraintStart_toEndOf="@+id/imgAvatar"
             app:layout_constraintTop_toTopOf="@+id/imgAvatar"
@@ -64,7 +64,7 @@
             android:includeFontPadding="false"
             android:singleLine="true"
             android:textColor="@color/black"
-            android:textSize="@dimen/font_size_4"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="@id/tvName"
             app:layout_constraintStart_toStartOf="@+id/tvName"
             app:layout_constraintTop_toBottomOf="@id/tvName"
@@ -80,7 +80,7 @@
             android:includeFontPadding="false"
             android:singleLine="true"
             android:textColor="@color/gray_v2"
-            android:textSize="12sp"
+            android:textSize="@dimen/font_12"
             app:layout_constraintEnd_toEndOf="@id/tvPhone"
             app:layout_constraintStart_toStartOf="@+id/tvPhone"
             app:layout_constraintTop_toBottomOf="@id/tvPhone"

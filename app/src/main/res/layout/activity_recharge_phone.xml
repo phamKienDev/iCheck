@@ -36,7 +36,7 @@
             android:gravity="center"
             android:text="Nạp thẻ điện thoại"
             android:textColor="@color/lightBlue"
-            android:textSize="18sp" />
+            android:textSize="@dimen/font_18" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/imgActionHistoryTopup"
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
             android:textColor="#828282"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -85,7 +85,7 @@
             android:fontFamily="sans-serif-medium"
             android:text="Thử Lại"
             android:textColor="#3c5a99"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             android:textStyle="normal" />
 
     </LinearLayout>
@@ -127,7 +127,7 @@
                     android:paddingBottom="18dp"
                     android:textColorHint="#b4b4b4"
                     android:textColor="#212121"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     android:drawableRight="@drawable/ic_phonebook_24px" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -143,7 +143,7 @@
                     android:paddingStart="3dp"
                     android:text="Lưu ý: Không cần nhập số điện thoại của bạn nếu nạp cho bạn"
                     android:textColor="#757575"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/font_12"
                     android:paddingLeft="3dp" />
 
             </LinearLayout>
@@ -165,7 +165,7 @@
                     android:fontFamily="@font/barlow_semi_bold"
                     android:text="Nhà mạng"
                     android:textColor="#3c5a99"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/font_16" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rcvNetwork"
@@ -194,7 +194,7 @@
                     android:fontFamily="@font/barlow_semi_bold"
                     android:text="Mệnh giá"
                     android:textColor="#3c5a99"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/font_16" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rcvCardValue"
@@ -215,7 +215,7 @@
                 android:fontFamily="@font/barlow_semi_bold"
                 android:text="Chú ý:"
                 android:textColor="#757575"
-                android:textSize="16sp" />
+                android:textSize="@dimen/font_16" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
@@ -225,10 +225,10 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/barlow_medium"
-                android:lineSpacingExtra="6sp"
+                android:lineSpacingExtra="@dimen/font_6"
                 android:text="@string/sub_message_topup"
                 android:textColor="#757575"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:layout_marginRight="8dp"
                 android:layout_marginLeft="12dp" />
 
@@ -255,7 +255,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:text="Thành tiền"
             android:textColor="#757575"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             app:layout_constraintEnd_toStartOf="@+id/tvPrice"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -271,7 +271,7 @@
             android:hint="0 đ"
             android:textColor="#057dda"
             android:textColorHint="#057dda"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tvSubPrice"
             app:layout_constraintTop_toTopOf="@id/tvSubPrice"
@@ -292,7 +292,7 @@
             android:paddingBottom="9dp"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

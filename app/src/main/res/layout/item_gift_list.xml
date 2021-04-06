@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
         android:layout_marginTop="8dp"
-        android:textSize="12sp"
+        android:textSize="@dimen/font_12"
         android:drawableStart="@drawable/ic_gift_box_grey"
         android:drawablePadding="4dp"
         tools:text="Còn lại: 14"

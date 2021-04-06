@@ -89,7 +89,7 @@
         android:fontFamily="@font/barlow_medium"
         android:text="Vui lòng căn chỉnh giấy tờ đúng khung chụp ảnh"
         android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -29,7 +29,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             android:textColor="@color/blue"
             android:text="Cửa hàng nhãn dán"
             android:layout_marginEnd="50dp"

@@ -29,7 +29,7 @@
         android:maxLines="2"
         android:minLines="2"
         android:textColor="@color/gray_v2"
-        android:textSize="12sp"
+        android:textSize="@dimen/font_12"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

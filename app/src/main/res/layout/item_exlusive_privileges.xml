@@ -29,14 +29,14 @@
                 android:maxLines="2"
                 android:ellipsize="end"
                 android:fontFamily="@font/barlow_semi_bold"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_16"
                 android:textColor="#212121"
                 tools:text="Chào hè quét mã nhận ngay quà khủng" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 android:layout_marginTop="8dp"
                 android:textColor="#757575"
                 tools:text="Còn lại 29 ngày"
@@ -48,7 +48,7 @@
                 android:layout_marginTop="6dp"
                 android:drawableStart="@drawable/ic_exclusive_privileges"
                 android:drawablePadding="6.7dp"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:textColor="#057dda"
                 tools:text="150.000 điểm"
                 />

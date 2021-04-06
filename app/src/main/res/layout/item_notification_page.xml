@@ -26,7 +26,7 @@
         android:includeFontPadding="false"
         android:singleLine="true"
         android:textColor="@color/collection_product_name"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         tools:text="Trang sức hàng ngày" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -43,5 +43,5 @@
         android:text="@string/theo_doi"
         android:textAlignment="gravity"
         android:textColor="#ffffff"
-        android:textSize="14sp" />
+        android:textSize="@dimen/font_14" />
 </LinearLayout>

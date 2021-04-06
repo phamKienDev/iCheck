@@ -38,7 +38,7 @@
             android:singleLine="true"
             android:textAlignment="center"
             android:textColor="@color/lightBlue"
-            android:textSize="18sp"
+            android:textSize="@dimen/font_18"
             app:fontFamily="@font/barlow_semi_bold"
             android:text="@string/danh_sach_dong_gop_thong_tin" />
 

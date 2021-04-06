@@ -33,7 +33,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="sans-serif-medium"
                     android:textColor="#ffffff"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/font_16"
                     android:textStyle="normal"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -47,7 +47,7 @@
                     android:layout_marginBottom="6dp"
                     android:fontFamily="sans-serif-medium"
                     android:textColor="#ffffff"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     android:textStyle="normal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/view"
@@ -75,7 +75,7 @@
                     android:drawablePadding="8dp"
                     android:fontFamily="sans-serif-medium"
                     android:textColor="#ffffff"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     android:textStyle="normal"
                     app:layout_constraintBottom_toBottomOf="@+id/view"
                     app:layout_constraintStart_toEndOf="@+id/view"
@@ -105,7 +105,7 @@
                         android:layout_marginBottom="10dp"
                         android:fontFamily="sans-serif"
                         android:textColor="#434343"
-                        android:textSize="12sp"
+                        android:textSize="@dimen/font_12"
                         android:textStyle="normal"
                         tools:text="Số 50, Ngõ 125 Nguyễn Ngọc Vũ, Trung Hòa, Cầu Giấy, Hà Nội (tên dài không giới hạn)" />
 
@@ -136,7 +136,7 @@
                         android:gravity="center"
                         android:text="Giỏ hàng"
                         android:textColor="#4f4f4f"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/font_14"
                         android:textStyle="normal"
                         android:visibility="invisible"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -172,7 +172,7 @@
                                 android:fontFamily="sans-serif"
                                 android:gravity="center"
                                 android:textColor="#d8d8d8"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/font_14"
                                 android:textStyle="normal"
                                 tools:text="130,000" />
 
@@ -183,7 +183,7 @@
                                 android:layout_marginEnd="8dp"
                                 android:fontFamily="sans-serif"
                                 android:textColor="#ffffff"
-                                android:textSize="16sp"
+                                android:textSize="@dimen/font_16"
                                 android:textStyle="bold"
                                 tools:text="90,000đ" />
 

@@ -65,7 +65,7 @@
                     android:paddingBottom="@dimen/size_9"
                     android:text="Xem thêm các thử thách"
                     android:textColor="@color/lightBlue"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/font_16" />
             </LinearLayout>
         </LinearLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
@@ -126,7 +126,7 @@
             android:singleLine="true"
             android:text="Xếp hạng"
             android:textColor="#057DDA"
-            android:textSize="18sp"
+            android:textSize="@dimen/font_18"
             android:textStyle="normal" />
 
         <androidx.appcompat.widget.AppCompatImageButton

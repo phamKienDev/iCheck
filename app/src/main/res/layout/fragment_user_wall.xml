@@ -62,7 +62,7 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:textColor="#057DDA"
-                android:textSize="18sp"
+                android:textSize="@dimen/font_18"
                 app:layout_constraintBottom_toBottomOf="@+id/btn_back"
                 app:layout_constraintEnd_toStartOf="@+id/notify"
                 app:layout_constraintStart_toEndOf="@+id/btn_back"
@@ -151,7 +151,7 @@
 
                 android:includeFontPadding="false"
                 android:textColor="@color/white"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 android:textStyle="normal"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"

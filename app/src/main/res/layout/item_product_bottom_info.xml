@@ -99,7 +99,7 @@
         android:padding="@dimen/size_10"
         android:text="@string/hotline_dang_ky"
         android:textColor="@color/collection_product_name"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/viewCenter" />

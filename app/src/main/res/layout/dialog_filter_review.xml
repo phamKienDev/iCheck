@@ -94,7 +94,7 @@
             android:fontFamily="@font/barlow_medium"
             android:text="@string/tat_ca"
             android:textColor="@color/fast_survey_gray"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider28" />
 
@@ -152,7 +152,7 @@
             android:fontFamily="@font/barlow_medium"
             android:text="@string/moi_nguoi"
             android:textColor="@color/fast_survey_gray"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider29" />
 
@@ -187,7 +187,7 @@
         android:paddingBottom="@dimen/size_8"
         android:text="@string/thiet_lap_lai"
         android:textColor="@color/light_blue"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/divider30" />
 </androidx.constraintlayout.widget.ConstraintLayout>

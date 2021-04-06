@@ -49,7 +49,7 @@
                     android:paddingEnd="80dp"
                     android:singleLine="true"
                     android:textColor="#20336B"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/font_18"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:text="09293938383" />
@@ -101,7 +101,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
                     android:textColor="#828282"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     android:textStyle="normal" />
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -115,7 +115,7 @@
                     android:fontFamily="sans-serif-medium"
                     android:text="Thử Lại"
                     android:textColor="#3c5a99"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/font_16"
                     android:textStyle="normal" />
 
             </LinearLayout>
@@ -143,7 +143,7 @@
                     android:gravity="center"
                     android:textAlignment="center"
                     android:textColor="#828282"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     android:textStyle="normal"
                     tools:text="Để hiển thị dữ liệu Cửa hàng, vui lòng bật GPS" />
 
@@ -161,7 +161,7 @@
                     android:paddingBottom="11dp"
                     android:text="@string/bat_gps"
                     android:textColor="#3c5a99"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/font_16"
                     android:textStyle="normal" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -178,7 +178,7 @@
                     android:paddingBottom="11dp"
                     android:text="@string/bat_vi_tri"
                     android:textColor="#3c5a99"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/font_16"
                     android:textStyle="normal"
                     android:visibility="gone" />
 
@@ -220,7 +220,7 @@
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
                             android:textColor="#ffffff"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/font_14"
                             android:textStyle="normal"
                             tools:text="CẢNH BÁO! \n MÃ TEM KHÔNG HỢP LỆ (TEXT KHÔNG CỐ ĐỊNH)" />
 

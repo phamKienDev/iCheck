@@ -57,7 +57,7 @@
                 android:padding="8dp"
                 android:textColor="#434343"
                 android:textColorHint="#B4B4B4"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
 
             <androidx.recyclerview.widget.RecyclerView

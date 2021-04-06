@@ -36,7 +36,7 @@
             android:singleLine="true"
             android:text="Đặc quyền riêng"
             android:textColor="@color/lightBlue"
-            android:textSize="18sp" />
+            android:textSize="@dimen/font_18" />
     </FrameLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -80,7 +80,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center"
                 android:textColor="#212121"
-                android:textSize="18sp"
+                android:textSize="@dimen/font_18"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/imgExclusive"
@@ -93,7 +93,7 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/barlow_medium"
                 android:textColor="#ff0000"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/appCompatTextView17"
                 app:layout_constraintTop_toBottomOf="@+id/appCompatTextView17"
@@ -108,7 +108,7 @@
                 android:layout_marginTop="17dp"
                 android:fontFamily="@font/barlow_medium"
                 android:textColor="#757575"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/appCompatTextView27"
                 tools:text="Điểm" />
@@ -122,7 +122,7 @@
                 android:drawablePadding="6.2dp"
                 android:fontFamily="@font/barlow_medium"
                 android:textColor="#000000"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_16"
                 app:layout_constraintStart_toStartOf="@+id/appCompatTextView32"
                 app:layout_constraintTop_toBottomOf="@+id/appCompatTextView32"
                 tools:text="156.000 điểm" />
@@ -144,7 +144,7 @@
                 android:layout_marginRight="12dp"
                 android:fontFamily="@font/barlow_medium"
                 android:textColor="#757575"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/appCompatTextView32"
                 tools:text="Hết hạn" />
@@ -154,7 +154,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/barlow_medium"
                 android:textColor="#000000"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_16"
                 app:layout_constraintEnd_toEndOf="@+id/tvSubTimeEnd"
                 app:layout_constraintTop_toBottomOf="@+id/tvSubTimeEnd"
                 tools:text="22:59 13/09/2020" />
@@ -177,7 +177,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:textColor="#212121"
                 android:layout_marginTop="16dp"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 app:layout_constraintTop_toBottomOf="@+id/view26"
                 app:layout_constraintStart_toStartOf="@id/view26"
                 app:layout_constraintEnd_toEndOf="@id/view26"
@@ -208,7 +208,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:text="Đổi thưởng"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textSize="@dimen/font_16" />
 
     </FrameLayout>
 

@@ -26,7 +26,7 @@
         android:background="@drawable/bg_business_name"
         android:padding="3dp"
         android:textColor="@color/blue"
-        android:textSize="10sp"
+        android:textSize="@dimen/font_10"
         app:layout_constraintStart_toEndOf="@+id/user_avatar"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Công Ty Sữa Vinamilk"

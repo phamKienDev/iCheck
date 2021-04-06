@@ -28,7 +28,7 @@
         android:maxLines="2"
         android:minLines="2"
         android:textColor="@color/darkGray1"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imgProduct"
         app:layout_constraintTop_toTopOf="@+id/imgProduct"
@@ -52,7 +52,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
             android:textColor="@color/lightBlue"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:visibility="visible"
             tools:text="25.900 ₫" />
 
@@ -64,10 +64,10 @@
             android:drawablePadding="@dimen/size_5"
             android:fontFamily="@font/barlow_medium"
             android:gravity="center_vertical"
-            android:lineSpacingExtra="4sp"
+            android:lineSpacingExtra="@dimen/font_14"
             android:text="@string/verified"
             android:textColor="@color/green_v3"
-            android:textSize="12sp" />
+            android:textSize="@dimen/font_12" />
     </LinearLayout>
 
     <View

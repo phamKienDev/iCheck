@@ -15,7 +15,7 @@
         android:fontFamily="@font/barlow_regular"
         android:text="@string/co_the_chua_ban_quan_tam"
         android:textColor="@color/black_15"
-        android:textSize="12sp"
+        android:textSize="@dimen/font_12"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -59,7 +59,7 @@
         android:singleLine="true"
         android:text="@string/dat_hang_thanh_cong"
         android:textColor="@color/collection_product_name"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/circleImageView"
         app:layout_constraintTop_toTopOf="@+id/circleImageView" />
@@ -71,7 +71,7 @@
         android:includeFontPadding="false"
         android:text="@string/duoc_tai_tro"
         android:textColor="@color/black_15"
-        android:textSize="12sp"
+        android:textSize="@dimen/font_12"
         app:layout_constraintBottom_toBottomOf="@+id/circleImageView"
         app:layout_constraintStart_toStartOf="@+id/tvNameEnterprise"
         app:layout_constraintTop_toBottomOf="@+id/tvNameEnterprise" />
@@ -87,7 +87,7 @@
         android:includeFontPadding="false"
         android:lineHeight="@dimen/size_20"
         android:textColor="@color/collection_product_name"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="@+id/view36"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
@@ -191,7 +191,7 @@
             android:fontFamily="@font/barlow_medium"
             android:hint="@string/viet_binh_luan"
             android:singleLine="true"
-            android:textSize="14sp" />
+            android:textSize="@dimen/font_14" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="wrap_content"

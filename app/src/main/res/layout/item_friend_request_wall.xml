@@ -26,7 +26,7 @@
         android:includeFontPadding="false"
         android:singleLine="true"
         android:textColor="@color/collection_product_name"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         tools:text="Xuyến Đỗ" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -43,7 +43,7 @@
         android:paddingEnd="@dimen/size_12"
         android:text="@string/xac_nhan"
         android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         app:layout_constraintStart_toStartOf="@id/tvName"
         app:layout_constraintTop_toBottomOf="@id/tvName" />
 </LinearLayout>

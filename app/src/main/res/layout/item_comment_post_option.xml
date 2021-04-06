@@ -28,6 +28,6 @@
         android:fontFamily="@font/barlow_semi_bold"
         android:includeFontPadding="false"
         android:textColor="@color/blue"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         tools:text="Xem thêm câu trả lời (13)" />
 </LinearLayout>

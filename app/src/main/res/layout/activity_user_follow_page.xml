@@ -22,7 +22,7 @@
         android:fontFamily="@font/barlow_semi_bold"
         android:text="@string/nguoi_theo_doi"
         android:textColor="@color/lightBlue"
-        android:textSize="18sp"
+        android:textSize="@dimen/font_18"
         app:layout_constraintBottom_toBottomOf="@id/img_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -68,7 +68,7 @@
         android:paddingEnd="@dimen/size_10"
         android:singleLine="true"
         android:textColorHint="@color/gray"
-        android:textSize="@dimen/font_size_4"
+        android:textSize="@dimen/font_14"
         android:textStyle="normal" />
 
     <View

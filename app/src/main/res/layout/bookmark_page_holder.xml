@@ -29,7 +29,7 @@
             android:layout_weight="1"
             android:padding="8dp"
             android:textColor="@android:color/white"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             tools:text="Công ty Cổ phần Nano Techco" />
 
     </LinearLayout>

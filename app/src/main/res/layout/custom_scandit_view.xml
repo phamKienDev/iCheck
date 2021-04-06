@@ -22,7 +22,7 @@
         android:text="Quét mã vạch, QR code, tem chống giả để kiểm tra thông tin sản phẩm và phát hiện hàng giả "
         android:textAlignment="center"
         android:textColor="@android:color/white"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toTopOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="@id/view28"
         app:layout_constraintStart_toStartOf="@id/view28"

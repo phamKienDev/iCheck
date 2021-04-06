@@ -20,10 +20,10 @@
             android:layout_marginStart="12dp"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/barlow_semi_bold"
-            android:lineSpacingExtra="6sp"
+            android:lineSpacingExtra="@dimen/font_6"
             android:text="Địa chỉ đến lấy quà"
             android:textColor="@color/blue"
-            android:textSize="14sp" />
+            android:textSize="@dimen/font_14" />
 
         <View
             android:layout_width="match_parent"
@@ -41,9 +41,9 @@
             android:layout_marginEnd="12dp"
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/barlow_medium"
-            android:lineSpacingExtra="6sp"
+            android:lineSpacingExtra="@dimen/font_6"
             android:textColor="#212121"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             tools:text="Bài viết này sẽ cập nhật mã giảm giá Lotte " />
 
         <View
@@ -64,10 +64,10 @@
             android:layout_marginStart="12dp"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/barlow_semi_bold"
-            android:lineSpacingExtra="6sp"
+            android:lineSpacingExtra="@dimen/font_6"
             android:text="Thông tin quà"
             android:textColor="@color/blue"
-            android:textSize="14sp" />
+            android:textSize="@dimen/font_14" />
 
         <View
             android:layout_width="match_parent"
@@ -85,9 +85,9 @@
             android:layout_marginEnd="12dp"
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/barlow_medium"
-            android:lineSpacingExtra="6sp"
+            android:lineSpacingExtra="@dimen/font_6"
             android:textColor="#212121"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             tools:text="Bài viết này sẽ cập nhật mã giảm giá Lotte tháng 9/2019 và các chương trình khuyến mãi mới nhất của Lotte. Lưu lại nếu bạn thấy hữu ích, chia sẻ với bạn bè
 Lưu ý: Nếu quà tặng là vật phẩm, iCheck sẽ tiến hành ship hàng đến bạn trong vòng 3 - 9 ngày kể từ khi bạn xác nhận nhận phần quà này.
 Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận thông tin của bạn và thỏa thuận phí vận chuyển quà. Hãy để ý điện thoại để không bỏ lỡ phần quà hấp dẫn nhé.

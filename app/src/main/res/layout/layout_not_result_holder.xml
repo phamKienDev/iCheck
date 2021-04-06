@@ -21,7 +21,7 @@
         android:fontFamily="@font/barlow_medium"
         android:gravity="center"
         android:textColor="@color/fast_survey_gray"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:text="Xin lỗi chúng tôi không thể tìm được kết quả phù hợp với tìm kiếm của bạn" />
 
     <TextView
@@ -38,5 +38,5 @@
         android:paddingBottom="@dimen/size_10"
         android:text="Thử lại với từ khoá khác"
         android:textColor="@color/white"
-        android:textSize="16sp" />
+        android:textSize="@dimen/font_16" />
 </LinearLayout>

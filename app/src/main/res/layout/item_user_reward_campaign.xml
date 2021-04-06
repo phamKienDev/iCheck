@@ -30,7 +30,7 @@
             android:maxLines="1"
             android:ellipsize="end"
             android:layout_marginEnd="8dp"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:fontFamily="sans-serif-medium"
             android:textStyle="normal"
             android:textColor="#434343"
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
             android:textColor="#434343"
-            android:textSize="12sp"
+            android:textSize="@dimen/font_12"
             android:textStyle="normal"
             tools:text="+84 97 954 ****"/>
 
@@ -57,7 +57,7 @@
             android:gravity="start|center"
             android:maxLines="1"
             android:textColor="#434343"
-            android:textSize="12sp"
+            android:textSize="@dimen/font_12"
             android:textStyle="normal"
             tools:text="Điện thoại Iphone 8Plus 128Gb (tên quà)"/>
 
@@ -69,7 +69,7 @@
             android:ellipsize="end"
             android:fontFamily="sans-serif-medium"
             android:textColor="@color/blue"
-            android:textSize="12sp"
+            android:textSize="@dimen/font_12"
             android:textStyle="normal"
             tools:text="Nhà tài trợ: Công ty Cổ Phần iCheck"/>
 
@@ -82,7 +82,7 @@
             android:layout_marginBottom="8dp"
             android:gravity="start"
             android:textColor="#828282"
-            android:textSize="12sp"
+            android:textSize="@dimen/font_12"
             android:textStyle="normal"
             tools:text="12:34, 13/05/2019"/>
 

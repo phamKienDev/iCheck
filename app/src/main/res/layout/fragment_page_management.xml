@@ -15,7 +15,7 @@
         android:gravity="center"
         android:text="@string/quan_ly_trang"
         android:textColor="@color/lightBlue"
-        android:textSize="18sp"
+        android:textSize="@dimen/font_18"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -64,7 +64,7 @@
                         android:fontFamily="@font/barlow_semi_bold"
                         android:text="Trang của tôi (12)"
                         android:textColor="@color/blue"
-                        android:textSize="18sp"
+                        android:textSize="@dimen/font_18"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -77,7 +77,7 @@
                         android:fontFamily="@font/barlow_semi_bold"
                         android:text="@string/xem_tat_ca"
                         android:textColor="@color/blue"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/font_14"
                         app:layout_constraintBottom_toBottomOf="@id/tvOwnerTitle"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@id/tvOwnerTitle" />
@@ -110,7 +110,7 @@
                         android:fontFamily="@font/barlow_semi_bold"
                         android:text="Trang của tôi (12)"
                         android:textColor="@color/blue"
-                        android:textSize="18sp"
+                        android:textSize="@dimen/font_18"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -123,7 +123,7 @@
                         android:fontFamily="@font/barlow_semi_bold"
                         android:text="@string/xem_tat_ca"
                         android:textColor="@color/blue"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/font_14"
                         app:layout_constraintBottom_toBottomOf="@id/tvFollowTitle"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@id/tvFollowTitle" />

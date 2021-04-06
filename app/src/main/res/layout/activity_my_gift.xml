@@ -32,7 +32,7 @@
             android:singleLine="true"
             android:text="@string/qua_cua_toi"
             android:textColor="@color/lightBlue"
-            android:textSize="18sp" />
+            android:textSize="@dimen/font_18" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@id/imgAction"
@@ -67,7 +67,7 @@
                 android:text="Hộp quà"
                 android:textAlignment="center"
                 android:textColor="@color/text_color_my_gift_title"
-                android:textSize="16sp" />
+                android:textSize="@dimen/font_16" />
 
             <androidx.appcompat.widget.AppCompatCheckedTextView
                 android:id="@+id/line"
@@ -96,7 +96,7 @@
                 android:text="Quà hiện vật"
                 android:textAlignment="center"
                 android:textColor="@color/text_color_my_gift_title"
-                android:textSize="16sp" />
+                android:textSize="@dimen/font_16" />
 
             <androidx.appcompat.widget.AppCompatCheckedTextView
                 android:id="@+id/line1"

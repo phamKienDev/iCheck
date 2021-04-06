@@ -31,7 +31,7 @@
             android:layout_marginLeft="12dp"
             android:fontFamily="@font/barlow_medium"
             android:text="Phiên bản hiện tại"
-            android:textSize="12sp"
+            android:textSize="@dimen/font_12"
             app:layout_constraintBottom_toBottomOf="@+id/tv_version"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_version" />
@@ -80,7 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginLeft="12dp"
-            android:layout_marginTop="26dp"
+            android:layout_marginTop="@dimen/size_26"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:fontFamily="@font/barlow_medium"

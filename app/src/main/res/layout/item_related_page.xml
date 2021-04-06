@@ -60,7 +60,7 @@
                 android:includeFontPadding="false"
                 android:singleLine="true"
                 android:textColor="@color/black"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 tools:drawableEnd="@drawable/ic_verified_16px"
                 tools:text="Công ty cổ phần OMO Việt Nam - Chuyên đồ gia dụng" />
 
@@ -75,7 +75,7 @@
             android:includeFontPadding="false"
             android:text="@string/nhan_hang_san_xuat"
             android:textColor="@color/fast_survey_gray"
-            android:textSize="12sp"
+            android:textSize="@dimen/font_12"
             app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
             app:layout_constraintEnd_toEndOf="@id/layoutName"
             app:layout_constraintStart_toStartOf="@id/layoutName" />
@@ -94,7 +94,7 @@
             android:paddingBottom="@dimen/size_8"
             android:text="@string/ghe_tham"
             android:textColor="@color/lightBlue"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/imgAvatar" />

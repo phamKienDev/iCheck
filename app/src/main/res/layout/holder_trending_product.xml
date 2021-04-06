@@ -16,7 +16,7 @@
         android:fontFamily="@font/barlow_semi_bold"
         android:text="Trải nghiệm sản phẩm mới"
         android:textColor="#3C5A99"
-        android:textSize="18sp"
+        android:textSize="@dimen/font_18"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

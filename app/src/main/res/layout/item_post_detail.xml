@@ -54,7 +54,7 @@
                 android:includeFontPadding="false"
                 android:singleLine="true"
                 android:textColor="@color/collection_product_name"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_16"
                 tools:text="Unilever Vietnam OfficialUnilever Vietnam Official Unilever Vietnam Official" />
 
         </LinearLayout>
@@ -80,7 +80,7 @@
                 android:includeFontPadding="false"
                 android:paddingStart="@dimen/size_6"
                 android:paddingEnd="@dimen/size_6"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 tools:text="Trên cả Tuyệt vời" />
 
             <androidx.appcompat.widget.AppCompatRatingBar
@@ -116,7 +116,7 @@
             android:includeFontPadding="false"
             android:singleLine="true"
             android:textColor="@color/fast_survey_gray"
-            android:textSize="12sp"
+            android:textSize="@dimen/font_12"
             app:layout_constraintStart_toStartOf="@id/layoutName"
             app:layout_constraintTop_toBottomOf="@id/layoutName"
             tools:text="43 phút trước" />
@@ -129,7 +129,7 @@
             android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:textColor="@color/collection_product_name"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintTop_toBottomOf="@id/layoutRating"
             tools:text="Sản phẩm tốt, chất lượng cao. Chính hãng nên đảm bảo lắm nhé. Mọi người đều nên sử dụng thử một lần! nhưng phải dùng lâu dài mới tác dụng (Tối đa 3 dòng)..." />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -181,7 +181,7 @@
             android:includeFontPadding="false"
             android:maxLines="2"
             android:textColor="@color/darkGray1"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/imgProduct"
             app:layout_constraintTop_toTopOf="parent"
@@ -197,7 +197,7 @@
             android:includeFontPadding="false"
             android:maxLines="2"
             android:textColor="@color/fast_survey_gray"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="@id/tvProduct"
             app:layout_constraintStart_toStartOf="@id/tvProduct"
             app:layout_constraintTop_toBottomOf="@id/tvProduct"
@@ -226,7 +226,7 @@
             android:includeFontPadding="false"
             android:textAlignment="gravity"
             android:textColor="@color/text_color_post"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             tools:text="12,781" />
 
         <androidx.appcompat.widget.AppCompatCheckedTextView
@@ -242,7 +242,7 @@
             android:includeFontPadding="false"
             android:textAlignment="gravity"
             android:textColor="@color/fast_survey_gray"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             tools:text="12,781" />
 
         <androidx.appcompat.widget.AppCompatCheckedTextView
@@ -258,7 +258,7 @@
             android:includeFontPadding="false"
             android:textAlignment="gravity"
             android:textColor="@color/fast_survey_gray"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             tools:text="12,781" />
 
         <androidx.appcompat.widget.AppCompatCheckedTextView
@@ -274,7 +274,7 @@
             android:includeFontPadding="false"
             android:textAlignment="gravity"
             android:textColor="@color/fast_survey_gray"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             tools:text="12,781" />
     </LinearLayout>
 

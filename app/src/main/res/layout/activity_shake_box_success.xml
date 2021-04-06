@@ -70,7 +70,7 @@
                 android:fontFamily="@font/barlow_semi_bold"
                 android:text="@string/chuc_mung_ban"
                 android:textColor="#ff0000"
-                android:textSize="18sp" />
+                android:textSize="@dimen/font_18" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -131,7 +131,7 @@
                         android:paddingEnd="@dimen/size_22"
                         android:singleLine="true"
                         android:textColor="#FE4E1B"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/font_14"
                         app:layout_constraintBottom_toBottomOf="@id/imgBgGift"
                         app:layout_constraintTop_toTopOf="@id/imgBgGift"
                         tools:ignore="UnusedAttribute"
@@ -170,7 +170,7 @@
                 android:gravity="center"
                 android:textAlignment="center"
                 android:textColor="#000000"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_16"
                 tools:text="1 Chỉ Vàng 9999 (tên quà k giới hạn dòng)" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -184,7 +184,7 @@
                 android:maxLines="2"
                 android:textAlignment="center"
                 android:textColor="#434343"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 tools:text="Cảm ơn bạn đã tham gia sự kiện\n“Vui cùng C2 - Nhận Ngàn quà tặng”..." />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -198,7 +198,7 @@
                 android:maxLines="2"
                 android:textAlignment="center"
                 android:textColor="#434343"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:visibility="gone"
                 tools:text="Nhà tài trợ\nCông ty Cổ phần iCheck" />
         </LinearLayout>
@@ -225,7 +225,7 @@
             android:gravity="center"
             android:text="@string/khoe_ban_be"
             android:textColor="@color/white"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toStartOf="@+id/btnMyGift"
             app:layout_constraintStart_toStartOf="@+id/linearLayout14"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout14" />
@@ -240,7 +240,7 @@
             android:gravity="center"
             android:text="@string/xem_kho_qua"
             android:textColor="@color/red"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             app:layout_constraintEnd_toEndOf="@+id/linearLayout14"
             app:layout_constraintStart_toEndOf="@id/btnShare"
             app:layout_constraintTop_toTopOf="@+id/btnShare" />
@@ -263,7 +263,7 @@
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/tai_ngay"
                 android:textColor="@color/white"
-                android:textSize="12sp" />
+                android:textSize="@dimen/font_12" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
@@ -279,7 +279,7 @@
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/app_de_tham_gia_chuong_trinh"
                 android:textColor="#ffffff"
-                android:textSize="12sp" />
+                android:textSize="@dimen/font_12" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

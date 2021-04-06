@@ -26,7 +26,7 @@
         android:fontFamily="@font/barlow_semi_bold"
         android:text="Tạo mật khẩu mới"
         android:textColor="#212121"
-        android:textSize="18sp"
+        android:textSize="@dimen/font_18"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -69,7 +69,7 @@
                 android:hint="Nhập mật khẩu"
                 android:inputType="textPassword"
                 android:paddingBottom="20dp"
-                android:textSize="18sp" />
+                android:textSize="@dimen/font_18" />
 
             <vn.icheck.android.ui.edittext.FocusableEditText
                 android:id="@+id/edt_repw"
@@ -84,7 +84,7 @@
                 android:hint="Nhập lại mật khẩu"
                 android:inputType="textPassword"
                 android:paddingBottom="20dp"
-                android:textSize="18sp" />
+                android:textSize="@dimen/font_18" />
 
         </LinearLayout>
     </ScrollView>

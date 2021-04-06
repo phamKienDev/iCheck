@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:text="TextView"
                 android:textColor="@android:color/black"
-                android:textSize="16sp" />
+                android:textSize="@dimen/font_16" />
 
             <TextView
                 android:id="@+id/tv_phone"
@@ -44,7 +44,7 @@
         <TextView
             android:id="@+id/btn_invite_user"
             android:layout_width="50dp"
-            android:layout_height="26dp"
+            android:layout_height="@dimen/size_26"
             android:layout_marginTop="12dp"
             android:background="@drawable/bg_invite_btn"
             android:paddingTop="2dp"

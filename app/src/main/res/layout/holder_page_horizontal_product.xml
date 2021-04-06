@@ -16,7 +16,7 @@
         android:fontFamily="@font/barlow_medium"
         android:text="Sản phẩm nổi bật"
         android:textColor="#3C5A99"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

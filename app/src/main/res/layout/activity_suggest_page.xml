@@ -32,7 +32,7 @@
             android:singleLine="true"
             android:text="@string/goi_y_theo_doi"
             android:textColor="@color/lightBlue"
-            android:textSize="18sp"
+            android:textSize="@dimen/font_18"
             android:textStyle="normal" />
     </LinearLayout>
 
@@ -74,6 +74,6 @@
         android:paddingBottom="@dimen/size_6"
         android:text="@string/ve_trang_chu"
         android:textColor="@color/lightBlue"
-        android:textSize="16sp" />
+        android:textSize="@dimen/font_16" />
 
 </LinearLayout>

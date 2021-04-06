@@ -11,6 +11,6 @@
     android:gravity="center"
     android:textAlignment="gravity"
     android:textColor="#333333"
-    android:textSize="14sp"
+    android:textSize="@dimen/font_14"
     android:textStyle="normal"
     tools:text="Title" />

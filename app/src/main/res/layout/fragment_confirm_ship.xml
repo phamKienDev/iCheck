@@ -25,7 +25,7 @@
         android:fontFamily="@font/barlow_medium"
         android:text="Xác nhận giao hàng"
         android:textColor="#057DDA"
-        android:textSize="18sp"
+        android:textSize="@dimen/font_18"
         app:layout_constraintBottom_toBottomOf="@+id/btn_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btn_back"
@@ -87,7 +87,7 @@
                     android:fontFamily="@font/barlow_medium"
                     android:text="Thời gian đặt hàng"
                     android:textColor="@color/blue"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/font_16"
                     android:visibility="gone"
                     app:layout_constraintEnd_toStartOf="@+id/img_status"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -158,7 +158,7 @@
                     android:fontFamily="@font/barlow_medium"
                     android:text="Địa chỉ nhận hàng"
                     android:textColor="@color/blue"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/font_16"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -209,7 +209,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/barlow_medium"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/font_12"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_phone"
@@ -233,7 +233,7 @@
                     android:fontFamily="@font/barlow_medium"
                     android:text="Phí giao hàng (COD)"
                     android:textColor="@color/blue"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/font_16"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -279,7 +279,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:text="Danh sách sản phẩm"
                 android:textColor="@color/blue"
-                android:textSize="16sp" />
+                android:textSize="@dimen/font_16" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -329,7 +329,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
                     android:fontFamily="@font/barlow_medium"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/font_12"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/business_logo"
                     app:layout_constraintTop_toBottomOf="@+id/tv_business_name"
@@ -427,7 +427,7 @@
                     android:gravity="start|top"
                     android:hint="Nhập ghi chú..."
                     android:inputType="textMultiLine"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -449,7 +449,7 @@
                 android:padding="8dp"
                 android:text="Báo lỗi"
                 android:textColor="@color/lightBlue"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_16"
                 android:visibility="gone"
                 tools:visibility="visible" />
         </LinearLayout>
@@ -474,7 +474,7 @@
         android:layout_marginStart="12dp"
         android:fontFamily="@font/barlow_medium"
         android:textColor="#FF0000"
-        android:textSize="18sp"
+        android:textSize="@dimen/font_18"
         app:layout_constraintEnd_toStartOf="@+id/btn_confirm"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

@@ -52,7 +52,7 @@
     <!--                android:fontFamily="@font/barlow_medium"-->
     <!--                android:text="Giá từ 250.000 đ đến 800.000 đ"-->
     <!--                android:textColor="#212121"-->
-    <!--                android:textSize="14sp"-->
+    <!--                android:textSize="@dimen/font_14"-->
     <!--                android:textStyle="normal" />-->
 
     <!--            <it.sephiroth.android.library.rangeseekbar.RangeSeekBar-->
@@ -85,7 +85,7 @@
     <!--                android:paddingStart="12dp"-->
     <!--                android:text="Đánh giá"-->
     <!--                android:textColor="#212121"-->
-    <!--                android:textSize="14sp" />-->
+    <!--                android:textSize="@dimen/font_14" />-->
 
     <!--            <com.willy.ratingbar.ScaleRatingBar-->
     <!--                android:id="@id/ratingBar"-->

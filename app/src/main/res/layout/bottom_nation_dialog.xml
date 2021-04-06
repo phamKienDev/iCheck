@@ -28,7 +28,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:text="Chọn quốc gia"
             android:textColor="#057DDA"
-            android:textSize="18sp"
+            android:textSize="@dimen/font_18"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -60,7 +60,7 @@
         android:fontFamily="@font/barlow_medium"
         android:hint="Tìm kiếm"
         android:padding="6dp"
-        android:textSize="16sp" />
+        android:textSize="@dimen/font_16" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_nation"

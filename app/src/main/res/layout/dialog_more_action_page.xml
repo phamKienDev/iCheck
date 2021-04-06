@@ -44,7 +44,7 @@
                 android:layout_marginLeft="10dp"
                 android:fontFamily="@font/barlow_medium"
                 android:textColor="#212121"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 app:layout_constraintStart_toEndOf="@id/imgFollow"
                 app:layout_constraintTop_toTopOf="@id/imgFollow"
                 tools:text="Bỏ theo dõi" />
@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/barlow_medium"
                 android:textColor="#757575"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -88,7 +88,7 @@
                 android:layout_marginLeft="10dp"
                 android:fontFamily="@font/barlow_medium"
                 android:textColor="#212121"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 app:layout_constraintStart_toEndOf="@id/imgNotification"
                 app:layout_constraintTop_toTopOf="@id/imgNotification"
                 tools:text="Bật thông báo cho Trang này" />
@@ -99,7 +99,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/barlow_medium"
                 android:textColor="#757575"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -134,7 +134,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:text="Báo cáo Trang này"
                 android:textColor="#212121"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 app:layout_constraintStart_toEndOf="@id/imgReport"
                 app:layout_constraintTop_toTopOf="@id/imgReport" />
 
@@ -144,7 +144,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:text="Bạn nhận thấy trang này mang nội dung không hữu ích? Hãy cho chúng tôi biết."
                 android:textColor="#757575"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

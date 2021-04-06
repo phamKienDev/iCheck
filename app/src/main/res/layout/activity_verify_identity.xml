@@ -81,7 +81,7 @@ Vui lòng kiểm tra kỹ lại thông tin và ảnh chụp giấy tờ chính c
                 android:includeFontPadding="false"
                 android:text="Dấu Tích Xanh là gì?"
                 android:textColor="@color/blue"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView31" />
@@ -96,7 +96,7 @@ Vui lòng kiểm tra kỹ lại thông tin và ảnh chụp giấy tờ chính c
                 android:fontFamily="@font/barlow_medium"
                 android:text="Loại giấy tờ"
                 android:textColor="@color/collection_product_name"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvGuide" />
 
@@ -172,7 +172,7 @@ Vui lòng kiểm tra kỹ lại thông tin và ảnh chụp giấy tờ chính c
                         android:paddingBottom="@dimen/size_4"
                         android:text="Lỗi thông tin"
                         android:textColor="@color/white"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/font_14"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -239,7 +239,7 @@ Vui lòng kiểm tra kỹ lại thông tin và ảnh chụp giấy tờ chính c
                         android:paddingBottom="@dimen/size_4"
                         android:text="Lỗi thông tin"
                         android:textColor="@color/white"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/font_14"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -280,7 +280,7 @@ Vui lòng kiểm tra kỹ lại thông tin và ảnh chụp giấy tờ chính c
         android:paddingBottom="@dimen/size_8"
         android:text="@string/hoan_tat"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

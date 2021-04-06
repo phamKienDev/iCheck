@@ -29,7 +29,7 @@
         android:layout_marginLeft="12dp"
         android:layout_marginTop="22dp"
         android:textColor="#35384B"
-        android:textSize="12sp"
+        android:textSize="@dimen/font_12"
         app:layout_constraintStart_toEndOf="@+id/img_sticker_pack"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Mario" />
@@ -42,7 +42,7 @@
         android:layout_marginLeft="12dp"
         android:layout_marginTop="6dp"
         android:textColor="#828282"
-        android:textSize="10sp"
+        android:textSize="@dimen/font_10"
         app:layout_constraintStart_toEndOf="@+id/img_sticker_pack"
         app:layout_constraintTop_toBottomOf="@+id/tv_pack_name"
         tools:text="26 nhãn dán" />

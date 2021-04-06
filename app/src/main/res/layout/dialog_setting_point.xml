@@ -21,7 +21,7 @@
         android:fontFamily="@font/barlow_semi_bold"
         android:text="@string/bo_loc"
         android:textColor="@color/light_blue"
-        android:textSize="18sp"
+        android:textSize="@dimen/font_18"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +37,7 @@
         android:fontFamily="@font/barlow_semi_bold"
         android:text="@string/xong"
         android:textColor="@color/light_blue"
-        android:textSize="18sp"
+        android:textSize="@dimen/font_18"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -58,7 +58,7 @@
         android:fontFamily="@font/barlow_semi_bold"
         android:text="@string/thoi_gian"
         android:textColor="@color/darkGray1"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view27" />
@@ -94,7 +94,7 @@
             android:paddingRight="@dimen/size_6"
             android:textColor="@color/black"
             android:textColorHint="@color/darkGray2"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal" />
 
 
@@ -117,7 +117,7 @@
             android:paddingRight="@dimen/size_6"
             android:textColor="@color/black"
             android:textColorHint="@color/darkGray2"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal" />
 
     </LinearLayout>
@@ -130,7 +130,7 @@
         android:fontFamily="@font/barlow_semi_bold"
         android:text="@string/phan_loai_giao_dich"
         android:textColor="@color/darkGray1"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:textStyle="normal"
         app:layout_constraintStart_toStartOf="@id/textView62"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
@@ -200,7 +200,7 @@
         android:paddingBottom="@dimen/size_8"
         android:text="@string/thiet_lap_lai"
         android:textColor="@color/darkGray2"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

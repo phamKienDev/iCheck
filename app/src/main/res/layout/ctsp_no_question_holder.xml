@@ -17,7 +17,7 @@
         android:text="Hỏi đáp về sản phẩm (0)"
         android:textAlignment="center"
         android:textColor="#3C5A99"
-        android:textSize="18sp" />
+        android:textSize="@dimen/font_18" />
 
     <View
         android:layout_width="match_parent"

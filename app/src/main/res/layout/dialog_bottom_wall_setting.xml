@@ -25,7 +25,7 @@
         android:fontFamily="@font/barlow_semi_bold"
         android:text="Thiết lập trang cá nhân"
         android:textColor="#057DDA"
-        android:textSize="18sp"
+        android:textSize="@dimen/font_18"
         app:layout_constraintBottom_toBottomOf="@+id/img_cancel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/img_cancel"

@@ -21,7 +21,7 @@
         android:singleLine="true"
         android:text="Truy xuất nguồn gốc Trứng"
         android:textColor="@color/blue"
-        android:textSize="18sp" />
+        android:textSize="@dimen/font_18" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@id/recyclerView"
@@ -62,7 +62,7 @@
                 android:maxLength="2"
                 android:text="1"
                 android:textColor="#315fa5"
-                android:textSize="16sp" />
+                android:textSize="@dimen/font_16" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@id/tvName"
@@ -78,7 +78,7 @@
                 android:maxLines="2"
                 android:text="Tự chủ nguồn cám sạch - an toàn - title tối đa 2 dòng)..."
                 android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textSize="@dimen/font_14" />
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -91,7 +91,7 @@
             android:layout_marginEnd="12dp"
             android:layout_marginStart="12dp"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:textSize="@dimen/font_14" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="wrap_content"

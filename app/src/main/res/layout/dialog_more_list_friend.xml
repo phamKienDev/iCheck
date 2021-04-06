@@ -50,7 +50,7 @@
                 android:includeFontPadding="false"
                 android:singleLine="true"
                 android:textColor="@color/collection_product_name"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@id/imgUnfollow"
@@ -67,7 +67,7 @@
                 android:maxLines="2"
                 android:text="Khi bỏ theo dõi, các bài viết của người này sẽ không hiển thị trên trang chủ của bạn nữa."
                 android:textColor="@color/fast_survey_gray"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 app:layout_constraintEnd_toEndOf="@id/tvNameUnfollow"
                 app:layout_constraintStart_toStartOf="@id/tvNameUnfollow"
                 app:layout_constraintTop_toBottomOf="@id/tvNameUnfollow" />
@@ -103,7 +103,7 @@
                 android:singleLine="true"
                 tools:text="Hủy kết bạn Tùng Thanh"
                 android:textColor="@color/collection_product_name"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/imgUnfriend"
                 app:layout_constraintTop_toTopOf="@id/imgUnfriend" />
@@ -118,7 +118,7 @@
                 android:maxLines="2"
                 android:text="Tất cả các hoạt động của người này sẽ không hiển thị tới bạn. "
                 android:textColor="@color/fast_survey_gray"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 app:layout_constraintEnd_toEndOf="@id/tvUnfriend"
                 app:layout_constraintStart_toStartOf="@id/tvUnfriend"
                 app:layout_constraintTop_toBottomOf="@id/tvUnfriend" />
@@ -154,7 +154,7 @@
                 android:singleLine="true"
                 android:text="Báo cáo người dùng"
                 android:textColor="@color/collection_product_name"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/imgReportUser"
                 app:layout_constraintTop_toTopOf="@id/imgReportUser" />
@@ -167,7 +167,7 @@
                 android:includeFontPadding="false"
                 android:text="Bạn nhận thấy người dùng này có những hoạt động mang nội dung spam, nhạy cảm? Hãy cho chúng tôi biết."
                 android:textColor="@color/fast_survey_gray"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 app:layout_constraintEnd_toEndOf="@id/tvReportUser"
                 app:layout_constraintStart_toStartOf="@id/tvReportUser"
                 app:layout_constraintTop_toBottomOf="@id/tvReportUser" />

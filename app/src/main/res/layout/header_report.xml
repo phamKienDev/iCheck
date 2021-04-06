@@ -31,6 +31,6 @@
             android:paddingBottom="@dimen/size_10"
             android:text="@string/to_cao_san_pham_nay"
             android:textColor="#057DDA"
-            android:textSize="18sp" />
+            android:textSize="@dimen/font_18" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

@@ -38,7 +38,7 @@
             android:singleLine="true"
             android:textColor="@color/collection_product_name"
             android:textColorHint="@color/darkGray2"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/imgCart"
             app:layout_constraintStart_toEndOf="@id/imgBack"
@@ -66,7 +66,7 @@
             tools:text="99"
             android:visibility="invisible"
             android:textColor="@color/white"
-            android:textSize="12sp"
+            android:textSize="@dimen/font_12"
             app:layout_constraintEnd_toEndOf="@id/imgCart"
             app:layout_constraintTop_toTopOf="@id/imgCart" />
     </androidx.constraintlayout.widget.ConstraintLayout>

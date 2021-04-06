@@ -31,7 +31,7 @@
             android:gravity="center"
             android:text="Liên hệ Doanh nghiệp"
             android:textColor="#057dda"
-            android:textSize="18sp"
+            android:textSize="@dimen/font_18"
             app:layout_constraintBottom_toBottomOf="@id/imgCancel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -62,10 +62,10 @@
             android:drawablePadding="6dp"
             android:fontFamily="@font/barlow_medium"
             android:gravity="center|start"
-            android:lineSpacingExtra="4sp"
+            android:lineSpacingExtra="@dimen/font_14"
             android:text="@string/so_dien_thoai"
             android:textColor="#757575"
-            android:textSize="12sp" />
+            android:textSize="@dimen/font_12" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvPhone"
@@ -74,9 +74,9 @@
             android:layout_weight="1"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center|end"
-            android:lineSpacingExtra="6sp"
+            android:lineSpacingExtra="@dimen/font_6"
             android:textColor="#057dda"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             tools:text="0902 195 488" />
 
     </LinearLayout>
@@ -107,10 +107,10 @@
             android:drawablePadding="6dp"
             android:fontFamily="@font/barlow_medium"
             android:gravity="center|start"
-            android:lineSpacingExtra="4sp"
+            android:lineSpacingExtra="@dimen/font_14"
             android:text="@string/email"
             android:textColor="#757575"
-            android:textSize="12sp" />
+            android:textSize="@dimen/font_12" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvEmail"
@@ -119,9 +119,9 @@
             android:layout_weight="1"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center|end"
-            android:lineSpacingExtra="6sp"
+            android:lineSpacingExtra="@dimen/font_6"
             android:textColor="#057dda"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             tools:text="hoaphat88@hoaphat.vn" />
 
     </LinearLayout>
@@ -152,10 +152,10 @@
             android:drawablePadding="6dp"
             android:fontFamily="@font/barlow_medium"
             android:gravity="center|start"
-            android:lineSpacingExtra="4sp"
+            android:lineSpacingExtra="@dimen/font_14"
             android:text="@string/nhan_tin"
             android:textColor="#757575"
-            android:textSize="12sp" />
+            android:textSize="@dimen/font_12" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/btnChat"
@@ -164,9 +164,9 @@
             android:background="@drawable/bg_corner_4_light_blue_white"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
-            android:lineSpacingExtra="6sp"
+            android:lineSpacingExtra="@dimen/font_6"
             android:text="Nhắn tin"
             android:textColor="#057dda"
-            android:textSize="14sp" />
+            android:textSize="@dimen/font_14" />
     </LinearLayout>
 </LinearLayout>

@@ -39,6 +39,6 @@
         android:paddingBottom="@dimen/size_8"
         android:text="@string/thiet_lap_lai"
         android:textColor="@color/light_blue"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         android:visibility="visible" />
 </LinearLayout>

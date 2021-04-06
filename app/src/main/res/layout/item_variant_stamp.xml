@@ -28,7 +28,7 @@
             android:layout_marginStart="12dp"
             android:ellipsize="end"
             android:gravity="center_vertical"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             android:singleLine="true"
             android:textColor="@color/collection_product_name"/>
 

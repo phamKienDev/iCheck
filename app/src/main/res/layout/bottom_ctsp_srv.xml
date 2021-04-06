@@ -17,7 +17,7 @@
         android:padding="12dp"
         android:textAlignment="center"
         android:textColor="@android:color/white"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="8.6" />
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:textColor="#3C5A99"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         android:fontFamily="sans-serif-medium"
         app:layout_constraintEnd_toStartOf="@+id/btn_clear"
         app:layout_constraintStart_toEndOf="@+id/tv_score"

@@ -37,7 +37,7 @@
             android:text="0"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="14sp" />
+            android:textSize="@dimen/font_14" />
 
         <ProgressBar
             android:id="@id/progressBar"

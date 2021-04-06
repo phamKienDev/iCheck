@@ -35,7 +35,7 @@
         android:paddingBottom="@dimen/size_5"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="@dimen/font_size_2"
+        android:textSize="@dimen/font_12"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -42,7 +42,7 @@
             android:includeFontPadding="false"
             android:maxLines="2"
             android:textColor="@color/black_21_v2"
-            android:textSize="14sp" />
+            android:textSize="@dimen/font_14" />
 
     </LinearLayout>
 </vn.icheck.android.ui.colorcardview.ColorCardView>

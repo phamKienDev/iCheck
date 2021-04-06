@@ -33,7 +33,7 @@
             android:gravity="center"
             android:text="Tùy chọn trang chia sẻ"
             android:textColor="#057dda"
-            android:textSize="18sp"
+            android:textSize="@dimen/font_18"
             app:layout_constraintBottom_toBottomOf="@id/imgCancel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -86,7 +86,7 @@
                 tools:text="Quỳnh Hoa"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:textColor="#212121"
-                android:textSize="16sp" />
+                android:textSize="@dimen/font_16" />
 
             <vn.icheck.android.component.rating_star.RatingStarComponent
                 android:id="@id/containerRating"
@@ -105,7 +105,7 @@
                 android:includeFontPadding="false"
                 android:singleLine="true"
                 android:textColor="@color/fast_survey_gray"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="@id/tvNameUserPost"
                 app:layout_constraintTop_toBottomOf="@id/tvNameUserPost"
@@ -132,9 +132,9 @@
                 android:layout_weight="1"
                 android:layout_marginStart="12dp"
                 android:fontFamily="@font/barlow_medium"
-                android:lineSpacingExtra="5.6sp"
+                android:lineSpacingExtra="@dimen/font_5_6"
                 android:textColor="#212121"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 tools:text="Sản phẩm tốt, chất lượng cao. Chính hãng nên đảm bảo lắm nhé. Mọi người đều nên sử dụ (3 dòng)..." />
 
             <!--                Tạm comment đợi sau server đổi model-->

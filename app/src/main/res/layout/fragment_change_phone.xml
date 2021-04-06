@@ -27,7 +27,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:text="Xác thực số điện thoại"
             android:textColor="#057DDA"
-            android:textSize="18sp"
+            android:textSize="@dimen/font_18"
             app:layout_constraintBottom_toBottomOf="@+id/btn_back"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +48,7 @@
             android:text="Số điện thoại của bạn được sử dụng để đăng nhập tài khoản iCheck"
             android:textAlignment="center"
             android:textColor="#757575"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider12" />
@@ -59,11 +59,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="34dp"
             android:layout_marginLeft="34dp"
-            android:layout_marginTop="26dp"
+            android:layout_marginTop="@dimen/size_26"
             android:fontFamily="@font/barlow_semi_bold"
             android:text="Việt Nam"
             android:textColor="#057DDA"
-            android:textSize="18sp"
+            android:textSize="@dimen/font_18"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
@@ -96,7 +96,7 @@
             android:fontFamily="@font/barlow_medium"
             android:text="+84"
             android:textColor="#757575"
-            android:textSize="20sp"
+            android:textSize="@dimen/font_20"
             app:layout_constraintStart_toStartOf="@+id/divider18"
             app:layout_constraintTop_toBottomOf="@+id/divider18" />
 
@@ -125,7 +125,7 @@
             android:inputType="phone"
             android:paddingBottom="10dp"
             android:textColor="#B4B4B4"
-            android:textSize="20sp"
+            android:textSize="@dimen/font_20"
             app:layout_constraintBottom_toBottomOf="@+id/tv_phone_head"
             app:layout_constraintEnd_toStartOf="@+id/img_clear"
             app:layout_constraintStart_toEndOf="@+id/tv_phone_head"
@@ -167,7 +167,7 @@
             android:text="Tiếp tục"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"

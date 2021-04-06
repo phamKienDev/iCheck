@@ -46,5 +46,5 @@ khi thông tin được kiểm duyệt. Xin cảm ơn"
         android:text="Đóng góp ngay"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
-        android:textSize="14sp" />
+        android:textSize="@dimen/font_14" />
 </LinearLayout>

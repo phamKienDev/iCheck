@@ -24,6 +24,6 @@
         android:gravity="center"
         android:fontFamily="@font/barlow_medium"
         android:textColor="@color/fast_survey_gray"
-        android:textSize="14sp" />
+        android:textSize="@dimen/font_14" />
 
 </LinearLayout>

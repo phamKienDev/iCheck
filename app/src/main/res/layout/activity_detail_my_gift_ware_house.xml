@@ -63,7 +63,7 @@
                     android:gravity="center"
                     android:paddingTop="36dp"
                     android:textColor="#3c5a99"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/font_18"
                     android:textStyle="normal" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -74,9 +74,9 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="12dp"
                     android:fontFamily="sans-serif-medium"
-                    android:lineSpacingExtra="9.2sp"
+                    android:lineSpacingExtra="@dimen/font_9_2"
                     android:textColor="#434343"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/font_16"
                     android:textStyle="normal" />
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -97,7 +97,7 @@
                     android:fontFamily="sans-serif"
                     android:text="Thông tin quà"
                     android:textColor="#434343"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     android:textStyle="bold" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -108,9 +108,9 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="12dp"
                     android:fontFamily="sans-serif"
-                    android:lineSpacingExtra="5.6sp"
+                    android:lineSpacingExtra="@dimen/font_5_6"
                     android:textColor="#434343"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     android:textStyle="normal" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -122,7 +122,7 @@
                     android:fontFamily="sans-serif"
                     android:text="Hạn xác nhận ship quà"
                     android:textColor="#434343"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     android:textStyle="bold" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -133,9 +133,9 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="12dp"
                     android:fontFamily="sans-serif"
-                    android:lineSpacingExtra="5.6sp"
+                    android:lineSpacingExtra="@dimen/font_5_6"
                     android:textColor="#434343"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     android:textStyle="normal" />
 
                 <LinearLayout
@@ -167,7 +167,7 @@
                             android:paddingBottom="10dp"
                             android:text="Chia sẻ"
                             android:textColor="#3c5a99"
-                            android:textSize="16sp"
+                            android:textSize="@dimen/font_16"
                             android:textStyle="normal" />
 
                     </LinearLayout>
@@ -186,7 +186,7 @@
                         android:paddingBottom="10dp"
                         android:text="Từ chối nhận"
                         android:textColor="#3c5a99"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/font_16"
                         android:textStyle="normal"
                         android:visibility="gone" />
 
@@ -204,7 +204,7 @@
                         android:paddingBottom="10dp"
                         android:text="Xác nhận ship quà"
                         android:textColor="#ffffff"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/font_16"
                         android:textStyle="normal"
                         android:visibility="gone" />
 
@@ -222,7 +222,7 @@
                         android:paddingBottom="10dp"
                         android:text="Xác nhận đã lấy"
                         android:textColor="#ffffff"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/font_16"
                         android:textStyle="normal"
                         android:visibility="gone" />
 
@@ -240,7 +240,7 @@
                         android:paddingBottom="10dp"
                         android:text="Theo dõi đơn quà này"
                         android:textColor="#ffffff"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/font_16"
                         android:textStyle="normal"
                         android:visibility="gone" />
 
@@ -257,7 +257,7 @@
                         android:paddingBottom="10dp"
                         android:text="Đã từ chối"
                         android:textColor="#ffff"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/font_16"
                         android:visibility="gone" />
                 </LinearLayout>
 

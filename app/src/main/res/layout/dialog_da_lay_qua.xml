@@ -42,7 +42,7 @@
                 android:text="Bạn cần đến địa điểm nhận quà để nhân viên kiểm tra trạng thái trực tiếp trước khi trao quà."
                 android:textAlignment="center"
                 android:textColor="#434343"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -56,7 +56,7 @@
                 android:text=" Việc bạn tự chuyển trạng thái quà sẽ khiến phần quà này không còn hiệu lực!"
                 android:textAlignment="center"
                 android:textColor="#434343"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -71,7 +71,7 @@
                 android:paddingBottom="8dp"
                 android:gravity="center"
                 android:background="@drawable/bg_corner_brown_40"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_16"
                 android:fontFamily="sans-serif-medium"
                 android:textStyle="normal"
                 android:textColor="#ffffff"

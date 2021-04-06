@@ -48,7 +48,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:text="Điểm hiện tại: 150,450"
             android:textColor="@color/white"
-            android:textSize="14sp" />
+            android:textSize="@dimen/font_14" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -139,7 +139,7 @@
                         android:layout_marginStart="11dp"
                         android:layout_marginLeft="11dp"
                         android:fontFamily="@font/barlow_semi_bold"
-                        android:textSize="24sp"
+                        android:textSize="@dimen/font_24"
                         app:layout_constraintStart_toEndOf="@+id/img_rank_user"
                         app:layout_constraintTop_toTopOf="@+id/imgAvatar"
                         tools:text="150.45000 Điểm" />
@@ -164,7 +164,7 @@
                         android:layout_marginTop="5dp"
                         tools:text="Thành viên Chuẩn"
                         android:textColor="#757575"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/font_14"
                         app:layout_constraintBottom_toBottomOf="@+id/imgAvatar"
                         app:layout_constraintStart_toStartOf="@+id/tvPoint"
                         app:layout_constraintTop_toBottomOf="@+id/tvPoint" />
@@ -189,10 +189,10 @@
                         android:layout_marginTop="12dp"
                         android:layout_marginEnd="41dp"
                         android:gravity="center"
-                        android:lineSpacingExtra="4.8sp"
+                        android:lineSpacingExtra="@dimen/font_4_8"
                         tools:text="Điểm tích lũy dùng để tăng hạng thành viên của bạn. Tích luỹ thêm 345.000 điểm để đạt Thành viên Bạc"
                         android:textColor="#212121"
-                        android:textSize="12sp"
+                        android:textSize="@dimen/font_12"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/view" />
@@ -207,7 +207,7 @@
                         android:fontFamily="@font/barlow_medium"
                         android:text="Quà của tôi"
                         android:textColor="#212121"
-                        android:textSize="12sp"
+                        android:textSize="@dimen/font_12"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/tvMission"
                         app:layout_constraintStart_toStartOf="parent"
@@ -222,7 +222,7 @@
                         android:gravity="center"
                         android:text="Sự kiện"
                         android:textColor="#212121"
-                        android:textSize="12sp"
+                        android:textSize="@dimen/font_12"
                         app:layout_constraintBottom_toBottomOf="@+id/tvMyGift"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/tvMyGift"
@@ -243,7 +243,7 @@
                         android:gravity="center"
                         android:text="Quyền lợi thành viên"
                         android:textColor="#057dda"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/font_14"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -271,7 +271,7 @@
                     android:paddingBottom="17dp"
                     android:text="Hướng dẫn thăng hạng"
                     android:textColor="#212121"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     android:drawableRight="@drawable/ic_arrow_right_gray_14" />
 
                 <View
@@ -293,7 +293,7 @@
                     android:paddingBottom="16dp"
                     android:text="Câu hỏi thường gặp"
                     android:textColor="#212121"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/font_14" />
 
             </LinearLayout>
         </LinearLayout>

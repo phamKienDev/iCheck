@@ -38,7 +38,7 @@
             android:ellipsize="end"
             android:paddingStart="44dp"
             android:paddingEnd="44dp"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             app:layout_constraintBottom_toBottomOf="@id/imgCancel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -79,7 +79,7 @@
             android:fontFamily="@font/barlow_medium"
             android:text="Lịch sử mở quà"
             android:textColor="#212121"
-            android:textSize="14sp" />
+            android:textSize="@dimen/font_14" />
 
     </LinearLayout>
 
@@ -106,7 +106,7 @@
             android:fontFamily="@font/barlow_medium"
             android:text="Quà tặng đang chờ bạn"
             android:textColor="#212121"
-            android:textSize="14sp" />
+            android:textSize="@dimen/font_14" />
 
     </LinearLayout>
 
@@ -133,7 +133,7 @@
             android:fontFamily="@font/barlow_medium"
             android:text="Xếp hạng người chơi"
             android:textColor="#212121"
-            android:textSize="14sp" />
+            android:textSize="@dimen/font_14" />
 
     </LinearLayout>
 
@@ -161,7 +161,7 @@
             android:fontFamily="@font/barlow_medium"
             android:text="Thông tin sự kiện"
             android:textColor="#212121"
-            android:textSize="14sp" />
+            android:textSize="@dimen/font_14" />
 
     </LinearLayout>
 

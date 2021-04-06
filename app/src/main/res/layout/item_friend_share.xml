@@ -24,9 +24,9 @@
         android:layout_weight="1"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:lineSpacingExtra="6sp"
+        android:lineSpacingExtra="@dimen/font_6"
         android:textColor="#212121"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         tools:text="Xuyến Đỗ" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -34,9 +34,9 @@
         android:layout_height="28dp"
         android:background="@drawable/bg_corners_4_light_blue_no_solid"
         android:gravity="center"
-        android:lineSpacingExtra="6sp"
+        android:lineSpacingExtra="@dimen/font_6"
         android:textColor="#057dda"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         tools:text="Gửi" />
 
 </LinearLayout>

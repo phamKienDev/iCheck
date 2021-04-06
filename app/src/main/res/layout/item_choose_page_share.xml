@@ -23,6 +23,6 @@
         android:fontFamily="@font/barlow_medium"
         android:maxLines="2"
         android:textColor="#434343"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         tools:text="DHC Official ( tên trang - giới hạn 2 dòng)..." />
 </LinearLayout>

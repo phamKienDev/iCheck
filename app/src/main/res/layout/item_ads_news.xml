@@ -23,7 +23,7 @@
             android:layout_marginStart="12dp"
             android:text="Title"
             android:textColor="@color/blue"
-            android:textSize="18sp"
+            android:textSize="@dimen/font_18"
             app:fontFamily="@font/barlow_semi_bold"
             android:layout_marginLeft="12dp" />
 
@@ -35,7 +35,7 @@
             android:layout_marginEnd="12dp"
             android:text="Xem thêm"
             android:textColor="@color/blue"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:fontFamily="@font/barlow_semi_bold"
             android:layout_marginRight="12dp" />
 

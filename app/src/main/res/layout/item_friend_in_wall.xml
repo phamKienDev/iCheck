@@ -29,7 +29,7 @@
         android:fontFamily="@font/barlow_semi_bold"
         android:maxLines="1"
         android:textColor="@color/collection_product_name"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="@id/imgAvatar"
         app:layout_constraintStart_toStartOf="@id/imgAvatar"
         app:layout_constraintTop_toBottomOf="@id/imgAvatar"

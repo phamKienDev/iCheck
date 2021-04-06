@@ -43,7 +43,7 @@
                 android:gravity="center"
                 android:text="Bạn đã đánh dấu dùng mã này"
                 android:textColor="#ffffff"
-                android:textSize="14sp" />
+                android:textSize="@dimen/font_14" />
 
         </LinearLayout>
 

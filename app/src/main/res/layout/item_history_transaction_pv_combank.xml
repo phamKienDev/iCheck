@@ -34,7 +34,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:text="2000"
             android:textColor="@color/green_v3"
-            android:textSize="16sp" />
+            android:textSize="@dimen/font_16" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvMission"
@@ -44,7 +44,7 @@
             android:fontFamily="@font/barlow_medium"
             android:text="Hoàn thành nhiệm vụ"
             android:textColor="@color/collection_product_name"
-            android:textSize="14sp" />
+            android:textSize="@dimen/font_14" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvContent"
@@ -56,7 +56,7 @@
             android:maxLines="2"
             android:text="Bạn nhận được từ nhiệm vụ Đăng nhập (2 dòng)...Bạn nhận được từ nhiệm vụ Đăng nhập Bạn nhận được từ nhiệm vụ Đăng nhập (2 dòng)...Bạn nhận được từ nhiệm vụ Đăng nhập (2 dòng)...(2 dòng)..."
             android:textColor="@color/fast_survey_gray"
-            android:textSize="14sp" />
+            android:textSize="@dimen/font_14" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTime"
@@ -69,7 +69,7 @@
             android:maxLines="2"
             android:text="15:12, 24/5/2018"
             android:textColor="@color/fast_survey_gray"
-            android:textSize="12sp" />
+            android:textSize="@dimen/font_12" />
     </LinearLayout>
 
     <View

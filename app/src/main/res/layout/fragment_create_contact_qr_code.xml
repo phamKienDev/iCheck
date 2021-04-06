@@ -38,7 +38,7 @@
             android:gravity="center"
             android:singleLine="true"
             android:textColor="@color/lightBlue"
-            android:textSize="18sp"
+            android:textSize="@dimen/font_18"
             android:textStyle="normal"
             tools:text="Tiêu đề" />
 
@@ -64,9 +64,9 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 android:textColor="#212121"
-                android:lineSpacingExtra="4sp"
+                android:lineSpacingExtra="@dimen/font_14"
                 android:text="Số điện thoại"
                 android:fontFamily="@font/barlow_medium"
                 android:layout_marginTop="16dp"
@@ -82,7 +82,7 @@
                 android:drawableEnd="@drawable/ic_phonebook_24px"
                 android:layout_marginEnd="12dp"
                 android:hint="Bắt buộc"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:gravity="center|start"
                 android:fontFamily="@font/barlow_medium"
                 android:paddingStart="10dp"
@@ -96,10 +96,10 @@
                 android:id="@+id/tvMessagePhone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 android:textColor="#ff0000"
                 android:visibility="gone"
-                android:lineSpacingExtra="4sp"
+                android:lineSpacingExtra="@dimen/font_14"
                 android:layout_marginTop="6dp"
                 android:drawablePadding="4dp"
                 android:fontFamily="@font/barlow_medium"
@@ -112,9 +112,9 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 android:textColor="#212121"
-                android:lineSpacingExtra="4sp"
+                android:lineSpacingExtra="@dimen/font_14"
                 android:fontFamily="@font/barlow_medium"
                 android:text="Họ của bạn"
                 android:layout_marginTop="16dp"
@@ -129,7 +129,7 @@
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
                 android:hint="Bắt buộc"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:gravity="center|start"
                 android:fontFamily="@font/barlow_medium"
                 android:paddingStart="10dp"
@@ -142,10 +142,10 @@
                 android:id="@+id/tvMessageFirstName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 android:textColor="#ff0000"
                 android:visibility="gone"
-                android:lineSpacingExtra="4sp"
+                android:lineSpacingExtra="@dimen/font_14"
                 android:layout_marginTop="6dp"
                 android:fontFamily="@font/barlow_medium"
                 android:drawablePadding="4dp"
@@ -158,9 +158,9 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 android:textColor="#212121"
-                android:lineSpacingExtra="4sp"
+                android:lineSpacingExtra="@dimen/font_14"
                 android:text="Tên đệm của bạn"
                 android:fontFamily="@font/barlow_medium"
                 android:layout_marginTop="16dp"
@@ -175,7 +175,7 @@
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
                 android:hint="Không bắt buộc"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:gravity="center|start"
                 android:fontFamily="@font/barlow_medium"
                 android:paddingStart="10dp"
@@ -188,10 +188,10 @@
                 android:id="@+id/tvMessageMiddleName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 android:textColor="#ff0000"
                 android:visibility="gone"
-                android:lineSpacingExtra="4sp"
+                android:lineSpacingExtra="@dimen/font_14"
                 android:layout_marginTop="6dp"
                 android:fontFamily="@font/barlow_medium"
                 android:drawablePadding="4dp"
@@ -204,9 +204,9 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 android:textColor="#212121"
-                android:lineSpacingExtra="4sp"
+                android:lineSpacingExtra="@dimen/font_14"
                 android:text="Tên của bạn"
                 android:fontFamily="@font/barlow_medium"
                 android:layout_marginTop="16dp"
@@ -221,7 +221,7 @@
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
                 android:hint="Bắt buộc"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:gravity="center|start"
                 android:fontFamily="@font/barlow_medium"
                 android:paddingStart="10dp"
@@ -234,11 +234,11 @@
                 android:id="@+id/tvMessageLastName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 android:textColor="#ff0000"
                 android:visibility="gone"
                 android:fontFamily="@font/barlow_medium"
-                android:lineSpacingExtra="4sp"
+                android:lineSpacingExtra="@dimen/font_14"
                 android:layout_marginTop="6dp"
                 android:drawablePadding="4dp"
                 android:drawableStart="@drawable/ic_error_red_18dp"
@@ -253,11 +253,11 @@
                 android:layout_marginStart="12dp"
                 android:layout_marginLeft="12dp"
                 android:layout_marginTop="16dp"
-                android:lineSpacingExtra="4sp"
+                android:lineSpacingExtra="@dimen/font_14"
                 android:fontFamily="@font/barlow_medium"
                 android:text="Email"
                 android:textColor="#212121"
-                android:textSize="12sp" />
+                android:textSize="@dimen/font_12" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@id/edtEmail"
@@ -274,7 +274,7 @@
                 android:paddingEnd="10dp"
                 android:textColor="#212121"
                 android:textColorHint="#b4b4b4"
-                android:textSize="14sp" />
+                android:textSize="@dimen/font_14" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvMessageEmail"
@@ -287,9 +287,9 @@
                 android:drawableStart="@drawable/ic_error_red_18dp"
                 android:drawableLeft="@drawable/ic_error_red_18dp"
                 android:drawablePadding="4dp"
-                android:lineSpacingExtra="4sp"
+                android:lineSpacingExtra="@dimen/font_14"
                 android:textColor="#ff0000"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 android:visibility="gone"
                 tools:text="Nhập sai định dạng. Thử lại!" />
 
@@ -300,10 +300,10 @@
                 android:layout_marginLeft="12dp"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/barlow_medium"
-                android:lineSpacingExtra="4sp"
+                android:lineSpacingExtra="@dimen/font_14"
                 android:text="Địa chỉ"
                 android:textColor="#212121"
-                android:textSize="12sp" />
+                android:textSize="@dimen/font_12" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@id/edtAddress"
@@ -320,7 +320,7 @@
                 android:paddingEnd="10dp"
                 android:textColor="#212121"
                 android:textColorHint="#b4b4b4"
-                android:textSize="14sp" />
+                android:textSize="@dimen/font_14" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvMessageAddress"
@@ -333,9 +333,9 @@
                 android:drawableStart="@drawable/ic_error_red_18dp"
                 android:drawableLeft="@drawable/ic_error_red_18dp"
                 android:drawablePadding="4dp"
-                android:lineSpacingExtra="4sp"
+                android:lineSpacingExtra="@dimen/font_14"
                 android:textColor="#ff0000"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 android:visibility="gone"
                 tools:text="Nhập sai định dạng. Thử lại!" />
 
@@ -345,11 +345,11 @@
                 android:layout_marginStart="12dp"
                 android:layout_marginLeft="12dp"
                 android:layout_marginTop="16dp"
-                android:lineSpacingExtra="4sp"
+                android:lineSpacingExtra="@dimen/font_14"
                 android:fontFamily="@font/barlow_medium"
                 android:text="Ghi chú"
                 android:textColor="#212121"
-                android:textSize="12sp" />
+                android:textSize="@dimen/font_12" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@id/edtNote"
@@ -366,7 +366,7 @@
                 android:paddingEnd="10dp"
                 android:textColor="#212121"
                 android:textColorHint="#b4b4b4"
-                android:textSize="14sp" />
+                android:textSize="@dimen/font_14" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvMessageNote"
@@ -379,9 +379,9 @@
                 android:drawableStart="@drawable/ic_error_red_18dp"
                 android:drawableLeft="@drawable/ic_error_red_18dp"
                 android:drawablePadding="4dp"
-                android:lineSpacingExtra="4sp"
+                android:lineSpacingExtra="@dimen/font_14"
                 android:textColor="#ff0000"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 android:visibility="gone"
                 tools:text="Nhập sai định dạng. Thử lại!" />
 

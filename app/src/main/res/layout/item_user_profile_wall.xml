@@ -42,7 +42,7 @@
             android:textAlignment="gravity"
             android:textColor="#212121"
             android:includeFontPadding="false"
-            android:textSize="18sp"
+            android:textSize="@dimen/font_18"
             tools:text="Mai Lan Nguyễn"
             android:singleLine="true" />
 
@@ -91,7 +91,7 @@
                     android:fontFamily="@font/barlow_medium"
                     android:text="Kết bạn"
                     android:textColor="@android:color/white"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/font_16" />
             </LinearLayout>
 
             <TextView
@@ -106,7 +106,7 @@
                 android:gravity="center"
                 android:text="Nhắn tin"
                 android:textColor="#057DDA"
-                android:textSize="16sp" />
+                android:textSize="@dimen/font_16" />
 
             <ImageView
                 android:id="@+id/img_settings"
@@ -153,7 +153,7 @@
                     android:fontFamily="@font/barlow_semi_bold"
                     android:text="Đánh giá sản phẩm"
                     android:textColor="@android:color/white"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/font_16" />
             </LinearLayout>
 
 
@@ -184,7 +184,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center_vertical"
                 android:text="Sống tại"
-                android:textSize="12sp" />
+                android:textSize="@dimen/font_12" />
 
             <TextView
                 android:id="@+id/tv_address"
@@ -216,7 +216,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center_vertical"
                 android:text="Tài khoản"
-                android:textSize="12sp" />
+                android:textSize="@dimen/font_12" />
 
             <TextView
                 android:id="@+id/tv_id"
@@ -247,7 +247,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center_vertical"
                 android:text="Đang theo dõi"
-                android:textSize="12sp" />
+                android:textSize="@dimen/font_12" />
 
             <TextView
                 android:id="@+id/tv_watch"
@@ -278,7 +278,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center_vertical"
                 android:text="Người theo dõi"
-                android:textSize="12sp" />
+                android:textSize="@dimen/font_12" />
 
             <TextView
                 android:id="@+id/tv_follow"

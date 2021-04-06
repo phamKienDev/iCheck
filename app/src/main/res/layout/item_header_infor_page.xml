@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:textColor="#000000"
-                android:textSize="20sp"
+                android:textSize="@dimen/font_20"
                 tools:text="Unilever Vietnam Official Unilever Vietnam Official  Unilever Vietnam Official Unilever Vietnam Official  " />
         </LinearLayout>
 
@@ -65,7 +65,7 @@
             android:singleLine="true"
             android:text="Doanh nghiệp"
             android:textColor="#3c5a99"
-            android:textSize="12sp"
+            android:textSize="@dimen/font_12"
             app:layout_constraintBottom_toBottomOf="@id/imgAvaPage"
             app:layout_constraintStart_toStartOf="@id/layoutName"
             app:layout_constraintTop_toBottomOf="@id/layoutName" />
@@ -99,7 +99,7 @@
                 android:gravity="center"
                 android:text="@string/theo_doi"
                 android:textColor="#ffffff"
-                android:textSize="16sp" />
+                android:textSize="@dimen/font_16" />
 
         </LinearLayout>
 
@@ -157,7 +157,7 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:textColor="#757575"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             tools:text="Huy, Quân, Hoàng và 3.000 người khác theo dõi trang này " />
     </LinearLayout>
 
@@ -189,7 +189,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#3c5a99"
-                android:textSize="20sp"
+                android:textSize="@dimen/font_20"
                 tools:text="10" />
 
             <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
@@ -197,7 +197,7 @@
                 android:layout_height="wrap_content"
                 android:text="Sản phẩm"
                 android:textColor="#3c5a99"
-                android:textSize="14sp" />
+                android:textSize="@dimen/font_14" />
 
         </LinearLayout>
 
@@ -213,7 +213,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#3c5a99"
-                android:textSize="20sp"
+                android:textSize="@dimen/font_20"
                 tools:text="4.5/5" />
 
             <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
@@ -221,7 +221,7 @@
                 android:layout_height="wrap_content"
                 android:text="Đánh giá"
                 android:textColor="#3c5a99"
-                android:textSize="14sp" />
+                android:textSize="@dimen/font_14" />
 
         </LinearLayout>
 
@@ -237,7 +237,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#3c5a99"
-                android:textSize="20sp"
+                android:textSize="@dimen/font_20"
                 tools:text="186.820" />
 
             <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
@@ -245,7 +245,7 @@
                 android:layout_height="wrap_content"
                 android:text="Lượt quét"
                 android:textColor="#3c5a99"
-                android:textSize="14sp" />
+                android:textSize="@dimen/font_14" />
 
         </LinearLayout>
     </LinearLayout>
@@ -272,7 +272,7 @@
             android:fontFamily="@font/barlow_medium"
             android:text="Đăng bài mới"
             android:textColor="#3C5A99"
-            android:textSize="18sp"
+            android:textSize="@dimen/font_18"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

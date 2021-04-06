@@ -56,7 +56,7 @@
                     android:text="@string/bo_loc"
                     android:textAlignment="gravity"
                     android:textColor="@color/collection_product_name"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     app:fontFamily="@font/barlow_medium" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -78,7 +78,7 @@
                     android:text="@string/tinh_thanh_pho"
                     android:textAlignment="gravity"
                     android:textColor="@color/collection_product_name"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     app:fontFamily="@font/barlow_medium" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -100,7 +100,7 @@
                     android:text="@string/gioi_tinh"
                     android:textAlignment="gravity"
                     android:textColor="@color/collection_product_name"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     app:fontFamily="@font/barlow_medium" />
 
 <!--                <androidx.appcompat.widget.AppCompatTextView-->
@@ -120,7 +120,7 @@
 <!--                    android:text="@string/ban_cua_ban_be"-->
 <!--                    android:textAlignment="gravity"-->
 <!--                    android:textColor="@color/collection_product_name"-->
-<!--                    android:textSize="14sp"-->
+<!--                    android:textSize="@dimen/font_14"-->
 <!--                    app:fontFamily="@font/barlow_medium" />-->
             </LinearLayout>
 

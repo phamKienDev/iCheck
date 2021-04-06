@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/so_du_ví"
                 android:textColor="@color/collection_product_name"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_16"
                 app:layout_constraintBottom_toBottomOf="@id/imgImage"
                 app:layout_constraintEnd_toStartOf="@id/imgImage"
                 app:layout_constraintStart_toStartOf="parent"
@@ -57,7 +57,7 @@
                 android:text="0 đ"
                 android:textAlignment="gravity"
                 android:textColor="@color/gray_v2"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -76,7 +76,7 @@
                 android:layout_marginTop="@dimen/size_10"
                 android:text="@string/mo_the_va_kich_hoat_vi_de_thanh_toan_moi_luc_moi_noi"
                 android:textColor="@color/gray_v2"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 app:layout_constraintTop_toBottomOf="@id/viewLine" />
 
             <FrameLayout
@@ -99,7 +99,7 @@
                     android:drawablePadding="@dimen/size_10"
                     android:text="@string/mo_the_ngay"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/font_16" />
             </FrameLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </vn.icheck.android.ui.colorcardview.ColorCardView>

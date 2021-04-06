@@ -15,7 +15,7 @@
         android:text="Đổi tên nhóm"
         android:textAlignment="center"
         android:textColor="#424242"
-        android:textSize="18sp" />
+        android:textSize="@dimen/font_18" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -40,7 +40,7 @@
             android:maxLines="1"
             android:padding="10dp"
             android:textColor="#35384B"
-            android:textSize="14sp" />
+            android:textSize="@dimen/font_14" />
 
         <ImageView
             android:id="@+id/btn_clear"
@@ -74,7 +74,7 @@
             android:textAlignment="center"
             android:text="Huỷ"
             android:textColor="@color/blue"
-            android:textSize="16sp" />
+            android:textSize="@dimen/font_16" />
 
         <View
             android:layout_width="1dp"
@@ -91,6 +91,6 @@
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
             android:textColor="@color/blue"
-            android:textSize="16sp" />
+            android:textSize="@dimen/font_16" />
     </LinearLayout>
 </LinearLayout>

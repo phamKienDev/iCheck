@@ -35,7 +35,7 @@
                 android:fontFamily="@font/barlow_semi_bold"
                 android:text="@string/lich_su_quet"
                 android:textColor="@color/lightBlue"
-                android:textSize="18sp"
+                android:textSize="@dimen/font_18"
                 app:layout_constraintBottom_toBottomOf="@id/imgMenu"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +70,7 @@
                 android:gravity="center"
                 android:text="99"
                 android:textColor="@color/white"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="@id/imgCart"
                 app:layout_constraintTop_toTopOf="@id/imgCart" />
@@ -102,7 +102,7 @@
                     android:gravity="center"
                     android:text="Sắp xếp: Mới nhất"
                     android:textColor="#757575"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/font_16"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/tvFilter"
                     app:layout_constraintBottom_toBottomOf="@id/tvFilter"/>
@@ -128,7 +128,7 @@
                     android:gravity="center_horizontal|end"
                     android:text="Lọc theo"
                     android:textColor="#757575"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/font_16"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/view" />
@@ -191,7 +191,7 @@
                         android:paddingBottom="7dp"
                         android:text="Mới nhất"
                         android:textColor="#757575"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/font_16"
                         android:textStyle="normal" />
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -207,7 +207,7 @@
                         android:paddingBottom="7dp"
                         android:text="Cũ nhất"
                         android:textColor="#757575"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/font_16" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -235,7 +235,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:text="Để hiển thị dữ liệu Cửa hàng, vui lòng bật GPS"
                 android:textColor="@color/fast_survey_gray"
-                android:textSize="14sp" />
+                android:textSize="@dimen/font_14" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/btnGps"
@@ -249,7 +249,7 @@
                 android:paddingBottom="@dimen/size_10"
                 android:text="@string/bat_gps_ngay"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="@dimen/font_16" />
         </LinearLayout>
 
     </LinearLayout>

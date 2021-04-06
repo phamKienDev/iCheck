@@ -62,7 +62,7 @@
             android:gravity="center"
             android:text="Đồng bộ danh bạ"
             android:textColor="@android:color/white"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             app:drawableStartCompat="@drawable/ic_phonebook_white_24px"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -51,10 +51,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:lineSpacingExtra="6sp"
+                android:lineSpacingExtra="@dimen/font_6"
                 android:text="Hãy chọn một hình may mắn để mở!"
                 android:textColor="#212121"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:fontFamily="@font/barlow_semi_bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -118,7 +118,7 @@
                     android:gravity="center_vertical"
                     android:text="Bạn có "
                     android:textColor="#212121"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -131,7 +131,7 @@
                     android:gravity="center_vertical"
                     android:text=" 4/12 "
                     android:textColor="#df1733"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     app:layout_constraintBottom_toBottomOf="@+id/tvSubCountGift"
                     app:layout_constraintStart_toEndOf="@+id/tvSubCountGift"
                     app:layout_constraintTop_toTopOf="@+id/tvSubCountGift" />
@@ -143,7 +143,7 @@
                     android:gravity="center_vertical"
                     android:text=" lượt mở quà "
                     android:textColor="#212121"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     app:layout_constraintBottom_toBottomOf="@+id/tvCountGift"
                     app:layout_constraintStart_toEndOf="@+id/tvCountGift"
                     app:layout_constraintTop_toTopOf="@+id/tvCountGift" />
@@ -159,7 +159,7 @@
                     android:gravity="center"
                     android:text="Thêm lượt"
                     android:textColor="#057dda"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/font_16"
                     app:layout_constraintBottom_toBottomOf="@+id/tvCountGift"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/tvCountGift" />

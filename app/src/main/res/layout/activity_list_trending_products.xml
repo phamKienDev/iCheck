@@ -25,7 +25,7 @@
         android:fontFamily="@font/barlow_medium"
         android:text="Chọn địa chỉ giao hàng"
         android:textColor="#057DDA"
-        android:textSize="18sp"
+        android:textSize="@dimen/font_18"
         app:layout_constraintBottom_toBottomOf="@+id/btn_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btn_back"

@@ -39,7 +39,7 @@
             android:gravity="center"
             android:text="Kết bạn"
             android:textColor="@color/white"
-            android:textSize="14sp" />
+            android:textSize="@dimen/font_14" />
 
     </LinearLayout>
 
@@ -53,7 +53,7 @@
         android:text="Đã gửi lời mời"
         android:textColor="#757575"
         android:fontFamily="@font/barlow_medium"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -69,7 +69,7 @@
         android:text="Nhắn tin"
         android:textColor="#057dda"
         android:fontFamily="@font/barlow_medium"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -100,7 +100,7 @@
             android:maxLines="1"
             android:ellipsize="end"
             android:textColor="#212121"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             tools:text="Xuyến Đỗ" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -109,7 +109,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/barlow_medium"
             android:textColor="#757575"
-            android:textSize="12sp"
+            android:textSize="@dimen/font_12"
             tools:text="12 bạn chung" />
     </LinearLayout>
 

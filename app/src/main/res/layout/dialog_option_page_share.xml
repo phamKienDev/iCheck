@@ -32,7 +32,7 @@
             android:gravity="center"
             android:text="Tùy chọn trang chia sẻ"
             android:textColor="#057dda"
-            android:textSize="18sp"
+            android:textSize="@dimen/font_18"
             app:layout_constraintBottom_toBottomOf="@id/imgCancel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

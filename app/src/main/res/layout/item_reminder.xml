@@ -89,7 +89,7 @@
                 android:lines="1"
                 android:text="Xem chi tiết"
                 android:textColor="@color/lightBlue"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_16"
                 app:drawableEndCompat="@drawable/ic_arrow_right_light_blue_24dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/imageView14"

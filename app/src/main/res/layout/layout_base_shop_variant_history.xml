@@ -17,7 +17,7 @@
         android:fontFamily="sans-serif-medium"
         android:textAllCaps="true"
         android:textColor="#828282"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         tools:text="2 tiếng trước" />
 
     <LinearLayout
@@ -54,7 +54,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textColor="@color/collection_product_name"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 app:layout_constraintBottom_toTopOf="@+id/layoutBarcodeProduct"
                 app:layout_constraintEnd_toStartOf="@+id/layoutDelete"
                 app:layout_constraintStart_toEndOf="@+id/imgAvaProduct"
@@ -117,7 +117,7 @@
                     android:layout_marginStart="6dp"
                     android:layout_marginLeft="6dp"
                     android:textColor="@color/darkGray3"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     tools:text="8930123456789" />
 
             </LinearLayout>
@@ -158,7 +158,7 @@
                     android:layout_marginRight="8dp"
                     android:fontFamily="sans-serif-medium"
                     android:textColor="#057dda"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/font_12"
                     app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
                     app:layout_constraintEnd_toStartOf="@+id/tvVerify"
                     app:layout_constraintStart_toEndOf="@+id/ratingBar"
@@ -174,7 +174,7 @@
                     android:drawablePadding="3dp"
                     android:fontFamily="sans-serif"
                     android:textColor="#328eac"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/font_12"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/tvCountRating"
                     app:layout_constraintStart_toEndOf="@+id/tvCountRating"
@@ -219,7 +219,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#ff0000"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/font_16"
                         tools:text="23,004,000đ" />
 
                     <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
@@ -227,7 +227,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#b4b4b4"
-                        android:textSize="12sp"
+                        android:textSize="@dimen/font_12"
                         tools:text="23,504,000đ" />
 
                 </LinearLayout>
@@ -252,7 +252,7 @@
                         android:drawablePadding="16dp"
                         android:text="Thêm vào giỏ hàng"
                         android:textColor="#ffffff"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/font_16" />
 
                 </LinearLayout>
 
@@ -287,7 +287,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textColor="@color/black"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/avatarShop"
                 app:layout_constraintTop_toTopOf="@+id/avatarShop"
@@ -305,7 +305,7 @@
                 android:drawablePadding="8dp"
                 android:fontFamily="@font/barlow_medium"
                 android:textColor="@color/darkGray3"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 app:layout_constraintBottom_toBottomOf="@+id/avatarShop"
                 app:layout_constraintStart_toEndOf="@+id/avatarShop"
                 app:layout_constraintTop_toBottomOf="@+id/tvNameShop"
@@ -322,7 +322,7 @@
                 android:paddingBottom="@dimen/size_8"
                 android:text="@string/xem_ban_do"
                 android:textColor="@color/lightBlue"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 app:layout_constraintBottom_toBottomOf="@+id/tvDistance"
                 app:layout_constraintStart_toEndOf="@+id/tvDistance"
                 app:layout_constraintTop_toTopOf="@+id/tvDistance" />

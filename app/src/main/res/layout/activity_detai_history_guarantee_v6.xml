@@ -23,7 +23,7 @@
         android:fontFamily="sans-serif"
         android:text="Thông tin khách hàng"
         android:textColor="#3c5a99"
-        android:textSize="18sp"
+        android:textSize="@dimen/font_18"
         android:textStyle="normal" />
 
     <LinearLayout
@@ -46,7 +46,7 @@
             android:drawablePadding="8dp"
             android:fontFamily="sans-serif"
             android:textColor="#000000"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal"
             tools:text="Họ và tên: Đặng Trung Đức" />
 
@@ -60,7 +60,7 @@
             android:drawablePadding="8dp"
             android:fontFamily="sans-serif"
             android:textColor="#000000"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal"
             tools:text="Số điện thoại: 098 123 ***" />
 
@@ -74,7 +74,7 @@
         android:fontFamily="sans-serif"
         android:text="Thông tin bảo hành"
         android:textColor="#3c5a99"
-        android:textSize="18sp"
+        android:textSize="@dimen/font_18"
         android:textStyle="normal" />
 
     <LinearLayout
@@ -97,7 +97,7 @@
             android:drawableStart="@drawable/ic_time_start_blue_18_px"
             android:fontFamily="sans-serif"
             android:textColor="#000000"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal"
             tools:text="Thời gian: 5h30 24/12/2018" />
 
@@ -110,7 +110,7 @@
             android:layout_marginTop="8dp"
             android:drawablePadding="8dp"
             android:textColor="#000000"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal"
             tools:text="Điểm bảo hành: Cơ sở 1" />
 
@@ -122,7 +122,7 @@
             android:textColor="#000000"
             android:layout_marginTop="8dp"
             android:drawablePadding="8dp"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal"
             android:visibility="gone"
             tools:text="Nhân viên phụ trách: Phạm Lệ Mỹ" />
@@ -136,7 +136,7 @@
             android:layout_marginTop="8dp"
             android:drawablePadding="8dp"
             android:textColor="#000000"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal"
             tools:text="Tình trạng: Kích hoạt bảo hành lần 1" />
 
@@ -150,7 +150,7 @@
             android:layout_marginTop="8dp"
             android:drawablePadding="8dp"
             android:layout_marginBottom="12dp"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal"
             tools:text="Ngày hẹn trả: 27/12/2017" />
 
@@ -163,7 +163,7 @@
         android:fontFamily="sans-serif"
         android:text="Nội dung bảo hành"
         android:textColor="#3c5a99"
-        android:textSize="18sp"
+        android:textSize="@dimen/font_18"
         android:textStyle="normal"
         android:layout_marginStart="12dp"
         android:layout_marginTop="20dp"/>
@@ -188,7 +188,7 @@
             android:layout_marginBottom="12dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal"
             tools:text="Nội dung bảo hành được nhập khi tiếp nhận khi tiếp nhận bảo hành hoặc trả bảo hành.Không nhập ẩn cả mục này đi nhé" />
 

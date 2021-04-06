@@ -43,7 +43,7 @@
             android:maxLines="1"
             android:text="Tên đang cập nhật"
             android:textColor="@color/darkGray2"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="italic"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +62,7 @@
             android:includeFontPadding="false"
             android:maxLines="1"
             android:textColor="@color/collection_product_name"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgAvaProduct"
             app:layout_constraintTop_toTopOf="@+id/imgAvaProduct"
@@ -87,7 +87,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:textColor="#4f4f4f"
                 android:includeFontPadding="false"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 tools:text="8,9" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -99,7 +99,7 @@
                 android:visibility="gone"
                 android:fontFamily="@font/barlow_medium"
                 android:textColor="#828282"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 tools:text="(999+)" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -112,7 +112,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:includeFontPadding="false"
                 android:textColor="#bdbdbd"
-                android:textSize="12sp" />
+                android:textSize="@dimen/font_12" />
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -125,7 +125,7 @@
             android:includeFontPadding="false"
             android:paddingTop="18dp"
             android:textColor="#3c5a99"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toBottomOf="@+id/imgAvaProduct"
             app:layout_constraintStart_toStartOf="@+id/tvNameProduct"
             app:layout_constraintTop_toBottomOf="@id/layoutBarcode"
@@ -166,7 +166,7 @@
             android:layout_marginLeft="23dp"
             android:fontFamily="@font/barlow_medium"
             android:textColor="#4f4f4f"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/avaShop"
             app:layout_constraintTop_toTopOf="@+id/avaShop"
@@ -181,7 +181,7 @@
             android:drawablePadding="5.7dp"
             android:fontFamily="@font/barlow_semi_bold"
             android:textColor="#fa9538"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             app:layout_constraintStart_toStartOf="@+id/tvNameShop"
             app:layout_constraintTop_toBottomOf="@+id/tvNameShop"
             tools:text="15m" />
@@ -199,7 +199,7 @@
         android:gravity="center"
         android:text="Tìm kiếm quanh đây"
         android:textColor="#3c5a99"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/layoutShop"
         app:layout_constraintStart_toStartOf="@+id/layoutShop"

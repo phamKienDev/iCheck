@@ -45,7 +45,7 @@
                     android:layout_height="wrap_content"
                     android:maxLines="2"
                     android:ellipsize="end"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     android:minLines="2"
                     android:textColor="#212121"
                     tools:text="Brightening Pore Facial Cleanser" />
@@ -55,7 +55,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_2"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/font_12"
                     android:maxLines="1"
                     android:ellipsize="end"
                     android:textColor="#757575"

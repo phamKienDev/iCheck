@@ -32,7 +32,7 @@
             android:gravity="center"
             android:maxLines="2"
             android:textColor="#757575"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             tools:text="Mã vạch cửa hàng" />
     </LinearLayout>
 

@@ -24,7 +24,7 @@
         android:fontFamily="@font/barlow_medium"
         android:text="Thêm mới địa chỉ"
         android:textColor="#057DDA"
-        android:textSize="18sp"
+        android:textSize="@dimen/font_18"
         app:layout_constraintBottom_toBottomOf="@+id/btn_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btn_back"
@@ -97,7 +97,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:text="Họ (*)"
                 android:textColor="#212121"
-                android:textSize="12sp" />
+                android:textSize="@dimen/font_12" />
 
             <vn.icheck.android.ui.edittext.CornerErrorEditText
                 android:id="@+id/edt_last_name"
@@ -105,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:layout_marginTop="4dp"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:padding="8dp"
                 android:fontFamily="@font/barlow_medium"
                 android:textColor="#212121"
@@ -119,7 +119,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:text="Tên đệm và tên (*)"
                 android:textColor="#212121"
-                android:textSize="12sp" />
+                android:textSize="@dimen/font_12" />
 
             <vn.icheck.android.ui.edittext.CornerErrorEditText
                 android:id="@+id/edt_first_name"
@@ -127,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:layout_marginTop="4dp"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:padding="8dp"
                 android:fontFamily="@font/barlow_medium"
                 android:textColor="#212121"
@@ -141,14 +141,14 @@
                 android:layout_height="wrap_content"
                 android:text="Số điện thoại (*)"
                 android:textColor="#212121"
-                android:textSize="12sp" />
+                android:textSize="@dimen/font_12" />
             <vn.icheck.android.ui.edittext.CornerErrorEditText
                 android:id="@+id/edt_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:layout_marginTop="4dp"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:padding="8dp"
                 android:digits="0123456789"
                 android:fontFamily="@font/barlow_medium"
@@ -169,7 +169,7 @@
                     android:fontFamily="@font/barlow_medium"
                     android:text="Tỉnh thành (*)"
                     android:textColor="#212121"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/font_12"
                     app:layout_constraintEnd_toStartOf="@+id/textView87"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
@@ -182,7 +182,7 @@
                     android:fontFamily="@font/barlow_medium"
                     android:text="Quận huyện (*)"
                     android:textColor="#212121"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/font_12"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/textView86"
@@ -202,7 +202,7 @@
                     android:inputType="textPersonName"
                     android:padding="8dp"
                     android:textColor="#212121"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     app:drawableRightCompat="@drawable/ic_arrow_down_blue_24px_vector"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -225,7 +225,7 @@
                     android:inputType="textPersonName"
                     android:padding="8dp"
                     android:textColor="#212121"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     app:drawableRightCompat="@drawable/ic_arrow_down_blue_24px_vector"
                     app:layout_constraintEnd_toStartOf="@+id/edt_quan"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -239,13 +239,13 @@
                 android:layout_height="wrap_content"
                 android:text="Xã phường (*)"
                 android:textColor="#212121"
-                android:textSize="12sp" />
+                android:textSize="@dimen/font_12" />
             <vn.icheck.android.ui.edittext.CornerErrorEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:layout_marginTop="4dp"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:padding="8dp"
                 android:fontFamily="@font/barlow_medium"
                 android:textColor="#212121"
@@ -261,14 +261,14 @@
                 android:layout_height="wrap_content"
                 android:text="Địa chỉ (*)"
                 android:textColor="#212121"
-                android:textSize="12sp" />
+                android:textSize="@dimen/font_12" />
             <vn.icheck.android.ui.edittext.CornerErrorEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:id="@+id/edt_address"
                 android:layout_marginTop="4dp"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:padding="8dp"
                 android:fontFamily="@font/barlow_medium"
                 android:textColor="#212121"

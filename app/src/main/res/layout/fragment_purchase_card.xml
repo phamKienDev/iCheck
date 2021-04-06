@@ -32,7 +32,7 @@
             android:text="@string/nha_mang"
             android:textAllCaps="true"
             android:textColor="#3C5A99"
-            android:textSize="@dimen/font_size_4" />
+            android:textSize="@dimen/font_14" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcv_msp"
@@ -57,7 +57,7 @@
             android:text="@string/menh_gia"
             android:textAllCaps="true"
             android:textColor="#3C5A99"
-            android:textSize="@dimen/font_size_4" />
+            android:textSize="@dimen/font_14" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcv_denomination"
@@ -109,7 +109,7 @@
                 android:text="Thanh Toán"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_16"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -122,7 +122,7 @@
                 android:fontFamily="sans-serif"
                 android:text="THÀNH TIỀN"
                 android:textColor="@color/darkGray1"
-                android:textSize="13sp"
+                android:textSize="@dimen/font_13"
                 app:layout_constraintBottom_toTopOf="@+id/btn_checkout"
                 app:layout_constraintStart_toStartOf="@+id/btn_checkout" />
 
@@ -134,7 +134,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:hint="0 đ"
                 android:textColor="@color/blue"
-                android:textSize="@dimen/font_size_4"
+                android:textSize="@dimen/font_14"
                 app:layout_constraintBottom_toTopOf="@+id/btn_checkout"
                 app:layout_constraintEnd_toEndOf="@+id/btn_checkout" />
 

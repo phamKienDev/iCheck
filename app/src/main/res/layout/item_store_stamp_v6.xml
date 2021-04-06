@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         tools:text="test1"
         android:padding="8dp"
-        android:textSize="14sp"/>
+        android:textSize="@dimen/font_14"/>
 
     <View
         android:layout_width="match_parent"

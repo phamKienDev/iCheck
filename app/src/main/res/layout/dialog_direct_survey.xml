@@ -46,7 +46,7 @@
                         android:gravity="center_horizontal"
                         android:includeFontPadding="false"
                         android:textColor="#ffffff"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/font_14"
                         android:textStyle="normal" />
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -60,7 +60,7 @@
                         android:gravity="center_horizontal"
                         android:includeFontPadding="false"
                         android:textColor="#ffffff"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/font_16"
                         android:textStyle="normal" />
 
                     <ProgressBar
@@ -152,7 +152,7 @@
                     android:includeFontPadding="false"
                     android:text="@string/cam_on_ban_da_tham_gia_khao_sat"
                     android:textColor="#35384b"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/font_18"
                     android:textStyle="normal" />
 
                 <!--                <androidx.appcompat.widget.AppCompatTextView-->
@@ -166,7 +166,7 @@
                 <!--                    android:includeFontPadding="false"-->
                 <!--                    android:text="+558.000"-->
                 <!--                    android:textColor="#057dda"-->
-                <!--                    android:textSize="18sp"-->
+                <!--                    android:textSize="@dimen/font_18"-->
                 <!--                    android:textStyle="normal" />-->
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -187,7 +187,7 @@
                     android:paddingBottom="@dimen/size_12"
                     android:text="@string/direct_survey_popup_content"
                     android:textColor="#828282"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     android:textStyle="italic" />
 
                 <!--                <androidx.appcompat.widget.AppCompatButton-->

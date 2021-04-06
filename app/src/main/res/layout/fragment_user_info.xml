@@ -43,7 +43,7 @@
             android:inputType="textPersonName"
             android:textColor="#212121"
             android:textColorHint="#B4B4B4"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_last_name" />
@@ -71,7 +71,7 @@
             android:inputType="textPersonName"
             android:textColor="#212121"
             android:textColorHint="#B4B4B4"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_firstname" />
@@ -102,7 +102,7 @@
                 android:inputType="textEmailAddress"
                 android:textColor="#212121"
                 android:textColorHint="#B4B4B4"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -114,7 +114,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:text="Nhập sai định dạng. Thử lại!"
                 android:textColor="#FF0000"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 android:visibility="gone"
                 app:drawableStartCompat="@drawable/ic_error_red_18dp"
                 tools:visibility="visible" />
@@ -143,7 +143,7 @@
             android:inputType="textPersonName"
             android:textColor="#212121"
             android:textColorHint="#B4B4B4"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_email" />
@@ -171,7 +171,7 @@
             android:inputType="textPersonName"
             android:textColor="#212121"
             android:textColorHint="#B4B4B4"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_tinh" />
@@ -199,7 +199,7 @@
             android:inputType="textPersonName"
             android:textColor="#212121"
             android:textColorHint="#B4B4B4"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_quan" />
@@ -223,7 +223,7 @@
             android:inputType="textPersonName"
             android:textColor="#212121"
             android:textColorHint="#B4B4B4"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_phuong_xa" />
@@ -241,7 +241,7 @@
             android:text="Bỏ qua"
             android:textAllCaps="false"
             android:textColor="@color/lightBlue"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/btn_continue" />
@@ -262,7 +262,7 @@
             android:text="Tiếp tục"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btn_skip"
@@ -297,7 +297,7 @@
             android:padding="12dp"
             android:textColor="#057DDA"
             android:textColorHint="#757575"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_dia_chi" />
@@ -323,7 +323,7 @@
             android:inputType="textPersonName"
             android:textColor="#212121"
             android:textColorHint="#B4B4B4"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/img_edit_avatar" />

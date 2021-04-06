@@ -40,7 +40,7 @@
             android:maxLines="1"
             android:singleLine="true"
             android:textColor="@color/collection_product_name"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal"
             app:layout_constraintBottom_toBottomOf="@id/imgAva"
             app:layout_constraintEnd_toEndOf="parent"

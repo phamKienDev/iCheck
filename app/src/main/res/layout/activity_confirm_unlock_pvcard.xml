@@ -28,7 +28,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:text="Xác nhận mở thẻ"
             android:textColor="@color/lightBlue"
-            android:textSize="18sp" />
+            android:textSize="@dimen/font_18" />
     </FrameLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -51,7 +51,7 @@
                 android:gravity="center"
                 android:text="Nhập mã OTP"
                 android:textColor="#212121"
-                android:textSize="20sp" />
+                android:textSize="@dimen/font_20" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvOtpToPhone"
@@ -63,9 +63,9 @@
                 android:layout_marginEnd="63dp"
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center"
-                android:lineSpacingExtra="6sp"
+                android:lineSpacingExtra="@dimen/font_6"
                 android:textColor="#757575"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:textStyle="normal"
                 tools:text="@string/ma_xac_nhan_otp_da_duoc_gui_den_sdt" />
 
@@ -85,14 +85,14 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/barlow_semi_bold"
-                android:lineSpacingExtra="6sp"
+                android:lineSpacingExtra="@dimen/font_6"
                 android:paddingStart="10dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="10dp"
                 android:paddingBottom="5dp"
                 android:text="Gửi lại mã (60s)"
                 android:textColor="@color/blue"
-                android:textSize="14sp" />
+                android:textSize="@dimen/font_14" />
 
         </LinearLayout>
 
@@ -114,7 +114,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             android:text="Xác nhận" />
 
     </LinearLayout>

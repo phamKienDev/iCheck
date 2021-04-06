@@ -11,7 +11,7 @@
         android:id="@+id/tvCheck"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:drawablePadding="15dp"
         android:checked="false"
         android:gravity="center"

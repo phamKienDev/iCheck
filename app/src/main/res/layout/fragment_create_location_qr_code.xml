@@ -35,7 +35,7 @@
             android:gravity="center"
             android:singleLine="true"
             android:textColor="@color/lightBlue"
-            android:textSize="18sp"
+            android:textSize="@dimen/font_18"
             android:textStyle="normal"
             tools:text="Tiêu đề" />
 
@@ -80,7 +80,7 @@
             android:paddingEnd="@dimen/size_10"
             android:textColor="#35384b"
             android:textColorHint="#b4b4b4"
-            android:textSize="14sp"/>
+            android:textSize="@dimen/font_14"/>
     </FrameLayout>
 
     <androidx.appcompat.widget.AppCompatImageView

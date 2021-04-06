@@ -12,7 +12,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="12sp"
+            android:textSize="@dimen/font_12"
             android:textColor="#828282"
             android:text="Đánh giá được xác minh bởi" />
 
@@ -36,6 +36,6 @@
         android:text="Xem tất cả đánh giá"
         android:textAllCaps="false"
         android:textColor="#3C5A99"
-        android:textSize="@dimen/font_size_4" />
+        android:textSize="@dimen/font_14" />
 
 </LinearLayout>

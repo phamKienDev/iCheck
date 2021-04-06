@@ -23,7 +23,7 @@
         android:fontFamily="@font/barlow_medium"
         android:gravity="center_horizontal"
         android:includeFontPadding="false"
-        android:textSize="12sp"
+        android:textSize="@dimen/font_12"
         android:maxLines="2"
         android:minLines="2"
         android:layout_marginLeft="@dimen/size_8"

@@ -17,7 +17,7 @@
         android:drawableRight="@drawable/ic_arrow_right_light_blue_24dp"
         android:fontFamily="@font/barlow_medium"
         android:textColor="#212121"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         tools:text="Thời trang Nam" />
 
     <View

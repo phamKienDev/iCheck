@@ -27,7 +27,7 @@
             android:layout_marginTop="16dp"
             android:text="Hình thức thanh toán"
             android:textColor="#3C5A99"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:text="Số dư hiện tại: 0 iCoin"
                 android:textColor="#434343"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 app:layout_constraintBottom_toBottomOf="@+id/img_icoin"
                 app:layout_constraintStart_toStartOf="@id/tv_title_icoin" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -86,7 +86,7 @@
             android:layout_marginTop="12dp"
             android:text="Chi tiết giao dịch"
             android:textColor="#3C5A99"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             app:layout_constraintStart_toStartOf="@+id/vg_icheck"
             app:layout_constraintTop_toBottomOf="@+id/vg_icheck" />
 

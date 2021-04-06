@@ -37,7 +37,7 @@
                 android:fontFamily="sans-serif"
                 tools:text="Thông tin khách hàng"
                 android:textColor="#3c5a99"
-                android:textSize="18sp"
+                android:textSize="@dimen/font_18"
                 android:textStyle="normal" />
 
             <LinearLayout
@@ -60,7 +60,7 @@
                     android:drawablePadding="8dp"
                     android:fontFamily="sans-serif"
                     android:textColor="#000000"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     android:textStyle="normal"
                     tools:text="Họ và tên: Đặng Trung Đức" />
 
@@ -73,7 +73,7 @@
                     android:drawablePadding="8dp"
                     android:fontFamily="sans-serif"
                     android:textColor="#000000"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     android:textStyle="normal"
                     tools:text="Số điện thoại: 098 123 ***" />
 
@@ -86,7 +86,7 @@
                     android:drawablePadding="8dp"
                     android:fontFamily="sans-serif"
                     android:textColor="#000000"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     android:textStyle="normal"
                     tools:text="Email: ***@icheck.vn" />
 
@@ -100,7 +100,7 @@
                     android:drawablePadding="8dp"
                     android:fontFamily="sans-serif"
                     android:textColor="#000000"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     android:textStyle="normal"
                     tools:text="Địa chỉ: Số 50, ngõ 125, Nguyễn Ngọc Vũ, Hà Nội" />
 
@@ -115,7 +115,7 @@
                 android:fontFamily="sans-serif"
                 tools:text="Thông tin bảo hành"
                 android:textColor="#3c5a99"
-                android:textSize="18sp"
+                android:textSize="@dimen/font_18"
                 android:textStyle="normal" />
 
             <LinearLayout
@@ -140,7 +140,7 @@
                     android:drawablePadding="8dp"
                     android:fontFamily="sans-serif"
                     android:textColor="#000000"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     android:textStyle="normal"
                     tools:text="Thời gian: 5h30 24/12/2018" />
 
@@ -153,7 +153,7 @@
                     android:drawablePadding="8dp"
                     android:fontFamily="sans-serif"
                     android:textColor="#000000"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     android:textStyle="normal"
                     tools:text="Điểm bảo hành: Cơ sở 1" />
 
@@ -165,7 +165,7 @@
                     android:drawablePadding="8dp"
                     android:fontFamily="sans-serif"
                     android:textColor="#000000"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     android:textStyle="normal"
                     android:visibility="gone"
                     tools:text="Nhân viên phụ trách: Phạm Lệ Mỹ" />
@@ -179,7 +179,7 @@
                     android:drawablePadding="8dp"
                     android:fontFamily="sans-serif"
                     android:textColor="#000000"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     android:textStyle="normal"
                     tools:text="Tình trạng: Kích hoạt bảo hành lần 1" />
 
@@ -192,7 +192,7 @@
                     android:drawablePadding="8dp"
                     android:fontFamily="sans-serif"
                     android:textColor="#000000"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     android:textStyle="normal"
                     tools:text="Ngày hẹn trả: 27/12/2017" />
 

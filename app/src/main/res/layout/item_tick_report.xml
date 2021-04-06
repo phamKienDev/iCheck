@@ -42,7 +42,7 @@
         android:padding="8dp"
         android:textColor="#212121"
         android:textColorHint="#b4b4b4"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

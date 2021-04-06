@@ -20,7 +20,7 @@
         android:layout_marginStart="9dp"
         android:fontFamily="@font/barlow_medium"
         android:textColor="#212121"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         tools:text="Hạng Kim Cương" />
 
 </LinearLayout>

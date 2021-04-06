@@ -12,7 +12,7 @@
         android:layout_weight="1"
         android:text="@string/san_pham_dang_tien"
         android:textColor="#434343"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:textStyle="normal" />
 
     <com.willy.ratingbar.ScaleRatingBar

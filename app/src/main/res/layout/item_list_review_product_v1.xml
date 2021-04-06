@@ -41,7 +41,7 @@
                 android:layout_marginEnd="8dp"
                 android:includeFontPadding="false"
                 android:textColor="#828282"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="3 ngày trước" />
@@ -80,7 +80,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/darkGray1"
-                android:textSize="@dimen/font_size_4"
+                android:textSize="@dimen/font_14"
                 android:includeFontPadding="false"
                 app:layout_constraintEnd_toEndOf="@id/tv_1_time"
                 app:layout_constraintStart_toStartOf="@+id/tv_user_1_name"
@@ -129,7 +129,7 @@
                     android:fontFamily="sans-serif-medium"
                     android:text="Xem chi tiết đánh giá"
                     android:textColor="@color/lightBlue"
-                    android:textSize="@dimen/font_size_4" />
+                    android:textSize="@dimen/font_14" />
 
                 <TextView
                     android:id="@+id/coplapse"
@@ -139,7 +139,7 @@
                     android:fontFamily="sans-serif-medium"
                     android:text="Thu gọn"
                     android:textColor="@color/lightBlue"
-                    android:textSize="@dimen/font_size_4"
+                    android:textSize="@dimen/font_14"
                     android:visibility="gone" />
             </LinearLayout>
 

@@ -33,7 +33,7 @@
             android:inputType="phone"
             android:focusableInTouchMode="true"
             android:paddingBottom="20dp"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -53,7 +53,7 @@
             android:inputType="textPassword"
             android:paddingBottom="20dp"
             android:textColor="#212121"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_phone" />
@@ -70,7 +70,7 @@
             android:text="@string/dang_nhap"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             android:includeFontPadding="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -86,7 +86,7 @@
             android:fontFamily="@font/barlow_medium"
             android:text="@string/quen_mat_khau"
             android:textColor="#757575"
-            android:textSize="12sp"
+            android:textSize="@dimen/font_12"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 
@@ -110,7 +110,7 @@
             android:fontFamily="@font/barlow_medium"
             android:text="@string/ban_gap_van_de_voi_dang_nhap"
             android:textColor="#757575"
-            android:textSize="12sp"
+            android:textSize="@dimen/font_12"
             app:layout_constraintBottom_toBottomOf="@+id/btn_forgot_pw"
             app:layout_constraintStart_toEndOf="@+id/imageView6"
             app:layout_constraintTop_toTopOf="@+id/btn_forgot_pw" />
@@ -130,7 +130,7 @@
             android:text="@string/dang_nhap_bang_otp"
             android:textAllCaps="false"
             android:textColor="#057DDA"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_problem" />
@@ -142,7 +142,7 @@
             android:layout_marginTop="32dp"
             android:fontFamily="@font/barlow_medium"
             android:text="Hoặc đăng nhập bằng"
-            android:textSize="12sp"
+            android:textSize="@dimen/font_12"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_login_otp" />

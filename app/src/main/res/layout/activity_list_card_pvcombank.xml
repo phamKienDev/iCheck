@@ -29,7 +29,7 @@
             android:gravity="center"
             android:text="Danh sách thẻ"
             android:textColor="@color/lightBlue"
-            android:textSize="18sp" />
+            android:textSize="@dimen/font_18" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:layout_width="@dimen/size_52"

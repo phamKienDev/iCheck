@@ -28,7 +28,7 @@
         android:layout_marginStart="23dp"
         android:fontFamily="@font/barlow_medium"
         android:textColor="#4f4f4f"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/avaShop"
         app:layout_constraintTop_toTopOf="@+id/avaShop"
@@ -43,7 +43,7 @@
         android:drawablePadding="5.7dp"
         android:fontFamily="@font/barlow_semi_bold"
         android:textColor="#fa9538"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         app:layout_constraintStart_toStartOf="@+id/tvNameShop"
         app:layout_constraintTop_toBottomOf="@+id/tvNameShop"
         tools:text="15m" />

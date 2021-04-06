@@ -30,7 +30,7 @@
             android:paddingBottom="@dimen/size_10"
             android:text="@string/bao_cao_bai_viet"
             android:textColor="#057dda"
-            android:textSize="18sp" />
+            android:textSize="@dimen/font_18" />
     </FrameLayout>
 
     <View
@@ -78,7 +78,7 @@
         android:textAlignment="gravity"
         android:textColor="@color/collection_product_name"
         android:textColorHint="@color/darkGray2"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:visibility="gone" />
 
     <vn.icheck.android.component.view.ButtonLightBlueCorners4

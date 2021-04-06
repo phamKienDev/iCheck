@@ -33,7 +33,7 @@
         android:paddingBottom="@dimen/size_10"
         android:text="@string/don_vi_van_chuyen"
         android:textColor="#3c5a99"
-        android:textSize="18sp"
+        android:textSize="@dimen/font_18"
         android:textStyle="normal"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,7 +50,7 @@
         android:text="@string/xong"
         android:textAllCaps="false"
         android:textColor="#49aa2d"
-        android:textSize="18sp"
+        android:textSize="@dimen/font_18"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="@id/tvTitle"
         app:layout_constraintEnd_toEndOf="@id/tvTitle"

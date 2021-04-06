@@ -24,7 +24,7 @@
         android:gravity="center"
         android:fontFamily="@font/barlow_semi_bold"
         android:textColor="@color/collection_product_name"
-        android:textSize="14sp" />
+        android:textSize="@dimen/font_14" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvMessage"
@@ -37,7 +37,7 @@
         android:gravity="center"
         android:fontFamily="@font/barlow_medium"
         android:textColor="@color/fast_survey_gray"
-        android:textSize="14sp" />
+        android:textSize="@dimen/font_14" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvAction"
@@ -54,5 +54,5 @@
         android:paddingBottom="@dimen/size_8"
         android:text="@string/xem_them_thu_thach"
         android:textColor="@color/white"
-        android:textSize="16sp" />
+        android:textSize="@dimen/font_16" />
 </LinearLayout>

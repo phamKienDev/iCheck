@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/blue"
-                android:textSize="18sp"
+                android:textSize="@dimen/font_18"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:layout_marginLeft="@dimen/size_10"
                 android:layout_marginTop="@dimen/size_10"

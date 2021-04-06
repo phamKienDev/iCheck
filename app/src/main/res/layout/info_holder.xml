@@ -33,5 +33,5 @@
         android:lines="5"
         android:padding="8dp"
         android:textColor="@color/black"
-        android:textSize="14sp" />
+        android:textSize="@dimen/font_14" />
 </LinearLayout>

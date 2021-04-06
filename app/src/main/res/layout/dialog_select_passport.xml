@@ -26,7 +26,7 @@
         android:fontFamily="@font/barlow_semi_bold"
         android:text="Chọn loại giấy tờ"
         android:textColor="@color/lightBlue"
-        android:textSize="18sp"
+        android:textSize="@dimen/font_18"
         app:layout_constraintBottom_toTopOf="@id/divider31"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +42,7 @@
         android:fontFamily="@font/barlow_semi_bold"
         android:text="@string/xong"
         android:textColor="@color/lightBlue"
-        android:textSize="18sp"
+        android:textSize="@dimen/font_18"
         app:layout_constraintBottom_toBottomOf="@id/textView32"
         app:layout_constraintTop_toTopOf="@id/textView32"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -70,7 +70,7 @@
         android:gravity="center_vertical"
         android:text="@string/chung_minh_nhan_dan"
         android:textColor="#212121"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider31" />
@@ -101,7 +101,7 @@
         android:fontFamily="@font/barlow_medium"
         android:text="@string/can_cuoc_cong_dan"
         android:textColor="@color/collection_product_name"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider32" />

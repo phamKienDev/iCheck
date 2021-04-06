@@ -31,7 +31,7 @@
         android:paddingEnd="@dimen/size_12"
         android:text="@string/tat_ca"
         android:textColor="@color/collection_product_name"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         app:layout_constraintTop_toBottomOf="@id/divider31" />
 
     <View
@@ -58,7 +58,7 @@
         android:paddingBottom="@dimen/size_14"
         android:text="@string/nu"
         android:textColor="@color/collection_product_name"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         app:layout_constraintTop_toBottomOf="@id/divider32" />
 
 
@@ -84,7 +84,7 @@
         android:paddingEnd="@dimen/size_12"
         android:text="@string/nam"
         android:textColor="@color/collection_product_name"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         app:layout_constraintTop_toBottomOf="@id/divider33" />
 
     <View
@@ -111,7 +111,7 @@
         android:paddingBottom="@dimen/size_14"
         android:text="@string/khac"
         android:textColor="@color/collection_product_name"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         app:layout_constraintTop_toBottomOf="@id/divider34" />
 
     <View
@@ -137,7 +137,7 @@
         android:paddingBottom="@dimen/size_8"
         android:text="@string/thiet_lap_lai"
         android:textColor="@color/light_blue"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/divider30" />
 </androidx.constraintlayout.widget.ConstraintLayout>

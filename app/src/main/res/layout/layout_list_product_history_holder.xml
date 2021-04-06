@@ -17,7 +17,7 @@
         android:text="2 tiếng trước"
         android:textAllCaps="true"
         android:textColor="@color/darkGray3"
-        android:textSize="14sp" />
+        android:textSize="@dimen/font_14" />
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -56,7 +56,7 @@
             android:includeFontPadding="false"
             android:text="Giày thể thao cao cổ Converse hàng Limited size 42"
             android:textColor="@color/collection_product_name"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgAvaProduct"
             app:layout_constraintTop_toTopOf="@+id/imgAvaProduct" />
@@ -73,7 +73,7 @@
             android:includeFontPadding="false"
             android:text="8930123456789"
             android:textColor="@color/darkGray3"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintStart_toStartOf="@+id/tvNameProduct"
             app:layout_constraintTop_toBottomOf="@+id/tvNameProduct" />
 
@@ -102,7 +102,7 @@
             android:layout_marginRight="@dimen/size_10"
             android:fontFamily="@font/barlow_semi_bold"
             android:textColor="@color/lightBlue"
-            android:textSize="12sp"
+            android:textSize="@dimen/font_12"
             app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
             app:layout_constraintEnd_toStartOf="@+id/tvVerify"
             app:layout_constraintStart_toEndOf="@+id/ratingBar"
@@ -122,7 +122,7 @@
             android:gravity="center_vertical"
             android:text="@string/verified"
             android:textColor="@color/green2"
-            android:textSize="12sp"
+            android:textSize="@dimen/font_12"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/tvCountRating"
             app:layout_constraintStart_toEndOf="@+id/tvCountRating"

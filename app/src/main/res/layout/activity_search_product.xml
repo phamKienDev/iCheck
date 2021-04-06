@@ -46,7 +46,7 @@
                     android:paddingBottom="@dimen/size_6"
                     android:text="@string/bo_loc"
                     android:textColor="@color/collection_product_name"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     app:fontFamily="@font/barlow_medium" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -61,7 +61,7 @@
                     android:paddingBottom="@dimen/size_6"
                     android:text="@string/da_xac_thuc"
                     android:textColor="@color/collection_product_name"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     app:fontFamily="@font/barlow_medium" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -78,7 +78,7 @@
                     android:paddingBottom="@dimen/size_6"
                     android:text="@string/gia_tu"
                     android:textColor="@color/collection_product_name"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     app:fontFamily="@font/barlow_medium" />
 
 
@@ -96,7 +96,7 @@
                     android:paddingBottom="@dimen/size_6"
                     android:text="@string/danh_gia"
                     android:textColor="@color/collection_product_name"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     app:fontFamily="@font/barlow_medium" />
 
             </LinearLayout>

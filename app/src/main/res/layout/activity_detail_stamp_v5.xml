@@ -38,7 +38,7 @@
                 android:singleLine="true"
                 android:text="Xác thực sản phẩm"
                 android:textColor="@color/blue"
-                android:textSize="18sp"
+                android:textSize="@dimen/font_18"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -92,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
                 android:textColor="#828282"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -106,7 +106,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:text="Thử Lại"
                 android:textColor="#3c5a99"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_16"
                 android:textStyle="normal" />
 
         </LinearLayout>
@@ -147,7 +147,7 @@
                         android:fontFamily="sans-serif-medium"
                         android:gravity="center"
                         android:textColor="#ffffff"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/font_14"
                         android:textStyle="normal"
                         tools:text="CẢNH BÁO! \n MÃ TEM KHÔNG HỢP LỆ (TEXT KHÔNG CỐ ĐỊNH)" />
 
@@ -243,7 +243,7 @@
                     <!--                        android:paddingBottom="7dp"-->
                     <!--                        android:text="Chia sẻ"-->
                     <!--                        android:textColor="#ffffff"-->
-                    <!--                        android:textSize="12sp"-->
+                    <!--                        android:textSize="@dimen/font_12"-->
                     <!--                        android:textStyle="normal"-->
                     <!--                        app:layout_constraintBottom_toBottomOf="@+id/viewPagerImgProduct"-->
                     <!--                        app:layout_constraintEnd_toEndOf="@+id/viewPagerImgProduct" />-->
@@ -273,7 +273,7 @@
                         android:layout_marginTop="8dp"
                         android:fontFamily="sans-serif"
                         android:textColor="#f7923b"
-                        android:textSize="24sp"
+                        android:textSize="@dimen/font_24"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/indicatorProduct"
@@ -296,7 +296,7 @@
                         android:fontFamily="sans-serif"
                         android:gravity="end|center"
                         android:textColor="#434343"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/font_14"
                         android:textStyle="normal"
                         app:layout_constraintBottom_toBottomOf="@+id/tvPriceProduct"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -311,7 +311,7 @@
                         android:fontFamily="sans-serif-medium"
                         android:gravity="start|center"
                         android:textColor="#434343"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/font_16"
                         android:textStyle="normal"
                         app:layout_constraintEnd_toEndOf="@+id/tvRegion"
                         app:layout_constraintStart_toStartOf="@+id/tvPriceProduct"
@@ -336,7 +336,7 @@
                         android:layout_marginTop="8dp"
                         android:fontFamily="sans-serif"
                         android:textColor="#828282"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/font_14"
                         android:textStyle="normal"
                         app:layout_constraintEnd_toEndOf="@+id/tvNameProduct"
                         app:layout_constraintStart_toEndOf="@+id/appCompatTextView8"
@@ -365,7 +365,7 @@
                     android:gravity="start|center"
                     android:textAlignment="center"
                     android:textColor="#434343"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/font_16"
                     android:textStyle="normal"
                     app:layout_constraintEnd_toEndOf="@+id/tvRegion"
                     app:layout_constraintStart_toStartOf="@+id/tvPriceProduct"
@@ -402,7 +402,7 @@
                                 android:layout_marginTop="8dp"
                                 android:fontFamily="sans-serif-medium"
                                 android:textColor="#ffffff"
-                                android:textSize="16sp"
+                                android:textSize="@dimen/font_16"
                                 android:textStyle="normal"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
@@ -416,7 +416,7 @@
                                 android:layout_marginBottom="6dp"
                                 android:fontFamily="sans-serif-medium"
                                 android:textColor="#ffffff"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/font_14"
                                 android:textStyle="normal"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toStartOf="@+id/view"
@@ -444,7 +444,7 @@
                                 android:drawablePadding="8dp"
                                 android:fontFamily="sans-serif-medium"
                                 android:textColor="#ffffff"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/font_14"
                                 android:textStyle="normal"
                                 app:layout_constraintBottom_toBottomOf="@+id/view"
                                 app:layout_constraintStart_toEndOf="@+id/view"
@@ -474,7 +474,7 @@
                                     android:layout_marginBottom="10dp"
                                     android:fontFamily="sans-serif"
                                     android:textColor="#434343"
-                                    android:textSize="12sp"
+                                    android:textSize="@dimen/font_12"
                                     android:textStyle="normal"
                                     tools:text="Số 50, Ngõ 125 Nguyễn Ngọc Vũ, Trung Hòa, Cầu Giấy, Hà Nội (tên dài không giới hạn)" />
 
@@ -504,7 +504,7 @@
                                     android:gravity="center"
                                     android:text="Giỏ hàng"
                                     android:textColor="#4f4f4f"
-                                    android:textSize="14sp"
+                                    android:textSize="@dimen/font_14"
                                     android:textStyle="normal"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -539,7 +539,7 @@
                                             android:fontFamily="sans-serif"
                                             android:gravity="center"
                                             android:textColor="#d8d8d8"
-                                            android:textSize="14sp"
+                                            android:textSize="@dimen/font_14"
                                             android:textStyle="normal"
                                             tools:text="130,000" />
 
@@ -550,7 +550,7 @@
                                             android:layout_marginEnd="8dp"
                                             android:fontFamily="sans-serif"
                                             android:textColor="#ffffff"
-                                            android:textSize="16sp"
+                                            android:textSize="@dimen/font_16"
                                             android:textStyle="bold"
                                             tools:text="90,000đ" />
 
@@ -596,7 +596,7 @@
                                 android:fontFamily="sans-serif-medium"
                                 android:textAlignment="center"
                                 android:textColor="#ffffff"
-                                android:textSize="16sp"
+                                android:textSize="@dimen/font_16"
                                 android:textStyle="normal"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -619,7 +619,7 @@
                                 android:layout_marginBottom="8dp"
                                 android:fontFamily="sans-serif"
                                 android:textColor="#3c5a99"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/font_14"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -665,7 +665,7 @@
                                 android:fontFamily="sans-serif-medium"
                                 android:textAlignment="center"
                                 android:textColor="#ffffff"
-                                android:textSize="16sp"
+                                android:textSize="@dimen/font_16"
                                 android:textStyle="normal"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -688,7 +688,7 @@
                                 android:layout_marginBottom="8dp"
                                 android:fontFamily="sans-serif"
                                 android:textColor="#3c5a99"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/font_14"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -717,7 +717,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/thuong_mai_dien_tu"
                         android:textColor="@color/blue"
-                        android:textSize="18sp"
+                        android:textSize="@dimen/font_18"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -729,7 +729,7 @@
                         android:padding="@dimen/size_3"
                         android:text="@string/xem_tat_ca"
                         android:textColor="@color/blue"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/font_14"
                         app:layout_constraintBottom_toBottomOf="@id/tvTitle"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@id/tvTitle" />
@@ -796,7 +796,7 @@
                                 android:fontFamily="sans-serif-medium"
                                 android:text="Thông tin bảo hành"
                                 android:textColor="#ffffff"
-                                android:textSize="16sp"
+                                android:textSize="@dimen/font_16"
                                 android:textStyle="normal"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -814,7 +814,7 @@
                             android:layout_marginBottom="4dp"
                             android:fontFamily="sans-serif"
                             android:textColor="#000000"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/font_14"
                             android:textStyle="normal"
                             tools:text="Thời gian bảo hành: 3 năm" />
 
@@ -826,7 +826,7 @@
                             android:layout_marginBottom="4dp"
                             android:fontFamily="sans-serif"
                             android:textColor="#000000"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/font_14"
                             android:textStyle="normal"
                             tools:text="Hạn bảo hành: 29/04/2018" />
 
@@ -838,7 +838,7 @@
                             android:layout_marginBottom="4dp"
                             android:fontFamily="sans-serif"
                             android:textColor="#000000"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/font_14"
                             android:textStyle="normal"
                             tools:text="Số ngày bảo hành còn lại: 15 ngày" />
 
@@ -850,7 +850,7 @@
                             android:layout_marginBottom="12dp"
                             android:fontFamily="sans-serif"
                             android:textColor="#000000"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/font_14"
                             android:textStyle="normal"
                             tools:text="Ngày hẹn trả bảo hành: 20/11/2017" />
 
@@ -873,7 +873,7 @@
                             android:paddingEnd="12dp"
                             android:text="Xem lịch sử bảo hành"
                             android:textColor="#3c5a99"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/font_14"
                             android:textStyle="normal" />
 
                         <View
@@ -903,7 +903,7 @@
                             android:paddingBottom="36dp"
                             android:textAlignment="center"
                             android:textColor="#000000"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/font_14"
                             android:textStyle="normal"
                             android:visibility="gone"
                             tools:text="Mã tem đã được kích hoạt bởi người dùng khác" />
@@ -930,7 +930,7 @@
                         android:fontFamily="sans-serif"
                         android:text="Lịch sử bảo hành gần nhất"
                         android:textColor="#3c5a99"
-                        android:textSize="18sp"
+                        android:textSize="@dimen/font_18"
                         android:textStyle="normal"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -942,7 +942,7 @@
                         android:gravity="end"
                         android:text="Xem tất cả"
                         android:textColor="#434343"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/font_14"
                         android:textStyle="normal"
                         app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView6"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -972,7 +972,7 @@
                             android:fontFamily="sans-serif"
                             android:gravity="center|start"
                             android:textColor="#000000"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/font_14"
                             android:textStyle="normal"
                             tools:text="Thời gian: 5h30 24/12/2018" />
 
@@ -988,7 +988,7 @@
                             android:fontFamily="sans-serif"
                             android:gravity="center|start"
                             android:textColor="#000000"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/font_14"
                             android:textStyle="normal"
                             tools:text="Điểm bảo hành: Cơ sở 1" />
 
@@ -1004,7 +1004,7 @@
                             android:fontFamily="sans-serif"
                             android:gravity="center|start"
                             android:textColor="#000000"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/font_14"
                             android:textStyle="normal"
                             tools:text="Trạng thái: Tiếp nhận bảo hành" />
 
@@ -1020,7 +1020,7 @@
                             android:fontFamily="sans-serif"
                             android:gravity="center|start"
                             android:textColor="#000000"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/font_14"
                             android:textStyle="normal"
                             tools:text="Tình trạng: Kích hoạt bảo hành lần 1" />
 
@@ -1037,7 +1037,7 @@
                             android:fontFamily="sans-serif"
                             android:gravity="center|start"
                             android:textColor="#000000"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/font_14"
                             android:textStyle="normal"
                             tools:text="Ngày hẹn trả: 27/12/2017" />
                     </LinearLayout>
@@ -1055,7 +1055,7 @@
                     android:fontFamily="sans-serif"
                     android:text="Nhà sản xuất"
                     android:textColor="#3c5a99"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/font_18"
                     android:textStyle="normal"
                     android:visibility="gone"
                     tools:visibility="visible" />
@@ -1096,7 +1096,7 @@
                                 android:maxLines="1"
                                 android:singleLine="true"
                                 android:textColor="#ffffff"
-                                android:textSize="16sp"
+                                android:textSize="@dimen/font_16"
                                 android:textStyle="normal"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toStartOf="@+id/appCompatImageView8"
@@ -1125,7 +1125,7 @@
                             android:layout_marginEnd="12dp"
                             android:fontFamily="sans-serif"
                             android:textColor="#000000"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/font_14"
                             android:textStyle="normal"
                             tools:text="Số 50, Ngõ 125 Nguyễn Ngọc Vũ, Trung Hòa,Cầu Giấy, Hà Nội" />
 
@@ -1140,7 +1140,7 @@
                             android:fontFamily="sans-serif"
                             android:text="0902195488"
                             android:textColor="#3c5a99"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/font_14"
                             android:textStyle="normal" />
 
                     </LinearLayout>
@@ -1157,7 +1157,7 @@
                     android:fontFamily="sans-serif"
                     android:text="Nhà phân phối"
                     android:textColor="#3c5a99"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/font_18"
                     android:textStyle="normal"
                     android:visibility="gone"
                     tools:visibility="visible" />
@@ -1197,7 +1197,7 @@
                                 android:fontFamily="sans-serif-medium"
                                 android:maxLines="1"
                                 android:textColor="#ffffff"
-                                android:textSize="16sp"
+                                android:textSize="@dimen/font_16"
                                 android:textStyle="normal"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toStartOf="@+id/btnMoreDistributor"
@@ -1227,7 +1227,7 @@
                             android:layout_marginEnd="12dp"
                             android:fontFamily="sans-serif"
                             android:textColor="#000000"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/font_14"
                             android:textStyle="normal"
                             tools:text="Số 50, Ngõ 125 Nguyễn Ngọc Vũ, Trung Hòa,Cầu Giấy, Hà Nội" />
 
@@ -1239,7 +1239,7 @@
                             android:layout_marginTop="4dp"
                             android:fontFamily="sans-serif"
                             android:textColor="#3c5a99"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/font_14"
                             android:textStyle="normal"
                             tools:text="www.icheck.com.vn" />
 
@@ -1259,7 +1259,7 @@
                                 android:layout_weight="1"
                                 android:fontFamily="sans-serif"
                                 android:textColor="#3c5a99"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/font_14"
                                 android:textStyle="normal"
                                 tools:text="0902195488" />
 
@@ -1273,7 +1273,7 @@
                                 android:gravity="end"
                                 android:maxLines="1"
                                 android:textColor="#3c5a99"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/font_14"
                                 android:textStyle="normal"
                                 tools:text="cskh@icheck.vn" />
 
@@ -1292,7 +1292,7 @@
                     android:fontFamily="sans-serif"
                     android:text="Mô tả sản phẩm"
                     android:textColor="#3c5a99"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/font_18"
                     android:textStyle="normal"
                     android:visibility="gone"
                     tools:visibility="visible" />
@@ -1351,7 +1351,7 @@
                         android:fontFamily="sans-serif-medium"
                         android:text="Sản phẩm xác thực"
                         android:textColor="#3c5a99"
-                        android:textSize="18sp"
+                        android:textSize="@dimen/font_18"
                         android:textStyle="normal"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -1364,7 +1364,7 @@
                         android:fontFamily="sans-serif"
                         android:text="Xem tất cả"
                         android:textColor="#434343"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/font_14"
                         android:textStyle="normal"
                         app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView9"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -1409,7 +1409,7 @@
         android:paddingBottom="10dp"
         android:text="Cập nhật thông tin khách hàng"
         android:textColor="#ffffff"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         android:textStyle="normal"
         android:visibility="invisible" />
 
@@ -1437,7 +1437,7 @@
             android:paddingEnd="8dp"
             android:text="Liên hệ Admin iCheck"
             android:textColor="#ffffff"
-            android:textSize="12sp"
+            android:textSize="@dimen/font_12"
             android:textStyle="normal" />
     </LinearLayout>
 </RelativeLayout>

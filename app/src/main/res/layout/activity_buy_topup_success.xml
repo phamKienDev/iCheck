@@ -34,7 +34,7 @@
             android:gravity="center"
             android:text="Giao dịch thành công"
             android:textColor="#057dda"
-            android:textSize="18sp"
+            android:textSize="@dimen/font_18"
             android:textStyle="normal"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -72,10 +72,10 @@
         android:layout_marginEnd="37dp"
         android:fontFamily="@font/barlow_medium"
         android:gravity="center"
-        android:lineSpacingExtra="5.6sp"
+        android:lineSpacingExtra="@dimen/font_5_6"
         android:textAlignment="center"
         android:textColor="#212121"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:textStyle="normal"
         tools:text="Quý khách đã nạp thành công \n 1 mã thẻ điện thoại Mobifone" />
 
@@ -106,7 +106,7 @@
             android:fontFamily="@font/barlow_medium"
             android:text="Nhà mạng:"
             android:textColor="#757575"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toStartOf="@+id/tvName"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -119,7 +119,7 @@
             android:gravity="end"
             tools:text="Mobifone"
             android:textColor="#212121"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/appCompatTextView28"
             app:layout_constraintTop_toTopOf="parent" />
@@ -132,7 +132,7 @@
             android:fontFamily="@font/barlow_medium"
             android:text="Nạp cho số:"
             android:textColor="#757575"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toStartOf="@+id/tvPhone"
             app:layout_constraintStart_toStartOf="@+id/appCompatTextView28"
             app:layout_constraintTop_toBottomOf="@+id/appCompatTextView28" />
@@ -145,7 +145,7 @@
             android:fontFamily="@font/barlow_medium"
             android:gravity="end"
             android:textColor="#212121"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="@+id/tvName"
             app:layout_constraintStart_toEndOf="@+id/appCompatTextView3"
             app:layout_constraintTop_toBottomOf="@+id/tvName"
@@ -159,7 +159,7 @@
             android:fontFamily="@font/barlow_medium"
             android:text="Tổng thanh toán:"
             android:textColor="#757575"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toStartOf="@+id/tvTotal"
             app:layout_constraintStart_toStartOf="@+id/appCompatTextView3"
             app:layout_constraintTop_toBottomOf="@+id/appCompatTextView3" />
@@ -172,7 +172,7 @@
             android:fontFamily="@font/barlow_medium"
             android:gravity="end"
             android:textColor="#212121"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="@+id/tvPhone"
             app:layout_constraintStart_toEndOf="@+id/appCompatTextView29"
             app:layout_constraintTop_toBottomOf="@+id/tvPhone"
@@ -186,7 +186,7 @@
             android:fontFamily="@font/barlow_medium"
             android:text="Hình thức thanh toán:"
             android:textColor="#757575"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toStartOf="@+id/tvTypePayment"
             app:layout_constraintStart_toStartOf="@+id/appCompatTextView29"
             app:layout_constraintTop_toBottomOf="@+id/appCompatTextView29" />
@@ -199,7 +199,7 @@
             android:fontFamily="@font/barlow_medium"
             android:gravity="end"
             android:textColor="#212121"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="@+id/tvTotal"
             app:layout_constraintStart_toEndOf="@+id/appCompatTextView31"
             app:layout_constraintTop_toBottomOf="@+id/tvTotal" />
@@ -222,7 +222,7 @@
             android:gravity="center"
             android:text="Nạp thẻ điện thoại khác"
             android:textColor="#057dda"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

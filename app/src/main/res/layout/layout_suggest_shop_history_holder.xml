@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/barlow_medium"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:gravity="center|start"
         android:textColor="#057dda"
         android:drawablePadding="9.4dp"

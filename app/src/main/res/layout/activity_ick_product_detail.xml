@@ -87,7 +87,7 @@
             android:singleLine="true"
             android:text="2335432323327"
             android:textColor="@color/lightBlue"
-            android:textSize="18sp"
+            android:textSize="@dimen/font_18"
             tools:text="Tiêu đề" />
 
         <androidx.appcompat.widget.AppCompatImageButton
@@ -168,7 +168,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:textColor="#212121"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             tools:text="Thông tin sản phẩm chưa được cập nhật" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -180,9 +180,9 @@
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/barlow_medium"
             android:gravity="center"
-            android:lineSpacingExtra="6sp"
+            android:lineSpacingExtra="@dimen/font_6"
             android:textColor="#757575"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             tools:text="Chúng tôi không thể giúp bạn kiểm tra thông tin nguồn gốc xuất xứ của sản phầm này." />
 
         <LinearLayout
@@ -208,7 +208,7 @@
                 android:gravity="center"
                 android:text="Liên hệ iCheck"
                 android:textColor="#057dda"
-                android:textSize="16sp" />
+                android:textSize="@dimen/font_16" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/btn_contribute"
@@ -223,7 +223,7 @@
                 android:includeFontPadding="false"
                 android:text="Đóng góp thông tin"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="@dimen/font_16" />
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -238,7 +238,7 @@
             android:gravity="center"
             android:text="Liên hệ iCheck"
             android:textColor="#057dda"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             android:visibility="gone" />
 
         <LinearLayout
@@ -263,7 +263,7 @@
                 android:gravity="center"
                 android:text="Liên hệ iCheck"
                 android:textColor="#057dda"
-                android:textSize="16sp" />
+                android:textSize="@dimen/font_16" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/btn_contact_dn"
@@ -277,7 +277,7 @@
                 android:gravity="center"
                 android:text="Liên hệ doanh nghiệp"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="@dimen/font_16" />
         </LinearLayout>
     </LinearLayout>
 
@@ -324,7 +324,7 @@
                 android:gravity="center"
                 android:text="Đánh giá"
                 android:textColor="@color/white"
-                android:textSize="12sp" />
+                android:textSize="@dimen/font_12" />
         </LinearLayout>
 
         <LinearLayout
@@ -348,7 +348,7 @@
                 android:text="@string/dang_ky_mua_hang_chinh_hang"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textSize="@dimen/font_14" />
         </LinearLayout>
     </LinearLayout>
 

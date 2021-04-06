@@ -49,7 +49,7 @@
             android:includeFontPadding="false"
             android:singleLine="true"
             android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             tools:text="Công ty Cổ phần ViviDa" />
     </LinearLayout>
 
@@ -62,7 +62,7 @@
         android:fontFamily="@font/barlow_medium"
         android:singleLine="true"
         android:textColor="@color/white"
-        android:textSize="@dimen/font_size_4"
+        android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
         app:layout_constraintStart_toStartOf="@id/linearLayout"
         app:layout_constraintTop_toBottomOf="@id/linearLayout"
@@ -118,7 +118,7 @@
             android:textStyle="italic"
             android:includeFontPadding="false"
             android:textColor="#B4B4B4"
-            android:textSize="@dimen/font_size_4"
+            android:textSize="@dimen/font_14"
             android:text="Số điện thoại đang cập nhật" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -142,7 +142,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:includeFontPadding="false"
                 android:textColor="@color/darkGray1"
-                android:textSize="@dimen/font_size_4"
+                android:textSize="@dimen/font_14"
                 tools:text="MST: 5822948" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -155,7 +155,7 @@
                 android:textStyle="italic"
                 android:includeFontPadding="false"
                 android:textColor="#B4B4B4"
-                android:textSize="@dimen/font_size_4"
+                android:textSize="@dimen/font_14"
                 android:text="Đang cập nhật"/>
 
         </LinearLayout>

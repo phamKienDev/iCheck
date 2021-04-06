@@ -37,7 +37,7 @@
             android:singleLine="true"
             android:textColor="@color/collection_product_name"
             android:textColorHint="@color/darkGray2"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/tv_cancel"
             app:layout_constraintStart_toStartOf="parent"
@@ -63,7 +63,7 @@
             android:padding="@dimen/size_12"
             android:text="@string/huy"
             android:textColor="@color/red"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toBottomOf="@id/container_search"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/container_search" />
@@ -108,7 +108,7 @@
             android:includeFontPadding="false"
             android:text="@string/noi_dung_moi_tim_kiem"
             android:textColor="@color/blue"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             android:textStyle="normal"
             app:layout_constraintStart_toEndOf="@+id/img_clock_recent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -179,7 +179,7 @@
             android:includeFontPadding="false"
             android:text="@string/tim_kiem_pho_bien"
             android:textColor="@color/blue"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             android:textStyle="normal"
             app:layout_constraintStart_toEndOf="@+id/img_popular"
             app:layout_constraintTop_toTopOf="parent" />

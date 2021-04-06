@@ -36,7 +36,7 @@
             android:includeFontPadding="false"
             android:text="CHỦ NHẬT TUẦN NÀY: 21:00"
             android:textColor="@color/red"
-            android:textSize="12sp"
+            android:textSize="@dimen/font_12"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgCampaign" />
 
@@ -54,7 +54,7 @@
             android:maxLines="2"
             android:text="Scan Coca Cola nhận quà (tên 2 dòng).."
             android:textColor="@color/collection_product_name"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tvTimeStart"
             app:layout_constraintTop_toBottomOf="@+id/tvTimeStart" />
@@ -68,7 +68,7 @@
             android:includeFontPadding="false"
             android:text="Còn 29 ngày"
             android:textColor="@color/fast_survey_gray"
-            android:textSize="12sp"
+            android:textSize="@dimen/font_12"
             app:layout_constraintStart_toStartOf="@+id/tvName"
             app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
@@ -104,7 +104,7 @@
             android:paddingBottom="@dimen/size_4"
             android:text="@string/tham_gia"
             android:textColor="@color/white"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTimeLeft" />

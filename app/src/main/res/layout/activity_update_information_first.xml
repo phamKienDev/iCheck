@@ -30,7 +30,7 @@
             android:gravity="center"
             android:singleLine="true"
             android:textColor="@color/blue"
-            android:textSize="18sp"
+            android:textSize="@dimen/font_18"
             android:textStyle="normal"
             tools:text="Tiêu đề" />
 
@@ -63,7 +63,7 @@
                 android:gravity="center"
                 android:textAlignment="center"
                 android:textColor="#828282"
-                android:textSize="13sp"
+                android:textSize="@dimen/font_13"
                 android:textStyle="normal"
                 android:visibility="gone" />
 
@@ -79,7 +79,7 @@
                 android:gravity="center"
                 android:textAlignment="center"
                 android:textColor="#828282"
-                android:textSize="13sp"
+                android:textSize="@dimen/font_13"
                 android:textStyle="normal"
                 android:visibility="gone" />
 
@@ -87,7 +87,7 @@
                 android:id="@+id/tvLabelInforCustomer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_16"
                 android:paddingTop="8dp"
                 app:fontFamily="@font/roboto_bold"
                 android:paddingBottom="8dp"
@@ -103,7 +103,7 @@
                 android:layout_marginTop="@dimen/size_20"
                 android:fontFamily="sans-serif"
                 android:textColor="#434343"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
 
             <androidx.appcompat.widget.AppCompatEditText
@@ -121,7 +121,7 @@
                 android:paddingBottom="10dp"
                 android:textColor="#000000"
                 android:textColorHint="#b4b4b4"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -132,7 +132,7 @@
                 android:layout_marginTop="20dp"
                 android:fontFamily="sans-serif"
                 android:textColor="#434343"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
 
             <androidx.appcompat.widget.AppCompatEditText
@@ -149,7 +149,7 @@
                 android:paddingBottom="10dp"
                 android:textColor="#000000"
                 android:textColorHint="#b4b4b4"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -160,7 +160,7 @@
                 android:fontFamily="sans-serif"
                 android:text="Email"
                 android:textColor="#434343"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
 
             <androidx.appcompat.widget.AppCompatEditText
@@ -177,7 +177,7 @@
                 android:paddingBottom="10dp"
                 android:textColor="#000000"
                 android:textColorHint="#b4b4b4"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -192,7 +192,7 @@
                     android:fontFamily="sans-serif"
                     android:paddingStart="24dp"
                     android:textColor="#434343"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     android:textStyle="normal"
                     app:layout_constraintEnd_toStartOf="@+id/tvSubHuyen"
                     app:layout_constraintStart_toStartOf="parent"
@@ -220,7 +220,7 @@
                         android:layout_marginBottom="10dp"
                         android:fontFamily="sans-serif"
                         android:textColor="#434343"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/font_14"
                         android:textStyle="normal"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -244,7 +244,7 @@
                     android:fontFamily="sans-serif"
                     android:paddingStart="16dp"
                     android:textColor="#434343"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     android:textStyle="normal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tvSubTinhThanh"
@@ -272,7 +272,7 @@
                         android:layout_marginBottom="10dp"
                         android:fontFamily="sans-serif"
                         android:textColor="#434343"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/font_14"
                         android:textStyle="normal"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -299,7 +299,7 @@
                 android:layout_marginTop="20dp"
                 android:fontFamily="sans-serif"
                 android:textColor="#434343"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
 
             <androidx.appcompat.widget.AppCompatEditText
@@ -316,7 +316,7 @@
                 android:paddingBottom="10dp"
                 android:textColor="#000000"
                 android:textColorHint="#b4b4b4"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -327,7 +327,7 @@
                 android:layout_marginTop="20dp"
                 android:fontFamily="sans-serif"
                 android:textColor="#434343"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:visibility="gone"
                 android:textStyle="normal" />
 
@@ -345,7 +345,7 @@
                 android:paddingBottom="10dp"
                 android:textColor="#000000"
                 android:textColorHint="#b4b4b4"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:visibility="gone"
                 android:textStyle="normal" />
 
@@ -357,7 +357,7 @@
                 android:layout_marginTop="20dp"
                 android:fontFamily="sans-serif"
                 android:textColor="#434343"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:visibility="gone"
                 android:textStyle="normal" />
 
@@ -376,7 +376,7 @@
                 android:textColor="#000000"
                 android:focusable="false"
                 android:textColorHint="#b4b4b4"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:visibility="gone"
                 android:textStyle="normal" />
 
@@ -384,7 +384,7 @@
                 android:id="@+id/tvTitleField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_16"
                 android:layout_marginTop="12dp"
                 android:paddingTop="8dp"
                 android:visibility="gone"
@@ -411,7 +411,7 @@
                 android:background="@drawable/bg_blue_corners_40"
                 android:fontFamily="sans-serif-medium"
                 android:textColor="#ffffff"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_16"
                 android:textStyle="normal" />
 
         </LinearLayout>

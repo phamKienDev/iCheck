@@ -18,7 +18,7 @@
         android:fontFamily="@font/barlow_semi_bold"
         android:text="Thông tin thêm"
         android:textColor="#3C5A99"
-        android:textSize="18sp"
+        android:textSize="@dimen/font_18"
         app:layout_constraintEnd_toStartOf="@+id/btn_show_all"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

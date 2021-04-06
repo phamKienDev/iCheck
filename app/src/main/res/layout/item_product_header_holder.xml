@@ -31,7 +31,7 @@
         android:maxLines="2"
         android:minLines="2"
         android:textColor="#757575"
-        android:textSize="10sp"
+        android:textSize="@dimen/font_10"
         tools:text="iCheck" />
 
 </LinearLayout>

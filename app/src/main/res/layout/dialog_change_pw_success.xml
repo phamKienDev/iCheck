@@ -44,7 +44,7 @@
                 android:text="Bạn đã thay đổi mật khẩu thành công!"
                 android:textAlignment="center"
                 android:textColor="#212121"
-                android:textSize="16sp" />
+                android:textSize="@dimen/font_16" />
 
             <TextView
                 android:id="@+id/textView7"
@@ -78,7 +78,7 @@
                     android:padding="12dp"
                     android:text="Về trang chủ"
                     android:textColor="#057DDA"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/font_16" />
 
                 <TextView
                     android:id="@+id/btn_login"
@@ -91,7 +91,7 @@
                     android:padding="12dp"
                     android:text="Đăng nhập lại"
                     android:textColor="@android:color/white"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/font_16" />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

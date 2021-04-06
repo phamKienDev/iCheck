@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/tam_tinh"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="@dimen/font_16" />
 
             <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
                 android:id="@+id/tvPrice"
@@ -57,7 +57,7 @@
                 android:layout_marginTop="@dimen/size_4"
                 android:singleLine="true"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="@dimen/font_20"
                 tools:text="234,964,000 Xu" />
         </LinearLayout>
 

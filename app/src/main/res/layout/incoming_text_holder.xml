@@ -40,7 +40,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:textColor="#B4B4B4"
-        android:textSize="12sp"
+        android:textSize="@dimen/font_12"
         app:layout_constraintStart_toEndOf="@+id/user_avatar"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="5:30 PM" />

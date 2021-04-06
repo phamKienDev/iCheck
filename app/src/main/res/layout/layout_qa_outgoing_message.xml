@@ -19,7 +19,7 @@
         android:textColor="@color/lightBlue"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:maxLines="3"
         android:ellipsize="end"
         tools:text="Cho em hỏi sản phẩm còn hàng không ạ? Em rất muốn mua sản phẩm này (Tối đa 3 dòng thôi nhé)...mdsamd sadopaskdpsak skad kasdlk;salskd las;kdsa;ld kdls;a kd;sakd las;dk als;dkl;sa" />

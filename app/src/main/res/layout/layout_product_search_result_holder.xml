@@ -20,7 +20,7 @@
         android:text="@string/san_pham"
         android:visibility="gone"
         android:textColor="@color/blue"
-        android:textSize="16sp" />
+        android:textSize="@dimen/font_16" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_product_search"
@@ -42,6 +42,6 @@
         android:gravity="center_vertical"
         android:text="@string/xem_them"
         android:textColor="@color/lightBlue"
-        android:textSize="14sp" />
+        android:textSize="@dimen/font_14" />
 
 </LinearLayout>
