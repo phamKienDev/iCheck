@@ -39,7 +39,7 @@
                 android:layout_marginStart="@dimen/size_10"
                 android:orientation="vertical">
 
-                <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+                <vn.icheck.android.ui.view.TextBarlowMedium
                     android:id="@id/tvName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
                     android:textColor="#212121"
                     tools:text="Brightening Pore Facial Cleanser" />
 
-                <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+                <vn.icheck.android.ui.view.TextBarlowMedium
                     android:id="@id/tvNameBusiness"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

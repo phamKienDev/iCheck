@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+    <vn.icheck.android.ui.view.TextBarlowSemiBold
         android:id="@id/tvName"
         android:layout_width="@dimen/size_0"
         android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
         app:layout_constraintEnd_toEndOf="@id/tvName"
         app:layout_constraintStart_toStartOf="@id/tvName">
 
-        <vn.icheck.android.component.view.text_view.TextViewBarlowRegular
+        <vn.icheck.android.ui.view.TextBarlowRegular
             android:id="@id/tvOldPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
             android:textSize="@dimen/font_14"
             tools:text="Tiki.vn" />
 
-        <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+        <vn.icheck.android.ui.view.TextBarlowSemiBold
             android:id="@id/tvPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

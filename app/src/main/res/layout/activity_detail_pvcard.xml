@@ -170,7 +170,7 @@
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@id/viewWhite">
 
-                <vn.icheck.android.ui.view.HeightWrappingViewPager
+                <vn.icheck.android.ui.layout.HeightWrappingViewPager
                     android:id="@+id/viewPager"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />

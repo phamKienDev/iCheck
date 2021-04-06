@@ -10,7 +10,7 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.adapters.base.BaseHolder
 import vn.icheck.android.component.view.ViewHelper
-import vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+import vn.icheck.android.ui.view.TextBarlowSemiBold
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.loyalty.base.setGone
@@ -26,7 +26,7 @@ class ProductDetailShopHolder(parent: View) : BaseHolder(ViewHelper.createProduc
                 removeViewAt(i)
             }
 
-            (getChildAt(0) as TextViewBarlowSemiBold).apply {
+            (getChildAt(0) as TextBarlowSemiBold).apply {
                 text = if (obj.listShop.size > 0) {
                     context.getString(R.string.diem_ban_gan_day_xxx, obj.listShop.size)
                 } else {
@@ -51,7 +51,7 @@ class ProductDetailShopHolder(parent: View) : BaseHolder(ViewHelper.createProduc
                     layoutMoreShop.gravity = Gravity.CENTER
                     layoutMoreShop.background = ContextCompat.getDrawable(context, R.drawable.bg_corners_4_light_blue_no_solid)
 
-                    layoutMoreShop.addView(TextViewBarlowSemiBold(context).also { text ->
+                    layoutMoreShop.addView(TextBarlowSemiBold(context).also { text ->
                         text.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
                         text.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
                         text.setTextColor(ContextCompat.getColor(context, R.color.lightBlue))

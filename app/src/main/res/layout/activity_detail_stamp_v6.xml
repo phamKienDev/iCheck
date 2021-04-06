@@ -694,7 +694,7 @@
                     android:visibility="gone"
                     tools:visibility="visible">
 
-                    <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+                    <vn.icheck.android.ui.view.TextBarlowSemiBold
                         android:id="@id/tvTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -704,7 +704,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+                    <vn.icheck.android.ui.view.TextBarlowSemiBold
                         android:id="@id/tvViewMore"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

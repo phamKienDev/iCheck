@@ -130,7 +130,7 @@
                     android:textSize="@dimen/font_14"
                     android:drawableRight="@drawable/ic_phonebook_24px" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ui.view.TextBarlowMedium
                     android:id="@id/tv1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

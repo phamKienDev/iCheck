@@ -26,7 +26,7 @@
             android:paddingStart="@dimen/size_12"
             android:paddingEnd="@dimen/size_12">
 
-            <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+            <vn.icheck.android.ui.view.TextBarlowSemiBold
                 android:layout_width="@dimen/size_0"
                 android:layout_height="wrap_content"
                 android:text="@string/so_du_ví"
@@ -37,7 +37,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tvMoney" />
 
-            <vn.icheck.android.component.view.text_view.CheckedTextViewBarlowMedium
+            <vn.icheck.android.ui.view.CheckedTextBarlowMedium
                 android:id="@id/tvMoney"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
                 android:background="@color/gray"
                 app:layout_constraintTop_toBottomOf="@id/tvMoney" />
 
-            <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+            <vn.icheck.android.ui.view.TextBarlowMedium
                 android:id="@id/tvRecharge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/viewLine" />
 
-            <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+            <vn.icheck.android.ui.view.TextBarlowMedium
                 android:id="@id/tvInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -100,7 +100,7 @@
                 app:layout_constraintStart_toEndOf="@id/tvRecharge"
                 app:layout_constraintTop_toBottomOf="@id/viewLine" />
 
-            <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+            <vn.icheck.android.ui.view.TextBarlowMedium
                 android:id="@id/tvTransaction"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

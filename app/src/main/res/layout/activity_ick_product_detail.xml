@@ -71,7 +71,7 @@
             android:padding="@dimen/size_10"
             android:src="@drawable/ic_back_blue_v2_24px" />
 
-        <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+        <vn.icheck.android.ui.view.TextBarlowSemiBold
             android:id="@id/txtTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

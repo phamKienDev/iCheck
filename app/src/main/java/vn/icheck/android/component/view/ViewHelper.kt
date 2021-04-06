@@ -50,12 +50,12 @@ import vn.icheck.android.component.avatar_user.AvatarUserComponent
 import vn.icheck.android.component.image.LayoutImageInPostComponent
 import vn.icheck.android.component.postofuser.ProductInFeedComponent
 import vn.icheck.android.component.rating_star.RatingStarComponent
-import vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
-import vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+import vn.icheck.android.ui.view.TextBarlowSemiBold
+import vn.icheck.android.ui.view.TextBarlowMedium
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ui.colorcardview.ColorCardView
 import vn.icheck.android.ui.layout.CustomGridLayoutManager
-import vn.icheck.android.ui.view.HeightWrappingViewPager
+import vn.icheck.android.ui.layout.HeightWrappingViewPager
 import vn.icheck.android.ui.view.SquareImageView
 import vn.icheck.android.util.kotlin.WidgetUtils
 import kotlin.math.abs
@@ -587,7 +587,7 @@ object ViewHelper {
         layoutParent.addView(imgProduct)
 
         //TextView Name Product
-        val tvName = TextViewBarlowMedium(context)
+        val tvName = TextBarlowMedium(context)
         val productNameParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT).also {
             it.topMargin = SizeHelper.size4
         }
@@ -613,7 +613,7 @@ object ViewHelper {
         val ratingBar = LayoutInflater.from(context).inflate(R.layout.item_product_rating_bar_new, layoutParent, false)
         ratingLayout.addView(ratingBar)
 
-        val tvPoint = TextViewBarlowMedium(context).also {
+        val tvPoint = TextBarlowMedium(context).also {
             it.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).also {
                 it.setMargins(SizeHelper.size6, 0, SizeHelper.size6, 0)
             }
@@ -624,7 +624,7 @@ object ViewHelper {
             it.ellipsize = TextUtils.TruncateAt.END
         }
         ratingLayout.addView(tvPoint)
-        val tvReviewCount = TextViewBarlowMedium(context).also {
+        val tvReviewCount = TextBarlowMedium(context).also {
             it.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
             it.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
             it.setTextColor(ContextCompat.getColor(context, R.color.black_15))
@@ -637,7 +637,7 @@ object ViewHelper {
         layoutParent.addView(ratingLayout)
 
         //TextView Price
-        val tvPrice = TextViewBarlowSemiBold(context)
+        val tvPrice = TextBarlowSemiBold(context)
         tvPrice.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1f).also {
             it.topMargin = SizeHelper.size4
         }
@@ -651,7 +651,7 @@ object ViewHelper {
 
         //TextView Verified
 
-        val tvVerified = TextViewBarlowMedium(context)
+        val tvVerified = TextBarlowMedium(context)
         tvVerified.layoutParams = createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).also {
             it.topMargin = SizeHelper.size2
         }
@@ -874,7 +874,7 @@ object ViewHelper {
         imgNews.scaleType = ImageView.ScaleType.CENTER_CROP
         layoutContent.addView(imgNews)
 
-        val tvTitle = TextViewBarlowMedium(context)
+        val tvTitle = TextBarlowMedium(context)
         val titleParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
         titleParams.setMargins(SizeHelper.size12, SizeHelper.size8, SizeHelper.size12, SizeHelper.size12)
         tvTitle.layoutParams = titleParams
@@ -1269,7 +1269,7 @@ object ViewHelper {
             it.setBackgroundColor(Color.WHITE)
         }
 
-        val tvTitle = TextViewBarlowSemiBold(context)
+        val tvTitle = TextBarlowSemiBold(context)
         tvTitle.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT).also {
             it.bottomMargin = SizeHelper.size5
         }
@@ -1290,7 +1290,7 @@ object ViewHelper {
             it.setBackgroundColor(ContextCompat.getColor(context, R.color.darkGray6))
         }
 
-        val title = TextViewBarlowSemiBold(context)
+        val title = TextBarlowSemiBold(context)
         title.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
         title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
         title.setTextColor(ContextCompat.getColor(context, R.color.blue))
@@ -1337,7 +1337,7 @@ object ViewHelper {
                 layoutTitle.orientation = LinearLayout.HORIZONTAL
                 layoutTitle.gravity = Gravity.CENTER_VERTICAL
 
-                layoutTitle.addView(TextViewBarlowSemiBold(context).also { title ->
+                layoutTitle.addView(TextBarlowSemiBold(context).also { title ->
                     title.layoutParams = createLayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
                     title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
                     title.setTextColor(ContextCompat.getColor(context, R.color.blue))
@@ -1345,7 +1345,7 @@ object ViewHelper {
                     title.text = "Hình ảnh"
                 })
 
-                layoutTitle.addView(TextViewBarlowSemiBold(context).also { tvMore ->
+                layoutTitle.addView(TextBarlowSemiBold(context).also { tvMore ->
                     tvMore.layoutParams = createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
                     tvMore.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
                     tvMore.setTextColor(ContextCompat.getColor(context, R.color.blue))
@@ -1373,7 +1373,7 @@ object ViewHelper {
                 layoutTitle.gravity = Gravity.CENTER_HORIZONTAL
                 layoutTitle.orientation = LinearLayout.HORIZONTAL
 
-                layoutTitle.addView(TextViewBarlowSemiBold(context).also { title ->
+                layoutTitle.addView(TextBarlowSemiBold(context).also { title ->
                     title.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f))
                     title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
                     title.setTextColor(ContextCompat.getColor(context, R.color.blue))
@@ -1404,7 +1404,7 @@ object ViewHelper {
             image.layoutParams = createLayoutParams(SizeHelper.size64, SizeHelper.size64)
         })
 
-        layoutParent.addView(TextViewBarlowMedium(context).also { title ->
+        layoutParent.addView(TextBarlowMedium(context).also { title ->
             title.layoutParams = createLayoutParams(SizeHelper.size64, LinearLayout.LayoutParams.WRAP_CONTENT, 0, SizeHelper.size10, 0, 0)
             title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
             title.setTextColor(ContextCompat.getColor(context, R.color.collection_product_name))

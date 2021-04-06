@@ -17,7 +17,7 @@
         android:layout_marginEnd="@dimen/size_12"
         android:background="@drawable/bg_border_gray_4dp_item_shop_variant">
 
-        <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+        <vn.icheck.android.ui.view.TextBarlowSemiBold
             android:id="@+id/tv_shop_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Công ty TNHH Kính Mắt Quang Hưng" />
 
-        <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+        <vn.icheck.android.ui.view.TextBarlowMedium
             android:id="@+id/tv_distance"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -96,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+                <vn.icheck.android.ui.view.TextBarlowSemiBold
                     android:id="@+id/tv_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -105,7 +105,7 @@
                     android:textSize="@dimen/font_16"
                     tools:text="23,004,000đ" />
 
-                <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+                <vn.icheck.android.ui.view.TextBarlowMedium
                     android:id="@+id/tv_sale_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -126,7 +126,7 @@
                 android:gravity="center"
                 android:visibility="gone">
 
-                <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+                <vn.icheck.android.ui.view.TextBarlowSemiBold
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:drawableStart="@drawable/ic_location_item_shop_variant"
@@ -148,7 +148,7 @@
                 android:layout_marginEnd="@dimen/size_10"
                 android:visibility="gone" >
 
-                <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+                <vn.icheck.android.ui.view.TextBarlowSemiBold
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:background="@drawable/bg_corners_4_light_blue_no_solid"
@@ -169,7 +169,7 @@
                 android:gravity="center"
                 android:visibility="gone">
 
-                <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+                <vn.icheck.android.ui.view.TextBarlowSemiBold
                     android:id="@+id/tvSubAddToCart"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -195,7 +195,7 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+        <vn.icheck.android.ui.view.TextBarlowSemiBold
             android:id="@+id/tv_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -205,7 +205,7 @@
             android:textStyle="bold"
             tools:text="4,3" />
 
-        <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+        <vn.icheck.android.ui.view.TextBarlowSemiBold
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_6"

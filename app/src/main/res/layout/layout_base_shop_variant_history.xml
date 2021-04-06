@@ -7,7 +7,7 @@
     android:layout_marginTop="@dimen/size_4"
     android:orientation="vertical">
 
-    <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+    <vn.icheck.android.ui.view.TextBarlowSemiBold
         android:id="@+id/tvTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+            <vn.icheck.android.ui.view.TextBarlowSemiBold
                 android:id="@+id/tvNameProduct"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -110,7 +110,7 @@
                     android:drawableLeft="@drawable/ic_barcode_dark_gray_3_18px"
                     android:paddingTop="@dimen/size_2" />
 
-                <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+                <vn.icheck.android.ui.view.TextBarlowMedium
                     android:id="@+id/tvBarcodeProduct"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -148,7 +148,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+                <vn.icheck.android.ui.view.TextBarlowSemiBold
                     android:id="@+id/tvCountRating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -214,7 +214,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+                    <vn.icheck.android.ui.view.TextBarlowSemiBold
                         android:id="@+id/tvPriceProduct"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -222,7 +222,7 @@
                         android:textSize="@dimen/font_16"
                         tools:text="23,004,000đ" />
 
-                    <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+                    <vn.icheck.android.ui.view.TextBarlowMedium
                         android:id="@+id/tvPriceSale"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -242,7 +242,7 @@
                     android:gravity="center"
                     android:visibility="visible">
 
-                    <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+                    <vn.icheck.android.ui.view.TextBarlowSemiBold
                         android:id="@+id/tvSubAddToCart"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"

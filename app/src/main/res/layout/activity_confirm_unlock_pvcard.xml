@@ -53,7 +53,7 @@
                 android:textColor="#212121"
                 android:textSize="@dimen/font_20" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ui.view.TextBarlowMedium
                 android:id="@+id/tvOtpToPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -61,7 +61,6 @@
                 android:layout_marginTop="@dimen/size_10"
                 android:layout_marginStart="@dimen/size_63"
                 android:layout_marginEnd="@dimen/size_63"
-                android:fontFamily="@font/barlow_medium"
                 android:gravity="center"
                 android:lineSpacingExtra="@dimen/font_6"
                 android:textColor="#757575"

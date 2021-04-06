@@ -42,7 +42,7 @@
             app:layout_constraintTop_toTopOf="@id/imgBackground"
             app:layout_constraintWidth_percent="0.877">
 
-            <vn.icheck.android.component.view.text_view.AutoResizeTextView
+            <vn.icheck.android.ui.view.AutoResizeTextView
                 android:id="@id/tvMoney"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/size_0"
@@ -68,7 +68,7 @@
                 app:layout_constraintHeight_percent="0.068"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <vn.icheck.android.component.view.text_view.AutoResizeTextView
+            <vn.icheck.android.ui.view.AutoResizeTextView
                 android:id="@+id/tvCardNumber"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_0"
@@ -91,7 +91,7 @@
                 app:layout_constraintHeight_percent="0.045"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <vn.icheck.android.component.view.text_view.AutoResizeTextView
+            <vn.icheck.android.ui.view.AutoResizeTextView
                 android:id="@+id/tvDateEnd"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_0"
@@ -103,7 +103,7 @@
                 app:layout_constraintStart_toStartOf="@+id/tvName"
                 tools:text="10/24" />
 
-            <vn.icheck.android.component.view.text_view.AutoResizeTextView
+            <vn.icheck.android.ui.view.AutoResizeTextView
                 android:id="@+id/tvCCV"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_0"
@@ -125,7 +125,7 @@
                 app:layout_constraintHeight_percent="0.07"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <vn.icheck.android.component.view.text_view.AutoResizeTextView
+            <vn.icheck.android.ui.view.AutoResizeTextView
                 android:id="@+id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/size_0"

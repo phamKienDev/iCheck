@@ -104,7 +104,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ui.view.TextBarlowMedium
                     android:id="@+id/tvSubCountGift"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -114,7 +114,6 @@
                     android:layout_marginBottom="@dimen/size_19"
                     android:drawableStart="@drawable/ic_gift_box_v2"
                     android:drawablePadding="@dimen/size_6"
-                    android:fontFamily="@font/barlow_medium"
                     android:gravity="center_vertical"
                     android:text="Bạn có "
                     android:textColor="#212121"
@@ -136,10 +135,9 @@
                     app:layout_constraintStart_toEndOf="@+id/tvSubCountGift"
                     app:layout_constraintTop_toTopOf="@+id/tvSubCountGift" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ui.view.TextBarlowMedium
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:fontFamily="@font/barlow_medium"
                     android:gravity="center_vertical"
                     android:text=" lượt mở quà "
                     android:textColor="#212121"

@@ -27,7 +27,7 @@
         app:layout_constraintEnd_toEndOf="@+id/img_logo_page"
         app:srcCompat="@drawable/ic_verified_24px" />
 
-    <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+    <vn.icheck.android.ui.view.TextBarlowMedium
         android:id="@+id/tv_name_page"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
         app:layout_constraintTop_toBottomOf="@+id/img_logo_page"
         tools:text="Công ty sữa Việt..." />
 
-    <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+    <vn.icheck.android.ui.view.TextBarlowMedium
         android:id="@+id/tv_number_follow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -55,11 +55,10 @@
                     android:textColor="@color/black_21_v2"
                     android:textSize="@dimen/font_14" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ui.view.TextBarlowMedium
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_10"
-                    android:fontFamily="@font/barlow_medium"
                     android:gravity="center"
                     android:includeFontPadding="false"
                     android:lineHeight="@dimen/size_20"

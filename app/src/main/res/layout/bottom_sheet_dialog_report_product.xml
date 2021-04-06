@@ -13,7 +13,7 @@
         android:layout_marginTop="31.8dp"
         app:srcCompat="@drawable/ic_feed_report_success" />
 
-    <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+    <vn.icheck.android.ui.view.TextBarlowSemiBold
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="18.6dp"
@@ -22,7 +22,7 @@
         android:textColor="#212121"
         android:textSize="@dimen/font_16" />
 
-    <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+    <vn.icheck.android.ui.view.TextBarlowMedium
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_63"
@@ -42,7 +42,7 @@
         android:layout_marginEnd="@dimen/size_12"
         android:background="#d8d8d8" />
 
-    <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+    <vn.icheck.android.ui.view.TextBarlowMedium
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"

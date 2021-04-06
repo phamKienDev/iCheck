@@ -40,7 +40,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/imgType">
 
-        <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+        <vn.icheck.android.ui.view.TextBarlowSemiBold
             android:id="@+id/tvNameType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -49,7 +49,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             tools:text="iCheck Xu"/>
 
-        <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+        <vn.icheck.android.ui.view.TextBarlowMedium
             android:id="@id/tvValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

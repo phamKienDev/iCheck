@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+    <vn.icheck.android.ui.view.TextBarlowSemiBold
         android:id="@+id/tvTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+        <vn.icheck.android.ui.view.TextBarlowSemiBold
             android:id="@+id/tvNameProduct"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
             app:layout_constraintStart_toEndOf="@+id/imgAvaProduct"
             app:layout_constraintTop_toTopOf="@+id/imgAvaProduct" />
 
-        <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+        <vn.icheck.android.ui.view.TextBarlowMedium
             android:id="@+id/tvBarcodeProduct"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -92,7 +92,7 @@
             app:layout_constraintStart_toStartOf="@id/tvNameProduct"
             app:layout_constraintTop_toBottomOf="@id/tvBarcodeProduct" />
 
-        <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+        <vn.icheck.android.ui.view.TextBarlowSemiBold
             android:id="@+id/tvCountRating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

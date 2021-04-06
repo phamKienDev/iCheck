@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/ic_circle_avatar_default" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ui.view.TextBarlowMedium
         android:id="@id/tvName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -27,7 +27,6 @@
         android:layout_marginStart="@dimen/size_8"
         android:layout_marginLeft="@dimen/size_8"
         android:ellipsize="end"
-        android:fontFamily="@font/barlow_medium"
         android:includeFontPadding="false"
         android:lineSpacingExtra="@dimen/font_14"
         android:singleLine="true"

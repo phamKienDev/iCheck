@@ -48,7 +48,7 @@
             android:visibility="invisible"
             android:text="Tên đang cập nhật" />
 
-        <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+        <vn.icheck.android.ui.view.TextBarlowSemiBold
             android:id="@+id/tvNameProduct"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

@@ -177,7 +177,7 @@
 
         </LinearLayout>
 
-        <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+        <vn.icheck.android.ui.view.TextBarlowMedium
             android:id="@id/tvBarcode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
