@@ -17,7 +17,7 @@ interface MCNetworkApi {
     @Headers("multipart: true")
     @Multipart
     @POST
-    fun uploadImage(@Url url: String, @Part body: MultipartBody.Part): Call<MCResponse<MCUploadResponse>>
+    suspend fun uploadImage(@Url url: String, @Part body: MultipartBody.Part): MCResponse<MCUploadResponse>
 
     @GET
     suspend fun getPackageSticker(@Url url: String): MCResponse<MCListResponse<MCSticker>>

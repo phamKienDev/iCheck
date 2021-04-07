@@ -2,6 +2,7 @@ package vn.icheck.android.screen.user.edit_review
 
 import android.Manifest
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -16,11 +17,12 @@ import vn.icheck.android.base.model.ICError
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.component.list_image_send.ListImageSendAdapter
 import vn.icheck.android.component.review.ReviewBottomSheetAdapter
-import vn.icheck.android.component.take_media.TakeMediaDialog
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
+import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.network.models.ICCriteriaReview
 import vn.icheck.android.network.models.ICPost
 import vn.icheck.android.network.models.ICReqCriteriaReview
@@ -81,13 +83,19 @@ class EditReviewActivity : BaseActivityMVVM() {
     }
 
     private fun takeImage() {
-        TakeMediaDialog.show(supportFragmentManager, object : TakeMediaDialog.TakeImageListener {
+        TakeMediaDialog.show(supportFragmentManager,this, object : TakeMediaListener {
             override fun onPickMediaSucess(file: File) {
                 listImageAdapter.addItem(file)
             }
 
             override fun onPickMuliMediaSucess(file: MutableList<File>) {
                 listImageAdapter.addData(file)
+            }
+
+            override fun onStartCrop(filePath: String?, uri: Uri?, ratio: String?, requestCode: Int?) {
+            }
+
+            override fun onDismiss() {
             }
 
             override fun onTakeMediaSuccess(file: File?) {

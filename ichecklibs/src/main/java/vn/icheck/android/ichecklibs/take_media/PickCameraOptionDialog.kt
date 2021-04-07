@@ -1,16 +1,15 @@
-package vn.icheck.android.chat.icheckchat.dialog
+package vn.icheck.android.ichecklibs.take_media
 
 import android.content.Context
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import kotlinx.android.synthetic.main.dialog_pick_photo_option_chat.*
-import vn.icheck.android.chat.icheckchat.R
+import kotlinx.android.synthetic.main.dialog_pick_photo_option.*
+import vn.icheck.android.ichecklibs.R
 
-abstract class PickPhotoOptionDialogChat(val context: Context) {
-
+abstract class PickCameraOptionDialog(val context: Context) {
     fun show() {
         val dialog = BottomSheetDialog(context, R.style.BottomSheetDialogTheme)
 
-        dialog.setContentView(R.layout.dialog_pick_photo_option_chat)
+        dialog.setContentView(R.layout.dialog_pick_photo_option)
         dialog.setCancelable(true)
         dialog.setCanceledOnTouchOutside(true)
 
