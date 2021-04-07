@@ -24,16 +24,14 @@
             android:scaleType="centerInside"
             app:srcCompat="@drawable/ic_cancel_blue_24px" />
 
-        <TextView
+        <vn.icheck.android.ui.view.TextHeader
             android:id="@+id/textView57"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:text="Thông tin thêm"
-            android:textColor="#057DDA"
-            android:textSize="@dimen/font_18" />
+            android:textColor="#057DDA" />
 
         <ImageView
             android:id="@+id/img_product"

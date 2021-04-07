@@ -22,16 +22,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
+        <vn.icheck.android.ui.view.TextHeader
             android:id="@+id/textView89"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_72"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:text="Tiếp nhận thông tin thành công"
-            android:textColor="#212121"
-            android:textSize="@dimen/font_18" />
+            android:textColor="#212121" />
 
         <TextView
             android:id="@+id/textView90"

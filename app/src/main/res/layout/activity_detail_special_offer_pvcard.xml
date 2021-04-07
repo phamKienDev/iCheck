@@ -21,16 +21,14 @@
             android:background="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ui.view.TextHeader
             android:id="@id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:singleLine="true"
             android:text="Chương trình ưu đãi"
-            android:textColor="@color/lightBlue"
-            android:textSize="@dimen/font_18" />
+            android:textColor="@color/lightBlue" />
     </FrameLayout>
 
     <WebView

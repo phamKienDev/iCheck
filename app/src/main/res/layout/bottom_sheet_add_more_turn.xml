@@ -23,14 +23,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ui.view.TextHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:text="Thử thách nhận thêm lượt mở quà"
             android:textColor="#057dda"
-            android:textSize="@dimen/font_18"
             app:layout_constraintBottom_toBottomOf="@id/imgCancel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

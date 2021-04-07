@@ -25,16 +25,14 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ui.view.TextHeader
             android:id="@id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_44"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:text="Giao dịch thành công"
             android:textColor="#057dda"
-            android:textSize="@dimen/font_18"
             android:textStyle="normal"
             app:layout_constraintTop_toTopOf="parent" />
 

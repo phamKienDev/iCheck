@@ -36,15 +36,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/viewBow">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ui.view.TextHeader
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/size_12"
-            android:fontFamily="@font/barlow_semi_bold"
             android:text="Chúc mừng bạn!"
-            android:textColor="#ff0000"
-            android:textSize="@dimen/font_18" />
+            android:textColor="#ff0000" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

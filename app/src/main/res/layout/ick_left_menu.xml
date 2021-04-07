@@ -518,14 +518,12 @@
                 app:layout_constraintStart_toStartOf="@+id/imgAvatar"
                 app:srcCompat="@drawable/ic_leftmenu_avatar_standard_36dp" />
 
-            <TextView
+            <vn.icheck.android.ui.view.TextTitle
                 android:id="@+id/tv_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/barlow_medium"
                 android:gravity="center"
                 android:textColor="#3C5A99"
-                android:textSize="@dimen/font_20"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imgAvatar"

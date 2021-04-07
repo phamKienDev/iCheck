@@ -23,18 +23,16 @@
             android:background="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_back_blue_24px_new" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ui.view.TextHeader
             android:id="@+id/tvNameProduct"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:singleLine="true"
             android:text="@string/chi_tiet_bai_viet"
-            android:textColor="#057dda"
-            android:textSize="@dimen/font_18" />
+            android:textColor="#057dda" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imgAction"

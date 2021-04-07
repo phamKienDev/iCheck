@@ -88,15 +88,13 @@
             app:layout_constraintStart_toStartOf="@+id/tv_nation"
             app:layout_constraintTop_toBottomOf="@+id/tv_nation" />
 
-        <TextView
+        <vn.icheck.android.ui.view.TextTitle
             android:id="@+id/tv_phone_head"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_16"
-            android:fontFamily="@font/barlow_medium"
             android:text="+84"
             android:textColor="#757575"
-            android:textSize="@dimen/font_20"
             app:layout_constraintStart_toStartOf="@+id/divider18"
             app:layout_constraintTop_toBottomOf="@+id/divider18" />
 
@@ -110,7 +108,7 @@
             app:layout_constraintStart_toStartOf="@+id/tv_phone_head"
             app:layout_constraintTop_toBottomOf="@+id/tv_phone_head" />
 
-        <EditText
+        <vn.icheck.android.ui.view.EditTextTitle
             android:id="@+id/edt_phone"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -119,13 +117,11 @@
             android:layout_marginTop="@dimen/size_16"
             android:background="@null"
             android:digits="0123456789"
-            android:fontFamily="@font/barlow_medium"
             android:hint="Nhập số điện thoại"
             android:imeOptions="actionSend"
             android:inputType="phone"
             android:paddingBottom="@dimen/size_10"
             android:textColor="#B4B4B4"
-            android:textSize="@dimen/font_20"
             app:layout_constraintBottom_toBottomOf="@+id/tv_phone_head"
             app:layout_constraintEnd_toStartOf="@+id/img_clear"
             app:layout_constraintStart_toEndOf="@+id/tv_phone_head"
