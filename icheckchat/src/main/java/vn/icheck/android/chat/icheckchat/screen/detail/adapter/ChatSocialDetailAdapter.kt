@@ -10,9 +10,7 @@ import android.graphics.Paint
 import android.net.Uri
 import android.view.Gravity
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -30,11 +28,9 @@ import vn.icheck.android.chat.icheckchat.databinding.ItemReceiverBinding
 import vn.icheck.android.chat.icheckchat.databinding.ItemSenderBinding
 import vn.icheck.android.chat.icheckchat.helper.NetworkHelper
 import vn.icheck.android.chat.icheckchat.model.MCDetailMessage
-import vn.icheck.android.chat.icheckchat.model.MCMedia
 import vn.icheck.android.chat.icheckchat.model.MCMessageEvent
 import vn.icheck.android.chat.icheckchat.model.MCStatus
 import vn.icheck.android.chat.icheckchat.screen.detail_image.ImageDetailActivity
-import java.io.File
 
 class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val listData = mutableListOf<MCDetailMessage>()
@@ -62,8 +58,8 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
         list.reverse()
         if (isLoadMoreEnable) {
             isLoadMore = list.size >= NetworkHelper.LIMIT
-            for (i in listData.size - 1 downTo 0){
-                if (listData[i].senderId == null){
+            for (i in listData.size - 1 downTo 0) {
+                if (listData[i].senderId == null) {
                     listData.removeAt(i)
                 }
             }
@@ -148,7 +144,8 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
         @SuppressLint("RtlHardcoded")
         override fun bind(obj: MCDetailMessage) {
             binding.layoutImageDetail.root.gravity = Gravity.RIGHT
-            setGoneView(binding.layoutProduct, binding.layoutImageDetail.root, binding.tvMessage, binding.layoutImageDetail.imgView, binding.layoutImageDetail.layoutOneImage, binding.layoutImageDetail.layoutTwoImage, binding.layoutImageDetail.layoutImage, binding.layoutImageDetail.tvCountImage, binding.layoutImageDetail.tvCountImage1)
+
+            setGoneView(binding.layoutProduct, binding.tvMessage, binding.layoutImageDetail.layoutOneImage, binding.layoutImageDetail.recyclerView, binding.layoutImageDetail.imgView)
 
             setUpContentAndLink(binding.tvMessage, obj, itemView.context)
             setupProduct(obj)
@@ -190,8 +187,6 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
 
         private fun setupStickers(obj: MCDetailMessage) {
             if (!obj.sticker.isNullOrEmpty()) {
-                binding.layoutImageDetail.root.setVisible()
-
                 binding.layoutImageDetail.layoutOneImage.setVisible()
 
                 loadImageUrlRounded(binding.layoutImageDetail.img, obj.sticker, R.drawable.ic_default_image_upload_150_chat, dpToPx(10))
@@ -235,57 +230,53 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
 
         private fun setupMediaUrl(obj: MCDetailMessage) {
             if (!obj.listMedia.isNullOrEmpty()) {
-                binding.layoutImageDetail.root.setVisible()
 
-                when (obj.listMedia!!.size) {
-                    1 -> {
-                        binding.layoutImageDetail.layoutOneImage.setVisible()
+                if (obj.listMedia!!.size == 1) {
+                    binding.layoutImageDetail.layoutOneImage.setVisible()
 
-                        loadImageUrlRounded(binding.layoutImageDetail.img, obj.listMedia!![0].content, R.drawable.ic_default_image_upload_150_chat, dpToPx(10))
+                    loadImageUrlRounded(binding.layoutImageDetail.img, obj.listMedia!![0].content, R.drawable.ic_default_image_upload_150_chat, dpToPx(10))
 
-                        binding.layoutImageDetail.imgView.visibleOrGone(obj.listMedia!![0].type?.contains("video") == true)
+                    binding.layoutImageDetail.imgView.visibleOrGone(obj.listMedia!![0].type?.contains("video") == true)
+                } else {
+                    binding.layoutImageDetail.recyclerView.setVisible()
+
+                    val listAny = mutableListOf<Any>()
+
+                    for (item in obj.listMedia!!) {
+                        listAny.add(item)
                     }
-                    2 -> {
-                        setUpImageUrl(obj, binding.layoutImageDetail.layoutTwoImage, binding.layoutImageDetail.img1, binding.layoutImageDetail.imgView1, binding.layoutImageDetail.img2, binding.layoutImageDetail.imgView2, binding.layoutImageDetail.tvCountImage)
-                    }
-                    3 -> {
-                        setUpImageUrl(obj, binding.layoutImageDetail.layoutTwoImage, binding.layoutImageDetail.img1, binding.layoutImageDetail.imgView1, binding.layoutImageDetail.img2, binding.layoutImageDetail.imgView2, binding.layoutImageDetail.tvCountImage)
-                    }
-                    else -> {
-                        setUpImageElseUrl(obj, binding.layoutImageDetail.layoutTwoImage, binding.layoutImageDetail.layoutImage, binding.layoutImageDetail.img1, binding.layoutImageDetail.imgView1, binding.layoutImageDetail.img2, binding.layoutImageDetail.imgView2, binding.layoutImageDetail.img3, binding.layoutImageDetail.imgView3, binding.layoutImageDetail.img4, binding.layoutImageDetail.imgView4, binding.layoutImageDetail.tvCountImage1)
-                    }
+
+                    binding.layoutImageDetail.recyclerView.adapter = ImageMessageAdapter(listAny)
                 }
             }
         }
 
         private fun setupMediaFile(obj: MCDetailMessage) {
             if (!obj.listMediaFile.isNullOrEmpty()) {
-                binding.layoutImageDetail.root.setVisible()
 
-                when (obj.listMediaFile!!.size) {
-                    1 -> {
-                        binding.layoutImageDetail.layoutOneImage.setVisible()
+                if (obj.listMediaFile!!.size == 1) {
+                    binding.layoutImageDetail.layoutOneImage.setVisible()
 
-                        loadImageFileRounded(binding.layoutImageDetail.img, obj.listMediaFile!![0], R.drawable.ic_default_image_upload_150_chat, dpToPx(10))
+                    loadImageFileRounded(binding.layoutImageDetail.img, obj.listMediaFile!![0], R.drawable.ic_default_image_upload_150_chat, dpToPx(10))
 
-                        binding.layoutImageDetail.imgView.visibleOrGone(obj.listMediaFile!![0].absolutePath.contains(".mp4"))
+                    binding.layoutImageDetail.imgView.visibleOrGone(obj.listMediaFile!![0].absolutePath.contains(".mp4"))
+                } else {
+                    binding.layoutImageDetail.recyclerView.setVisible()
+
+                    val listAny = mutableListOf<Any>()
+
+                    for (item in obj.listMediaFile!!) {
+                        listAny.add(item)
                     }
-                    2 -> {
-                        setUpImageFile(obj, binding.layoutImageDetail.layoutTwoImage, binding.layoutImageDetail.img1, binding.layoutImageDetail.imgView1, binding.layoutImageDetail.img2, binding.layoutImageDetail.imgView2, binding.layoutImageDetail.tvCountImage)
-                    }
-                    3 -> {
-                        setUpImageFile(obj, binding.layoutImageDetail.layoutTwoImage, binding.layoutImageDetail.img1, binding.layoutImageDetail.imgView1, binding.layoutImageDetail.img2, binding.layoutImageDetail.imgView2, binding.layoutImageDetail.tvCountImage)
-                    }
-                    else -> {
-                        setUpImageElseUrlFile(obj, binding.layoutImageDetail.layoutTwoImage, binding.layoutImageDetail.layoutImage, binding.layoutImageDetail.img1, binding.layoutImageDetail.imgView1, binding.layoutImageDetail.img2, binding.layoutImageDetail.imgView2, binding.layoutImageDetail.img3, binding.layoutImageDetail.imgView3, binding.layoutImageDetail.img4, binding.layoutImageDetail.imgView4, binding.layoutImageDetail.tvCountImage1)
-                    }
+
+                    binding.layoutImageDetail.recyclerView.adapter = ImageMessageAdapter(listAny)
                 }
             }
 
         }
 
         private fun initClick(obj: MCDetailMessage) {
-            binding.layoutImageDetail.root.setOnClickListener {
+            binding.layoutImageDetail.layoutOneImage.setOnClickListener {
                 obj.listMedia?.let { it1 -> ImageDetailActivity.startImageDetail(itemView.context, it1, 0) }
             }
 
@@ -307,7 +298,7 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
 
             binding.layoutImageDetail.root.gravity = Gravity.LEFT
 
-            setGoneView(binding.layoutProduct, binding.layoutImageDetail.root, binding.tvMessage, binding.layoutImageDetail.imgView, binding.layoutImageDetail.layoutOneImage, binding.layoutImageDetail.layoutTwoImage, binding.layoutImageDetail.layoutImage, binding.layoutImageDetail.tvCountImage, binding.layoutImageDetail.tvCountImage1)
+            setGoneView(binding.layoutProduct, binding.tvMessage, binding.layoutImageDetail.layoutOneImage, binding.layoutImageDetail.recyclerView, binding.layoutImageDetail.imgView)
 
             binding.layoutImageDetail.root.setOnClickListener {
 
@@ -337,31 +328,28 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
             }
 
             if (!obj.listMedia.isNullOrEmpty()) {
-                binding.layoutImageDetail.root.setVisible()
 
-                when (obj.listMedia!!.size) {
-                    1 -> {
-                        binding.layoutImageDetail.layoutOneImage.setVisible()
+                if (obj.listMedia!!.size == 1) {
+                    binding.layoutImageDetail.layoutOneImage.setVisible()
 
-                        loadImageUrlRounded(binding.layoutImageDetail.img, obj.listMedia!![0].content, R.drawable.ic_default_image_upload_150_chat, dpToPx(10))
+                    loadImageUrlRounded(binding.layoutImageDetail.img, obj.listMedia!![0].content, R.drawable.ic_default_image_upload_150_chat, dpToPx(10))
 
-                        binding.layoutImageDetail.imgView.visibleOrGone(obj.listMedia!![0].type?.contains("video") == true)
+                    binding.layoutImageDetail.imgView.visibleOrGone(obj.listMedia!![0].type?.contains("video") == true)
+
+                } else {
+                    binding.layoutImageDetail.recyclerView.setVisible()
+
+                    val listAny = mutableListOf<Any>()
+
+                    for (item in obj.listMedia!!) {
+                        listAny.add(item)
                     }
-                    2 -> {
-                        setUpImageUrl(obj, binding.layoutImageDetail.layoutTwoImage, binding.layoutImageDetail.img1, binding.layoutImageDetail.imgView1, binding.layoutImageDetail.img2, binding.layoutImageDetail.imgView2, binding.layoutImageDetail.tvCountImage)
-                    }
-                    3 -> {
-                        setUpImageUrl(obj, binding.layoutImageDetail.layoutTwoImage, binding.layoutImageDetail.img1, binding.layoutImageDetail.imgView1, binding.layoutImageDetail.img2, binding.layoutImageDetail.imgView2, binding.layoutImageDetail.tvCountImage)
-                    }
-                    else -> {
-                        setUpImageElseUrl(obj, binding.layoutImageDetail.layoutTwoImage, binding.layoutImageDetail.layoutImage, binding.layoutImageDetail.img1, binding.layoutImageDetail.imgView1, binding.layoutImageDetail.img2, binding.layoutImageDetail.imgView2, binding.layoutImageDetail.img3, binding.layoutImageDetail.imgView3, binding.layoutImageDetail.img4, binding.layoutImageDetail.imgView4, binding.layoutImageDetail.tvCountImage1)
-                    }
+
+                    binding.layoutImageDetail.recyclerView.adapter = ImageMessageAdapter(listAny)
                 }
             }
 
             if (!obj.sticker.isNullOrEmpty()) {
-                binding.layoutImageDetail.root.setVisible()
-
                 binding.layoutImageDetail.layoutOneImage.setVisible()
 
                 binding.layoutImageDetail.layoutOneImage.setBackgroundResource(0)
@@ -420,61 +408,5 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
         val myClip = ClipData.newPlainText("note_copy", text)
         myClipboard.setPrimaryClip(myClip)
         context.showToastSuccess(context.getString(R.string.copy_success))
-    }
-
-    private fun setUpImageUrl(obj: MCDetailMessage, layoutTwoImage: View, img1: AppCompatImageView, iconVideo1: AppCompatImageView, img2: AppCompatImageView, iconVideo2: AppCompatImageView, tvCountImage: AppCompatTextView) {
-        layoutTwoImage.setVisible()
-
-        loadImageUrl(img1, iconVideo1, obj.listMedia!![0])
-        loadImageUrl(img2, iconVideo2, obj.listMedia!![1])
-
-        tvCountImage.visibleOrGone(obj.listMedia!!.size == 3)
-    }
-
-    @SuppressLint("SetTextI18n")
-    private fun setUpImageElseUrl(obj: MCDetailMessage, layoutTwoImage: View, layoutImage: View, img1: AppCompatImageView, iconVideo1: AppCompatImageView, img2: AppCompatImageView, iconVideo2: AppCompatImageView, img3: AppCompatImageView, iconVideo3: AppCompatImageView, img4: AppCompatImageView, iconVideo4: AppCompatImageView, tvCountImage1: AppCompatTextView) {
-        layoutTwoImage.setVisible()
-        layoutImage.setVisible()
-
-        loadImageUrl(img1, iconVideo1, obj.listMedia!![0])
-        loadImageUrl(img2, iconVideo2, obj.listMedia!![1])
-        loadImageUrl(img3, iconVideo3, obj.listMedia!![2])
-        loadImageUrl(img4, iconVideo4, obj.listMedia!![3])
-
-        tvCountImage1.visibleOrGone(obj.listMedia!!.size > 4)
-        tvCountImage1.text = "+${obj.listMedia!!.size - 3}"
-    }
-
-    private fun setUpImageFile(obj: MCDetailMessage, layoutTwoImage: View, img1: AppCompatImageView, iconVideo1: AppCompatImageView, img2: AppCompatImageView, iconVideo2: AppCompatImageView, tvCountImage: AppCompatTextView) {
-        layoutTwoImage.setVisible()
-
-        loadImageFile(img1, iconVideo1, obj.listMediaFile!![0])
-        loadImageFile(img2, iconVideo2, obj.listMediaFile!![1])
-
-        tvCountImage.visibleOrGone(obj.listMediaFile!!.size == 3)
-    }
-
-    @SuppressLint("SetTextI18n")
-    private fun setUpImageElseUrlFile(obj: MCDetailMessage, layoutTwoImage: View, layoutImage: View, img1: AppCompatImageView, iconVideo1: AppCompatImageView, img2: AppCompatImageView, iconVideo2: AppCompatImageView, img3: AppCompatImageView, iconVideo3: AppCompatImageView, img4: AppCompatImageView, iconVideo4: AppCompatImageView, tvCountImage1: AppCompatTextView) {
-        layoutTwoImage.setVisible()
-        layoutImage.setVisible()
-
-        loadImageFile(img1, iconVideo1, obj.listMediaFile!![0])
-        loadImageFile(img2, iconVideo2, obj.listMediaFile!![1])
-        loadImageFile(img3, iconVideo3, obj.listMediaFile!![2])
-        loadImageFile(img4, iconVideo4, obj.listMediaFile!![3])
-
-        tvCountImage1.visibleOrGone(obj.listMediaFile!!.size > 4)
-        tvCountImage1.text = "+${obj.listMediaFile!!.size - 3}"
-    }
-
-    private fun loadImageUrl(imageView: AppCompatImageView, iconVideo: AppCompatImageView, media: MCMedia) {
-        loadImageUrlRounded(imageView, media.content, R.drawable.ic_default_image_upload_150_chat, dpToPx(10))
-        iconVideo.visibleOrGone(media.type?.contains("video") == true)
-    }
-
-    private fun loadImageFile(imageView: AppCompatImageView, iconVideo: AppCompatImageView, media: File) {
-        loadImageFileRounded(imageView, media, R.drawable.ic_default_image_upload_150_chat, dpToPx(10))
-        iconVideo.visibleOrGone(media.absolutePath.contains(".mp4"))
     }
 }
