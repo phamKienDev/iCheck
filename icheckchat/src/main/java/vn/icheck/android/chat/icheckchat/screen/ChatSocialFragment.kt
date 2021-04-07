@@ -27,8 +27,10 @@ class ChatSocialFragment(val callback: ListConversationFragment.Companion.ICount
 
         binding.layoutContainer.setPadding(0, getStatusBarHeight, 0, 0)
 
-        binding.toolbar.imgBack.setOnClickListener {
+        binding.toolbar.imgBack.setImageResource(R.drawable.ic_leftmenu_24dp_chat)
 
+        binding.toolbar.imgBack.setOnClickListener {
+            callback.onClickLeftMenu()
         }
 
         binding.toolbar.txtTitle.text = getString(R.string.tin_nhan)
@@ -38,7 +40,6 @@ class ChatSocialFragment(val callback: ListConversationFragment.Companion.ICount
         binding.toolbar.imgAction.setImageResource(0)
 
         binding.toolbar.imgAction.setOnClickListener {
-
         }
 
         binding.tvMessage.setOnClickListener {

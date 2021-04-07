@@ -17,7 +17,6 @@ import vn.icheck.android.constant.MAIN_USER_FRIEND
 import vn.icheck.android.constant.MAIN_USER_NOT_FRIEND
 import vn.icheck.android.loyalty.base.setGone
 import vn.icheck.android.network.models.wall.ICUserFollowWall
-import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
 import vn.icheck.android.util.checkTypeUser
 import vn.icheck.android.util.ick.beGone
@@ -143,8 +142,8 @@ class UserFollowAdapter constructor(val view: IUserFollowWallView) : RecyclerVie
                 }
 
                 holder.itemView.btnMessenger.setOnClickListener {
-                    SocialChatActivity.createRoomChat(holder.itemView.context, item.id)
-//                    ChatSocialDetailActivity.createRoomChat(holder.itemView.context, item.id ?: -1, "user")
+//                    SocialChatActivity.createRoomChat(holder.itemView.context, item.id)
+                    ChatSocialDetailActivity.createRoomChat(holder.itemView.context, item.id ?: -1, "user")
                 }
             }
             is LoadHolder -> {

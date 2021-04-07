@@ -19,14 +19,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.chat.icheckchat.R
-import vn.icheck.android.chat.icheckchat.base.recyclerview.BaseRecyclerView
 import vn.icheck.android.chat.icheckchat.base.recyclerview.IRecyclerViewCallback
 import vn.icheck.android.chat.icheckchat.base.recyclerview.holder.BaseViewHolder
+import vn.icheck.android.chat.icheckchat.base.recyclerview.holder.LoadingHolder
 import vn.icheck.android.chat.icheckchat.base.view.*
+import vn.icheck.android.chat.icheckchat.base.view.MCViewType.TYPE_LOAD_MORE
 import vn.icheck.android.chat.icheckchat.base.view.MCViewType.TYPE_RECEIVER
 import vn.icheck.android.chat.icheckchat.base.view.MCViewType.TYPE_SENDER
 import vn.icheck.android.chat.icheckchat.databinding.ItemReceiverBinding
 import vn.icheck.android.chat.icheckchat.databinding.ItemSenderBinding
+import vn.icheck.android.chat.icheckchat.helper.NetworkHelper
 import vn.icheck.android.chat.icheckchat.model.MCDetailMessage
 import vn.icheck.android.chat.icheckchat.model.MCMedia
 import vn.icheck.android.chat.icheckchat.model.MCMessageEvent
@@ -34,33 +36,96 @@ import vn.icheck.android.chat.icheckchat.model.MCStatus
 import vn.icheck.android.chat.icheckchat.screen.detail_image.ImageDetailActivity
 import java.io.File
 
-class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerView<MCDetailMessage>(callback) {
+class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private val listData = mutableListOf<MCDetailMessage>()
 
-    fun setData(obj: MutableList<MCDetailMessage>) {
+    var isLoadMoreEnable = true
+    var isLoading = false
+    var isLoadMore = false
+
+    fun setData(list: MutableList<MCDetailMessage>) {
+        checkLoadMoreV2(list)
+
         listData.clear()
-
-        listData.addAll(obj)
+        listData.addAll(list)
         notifyDataSetChanged()
     }
 
-    override fun getItemType(position: Int): Int {
-        return if (FirebaseAuth.getInstance().currentUser?.uid != listData[position].senderId) {
-            TYPE_RECEIVER
-        } else {
-            TYPE_SENDER
+    fun addData(list: MutableList<MCDetailMessage>) {
+        checkLoadMoreV2(list)
+
+        listData.addAll(list)
+        notifyDataSetChanged()
+    }
+
+    private fun checkLoadMoreV2(list: MutableList<MCDetailMessage>) {
+        list.reverse()
+        if (isLoadMoreEnable) {
+            isLoadMore = list.size >= NetworkHelper.LIMIT
+            for (i in listData.size - 1 downTo 0){
+                if (listData[i].senderId == null){
+                    listData.removeAt(i)
+                }
+            }
+            if (isLoadMore) {
+                list.add(MCDetailMessage())
+            }
+            isLoading = false
         }
     }
 
-    override fun getViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return if (viewType == TYPE_RECEIVER) {
-            ReceiverHolder(ItemReceiverBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+    val isEmpty: Boolean
+        get() {
+            return listData.isEmpty()
+        }
+
+    val isNotEmpty: Boolean
+        get() {
+            return listData.isNotEmpty()
+        }
+
+    val getListData: MutableList<MCDetailMessage>
+        get() {
+            return listData
+        }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when (viewType) {
+            TYPE_RECEIVER -> {
+                ReceiverHolder(ItemReceiverBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+            }
+            TYPE_LOAD_MORE -> {
+                LoadingHolder(parent)
+            }
+            else -> {
+                SenderHolder(ItemSenderBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+            }
+        }
+    }
+
+    override fun getItemCount(): Int {
+        return listData.size
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return if (position < listData.size) {
+            when {
+                listData[position].senderId == null -> {
+                    TYPE_LOAD_MORE
+                }
+                FirebaseAuth.getInstance().currentUser?.uid != listData[position].senderId -> {
+                    TYPE_RECEIVER
+                }
+                else -> {
+                    TYPE_SENDER
+                }
+            }
         } else {
-            SenderHolder(ItemSenderBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+            super.getItemViewType(position)
         }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-
         when (holder) {
             is SenderHolder -> {
                 holder.bind(listData[position])
@@ -68,8 +133,13 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
             is ReceiverHolder -> {
                 holder.bind(listData[position])
             }
-            else -> {
-                super.onBindViewHolder(holder, position)
+            is LoadingHolder -> {
+                if (isLoadMore) {
+                    if (!isLoading) {
+                        isLoading = true
+                        callback.onLoadMore()
+                    }
+                }
             }
         }
     }

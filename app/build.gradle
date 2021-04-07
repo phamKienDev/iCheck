@@ -67,7 +67,7 @@ android {
             manifestPlaceholders = [partner: "icheckvn"]
         }
         debug {
-            debuggable false
+            debuggable true
             manifestPlaceholders = [partner: "icheckvntest"]
         }
     }

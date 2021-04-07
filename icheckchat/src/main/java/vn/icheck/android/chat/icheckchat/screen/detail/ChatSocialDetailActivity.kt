@@ -155,7 +155,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         }
 
         binding.recyclerView.layoutManager = LinearLayoutManager(this@ChatSocialDetailActivity).apply {
-            stackFromEnd = true
+//            stackFromEnd = true
         }
 
         binding.recyclerView.adapter = adapter
@@ -211,7 +211,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         }, true, activity = this@ChatSocialDetailActivity)
     }
 
-    private fun chooseImage(){
+    private fun chooseImage() {
         binding.imgCamera.isChecked = true
         binding.imgSend.isChecked = true
         binding.imgSend.isEnabled = true
@@ -226,7 +226,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         product = null
     }
 
-
     private fun createRoom() {
         val listMember = mutableListOf<MCMember>()
         listMember.add(MCMember(FirebaseAuth.getInstance().uid.toString().toLong(), "user", "admin"))
@@ -240,7 +239,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 MCStatus.ERROR_REQUEST -> {
                     showToastError(it.message)
                 }
-                MCStatus.LOADING -> TODO()
+//                MCStatus.LOADING -> TODO()
                 MCStatus.SUCCESS -> {
                     if (it.data?.data != null) {
                         conversation = MCConversation()
@@ -304,6 +303,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                         }
 
                         getChatMessage(key)
+                        listenChangeMessage(key, System.currentTimeMillis())
 
                         if (obj.child("is_block").value != null) {
                             binding.layoutToolbar.imgAction.setGone()
@@ -343,13 +343,13 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 })
     }
 
-    private fun getChatMessage(key: String, isLoadMore: Boolean = false) {
-        viewModel.getChatMessage(key,
+    private fun getChatMessage(key: String, lastTimeStamp: Long = 0) {
+        viewModel.getChatMessage(lastTimeStamp, key,
                 { obj ->
                     val listChatMessage = mutableListOf<MCDetailMessage>()
                     var oldItem = MCDetailMessage()
                     if (obj.hasChildren()) {
-                        for (item in obj.children.reversed()) {
+                        for (item in obj.children) {
                             if (item.child("time").value.toString().toLong() > deleteAt) {
                                 val element = convertDataFirebase(item, oldItem)
 
@@ -360,22 +360,16 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
                         markReadMessage(key)
 
-                        if (!listChatMessage.isNullOrEmpty()) {
-                            adapter.setData(listChatMessage.reversed().toMutableList())
-                            binding.recyclerView.smoothScrollToPosition(adapter.getListData.size)
+                        if (lastTimeStamp == 0L) {
+                            if (listChatMessage.isNullOrEmpty()) {
+                                viewModel.checkError(true, dataEmpty = true)
+                            } else {
+                                adapter.setData(listChatMessage)
+                            }
+                        } else {
+                            adapter.addData(listChatMessage)
                         }
-                        listenChangeMessage(key, listChatMessage.first().time ?: 0)
 
-
-//                            if (!isLoadMore) {
-//                                if (listChatMessage.isNullOrEmpty()) {
-//
-//                                } else {
-//                                    adapter.setListData(listChatMessage)
-//                                }
-//                            } else {
-//                                adapter.addListData(listChatMessage)
-//                            }
                     }
                 },
                 { error ->
@@ -389,6 +383,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
     private fun listenChangeMessage(key: String, timeStart: Long) {
         viewModel.getChangeMessageChat(key, { data ->
             if (isSetData) {
+                // mình gửi
                 if (FirebaseAuth.getInstance().currentUser?.uid == data.child("sender").child("source_id").value.toString()) {
                     val index = adapter.getListData.indexOfFirst { it.messageId == data.key }
                     if (index != -1) {
@@ -406,41 +401,41 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                         }
 
                         //xóa status tin nhắn trước đó
-                        if (adapter.getListData[index.minus(1)].senderId == adapter.getListData[index].senderId && adapter.getListData[index.minus(1)].timeText == getString(R.string.vua_xong)) {
-                            val holder = recyclerView.findViewHolderForAdapterPosition(index.minus(1))
-                            adapter.getListData[index.minus(1)].showStatus = false
+                        if (adapter.getListData[1].senderId == adapter.getListData[index].senderId && adapter.getListData[1].timeText == getString(R.string.vua_xong)) {
+                            val holder = recyclerView.findViewHolderForAdapterPosition(1)
+                            adapter.getListData[1].showStatus = false
 
                             if (holder is ChatSocialDetailAdapter.SenderHolder) {
-                                holder.setupShowStatus(adapter.getListData[index.minus(1)])
+                                holder.setupShowStatus(adapter.getListData[1])
                             } else {
-                                adapter.notifyItemChanged(index.minus(1))
+                                adapter.notifyItemChanged(1)
                             }
                         }
 
                         adapter.notifyItemChanged(index)
                     }
+                    // đối phương gửi
                 } else {
 
                     markReadMessage(key)
-                    val lastMessageReceive = adapter.getListData.lastOrNull { it.senderId != FirebaseAuth.getInstance().currentUser?.uid }
+                    val lastMessageReceive = adapter.getListData.firstOrNull { it.senderId != FirebaseAuth.getInstance().currentUser?.uid }
                     val message = convertDataFirebase(data, lastMessageReceive ?: MCDetailMessage())
                     message.showStatus = true
-                    adapter.getListData.add(message)
-                    adapter.notifyItemInserted(adapter.getListData.size - 1)
+                    adapter.getListData.add(0,message)
+                    adapter.notifyItemInserted(0)
 
                     //xóa status tin nhắn trước đó
-                    if (adapter.getListData[adapter.getListData.size - 2].senderId == message.senderId && adapter.getListData[adapter.getListData.size - 2].timeText == getString(R.string.vua_xong)) {
-                        val holder = recyclerView.findViewHolderForAdapterPosition(adapter.getListData.size - 2)
-                        adapter.getListData[adapter.getListData.size - 2].showStatus = false
+                    if (adapter.getListData[1].senderId == message.senderId && adapter.getListData[1].timeText == getString(R.string.vua_xong)) {
+                        val holder = recyclerView.findViewHolderForAdapterPosition(1)
+                        adapter.getListData[1].showStatus = false
 
                         if (holder is ChatSocialDetailAdapter.ReceiverHolder) {
-                            holder.setupShowStatus(adapter.getListData[adapter.getListData.size - 2])
+                            holder.setupShowStatus(adapter.getListData[1])
                         } else {
-                            adapter.notifyItemChanged(adapter.getListData.size - 2)
+                            adapter.notifyItemChanged(1)
                         }
                     }
                 }
-                binding.recyclerView.smoothScrollToPosition(adapter.getListData.size)
             }
             isSetData = true
         }, timeStart)
@@ -591,22 +586,35 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
     private fun addMessageAdapter(obj: MCDetailMessage) {
         obj.showStatus = true
-        adapter.getListData.add(obj)
-        adapter.notifyItemInserted(adapter.getListData.size - 1)
+        adapter.getListData.add(0, obj)
+//        adapter.notifyItemInserted(adapter.getListData.size - 1)
+//
+//
+//        if (adapter.getListData[adapter.getListData.size - 2].status == obj.status) {
+//            val holder = recyclerView.findViewHolderForAdapterPosition(adapter.getListData.size - 2)
+//            adapter.getListData[adapter.getListData.size - 2].showStatus = false
+//
+//            if (holder is ChatSocialDetailAdapter.SenderHolder) {
+//                holder.setupShowStatus(adapter.getListData[adapter.getListData.size - 2])
+//            } else {
+//                adapter.notifyItemChanged(adapter.getListData.size - 2)
+//            }
+//        }
+        adapter.notifyItemInserted(0)
 
 
-        if (adapter.getListData[adapter.getListData.size - 2].status == obj.status) {
-            val holder = recyclerView.findViewHolderForAdapterPosition(adapter.getListData.size - 2)
-            adapter.getListData[adapter.getListData.size - 2].showStatus = false
+        if (adapter.getListData[1].status == obj.status) {
+            val holder = recyclerView.findViewHolderForAdapterPosition(1)
+            adapter.getListData[1].showStatus = false
 
             if (holder is ChatSocialDetailAdapter.SenderHolder) {
-                holder.setupShowStatus(adapter.getListData[adapter.getListData.size - 2])
+                holder.setupShowStatus(adapter.getListData[1])
             } else {
-                adapter.notifyItemChanged(adapter.getListData.size - 2)
+                adapter.notifyItemChanged(1)
             }
         }
 
-        binding.recyclerView.smoothScrollToPosition(adapter.getListData.size)
+        binding.recyclerView.smoothScrollToPosition(0)
     }
 
     private fun sendMessage(key: String, memberType: String, obj: MCDetailMessage) {
@@ -620,7 +628,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                     }
                 }
                 MCStatus.SUCCESS -> {
-                    binding.recyclerView.smoothScrollToPosition(adapter.getListData.size)
 
                     binding.edtMessage.setText("")
 
@@ -804,7 +811,14 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
     override fun onLoadMore() {
         if (!conversation?.key.isNullOrEmpty()) {
-            getChatMessage(conversation?.key!!, true)
+            if (adapter.getListData.size > 2) {
+                for (i in adapter.getListData.size - 1 downTo 0) {
+                    if (adapter.getListData[i].time != null) {
+                        getChatMessage(conversation?.key!!, adapter.getListData[i].time ?: 0)
+                        return
+                    }
+                }
+            }
         }
     }
 
