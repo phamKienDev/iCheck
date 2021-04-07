@@ -223,6 +223,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         binding.layoutProduct.setGone()
         binding.layoutUserBlock.setGone()
         binding.layoutBlock.setGone()
+        binding.view.setVisible()
         product = null
     }
 
@@ -239,7 +240,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 MCStatus.ERROR_REQUEST -> {
                     showToastError(it.message)
                 }
-//                MCStatus.LOADING -> TODO()
                 MCStatus.SUCCESS -> {
                     if (it.data?.data != null) {
                         conversation = MCConversation()
@@ -327,6 +327,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                             } else {
                                 adapterImage.clearData()
                                 listImageSrc.clear()
+                                binding.edtMessage.setText("")
+                                checkKeyboard()
                                 setGoneView(binding.layoutChat, binding.layoutBlock)
                                 binding.layoutUserBlock.setVisible()
                                 binding.tvUserTitle.text = "Bạn đã bị ${conversation?.targetUserName} chặn tin nhắn"
@@ -383,6 +385,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
     private fun listenChangeMessage(key: String, timeStart: Long) {
         viewModel.getChangeMessageChat(key, { data ->
             if (isSetData) {
+                markReadMessage(key)
                 // mình gửi
                 if (FirebaseAuth.getInstance().currentUser?.uid == data.child("sender").child("source_id").value.toString()) {
                     val index = adapter.getListData.indexOfFirst { it.messageId == data.key }
@@ -417,15 +420,16 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                     // đối phương gửi
                 } else {
 
-                    markReadMessage(key)
                     val lastMessageReceive = adapter.getListData.firstOrNull { it.senderId != FirebaseAuth.getInstance().currentUser?.uid }
                     val message = convertDataFirebase(data, lastMessageReceive ?: MCDetailMessage())
                     message.showStatus = true
                     adapter.getListData.add(0,message)
                     adapter.notifyItemInserted(0)
+                    binding.recyclerView.smoothScrollToPosition(0)
 
                     //xóa status tin nhắn trước đó
-                    if (adapter.getListData[1].senderId == message.senderId && adapter.getListData[1].timeText == getString(R.string.vua_xong)) {
+//                    if (adapter.getListData[1].senderId == message.senderId && adapter.getListData[1].timeText == getString(R.string.vua_xong)) {
+                    if (adapter.getListData[1].senderId == message.senderId) {
                         val holder = recyclerView.findViewHolderForAdapterPosition(1)
                         adapter.getListData[1].showStatus = false
 
@@ -587,19 +591,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
     private fun addMessageAdapter(obj: MCDetailMessage) {
         obj.showStatus = true
         adapter.getListData.add(0, obj)
-//        adapter.notifyItemInserted(adapter.getListData.size - 1)
-//
-//
-//        if (adapter.getListData[adapter.getListData.size - 2].status == obj.status) {
-//            val holder = recyclerView.findViewHolderForAdapterPosition(adapter.getListData.size - 2)
-//            adapter.getListData[adapter.getListData.size - 2].showStatus = false
-//
-//            if (holder is ChatSocialDetailAdapter.SenderHolder) {
-//                holder.setupShowStatus(adapter.getListData[adapter.getListData.size - 2])
-//            } else {
-//                adapter.notifyItemChanged(adapter.getListData.size - 2)
-//            }
-//        }
         adapter.notifyItemInserted(0)
 
 
@@ -975,6 +966,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
     override fun onDestroy() {
         super.onDestroy()
+        checkKeyboard()
         inboxRoomID = null
         inboxUserID = null
     }
