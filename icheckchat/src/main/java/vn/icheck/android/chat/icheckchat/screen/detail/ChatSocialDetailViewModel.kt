@@ -10,7 +10,9 @@ import java.io.File
 class ChatSocialDetailViewModel : BaseViewModelChat() {
     private val repository = ChatRepository()
 
-    fun getChatMessage(key: String, success: (obj: DataSnapshot) -> Unit, error: (error: DatabaseError) -> Unit) = firebaseHelper.getMessageDetail(key, success, error)
+//    fun getChatMessage(key: String, success: (obj: DataSnapshot) -> Unit, error: (error: DatabaseError) -> Unit) = firebaseHelper.getMessageDetail(key, success, error)
+
+    fun getChatMessage(lastTimeStamp: Long, key: String, success: (obj: DataSnapshot) -> Unit, error: (error: DatabaseError) -> Unit) = firebaseHelper.getMessageDetailV2(lastTimeStamp, key, success, error)
 
     fun getChangeMessageChat(key: String, onAdd: (obj: DataSnapshot) -> Unit, timeStart: Long) = firebaseHelper.getChangeMessageChat(key, onAdd, timeStart)
 
