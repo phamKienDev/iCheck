@@ -73,11 +73,12 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
             return
         }
 
+        adsInteractor.dispose()
+        functionInteractor.dispose()
         productInteraction.dispose()
         campaignInteraction.dispose()
         newsInteraction.dispose()
         mallInteractor.dispose()
-        adsInteractor.dispose()
 
         totalRequest = 0
         errorRequest = 0
