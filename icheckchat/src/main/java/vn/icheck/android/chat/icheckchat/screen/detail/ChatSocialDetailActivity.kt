@@ -543,7 +543,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
             if (obj.type == "media") {
                 viewModel.uploadImage(adapterImage.getListData)
 
-                viewModel.listMediaData.observe(this, {media->
+                viewModel.listMediaData.observe(this, { media ->
                     adapterImage.clearData()
                     val listMedia = mutableListOf<MCMedia>()
                     media.forEach {
@@ -916,10 +916,10 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
             }
         }
 
-        TakeMediaDialog.show(supportFragmentManager, this, listener, selectMulti = true, isVideo = true)
+        TakeMediaDialog.show(supportFragmentManager, this, listener, selectMulti = true, isVideo = true, maxSelectCount = 20)
     }
 
-    private fun chooseImage(){
+    private fun chooseImage() {
         binding.imgCamera.isChecked = true
         binding.imgSend.isChecked = true
         binding.imgSend.isEnabled = true

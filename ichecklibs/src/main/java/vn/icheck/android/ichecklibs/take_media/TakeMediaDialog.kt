@@ -10,21 +10,29 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import kotlinx.android.synthetic.main.dialog_take_media.*
-import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
 import vn.icheck.android.ichecklibs.base_dialog.BaseBottomSheetDialogFragment
 import java.io.File
 
-class TakeMediaDialog(val activity: Activity, val listener: TakeMediaListener, private val selectMulti: Boolean = false, private val cropImage: Boolean = false, private val ratio: String? = null, private val isVideo: Boolean = true, val showBottom: Boolean = false) : BaseBottomSheetDialogFragment() {
+class TakeMediaDialog(val activity: Activity,
+                      val listener: TakeMediaListener,
+                      private val selectMulti: Boolean = false, // cho chọn nhiều ảnh/video
+                      private val cropImage: Boolean = false,  // cho phép chuyển sang màn Crop
+                      private val ratio: String? = null,  // tỉ lệ Crop ảnh
+                      private val isVideo: Boolean = true, // cho chọn video hay không?
+                      val disableTakeImage: Boolean = false, // cho chụp ảnh hay không?
+                      val saveImageToGallery: Boolean = false, // cho phép lưu ảnh
+                      val maxSelectCount: Int? = null // số lượng chọn tối đa
+) : BaseBottomSheetDialogFragment() {
 
     companion object {
         var INSTANCE: TakeMediaDialog? = null
         const val CROP_IMAGE_GALLERY = 1
 
-        fun show(fragmentManager: FragmentManager, activity: Activity, listener: TakeMediaListener, selectMulti: Boolean = false, cropImage: Boolean = false, ratio: String? = null, isVideo: Boolean = false) {
+        fun show(fragmentManager: FragmentManager, activity: Activity, listener: TakeMediaListener, selectMulti: Boolean = false, cropImage: Boolean = false, ratio: String? = null, isVideo: Boolean = false, disableTakeImage: Boolean = false, saveImageToGallery: Boolean = false, maxSelectCount: Int? = null) {
             if (fragmentManager.findFragmentByTag(TakeMediaDialog::class.java.simpleName)?.isAdded != true) {
-                TakeMediaDialog(activity, listener, selectMulti, cropImage, ratio, isVideo).show(fragmentManager, TakeMediaDialog::class.java.simpleName)
+                TakeMediaDialog(activity, listener, selectMulti, cropImage, ratio, isVideo, disableTakeImage, saveImageToGallery, maxSelectCount).show(fragmentManager, TakeMediaDialog::class.java.simpleName)
             }
         }
     }
@@ -59,6 +67,11 @@ class TakeMediaDialog(val activity: Activity, val listener: TakeMediaListener, p
             }
         }
 
+        if (saveImageToGallery) {
+            takeMediaHelper?.context = requireContext()
+            takeMediaHelper?.saveImageToGallery = true
+        }
+
         if (isVideo) {
             tvTile.setText(R.string.chon_anh_video)
         } else {
@@ -69,7 +82,7 @@ class TakeMediaDialog(val activity: Activity, val listener: TakeMediaListener, p
         if (listImage.isEmpty()) {
             startCamera()
         } else {
-            val adapter = TakeMediaAdapter(listImage, selectMulti, isVideo)
+            val adapter = TakeMediaAdapter(listImage, selectMulti, isVideo, disableTakeImage, maxSelectCount)
             rcvImage.adapter = adapter
 
             btnSubmit.setOnClickListener {

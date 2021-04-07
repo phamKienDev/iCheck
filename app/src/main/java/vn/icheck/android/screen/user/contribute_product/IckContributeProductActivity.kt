@@ -122,7 +122,8 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
 
     var currentMediaDialog: TakeMediaDialog? = null
 
-    private val takeImageDialog = TakeMediaDialog(this, takeImageListener, selectMulti = false, cropImage = true, isVideo = false, showBottom = true)
+//    private val takeImageDialog = TakeMediaDialog(this, takeImageListener, selectMulti = false, cropImage = true, isVideo = false, showBottom = true)
+    private val takeImageDialog = TakeMediaDialog(this, takeImageListener, selectMulti = false, cropImage = true, isVideo = false)
 
     val ickContributeProductViewModel: IckContributeProductViewModel by viewModels()
     val ickCategoryBottomDialog = IckCategoryBottomDialog()

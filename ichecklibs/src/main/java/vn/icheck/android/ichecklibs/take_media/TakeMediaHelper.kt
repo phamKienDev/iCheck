@@ -3,6 +3,10 @@ package vn.icheck.android.ichecklibs.take_media
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Matrix
+import android.media.ExifInterface
 import android.net.Uri
 import android.os.Environment
 import android.provider.MediaStore
@@ -10,8 +14,7 @@ import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import vn.icheck.android.ichecklibs.BuildConfig
 import vn.icheck.android.ichecklibs.TimeHelper
-import java.io.File
-import java.io.IOException
+import java.io.*
 import kotlin.jvm.Throws
 
 class TakeMediaHelper(val activity: Activity?, val callback: TakeCameraListener, private val selectVideo: Boolean = false) {
@@ -20,6 +23,8 @@ class TakeMediaHelper(val activity: Activity?, val callback: TakeCameraListener,
     private var currentImagePath: String? = null
     private var currentVideoPath: String? = null
     var onTakeImageSuccess: ((File?) -> Unit)? = null
+    var saveImageToGallery: Boolean = false
+    var context: Context? = null
 
     private val fileProvider = if (BuildConfig.FLAVOR.contentEquals("prod")) {
         "vn.icheck.android.fileprovider"
@@ -140,10 +145,18 @@ class TakeMediaHelper(val activity: Activity?, val callback: TakeCameraListener,
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
                 requestImage -> {
-                    if (onTakeImageSuccess != null) {
-                        onTakeImageSuccess!!(getPhotoFile)
+                    if (saveImageToGallery) {
+                        val f = getFile()
+                        MediaStore.Images.Media.insertImage(context?.contentResolver, BitmapFactory.decodeFile(f?.path), f?.name, "");
+                        if (onTakeImageSuccess != null) {
+                            onTakeImageSuccess!!(f)
+                        }
                     } else {
-                        callback.onTakeMediaSuccess(getPhotoFile)
+                        if (onTakeImageSuccess != null) {
+                            onTakeImageSuccess!!(getPhotoFile)
+                        } else {
+                            callback.onTakeMediaSuccess(getPhotoFile)
+                        }
                     }
                 }
                 requestVideo -> {
@@ -157,15 +170,15 @@ class TakeMediaHelper(val activity: Activity?, val callback: TakeCameraListener,
         }
     }
 
-    fun getBitmap():Bitmap {
+    fun getBitmap(): Bitmap {
         return BitmapFactory.decodeFile(getPhotoFile?.path)
     }
 
-    fun getEi():File {
+    fun getFile(): File {
         val ei = ExifInterface(getPhotoFile?.path.toString())
         val orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION,
                 ExifInterface.ORIENTATION_UNDEFINED)
-        val rotatedBitmap:Bitmap? = when (orientation) {
+        val rotatedBitmap: Bitmap? = when (orientation) {
             ExifInterface.ORIENTATION_ROTATE_90 -> {
                 rotateImage(getBitmap(), 90f)
             }
@@ -179,10 +192,10 @@ class TakeMediaHelper(val activity: Activity?, val callback: TakeCameraListener,
                 getBitmap()
             }
         }
-        return  createFile(rotatedBitmap)
+        return createFile(rotatedBitmap)
     }
 
-    fun createFile(bitmap: Bitmap?):File {
+    fun createFile(bitmap: Bitmap?): File {
         val file = File(getPhotoFile?.path.toString())
         val os: OutputStream = BufferedOutputStream(FileOutputStream(file))
         bitmap?.compress(Bitmap.CompressFormat.JPEG, 100, os)
