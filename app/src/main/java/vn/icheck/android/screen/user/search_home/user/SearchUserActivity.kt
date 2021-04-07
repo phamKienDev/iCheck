@@ -214,7 +214,7 @@ class SearchUserActivity : BaseActivityMVVM(), IRecyclerViewSearchCallback, View
         super.onMessageEvent(event)
         if (isActivityVisible) {
             when (event.type) {
-                ICMessageEvent.Type.ON_LOG_IN -> {
+                ICMessageEvent.Type.ON_REQUIRE_LOGIN -> {
                     onRequireLogin(requestLogin)
                 }
                 ICMessageEvent.Type.OPEN_DETAIL_USER -> {

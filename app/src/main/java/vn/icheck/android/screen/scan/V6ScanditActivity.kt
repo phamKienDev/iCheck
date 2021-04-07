@@ -226,7 +226,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     }
 
     private fun initTakeImageDialog() {
-        takeImageDialog = TakeMediaDialog(takeImageListener, false, cropImage = true, isVideo = false, disableTakeImage = true)
+        takeImageDialog = TakeMediaDialog(takeImageListener, false, cropImage = true, isVideo = false, saveImageToGallery = true)
     }
 
     private fun initBarcodeCapture() {
@@ -277,7 +277,6 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
     private fun resetCamera() {
         lifecycleScope.launch {
-            delay(2000)
             camera?.switchToDesiredState(FrameSourceState.ON, object : Callback<Boolean> {
                 override fun run(result: Boolean) {
                     if (result) {
@@ -295,6 +294,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
 
     private fun offCamera() {
+        barcodeCapture.isEnabled = false
         camera?.switchToDesiredState(FrameSourceState.OFF, object : Callback<Boolean> {
             override fun run(result: Boolean) {
                 if (!result) {
@@ -318,7 +318,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         if (scanImage.get()) {
             scanImage.set(false)
             job = lifecycleScope.launch {
-                delay(400)
+                delay(700)
                 if (session.newlyRecognizedBarcodes.isEmpty()) {
 
                     runOnUiThread {
@@ -611,32 +611,30 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
             val code = barcode.data
 
             if (!code.isNullOrEmpty()) {
-                if (code.startsWith("u-") || code.startsWith("U-")) {
-                    when {
-                        viewModel.scanOnly || viewModel.reviewOnly -> {
-                            showSimpleErrorToast("Không tìm thấy sản phẩm")
-                            enableCapture(barcodeCapture)
-                            return@runOnUiThread
-                        }
-                        else -> {
-                            if (code.count { "-".contains(it) } == 1) {
-                                try {
-                                    val userID = code.split("-")[1]
-                                    if (userID.isNotEmpty() && ValidHelper.validNumber(userID)) {
-                                        IckUserWallActivity.create(userID.toLong(), this)
-                                    }
-                                } catch (e: Exception) {
-                                    TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
-                                    e.printStackTrace()
-                                }
-                            }
-                            enableCapture(barcodeCapture)
-                            return@runOnUiThread
-                        }
-                    }
-
-                }
-
+//                if (code.startsWith("u-") || code.startsWith("U-")) {
+//                    when {
+//                        viewModel.scanOnly || viewModel.reviewOnly -> {
+//                            showSimpleErrorToast("Không tìm thấy sản phẩm")
+//                            enableCapture(barcodeCapture)
+//                            return@runOnUiThread
+//                        }
+//                        else -> {
+//                            if (code.count { "-".contains(it) } == 1) {
+//                                try {
+//                                    val userID = code.split("-")[1]
+//                                    if (userID.isNotEmpty() && ValidHelper.validNumber(userID)) {
+//                                        IckUserWallActivity.create(userID.toLong(), this)
+//                                    }
+//                                } catch (e: Exception) {
+//                                    TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
+//                                    e.printStackTrace()
+//                                }
+//                            }
+//                            enableCapture(barcodeCapture)
+//                            return@runOnUiThread
+//                        }
+//                    }
+//                }
 
                 val symbology = barcode.symbology
                 viewModel.codeScan = code
@@ -904,6 +902,19 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     private fun checkStampQr(it: String) {
         Handler().postDelayed({
             when {
+                it.startsWith("u-") || it.startsWith("U-") -> {
+                    if (it.count { "-".contains(it) } == 1) {
+                        try {
+                            val userID = it.split("-")[1]
+                            if (userID.isNotEmpty() && ValidHelper.validNumber(userID)) {
+                                IckUserWallActivity.create(userID.toLong(), this)
+                            }
+                        } catch (e: Exception) {
+                            TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
+                            enableCapture(barcodeCapture)
+                        }
+                    }
+                }
                 Constant.isMarketingStamps(it) -> {
                     WebViewActivity.start(this, it, 1, null, true)
                 }

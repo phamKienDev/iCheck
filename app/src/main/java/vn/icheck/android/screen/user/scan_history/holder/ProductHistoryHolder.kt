@@ -17,6 +17,8 @@ import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.network.models.history.ICItemHistory
+import vn.icheck.android.network.models.history.ICStoreNear
+import vn.icheck.android.network.util.JsonHelper
 import vn.icheck.android.screen.user.map_scan_history.MapScanHistoryActivity
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.screen.user.store_sell_history.StoreSellHistoryActivity
@@ -159,35 +161,14 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
         }
 
         binding.layoutShop.setOnClickListener {
-            val intent = Intent(ICheckApplication.currentActivity(), MapScanHistoryActivity::class.java)
-            intent.putExtra(Constant.DATA_2, obj.nearestShop?.shop?.id)
-            intent.putExtra(Constant.DATA_3, obj.nearestShop?.shop?.location?.lat)
-            intent.putExtra(Constant.DATA_4, obj.nearestShop?.shop?.location?.lon)
-            intent.putExtra("avatarShop", obj.nearestShop?.shop?.avatar)
-            ICheckApplication.currentActivity()?.startActivity(intent)
+//            val intent = Intent(ICheckApplication.currentActivity(), MapScanHistoryActivity::class.java)
+//            intent.putExtra(Constant.DATA_2, obj.nearestShop?.shop?.id)
+//            intent.putExtra(Constant.DATA_3, obj.nearestShop?.shop?.location?.lat)
+//            intent.putExtra(Constant.DATA_4, obj.nearestShop?.shop?.location?.lon)
+//            intent.putExtra("avatarShop", obj.nearestShop?.shop?.avatar)
+//            ICheckApplication.currentActivity()?.startActivity(intent)
 
-//            obj.nearestShop?.let { nearestShop ->
-//                ICheckApplication.currentActivity()?.let { activity ->
-//                    val json = JsonHelper.toJson(mutableListOf(ICStoreNear().apply {
-//                        id = nearestShop.shop?.id
-//                        avatar = nearestShop.shop?.avatar
-//                        name = nearestShop.shop?.name
-//                        distance = nearestShop.distance
-////                        price = nearestShop.price
-//                        address = nearestShop.shop?.address
-//                        phone = nearestShop.shop?.phone
-//                        location = nearestShop.shop?.location
-//                    }))
-//
-//                    val intent = Intent(activity, MapScanHistoryActivity::class.java)
-//                    intent.putExtra(Constant.DATA_1, json)
-//                    intent.putExtra(Constant.DATA_2, nearestShop.shop?.id)
-//                    intent.putExtra(Constant.DATA_3, nearestShop.shop?.location?.lat)
-//                    intent.putExtra(Constant.DATA_4, nearestShop.shop?.location?.lon)
-//                    intent.putExtra("avatarShop", nearestShop.shop?.avatar)
-//                    ActivityHelper.startActivity(activity, intent)
-//                }
-//            }
+            binding.btnSearchNear.performClick()
         }
     }
 }

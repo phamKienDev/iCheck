@@ -75,5 +75,7 @@ data class ICShop (
     @Expose
     val distance: ICDistance? = null,
     @Expose
-    val pageId: Int? = null
+    val pageId: Int? = null,
+    @Expose
+    val price: Long? = null
 ): Serializable

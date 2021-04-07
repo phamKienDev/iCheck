@@ -112,7 +112,7 @@ class PageSearchHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflat
     private fun followPage(objPage: ICPageQuery) {
         ICheckApplication.currentActivity()?.let { activity ->
             if (!SessionManager.isUserLogged) {
-                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_LOG_IN))
+                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_REQUIRE_LOGIN))
                 return
             }
 
@@ -141,7 +141,7 @@ class PageSearchHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflat
     private fun unFollow(objPage: ICPageQuery) {
         ICheckApplication.currentActivity()?.let { activity ->
             if (!SessionManager.isUserLogged) {
-                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_LOG_IN))
+                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_REQUIRE_LOGIN))
                 return
             }
 

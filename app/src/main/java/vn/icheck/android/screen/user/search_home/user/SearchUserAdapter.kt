@@ -211,7 +211,7 @@ class SearchUserAdapter(val typeView: Int, val callback: IRecyclerViewSearchCall
 
         private fun inviteFriend(objSearch: ICSearchUser, status: Int?) {
             if (!SessionManager.isUserLogged) {
-                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_LOG_IN))
+                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_REQUIRE_LOGIN))
                 return
             }
 

@@ -107,7 +107,7 @@ class ShopSearchHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflat
     private fun followShop(objShop: ICShopQuery) {
         ICheckApplication.currentActivity()?.let { activity ->
             if (!SessionManager.isUserLogged) {
-                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_LOG_IN))
+                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_REQUIRE_LOGIN))
                 return
             }
 
@@ -134,7 +134,7 @@ class ShopSearchHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflat
     private fun unFollow(objShop: ICShopQuery) {
         ICheckApplication.currentActivity()?.let { activity ->
             if (!SessionManager.isUserLogged) {
-                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_LOG_IN))
+                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_REQUIRE_LOGIN))
                 return
             }
 
