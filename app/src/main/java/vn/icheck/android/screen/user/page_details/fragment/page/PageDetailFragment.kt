@@ -1,7 +1,9 @@
 package vn.icheck.android.screen.user.page_details.fragment.page
 
 import android.Manifest
+import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
@@ -17,6 +19,7 @@ import org.greenrobot.eventbus.ThreadMode
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
+import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
 import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.IRecyclerViewCallback
@@ -26,10 +29,11 @@ import vn.icheck.android.component.image_video_slider.ICImageVideoSliderModel
 import vn.icheck.android.component.image_video_slider.ICMediaType
 import vn.icheck.android.component.image_video_slider.MediaLogic
 import vn.icheck.android.component.post.IPostListener
-import vn.icheck.android.component.take_media.TakeMediaDialog
 import vn.icheck.android.component.view.ViewHelper.setScrollSpeed
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
+import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
+import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICMedia
@@ -37,6 +41,7 @@ import vn.icheck.android.network.models.ICMediaPage
 import vn.icheck.android.network.models.ICPageOverview
 import vn.icheck.android.network.models.ICPost
 import vn.icheck.android.network.models.product.report.ICReportForm
+import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.user.createpost.CreateOrUpdatePostActivity
 import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
 import vn.icheck.android.screen.user.edit_review.EditReviewActivity
@@ -62,14 +67,20 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
     private var pageOverViewPosition = -1
     private var companyViewInsider = true
     private val requestPermissionImage = 1
+    private val requireLogin = 2
     private var isActivityVisible = false
 
-    private val takeMediaListener = object : TakeMediaDialog.TakeImageListener {
+    private val takeMediaListener = object : TakeMediaListener {
         override fun onPickMediaSucess(file: File) {
             viewModel.uploadImage(typeEditImage!!, file)
         }
 
         override fun onPickMuliMediaSucess(file: MutableList<File>) {}
+        override fun onStartCrop(filePath: String?, uri: Uri?, ratio: String?, requestCode: Int?) {
+        }
+
+        override fun onDismiss() {
+        }
 
         override fun onTakeMediaSuccess(file: File?) {
             file?.let { viewModel.uploadImage(typeEditImage!!, it) }
@@ -348,6 +359,10 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
         viewModel.getListReportFormPage()
     }
 
+    override fun onRequireLogin() {
+        showRequireLogin()
+    }
+
     override fun followAndUnFollowPage(obj: ICPageOverview) {
         obj.id?.let {
             actionFollowAndUnfollow(it)
@@ -368,7 +383,7 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
                 viewModel.followPage(id)
             }
         } else {
-            EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_REQUIRE_LOGIN))
+            showRequireLogin()
         }
     }
 
@@ -554,6 +569,37 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
         }
     }
 
+    private fun showRequireLogin() {
+        context?.let { context ->
+            object : RewardLoginDialog(context) {
+                override fun onLogin() {
+                    val intent = Intent(context, IckLoginActivity::class.java)
+                    startActivityForResult(intent, requireLogin)
+                }
+
+                override fun onRegister() {
+                    val intent = Intent(context, IckLoginActivity::class.java)
+                    intent.putExtra(Constant.DATA_1, Constant.REGISTER_TYPE)
+                    startActivityForResult(intent, requireLogin)
+                }
+
+                override fun onDismiss() {
+                    onRequireLoginCancel()
+                }
+            }.show()
+        }
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == requireLogin) {
+                viewModel.getLayoutPage()
+            }
+        }
+    }
+
 
     override fun onResume() {
         super.onResume()
@@ -610,9 +656,9 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
         if (requestCode == requestPermissionImage) {
             if (PermissionHelper.checkResult(grantResults)) {
                 if (typeEditImage == ICViewTypes.HEADER_INFOR_PAGE) {
-                    TakeMediaDialog.show(this@PageDetailFragment.requireActivity().supportFragmentManager, takeMediaListener, selectMulti = false, cropImage = false, ratio = "1:1", isVideo = false)
+                    TakeMediaDialog.show(this@PageDetailFragment.requireActivity().supportFragmentManager, this@PageDetailFragment.requireActivity(), takeMediaListener, selectMulti = false, cropImage = false, ratio = "1:1", isVideo = false)
                 } else {
-                    TakeMediaDialog.show(this@PageDetailFragment.requireActivity().supportFragmentManager, takeMediaListener, selectMulti = false, cropImage = false, ratio = "375:192", isVideo = false)
+                    TakeMediaDialog.show(this@PageDetailFragment.requireActivity().supportFragmentManager, this@PageDetailFragment.requireActivity(), takeMediaListener, selectMulti = false, cropImage = false, ratio = "375:192", isVideo = false)
                 }
             } else {
                 showLongWarning(R.string.khong_the_thuc_hien_tac_vu_vi_ban_chua_cap_quyen)

@@ -11,6 +11,8 @@ import com.yarolegovich.discretescrollview.DiscreteScrollView
 import vn.icheck.android.chat.icheckchat.R
 import vn.icheck.android.chat.icheckchat.base.BaseActivityChat
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.DATA_1
+import vn.icheck.android.chat.icheckchat.base.ConstantChat.IMAGE
+import vn.icheck.android.chat.icheckchat.base.view.MCViewType.TYPE_IMAGE
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.POSITION
 import vn.icheck.android.chat.icheckchat.base.view.showToastError
 import vn.icheck.android.chat.icheckchat.databinding.ActivityImageDetailBinding
@@ -18,6 +20,7 @@ import vn.icheck.android.chat.icheckchat.helper.MCExoMedia
 import vn.icheck.android.chat.icheckchat.helper.NetworkHelper.parseListAttachment
 import vn.icheck.android.chat.icheckchat.helper.NetworkHelper.toJson
 import vn.icheck.android.chat.icheckchat.model.MCMedia
+import vn.icheck.android.chat.icheckchat.model.MCMessageEvent
 
 class ImageDetailActivity : BaseActivityChat<ActivityImageDetailBinding>() {
 
@@ -87,6 +90,12 @@ class ImageDetailActivity : BaseActivityChat<ActivityImageDetailBinding>() {
                 override fun onScrollEnd(p0: RecyclerView.ViewHolder, p1: Int) {
                     adapter.getListData[p1].exoPlayer?.playWhenReady = true
                     binding.tvSlide.text = "${p1 + 1}/${listExo.size}"
+                    if (positionView != p1) {
+                        if (adapter.getListData.get(positionView).type == IMAGE) {
+                            adapter.getListData.get(positionView).resetImage = true
+                            adapter.notifyItemChanged(positionView)
+                        }
+                    }
                     positionView = p1
                 }
 
@@ -94,6 +103,21 @@ class ImageDetailActivity : BaseActivityChat<ActivityImageDetailBinding>() {
                     adapter.getListData[p1].exoPlayer?.playWhenReady = false
                 }
             })
+        }
+    }
+
+    override fun onMessageEvent(event: MCMessageEvent) {
+        super.onMessageEvent(event)
+        when (event.type) {
+            MCMessageEvent.Type.IS_SCROLL_MEDIA -> {
+                binding.recyclerView.post {
+                    if (event.data != null) {
+                        binding.recyclerView.suppressLayout(false)
+                    } else {
+                        binding.recyclerView.suppressLayout(true)
+                    }
+                }
+            }
         }
     }
 

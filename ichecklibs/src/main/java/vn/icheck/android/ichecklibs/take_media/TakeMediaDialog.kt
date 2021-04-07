@@ -1,4 +1,4 @@
-package vn.icheck.android.component.take_media
+package vn.icheck.android.ichecklibs.take_media
 
 import android.app.Activity
 import android.content.DialogInterface
@@ -9,65 +9,67 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
-import kotlinx.android.synthetic.main.layout_choose_image_dialog.*
-import org.greenrobot.eventbus.EventBus
-import vn.icheck.android.ICheckApplication
-import vn.icheck.android.R
-import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialogFragment
-import vn.icheck.android.base.model.ICMessageEvent
-import vn.icheck.android.constant.Constant
-import vn.icheck.android.screen.user.cropimage.CropImageActivity
+import kotlinx.android.synthetic.main.dialog_take_media.*
+import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.R
+import vn.icheck.android.ichecklibs.base_dialog.BaseBottomSheetDialogFragment
 import java.io.File
 
-class TakeMediaDialog(val listener: TakeImageListener,
-                      private val selectMulti: Boolean = false,
-                      private val cropImage: Boolean = false,
-                      private val ratio: String? = null,
-                      private val isVideo: Boolean = true,
-                      val showBottom: Boolean = false,
-                      val disableTakeImage: Boolean = false
+class TakeMediaDialog(val activity: Activity,
+                      val listener: TakeMediaListener,
+                      private val selectMulti: Boolean = false, // cho chọn nhiều ảnh/video
+                      private val cropImage: Boolean = false,  // cho phép chuyển sang màn Crop
+                      private val ratio: String? = null,  // tỉ lệ Crop ảnh
+                      private val isVideo: Boolean = true, // cho chọn video hay không?
+                      val disableTakeImage: Boolean = false, // cho chụp ảnh hay không?
+                      val saveImageToGallery: Boolean = false, // cho phép lưu ảnh
+                      val maxSelectCount: Int? = null // số lượng chọn tối đa
 ) : BaseBottomSheetDialogFragment() {
 
     companion object {
         var INSTANCE: TakeMediaDialog? = null
         const val CROP_IMAGE_GALLERY = 1
 
-        fun show(fragmentManager: FragmentManager, listener: TakeImageListener, selectMulti: Boolean = false, cropImage: Boolean = false, ratio: String? = null, isVideo: Boolean = false) {
+        fun show(fragmentManager: FragmentManager, activity: Activity, listener: TakeMediaListener, selectMulti: Boolean = false, cropImage: Boolean = false, ratio: String? = null, isVideo: Boolean = false, disableTakeImage: Boolean = false, saveImageToGallery: Boolean = false, maxSelectCount: Int? = null) {
             if (fragmentManager.findFragmentByTag(TakeMediaDialog::class.java.simpleName)?.isAdded != true) {
-                TakeMediaDialog(listener, selectMulti, cropImage, ratio, isVideo).show(fragmentManager, TakeMediaDialog::class.java.simpleName)
+                TakeMediaDialog(activity, listener, selectMulti, cropImage, ratio, isVideo, disableTakeImage, saveImageToGallery, maxSelectCount).show(fragmentManager, TakeMediaDialog::class.java.simpleName)
             }
         }
     }
 
     var takeMediaHelper: TakeMediaHelper? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.layout_choose_image_dialog, container, false)
+        return inflater.inflate(R.layout.dialog_take_media, container, false)
     }
 
     override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
-        EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_DISMISS))
+        listener.onDismiss()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        CropImageActivity.showBottom = showBottom
         imgClose.setOnClickListener {
             dismiss()
         }
 
         if (cropImage) {
-            takeMediaHelper = TakeMediaHelper(listener).apply {
+            takeMediaHelper = TakeMediaHelper(activity, listener).apply {
                 onTakeImageSuccess = {
-                    CropImageActivity.start(this@TakeMediaDialog, it?.absolutePath, null, ratio, CROP_IMAGE_GALLERY)
+                    listener.onStartCrop(it?.absolutePath, null, ratio, CROP_IMAGE_GALLERY)
                 }
             }
         } else {
-            takeMediaHelper = TakeMediaHelper(listener, isVideo).apply {
+            takeMediaHelper = TakeMediaHelper(activity, listener, isVideo).apply {
                 onTakeImageSuccess = {
                     listener.onTakeMediaSuccess(it)
                 }
             }
+        }
+
+        if (saveImageToGallery) {
+            takeMediaHelper?.context = requireContext()
+            takeMediaHelper?.saveImageToGallery = true
         }
 
         if (isVideo) {
@@ -80,7 +82,7 @@ class TakeMediaDialog(val listener: TakeImageListener,
         if (listImage.isEmpty()) {
             startCamera()
         } else {
-            val adapter = TakeMediaAdapter(listImage, selectMulti, isVideo, disableTakeImage = this.disableTakeImage)
+            val adapter = TakeMediaAdapter(listImage, selectMulti, isVideo, disableTakeImage, maxSelectCount)
             rcvImage.adapter = adapter
 
             btnSubmit.setOnClickListener {
@@ -95,7 +97,7 @@ class TakeMediaDialog(val listener: TakeImageListener,
                         dismiss()
                     } else {
                         if (cropImage) {
-                            CropImageActivity.start(this@TakeMediaDialog, list[0].absolutePath, null, ratio, CROP_IMAGE_GALLERY)
+                            listener.onStartCrop(list[0].absolutePath, null, ratio, CROP_IMAGE_GALLERY)
                         } else {
                             listener.onPickMediaSucess(list[0])
                             dismiss()
@@ -114,7 +116,7 @@ class TakeMediaDialog(val listener: TakeImageListener,
     private fun getImageFromGallery(): MutableList<ICIMageFile> {
         val listOfAllImages = mutableListOf<ICIMageFile>()
 
-        ICheckApplication.currentActivity()?.let {
+        activity.let {
             val orderBy = MediaStore.Images.ImageColumns.DATE_ADDED + " DESC"
             val uri = MediaStore.Files.getContentUri("external")
             val selection = if (isVideo) {
@@ -135,9 +137,7 @@ class TakeMediaDialog(val listener: TakeImageListener,
                     selection,
                     null, orderBy)
 
-            if (!disableTakeImage) {
-                listOfAllImages.add(ICIMageFile(File("")))
-            }
+            listOfAllImages.add(ICIMageFile(File("")))
             val dataColumn = cursor!!.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA)
             val typeColumn = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.MEDIA_TYPE)
             val duration = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DURATION)
@@ -187,11 +187,5 @@ class TakeMediaDialog(val listener: TakeImageListener,
     override fun onDestroy() {
         super.onDestroy()
         INSTANCE = null
-    }
-
-
-    interface TakeImageListener : TakeMediaHelper.TakeCameraListener {
-        fun onPickMediaSucess(file: File)
-        fun onPickMuliMediaSucess(file: MutableList<File>)
     }
 }

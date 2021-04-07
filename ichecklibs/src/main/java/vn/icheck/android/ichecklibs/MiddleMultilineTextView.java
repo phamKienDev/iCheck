@@ -2,6 +2,7 @@ package vn.icheck.android.ichecklibs;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -21,8 +22,8 @@ public class MiddleMultilineTextView extends androidx.appcompat.widget.AppCompat
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
 
         if (getMaxLines() > 1) {
             int originalLength = getText().length();
@@ -33,6 +34,7 @@ public class MiddleMultilineTextView extends androidx.appcompat.widget.AppCompat
             }
         }
     }
+
 
     private String smartTrim(String string, int maxLength) {
         if (string == null)

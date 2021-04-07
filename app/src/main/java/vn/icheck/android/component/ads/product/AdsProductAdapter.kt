@@ -3,6 +3,7 @@ package vn.icheck.android.component.ads.product
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.drawable.Drawable
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -262,6 +263,9 @@ class AdsProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
             if (obj.owner?.verified == true) {
                 itemView.tvName.setDrawbleNextEndText(obj.owner?.name, R.drawable.ic_verified_16px)
+                Handler().postDelayed({
+                    itemView.tvName.setDrawbleNextEndText(obj.owner?.name, R.drawable.ic_verified_16px)
+                }, 100)
             } else {
                 binding.tvName.text = obj.owner?.name ?: ""
             }

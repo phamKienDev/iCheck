@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -25,8 +26,6 @@ import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
-import vn.icheck.android.component.take_media.TakeMediaDialog
-import vn.icheck.android.component.take_media.TakeMediaHelper
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.constant.ICK_REQUEST_CAMERA
@@ -35,6 +34,9 @@ import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.helper.TextHelper.setTextNameProductInPost
+import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
+import vn.icheck.android.ichecklibs.take_media.TakeMediaHelper
+import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICPrivacy
 import vn.icheck.android.network.models.ICProduct
@@ -59,13 +61,13 @@ import java.io.File
 class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCameraListener {
     private lateinit var viewModel: CreateOrUpdatePostViewModel
 
-    private val takeMediaHelper = TakeMediaHelper(this, true)
+    private val takeMediaHelper = TakeMediaHelper(this,this, true)
 
     private val permissionCamera = 1
     private val permissionWallpaper = 2
     private val requestScanProduct = 1
 
-    private val takeMediaListener = object : TakeMediaDialog.TakeImageListener {
+    private val takeMediaListener = object : TakeMediaListener {
         override fun onPickMediaSucess(file: File) {
             addImage(file)
         }
@@ -74,6 +76,12 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
             for (i in 0 until file.size) {
                 addImage(file[i])
             }
+        }
+
+        override fun onStartCrop(filePath: String?, uri: Uri?, ratio: String?, requestCode: Int?) {
+        }
+
+        override fun onDismiss() {
         }
 
         override fun onTakeMediaSuccess(file: File?) {
@@ -109,10 +117,11 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
             edtContent.hint = "Hãy chia sẻ những thông tin hữu ích nào!"
             tvType.beGone()
             imgStatus.beGone()
+            tvName.text = intent.getStringExtra(Constant.DATA_3)
             if (intent?.getBooleanExtra(Constant.DATA_5, false) == true) {
-                tvName.setDrawbleNextEndText(intent.getStringExtra(Constant.DATA_3), R.drawable.ic_verified_16px)
+                tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
             } else {
-                tvName.text = intent.getStringExtra(Constant.DATA_3)
+                tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
         } else {
             SessionManager.session.user?.let { user ->
@@ -283,7 +292,7 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
     }
 
     private fun pickWallpaper() {
-        TakeMediaDialog.show(supportFragmentManager, takeMediaListener, selectMulti = true, isVideo = true)
+        TakeMediaDialog.show(supportFragmentManager, this, takeMediaListener, selectMulti = true, isVideo = true)
     }
 
     private fun addProduct(product: ICProductDetail) {

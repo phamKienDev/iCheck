@@ -79,11 +79,11 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
         } else {
             WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.page?.avatar, R.drawable.ic_business_v2)
             itemView.imgRank.beGone()
+            itemView.tvNameUser.text = obj.page?.getName
             if (obj.page?.isVerify == true) {
-                itemView.tvNameUser.setDrawbleNextEndText(obj.page?.getName, R.drawable.ic_verified_16px)
+                itemView.tvNameUser.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
             } else {
-                itemView.tvNameUser.text = obj.page?.getName
-
+                itemView.tvNameUser.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
         }
     }
@@ -237,11 +237,6 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
 
     private fun postLikeReview(objReview: ICPost) {
         ICheckApplication.currentActivity()?.let { activity ->
-//            if (!SessionManager.isUserLogged) {
-//                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_LOG_IN))
-//                return
-//            }
-
             if (NetworkHelper.isNotConnected(ICheckApplication.getInstance().applicationContext)) {
                 ToastUtils.showShortError(ICheckApplication.getInstance(), ICheckApplication.getInstance().applicationContext.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
                 return
@@ -267,9 +262,6 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
                     } else {
                         itemView.context.showSimpleErrorToast(error?.message)
                     }
-
-//                    ToastUtils.showShortError(ICheckApplication.getInstance(), error?.message
-//                            ?: ICheckApplication.getInstance().applicationContext.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 }
             })
         }

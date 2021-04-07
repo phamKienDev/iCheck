@@ -139,11 +139,14 @@ class IckContributeProductViewModel @ViewModelInject constructor(
 
     fun setImage(file: File?, position: Int = 0) {
         try {
-//            addImage(file)
-            if (arrayListImage.size >= position + 1) {
-                arrayListImage.set(position, file)
-            } else {
+            if (myContributionId == null) {
                 addImage(file)
+            } else {
+                if (arrayListImage.size >= position + 1) {
+                    arrayListImage.set(position, file)
+                } else {
+                    addImage(file)
+                }
             }
         } catch (e: Exception) {
             logError(e)

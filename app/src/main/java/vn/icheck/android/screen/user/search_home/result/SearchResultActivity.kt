@@ -240,7 +240,7 @@ class SearchResultActivity : BaseActivityMVVM(), View.OnClickListener {
                     edtSearch.requestFocus()
                     KeyboardUtils.showSoftInput(edtSearch)
                 }
-                ICMessageEvent.Type.ON_LOG_IN -> {
+                ICMessageEvent.Type.ON_REQUIRE_LOGIN -> {
                     onRequireLogin(requestLogin)
                 }
                 ICMessageEvent.Type.OPEN_DETAIL_POST -> {

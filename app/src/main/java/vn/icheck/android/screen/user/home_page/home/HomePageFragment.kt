@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
@@ -137,22 +138,32 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
 //        )
 
         tv_show_all_reminders.setOnClickListener {
-            ICheckApplication.currentActivity()?.let { activity ->
-                if (activity is HomeActivity) {
-                    ReminderHomeDialog().apply {
-                        show(activity.supportFragmentManager, null)
+            lifecycleScope.launch {
+                tv_show_all_reminders.isEnabled = false
+                ICheckApplication.currentActivity()?.let { activity ->
+                    if (activity is HomeActivity) {
+                        ReminderHomeDialog().apply {
+                            show(activity.supportFragmentManager, null)
+                        }
                     }
                 }
+                delay(200)
+                tv_show_all_reminders.isEnabled = true
             }
         }
 
         group_notification.setOnClickListener {
-            ICheckApplication.currentActivity()?.let { activity ->
-                if (activity is HomeActivity) {
-                    ReminderHomeDialog().apply {
-                        show(activity.supportFragmentManager, null)
+            lifecycleScope.launch {
+                group_notification.isEnabled = false
+                ICheckApplication.currentActivity()?.let { activity ->
+                    if (activity is HomeActivity) {
+                        ReminderHomeDialog().apply {
+                            show(activity.supportFragmentManager, null)
+                        }
                     }
                 }
+                delay(200)
+                group_notification.isEnabled = true
             }
         }
 
@@ -519,6 +530,9 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: ICMessageEvent) {
         when (event.type) {
+            ICMessageEvent.Type.GO_TO_HOME -> {
+                recyclerView.smoothScrollToPosition(0)
+            }
             ICMessageEvent.Type.UPDATE_UNREAD_NOTIFICATION -> {
 
                 tvNotificationCount.visibility = if (event.data as Long > 0) {
@@ -582,7 +596,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                 checkTheme()
             }
             ICMessageEvent.Type.ON_REQUIRE_LOGIN -> {
-                if (isVisible && !SessionManager.isUserLogged) {
+                if (isViewCreated && !SessionManager.isUserLogged) {
                     onRequireLogin()
                 }
             }
@@ -767,6 +781,11 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         super.onDestroy()
     }
 
+    override fun onPause() {
+        super.onPause()
+        isViewCreated = false
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -794,3 +813,4 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         }
     }
 }
+

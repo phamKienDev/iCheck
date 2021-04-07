@@ -1,6 +1,7 @@
 package vn.icheck.android.component.ads.page
 
 import android.graphics.Color
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -132,11 +133,11 @@ class AdsPageAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
             WidgetUtils.loadImageUrl(binding.imgAvatar, obj.avatar?.content, R.drawable.ic_business_v2)
 
+            binding.tvName.text = obj.name
             if (obj.verified == true) {
-                binding.tvName.setDrawbleNextEndText(obj.name, R.drawable.ic_verified_16px)
+                binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
             } else {
                 binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
-                binding.tvName.text = obj.name
             }
 
             if (obj.followCount != null && obj.followCount!! > 0) {
@@ -225,10 +226,11 @@ class AdsPageAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
 
             WidgetUtils.loadImageUrl(binding.imgAvatar, obj.avatar?.content, R.drawable.ic_business_v2)
+            binding.tvName.text = obj.name
             if (obj.verified == true) {
-                binding.tvName.setDrawbleNextEndText(obj.name ?: "", R.drawable.ic_verified_16px)
+                binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
             } else {
-                binding.tvName.text = obj.name
+                binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
             if (obj.followCount != null && obj.followCount!! > 0) {
                 binding.tvStatus.text = binding.tvStatus.context.getString(R.string.xxx_nguoi_theo_doi, TextHelper.formatMoney(obj.followCount))
@@ -305,6 +307,9 @@ class AdsPageAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             WidgetUtils.loadImageUrl(binding.imgAvatar, obj.avatar?.content, R.drawable.ic_business_v2)
             if (obj.isVerify == true) {
                 binding.tvName.setDrawbleNextEndText(obj.name ?: "", R.drawable.ic_verified_16px)
+                Handler().postDelayed({
+                    binding.tvName.setDrawbleNextEndText(binding.tvName.text.toString(), R.drawable.ic_verified_16px)
+                }, 100)
             } else {
                 binding.tvName.text = obj.name
             }

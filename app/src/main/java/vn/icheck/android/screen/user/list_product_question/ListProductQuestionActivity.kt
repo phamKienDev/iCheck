@@ -3,6 +3,7 @@ package vn.icheck.android.screen.user.list_product_question
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.text.Editable
@@ -32,11 +33,12 @@ import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.ItemClickListener
 import vn.icheck.android.component.commentpost.ICCommentPostMore
-import vn.icheck.android.component.take_media.TakeMediaDialog
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
+import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.lib.keyboard.KeyboardVisibilityEvent
 import vn.icheck.android.lib.keyboard.KeyboardVisibilityEventListener
 import vn.icheck.android.lib.keyboard.Unregistrar
@@ -73,7 +75,7 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
     private val requestEditQuestion = 1
     private val requestLogin = 2
 
-    private val takeMediaListener = object : TakeMediaDialog.TakeImageListener {
+    private val takeMediaListener = object : TakeMediaListener {
         override fun onPickMediaSucess(file: File) {
             layoutImage.visibility = View.VISIBLE
             layoutImage.tag = file
@@ -88,6 +90,13 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
         }
 
         override fun onPickMuliMediaSucess(file: MutableList<File>) {
+        }
+
+        override fun onStartCrop(filePath: String?, uri: Uri?, ratio: String?, requestCode: Int?) {
+
+        }
+
+        override fun onDismiss() {
         }
 
         override fun onTakeMediaSuccess(file: File?) {
@@ -193,7 +202,7 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
     }
 
     private fun selectPicture() {
-        TakeMediaDialog.show(supportFragmentManager, takeMediaListener)
+        TakeMediaDialog.show(supportFragmentManager, this,takeMediaListener)
     }
 
     private fun setRecyclerViewPermission() {
