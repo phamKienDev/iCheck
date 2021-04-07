@@ -239,6 +239,10 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                     }
                 }
             }
+
+            override fun onClickLeftMenu() {
+                openSlideMenu()
+            }
         })))
 
         viewPager.offscreenPageLimit = 5

@@ -44,6 +44,7 @@ class ListConversationFragment(val listener: ICountMessageListener) : BaseFragme
 
         interface ICountMessageListener {
             fun getCountMessage(count: Long)
+            fun onClickLeftMenu()
         }
     }
 

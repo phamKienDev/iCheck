@@ -31,7 +31,6 @@ import vn.icheck.android.network.models.ICPageOverview
 import vn.icheck.android.screen.user.media_in_post.MediaInPostActivity
 import vn.icheck.android.screen.user.page_details.fragment.page.PageDetailFragment
 import vn.icheck.android.screen.user.page_details.fragment.product.ProductOfPageFragment
-import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 import vn.icheck.android.util.ick.*
 import vn.icheck.android.util.kotlin.*
 
@@ -176,8 +175,8 @@ class PageDetailActivity : BaseActivityMVVM(), View.OnClickListener {
         btnFollow.setOnClickListener {
             if (SessionManager.isUserLogged) {
                 if (viewModel.isFollowPage) {
-                    SocialChatActivity.createPageChat(this, pageID)
-//                    ChatSocialDetailActivity.createRoomChat(this@PageDetailActivity, pageID, "page")
+//                    SocialChatActivity.createPageChat(this, pageID)
+                    ChatSocialDetailActivity.createRoomChat(this@PageDetailActivity, pageID, "page")
                 } else {
                     viewModel.pageOverview?.let { page ->
                         viewModel.followPage(page.id)

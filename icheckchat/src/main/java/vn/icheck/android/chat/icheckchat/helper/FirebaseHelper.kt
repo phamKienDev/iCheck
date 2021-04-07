@@ -101,6 +101,28 @@ class FirebaseHelper {
         })
     }
 
+    fun getMessageDetailV2(lastTimeStamp: Long, key: String, success: (snapshot: DataSnapshot) -> Unit, cancel: (error: DatabaseError) -> Unit) {
+        val messageDetails = if (lastTimeStamp > 0) {
+            firebaseDatabase.getReference("chat-details-v2/$key").orderByChild("time")
+                    .startAt(0.0).endAt(lastTimeStamp.toDouble() - 1)
+                    .limitToLast(10)
+        } else {
+            firebaseDatabase.getReference("chat-details-v2/$key").orderByChild("time")
+                    .limitToLast(10)
+        }
+
+        messageDetails.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                success(snapshot)
+                messageDetails.removeEventListener(this)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                cancel(error)
+                messageDetails.removeEventListener(this)
+            }
+        })
+    }
 
     fun getMessageDetail(key: String, success: (snapshot: DataSnapshot) -> Unit, cancel: (error: DatabaseError) -> Unit) {
         firebaseDatabase.getReference("chat-details-v2/$key").orderByChild("time").addListenerForSingleValueEvent(object : ValueEventListener {
