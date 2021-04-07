@@ -100,6 +100,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
 
     private var pvCombankType = 0
     private var isViewCreated = false
+    private var isOpen = false
 
     private val broadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -580,7 +581,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                 tvCartCount.beGone()
             }
             ICMessageEvent.Type.ON_UPDATE_AUTO_PLAY_VIDEO -> {
-                if (isVisible) {
+                if (isOpen) {
                     ExoPlayerManager.checkPlayVideoBase(recyclerView, layoutToolbarAlpha.height)
                 }
             }
@@ -596,7 +597,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                 checkTheme()
             }
             ICMessageEvent.Type.ON_REQUIRE_LOGIN -> {
-                if (isViewCreated && !SessionManager.isUserLogged) {
+                if (isOpen && !SessionManager.isUserLogged) {
                     onRequireLogin()
                 }
             }
@@ -656,8 +657,15 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        isOpen = false
+    }
+
     override fun onResume() {
         super.onResume()
+
+        isOpen = true
 
         if (!isViewCreated) {
             isViewCreated = true
@@ -731,7 +739,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                     return@Observer
                 }
 
-                if (!it?.data?.rows.isNullOrEmpty() && isVisible) {
+                if (!it?.data?.rows.isNullOrEmpty() && isOpen) {
                     val i = viewModel.getRemindersCount() ?: 0
                     if (i > 9) {
                         tv_count.text = "9+"
@@ -781,11 +789,6 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         super.onDestroy()
     }
 
-    override fun onPause() {
-        super.onPause()
-        isViewCreated = false
-    }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -813,4 +816,3 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         }
     }
 }
-
