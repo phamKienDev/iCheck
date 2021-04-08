@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@id/layoutParent"
     android:layout_width="301dp"
-    android:layout_height="168dp"
+    android:layout_height="wrap_content"
     android:layout_marginStart="7.5dp"
     android:layout_marginEnd="7.5dp"
     android:background="@drawable/bg_white_corners_16">
@@ -34,13 +34,16 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
         android:fontFamily="@font/barlow_medium"
+        android:layout_marginEnd="@dimen/size_6"
         android:textColor="#4f4f4f"
         android:textSize="16sp"
+        android:maxLines="1"
+        android:ellipsize="end"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/layoutImage"
         app:layout_constraintTop_toTopOf="@+id/layoutImage"
-        tools:text="Siêu thị VinMart Mỹ Đình" />
+        tools:text="Siêu thị VinMart Mỹ Đình fds fdsfk sjflkdsjfjdslfjdsl kfjsdk fsd" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvKhoangCach"
@@ -96,7 +99,6 @@
         android:drawablePadding="7dp"
         android:ellipsize="end"
         android:fontFamily="@font/barlow_regular"
-        android:lineSpacingExtra="7.6sp"
         android:maxLines="2"
         android:textColor="#212121"
         android:textSize="12sp"
