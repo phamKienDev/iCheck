@@ -16,15 +16,13 @@ import vn.icheck.android.model.privacy.UserPrivacyResponse
 import vn.icheck.android.model.reports.ReportUserCategoryResponse
 import vn.icheck.android.model.wall.LayoutResponse
 import vn.icheck.android.network.api.ICKApi
-import vn.icheck.android.network.base.APIConstants
-import vn.icheck.android.network.base.ICListResponse
-import vn.icheck.android.network.base.ICResponse
-import vn.icheck.android.network.base.SessionManager
+import vn.icheck.android.network.base.*
 import vn.icheck.android.network.models.ICCommentPost
 import vn.icheck.android.util.makeICRequest
 import vn.icheck.android.util.makeSimpleRequest
 import vn.icheck.android.network.models.ICPost
 import vn.icheck.android.network.models.ICSearchUser
+import vn.icheck.android.network.models.ICUser
 import vn.icheck.android.network.models.wall.IcFriendResponse
 import vn.icheck.android.screen.user.contribute_product.UPLOAD_LIST_IMAGE
 import vn.icheck.android.worker.UploadImageWorker
@@ -98,6 +96,14 @@ class IckUserWallRepository @Inject constructor(
     suspend fun getFriendInvitation(path: String?): ICResponse<ICListResponse<ICSearchUser>>? {
         return makeICRequest({
             ickApi.getFriendInvitation(path)
+        }, {
+            mErr.postValue(it?.message)
+        })
+    }
+
+    suspend fun getFriendSuggestion(path: String?): ICResponse<ICListResponse<ICUser>>? {
+        return makeICRequest({
+            ickApi.getListFriendSuggestion(path)
         }, {
             mErr.postValue(it?.message)
         })
