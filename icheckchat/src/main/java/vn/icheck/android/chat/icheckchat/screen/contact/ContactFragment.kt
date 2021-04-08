@@ -2,7 +2,9 @@ package vn.icheck.android.chat.icheckchat.screen.contact
 
 import android.Manifest
 import android.content.ContentResolver
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -23,7 +25,7 @@ import vn.icheck.android.chat.icheckchat.helper.ShareHelperChat
 import vn.icheck.android.chat.icheckchat.model.MCStatus
 import java.util.*
 
-class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerViewCallback {
+class ContactFragment(val isUserLogged: Boolean) : BaseFragmentChat<FragmentContactBinding>(), IRecyclerViewCallback {
 
     companion object {
         const val REQUEST_CONTACT = 1
@@ -47,19 +49,28 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
     }
 
     override fun onInitView() {
-//        viewModel = ViewModelProvider(this@ContactFragment)[ContactViewModel::class.java]
-//
-//        initRecyclerView()
-//        initSwipeLayout()
-//
-//        binding.btnRequest.setOnClickListener {
-//            showDialog()
-//        }
+        if (isUserLogged) {
+            binding.recyclerView.setGone()
+            binding.btnMergeRequest.setGone()
+            binding.tvMessageContact.setVisible()
+            binding.btnRequest.setVisible()
+            binding.layoutNoData.setVisible()
+        } else {
+            binding.recyclerView.setGone()
+            binding.btnMergeRequest.setGone()
+            binding.tvMessageContact.setGone()
+            binding.btnRequest.setGone()
+            binding.layoutNoData.setVisible()
+        }
+
+        binding.btnMergeRequest.setOnClickListener {
+            showDialog()
+        }
     }
 
     override fun onResume() {
         super.onResume()
-        if (!isCreated){
+        if (!isCreated) {
             isCreated = true
             viewModel = ViewModelProvider(this@ContactFragment)[ContactViewModel::class.java]
 
@@ -79,13 +90,13 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
 
     private fun initSwipeLayout() {
         binding.swipeRefresh.post {
-            if (requestContact()){
+            if (requestContact()) {
                 getData()
             }
         }
 
         binding.swipeRefresh.setOnRefreshListener {
-            if (requestContact()){
+            if (requestContact()) {
                 getData()
             }
         }
@@ -97,9 +108,11 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
         viewModel.getContact(getContacts()).observe(this@ContactFragment, {
             when (it.status) {
                 MCStatus.ERROR_NETWORK -> {
+                    binding.swipeRefresh.isRefreshing = false
                     requireContext().showToastError(it.message)
                 }
                 MCStatus.ERROR_REQUEST -> {
+                    binding.swipeRefresh.isRefreshing = false
                     requireContext().showToastError(it.message)
                 }
                 MCStatus.SUCCESS -> {
@@ -131,10 +144,12 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
                         if (!it.data?.data?.rows.isNullOrEmpty()) {
                             binding.recyclerView.setVisible()
                             binding.layoutNoData.setGone()
+                            binding.btnMergeRequest.setVisible()
 
                             adapter.setListData(it.data?.data?.rows ?: mutableListOf())
                         } else {
                             binding.recyclerView.setGone()
+                            binding.btnMergeRequest.setGone()
                             binding.layoutNoData.setVisible()
                         }
                     } else {
@@ -174,10 +189,26 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
         object : ConfirmContactDialog(requireContext(), {
             initSwipeLayout()
         }, {
-            //TODO mở Web View
+            getSystemSetting()
         }) {
 
         }.show()
+    }
+
+    private fun getSystemSetting() {
+        viewModel.getSystemSetting("app-support.privacy-url", "app-support").observe(this@ContactFragment, {
+            when (it.status) {
+                MCStatus.ERROR_NETWORK -> {
+                    requireContext().showToastError(it.message)
+                }
+                MCStatus.ERROR_REQUEST -> {
+                    requireContext().showToastError(it.message)
+                }
+                MCStatus.SUCCESS -> {
+                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(it.data?.data?.rows?.firstOrNull()?.value)))
+                }
+            }
+        })
     }
 
     override fun onMessageClicked() {

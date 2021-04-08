@@ -241,7 +241,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
             override fun onClickLeftMenu() {
                 openSlideMenu()
             }
-        })))
+        }, SessionManager.isUserLogged)))
 
         viewPager.offscreenPageLimit = 5
         viewPager.setPagingEnabled(false)
