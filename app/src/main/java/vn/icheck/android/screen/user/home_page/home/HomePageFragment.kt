@@ -148,7 +148,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                         }
                     }
                 }
-                delay(200)
+                delay(500)
                 tv_show_all_reminders.isEnabled = true
             }
         }
@@ -163,7 +163,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                         }
                     }
                 }
-                delay(200)
+                delay(500)
                 group_notification.isEnabled = true
             }
         }

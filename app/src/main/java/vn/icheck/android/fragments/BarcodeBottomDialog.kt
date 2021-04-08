@@ -64,7 +64,7 @@ class BarcodeBottomDialog : BaseBottomSheetDialogFragment() {
 
     interface OnBarCodeDismiss {
         fun onDismiss()
-        fun onSubmit(code: String)
+        fun onSubmit(mCode: String)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

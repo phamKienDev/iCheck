@@ -83,7 +83,6 @@ import java.io.File
 import java.net.URL
 import java.util.*
 import java.util.concurrent.atomic.AtomicBoolean
-import java.util.concurrent.atomic.AtomicInteger
 
 
 class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
@@ -151,10 +150,12 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         override fun onDismiss() {
 //            takeImageDialog.dismiss()
 
-            if (!scanImage.get()) {
-                pushUpHeight()
-                resetCamera()
-            }
+//            if (!scanImage.get()) {
+//                pushUpHeight()
+//                resetCamera()
+//            }
+            pushUpHeight()
+            resetCamera()
         }
 
         override fun onTakeMediaSuccess(file: File?) {
@@ -414,9 +415,9 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                     binding.imgNmbt.isEnabled = true
                 }
 
-                override fun onSubmit(code: String) {
+                override fun onSubmit(mCode: String) {
+                    val code = mCode.trim()
                     binding.imgNmbt.isEnabled = true
-
                     if (viewModel.scanOnlyChat) {
                         setResult(Activity.RESULT_OK, Intent().apply {
                             putExtra(Constant.DATA_1, false)
@@ -637,7 +638,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         val barcode = session.newlyRecognizedBarcodes[0]
 
         runOnUiThread {
-            val code = barcode.data
+            val code = barcode.data?.trim()
 
             if (!code.isNullOrEmpty()) {
 //                if (code.startsWith("u-") || code.startsWith("U-")) {
@@ -1280,6 +1281,8 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                     comPressImage(File(url))
                     takeImageDialog.dismiss()
                 }
+            } else {
+                scanImage.set(true)
             }
         }
     }
