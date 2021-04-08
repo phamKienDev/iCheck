@@ -56,6 +56,7 @@ class TakeMediaDialog(val activity: Activity,
         if (cropImage) {
             takeMediaHelper = TakeMediaHelper(activity, listener).apply {
                 onTakeImageSuccess = {
+
                     listener.onStartCrop(it?.absolutePath, null, ratio, CROP_IMAGE_GALLERY)
                 }
             }

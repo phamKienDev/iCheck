@@ -148,12 +148,12 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         }
 
         override fun onDismiss() {
-//            takeImageDialog.dismiss()
 
 //            if (!scanImage.get()) {
 //                pushUpHeight()
 //                resetCamera()
 //            }
+
             pushUpHeight()
             resetCamera()
         }
@@ -167,65 +167,88 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         try {
             lifecycleScope.launch {
                 _binding?.bg?.alpha = 1f
-                delay(400)
+                delay(600)
                 val bm = BitmapFactory.decodeFile(file?.getAbsolutePath())
-                val width = bm.width
-                val height = bm.height
-                val ruler = if (width >= height) width else height
-                if (ruler > 500) {
-                    val scale = ruler / 500
-                    val scaled = bm.scale(width / scale, height / scale)
-                    val source = BitmapFrameSource.of(scaled)
-                    dataCaptureContext.setFrameSource(source)
-                    source.addListener(object : FrameSourceListener {
-                        var lastState: FrameSourceState? = null
-                        override fun onStateChanged(frameSource: FrameSource, newState: FrameSourceState) {
-                            super.onStateChanged(frameSource, newState)
-                            if (lastState == FrameSourceState.STOPPING && newState == FrameSourceState.OFF && scanImage.get()) {
-                                scanImage.set(false)
-                                runOnUiThread {
-                                    DialogHelper.showNotification(this@V6ScanditActivity, R.string.thong_bao, R.string.khong_thay_ma_vach, true, object : NotificationDialogListener {
+                val scaled = bm.scale(dataCaptureView.width / 2, dataCaptureView.width / 2)
+                val source = BitmapFrameSource.of(scaled)
+                dataCaptureContext.setFrameSource(source)
+                source.addListener(object : FrameSourceListener {
+                    var lastState: FrameSourceState? = null
+                    override fun onStateChanged(frameSource: FrameSource, newState: FrameSourceState) {
+                        super.onStateChanged(frameSource, newState)
+                        if (lastState == FrameSourceState.STOPPING && newState == FrameSourceState.OFF && scanImage.get()) {
+                            scanImage.set(false)
+                            runOnUiThread {
+                                DialogHelper.showNotification(this@V6ScanditActivity, R.string.thong_bao, R.string.khong_thay_ma_vach, true, object : NotificationDialogListener {
 
-                                        override fun onDone() {
-                                            resetCamera()
-                                        }
+                                    override fun onDone() {
+                                        resetCamera()
+                                    }
 
-                                    })
-                                }
-                                frameSource.removeListener(this)
-                            } else {
-                                lastState = newState
+                                })
                             }
+                            frameSource.removeListener(this)
+                        } else {
+                            lastState = newState
                         }
-                    })
-                    source?.switchToDesiredState(FrameSourceState.ON)
-
-                } else {
-                    val source = BitmapFrameSource.of(bm)
-                    dataCaptureContext.setFrameSource(source)
-                    source.addListener(object : FrameSourceListener {
-                        var lastState: FrameSourceState? = null
-                        override fun onStateChanged(frameSource: FrameSource, newState: FrameSourceState) {
-                            super.onStateChanged(frameSource, newState)
-                            if (lastState == FrameSourceState.STOPPING && newState == FrameSourceState.OFF && scanImage.get()) {
-                                scanImage.set(false)
-                                runOnUiThread {
-                                    DialogHelper.showNotification(this@V6ScanditActivity, R.string.thong_bao, R.string.khong_thay_ma_vach, true, object : NotificationDialogListener {
-
-                                        override fun onDone() {
-                                            resetCamera()
-                                        }
-
-                                    })
-                                }
-                                frameSource.removeListener(this)
-                            } else {
-                                lastState = newState
-                            }
-                        }
-                    })
-                    source?.switchToDesiredState(FrameSourceState.ON)
-                }
+                    }
+                })
+                resetHeight()
+                source?.switchToDesiredState(FrameSourceState.ON)
+//                if (ruler > dataCaptureView.width) {
+//                    val scale = ruler / dataCaptureView.width
+//                    val scaled = bm.scale(width / scale, height / scale)
+//                    val source = BitmapFrameSource.of(scaled)
+//                    dataCaptureContext.setFrameSource(source)
+//                    source.addListener(object : FrameSourceListener {
+//                        var lastState: FrameSourceState? = null
+//                        override fun onStateChanged(frameSource: FrameSource, newState: FrameSourceState) {
+//                            super.onStateChanged(frameSource, newState)
+//                            if (lastState == FrameSourceState.STOPPING && newState == FrameSourceState.OFF && scanImage.get()) {
+//                                scanImage.set(false)
+//                                runOnUiThread {
+//                                    DialogHelper.showNotification(this@V6ScanditActivity, R.string.thong_bao, R.string.khong_thay_ma_vach, true, object : NotificationDialogListener {
+//
+//                                        override fun onDone() {
+//                                            resetCamera()
+//                                        }
+//
+//                                    })
+//                                }
+//                                frameSource.removeListener(this)
+//                            } else {
+//                                lastState = newState
+//                            }
+//                        }
+//                    })
+//                    source?.switchToDesiredState(FrameSourceState.ON)
+//
+//                } else {
+//                    val source = BitmapFrameSource.of(bm)
+//                    dataCaptureContext.setFrameSource(source)
+//                    source.addListener(object : FrameSourceListener {
+//                        var lastState: FrameSourceState? = null
+//                        override fun onStateChanged(frameSource: FrameSource, newState: FrameSourceState) {
+//                            super.onStateChanged(frameSource, newState)
+//                            if (lastState == FrameSourceState.STOPPING && newState == FrameSourceState.OFF && scanImage.get()) {
+//                                scanImage.set(false)
+//                                runOnUiThread {
+//                                    DialogHelper.showNotification(this@V6ScanditActivity, R.string.thong_bao, R.string.khong_thay_ma_vach, true, object : NotificationDialogListener {
+//
+//                                        override fun onDone() {
+//                                            resetCamera()
+//                                        }
+//
+//                                    })
+//                                }
+//                                frameSource.removeListener(this)
+//                            } else {
+//                                lastState = newState
+//                            }
+//                        }
+//                    })
+//                    source?.switchToDesiredState(FrameSourceState.ON)
+//                }
                 scanImage.set(true)
             }
         } catch (e: Exception) {
@@ -250,7 +273,6 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         initCamera()
         resetCamera()
         initDataCaptureView()
-        pushUpHeight()
         checkIsReview()
         checkIsScan()
         initViews()
@@ -277,7 +299,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     }
 
     private fun initTakeImageDialog() {
-        takeImageDialog = TakeMediaDialog(this, takeImageListener, selectMulti = false, cropImage = true, isVideo = false, saveImageToGallery = true)
+        takeImageDialog = TakeMediaDialog(this, takeImageListener, selectMulti = false, cropImage = true, isVideo = false, saveImageToGallery = false)
     }
 
     private fun initBarcodeCapture() {
@@ -309,9 +331,11 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         if (getUserCountry(this).contains("vn", false)) {
             dataCaptureView.post {
                 val lp = dataCaptureView.layoutParams
-                lp.height = getDeviceHeight() + 50.toPx()
-                lp.width = getDeviceWidth()
-                dataCaptureView.layoutParams = lp
+                if (lp.height != getDeviceHeight()) {
+                    lp.height = getDeviceHeight() + 50.toPx()
+                    lp.width = getDeviceWidth()
+                    dataCaptureView.layoutParams = lp
+                }
             }
         }
     }
@@ -319,9 +343,11 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     private fun resetHeight() {
         dataCaptureView.post {
             val lp = dataCaptureView.layoutParams
-            lp.height = getDeviceHeight()
-            lp.width = getDeviceWidth()
-            dataCaptureView.layoutParams = lp
+            if (lp.height != getDeviceHeight()) {
+                lp.height = getDeviceHeight()
+                lp.width = getDeviceWidth()
+                dataCaptureView.layoutParams = lp
+            }
         }
 
     }
@@ -334,6 +360,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                         dataCaptureContext.setFrameSource(camera)
                         enableCapture(barcodeCapture)
                         _binding?.bg?.alpha = 0f
+                        pushUpHeight()
                     } else {
                         resetCamera()
                     }
@@ -376,6 +403,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         guideArr.add(binding?.imgNmspTip)
         guideArr.add(binding?.imgTorchTip)
         guideArr.add(binding?.imgXmdd)
+        guideArr.add(binding?.imgSdha)
         binding?.imgHelp?.setOnClickListener {
             viewModel.setGuide()
         }
@@ -1244,11 +1272,10 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
     override fun onMessageEvent(event: ICMessageEvent) {
         super.onMessageEvent(event)
-        if (event.type == ICMessageEvent.Type.ON_DISMISS) {
-            takeImageDialog.dismiss()
-            pushUpHeight()
-            resetCamera()
-        }
+//        if (event.type == ICMessageEvent.Type.ON_DISMISS) {
+//            takeImageDialog.dismiss()
+//            resetCamera()
+//        }
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
