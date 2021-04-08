@@ -1,5 +1,5 @@
 before_script:
-  - chmod +x ./gradlew bundleRelease --warning-mode all
+  - chmod +x ./gradlew
   - source ~/.zshrc
 
 assembleDevDebug:
@@ -11,6 +11,7 @@ assembleDevDebug:
   stage: build
   script:
     - ./gradlew clean
+    - ./gradle build --warning-mode=all
     - ./gradlew assembleDevDebug
     - curl -T $PWD/app/build/outputs/apk/dev/debug/app-dev-debug.apk -u $FTP_USER:$FTP_PASSWORD $FTP_FOLDER/chat/icheckDev.apk
     - "curl -X POST -H 'Content-type: application/json' --data '{\"text\":\"Có bản cài Chat Android Sandbox mới. <https://download.icheck.com.vn/|Tải ngay!>\"}' $SLACK_HOOK"
@@ -24,6 +25,7 @@ assembleProdRelease:
   stage: build
   script:
     - ./gradlew clean
+    - ./gradle build --warning-mode=all
     - ./gradlew assembleProdRelease
     - curl -T $PWD/app/build/outputs/apk/prod/release/app-prod-release.apk -u $FTP_USER:$FTP_PASSWORD $FTP_FOLDER/chat/icheck.apk
     - "curl -X POST -H 'Content-type: application/json' --data '{\"text\":\"Có bản cài Chat Android Live mới. <https://download.icheck.com.vn/|Tải ngay!>\"}' $SLACK_HOOK"
