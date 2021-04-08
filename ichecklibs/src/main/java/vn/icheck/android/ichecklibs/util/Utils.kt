@@ -57,10 +57,10 @@ infix fun Context.showSimpleSuccessToast(msg: String?) {
     toast?.cancel()
     toast = Toast(this)
     binding.tvContent.text = msg
-    toast?.view = binding.root
-    toast?.setGravity(Gravity.CENTER, 0, 0)
-    toast?.duration = Toast.LENGTH_SHORT
-    toast?.show()
+    toast.view = binding.root
+    toast.setGravity(Gravity.CENTER, 0, 0)
+    toast.duration = Toast.LENGTH_SHORT
+    toast.show()
 }
 
 fun Context.showSimpleSuccessToast(icon: Int, msg: String?) {
@@ -70,10 +70,10 @@ fun Context.showSimpleSuccessToast(icon: Int, msg: String?) {
     toast = Toast(this)
     binding.imgIcon.setImageResource(icon)
     binding.tvContent.text = msg
-    toast?.view = binding.root
-    toast?.setGravity(Gravity.CENTER, 0, 0)
-    toast?.duration = Toast.LENGTH_SHORT
-    toast?.show()
+    toast.view = binding.root
+    toast.setGravity(Gravity.CENTER, 0, 0)
+    toast.duration = Toast.LENGTH_SHORT
+    toast.show()
 }
 
 @MainThread
@@ -87,10 +87,10 @@ infix fun Context.showSimpleErrorToast(msg: String?) {
     } else {
         binding.tvContent.text = "Đã xảy ra lỗi, vui lòng thử lại sau!"
     }
-    toast?.view = binding.root
-    toast?.setGravity(Gravity.CENTER, 0, 0)
-    toast?.duration = Toast.LENGTH_SHORT
-    toast?.show()
+    toast.view = binding.root
+    toast.setGravity(Gravity.CENTER, 0, 0)
+    toast.duration = Toast.LENGTH_SHORT
+    toast.show()
 }
 
 @MainThread
@@ -104,10 +104,10 @@ infix fun Context.showSimpleErrorLongToast(msg: String?) {
     } else {
         binding.tvContent.text = "Đã xảy ra lỗi, vui lòng thử lại sau!"
     }
-    toast?.view = binding.root
-    toast?.setGravity(Gravity.CENTER, 0, 0)
-    toast?.duration = Toast.LENGTH_LONG
-    toast?.show()
+    toast.view = binding.root
+    toast.setGravity(Gravity.CENTER, 0, 0)
+    toast.duration = Toast.LENGTH_LONG
+    toast.show()
 }
 
 @MainThread
@@ -117,10 +117,10 @@ infix fun Context.showSimpleErrorToast(msg: Int) {
     toast?.cancel()
     toast = Toast(this)
     binding.tvContent.text = this.getString(msg)
-    toast?.view = binding.root
-    toast?.setGravity(Gravity.CENTER, 0, 0)
-    toast?.duration = Toast.LENGTH_SHORT
-    toast?.show()
+    toast.view = binding.root
+    toast.setGravity(Gravity.CENTER, 0, 0)
+    toast.duration = Toast.LENGTH_SHORT
+    toast.show()
 }
 
 fun View.setAllEnabled(enabled: Boolean) {

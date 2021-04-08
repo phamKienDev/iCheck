@@ -3,6 +3,7 @@ package vn.icheck.android.screen.user.list_product_review
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import androidx.core.content.ContextCompat
@@ -19,10 +20,11 @@ import vn.icheck.android.component.product_review.my_review.IMyReviewListener
 import vn.icheck.android.component.product_review.my_review.MyReviewModel
 import vn.icheck.android.component.product_review.submit_review.ISubmitReviewListener
 import vn.icheck.android.component.product_review.submit_review.SubmitReviewHolder
-import vn.icheck.android.component.take_media.TakeMediaDialog
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.fragments.ReviewTributeDialog
 import vn.icheck.android.helper.*
+import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
+import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.network.models.ICPost
 import vn.icheck.android.network.models.ICProductMyReview
 import vn.icheck.android.screen.user.detail_post.DetailPostActivity
@@ -48,7 +50,7 @@ class ListProductReviewActivity : BaseActivityMVVM(), ISubmitReviewListener, IRe
 
     private var reviewStartInsider = true
 
-    private val takeMediaListener = object : TakeMediaDialog.TakeImageListener {
+    private val takeMediaListener = object : TakeMediaListener {
         override fun onPickMediaSucess(file: File) {
             val holder = rcvListReview.findViewHolderForAdapterPosition(positionSubmit)
             if (holder != null && holder is SubmitReviewHolder) {
@@ -61,6 +63,13 @@ class ListProductReviewActivity : BaseActivityMVVM(), ISubmitReviewListener, IRe
             if (holder != null && holder is SubmitReviewHolder) {
                 holder.setImage(file)
             }
+        }
+
+        override fun onStartCrop(filePath: String?, uri: Uri?, ratio: String?, requestCode: Int?) {
+
+        }
+
+        override fun onDismiss() {
         }
 
         override fun onTakeMediaSuccess(file: File?) {
@@ -305,7 +314,7 @@ class ListProductReviewActivity : BaseActivityMVVM(), ISubmitReviewListener, IRe
     }
 
     private fun selectPicture() {
-        TakeMediaDialog.show(supportFragmentManager, takeMediaListener, true)
+        TakeMediaDialog.show(supportFragmentManager, this, takeMediaListener, selectMulti = true, isVideo = true)
     }
 
     override fun onMessageClicked() {

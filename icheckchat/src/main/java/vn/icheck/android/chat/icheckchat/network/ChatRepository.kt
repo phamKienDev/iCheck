@@ -195,7 +195,7 @@ class ChatRepository {
         return MCNetworkClient.getNewSocialApi().getSticker(url, params)
     }
 
-    fun uploadMedia(file: File, success: (obj: MCUploadResponse) -> Unit, cancel: (error: MCBaseResponse) -> Unit) {
+    suspend fun uploadMedia(file: File):MCResponse<MCUploadResponse> {
 
         val requestBody = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), file)
         var fileName = file.toString()
@@ -205,27 +205,6 @@ class ChatRepository {
         val body = MultipartBody.Part.createFormData("key", fileName, requestBody)
 
         val url = UPLOAD_HOST + "upload/stream"
-
-        MCNetworkClient.getNewSocialApi(60).uploadImage(url, body).enqueue(object : Callback<MCResponse<MCUploadResponse>> {
-            override fun onResponse(call: Call<MCResponse<MCUploadResponse>>, response: Response<MCResponse<MCUploadResponse>>) {
-                val obj = response.body()
-
-                if (obj != null) {
-                    success(obj.data!!)
-                } else {
-                    val error = MCBaseResponse()
-                    error.statusCode = -1
-                    error.message = ShareHelperChat.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
-                    cancel(error)
-                }
-            }
-
-            override fun onFailure(call: Call<MCResponse<MCUploadResponse>>, t: Throwable) {
-                val error = MCBaseResponse()
-                error.statusCode = -1
-                error.message = ShareHelperChat.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
-                cancel(error)
-            }
-        })
+        return MCNetworkClient.getNewSocialApi(60).uploadImage(url, body)
     }
 }
