@@ -8,6 +8,7 @@ import android.content.Intent
 import android.net.Uri
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -17,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.FirebaseDatabase
@@ -93,6 +95,11 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
     private var key: String? = null
     private var isLoadData: Boolean = true
     private var newMessage = MCDetailMessage()
+    private var isAllowScroll: Boolean = true
+
+    //lưu giá trị trước khi gửi
+    private var keyConversation: String? = null
+    private var sentMessage: MCDetailMessage? = null
 
 
     var deleteAt = -1L
@@ -111,6 +118,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         initRecyclerView()
         initEditText()
         getPackageSticker()
+        listenMediaData()
     }
 
     private fun initToolbar() {
@@ -156,6 +164,13 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         }
 
         binding.recyclerView.layoutManager = LinearLayoutManager(this@ChatSocialDetailActivity)
+        binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val holder = recyclerView.findViewHolderForAdapterPosition(0)
+                isAllowScroll = holder != null
+            }
+        })
 
         binding.recyclerView.adapter = adapter
 
@@ -410,7 +425,9 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                         }
                     }
                 }
-                binding.recyclerView.smoothScrollToPosition(0)
+                if (isAllowScroll) {
+                    binding.recyclerView.smoothScrollToPosition(0)
+                }
             }
         }, timeStart)
     }
@@ -550,25 +567,30 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
             if (obj.type == "media") {
                 viewModel.uploadImage(adapterImage.getListData)
-
-                viewModel.listMediaData.observe(this, { media ->
-                    adapterImage.clearData()
-                    val listMedia = mutableListOf<MCMedia>()
-                    media.forEach {
-                        listMedia.add(MCMedia(it.src, if (it.src.endsWith(".mp4")) {
-                            "video"
-                        } else {
-                            "image"
-                        }))
-                    }
-                    obj.listMedia = listMedia
-                    sendMessage(key, "user", obj)
-                })
-
+                sentMessage = obj
+                keyConversation = key
             } else {
                 sendMessage(key, "user", obj)
             }
         }
+    }
+
+    private fun listenMediaData() {
+        viewModel.listMediaData.observe(this, { media ->
+            if (sentMessage != null && keyConversation != null) {
+                adapterImage.clearData()
+                val listMedia = mutableListOf<MCMedia>()
+                media.forEach {
+                    listMedia.add(MCMedia(it.src, if (it.src.endsWith(".mp4")) {
+                        "video"
+                    } else {
+                        "image"
+                    }))
+                }
+                sentMessage?.listMedia = listMedia
+                sendMessage(keyConversation!!, "user", sentMessage!!)
+            }
+        })
     }
 
     private fun addMessageAdapter(obj: MCDetailMessage) {
