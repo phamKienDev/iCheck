@@ -182,10 +182,10 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
                     setOnClickListener {
                         if (isChecked) {
                             isChecked = false
-                            turnOffNotification(key, toId, toType)
+                            turnOffNotification(key, FirebaseAuth.getInstance().uid.toString(), toType)
                         } else {
                             isChecked = true
-                            turnOnNotification(key, toId, toType)
+                            turnOnNotification(key, FirebaseAuth.getInstance().uid.toString(), toType)
                         }
                     }
                 }
