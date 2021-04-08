@@ -10,7 +10,7 @@ assembleDevDebug:
       - develop_chat
   stage: build
   script:
-    - ./gradlew clean && cd .. && react-native run-android
+    - ./gradlew clean
     - ./gradlew assembleDevDebug
     - curl -T $PWD/app/build/outputs/apk/dev/debug/app-dev-debug.apk -u $FTP_USER:$FTP_PASSWORD $FTP_FOLDER/chat/icheckDev.apk
     - "curl -X POST -H 'Content-type: application/json' --data '{\"text\":\"Có bản cài Chat Android Sandbox mới. <https://download.icheck.com.vn/|Tải ngay!>\"}' $SLACK_HOOK"
