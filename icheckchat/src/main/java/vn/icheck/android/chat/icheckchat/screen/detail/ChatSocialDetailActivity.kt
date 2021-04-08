@@ -97,6 +97,10 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
     private var newMessage = MCDetailMessage()
     private var isAllowScroll: Boolean = true
 
+    //lưu giá trị trước khi gửi
+    private var keyConversation: String? = null
+    private var sentMessage: MCDetailMessage? = null
+
 
     var deleteAt = -1L
 
@@ -114,6 +118,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         initRecyclerView()
         initEditText()
         getPackageSticker()
+        listenMediaData()
     }
 
     private fun initToolbar() {
@@ -420,7 +425,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                         }
                     }
                 }
-                if(isAllowScroll){
+                if (isAllowScroll) {
                     binding.recyclerView.smoothScrollToPosition(0)
                 }
             }
@@ -562,25 +567,30 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
             if (obj.type == "media") {
                 viewModel.uploadImage(adapterImage.getListData)
-
-                viewModel.listMediaData.observe(this, { media ->
-                    adapterImage.clearData()
-                    val listMedia = mutableListOf<MCMedia>()
-                    media.forEach {
-                        listMedia.add(MCMedia(it.src, if (it.src.endsWith(".mp4")) {
-                            "video"
-                        } else {
-                            "image"
-                        }))
-                    }
-                    obj.listMedia = listMedia
-                    sendMessage(key, "user", obj)
-                })
-
+                sentMessage = obj
+                keyConversation = key
             } else {
                 sendMessage(key, "user", obj)
             }
         }
+    }
+
+    private fun listenMediaData() {
+        viewModel.listMediaData.observe(this, { media ->
+            if (sentMessage != null && keyConversation != null) {
+                adapterImage.clearData()
+                val listMedia = mutableListOf<MCMedia>()
+                media.forEach {
+                    listMedia.add(MCMedia(it.src, if (it.src.endsWith(".mp4")) {
+                        "video"
+                    } else {
+                        "image"
+                    }))
+                }
+                sentMessage?.listMedia = listMedia
+                sendMessage(keyConversation!!, "user", sentMessage!!)
+            }
+        })
     }
 
     private fun addMessageAdapter(obj: MCDetailMessage) {
