@@ -1,5 +1,5 @@
 before_script:
-  - chmod +x ./gradlew
+  - chmod +x ./gradlew bundleRelease --warning-mode all
   - source ~/.zshrc
 
 assembleDevDebug:
