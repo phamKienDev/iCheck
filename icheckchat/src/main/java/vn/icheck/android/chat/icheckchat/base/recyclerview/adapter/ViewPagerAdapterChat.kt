@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 
 @SuppressLint("WrongConstant")
-class ViewPagerAdapterChat(fragmentManager: FragmentManager, private val listData: MutableList<Fragment> = mutableListOf()) : FragmentStatePagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+class ViewPagerAdapterChat(fragmentManager: FragmentManager, val listData: MutableList<Fragment> = mutableListOf()) : FragmentStatePagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     override fun getItem(position: Int): Fragment {
         return listData[position]

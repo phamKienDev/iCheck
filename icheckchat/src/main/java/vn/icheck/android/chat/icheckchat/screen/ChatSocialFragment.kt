@@ -27,7 +27,7 @@ class ChatSocialFragment(val callback: ListConversationFragment.Companion.ICount
 
         binding.layoutContainer.setPadding(0, getStatusBarHeight, 0, 0)
 
-        binding.toolbar.imgBack.setImageResource(R.drawable.ic_leftmenu_24dp_chat)
+        binding.toolbar.imgBack.setImageResource(R.drawable.ic_left_menu_blue_24dp_chat)
 
         binding.toolbar.imgBack.setOnClickListener {
             callback.onClickLeftMenu()
@@ -89,5 +89,16 @@ class ChatSocialFragment(val callback: ListConversationFragment.Companion.ICount
     private fun unCheckAll() {
         binding.tvMessage.isChecked = false
         binding.tvContact.isChecked = false
+    }
+
+    fun checkLoginOrLogOut(isLogin: Boolean) {
+        (binding.viewPager.adapter as ViewPagerAdapterChat).apply {
+            for (item in listData) {
+                if (item is ListConversationFragment) {
+                    item.checkLoginOrLogOut(isLogin)
+                    return
+                }
+            }
+        }
     }
 }

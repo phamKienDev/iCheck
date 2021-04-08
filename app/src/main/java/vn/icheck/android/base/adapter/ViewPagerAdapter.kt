@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import vn.icheck.android.base.model.ICFragment
 
 @SuppressLint("WrongConstant")
-class ViewPagerAdapter(fragmentManager: FragmentManager, private val listData: MutableList<ICFragment> = mutableListOf()) : FragmentStatePagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+class ViewPagerAdapter(fragmentManager: FragmentManager, val listData: MutableList<ICFragment> = mutableListOf()) : FragmentStatePagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     val getItemCount: Int
         get() {
