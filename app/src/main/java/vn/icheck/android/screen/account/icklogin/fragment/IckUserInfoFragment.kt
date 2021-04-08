@@ -1,40 +1,31 @@
 package vn.icheck.android.screen.account.icklogin.fragment
 
 import android.Manifest
-import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
-import android.content.res.ColorStateList
-import android.graphics.Color
 import android.graphics.Typeface
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
 import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
-import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.navArgs
 import androidx.work.WorkInfo
 import com.bumptech.glide.Glide
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
 import vn.icheck.android.base.fragment.CoroutineFragment
 import vn.icheck.android.base.model.ICMessageEvent
-import vn.icheck.android.component.take_media.TakeMediaDialog
-import vn.icheck.android.constant.ADDRESS
-import vn.icheck.android.constant.DISTRICT_ID
 import vn.icheck.android.constant.ICK_IMAGE_UPLOADED_SRC
-import vn.icheck.android.constant.WARD_ID
 import vn.icheck.android.databinding.FragmentUserInfoBinding
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
+import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.model.location.CityItem
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.screen.account.icklogin.viewmodel.CHOOSE_TOPIC
@@ -59,13 +50,20 @@ class IckUserInfoFragment : CoroutineFragment() {
     private val binding get() = _binding!!
     private val ickLoginViewModel: IckLoginViewModel by activityViewModels()
 
-    private val takeImageListener = object : TakeMediaDialog.TakeImageListener {
+    private val takeImageListener = object : TakeMediaListener {
         var avatar: ImageView? = null
         override fun onPickMediaSucess(file: File) {
             loadFile(file)
         }
 
         override fun onPickMuliMediaSucess(file: MutableList<File>) {
+        }
+
+        override fun onStartCrop(filePath: String?, uri: Uri?, ratio: String?, requestCode: Int?) {
+
+        }
+
+        override fun onDismiss() {
         }
 
         override fun onTakeMediaSuccess(file: File?) {
@@ -367,7 +365,7 @@ class IckUserInfoFragment : CoroutineFragment() {
     }
 
     private fun selectPicture() {
-        TakeMediaDialog.show(childFragmentManager, takeImageListener, false, isVideo = false)
+        activity?.let { TakeMediaDialog.show(childFragmentManager, it, takeImageListener, selectMulti = false, isVideo = false) }
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {

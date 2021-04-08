@@ -7,6 +7,7 @@ data class MCMessageEvent(val type: Type, val data: Any? = null) {
         BACK,
         BLOCK,
         ON_FINISH_ALL_CHAT,
-        SEND_RETRY_CHAT
+        SEND_RETRY_CHAT,
+        IS_SCROLL_MEDIA
     }
 }

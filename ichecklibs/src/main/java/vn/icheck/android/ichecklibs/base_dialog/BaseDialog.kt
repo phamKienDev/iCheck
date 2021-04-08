@@ -1,4 +1,4 @@
-package vn.icheck.android.ichecklibs
+package vn.icheck.android.ichecklibs.base_dialog
 
 import android.app.Dialog
 import android.content.Context

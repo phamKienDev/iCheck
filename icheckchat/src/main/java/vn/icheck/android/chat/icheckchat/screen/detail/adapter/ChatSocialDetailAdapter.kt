@@ -10,8 +10,10 @@ import android.graphics.Paint
 import android.net.Uri
 import android.view.Gravity
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -31,6 +33,7 @@ import vn.icheck.android.chat.icheckchat.model.MCDetailMessage
 import vn.icheck.android.chat.icheckchat.model.MCMessageEvent
 import vn.icheck.android.chat.icheckchat.model.MCStatus
 import vn.icheck.android.chat.icheckchat.screen.detail_image.ImageDetailActivity
+import vn.icheck.android.ichecklibs.SizeHelper
 
 class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val listData = mutableListOf<MCDetailMessage>()
@@ -147,7 +150,7 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
 
             setGoneView(binding.layoutProduct, binding.tvMessage, binding.layoutImageDetail.layoutOneImage, binding.layoutImageDetail.recyclerView, binding.layoutImageDetail.imgView)
 
-            setUpContentAndLink(binding.tvMessage, obj, itemView.context)
+            setUpContentAndLink(binding.tvMessage, binding.tvTime, binding.root, obj, itemView.context)
             setupProduct(obj)
             if (!obj.listMedia.isNullOrEmpty()) {
                 setupMediaUrl(obj)
@@ -160,7 +163,6 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
             setupShowStatus(obj)
             setupStatus(obj)
             initClick(obj)
-
         }
 
         private fun setupProduct(obj: MCDetailMessage) {
@@ -281,7 +283,11 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
             }
 
             binding.root.setOnClickListener {
-
+                if (!obj.showStatus) {
+                    binding.tvTime.setVisible()
+                    binding.root.setPadding(dpToPx(90), 0, dpToPx(12), dpToPx(10))
+                    obj.showStatus = true
+                }
             }
 
             binding.imgRetry.setOnClickListener {
@@ -295,18 +301,18 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
         @SuppressLint("RtlHardcoded")
         override fun bind(obj: MCDetailMessage) {
             loadImageUrl(binding.imgAvatarUser, obj.avatarSender, R.drawable.ic_user_default_52dp, R.drawable.ic_user_default_52dp)
-
             binding.layoutImageDetail.root.gravity = Gravity.LEFT
-
             setGoneView(binding.layoutProduct, binding.tvMessage, binding.layoutImageDetail.layoutOneImage, binding.layoutImageDetail.recyclerView, binding.layoutImageDetail.imgView)
 
-            binding.layoutImageDetail.root.setOnClickListener {
+            setUpContentAndLink(binding.tvMessage, binding.tvTime, binding.root, obj, itemView.context)
+            setupProduct(obj)
+            setupMedia(obj)
+            setupSticker(obj)
+            setupShowStatus(obj)
+            initClick(obj)
+        }
 
-                obj.listMedia?.let { it1 -> ImageDetailActivity.startImageDetail(itemView.context, it1, 0) }
-            }
-
-            setUpContentAndLink(binding.tvMessage, obj, itemView.context)
-
+        private fun setupProduct(obj: MCDetailMessage) {
             if (obj.product != null) {
                 binding.layoutProduct.setVisible()
 
@@ -326,7 +332,9 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
                     itemView.context.getString(R.string.gia_dang_cap_nhat)
                 }
             }
+        }
 
+        private fun setupMedia(obj: MCDetailMessage) {
             if (!obj.listMedia.isNullOrEmpty()) {
 
                 if (obj.listMedia!!.size == 1) {
@@ -344,11 +352,12 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
                     for (item in obj.listMedia!!) {
                         listAny.add(item)
                     }
-
                     binding.layoutImageDetail.recyclerView.adapter = ImageMessageAdapter(listAny)
                 }
             }
+        }
 
+        private fun setupSticker(obj: MCDetailMessage) {
             if (!obj.sticker.isNullOrEmpty()) {
                 binding.layoutImageDetail.layoutOneImage.setVisible()
 
@@ -356,27 +365,49 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
 
                 loadImageUrlRounded(binding.layoutImageDetail.img, obj.sticker, R.drawable.ic_default_image_upload_150_chat, dpToPx(10))
             }
+        }
 
-            setupShowStatus(obj)
+
+        private fun initClick(obj: MCDetailMessage) {
+            binding.layoutImageDetail.root.setOnClickListener {
+                obj.listMedia?.let { it1 -> ImageDetailActivity.startImageDetail(itemView.context, it1, 0) }
+            }
+
+            binding.root.setOnClickListener {
+                if (!obj.showStatus) {
+                    binding.tvTime.setVisible()
+                    obj.timeText = convertDateTimeSvToCurrentDay(obj.time)
+                    binding.tvTime.text = obj.timeText
+                    binding.root.setPadding(dpToPx(12), 0, dpToPx(55), dpToPx(12))
+                    obj.showStatus = true
+                }
+            }
         }
 
         fun setupShowStatus(obj: MCDetailMessage) {
+            obj.timeText = convertDateTimeSvToCurrentDay(obj.time)
+            binding.tvTime.text = obj.timeText
+
             if (obj.showStatus) {
                 binding.tvTime.setVisible()
-                obj.timeText = convertDateTimeSvToCurrentDay(obj.time)
-                binding.tvTime.text = obj.timeText
-                binding.root.setPadding(dpToPx(12), 0, dpToPx(55), dpToPx(16))
+                binding.root.setPadding(dpToPx(12), 0, dpToPx(55), dpToPx(10))
                 binding.imgAvatarUser.setVisible()
+                binding.imgAvatarUser.layoutParams = ConstraintLayout.LayoutParams(SizeHelper.size30, SizeHelper.size30).also {
+                    it.bottomMargin = SizeHelper.size16
+                }
             } else {
                 binding.tvTime.setGone()
                 binding.root.setPadding(dpToPx(12), 0, dpToPx(55), dpToPx(2))
                 binding.imgAvatarUser.setInvisible()
+                binding.imgAvatarUser.layoutParams = ConstraintLayout.LayoutParams(SizeHelper.size30, SizeHelper.size30).also {
+                    it.bottomMargin = 0
+                }
             }
         }
     }
 
-    private fun setUpContentAndLink(view: AppCompatTextView, obj: MCDetailMessage, context: Context) {
-        view.apply {
+    private fun setUpContentAndLink(tvMessage: AppCompatTextView, tvTime: AppCompatTextView, rootView: View, obj: MCDetailMessage, context: Context) {
+        tvMessage.apply {
             if (!obj.content.isNullOrEmpty()) {
                 setVisible()
 
@@ -390,6 +421,18 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
                 } else {
                     text = obj.content!!.replace("\r", "\n")
                     paintFlags = 0
+
+                    setOnClickListener {
+                        if (!obj.showStatus) {
+                            tvTime.setVisible()
+                            if (FirebaseAuth.getInstance().currentUser?.uid == obj.senderId) {
+                                rootView.setPadding(dpToPx(90), 0, dpToPx(12), dpToPx(10))
+                            } else {
+                                rootView.setPadding(dpToPx(12), 0, dpToPx(55), dpToPx(10))
+                            }
+                            obj.showStatus = true
+                        }
+                    }
                 }
 
                 setOnLongClickListener {

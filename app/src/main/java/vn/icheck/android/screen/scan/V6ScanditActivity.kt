@@ -32,7 +32,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.scandit.datacapture.barcode.capture.*
 import com.scandit.datacapture.barcode.data.Symbology
-import com.scandit.datacapture.barcode.ui.overlay.BarcodeCaptureOverlay
 import com.scandit.datacapture.core.capture.DataCaptureContext
 import com.scandit.datacapture.core.common.async.Callback
 import com.scandit.datacapture.core.common.feedback.Feedback
@@ -50,7 +49,6 @@ import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.dialog.notify.internal_stamp.InternalStampDialog
 import vn.icheck.android.base.model.ICMessageEvent
-import vn.icheck.android.component.take_media.TakeMediaDialog
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.constant.ICK_REQUEST_CAMERA
 import vn.icheck.android.constant.SCAN_REVIEW
@@ -58,6 +56,8 @@ import vn.icheck.android.databinding.IckScanCustomViewBinding
 import vn.icheck.android.fragments.BarcodeBottomDialog
 import vn.icheck.android.helper.*
 import vn.icheck.android.ichecklibs.getDeviceWidth
+import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
+import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.models.ICProductDetail
@@ -65,6 +65,7 @@ import vn.icheck.android.network.models.ICValidStampSocial
 import vn.icheck.android.network.util.DeviceUtils
 import vn.icheck.android.screen.scan.viewmodel.V6ViewModel
 import vn.icheck.android.screen.user.contribute_product.CONTRIBUTE_REQUEST
+import vn.icheck.android.screen.user.cropimage.CropImageActivity
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.DetailStampHoaPhatActivity
 import vn.icheck.android.screen.user.detail_stamp_thinh_long.home.DetailStampThinhLongActivity
 import vn.icheck.android.screen.user.detail_stamp_v5.home.DetailStampV5Activity
@@ -127,16 +128,27 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     val viewModel by viewModels<V6ViewModel>()
     private val guideArr = arrayListOf<View?>()
     private val requestPhone = 2
+    private val requestCropMedia = 3
     private var phoneNumber: String = ""
     lateinit var dataCaptureView: DataCaptureView
 
-    private val takeImageListener: TakeMediaDialog.TakeImageListener = object : TakeMediaDialog.TakeImageListener {
+
+    private val takeImageListener = object : TakeMediaListener {
         override fun onPickMediaSucess(file: File) {
             comPressImage(file)
         }
 
         override fun onPickMuliMediaSucess(file: MutableList<File>) {
+        }
 
+        override fun onStartCrop(filePath: String?, uri: Uri?, ratio: String?, requestCode: Int?) {
+            CropImageActivity.start(this@V6ScanditActivity, filePath, null, ratio, requestCropMedia)
+        }
+
+        override fun onDismiss() {
+            takeImageDialog.dismiss()
+            pushUpHeight()
+            resetCamera()
         }
 
         override fun onTakeMediaSuccess(file: File?) {
@@ -226,7 +238,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     }
 
     private fun initTakeImageDialog() {
-        takeImageDialog = TakeMediaDialog(takeImageListener, false, cropImage = true, isVideo = false, saveImageToGallery = true)
+        takeImageDialog = TakeMediaDialog(this, takeImageListener, selectMulti = false, cropImage = true, isVideo = false, saveImageToGallery = true)
     }
 
     private fun initBarcodeCapture() {
@@ -1243,7 +1255,11 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                 setResult(Activity.RESULT_CANCELED)
                 finish()
             }
+        } else if (requestCode == requestCropMedia && resultCode == Activity.RESULT_OK) {
+            data?.getStringExtra(Constant.DATA_1)?.let { url ->
+                comPressImage(File(url))
+                takeImageDialog.dismiss()
+            }
         }
-
     }
 }

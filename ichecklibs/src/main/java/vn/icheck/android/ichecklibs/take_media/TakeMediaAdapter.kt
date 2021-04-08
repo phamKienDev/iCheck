@@ -1,4 +1,4 @@
-package vn.icheck.android.component.take_media
+package vn.icheck.android.ichecklibs.take_media
 
 import android.graphics.Color
 import android.graphics.Typeface
@@ -15,15 +15,15 @@ import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
 import androidx.core.view.setPadding
 import androidx.recyclerview.widget.RecyclerView
-import vn.icheck.android.R
-import vn.icheck.android.component.view.ViewHelper
-import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.helper.TimeHelper
-import vn.icheck.android.util.ick.beGone
-import vn.icheck.android.util.ick.beVisible
-import vn.icheck.android.util.kotlin.WidgetUtils
+import vn.icheck.android.ichecklibs.*
+import vn.icheck.android.ichecklibs.util.LoadImageUtils
 
-class TakeMediaAdapter(val listData: MutableList<TakeMediaDialog.ICIMageFile>, val selectMulti: Boolean = false, val isVideo: Boolean, val disableTakeImage:Boolean = false) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class TakeMediaAdapter(val listData: MutableList<TakeMediaDialog.ICIMageFile>,
+                       val selectMulti: Boolean = false, // cho phép chọn nhiều hay không?
+                       val isVideo: Boolean, // cho phép chọn video hay không?
+                       val disableTakeImage: Boolean = false, // cho phép chụp ảnh không?
+                       val maxSelectCount: Int? = null // số lượng chọn tối đa
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val cameraType = 1
     private val imageType = 2
 
@@ -66,7 +66,6 @@ class TakeMediaAdapter(val listData: MutableList<TakeMediaDialog.ICIMageFile>, v
         return listSelected
     }
 
-
     inner class ImageHolder(parent: ViewGroup) : RecyclerView.ViewHolder(createImageHolder(parent)) {
         lateinit var image: AppCompatImageView
         lateinit var bgCover: View
@@ -82,7 +81,7 @@ class TakeMediaAdapter(val listData: MutableList<TakeMediaDialog.ICIMageFile>, v
                 tvCount = getChildAt(3) as AppCompatTextView
                 tvDuration = getChildAt(4) as AppCompatTextView
 
-                WidgetUtils.loadImageFileNotRounded(image, obj.src)
+                LoadImageUtils.loadImageFileNotRounded(image, obj.src)
 
                 if (obj.type == 3) {
                     if (obj.duration > 0) {
@@ -143,8 +142,18 @@ class TakeMediaAdapter(val listData: MutableList<TakeMediaDialog.ICIMageFile>, v
                             listSelected.remove(obj)
                             obj.selected = false
                         } else {
-                            obj.selected = true
-                            listSelected.add(obj)
+                            if (maxSelectCount == null) {
+                                obj.selected = true
+                                listSelected.add(obj)
+                            } else {
+                                if (listSelected.size < maxSelectCount) {
+                                    obj.selected = true
+                                    listSelected.add(obj)
+                                } else {
+                                    itemView.context.showToastError(itemView.context.getString(R.string.chi_duoc_chon_toi_da_x_muc, maxSelectCount))
+                                }
+
+                            }
                         }
                     }
                     notifyDataSetChanged()
