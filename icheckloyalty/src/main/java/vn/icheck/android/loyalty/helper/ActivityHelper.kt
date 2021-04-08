@@ -123,6 +123,11 @@ object ActivityHelper {
         fragment.activity?.overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
     }
 
+    fun startActivityForResult(activity: Activity, intent: Intent, requestCode: Int) {
+        activity.startActivityForResult(intent, requestCode)
+        activity.overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
+    }
+
     fun startActivityForResult(activity: FragmentActivity, intent: Intent, requestCode: Int) {
         activity.startActivityForResult(intent, requestCode)
         activity.overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
