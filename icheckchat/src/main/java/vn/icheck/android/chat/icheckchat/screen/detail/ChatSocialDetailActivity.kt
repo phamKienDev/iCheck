@@ -155,9 +155,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
             true
         }
 
-        binding.recyclerView.layoutManager = LinearLayoutManager(this@ChatSocialDetailActivity).apply {
-//            stackFromEnd = true
-        }
+        binding.recyclerView.layoutManager = LinearLayoutManager(this@ChatSocialDetailActivity)
 
         binding.recyclerView.adapter = adapter
 
@@ -374,14 +372,16 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                     }
 
                     //xóa status tin nhắn trước đó
-                    if (adapter.getListData[1].senderId == adapter.getListData[index].senderId && adapter.getListData[1].timeText == getString(R.string.vua_xong)) {
-                        val holder = recyclerView.findViewHolderForAdapterPosition(1)
-                        adapter.getListData[1].showStatus = false
+                    if (adapter.getListData[1].senderId == adapter.getListData[index].senderId) {
+                        if (!chenhLechGio(adapter.getListData[1].time, adapter.getListData[index].time, 1)) {
+                            val holder = recyclerView.findViewHolderForAdapterPosition(1)
+                            adapter.getListData[1].showStatus = false
 
-                        if (holder is ChatSocialDetailAdapter.SenderHolder) {
-                            holder.setupShowStatus(adapter.getListData[1])
-                        } else {
-                            adapter.notifyItemChanged(1)
+                            if (holder is ChatSocialDetailAdapter.SenderHolder) {
+                                holder.setupShowStatus(adapter.getListData[1])
+                            } else {
+                                adapter.notifyItemChanged(1)
+                            }
                         }
                     }
 
@@ -397,14 +397,16 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 adapter.notifyItemInserted(0)
 
                 //xóa status tin nhắn trước đó
-                if (adapter.getListData[1].senderId == message.senderId && adapter.getListData[1].timeText == getString(R.string.vua_xong)) {
-                    val holder = recyclerView.findViewHolderForAdapterPosition(1)
-                    adapter.getListData[1].showStatus = false
+                if (adapter.getListData[1].senderId == message.senderId) {
+                    if (!chenhLechGio(adapter.getListData[1].time, message.time, 1)) {
+                        val holder = recyclerView.findViewHolderForAdapterPosition(1)
+                        adapter.getListData[1].showStatus = false
 
-                    if (holder is ChatSocialDetailAdapter.ReceiverHolder) {
-                        holder.setupShowStatus(adapter.getListData[1])
-                    } else {
-                        adapter.notifyItemChanged(1)
+                        if (holder is ChatSocialDetailAdapter.ReceiverHolder) {
+                            holder.setupShowStatus(adapter.getListData[1])
+                        } else {
+                            adapter.notifyItemChanged(1)
+                        }
                     }
                 }
                 binding.recyclerView.smoothScrollToPosition(0)
@@ -571,19 +573,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
     private fun addMessageAdapter(obj: MCDetailMessage) {
         obj.showStatus = true
         adapter.getListData.add(0, obj)
-//        adapter.notifyItemInserted(adapter.getListData.size - 1)
-//
-//
-//        if (adapter.getListData[adapter.getListData.size - 2].status == obj.status) {
-//            val holder = recyclerView.findViewHolderForAdapterPosition(adapter.getListData.size - 2)
-//            adapter.getListData[adapter.getListData.size - 2].showStatus = false
-//
-//            if (holder is ChatSocialDetailAdapter.SenderHolder) {
-//                holder.setupShowStatus(adapter.getListData[adapter.getListData.size - 2])
-//            } else {
-//                adapter.notifyItemChanged(adapter.getListData.size - 2)
-//            }
-//        }
+
         adapter.notifyItemInserted(0)
 
 
