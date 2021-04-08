@@ -110,13 +110,13 @@ class PageManagementFragment : Fragment() {
                             countError++
                         }
                     },
-                    lifecycleScope.async {
-                        try {
-                            myOwnerPage = withTimeoutOrNull(5000) { viewModel.getMyOwnerPage() }
-                        } catch (e: Exception) {
-                            countError++
-                        }
-                    }
+//                    lifecycleScope.async {
+//                        try {
+//                            myOwnerPage = withTimeoutOrNull(5000) { viewModel.getMyOwnerPage() }
+//                        } catch (e: Exception) {
+//                            countError++
+//                        }
+//                    }
             ).awaitAll()
 
             DialogHelper.closeLoading(this@PageManagementFragment)
@@ -151,6 +151,7 @@ class PageManagementFragment : Fragment() {
                 setError(ICError(R.drawable.ic_group_120dp, ICheckApplication.getString(R.string.ban_chua_co_trang_nao)))
             } else {
                 setFollowPage(myFollowPage?.data)
+                binding.layoutMessage.containerMessage.beGone()
             }
         }
     }
@@ -160,6 +161,7 @@ class PageManagementFragment : Fragment() {
         if (it?.rows.isNullOrEmpty()) {
             binding.containerFollow.beGone()
         } else {
+            binding.containerFollow.beVisible()
             pageFollowCount = it?.count ?: 0
             binding.containerFollow.beVisible()
             binding.tvFollowTitle.text = "Trang đang theo dõi (${pageFollowCount})"
@@ -201,7 +203,7 @@ class PageManagementFragment : Fragment() {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: ICMessageEvent) {
         when (event.type) {
-            ICMessageEvent.Type.UNFOLLOW_PAGE -> {
+            ICMessageEvent.Type.UNFOLLOW_PAGE, ICMessageEvent.Type.FOLLOW_PAGE -> {
                 if (event.data != null && event.data is Long) {
                     getFollowPage()
                 }
