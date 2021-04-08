@@ -30,6 +30,13 @@ fun View.beInvisible() {
     this.visibility = View.INVISIBLE
 }
 
+fun View.visibleOrInvisible(logic: Boolean) {
+    if (logic) {
+        this.visibility = View.VISIBLE
+    } else {
+        this.visibility = View.INVISIBLE
+    }
+}
 
 fun Int.toPx(res: Resources): Int {
 //    return this * (res.displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT)
