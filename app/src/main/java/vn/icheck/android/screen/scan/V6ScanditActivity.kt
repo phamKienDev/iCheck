@@ -167,7 +167,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         try {
             lifecycleScope.launch {
                 _binding?.bg?.alpha = 1f
-                delay(2000)
+                delay(400)
                 val bm = BitmapFactory.decodeFile(file?.getAbsolutePath())
                 val width = bm.width
                 val height = bm.height
@@ -404,7 +404,6 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                 offCamera()
 //                resetHeight()
                 request(takeImageDialog)
-                delay(400)
                 binding.imgSdha.isEnabled = true
             }
         }
@@ -825,7 +824,6 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
     private fun enableCapture(barcodeCapture: BarcodeCapture) {
         lifecycleScope.launch {
-            delay(400)
             barcodeCapture.isEnabled = true
         }
     }
