@@ -290,6 +290,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                             } else {
                                 adapterImage.clearData()
                                 listImageSrc.clear()
+                                binding.edtMessage.setText("")
+                                checkKeyboard()
                                 setGoneView(binding.layoutChat, binding.layoutBlock)
                                 binding.layoutUserBlock.setVisible()
                                 binding.tvUserTitle.text = "Bạn đã bị ${conversation?.targetUserName} chặn tin nhắn"
@@ -573,7 +575,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
     private fun addMessageAdapter(obj: MCDetailMessage) {
         obj.showStatus = true
         adapter.getListData.add(0, obj)
-
         adapter.notifyItemInserted(0)
 
 
@@ -987,6 +988,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
     override fun onDestroy() {
         super.onDestroy()
+        checkKeyboard()
         inboxRoomID = null
         inboxUserID = null
     }

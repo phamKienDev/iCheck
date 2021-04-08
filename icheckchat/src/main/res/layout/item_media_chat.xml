@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="122dp"
+    android:layout_margin="3dp"
+    android:background="@drawable/bg_corner_10_gray_f0"
+    android:padding="1dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgMessage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:src="@color/lightBlue" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_black_opacity_50_corner_10"
+        android:padding="30dp"
+        android:visibility="gone"
+        android:src="@drawable/ic_video_white_40dp_chat"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvCountImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_black_opacity_50_corner_10"
+        android:ellipsize="end"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:singleLine="true"
+        android:text="+2"
+        android:visibility="gone"
+        android:textColor="@color/white"
+        android:textSize="14sp" />
+
+</FrameLayout>
