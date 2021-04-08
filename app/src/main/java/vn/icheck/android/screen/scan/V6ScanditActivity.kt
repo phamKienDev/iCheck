@@ -83,6 +83,7 @@ import java.io.File
 import java.net.URL
 import java.util.*
 import java.util.concurrent.atomic.AtomicBoolean
+import java.util.concurrent.atomic.AtomicInteger
 
 
 class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
@@ -133,8 +134,10 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     lateinit var dataCaptureView: DataCaptureView
 
 
+
     private val takeImageListener = object : TakeMediaListener {
         override fun onPickMediaSucess(file: File) {
+
             comPressImage(file)
         }
 
@@ -146,9 +149,12 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         }
 
         override fun onDismiss() {
-            takeImageDialog.dismiss()
-            pushUpHeight()
-            resetCamera()
+//            takeImageDialog.dismiss()
+
+            if (!scanImage.get()) {
+                pushUpHeight()
+                resetCamera()
+            }
         }
 
         override fun onTakeMediaSuccess(file: File?) {
@@ -169,24 +175,55 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                     val scale = ruler / 500
                     val scaled = bm.scale(width / scale, height / scale)
                     val source = BitmapFrameSource.of(scaled)
-                    source?.switchToDesiredState(FrameSourceState.ON, object : Callback<Boolean> {
-                        override fun run(result: Boolean) {
-                            if (result) {
-                                dataCaptureContext.setFrameSource(source)
+                    dataCaptureContext.setFrameSource(source)
+                    source.addListener(object : FrameSourceListener {
+                        var lastState: FrameSourceState? = null
+                        override fun onStateChanged(frameSource: FrameSource, newState: FrameSourceState) {
+                            super.onStateChanged(frameSource, newState)
+                            if (lastState == FrameSourceState.STOPPING && newState == FrameSourceState.OFF && scanImage.get()) {
+                                scanImage.set(false)
+                                runOnUiThread {
+                                    DialogHelper.showNotification(this@V6ScanditActivity, R.string.thong_bao, R.string.khong_thay_ma_vach, true, object : NotificationDialogListener {
+
+                                        override fun onDone() {
+                                            resetCamera()
+                                        }
+
+                                    })
+                                }
+                                frameSource.removeListener(this)
+                            } else {
+                                lastState = newState
                             }
                         }
                     })
-
+                    source?.switchToDesiredState(FrameSourceState.ON)
 
                 } else {
                     val source = BitmapFrameSource.of(bm)
-                    source?.switchToDesiredState(FrameSourceState.ON, object : Callback<Boolean> {
-                        override fun run(result: Boolean) {
-                            if (result) {
-                                dataCaptureContext.setFrameSource(source)
+                    dataCaptureContext.setFrameSource(source)
+                    source.addListener(object : FrameSourceListener {
+                        var lastState: FrameSourceState? = null
+                        override fun onStateChanged(frameSource: FrameSource, newState: FrameSourceState) {
+                            super.onStateChanged(frameSource, newState)
+                            if (lastState == FrameSourceState.STOPPING && newState == FrameSourceState.OFF && scanImage.get()) {
+                                scanImage.set(false)
+                                runOnUiThread {
+                                    DialogHelper.showNotification(this@V6ScanditActivity, R.string.thong_bao, R.string.khong_thay_ma_vach, true, object : NotificationDialogListener {
+
+                                        override fun onDone() {
+                                            resetCamera()
+                                        }
+
+                                    })
+                                }
+                                frameSource.removeListener(this)
+                            } else {
+                                lastState = newState
                             }
                         }
                     })
+                    source?.switchToDesiredState(FrameSourceState.ON)
                 }
                 scanImage.set(true)
             }
@@ -199,6 +236,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
     private lateinit var takeImageDialog: TakeMediaDialog
     val scanImage = AtomicBoolean(false)
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -324,30 +362,6 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         } catch (e: java.lang.Exception) {
             ""
         }
-    }
-
-    override fun onSessionUpdated(barcodeCapture: BarcodeCapture, session: BarcodeCaptureSession, data: FrameData) {
-        if (scanImage.get()) {
-            scanImage.set(false)
-            job = lifecycleScope.launch {
-                delay(700)
-                if (session.newlyRecognizedBarcodes.isEmpty()) {
-
-                    runOnUiThread {
-                        DialogHelper.showNotification(this@V6ScanditActivity, R.string.thong_bao, R.string.khong_thay_ma_vach, true, object : NotificationDialogListener {
-
-                            override fun onDone() {
-                                resetCamera()
-                            }
-
-                        })
-
-                    }
-                }
-
-            }
-        }
-        super.onSessionUpdated(barcodeCapture, session, data)
     }
 
     fun initViews() {
@@ -614,8 +628,11 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     }
 
     override fun onBarcodeScanned(barcodeCapture: BarcodeCapture, session: BarcodeCaptureSession, data: FrameData) {
-        if (session.newlyRecognizedBarcodes.isEmpty()) return
+        if (session.newlyRecognizedBarcodes.isEmpty()){
+            return
+        }
         barcodeCapture.isEnabled = false
+        scanImage.set(false)
         job?.cancel()
         val barcode = session.newlyRecognizedBarcodes[0]
 
@@ -830,7 +847,9 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
     override fun onResume() {
         super.onResume()
-        resetCamera()
+        if (!scanImage.get()) {
+            resetCamera()
+        }
     }
 
     private fun request() {
@@ -1255,10 +1274,12 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                 setResult(Activity.RESULT_CANCELED)
                 finish()
             }
-        } else if (requestCode == requestCropMedia && resultCode == Activity.RESULT_OK) {
-            data?.getStringExtra(Constant.DATA_1)?.let { url ->
-                comPressImage(File(url))
-                takeImageDialog.dismiss()
+        } else if (requestCode == requestCropMedia) {
+            if (resultCode == Activity.RESULT_OK) {
+                data?.getStringExtra(Constant.DATA_1)?.let { url ->
+                    comPressImage(File(url))
+                    takeImageDialog.dismiss()
+                }
             }
         }
     }
