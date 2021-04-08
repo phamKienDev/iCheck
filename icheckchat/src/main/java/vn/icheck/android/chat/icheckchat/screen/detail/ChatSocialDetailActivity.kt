@@ -942,6 +942,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
     }
 
     private fun showTakeMedia() {
+        checkKeyboard()
         val listener = object : TakeMediaListener {
             override fun onPickMediaSucess(file: File) {
                 selectedTextView(binding.imgCamera, binding.recyclerViewImage, true)
