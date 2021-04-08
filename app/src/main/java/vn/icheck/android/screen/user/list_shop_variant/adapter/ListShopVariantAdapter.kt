@@ -169,6 +169,7 @@ class ListShopVariantAdapter constructor(val view: IListShopVariantView) : Recyc
 //            }
 
             if (item.price != null) {
+                itemView.tv_sale_price.beVisible()
                 if (item.saleOff == true && item.specialPrice != null) {
                     itemView.tv_price?.beVisible()
                     ICheckTextUtils.setPrice(itemView.tv_sale_price, item.specialPrice!!)
@@ -178,7 +179,8 @@ class ListShopVariantAdapter constructor(val view: IListShopVariantView) : Recyc
                     itemView.tv_price?.beInvisible()
                 }
             } else {
-                itemView.layoutPrice.beGone()
+                itemView.tv_sale_price?.beInvisible()
+                itemView.tv_price?.beInvisible()
             }
         }
 
