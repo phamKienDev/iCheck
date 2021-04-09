@@ -701,6 +701,7 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
             scrollViewError.visibility = View.GONE
             scrollView.visibility = View.GONE
             bottomLayout.visibility = View.GONE
+            return
         } else {
             layoutErrorClient.visibility = View.GONE
 
@@ -727,6 +728,7 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
             if (obj.data?.error_code == "REQUIRE_LOCATION") {
                 llAcceptPermission.visibility = View.VISIBLE
                 tvMessageLocation.text = obj.data?.message?.message
+                return
             } else {
                 if (!obj.data?.message?.message.isNullOrEmpty()) {
                     presenter.getConfigError()
