@@ -17,6 +17,7 @@ import vn.icheck.android.chat.icheckchat.base.BaseActivityChat
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.DATA_1
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.KEY
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.NAME
+import vn.icheck.android.chat.icheckchat.base.recyclerview.IRecyclerViewCallback
 import vn.icheck.android.chat.icheckchat.base.view.*
 import vn.icheck.android.chat.icheckchat.databinding.ActivityUserInformationBinding
 import vn.icheck.android.chat.icheckchat.model.MCConversation
@@ -25,16 +26,18 @@ import vn.icheck.android.chat.icheckchat.model.MCMessageEvent
 import vn.icheck.android.chat.icheckchat.model.MCStatus
 import vn.icheck.android.chat.icheckchat.sdk.ChatSdk.openActivity
 
-class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>() {
+class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>(), IRecyclerViewCallback {
 
     private lateinit var viewModel: UserInformationViewModel
 
-    val adapter = UserInformationAdapter()
+    val adapter = UserInformationAdapter(this)
 
     var deleteAt = -1L
 
     private var key: String? = null
     private var nameUser: String? = null
+
+    private var listTime = 0L
 
     override val bindingInflater: (LayoutInflater) -> ActivityUserInformationBinding
         get() = ActivityUserInformationBinding::inflate
@@ -190,21 +193,25 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
                     }
                 }
 
-                getImage(key)
+                getImage(0, key)
             }
         }, { error ->
             showToastError(error.message)
         })
     }
 
-    private fun getImage(key: String) {
-        val listContent = mutableListOf<MCMedia>()
+    private fun getImage(lastTimeStamp: Long, key: String) {
 
-        viewModel.getImage(key,
+        viewModel.getImage(lastTimeStamp, key,
                 { success ->
+                    val listContent = mutableListOf<MCMedia>()
+
                     if (success.hasChildren()) {
-                        for (item in success.children) {
+                        for (item in success.children.reversed()) {
+                            listTime = item.child("time").value.toString().toLong()
+
                             if (item.child("time").value.toString().toLong() > deleteAt) {
+
                                 if (item.child("message").child("media").hasChildren()) {
                                     for (i in item.child("message").child("media").children) {
                                         listContent.add(MCMedia(i.child("content").value.toString(), i.child("type").value.toString()))
@@ -213,9 +220,20 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
                             }
                         }
 
-                        if (!listContent.isNullOrEmpty()) {
-                            adapter.setData(listContent.asReversed())
+                        if (listContent.isEmpty()) {
+                            onLoadMore()
+                            return@getImage
                         }
+                    }
+
+                    if (lastTimeStamp == 0L) {
+                        if (listContent.isNullOrEmpty()) {
+                            viewModel.checkError(true, dataEmpty = true)
+                        } else {
+                            adapter.setListDataMedia(listContent)
+                        }
+                    } else {
+                        adapter.addListDataMedia(listContent)
                     }
                 },
                 { error ->
@@ -241,7 +259,7 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
             if (success.exists()) {
                 binding.imgAvatar.apply {
                     if (success.child("is_verify").value != null && success.child("is_verify").value.toString().toBoolean()) {
-                        val ssb = SpannableStringBuilder(success.child("name").value.toString().replace("null", "")+ "   ")
+                        val ssb = SpannableStringBuilder(success.child("name").value.toString().replace("null", "") + "   ")
                         ssb.setSpan(getImageSpan(R.drawable.ic_verified_24dp_chat), ssb.length - 1, ssb.length, 0)
                         binding.tvNameUser.setText(ssb, TextView.BufferType.SPANNABLE)
 
@@ -325,5 +343,15 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
         textTitle.isDrawingCacheEnabled = false
 
         return ImageSpan(this@UserInformationActivity, bitmap)
+    }
+
+    override fun onMessageClicked() {
+
+    }
+
+    override fun onLoadMore() {
+        if (!key.isNullOrEmpty()) {
+            getImage(listTime, key!!)
+        }
     }
 }

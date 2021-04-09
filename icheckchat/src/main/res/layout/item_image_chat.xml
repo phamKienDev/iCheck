@@ -1,8 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.AppCompatImageView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="124dp"
     android:layout_marginStart="0.5dp"
-    android:id="@+id/imgChat"
     android:layout_marginTop="1dp"
-    android:layout_marginEnd="0.5dp" />
+    android:layout_marginEnd="0.5dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgChat"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:src="@drawable/bg_black_opacity_50_corner_10" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgPlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:src="@drawable/ic_video_white_40dp_chat" />
+</FrameLayout>

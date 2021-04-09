@@ -89,8 +89,17 @@ class FirebaseHelper {
         })
     }
 
-    fun getImageChatDetail(key: String, success: (snapshot: DataSnapshot) -> Unit, cancel: (error: DatabaseError) -> Unit) {
-        firebaseDatabase.getReference("chat-details-v2/$key").addValueEventListener(object : ValueEventListener {
+    fun getImageChatDetail(lastTimeStamp: Long, key: String, success: (snapshot: DataSnapshot) -> Unit, cancel: (error: DatabaseError) -> Unit) {
+        val imageDatabase = if (lastTimeStamp > 0) {
+            firebaseDatabase.getReference("chat-details-v2/$key").orderByChild("time")
+                    .startAt(0.0).endAt(lastTimeStamp.toDouble() - 1)
+                    .limitToLast(10)
+        } else {
+            firebaseDatabase.getReference("chat-details-v2/$key").orderByChild("time")
+                    .limitToLast(10)
+        }
+
+        imageDatabase.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 success(snapshot)
             }
