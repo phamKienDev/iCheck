@@ -7,9 +7,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-//import okhttp3.logging.HttpLoggingInterceptor
 import org.greenrobot.eventbus.EventBus
-//import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import vn.icheck.android.base.model.ICMessageEvent
@@ -59,7 +57,7 @@ object NetworkModule {
                         chain.proceed(request)
                     }
                 }
-//                .addInterceptor(httpLoggingInterceptor)
+                .addInterceptor(httpLoggingInterceptor)
                 .build()
     }
 

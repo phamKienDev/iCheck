@@ -72,8 +72,14 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
         }
         if (obj.page == null) {
             WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.user?.avatar, R.drawable.ic_avatar_default_84px)
-            itemView.tvNameUser.text = obj.user?.getName
-            itemView.tvNameUser.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+            itemView.tvNameUser.apply {
+                text = obj.user?.getName
+                if (obj.user?.kycStatus == 2) {
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_16dp, 0)
+                } else {
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                }
+            }
             itemView.imgRank.beVisible()
             itemView.imgRank.setRankUser(obj.user?.rank?.level)
         } else {

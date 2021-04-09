@@ -58,7 +58,14 @@ class SearchUserAdapter(val typeView: Int, val callback: IRecyclerViewSearchCall
 
         override fun bind(obj: ICSearchUser) {
             itemView.layoutAvatar.setData(obj.avatar, obj.rank?.level, R.drawable.ic_avatar_default_84px)
-            itemView.tvTitle.text = obj.getName
+            itemView.tvTitle.apply {
+                text = obj.getName
+                if (obj.kycStatus == 2) {
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_16dp, 0)
+                } else {
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                }
+            }
 
             isMyFriendInvitationUser = null
             isMyFriend = null

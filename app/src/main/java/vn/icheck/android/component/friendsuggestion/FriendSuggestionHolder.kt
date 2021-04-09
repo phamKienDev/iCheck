@@ -57,8 +57,14 @@ class FriendSuggestionHolder(parent: ViewGroup) : BaseViewHolder<ICUser>(LayoutI
             }
 
             // Text name
-            val name = obj.getName
-            (getChildAt(2) as AppCompatTextView).text = name
+            (getChildAt(2) as AppCompatTextView).apply {
+                text = obj.getName
+                if (obj.kycStatus == 2) {
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_16dp, 0)
+                } else {
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                }
+            }
 
             // Text agree
             getChildAt(3).setOnClickListener {

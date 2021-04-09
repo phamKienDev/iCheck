@@ -127,7 +127,14 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
             SessionManager.session.user?.let { user ->
                 imgStatus.setRankUser(user.rank?.level)
                 WidgetUtils.loadImageUrl(imgAvatar, user.avatar, R.drawable.ic_avatar_default_84px)
-                tvName.text = user.getName
+                tvName.apply {
+                    text = user.getName
+                    if (user.kycStatus == 2) {
+                        setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_16dp, 0)
+                    } else {
+                        setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                    }
+                }
                 edtContent.hint = "Bạn đã sử dụng sản phẩm nào? Hãy chia sẻ cảm nhận nhé!"
                 tvType.beVisible()
                 tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)

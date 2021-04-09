@@ -1,27 +1,29 @@
 package vn.icheck.android.network.models
 
+import com.google.gson.annotations.Expose
 import java.io.Serializable
 import kotlin.Any
 
 data class ICCustomer(
-        var id: Long = 0,
-        var name: String = "",
-        val level: Int = 0,
-        val icheckId: Int? = null,
-        var firstName: String? = null,
-        var lastName: String? = null,
-        val createdAt: String? = null,
-        val deletedAt: Any? = null,
-        val roleId: Any? = null,
-        val titleId: Int? = null,
-        val rank: ICRankOfUser? = null,
-        var avatar: String? = null,
-        val updatedAt: String? = null,
-        var selected: Boolean = false,
-        val blocked: Boolean? = null,
-        val gender: String? = null,
-        val phone: String? = null,
-        val email: String? = null
+        @Expose var id: Long = 0,
+        @Expose var name: String = "",
+        @Expose val level: Int = 0,
+        @Expose val icheckId: Int? = null,
+        @Expose var firstName: String? = null,
+        @Expose var lastName: String? = null,
+        @Expose val createdAt: String? = null,
+        @Expose val deletedAt: Any? = null,
+        @Expose val roleId: Any? = null,
+        @Expose val titleId: Int? = null,
+        @Expose val rank: ICRankOfUser? = null,
+        @Expose var avatar: String? = null,
+        @Expose val updatedAt: String? = null,
+        @Expose var selected: Boolean = false,
+        @Expose val blocked: Boolean? = null,
+        @Expose val gender: String? = null,
+        @Expose val phone: String? = null,
+        @Expose val email: String? = null,
+        @Expose val kycStatus: Int? = null
 ) : Serializable {
     val getName: String
         get() {
