@@ -210,8 +210,9 @@ class ListConversationFragment(val listener: ICountMessageListener) : BaseFragme
                                 }, {
 
                                 })
-                                element.isNotification = i.child("is_subscribe").value.toString().toBoolean()
                                 element.type = i.child("type").value.toString().trim()
+                            }else{
+                                element.isNotification = i.child("is_subscribe").value.toString().toBoolean()
                             }
                         }
                     }

@@ -106,7 +106,7 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
                 var toId = ""
                 var toType = ""
                 var id = ""
-                var notification: Boolean? = null
+                var notification = true
 
                 if (obj.child("members").hasChildren()) {
                     for (item in obj.child("members").children) {
@@ -114,8 +114,8 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
                             id = item.child("id").value.toString().trim()
                             toId = item.child("source_id").value.toString()
                             toType = item.child("type").value.toString()
-                            notification = item.child("is_subscribe").value.toString().toBoolean()
                         } else {
+                            notification = item.child("is_subscribe").value.toString().toBoolean()
                             deleteAt = if (item.child("deleted_at").value != null) {
                                 item.child("deleted_at").value.toString().toLong()
                             } else {
@@ -178,16 +178,12 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
                 }
 
                 binding.btnCheckedNotification.apply {
-                    if (notification != null) {
-                        binding.btnCheckedNotification.isChecked = notification
-                    }
+                    binding.btnCheckedNotification.isChecked = notification
 
                     setOnClickListener {
                         if (isChecked) {
-                            isChecked = false
                             turnOffNotification(key, FirebaseAuth.getInstance().uid.toString(), toType)
                         } else {
-                            isChecked = true
                             turnOnNotification(key, FirebaseAuth.getInstance().uid.toString(), toType)
                         }
                     }
@@ -310,6 +306,7 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
                     showToastError(it.message)
                 }
                 MCStatus.SUCCESS -> {
+                    binding.btnCheckedNotification.isChecked = false
                 }
             }
         })
@@ -325,6 +322,7 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
                     showToastError(it.message)
                 }
                 MCStatus.SUCCESS -> {
+                    binding.btnCheckedNotification.isChecked = true
                 }
             }
         })
