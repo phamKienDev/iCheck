@@ -12,11 +12,13 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
+import com.nguyencse.URLEmbeddedTask
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.chat.icheckchat.R
 import vn.icheck.android.chat.icheckchat.base.recyclerview.IRecyclerViewCallback
@@ -150,7 +152,19 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
 
             setGoneView(binding.layoutProduct, binding.tvMessage, binding.layoutImageDetail.layoutOneImage, binding.layoutImageDetail.recyclerView, binding.layoutImageDetail.imgView)
 
-            setUpContentAndLink(binding.tvMessage, binding.tvTime, binding.root, obj, itemView.context)
+            if (!obj.content.isNullOrEmpty()) {
+                if (obj.content!!.contains("http://") || obj.content!!.contains("https://")) {
+                    binding.tvMessage.setGone()
+                    setUpLink(binding.layoutLink, binding.tvLink, binding.imgThumbnailLink, binding.tvTitle, binding.tvLinkDescription, obj.content!!, itemView.context)
+                } else {
+                    binding.layoutLink.setGone()
+                    setUpContent(binding.tvMessage, binding.tvTime, binding.root, obj, itemView.context)
+                }
+            }else{
+                binding.layoutLink.setGone()
+                binding.tvMessage.setGone()
+            }
+
             setupProduct(obj)
             if (!obj.listMedia.isNullOrEmpty()) {
                 setupMediaUrl(obj)
@@ -304,7 +318,19 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
             binding.layoutImageDetail.root.gravity = Gravity.LEFT
             setGoneView(binding.layoutProduct, binding.tvMessage, binding.layoutImageDetail.layoutOneImage, binding.layoutImageDetail.recyclerView, binding.layoutImageDetail.imgView)
 
-            setUpContentAndLink(binding.tvMessage, binding.tvTime, binding.root, obj, itemView.context)
+            if (!obj.content.isNullOrEmpty()) {
+                if (obj.content!!.contains("http://") || obj.content!!.contains("https://")) {
+                    binding.tvMessage.setGone()
+                    setUpLink(binding.layoutLink, binding.tvLink, binding.imgThumbnailLink, binding.tvTitle, binding.tvLinkDescription, obj.content!!, itemView.context)
+                } else {
+                    binding.layoutLink.setGone()
+                    setUpContent(binding.tvMessage, binding.tvTime, binding.root, obj, itemView.context)
+                }
+            }else{
+                binding.layoutLink.setGone()
+                binding.tvMessage.setGone()
+            }
+
             setupProduct(obj)
             setupMedia(obj)
             setupSticker(obj)
@@ -406,42 +432,61 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
         }
     }
 
-    private fun setUpContentAndLink(tvMessage: AppCompatTextView, tvTime: AppCompatTextView, rootView: View, obj: MCDetailMessage, context: Context) {
+    private fun setUpLink(layoutLink: View, link: AppCompatTextView, image: AppCompatImageView, title: AppCompatTextView, description: AppCompatTextView, content: String, context: Context) {
+        layoutLink.apply {
+            setVisible()
+
+            setOnClickListener {
+                context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(content)))
+            }
+
+            setOnLongClickListener {
+                copyText(context, content)
+
+                true
+            }
+        }
+
+        link.apply {
+            text = content
+            paintFlags = paintFlags or Paint.UNDERLINE_TEXT_FLAG
+        }
+
+        val urlTask = URLEmbeddedTask((URLEmbeddedTask.OnLoadURLListener {
+            image.visibleOrGone(!it.thumbnailURL.isNullOrEmpty())
+
+            loadImageUrl(image, it.thumbnailURL, 0, 0)
+
+            title.text = it.title
+            description.text = it.host
+        }))
+
+        urlTask.execute(content)
+    }
+
+    private fun setUpContent(tvMessage: AppCompatTextView, tvTime: AppCompatTextView, rootView: View, obj: MCDetailMessage, context: Context) {
         tvMessage.apply {
-            if (!obj.content.isNullOrEmpty()) {
-                setVisible()
+            setVisible()
 
-                if (obj.content!!.contains("http://") || obj.content!!.contains("https://")) {
-                    text = obj.content
-                    paintFlags = paintFlags or Paint.UNDERLINE_TEXT_FLAG
+            text = obj.content!!.replace("\r", "\n")
+            paintFlags = 0
 
-                    setOnClickListener {
-                        context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(obj.content)))
+            setOnClickListener {
+                if (!obj.showStatus) {
+                    tvTime.setVisible()
+                    if (FirebaseAuth.getInstance().currentUser?.uid == obj.senderId) {
+                        rootView.setPadding(dpToPx(90), 0, dpToPx(12), dpToPx(10))
+                    } else {
+                        rootView.setPadding(dpToPx(12), 0, dpToPx(55), dpToPx(10))
                     }
-                } else {
-                    text = obj.content!!.replace("\r", "\n")
-                    paintFlags = 0
-
-                    setOnClickListener {
-                        if (!obj.showStatus) {
-                            tvTime.setVisible()
-                            if (FirebaseAuth.getInstance().currentUser?.uid == obj.senderId) {
-                                rootView.setPadding(dpToPx(90), 0, dpToPx(12), dpToPx(10))
-                            } else {
-                                rootView.setPadding(dpToPx(12), 0, dpToPx(55), dpToPx(10))
-                            }
-                            obj.showStatus = true
-                        }
-                    }
+                    obj.showStatus = true
                 }
+            }
 
-                setOnLongClickListener {
-                    copyText(context, obj.content!!)
+            setOnLongClickListener {
+                copyText(context, obj.content!!)
 
-                    true
-                }
-            } else {
-                setGone()
+                true
             }
         }
     }
