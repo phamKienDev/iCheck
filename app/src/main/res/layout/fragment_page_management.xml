@@ -42,6 +42,7 @@
 
 
             <LinearLayout
+                android:id="@+id/layoutContent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -60,9 +61,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/size_12"
-                        android:layout_marginLeft="@dimen/size_12"
                         android:fontFamily="@font/barlow_semi_bold"
-                        android:text="Trang của tôi (12)"
+                        tools:text="Trang của tôi (12)"
                         android:textColor="@color/blue"
                         android:textSize="18sp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -73,7 +73,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/size_12"
-                        android:layout_marginRight="@dimen/size_12"
                         android:fontFamily="@font/barlow_semi_bold"
                         android:text="@string/xem_tat_ca"
                         android:textColor="@color/blue"
@@ -106,9 +105,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/size_12"
-                        android:layout_marginLeft="@dimen/size_12"
                         android:fontFamily="@font/barlow_semi_bold"
-                        android:text="Trang của tôi (12)"
+                        tools:text="Trang của tôi (12)"
                         android:textColor="@color/blue"
                         android:textSize="18sp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -119,7 +117,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/size_12"
-                        android:layout_marginRight="@dimen/size_12"
                         android:fontFamily="@font/barlow_semi_bold"
                         android:text="@string/xem_tat_ca"
                         android:textColor="@color/blue"

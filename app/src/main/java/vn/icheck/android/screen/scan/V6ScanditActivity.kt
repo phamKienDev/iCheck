@@ -294,7 +294,6 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                 dataCaptureView.layoutParams = lp
             }
         }
-
     }
 
     private fun resetCamera() {
@@ -310,7 +309,6 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                     }
                 }
             })
-
         }
     }
 
@@ -1101,59 +1099,62 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                 }
             }
             Constant.TYPE_WIFI -> {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                    val connectivityManager = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager?
-                    val arr = data.split(";")
-                    val ssid = arr.single {
-                        it.contains("WIFI", true)
-                    }.replace("wifi:s:", "", true)
-                    val key = arr.single {
-                        it.contains("P:", true)
-                    }.replace("p:", "", true)
-                    // do post connect processing here
-                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.CHANGE_NETWORK_STATE) == PackageManager.PERMISSION_GRANTED) {
-                        val nwSpecifier = WifiNetworkSpecifier.Builder()
-                                .setSsid(ssid)
-                                .setWpa2Passphrase(key)
-                                .build()
-                        val nw = NetworkRequest.Builder()
-                                .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
-                                .removeCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
-                                .setNetworkSpecifier(nwSpecifier)
-                                .build()
-                        connectivityManager?.requestNetwork(nw, object : ConnectivityManager.NetworkCallback() {
-                            override fun onAvailable(network: Network) {
+                try {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                        val connectivityManager = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager?
+                        val arr = data.split(";")
+                        val ssid = arr.single {
+                            it.contains("WIFI", true)
+                        }.replace("wifi:s:", "", true)
+                        val key = arr.single {
+                            it.contains("P:", true)
+                        }.replace("p:", "", true)
+                        // do post connect processing here
+                        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CHANGE_NETWORK_STATE) == PackageManager.PERMISSION_GRANTED) {
+                            val nwSpecifier = WifiNetworkSpecifier.Builder()
+                                    .setSsid(ssid)
+                                    .setWpa2Passphrase(key)
+                                    .build()
+                            val nw = NetworkRequest.Builder()
+                                    .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
+                                    .removeCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+                                    .setNetworkSpecifier(nwSpecifier)
+                                    .build()
+                            connectivityManager?.requestNetwork(nw, object : ConnectivityManager.NetworkCallback() {
+                                override fun onAvailable(network: Network) {
 
+                                }
+                            })
+                        } else {
+                            val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
+                                if (isGranted) {
+
+                                } else {
+
+                                }
                             }
-                        })
-                    } else {
-                        val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
-                            if (isGranted) {
-
-                            } else {
-
-                            }
+                            requestPermissionLauncher.launch(Manifest.permission.CHANGE_NETWORK_STATE)
                         }
-                        requestPermissionLauncher.launch(Manifest.permission.CHANGE_NETWORK_STATE)
+                    } else {
+                        val wifiConfig = WifiConfiguration()
+                        val arr = data.split(";")
+                        val ssid = arr.single {
+                            it.contains("WIFI", true)
+                        }.replace("wifi:s:", "", true)
+                        wifiConfig.SSID = String.format("\"%s\"", ssid)
+                        val key = arr.single {
+                            it.contains("P:", true)
+                        }.replace("p:", "", true)
+                        wifiConfig.preSharedKey = String.format("\"%s\"", key)
+                        val wifiManager = ICheckApplication.getInstance().applicationContext.getSystemService(WIFI_SERVICE) as WifiManager
+                        val netId = wifiManager.addNetwork(wifiConfig)
+                        wifiManager.disconnect()
+                        wifiManager.enableNetwork(netId, true)
+                        wifiManager.reconnect()
                     }
-                } else {
-                    val wifiConfig = WifiConfiguration()
-                    val arr = data.split(";")
-                    val ssid = arr.single {
-                        it.contains("WIFI", true)
-                    }.replace("wifi:s:", "", true)
-                    wifiConfig.SSID = String.format("\"%s\"", ssid)
-                    val key = arr.single {
-                        it.contains("P:", true)
-                    }.replace("p:", "", true)
-                    wifiConfig.preSharedKey = String.format("\"%s\"", key)
-                    val wifiManager = ICheckApplication.getInstance().applicationContext.getSystemService(WIFI_SERVICE) as WifiManager
-                    val netId = wifiManager.addNetwork(wifiConfig)
-                    wifiManager.disconnect()
-                    wifiManager.enableNetwork(netId, true)
-                    wifiManager.reconnect()
+                    enableCapture(barcodeCapture)
+                } catch (e: Exception) {
                 }
-                enableCapture(barcodeCapture)
             }
         }
     }
