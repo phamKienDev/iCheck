@@ -73,14 +73,4 @@
         <item name="android:gravity">center</item>
         <item name="textAllCaps">false</item>
     </style>
-
-    <style name="Line_Gray.Horizontal">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/size_0_5</item>
-    </style>
-
-    <!-- Line -->
-    <style name="Line_Gray">
-        <item name="android:background">@color/gray</item>
-    </style>
 </resources>

@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
-    android:layout_marginBottom="8dp"
     android:layout_marginStart="12dp"
+    android:layout_marginTop="8dp"
     android:layout_marginEnd="12dp"
+    android:layout_marginBottom="8dp"
     android:background="@drawable/bg_corners_white_4_border_05">
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -22,15 +22,19 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvNameShop"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/size_0"
         android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
+        android:layout_marginStart="@dimen/size_7"
+        android:layout_marginEnd="@dimen/size_7"
+        android:ellipsize="end"
         android:fontFamily="@font/barlow_semi_bold"
+        android:singleLine="true"
         android:textColor="#35384b"
         android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imgAvatar"
         app:layout_constraintTop_toTopOf="@+id/imgAvatar"
-        tools:text="Giày Việt" />
+        tools:text="Giày Việt fsdf dsf sdfsf dskfs fd fsd ffd jk sfd  jsfd j ksd fjkl;sd fjlk;" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvCountRating"
@@ -63,11 +67,10 @@
         android:id="@+id/tvGoMap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="7dp"
+        android:layout_marginEnd="@dimen/size_7"
         android:drawableStart="@drawable/ic_alternate_16_px"
         android:drawablePadding="4dp"
         android:fontFamily="@font/barlow_semi_bold"
-        android:lineSpacingExtra="6sp"
         android:text="Chỉ đường"
         android:textColor="#828282"
         android:textSize="14sp"
@@ -89,11 +92,11 @@
         android:id="@+id/tvCountProductOfShop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="12dp"
-        android:paddingBottom="11dp"
         android:drawableEnd="@drawable/ic_down_light_blue_18_px"
         android:fontFamily="@font/barlow_medium"
         android:gravity="center"
+        android:paddingTop="12dp"
+        android:paddingBottom="11dp"
         android:textColor="#057dda"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -133,8 +133,10 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     lateinit var dataCaptureView: DataCaptureView
 
 
+
     private val takeImageListener = object : TakeMediaListener {
         override fun onPickMediaSucess(file: File) {
+
             comPressImage(file)
         }
 
@@ -146,7 +148,12 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         }
 
         override fun onDismiss() {
-            takeImageDialog.dismiss()
+
+//            if (!scanImage.get()) {
+//                pushUpHeight()
+//                resetCamera()
+//            }
+
             pushUpHeight()
             resetCamera()
         }
@@ -160,34 +167,88 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         try {
             lifecycleScope.launch {
                 _binding?.bg?.alpha = 1f
-                delay(2000)
+                delay(600)
                 val bm = BitmapFactory.decodeFile(file?.getAbsolutePath())
-                val width = bm.width
-                val height = bm.height
-                val ruler = if (width >= height) width else height
-                if (ruler > 500) {
-                    val scale = ruler / 500
-                    val scaled = bm.scale(width / scale, height / scale)
-                    val source = BitmapFrameSource.of(scaled)
-                    source?.switchToDesiredState(FrameSourceState.ON, object : Callback<Boolean> {
-                        override fun run(result: Boolean) {
-                            if (result) {
-                                dataCaptureContext.setFrameSource(source)
-                            }
-                        }
-                    })
+                val scaled = bm.scale(dataCaptureView.width / 2, dataCaptureView.width / 2)
+                val source = BitmapFrameSource.of(scaled)
+                dataCaptureContext.setFrameSource(source)
+                source.addListener(object : FrameSourceListener {
+                    var lastState: FrameSourceState? = null
+                    override fun onStateChanged(frameSource: FrameSource, newState: FrameSourceState) {
+                        super.onStateChanged(frameSource, newState)
+                        if (lastState == FrameSourceState.STOPPING && newState == FrameSourceState.OFF && scanImage.get()) {
+                            scanImage.set(false)
+                            runOnUiThread {
+                                DialogHelper.showNotification(this@V6ScanditActivity, R.string.thong_bao, R.string.khong_thay_ma_vach, true, object : NotificationDialogListener {
 
+                                    override fun onDone() {
+                                        resetCamera()
+                                    }
 
-                } else {
-                    val source = BitmapFrameSource.of(bm)
-                    source?.switchToDesiredState(FrameSourceState.ON, object : Callback<Boolean> {
-                        override fun run(result: Boolean) {
-                            if (result) {
-                                dataCaptureContext.setFrameSource(source)
+                                })
                             }
+                            frameSource.removeListener(this)
+                        } else {
+                            lastState = newState
                         }
-                    })
-                }
+                    }
+                })
+                resetHeight()
+                source?.switchToDesiredState(FrameSourceState.ON)
+//                if (ruler > dataCaptureView.width) {
+//                    val scale = ruler / dataCaptureView.width
+//                    val scaled = bm.scale(width / scale, height / scale)
+//                    val source = BitmapFrameSource.of(scaled)
+//                    dataCaptureContext.setFrameSource(source)
+//                    source.addListener(object : FrameSourceListener {
+//                        var lastState: FrameSourceState? = null
+//                        override fun onStateChanged(frameSource: FrameSource, newState: FrameSourceState) {
+//                            super.onStateChanged(frameSource, newState)
+//                            if (lastState == FrameSourceState.STOPPING && newState == FrameSourceState.OFF && scanImage.get()) {
+//                                scanImage.set(false)
+//                                runOnUiThread {
+//                                    DialogHelper.showNotification(this@V6ScanditActivity, R.string.thong_bao, R.string.khong_thay_ma_vach, true, object : NotificationDialogListener {
+//
+//                                        override fun onDone() {
+//                                            resetCamera()
+//                                        }
+//
+//                                    })
+//                                }
+//                                frameSource.removeListener(this)
+//                            } else {
+//                                lastState = newState
+//                            }
+//                        }
+//                    })
+//                    source?.switchToDesiredState(FrameSourceState.ON)
+//
+//                } else {
+//                    val source = BitmapFrameSource.of(bm)
+//                    dataCaptureContext.setFrameSource(source)
+//                    source.addListener(object : FrameSourceListener {
+//                        var lastState: FrameSourceState? = null
+//                        override fun onStateChanged(frameSource: FrameSource, newState: FrameSourceState) {
+//                            super.onStateChanged(frameSource, newState)
+//                            if (lastState == FrameSourceState.STOPPING && newState == FrameSourceState.OFF && scanImage.get()) {
+//                                scanImage.set(false)
+//                                runOnUiThread {
+//                                    DialogHelper.showNotification(this@V6ScanditActivity, R.string.thong_bao, R.string.khong_thay_ma_vach, true, object : NotificationDialogListener {
+//
+//                                        override fun onDone() {
+//                                            resetCamera()
+//                                        }
+//
+//                                    })
+//                                }
+//                                frameSource.removeListener(this)
+//                            } else {
+//                                lastState = newState
+//                            }
+//                        }
+//                    })
+//                    source?.switchToDesiredState(FrameSourceState.ON)
+//                }
                 scanImage.set(true)
             }
         } catch (e: Exception) {
@@ -200,6 +261,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     private lateinit var takeImageDialog: TakeMediaDialog
     val scanImage = AtomicBoolean(false)
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         request()
@@ -211,7 +273,6 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         initCamera()
         resetCamera()
         initDataCaptureView()
-        pushUpHeight()
         checkIsReview()
         checkIsScan()
         initViews()
@@ -238,7 +299,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     }
 
     private fun initTakeImageDialog() {
-        takeImageDialog = TakeMediaDialog(this, takeImageListener, selectMulti = false, cropImage = true, isVideo = false, saveImageToGallery = true)
+        takeImageDialog = TakeMediaDialog(this, takeImageListener, selectMulti = false, cropImage = true, isVideo = false, saveImageToGallery = false)
     }
 
     private fun initBarcodeCapture() {
@@ -270,9 +331,11 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         if (getUserCountry(this).contains("vn", false)) {
             dataCaptureView.post {
                 val lp = dataCaptureView.layoutParams
-                lp.height = getDeviceHeight() + 50.toPx()
-                lp.width = getDeviceWidth()
-                dataCaptureView.layoutParams = lp
+                if (lp.height != getDeviceHeight()) {
+                    lp.height = getDeviceHeight() + 50.toPx()
+                    lp.width = getDeviceWidth()
+                    dataCaptureView.layoutParams = lp
+                }
             }
         }
     }
@@ -280,9 +343,11 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     private fun resetHeight() {
         dataCaptureView.post {
             val lp = dataCaptureView.layoutParams
-            lp.height = getDeviceHeight()
-            lp.width = getDeviceWidth()
-            dataCaptureView.layoutParams = lp
+            if (lp.height != getDeviceHeight()) {
+                lp.height = getDeviceHeight()
+                lp.width = getDeviceWidth()
+                dataCaptureView.layoutParams = lp
+            }
         }
 
     }
@@ -295,6 +360,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                         dataCaptureContext.setFrameSource(camera)
                         enableCapture(barcodeCapture)
                         _binding?.bg?.alpha = 0f
+                        pushUpHeight()
                     } else {
                         resetCamera()
                     }
@@ -326,30 +392,6 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         }
     }
 
-    override fun onSessionUpdated(barcodeCapture: BarcodeCapture, session: BarcodeCaptureSession, data: FrameData) {
-        if (scanImage.get()) {
-            scanImage.set(false)
-            job = lifecycleScope.launch {
-                delay(700)
-                if (session.newlyRecognizedBarcodes.isEmpty()) {
-
-                    runOnUiThread {
-                        DialogHelper.showNotification(this@V6ScanditActivity, R.string.thong_bao, R.string.khong_thay_ma_vach, true, object : NotificationDialogListener {
-
-                            override fun onDone() {
-                                resetCamera()
-                            }
-
-                        })
-
-                    }
-                }
-
-            }
-        }
-        super.onSessionUpdated(barcodeCapture, session, data)
-    }
-
     fun initViews() {
         if (viewModel.scanOnly || viewModel.reviewOnly) {
             binding.btnMyCode.beGone()
@@ -361,6 +403,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         guideArr.add(binding?.imgNmspTip)
         guideArr.add(binding?.imgTorchTip)
         guideArr.add(binding?.imgXmdd)
+        guideArr.add(binding?.imgSdha)
         binding?.imgHelp?.setOnClickListener {
             viewModel.setGuide()
         }
@@ -389,7 +432,6 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                 offCamera()
 //                resetHeight()
                 request(takeImageDialog)
-                delay(400)
                 binding.imgSdha.isEnabled = true
             }
         }
@@ -400,9 +442,9 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                     binding.imgNmbt.isEnabled = true
                 }
 
-                override fun onSubmit(code: String) {
+                override fun onSubmit(mCode: String) {
+                    val code = mCode.trim()
                     binding.imgNmbt.isEnabled = true
-
                     if (viewModel.scanOnlyChat) {
                         setResult(Activity.RESULT_OK, Intent().apply {
                             putExtra(Constant.DATA_1, false)
@@ -614,13 +656,16 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     }
 
     override fun onBarcodeScanned(barcodeCapture: BarcodeCapture, session: BarcodeCaptureSession, data: FrameData) {
-        if (session.newlyRecognizedBarcodes.isEmpty()) return
+        if (session.newlyRecognizedBarcodes.isEmpty()){
+            return
+        }
         barcodeCapture.isEnabled = false
+        scanImage.set(false)
         job?.cancel()
         val barcode = session.newlyRecognizedBarcodes[0]
 
         runOnUiThread {
-            val code = barcode.data
+            val code = barcode.data?.trim()
 
             if (!code.isNullOrEmpty()) {
 //                if (code.startsWith("u-") || code.startsWith("U-")) {
@@ -807,7 +852,6 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
     private fun enableCapture(barcodeCapture: BarcodeCapture) {
         lifecycleScope.launch {
-            delay(400)
             barcodeCapture.isEnabled = true
         }
     }
@@ -830,7 +874,9 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
     override fun onResume() {
         super.onResume()
-        resetCamera()
+        if (!scanImage.get()) {
+            resetCamera()
+        }
     }
 
     private fun request() {
@@ -1226,11 +1272,10 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
     override fun onMessageEvent(event: ICMessageEvent) {
         super.onMessageEvent(event)
-        if (event.type == ICMessageEvent.Type.ON_DISMISS) {
-            takeImageDialog.dismiss()
-            pushUpHeight()
-            resetCamera()
-        }
+//        if (event.type == ICMessageEvent.Type.ON_DISMISS) {
+//            takeImageDialog.dismiss()
+//            resetCamera()
+//        }
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
@@ -1255,10 +1300,14 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                 setResult(Activity.RESULT_CANCELED)
                 finish()
             }
-        } else if (requestCode == requestCropMedia && resultCode == Activity.RESULT_OK) {
-            data?.getStringExtra(Constant.DATA_1)?.let { url ->
-                comPressImage(File(url))
-                takeImageDialog.dismiss()
+        } else if (requestCode == requestCropMedia) {
+            if (resultCode == Activity.RESULT_OK) {
+                data?.getStringExtra(Constant.DATA_1)?.let { url ->
+                    comPressImage(File(url))
+                    takeImageDialog.dismiss()
+                }
+            } else {
+                scanImage.set(true)
             }
         }
     }

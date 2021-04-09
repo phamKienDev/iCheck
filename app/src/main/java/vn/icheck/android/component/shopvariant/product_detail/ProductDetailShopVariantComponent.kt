@@ -139,7 +139,7 @@ class ProductDetailShopVariantComponent : LinearLayout {
 //        }
 
         if (productRow.price != null) {
-            layoutPrice.beVisible()
+            tv_sale_price.beVisible()
             if (productRow.saleOff == true && productRow.specialPrice != null) {
                 tv_price?.beVisible()
                 ICheckTextUtils.setPrice(tv_sale_price, productRow.specialPrice!!)
@@ -149,9 +149,9 @@ class ProductDetailShopVariantComponent : LinearLayout {
                 tv_price?.beInvisible()
             }
         } else {
-            layoutPrice.beGone()
+            tv_sale_price?.beInvisible()
+            tv_price?.beInvisible()
         }
-
 
         vg_shop_top.setOnClickListener {
 

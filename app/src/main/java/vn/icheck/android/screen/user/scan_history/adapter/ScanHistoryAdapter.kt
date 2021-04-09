@@ -24,7 +24,7 @@ import vn.icheck.android.screen.user.scan_history.ScanHistoryFragment
 import vn.icheck.android.screen.user.scan_history.holder.*
 import vn.icheck.android.screen.user.scan_history.model.ICScanHistory
 import vn.icheck.android.screen.user.scan_history.view.IScanHistoryView
-
+//
 class ScanHistoryAdapter(val listener: IScanHistoryView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     val listData = mutableListOf<ICScanHistory>()
     private var isLoadMore = true
