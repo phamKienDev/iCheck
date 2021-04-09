@@ -15,14 +15,14 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.LayoutProductHistoryHolderBinding
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.beGone
+import vn.icheck.android.ichecklibs.beInvisible
+import vn.icheck.android.ichecklibs.beVisible
 import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.network.models.history.ICItemHistory
 import vn.icheck.android.screen.user.map_scan_history.MapScanHistoryActivity
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.screen.user.store_sell_history.StoreSellHistoryActivity
-import vn.icheck.android.util.ick.beGone
-import vn.icheck.android.util.ick.beInvisible
-import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryHolderBinding = LayoutProductHistoryHolderBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : RecyclerView.ViewHolder(binding.root) {
@@ -80,14 +80,18 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
                 binding.tvCountRating.text = "0"
             }
 
-            if (obj.product?.reviewCount != null) {
-                if (obj.product?.reviewCount!! < 1000) {
-                    binding.tvCountReview.text = "(${obj.product?.reviewCount})"
+            binding.tvCountReview.apply {
+                text = if (obj.product?.reviewCount != null) {
+                    beVisible()
+                    if (obj.product?.reviewCount!! < 1000) {
+                        "(${obj.product?.reviewCount})"
+                    } else {
+                        "(999+)"
+                    }
                 } else {
-                    binding.tvCountReview.text = "(999+)"
+                    beGone()
+                    null
                 }
-            } else {
-                binding.tvCountReview.text = null
             }
 
             if (!obj.product?.barcode.isNullOrEmpty()) {
