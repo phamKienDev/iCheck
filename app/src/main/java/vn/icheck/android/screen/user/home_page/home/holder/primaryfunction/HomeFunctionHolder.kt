@@ -198,6 +198,13 @@ class HomeFunctionHolder(parent: ViewGroup, isExistTheme: Boolean, listener: IHo
                     } else {
                         context.getString(R.string.nguoi_la)
                     }
+
+                    if (user?.kycStatus == 2) {
+                        setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_16dp, 0)
+                    } else {
+                        setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                    }
+
                     setOnClickListener {
                         ICheckApplication.currentActivity()?.let { activity ->
                             FirebaseDynamicLinksActivity.startDestinationUrl(activity, "icheck://user")
