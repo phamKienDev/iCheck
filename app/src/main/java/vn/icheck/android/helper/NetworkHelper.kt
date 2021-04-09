@@ -111,16 +111,19 @@ internal object NetworkHelper {
         }
     }
 
-    fun openSettingGPS(activity: Activity) {
+    fun openSettingGPS(activity: Activity, requestCode: Int? = null) {
         try {
             val myIntent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
-            ActivityHelper.startActivity(activity, myIntent)
+            if (requestCode != null)
+                ActivityHelper.startActivityForResult(activity, myIntent, requestCode)
+            else
+                ActivityHelper.startActivity(activity, myIntent)
         } catch (e: Exception) {
             e.printStackTrace()
         }
     }
 
-    fun checkGPS(activity: Activity, message: String? = null): Boolean {
+    fun checkGPS(activity: Activity, message: String? = null, requestCode: Int? = null): Boolean {
         val lm = activity.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         var gps_enabled = false
         var network_enabled = false
@@ -139,13 +142,13 @@ internal object NetworkHelper {
 
         if (!gps_enabled && !network_enabled) {
             // notify user
-            DialogHelper.showConfirm(activity,null,message ?: "Bạn vui lòng bật vị trí",object :ConfirmDialogListener{
+            DialogHelper.showConfirm(activity, null, message
+                    ?: "Bạn vui lòng bật vị trí", object : ConfirmDialogListener {
                 override fun onDisagree() {
                 }
 
                 override fun onAgree() {
-                    val myIntent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
-                    ActivityHelper.startActivity(activity, myIntent)
+                    openSettingGPS(activity, requestCode)
                 }
             })
 

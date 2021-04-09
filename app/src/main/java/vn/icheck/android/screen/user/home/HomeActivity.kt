@@ -621,6 +621,11 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
         }
     }
 
+    private fun clearFilter() {
+        unCheckAllFilterHistory()
+        btnApply.performClick()
+    }
+
     override fun showDialogUpdate() {
         DialogHelper.showNotification(this@HomeActivity, R.string.cap_nhat, R.string.message_update_app, false, object : NotificationDialogListener {
             override fun onDone() {
@@ -1083,6 +1088,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                 tvChatCount.visibility = View.GONE
                 RelationshipManager.removeListener()
                 checkkNewTheme()
+                clearFilter()
 
                 checkLoginOrLogoutChat(false)
             }
@@ -1098,6 +1104,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                 RelationshipManager.refreshToken(true)
                 ChatSdk.shareIntent(SessionManager.session.firebaseToken, SessionManager.session.user?.id, SessionManager.session.token, DeviceUtils.getUniqueDeviceId())
                 checkkNewTheme()
+                clearFilter()
                 checkLoginOrLogoutChat(true)
             }
             ICMessageEvent.Type.INIT_MENU_HISTORY -> {

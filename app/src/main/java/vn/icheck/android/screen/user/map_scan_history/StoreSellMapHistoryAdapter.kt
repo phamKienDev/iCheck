@@ -55,17 +55,16 @@ class StoreSellMapHistoryAdapter(val view: StoreSellMapHistoryView) : RecyclerVi
     }
 
     private val sizeWidth = 301.dpToPx()
-    private val sizeHeight = 168.dpToPx()
     private val sizeMargin = 7.5F.dpToPx()
 
     inner class ViewHolder(parent: ViewGroup, val binding: ItemStoreSellInMapBinding = ItemStoreSellInMapBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : RecyclerView.ViewHolder(binding.root) {
         fun bindData(item: ICStoreNear) {
             binding.layoutParent.layoutParams = if (listData.size > 1) {
-                RecyclerView.LayoutParams(sizeWidth, sizeHeight).apply {
+                RecyclerView.LayoutParams(sizeWidth, RecyclerView.LayoutParams.WRAP_CONTENT).apply {
                     setMargins(sizeMargin, 0, sizeMargin, 0)
                 }
             } else {
-                RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, sizeHeight).apply {
+                RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT).apply {
                     setMargins(sizeMargin, 0, sizeMargin, 0)
                 }
             }
@@ -86,14 +85,13 @@ class StoreSellMapHistoryAdapter(val view: StoreSellMapHistoryView) : RecyclerVi
                 itemView.tvKhoangCach.text = itemView.context.getString(R.string.dang_cap_nhat)
             }
 
-            if (item.price != null) {
-                itemView.tvPrice.text = TextHelper.formatMoneyPhay(item.price) + "đ"
+            itemView.tvPrice.text = if (item.price != null) {
+                TextHelper.formatMoneyPhay(item.price) + "đ"
             } else {
-                itemView.tvPrice.text = itemView.context.getString(R.string.dang_cap_nhat)
+                null
             }
 
-            itemView.tvAddress.text = item.address
-                    ?: itemView.context.getString(R.string.dang_cap_nhat)
+            itemView.tvAddress.text = item.address ?: itemView.context.getString(R.string.dang_cap_nhat)
 
             itemView.tvPhone.text = item.phone ?: itemView.context.getString(R.string.dang_cap_nhat)
 
