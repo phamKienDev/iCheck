@@ -40,6 +40,7 @@ import com.scandit.datacapture.core.common.feedback.Vibration
 import com.scandit.datacapture.core.data.FrameData
 import com.scandit.datacapture.core.source.*
 import com.scandit.datacapture.core.ui.DataCaptureView
+import com.scandit.datacapture.core.ui.DataCaptureViewListener
 import kotlinx.android.synthetic.main.item_ads_product_grid.view.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -260,6 +261,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         cameraSettings = BarcodeCapture.createRecommendedCameraSettings()
         cameraSettings.preferredResolution = VideoResolution.HD
         camera = Camera.getDefaultCamera(cameraSettings)
+
     }
 
     private fun initDataCaptureView() {
@@ -546,7 +548,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
                 if (model.showGuide) {
                     binding.root.setAllEnabled(false)
-                    barcodeCapture.isEnabled = false
+                    offCamera()
                     for (item in guideArr) {
                         if (item != null) {
                             item.animate()
@@ -563,7 +565,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                             delay(2000)
                         }
                     }
-                    enableCapture(barcodeCapture)
+                    resetCamera()
                     binding.root.setAllEnabled(true)
                     model.showGuide = false
                 }

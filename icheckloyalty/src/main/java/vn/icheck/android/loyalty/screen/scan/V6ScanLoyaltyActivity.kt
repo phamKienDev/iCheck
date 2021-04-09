@@ -514,15 +514,15 @@ class V6ScanLoyaltyActivity : AppCompatActivity(), BarcodeCaptureListener {
             }
         }
         binding?.imgNmbt?.setOnClickListener {
-            binding.imgNmbt.isEnabled = false
+            offCamera()
             BarcodeBottomDialog.show(supportFragmentManager, false, object : BarcodeBottomDialog.OnBarCodeDismiss {
                 override fun onDismiss() {
-                    binding.imgNmbt.isEnabled = true
+                    resetCamera()
                 }
 
                 override fun onSubmit(mCode: String) {
                     val code = mCode.trim()
-                    binding.imgNmbt.isEnabled = true
+                    resetCamera()
                     if (viewModel.scanOnlyChat) {
                         setResult(Activity.RESULT_OK, Intent().apply {
                             putExtra(Constant.DATA_1, false)
@@ -554,7 +554,7 @@ class V6ScanLoyaltyActivity : AppCompatActivity(), BarcodeCaptureListener {
 
                 if (model.showGuide) {
                     binding.root.setAllEnabled(false)
-                    barcodeCapture.isEnabled = false
+                    offCamera()
                     for (item in guideArr) {
                         if (item != null) {
                             item.animate()
@@ -571,7 +571,7 @@ class V6ScanLoyaltyActivity : AppCompatActivity(), BarcodeCaptureListener {
                             delay(2000)
                         }
                     }
-                    enableCapture(barcodeCapture)
+                    resetCamera()
                     binding.root.setAllEnabled(true)
                     model.showGuide = false
                 }
