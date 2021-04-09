@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import kotlin.jvm.Volatile;
 import okhttp3.Authenticator;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -22,11 +23,13 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import vn.icheck.android.network.BuildConfig;
 import vn.icheck.android.network.models.ICSessionData;
 import vn.icheck.android.network.util.DeviceUtils;
 
 public class ICNetworkClient {
     public static ICNetworkCallbackManager networkCallbackManager = ICNetworkCallbackManager.Factory.create();
+
 
     private static final Gson gson = new GsonBuilder()
             .setLenient()
@@ -115,6 +118,32 @@ public class ICNetworkClient {
     private static volatile ICNetworkAPI stampApiHeaderThree = null;
     private static volatile ICNetworkAPI stampApi2 = null;
     private static volatile ICNetworkAPI stampApiV6 = null;
+
+    private static volatile ICNetworkAPI iCheckLoyaltyApi;
+
+    public static ICNetworkAPI getApiClientLoyalty() {
+        if (iCheckLoyaltyApi == null) {
+            synchronized (ICNetworkAPI.class) {
+                String host;
+                if (BuildConfig.FLAVOR.contentEquals("dev"))
+                    host = "https://api.dev.icheck.vn/api/business/";
+                else host = "https://api-social.icheck.com.vn/api/business/";
+                iCheckLoyaltyApi = new Retrofit.Builder()
+                        .baseUrl(host)
+                        .client(new OkHttpClient.Builder()
+                                .connectTimeout(30, TimeUnit.SECONDS)
+                                .readTimeout(30, TimeUnit.SECONDS)
+                                .writeTimeout(30, TimeUnit.SECONDS)
+                                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                                .addInterceptor(ICNetworkClient::requireLoginCallback).build())
+                        .addConverterFactory(GsonConverterFactory.create(gson))
+                        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                        .build()
+                        .create(ICNetworkAPI.class);
+            }
+        }
+        return iCheckLoyaltyApi;
+    }
 
     @NotNull
     private static Response requireLoginCallback(Interceptor.Chain chain) throws IOException {

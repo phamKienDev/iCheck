@@ -165,7 +165,6 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     private fun comPressImage(file: File?) {
         try {
             lifecycleScope.launch {
-                _binding?.bg?.alpha = 1f
                 delay(600)
                 val bm = BitmapFactory.decodeFile(file?.getAbsolutePath())
                 val scaled = if (dataCaptureView.width <= 1000) bm.scale(dataCaptureView.width, dataCaptureView.width) else
@@ -305,7 +304,6 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                     if (result) {
                         dataCaptureContext.setFrameSource(camera)
                         enableCapture(barcodeCapture)
-                        _binding?.bg?.alpha = 0f
                         pushUpHeight()
                     } else {
                         resetCamera()
@@ -349,7 +347,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         guideArr.add(binding?.imgNmspTip)
         guideArr.add(binding?.imgTorchTip)
         guideArr.add(binding?.imgXmdd)
-        guideArr.add(binding?.imgSdha)
+        guideArr.add(binding?.imgHdSdha)
         binding?.imgHelp?.setOnClickListener {
             viewModel.setGuide()
         }
