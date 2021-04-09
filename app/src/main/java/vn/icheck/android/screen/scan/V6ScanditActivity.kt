@@ -381,14 +381,15 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         }
         binding?.imgNmbt?.setOnClickListener {
             binding.imgNmbt.isEnabled = false
+            offCamera()
             BarcodeBottomDialog.show(supportFragmentManager, false, object : BarcodeBottomDialog.OnBarCodeDismiss {
                 override fun onDismiss() {
                     binding.imgNmbt.isEnabled = true
+                    resetCamera()
                 }
 
                 override fun onSubmit(mCode: String) {
                     val code = mCode.trim()
-                    binding.imgNmbt.isEnabled = true
                     if (viewModel.scanOnlyChat) {
                         setResult(Activity.RESULT_OK, Intent().apply {
                             putExtra(Constant.DATA_1, false)
