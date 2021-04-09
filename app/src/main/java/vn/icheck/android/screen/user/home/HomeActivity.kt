@@ -619,6 +619,11 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
         }
     }
 
+    private fun clearFilter() {
+        unCheckAllFilterHistory()
+        btnApply.performClick()
+    }
+
     override fun showDialogUpdate() {
         DialogHelper.showNotification(this@HomeActivity, R.string.cap_nhat, R.string.message_update_app, false, object : NotificationDialogListener {
             override fun onDone() {
@@ -980,12 +985,12 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
 
             }
             R.id.btnApply -> {
-                ScanHistoryFragment.listType.clear()
-
                 adapterMenu.applyCode.clear()
                 adapterMenu.applyShop.clear()
 
-                val listFilterShop = mutableListOf<Any>()
+                ScanHistoryFragment.listIdBigCorp.clear()
+                ScanHistoryFragment.listType.clear()
+
                 var isFiltered = false
 
                 for (item in adapterMenu.listData) {
@@ -1002,7 +1007,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                             for (child in this) {
                                 if (child.select) {
                                     isFiltered = true
-                                    listFilterShop.add(child.idShop!!)
+                                    ScanHistoryFragment.listIdBigCorp.add(child.idShop!!)
                                     adapterMenu.applyShop[child.idShop ?: 0] = true
                                 }
                             }
@@ -1013,7 +1018,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                 if (isFiltered) {
                     ScanHistoryFragment.adapter?.hideBigCopAndSuggest()
                     EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_TICK_HISTORY))
-                    historyViewModel.getListScanHistory(ScanHistoryFragment.sort, listFilterShop, ScanHistoryFragment.listType)
+                    historyViewModel.getListScanHistory(ScanHistoryFragment.sort, ScanHistoryFragment.listIdBigCorp, ScanHistoryFragment.listType)
                 } else {
                     ScanHistoryFragment.adapter?.addBigCopAndSuggest(ICScanHistory(ICViewTypes.LIST_BIG_CORP, historyViewModel.listCategory))
                     EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_UNTICK_HISTORY))
@@ -1079,6 +1084,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                 tvChatCount.visibility = View.GONE
                 RelationshipManager.removeListener()
                 checkkNewTheme()
+                clearFilter()
             }
             ICMessageEvent.Type.ON_LOG_IN -> {
                 tv_username.text = SessionManager.session.user?.getName
@@ -1092,6 +1098,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                 RelationshipManager.refreshToken(true)
                 ChatSdk.shareIntent(SessionManager.session.firebaseToken, SessionManager.session.user?.id, SessionManager.session.token, DeviceUtils.getUniqueDeviceId())
                 checkkNewTheme()
+                clearFilter()
             }
             ICMessageEvent.Type.INIT_MENU_HISTORY -> {
                 recyclerViewMenu.layoutManager = LinearLayoutManager(this)
