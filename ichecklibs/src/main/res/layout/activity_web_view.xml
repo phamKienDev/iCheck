@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <include
+        android:id="@+id/layoutToolbar"
+        layout="@layout/toolbar_light_blue" />
+
+    <LinearLayout
+        android:id="@+id/layoutContent"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutToolbar">
+
+        <LinearLayout
+            android:id="@+id/layoutNote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/orange_popup_notifi"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/size_12"
+            android:visibility="gone">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvNote"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/size_12"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/ic_note_white_37dp"
+                android:drawablePadding="@dimen/size_12"
+                android:fontFamily="sans-serif-medium"
+                android:includeFontPadding="false"
+                android:textColor="#ffffff"
+                android:textSize="12sp"
+                android:textStyle="normal" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@id/imgClose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:src="@drawable/ic_close_webview_20dp" />
+        </LinearLayout>
+
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <include
+        android:id="@+id/layoutCenter"
+        layout="@layout/dialog_loading"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="@dimen/size_0"
+        app:layout_constraintBottom_toBottomOf="@id/layoutContent"
+        app:layout_constraintEnd_toEndOf="@id/layoutContent"
+        app:layout_constraintStart_toStartOf="@id/layoutContent"
+        app:layout_constraintTop_toTopOf="@id/layoutContent" />
+
+    <View
+        style="@style/Shadow_Bottom"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutToolbar" />
+</androidx.constraintlayout.widget.ConstraintLayout>
