@@ -980,12 +980,12 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
 
             }
             R.id.btnApply -> {
-                ScanHistoryFragment.listType.clear()
-
                 adapterMenu.applyCode.clear()
                 adapterMenu.applyShop.clear()
 
-                val listFilterShop = mutableListOf<Any>()
+                ScanHistoryFragment.listIdBigCorp.clear()
+                ScanHistoryFragment.listType.clear()
+
                 var isFiltered = false
 
                 for (item in adapterMenu.listData) {
@@ -1002,7 +1002,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                             for (child in this) {
                                 if (child.select) {
                                     isFiltered = true
-                                    listFilterShop.add(child.idShop!!)
+                                    ScanHistoryFragment.listIdBigCorp.add(child.idShop!!)
                                     adapterMenu.applyShop[child.idShop ?: 0] = true
                                 }
                             }
@@ -1013,7 +1013,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                 if (isFiltered) {
                     ScanHistoryFragment.adapter?.hideBigCopAndSuggest()
                     EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_TICK_HISTORY))
-                    historyViewModel.getListScanHistory(ScanHistoryFragment.sort, listFilterShop, ScanHistoryFragment.listType)
+                    historyViewModel.getListScanHistory(ScanHistoryFragment.sort, ScanHistoryFragment.listIdBigCorp, ScanHistoryFragment.listType)
                 } else {
                     ScanHistoryFragment.adapter?.addBigCopAndSuggest(ICScanHistory(ICViewTypes.LIST_BIG_CORP, historyViewModel.listCategory))
                     EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_UNTICK_HISTORY))

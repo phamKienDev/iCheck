@@ -71,9 +71,9 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
 
     companion object {
         var adapter: ScanHistoryAdapter? = null
-        var listType = mutableListOf<Any>()
         var sort: Int? = null
         var listIdBigCorp = mutableListOf<Any>()
+        var listType = mutableListOf<Any>()
     }
 
     val viewModel: ScanHistoryViewModel by activityViewModels()
