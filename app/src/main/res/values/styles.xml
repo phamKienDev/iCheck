@@ -209,9 +209,6 @@
     </style>
 
     <!-- Line -->
-    <style name="Line_Gray">
-        <item name="android:background">@color/gray</item>
-    </style>
 
     <style name="Line_Gray_Wall">
         <item name="android:background">#f5f5f5</item>
