@@ -110,13 +110,13 @@ class PageManagementFragment : Fragment() {
                             countError++
                         }
                     },
-//                    lifecycleScope.async {
-//                        try {
-//                            myOwnerPage = withTimeoutOrNull(5000) { viewModel.getMyOwnerPage() }
-//                        } catch (e: Exception) {
-//                            countError++
-//                        }
-//                    }
+                    lifecycleScope.async {
+                        try {
+                            myOwnerPage = withTimeoutOrNull(5000) { viewModel.getMyOwnerPage() }
+                        } catch (e: Exception) {
+                            countError++
+                        }
+                    }
             ).awaitAll()
 
             DialogHelper.closeLoading(this@PageManagementFragment)
@@ -139,6 +139,7 @@ class PageManagementFragment : Fragment() {
         var myFollowPage: ICResponse<ICListResponse<ICPage>>? = null
 
         lifecycleScope.launch {
+            delay(1000)
             withContext(lifecycleScope.coroutineContext) {
                 try {
                     myFollowPage = withTimeoutOrNull(5000) { viewModel.getMyFollowPage() }
@@ -146,8 +147,6 @@ class PageManagementFragment : Fragment() {
                 }
             }
             if (myFollowPage?.data?.rows.isNullOrEmpty() && binding.containerOwner.isGone) {
-                binding.containerFollow.beGone()
-                binding.containerOwner.beGone()
                 setError(ICError(R.drawable.ic_group_120dp, ICheckApplication.getString(R.string.ban_chua_co_trang_nao)))
             } else {
                 setFollowPage(myFollowPage?.data)
@@ -181,6 +180,7 @@ class PageManagementFragment : Fragment() {
 
     private fun setError(data: ICError) {
         binding.layoutMessage.containerMessage.beVisible()
+        binding.layoutMessage.containerMessage.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.gray_e5))
         binding.layoutMessage.imgIcon.setImageResource(data.icon)
         binding.layoutMessage.txtMessage.text = data.message
 
