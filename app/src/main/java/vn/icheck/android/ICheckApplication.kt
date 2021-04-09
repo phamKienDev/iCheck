@@ -44,6 +44,7 @@ import vn.teko.hestia.trackingbridge.AppTrackingBridgeManager
 //import vn.teko.terra.core.android.terra.TerraApp
 import javax.inject.Inject
 import vn.icheck.android.BuildConfig
+import vn.icheck.android.icheckscanditv6.DataCaptureManager
 
 @HiltAndroidApp
 class ICheckApplication : Application(), Configuration.Provider {
@@ -95,6 +96,9 @@ class ICheckApplication : Application(), Configuration.Provider {
         settings.getSymbologySettings(Symbology.UPCE).setExtensionEnabled("remove_leading_upca_zero", true)
 
         barcodeCapture = BarcodeCapture.forDataCaptureContext(dataCaptureContext, settings)
+
+        DataCaptureManager.barcodeCapture = barcodeCapture
+        DataCaptureManager.dataCaptureContext = dataCaptureContext
         FirebaseApp.initializeApp(this)
         FacebookSdk.sdkInitialize(this)
         AppEventsLogger.activateApp(this)

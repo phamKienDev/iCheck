@@ -23,6 +23,7 @@ import vn.icheck.android.network.models.detail_stamp_v6.ICListHistoryGuaranteeV6
 import vn.icheck.android.network.models.detail_stamp_v6.ICStoreStampV6
 import vn.icheck.android.network.models.detail_stamp_v6.IC_RESP_UpdateCustomerGuaranteeV6
 import vn.icheck.android.network.models.detail_stamp_v6_1.*
+import vn.icheck.android.network.models.point_user.*
 import vn.icheck.android.network.models.product.detail.ICProductVariant
 import vn.icheck.android.network.models.product.report.ICReportContribute
 import vn.icheck.android.network.models.product.report.ICReportForm
@@ -1452,6 +1453,33 @@ interface ICNetworkAPI {
     @GET
     fun getCart(@Url url: String): Observable<ICResponse<MutableList<ICCartSocial>>>
 
+    /**
+     * Tích điểm đổi quà
+     */
+    @GET
+    fun getPointUser(@Url url: String): Observable<ICResponse<ICKPointUser>>
+
+    @GET
+    fun getListRedemptionHistory(@Url url: String, @QueryMap params: HashMap<String, Any>): Observable<ICResponse<ICListResponse<ICKBoxGifts>>>
+
+    @POST
+    fun postNhapMaTichDiem(@Url url: String, @Body params: HashMap<String, Any>): Observable<ICResponse<ICKAccumulatePoint>>
+
+    @POST
+    fun postExchangeGift(@Url url: String, @Body params: HashMap<String, Any>): Observable<ICResponse<ICKBoxGifts>>
+
     @GET
     fun getGiftHistory(@Url url: String, @QueryMap params: HashMap<String, Any>): Observable<ICResponse<ICListResponse<ICItemReward>>>
+
+
+    @GET
+    fun getListOfGiftsReceivedLoyalty(@Url url: String, @QueryMap queries: HashMap<String, Any>): Observable<ICResponse<ICListResponse<ICKRewardGameLoyalty>>>
+
+    @GET
+    fun getWinnerPoint(@Url url: String, @QueryMap params: HashMap<String, Any>): Observable<ICResponse<ICListResponse<ICKPointUser>>>
+
+    @GET
+    fun getPointHistoryAll(@Url url: String, @QueryMap params: HashMap<String, Any>): Observable<ICResponse<ICListResponse<ICKPointHistory>>>
+
+
 }

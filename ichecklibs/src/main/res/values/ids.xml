@@ -9,5 +9,6 @@
     <item name="imgChecked" type="id" />
     <item name="tvCount" type="id" />
     <item name="tvTimeDuration" type="id" />
-
+    <item name="frameFragment" type="id" />
+    <item name="txtName" type="id" />
 </resources>
