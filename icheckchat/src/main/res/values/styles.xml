@@ -6,14 +6,6 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-    <style name="Line_Gray">
-        <item name="android:background">@color/gray_D8</item>
-    </style>
-
-    <style name="Line_Gray.Horizontal">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">0.5dp</item>
-    </style>
 
     <style name="BottomSheetDialogAnimation">
         <item name="android:windowEnterAnimation">@anim/bottom_sheet_enter</item>
