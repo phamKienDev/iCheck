@@ -382,7 +382,7 @@ class V6ScanLoyaltyActivity : AppCompatActivity(), BarcodeCaptureListener {
         dataCaptureContext = DataCaptureContext.forLicenseKey(key)
         val settings = BarcodeCaptureSettings().apply {
             Symbology.values().forEach {
-                if (it != Symbology.MICRO_PDF417 && it != Symbology.PDF417) {
+                if (it != Symbology.MICRO_PDF417 && it != Symbology.PDF417  && it != Symbology.USPS_INTELLIGENT_MAIL) {
                     enableSymbology(it, true)
                     getSymbologySettings(it).isColorInvertedEnabled = true
                 }
@@ -429,11 +429,13 @@ class V6ScanLoyaltyActivity : AppCompatActivity(), BarcodeCaptureListener {
 
     private fun resetHeight() {
         dataCaptureView.post {
-            val lp = dataCaptureView.layoutParams
-            if (lp.height != getDeviceHeight()) {
-                lp.height = getDeviceHeight()
-                lp.width = getDeviceWidth()
-                dataCaptureView.layoutParams = lp
+            if (getUserCountry(this).contains("vn", false)) {
+                val lp = dataCaptureView.layoutParams
+                if (lp.height != getDeviceHeight()) {
+                    lp.height = getDeviceHeight()
+                    lp.width = getDeviceWidth()
+                    dataCaptureView.layoutParams = lp
+                }
             }
         }
 
