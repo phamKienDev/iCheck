@@ -41,6 +41,8 @@ import com.scandit.datacapture.core.data.FrameData
 import com.scandit.datacapture.core.source.*
 import com.scandit.datacapture.core.ui.DataCaptureView
 import com.scandit.datacapture.core.ui.DataCaptureViewListener
+import com.scandit.datacapture.core.ui.orientation.DeviceOrientation
+import com.scandit.datacapture.core.ui.orientation.DeviceOrientationMapper
 import kotlinx.android.synthetic.main.item_ads_product_grid.view.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -178,6 +180,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                         super.onStateChanged(frameSource, newState)
                         if (lastState == FrameSourceState.STOPPING && newState == FrameSourceState.OFF && scanImage.get()) {
                             scanImage.set(false)
+                            offCamera()
                             runOnUiThread {
                                 DialogHelper.showNotification(this@V6ScanditActivity, R.string.thong_bao, R.string.khong_thay_ma_vach, true, object : NotificationDialogListener {
 
@@ -189,12 +192,18 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                             }
                             frameSource.removeListener(this)
                         } else {
+                            if (newState == FrameSourceState.STOPPING) {
+                                resetCamera()
+                            }
                             lastState = newState
                         }
                     }
+
                 })
                 resetHeight()
+
                 source?.switchToDesiredState(FrameSourceState.ON)
+                offCameraNotDisable()
                 scanImage.set(true)
             }
         } catch (e: Exception) {
@@ -222,6 +231,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         checkIsReview()
         checkIsScan()
         initViews()
+        pushUpHeight()
     }
 
     private fun checkIsScan() {
@@ -261,7 +271,6 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         cameraSettings = BarcodeCapture.createRecommendedCameraSettings()
         cameraSettings.preferredResolution = VideoResolution.HD
         camera = Camera.getDefaultCamera(cameraSettings)
-
     }
 
     private fun initDataCaptureView() {
@@ -272,6 +281,13 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         _binding = IckScanCustomViewBinding.inflate(layoutInflater, dataCaptureView, false)
         dataCaptureView.addView(binding.root, getDeviceWidth(), getDeviceHeight())
         setContentView(dataCaptureView)
+        dataCaptureView.addListener(object : DataCaptureViewListener{
+            override fun onSizeChanged(width: Int, height: Int, screenRotation: Int) {
+                logDebug("orientation $screenRotation")
+                logDebug("width: $width")
+                logDebug("height $height")
+            }
+        })
     }
 
     private fun pushUpHeight() {
@@ -289,11 +305,13 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
     private fun resetHeight() {
         dataCaptureView.post {
-            val lp = dataCaptureView.layoutParams
-            if (lp.height != getDeviceHeight()) {
-                lp.height = getDeviceHeight()
-                lp.width = getDeviceWidth()
-                dataCaptureView.layoutParams = lp
+            if (getUserCountry(this).contains("vn", false))  {
+                val lp = dataCaptureView.layoutParams
+                if (lp.height != getDeviceHeight()) {
+                    lp.height = getDeviceHeight()
+                    lp.width = getDeviceWidth()
+                    dataCaptureView.layoutParams = lp
+                }
             }
         }
     }
@@ -326,6 +344,17 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         })
     }
 
+    fun offCameraNotDisable() {
+        camera?.switchToDesiredState(FrameSourceState.OFF, object : Callback<Boolean> {
+            override fun run(result: Boolean) {
+                if (!result) {
+                    offCameraNotDisable()
+                }
+            }
+        })
+    }
+
+
     private fun getUserCountry(context: Context): String {
         return try {
             val tm: TelephonyManager = context.getSystemService(TELEPHONY_SERVICE) as TelephonyManager
@@ -344,10 +373,10 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         }
 
         guideArr.add(binding?.imgScanTip)
+        guideArr.add(binding?.imgHdSdha)
         guideArr.add(binding?.imgNmspTip)
         guideArr.add(binding?.imgTorchTip)
         guideArr.add(binding?.imgXmdd)
-        guideArr.add(binding?.imgHdSdha)
         binding?.imgHelp?.setOnClickListener {
             viewModel.setGuide()
         }

@@ -86,7 +86,7 @@ class ICheckApplication : Application(), Configuration.Provider {
         dataCaptureContext = DataCaptureContext.forLicenseKey(key)
         val settings = BarcodeCaptureSettings().apply {
             Symbology.values().forEach {
-                if (it != Symbology.MICRO_PDF417 && it != Symbology.PDF417) {
+                if (it != Symbology.MICRO_PDF417 && it != Symbology.PDF417 && it != Symbology.USPS_INTELLIGENT_MAIL) {
                     enableSymbology(it, true)
                     getSymbologySettings(it).isColorInvertedEnabled = true
                 }
