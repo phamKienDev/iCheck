@@ -200,7 +200,7 @@ class HomeFunctionHolder(parent: ViewGroup, isExistTheme: Boolean, listener: IHo
                     }
 
                     if (user?.kycStatus == 2) {
-                        setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_16dp, 0)
+                        setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_18dp, 0)
                     } else {
                         setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                     }

@@ -481,10 +481,14 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
             tv_username.apply {
                 text = user?.getName
                 if (user?.kycStatus == 2) {
-                    setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_16dp, 0)
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_24dp, 0)
                 } else {
                     setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                 }
+
+//                SpannableString(user.getName + "  ").apply {
+//                    setSpan(ImageSpan(this@HomeActivity, R.drawable.ic_verified_user_16dp, ImageSpan.ALIGN_BASELINE), length - 1, length, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+//                }
             }
 //            txtLogOut.visibility = View.VISIBLE
             tv_logout.visibility = View.VISIBLE

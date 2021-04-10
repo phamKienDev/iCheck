@@ -130,14 +130,13 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
                 tvName.apply {
                     text = user.getName
                     if (user.kycStatus == 2) {
-                        setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_16dp, 0)
+                        setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_18dp, 0)
                     } else {
                         setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                     }
                 }
                 edtContent.hint = "Bạn đã sử dụng sản phẩm nào? Hãy chia sẻ cảm nhận nhé!"
                 tvType.beVisible()
-                tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
         }
     }
