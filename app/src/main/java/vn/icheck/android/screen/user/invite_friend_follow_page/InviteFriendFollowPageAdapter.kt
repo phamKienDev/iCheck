@@ -130,7 +130,7 @@ class InviteFriendFollowPageAdapter(val callback: InviteFriendFollowPageCallback
                 itemView.tvNote.beVisible()
                 itemView.view45.beVisible()
 
-                itemView.tvFriendCount.text = "Bạn bè (${obj.count})"
+                itemView.tvFriendCount.text = ("Bạn bè (${obj.count})")
             }
 
             itemView.imgClose.setOnClickListener {
@@ -145,13 +145,20 @@ class InviteFriendFollowPageAdapter(val callback: InviteFriendFollowPageCallback
 
         fun bind(obj: ICUser) {
             if (obj.selected) {
-                itemView.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_checkbox_single_on_24px, 0)
+                itemView.imgChecked.setImageResource(R.drawable.ic_checkbox_single_on_24px)
             } else {
-                itemView.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_ellipse, 0)
+                itemView.imgChecked.setImageResource(R.drawable.ic_ellipse)
             }
 
             WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.avatar, R.drawable.ic_avatar_default_84px)
-            itemView.tvName.text = obj.getName
+            itemView.tvName.apply {
+                text = obj.getName
+                if (obj.kycStatus == 2) {
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_16dp, 0)
+                } else {
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                }
+            }
 
             itemView.imgAvatar.setOnClickListener {
                 ICheckApplication.currentActivity()?.let {
