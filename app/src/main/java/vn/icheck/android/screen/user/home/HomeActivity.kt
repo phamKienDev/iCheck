@@ -478,7 +478,14 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
             WidgetUtils.loadImageUrl(imgAvatar, user?.avatar, R.drawable.ic_avatar_default_84px, R.drawable.ic_avatar_default_84px)
 //            WidgetUtils.loadImageUrl(imgBackground, user.cover_thumbnails?.medium, R.drawable.bg_header_home_drawer, R.drawable.bg_header_home_drawer)
 //            imgLevel.visibility = View.VISIBLE
-            tv_username.text = user?.getName
+            tv_username.apply {
+                text = user?.getName
+                if (user?.kycStatus == 2) {
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_16dp, 0)
+                } else {
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                }
+            }
 //            txtLogOut.visibility = View.VISIBLE
             tv_logout.visibility = View.VISIBLE
             tv_user_rank.text = user?.getPhoneAndRank()
@@ -508,8 +515,10 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
 //            imgBackground.setImageResource(R.drawable.bg_header_home_drawer)
 //            imgLevel.visibility = View.GONE
 //            tvName.text = Build.MODEL
-            tv_username.visibility = View.VISIBLE
-            tv_username.text = Build.MODEL
+            tv_username.apply {
+                text = Build.MODEL
+                setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+            }
             tv_user_rank.visibility = View.VISIBLE
             tv_user_rank.setTextColor(Color.parseColor("#212121"))
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
