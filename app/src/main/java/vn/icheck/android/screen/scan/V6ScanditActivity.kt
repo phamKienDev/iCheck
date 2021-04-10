@@ -180,6 +180,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                         super.onStateChanged(frameSource, newState)
                         if (lastState == FrameSourceState.STOPPING && newState == FrameSourceState.OFF && scanImage.get()) {
                             scanImage.set(false)
+                            offCamera()
                             runOnUiThread {
                                 DialogHelper.showNotification(this@V6ScanditActivity, R.string.thong_bao, R.string.khong_thay_ma_vach, true, object : NotificationDialogListener {
 
@@ -202,6 +203,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                 resetHeight()
 
                 source?.switchToDesiredState(FrameSourceState.ON)
+                offCameraNotDisable()
                 scanImage.set(true)
             }
         } catch (e: Exception) {
@@ -269,7 +271,6 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         cameraSettings = BarcodeCapture.createRecommendedCameraSettings()
         cameraSettings.preferredResolution = VideoResolution.HD
         camera = Camera.getDefaultCamera(cameraSettings)
-
     }
 
     private fun initDataCaptureView() {
@@ -338,6 +339,16 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
             override fun run(result: Boolean) {
                 if (!result) {
                     offCamera()
+                }
+            }
+        })
+    }
+
+    fun offCameraNotDisable() {
+        camera?.switchToDesiredState(FrameSourceState.OFF, object : Callback<Boolean> {
+            override fun run(result: Boolean) {
+                if (!result) {
+                    offCameraNotDisable()
                 }
             }
         })
