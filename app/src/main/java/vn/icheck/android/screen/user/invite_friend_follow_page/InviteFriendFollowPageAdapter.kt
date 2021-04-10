@@ -17,6 +17,7 @@ import vn.icheck.android.screen.user.page_details.fragment.page.widget.message.M
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
+import vn.icheck.android.util.ick.setRankUser
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class InviteFriendFollowPageAdapter(val callback: InviteFriendFollowPageCallback, val listSelected: MutableList<ICUser>) : RecyclerViewCustomAdapter<Any>(callback) {
@@ -150,6 +151,8 @@ class InviteFriendFollowPageAdapter(val callback: InviteFriendFollowPageCallback
                 itemView.imgChecked.setImageResource(R.drawable.ic_ellipse)
             }
 
+            itemView.imgRank.setRankUser(obj.rank?.level)
+
             WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.avatar, R.drawable.ic_avatar_default_84px)
             itemView.tvName.apply {
                 text = obj.getName
@@ -172,7 +175,7 @@ class InviteFriendFollowPageAdapter(val callback: InviteFriendFollowPageCallback
                 }
             }
 
-            itemView.tvName.setOnClickListener {
+            itemView.layoutName.setOnClickListener {
                 if (!obj.selected) {
                     obj.selected = !obj.selected
                     listSelected.add(obj)
@@ -182,6 +185,10 @@ class InviteFriendFollowPageAdapter(val callback: InviteFriendFollowPageCallback
                 }
                 callback.getListSeleted(listSelected)
                 notifyDataSetChanged()
+            }
+
+            itemView.imgChecked.setOnClickListener {
+                itemView.tvName.performClick()
             }
         }
     }

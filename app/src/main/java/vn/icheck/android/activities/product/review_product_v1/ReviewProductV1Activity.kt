@@ -32,7 +32,7 @@ import vn.icheck.android.network.models.ICProductReviews
 import vn.icheck.android.network.models.ICShare
 import vn.icheck.android.activities.product.review_product_v1.adapter.ReviewProductAdapter
 import vn.icheck.android.activities.product.review_product_v1.holder.ListReviewHolder
-import vn.icheck.android.screen.user.review_product.holder.PostReviewProductHolder
+import vn.icheck.android.activities.product.review_product_v1.holder.PostReviewProductHolder
 import vn.icheck.android.screen.user.review_product.model.ICReviewProduct
 import vn.icheck.android.activities.product.review_product_v1.presenter.ReviewProductPresenter
 import vn.icheck.android.activities.product.review_product_v1.view.IReviewProductView
