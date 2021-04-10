@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-
-    <style name="Line_Gray">
-        <item name="android:background">@color/gray_D8</item>
-    </style>
-
-    <style name="Line_Gray.Horizontal">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">0.5dp</item>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
     <style name="BottomSheetDialogAnimation">
@@ -26,5 +23,11 @@
         <item name="android:windowSoftInputMode">adjustResize</item>
         <item name="android:windowIsFloating">false</item>
         <item name="android:statusBarColor" tools:ignore="NewApi">@android:color/transparent</item>
+    </style>
+
+    <style name="AppTheme_Black" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/black_21</item>
+        <item name="colorPrimaryDark">@color/black_21</item>
+        <item name="colorAccent">@color/lightBlue</item>
     </style>
 </resources>

@@ -139,6 +139,7 @@ class PageManagementFragment : Fragment() {
         var myFollowPage: ICResponse<ICListResponse<ICPage>>? = null
 
         lifecycleScope.launch {
+            delay(1000)
             withContext(lifecycleScope.coroutineContext) {
                 try {
                     myFollowPage = withTimeoutOrNull(5000) { viewModel.getMyFollowPage() }
@@ -146,11 +147,10 @@ class PageManagementFragment : Fragment() {
                 }
             }
             if (myFollowPage?.data?.rows.isNullOrEmpty() && binding.containerOwner.isGone) {
-                binding.containerFollow.beGone()
-                binding.containerOwner.beGone()
                 setError(ICError(R.drawable.ic_group_120dp, ICheckApplication.getString(R.string.ban_chua_co_trang_nao)))
             } else {
                 setFollowPage(myFollowPage?.data)
+                binding.layoutMessage.containerMessage.beGone()
             }
         }
     }
@@ -160,6 +160,7 @@ class PageManagementFragment : Fragment() {
         if (it?.rows.isNullOrEmpty()) {
             binding.containerFollow.beGone()
         } else {
+            binding.containerFollow.beVisible()
             pageFollowCount = it?.count ?: 0
             binding.containerFollow.beVisible()
             binding.tvFollowTitle.text = "Trang đang theo dõi (${pageFollowCount})"
@@ -179,6 +180,7 @@ class PageManagementFragment : Fragment() {
 
     private fun setError(data: ICError) {
         binding.layoutMessage.containerMessage.beVisible()
+        binding.layoutMessage.containerMessage.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.gray_e5))
         binding.layoutMessage.imgIcon.setImageResource(data.icon)
         binding.layoutMessage.txtMessage.text = data.message
 
@@ -201,7 +203,7 @@ class PageManagementFragment : Fragment() {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: ICMessageEvent) {
         when (event.type) {
-            ICMessageEvent.Type.UNFOLLOW_PAGE -> {
+            ICMessageEvent.Type.UNFOLLOW_PAGE, ICMessageEvent.Type.FOLLOW_PAGE -> {
                 if (event.data != null && event.data is Long) {
                     getFollowPage()
                 }

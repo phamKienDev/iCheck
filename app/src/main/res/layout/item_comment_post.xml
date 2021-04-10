@@ -53,15 +53,17 @@
                 android:id="@id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawablePadding="@dimen/size_2"
                 android:ellipsize="middle"
                 android:fontFamily="@font/barlow_semi_bold"
+                android:gravity="center_vertical"
+                android:drawablePadding="@dimen/size_4"
                 android:includeFontPadding="false"
                 android:singleLine="true"
+                android:textAlignment="gravity"
                 android:textColor="@color/collection_product_name"
                 android:textSize="14sp"
                 tools:drawableEnd="@drawable/ic_verified_16px"
-                tools:text="Trần  Văn Lâm Trần Văn Văn Lâm Trần Văn Lâm Trần Văn Lâm Trần Văn Lâm Trần Văn Lâm" />
+                tools:text="Trần  Văn  Lâm Trần Văn Lâm" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@id/tvContent"

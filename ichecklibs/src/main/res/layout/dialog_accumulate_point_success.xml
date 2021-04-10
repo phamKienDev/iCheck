@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_22"
+        android:layout_marginRight="@dimen/size_22"
+        android:background="@drawable/bg_dialog_accumulate_point_success"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="90dp"
+            android:gravity="center"
+            android:text="Bạn được cộng"
+            android:textColor="#434343" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPoint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_5"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:paddingLeft="@dimen/size_50"
+            android:paddingRight="@dimen/size_50"
+            android:singleLine="true"
+            android:textColor="#FE4E1B"
+            android:textSize="18sp"
+            tools:text="120 Điểm tích lũy" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_36"
+            android:layout_marginTop="@dimen/size_20"
+            android:layout_marginRight="@dimen/size_36"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgAvatar"
+                android:layout_width="@dimen/size_36"
+                android:layout_height="@dimen/size_36" />
+
+            <LinearLayout
+                android:layout_width="@dimen/size_0"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_6"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvNameCampaign"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:includeFontPadding="false"
+                    android:singleLine="true"
+                    android:textColor="#434343"
+                    tools:text="Sống khỏe mỗi ngày - (1 dòng)..." />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvNameShop"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_4"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:textColor="#828282"
+                    android:textSize="12sp"
+                    tools:text="DHC Store Việt Nam" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_32"
+            android:layout_marginTop="@dimen/size_20"
+            android:layout_marginRight="@dimen/size_32"
+            android:gravity="center"
+            android:text="Đổi điểm tích lũy để nhận\nnhững phần quà cực cool nhé!"
+            android:textColor="#434343" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btnDefault"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="@dimen/size_12"
+            android:layout_marginRight="80dp"
+            android:layout_marginBottom="@dimen/size_30"
+            android:background="@drawable/bg_gradient_button_orange_yellow"
+            android:gravity="center"
+            android:paddingTop="@dimen/size_10"
+            android:paddingBottom="@dimen/size_10"
+            android:text="Đổi quà ngay"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_20"
+        app:srcCompat="@drawable/ic_close_popup_32px" />
+</LinearLayout>

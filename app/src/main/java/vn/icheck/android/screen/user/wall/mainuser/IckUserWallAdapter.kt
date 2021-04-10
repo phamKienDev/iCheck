@@ -27,6 +27,7 @@ import vn.icheck.android.component.ICViewModel
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.component.`null`.NullHolder
 import vn.icheck.android.component.friendrequestwall.FriendRequestWallHolder
+import vn.icheck.android.component.friendsuggestion.FriendSuggestionComponent
 import vn.icheck.android.component.post.IPostListener
 import vn.icheck.android.component.post.PostHolder
 import vn.icheck.android.constant.*
@@ -39,12 +40,12 @@ import vn.icheck.android.model.profile.IckUserProfileModel
 import vn.icheck.android.network.base.ICListResponse
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICSearchUser
+import vn.icheck.android.network.models.ICUser
 import vn.icheck.android.room.database.AppDatabase
 import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 import vn.icheck.android.screen.user.wall.ICWallModel
 import vn.icheck.android.screen.user.wall.holder.friend.FriendWallHolder
 import vn.icheck.android.util.ick.*
-
 
 class IckUserWallAdapter(val listener: IPostListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val listData = arrayListOf<ICViewModel>()
@@ -100,6 +101,7 @@ class IckUserWallAdapter(val listener: IPostListener) : RecyclerView.Adapter<Rec
             ICViewTypes.PROFILE_USER -> ProfileUserHolder(ItemUserProfileWallBinding.inflate(LayoutInflater.from(parent.context), parent, false))
             ICViewTypes.FRIEND_WALL -> FriendWallHolder(FriendInWallHolderBinding.inflate(LayoutInflater.from(parent.context), parent, false))
             ICViewTypes.FRIEND_INVITATION_TYPE -> FriendRequestWallHolder(parent)
+            ICViewTypes.FRIEND_SUGGESTION_TYPE -> FriendSuggestionComponent(parent)
             ICViewTypes.ITEM_CREATE_POST -> CreatePostHolder(ItemCreatePostBinding.inflate(LayoutInflater.from(parent.context), parent, false))
             ICViewTypes.ITEM_USER_POST -> PostHolder(parent, listener)
             else -> NullHolder.create(parent)
@@ -123,6 +125,16 @@ class IckUserWallAdapter(val listener: IPostListener) : RecyclerView.Adapter<Rec
                 ICViewTypes.FRIEND_INVITATION_TYPE -> {
                     (holder as FriendRequestWallHolder).apply {
                         bind((listData[position] as ICWallModel).data as ICListResponse<ICSearchUser>)
+
+                        setOnRemoveListener(View.OnClickListener {
+                            listData.removeAt(position)
+                            notifyItemRemoved(position)
+                        })
+                    }
+                }
+                ICViewTypes.FRIEND_SUGGESTION_TYPE -> {
+                    (holder as FriendSuggestionComponent).apply {
+                        bind(((listData[position] as ICWallModel).data as ICListResponse<ICUser>).rows)
 
                         setOnRemoveListener(View.OnClickListener {
                             listData.removeAt(position)

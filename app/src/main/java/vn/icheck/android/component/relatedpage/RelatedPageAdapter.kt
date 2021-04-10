@@ -42,10 +42,11 @@ class RelatedPageAdapter() : RecyclerView.Adapter<RelatedPageAdapter.ViewHolder>
 
             WidgetUtils.loadImageUrl(binding.imgAvatar, obj.avatar, R.drawable.ic_business_v2)
 
+            binding.tvName.text = obj.name
             if (obj.isVerify) {
-                binding.tvName.setDrawbleNextEndText(obj.name,R.drawable.ic_verified_16px)
+                binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
             } else {
-                binding.tvName.text = obj.name
+                binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
 
             if (obj.followCount > 0) {

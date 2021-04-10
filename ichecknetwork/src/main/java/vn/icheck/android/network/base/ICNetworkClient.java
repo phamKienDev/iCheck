@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import kotlin.jvm.Volatile;
 import okhttp3.Authenticator;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -22,11 +23,13 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import vn.icheck.android.network.BuildConfig;
 import vn.icheck.android.network.models.ICSessionData;
 import vn.icheck.android.network.util.DeviceUtils;
 
 public class ICNetworkClient {
     public static ICNetworkCallbackManager networkCallbackManager = ICNetworkCallbackManager.Factory.create();
+
 
     private static final Gson gson = new GsonBuilder()
             .setLenient()
@@ -116,6 +119,41 @@ public class ICNetworkClient {
     private static volatile ICNetworkAPI stampApi2 = null;
     private static volatile ICNetworkAPI stampApiV6 = null;
 
+    private static volatile ICNetworkAPI iCheckLoyaltyApi;
+
+    public static ICNetworkAPI getApiClientLoyalty() {
+        if (iCheckLoyaltyApi == null) {
+            synchronized (ICNetworkAPI.class) {
+                String host;
+                if (BuildConfig.FLAVOR.contentEquals("dev"))
+                    host = "https://api.dev.icheck.vn/api/business/";
+                else host = "https://api-social.icheck.com.vn/api/business/";
+                iCheckLoyaltyApi = new Retrofit.Builder()
+                        .baseUrl(host)
+                        .client(new OkHttpClient.Builder()
+                                .connectTimeout(30, TimeUnit.SECONDS)
+                                .readTimeout(30, TimeUnit.SECONDS)
+                                .writeTimeout(30, TimeUnit.SECONDS)
+                                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                                .addInterceptor(ICNetworkClient::requireLoginCallback).build())
+                        .addConverterFactory(GsonConverterFactory.create(gson))
+                        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                        .build()
+                        .create(ICNetworkAPI.class);
+            }
+        }
+        return iCheckLoyaltyApi;
+    }
+
+    private static String deviceModel() {
+        String model = DeviceUtils.getModel();
+        if (model.contains("²")) {
+            return model.replace("²", "2");
+        } else {
+            return model;
+        }
+    }
+
     @NotNull
     private static Response requireLoginCallback(Interceptor.Chain chain) throws IOException {
         Request original = chain.request();
@@ -123,7 +161,7 @@ public class ICNetworkClient {
         Request.Builder builder = original.newBuilder();
 
         builder.addHeader("Content-Type", "application/json")
-                .addHeader("User-Agent", "Model: " + DeviceUtils.getModel() + " + AppVersion:" + SettingManager.INSTANCE.getAppVersion())
+                .addHeader("User-Agent", "Model: " + deviceModel() + " + AppVersion:" + SettingManager.INSTANCE.getAppVersion())
                 .addHeader("device-id", DeviceUtils.getUniqueDeviceId())
                 .addHeader("appVersion", SettingManager.INSTANCE.getAppVersion());
 
@@ -157,7 +195,7 @@ public class ICNetworkClient {
         ICSessionData sessionData = SessionManager.INSTANCE.getSession();
 
         builder.addHeader("Content-Type", "application/json")
-                .addHeader("User-Agent", "Model: " + DeviceUtils.getModel() + " + AppVersion:" + SettingManager.INSTANCE.getAppVersion())
+                .addHeader("User-Agent", "Model: " + deviceModel() + " + AppVersion:" + SettingManager.INSTANCE.getAppVersion())
                 .addHeader("device_id", DeviceUtils.getUniqueDeviceId())
                 .addHeader("appVersion", SettingManager.INSTANCE.getAppVersion());
 
@@ -204,7 +242,7 @@ public class ICNetworkClient {
         Request.Builder builder = original.newBuilder();
 
         builder.addHeader("Content-Type", "application/json")
-                .addHeader("User-Agent", "Model: " + DeviceUtils.getModel() + " + AppVersion:" + SettingManager.INSTANCE.getAppVersion())
+                .addHeader("User-Agent", "Model: " + deviceModel() + " + AppVersion:" + SettingManager.INSTANCE.getAppVersion())
                 .addHeader("device-id", DeviceUtils.getUniqueDeviceId())
                 .addHeader("appVersion", SettingManager.INSTANCE.getAppVersion());
 
@@ -226,7 +264,7 @@ public class ICNetworkClient {
         Request.Builder builder = original.newBuilder();
 
         builder.addHeader("Content-Type", "application/json")
-                .addHeader("User-Agent", "Model: " + DeviceUtils.getModel() + " + AppVersion:" + SettingManager.INSTANCE.getAppVersion())
+                .addHeader("User-Agent", "Model: " + deviceModel() + " + AppVersion:" + SettingManager.INSTANCE.getAppVersion())
                 .addHeader("device-id", DeviceUtils.getUniqueDeviceId())
                 .addHeader("appVersion", SettingManager.INSTANCE.getAppVersion());
 
@@ -545,7 +583,7 @@ public class ICNetworkClient {
                                 if (sessionData != null && sessionData.getTokenType() != null && sessionData.getToken() != null) {
                                     builder[0] = response.request().newBuilder()
                                             .addHeader("Content-Type", "application/json")
-                                            .addHeader("User-Agent", DeviceUtils.getModel())
+                                            .addHeader("User-Agent", deviceModel())
                                             .addHeader("device-id", DeviceUtils.getUniqueDeviceId())
                                             .addHeader("appVersion", SettingManager.INSTANCE.getAppVersion())
                                             .header("Authorization", (sessionData.getTokenType() + " " + sessionData.getToken()))
@@ -553,7 +591,7 @@ public class ICNetworkClient {
                                 } else {
                                     builder[0] = response.request().newBuilder()
                                             .addHeader("Content-Type", "application/json")
-                                            .addHeader("User-Agent", DeviceUtils.getModel())
+                                            .addHeader("User-Agent", deviceModel())
                                             .addHeader("device-id", DeviceUtils.getUniqueDeviceId())
                                             .method(response.request().method(), response.request().body());
                                 }
@@ -562,7 +600,7 @@ public class ICNetworkClient {
             } else {
                 builder[0] = response.request().newBuilder()
                         .addHeader("Content-Type", "application/json")
-                        .addHeader("User-Agent", DeviceUtils.getModel())
+                        .addHeader("User-Agent", deviceModel())
                         .addHeader("device-id", DeviceUtils.getUniqueDeviceId())
                         .addHeader("appVersion", SettingManager.INSTANCE.getAppVersion())
                         .method(response.request().method(), response.request().body());

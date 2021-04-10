@@ -57,14 +57,16 @@
                         android:textColor="#757575"
                         android:textSize="12sp" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
                         android:id="@id/tvName"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/size_4"
                         android:ellipsize="end"
-                        android:fontFamily="@font/barlow_semi_bold"
                         android:gravity="center_vertical"
-                        android:maxLines="1"
+                        android:includeFontPadding="false"
+                        android:singleLine="true"
+                        android:textAlignment="gravity"
                         android:textColor="#212121"
                         android:textSize="16sp"
                         tools:text="Mai Lan Nguyễn" />

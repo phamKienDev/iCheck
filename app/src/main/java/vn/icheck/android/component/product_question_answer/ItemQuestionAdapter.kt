@@ -96,15 +96,22 @@ class ItemQuestionAdapter(val questionListener: ProductDetailListener) : Recycle
             if (obj.page == null) {
                 WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.user?.avatar, R.drawable.ic_avatar_default_84px)
                 itemView.imgLevel.setRankUser(obj.user?.rank?.level)
-                itemView.tvTitle.text = obj.user?.getName
-                itemView.tvTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                itemView.tvTitle.apply {
+                    text = obj.user?.getName
+                    if (obj.user?.kycStatus == 2) {
+                        setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_16dp, 0)
+                    } else {
+                        setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                    }
+                }
             } else {
                 WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.page!!.avatar, R.drawable.ic_business_v2)
                 itemView.imgLevel.beGone()
+                itemView.tvTitle.text = obj.page?.getName
                 if (obj.page!!.isVerify) {
-                    itemView.tvTitle.setDrawbleNextEndText(obj.page?.getName,R.drawable.ic_verified_16px)
+                    itemView.tvTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
                 } else {
-                    itemView.tvTitle.text = obj.page?.getName
+                    itemView.tvTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                 }
             }
 

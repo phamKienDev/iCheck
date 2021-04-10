@@ -1,40 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginTop="@dimen/size_12"
-    android:gravity="center_vertical"
-    android:orientation="horizontal">
+    android:layout_marginTop="@dimen/size_12">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imgAvatar"
         android:layout_width="@dimen/size_40"
-        app:civ_border_color="@color/gray"
-        app:civ_border_width="@dimen/size_0_5"
         android:layout_height="@dimen/size_40"
         android:layout_marginStart="@dimen/size_12"
-        android:layout_marginLeft="@dimen/size_12" />
+        android:layout_marginTop="@dimen/size_8"
+        app:civ_border_color="@color/gray"
+        app:civ_border_width="@dimen/size_0_5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/imgRank" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@id/imgRank"
+        android:layout_width="@dimen/size_16"
+        android:layout_height="@dimen/size_16"
+        android:src="@drawable/ic_avatar_rank_diamond_16dp"
+        app:layout_constraintEnd_toEndOf="@id/imgAvatar"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@id/layoutName"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="@dimen/size_0"
         android:layout_marginStart="@dimen/size_12"
-        android:layout_marginLeft="@dimen/size_12"
-        android:layout_marginEnd="@dimen/size_14"
-        android:layout_marginRight="@dimen/size_14"
         android:layout_weight="1"
-        android:drawablePadding="@dimen/size_8"
-        android:drawableEnd="@drawable/ic_ellipse"
-        android:drawableRight="@drawable/ic_ellipse"
-        android:fontFamily="@font/barlow_medium"
-        android:gravity="center_vertical"
-        android:textColor="@color/collection_product_name"
-        android:textSize="14sp"
-        android:maxLines="1"
-        android:ellipsize="end"
-        tools:text="Dung Nguyen Dung Dung Nguyen Dung Dung Nguyen Dung " />
+        app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
+        app:layout_constraintEnd_toStartOf="@id/imgChecked"
+        app:layout_constraintStart_toEndOf="@id/imgAvatar"
+        app:layout_constraintTop_toTopOf="@id/imgAvatar">
 
-</LinearLayout>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:drawablePadding="@dimen/size_4"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:textAlignment="gravity"
+            android:textColor="@color/collection_product_name"
+            android:textSize="14sp"
+            tools:text="Dung Nguyen Dung Dung Nguyen Dung Dung Nguyen Dung " />
+    </FrameLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@id/imgChecked"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/size_0"
+        android:paddingStart="@dimen/size_8"
+        android:paddingEnd="@dimen/size_14"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_ellipse"
+        app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/imgAvatar" />
+</androidx.constraintlayout.widget.ConstraintLayout>

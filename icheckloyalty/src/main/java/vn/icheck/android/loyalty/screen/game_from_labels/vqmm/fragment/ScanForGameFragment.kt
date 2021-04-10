@@ -16,8 +16,6 @@ import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
-import vn.icheck.android.ichecklibs.Constant.BARCODE
-import vn.icheck.android.icheckscanditv6.IcheckScanActivity
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.ICMessageEvent
 import vn.icheck.android.loyalty.dialog.DialogErrorScanGame
@@ -28,6 +26,7 @@ import vn.icheck.android.loyalty.model.ReceiveGameResp
 import vn.icheck.android.loyalty.network.ICApiListener
 import vn.icheck.android.loyalty.screen.game_from_labels.vqmm.viewmodel.LuckyGameViewModel
 import vn.icheck.android.loyalty.screen.game_from_labels.vqmm.viewmodel.ScanGameViewModel
+import vn.icheck.android.loyalty.screen.scan.V6ScanLoyaltyActivity
 
 //import android.Manifest
 //import android.content.Context
@@ -350,7 +349,7 @@ class ScanForGameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         EventBus.getDefault().register(this)
-        IcheckScanActivity.scanOnlyChat(requireActivity(), 77)
+        V6ScanLoyaltyActivity.scanOnlyChat(requireActivity(), 77)
     }
 
 

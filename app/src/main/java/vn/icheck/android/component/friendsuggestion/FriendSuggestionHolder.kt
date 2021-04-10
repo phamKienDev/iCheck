@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatTextView
 import de.hdodenhof.circleimageview.CircleImageView
+import kotlinx.android.synthetic.main.item_friend_suggestion.view.*
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.RelationshipManager
@@ -39,7 +40,7 @@ class FriendSuggestionHolder(parent: ViewGroup) : BaseViewHolder<ICUser>(LayoutI
                 IckUserWallActivity.create(obj.id, it.context)
             }
 
-            (getChildAt(1) as AppCompatTextView).apply {
+            itemView.tvName.apply {
                 when (obj.rank?.level) {
                     Constant.USER_LEVEL_SILVER -> {
                         setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_avatar_silver_24dp, 0)
@@ -57,8 +58,14 @@ class FriendSuggestionHolder(parent: ViewGroup) : BaseViewHolder<ICUser>(LayoutI
             }
 
             // Text name
-            val name = obj.getName
-            (getChildAt(2) as AppCompatTextView).text = name
+            itemView.tvName.apply {
+                text = obj.getName
+                if (obj.kycStatus == 2) {
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_16dp, 0)
+                } else {
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                }
+            }
 
             // Text agree
             getChildAt(3).setOnClickListener {

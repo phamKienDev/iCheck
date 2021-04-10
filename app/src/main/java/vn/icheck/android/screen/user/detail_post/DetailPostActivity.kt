@@ -3,6 +3,7 @@ package vn.icheck.android.screen.user.detail_post
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.text.Editable
@@ -36,12 +37,13 @@ import vn.icheck.android.callback.ItemClickListener
 import vn.icheck.android.component.commentpost.ICCommentPostMore
 import vn.icheck.android.component.commentpost.ICommentPostView
 import vn.icheck.android.component.post.PostOptionDialog
-import vn.icheck.android.component.take_media.TakeMediaDialog
 import vn.icheck.android.component.view.ViewHelper.delayTimeoutClick
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
+import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICCommentPermission
 import vn.icheck.android.network.models.ICCommentPost
@@ -84,7 +86,7 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
     private var isActivityVisible = true
 
 
-    private val takeMediaListener = object : TakeMediaDialog.TakeImageListener {
+    private val takeMediaListener = object : TakeMediaListener {
         override fun onPickMediaSucess(file: File) {
             showLayoutImage(true, file)
             showLayoutEmoji(false)
@@ -92,6 +94,13 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
         }
 
         override fun onPickMuliMediaSucess(file: MutableList<File>) {
+        }
+
+        override fun onStartCrop(filePath: String?, uri: Uri?, ratio: String?, requestCode: Int?) {
+
+        }
+
+        override fun onDismiss() {
         }
 
         override fun onTakeMediaSuccess(file: File?) {
@@ -530,7 +539,7 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
                 val permissions = arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 imgCamera.delayTimeoutClick(2000)
                 if (PermissionHelper.isAllowPermission(this, permissions)) {
-                    TakeMediaDialog.show(supportFragmentManager,takeMediaListener)
+                    TakeMediaDialog.show(supportFragmentManager,this,takeMediaListener)
                 } else {
                     PermissionHelper.checkPermission(this, permissions, requestCamera)
                 }

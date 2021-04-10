@@ -235,7 +235,7 @@ class SearchPageActivity : BaseActivityMVVM(), View.OnClickListener, IRecyclerVi
         super.onMessageEvent(event)
         if (isActivityVisible) {
             when (event.type) {
-                ICMessageEvent.Type.ON_LOG_IN -> {
+                ICMessageEvent.Type.ON_REQUIRE_LOGIN -> {
                     onRequireLogin(requestLogin)
                 }
                 ICMessageEvent.Type.OPEN_DETAIL_PAGE -> {

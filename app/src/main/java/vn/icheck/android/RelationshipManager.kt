@@ -11,7 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
-//import okhttp3.logging.HttpLoggingInterceptor
+import okhttp3.logging.HttpLoggingInterceptor
 import org.greenrobot.eventbus.EventBus
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -356,7 +356,7 @@ object RelationshipManager {
 
     private suspend fun doLogin(onLogin: Boolean = false) {
         try {
-//            val httpLoggingInterceptor = HttpLoggingInterceptor()
+            val httpLoggingInterceptor = HttpLoggingInterceptor()
             val okHttpClient = OkHttpClient.Builder()
                     .connectTimeout(30, TimeUnit.SECONDS)
                     .readTimeout(30, TimeUnit.SECONDS)
@@ -368,10 +368,10 @@ object RelationshipManager {
                                 .addHeader("appVersion", SettingManager.appVersion)
                                 .build()
                         val hasMultipart = request.headers.names().contains("multipart")
-//                        if (hasMultipart) httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.NONE) else httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+                        if (hasMultipart) httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.NONE) else httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
                         chain.proceed(request)
                     }
-//                    .addInterceptor(httpLoggingInterceptor)
+                    .addInterceptor(httpLoggingInterceptor)
                     .build()
             val api = Retrofit.Builder()
                     .addConverterFactory(GsonConverterFactory.create())

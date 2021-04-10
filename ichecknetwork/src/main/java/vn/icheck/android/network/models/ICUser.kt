@@ -161,6 +161,7 @@ class ICUser : Serializable {
     @SerializedName("entity")
     @Expose
     val entity: String? = null
+    @Expose var kycStatus: Int? = null
 
     val getName: String
         get() {

@@ -30,6 +30,7 @@ import vn.icheck.android.network.feature.post.PostInteractor
 import vn.icheck.android.network.models.ICCommentPost
 import vn.icheck.android.network.models.ICPost
 import vn.icheck.android.network.models.ICSearchUser
+import vn.icheck.android.network.models.ICUser
 import vn.icheck.android.network.models.wall.IcFriendResponse
 import vn.icheck.android.room.database.AppDatabase
 import vn.icheck.android.room.entity.ICMyFriendIdUser
@@ -224,9 +225,17 @@ class IckUserWallViewModel @ViewModelInject constructor(
                                 }
                             })
                         }
-                        "friend-suggestion-1", "friend-invitation-list-1" -> {
+                        "friend-invitation-list-1" -> {
                             arrJob.add(async {
                                 val invitation = ickUserWallRepository.getFriendInvitation(layout?.request?.getSocialUrl())
+                                if (invitation != null) {
+                                    arrResponse.add(invitation)
+                                }
+                            })
+                        }
+                        "friend-suggestion-1" -> {
+                            arrJob.add(async {
+                                val invitation = ickUserWallRepository.getFriendSuggestion(layout?.request?.getSocialUrl())
                                 if (invitation != null) {
                                     arrResponse.add(invitation)
                                 }
@@ -306,12 +315,21 @@ class IckUserWallViewModel @ViewModelInject constructor(
                                 }
                             }
                         }
-                        "friend-suggestion-1", "friend-invitation-list-1" -> {
+                        "friend-invitation-list-1" -> {
                             arrResponse.firstOrNull {
                                 it is ICResponse<*>
                             }?.let {
                                 if (!(it as ICResponse<ICListResponse<ICSearchUser>>).data?.rows.isNullOrEmpty()) {
                                     addView(ICWallModel(it.data!!, ICViewTypes.FRIEND_INVITATION_TYPE))
+                                }
+                            }
+                        }
+                        "friend-suggestion-1" -> {
+                            arrResponse.firstOrNull {
+                                it is ICResponse<*>
+                            }?.let {
+                                if (!(it as ICResponse<ICListResponse<ICUser>>).data?.rows.isNullOrEmpty()) {
+                                    addView(ICWallModel(it.data!!, ICViewTypes.FRIEND_SUGGESTION_TYPE))
                                 }
                             }
                         }

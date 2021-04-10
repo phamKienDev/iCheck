@@ -10,10 +10,24 @@ import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
 import kotlinx.android.synthetic.main.holder_list_shop_variant.view.*
+import kotlinx.android.synthetic.main.holder_list_shop_variant.view.layoutAddToCart
+import kotlinx.android.synthetic.main.holder_list_shop_variant.view.layoutLocation
+import kotlinx.android.synthetic.main.holder_list_shop_variant.view.layoutLocation2
+import kotlinx.android.synthetic.main.holder_list_shop_variant.view.recyclerView
+import kotlinx.android.synthetic.main.holder_list_shop_variant.view.tvSubAddToCart
+import kotlinx.android.synthetic.main.holder_list_shop_variant.view.tv_distance
+import kotlinx.android.synthetic.main.holder_list_shop_variant.view.tv_price
+import kotlinx.android.synthetic.main.holder_list_shop_variant.view.tv_sale_price
+import kotlinx.android.synthetic.main.holder_list_shop_variant.view.tv_score
+import kotlinx.android.synthetic.main.holder_list_shop_variant.view.tv_shop_name
+import kotlinx.android.synthetic.main.holder_shop.view.*
 import vn.icheck.android.R
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.beGone
+import vn.icheck.android.ichecklibs.beInvisible
+import vn.icheck.android.ichecklibs.beVisible
 import vn.icheck.android.network.models.ICShopVariantV2
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICServiceShopVariant
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.adapter.ServiceShopVariantAdapter
@@ -135,23 +149,38 @@ class ListShopVariantAdapter constructor(val view: IListShopVariantView) : Recyc
                 adapterService.setListData(listService)
             }
 
-            if (item.saleOff != null && item.price != null) {
-                if (item.saleOff == true && item.price != null) {
-                    if (item.specialPrice != null && item.price != null) {
-                        itemView.tv_sale_price?.visibility = View.VISIBLE
-                        ICheckTextUtils.setSalePrice(itemView.tv_sale_price, item.price!!)
-                        ICheckTextUtils.setPrice(itemView.tv_price, item.specialPrice!!)
-                    } else {
-                        itemView.tv_sale_price?.visibility = View.INVISIBLE
-                        ICheckTextUtils.setPrice(itemView.tv_price, item.price!!)
-                    }
+//            if (item.saleOff != null && item.price != null) {
+//                if (item.saleOff == true && item.price != null) {
+//                    if (item.specialPrice != null && item.price != null) {
+//                        itemView.tv_sale_price?.visibility = View.VISIBLE
+//                        ICheckTextUtils.setSalePrice(itemView.tv_sale_price, item.price!!)
+//                        ICheckTextUtils.setPrice(itemView.tv_price, item.specialPrice!!)
+//                    } else {
+//                        itemView.tv_sale_price?.visibility = View.INVISIBLE
+//                        ICheckTextUtils.setPrice(itemView.tv_price, item.price!!)
+//                    }
+//                } else {
+//                    itemView.tv_sale_price?.visibility = View.INVISIBLE
+//                    ICheckTextUtils.setPrice(itemView.tv_price, item.price!!)
+//                }
+//            } else {
+//                itemView.tv_sale_price?.visibility = View.INVISIBLE
+//                ICheckTextUtils.setPrice(itemView.tv_price, item.price ?: 0)
+//            }
+
+            if (item.price != null) {
+                itemView.tv_sale_price.beVisible()
+                if (item.saleOff == true && item.specialPrice != null) {
+                    itemView.tv_price?.beVisible()
+                    ICheckTextUtils.setPrice(itemView.tv_sale_price, item.specialPrice!!)
+                    ICheckTextUtils.setSalePrice(itemView.tv_price, item.price!!)
                 } else {
-                    itemView.tv_sale_price?.visibility = View.INVISIBLE
-                    ICheckTextUtils.setPrice(itemView.tv_price, item.price!!)
+                    ICheckTextUtils.setPrice(itemView.tv_sale_price, item.price!!)
+                    itemView.tv_price?.beInvisible()
                 }
             } else {
-                itemView.tv_sale_price?.visibility = View.INVISIBLE
-                ICheckTextUtils.setPrice(itemView.tv_price, item.price ?: 0)
+                itemView.tv_sale_price?.beInvisible()
+                itemView.tv_price?.beInvisible()
             }
         }
 

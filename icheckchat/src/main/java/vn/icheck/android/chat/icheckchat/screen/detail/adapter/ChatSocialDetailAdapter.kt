@@ -93,7 +93,6 @@ class ChatSocialDetailAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
             setupShowStatus(obj)
             setupStatus(obj)
             initClick(obj)
-
         }
 
         private fun setupProduct(obj: MCDetailMessage) {

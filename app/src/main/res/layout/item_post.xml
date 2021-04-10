@@ -27,8 +27,8 @@
                 android:id="@id/imgLogo"
                 android:layout_width="@dimen/size_40"
                 android:layout_height="@dimen/size_40"
-                android:src="@color/blue"
                 android:layout_marginTop="@dimen/size_8"
+                android:src="@color/blue"
                 app:civ_border_color="@color/gray"
                 app:civ_border_width="@dimen/size_0_5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -56,18 +56,19 @@
                     android:id="@id/tvPageName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:drawableEnd="@drawable/ic_verified_16px"
+                    android:drawablePadding="@dimen/size_4"
                     android:ellipsize="middle"
                     android:fontFamily="@font/barlow_semi_bold"
+                    android:gravity="center_vertical"
                     android:includeFontPadding="false"
                     android:singleLine="true"
-                    android:drawablePadding="@dimen/size_2"
+                    android:textAlignment="gravity"
                     android:textColor="@color/collection_product_name"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toStartOf="@id/imgMore"
                     app:layout_constraintStart_toEndOf="@id/imgLogo"
                     app:layout_constraintTop_toTopOf="@id/imgLogo"
-                    tools:text=" Unilever Vietnam Official Vietnam Official  Unilever Vietnam Official  Unilever Vietnam Official Vietnam Official  Unilever Vietnam Official " />
+                    tools:text="tnam Official  Unilever Vietnam Official " />
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -343,10 +344,13 @@
                         android:id="@id/tvName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:ellipsize="end"
+                        android:ellipsize="middle"
                         android:fontFamily="@font/barlow_semi_bold"
+                        android:gravity="center_vertical"
                         android:includeFontPadding="false"
+                        android:drawablePadding="@dimen/size_4"
                         android:singleLine="true"
+                        android:textAlignment="gravity"
                         android:textColor="@color/collection_product_name"
                         android:textSize="14sp"
                         tools:text="Trần Văn Lâm" />

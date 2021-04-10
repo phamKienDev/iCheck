@@ -478,7 +478,18 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
             WidgetUtils.loadImageUrl(imgAvatar, user?.avatar, R.drawable.ic_avatar_default_84px, R.drawable.ic_avatar_default_84px)
 //            WidgetUtils.loadImageUrl(imgBackground, user.cover_thumbnails?.medium, R.drawable.bg_header_home_drawer, R.drawable.bg_header_home_drawer)
 //            imgLevel.visibility = View.VISIBLE
-            tv_username.text = user?.getName
+            tv_username.apply {
+                text = user?.getName
+                if (user?.kycStatus == 2) {
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_24dp, 0)
+                } else {
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                }
+
+//                SpannableString(user.getName + "  ").apply {
+//                    setSpan(ImageSpan(this@HomeActivity, R.drawable.ic_verified_user_16dp, ImageSpan.ALIGN_BASELINE), length - 1, length, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+//                }
+            }
 //            txtLogOut.visibility = View.VISIBLE
             tv_logout.visibility = View.VISIBLE
             tv_user_rank.text = user?.getPhoneAndRank()
@@ -508,8 +519,10 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
 //            imgBackground.setImageResource(R.drawable.bg_header_home_drawer)
 //            imgLevel.visibility = View.GONE
 //            tvName.text = Build.MODEL
-            tv_username.visibility = View.VISIBLE
-            tv_username.text = Build.MODEL
+            tv_username.apply {
+                text = Build.MODEL
+                setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+            }
             tv_user_rank.visibility = View.VISIBLE
             tv_user_rank.setTextColor(Color.parseColor("#212121"))
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -617,6 +630,11 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
 
             viewModel.downloadTheme()
         }
+    }
+
+    private fun clearFilter() {
+        unCheckAllFilterHistory()
+        btnApply.performClick()
     }
 
     override fun showDialogUpdate() {
@@ -980,12 +998,12 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
 
             }
             R.id.btnApply -> {
-                ScanHistoryFragment.listType.clear()
-
                 adapterMenu.applyCode.clear()
                 adapterMenu.applyShop.clear()
 
-                val listFilterShop = mutableListOf<Any>()
+                ScanHistoryFragment.listIdBigCorp.clear()
+                ScanHistoryFragment.listType.clear()
+
                 var isFiltered = false
 
                 for (item in adapterMenu.listData) {
@@ -1002,7 +1020,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                             for (child in this) {
                                 if (child.select) {
                                     isFiltered = true
-                                    listFilterShop.add(child.idShop!!)
+                                    ScanHistoryFragment.listIdBigCorp.add(child.idShop!!)
                                     adapterMenu.applyShop[child.idShop ?: 0] = true
                                 }
                             }
@@ -1013,7 +1031,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                 if (isFiltered) {
                     ScanHistoryFragment.adapter?.hideBigCopAndSuggest()
                     EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_TICK_HISTORY))
-                    historyViewModel.getListScanHistory(ScanHistoryFragment.sort, listFilterShop, ScanHistoryFragment.listType)
+                    historyViewModel.getListScanHistory(ScanHistoryFragment.sort, ScanHistoryFragment.listIdBigCorp, ScanHistoryFragment.listType)
                 } else {
                     ScanHistoryFragment.adapter?.addBigCopAndSuggest(ICScanHistory(ICViewTypes.LIST_BIG_CORP, historyViewModel.listCategory))
                     EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_UNTICK_HISTORY))
@@ -1079,6 +1097,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                 tvChatCount.visibility = View.GONE
                 RelationshipManager.removeListener()
                 checkkNewTheme()
+                clearFilter()
             }
             ICMessageEvent.Type.ON_LOG_IN -> {
                 tv_username.text = SessionManager.session.user?.getName
@@ -1092,6 +1111,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                 RelationshipManager.refreshToken(true)
                 ChatSdk.shareIntent(SessionManager.session.firebaseToken, SessionManager.session.user?.id, SessionManager.session.token, DeviceUtils.getUniqueDeviceId())
                 checkkNewTheme()
+                clearFilter()
             }
             ICMessageEvent.Type.INIT_MENU_HISTORY -> {
                 recyclerViewMenu.layoutManager = LinearLayoutManager(this)
