@@ -914,6 +914,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                                     val userID = it.split("-")[1]
                                     if (userID.isNotEmpty() && ValidHelper.validNumber(userID)) {
                                         IckUserWallActivity.create(userID.toLong(), this)
+                                        finish()
                                     }
                                 } catch (e: Exception) {
                                     TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
