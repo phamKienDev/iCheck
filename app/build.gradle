@@ -38,7 +38,7 @@ android {
         applicationId "vn.icheck.android"
         minSdkVersion 19
         targetSdkVersion 30
-        versionCode 21041202
+        versionCode 21041204
         versionName "6.17.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled = true
@@ -61,7 +61,7 @@ android {
     aaptOptions { cruncherEnabled = false }
     buildTypes {
         release {
-            debuggable true
+            debuggable false
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             manifestPlaceholders = [partner: "icheckvn"]
