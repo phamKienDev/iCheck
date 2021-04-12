@@ -131,7 +131,7 @@ class InviteFriendFollowPageAdapter(val callback: InviteFriendFollowPageCallback
                 itemView.tvNote.beVisible()
                 itemView.view45.beVisible()
 
-                itemView.tvFriendCount.text = "Bạn bè (${obj.count})"
+                itemView.tvFriendCount.text = ("Bạn bè (${obj.count})")
             }
 
             itemView.imgClose.setOnClickListener {

@@ -94,9 +94,13 @@ class ChatSocialFragment(val callback: ListConversationFragment.Companion.ICount
     fun checkLoginOrLogOut(isLogin: Boolean) {
         (binding.viewPager.adapter as ViewPagerAdapterChat).apply {
             for (item in listData) {
-                if (item is ListConversationFragment) {
-                    item.checkLoginOrLogOut(isLogin)
-                    return
+                when (item) {
+                    is ListConversationFragment -> {
+                        item.checkLoginOrLogOut(isLogin)
+                    }
+                    is ContactFragment -> {
+                        item.checkLoginOrLogOut(isLogin)
+                    }
                 }
             }
         }

@@ -12,21 +12,24 @@ import java.util.concurrent.TimeUnit;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import kotlin.jvm.Volatile;
 import okhttp3.Authenticator;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.Route;
-import okhttp3.logging.HttpLoggingInterceptor;
+//import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import vn.icheck.android.network.BuildConfig;
 import vn.icheck.android.network.models.ICSessionData;
 import vn.icheck.android.network.util.DeviceUtils;
 
 public class ICNetworkClient {
     public static ICNetworkCallbackManager networkCallbackManager = ICNetworkCallbackManager.Factory.create();
+
 
     private static final Gson gson = new GsonBuilder()
             .setLenient()
@@ -38,7 +41,7 @@ public class ICNetworkClient {
             .readTimeout(20, TimeUnit.SECONDS)
             .writeTimeout(20, TimeUnit.SECONDS)
 //            .authenticator(new TokenAuthenticator())
-            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+//            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .addInterceptor(ICNetworkClient::requireLoginCallback).build();
 
     private static OkHttpClient getClient(int timeRequest) {
@@ -47,7 +50,7 @@ public class ICNetworkClient {
                 .readTimeout(timeRequest, TimeUnit.SECONDS)
                 .writeTimeout(timeRequest, TimeUnit.SECONDS)
 //            .authenticator(new TokenAuthenticator())
-                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+//                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .addInterceptor(ICNetworkClient::requireLoginCallback).build();
     }
 
@@ -56,7 +59,7 @@ public class ICNetworkClient {
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
 //            .authenticator(new TokenAuthenticator())
-            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+//            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .addInterceptor(ICNetworkClient::requireLoginCallback2).build();
 
     private static final OkHttpClient client3 = new OkHttpClient.Builder()
@@ -64,7 +67,7 @@ public class ICNetworkClient {
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
 //            .authenticator(new TokenAuthenticator())
-            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+//            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .addInterceptor(ICNetworkClient::requireLoginCallback3).build();
 
     private static final OkHttpClient client4 = new OkHttpClient.Builder()
@@ -72,7 +75,7 @@ public class ICNetworkClient {
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
 //            .authenticator(new TokenAuthenticator())
-            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+//            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .addInterceptor(ICNetworkClient::requireLoginCallback4).build();
 
     private static final OkHttpClient clientStamp = new OkHttpClient.Builder()
@@ -80,14 +83,14 @@ public class ICNetworkClient {
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
 //            .authenticator(new TokenAuthenticator())
-            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+//            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .addInterceptor(ICNetworkClient::requireLoginCallbackStamp).build();
 
     private static final OkHttpClient uploadClient = new OkHttpClient.Builder()
             .connectTimeout(60, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)
-            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+//            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .addInterceptor(ICNetworkClient::requireLoginCallback).build();
 
 
@@ -116,6 +119,41 @@ public class ICNetworkClient {
     private static volatile ICNetworkAPI stampApi2 = null;
     private static volatile ICNetworkAPI stampApiV6 = null;
 
+    private static volatile ICNetworkAPI iCheckLoyaltyApi;
+
+    public static ICNetworkAPI getApiClientLoyalty() {
+        if (iCheckLoyaltyApi == null) {
+            synchronized (ICNetworkAPI.class) {
+                String host;
+                if (BuildConfig.FLAVOR.contentEquals("dev"))
+                    host = "https://api.dev.icheck.vn/api/business/";
+                else host = "https://api-social.icheck.com.vn/api/business/";
+                iCheckLoyaltyApi = new Retrofit.Builder()
+                        .baseUrl(host)
+                        .client(new OkHttpClient.Builder()
+                                .connectTimeout(30, TimeUnit.SECONDS)
+                                .readTimeout(30, TimeUnit.SECONDS)
+                                .writeTimeout(30, TimeUnit.SECONDS)
+//                                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                                .addInterceptor(ICNetworkClient::requireLoginCallback).build())
+                        .addConverterFactory(GsonConverterFactory.create(gson))
+                        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                        .build()
+                        .create(ICNetworkAPI.class);
+            }
+        }
+        return iCheckLoyaltyApi;
+    }
+
+    private static String deviceModel() {
+        String model = DeviceUtils.getModel();
+        if (model.contains("²")) {
+            return model.replace("²", "2");
+        } else {
+            return model;
+        }
+    }
+
     @NotNull
     private static Response requireLoginCallback(Interceptor.Chain chain) throws IOException {
         Request original = chain.request();
@@ -123,7 +161,7 @@ public class ICNetworkClient {
         Request.Builder builder = original.newBuilder();
 
         builder.addHeader("Content-Type", "application/json")
-                .addHeader("User-Agent", "Model: " + DeviceUtils.getModel() + " + AppVersion:" + SettingManager.INSTANCE.getAppVersion())
+                .addHeader("User-Agent", "Model: " + deviceModel() + " + AppVersion:" + SettingManager.INSTANCE.getAppVersion())
                 .addHeader("device-id", DeviceUtils.getUniqueDeviceId())
                 .addHeader("appVersion", SettingManager.INSTANCE.getAppVersion());
 
@@ -157,7 +195,7 @@ public class ICNetworkClient {
         ICSessionData sessionData = SessionManager.INSTANCE.getSession();
 
         builder.addHeader("Content-Type", "application/json")
-                .addHeader("User-Agent", "Model: " + DeviceUtils.getModel() + " + AppVersion:" + SettingManager.INSTANCE.getAppVersion())
+                .addHeader("User-Agent", "Model: " + deviceModel() + " + AppVersion:" + SettingManager.INSTANCE.getAppVersion())
                 .addHeader("device_id", DeviceUtils.getUniqueDeviceId())
                 .addHeader("appVersion", SettingManager.INSTANCE.getAppVersion());
 
@@ -204,7 +242,7 @@ public class ICNetworkClient {
         Request.Builder builder = original.newBuilder();
 
         builder.addHeader("Content-Type", "application/json")
-                .addHeader("User-Agent", "Model: " + DeviceUtils.getModel() + " + AppVersion:" + SettingManager.INSTANCE.getAppVersion())
+                .addHeader("User-Agent", "Model: " + deviceModel() + " + AppVersion:" + SettingManager.INSTANCE.getAppVersion())
                 .addHeader("device-id", DeviceUtils.getUniqueDeviceId())
                 .addHeader("appVersion", SettingManager.INSTANCE.getAppVersion());
 
@@ -226,7 +264,7 @@ public class ICNetworkClient {
         Request.Builder builder = original.newBuilder();
 
         builder.addHeader("Content-Type", "application/json")
-                .addHeader("User-Agent", "Model: " + DeviceUtils.getModel() + " + AppVersion:" + SettingManager.INSTANCE.getAppVersion())
+                .addHeader("User-Agent", "Model: " + deviceModel() + " + AppVersion:" + SettingManager.INSTANCE.getAppVersion())
                 .addHeader("device-id", DeviceUtils.getUniqueDeviceId())
                 .addHeader("appVersion", SettingManager.INSTANCE.getAppVersion());
 
@@ -248,7 +286,7 @@ public class ICNetworkClient {
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .writeTimeout(30, TimeUnit.SECONDS)
                 .authenticator(new TokenAuthenticator())
-                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+//                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .addInterceptor(ICNetworkClient::requireLoginCallback)
                 .build();
     }
@@ -462,7 +500,7 @@ public class ICNetworkClient {
                     .connectTimeout(60, TimeUnit.SECONDS)
                     .readTimeout(60, TimeUnit.SECONDS)
                     .writeTimeout(60, TimeUnit.SECONDS)
-                    .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+//                    .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                     .build();
         } else {
             chatClient = client;
@@ -490,7 +528,7 @@ public class ICNetworkClient {
                             .connectTimeout(60, TimeUnit.SECONDS)
                             .readTimeout(60, TimeUnit.SECONDS)
                             .writeTimeout(60, TimeUnit.SECONDS)
-                            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+//                            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                             .build();
                 } else {
                     throw new NullPointerException("Firebase token not found");
@@ -545,7 +583,7 @@ public class ICNetworkClient {
                                 if (sessionData != null && sessionData.getTokenType() != null && sessionData.getToken() != null) {
                                     builder[0] = response.request().newBuilder()
                                             .addHeader("Content-Type", "application/json")
-                                            .addHeader("User-Agent", DeviceUtils.getModel())
+                                            .addHeader("User-Agent", deviceModel())
                                             .addHeader("device-id", DeviceUtils.getUniqueDeviceId())
                                             .addHeader("appVersion", SettingManager.INSTANCE.getAppVersion())
                                             .header("Authorization", (sessionData.getTokenType() + " " + sessionData.getToken()))
@@ -553,7 +591,7 @@ public class ICNetworkClient {
                                 } else {
                                     builder[0] = response.request().newBuilder()
                                             .addHeader("Content-Type", "application/json")
-                                            .addHeader("User-Agent", DeviceUtils.getModel())
+                                            .addHeader("User-Agent", deviceModel())
                                             .addHeader("device-id", DeviceUtils.getUniqueDeviceId())
                                             .method(response.request().method(), response.request().body());
                                 }
@@ -562,7 +600,7 @@ public class ICNetworkClient {
             } else {
                 builder[0] = response.request().newBuilder()
                         .addHeader("Content-Type", "application/json")
-                        .addHeader("User-Agent", DeviceUtils.getModel())
+                        .addHeader("User-Agent", deviceModel())
                         .addHeader("device-id", DeviceUtils.getUniqueDeviceId())
                         .addHeader("appVersion", SettingManager.INSTANCE.getAppVersion())
                         .method(response.request().method(), response.request().body());

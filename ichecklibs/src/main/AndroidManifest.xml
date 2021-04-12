@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="vn.icheck.android.ichecklibs">
- <application android:theme="@style/AppTheme">
 
- </application>
+    <application android:theme="@style/AppTheme">
+        <activity android:name=".web.WebViewActivity"></activity>
+        <activity android:name=".CropImageActivity" />
+    </application>
+
 </manifest>

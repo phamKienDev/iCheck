@@ -53,9 +53,15 @@ class CommentPostHolder(val binding: ItemCommentPostBinding, val listener: IComm
             }
         } else {
             WidgetUtils.loadImageUrl(binding.imgAvatar, obj.user?.avatar, R.drawable.ic_avatar_default_84px, R.drawable.ic_avatar_default_84px)
-            binding.tvTitle.text = obj.user?.getName
+            binding.tvTitle.apply {
+                text = obj.user?.getName
+                if (obj.user?.kycStatus == 2) {
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_16dp, 0)
+                } else {
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                }
+            }
             binding.imgLevel.setImageResource(Constant.getAvatarLevelIcon16(obj.user?.rank?.level))
-            binding.tvTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             binding.imgLevel.beVisible()
         }
 

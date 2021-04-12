@@ -1,4 +1,4 @@
-package vn.icheck.android.screen.user.review_product.holder
+package vn.icheck.android.activities.product.review_product_v1.holder
 
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
