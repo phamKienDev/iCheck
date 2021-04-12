@@ -534,7 +534,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 binding.recyclerViewImage.setGone()
                 type = "media"
             }
-            if (binding.layoutProduct.isVisible && product != null) {
+            if (binding.layoutProduct.isVisible && this@ChatSocialDetailActivity.product != null) {
                 type = "product"
                 this.product = this@ChatSocialDetailActivity.product
             }
