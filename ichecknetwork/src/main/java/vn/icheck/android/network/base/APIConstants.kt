@@ -7,6 +7,7 @@ import vn.icheck.android.network.R
 import java.lang.reflect.InvocationTargetException
 
 object APIConstants {
+
     const val LIMIT = 10
 
     @JvmField
@@ -19,6 +20,13 @@ object APIConstants {
     const val PATH_CDN = "icheck-social-cdn/"
 
     const val POST = "POST"
+
+
+    val LOYALTY_HOST: String
+        get() {
+//            return if (BuildConfig.FLAVOR.contentEquals("dev")) "https://api.dev.icheck.vn/api/business/" else "https://api.icheck.com.vn/api/business/"
+            return if (BuildConfig.FLAVOR.contentEquals("dev")) "https://api.dev.icheck.vn/api/business/" else "https://api-social.icheck.com.vn/api/business/"
+        }
 
     external fun STAMPDETAIL(): String
     external fun STAMPMOREPRODUCTVERIFIEDDISTRIBUTOR(): String
@@ -53,6 +61,8 @@ object APIConstants {
     external fun UPLOADIMAGEV1(): String
     external fun CRITERIALISTPRODUCTCOMMENT(): String
     external fun PRODUCTDETAIL(): String
+
+
 
     object Social {
         const val LIST_POST = "social/api/pages/{id}/posts"

@@ -803,6 +803,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                         return
                     } else {
                         ChatSocialDetailActivity.openRoomChatWithKey(this@FirebaseDynamicLinksActivity, id)
+//                        SocialChatActivity.createRoomChat(this@FirebaseDynamicLinksActivity, null, id)
                     }
                 }
             }

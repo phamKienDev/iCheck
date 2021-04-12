@@ -114,8 +114,14 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
 //            itemView.imgLogo.layoutParams = ConstraintLayout.LayoutParams(SizeHelper.size40, SizeHelper.size40).also {
 //                it.topMargin = SizeHelper.size8
 //            }
-            itemView.tvPageName.text = obj.user?.getName
-            itemView.tvPageName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+            itemView.tvPageName.apply {
+                text = obj.user?.getName
+                if (obj.user?.kycStatus == 2) {
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_16dp, 0)
+                } else {
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                }
+            }
             itemView.imgRank.beVisible()
             itemView.imgRank.setRankUser(obj.user?.rank?.level)
         }
@@ -291,8 +297,14 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
             } else {
                 WidgetUtils.loadImageUrl(itemView.imgAvatar, comments.user?.avatar, R.drawable.ic_user_svg)
                 itemView.imgLevel.setImageResource(Constant.getAvatarLevelIcon16(comments.user?.rank?.level))
-                itemView.tvName.text = comments.user?.getName
-                itemView.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                itemView.tvName.apply {
+                    text = comments.user?.getName
+                    if (comments.user?.kycStatus == 2) {
+                        setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_16dp, 0)
+                    } else {
+                        setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                    }
+                }
             }
 
             if (comments.content.isNullOrEmpty()) {

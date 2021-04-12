@@ -5,10 +5,12 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application>
-        <activity android:name=".screen.gift_voucher.GiftDetailFromAppActivity"
+        <activity android:name=".screen.scan.V6ScanLoyaltyActivity"></activity>
+        <activity
+            android:name=".screen.gift_voucher.GiftDetailFromAppActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme_White"/>
+            android:theme="@style/AppTheme_White" />
         <activity
             android:name=".screen.loyalty_customers.exchange_phonecard.ChangePhoneCardsActivity"
             android:exported="true"
@@ -103,12 +105,11 @@
             android:name=".screen.redemption_history.RedemptionHistoryActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme_White" />
-<!--        <activity-->
-<!--            android:name=".screen.scan.ScanLoyaltyActivity"-->
-<!--            android:exported="true"-->
-<!--            android:screenOrientation="portrait"-->
-<!--            android:theme="@style/AppTheme_White" />-->
+            android:theme="@style/AppTheme_White" /> <!-- <activity -->
+        <!-- android:name=".screen.scan.ScanLoyaltyActivity" -->
+        <!-- android:exported="true" -->
+        <!-- android:screenOrientation="portrait" -->
+        <!-- android:theme="@style/AppTheme_White" /> -->
         <activity
             android:name=".screen.game_from_labels.redeem_points.home.HomeRedeemPointActivity"
             android:exported="true"

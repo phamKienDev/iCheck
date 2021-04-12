@@ -21,7 +21,7 @@ abstract class OtherNotificationOptionDialog(context: Context) : BaseBottomSheet
             "system_gift_changed" -> {
                 dialog.tvStatus.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_notification_gift_20dp, 0)
             }
-            "RANK","LEVEL_UP" -> {
+            "RANK","LEVEL_UP","POST" -> {
                 dialog.tvStatus.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_notification_admin_20dp, 0)
             }
             "system_voucher_changed" -> {

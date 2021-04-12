@@ -12,12 +12,11 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import vn.icheck.android.chat.icheckchat.R
 import vn.icheck.android.chat.icheckchat.base.BaseFragmentChat
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.USER_ID
 import vn.icheck.android.chat.icheckchat.base.recyclerview.IRecyclerViewCallback
-import vn.icheck.android.chat.icheckchat.base.view.setGone
-import vn.icheck.android.chat.icheckchat.base.view.setVisible
-import vn.icheck.android.chat.icheckchat.base.view.showToastError
+import vn.icheck.android.chat.icheckchat.base.view.*
 import vn.icheck.android.chat.icheckchat.databinding.FragmentContactBinding
 import vn.icheck.android.chat.icheckchat.dialog.ConfirmContactDialog
 import vn.icheck.android.chat.icheckchat.helper.NetworkHelper.LIMIT
@@ -42,44 +41,34 @@ class ContactFragment(val isUserLogged: Boolean) : BaseFragmentChat<FragmentCont
 
     var offset = 0
 
-    private var isCreated = false
+    var isCreated = false
 
     override fun setBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentContactBinding {
         return FragmentContactBinding.inflate(inflater, container, false)
     }
 
     override fun onInitView() {
+        viewModel = ViewModelProvider(this@ContactFragment)[ContactViewModel::class.java]
+
         if (isUserLogged) {
             binding.recyclerView.setGone()
             binding.btnMergeRequest.setGone()
-            binding.tvMessageContact.setVisible()
-            binding.btnRequest.setVisible()
-            binding.layoutNoData.setVisible()
+
+            setVisibleView(binding.layoutNoData, binding.btnRequest, binding.tvMessageContact)
         } else {
-            binding.recyclerView.setGone()
-            binding.btnMergeRequest.setGone()
-            binding.tvMessageContact.setGone()
-            binding.btnRequest.setGone()
+            setGoneView(binding.recyclerView, binding.btnMergeRequest, binding.tvMessageContact, binding.btnRequest)
+
             binding.layoutNoData.setVisible()
+        }
+
+        initRecyclerView()
+
+        binding.btnRequest.setOnClickListener {
+            showDialog()
         }
 
         binding.btnMergeRequest.setOnClickListener {
             showDialog()
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        if (!isCreated) {
-            isCreated = true
-            viewModel = ViewModelProvider(this@ContactFragment)[ContactViewModel::class.java]
-
-            initRecyclerView()
-            initSwipeLayout()
-
-            binding.btnRequest.setOnClickListener {
-                showDialog()
-            }
         }
     }
 
@@ -99,6 +88,15 @@ class ContactFragment(val isUserLogged: Boolean) : BaseFragmentChat<FragmentCont
             if (requestContact()) {
                 getData()
             }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        if (!isCreated) {
+            isCreated = true
+            initSwipeLayout()
         }
     }
 
@@ -147,6 +145,7 @@ class ContactFragment(val isUserLogged: Boolean) : BaseFragmentChat<FragmentCont
                             binding.btnMergeRequest.setVisible()
 
                             adapter.setListData(it.data?.data?.rows ?: mutableListOf())
+                            requireContext().showToastSuccess(getString(R.string.dong_bo_danh_ba_thanh_cong))
                         } else {
                             binding.recyclerView.setGone()
                             binding.btnMergeRequest.setGone()
@@ -217,5 +216,27 @@ class ContactFragment(val isUserLogged: Boolean) : BaseFragmentChat<FragmentCont
 
     override fun onLoadMore() {
         getListFriend(true)
+    }
+
+    fun checkLoginOrLogOut(isLogin: Boolean) {
+        if (!isLogin) {
+            if (isUserLogged) {
+                binding.recyclerView.setGone()
+                binding.btnMergeRequest.setGone()
+                binding.tvMessageContact.setVisible()
+                binding.btnRequest.setVisible()
+                binding.layoutNoData.setVisible()
+            } else {
+                binding.recyclerView.setGone()
+                binding.btnMergeRequest.setGone()
+                binding.tvMessageContact.setGone()
+                binding.btnRequest.setGone()
+                binding.layoutNoData.setVisible()
+            }
+        } else {
+            if (requestContact()) {
+                getData()
+            }
+        }
     }
 }

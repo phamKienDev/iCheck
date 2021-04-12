@@ -21,5 +21,16 @@ object TimeHelper {
             "${String.format("%02d", minute)}:${String.format("%02d", second)}"
         }
     }
+    fun convertDateVnToMillisecond2(dateVn: String?): Long? {
+        if (dateVn.isNullOrEmpty())
+            return null
 
+        val sdfSv = SimpleDateFormat("yyyyMMdd'T'HHmmss", Locale.getDefault())
+
+        return try {
+            sdfSv.parse(dateVn)?.time
+        } catch (e: Exception) {
+            null
+        }
+    }
 }
