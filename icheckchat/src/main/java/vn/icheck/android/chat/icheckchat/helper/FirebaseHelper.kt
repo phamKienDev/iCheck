@@ -89,8 +89,17 @@ class FirebaseHelper {
         })
     }
 
-    fun getImageChatDetail(key: String, success: (snapshot: DataSnapshot) -> Unit, cancel: (error: DatabaseError) -> Unit) {
-        firebaseDatabase.getReference("chat-details-v2/$key").addValueEventListener(object : ValueEventListener {
+    fun getImageChatDetail(lastTimeStamp: Long, key: String, success: (snapshot: DataSnapshot) -> Unit, cancel: (error: DatabaseError) -> Unit) {
+        val imageDatabase = if (lastTimeStamp > 0) {
+            firebaseDatabase.getReference("chat-details-v2/$key").orderByChild("time")
+                    .startAt(0.0).endAt(lastTimeStamp.toDouble() - 1)
+                    .limitToLast(10)
+        } else {
+            firebaseDatabase.getReference("chat-details-v2/$key").orderByChild("time")
+                    .limitToLast(10)
+        }
+
+        imageDatabase.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 success(snapshot)
             }
@@ -101,6 +110,28 @@ class FirebaseHelper {
         })
     }
 
+    fun getMessageDetailV2(lastTimeStamp: Long, key: String, success: (snapshot: DataSnapshot) -> Unit, cancel: (error: DatabaseError) -> Unit) {
+        val messageDetails = if (lastTimeStamp > 0) {
+            firebaseDatabase.getReference("chat-details-v2/$key").orderByChild("time")
+                    .startAt(0.0).endAt(lastTimeStamp.toDouble() - 1)
+                    .limitToLast(10)
+        } else {
+            firebaseDatabase.getReference("chat-details-v2/$key").orderByChild("time")
+                    .limitToLast(10)
+        }
+
+        messageDetails.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                success(snapshot)
+                messageDetails.removeEventListener(this)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                cancel(error)
+                messageDetails.removeEventListener(this)
+            }
+        })
+    }
 
     fun getMessageDetail(key: String, success: (snapshot: DataSnapshot) -> Unit, cancel: (error: DatabaseError) -> Unit) {
         firebaseDatabase.getReference("chat-details-v2/$key").orderByChild("time").addListenerForSingleValueEvent(object : ValueEventListener {
@@ -121,15 +152,12 @@ class FirebaseHelper {
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-                TODO("Not yet implemented")
             }
 
             override fun onChildRemoved(snapshot: DataSnapshot) {
-                TODO("Not yet implemented")
             }
 
             override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
-                TODO("Not yet implemented")
             }
 
             override fun onCancelled(error: DatabaseError) {

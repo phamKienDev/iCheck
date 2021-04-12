@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:visibility="gone"
     android:orientation="vertical">
 
     <FrameLayout
         android:id="@+id/layoutOneImage"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:padding="1dp"
         android:background="@drawable/bg_corner_10_gray_f0"
+        android:padding="1dp"
         android:visibility="gone">
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -26,150 +26,18 @@
             android:layout_height="match_parent"
             android:background="@drawable/bg_black_opacity_50_corner_10"
             android:padding="55dp"
-            android:src="@drawable/ic_video_white_40dp_chat" />
+            android:src="@drawable/ic_video_white_40dp_chat"
+            android:visibility="gone" />
 
     </FrameLayout>
 
-    <LinearLayout
-        android:id="@+id/layoutTwoImage"
-        android:layout_width="206dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        android:orientation="horizontal">
-
-        <FrameLayout
-            android:layout_width="100dp"
-            android:padding="1dp"
-            android:background="@drawable/bg_corner_10_gray_f0"
-            android:layout_height="100dp">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/img1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:src="@color/lightBlue" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imgView1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/bg_black_opacity_50_corner_10"
-                android:padding="30dp"
-                android:visibility="gone"
-                android:src="@drawable/ic_video_white_40dp_chat" />
-
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:padding="1dp"
-            android:background="@drawable/bg_corner_10_gray_f0"
-            android:layout_marginStart="6dp"
-            android:layout_marginLeft="6dp">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/img2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:src="@color/lightBlue" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imgView2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/bg_black_opacity_50_corner_10"
-                android:padding="30dp"
-                android:visibility="gone"
-                android:src="@drawable/ic_video_white_40dp_chat" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvCountImage"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:ellipsize="end"
-                android:visibility="gone"
-                android:background="@drawable/bg_black_opacity_50_corner_10"
-                android:fontFamily="@font/barlow_semi_bold"
-                android:gravity="center"
-                android:includeFontPadding="false"
-                android:singleLine="true"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                android:text="+2" />
-
-        </FrameLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/layoutImage"
-        android:layout_width="206dp"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_marginTop="6dp"
-        android:orientation="horizontal">
-
-        <FrameLayout
-            android:layout_width="100dp"
-            android:padding="1dp"
-            android:background="@drawable/bg_corner_10_gray_f0"
-            android:layout_height="100dp">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/img3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:src="@color/lightBlue" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imgView3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/bg_black_opacity_50_corner_10"
-                android:padding="30dp"
-                android:visibility="gone"
-                android:src="@drawable/ic_video_white_40dp_chat" />
-
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:padding="1dp"
-            android:background="@drawable/bg_corner_10_gray_f0"
-            android:layout_marginStart="6dp"
-            android:layout_marginLeft="6dp">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/img4"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:src="@color/lightBlue" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imgView4"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/bg_black_opacity_50_corner_10"
-                android:padding="30dp"
-                android:visibility="gone"
-                android:src="@drawable/ic_video_white_40dp_chat" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvCountImage1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:ellipsize="end"
-                android:visibility="gone"
-                android:background="@drawable/bg_black_opacity_50_corner_10"
-                android:fontFamily="@font/barlow_semi_bold"
-                android:gravity="center"
-                android:includeFontPadding="false"
-                android:singleLine="true"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                tools:text="+2" />
-
-        </FrameLayout>
-    </LinearLayout>
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"
+        tools:itemCount="4"
+        tools:listitem="@layout/item_media_chat" />
 </LinearLayout>

@@ -2,25 +2,17 @@ package vn.icheck.android.screen.user.wall.mainuser
 
 import android.content.Intent
 import android.graphics.Color
-import android.text.Spannable
-import android.text.SpannableString
-import android.text.SpannableStringBuilder
-import android.text.style.ImageSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.RelationshipManager
 import vn.icheck.android.activities.image.DetailImagesActivity
-import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
 import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.component.ICViewModel
@@ -42,7 +34,6 @@ import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICSearchUser
 import vn.icheck.android.network.models.ICUser
 import vn.icheck.android.room.database.AppDatabase
-import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 import vn.icheck.android.screen.user.wall.ICWallModel
 import vn.icheck.android.screen.user.wall.holder.friend.FriendWallHolder
 import vn.icheck.android.util.ick.*
@@ -215,10 +206,10 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
 //            arrMember.add(ChatMember(data?.id))
 //            SocialChatActivity.createRoomChat(it.context, arrMember.toTypedArray())
             if (SessionManager.isUserLogged) {
-                SocialChatActivity.createRoomChat(it.context, data?.id)
-//                ListConversationFragment.finishAllChat()
+//                SocialChatActivity.createRoomChat(it.context, data?.id)
+                ListConversationFragment.finishAllChat()
 //                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_FINISH_ALL_CHAT))
-//                ChatSocialDetailActivity.createRoomChat(it.context, data?.id ?: -1, "user")
+                ChatSocialDetailActivity.createRoomChat(it.context, data?.id ?: -1, "user")
             } else {
                 ICheckApplication.currentActivity()?.let { act ->
                     (act as FragmentActivity).showLogin()

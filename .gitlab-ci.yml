@@ -7,23 +7,23 @@ assembleDevDebug:
     - autobuild
   only:
     refs:
-      - develop
+      - develop_chat
   stage: build
   script:
     - ./gradlew clean
     - ./gradlew assembleDevDebug
-    - curl -T $PWD/app/build/outputs/apk/dev/debug/app-dev-debug.apk -u $FTP_USER:$FTP_PASSWORD $FTP_FOLDER/social/icheckDev.apk
-    - "curl -X POST -H 'Content-type: application/json' --data '{\"text\":\"Có bản cài Android Social Sandbox mới. <https://download.icheck.com.vn/|Tải ngay!>\"}' $SLACK_HOOK"
+    - curl -T $PWD/app/build/outputs/apk/dev/debug/app-dev-debug.apk -u $FTP_USER:$FTP_PASSWORD $FTP_FOLDER/chat/icheckDev.apk
+    - "curl -X POST -H 'Content-type: application/json' --data '{\"text\":\"Có bản cài Chat Android Sandbox mới. <https://download.icheck.com.vn/|Tải ngay!>\"}' $SLACK_HOOK"
 
 assembleProdRelease:
   tags:
     - autobuild
   only:
     refs:
-      - develop
+      - develop_chat
   stage: build
   script:
     - ./gradlew clean
     - ./gradlew assembleProdRelease
-    - curl -T $PWD/app/build/outputs/apk/prod/release/app-prod-release.apk -u $FTP_USER:$FTP_PASSWORD $FTP_FOLDER/social/icheck.apk
-    - "curl -X POST -H 'Content-type: application/json' --data '{\"text\":\"Có bản cài Android Social Live mới. <https://download.icheck.com.vn/|Tải ngay!>\"}' $SLACK_HOOK"
+    - curl -T $PWD/app/build/outputs/apk/prod/release/app-prod-release.apk -u $FTP_USER:$FTP_PASSWORD $FTP_FOLDER/chat/icheck.apk
+    - "curl -X POST -H 'Content-type: application/json' --data '{\"text\":\"Có bản cài Chat Android Live mới. <https://download.icheck.com.vn/|Tải ngay!>\"}' $SLACK_HOOK"

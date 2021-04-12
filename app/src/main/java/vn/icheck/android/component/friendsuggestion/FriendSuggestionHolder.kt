@@ -20,7 +20,6 @@ import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
 import vn.icheck.android.network.feature.relationship.RelationshipInteractor
 import vn.icheck.android.network.models.ICUser
-import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -88,8 +87,8 @@ class FriendSuggestionHolder(parent: ViewGroup) : BaseViewHolder<ICUser>(LayoutI
                 getChildAt(5).visibility = View.VISIBLE
                 // Text nhan tin
                 getChildAt(4).setOnClickListener {
-//                    ChatSocialDetailActivity.createRoomChat(it.context, obj.id, "user")
-                    SocialChatActivity.createRoomChat(it.context, obj.id)
+                    ChatSocialDetailActivity.createRoomChat(it.context, obj.id, "user")
+//                    SocialChatActivity.createRoomChat(it.context, obj.id)
                 }
             } else {
                 getChildAt(3).visibility = View.VISIBLE

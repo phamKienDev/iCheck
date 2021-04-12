@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:rotation="180"
     android:gravity="center_vertical|right"
     android:orientation="vertical">
 
@@ -149,6 +150,66 @@
                 android:visibility="visible"
                 tools:targetApi="p"
                 tools:text="Tôi muốn ất ở đâu? ( độ rộng maximum)" />
+
+            <LinearLayout
+                android:id="@+id/layoutLink"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:visibility="gone"
+                android:background="@drawable/bg_corner_10_gray_f0"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvLink"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_blue_corner_top_10dp"
+                    android:fontFamily="@font/barlow_medium"
+                    android:includeFontPadding="false"
+                    android:padding="@dimen/size_10"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    tools:text="( đường link hiển thị đầy đủ) rosepie.vn/san-pham/binh-an/" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgThumbnailLink"
+                    android:layout_width="match_parent"
+                    android:layout_height="141dp"
+                    android:visibility="gone"
+                    tools:src="@color/lightCyan" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_10"
+                    android:layout_marginTop="@dimen/size_10"
+                    android:layout_marginEnd="@dimen/size_10"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/barlow_semi_bold"
+                    android:includeFontPadding="false"
+                    android:maxLines="2"
+                    android:minLines="1"
+                    android:textColor="@color/black_21"
+                    android:textSize="14sp"
+                    tools:text="Title" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvLinkDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_10"
+                    android:layout_marginTop="@dimen/size_10"
+                    android:layout_marginEnd="@dimen/size_10"
+                    android:layout_marginBottom="@dimen/size_10"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/barlow_medium"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/gray_75"
+                    android:textSize="12sp"
+                    tools:text="rosepie.vn" />
+            </LinearLayout>
 
         </LinearLayout>
 
