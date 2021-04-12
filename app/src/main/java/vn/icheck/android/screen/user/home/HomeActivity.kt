@@ -279,7 +279,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                 }
             }
             5 -> {
-                unCheckAll()
+//                unCheckAll()
                 isScan = true
 
                 if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {

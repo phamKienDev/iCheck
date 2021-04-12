@@ -192,7 +192,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                             }
                             frameSource.removeListener(this)
                         } else {
-                            if (newState == FrameSourceState.STOPPING) {
+                            if (newState == FrameSourceState.OFF) {
                                 resetCamera()
                             }
                             lastState = newState
@@ -269,7 +269,6 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
     private fun initCamera() {
         cameraSettings = BarcodeCapture.createRecommendedCameraSettings()
-        cameraSettings.preferredResolution = VideoResolution.HD
         camera = Camera.getDefaultCamera(cameraSettings)
     }
 
@@ -281,13 +280,6 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         _binding = IckScanCustomViewBinding.inflate(layoutInflater, dataCaptureView, false)
         dataCaptureView.addView(binding.root, getDeviceWidth(), getDeviceHeight())
         setContentView(dataCaptureView)
-        dataCaptureView.addListener(object : DataCaptureViewListener{
-            override fun onSizeChanged(width: Int, height: Int, screenRotation: Int) {
-                logDebug("orientation $screenRotation")
-                logDebug("width: $width")
-                logDebug("height $height")
-            }
-        })
     }
 
     private fun pushUpHeight() {
