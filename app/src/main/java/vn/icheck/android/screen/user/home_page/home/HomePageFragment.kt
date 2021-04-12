@@ -370,6 +370,10 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
 //            setToolbarBackground(0f)
             homeAdapter.removeAllView()
             viewModel.getHomeLayout()
+            lifecycleScope.launch {
+                delay(400)
+                getReminders()
+            }
         }
 
         swipeLayout.post {
