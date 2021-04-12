@@ -195,6 +195,20 @@ class ChatRepository {
         return MCNetworkClient.getNewSocialApi().getSticker(url, params)
     }
 
+    suspend fun getSystemSetting(key: String?, keyGroup: String?): MCResponse<MCListResponse<MCClientSetting>> {
+        val params = hashMapOf<String, Any>()
+        if (!key.isNullOrEmpty()) {
+            params["key"] = key
+        }
+        if (!keyGroup.isNullOrEmpty()) {
+            params["keyGroup"] = keyGroup
+        }
+
+        val url = SOCIAL_HOST + "${PATH}/cms/system-settings"
+
+        return MCNetworkClient.getNewSocialApi().getSystemSetting(url, params)
+    }
+
     suspend fun uploadMedia(file: File):MCResponse<MCUploadResponse> {
 
         val requestBody = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), file)

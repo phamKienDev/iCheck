@@ -6,17 +6,25 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import android.view.animation.LinearInterpolator
+import android.view.animation.TranslateAnimation
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.widget.AppCompatCheckedTextView
+import androidx.appcompat.widget.ViewUtils
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.FirebaseDatabase
@@ -48,6 +56,9 @@ import vn.icheck.android.chat.icheckchat.screen.detail.adapter.ChatSocialDetailA
 import vn.icheck.android.chat.icheckchat.screen.detail.adapter.ImageAdapter
 import vn.icheck.android.chat.icheckchat.screen.detail.adapter.StickerAdapter
 import vn.icheck.android.chat.icheckchat.screen.user_information.UserInformationActivity
+import vn.icheck.android.ichecklibs.beGone
+import vn.icheck.android.ichecklibs.beVisible
+import vn.icheck.android.ichecklibs.showCustomIconToast
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.icheckscanditv6.IcheckScanActivity
@@ -91,7 +102,21 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
     private var userId: Long? = null
     private var userType = "user"
     private var key: String? = null
-    private var isSetData = false
+    private var isLoadData: Boolean = true
+    private var newMessage = MCDetailMessage()
+    private var isAllowScroll: Boolean = true
+
+    //lưu giá trị trước khi gửi
+    private var keyConversation: String? = null
+    private var sentMessage: MCDetailMessage? = null
+
+    private val linearAnimation = TranslateAnimation(0f, 0f, 0f, 13f).apply {
+        duration = 550
+        interpolator = LinearInterpolator()
+        repeatCount = -1
+        repeatMode = Animation.REVERSE
+    }
+
 
     var deleteAt = -1L
 
@@ -103,12 +128,13 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
         viewModel = ViewModelProvider(this@ChatSocialDetailActivity)[ChatSocialDetailViewModel::class.java]
 
-        setClickListener(this@ChatSocialDetailActivity, binding.tvMessage, binding.imgDelete, binding.imgScan, binding.imgCamera, binding.imgSticker, binding.edtMessage, binding.imgSend, binding.layoutToolbar.imgBack, binding.layoutToolbar.imgAction)
+        setClickListener(this@ChatSocialDetailActivity, binding.tvMessage, binding.imgDelete, binding.imgScan, binding.imgCamera, binding.imgSticker, binding.edtMessage, binding.imgSend, binding.layoutToolbar.imgBack, binding.layoutToolbar.imgAction, binding.layoutNewMessage)
 
         initToolbar()
         initRecyclerView()
         initEditText()
         getPackageSticker()
+        listenMediaData()
     }
 
     private fun initToolbar() {
@@ -153,9 +179,15 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
             true
         }
 
-        binding.recyclerView.layoutManager = LinearLayoutManager(this@ChatSocialDetailActivity).apply {
-            stackFromEnd = true
-        }
+        binding.recyclerView.layoutManager = LinearLayoutManager(this@ChatSocialDetailActivity)
+        binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val holder = recyclerView.findViewHolderForAdapterPosition(0)
+                isAllowScroll = holder != null
+                Log.d("onScrolled", "onScrolled: $dy")
+            }
+        })
 
         binding.recyclerView.adapter = adapter
 
@@ -202,7 +234,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 MCStatus.ERROR_REQUEST -> {
                     showToastError(it.message)
                 }
-                MCStatus.LOADING -> TODO()
                 MCStatus.SUCCESS -> {
                     if (it.data?.data != null) {
                         conversation = MCConversation()
@@ -266,6 +297,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                         }
 
                         getChatMessage(key)
+                        listenChangeMessage(key, System.currentTimeMillis())
 
                         if (obj.child("is_block").value != null) {
                             binding.layoutToolbar.imgAction.setGone()
@@ -289,6 +321,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                             } else {
                                 adapterImage.clearData()
                                 listImageSrc.clear()
+                                binding.edtMessage.setText("")
+                                checkKeyboard()
                                 setGoneView(binding.layoutChat, binding.layoutBlock)
                                 binding.layoutUserBlock.setVisible()
                                 binding.tvUserTitle.text = "Bạn đã bị ${conversation?.targetUserName} chặn tin nhắn"
@@ -305,39 +339,42 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 })
     }
 
-    private fun getChatMessage(key: String, isLoadMore: Boolean = false) {
-        viewModel.getChatMessage(key,
+    private fun getChatMessage(key: String, lastTimeStamp: Long = 0) {
+        viewModel.getChatMessage(lastTimeStamp, key,
                 { obj ->
+                    isLoadData = true
                     val listChatMessage = mutableListOf<MCDetailMessage>()
-                    var oldItem = MCDetailMessage()
                     if (obj.hasChildren()) {
-                        for (item in obj.children.reversed()) {
+                        for (item in obj.children.reversed()) { // đảo list - tin nhắn cũ được đọc trước : so sánh thời gian với tin nhắn trước dễ hơn
                             if (item.child("time").value.toString().toLong() > deleteAt) {
-                                val element = convertDataFirebase(item, oldItem)
+                                val message = convertDataFirebase(item, newMessage)
 
-                                listChatMessage.add(element)
-                                oldItem = element
+                                listChatMessage.add(message)
+                                newMessage = if (isLoadData) {
+                                    if (adapter.getListData.isNullOrEmpty()) {
+                                        message
+                                    } else {
+                                        adapter.getListData.last { it.time != null }
+                                    }
+                                } else {
+                                    message
+                                }
+                                isLoadData = false
                             }
                         }
 
                         markReadMessage(key)
 
-                        if (!listChatMessage.isNullOrEmpty()) {
-                            adapter.setData(listChatMessage.reversed().toMutableList())
-                            binding.recyclerView.smoothScrollToPosition(adapter.getListData.size)
+                        if (lastTimeStamp == 0L) {
+                            if (listChatMessage.isNullOrEmpty()) {
+                                viewModel.checkError(true, dataEmpty = true)
+                            } else {
+                                adapter.setData(listChatMessage.reversed().toMutableList()) // đảo list ngược lại để add view đúng thứ tự
+                            }
+                        } else {
+                            adapter.addData(listChatMessage.reversed().toMutableList()) // đảo list ngược lại để add view đúng thứ tự
                         }
-                        listenChangeMessage(key, listChatMessage.first().time ?: 0)
 
-
-//                            if (!isLoadMore) {
-//                                if (listChatMessage.isNullOrEmpty()) {
-//
-//                                } else {
-//                                    adapter.setListData(listChatMessage)
-//                                }
-//                            } else {
-//                                adapter.addListData(listChatMessage)
-//                            }
                     }
                 },
                 { error ->
@@ -350,90 +387,113 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
     private fun listenChangeMessage(key: String, timeStart: Long) {
         viewModel.getChangeMessageChat(key, { data ->
-            if (isSetData) {
-                if (FirebaseAuth.getInstance().currentUser?.uid == data.child("sender").child("source_id").value.toString()) {
-                    val index = adapter.getListData.indexOfFirst { it.messageId == data.key }
-                    if (index != -1) {
-                        adapter.getListData[index].status = MCStatus.SUCCESS
-                        adapter.getListData[index].time = data.child("time").value as Long?
+            // mình gửi
+            if (FirebaseAuth.getInstance().currentUser?.uid == data.child("sender").child("source_id").value.toString()) {
+                val index = adapter.getListData.indexOfFirst { it.messageId == data.key }
+                if (index != -1) {
+                    adapter.getListData[index].status = MCStatus.SUCCESS
+                    adapter.getListData[index].time = data.child("time").value as Long?
 
-                        if (data.child("message").child("media").hasChildren()) {
-                            val listImage = mutableListOf<MCMedia>()
+                    if (data.child("message").child("media").hasChildren()) {
+                        val listImage = mutableListOf<MCMedia>()
 
-                            for (i in data.child("message").child("media").children) {
-                                listImage.add(MCMedia(i.child("content").value.toString(), i.child("type").value.toString()))
-                            }
-
-                            adapter.getListData[index].listMedia = listImage
+                        for (i in data.child("message").child("media").children) {
+                            listImage.add(MCMedia(i.child("content").value.toString(), i.child("type").value.toString()))
                         }
 
-                        //xóa status tin nhắn trước đó
-                        if (adapter.getListData[index.minus(1)].senderId == adapter.getListData[index].senderId && adapter.getListData[index.minus(1)].timeText == getString(R.string.vua_xong)) {
-                            val holder = recyclerView.findViewHolderForAdapterPosition(index.minus(1))
-                            adapter.getListData[index.minus(1)].showStatus = false
-
-                            if (holder is ChatSocialDetailAdapter.SenderHolder) {
-                                holder.setupShowStatus(adapter.getListData[index.minus(1)])
-                            } else {
-                                adapter.notifyItemChanged(index.minus(1))
-                            }
-                        }
-
-                        adapter.notifyItemChanged(index)
+                        adapter.getListData[index].listMedia = listImage
                     }
-                } else {
-
-                    markReadMessage(key)
-                    val lastMessageReceive = adapter.getListData.lastOrNull { it.senderId != FirebaseAuth.getInstance().currentUser?.uid }
-                    val message = convertDataFirebase(data, lastMessageReceive ?: MCDetailMessage())
-                    message.showStatus = true
-                    adapter.getListData.add(message)
-                    adapter.notifyItemInserted(adapter.getListData.size - 1)
 
                     //xóa status tin nhắn trước đó
-                    if (adapter.getListData[adapter.getListData.size - 2].senderId == message.senderId && adapter.getListData[adapter.getListData.size - 2].timeText == getString(R.string.vua_xong)) {
-                        val holder = recyclerView.findViewHolderForAdapterPosition(adapter.getListData.size - 2)
-                        adapter.getListData[adapter.getListData.size - 2].showStatus = false
+                    if (adapter.getListData.size > 1) {
+                        if (adapter.getListData[1].senderId == adapter.getListData[index].senderId) {
+                            if (!chenhLechGio(adapter.getListData[1].time, adapter.getListData[index].time, 1)) {
+                                val holder = recyclerView.findViewHolderForAdapterPosition(1)
+                                adapter.getListData[1].showStatus = 0
 
-                        if (holder is ChatSocialDetailAdapter.ReceiverHolder) {
-                            holder.setupShowStatus(adapter.getListData[adapter.getListData.size - 2])
-                        } else {
-                            adapter.notifyItemChanged(adapter.getListData.size - 2)
+                                if (holder is ChatSocialDetailAdapter.SenderHolder) {
+                                    holder.setupShowStatus(adapter.getListData[1])
+                                } else {
+                                    adapter.notifyItemChanged(1)
+                                }
+                            }
+                        }
+                    }
+
+                    adapter.notifyItemChanged(index)
+                }
+                // đối phương gửi
+            } else {
+                markReadMessage(key)
+                val lastMessageReceive = adapter.getListData.firstOrNull { it.senderId != FirebaseAuth.getInstance().currentUser?.uid }
+                val message = convertDataFirebase(data, lastMessageReceive ?: MCDetailMessage())
+                message.showStatus = -1
+                adapter.getListData.add(0, message)
+                adapter.notifyItemInserted(0)
+
+                //xóa status tin nhắn trước đó
+                if (adapter.getListData.size > 1) {
+                    if (adapter.getListData[1].senderId == message.senderId) {
+                        if (!chenhLechGio(adapter.getListData[1].time, message.time, 1)) {
+                            val holder = recyclerView.findViewHolderForAdapterPosition(1)
+                            adapter.getListData[1].showStatus = 0
+
+                            if (holder is ChatSocialDetailAdapter.ReceiverHolder) {
+                                holder.setupShowStatus(adapter.getListData[1])
+                            } else {
+                                adapter.notifyItemChanged(1)
+                            }
                         }
                     }
                 }
-                binding.recyclerView.smoothScrollToPosition(adapter.getListData.size)
+
+                if (isAllowScroll) {
+                    binding.recyclerView.smoothScrollToPosition(0)
+                    binding.layoutNewMessage.beGone()
+                    binding.layoutNewMessage.clearAnimation()
+                } else {
+                    binding.layoutNewMessage.beVisible()
+                    Handler().postDelayed({
+                        binding.layoutNewMessage.beGone()
+                        binding.layoutNewMessage.clearAnimation()
+                    }, 5000)
+                    binding.layoutNewMessage.startAnimation(linearAnimation)
+                }
             }
-            isSetData = true
         }, timeStart)
     }
 
-    private fun convertDataFirebase(item: DataSnapshot, oldItem: MCDetailMessage): MCDetailMessage {
+    private fun convertDataFirebase(message: DataSnapshot, newMessage: MCDetailMessage): MCDetailMessage {
         val element = MCDetailMessage().apply {
-            time = item.child("time").value as Long?
-            senderId = item.child("sender").child("source_id").value.toString()
+            time = message.child("time").value as Long?
+            senderId = message.child("sender").child("source_id").value.toString()
             userId = FirebaseAuth.getInstance().currentUser?.uid
-            type = item.child("message").child("type").value.toString()
+            type = message.child("message").child("type").value.toString()
             avatarSender = conversation?.imageTargetUser
-            showStatus = if (senderId != oldItem.senderId) {
-                true
+            showStatus = if (senderId != newMessage.senderId) {
+                -1
             } else {
-                chenhLechGio(time, oldItem.time, 1)
+                if (chenhLechGio(time, newMessage.time, 1)) {
+                    -1
+                } else {
+                    0
+                }
             }
 
-            if (item.child("message").value != null) {
-                if (item.child("message").child("media").hasChildren()) {
+
+            if (message.child("message").value != null) {
+                if (message.child("message").child("media").hasChildren()) {
                     val listImage = mutableListOf<MCMedia>()
 
-                    for (i in item.child("message").child("media").children) {
+                    for (i in message.child("message").child("media").children) {
                         listImage.add(MCMedia(i.child("content").value.toString(), i.child("type").value.toString()))
                     }
 
                     listMedia = listImage
                 }
 
-                if (item.child("message").child("product").value != null) {
-                    val itemProduct = item.child("message").child("product")
+                if (message.child("message").child("product").value != null) {
+                    val itemProduct = message.child("message").child("product")
 
                     product = MCProductFirebase().apply {
                         barcode = itemProduct.child("barcode").value.toString()
@@ -453,12 +513,12 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                     }
                 }
 
-                if (!item.child("message").child("text").value.toString().contains("null")) {
-                    content = item.child("message").child("text").value.toString()
+                if (!message.child("message").child("text").value.toString().contains("null")) {
+                    content = message.child("message").child("text").value.toString()
                 }
 
-                if (!item.child("message").child("sticker").value.toString().contains("null")) {
-                    sticker = item.child("message").child("sticker").value.toString()
+                if (!message.child("message").child("sticker").value.toString().contains("null")) {
+                    sticker = message.child("message").child("sticker").value.toString()
                 }
             }
         }
@@ -499,6 +559,12 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
 
     private fun formatMessage(key: String) {
+        if (!adapterImage.isEmpty) {
+            if (adapter.getListData.size > 20) {
+                showToastError(getString(R.string.chon_20_muc))
+                return
+            }
+        }
         val element = MCDetailMessage().apply {
             senderId = "${FirebaseAuth.getInstance().currentUser?.uid}"
             content = binding.edtMessage.text.toString().trim()
@@ -509,7 +575,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 binding.recyclerViewImage.setGone()
                 type = "media"
             }
-            if (binding.layoutProduct.isVisible && product != null) {
+            if (binding.layoutProduct.isVisible && this@ChatSocialDetailActivity.product != null) {
                 type = "product"
                 this.product = this@ChatSocialDetailActivity.product
             }
@@ -542,45 +608,53 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
             if (obj.type == "media") {
                 viewModel.uploadImage(adapterImage.getListData)
-
-                viewModel.listMediaData.observe(this, { media ->
-                    adapterImage.clearData()
-                    val listMedia = mutableListOf<MCMedia>()
-                    media.forEach {
-                        listMedia.add(MCMedia(it.src, if (it.src.endsWith(".mp4")) {
-                            "video"
-                        } else {
-                            "image"
-                        }))
-                    }
-                    obj.listMedia = listMedia
-                    sendMessage(key, "user", obj)
-                })
-
+                sentMessage = obj
+                keyConversation = key
             } else {
                 sendMessage(key, "user", obj)
             }
         }
     }
 
+    private fun listenMediaData() {
+        viewModel.listMediaData.observe(this, { media ->
+            if (sentMessage != null && keyConversation != null) {
+                adapterImage.clearData()
+                val listMedia = mutableListOf<MCMedia>()
+                media.forEach {
+                    listMedia.add(MCMedia(it.src, if (it.src.endsWith(".mp4")) {
+                        "video"
+                    } else {
+                        "image"
+                    }))
+                }
+                sentMessage?.listMedia = listMedia
+                sendMessage(keyConversation!!, "user", sentMessage!!)
+            }
+        })
+    }
+
     private fun addMessageAdapter(obj: MCDetailMessage) {
-        obj.showStatus = true
-        adapter.getListData.add(obj)
-        adapter.notifyItemInserted(adapter.getListData.size - 1)
+        obj.showStatus = -1
+        if (adapter.getListData.isNullOrEmpty()) {
+            adapter.getListData.add(obj)
+            adapter.notifyDataSetChanged()
+        } else {
+            adapter.getListData.add(0, obj)
+            adapter.notifyItemInserted(0)
+            if (adapter.getListData[1].status == obj.status) {
+                val holder = recyclerView.findViewHolderForAdapterPosition(1)
+                adapter.getListData[1].showStatus = 0
 
-
-        if (adapter.getListData[adapter.getListData.size - 2].status == obj.status && adapter.getListData[adapter.getListData.size - 2].status != MCStatus.LOADING) {
-            val holder = recyclerView.findViewHolderForAdapterPosition(adapter.getListData.size - 2)
-            adapter.getListData[adapter.getListData.size - 2].showStatus = false
-
-            if (holder is ChatSocialDetailAdapter.SenderHolder) {
-                holder.setupShowStatus(adapter.getListData[adapter.getListData.size - 2])
-            } else {
-                adapter.notifyItemChanged(adapter.getListData.size - 2)
+                if (holder is ChatSocialDetailAdapter.SenderHolder) {
+                    holder.setupShowStatus(adapter.getListData[1])
+                } else {
+                    adapter.notifyItemChanged(1)
+                }
             }
         }
 
-        binding.recyclerView.smoothScrollToPosition(adapter.getListData.size)
+        binding.recyclerView.smoothScrollToPosition(0)
     }
 
     private fun sendMessage(key: String, memberType: String, obj: MCDetailMessage) {
@@ -594,7 +668,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                     }
                 }
                 MCStatus.SUCCESS -> {
-                    binding.recyclerView.smoothScrollToPosition(adapter.getListData.size)
 
                     binding.edtMessage.setText("")
 
@@ -602,6 +675,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                         unCheckAll()
                     }
                     binding.recyclerViewImage.setVisible()
+                }
+                else -> {
                 }
             }
         })
@@ -621,6 +696,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                     binding.layoutChat.setVisible()
                     binding.layoutBlock.setGone()
                     binding.layoutToolbar.imgAction.setVisible()
+                }
+                else -> {
                 }
             }
         })
@@ -655,6 +732,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                         loadImageUrlRounded(binding.imgProduct, product?.image, R.drawable.ic_default_product_chat_vuong, dpToPx(4))
                     }
                 }
+                else -> {
+                }
             }
         })
     }
@@ -688,6 +767,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                             }
                         })
                     }
+                }
+                else -> {
                 }
             }
         })
@@ -724,6 +805,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                         })
                     }
                 }
+                else -> {
+                }
             }
         })
     }
@@ -742,6 +825,9 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                         markReadMessage(key)
                     }
                 }
+                else -> {
+
+                }
             }
         })
     }
@@ -752,7 +838,14 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
     override fun onLoadMore() {
         if (!conversation?.key.isNullOrEmpty()) {
-            getChatMessage(conversation?.key!!, true)
+            if (adapter.getListData.size > 2) {
+                for (i in adapter.getListData.size - 1 downTo 0) {
+                    if (adapter.getListData[i].time != null) {
+                        getChatMessage(conversation?.key!!, adapter.getListData[i].time ?: 0)
+                        return
+                    }
+                }
+            }
         }
     }
 
@@ -777,6 +870,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                         }
                     }
                 }
+            }
+            else -> {
             }
         }
     }
@@ -818,6 +913,9 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                         }
                     }
                 }
+            }
+            else -> {
+
             }
         }
     }
@@ -884,19 +982,23 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
                 binding.viewClick.setVisible()
             }
+            R.id.layoutNewMessage -> {
+                recyclerView.smoothScrollToPosition(0)
+                binding.layoutNewMessage.beGone()
+                binding.layoutNewMessage.clearAnimation()
+            }
         }
     }
 
     private fun showTakeMedia() {
+        checkKeyboard()
         val listener = object : TakeMediaListener {
             override fun onPickMediaSucess(file: File) {
-                selectedTextView(binding.imgCamera, binding.recyclerViewImage, true)
                 adapterImage.setImage(file)
                 chooseImage()
             }
 
             override fun onPickMuliMediaSucess(file: MutableList<File>) {
-                selectedTextView(binding.imgCamera, binding.recyclerViewImage, true)
                 adapterImage.setListImage(file)
                 chooseImage()
             }
@@ -909,7 +1011,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
             override fun onTakeMediaSuccess(file: File?) {
                 if (file != null) {
-                    selectedTextView(binding.imgCamera, binding.recyclerViewImage, true)
                     adapterImage.setImage(file)
                     chooseImage()
                 }
@@ -955,6 +1056,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
     override fun onDestroy() {
         super.onDestroy()
+        checkKeyboard()
         inboxRoomID = null
         inboxUserID = null
     }

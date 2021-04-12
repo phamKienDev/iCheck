@@ -23,6 +23,7 @@ import vn.icheck.android.chat.icheckchat.helper.ShareHelperChat
 import vn.icheck.android.chat.icheckchat.model.MCConversation
 import vn.icheck.android.chat.icheckchat.model.MCMessageEvent
 import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
+import vn.icheck.android.chat.icheckchat.sdk.ChatSdk
 import java.util.*
 
 class ListConversationFragment(val listener: ICountMessageListener) : BaseFragmentChat<FragmentListConversationBinding>(), IRecyclerViewCallback {
@@ -44,6 +45,7 @@ class ListConversationFragment(val listener: ICountMessageListener) : BaseFragme
 
         interface ICountMessageListener {
             fun getCountMessage(count: Long)
+            fun onClickLeftMenu()
         }
     }
 
@@ -108,6 +110,8 @@ class ListConversationFragment(val listener: ICountMessageListener) : BaseFragme
             getChatSender()
         }, {
             binding.swipeRefresh.isRefreshing = false
+            binding.recyclerView.setGone()
+            binding.layoutNoData.setVisible()
         })
     }
 
@@ -173,7 +177,7 @@ class ListConversationFragment(val listener: ICountMessageListener) : BaseFragme
         })
     }
 
-    private fun loadData(snapshot: DataSnapshot, lastTimeStamp: Long){
+    private fun loadData(snapshot: DataSnapshot, lastTimeStamp: Long) {
         val conversationList = mutableListOf<MCConversation>()
 
         if (snapshot.hasChildren()) {
@@ -206,8 +210,9 @@ class ListConversationFragment(val listener: ICountMessageListener) : BaseFragme
                                 }, {
 
                                 })
-                                element.isNotification = i.child("is_subscribe").value.toString().toBoolean()
                                 element.type = i.child("type").value.toString().trim()
+                            }else{
+                                element.isNotification = i.child("is_subscribe").value.toString().toBoolean()
                             }
                         }
                     }
@@ -261,6 +266,16 @@ class ListConversationFragment(val listener: ICountMessageListener) : BaseFragme
         }, {
             listener.getCountMessage(0)
         })
+    }
+
+    fun checkLoginOrLogOut(isLogin: Boolean) {
+        if (!isLogin) {
+            binding.swipeRefresh.isRefreshing = false
+            binding.recyclerView.setGone()
+            binding.layoutNoData.setVisible()
+        } else {
+            getData()
+        }
     }
 
     override fun onMessageClicked() {

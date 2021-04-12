@@ -41,4 +41,5 @@
     <string name="co_loi_khi_gui_email">Có lỗi khi gửi email, vui lòng thử lại sau</string>
     <string name="application_or_client_secret_invalid">application - clientId or client secret invalid</string>
     <string name="application_permission_denied">application - permission denied</string>
+    <string name="co_tin_nhan_moi">Có tin nhắn mới</string>
 </resources>

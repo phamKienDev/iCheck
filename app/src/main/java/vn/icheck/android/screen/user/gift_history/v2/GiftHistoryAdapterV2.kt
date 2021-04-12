@@ -107,54 +107,7 @@ class GiftHistoryAdapterV2(callback: IRecyclerViewCallback) : RecyclerViewCustom
 
             if (obj.value != null) {
                 itemView.tvName.text = "${TextHelper.formatMoneyPhay(obj.value)} Xu"
-
-                when (obj.value) {
-                    10L -> {
-                        itemView.imgGift.setImageResource(R.drawable.ic_10_icoin)
-                    }
-                    20L -> {
-                        itemView.imgGift.setImageResource(R.drawable.ic_20_icoin)
-                    }
-                    50L -> {
-                        itemView.imgGift.setImageResource(R.drawable.ic_50_icoin)
-                    }
-                    100L -> {
-                        itemView.imgGift.setImageResource(R.drawable.ic_100_icoin)
-                    }
-                    200L -> {
-                        itemView.imgGift.setImageResource(R.drawable.ic_200_icoin)
-                    }
-                    500L -> {
-                        itemView.imgGift.setImageResource(R.drawable.ic_500_icoin)
-                    }
-                    1000L -> {
-                        itemView.imgGift.setImageResource(R.drawable.ic_1000_icoin)
-                    }
-                    2000L -> {
-                        itemView.imgGift.setImageResource(R.drawable.ic_2000_icoin)
-                    }
-                    5000L -> {
-                        itemView.imgGift.setImageResource(R.drawable.ic_5000_icoin)
-                    }
-                    10000L -> {
-                        itemView.imgGift.setImageResource(R.drawable.ic_10000_icoin)
-                    }
-                    20000L -> {
-                        itemView.imgGift.setImageResource(R.drawable.ic_20000_icoin)
-                    }
-                    50000L -> {
-                        itemView.imgGift.setImageResource(R.drawable.ic_50000_icoin)
-                    }
-                    100000L -> {
-                        itemView.imgGift.setImageResource(R.drawable.ic_100000_icoin)
-                    }
-                    200000L -> {
-                        itemView.imgGift.setImageResource(R.drawable.ic_200000_icoin)
-                    }
-                    500000L -> {
-                        itemView.imgGift.setImageResource(R.drawable.ic_500000_icoin)
-                    }
-                }
+                itemView.imgGift.setImageResource(R.drawable.ic_icheck_xu)
 
                 itemView.tvAction simpleText "Quản lý Xu"
                 itemView.tvAction.setOnClickListener {

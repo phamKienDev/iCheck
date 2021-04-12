@@ -12,7 +12,7 @@ import vn.icheck.android.chat.icheckchat.databinding.FragmentChatSocialBinding
 import vn.icheck.android.chat.icheckchat.screen.contact.ContactFragment
 import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
 
-class ChatSocialFragment(val callback: ListConversationFragment.Companion.ICountMessageListener) : BaseFragmentChat<FragmentChatSocialBinding>() {
+class ChatSocialFragment(val callback: ListConversationFragment.Companion.ICountMessageListener, val isUserLogged: Boolean) : BaseFragmentChat<FragmentChatSocialBinding>() {
 
     override fun setBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentChatSocialBinding {
         return FragmentChatSocialBinding.inflate(inflater, container, false)
@@ -27,8 +27,10 @@ class ChatSocialFragment(val callback: ListConversationFragment.Companion.ICount
 
         binding.layoutContainer.setPadding(0, getStatusBarHeight, 0, 0)
 
-        binding.toolbar.imgBack.setOnClickListener {
+        binding.toolbar.imgBack.setImageResource(R.drawable.ic_left_menu_blue_24dp_chat)
 
+        binding.toolbar.imgBack.setOnClickListener {
+            callback.onClickLeftMenu()
         }
 
         binding.toolbar.txtTitle.text = getString(R.string.tin_nhan)
@@ -38,7 +40,6 @@ class ChatSocialFragment(val callback: ListConversationFragment.Companion.ICount
         binding.toolbar.imgAction.setImageResource(0)
 
         binding.toolbar.imgAction.setOnClickListener {
-
         }
 
         binding.tvMessage.setOnClickListener {
@@ -54,7 +55,7 @@ class ChatSocialFragment(val callback: ListConversationFragment.Companion.ICount
         val listPage = mutableListOf<Fragment>()
 
         listPage.add(ListConversationFragment(callback))
-        listPage.add(ContactFragment())
+        listPage.add(ContactFragment(isUserLogged))
 
         binding.viewPager.offscreenPageLimit = 2
         binding.viewPager.adapter = ViewPagerAdapterChat(childFragmentManager, listPage)
@@ -88,5 +89,20 @@ class ChatSocialFragment(val callback: ListConversationFragment.Companion.ICount
     private fun unCheckAll() {
         binding.tvMessage.isChecked = false
         binding.tvContact.isChecked = false
+    }
+
+    fun checkLoginOrLogOut(isLogin: Boolean) {
+        (binding.viewPager.adapter as ViewPagerAdapterChat).apply {
+            for (item in listData) {
+                when (item) {
+                    is ListConversationFragment -> {
+                        item.checkLoginOrLogOut(isLogin)
+                    }
+                    is ContactFragment -> {
+                        item.checkLoginOrLogOut(isLogin)
+                    }
+                }
+            }
+        }
     }
 }

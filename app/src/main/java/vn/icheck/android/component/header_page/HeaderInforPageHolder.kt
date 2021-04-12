@@ -14,6 +14,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
+import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.component.header_page.bottom_sheet_header_page.IListReportView
 import vn.icheck.android.component.header_page.bottom_sheet_header_page.MoreActionPageBottomSheet
@@ -138,7 +139,7 @@ class HeaderInforPageHolder(parent: ViewGroup, val view: IListReportView) : Recy
 
         itemView.tvChinh.setOnClickListener {
             if (!itemView.tvChinh.text.contains("Theo dõi")) {
-//                ListConversationFragment.finishAllChat()
+                ListConversationFragment.finishAllChat()
 //                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_FINISH_ALL_CHAT))
 //                ChatSocialDetailActivity.createRoomChat(it.context, data.id ?: -1, "page")
 

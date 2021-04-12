@@ -829,7 +829,8 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                         showLoginDialog()
                         return
                     } else if (ValidHelper.validNumber(id)) {
-                        ChatSocialDetailActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong(), "page")
+//                        ChatSocialDetailActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong(), "page")
+                        SocialChatActivity.createRoomChat(this@FirebaseDynamicLinksActivity, null, id)
                     }
                 }
             }

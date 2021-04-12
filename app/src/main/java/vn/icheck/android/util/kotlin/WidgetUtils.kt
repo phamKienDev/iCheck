@@ -305,6 +305,23 @@ object WidgetUtils {
                 .into(image)
     }
 
+    fun loadImageUrlFitCenter(image: AppCompatImageView, url: String?) {
+        if (url.isNullOrEmpty()) {
+            Glide.with(image.context.applicationContext)
+                    .load(defaultError)
+                    .transform(FitCenter())
+                    .into(image)
+            return
+        }
+
+        Glide.with(image.context.applicationContext)
+                .load(url)
+                .placeholder(circularProgressDrawable)
+                .error(defaultError)
+                .transform(FitCenter())
+                .into(image)
+    }
+
     fun loadImageUrlFitCenter(image: AppCompatImageButton, url: String?, placeHolder: Int, error: Int) {
         if (url.isNullOrEmpty()) {
             Glide.with(image.context.applicationContext)

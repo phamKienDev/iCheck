@@ -12,7 +12,7 @@ object ConstantChat {
 
     val CHAT_HOST: String
         get() {
-            return if (BuildConfig.FLAVOR.contentEquals("dev")) "http://proxy-chat.dev.icheck.vn/" else "http://proxy-chat.dev.icheck.vn/"
+            return if (BuildConfig.FLAVOR.contentEquals("dev")) "https://apiv2.dev.icheck.vn/chat/api/" else "https://api-social.icheck.com.vn/chat/api/"
         }
 
     val UPLOAD_HOST: String

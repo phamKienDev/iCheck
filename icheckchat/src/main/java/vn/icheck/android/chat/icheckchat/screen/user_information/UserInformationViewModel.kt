@@ -8,7 +8,7 @@ import vn.icheck.android.chat.icheckchat.network.ChatRepository
 class UserInformationViewModel : BaseViewModelChat() {
     private val repository = ChatRepository()
 
-    fun getImage(key: String, success: (snapshot: DataSnapshot) -> Unit, cancel: (error: DatabaseError) -> Unit) = firebaseHelper.getImageChatDetail(key, success, cancel)
+    fun getImage(lastTimeStamp: Long, key: String, success: (snapshot: DataSnapshot) -> Unit, cancel: (error: DatabaseError) -> Unit) = firebaseHelper.getImageChatDetail(lastTimeStamp, key, success, cancel)
 
     fun getChatRoom(key: String, success: (snapshot: DataSnapshot) -> Unit, cancel: (error: DatabaseError) -> Unit) = firebaseHelper.getChatRoom(key, success, cancel)
 
