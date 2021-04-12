@@ -14,19 +14,14 @@
     <string name="qr_code_event_format">BEGIN:VEVENT\nSUMMARY:%s\nLOCATION:%s\nURL:%s\nDTSTART:%s\nDTEND:%s\nEND:VEVENT</string>
     <string name="qr_code_wifi_format">WIFI:S:%s;P:%s;T:%s;</string>
     <string name="qr_code_location_format">GEO:%s,%s</string>
-
     <string name="stamp_v3_format">http://public.icheck.vn/scan-evs?code=%s&amp;device=%s</string>
-
     <string name="xxx_fileprovider">%s.fileprovider</string>
-
-    <string name="icheck_thong_bao">iCheck thông báo</string>
     <string name="dong_y">Đồng ý</string>
     <string name="huy_bo">Hủy bỏ</string>
     <string name="ok">OK</string>
     <string name="goi_y_theo_doi">Gợi ý theo dõi</string>
     <string name="chua_co_nguoi_theo_doi">Chưa có người theo dõi</string>
     <string name="chua_dien_ra">Chưa diễn ra</string>
-
     <string name="khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai">Kết nối mạng của bạn có vấn đề. Vui lòng thử lại.</string>
     <string name="khong_co_ket_noi_mang_vui_long_thu_lai_sau">Không có kết nối mạng. Vui lòng thử lại sau</string>
     <string name="de_hien_thi_du_lieu_vui_long_bat_gps">"Để hiển thị dữ liệu Cửa hàng, vui lòng bật GPS"</string>
@@ -34,7 +29,6 @@
     <string name="so_dien_thoai_co_chua_ky_tu_dac_biet">Số điện thoại có chứa ký tự đăc biệt</string>
     <string name="so_dien_thoai_khong_dung_dinh_dang">Số điện thoại không đúng định dạng</string>
     <string name="khong_the_thuc_hien_tac_vu_vi_ban_chua_cap_quyen">Không thể thực hiện tác vụ vì bạn chưa cấp đủ quyền</string>
-
     <string name="mat_khau_khong_hop_le">Mật khẩu không hợp lệ</string>
     <string name="mat_khau_toi_thieu_la_6_ky_tu">Mật khẩu tối thiểu là 6 ký tự</string>
     <string name="mat_khau_toi_thieu_la_8_ky_tu">Mật khẩu tối thiểu là 8 ký tự</string>
