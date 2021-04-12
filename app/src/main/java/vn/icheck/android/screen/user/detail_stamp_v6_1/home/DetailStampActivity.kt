@@ -252,17 +252,30 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
         if (PermissionHelper.checkPermission(this, permission, requestGpsPermission)) {
             if (NetworkHelper.checkGPS(this@DetailStampActivity, getString(R.string.vui_long_bat_gpa_de_ung_dung_tim_duoc_vi_tri_cua_ban), requestGps)) {
                 getData()
+                return
             }
         }
+
+        llAcceptPermission.beVisible()
     }
 
     private var isGetLocationSuccess = false
 
     @SuppressLint("MissingPermission")
     private fun getData() {
+        val permission = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
+        if (!PermissionHelper.checkPermission(this, permission, requestGpsPermission)) {
+            llAcceptPermission.beVisible()
+            return
+        }
+        if (!NetworkHelper.checkGPS(this@DetailStampActivity, getString(R.string.vui_long_bat_gpa_de_ung_dung_tim_duoc_vi_tri_cua_ban), requestGps)) {
+            llAcceptPermission.beVisible()
+            return
+        }
+
         val locationRequest = LocationRequest.create()
         locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-        locationRequest.interval = 200
+        locationRequest.interval = 500
         locationRequest.fastestInterval = 200
 
         mFusedLocationClient?.requestLocationUpdates(locationRequest, object : LocationCallback() {
@@ -1736,11 +1749,10 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
                     llAcceptPermission.visibility = View.GONE
                     getData()
                 } else {
-                    DialogHelper.showNotification(this@DetailStampActivity, R.string.vui_long_bat_gpa_de_ung_dung_tim_duoc_vi_tri_cua_ban, false, object : NotificationDialogListener {
-                        override fun onDone() {
-                            onBackPressed()
-                        }
-                    })
+                    if (NetworkHelper.checkGPS(this@DetailStampActivity, getString(R.string.vui_long_bat_gpa_de_ung_dung_tim_duoc_vi_tri_cua_ban), requestGps)) {
+                        getData()
+                        return
+                    }
                 }
             } else {
                 llAcceptPermission.visibility = View.VISIBLE
