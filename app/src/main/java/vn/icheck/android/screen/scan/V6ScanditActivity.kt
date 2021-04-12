@@ -40,6 +40,9 @@ import com.scandit.datacapture.core.common.feedback.Vibration
 import com.scandit.datacapture.core.data.FrameData
 import com.scandit.datacapture.core.source.*
 import com.scandit.datacapture.core.ui.DataCaptureView
+import com.scandit.datacapture.core.ui.DataCaptureViewListener
+import com.scandit.datacapture.core.ui.orientation.DeviceOrientation
+import com.scandit.datacapture.core.ui.orientation.DeviceOrientationMapper
 import kotlinx.android.synthetic.main.item_ads_product_grid.view.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -133,7 +136,6 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     lateinit var dataCaptureView: DataCaptureView
 
 
-
     private val takeImageListener = object : TakeMediaListener {
         override fun onPickMediaSucess(file: File) {
 
@@ -166,10 +168,10 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     private fun comPressImage(file: File?) {
         try {
             lifecycleScope.launch {
-                _binding?.bg?.alpha = 1f
                 delay(600)
                 val bm = BitmapFactory.decodeFile(file?.getAbsolutePath())
-                val scaled = bm.scale(dataCaptureView.width / 2, dataCaptureView.width / 2)
+                val scaled = if (dataCaptureView.width <= 1000) bm.scale(dataCaptureView.width, dataCaptureView.width) else
+                    bm.scale(1000, 1000)
                 val source = BitmapFrameSource.of(scaled)
                 dataCaptureContext.setFrameSource(source)
                 source.addListener(object : FrameSourceListener {
@@ -178,6 +180,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                         super.onStateChanged(frameSource, newState)
                         if (lastState == FrameSourceState.STOPPING && newState == FrameSourceState.OFF && scanImage.get()) {
                             scanImage.set(false)
+                            offCamera()
                             runOnUiThread {
                                 DialogHelper.showNotification(this@V6ScanditActivity, R.string.thong_bao, R.string.khong_thay_ma_vach, true, object : NotificationDialogListener {
 
@@ -189,66 +192,18 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                             }
                             frameSource.removeListener(this)
                         } else {
+                            if (newState == FrameSourceState.OFF) {
+                                resetCamera()
+                            }
                             lastState = newState
                         }
                     }
+
                 })
                 resetHeight()
+
                 source?.switchToDesiredState(FrameSourceState.ON)
-//                if (ruler > dataCaptureView.width) {
-//                    val scale = ruler / dataCaptureView.width
-//                    val scaled = bm.scale(width / scale, height / scale)
-//                    val source = BitmapFrameSource.of(scaled)
-//                    dataCaptureContext.setFrameSource(source)
-//                    source.addListener(object : FrameSourceListener {
-//                        var lastState: FrameSourceState? = null
-//                        override fun onStateChanged(frameSource: FrameSource, newState: FrameSourceState) {
-//                            super.onStateChanged(frameSource, newState)
-//                            if (lastState == FrameSourceState.STOPPING && newState == FrameSourceState.OFF && scanImage.get()) {
-//                                scanImage.set(false)
-//                                runOnUiThread {
-//                                    DialogHelper.showNotification(this@V6ScanditActivity, R.string.thong_bao, R.string.khong_thay_ma_vach, true, object : NotificationDialogListener {
-//
-//                                        override fun onDone() {
-//                                            resetCamera()
-//                                        }
-//
-//                                    })
-//                                }
-//                                frameSource.removeListener(this)
-//                            } else {
-//                                lastState = newState
-//                            }
-//                        }
-//                    })
-//                    source?.switchToDesiredState(FrameSourceState.ON)
-//
-//                } else {
-//                    val source = BitmapFrameSource.of(bm)
-//                    dataCaptureContext.setFrameSource(source)
-//                    source.addListener(object : FrameSourceListener {
-//                        var lastState: FrameSourceState? = null
-//                        override fun onStateChanged(frameSource: FrameSource, newState: FrameSourceState) {
-//                            super.onStateChanged(frameSource, newState)
-//                            if (lastState == FrameSourceState.STOPPING && newState == FrameSourceState.OFF && scanImage.get()) {
-//                                scanImage.set(false)
-//                                runOnUiThread {
-//                                    DialogHelper.showNotification(this@V6ScanditActivity, R.string.thong_bao, R.string.khong_thay_ma_vach, true, object : NotificationDialogListener {
-//
-//                                        override fun onDone() {
-//                                            resetCamera()
-//                                        }
-//
-//                                    })
-//                                }
-//                                frameSource.removeListener(this)
-//                            } else {
-//                                lastState = newState
-//                            }
-//                        }
-//                    })
-//                    source?.switchToDesiredState(FrameSourceState.ON)
-//                }
+                offCameraNotDisable()
                 scanImage.set(true)
             }
         } catch (e: Exception) {
@@ -276,6 +231,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         checkIsReview()
         checkIsScan()
         initViews()
+        pushUpHeight()
     }
 
     private fun checkIsScan() {
@@ -299,7 +255,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     }
 
     private fun initTakeImageDialog() {
-        takeImageDialog = TakeMediaDialog(this, takeImageListener, selectMulti = false, cropImage = true, isVideo = false, saveImageToGallery = false)
+        takeImageDialog = TakeMediaDialog(this, takeImageListener, selectMulti = false, cropImage = true, isVideo = false, saveImageToGallery = false, disableTakeImage = true)
     }
 
     private fun initBarcodeCapture() {
@@ -313,7 +269,6 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
     private fun initCamera() {
         cameraSettings = BarcodeCapture.createRecommendedCameraSettings()
-        cameraSettings.preferredResolution = VideoResolution.HD
         camera = Camera.getDefaultCamera(cameraSettings)
     }
 
@@ -342,14 +297,15 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
     private fun resetHeight() {
         dataCaptureView.post {
-            val lp = dataCaptureView.layoutParams
-            if (lp.height != getDeviceHeight()) {
-                lp.height = getDeviceHeight()
-                lp.width = getDeviceWidth()
-                dataCaptureView.layoutParams = lp
+            if (getUserCountry(this).contains("vn", false))  {
+                val lp = dataCaptureView.layoutParams
+                if (lp.height != getDeviceHeight()) {
+                    lp.height = getDeviceHeight()
+                    lp.width = getDeviceWidth()
+                    dataCaptureView.layoutParams = lp
+                }
             }
         }
-
     }
 
     private fun resetCamera() {
@@ -359,14 +315,12 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                     if (result) {
                         dataCaptureContext.setFrameSource(camera)
                         enableCapture(barcodeCapture)
-                        _binding?.bg?.alpha = 0f
                         pushUpHeight()
                     } else {
                         resetCamera()
                     }
                 }
             })
-
         }
     }
 
@@ -381,6 +335,17 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
             }
         })
     }
+
+    fun offCameraNotDisable() {
+        camera?.switchToDesiredState(FrameSourceState.OFF, object : Callback<Boolean> {
+            override fun run(result: Boolean) {
+                if (!result) {
+                    offCameraNotDisable()
+                }
+            }
+        })
+    }
+
 
     private fun getUserCountry(context: Context): String {
         return try {
@@ -400,10 +365,10 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         }
 
         guideArr.add(binding?.imgScanTip)
+        guideArr.add(binding?.imgHdSdha)
         guideArr.add(binding?.imgNmspTip)
         guideArr.add(binding?.imgTorchTip)
         guideArr.add(binding?.imgXmdd)
-        guideArr.add(binding?.imgSdha)
         binding?.imgHelp?.setOnClickListener {
             viewModel.setGuide()
         }
@@ -437,14 +402,15 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         }
         binding?.imgNmbt?.setOnClickListener {
             binding.imgNmbt.isEnabled = false
+            offCamera()
             BarcodeBottomDialog.show(supportFragmentManager, false, object : BarcodeBottomDialog.OnBarCodeDismiss {
                 override fun onDismiss() {
                     binding.imgNmbt.isEnabled = true
+                    resetCamera()
                 }
 
                 override fun onSubmit(mCode: String) {
                     val code = mCode.trim()
-                    binding.imgNmbt.isEnabled = true
                     if (viewModel.scanOnlyChat) {
                         setResult(Activity.RESULT_OK, Intent().apply {
                             putExtra(Constant.DATA_1, false)
@@ -603,7 +569,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
                 if (model.showGuide) {
                     binding.root.setAllEnabled(false)
-                    barcodeCapture.isEnabled = false
+                    offCamera()
                     for (item in guideArr) {
                         if (item != null) {
                             item.animate()
@@ -620,7 +586,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                             delay(2000)
                         }
                     }
-                    enableCapture(barcodeCapture)
+                    resetCamera()
                     binding.root.setAllEnabled(true)
                     model.showGuide = false
                 }
@@ -656,7 +622,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     }
 
     override fun onBarcodeScanned(barcodeCapture: BarcodeCapture, session: BarcodeCaptureSession, data: FrameData) {
-        if (session.newlyRecognizedBarcodes.isEmpty()){
+        if (session.newlyRecognizedBarcodes.isEmpty()) {
             return
         }
         barcodeCapture.isEnabled = false
@@ -668,31 +634,6 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
             val code = barcode.data?.trim()
 
             if (!code.isNullOrEmpty()) {
-//                if (code.startsWith("u-") || code.startsWith("U-")) {
-//                    when {
-//                        viewModel.scanOnly || viewModel.reviewOnly -> {
-//                            showSimpleErrorToast("Không tìm thấy sản phẩm")
-//                            enableCapture(barcodeCapture)
-//                            return@runOnUiThread
-//                        }
-//                        else -> {
-//                            if (code.count { "-".contains(it) } == 1) {
-//                                try {
-//                                    val userID = code.split("-")[1]
-//                                    if (userID.isNotEmpty() && ValidHelper.validNumber(userID)) {
-//                                        IckUserWallActivity.create(userID.toLong(), this)
-//                                    }
-//                                } catch (e: Exception) {
-//                                    TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
-//                                    e.printStackTrace()
-//                                }
-//                            }
-//                            enableCapture(barcodeCapture)
-//                            return@runOnUiThread
-//                        }
-//                    }
-//                }
-
                 val symbology = barcode.symbology
                 viewModel.codeScan = code
 
@@ -828,6 +769,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                         }
                         else -> {
                             if (code.startsWith("u-") || code.startsWith("U-")) {
+
                                 if (code.count { "-".contains(it) } == 1) {
                                     try {
                                         val userID = code.split("-")[1]
@@ -961,14 +903,23 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         Handler().postDelayed({
             when {
                 it.startsWith("u-") || it.startsWith("U-") -> {
-                    if (it.count { "-".contains(it) } == 1) {
-                        try {
-                            val userID = it.split("-")[1]
-                            if (userID.isNotEmpty() && ValidHelper.validNumber(userID)) {
-                                IckUserWallActivity.create(userID.toLong(), this)
+                    when {
+                        viewModel.scanOnly || viewModel.reviewOnly -> {
+                            showSimpleErrorToast("Không tìm thấy sản phẩm")
+                            enableCapture(barcodeCapture)
+                        }
+                        else -> {
+                            if (it.count { "-".contains(it) } == 1) {
+                                try {
+                                    val userID = it.split("-")[1]
+                                    if (userID.isNotEmpty() && ValidHelper.validNumber(userID)) {
+                                        IckUserWallActivity.create(userID.toLong(), this)
+                                    }
+                                } catch (e: Exception) {
+                                    TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
+                                    e.printStackTrace()
+                                }
                             }
-                        } catch (e: Exception) {
-                            TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
                             enableCapture(barcodeCapture)
                         }
                     }
@@ -1171,59 +1122,62 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                 }
             }
             Constant.TYPE_WIFI -> {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                    val connectivityManager = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager?
-                    val arr = data.split(";")
-                    val ssid = arr.single {
-                        it.contains("WIFI", true)
-                    }.replace("wifi:s:", "", true)
-                    val key = arr.single {
-                        it.contains("P:", true)
-                    }.replace("p:", "", true)
-                    // do post connect processing here
-                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.CHANGE_NETWORK_STATE) == PackageManager.PERMISSION_GRANTED) {
-                        val nwSpecifier = WifiNetworkSpecifier.Builder()
-                                .setSsid(ssid)
-                                .setWpa2Passphrase(key)
-                                .build()
-                        val nw = NetworkRequest.Builder()
-                                .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
-                                .removeCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
-                                .setNetworkSpecifier(nwSpecifier)
-                                .build()
-                        connectivityManager?.requestNetwork(nw, object : ConnectivityManager.NetworkCallback() {
-                            override fun onAvailable(network: Network) {
+                try {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                        val connectivityManager = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager?
+                        val arr = data.split(";")
+                        val ssid = arr.single {
+                            it.contains("WIFI", true)
+                        }.replace("wifi:s:", "", true)
+                        val key = arr.single {
+                            it.contains("P:", true)
+                        }.replace("p:", "", true)
+                        // do post connect processing here
+                        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CHANGE_NETWORK_STATE) == PackageManager.PERMISSION_GRANTED) {
+                            val nwSpecifier = WifiNetworkSpecifier.Builder()
+                                    .setSsid(ssid)
+                                    .setWpa2Passphrase(key)
+                                    .build()
+                            val nw = NetworkRequest.Builder()
+                                    .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
+                                    .removeCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+                                    .setNetworkSpecifier(nwSpecifier)
+                                    .build()
+                            connectivityManager?.requestNetwork(nw, object : ConnectivityManager.NetworkCallback() {
+                                override fun onAvailable(network: Network) {
 
+                                }
+                            })
+                        } else {
+                            val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
+                                if (isGranted) {
+
+                                } else {
+
+                                }
                             }
-                        })
-                    } else {
-                        val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
-                            if (isGranted) {
-
-                            } else {
-
-                            }
+                            requestPermissionLauncher.launch(Manifest.permission.CHANGE_NETWORK_STATE)
                         }
-                        requestPermissionLauncher.launch(Manifest.permission.CHANGE_NETWORK_STATE)
+                    } else {
+                        val wifiConfig = WifiConfiguration()
+                        val arr = data.split(";")
+                        val ssid = arr.single {
+                            it.contains("WIFI", true)
+                        }.replace("wifi:s:", "", true)
+                        wifiConfig.SSID = String.format("\"%s\"", ssid)
+                        val key = arr.single {
+                            it.contains("P:", true)
+                        }.replace("p:", "", true)
+                        wifiConfig.preSharedKey = String.format("\"%s\"", key)
+                        val wifiManager = ICheckApplication.getInstance().applicationContext.getSystemService(WIFI_SERVICE) as WifiManager
+                        val netId = wifiManager.addNetwork(wifiConfig)
+                        wifiManager.disconnect()
+                        wifiManager.enableNetwork(netId, true)
+                        wifiManager.reconnect()
                     }
-                } else {
-                    val wifiConfig = WifiConfiguration()
-                    val arr = data.split(";")
-                    val ssid = arr.single {
-                        it.contains("WIFI", true)
-                    }.replace("wifi:s:", "", true)
-                    wifiConfig.SSID = String.format("\"%s\"", ssid)
-                    val key = arr.single {
-                        it.contains("P:", true)
-                    }.replace("p:", "", true)
-                    wifiConfig.preSharedKey = String.format("\"%s\"", key)
-                    val wifiManager = ICheckApplication.getInstance().applicationContext.getSystemService(WIFI_SERVICE) as WifiManager
-                    val netId = wifiManager.addNetwork(wifiConfig)
-                    wifiManager.disconnect()
-                    wifiManager.enableNetwork(netId, true)
-                    wifiManager.reconnect()
+                    enableCapture(barcodeCapture)
+                } catch (e: Exception) {
                 }
-                enableCapture(barcodeCapture)
             }
         }
     }
@@ -1268,14 +1222,6 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                 }
             }
         }.show()
-    }
-
-    override fun onMessageEvent(event: ICMessageEvent) {
-        super.onMessageEvent(event)
-//        if (event.type == ICMessageEvent.Type.ON_DISMISS) {
-//            takeImageDialog.dismiss()
-//            resetCamera()
-//        }
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {

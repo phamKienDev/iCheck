@@ -150,7 +150,14 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
                 WidgetUtils.loadImageUrl(imgAvatar, it.user!!.avatar, R.drawable.ic_avatar_default_84px)
                 imgRank.beVisible()
                 imgRank.setRankUser(it.user?.rank?.level)
-                tvName.text = it.user!!.getName
+                tvName.apply {
+                    text = it.user?.getName
+                    if (it.user?.kycStatus == 2) {
+                        setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_16dp, 0)
+                    } else {
+                        setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                    }
+                }
                 tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
             if (!it.customerCriteria.isNullOrEmpty() && it.avgPoint != 0f) {

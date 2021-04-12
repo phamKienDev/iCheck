@@ -282,6 +282,7 @@ data class IckUserInfoData @JvmOverloads constructor(
             icUser.background = this.background
             icUser.hasPassword = this.hasPassword
             icUser.linkedFbId = this.linkedFbId
+            icUser.kycStatus = this.kycStatus
         }
     }
 }

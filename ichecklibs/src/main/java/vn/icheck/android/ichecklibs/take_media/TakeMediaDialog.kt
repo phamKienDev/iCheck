@@ -138,7 +138,10 @@ class TakeMediaDialog(val activity: Activity,
                     selection,
                     null, orderBy)
 
-            listOfAllImages.add(ICIMageFile(File("")))
+            if (!disableTakeImage) {
+                listOfAllImages.add(ICIMageFile(File("")))
+            }
+
             val dataColumn = cursor!!.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA)
             val typeColumn = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.MEDIA_TYPE)
             val duration = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DURATION)

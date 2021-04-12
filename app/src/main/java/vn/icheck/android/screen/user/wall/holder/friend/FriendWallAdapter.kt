@@ -40,7 +40,7 @@ class FriendWallAdapter(val listData: MutableList<RowsItem>) : RecyclerView.Adap
                 text = Constant.getName(item.lastName, item.firstName)
 
                 if (item.kycStatus == 2) {
-                    setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_24dp, 0)
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_16dp, 0)
                 } else {
                     setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                 }

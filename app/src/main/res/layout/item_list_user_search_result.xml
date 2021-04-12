@@ -10,30 +10,38 @@
         android:id="@id/layoutAvatar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/size_12"
         app:avatarSize="@dimen/size_40"
-        app:rankSize="@dimen/size_16"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="@dimen/size_12"
+        app:rankSize="@dimen/size_16"
         tools:src="@color/blue" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvTitle"
+    <FrameLayout
+        android:id="@id/layoutName"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_8"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_8"
         android:layout_marginEnd="@dimen/size_8"
-        android:fontFamily="@font/barlow_semi_bold"
-        android:includeFontPadding="false"
-        android:textColor="@color/collection_product_name"
-        android:textSize="14sp"
-        android:maxLines="2"
-        android:ellipsize="end"
         app:layout_constraintEnd_toStartOf="@id/btnConfirm"
         app:layout_constraintStart_toEndOf="@id/layoutAvatar"
-        app:layout_constraintTop_toTopOf="@+id/layoutAvatar"
-        tools:text="X" />
+        app:layout_constraintTop_toTopOf="@+id/layoutAvatar">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center_vertical"
+            android:includeFontPadding="false"
+            android:maxLines="2"
+            android:textAlignment="gravity"
+            android:textColor="@color/collection_product_name"
+            android:textSize="14sp"
+            tools:text="X" />
+    </FrameLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvContent"
@@ -44,11 +52,11 @@
         android:fontFamily="@font/barlow_medium"
         android:includeFontPadding="false"
         android:singleLine="true"
-        android:textSize="12sp"
         android:textColor="@color/gray_v2"
-        app:layout_constraintEnd_toEndOf="@id/tvTitle"
-        app:layout_constraintStart_toStartOf="@+id/tvTitle"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@id/layoutName"
+        app:layout_constraintStart_toStartOf="@+id/layoutName"
+        app:layout_constraintTop_toBottomOf="@+id/layoutName"
         tools:text="3 bạn chung • Cầu Giấy,ádfsadfjasflasjdf" />
 
     <androidx.appcompat.widget.AppCompatTextView
