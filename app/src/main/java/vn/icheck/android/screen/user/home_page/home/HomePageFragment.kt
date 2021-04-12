@@ -557,7 +557,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
 //                tvCartCount.text = count
 //            }
             ICMessageEvent.Type.ON_LOG_IN -> {
-                getReminders()
+
                 lifecycleScope.launch {
                     val file = File(FileHelper.getPath(requireContext()) + FileHelper.imageFolder)
                     if (file.exists()) {
@@ -565,6 +565,8 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                     }
                     homeAdapter.notifyDataSetChanged()
                     checkTheme()
+                    delay(400)
+                    getReminders()
                 }
             }
             ICMessageEvent.Type.ON_LOG_OUT -> {
@@ -575,8 +577,11 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                     }
                     homeAdapter.notifyDataSetChanged()
                     checkTheme()
+                    delay(400)
+                    getReminders()
                 }
                 getCoin()
+
                 layoutContainer.setTransition(R.id.no_reminder)
                 tvCartCount.beGone()
             }

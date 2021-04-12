@@ -156,6 +156,7 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
                         super.onStateChanged(frameSource, newState)
                         if (lastState == FrameSourceState.STOPPING && newState == FrameSourceState.OFF && scanImage.get()) {
                             scanImage.set(false)
+                            offCamera()
                             runOnUiThread {
                                 DialogHelper.showNotification(this@IcheckScanActivity, R.string.thong_bao, R.string.khong_thay_ma_vach, true, object : NotificationDialogListener {
 
@@ -167,18 +168,32 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
                             }
                             frameSource.removeListener(this)
                         } else {
+                            if (newState == FrameSourceState.OFF) {
+                                resetCamera()
+                            }
                             lastState = newState
                         }
                     }
                 })
                 resetHeight()
                 source?.switchToDesiredState(FrameSourceState.ON)
+                offCameraNotDisable()
                 scanImage.set(true)
             }
         } catch (e: Exception) {
             resetCamera()
             enableCapture(barcodeCapture)
         }
+    }
+
+    fun offCameraNotDisable() {
+        camera?.switchToDesiredState(FrameSourceState.OFF, object : Callback<Boolean> {
+            override fun run(result: Boolean) {
+                if (!result) {
+                    offCameraNotDisable()
+                }
+            }
+        })
     }
 
     private lateinit var takeImageDialog: TakeMediaDialog
@@ -238,20 +253,30 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
     }
 
     private fun initBarcodeCapture() {
-        val key = if (BuildConfig.FLAVOR.contentEquals("dev")) getString(R.string.scandit_v6_key_dev) else getString(R.string.scandit_v6_key_live)
-        dataCaptureContext = DataCaptureContext.forLicenseKey(key)
-        val settings = BarcodeCaptureSettings().apply {
-            Symbology.values().forEach {
-                if (it != Symbology.MICRO_PDF417 && it != Symbology.PDF417  && it != Symbology.USPS_INTELLIGENT_MAIL) {
-                    enableSymbology(it, true)
-                    getSymbologySettings(it).isColorInvertedEnabled = true
-                }
-            }
+//        val key = if (BuildConfig.FLAVOR.contentEquals("dev")) getString(R.string.scandit_v6_key_dev) else getString(R.string.scandit_v6_key_live)
+//        dataCaptureContext = DataCaptureContext.forLicenseKey(key)
+//        val settings = BarcodeCaptureSettings().apply {
+//            Symbology.values().forEach {
+//                if (it != Symbology.MICRO_PDF417 && it != Symbology.PDF417  && it != Symbology.USPS_INTELLIGENT_MAIL) {
+//                    enableSymbology(it, true)
+//                    getSymbologySettings(it).isColorInvertedEnabled = true
+//                }
+//            }
+//        }
+//        settings.getSymbologySettings(Symbology.EAN13_UPCA).setExtensionEnabled("remove_leading_upca_zero", true)
+//        settings.getSymbologySettings(Symbology.UPCE).setExtensionEnabled("remove_leading_upca_zero", true)
+//
+//        barcodeCapture = BarcodeCapture.forDataCaptureContext(dataCaptureContext, settings)
+        if (DataCaptureManager.barcodeCapture == null) {
+            showSimpleErrorToast("Đã xảy ra lỗi vui lòng thử lại sau")
+            finish()
         }
-        settings.getSymbologySettings(Symbology.EAN13_UPCA).setExtensionEnabled("remove_leading_upca_zero", true)
-        settings.getSymbologySettings(Symbology.UPCE).setExtensionEnabled("remove_leading_upca_zero", true)
-
-        barcodeCapture = BarcodeCapture.forDataCaptureContext(dataCaptureContext, settings)
+        if (DataCaptureManager.dataCaptureContext == null) {
+            showSimpleErrorToast("Đã xảy ra lỗi vui lòng thử lại sau")
+            finish()
+        }
+        barcodeCapture = DataCaptureManager.barcodeCapture!!
+        dataCaptureContext = DataCaptureManager.dataCaptureContext!!
         val vib: Vibration? = if (SettingManager.getVibrateSetting) Vibration() else null
         val sound: Sound? = if (SettingManager.getSoundSetting) Sound.defaultSound() else null
         barcodeCapture.feedback.success = Feedback(vib, sound)
