@@ -47,6 +47,7 @@
     <string name="tim_kiem_tin_nhan_loi">Xin lỗi chúng tôi không thể tìm được kết quả\nphù hợp với tìm kiếm của bạn</string>
     <string name="copy_success">Copy thành công</string>
     <string name="chon_20_anh">Chỉ được chọn tối đa 20 ảnh</string>
+    <string name="chon_20_muc">Chỉ được chọn tối đa 20 mục</string>
 
     //Lỗi
     <string name="co_loi_xay_ra_vui_long_thu_lai">Có lỗi xảy ra. Vui lòng thử lại.</string>

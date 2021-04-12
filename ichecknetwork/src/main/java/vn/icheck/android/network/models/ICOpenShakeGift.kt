@@ -22,8 +22,10 @@ data class ICOpenShakeGift(
         var campaignId: String?,
         @Expose
         var icoin: Long?,
+        @Expose
+        var icoin_icon: String?,
         @SerializedName("rewardType")
         var rewardType: String? = null,
         @SerializedName("rewardId")
-        var rewardId:String? = null
+        var rewardId: String? = null
 ) : Serializable

@@ -81,54 +81,7 @@ class ItemGiftOfCampaignAdapter(private val listData: MutableList<ICGiftOfCampai
                     itemView.tvName.visibility = View.GONE
                     itemView.imgAvatar.setImageResource(R.drawable.ic_icheck_logo)
 
-                    itemView.imgICoin.setImageResource(when (obj.icoin) {
-                        10L -> {
-                            R.drawable.ic_10_icoin
-                        }
-                        20L -> {
-                            R.drawable.ic_20_icoin
-                        }
-                        50L -> {
-                            R.drawable.ic_50_icoin
-                        }
-                        100L -> {
-                            R.drawable.ic_100_icoin
-                        }
-                        200L -> {
-                            R.drawable.ic_200_icoin
-                        }
-                        500L -> {
-                            R.drawable.ic_500_icoin
-                        }
-                        1000L -> {
-                            R.drawable.ic_1000_icoin
-                        }
-                        2000L -> {
-                            R.drawable.ic_2000_icoin
-                        }
-                        5000L -> {
-                            R.drawable.ic_5000_icoin
-                        }
-                        10000L -> {
-                            R.drawable.ic_10000_icoin
-                        }
-                        20000L -> {
-                            R.drawable.ic_20000_icoin
-                        }
-                        50000L -> {
-                            R.drawable.ic_50000_icoin
-                        }
-                        100000L -> {
-                            R.drawable.ic_100000_icoin
-                        }
-                        200000L -> {
-                            R.drawable.ic_200000_icoin
-                        }
-                        500000L -> {
-                            R.drawable.ic_500000_icoin
-                        }
-                        else -> R.drawable.ic_default_square
-                    })
+                    itemView.imgICoin.setImageResource(R.drawable.ic_icheck_xu)
 
                     itemView.imgAvatar.layoutParams = ConstraintLayout.LayoutParams(SizeHelper.size32, SizeHelper.size32).also {
                         it.topMargin = SizeHelper.size16

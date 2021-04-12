@@ -6,13 +6,19 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import android.view.animation.LinearInterpolator
+import android.view.animation.TranslateAnimation
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.widget.AppCompatCheckedTextView
+import androidx.appcompat.widget.ViewUtils
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -50,6 +56,9 @@ import vn.icheck.android.chat.icheckchat.screen.detail.adapter.ChatSocialDetailA
 import vn.icheck.android.chat.icheckchat.screen.detail.adapter.ImageAdapter
 import vn.icheck.android.chat.icheckchat.screen.detail.adapter.StickerAdapter
 import vn.icheck.android.chat.icheckchat.screen.user_information.UserInformationActivity
+import vn.icheck.android.ichecklibs.beGone
+import vn.icheck.android.ichecklibs.beVisible
+import vn.icheck.android.ichecklibs.showCustomIconToast
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.icheckscanditv6.IcheckScanActivity
@@ -101,6 +110,13 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
     private var keyConversation: String? = null
     private var sentMessage: MCDetailMessage? = null
 
+    private val linearAnimation = TranslateAnimation(0f, 0f, 0f, 13f).apply {
+        duration = 550
+        interpolator = LinearInterpolator()
+        repeatCount = -1
+        repeatMode = Animation.REVERSE
+    }
+
 
     var deleteAt = -1L
 
@@ -112,7 +128,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
         viewModel = ViewModelProvider(this@ChatSocialDetailActivity)[ChatSocialDetailViewModel::class.java]
 
-        setClickListener(this@ChatSocialDetailActivity, binding.tvMessage, binding.imgDelete, binding.imgScan, binding.imgCamera, binding.imgSticker, binding.edtMessage, binding.imgSend, binding.layoutToolbar.imgBack, binding.layoutToolbar.imgAction)
+        setClickListener(this@ChatSocialDetailActivity, binding.tvMessage, binding.imgDelete, binding.imgScan, binding.imgCamera, binding.imgSticker, binding.edtMessage, binding.imgSend, binding.layoutToolbar.imgBack, binding.layoutToolbar.imgAction, binding.layoutNewMessage)
 
         initToolbar()
         initRecyclerView()
@@ -169,6 +185,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 super.onScrolled(recyclerView, dx, dy)
                 val holder = recyclerView.findViewHolderForAdapterPosition(0)
                 isAllowScroll = holder != null
+                Log.d("onScrolled", "onScrolled: $dy")
             }
         })
 
@@ -388,15 +405,17 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                     }
 
                     //xóa status tin nhắn trước đó
-                    if (adapter.getListData[1].senderId == adapter.getListData[index].senderId) {
-                        if (!chenhLechGio(adapter.getListData[1].time, adapter.getListData[index].time, 1)) {
-                            val holder = recyclerView.findViewHolderForAdapterPosition(1)
-                            adapter.getListData[1].showStatus = false
+                    if (adapter.getListData.size > 1) {
+                        if (adapter.getListData[1].senderId == adapter.getListData[index].senderId) {
+                            if (!chenhLechGio(adapter.getListData[1].time, adapter.getListData[index].time, 1)) {
+                                val holder = recyclerView.findViewHolderForAdapterPosition(1)
+                                adapter.getListData[1].showStatus = 0
 
-                            if (holder is ChatSocialDetailAdapter.SenderHolder) {
-                                holder.setupShowStatus(adapter.getListData[1])
-                            } else {
-                                adapter.notifyItemChanged(1)
+                                if (holder is ChatSocialDetailAdapter.SenderHolder) {
+                                    holder.setupShowStatus(adapter.getListData[1])
+                                } else {
+                                    adapter.notifyItemChanged(1)
+                                }
                             }
                         }
                     }
@@ -408,25 +427,37 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 markReadMessage(key)
                 val lastMessageReceive = adapter.getListData.firstOrNull { it.senderId != FirebaseAuth.getInstance().currentUser?.uid }
                 val message = convertDataFirebase(data, lastMessageReceive ?: MCDetailMessage())
-                message.showStatus = true
+                message.showStatus = -1
                 adapter.getListData.add(0, message)
                 adapter.notifyItemInserted(0)
 
                 //xóa status tin nhắn trước đó
-                if (adapter.getListData[1].senderId == message.senderId) {
-                    if (!chenhLechGio(adapter.getListData[1].time, message.time, 1)) {
-                        val holder = recyclerView.findViewHolderForAdapterPosition(1)
-                        adapter.getListData[1].showStatus = false
+                if (adapter.getListData.size > 1) {
+                    if (adapter.getListData[1].senderId == message.senderId) {
+                        if (!chenhLechGio(adapter.getListData[1].time, message.time, 1)) {
+                            val holder = recyclerView.findViewHolderForAdapterPosition(1)
+                            adapter.getListData[1].showStatus = 0
 
-                        if (holder is ChatSocialDetailAdapter.ReceiverHolder) {
-                            holder.setupShowStatus(adapter.getListData[1])
-                        } else {
-                            adapter.notifyItemChanged(1)
+                            if (holder is ChatSocialDetailAdapter.ReceiverHolder) {
+                                holder.setupShowStatus(adapter.getListData[1])
+                            } else {
+                                adapter.notifyItemChanged(1)
+                            }
                         }
                     }
                 }
+
                 if (isAllowScroll) {
                     binding.recyclerView.smoothScrollToPosition(0)
+                    binding.layoutNewMessage.beGone()
+                    binding.layoutNewMessage.clearAnimation()
+                } else {
+                    binding.layoutNewMessage.beVisible()
+                    Handler().postDelayed({
+                        binding.layoutNewMessage.beGone()
+                        binding.layoutNewMessage.clearAnimation()
+                    }, 5000)
+                    binding.layoutNewMessage.startAnimation(linearAnimation)
                 }
             }
         }, timeStart)
@@ -440,9 +471,13 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
             type = message.child("message").child("type").value.toString()
             avatarSender = conversation?.imageTargetUser
             showStatus = if (senderId != newMessage.senderId) {
-                true
+                -1
             } else {
-                chenhLechGio(time, newMessage.time, 1)
+                if (chenhLechGio(time, newMessage.time, 1)) {
+                    -1
+                } else {
+                    0
+                }
             }
 
 
@@ -524,6 +559,12 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
 
     private fun formatMessage(key: String) {
+        if (!adapterImage.isEmpty) {
+            if (adapter.getListData.size > 20) {
+                showToastError(getString(R.string.chon_20_muc))
+                return
+            }
+        }
         val element = MCDetailMessage().apply {
             senderId = "${FirebaseAuth.getInstance().currentUser?.uid}"
             content = binding.edtMessage.text.toString().trim()
@@ -594,19 +635,22 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
     }
 
     private fun addMessageAdapter(obj: MCDetailMessage) {
-        obj.showStatus = true
-        adapter.getListData.add(0, obj)
-        adapter.notifyItemInserted(0)
+        obj.showStatus = -1
+        if (adapter.getListData.isNullOrEmpty()) {
+            adapter.getListData.add(obj)
+            adapter.notifyDataSetChanged()
+        } else {
+            adapter.getListData.add(0, obj)
+            adapter.notifyItemInserted(0)
+            if (adapter.getListData[1].status == obj.status) {
+                val holder = recyclerView.findViewHolderForAdapterPosition(1)
+                adapter.getListData[1].showStatus = 0
 
-
-        if (adapter.getListData[1].status == obj.status) {
-            val holder = recyclerView.findViewHolderForAdapterPosition(1)
-            adapter.getListData[1].showStatus = false
-
-            if (holder is ChatSocialDetailAdapter.SenderHolder) {
-                holder.setupShowStatus(adapter.getListData[1])
-            } else {
-                adapter.notifyItemChanged(1)
+                if (holder is ChatSocialDetailAdapter.SenderHolder) {
+                    holder.setupShowStatus(adapter.getListData[1])
+                } else {
+                    adapter.notifyItemChanged(1)
+                }
             }
         }
 
@@ -937,6 +981,11 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
 
                 binding.viewClick.setVisible()
+            }
+            R.id.layoutNewMessage -> {
+                recyclerView.smoothScrollToPosition(0)
+                binding.layoutNewMessage.beGone()
+                binding.layoutNewMessage.clearAnimation()
             }
         }
     }
