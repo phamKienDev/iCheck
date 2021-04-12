@@ -2,25 +2,25 @@ before_script:
   - chmod +x ./gradlew
   - source ~/.zshrc
 
-#assembleDevDebug:
-#  tags:
-#    - autobuild
-#  only:
-#    refs:
-#      - master
-#  stage: build
-#  script:
-#    - ./gradlew clean
-#    - ./gradlew assembleDevDebug
-#    - curl -T $PWD/app/build/outputs/apk/dev/debug/app-dev-debug.apk -u $FTP_USER:$FTP_PASSWORD $FTP_FOLDER/social/icheckDev.apk
-#    - "curl -X POST -H 'Content-type: application/json' --data '{\"text\":\"Có bản cài Android Social Sandbox mới. <https://download.icheck.com.vn/|Tải ngay!>\"}' $SLACK_HOOK"
+assembleDevDebug:
+  tags:
+    - autobuild
+  only:
+    refs:
+      - develop
+  stage: build
+  script:
+    - ./gradlew clean
+    - ./gradlew assembleDevDebug
+    - curl -T $PWD/app/build/outputs/apk/dev/debug/app-dev-debug.apk -u $FTP_USER:$FTP_PASSWORD $FTP_FOLDER/social/icheckDev.apk
+    - "curl -X POST -H 'Content-type: application/json' --data '{\"text\":\"Có bản cài Android Social Sandbox mới. <https://download.icheck.com.vn/|Tải ngay!>\"}' $SLACK_HOOK"
 
 assembleProdRelease:
   tags:
     - autobuild
   only:
     refs:
-      - master
+      - develop
   stage: build
   script:
     - ./gradlew clean
