@@ -402,9 +402,9 @@ fun soSanhCungNgay(millisecond: Long?): Boolean {
     return currenDay.equals(customDay)
 }
 
-fun chenhLechGio(time: Long?, oldTime: Long?, hour: Int): Boolean {
-    return if (time != null && oldTime != null) {
-        (oldTime - time) > (hour * intervalHour)
+fun chenhLechGio(time: Long?, newTime: Long?, hour: Int): Boolean {
+    return if (time != null && newTime != null) {
+        (newTime- time) > (hour * intervalHour)
     } else {
         true
     }

@@ -25,6 +25,9 @@ interface MCNetworkApi {
     @GET
     suspend fun getSticker(@Url url: String, @QueryMap params: HashMap<String, Any>): MCResponse<MCListResponse<MCSticker>>
 
+    @GET
+    suspend fun getSystemSetting(@Url url: String, @QueryMap params: HashMap<String, Any>): MCResponse<MCListResponse<MCClientSetting>>
+
     @POST
     suspend fun sendMessage(@Url url: String, @Body params: HashMap<String, Any>): MCResponse<String>
 

@@ -189,6 +189,7 @@
         android:id="@+id/img_scan_tip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_4"
         android:alpha="0"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/view37"
@@ -215,7 +216,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_32"
         android:layout_marginEnd="@dimen/size_52"
-        android:layout_marginRight="@dimen/size_52"
         android:alpha="0"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="@+id/img_nmbt"
@@ -227,6 +227,7 @@
         android:id="@+id/img_torch_tip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_4"
         android:alpha="0"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
@@ -238,6 +239,7 @@
         android:id="@+id/img_xmdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/size_40"
         android:alpha="0"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/btn_my_code"
@@ -258,11 +260,10 @@
         android:id="@+id/img_hd_sdha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/size_16"
+        android:layout_marginEnd="@dimen/size_130"
         android:alpha="0"
-        app:layout_constraintStart_toStartOf="@+id/divider24"
+        app:layout_constraintEnd_toEndOf="@+id/img_sdha"
         app:layout_constraintTop_toTopOf="@+id/img_sdha"
         app:srcCompat="@drawable/hd_sdha" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

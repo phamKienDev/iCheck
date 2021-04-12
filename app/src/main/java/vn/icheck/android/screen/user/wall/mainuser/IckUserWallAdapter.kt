@@ -2,25 +2,17 @@ package vn.icheck.android.screen.user.wall.mainuser
 
 import android.content.Intent
 import android.graphics.Color
-import android.text.Spannable
-import android.text.SpannableString
-import android.text.SpannableStringBuilder
-import android.text.style.ImageSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.RelationshipManager
 import vn.icheck.android.activities.image.DetailImagesActivity
-import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
 import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.component.ICViewModel
@@ -216,7 +208,7 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
 //            SocialChatActivity.createRoomChat(it.context, arrMember.toTypedArray())
             if (SessionManager.isUserLogged) {
                 SocialChatActivity.createRoomChat(it.context, data?.id)
-//                ListConversationFragment.finishAllChat()
+                ListConversationFragment.finishAllChat()
 //                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_FINISH_ALL_CHAT))
 //                ChatSocialDetailActivity.createRoomChat(it.context, data?.id ?: -1, "user")
             } else {

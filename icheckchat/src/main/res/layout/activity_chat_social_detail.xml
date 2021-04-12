@@ -24,19 +24,52 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clipToPadding="false"/>
+            android:clipToPadding="false"
+            android:rotation="180" />
 
         <View
             android:id="@+id/viewClick"
-            android:clickable="false"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:clickable="false" />
+
+        <LinearLayout
+            android:id="@+id/layoutNewMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|bottom"
+            android:gravity="center"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_white_corner_4dp"
+                android:fontFamily="@font/barlow_medium"
+                android:paddingStart="@dimen/size_4"
+                android:paddingTop="@dimen/size_2"
+                android:paddingEnd="@dimen/size_4"
+                android:paddingBottom="@dimen/size_2"
+                android:text="@string/co_tin_nhan_moi"
+                android:textColor="@color/lightBlue" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-4dp"
+                android:rotation="90"
+                android:src="@drawable/ic_arrow_right_blue_24dp_chat" />
+
+        </LinearLayout>
     </FrameLayout>
 
     <View
+        android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/gray_f0"/>
+        android:background="@color/gray_f0"
+        android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewImage"

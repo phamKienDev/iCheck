@@ -97,7 +97,6 @@ import vn.icheck.android.screen.user.scan_history.view.IScanHistoryView
 import vn.icheck.android.screen.user.scan_history.view_model.ScanHistoryViewModel
 import vn.icheck.android.screen.user.setting.SettingsActivity
 import vn.icheck.android.screen.user.social_chat.SocialChatFragment
-import vn.icheck.android.screen.user.social_chat.SocialMessagesFragment
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.screen.user.welcome.WelcomeActivity
@@ -239,7 +238,11 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
 //                    }
 //                }
 //            }
-//        })))
+//
+//            override fun onClickLeftMenu() {
+//                openSlideMenu()
+//            }
+//        }, SessionManager.isUserLogged)))
 
         viewPager.offscreenPageLimit = 5
         viewPager.setPagingEnabled(false)
@@ -1090,14 +1093,18 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                     ickLoginViewModel.loginDevice(token).observe(this) { _ ->
                     }
                 }
+
                 ChatSdk.shareIntent(SessionManager.session.firebaseToken, SessionManager.session.user?.id, SessionManager.session.token, DeviceUtils.getUniqueDeviceId())
             }
             ICMessageEvent.Type.ON_LOG_OUT -> {
-                ChatSdk.shareIntent(SessionManager.session.firebaseToken, SessionManager.session.user?.id, SessionManager.session.token, DeviceUtils.getUniqueDeviceId())
+                ChatSdk.shareIntent(null, null, null, null)
+
                 tvChatCount.visibility = View.GONE
                 RelationshipManager.removeListener()
                 checkkNewTheme()
                 clearFilter()
+
+                checkLoginOrLogoutChat(false)
             }
             ICMessageEvent.Type.ON_LOG_IN -> {
                 tv_username.text = SessionManager.session.user?.getName
@@ -1112,6 +1119,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                 ChatSdk.shareIntent(SessionManager.session.firebaseToken, SessionManager.session.user?.id, SessionManager.session.token, DeviceUtils.getUniqueDeviceId())
                 checkkNewTheme()
                 clearFilter()
+                checkLoginOrLogoutChat(true)
             }
             ICMessageEvent.Type.INIT_MENU_HISTORY -> {
                 recyclerViewMenu.layoutManager = LinearLayoutManager(this)
@@ -1161,6 +1169,17 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                 startLocationUpdates()
             }
             else -> {
+            }
+        }
+    }
+
+    private fun checkLoginOrLogoutChat(isLogin: Boolean){
+        (viewPager.adapter as ViewPagerAdapter).apply {
+            for (item in listData) {
+                if (item.fragment is ChatSocialFragment) {
+                    item.fragment.checkLoginOrLogOut(isLogin)
+                    return
+                }
             }
         }
     }
