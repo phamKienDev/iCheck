@@ -81,6 +81,7 @@ import vn.icheck.android.screen.user.pvcombank.home.HomePVCardActivity
 import vn.icheck.android.screen.user.rank_of_user.RankOfUserActivity
 import vn.icheck.android.screen.user.recharge_phone.RechargePhoneActivity
 import vn.icheck.android.screen.user.shipping.ship.ShipActivity
+import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 import vn.icheck.android.screen.user.surveydetail.answer.SurveyDetailActivity
 import vn.icheck.android.screen.user.utilities.UtilitiesActivity
 import vn.icheck.android.screen.user.vinmart.VinMartActivity
@@ -802,8 +803,8 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                         showLoginDialog()
                         return
                     } else {
-                        ChatSocialDetailActivity.openRoomChatWithKey(this@FirebaseDynamicLinksActivity, id)
-//                        SocialChatActivity.createRoomChat(this@FirebaseDynamicLinksActivity, null, id)
+//                        ChatSocialDetailActivity.openRoomChatWithKey(this@FirebaseDynamicLinksActivity, id)
+                        SocialChatActivity.createRoomChat(this@FirebaseDynamicLinksActivity, null, id)
                     }
                 }
             }
@@ -815,8 +816,8 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                         showLoginDialog()
                         return
                     } else if (ValidHelper.validNumber(id)) {
-                        ChatSocialDetailActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong(), "user")
-//                        SocialChatActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong())
+//                        ChatSocialDetailActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong(), "user")
+                        SocialChatActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong())
                     }
                 }
             }
@@ -828,7 +829,8 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                         showLoginDialog()
                         return
                     } else if (ValidHelper.validNumber(id)) {
-                        ChatSocialDetailActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong(), "page")
+//                        ChatSocialDetailActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong(), "page")
+                        SocialChatActivity.createRoomChat(this@FirebaseDynamicLinksActivity, null, id)
                     }
                 }
             }

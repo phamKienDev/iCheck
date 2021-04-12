@@ -146,9 +146,9 @@ class InviteFriendFollowPageAdapter(val callback: InviteFriendFollowPageCallback
 
         fun bind(obj: ICUser) {
             if (obj.selected) {
-                itemView.imgChecked.setImageResource(R.drawable.ic_checkbox_single_on_24px)
+                itemView.selectButton.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_checkbox_single_on_24px, 0)
             } else {
-                itemView.imgChecked.setImageResource(R.drawable.ic_ellipse)
+                itemView.selectButton.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_ellipse, 0)
             }
 
             itemView.imgRank.setRankUser(obj.rank?.level)
@@ -156,8 +156,9 @@ class InviteFriendFollowPageAdapter(val callback: InviteFriendFollowPageCallback
             WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.avatar, R.drawable.ic_avatar_default_84px)
             itemView.tvName.apply {
                 text = obj.getName
+
                 if (obj.kycStatus == 2) {
-                    setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_16dp, 0)
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_24dp, 0)
                 } else {
                     setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                 }
@@ -169,13 +170,7 @@ class InviteFriendFollowPageAdapter(val callback: InviteFriendFollowPageCallback
                 }
             }
 
-            itemView.imgAvatar.setOnClickListener {
-                ICheckApplication.currentActivity()?.let {
-                    IckUserWallActivity.create(obj.id, it)
-                }
-            }
-
-            itemView.layoutName.setOnClickListener {
+            itemView.setOnClickListener {
                 if (!obj.selected) {
                     obj.selected = !obj.selected
                     listSelected.add(obj)
@@ -185,10 +180,6 @@ class InviteFriendFollowPageAdapter(val callback: InviteFriendFollowPageCallback
                 }
                 callback.getListSeleted(listSelected)
                 notifyDataSetChanged()
-            }
-
-            itemView.imgChecked.setOnClickListener {
-                itemView.tvName.performClick()
             }
         }
     }

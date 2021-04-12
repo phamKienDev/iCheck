@@ -26,6 +26,7 @@ import vn.icheck.android.network.base.ICResponseCode
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.feature.relationship.RelationshipInteractor
 import vn.icheck.android.network.models.ICSearchUser
+import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.kotlin.ToastUtils
 
@@ -81,8 +82,8 @@ class SearchUserAdapter(val typeView: Int, val callback: IRecyclerViewSearchCall
             }
 
             itemView.tvMessage.setOnClickListener {
-//                SocialChatActivity.createRoomChat(it.context, obj.id)
-                ChatSocialDetailActivity.createRoomChat(it.context, obj.id, "user")
+                SocialChatActivity.createRoomChat(it.context, obj.id)
+//                ChatSocialDetailActivity.createRoomChat(it.context, obj.id, "user")
             }
 
             itemView.setOnClickListener {

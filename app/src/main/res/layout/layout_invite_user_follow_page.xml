@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/size_12">
+    android:layout_marginTop="@dimen/size_12"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imgAvatar"
@@ -12,6 +15,7 @@
         android:layout_height="@dimen/size_40"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_8"
+        android:src="@color/gray_e5"
         app:civ_border_color="@color/gray"
         app:civ_border_width="@dimen/size_0_5"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,41 +29,38 @@
         app:layout_constraintEnd_toEndOf="@id/imgAvatar"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <FrameLayout
-        android:id="@id/layoutName"
-        android:layout_width="@dimen/size_0"
-        android:layout_height="@dimen/size_0"
-        android:layout_marginStart="@dimen/size_12"
-        android:layout_weight="1"
-        app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
-        app:layout_constraintEnd_toStartOf="@id/imgChecked"
-        app:layout_constraintStart_toEndOf="@id/imgAvatar"
-        app:layout_constraintTop_toTopOf="@id/imgAvatar">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvName"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:drawablePadding="@dimen/size_4"
-            android:ellipsize="end"
-            android:fontFamily="@font/barlow_medium"
-            android:gravity="center_vertical"
-            android:maxLines="1"
-            android:textAlignment="gravity"
-            android:textColor="@color/collection_product_name"
-            android:textSize="14sp"
-            tools:text="Dung Nguyen Dung Dung Nguyen Dung Dung Nguyen Dung " />
-    </FrameLayout>
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@id/imgChecked"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvName"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/size_0"
-        android:paddingStart="@dimen/size_8"
-        android:paddingEnd="@dimen/size_14"
-        android:scaleType="centerInside"
-        android:src="@drawable/ic_ellipse"
-        app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginEnd="@dimen/size_14"
+        android:layout_weight="1"
+        android:drawablePadding="@dimen/size_8"
+        android:ellipsize="end"
+        android:fontFamily="@font/barlow_medium"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:textColor="@color/collection_product_name"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/selectButton"
+        app:layout_constraintStart_toEndOf="@id/imgAvatar"
+        app:layout_constraintTop_toTopOf="@id/imgAvatar"
+        tools:drawableEnd="@drawable/ic_verified_16px"
+        tools:text="Dung Nguyen Dung " />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/selectButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/size_14"
+        android:drawableEnd="@drawable/ic_ellipse"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBottom_toBottomOf="@id/tvName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/imgAvatar" />
+        app:layout_constraintStart_toEndOf="@id/tvName"
+        app:layout_constraintTop_toTopOf="@id/tvName" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

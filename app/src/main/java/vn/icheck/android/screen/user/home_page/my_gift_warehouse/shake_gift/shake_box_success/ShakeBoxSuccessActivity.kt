@@ -270,7 +270,8 @@ class ShakeBoxSuccessActivity : BaseActivityMVVM() {
                         TrackingAllHelper.tagOpenGiftBoxProceedCtaClicked(viewModel.campaign?.id, viewModel.shakeGift?.rewardType)
                         startActivity<CoinHistoryActivity>()
                     }
-                    setImageWithCoin(imageGift, it.icoin?.toInt())
+                    WidgetUtils.loadImageUrlFitCenter(imageGift, it.icoin_icon)
+
                 }
             }
         })
@@ -339,57 +340,6 @@ class ShakeBoxSuccessActivity : BaseActivityMVVM() {
             TrackingAllHelper.tagOpenGiftBoxDismissClicked(viewModel.campaign?.id, viewModel.shakeGift?.rewardType)
             onBackPressed()
         }
-    }
-
-    private fun setImageWithCoin(imageGift: AppCompatImageView?, icoin: Int?) {
-        imageGift?.setImageResource(when (icoin) {
-            10 -> {
-                R.drawable.ic_10_icoin
-            }
-            20 -> {
-                R.drawable.ic_20_icoin
-            }
-            50 -> {
-                R.drawable.ic_50_icoin
-            }
-            100 -> {
-                R.drawable.ic_100_icoin
-            }
-            200 -> {
-                R.drawable.ic_200_icoin
-            }
-            500 -> {
-                R.drawable.ic_500_icoin
-            }
-            1000 -> {
-                R.drawable.ic_1000_icoin
-            }
-            2000 -> {
-                R.drawable.ic_2000_icoin
-            }
-            5000 -> {
-                R.drawable.ic_5000_icoin
-            }
-            10000 -> {
-                R.drawable.ic_10000_icoin
-            }
-            20000 -> {
-                R.drawable.ic_20000_icoin
-            }
-            50000 -> {
-                R.drawable.ic_50000_icoin
-            }
-            100000 -> {
-                R.drawable.ic_100000_icoin
-            }
-            200000 -> {
-                R.drawable.ic_200000_icoin
-            }
-            500000 -> {
-                R.drawable.ic_500000_icoin
-            }
-            else -> R.drawable.ic_default_square
-        })
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
