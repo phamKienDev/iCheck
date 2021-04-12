@@ -119,9 +119,6 @@ class ICUser : Serializable {
     var ward_id: Long? = null
 
     @Expose
-    var kycStatus: Int? = null
-
-    @Expose
     var ward: ICWard? = null
 
     @Expose

@@ -26,6 +26,7 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.network.models.wall.ICUserFollowWall
 import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionDialog
 import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionSuccessDialog
+import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
 import vn.icheck.android.screen.user.wall.USER_ID
 import vn.icheck.android.util.ick.forceShowKeyboard
@@ -238,8 +239,8 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
 //            EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_FINISH_ALL_CHAT))
             finishActivity()
         }
-        ChatSocialDetailActivity.createRoomChat(this@ListFriendOfWallActivity, item.id ?: -1, "user")
-//        SocialChatActivity.createRoomChat(this, item.id)
+//        ChatSocialDetailActivity.createRoomChat(this@ListFriendOfWallActivity, item.id ?: -1, "user")
+        SocialChatActivity.createRoomChat(this, item.id)
     }
 
     override fun goToAddFriend(item: ICUserFollowWall, position: Int) {
