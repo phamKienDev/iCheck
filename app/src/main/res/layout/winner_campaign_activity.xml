@@ -114,19 +114,17 @@
             android:background="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ui.view.TextHeader
             android:id="@id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/size_44"
             android:layout_marginEnd="@dimen/size_44"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:singleLine="true"
             android:text="Xếp hạng"
             android:textColor="#057DDA"
-            android:textSize="@dimen/font_18"
             android:textStyle="normal" />
 
         <androidx.appcompat.widget.AppCompatImageButton

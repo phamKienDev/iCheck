@@ -23,17 +23,15 @@
             android:background="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ui.view.TextHeader
             android:id="@+id/tvNameProduct"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:singleLine="true"
             android:textColor="#057dda"
-            android:textSize="@dimen/font_18"
             tools:text="Dầu tẩy trang DHC fcjsbsabcnc..." />
 
         <androidx.appcompat.widget.AppCompatImageView

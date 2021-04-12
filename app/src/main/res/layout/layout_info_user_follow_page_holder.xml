@@ -24,14 +24,12 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <TextView
+            <vn.icheck.android.ui.view.TextHeader
                 android:id="@+id/tv_count_like"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/barlow_semi_bold"
                 android:text="TextView"
-                android:textColor="@color/blue"
-                android:textSize="@dimen/font_18" />
+                android:textColor="@color/blue" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -55,14 +53,12 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <TextView
+            <vn.icheck.android.ui.view.TextHeader
                 android:id="@+id/tv_count_follow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/barlow_semi_bold"
                 android:text="TextView"
-                android:textColor="@color/blue"
-                android:textSize="@dimen/font_18" />
+                android:textColor="@color/blue" />
 
             <TextView
                 android:layout_width="wrap_content"

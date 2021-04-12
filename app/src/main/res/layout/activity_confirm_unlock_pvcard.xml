@@ -20,15 +20,13 @@
             android:background="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ui.view.TextHeader
             android:id="@id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:fontFamily="@font/barlow_semi_bold"
             android:text="Xác nhận mở thẻ"
-            android:textColor="@color/lightBlue"
-            android:textSize="@dimen/font_18" />
+            android:textColor="@color/lightBlue" />
     </FrameLayout>
 
     <androidx.core.widget.NestedScrollView

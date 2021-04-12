@@ -81,7 +81,7 @@
             android:layout_height="match_parent"
             android:gravity="bottom">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ui.view.TextSubheader2
                 android:id="@id/btnConfirm"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_36"
@@ -89,10 +89,8 @@
                 android:layout_marginEnd="@dimen/size_16"
                 android:layout_marginBottom="@dimen/size_16"
                 android:background="@drawable/bg_corner_gray_topup_4"
-                android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:textColor="@color/white"
-                android:textSize="@dimen/font_16"
                 android:text="Xác nhận" />
 
         </LinearLayout>

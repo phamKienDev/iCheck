@@ -21,7 +21,7 @@
         android:background="@drawable/bg_corner_top_20"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ui.view.TextHeader
             android:id="@+id/tvTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,11 +31,9 @@
             android:layout_marginEnd="@dimen/size_12"
             android:layout_marginRight="@dimen/size_12"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
             android:singleLine="true"
-            android:textColor="@color/blue"
-            android:textSize="@dimen/font_18" />
+            android:textColor="@color/blue" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

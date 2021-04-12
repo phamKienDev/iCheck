@@ -14,7 +14,7 @@
         android:layout_marginTop="@dimen/size_10"
         android:orientation="horizontal">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ui.view.TextHeader
             android:id="@id/tvTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -22,9 +22,7 @@
             android:layout_marginLeft="@dimen/size_12"
             android:layout_weight="1"
             android:text="Title"
-            android:textColor="@color/blue"
-            android:textSize="@dimen/font_18"
-            app:fontFamily="@font/barlow_semi_bold" />
+            android:textColor="@color/blue" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@id/btnMore"

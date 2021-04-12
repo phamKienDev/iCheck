@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <vn.icheck.android.ui.view.TextBarlowSemiBold
+    <vn.icheck.android.ui.view.TextHeader
         android:id="@id/tvCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,7 +14,6 @@
         android:layout_marginTop="@dimen/size_16"
         android:layout_marginBottom="@dimen/size_10"
         android:textColor="#3c5a99"
-        android:textSize="@dimen/font_18"
         tools:text="14 Điểm bán gần đây" />
 
     <FrameLayout

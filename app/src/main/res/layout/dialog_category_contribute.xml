@@ -21,14 +21,12 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_cancel_blue_24px" />
 
-        <TextView
+        <vn.icheck.android.ui.view.TextHeader
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_12"
-            android:fontFamily="@font/barlow_semi_bold"
             android:text="Danh mục"
             android:textColor="#057DDA"
-            android:textSize="@dimen/font_18"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -42,15 +40,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_clear" />
 
-        <TextView
+        <vn.icheck.android.ui.view.TextHeader
             android:id="@+id/btn_done"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/size_12"
-            android:fontFamily="@font/barlow_semi_bold"
             android:text="Xong"
             android:textColor="#057DDA"
-            android:textSize="@dimen/font_18"
             app:layout_constraintBottom_toTopOf="@+id/view9"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

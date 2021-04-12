@@ -8,17 +8,15 @@
     android:background="@android:color/white"
     android:layout_height="wrap_content">
 
-    <TextView
+    <vn.icheck.android.ui.view.TextHeader
         android:id="@+id/textView34"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_10"
-        android:fontFamily="@font/barlow_semi_bold"
         android:text="Thông tin thêm"
         android:textColor="#3C5A99"
-        android:textSize="@dimen/font_18"
         app:layout_constraintEnd_toStartOf="@+id/btn_show_all"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -19,16 +19,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ui.view.TextHeader
         android:id="@+id/appCompatTextView44"
         tools:layout_editor_absoluteX="329dp"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center"
         android:text="Bộ lọc"
         android:textColor="#057dda"
-        android:textSize="@dimen/font_18"
         app:layout_constraintBottom_toBottomOf="@+id/imgCloseDrawer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

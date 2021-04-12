@@ -23,7 +23,7 @@
             android:background="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_cancel_light_blue_24dp" />
 
-        <vn.icheck.android.ui.view.TextBarlowSemiBold
+        <vn.icheck.android.ui.view.TextHeader
             android:id="@id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -33,7 +33,6 @@
             android:gravity="center"
             android:singleLine="true"
             android:textColor="@color/lightBlue"
-            android:textSize="@dimen/font_18"
             tools:text="Tiêu đề" />
     </FrameLayout>
 

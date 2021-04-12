@@ -21,30 +21,26 @@
             app:layout_constraintTop_toTopOf="@+id/tvTitle"
             app:srcCompat="@drawable/ic_cancel_light_blue_24dp" />
 
-        <TextView
+        <vn.icheck.android.ui.view.TextHeader
             android:id="@id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_14"
-            android:fontFamily="@font/barlow_semi_bold"
             android:text="@string/tuy_chon_vai_tro"
             android:textColor="@color/lightBlue"
-            android:textSize="@dimen/font_18"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+        <vn.icheck.android.ui.view.TextHeader
             android:id="@id/btnConfirm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/size_4"
             android:layout_marginRight="@dimen/size_4"
-            android:fontFamily="@font/barlow_semi_bold"
             android:padding="@dimen/size_12"
             android:text="@string/xong"
             android:textColor="@color/lightBlue"
-            android:textSize="@dimen/font_18"
             app:layout_constraintBottom_toBottomOf="@id/tvTitle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/tvTitle" />

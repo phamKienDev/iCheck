@@ -91,16 +91,14 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ui.view.TextHeader
             android:id="@id/tvTitle"
             android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:singleLine="true"
             android:textColor="@color/lightBlue"
-            android:textSize="@dimen/font_18"
             android:textStyle="normal"
             app:layout_constraintBottom_toBottomOf="@id/imgBack"
             app:layout_constraintEnd_toStartOf="@id/imgAction"

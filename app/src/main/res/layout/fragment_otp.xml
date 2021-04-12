@@ -17,15 +17,13 @@
         app:layout_constraintTop_toTopOf="@+id/textView22"
         app:srcCompat="@drawable/ic_back_blue_24px_new" />
 
-    <TextView
+    <vn.icheck.android.ui.view.TextHeader
         android:id="@+id/textView22"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_30"
-        android:fontFamily="@font/barlow_semi_bold"
         android:text="Nhập mã OTP"
         android:textColor="#212121"
-        android:textSize="@dimen/font_18"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

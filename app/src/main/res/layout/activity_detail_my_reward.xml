@@ -502,7 +502,7 @@ Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận t
                 android:background="?android:attr/selectableItemBackground"
                 app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ui.view.TextHeader
                 android:id="@id/txtTitle"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -511,11 +511,9 @@ Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận t
                 android:layout_marginRight="@dimen/size_12"
                 android:layout_weight="1"
                 android:ellipsize="end"
-                android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:singleLine="true"
                 android:textColor="#057DDA"
-                android:textSize="@dimen/font_18"
                 tools:text="Tiêu đề" />
         </LinearLayout>
     </FrameLayout>
