@@ -63,7 +63,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@id/tvName"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/size_8"
                         android:layout_marginEnd="@dimen/size_8"
@@ -78,7 +78,7 @@
                         app:layout_constraintStart_toEndOf="@id/imgAvatar"
                         app:layout_constraintTop_toTopOf="@id/imgAvatar"
                         tools:drawableEnd="@drawable/ic_verified_16px"
-                        tools:text="Hà Linh Hà Linh Hà Linh Hà Linh Hà Linh Hà Linh  Hà Linh Hà Linh Hà Linh Hà Linh Hà Linh Hà Linh " />
+                        tools:text="Hà Linh  " />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@id/tvType"

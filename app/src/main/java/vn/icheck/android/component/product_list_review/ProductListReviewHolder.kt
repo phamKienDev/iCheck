@@ -4,16 +4,11 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import org.greenrobot.eventbus.EventBus
-import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.model.ICMessageEvent
-import vn.icheck.android.component.ICViewModel
-import vn.icheck.android.component.product_question_answer.ItemQuestionAdapter
-import vn.icheck.android.component.product_question_answer.ProductQuestionModel
 import vn.icheck.android.component.product_review.list_review.ItemListReviewModel
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.screen.user.list_product_review.ListProductReviewActivity
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
 

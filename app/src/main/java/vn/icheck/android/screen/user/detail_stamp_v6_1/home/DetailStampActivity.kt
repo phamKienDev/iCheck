@@ -13,6 +13,7 @@ import android.location.Location
 import android.net.Uri
 import android.os.Build
 import android.os.Handler
+import android.os.Looper
 import android.text.Html
 import android.util.TypedValue
 import android.view.Gravity
@@ -30,8 +31,7 @@ import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.*
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -47,6 +47,9 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.component.banner.ListBannerAdapter
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
+import vn.icheck.android.ichecklibs.beGone
+import vn.icheck.android.ichecklibs.beVisible
+import vn.icheck.android.ichecklibs.visibleOrInvisible
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.base.listener.IClickListener
 import vn.icheck.android.loyalty.helper.ActivityHelper
@@ -78,9 +81,6 @@ import vn.icheck.android.screen.user.shipping.ship.ShipActivity
 import vn.icheck.android.screen.user.view_item_image_stamp.ViewItemImageActivity
 import vn.icheck.android.screen.user.viewimage.ViewImageActivity
 import vn.icheck.android.util.AdsUtils
-import vn.icheck.android.util.ick.beGone
-import vn.icheck.android.util.ick.beVisible
-import vn.icheck.android.util.ick.visibleOrInvisible
 import vn.icheck.android.util.kotlin.ContactUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.text.SimpleDateFormat
@@ -132,11 +132,9 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
     private var lat: String? = null
     private var lon: String? = null
 
-    private val REQUEST_CODE_PERMISSION = 39
+    private val requestGpsPermission = 39
     private val requestPhone = 1
-
-    //    private val requestAddToCart = 2
-//    private val requestAddToCartShortToast = 3
+    private val requestGps = 2
     private val requestGoToCart = 4
     private val requestRefreshData = 5
     private var requestRequireLogin = 0
@@ -251,28 +249,58 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
 
     private fun initUpdateLocation() {
         val permission = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
-        if (PermissionHelper.checkPermission(this, permission, REQUEST_CODE_PERMISSION)) {
-            if (PermissionHelper.isAllowPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) && PermissionHelper.isAllowPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
+        if (PermissionHelper.checkPermission(this, permission, requestGpsPermission)) {
+            if (NetworkHelper.checkGPS(this@DetailStampActivity, getString(R.string.vui_long_bat_gpa_de_ung_dung_tim_duoc_vi_tri_cua_ban), requestGps)) {
                 getData()
+                return
             }
         }
+
+        llAcceptPermission.beVisible()
     }
+
+    private var isGetLocationSuccess = false
 
     @SuppressLint("MissingPermission")
     private fun getData() {
-        mFusedLocationClient?.lastLocation?.addOnSuccessListener { location: Location? ->
-            if (location != null) {
-                lat = location.latitude.toString()
-                lon = location.longitude.toString()
-                presenter.onGetDataIntent(intent, lat, lon)
-            } else {
-                presenter.onGetDataIntent(intent, lat, lon)
-            }
-        }?.addOnFailureListener {
-            presenter.onGetDataIntent(intent, lat, lon)
-        }?.addOnCanceledListener {
-            presenter.onGetDataIntent(intent, lat, lon)
+        val permission = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
+        if (!PermissionHelper.checkPermission(this, permission, requestGpsPermission)) {
+            llAcceptPermission.beVisible()
+            return
         }
+        if (!NetworkHelper.checkGPS(this@DetailStampActivity, getString(R.string.vui_long_bat_gpa_de_ung_dung_tim_duoc_vi_tri_cua_ban), requestGps)) {
+            llAcceptPermission.beVisible()
+            return
+        }
+
+        val locationRequest = LocationRequest.create()
+        locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+        locationRequest.interval = 500
+        locationRequest.fastestInterval = 200
+
+        mFusedLocationClient?.requestLocationUpdates(locationRequest, object : LocationCallback() {
+            override fun onLocationResult(locationResult: LocationResult?) {
+                super.onLocationResult(locationResult)
+                val lastLocation = locationResult?.lastLocation
+
+                if (lastLocation != null && !isGetLocationSuccess) {
+                    llAcceptPermission.beGone()
+                    isGetLocationSuccess = true
+                    lat = lastLocation.latitude.toString()
+                    lon = lastLocation.longitude.toString()
+                }
+
+                presenter.onGetDataIntent(intent, lat, lon)
+                mFusedLocationClient?.removeLocationUpdates(this)
+            }
+
+            override fun onLocationAvailability(locationAvailability: LocationAvailability?) {
+                super.onLocationAvailability(locationAvailability)
+                if (locationAvailability?.isLocationAvailable != true) {
+                    presenter.onGetDataIntent(intent, lat, lon)
+                }
+            }
+        }, Looper.getMainLooper())
     }
 
     @SuppressLint("MissingPermission")
@@ -686,6 +714,7 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
             scrollViewError.visibility = View.GONE
             scrollView.visibility = View.GONE
             bottomLayout.visibility = View.GONE
+            return
         } else {
             layoutErrorClient.visibility = View.GONE
 
@@ -712,6 +741,7 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
             if (obj.data?.error_code == "REQUIRE_LOCATION") {
                 llAcceptPermission.visibility = View.VISIBLE
                 tvMessageLocation.text = obj.data?.message?.message
+                return
             } else {
                 if (!obj.data?.message?.message.isNullOrEmpty()) {
                     presenter.getConfigError()
@@ -1663,7 +1693,7 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
     override fun showError(errorMessage: String) {
         super.showError(errorMessage)
         showShortError(errorMessage)
-        Handler().postDelayed({ onBackPressed() }, 500)
+//        Handler().postDelayed({ onBackPressed() }, 500)
     }
 
     override fun onRequireLoginSuccess(requestCode: Int) {
@@ -1713,17 +1743,16 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
     @SuppressLint("MissingPermission")
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == REQUEST_CODE_PERMISSION) {
+        if (requestCode == requestGpsPermission) {
             if (PermissionHelper.checkResult(grantResults)) {
                 if (NetworkHelper.isOpenedGPS(this)) {
                     llAcceptPermission.visibility = View.GONE
                     getData()
                 } else {
-                    DialogHelper.showNotification(this@DetailStampActivity, R.string.vui_long_bat_gpa_de_ung_dung_tim_duoc_vi_tri_cua_ban, false, object : NotificationDialogListener {
-                        override fun onDone() {
-                            onBackPressed()
-                        }
-                    })
+                    if (NetworkHelper.checkGPS(this@DetailStampActivity, getString(R.string.vui_long_bat_gpa_de_ung_dung_tim_duoc_vi_tri_cua_ban), requestGps)) {
+                        getData()
+                        return
+                    }
                 }
             } else {
                 llAcceptPermission.visibility = View.VISIBLE
@@ -1761,6 +1790,11 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
         when (requestCode) {
             requestGift -> {
 //                getGiftLoyalty()
+            }
+            requestGps -> {
+                if (NetworkHelper.isOpenedGPS(this)) {
+                    getData()
+                }
             }
             requestBannerSurvey -> {
                 if (bannerViewPager != null) {
@@ -1839,4 +1873,6 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
     override fun onRemoveHolderInput() {
         this@DetailStampActivity.layoutLoyalty.beGone()
     }
+
+
 }

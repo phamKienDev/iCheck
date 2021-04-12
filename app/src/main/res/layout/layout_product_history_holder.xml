@@ -96,7 +96,6 @@
                 android:includeFontPadding="false"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5.2dp"
-                android:visibility="gone"
                 android:fontFamily="@font/barlow_medium"
                 android:textColor="#828282"
                 android:textSize="@dimen/font_12"

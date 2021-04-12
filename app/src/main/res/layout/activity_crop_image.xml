@@ -13,7 +13,7 @@
         app:cropAspectRatioY="1"
         app:cropMinCropResultHeightPX="500"
         app:cropMinCropResultWidthPX="500"
-        app:cropScaleType="centerCrop"
+        app:cropScaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@id/layoutBottom"
         app:layout_constraintTop_toTopOf="parent" />
 

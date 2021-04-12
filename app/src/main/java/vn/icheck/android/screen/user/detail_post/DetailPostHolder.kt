@@ -56,23 +56,23 @@ class DetailPostHolder(val binding: ItemPostDetailBinding, val listener: IDetail
         if (obj.page != null) {
             WidgetUtils.loadImageUrl(binding.imgLogo, obj.page?.avatar, R.drawable.ic_business_v2)
             binding.imgRank.beGone()
+            binding.tvName.text = obj.page?.getName
             if (obj.page!!.isVerify) {
-                binding.tvName.setDrawbleNextEndText(obj.page?.getName, R.drawable.ic_verified_16px)
+                binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
             } else {
-                binding.tvName.text = obj.page?.getName
+                binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
         } else {
             WidgetUtils.loadImageUrl(binding.imgLogo, obj.user?.avatar, R.drawable.ic_avatar_default_84px)
             binding.tvName.apply {
                 text = obj.user?.getName
                 if (obj.user?.kycStatus == 2) {
-                    setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_24dp, 0)
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_16dp, 0)
                 } else {
                     setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                 }
             }
             binding.imgRank.beVisible()
-            binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0)
             binding.imgRank.setRankUser(obj.user?.rank?.level)
         }
 

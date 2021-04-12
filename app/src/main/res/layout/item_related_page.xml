@@ -62,7 +62,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_14"
                 tools:drawableEnd="@drawable/ic_verified_16px"
-                tools:text="Công ty cổ phần OMO Việt Nam - Chuyên đồ gia dụng" />
+                tools:text="Côn đồ gia dụng" />
 
         </LinearLayout>
 

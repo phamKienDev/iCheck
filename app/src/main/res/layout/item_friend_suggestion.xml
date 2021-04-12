@@ -29,21 +29,28 @@
         tools:drawableEnd="@drawable/ic_avatar_standard_24dp"
         tools:drawableRight="@drawable/ic_avatar_rank_silver_16dp" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@id/tvName"
+    <FrameLayout
+        android:id="@id/layoutName"
         android:layout_width="@dimen/size_0"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/size_14"
-        android:layout_marginLeft="@dimen/size_14"
-        android:ellipsize="end"
-        android:fontFamily="@font/barlow_semi_bold"
-        android:singleLine="true"
-        android:textColor="#212121"
-        android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/layoutAvatar"
-        app:layout_constraintTop_toTopOf="@id/layoutAvatar"
-        tools:text="Xuyến Đỗ" />
+        app:layout_constraintTop_toTopOf="@id/layoutAvatar">
+
+        <vn.icheck.android.ui.view.TextBarlowSemiBold
+            android:id="@id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_14"
+            android:drawablePadding="@dimen/size_4"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:textAlignment="gravity"
+            android:textColor="#212121"
+            android:textSize="@dimen/font_14"
+            tools:text="Xuyến Đỗ" />
+    </FrameLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@id/btnAgree"
@@ -61,8 +68,8 @@
         android:text="@string/ket_ban"
         android:textColor="@color/white"
         android:textSize="@dimen/font_14"
-        app:layout_constraintStart_toStartOf="@id/tvName"
-        app:layout_constraintTop_toBottomOf="@id/tvName" />
+        app:layout_constraintStart_toStartOf="@id/layoutName"
+        app:layout_constraintTop_toBottomOf="@id/layoutName" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/btnDisagree"
@@ -81,7 +88,7 @@
         android:textColor="@color/lightBlue"
         android:textSize="@dimen/font_14"
         app:layout_constraintStart_toEndOf="@id/btnAgree"
-        app:layout_constraintTop_toBottomOf="@id/tvName" />
+        app:layout_constraintTop_toBottomOf="@id/layoutName" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@id/tvStatus"
@@ -97,6 +104,6 @@
         android:text="@string/da_gui_loi_moi"
         android:textColor="@color/fast_survey_gray"
         android:textSize="@dimen/font_14"
-        app:layout_constraintStart_toStartOf="@id/tvName"
-        app:layout_constraintTop_toBottomOf="@id/tvName" />
+        app:layout_constraintStart_toStartOf="@id/layoutName"
+        app:layout_constraintTop_toBottomOf="@id/layoutName" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -98,13 +98,13 @@ class DistributorAdapter(val listData: MutableList<ICPage>, val url: String) : R
                 obj.name
             }
 
-            if (obj.verified == true) {
+//            if (obj.verified == true) {
                 itemView.findViewById<View>(R.id.viewBackground).setBackgroundResource(R.color.lightBlue)
                 itemView.findViewById<AppCompatImageView>(R.id.imgDetail).setImageResource(R.drawable.ic_arrow_right_white_bg_blue_28px)
-            } else {
-                itemView.findViewById<View>(R.id.viewBackground).setBackgroundResource(R.color.darkGray2)
-                itemView.findViewById<AppCompatImageView>(R.id.imgDetail).setImageResource(R.drawable.ic_arrow_right_white_bg_gray_28px)
-            }
+//            } else {
+//                itemView.findViewById<View>(R.id.viewBackground).setBackgroundResource(R.color.darkGray2)
+//                itemView.findViewById<AppCompatImageView>(R.id.imgDetail).setImageResource(R.drawable.ic_arrow_right_white_bg_gray_28px)
+//            }
 
             if (!obj.title.isNullOrEmpty()) {
                 itemView.findViewById<AppCompatTextView>(R.id.tvPageCategory).text = obj.title

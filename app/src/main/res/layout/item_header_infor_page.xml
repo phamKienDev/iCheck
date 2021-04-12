@@ -306,6 +306,4 @@
             app:layout_constraintStart_toEndOf="@+id/user_avatar"
             app:layout_constraintTop_toTopOf="@+id/user_avatar" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </LinearLayout>

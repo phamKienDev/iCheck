@@ -63,7 +63,7 @@
                 android:textColor="@color/collection_product_name"
                 android:textSize="@dimen/font_16"
                 tools:drawableEnd="@drawable/ic_verified_16px"
-                tools:text="Quỳnh Hoa" />
+                tools:text="Quỳnh Hoa sadf adfasd asdfsadf ádfsadf" />
 
         </LinearLayout>
 

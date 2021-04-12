@@ -38,10 +38,8 @@ import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.helper.*
 import vn.icheck.android.helper.NetworkHelper
-import vn.icheck.android.helper.PermissionHelper
-import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICValidStampSocial
 import vn.icheck.android.network.models.history.ICBigCorp
@@ -58,7 +56,9 @@ import vn.icheck.android.screen.user.scan_history.holder.ListBigCorpHolder
 import vn.icheck.android.screen.user.scan_history.view.IScanHistoryView
 import vn.icheck.android.screen.user.scan_history.view_model.ScanHistoryViewModel
 import vn.icheck.android.screen.user.shipping.ship.ShipActivity
+import vn.icheck.android.screen.user.wall.IckUserWallActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
+import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.ick.*
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.ContactUtils
@@ -71,9 +71,9 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
 
     companion object {
         var adapter: ScanHistoryAdapter? = null
-        var listType = mutableListOf<Any>()
         var sort: Int? = null
         var listIdBigCorp = mutableListOf<Any>()
+        var listType = mutableListOf<Any>()
     }
 
     val viewModel: ScanHistoryViewModel by activityViewModels()
@@ -272,6 +272,17 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
 
     private fun checkStampQr(it: String) {
         when {
+            it.startsWith("u-") || it.startsWith("U-") -> {
+                if (it.count { "-".contains(it) } == 1) {
+                    try {
+                        val userID = it.split("-")[1]
+                        if (userID.isNotEmpty() && ValidHelper.validNumber(userID)) {
+                            IckUserWallActivity.create(userID.toLong(), requireActivity())
+                        }
+                    } catch (e: Exception) {
+                    }
+                }
+            }
             Constant.isMarketingStamps(it) -> {
                 WebViewActivity.start(requireActivity(), it, 1, null, true)
             }

@@ -1,6 +1,7 @@
 package vn.icheck.android.network.api
 
 import com.google.gson.JsonElement
+import io.reactivex.Observable
 import okhttp3.ResponseBody
 import retrofit2.http.*
 import vn.icheck.android.model.IckLayoutResponse
@@ -196,6 +197,9 @@ interface ICKApi {
 
     @GET
     suspend fun getFriendInvitation(@Url url: String?): ICResponse<ICListResponse<ICSearchUser>>
+
+    @GET
+    suspend fun getListFriendSuggestion(@Url url: String?): ICResponse<ICListResponse<ICUser>>
 
     @GET
     suspend fun getUserPosts(@Url url: String?): PostResponse

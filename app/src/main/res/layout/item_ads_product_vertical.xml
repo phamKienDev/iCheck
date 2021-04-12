@@ -77,12 +77,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_8"
+            android:ellipsize="middle"
             android:layout_marginTop="@dimen/size_6"
             android:layout_marginEnd="@dimen/size_8"
             tools:drawableEnd="@drawable/ic_verified_16px"
             android:drawablePadding="@dimen/size_2"
-            android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center|start"
             android:includeFontPadding="false"
             android:maxLines="2"
@@ -243,7 +242,5 @@
             android:textColor="@color/text_color_light_blue"
             android:textSize="@dimen/font_14"
             tools:text="Theo dõi" />
-
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

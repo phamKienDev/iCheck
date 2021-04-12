@@ -21,7 +21,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@id/tvName"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_6"
         android:drawablePadding="@dimen/size_4"

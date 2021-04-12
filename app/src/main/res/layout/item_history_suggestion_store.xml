@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/size_8"
-    android:layout_marginBottom="@dimen/size_8"
     android:layout_marginStart="@dimen/size_12"
+    android:layout_marginTop="@dimen/size_8"
     android:layout_marginEnd="@dimen/size_12"
+    android:layout_marginBottom="@dimen/size_8"
     android:background="@drawable/bg_corners_white_4_border_05">
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -22,15 +22,19 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvNameShop"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/size_0"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_7"
+        android:layout_marginEnd="@dimen/size_7"
+        android:ellipsize="end"
         android:fontFamily="@font/barlow_semi_bold"
+        android:singleLine="true"
         android:textColor="#35384b"
         android:textSize="@dimen/font_14"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imgAvatar"
         app:layout_constraintTop_toTopOf="@+id/imgAvatar"
-        tools:text="Giày Việt" />
+        tools:text="Giày Việt fsdf dsf sdfsf dskfs fd fsd ffd jk sfd  jsfd j ksd fjkl;sd fjlk;" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvCountRating"
@@ -67,7 +71,6 @@
         android:drawableStart="@drawable/ic_alternate_16_px"
         android:drawablePadding="@dimen/size_4"
         android:fontFamily="@font/barlow_semi_bold"
-        android:lineSpacingExtra="@dimen/font_6"
         android:text="Chỉ đường"
         android:textColor="#828282"
         android:textSize="@dimen/font_14"
@@ -101,5 +104,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view"
         tools:text="Có 12 sản phẩm có sẵn" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

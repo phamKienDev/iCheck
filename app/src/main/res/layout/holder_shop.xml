@@ -22,13 +22,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_64"
-            android:layout_marginLeft="@dimen/size_64"
             android:layout_marginTop="@dimen/size_5"
             android:layout_marginEnd="@dimen/size_14"
-            android:layout_marginRight="@dimen/size_14"
             android:textColor="#3c5a99"
             android:maxLines="1"
-            android:ellipsize="end"
             android:singleLine="true"
             android:textSize="@dimen/font_16"
             app:layout_constraintEnd_toEndOf="parent"
@@ -94,10 +91,12 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/size_36"
+                android:minWidth="@dimen/size_90"
                 android:orientation="vertical">
 
                 <vn.icheck.android.ui.view.TextBarlowSemiBold
-                    android:id="@+id/tv_price"
+                    android:id="@+id/tv_sale_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#ff0000"
@@ -106,14 +105,13 @@
                     tools:text="23,004,000đ" />
 
                 <vn.icheck.android.ui.view.TextBarlowMedium
-                    android:id="@+id/tv_sale_price"
+                    android:id="@+id/tv_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#b4b4b4"
                     android:fontFamily="@font/barlow_medium"
                     android:textSize="@dimen/font_12"
                     tools:text="23,504,000đ" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -124,7 +122,8 @@
                 android:layout_marginStart="@dimen/size_55"
                 android:background="@drawable/bg_corners_4_light_blue_no_solid"
                 android:gravity="center"
-                android:visibility="gone">
+                android:visibility="gone"
+                tools:visibility="visible">
 
                 <vn.icheck.android.ui.view.TextBarlowSemiBold
                     android:layout_width="wrap_content"
@@ -212,7 +211,5 @@
             android:text="/5"
             android:textColor="#ffffff"
             android:textSize="@dimen/font_12" />
-
     </LinearLayout>
-
 </FrameLayout>

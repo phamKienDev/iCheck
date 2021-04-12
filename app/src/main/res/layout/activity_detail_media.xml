@@ -83,8 +83,10 @@
                 android:drawablePadding="@dimen/size_4"
                 android:ellipsize="middle"
                 android:fontFamily="@font/barlow_semi_bold"
+                android:gravity="center_vertical"
                 android:includeFontPadding="false"
                 android:singleLine="true"
+                android:textAlignment="gravity"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_16"
                 tools:text="Hà Linh layout_constraintTop_toTopOf layout_constraintTop_toTopOf" />

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.exoplayer2.C
 import com.google.android.exoplayer2.ExoPlaybackException
 import com.google.android.exoplayer2.Player
+import kotlinx.android.synthetic.main.item_media_detail.view.*
 import vn.icheck.android.chat.icheckchat.R
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.VIDEO
 import vn.icheck.android.chat.icheckchat.base.recyclerview.BaseRecyclerView
@@ -60,7 +61,12 @@ class ImageDetailAdapter : BaseRecyclerView<MCExoMedia>() {
 
     inner class ImageDetailHolder(val binding: ItemMediaDetailBinding) : BaseViewHolder<MCExoMedia>(binding) {
         override fun bind(obj: MCExoMedia) {
-            loadImageUrlNotCrop(binding.root, obj.src, R.drawable.ic_default_image_upload_150_chat)
+            loadImageUrlNotCrop(binding.imgFull, obj.src, R.drawable.ic_default_image_upload_150_chat)
+
+            if (obj.resetImage) {
+                itemView.imgFull.resetZoom()
+                obj.resetImage = false
+            }
         }
     }
 

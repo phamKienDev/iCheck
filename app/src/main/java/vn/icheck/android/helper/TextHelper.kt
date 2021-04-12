@@ -348,11 +348,8 @@ object TextHelper {
         drawable?.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)
 
         val spannableString = SpannableString("$text  ") // cộng thêm khoảng trắng
-        val imageSpan = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
-            ImageSpan(drawable!!, ImageSpan.ALIGN_CENTER)
-        } else {
-            ImageSpan(drawable!!, ImageSpan.ALIGN_BASELINE)
-        }
+        val imageSpan = ImageSpan(drawable!!, ImageSpan.ALIGN_BASELINE)
+
         spannableString.setSpan(imageSpan, (text?:"").length + 1, (text?:"").length + 2, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
         this.text = spannableString
     }

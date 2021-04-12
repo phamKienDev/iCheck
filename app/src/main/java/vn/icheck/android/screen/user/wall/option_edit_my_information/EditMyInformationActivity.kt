@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
@@ -16,6 +17,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.work.WorkInfo
 import com.bumptech.glide.Glide
@@ -28,11 +30,12 @@ import org.greenrobot.eventbus.ThreadMode
 import vn.icheck.android.R
 import vn.icheck.android.base.fragment.CoroutineFragment
 import vn.icheck.android.base.model.ICMessageEvent
-import vn.icheck.android.component.take_media.TakeMediaDialog
 import vn.icheck.android.constant.*
 import vn.icheck.android.databinding.ActivityEditMyInformationBinding
 import vn.icheck.android.helper.DialogHelper
-import vn.icheck.android.tracking.insider.InsiderHelper
+import vn.icheck.android.helper.PermissionHelper
+import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
+import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.model.ApiErrorResponse
 import vn.icheck.android.model.ApiSuccessResponse
 import vn.icheck.android.model.icklogin.IckUserInfoResponse
@@ -45,12 +48,11 @@ import vn.icheck.android.screen.location.WARD
 import vn.icheck.android.screen.user.contribute_product.CONTRIBUTE_REQUEST
 import vn.icheck.android.screen.user.verify_identity.VerifyIdentityActivity
 import vn.icheck.android.screen.user.wall.IckUserWallViewModel
+import vn.icheck.android.tracking.insider.InsiderHelper
 import vn.icheck.android.util.*
 import vn.icheck.android.util.date.DatePickerFragment
 import vn.icheck.android.util.date.OnDatePicked
 import vn.icheck.android.util.ick.*
-import androidx.lifecycle.Observer
-import vn.icheck.android.helper.PermissionHelper
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -99,12 +101,19 @@ class EditMyInformationActivity : CoroutineFragment() {
         }
     }
 
-    private val takeImageListener = object : TakeMediaDialog.TakeImageListener {
+    private val takeImageListener = object : TakeMediaListener {
         override fun onPickMediaSucess(file: File) {
             loadFile(file)
         }
 
         override fun onPickMuliMediaSucess(file: MutableList<File>) {
+        }
+
+        override fun onStartCrop(filePath: String?, uri: Uri?, ratio: String?, requestCode: Int?) {
+
+        }
+
+        override fun onDismiss() {
         }
 
         override fun onTakeMediaSuccess(file: File?) {
@@ -451,7 +460,7 @@ class EditMyInformationActivity : CoroutineFragment() {
     }
 
     private fun selectPicture() {
-        TakeMediaDialog.show(childFragmentManager, takeImageListener, false, isVideo = false)
+        activity?.let { TakeMediaDialog.show(childFragmentManager, it, takeImageListener, selectMulti = false, isVideo = false) }
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {

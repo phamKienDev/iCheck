@@ -101,7 +101,7 @@
                 app:layout_constraintStart_toEndOf="@id/imgAvatar"
                 app:layout_constraintTop_toTopOf="@id/imgAvatar"
                 tools:drawableEnd="@drawable/ic_verified_16px"
-                tools:text="Adidas Store (tối 1 dòng)..." />
+                tools:text="Adidas Store sadf asd asdfsadf à" />
 
         </LinearLayout>
 

@@ -102,10 +102,12 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/size_36"
+                    android:minWidth="@dimen/size_90"
                     android:orientation="vertical">
 
                     <vn.icheck.android.ui.view.TextBarlowSemiBold
-                        android:id="@+id/tv_price"
+                        android:id="@+id/tv_sale_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/barlow_semi_bold"
@@ -114,12 +116,12 @@
                         tools:text="23,004,000đ" />
 
                     <vn.icheck.android.ui.view.TextBarlowMedium
-                        android:id="@+id/tv_sale_price"
+                        android:id="@+id/tv_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#b4b4b4"
                         android:fontFamily="@font/barlow_medium"
                         android:textSize="@dimen/font_12"
+                        android:textColor="#b4b4b4"
                         tools:text="23,504,000đ" />
 
                 </LinearLayout>
@@ -132,7 +134,8 @@
                     android:layout_marginStart="@dimen/size_55"
                     android:background="@drawable/bg_corners_4_light_blue_no_solid"
                     android:gravity="center"
-                    android:visibility="gone">
+                    android:visibility="gone"
+                    tools:visibility="visible">
 
                     <vn.icheck.android.ui.view.TextBarlowSemiBold
                         android:layout_width="wrap_content"

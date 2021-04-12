@@ -84,14 +84,13 @@
             android:layout_marginTop="@dimen/size_6"
             android:layout_marginEnd="@dimen/size_8"
             android:drawablePadding="@dimen/size_2"
-            tools:drawableEnd="@drawable/ic_verified_16px"
-            android:ellipsize="middle"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center|start"
             android:includeFontPadding="false"
             android:maxLines="2"
             android:textColor="@color/collection_product_name"
             android:textSize="@dimen/font_14"
+            tools:drawableEnd="@drawable/ic_verified_16px"
             tools:text="Adidas Store (tối 2 dòng)..." />
 
     </LinearLayout>

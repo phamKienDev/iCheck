@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="chup_anh">Chụp ảnh</string>
+    <string name="chon_anh">Chọn ảnh</string>
+    <string name="quay_video">Quay video</string>
+    <string name="bo_qua">Bỏ qua</string>
+    <string name="xong">Xong</string>
+    <string name="chon_anh_video">Chọn ảnh, video</string>
+    <string name="chup_anh_video">Chụp ảnh, video</string>
+    <string name="error_default">Hệ thống đang có lỗi xảy ra!\nVui lòng thử lại sau!</string>
+    <string name="chi_duoc_chon_toi_da_x_muc">Chỉ được chọn tối đa %d mục</string>
+    <string name="huy">Hủy</string>
+    <string name="ok">OK</string>
+    <string name="co_loi_xay_ra_vui_long_thu_lai">Có lỗi xảy ra. Vui lòng thử lại.</string>
+    <string name="crop_image_message">Lưu ý, hình ảnh được sử dụng là hình vuông. Để đảm bảo hình ảnh sản phẩm được hiển thị tốt nhất, bạn cần chọn ảnh có độ phân giải tối thiểu 500px x 500px</string>
+    <string name="khong_the_thuc_hien_tac_vu_vi_ban_chua_cap_quyen">Không thể thực hiện tác vụ vì bạn chưa cấp đủ quyền</string>
+    <string name="noi_dung_ma_qr">Nội dung mã QR</string>
+    <string name="icheck_thong_bao">iCheck thông báo</string>
+</resources>

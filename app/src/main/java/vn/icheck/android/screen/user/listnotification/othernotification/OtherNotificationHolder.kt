@@ -42,7 +42,7 @@ class OtherNotificationHolder(parent: ViewGroup) : BaseViewHolder<ICNotification
             "system_gift_changed" -> {
                 itemView.tvStatus.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_notification_gift_20dp, 0)
             }
-            "RANK","LEVEL_UP" -> {
+            "RANK","LEVEL_UP","POST" -> {
                 itemView.tvStatus.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_notification_admin_20dp, 0)
             }
             "system_voucher_changed" -> {
