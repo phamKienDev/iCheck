@@ -945,13 +945,11 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         checkKeyboard()
         val listener = object : TakeMediaListener {
             override fun onPickMediaSucess(file: File) {
-                selectedTextView(binding.imgCamera, binding.recyclerViewImage, true)
                 adapterImage.setImage(file)
                 chooseImage()
             }
 
             override fun onPickMuliMediaSucess(file: MutableList<File>) {
-                selectedTextView(binding.imgCamera, binding.recyclerViewImage, true)
                 adapterImage.setListImage(file)
                 chooseImage()
             }
@@ -964,7 +962,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
             override fun onTakeMediaSuccess(file: File?) {
                 if (file != null) {
-                    selectedTextView(binding.imgCamera, binding.recyclerViewImage, true)
                     adapterImage.setImage(file)
                     chooseImage()
                 }
