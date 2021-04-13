@@ -9,7 +9,7 @@ class MCDetailMessage : Serializable {
 
     var link: String? = null
 
-    var sticker: String? = null
+    var sticker: Any? = null
 
     var type: String? = null
 

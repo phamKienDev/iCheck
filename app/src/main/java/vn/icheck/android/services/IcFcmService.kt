@@ -2,6 +2,7 @@ package vn.icheck.android.services
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Handler
 import androidx.preference.PreferenceManager
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
@@ -112,14 +113,22 @@ class IcFcmService : FirebaseMessagingService() {
             }
             else -> {
                 ICheckApplication.currentActivity()?.let { act ->
-                    Alerter.create(act)
-                            .setBackgroundColorRes(R.color.green_popup_notifi)
-                            .setDuration(3000)
-                            .setText(body)
-                            .setOnClickListener {
-                                FirebaseDynamicLinksActivity.startTargetPath(act, path)
-                            }
-                            .show()
+                    act.runOnUiThread {
+                        if (Alerter.isShowing) {
+                            Alerter.hide()
+                        }
+
+                        Handler().postDelayed({
+                            Alerter.create(act)
+                                    .setBackgroundColorRes(R.color.green_popup_notifi)
+                                    .setDuration(3000)
+                                    .setText(body)
+                                    .setOnClickListener {
+                                        FirebaseDynamicLinksActivity.startTargetPath(act, path)
+                                    }
+                                    .show()
+                        }, 1000)
+                    }
                 }
             }
         }

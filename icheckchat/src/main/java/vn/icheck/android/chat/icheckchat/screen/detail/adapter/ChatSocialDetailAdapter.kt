@@ -6,8 +6,9 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Context.CLIPBOARD_SERVICE
 import android.content.Intent
-import android.graphics.Paint
 import android.net.Uri
+import android.text.util.Linkify
+import android.util.Patterns
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -34,8 +35,10 @@ import vn.icheck.android.chat.icheckchat.helper.NetworkHelper
 import vn.icheck.android.chat.icheckchat.model.MCDetailMessage
 import vn.icheck.android.chat.icheckchat.model.MCMessageEvent
 import vn.icheck.android.chat.icheckchat.model.MCStatus
+import vn.icheck.android.chat.icheckchat.model.MCSticker
 import vn.icheck.android.chat.icheckchat.screen.detail_image.ImageDetailActivity
 import vn.icheck.android.ichecklibs.SizeHelper
+import java.util.regex.Matcher
 
 class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val listData = mutableListOf<MCDetailMessage>()
@@ -202,10 +205,20 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
         }
 
         private fun setupStickers(obj: MCDetailMessage) {
-            if (!obj.sticker.isNullOrEmpty()) {
-                binding.layoutImageDetail.layoutOneImage.setVisible()
+            if (obj.sticker is String){
+                if ((obj.sticker as String).isNotEmpty()) {
+                    binding.layoutImageDetail.layoutOneImage.setVisible()
+                    binding.layoutImageDetail.layoutOneImage.setBackgroundResource(0)
 
-                loadImageUrlRounded(binding.layoutImageDetail.img, obj.sticker, R.drawable.ic_default_image_upload_150_chat, dpToPx(10))
+                    loadImageUrlRounded(binding.layoutImageDetail.img, obj.sticker as String, R.drawable.ic_default_image_upload_150_chat, dpToPx(10))
+                }
+            }else if (obj.sticker is MCSticker){
+                if (obj.sticker != null && !(obj.sticker as MCSticker).thumbnail.isNullOrEmpty()) {
+                    binding.layoutImageDetail.layoutOneImage.setVisible()
+                    binding.layoutImageDetail.layoutOneImage.setBackgroundResource(0)
+
+                    loadImageUrlRounded(binding.layoutImageDetail.img, (obj.sticker as MCSticker).thumbnail, R.drawable.ic_default_image_upload_150_chat, dpToPx(10))
+                }
             }
         }
 
@@ -384,12 +397,20 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
         }
 
         private fun setupSticker(obj: MCDetailMessage) {
-            if (!obj.sticker.isNullOrEmpty()) {
-                binding.layoutImageDetail.layoutOneImage.setVisible()
+            if (obj.sticker is String){
+                if ((obj.sticker as String).isNotEmpty()) {
+                    binding.layoutImageDetail.layoutOneImage.setVisible()
+                    binding.layoutImageDetail.layoutOneImage.setBackgroundResource(0)
 
-                binding.layoutImageDetail.layoutOneImage.setBackgroundResource(0)
+                    loadImageUrlRounded(binding.layoutImageDetail.img, obj.sticker as String, R.drawable.ic_default_image_upload_150_chat, dpToPx(10))
+                }
+            }else if (obj.sticker is MCSticker){
+                if (obj.sticker != null && !(obj.sticker as MCSticker).thumbnail.isNullOrEmpty()) {
+                    binding.layoutImageDetail.layoutOneImage.setVisible()
+                    binding.layoutImageDetail.layoutOneImage.setBackgroundResource(0)
 
-                loadImageUrlRounded(binding.layoutImageDetail.img, obj.sticker, R.drawable.ic_default_image_upload_150_chat, dpToPx(10))
+                    loadImageUrlRounded(binding.layoutImageDetail.img, (obj.sticker as MCSticker).thumbnail, R.drawable.ic_default_image_upload_150_chat, dpToPx(10))
+                }
             }
         }
 
@@ -449,11 +470,15 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
 
         link.apply {
             text = content
-            paintFlags = paintFlags or Paint.UNDERLINE_TEXT_FLAG
+//            paintFlags = paintFlags or Paint.UNDERLINE_TEXT_FLAG
+            Linkify.addLinks(this, Linkify.ALL)
+            setLinkTextColor(ContextCompat.getColor(context, R.color.white))
         }
 
         val urlTask = URLEmbeddedTask((URLEmbeddedTask.OnLoadURLListener {
             image.visibleOrGone(!it.thumbnailURL.isNullOrEmpty())
+            title.visibleOrGone(!it.title.isNullOrEmpty())
+            description.visibleOrGone(!it.host.isNullOrEmpty())
 
             loadImageUrl(image, it.thumbnailURL, 0, 0)
 
@@ -461,7 +486,16 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
             description.text = it.host
         }))
 
-        urlTask.execute(content)
+        urlTask.execute(extractLinks(content))
+    }
+
+    private fun extractLinks(text: String): String {
+        val m = Patterns.WEB_URL.matcher(text)
+        var url = ""
+        while (m.find()) {
+            url = m.group()
+        }
+        return url
     }
 
     private fun setUpContent(tvMessage: AppCompatTextView, tvTime: AppCompatTextView, rootView: View, obj: MCDetailMessage, context: Context) {

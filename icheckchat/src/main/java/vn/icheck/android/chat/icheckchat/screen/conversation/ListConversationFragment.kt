@@ -83,7 +83,6 @@ class ListConversationFragment(val listener: ICountMessageListener) : BaseFragme
         viewModel.onError.observe(this@ListConversationFragment, {
             binding.swipeRefresh.isRefreshing = false
             binding.recyclerView.visibleOrGone(it.title.isNullOrEmpty())
-//            binding.edtSearch.visibleOrGone(it.title.isNullOrEmpty())
             binding.layoutNoData.visibleOrGone(!it.title.isNullOrEmpty())
 
             if (adapter.isEmpty) {
@@ -232,7 +231,7 @@ class ListConversationFragment(val listener: ICountMessageListener) : BaseFragme
             } else {
                 binding.recyclerView.setVisible()
                 binding.layoutNoData.setGone()
-                binding.swipeRefresh.isRefreshing = false
+
                 adapter.setListData(conversationList)
             }
         } else {

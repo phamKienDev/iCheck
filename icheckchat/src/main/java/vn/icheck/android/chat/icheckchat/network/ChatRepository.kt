@@ -132,10 +132,7 @@ class ChatRepository {
         if (!obj.content.isNullOrEmpty()) {
             message["text"] = obj.content!!.replace("\r", "\n")
         }
-//        if (!obj.link.isNullOrEmpty()) {
-//            message["link"] = obj.link!!
-//        }
-        if (!obj.sticker.isNullOrEmpty()) {
+        if (obj.sticker != null && obj.sticker is MCSticker) {
             message["sticker"] = obj.sticker!!
         }
         if (!obj.listMedia.isNullOrEmpty()) {

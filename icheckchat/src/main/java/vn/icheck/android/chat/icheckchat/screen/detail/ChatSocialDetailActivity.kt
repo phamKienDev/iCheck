@@ -280,7 +280,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                         }
 
                         getChatMessage(key)
-                        listenChangeMessage(key, System.currentTimeMillis())
+                        listenChangeMessage(key)
 
                         if (obj.child("is_block").value != null) {
                             binding.layoutToolbar.imgAction.setGone()
@@ -361,15 +361,15 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                     }
                 },
                 { error ->
-                    listenChangeMessage(key, 0)
+                    listenChangeMessage(key)
                     showToastError(error.message)
                 })
 
 
     }
 
-    private fun listenChangeMessage(key: String, timeStart: Long) {
-        viewModel.getChangeMessageChat(key, { data ->
+    private fun listenChangeMessage(key: String) {
+        viewModel.getChangeMessageChat(key) { data ->
             // mình gửi
             if (FirebaseAuth.getInstance().currentUser?.uid == data.child("sender").child("source_id").value.toString()) {
                 val index = adapter.getListData.indexOfFirst { it.messageId == data.key }
@@ -402,6 +402,27 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                     }
 
                     adapter.notifyItemChanged(index)
+                } else {
+                    val lastMessageReceive = adapter.getListData.firstOrNull { it.senderId == FirebaseAuth.getInstance().currentUser?.uid }
+                    val message = convertDataFirebase(data, lastMessageReceive ?: MCDetailMessage())
+                    message.showStatus = true
+                    adapter.getListData.add(0, message)
+                    adapter.notifyItemInserted(0)
+
+                    //xóa status tin nhắn trước đó
+                    if (adapter.getListData[1].senderId == message.senderId) {
+                        if (!chenhLechGio(adapter.getListData[1].time, message.time, 1)) {
+                            val holder = recyclerView.findViewHolderForAdapterPosition(1)
+                            adapter.getListData[1].showStatus = false
+
+                            if (holder is ChatSocialDetailAdapter.SenderHolder) {
+                                holder.setupShowStatus(adapter.getListData[1])
+                            } else {
+                                adapter.notifyItemChanged(1)
+                            }
+                        }
+                    }
+                    binding.recyclerView.smoothScrollToPosition(0)
                 }
                 // đối phương gửi
             } else {
@@ -429,7 +450,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                     binding.recyclerView.smoothScrollToPosition(0)
                 }
             }
-        }, timeStart)
+        }
     }
 
     private fun convertDataFirebase(message: DataSnapshot, newMessage: MCDetailMessage): MCDetailMessage {
@@ -482,8 +503,18 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                     content = message.child("message").child("text").value.toString()
                 }
 
-                if (!message.child("message").child("sticker").value.toString().contains("null")) {
-                    sticker = message.child("message").child("sticker").value.toString()
+                if (message.child("message").child("sticker").value != null) {
+                    val stickerFirebase = message.child("message").child("sticker")
+
+                    sticker = if (message.child("message").child("sticker").child("thumbnail").value.toString().replace("null", "").isEmpty()){
+                        message.child("message").child("sticker").value.toString()
+                    }else{
+                        MCSticker().apply {
+                            id = stickerFirebase.child("id").value.toString().toLong()
+                            thumbnail = stickerFirebase.child("thumbnail").value.toString()
+                            packageId = stickerFirebase.child("packageId").value.toString().toLong()
+                        }
+                    }
                 }
             }
         }
@@ -751,7 +782,11 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                                 val element = MCDetailMessage().apply {
                                     senderId = FirebaseAuth.getInstance().currentUser?.uid
                                     type = "sticker"
-                                    sticker = obj.thumbnail
+                                    sticker = MCSticker().apply {
+                                        id = obj.id
+                                        this.packageId = obj.packageId
+                                        thumbnail = obj.thumbnail
+                                    }
                                 }
 
                                 if (!conversation?.key.isNullOrEmpty()) {
