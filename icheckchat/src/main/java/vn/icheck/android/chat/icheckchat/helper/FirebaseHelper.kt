@@ -99,13 +99,15 @@ class FirebaseHelper {
                     .limitToLast(10)
         }
 
-        imageDatabase.addValueEventListener(object : ValueEventListener {
+        imageDatabase.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 success(snapshot)
+                imageDatabase.removeEventListener(this)
             }
 
             override fun onCancelled(error: DatabaseError) {
                 cancel(error)
+                imageDatabase.removeEventListener(this)
             }
         })
     }
@@ -133,20 +135,8 @@ class FirebaseHelper {
         })
     }
 
-    fun getMessageDetail(key: String, success: (snapshot: DataSnapshot) -> Unit, cancel: (error: DatabaseError) -> Unit) {
-        firebaseDatabase.getReference("chat-details-v2/$key").orderByChild("time").addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                success(snapshot)
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                cancel(error)
-            }
-        })
-    }
-
-    fun getChangeMessageChat(key: String, onAdd: (snapshot: DataSnapshot) -> Unit, timeStart: Long) {
-        firebaseDatabase.getReference("chat-details-v2/$key").orderByChild("time").startAt(timeStart.toDouble()).addChildEventListener(object : ChildEventListener {
+    fun getChangeMessageChat(key: String, onAdd: (snapshot: DataSnapshot) -> Unit) {
+        firebaseDatabase.getReference("chat-details-v2/$key").orderByChild("time").startAt(System.currentTimeMillis().toDouble()).addChildEventListener(object : ChildEventListener {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                 onAdd(snapshot)
             }

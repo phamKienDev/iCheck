@@ -97,6 +97,7 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
 
         if (!key.isNullOrEmpty()) {
             getChatRoom(key!!)
+            getImage(0, key!!)
         }
     }
 
@@ -188,8 +189,6 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
                         }
                     }
                 }
-
-                getImage(0, key)
             }
         }, { error ->
             showToastError(error.message)
