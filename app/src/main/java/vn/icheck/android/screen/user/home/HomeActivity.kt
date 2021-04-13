@@ -222,32 +222,32 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
         listPage.add(ICFragment(null, HomePageFragment()))
         listPage.add(ICFragment(null, ListNewsFragment.newInstance(false)))
         listPage.add(ICFragment(null, ScanHistoryFragment()))
-//        listPage.add(ICFragment(null, SocialChatFragment()))
-        listPage.add(ICFragment(null, ChatSocialFragment().apply {
-            setDataFromHome(object : ListConversationFragment.Companion.ICountMessageListener {
-                override fun getCountMessage(count: Long) {
-
-                    val tvChatCount = findViewById<AppCompatTextView>(R.id.tvChatCount)
-                    tvChatCount.post {
-                        tvChatCount.visibility = if (count != 0L) {
-                            View.VISIBLE
-                        } else {
-                            View.GONE
-                        }
-
-                        tvChatCount.text = if (count > 9) {
-                            "+9"
-                        } else {
-                            "$count"
-                        }
-                    }
-                }
-
-                override fun onClickLeftMenu() {
-                    openSlideMenu()
-                }
-            }, SessionManager.isUserLogged)
-        }))
+        listPage.add(ICFragment(null, SocialChatFragment()))
+//        listPage.add(ICFragment(null, ChatSocialFragment().apply {
+//            setDataFromHome(object : ListConversationFragment.Companion.ICountMessageListener {
+//                override fun getCountMessage(count: Long) {
+//
+//                    val tvChatCount = findViewById<AppCompatTextView>(R.id.tvChatCount)
+//                    tvChatCount.post {
+//                        tvChatCount.visibility = if (count != 0L) {
+//                            View.VISIBLE
+//                        } else {
+//                            View.GONE
+//                        }
+//
+//                        tvChatCount.text = if (count > 9) {
+//                            "+9"
+//                        } else {
+//                            "$count"
+//                        }
+//                    }
+//                }
+//
+//                override fun onClickLeftMenu() {
+//                    openSlideMenu()
+//                }
+//            }, SessionManager.isUserLogged)
+//        }))
 
         viewPager.offscreenPageLimit = 5
         viewPager.setPagingEnabled(false)
