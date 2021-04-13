@@ -184,8 +184,13 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 val holder = recyclerView.findViewHolderForAdapterPosition(0)
-                isAllowScroll = holder != null
-                Log.d("onScrolled", "onScrolled: $dy")
+                if (holder != null) {
+                    isAllowScroll = true
+                    binding.layoutNewMessage.beGone()
+                    binding.layoutNewMessage.clearAnimation()
+                } else {
+                    isAllowScroll = false
+                }
             }
         })
 
