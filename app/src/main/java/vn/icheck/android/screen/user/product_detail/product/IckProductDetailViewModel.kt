@@ -845,9 +845,9 @@ class IckProductDetailViewModel : BaseViewModel() {
 
             productRepository.getListReview(layout.request.url!!, object : ICNewApiListener<ICResponse<ICListResponse<ICPost>>> {
                 override fun onSuccess(obj: ICResponse<ICListResponse<ICPost>>) {
-                    val count = reviewSummaryData?.ratingCount?.toInt() ?: obj.data?.rows!!.size
+                    val count = obj.data?.count ?: reviewSummaryData?.ratingCount?.toInt()
                     if (!obj.data?.rows.isNullOrEmpty()) {
-                        layout.data = ProductListReviewModel(obj.data?.rows!!, count, productID)
+                        layout.data = ProductListReviewModel(obj.data?.rows!!, count?:1, productID)
                         onUpdateLayout.value = layout
                     } else {
                         checkTotalError(layout)
