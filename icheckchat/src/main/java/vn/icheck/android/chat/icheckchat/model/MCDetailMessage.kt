@@ -27,7 +27,7 @@ class MCDetailMessage : Serializable {
 
     var product: MCProductFirebase? = null
 
-    var showStatus: Boolean = false
+    var showStatus: Int = 1 // -1: hiện, k được ẩn, 0: ẩn, 1: hiện, được ẩn
 
     var status: MCStatus? = MCStatus.SUCCESS
 

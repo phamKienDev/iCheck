@@ -128,6 +128,7 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
         }
 
         imgAction.setOnClickListener {
+            EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.GO_TO_HOME, 1))
             requireContext().startClearTopActivity(HomeActivity::class.java)
         }
     }

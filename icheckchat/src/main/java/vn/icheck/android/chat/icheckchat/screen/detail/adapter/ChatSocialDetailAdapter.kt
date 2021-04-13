@@ -13,6 +13,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -20,6 +21,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.nguyencse.URLEmbeddedTask
+import kotlinx.android.synthetic.main.item_receiver.view.*
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.chat.icheckchat.R
 import vn.icheck.android.chat.icheckchat.base.recyclerview.IRecyclerViewCallback
@@ -39,6 +41,7 @@ import vn.icheck.android.chat.icheckchat.model.MCSticker
 import vn.icheck.android.chat.icheckchat.screen.detail_image.ImageDetailActivity
 import vn.icheck.android.ichecklibs.SizeHelper
 import java.util.regex.Matcher
+import vn.icheck.android.ichecklibs.beGone
 
 class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val listData = mutableListOf<MCDetailMessage>()
@@ -163,7 +166,7 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
                     binding.layoutLink.setGone()
                     setUpContent(binding.tvMessage, binding.tvTime, binding.root, obj, itemView.context)
                 }
-            }else{
+            } else {
                 binding.layoutLink.setGone()
                 binding.tvMessage.setGone()
             }
@@ -248,7 +251,7 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
         }
 
         fun setupShowStatus(obj: MCDetailMessage) {
-            if (obj.showStatus) {
+            if (obj.showStatus != 0) {
                 binding.tvTime.setVisible()
                 binding.root.setPadding(dpToPx(90), 0, dpToPx(12), dpToPx(16))
             } else {
@@ -310,10 +313,14 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
             }
 
             binding.root.setOnClickListener {
-                if (!obj.showStatus) {
+                if (obj.showStatus == 0) {
                     binding.tvTime.setVisible()
                     binding.root.setPadding(dpToPx(90), 0, dpToPx(12), dpToPx(10))
-                    obj.showStatus = true
+                    obj.showStatus = 1
+                } else if (obj.showStatus == 1) {
+                    binding.tvTime.setGone()
+                    binding.root.setPadding(dpToPx(90), 0, dpToPx(12), dpToPx(2))
+                    obj.showStatus = 0
                 }
             }
 
@@ -339,10 +346,13 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
                     binding.layoutLink.setGone()
                     setUpContent(binding.tvMessage, binding.tvTime, binding.root, obj, itemView.context)
                 }
-            }else{
+            } else {
                 binding.layoutLink.setGone()
                 binding.tvMessage.setGone()
             }
+            obj.timeText = convertDateTimeSvToCurrentDay(obj.time)
+            binding.tvTime.text = obj.timeText
+
 
             setupProduct(obj)
             setupMedia(obj)
@@ -415,39 +425,51 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
         }
 
 
+        fun setupShowStatus(obj: MCDetailMessage) {
+            obj.timeText = convertDateTimeSvToCurrentDay(obj.time)
+            binding.tvTime.text = obj.timeText
+
+            if (obj.showStatus != 0) {
+                binding.tvTime.setVisible()
+                binding.root.setPadding(dpToPx(12), 0, dpToPx(55), dpToPx(10))
+                binding.root.imgAvatarUser.layoutParams = LinearLayout.LayoutParams(SizeHelper.size30, SizeHelper.size30).apply {
+                    this.bottomMargin = SizeHelper.size16
+                }
+            } else {
+                binding.tvTime.setGone()
+                binding.root.setPadding(dpToPx(12), 0, dpToPx(55), dpToPx(2))
+                binding.root.imgAvatarUser.layoutParams = LinearLayout.LayoutParams(SizeHelper.size30, SizeHelper.size30).apply {
+                    this.bottomMargin = 0
+                }
+            }
+
+            if (obj.showStatus == -1) {
+                binding.imgAvatarUser.setVisible()
+            } else {
+                binding.imgAvatarUser.setInvisible()
+            }
+        }
+
         private fun initClick(obj: MCDetailMessage) {
             binding.layoutImageDetail.root.setOnClickListener {
                 obj.listMedia?.let { it1 -> ImageDetailActivity.startImageDetail(itemView.context, it1, 0) }
             }
 
             binding.root.setOnClickListener {
-                if (!obj.showStatus) {
+                if (obj.showStatus == 1) {
+                    binding.tvTime.setGone()
+                    binding.root.setPadding(dpToPx(12), 0, dpToPx(55), dpToPx(2))
+                    binding.root.imgAvatarUser.layoutParams = LinearLayout.LayoutParams(SizeHelper.size30, SizeHelper.size30).apply {
+                        this.bottomMargin = 0
+                    }
+                    obj.showStatus = 0
+                } else if (obj.showStatus == 0) {
                     binding.tvTime.setVisible()
-                    obj.timeText = convertDateTimeSvToCurrentDay(obj.time)
-                    binding.tvTime.text = obj.timeText
-                    binding.root.setPadding(dpToPx(12), 0, dpToPx(55), dpToPx(12))
-                    obj.showStatus = true
-                }
-            }
-        }
-
-        fun setupShowStatus(obj: MCDetailMessage) {
-            obj.timeText = convertDateTimeSvToCurrentDay(obj.time)
-            binding.tvTime.text = obj.timeText
-
-            if (obj.showStatus) {
-                binding.tvTime.setVisible()
-                binding.root.setPadding(dpToPx(12), 0, dpToPx(55), dpToPx(10))
-                binding.imgAvatarUser.setVisible()
-                binding.imgAvatarUser.layoutParams = ConstraintLayout.LayoutParams(SizeHelper.size30, SizeHelper.size30).also {
-                    it.bottomMargin = SizeHelper.size16
-                }
-            } else {
-                binding.tvTime.setGone()
-                binding.root.setPadding(dpToPx(12), 0, dpToPx(55), dpToPx(2))
-                binding.imgAvatarUser.setInvisible()
-                binding.imgAvatarUser.layoutParams = ConstraintLayout.LayoutParams(SizeHelper.size30, SizeHelper.size30).also {
-                    it.bottomMargin = 0
+                    binding.root.setPadding(dpToPx(12), 0, dpToPx(55), dpToPx(10))
+                    binding.root.imgAvatarUser.layoutParams = LinearLayout.LayoutParams(SizeHelper.size30, SizeHelper.size30).apply {
+                        this.bottomMargin = SizeHelper.size16
+                    }
+                    obj.showStatus = 1
                 }
             }
         }
@@ -506,14 +528,22 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
             paintFlags = 0
 
             setOnClickListener {
-                if (!obj.showStatus) {
+                if (obj.showStatus == 0) {
                     tvTime.setVisible()
                     if (FirebaseAuth.getInstance().currentUser?.uid == obj.senderId) {
                         rootView.setPadding(dpToPx(90), 0, dpToPx(12), dpToPx(10))
                     } else {
                         rootView.setPadding(dpToPx(12), 0, dpToPx(55), dpToPx(10))
                     }
-                    obj.showStatus = true
+                    obj.showStatus = 1
+                } else if (obj.showStatus == 1) {
+                    tvTime.beGone()
+                    if (FirebaseAuth.getInstance().currentUser?.uid == obj.senderId) {
+                        rootView.setPadding(dpToPx(90), 0, dpToPx(12), dpToPx(2))
+                    } else {
+                        rootView.setPadding(dpToPx(12), 0, dpToPx(55), dpToPx(2))
+                    }
+                    obj.showStatus = 0
                 }
             }
 
