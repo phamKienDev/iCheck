@@ -429,7 +429,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 } else {
                     val lastMessageReceive = adapter.getListData.firstOrNull { it.senderId == FirebaseAuth.getInstance().currentUser?.uid }
                     val message = convertDataFirebase(data, lastMessageReceive ?: MCDetailMessage())
-                    message.showStatus = true
+                    message.showStatus = -1
                     adapter.getListData.add(0, message)
                     adapter.notifyItemInserted(0)
 
@@ -437,7 +437,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                     if (adapter.getListData[1].senderId == message.senderId) {
                         if (!chenhLechGio(adapter.getListData[1].time, message.time, 1)) {
                             val holder = recyclerView.findViewHolderForAdapterPosition(1)
-                            adapter.getListData[1].showStatus = false
+                            adapter.getListData[1].showStatus = 0
 
                             if (holder is ChatSocialDetailAdapter.SenderHolder) {
                                 holder.setupShowStatus(adapter.getListData[1])
