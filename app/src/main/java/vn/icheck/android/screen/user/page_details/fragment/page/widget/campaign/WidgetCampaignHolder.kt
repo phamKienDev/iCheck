@@ -9,7 +9,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.network.models.ICCampaign
-import vn.icheck.android.screen.user.home_page.campaign.list_campaign.ListCampaignActivity
+import vn.icheck.android.screen.user.list_campaign.ListCampaignActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
 
 class WidgetCampaignHolder(parent: ViewGroup,recycledViewPool: RecyclerView.RecycledViewPool?) : BaseViewHolder<MutableList<ICCampaign>>(ViewHelper.createRecyclerViewWithTitleHolderV2(parent.context, null)) {

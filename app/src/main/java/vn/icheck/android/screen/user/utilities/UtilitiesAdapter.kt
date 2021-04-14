@@ -14,7 +14,7 @@ import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.network.models.ICTheme
-import vn.icheck.android.screen.user.home_page.home.holder.secondfunction.HomeSecondaryFunctionAdapter
+import vn.icheck.android.screen.user.home_page.holder.secondfunction.HomeSecondaryFunctionAdapter
 import vn.icheck.android.ui.layout.CustomGridLayoutManager
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible

@@ -1,6 +1,5 @@
 package vn.icheck.android.screen.user.page_details.fragment.page.widget.campaign
 
-import android.content.Intent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
@@ -12,10 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
-import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.network.models.ICCampaign
-import vn.icheck.android.screen.user.home_page.campaign.detail_campagin_v2.DetailCampaignV2Activity
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -42,9 +39,9 @@ class WidgetCampaignAdapter(val listData: MutableList<ICCampaign>) : RecyclerVie
             WidgetUtils.loadImageUrlRounded4((params.getChildAt(0) as AppCompatImageView), obj.image)
 
             itemView.setOnClickListener {
-                val intent = Intent(itemView.context, DetailCampaignV2Activity::class.java)
-                intent.putExtra(Constant.DATA_1, obj)
-                itemView.context.startActivity(intent)
+//                val intent = Intent(itemView.context, DetailCampaignV2Activity::class.java)
+//                intent.putExtra(Constant.DATA_1, obj)
+//                itemView.context.startActivity(intent)
             }
 
             (params.getChildAt(1) as AppCompatTextView).run {

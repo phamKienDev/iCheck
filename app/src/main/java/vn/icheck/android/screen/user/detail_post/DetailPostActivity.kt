@@ -54,7 +54,7 @@ import vn.icheck.android.screen.user.commentpost.CommentPermissionAdapter
 import vn.icheck.android.screen.user.createpost.CreateOrUpdatePostActivity
 import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
 import vn.icheck.android.screen.user.edit_review.EditReviewActivity
-import vn.icheck.android.screen.user.editcomment.EditCommentActivity
+import vn.icheck.android.screen.user.edit_comment.EditCommentActivity
 import vn.icheck.android.screen.user.list_product_question.adapter.ListEmojiAdapter
 import vn.icheck.android.screen.user.media_in_post.MediaInPostActivity
 import vn.icheck.android.util.KeyboardUtils

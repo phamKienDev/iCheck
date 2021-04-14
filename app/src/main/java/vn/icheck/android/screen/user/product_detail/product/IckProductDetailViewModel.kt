@@ -3,14 +3,12 @@ package vn.icheck.android.screen.user.product_detail.product
 import android.content.Intent
 import android.os.Handler
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.util.Util
 import com.google.gson.JsonObject
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withTimeoutOrNull
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
@@ -56,7 +54,7 @@ import vn.icheck.android.network.models.product_detail.ICBasicInforProduct
 import vn.icheck.android.network.models.product_detail.ICDataProductDetail
 import vn.icheck.android.network.models.product_detail.ICManager
 import vn.icheck.android.network.util.JsonHelper
-import vn.icheck.android.screen.user.home_page.home.model.ICListHomeItem
+import vn.icheck.android.screen.user.home_page.model.ICListHomeItem
 import vn.icheck.android.screen.user.product_detail.product.model.IckReviewSummaryModel
 import vn.icheck.android.util.kotlin.HideWebUtils
 

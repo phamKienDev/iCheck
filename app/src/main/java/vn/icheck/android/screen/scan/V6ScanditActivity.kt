@@ -52,7 +52,6 @@ import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.dialog.notify.internal_stamp.InternalStampDialog
-import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.constant.ICK_REQUEST_CAMERA
 import vn.icheck.android.constant.SCAN_REVIEW
@@ -302,7 +301,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
     private fun resetHeight() {
         dataCaptureView.post {
-            if (getUserCountry(this).contains("vn", false))  {
+            if (getUserCountry(this).contains("vn", false)) {
                 val lp = dataCaptureView.layoutParams
                 if (lp.height != getDeviceHeight()) {
                     lp.height = getDeviceHeight()
@@ -617,8 +616,8 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
             }
         } else {
             try {
-                if (!dialog?.isAdded) {
-                    dialog?.show(supportFragmentManager, null)
+                if (supportFragmentManager.findFragmentByTag(TakeMediaDialog::class.java.simpleName)?.isAdded != true) {
+                    dialog.show(supportFragmentManager, null)
                 }
             } catch (e: Exception) {
                 logError(e)

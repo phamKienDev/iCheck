@@ -18,7 +18,6 @@ import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.network.models.ICCampaign
-import vn.icheck.android.screen.user.home_page.campaign.detail_campagin_v2.fragment.gift_campaign.CampaignModel
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class WinnerCampaignAdapter(callback: IRecyclerViewCallback) : RecyclerViewCustomAdapter<CampaignModel>(callback) {
