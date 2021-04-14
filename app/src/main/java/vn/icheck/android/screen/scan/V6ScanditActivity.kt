@@ -43,6 +43,7 @@ import com.scandit.datacapture.core.ui.DataCaptureView
 import com.scandit.datacapture.core.ui.DataCaptureViewListener
 import com.scandit.datacapture.core.ui.orientation.DeviceOrientation
 import com.scandit.datacapture.core.ui.orientation.DeviceOrientationMapper
+import com.yalantis.ucrop.UCrop
 import kotlinx.android.synthetic.main.item_ads_product_grid.view.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -146,7 +147,11 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         }
 
         override fun onStartCrop(filePath: String?, uri: Uri?, ratio: String?, requestCode: Int?) {
-            CropImageActivity.start(this@V6ScanditActivity, filePath, null, ratio, requestCropMedia)
+//            CropImageActivity.start(this@V6ScanditActivity, filePath, null, ratio, requestCropMedia)
+            UCrop.of(Uri.fromFile(File(filePath.toString())), Uri.fromFile(File(cacheDir.absolutePath + "/" + System.currentTimeMillis() + ".png")))
+                    .withAspectRatio(1f, 1f)
+                    .withMaxResultSize(getDeviceWidth(), getDeviceHeight())
+                    .start(this@V6ScanditActivity);
         }
 
         override fun onDismiss() {
@@ -255,7 +260,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     }
 
     private fun initTakeImageDialog() {
-        takeImageDialog = TakeMediaDialog(this, takeImageListener, selectMulti = false, cropImage = true, isVideo = false, saveImageToGallery = false, disableTakeImage = true)
+        takeImageDialog = TakeMediaDialog(this, takeImageListener, selectMulti = false, cropImage = true, isVideo = false, saveImageToGallery = false, disableTakeImage = false)
     }
 
     private fun initBarcodeCapture() {
@@ -1253,6 +1258,14 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                     comPressImage(File(url))
                     takeImageDialog.dismiss()
                 }
+
+            } else {
+                scanImage.set(true)
+            }
+        }else if (requestCode == UCrop.REQUEST_CROP) {
+            if (resultCode == Activity.RESULT_OK) {
+                comPressImage(File(UCrop.getOutput(data!!).toString().replace("file:///","")))
+                takeImageDialog.dismiss()
             } else {
                 scanImage.set(true)
             }

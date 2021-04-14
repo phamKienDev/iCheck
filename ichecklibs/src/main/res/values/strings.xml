@@ -16,4 +16,5 @@
     <string name="khong_the_thuc_hien_tac_vu_vi_ban_chua_cap_quyen">Không thể thực hiện tác vụ vì bạn chưa cấp đủ quyền</string>
     <string name="noi_dung_ma_qr">Nội dung mã QR</string>
     <string name="icheck_thong_bao">iCheck thông báo</string>
+    <string name="capture">Capture</string>
 </resources>
