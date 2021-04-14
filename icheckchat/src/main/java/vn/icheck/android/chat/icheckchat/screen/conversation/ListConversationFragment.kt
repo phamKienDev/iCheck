@@ -1,5 +1,6 @@
 package vn.icheck.android.chat.icheckchat.screen.conversation
 
+import android.app.Activity
 import android.content.Intent
 import android.text.Editable
 import android.text.TextWatcher
@@ -10,8 +11,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import vn.icheck.android.chat.icheckchat.base.BaseFragmentChat
 import vn.icheck.android.chat.icheckchat.base.ConstantChat
+import vn.icheck.android.chat.icheckchat.base.ConstantChat.KEY
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.USER_ID
 import vn.icheck.android.chat.icheckchat.base.recyclerview.IRecyclerViewCallback
 import vn.icheck.android.chat.icheckchat.base.view.setGone
@@ -23,7 +27,6 @@ import vn.icheck.android.chat.icheckchat.helper.ShareHelperChat
 import vn.icheck.android.chat.icheckchat.model.MCConversation
 import vn.icheck.android.chat.icheckchat.model.MCMessageEvent
 import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
-import vn.icheck.android.chat.icheckchat.sdk.ChatSdk
 import java.util.*
 
 class ListConversationFragment(val listener: ICountMessageListener) : BaseFragmentChat<FragmentListConversationBinding>(), IRecyclerViewCallback {
@@ -33,6 +36,8 @@ class ListConversationFragment(val listener: ICountMessageListener) : BaseFragme
     private lateinit var viewModel: ListConversationViewModel
 
     private val listData = mutableListOf<MCConversation>()
+
+    private val READ_MESSAGE = 98
 
     companion object {
         var isOpenChat = false
@@ -47,6 +52,10 @@ class ListConversationFragment(val listener: ICountMessageListener) : BaseFragme
             fun getCountMessage(count: Long)
             fun onClickLeftMenu()
         }
+    }
+
+    override fun isRegisterEventBus(): Boolean {
+        return true
     }
 
     override fun setBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentListConversationBinding {
@@ -98,7 +107,7 @@ class ListConversationFragment(val listener: ICountMessageListener) : BaseFragme
         })
     }
 
-    private fun getData() {
+    fun getData() {
         binding.swipeRefresh.isRefreshing = true
 
         listData.clear()
@@ -169,11 +178,52 @@ class ListConversationFragment(val listener: ICountMessageListener) : BaseFragme
     private fun setOnClick() {
         adapter.setListener(object : ListConversationAdapter.IListener {
             override fun onClickConversation(obj: MCConversation) {
-                startActivity(Intent(requireContext(), ChatSocialDetailActivity::class.java).apply {
+                startActivityForResult(Intent(requireContext(), ChatSocialDetailActivity::class.java).apply {
                     putExtra(ConstantChat.DATA_1, obj)
-                })
+                }, READ_MESSAGE)
             }
         })
+    }
+
+    private fun convertDataFirebase(snapshot: DataSnapshot): MCConversation {
+        val element = MCConversation().apply {
+            key = snapshot.key.toString()
+            enableAlert = snapshot.child("enable_alert").value.toString().toBoolean()
+            keyRoom = snapshot.key.toString()
+            unreadCount = snapshot.child("unread_count").value as Long? ?: 0L
+            time = snapshot.child("last_activity").child("time").value as Long?
+                    ?: System.currentTimeMillis()
+            lastMessage = if (snapshot.child("last_activity").child("content").value != null) {
+                snapshot.child("last_activity").child("content").value.toString()
+            } else {
+                ""
+            }
+        }
+
+        viewModel.getChatRoom(element.keyRoom ?: "", {
+            if (it.hasChildren()) {
+                for (i in it.child("members").children) {
+                    if (!FirebaseAuth.getInstance().uid.toString().contains(i.child("source_id").value.toString())) {
+                        viewModel.getChatSender(i.child("id").value.toString(), { success ->
+                            element.targetUserName = success.child("name").value.toString()
+                            element.imageTargetUser = success.child("image").value.toString()
+                            element.isVerified = success.child("is_verify").value.toString().toBoolean()
+
+                            adapter.refreshItem(element)
+                        }, {
+
+                        })
+                        element.type = i.child("type").value.toString().trim()
+                    } else {
+                        element.isNotification = i.child("is_subscribe").value.toString().toBoolean()
+                    }
+                }
+            }
+        }, {
+
+        })
+
+        return element
     }
 
     private fun loadData(snapshot: DataSnapshot, lastTimeStamp: Long) {
@@ -182,44 +232,7 @@ class ListConversationFragment(val listener: ICountMessageListener) : BaseFragme
         if (snapshot.hasChildren()) {
 
             for (item in snapshot.children.reversed()) {
-                val element = MCConversation().apply {
-                    key = item?.key.toString()
-                    enableAlert = item.child("enable_alert").value.toString().toBoolean()
-                    keyRoom = item?.key.toString()
-                    unreadCount = item.child("unread_count").value as Long? ?: 0L
-                    time = item.child("last_activity").child("time").value as Long?
-                            ?: System.currentTimeMillis()
-                    lastMessage = if (item.child("last_activity").child("content").value != null) {
-                        item.child("last_activity").child("content").value.toString()
-                    } else {
-                        ""
-                    }
-                }
-
-                viewModel.getChatRoom(element.keyRoom ?: "", {
-                    if (it.hasChildren()) {
-                        for (i in it.child("members").children) {
-                            if (!FirebaseAuth.getInstance().uid.toString().contains(i.child("source_id").value.toString())) {
-                                viewModel.getChatSender(i.child("id").value.toString(), { success ->
-                                    element.targetUserName = success.child("name").value.toString()
-                                    element.imageTargetUser = success.child("image").value.toString()
-                                    element.isVerified = success.child("is_verify").value.toString().toBoolean()
-
-                                    adapter.refreshItem(element)
-                                }, {
-
-                                })
-                                element.type = i.child("type").value.toString().trim()
-                            }else{
-                                element.isNotification = i.child("is_subscribe").value.toString().toBoolean()
-                            }
-                        }
-                    }
-                }, {
-
-                })
-
-                conversationList.add(element)
+                conversationList.add(convertDataFirebase(item))
             }
         }
 
@@ -242,9 +255,32 @@ class ListConversationFragment(val listener: ICountMessageListener) : BaseFragme
     private fun getConversation(lastTimeStamp: Long) {
         viewModel.getConversation(lastTimeStamp, { snapshot ->
             loadData(snapshot, lastTimeStamp)
+            getChangeConversation()
         }, { error ->
             viewModel.checkError(true, message = error.message)
         })
+    }
+
+    private fun getChangeConversation() {
+        viewModel.getChangeConversation { obj ->
+            val key = obj.key.toString()
+
+            for (position in adapter.getListData.size - 1 downTo 0) {
+                if (adapter.getListData[position].key == key) {
+                    if (position != 0) {
+                        adapter.getListData.removeAt(position)
+                        adapter.notifyItemRemoved(position)
+
+                        adapter.getListData.add(0, convertDataFirebase(obj))
+                        adapter.notifyItemInserted(0)
+                        binding.recyclerView.smoothScrollToPosition(0)
+                    } else {
+                        adapter.getListData[0] = convertDataFirebase(obj)
+                        adapter.notifyItemChanged(0)
+                    }
+                }
+            }
+        }
     }
 
     private fun getChatSender() {
@@ -284,6 +320,29 @@ class ListConversationFragment(val listener: ICountMessageListener) : BaseFragme
     override fun onLoadMore() {
         adapter.getListData.lastOrNull()?.let { obj ->
             getConversation(obj.time ?: 0)
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(event: MCMessageEvent) {
+        if (event.type == MCMessageEvent.Type.UPDATE_DATA) {
+            getData()
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == READ_MESSAGE) {
+            if (resultCode == Activity.RESULT_OK) {
+                val key = data?.getStringExtra(KEY)
+
+                for (i in adapter.getListData.size - 1 downTo 0) {
+                    if (adapter.getListData[i].key == key) {
+                        adapter.notifyItemChanged(i)
+                    }
+                }
+            }
         }
     }
 

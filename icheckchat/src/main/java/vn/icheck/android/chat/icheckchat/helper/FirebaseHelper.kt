@@ -66,13 +66,36 @@ class FirebaseHelper {
                     .limitToLast(10)
         }
 
-        myConversation.addValueEventListener(object : ValueEventListener {
+        myConversation.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 success(snapshot)
+                myConversation.removeEventListener(this)
             }
 
             override fun onCancelled(error: DatabaseError) {
                 cancel(error)
+                myConversation.removeEventListener(this)
+            }
+        })
+    }
+
+    fun getChangeConversation(onAdd: (snapshot: DataSnapshot) -> Unit) {
+        firebaseDatabase.getReference("chat-conversations-v2/user|$userID").orderByChild("last_activity/time").startAt(System.currentTimeMillis().toDouble()).addChildEventListener(object : ChildEventListener {
+            override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                onAdd(snapshot)
+            }
+
+            override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+            }
+
+            override fun onChildRemoved(snapshot: DataSnapshot) {
+            }
+
+            override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.d("onCancelled", "onCancelled: $error")
             }
         })
     }

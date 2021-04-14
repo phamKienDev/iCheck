@@ -206,13 +206,14 @@ class DetailStampHoaPhatActivity : BaseActivityMVVM(), SlideHeaderStampHoaPhatLi
 
         btnChat.setOnClickListener {
             if (SessionManager.isUserLogged || SessionManager.isDeviceLogged) {
-//                viewModel.barcodeProduct?.let {
-//                    it.manager?.let { manager ->
+                viewModel.barcodeProduct?.let {
+                    it.manager?.let { manager ->
 //                        SocialChatActivity.createPageChat(this, manager.id)
-//                    } ?: run {
+                        ChatSocialDetailActivity.createRoomChat(this@DetailStampHoaPhatActivity, manager.id, "page")
+                    } ?: run {
 //                        SocialChatActivity.createPageChat(this,viewModel.barcodeProduct?.owner?.id, it.barcode)
-//                    }
-//                }
+                    }
+                }
             } else {
                 val account = Intent(this, AccountActivity::class.java)
                 startActivity(account)

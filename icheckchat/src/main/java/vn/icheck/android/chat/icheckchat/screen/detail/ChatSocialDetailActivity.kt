@@ -31,6 +31,7 @@ import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_chat_social_detail.*
 import kotlinx.android.synthetic.main.item_sender.*
 import kotlinx.coroutines.launch
+import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.chat.icheckchat.R
 import vn.icheck.android.chat.icheckchat.base.BaseActivityChat
 import vn.icheck.android.chat.icheckchat.base.ConstantChat
@@ -147,6 +148,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
             conversation != null -> {
                 viewModel.loginFirebase({
                     if (!conversation?.key.isNullOrEmpty()) {
+                        key = conversation?.key
                         getChatRoom(conversation?.key!!)
                     }
                 }, {
@@ -258,6 +260,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                         conversation?.keyRoom = it.data.data.room_id
 
                         if (!it.data.data.room_id.isNullOrEmpty()) {
+                            key = it.data.data.room_id
                             getChatRoom(it.data.data.room_id)
                         }
                     }
@@ -546,9 +549,9 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 if (message.child("message").child("sticker").value != null) {
                     val stickerFirebase = message.child("message").child("sticker")
 
-                    sticker = if (message.child("message").child("sticker").child("thumbnail").value.toString().replace("null", "").isEmpty()){
+                    sticker = if (message.child("message").child("sticker").child("thumbnail").value.toString().replace("null", "").isEmpty()) {
                         message.child("message").child("sticker").value.toString()
-                    }else{
+                    } else {
                         MCSticker().apply {
                             id = stickerFirebase.child("id").value.toString().toLong()
                             thumbnail = stickerFirebase.child("thumbnail").value.toString()
@@ -939,6 +942,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         when (event.type) {
             MCMessageEvent.Type.BACK -> {
                 onBackPressed()
+                EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.UPDATE_DATA))
             }
             MCMessageEvent.Type.BLOCK -> {
                 unCheckAll()
@@ -963,6 +967,10 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.imgBack -> {
+                val i = Intent()
+                i.putExtra(KEY, key)
+                setResult(Activity.RESULT_OK, i)
+
                 onBackPressed()
             }
             R.id.imgDelete -> {
