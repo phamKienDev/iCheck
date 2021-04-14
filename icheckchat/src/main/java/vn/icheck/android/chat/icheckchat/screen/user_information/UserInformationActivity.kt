@@ -306,6 +306,7 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
                 }
                 MCStatus.SUCCESS -> {
                     binding.btnCheckedNotification.isChecked = false
+                    EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.UPDATE_DATA))
                 }
             }
         })
@@ -322,6 +323,7 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
                 }
                 MCStatus.SUCCESS -> {
                     binding.btnCheckedNotification.isChecked = true
+                    EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.UPDATE_DATA))
                 }
             }
         })

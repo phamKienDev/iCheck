@@ -207,10 +207,9 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
 //            arrMember.add(ChatMember(data?.id))
 //            SocialChatActivity.createRoomChat(it.context, arrMember.toTypedArray())
             if (SessionManager.isUserLogged) {
-                SocialChatActivity.createRoomChat(it.context, data?.id)
+//                SocialChatActivity.createRoomChat(it.context, data?.id)
                 ListConversationFragment.finishAllChat()
-//                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_FINISH_ALL_CHAT))
-//                ChatSocialDetailActivity.createRoomChat(it.context, data?.id ?: -1, "user")
+                ChatSocialDetailActivity.createRoomChat(it.context, data?.id ?: -1, "user")
             } else {
                 ICheckApplication.currentActivity()?.let { act ->
                     (act as FragmentActivity).showLogin()

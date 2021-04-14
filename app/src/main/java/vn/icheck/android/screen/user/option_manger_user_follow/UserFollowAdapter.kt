@@ -143,8 +143,8 @@ class UserFollowAdapter constructor(val view: IUserFollowWallView) : RecyclerVie
                 }
 
                 holder.itemView.btnMessenger.setOnClickListener {
-                    SocialChatActivity.createRoomChat(holder.itemView.context, item.id)
-//                    ChatSocialDetailActivity.createRoomChat(holder.itemView.context, item.id ?: -1, "user")
+//                    SocialChatActivity.createRoomChat(holder.itemView.context, item.id)
+                    ChatSocialDetailActivity.createRoomChat(holder.itemView.context, item.id ?: -1, "user")
                 }
             }
             is LoadHolder -> {

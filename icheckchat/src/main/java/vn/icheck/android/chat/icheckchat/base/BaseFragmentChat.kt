@@ -27,6 +27,14 @@ abstract class BaseFragmentChat<VB : ViewBinding>: Fragment() {
 
     open fun isRegisterEventBus(): Boolean = false
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        if (isRegisterEventBus()) {
+            EventBus.getDefault().register(this)
+        }
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.binding = this.setBinding(inflater, container)
         return binding.root
@@ -34,10 +42,6 @@ abstract class BaseFragmentChat<VB : ViewBinding>: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        if (isRegisterEventBus()) {
-            EventBus.getDefault().register(this)
-        }
 
         onInitView()
     }

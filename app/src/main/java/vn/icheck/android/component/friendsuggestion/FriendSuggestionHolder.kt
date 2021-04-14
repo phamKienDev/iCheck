@@ -88,8 +88,8 @@ class FriendSuggestionHolder(parent: ViewGroup) : BaseViewHolder<ICUser>(LayoutI
                 getChildAt(5).visibility = View.VISIBLE
                 // Text nhan tin
                 getChildAt(4).setOnClickListener {
-//                    ChatSocialDetailActivity.createRoomChat(it.context, obj.id, "user")
-                    SocialChatActivity.createRoomChat(it.context, obj.id)
+                    ChatSocialDetailActivity.createRoomChat(it.context, obj.id, "user")
+//                    SocialChatActivity.createRoomChat(it.context, obj.id)
                 }
             } else {
                 getChildAt(3).visibility = View.VISIBLE

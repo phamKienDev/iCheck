@@ -803,8 +803,8 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                         showLoginDialog()
                         return
                     } else {
-//                        ChatSocialDetailActivity.openRoomChatWithKey(this@FirebaseDynamicLinksActivity, id)
-                        SocialChatActivity.createRoomChat(this@FirebaseDynamicLinksActivity, null, id)
+                        ChatSocialDetailActivity.openRoomChatWithKey(this@FirebaseDynamicLinksActivity, id)
+//                        SocialChatActivity.createRoomChat(this@FirebaseDynamicLinksActivity, null, id)
                     }
                 }
             }
@@ -816,8 +816,8 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                         showLoginDialog()
                         return
                     } else if (ValidHelper.validNumber(id)) {
-//                        ChatSocialDetailActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong(), "user")
-                        SocialChatActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong())
+                        ChatSocialDetailActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong(), "user")
+//                        SocialChatActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong())
                     }
                 }
             }
@@ -829,8 +829,8 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                         showLoginDialog()
                         return
                     } else if (ValidHelper.validNumber(id)) {
-//                        ChatSocialDetailActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong(), "page")
-                        SocialChatActivity.createRoomChat(this@FirebaseDynamicLinksActivity, null, id)
+                        ChatSocialDetailActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong(), "page")
+//                        SocialChatActivity.createRoomChat(this@FirebaseDynamicLinksActivity, null, id)
                     }
                 }
             }
