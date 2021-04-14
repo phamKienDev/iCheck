@@ -18,6 +18,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:alpha="0.0"
+            android:visibility="gone"
+            app:visibilityMode="ignore"
             android:elevation="10dp"
             android:outlineProvider="none"
             app:layout_constraintBottom_toTopOf="@+id/group_notification"

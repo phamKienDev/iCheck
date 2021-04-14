@@ -151,6 +151,10 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
             UCrop.of(Uri.fromFile(File(filePath.toString())), Uri.fromFile(File(cacheDir.absolutePath + "/" + System.currentTimeMillis() + ".png")))
                     .withAspectRatio(1f, 1f)
                     .withMaxResultSize(getDeviceWidth(), getDeviceHeight())
+                    .withOptions(UCrop.Options().apply {
+                        setToolbarTitle("")
+                        setHideBottomControls(true)
+                    })
                     .start(this@V6ScanditActivity);
         }
 
