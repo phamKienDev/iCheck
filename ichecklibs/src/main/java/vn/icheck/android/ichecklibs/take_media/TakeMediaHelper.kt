@@ -14,6 +14,7 @@ import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import vn.icheck.android.ichecklibs.BuildConfig
 import vn.icheck.android.ichecklibs.TimeHelper
+import vn.icheck.android.ichecklibs.camera.CameraActivity
 import java.io.*
 import kotlin.jvm.Throws
 
@@ -34,8 +35,10 @@ class TakeMediaHelper(val activity: Activity?, val callback: TakeCameraListener,
 
     fun startTakeMedia(fragment: Fragment? = null) {
         activity?.let { activity ->
-            val imageCapture = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            val videoCapture = Intent(MediaStore.ACTION_VIDEO_CAPTURE)
+            val imageCapture = Intent(fragment?.requireContext(), CameraActivity::class.java)
+//                    Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            val videoCapture =
+                    Intent(MediaStore.ACTION_VIDEO_CAPTURE)
 
             if (selectVideo) {
                 object : PickCameraOptionDialog(activity) {
@@ -156,6 +159,40 @@ class TakeMediaHelper(val activity: Activity?, val callback: TakeCameraListener,
                             onTakeImageSuccess!!(getPhotoFile)
                         } else {
                             callback.onTakeMediaSuccess(getPhotoFile)
+                        }
+                    }
+                }
+                requestVideo -> {
+                    if (onTakeImageSuccess != null) {
+                        onTakeImageSuccess!!(getVideoFile)
+                    } else {
+                        callback.onTakeMediaSuccess(getVideoFile)
+                    }
+                }
+            }
+        }
+    }
+
+    fun onActivityResult(requestCode: Int, resultCode: Int, data:Intent?) {
+        if (resultCode == Activity.RESULT_OK) {
+            when (requestCode) {
+                requestImage -> {
+                    if (saveImageToGallery) {
+                        val f = getFile()
+                        MediaStore.Images.Media.insertImage(context?.contentResolver, BitmapFactory.decodeFile(f?.path), f?.name, "");
+                        if (onTakeImageSuccess != null) {
+                            onTakeImageSuccess!!(f)
+                        }
+                    } else {
+//                        if (onTakeImageSuccess != null) {
+//                            onTakeImageSuccess!!(getPhotoFile)
+//                        } else {
+//                            callback.onTakeMediaSuccess(getPhotoFile)
+//                        }
+                        if (onTakeImageSuccess != null) {
+                            onTakeImageSuccess!!(data?.getSerializableExtra("result") as File)
+                        } else {
+                            callback.onTakeMediaSuccess(data?.getSerializableExtra("result") as File)
                         }
                     }
                 }

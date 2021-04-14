@@ -1,6 +1,6 @@
 package vn.icheck.android.screen.scan
 
-import android.Manifest.*
+import android.Manifest
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.app.Activity
@@ -40,6 +40,10 @@ import com.scandit.datacapture.core.common.feedback.Vibration
 import com.scandit.datacapture.core.data.FrameData
 import com.scandit.datacapture.core.source.*
 import com.scandit.datacapture.core.ui.DataCaptureView
+import com.scandit.datacapture.core.ui.DataCaptureViewListener
+import com.scandit.datacapture.core.ui.orientation.DeviceOrientation
+import com.scandit.datacapture.core.ui.orientation.DeviceOrientationMapper
+import com.yalantis.ucrop.UCrop
 import kotlinx.android.synthetic.main.item_ads_product_grid.view.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -142,7 +146,11 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         }
 
         override fun onStartCrop(filePath: String?, uri: Uri?, ratio: String?, requestCode: Int?) {
-            CropImageActivity.start(this@V6ScanditActivity, filePath, null, ratio, requestCropMedia)
+//            CropImageActivity.start(this@V6ScanditActivity, filePath, null, ratio, requestCropMedia)
+            UCrop.of(Uri.fromFile(File(filePath.toString())), Uri.fromFile(File(cacheDir.absolutePath + "/" + System.currentTimeMillis() + ".png")))
+                    .withAspectRatio(1f, 1f)
+                    .withMaxResultSize(getDeviceWidth(), getDeviceHeight())
+                    .start(this@V6ScanditActivity);
         }
 
         override fun onDismiss() {
@@ -251,7 +259,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     }
 
     private fun initTakeImageDialog() {
-        takeImageDialog = TakeMediaDialog(this, takeImageListener, selectMulti = false, cropImage = true, isVideo = false, saveImageToGallery = false, disableTakeImage = true)
+        takeImageDialog = TakeMediaDialog(this, takeImageListener, selectMulti = false, cropImage = true, isVideo = false, saveImageToGallery = false, disableTakeImage = false)
     }
 
     private fun initBarcodeCapture() {
@@ -594,15 +602,15 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     fun request(dialog: TakeMediaDialog) {
         if (ContextCompat.checkSelfPermission(
                         this,
-                        permission.READ_EXTERNAL_STORAGE
+                        Manifest.permission.READ_EXTERNAL_STORAGE
                 ) != PackageManager.PERMISSION_GRANTED ||
                 ContextCompat.checkSelfPermission(
                         this,
-                        permission.CAMERA
+                        Manifest.permission.CAMERA
                 ) != PackageManager.PERMISSION_GRANTED) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requestPermissions(
-                        arrayOf(permission.CAMERA, permission.READ_EXTERNAL_STORAGE, permission.WRITE_EXTERNAL_STORAGE),
+                        arrayOf(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE),
                         CONTRIBUTE_REQUEST
                 )
             }
@@ -818,11 +826,14 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     }
 
     private fun request() {
-        if (ContextCompat.checkSelfPermission(this, permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                requestPermissions(arrayOf(permission.CAMERA), ICK_REQUEST_CAMERA)
+        if (ContextCompat.checkSelfPermission(
+                        this,
+                        Manifest.permission.CAMERA
+                ) != PackageManager.PERMISSION_GRANTED) {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                requestPermissions(arrayOf(Manifest.permission.CAMERA), ICK_REQUEST_CAMERA)
             } else {
-                ActivityCompat.requestPermissions(this, arrayOf(permission.CAMERA), ICK_REQUEST_CAMERA)
+                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), ICK_REQUEST_CAMERA)
             }
         } else {
             initDataCapture()
@@ -1127,7 +1138,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                             it.contains("P:", true)
                         }.replace("p:", "", true)
                         // do post connect processing here
-                        if (ContextCompat.checkSelfPermission(this, permission.CHANGE_NETWORK_STATE) == PackageManager.PERMISSION_GRANTED) {
+                        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CHANGE_NETWORK_STATE) == PackageManager.PERMISSION_GRANTED) {
                             val nwSpecifier = WifiNetworkSpecifier.Builder()
                                     .setSsid(ssid)
                                     .setWpa2Passphrase(key)
@@ -1150,7 +1161,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
                                 }
                             }
-                            requestPermissionLauncher.launch(permission.CHANGE_NETWORK_STATE)
+                            requestPermissionLauncher.launch(Manifest.permission.CHANGE_NETWORK_STATE)
                         }
                     } else {
                         val wifiConfig = WifiConfiguration()
@@ -1210,7 +1221,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
             override fun onGoToPhone(target: String?) {
                 if (target != null) {
                     phoneNumber = target
-                    if (PermissionHelper.checkPermission(this@V6ScanditActivity, permission.CALL_PHONE, requestPhone)) {
+                    if (PermissionHelper.checkPermission(this@V6ScanditActivity, Manifest.permission.CALL_PHONE, requestPhone)) {
                         ContactUtils.callFast(this@V6ScanditActivity, target)
                     }
                 }
@@ -1246,6 +1257,14 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                     comPressImage(File(url))
                     takeImageDialog.dismiss()
                 }
+
+            } else {
+                scanImage.set(true)
+            }
+        }else if (requestCode == UCrop.REQUEST_CROP) {
+            if (resultCode == Activity.RESULT_OK) {
+                comPressImage(File(UCrop.getOutput(data!!).toString().replace("file:///","")))
+                takeImageDialog.dismiss()
             } else {
                 scanImage.set(true)
             }
