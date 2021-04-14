@@ -22,7 +22,7 @@ import vn.icheck.android.network.feature.notification.NotificationInteractor
 import vn.icheck.android.network.feature.page.PageRepository
 import vn.icheck.android.network.feature.relationship.RelationshipInteractor
 import vn.icheck.android.network.models.*
-import vn.icheck.android.screen.user.home_page.home.model.ICHomeItem
+import vn.icheck.android.screen.user.home_page.model.ICHomeItem
 import vn.icheck.android.util.ick.logError
 
 class ListNotificationViewModel @ViewModelInject constructor(val ickApi: ICKApi, @Assisted savedStateHandle: SavedStateHandle) : ViewModel() {

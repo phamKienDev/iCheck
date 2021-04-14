@@ -1,6 +1,6 @@
 package vn.icheck.android.screen.scan
 
-import android.Manifest
+import android.Manifest.*
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.app.Activity
@@ -40,9 +40,6 @@ import com.scandit.datacapture.core.common.feedback.Vibration
 import com.scandit.datacapture.core.data.FrameData
 import com.scandit.datacapture.core.source.*
 import com.scandit.datacapture.core.ui.DataCaptureView
-import com.scandit.datacapture.core.ui.DataCaptureViewListener
-import com.scandit.datacapture.core.ui.orientation.DeviceOrientation
-import com.scandit.datacapture.core.ui.orientation.DeviceOrientationMapper
 import kotlinx.android.synthetic.main.item_ads_product_grid.view.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -51,7 +48,6 @@ import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.dialog.notify.internal_stamp.InternalStampDialog
-import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.constant.ICK_REQUEST_CAMERA
 import vn.icheck.android.constant.SCAN_REVIEW
@@ -297,7 +293,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
     private fun resetHeight() {
         dataCaptureView.post {
-            if (getUserCountry(this).contains("vn", false))  {
+            if (getUserCountry(this).contains("vn", false)) {
                 val lp = dataCaptureView.layoutParams
                 if (lp.height != getDeviceHeight()) {
                     lp.height = getDeviceHeight()
@@ -598,22 +594,22 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     fun request(dialog: TakeMediaDialog) {
         if (ContextCompat.checkSelfPermission(
                         this,
-                        Manifest.permission.READ_EXTERNAL_STORAGE
+                        permission.READ_EXTERNAL_STORAGE
                 ) != PackageManager.PERMISSION_GRANTED ||
                 ContextCompat.checkSelfPermission(
                         this,
-                        Manifest.permission.CAMERA
+                        permission.CAMERA
                 ) != PackageManager.PERMISSION_GRANTED) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requestPermissions(
-                        arrayOf(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                        arrayOf(permission.CAMERA, permission.READ_EXTERNAL_STORAGE, permission.WRITE_EXTERNAL_STORAGE),
                         CONTRIBUTE_REQUEST
                 )
             }
         } else {
             try {
-                if (!dialog?.isAdded) {
-                    dialog?.show(supportFragmentManager, null)
+                if (supportFragmentManager.findFragmentByTag(TakeMediaDialog::class.java.simpleName)?.isAdded != true) {
+                    dialog.show(supportFragmentManager, null)
                 }
             } catch (e: Exception) {
                 logError(e)
@@ -822,14 +818,11 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     }
 
     private fun request() {
-        if (ContextCompat.checkSelfPermission(
-                        this,
-                        Manifest.permission.CAMERA
-                ) != PackageManager.PERMISSION_GRANTED) {
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                requestPermissions(arrayOf(Manifest.permission.CAMERA), ICK_REQUEST_CAMERA)
+        if (ContextCompat.checkSelfPermission(this, permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(arrayOf(permission.CAMERA), ICK_REQUEST_CAMERA)
             } else {
-                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), ICK_REQUEST_CAMERA)
+                ActivityCompat.requestPermissions(this, arrayOf(permission.CAMERA), ICK_REQUEST_CAMERA)
             }
         } else {
             initDataCapture()
@@ -1134,7 +1127,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                             it.contains("P:", true)
                         }.replace("p:", "", true)
                         // do post connect processing here
-                        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CHANGE_NETWORK_STATE) == PackageManager.PERMISSION_GRANTED) {
+                        if (ContextCompat.checkSelfPermission(this, permission.CHANGE_NETWORK_STATE) == PackageManager.PERMISSION_GRANTED) {
                             val nwSpecifier = WifiNetworkSpecifier.Builder()
                                     .setSsid(ssid)
                                     .setWpa2Passphrase(key)
@@ -1157,7 +1150,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
                                 }
                             }
-                            requestPermissionLauncher.launch(Manifest.permission.CHANGE_NETWORK_STATE)
+                            requestPermissionLauncher.launch(permission.CHANGE_NETWORK_STATE)
                         }
                     } else {
                         val wifiConfig = WifiConfiguration()
@@ -1217,7 +1210,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
             override fun onGoToPhone(target: String?) {
                 if (target != null) {
                     phoneNumber = target
-                    if (PermissionHelper.checkPermission(this@V6ScanditActivity, Manifest.permission.CALL_PHONE, requestPhone)) {
+                    if (PermissionHelper.checkPermission(this@V6ScanditActivity, permission.CALL_PHONE, requestPhone)) {
                         ContactUtils.callFast(this@V6ScanditActivity, target)
                     }
                 }

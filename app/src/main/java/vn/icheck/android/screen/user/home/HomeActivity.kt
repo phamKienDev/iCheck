@@ -12,7 +12,6 @@ import android.graphics.Typeface
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Build
-import android.os.Handler
 import android.os.Looper
 import android.text.Html
 import android.text.Spannable
@@ -27,7 +26,6 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.AppCompatCheckedTextView
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
@@ -88,7 +86,7 @@ import vn.icheck.android.screen.user.coinhistory.CoinHistoryActivity
 import vn.icheck.android.screen.user.contact.ContactActivity
 import vn.icheck.android.screen.user.createqrcode.home.CreateQrCodeHomeActivity
 import vn.icheck.android.screen.user.history_loading_card.home.HistoryCardActivity
-import vn.icheck.android.screen.user.home_page.home.HomePageFragment
+import vn.icheck.android.screen.user.home_page.HomePageFragment
 import vn.icheck.android.screen.user.newslistv2.ListNewsFragment
 import vn.icheck.android.screen.user.orderhistory.OrderHistoryActivity
 import vn.icheck.android.screen.user.rank_of_user.RankOfUserActivity

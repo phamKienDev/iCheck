@@ -107,7 +107,8 @@ class GiftHistoryAdapterV2(callback: IRecyclerViewCallback) : RecyclerViewCustom
 
             if (obj.value != null) {
                 itemView.tvName.text = "${TextHelper.formatMoneyPhay(obj.value)} Xu"
-                itemView.imgGift.setImageResource(R.drawable.ic_icheck_xu)
+
+                WidgetUtils.loadImageUrlFitCenter(itemView.imgGift,obj.icoinIcon,R.drawable.ic_icheck_xu)
 
                 itemView.tvAction simpleText "Quản lý Xu"
                 itemView.tvAction.setOnClickListener {
@@ -116,7 +117,6 @@ class GiftHistoryAdapterV2(callback: IRecyclerViewCallback) : RecyclerViewCustom
                     }
                 }
             } else {
-
                 if (obj.rewardType == "CODE") {
                     checkNullOrEmpty(itemView.tvName, "${obj.name} - ${obj.code}")
                 } else {
