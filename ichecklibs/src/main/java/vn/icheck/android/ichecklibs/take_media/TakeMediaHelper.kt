@@ -36,7 +36,7 @@ class TakeMediaHelper(val activity: Activity?, val callback: TakeCameraListener,
     fun startTakeMedia(fragment: Fragment? = null) {
         activity?.let { activity ->
             val imageCapture = Intent(fragment?.requireContext(), CameraActivity::class.java)
-                    Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+//                    Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             val videoCapture =
                     Intent(MediaStore.ACTION_VIDEO_CAPTURE)
 
