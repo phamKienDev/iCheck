@@ -10,7 +10,7 @@ import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.loyalty.base.activity.BaseActivityGame
-import vn.icheck.android.screen.user.home_page.my_gift_warehouse.list_mission.list.ListMissionActivity
+import vn.icheck.android.screen.user.my_gift_warehouse.list_mission.list.ListMissionActivity
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.util.kotlin.StatusBarUtils

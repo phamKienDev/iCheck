@@ -22,10 +22,9 @@ import vn.icheck.android.network.models.ICMissionDetail
 import vn.icheck.android.network.models.ICProduct
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.user.campaign_onboarding.CampaignOnboardingActivity
-import vn.icheck.android.screen.user.home_page.my_gift_warehouse.list_mission.list.ListMissionActivity
-import vn.icheck.android.screen.user.home_page.my_gift_warehouse.shake_gift.list_box_gift.ListShakeGridBoxActivity
+import vn.icheck.android.screen.user.my_gift_warehouse.list_mission.list.ListMissionActivity
+import vn.icheck.android.screen.user.my_gift_warehouse.shake_gift.list_box_gift.ListShakeGridBoxActivity
 import vn.icheck.android.tracking.TrackingAllHelper
-import vn.icheck.android.tracking.insider.InsiderHelper
 import vn.icheck.android.tracking.teko.TekoHelper
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
