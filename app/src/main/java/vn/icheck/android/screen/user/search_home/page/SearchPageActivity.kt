@@ -142,8 +142,11 @@ class SearchPageActivity : BaseActivityMVVM(), View.OnClickListener, IRecyclerVi
         if (viewModel.getListCity.isNullOrEmpty() || viewModel.getListCity[0].name == getString(R.string.tat_ca)) {
             btn_filer_location.setTextEmpitySearch(R.string.tinh_thanh_pho)
         } else {
-            val listString = viewModel.getListCity.filterIndexed { index, icProvince ->
+            val listString = mutableListOf<String>()
+            viewModel.getListCity.filterIndexed { index, icProvince ->
                 index < 3
+            }.forEach {
+                listString.add(it.name)
             }
             var city = listString.toString().substring(1, listString.toString().length - 1)
             if (viewModel.getListCity.size > 3) {
