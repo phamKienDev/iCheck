@@ -39,6 +39,9 @@ import kotlinx.coroutines.launch
 import vn.icheck.android.ichecklibs.R
 import vn.icheck.android.ichecklibs.camera.utils.GenericListAdapter
 import vn.icheck.android.ichecklibs.camera.utils.decodeExifOrientation
+import vn.icheck.android.ichecklibs.getNavigationHeight
+import vn.icheck.android.ichecklibs.setMarginConstraintLayout
+import vn.icheck.android.ichecklibs.toPx
 import java.io.BufferedInputStream
 import java.io.File
 import kotlin.math.max
@@ -99,6 +102,8 @@ class ImageViewerFragment : Fragment() {
             view as ImageView
             Glide.with(view).load(item).into(view)
         }
+        cancel_action.setMarginConstraintLayout(16, 0,0,requireContext().getNavigationHeight() + 8)
+        confirm.setMarginConstraintLayout(0, 16,0,requireContext().getNavigationHeight() + 8)
         cancel_action.setOnClickListener {
             requireActivity().onBackPressed()
         }
