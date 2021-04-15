@@ -34,6 +34,7 @@ import kotlinx.android.synthetic.main.activity_list_product_question.*
 import kotlinx.coroutines.*
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseCoroutineActivity
+import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.constant.*
 import vn.icheck.android.databinding.ActivityIckContributeProductBinding
 import vn.icheck.android.helper.DialogHelper
@@ -585,11 +586,52 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
                                     } else {
                                         DialogHelper.closeLoading(this@IckContributeProductActivity)
                                     }
+                                    val data = rp.get("data") as Map<String, Any?>
+                                    if (data["hidden"] != null) {
+                                        if (data["hidden"] as Boolean) {
+                                            val msg = if(!(data["reason"] as String?).isNullOrEmpty()) "Đóng góp trước đó của bạn đã bị Huỷ duyệt với lý do: " + data["reason"].toString() else "Đóng góp trước đó của bạn đã bị Huỷ duyệt bởi người quản trị. Bạn có muốn thực hiện đóng góp thông tin lại cho sản phẩm này?"
+                                            DialogHelper.showConfirm(this@IckContributeProductActivity,"Thông báo",
+                                                    msg,
+                                                    "Hủy",
+                                                    "Đóng góp lại",
+                                                    false,
+                                                    object : ConfirmDialogListener{
+                                                        override fun onDisagree() {
+                                                            finish()
+                                                        }
+
+                                                        override fun onAgree() {
+                                                            ickContributeProductViewModel.requestBody.clear()
+                                                            categoryAttributesAdapter.notifyDataSetChanged()
+                                                            ickContributeProductViewModel.listImageModel.clear()
+                                                            listImageAdapter.notifyDataSetChanged()
+                                                            ickContributeProductViewModel.postSize()
+                                                            binding.edtNameProduct.setText("")
+                                                            binding.edtPrice.setText("")
+                                                            binding.edtAddressPage.setText("")
+                                                            binding.edtEmail.setText("")
+                                                            binding.edtNamePage.setText("")
+                                                            binding.edtPhonePage.setText("")
+                                                            binding.edtTax.setText("")
+                                                            binding.edtCategory.setText("")
+                                                            binding.edtCategory.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_blue_24px, 0)
+                                                            ickContributeProductViewModel.categoryAttributes.clear()
+                                                            categoryAttributesAdapter.notifyDataSetChanged()
+                                                            binding.tvImgFirst simpleText "+ Ảnh mặt trước"
+                                                            binding.imgFirst.setImageResource(R.drawable.ic_front_image_holder)
+                                                            binding.imgSecond.setImageResource(R.drawable.ic_back_image_holder)
+                                                            binding.tvImgSecond simpleText "+ Ảnh mặt sau"
+
+                                                        }
+                                                    })
+                                        }
+                                    }
                                 }
                             } catch (e: Exception) {
                                 DialogHelper.closeLoading(this@IckContributeProductActivity)
                                 logError(e)
                             }
+
                         }
                     }
                 })

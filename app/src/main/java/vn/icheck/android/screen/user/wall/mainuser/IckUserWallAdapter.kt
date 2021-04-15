@@ -304,12 +304,13 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
         binding.btnAddFriend.setOnClickListener {
             if (SessionManager.isUserLogged) {
                 if (binding.tvAddFriend.text == "Đồng ý kết bạn") {
-                    showFriend()
+//                    showFriend()
                     it.context.sendBroadcast(Intent(USER_WALL_BROADCAST).apply {
                         putExtra(USER_WALL_BROADCAST, USER_WALL_ACCEPT_FRIEND)
                     })
                 } else {
                     binding.btnAddFriend.beGone()
+                    binding.tvRequestSent.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,0,0)
                     binding.tvRequestSent.beVisible()
                     it.context.sendBroadcast(Intent(USER_WALL_BROADCAST).apply {
                         putExtra(USER_WALL_BROADCAST, USER_WALL_ADD_FRIEND)
