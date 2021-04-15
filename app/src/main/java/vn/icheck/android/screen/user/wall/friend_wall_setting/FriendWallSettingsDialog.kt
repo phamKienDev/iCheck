@@ -1,9 +1,6 @@
 package vn.icheck.android.screen.user.wall.friend_wall_setting
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,29 +8,20 @@ import android.view.WindowManager
 import android.widget.FrameLayout
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.LifecycleOwner
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
 import vn.icheck.android.RelationshipManager
-import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialog
 import vn.icheck.android.base.dialog.notify.confirm.ConfirmDialog
 import vn.icheck.android.base.fragment.CoroutineBottomSheetDialogFragment
 import vn.icheck.android.base.model.ICMessageEvent
-import vn.icheck.android.constant.MAIN_USER
-import vn.icheck.android.constant.MAIN_USER_NOT_FRIEND
-import vn.icheck.android.constant.USER_WALL_BROADCAST
-import vn.icheck.android.constant.USER_WALL_FRIEND_SETTINGS
 import vn.icheck.android.databinding.DialogFriendWallSettingsBinding
-import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.room.database.AppDatabase
 import vn.icheck.android.room.entity.ICMeFollowUser
 import vn.icheck.android.screen.user.wall.IckUserWallViewModel
-import vn.icheck.android.util.checkTypeUser
 import vn.icheck.android.util.ick.*
 
 class FriendWallSettingsDialog( val ickUserWallViewModel: IckUserWallViewModel, val owner: LifecycleOwner) : CoroutineBottomSheetDialogFragment() {
@@ -152,7 +140,7 @@ class FriendWallSettingsDialog( val ickUserWallViewModel: IckUserWallViewModel, 
                     dismiss()
                 } else {
                     ickUserWallViewModel.removeFriendRequest().observe{
-                        RelationshipManager.removeFriendInvitation(ickUserWallViewModel.id)
+                        RelationshipManager.removeMyFriendInvitation(ickUserWallViewModel.id)
                         EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.FRIEND_LIST_UPDATE, RelationshipManager.FRIEND_LIST_UPDATE))
                         dismiss()
                         ickUserWallViewModel.inAction = false
