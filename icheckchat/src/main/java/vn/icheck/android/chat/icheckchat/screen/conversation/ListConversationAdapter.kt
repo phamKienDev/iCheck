@@ -120,6 +120,8 @@ class ListConversationAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
 
             itemView.setOnClickListener {
                 listenerHolder?.onClickConversation(obj)
+                obj.unreadCount = 0
+                notifyItemChanged(adapterPosition)
             }
         }
     }

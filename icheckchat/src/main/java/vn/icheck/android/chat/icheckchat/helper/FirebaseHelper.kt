@@ -79,23 +79,28 @@ class FirebaseHelper {
         })
     }
 
-    fun getChangeConversation(onAdd: (snapshot: DataSnapshot) -> Unit) {
+    fun getChangeConversation(onAdd: (snapshot: DataSnapshot) -> Unit, onChange: (snapshot: DataSnapshot) -> Unit) {
         firebaseDatabase.getReference("chat-conversations-v2/user|$userID").orderByChild("last_activity/time").startAt(System.currentTimeMillis().toDouble()).addChildEventListener(object : ChildEventListener {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                 onAdd(snapshot)
+//                Log.d("TESTonChildAdded", "onChildAdded: ${snapshot.value.toString()}")
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+//                Log.d("TESTonChildChanged", "onChildChanged: ${snapshot.value.toString()}")
+                onChange(snapshot)
             }
 
             override fun onChildRemoved(snapshot: DataSnapshot) {
+//                Log.d("TESTonChildRemoved", "onChildRemoved: ${snapshot.value.toString()}")
             }
 
             override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
+//                Log.d("TESTonChildMoved", "onChildMoved: ${snapshot.value.toString()}")
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.d("onCancelled", "onCancelled: $error")
+                Log.d("TESTonCancelled", "onCancelled: $error")
             }
         })
     }

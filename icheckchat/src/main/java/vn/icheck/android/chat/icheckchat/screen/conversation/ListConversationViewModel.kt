@@ -12,7 +12,7 @@ class ListConversationViewModel : BaseViewModelChat() {
 
     fun getConversation(lastTimeStamp: Long, success: (snapshot: DataSnapshot) -> Unit, cancel: (error: DatabaseError) -> Unit) = firebaseHelper.getConversation(lastTimeStamp, success, cancel)
 
-    fun getChangeConversation(onAdd: (snapshot: DataSnapshot) -> Unit) = firebaseHelper.getChangeConversation(onAdd)
+    fun getChangeConversation(onAdd: (snapshot: DataSnapshot) -> Unit, onChange: (snapshot: DataSnapshot) -> Unit) = firebaseHelper.getChangeConversation(onAdd, onChange)
 
     fun getChatSender(child: String, success: (snapshot: DataSnapshot) -> Unit, cancel: (error: DatabaseError) -> Unit) = firebaseHelper.getChatSender(child, success, cancel)
 

@@ -37,8 +37,6 @@ class ListConversationFragment(val listener: ICountMessageListener) : BaseFragme
 
     private val listData = mutableListOf<MCConversation>()
 
-    private val READ_MESSAGE = 98
-
     companion object {
         var isOpenChat = false
 
@@ -115,6 +113,7 @@ class ListConversationFragment(val listener: ICountMessageListener) : BaseFragme
 
         viewModel.loginFirebase({
             getConversation(0)
+            getChangeConversation()
             getChatSender()
         }, {
             binding.swipeRefresh.isRefreshing = false
@@ -178,9 +177,9 @@ class ListConversationFragment(val listener: ICountMessageListener) : BaseFragme
     private fun setOnClick() {
         adapter.setListener(object : ListConversationAdapter.IListener {
             override fun onClickConversation(obj: MCConversation) {
-                startActivityForResult(Intent(requireContext(), ChatSocialDetailActivity::class.java).apply {
+                startActivity(Intent(requireContext(), ChatSocialDetailActivity::class.java).apply {
                     putExtra(ConstantChat.DATA_1, obj)
-                }, READ_MESSAGE)
+                })
             }
         })
     }
@@ -255,32 +254,30 @@ class ListConversationFragment(val listener: ICountMessageListener) : BaseFragme
     private fun getConversation(lastTimeStamp: Long) {
         viewModel.getConversation(lastTimeStamp, { snapshot ->
             loadData(snapshot, lastTimeStamp)
-            getChangeConversation()
         }, { error ->
             viewModel.checkError(true, message = error.message)
         })
     }
 
     private fun getChangeConversation() {
-        viewModel.getChangeConversation { obj ->
-            val key = obj.key.toString()
+        viewModel.getChangeConversation(
+                { obj ->
+                    val key = obj.key.toString()
 
-            for (position in adapter.getListData.size - 1 downTo 0) {
-                if (adapter.getListData[position].key == key) {
-                    if (position != 0) {
-                        adapter.getListData.removeAt(position)
-                        adapter.notifyItemRemoved(position)
+                    for (position in adapter.getListData.size - 1 downTo 0) {
+                        if (adapter.getListData[position].key == key) {
+                            adapter.getListData.removeAt(position)
+                            adapter.notifyItemRemoved(position)
 
-                        adapter.getListData.add(0, convertDataFirebase(obj))
-                        adapter.notifyItemInserted(0)
-                        binding.recyclerView.smoothScrollToPosition(0)
-                    } else {
-                        adapter.getListData[0] = convertDataFirebase(obj)
-                        adapter.notifyItemChanged(0)
+                            adapter.getListData.add(0, convertDataFirebase(obj))
+                            adapter.notifyItemInserted(0)
+                            binding.recyclerView.smoothScrollToPosition(0)
+                        }
                     }
-                }
-            }
-        }
+                }, { obj ->
+            adapter.getListData[0] = convertDataFirebase(obj)
+            adapter.notifyItemChanged(0)
+        })
     }
 
     private fun getChatSender() {
@@ -327,22 +324,6 @@ class ListConversationFragment(val listener: ICountMessageListener) : BaseFragme
     fun onMessageEvent(event: MCMessageEvent) {
         if (event.type == MCMessageEvent.Type.UPDATE_DATA) {
             getData()
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == READ_MESSAGE) {
-            if (resultCode == Activity.RESULT_OK) {
-                val key = data?.getStringExtra(KEY)
-
-                for (i in adapter.getListData.size - 1 downTo 0) {
-                    if (adapter.getListData[i].key == key) {
-                        adapter.notifyItemChanged(i)
-                    }
-                }
-            }
         }
     }
 

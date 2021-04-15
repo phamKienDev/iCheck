@@ -6,7 +6,9 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Context.CLIPBOARD_SERVICE
 import android.content.Intent
+import android.graphics.Paint
 import android.net.Uri
+import android.text.Html
 import android.text.util.Linkify
 import android.util.Patterns
 import android.view.Gravity
@@ -39,6 +41,7 @@ import vn.icheck.android.chat.icheckchat.model.MCMessageEvent
 import vn.icheck.android.chat.icheckchat.model.MCStatus
 import vn.icheck.android.chat.icheckchat.model.MCSticker
 import vn.icheck.android.chat.icheckchat.screen.detail_image.ImageDetailActivity
+import vn.icheck.android.chat.icheckchat.sdk.ChatSdk
 import vn.icheck.android.ichecklibs.SizeHelper
 import java.util.regex.Matcher
 import vn.icheck.android.ichecklibs.beGone
@@ -204,18 +207,22 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
                 } else {
                     itemView.context.getString(R.string.gia_dang_cap_nhat)
                 }
+
+                binding.btnProductDetail.setOnClickListener {
+                    ChatSdk.openActivity("product?id=${obj.product!!.productId}&barcode=${obj.product!!.barcode}")
+                }
             }
         }
 
         private fun setupStickers(obj: MCDetailMessage) {
-            if (obj.sticker is String){
+            if (obj.sticker is String) {
                 if ((obj.sticker as String).isNotEmpty()) {
                     binding.layoutImageDetail.layoutOneImage.setVisible()
                     binding.layoutImageDetail.layoutOneImage.setBackgroundResource(0)
 
                     loadImageUrlRounded(binding.layoutImageDetail.img, obj.sticker as String, R.drawable.ic_default_image_upload_150_chat, dpToPx(10))
                 }
-            }else if (obj.sticker is MCSticker){
+            } else if (obj.sticker is MCSticker) {
                 if (obj.sticker != null && !(obj.sticker as MCSticker).thumbnail.isNullOrEmpty()) {
                     binding.layoutImageDetail.layoutOneImage.setVisible()
                     binding.layoutImageDetail.layoutOneImage.setBackgroundResource(0)
@@ -380,6 +387,10 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
                 } else {
                     itemView.context.getString(R.string.gia_dang_cap_nhat)
                 }
+
+                binding.btnProductDetail.setOnClickListener {
+                    ChatSdk.openActivity("product?id=${obj.product!!.productId}&barcode=${obj.product!!.barcode}")
+                }
             }
         }
 
@@ -407,14 +418,14 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
         }
 
         private fun setupSticker(obj: MCDetailMessage) {
-            if (obj.sticker is String){
+            if (obj.sticker is String) {
                 if ((obj.sticker as String).isNotEmpty()) {
                     binding.layoutImageDetail.layoutOneImage.setVisible()
                     binding.layoutImageDetail.layoutOneImage.setBackgroundResource(0)
 
                     loadImageUrlRounded(binding.layoutImageDetail.img, obj.sticker as String, R.drawable.ic_default_image_upload_150_chat, dpToPx(10))
                 }
-            }else if (obj.sticker is MCSticker){
+            } else if (obj.sticker is MCSticker) {
                 if (obj.sticker != null && !(obj.sticker as MCSticker).thumbnail.isNullOrEmpty()) {
                     binding.layoutImageDetail.layoutOneImage.setVisible()
                     binding.layoutImageDetail.layoutOneImage.setBackgroundResource(0)
@@ -492,7 +503,6 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
 
         link.apply {
             text = content
-//            paintFlags = paintFlags or Paint.UNDERLINE_TEXT_FLAG
             Linkify.addLinks(this, Linkify.ALL)
             setLinkTextColor(ContextCompat.getColor(context, R.color.white))
         }
@@ -524,26 +534,45 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
         tvMessage.apply {
             setVisible()
 
-            text = obj.content!!.replace("\r", "\n")
-            paintFlags = 0
+            if (obj.content!!.contains("icheck://")) {
+                val positionStart = obj.content!!.indexOf("icheck://")
+                val positionEnd = obj.content!!.indexOf(" ", positionStart)
 
-            setOnClickListener {
-                if (obj.showStatus == 0) {
-                    tvTime.setVisible()
-                    if (FirebaseAuth.getInstance().currentUser?.uid == obj.senderId) {
-                        rootView.setPadding(dpToPx(90), 0, dpToPx(12), dpToPx(10))
-                    } else {
-                        rootView.setPadding(dpToPx(12), 0, dpToPx(55), dpToPx(10))
+                val schema = if (positionEnd != -1){
+                    obj.content!!.substring(positionStart, positionEnd)
+                }else{
+                    obj.content!!
+                }
+
+                val content = obj.content!!.replace(schema, "<u>$schema</u>")
+
+                text = Html.fromHtml(content)
+
+                setOnClickListener {
+                    ChatSdk.openActivity(schema)
+                }
+            } else {
+                text = obj.content!!.replace("\r", "\n")
+                paintFlags = 0
+
+                setOnClickListener {
+                    if (obj.showStatus == 0) {
+                        tvTime.setVisible()
+                        if (FirebaseAuth.getInstance().currentUser?.uid == obj.senderId) {
+                            rootView.setPadding(dpToPx(90), 0, dpToPx(12), dpToPx(10))
+                        } else {
+                            rootView.setPadding(dpToPx(12), 0, dpToPx(55), dpToPx(10))
+                        }
+                        obj.showStatus = 1
+                    } else if (obj.showStatus == 1) {
+                        tvTime.beGone()
+                        if (FirebaseAuth.getInstance().currentUser?.uid == obj.senderId) {
+                            rootView.setPadding(dpToPx(90), 0, dpToPx(12), dpToPx(2))
+                        } else {
+                            rootView.setPadding(dpToPx(12), 0, dpToPx(55), dpToPx(2))
+                        }
+                        obj.showStatus = 0
                     }
-                    obj.showStatus = 1
-                } else if (obj.showStatus == 1) {
-                    tvTime.beGone()
-                    if (FirebaseAuth.getInstance().currentUser?.uid == obj.senderId) {
-                        rootView.setPadding(dpToPx(90), 0, dpToPx(12), dpToPx(2))
-                    } else {
-                        rootView.setPadding(dpToPx(12), 0, dpToPx(55), dpToPx(2))
-                    }
-                    obj.showStatus = 0
                 }
             }
 
