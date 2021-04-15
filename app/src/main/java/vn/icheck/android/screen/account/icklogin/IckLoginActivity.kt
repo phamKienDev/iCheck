@@ -90,7 +90,7 @@ class IckLoginActivity : BaseCoroutineActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ick_login)
-        nav_host_fragment.view?.background = ResourcesCompat.getDrawable(resources, R.drawable.ick_bg_top_corner_20, null)
+        nav_host_fragment_login.view?.background = ResourcesCompat.getDrawable(resources, R.drawable.ick_bg_top_corner_20, null)
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this)
         }
@@ -214,7 +214,7 @@ class IckLoginActivity : BaseCoroutineActivity() {
         btn_register.setTextSize(16F)
         btn_login.setTextColor(Color.WHITE)
         btn_register.setTextColor(Color.parseColor("#80ffffff"))
-        findNavController(R.id.nav_host_fragment).popBackStack(R.id.ickLoginFragment, false)
+        findNavController(R.id.nav_host_fragment_login).popBackStack(R.id.ickLoginFragment, false)
         forceHideKeyboard()
         ickLoginViewModel.stateRegister.postValue(1)
         ickLoginViewModel.state = 1
@@ -229,9 +229,9 @@ class IckLoginActivity : BaseCoroutineActivity() {
             btn_register.setTextColor(Color.WHITE)
             btn_login.setTextSize(16F)
             btn_register.setTextSize(18F)
-            findNavController(R.id.nav_host_fragment).popBackStack(R.id.ickLoginFragment, false)
+            findNavController(R.id.nav_host_fragment_login).popBackStack(R.id.ickLoginFragment, false)
             val action = IckLoginFragmentDirections.actionIckLoginFragmentToIckLoginOtpFragment(REGISTER)
-            findNavController(R.id.nav_host_fragment).navigate(action)
+            findNavController(R.id.nav_host_fragment_login).navigate(action)
             forceHideKeyboard()
             ickLoginViewModel.onAction = false
         }
