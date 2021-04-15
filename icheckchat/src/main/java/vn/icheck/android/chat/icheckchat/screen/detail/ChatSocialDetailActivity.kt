@@ -967,10 +967,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.imgBack -> {
-                val i = Intent()
-                i.putExtra(KEY, key)
-                setResult(Activity.RESULT_OK, i)
-
                 onBackPressed()
             }
             R.id.imgDelete -> {
@@ -979,7 +975,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
             R.id.imgScan -> {
                 if (!binding.imgScan.isChecked) {
                     IcheckScanActivity.scanOnlyChat(this, SCAN)
-//                    startActivityForResult(Intent(this@ChatSocialDetailActivity, IcheckScanActivity::class.java), SCAN)
                 }
             }
             R.id.imgCamera -> {
