@@ -10,6 +10,7 @@ import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,10 +37,15 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.component.post.IPostListener
 import vn.icheck.android.constant.*
 import vn.icheck.android.databinding.FragmentUserWallBinding
+import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.model.ApiErrorResponse
 import vn.icheck.android.model.ApiSuccessResponse
 import vn.icheck.android.model.posts.PostViewModel
+import vn.icheck.android.network.base.ICNewApiListener
+import vn.icheck.android.network.base.ICResponse
+import vn.icheck.android.network.base.ICResponseCode
 import vn.icheck.android.network.base.SessionManager
+import vn.icheck.android.network.feature.relationship.RelationshipInteractor
 import vn.icheck.android.network.models.ICMedia
 import vn.icheck.android.network.models.ICPost
 import vn.icheck.android.network.models.product.report.ICReportForm
@@ -153,6 +159,27 @@ class IckUserWallFragment : Fragment(), IPostListener {
                                     AppDatabase.getDatabase(requireContext()).friendInvitationMeUserIdDao().insertFriendInvitationMeUserID(ICFriendInvitationMeUserId(ickUserWallViewModel.userInfo?.data?.id!!))
                                 }
                             }
+                        } else {
+                            requireActivity().showLogin()
+                        }
+                    }
+                    USER_WALL_ACCEPT_FRIEND -> {
+                        if (SessionManager.isUserLogged) {
+                            val interaction = RelationshipInteractor()
+                            interaction.updateFriendInvitation(ickUserWallViewModel.id, Constant.FRIEND_REQUEST_ACCEPTED, object : ICNewApiListener<ICResponse<Boolean>> {
+                                override fun onSuccess(obj: ICResponse<Boolean>) {
+                                    binding.root.isRefreshing = true
+                                    ickUserWallViewModel.reachedEnd = false
+                                    ickUserWallViewModel.currentOffsetPost = 10
+                                    getLayout()
+                                    RelationshipManager.removeFriendInvitationMe(ickUserWallViewModel.id)
+                                }
+
+                                override fun onError(error: ICResponseCode?) {
+                                    requireContext().showSimpleErrorToast(error?.message ?: requireContext().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+//                        ToastUtils.showLongError(activity, R.string.co_loi_xay_ra_vui_long_thu_lai)
+                                }
+                            })
                         } else {
                             requireActivity().showLogin()
                         }
