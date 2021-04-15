@@ -58,7 +58,8 @@ class SplashScreenActivity : Activity() {
                     ActivityHelper.startActivityAndFinish<CheckThemeActivity>(this@SplashScreenActivity)
                 }
             } else {
-                FirebaseDynamicLinksActivity.startTarget(this, targetType, targetID)
+//                FirebaseDynamicLinksActivity.startTarget(this, targetType, targetID)
+                FirebaseDynamicLinksActivity.startTargetPath(this, intent.getStringExtra("path"))
                 finish()
             }
 

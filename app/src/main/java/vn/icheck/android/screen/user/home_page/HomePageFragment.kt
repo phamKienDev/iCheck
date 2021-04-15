@@ -595,9 +595,10 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                 getReminders()
             }
             ICMessageEvent.Type.DISMISS_REMINDER -> {
-                if (layoutContainer.currentState != layoutContainer.endState && viewModel.getRemindersCount() ?: 0 > 0) {
-                    layoutContainer.transitionToEnd()
-                }
+                getReminders()
+//                if (layoutContainer.currentState != layoutContainer.endState && viewModel.getRemindersCount() ?: 0 > 0) {
+//                    layoutContainer.transitionToEnd()
+//                }
             }
             ICMessageEvent.Type.ON_SET_THEME -> {
                 checkTheme()
