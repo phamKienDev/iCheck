@@ -1,4 +1,4 @@
-stage
+stage:
   - build_develop
   - build_production
 
