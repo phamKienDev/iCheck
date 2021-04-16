@@ -34,6 +34,7 @@ import kotlinx.android.synthetic.main.activity_list_product_question.*
 import kotlinx.coroutines.*
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseCoroutineActivity
+import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.constant.*
 import vn.icheck.android.databinding.ActivityIckContributeProductBinding
 import vn.icheck.android.helper.DialogHelper
@@ -122,7 +123,7 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
 
     var currentMediaDialog: TakeMediaDialog? = null
 
-//    private val takeImageDialog = TakeMediaDialog(this, takeImageListener, selectMulti = false, cropImage = true, isVideo = false, showBottom = true)
+    //    private val takeImageDialog = TakeMediaDialog(this, takeImageListener, selectMulti = false, cropImage = true, isVideo = false, showBottom = true)
     private val takeImageDialog = TakeMediaDialog(this, takeImageListener, selectMulti = false, cropImage = true, isVideo = false)
 
     val ickContributeProductViewModel: IckContributeProductViewModel by viewModels()
@@ -422,6 +423,8 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
                             try {
                                 rp.values.removeAll(sequenceOf(null))
                                 if (rp.get("data") != null) {
+                                    var firstJob: Job? = null
+                                    var secondJob: Job? = null
                                     ickContributeProductViewModel.myContribute = 1
                                     binding.textView4 simpleText "Chỉnh sửa đóng góp"
                                     DialogHelper.showLoading(this@IckContributeProductActivity)
@@ -434,7 +437,7 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
                                         binding.edtPrice simpleText ickContributeProductViewModel.requestBody.get("price").toString()
                                     }
                                     if (ickContributeProductViewModel.requestBody["images"] as ArrayList<String>? != null) {
-                                        async {
+                                        firstJob = async {
                                             val arr = ArrayList<File>()
                                             val arrAsync = arrayListOf<Deferred<Any>>()
                                             val arrayList = ickContributeProductViewModel.requestBody["images"] as ArrayList<String>
@@ -462,28 +465,30 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
                                                 })
                                             }
                                             arrAsync.awaitAll()
-                                            val mapArr = arrayList.map { item ->
-                                                item.split("/").last()
-                                            }
-                                            arr.sortBy { file ->
-                                                mapArr.indexOf(file.name)
-                                            }
-                                            when (arr.size) {
-                                                1 -> {
-                                                    binding.imgFirst.loadSimpleFile(arr[0])
-                                                    binding.tvImgFirst simpleText "Chỉnh sửa"
+                                            if (isActive) {
+                                                val mapArr = arrayList.map { item ->
+                                                    item.split("/").last()
                                                 }
-
-                                                else -> {
-                                                    binding.imgFirst.loadSimpleFile(arr[0])
-                                                    binding.imgSecond.loadSimpleFile(arr[1])
-                                                    binding.tvImgFirst simpleText "Chỉnh sửa"
-                                                    binding.tvImgSecond simpleText "Chỉnh sửa"
+                                                arr.sortBy { file ->
+                                                    mapArr.indexOf(file.name)
                                                 }
-                                            }
-                                            ickContributeProductViewModel.addAllImage(arr)
-                                        }.start()
+                                                when (arr.size) {
+                                                    1 -> {
+                                                        binding.imgFirst.loadSimpleFile(arr[0])
+                                                        binding.tvImgFirst simpleText "Chỉnh sửa"
+                                                    }
 
+                                                    else -> {
+                                                        binding.imgFirst.loadSimpleFile(arr[0])
+                                                        binding.imgSecond.loadSimpleFile(arr[1])
+                                                        binding.tvImgFirst simpleText "Chỉnh sửa"
+                                                        binding.tvImgSecond simpleText "Chỉnh sửa"
+                                                    }
+                                                }
+                                                ickContributeProductViewModel.addAllImage(arr)
+                                            }
+                                        }
+                                        firstJob?.start()
                                     }
                                     if (ickContributeProductViewModel.requestBody.get("unverifiedOwner") as Map<*, *>? != null) {
                                         binding.edtNamePage simpleText (ickContributeProductViewModel.requestBody.get("unverifiedOwner") as Map<*, *>).get("name") as String?
@@ -520,7 +525,7 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
                                                                                                 addImage(null)
                                                                                             }
                                                                                             if (this.values is ArrayList<*>) {
-                                                                                                async {
+                                                                                                 secondJob = async {
                                                                                                     val arr = arrayListOf<File>()
                                                                                                     val arrAsync = arrayListOf<Deferred<Any>>()
                                                                                                     val arrayList = this@apply.values as ArrayList<String>
@@ -547,10 +552,12 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
                                                                                                         })
                                                                                                     }
                                                                                                     arrAsync.awaitAll()
-                                                                                                    addAllImage(arr)
-                                                                                                    categoryAttributesAdapter.notifyDataSetChanged()
-                                                                                                }.start()
-
+                                                                                                    if (isActive) {
+                                                                                                        addAllImage(arr)
+                                                                                                        categoryAttributesAdapter.notifyDataSetChanged()
+                                                                                                    }
+                                                                                                }
+                                                                                                secondJob?.start()
                                                                                             }
                                                                                         } else if (item.type == "date") {
                                                                                             fragmentManager = supportFragmentManager
@@ -585,11 +592,56 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
                                     } else {
                                         DialogHelper.closeLoading(this@IckContributeProductActivity)
                                     }
+                                    val data = rp.get("data") as Map<String, Any?>
+                                    if (data["hidden"] != null) {
+                                        if (data["hidden"] as Boolean) {
+                                            val msg = if (!(data["reason"] as String?).isNullOrEmpty()) "Đóng góp trước đó của bạn đã bị Huỷ duyệt với lý do: " + data["reason"].toString() else "Đóng góp trước đó của bạn đã bị Huỷ duyệt bởi người quản trị. Bạn có muốn thực hiện đóng góp thông tin lại cho sản phẩm này?"
+                                            DialogHelper.showConfirm(this@IckContributeProductActivity, "Thông báo",
+                                                    msg,
+                                                    "Hủy",
+                                                    "Đóng góp lại",
+                                                    false,
+                                                    object : ConfirmDialogListener {
+                                                        override fun onDisagree() {
+                                                            finish()
+                                                        }
+
+                                                        override fun onAgree() {
+                                                            try {
+                                                                ickContributeProductViewModel.requestBody.clear()
+                                                                categoryAttributesAdapter.notifyDataSetChanged()
+                                                                ickContributeProductViewModel.listImageModel.clear()
+                                                                listImageAdapter.notifyDataSetChanged()
+                                                                ickContributeProductViewModel.postSize()
+                                                                binding.edtNameProduct.setText("")
+                                                                binding.edtPrice.setText("")
+                                                                binding.edtAddressPage.setText("")
+                                                                binding.edtEmail.setText("")
+                                                                binding.edtNamePage.setText("")
+                                                                binding.edtPhonePage.setText("")
+                                                                binding.edtTax.setText("")
+                                                                binding.edtCategory.setText("")
+                                                                binding.edtCategory.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_blue_24px, 0)
+                                                                ickContributeProductViewModel.categoryAttributes.clear()
+                                                                categoryAttributesAdapter.notifyDataSetChanged()
+                                                                binding.tvImgFirst simpleText "+ Ảnh mặt trước"
+                                                                binding.imgFirst.setImageResource(R.drawable.ic_front_image_holder)
+                                                                binding.imgSecond.setImageResource(R.drawable.ic_back_image_holder)
+                                                                binding.tvImgSecond simpleText "+ Ảnh mặt sau"
+                                                                firstJob?.cancel()
+                                                                secondJob?.cancel()
+                                                            } catch (e: Exception) {
+                                                            }
+                                                        }
+                                                    })
+                                        }
+                                    }
                                 }
                             } catch (e: Exception) {
                                 DialogHelper.closeLoading(this@IckContributeProductActivity)
                                 logError(e)
                             }
+
                         }
                     }
                 })

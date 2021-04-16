@@ -126,6 +126,7 @@ class FriendWallSettingsDialog( val ickUserWallViewModel: IckUserWallViewModel, 
                                     EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.UNFRIEND))
                                     AppDatabase.getDatabase().myFriendIdDao().deleteUserById(ickUserWallViewModel.userInfo?.data?.id!!)
                                     AppDatabase.getDatabase().meFollowUserDao().deleteUserById(ickUserWallViewModel.userInfo?.data?.id!!)
+                                    RelationshipManager.removeFriendInvitationMe(ickUserWallViewModel.userInfo?.data?.id!!)
                                 } else {
                                     EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ERROR_SERVER))
                                 }

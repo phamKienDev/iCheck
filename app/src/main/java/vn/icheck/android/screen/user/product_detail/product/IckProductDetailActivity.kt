@@ -189,6 +189,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         fun start(activity: Activity, productID: Long) {
             ActivityUtils.startActivity<IckProductDetailActivity, Long>(activity, Constant.DATA_3, productID)
         }
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
