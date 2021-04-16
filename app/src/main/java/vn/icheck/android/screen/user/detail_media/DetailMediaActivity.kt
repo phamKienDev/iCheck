@@ -11,9 +11,11 @@ import com.yarolegovich.discretescrollview.DiscreteScrollView
 import kotlinx.android.synthetic.main.activity_detail_media2.*
 import kotlinx.android.synthetic.main.ic_image_holder2.view.*
 import vn.icheck.android.R
+import vn.icheck.android.activities.image.DetailImagesActivity
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.constant.POSITION
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.DownloadHelper
 import vn.icheck.android.helper.NetworkHelper
@@ -50,6 +52,18 @@ class DetailMediaActivity : BaseActivityMVVM(), View.OnClickListener {
             intent.putExtra(Constant.DATA_1, json)
             ActivityUtils.startActivity(activity, intent)
         }
+
+        fun start(activity: Activity, listImage: ArrayList<String?>, pos: Int = 0) {
+            val listMedia = arrayListOf<ICMedia>()
+            listImage.filter { !it.isNullOrEmpty() }.forEach {
+                listMedia.add(ICMedia(it, Constant.IMAGE))
+            }
+            val json = JsonHelper.toJson(listMedia)
+
+            val intent = Intent(activity, DetailMediaActivity::class.java)
+            intent.putExtra(Constant.DATA_1, json)
+            ActivityUtils.startActivity(activity, intent)
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,7 +75,7 @@ class DetailMediaActivity : BaseActivityMVVM(), View.OnClickListener {
     }
 
     private fun initRecyclerView() {
-       val listData = JsonHelper.parseListAttachment(intent.getStringExtra(Constant.DATA_1))
+        val listData = JsonHelper.parseListAttachment(intent.getStringExtra(Constant.DATA_1))
 
         if (listData.isNullOrEmpty()) {
             showShortError(getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
