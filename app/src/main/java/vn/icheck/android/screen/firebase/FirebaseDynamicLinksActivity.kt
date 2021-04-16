@@ -1291,8 +1291,9 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
 
         if (PermissionHelper.checkResult(grantResults)) {
             if (requestCode == ICK_REQUEST_CAMERA) {
-                checkTarget()
-                return
+                if (requestCode == ICK_REQUEST_CAMERA) {
+                    V6ScanditActivity.create(this)
+                }
             }
         }
 
