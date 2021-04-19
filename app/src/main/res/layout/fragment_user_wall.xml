@@ -61,7 +61,7 @@
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:maxLines="1"
-                android:textColor="#057DDA"
+                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/font_18"
                 app:layout_constraintBottom_toBottomOf="@+id/btn_back"
                 app:layout_constraintEnd_toStartOf="@+id/notify"

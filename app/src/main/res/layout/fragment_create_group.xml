@@ -16,7 +16,7 @@
             android:layout_marginTop="@dimen/size_16"
             android:layout_marginBottom="@dimen/size_16"
             android:src="@color/gray"
-            app:civ_border_color="#057DDA"
+            app:civ_border_color="@color/colorPrimary"
             app:civ_border_width="@dimen/size_2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

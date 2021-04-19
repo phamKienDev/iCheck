@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_product_header_holder.view.*
@@ -57,7 +58,7 @@ class ListBigCorpHolder(parent: ViewGroup, val listener: IScanHistoryView) : Rec
 
                 if (selectedPos == absoluteAdapterPosition) {
                     itemView.bgItem.setBackgroundResource(R.drawable.bg_corner_white_4_stroke_light_blue)
-                    itemView.tvNameBigCorp.setTextColor(Color.parseColor("#057DDA"))
+                    itemView.tvNameBigCorp.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorPrimary))
                 } else {
                     itemView.bgItem.setBackgroundResource(R.drawable.bg_corners_white_4)
                     itemView.tvNameBigCorp.setTextColor(Color.parseColor("#757575"))

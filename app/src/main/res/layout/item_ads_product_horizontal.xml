@@ -162,7 +162,7 @@
                 android:id="@+id/tvPriceSpecial"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:textColor="#057dda"
+                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/font_16"
                 app:fontFamily="@font/barlow_semi_bold"
                 tools:text="2.987.000đ" />
@@ -208,7 +208,7 @@
                 android:drawableRight="@drawable/ic_new_star_full_12_px"
                 android:drawablePadding="@dimen/size_4"
                 android:gravity="center"
-                android:textColor="#057dda"
+                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/font_12"
                 app:fontFamily="@font/barlow_semi_bold"
                 tools:text="4.5" />

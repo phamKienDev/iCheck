@@ -80,7 +80,7 @@
         android:background="@drawable/bg_more_turn"
         android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center"
-        android:textColor="#057dda"
+        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/font_16"
         app:layout_constraintBottom_toBottomOf="@+id/tvCountTurn"
         app:layout_constraintEnd_toEndOf="parent"

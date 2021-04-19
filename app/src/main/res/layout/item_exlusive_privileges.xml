@@ -49,7 +49,7 @@
                 android:drawableStart="@drawable/ic_exclusive_privileges"
                 android:drawablePadding="6.7dp"
                 android:textSize="@dimen/font_14"
-                android:textColor="#057dda"
+                android:textColor="@color/colorPrimary"
                 tools:text="150.000 điểm"
                 />
 

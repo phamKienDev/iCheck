@@ -181,7 +181,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="Nạp ngay"
-            android:textColor="#057dda"
+            android:textColor="@color/colorPrimary"
             android:fontFamily="@font/barlow_medium"
             android:textSize="@dimen/font_14"
             android:visibility="visible"

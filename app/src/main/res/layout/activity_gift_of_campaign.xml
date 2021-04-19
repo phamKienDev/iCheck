@@ -136,7 +136,7 @@
             android:ellipsize="end"
             android:gravity="center"
             android:singleLine="true"
-            android:textColor="#057DDA"
+            android:textColor="@color/colorPrimary"
             android:textStyle="normal"
             tools:text="Tiêu đề" />
 

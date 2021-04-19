@@ -52,7 +52,7 @@
             android:paddingTop="@dimen/size_8"
             android:layout_width="match_parent"
             android:text="Trang cá nhân"
-            android:textColor="#057DDA"
+            android:textColor="@color/colorPrimary"
             app:drawableTopCompat="@drawable/ic_bottom_wall_fc_27px" />
 
         <TextView

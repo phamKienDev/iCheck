@@ -283,7 +283,7 @@
             android:paddingBottom="@dimen/size_12"
             android:fontFamily="@font/barlow_semi_bold"
             android:text="Chia sẻ"
-            android:textColor="#057dda"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_16" />
 
     </LinearLayout>

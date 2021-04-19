@@ -32,7 +32,7 @@
             android:ellipsize="end"
             android:gravity="center"
             android:text="Giao dịch thành công"
-            android:textColor="#057dda"
+            android:textColor="@color/colorPrimary"
             android:textStyle="normal"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -219,7 +219,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:text="Nạp thẻ điện thoại khác"
-            android:textColor="#057dda"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_16"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

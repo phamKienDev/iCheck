@@ -35,7 +35,7 @@
             android:ellipsize="end"
             android:gravity="center"
             android:singleLine="true"
-            android:textColor="#057dda"
+            android:textColor="@color/colorPrimary"
             tools:text="Dầu tẩy trang DHC fcjsbsabcnc..." />
 
         <androidx.appcompat.widget.AppCompatImageView

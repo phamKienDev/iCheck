@@ -63,7 +63,7 @@
 
         android:fontFamily="@font/barlow_medium"
         android:gravity="center_vertical"
-        android:textColor="#057DDA"
+        android:textColor="@color/colorPrimary"
         tools:text="0979 999 888" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -78,7 +78,7 @@
         android:fontFamily="@font/barlow_medium"
         android:gravity="center_vertical"
         android:includeFontPadding="false"
-        android:textColor="#057DDA"
+        android:textColor="@color/colorPrimary"
         tools:text="contact@cocacola.vn" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -91,7 +91,7 @@
         android:drawablePadding="@dimen/size_10"
         android:fontFamily="@font/barlow_medium"
         android:gravity="center_vertical"
-        android:textColor="#057DDA"
+        android:textColor="@color/colorPrimary"
         app:drawableLeftCompat="@drawable/ic_web_gray_24px"
         app:drawableStartCompat="@drawable/ic_web_gray_24px"
         tools:text="https://cocacola.vn" />

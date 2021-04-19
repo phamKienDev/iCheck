@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Liên hệ Doanh nghiệp"
-            android:textColor="#057dda"
+            android:textColor="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="@id/imgCancel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -73,7 +73,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center|end"
             android:lineSpacingExtra="@dimen/font_6"
-            android:textColor="#057dda"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_14"
             tools:text="0902 195 488" />
 
@@ -118,7 +118,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center|end"
             android:lineSpacingExtra="@dimen/font_6"
-            android:textColor="#057dda"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_14"
             tools:text="hoaphat88@hoaphat.vn" />
 
@@ -164,7 +164,7 @@
             android:gravity="center"
             android:lineSpacingExtra="@dimen/font_6"
             android:text="Nhắn tin"
-            android:textColor="#057dda"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_14" />
     </LinearLayout>
 </LinearLayout>

@@ -12,7 +12,7 @@
         android:layout_width="@dimen/size_40"
         android:layout_height="@dimen/size_40"
         android:indeterminate="true"
-        android:progressBackgroundTint="#057DDA"
+        android:progressBackgroundTint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/tv_title"
         app:layout_constraintHorizontal_bias="0.5"

@@ -6,6 +6,7 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.product_detail_mbtt2.view.*
 import vn.icheck.android.R
 import vn.icheck.android.adapters.base.BaseHolder
@@ -58,7 +59,7 @@ class MbttHolder(view: View) : BaseHolder(view) {
                 progress.progress = totalYes
                 progress.rotation = 0f
 
-                tvYes.setTextColor(Color.parseColor("#057DDA"))
+                tvYes.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorPrimary))
                 textHintYes.setTextColor(Color.parseColor("#057DDA"))
                 tvYes.textSize = 16f
 

@@ -33,7 +33,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:text="Giao dịch thành công"
-            android:textColor="#057dda"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_18"
             android:textStyle="normal"
             app:layout_constraintTop_toTopOf="parent" />
@@ -278,7 +278,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:text="Mua mã thẻ khác"
-            android:textColor="#057dda"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_16"
             app:layout_constraintEnd_toStartOf="@id/btn_charge"
             app:layout_constraintStart_toStartOf="parent"

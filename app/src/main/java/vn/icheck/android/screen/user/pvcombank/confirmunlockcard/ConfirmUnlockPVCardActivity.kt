@@ -15,6 +15,7 @@ import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
 import android.view.View
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.activity_confirm_unlock_pvcard.*
@@ -72,7 +73,7 @@ class ConfirmUnlockPVCardActivity : BaseActivityMVVM() {
         arr.add(7, ' ')
         arr.add(4, ' ')
         val span = SpannableString("Mã xác nhận OTP đã được gửi đến số điện thoại ${arr.joinToString(separator = "")}")
-        span.setSpan(ForegroundColorSpan(Color.parseColor("#057DDA")), 45, span.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        span.setSpan(ForegroundColorSpan(ContextCompat.getColor(this, R.color.colorPrimary)), 45, span.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         val spannableString = SpannableString(span)
         val onclickPhone = object : ClickableSpan() {
             override fun onClick(widget: View) {

@@ -124,7 +124,7 @@
             android:gravity="center"
             android:singleLine="true"
             android:text="Xếp hạng"
-            android:textColor="#057DDA"
+            android:textColor="@color/colorPrimary"
             android:textStyle="normal" />
 
         <androidx.appcompat.widget.AppCompatImageButton

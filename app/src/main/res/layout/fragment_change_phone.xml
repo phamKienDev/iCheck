@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/barlow_semi_bold"
             android:text="Xác thực số điện thoại"
-            android:textColor="#057DDA"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_18"
             app:layout_constraintBottom_toBottomOf="@+id/btn_back"
             app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +62,7 @@
             android:layout_marginTop="@dimen/size_26"
             android:fontFamily="@font/barlow_semi_bold"
             android:text="Việt Nam"
-            android:textColor="#057DDA"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_18"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView25" />

@@ -28,7 +28,7 @@
         android:fontFamily="@font/barlow_semi_bold"
         android:includeFontPadding="false"
         android:text="@string/chinh_sua_quyen_rieng_tu"
-        android:textColor="#057dda"
+        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/font_18"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

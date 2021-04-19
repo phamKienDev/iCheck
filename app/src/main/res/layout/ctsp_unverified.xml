@@ -27,7 +27,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imgProduct"
         app:piv_radius="@dimen/size_3"
-        app:piv_selectedColor="#057DDA"
+        app:piv_selectedColor="@color/colorPrimary"
         app:piv_strokeWidth="@dimen/size_1"
         app:piv_unselectedColor="#D8D8D8" />
 
@@ -141,7 +141,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_4"
         android:fontFamily="sans-serif-medium"
-        android:textColor="#057DDA"
+        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/font_14"
         app:layout_constraintStart_toStartOf="@+id/product_rate"
         app:layout_constraintTop_toBottomOf="@id/product_rate"

@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Thử thách nhận thêm lượt mở quà"
-            android:textColor="#057dda"
+            android:textColor="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="@id/imgCancel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -69,7 +69,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:text="Thông tin sự kiện"
-            android:textColor="#057dda"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_16" />
 
     </RelativeLayout>

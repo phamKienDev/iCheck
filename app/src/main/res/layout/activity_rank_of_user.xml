@@ -242,7 +242,7 @@
                         android:fontFamily="@font/barlow_semi_bold"
                         android:gravity="center"
                         android:text="Quyền lợi thành viên"
-                        android:textColor="#057dda"
+                        android:textColor="@color/colorPrimary"
                         android:textSize="@dimen/font_14"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"

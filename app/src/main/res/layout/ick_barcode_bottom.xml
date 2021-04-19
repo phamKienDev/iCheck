@@ -23,7 +23,7 @@
         android:layout_marginTop="@dimen/size_12"
         android:text="Nhập mã bằng tay"
         android:fontFamily="@font/barlow_semi_bold"
-        android:textColor="#057DDA"
+        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/font_18"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

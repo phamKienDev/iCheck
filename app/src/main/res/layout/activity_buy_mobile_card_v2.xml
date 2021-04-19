@@ -213,8 +213,8 @@
             android:layout_marginEnd="@dimen/size_12"
             android:gravity="end"
             android:hint="0 đ"
-            android:textColor="#057dda"
-            android:textColorHint="#057dda"
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tvSubPrice"
             app:layout_constraintTop_toTopOf="@id/tvSubPrice" />

@@ -28,7 +28,7 @@
             android:paddingTop="@dimen/size_10"
             android:paddingBottom="@dimen/size_10"
             android:text="@string/bao_cao_bai_viet"
-            android:textColor="#057dda" />
+            android:textColor="@color/colorPrimary" />
     </FrameLayout>
 
     <View

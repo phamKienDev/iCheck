@@ -197,7 +197,7 @@
         android:layout_marginTop="@dimen/size_8"
         android:layout_marginBottom="@dimen/size_10"
         android:lineSpacingExtra="@dimen/font_6"
-        android:textColor="#057dda"
+        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/font_14"
         android:gravity="center"
         android:paddingTop="@dimen/size_5"

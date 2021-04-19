@@ -85,7 +85,7 @@
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_4"
         android:fontFamily="@font/barlow_medium"
-        android:textColor="#057DDA"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_rate"

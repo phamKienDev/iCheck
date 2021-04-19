@@ -84,7 +84,7 @@
                 android:gravity="center"
                 android:padding="@dimen/size_8"
                 android:text="Thực hiện thử thách"
-                android:textColor="#057dda"
+                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/font_16" />
 
             <androidx.appcompat.widget.AppCompatTextView

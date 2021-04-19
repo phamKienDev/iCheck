@@ -104,7 +104,7 @@
                 android:includeFontPadding="false"
                 android:layout_marginLeft="@dimen/size_6"
                 android:lineSpacingExtra="@dimen/font_14"
-                android:textColor="#057dda"
+                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/font_12"
                 app:fontFamily="@font/barlow_medium"
                 tools:text="8,9" />
@@ -140,7 +140,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_4"
             android:includeFontPadding="false"
-            android:textColor="#057dda"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_14"
             app:fontFamily="@font/barlow_semi_bold"
             tools:text="27.900 ₫" />

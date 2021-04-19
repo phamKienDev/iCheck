@@ -31,7 +31,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="Thông tin thêm"
-            android:textColor="#057DDA" />
+            android:textColor="@color/colorPrimary" />
 
         <ImageView
             android:id="@+id/img_product"

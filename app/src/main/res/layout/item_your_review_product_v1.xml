@@ -60,7 +60,7 @@
         android:drawableEnd="@drawable/ic_down_blue_18px"
         android:paddingBottom="@dimen/size_8"
         android:text="Xem chi tiết"
-        android:textColor="#057DDA"
+        android:textColor="@color/colorPrimary"
         android:includeFontPadding="false"
         app:layout_constraintEnd_toEndOf="@+id/customer_rating"
         app:layout_constraintTop_toBottomOf="@+id/customer_rating"
@@ -137,7 +137,7 @@
             android:layout_marginBottom="@dimen/size_8"
             android:drawableEnd="@drawable/ic_up_blue_18px"
             android:text="Thu gọn"
-            android:textColor="#057DDA"
+            android:textColor="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="@+id/btn_edit"
             app:layout_constraintTop_toBottomOf="@+id/btn_edit"
             android:drawableRight="@drawable/ic_up_blue_18px" />

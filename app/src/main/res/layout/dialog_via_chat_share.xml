@@ -32,7 +32,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:text="Tùy chọn trang chia sẻ"
-            android:textColor="#057dda"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_18"
             app:layout_constraintBottom_toBottomOf="@id/imgCancel"
             app:layout_constraintEnd_toEndOf="parent"

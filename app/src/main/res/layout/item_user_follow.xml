@@ -67,7 +67,7 @@
         android:background="@drawable/bg_corners_4_light_blue_no_solid"
         android:gravity="center"
         android:text="Nhắn tin"
-        android:textColor="#057dda"
+        android:textColor="@color/colorPrimary"
         android:fontFamily="@font/barlow_medium"
         android:textSize="@dimen/font_14"
         android:visibility="invisible"

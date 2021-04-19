@@ -165,7 +165,7 @@
                 <!--                    android:gravity="center_vertical"-->
                 <!--                    android:includeFontPadding="false"-->
                 <!--                    android:text="+558.000"-->
-                <!--                    android:textColor="#057dda"-->
+                <!--                    android:textColor="@color/colorPrimary"-->
                 <!--                    android:textSize="@dimen/font_18"-->
                 <!--                    android:textStyle="normal" />-->
 

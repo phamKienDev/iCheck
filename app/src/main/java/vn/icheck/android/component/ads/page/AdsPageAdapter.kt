@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.DrawableRes
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
@@ -366,7 +367,7 @@ class AdsPageAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     tvButton.setTextColor(Color.parseColor("#757575"))
                     tvButton.setText(R.string.dang_theo_doi)
                 } else {
-                    tvButton.setTextColor(Color.parseColor("#057DDA"))
+                    tvButton.setTextColor(ContextCompat.getColor(tvButton.context, R.color.colorPrimary))
                     tvButton.setText(R.string.theo_doi)
                 }
             }

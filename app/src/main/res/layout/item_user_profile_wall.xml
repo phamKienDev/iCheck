@@ -106,7 +106,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center"
                 android:text="Nhắn tin"
-                android:textColor="#057DDA"
+                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/font_16" />
 
             <ImageView

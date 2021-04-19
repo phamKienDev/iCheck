@@ -29,7 +29,7 @@
             android:gravity="center"
             android:focusableInTouchMode="true"
             android:text="Đóng góp thông tin"
-            android:textColor="#057DDA"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_18" />
     </LinearLayout>
 

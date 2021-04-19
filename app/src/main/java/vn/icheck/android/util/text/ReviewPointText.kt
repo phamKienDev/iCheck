@@ -51,7 +51,7 @@ object ReviewPointText {
             when {
                 total >= 9 -> {
                     text = ICheckApplication.getInstance().getString(R.string.x_tren_ca_tuyet_voi, String.format("%.1f", total))
-                    setTextColor(Color.parseColor("#057DDA"))
+                    setTextColor(ContextCompat.getColor(context, R.color.colorPrimary))
                 }
                 total >= 8 -> {
                     text = ICheckApplication.getInstance().getString(R.string.x_tuyet_voi, String.format("%.1f", total))

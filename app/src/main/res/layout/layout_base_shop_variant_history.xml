@@ -157,7 +157,7 @@
                     android:layout_marginEnd="@dimen/size_8"
                     android:layout_marginRight="@dimen/size_8"
                     android:fontFamily="sans-serif-medium"
-                    android:textColor="#057dda"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/font_12"
                     app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
                     app:layout_constraintEnd_toStartOf="@+id/tvVerify"

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.dialog_filter_product_search.*
 import kotlinx.android.synthetic.main.layout_title_filter_search.*
 import vn.icheck.android.ICheckApplication
@@ -93,7 +94,7 @@ class FilterProductDialog(val listener: FilterProductCallback, verify: Boolean, 
             }
 
             tv_all_review.text = rates
-            tv_all_review.setTextColor(Color.parseColor("#057DDA"))
+            tv_all_review.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorPrimary))
             img_clear_review.visibility = View.VISIBLE
         }
     }
@@ -106,7 +107,7 @@ class FilterProductDialog(val listener: FilterProductCallback, verify: Boolean, 
             img_clear_price.visibility = View.GONE
         } else {
             tv_price.setText(price)
-            tv_price.setTextColor(Color.parseColor("#057DDA"))
+            tv_price.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorPrimary))
             img_clear_price.visibility = View.VISIBLE
         }
     }

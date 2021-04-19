@@ -7,6 +7,8 @@ import android.graphics.Paint
 import android.graphics.Rect
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatEditText
+import androidx.core.content.ContextCompat
+import vn.icheck.android.R
 
 class OtpEditText:AppCompatEditText {
 
@@ -55,7 +57,7 @@ class OtpEditText:AppCompatEditText {
         paint.getTextWidths(text, 0, text?.length!!, textWidth)
         for (i in 0 until mNumChar) {
             if (i + 1 <= textLength) {
-                mLinePaint.color = Color.parseColor("#057DDA")
+                mLinePaint.color = ContextCompat.getColor(context, R.color.colorPrimary)
             } else {
                 mLinePaint.color = Color.parseColor("#b4b4b4")
             }

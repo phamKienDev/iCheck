@@ -133,7 +133,7 @@
                     android:fontFamily="@font/barlow_semi_bold"
                     android:gravity="center_vertical"
                     android:text="Chỉ đường"
-                    android:textColor="#057dda"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/font_16" />
 
             </LinearLayout>

@@ -13,7 +13,7 @@
             <shape>
                 <corners android:radius="@dimen/size_8"/>
                 <gradient
-                    android:startColor="#057DDA"
+                    android:startColor="@color/colorPrimary"
                     android:endColor="@color/colorAccentBlue"
                     android:angle="360" />
 

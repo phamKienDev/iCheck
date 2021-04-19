@@ -207,7 +207,7 @@
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:text="Liên hệ iCheck"
-                android:textColor="#057dda"
+                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/font_16" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -237,7 +237,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:text="Liên hệ iCheck"
-            android:textColor="#057dda"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_16"
             android:visibility="gone" />
 
@@ -262,7 +262,7 @@
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:text="Liên hệ iCheck"
-                android:textColor="#057dda"
+                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/font_16" />
 
             <androidx.appcompat.widget.AppCompatTextView

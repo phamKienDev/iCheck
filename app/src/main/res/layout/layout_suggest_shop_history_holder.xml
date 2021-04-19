@@ -19,7 +19,7 @@
         android:fontFamily="@font/barlow_medium"
         android:textSize="@dimen/font_14"
         android:gravity="center|start"
-        android:textColor="#057dda"
+        android:textColor="@color/colorPrimary"
         android:drawablePadding="9.4dp"
         android:drawableStart="@drawable/ic_star_24_px"
         android:drawableEnd="@drawable/ic_arrow_right_light_blue_24dp"

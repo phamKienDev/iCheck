@@ -295,7 +295,7 @@
             android:inputType="number"
             android:digits="0123456789"
             android:padding="@dimen/size_12"
-            android:textColor="#057DDA"
+            android:textColor="@color/colorPrimary"
             android:textColorHint="#757575"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"

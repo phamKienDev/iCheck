@@ -26,7 +26,7 @@
             android:paddingEnd="@dimen/size_50"
             android:maxLines="1"
             android:ellipsize="end"
-            android:textColor="#057DDA"
+            android:textColor="@color/colorPrimary"
             android:textStyle="bold"
             tools:text="08936124250323"
             android:paddingRight="@dimen/size_50" />

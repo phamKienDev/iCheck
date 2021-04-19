@@ -155,7 +155,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:singleLine="true"
-            android:textColor="#057DDA"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_18"
             android:textStyle="normal"
             tools:text="Tiêu đề" />
