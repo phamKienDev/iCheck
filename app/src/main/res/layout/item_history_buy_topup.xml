@@ -156,7 +156,7 @@
             android:gravity="center"
             android:text="Đánh dấu đã dùng"
             android:fontFamily="@font/barlow_medium"
-            android:textColor="#ff0000"
+            android:textColor="@color/colorAccentRed"
             android:textSize="@dimen/font_14"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"

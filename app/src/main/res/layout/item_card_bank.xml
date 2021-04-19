@@ -452,7 +452,7 @@
                 android:gravity="center"
                 android:includeFontPadding="false"
                 android:text="Thẻ mặc định"
-                android:textColor="#85c440"
+                android:textColor="@color/colorAccentGreen"
                 android:textSize="@dimen/font_12"
                 android:visibility="gone" />
         </LinearLayout>

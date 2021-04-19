@@ -5,6 +5,7 @@ import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatEditText
+import androidx.core.content.ContextCompat
 import vn.icheck.android.R
 import vn.icheck.android.util.ick.toPx
 
@@ -31,7 +32,7 @@ class CornerErrorEditText:AppCompatEditText {
         mErrorTextPaint = Paint(Paint.ANTI_ALIAS_FLAG)
         mErrorTextPaint.textSize = 12 * getResources().getDisplayMetrics().scaledDensity
         mErrorTextPaint.typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
-        mErrorTextPaint.color = Color.parseColor("#FF0000")
+        mErrorTextPaint.color = ContextCompat.getColor(context, R.color.colorAccentRed)
         originalPadding = paddingBottom
         mBackgroundPaint = Paint(Paint.ANTI_ALIAS_FLAG)
         mBackgroundPaint.strokeWidth = 1f.toPx()
@@ -78,7 +79,7 @@ class CornerErrorEditText:AppCompatEditText {
     override fun setError(error: CharSequence?) {
         mError = error
 //        setBackgroundResource(R.drawable.red_stroke_corner_4)
-        mBackgroundPaint.setColor(Color.parseColor("#FF0000"))
+        mBackgroundPaint.setColor(ContextCompat.getColor(context, R.color.colorAccentRed))
         setPadding(paddingLeft, paddingTop, paddingRight, originalPadding)
         requestLayout()
         setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom + 20.toPx())
@@ -88,7 +89,7 @@ class CornerErrorEditText:AppCompatEditText {
     override fun setError(error: CharSequence?, icon: Drawable?) {
         mError = error
 //        setBackgroundResource(R.drawable.red_stroke_corner_4)
-        mBackgroundPaint.setColor(Color.parseColor("#FF0000"))
+        mBackgroundPaint.setColor(ContextCompat.getColor(context, R.color.colorAccentRed))
         setPadding(paddingLeft, paddingTop, paddingRight, originalPadding)
         requestLayout()
         setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom + 20.toPx())

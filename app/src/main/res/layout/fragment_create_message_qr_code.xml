@@ -105,7 +105,7 @@
                 android:drawablePadding="@dimen/size_4"
                 android:lineSpacingExtra="@dimen/font_14"
                 android:fontFamily="@font/barlow_medium"
-                android:textColor="#ff0000"
+                android:textColor="@color/colorAccentRed"
                 android:textSize="@dimen/font_12"
                 android:visibility="gone"
                 tools:text="Nhập sai định dạng. Thử lại!" />
@@ -152,7 +152,7 @@
                 android:drawableLeft="@drawable/ic_error_red_18dp"
                 android:drawablePadding="@dimen/size_4"
                 android:lineSpacingExtra="@dimen/font_14"
-                android:textColor="#ff0000"
+                android:textColor="@color/colorAccentRed"
                 android:textSize="@dimen/font_12"
                 android:visibility="gone"
                 tools:text="Nhập sai định dạng. Thử lại!" />

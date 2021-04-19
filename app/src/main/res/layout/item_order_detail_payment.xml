@@ -60,7 +60,7 @@
                 android:includeFontPadding="false"
                 android:singleLine="true"
                 android:textAlignment="gravity"
-                android:textColor="#FF0000"
+                android:textColor="@color/colorAccentRed"
                 android:textSize="@dimen/font_16"
                 android:textStyle="normal"
                 tools:text="400,000₫" />

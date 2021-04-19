@@ -6,6 +6,7 @@ import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.header_infor_reward.*
 import kotlinx.android.synthetic.main.header_infor_reward.view.*
 import vn.icheck.android.R
@@ -50,7 +51,7 @@ class HeaderInforRewardHolder(parent: ViewGroup) : BaseViewHolder<ICItemReward>(
         when (obj.state) {
             //chưa dùng
             1 -> {
-                itemView.tvRefuseDes.setTextColor(Color.parseColor("#85C440"))
+                itemView.tvRefuseDes.setTextColor(ContextCompat.getColor(this, R.color.colorAccentGreen))
                 itemView.tvRefuseDes.text = obj.refuse
 
                 itemView.imgUsed.visibility = View.GONE
@@ -121,7 +122,7 @@ class HeaderInforRewardHolder(parent: ViewGroup) : BaseViewHolder<ICItemReward>(
                 itemView.tvRefuse.visibility = View.VISIBLE
                 itemView.tvTime.visibility = View.VISIBLE
 
-                itemView.tvState.setTextColor(Color.parseColor("#FF0000"))
+                itemView.tvState.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorAccentRed))
                 itemView.tvState.text = "Bạn đã từ chối nhận quà"
 
                 itemView.tvRefuse.text = "Lý do từ chối"
@@ -133,7 +134,7 @@ class HeaderInforRewardHolder(parent: ViewGroup) : BaseViewHolder<ICItemReward>(
             //giao thành công
             4 -> {
                 itemView.tvState.visibility = View.VISIBLE
-                itemView.tvState.setTextColor(Color.parseColor("#85C440"))
+                itemView.tvState.setTextColor(ContextCompat.getColor(this, R.color.colorAccentGreen))
                 itemView.tvState.text = "Giao quà thành công"
 
                 itemView.tvRefuse.visibility = View.VISIBLE

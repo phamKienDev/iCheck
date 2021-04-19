@@ -106,7 +106,7 @@
                             android:fontFamily="@font/barlow_semi_bold"
                             android:gravity="center_horizontal"
                             android:text="+ Ảnh mặt trước"
-                            android:textColor="#00BAF2"
+                            android:textColor="@color/colorAccentBlue"
                             android:textSize="@dimen/font_12" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -145,7 +145,7 @@
                             android:fontFamily="@font/barlow_semi_bold"
                             android:gravity="center_horizontal"
                             android:text="+ Ảnh mặt sau"
-                            android:textColor="#85C440"
+                            android:textColor="@color/colorAccentGreen"
                             android:textSize="@dimen/font_12" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
