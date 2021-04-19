@@ -54,6 +54,9 @@ class ICCampaign : Serializable {
     var icoin: Long = 0
 
     @Expose
+    var icoinIcon:String? = null
+
+    @Expose
     var price: Long = 0
 
     @Expose

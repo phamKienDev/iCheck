@@ -17,6 +17,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import vn.icheck.android.R
 import vn.icheck.android.callback.ItemClickListener
 import vn.icheck.android.component.view.ViewHelper
+import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.network.models.post.ICImageInPost
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -113,7 +114,6 @@ class LayoutImageInPostComponent : ConstraintLayout {
                 imgOne.scaleType=ImageView.ScaleType.FIT_XY
                 WidgetUtils.loadImageUrlRounded(imgOne, list[0].src, R.drawable.img_default_loading_icheck,R.drawable.img_default_loading_icheck, SizeHelper.size4)
                 addView(imgOne)
-
 
 
                 if (list[0].type == "video") {
@@ -312,7 +312,7 @@ class LayoutImageInPostComponent : ConstraintLayout {
             }
             else -> {
                 imgOne.id = R.id.imgOne
-                imgOne.layoutParams = LayoutParams(0, 0).also {
+                imgOne.layoutParams = LayoutParams(0, SizeHelper.dpToPx(230)).also {
                     it.setMargins(0, SizeHelper.size5, 0, 0)
                 }
                 imgOne.scaleType=ImageView.ScaleType.FIT_XY
@@ -335,26 +335,25 @@ class LayoutImageInPostComponent : ConstraintLayout {
                 createViewAndTextVertical(list)
 
                 addView(imgOne)
-                addView(imgTwo)
-                addView(imgThree)
-
-                addView(viewImage)
-                addView(text)
-
                 if (list[0].type == "video") {
                     addView(setImageOpacity50(imgBG, R.id.imgBG))
                     addView(setUpPlay(imagePlay, R.id.imagePlay))
                 }
 
+                addView(imgTwo)
                 if (list[1].type == "video") {
                     addView(setImageOpacity50(imgBG1, R.id.imgBG1))
                     addView(setUpPlay(imagePlay1, R.id.imagePlay1))
                 }
+                addView(imgThree)
 
                 if (list[2].type == "video") {
                     addView(setImageOpacity50(imgBG2, R.id.imgBG2))
                     addView(setUpPlay(imagePlay2, R.id.imagePlay2))
                 }
+
+                addView(viewImage)
+                addView(text)
 
                 val imageSet = ConstraintSet()
                 imageSet.clone(this)
@@ -379,6 +378,7 @@ class LayoutImageInPostComponent : ConstraintLayout {
 
                 imageSet.connect(imagePlay1.id, ConstraintSet.START, imgOne.id, ConstraintSet.END)
                 imageSet.connect(imagePlay1.id, ConstraintSet.TOP, imgOne.id, ConstraintSet.TOP)
+                imageSet.connect(imagePlay1.id, ConstraintSet.BOTTOM, imgTwo.id, ConstraintSet.BOTTOM)
                 imageSet.connect(imagePlay1.id, ConstraintSet.END, id, ConstraintSet.END)
 
                 imageSet.connect(imagePlay2.id, ConstraintSet.TOP, imgTwo.id, ConstraintSet.BOTTOM)

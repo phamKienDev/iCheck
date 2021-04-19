@@ -15,14 +15,13 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@id/tvName"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_4"
         android:drawablePadding="@dimen/size_4"
         android:ellipsize="end"
         android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center_vertical"
-        android:textAlignment="gravity"
         android:includeFontPadding="false"
         android:singleLine="true"
         android:textColor="@color/colorNormalText"

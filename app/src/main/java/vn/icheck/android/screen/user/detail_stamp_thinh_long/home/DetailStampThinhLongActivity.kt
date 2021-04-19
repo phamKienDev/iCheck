@@ -16,7 +16,7 @@ import com.google.android.gms.location.LocationServices
 import kotlinx.android.synthetic.main.activity_detail_stamp_thinh_long.*
 import vn.icheck.android.R
 import vn.icheck.android.WrapContentLinearLayoutManager
-import vn.icheck.android.activities.image.DetailImagesActivity
+import vn.icheck.android.activities.product.product_questions_v1.ProductQuestionsV1Activity
 import vn.icheck.android.activities.product.review_product_v1.ReviewProductV1Activity
 import vn.icheck.android.activities.product.review_v1.EditReviewV1Activity
 import vn.icheck.android.base.activity.BaseActivityMVVM
@@ -31,6 +31,7 @@ import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICCriteria
+import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.call_back.SlideHeaderStampHoaPhatListener
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.infor_product.InforProductHoaPhatActivity
 import vn.icheck.android.screen.user.detail_stamp_thinh_long.home.adapter.DetailStampThinhLongAdapter
@@ -39,7 +40,6 @@ import vn.icheck.android.screen.user.home.HomeActivity
 import vn.icheck.android.screen.user.list_product_review.ListProductReviewActivity
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
-import vn.icheck.android.activities.product.product_questions_v1.ProductQuestionsV1Activity
 import vn.icheck.android.screen.user.view_item_image_stamp.ViewItemImageActivity
 import vn.icheck.android.util.kotlin.ContactUtils
 
@@ -244,7 +244,7 @@ class DetailStampThinhLongActivity : BaseActivityMVVM(), SlideHeaderStampHoaPhat
     }
 
     override fun itemPagerClick(list: ArrayList<String?>, position: Int) {
-        DetailImagesActivity.start(list, this)
+        DetailMediaActivity.start(this,list)
     }
 
     override fun itemPagerClickToImage(url: String, position: Int) {

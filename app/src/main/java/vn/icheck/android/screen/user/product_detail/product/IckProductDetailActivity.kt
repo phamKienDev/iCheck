@@ -28,7 +28,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
-import vn.icheck.android.activities.image.DetailImagesActivity
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
@@ -58,6 +57,7 @@ import vn.icheck.android.network.models.*
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.user.contact.ContactActivity
 import vn.icheck.android.screen.user.contribute_product.IckContributeProductActivity
+import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
 import vn.icheck.android.screen.user.detail_post.DetailPostActivity
 import vn.icheck.android.screen.user.list_contribution.ContributionAttributesActivity
 import vn.icheck.android.screen.user.list_product_question.ListProductQuestionActivity
@@ -159,7 +159,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                                     arr.add(item.content)
                                 }
                             }
-                            DetailImagesActivity.start(arr, this@IckProductDetailActivity, intent.getIntExtra(POSITION, 0))
+                            DetailMediaActivity.start(this@IckProductDetailActivity, arr, intent.getIntExtra(POSITION, 0))
                         }
                     }
 

@@ -12,7 +12,6 @@ import com.bumptech.glide.Glide
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.RelationshipManager
-import vn.icheck.android.activities.image.DetailImagesActivity
 import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
 import vn.icheck.android.component.ICViewModel
 import vn.icheck.android.component.ICViewTypes
@@ -33,6 +32,7 @@ import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICSearchUser
 import vn.icheck.android.network.models.ICUser
 import vn.icheck.android.room.database.AppDatabase
+import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
 import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 import vn.icheck.android.screen.user.wall.ICWallModel
 import vn.icheck.android.screen.user.wall.holder.friend.FriendWallHolder
@@ -158,7 +158,7 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
                 .into(binding.userAvatar)
         if (!data?.avatar.isNullOrEmpty()) {
             binding.userAvatar.setOnClickListener {
-                DetailImagesActivity.start(arrayListOf(data?.avatar), it.context)
+                DetailMediaActivity.start(it.context,arrayListOf(data?.avatar))
             }
         }
 
@@ -186,7 +186,7 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
                     .error(R.drawable.left_menu_bg)
                     .into(binding.imgWallCover)
             binding.imgWallCover.setOnClickListener {
-                DetailImagesActivity.start(arrayListOf(data?.background), it.context)
+                DetailMediaActivity.start(it.context,arrayListOf(data?.background))
             }
         }
 //        binding.imgWallCover.viewTreeObserver.addOnGlobalLayoutListener {

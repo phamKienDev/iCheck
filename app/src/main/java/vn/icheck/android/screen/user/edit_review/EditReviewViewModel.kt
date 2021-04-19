@@ -35,7 +35,7 @@ class EditReviewViewModel : ViewModel() {
     var onPostReviewSuccess = MutableLiveData<ICPost>()
 
     val interactor = ProductReviewInteractor()
-    val productInteractor = ProductInteractor()
+    private val productInteractor = ProductInteractor()
 
     var currentProduct: ICDataProductDetail? = null
     private var messageCriteria = ""
