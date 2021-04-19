@@ -72,7 +72,7 @@
                         android:fontFamily="@font/barlow_semi_bold"
                         android:includeFontPadding="false"
                         android:singleLine="true"
-                        android:textColor="@color/collection_product_name"
+                        android:textColor="@color/colorNormalText"
                         android:textSize="@dimen/font_16"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/imgAvatar"
@@ -97,7 +97,7 @@
                         android:paddingRight="@dimen/size_25"
                         android:paddingBottom="@dimen/size_1"
                         android:text="@string/cong_khai"
-                        android:textColor="@color/fast_survey_gray"
+                        android:textColor="@color/colorSecondText"
                         android:textSize="@dimen/font_12"
                         app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
                         app:layout_constraintStart_toEndOf="@id/imgAvatar" />

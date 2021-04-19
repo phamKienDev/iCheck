@@ -104,7 +104,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:includeFontPadding="false"
                 android:singleLine="true"
-                android:textColor="@color/fast_survey_gray"
+                android:textColor="@color/colorSecondText"
                 android:textSize="@dimen/font_12"
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="@id/tvNameUserPost"

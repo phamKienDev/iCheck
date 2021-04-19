@@ -20,7 +20,7 @@
         android:layout_marginRight="@dimen/size_48"
         android:fontFamily="@font/barlow_medium"
         android:gravity="center"
-        android:textColor="@color/fast_survey_gray"
+        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_14"
         android:text="Xin lỗi chúng tôi không thể tìm được kết quả phù hợp với tìm kiếm của bạn" />
 

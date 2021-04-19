@@ -189,6 +189,7 @@
                 <LinearLayout
                     android:id="@+id/btn_manage_page"
                     android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="@dimen/size_12"
                     android:layout_marginLeft="@dimen/size_12"
                     android:layout_weight="1"

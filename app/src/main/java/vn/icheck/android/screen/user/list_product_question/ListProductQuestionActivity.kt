@@ -227,7 +227,7 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
     }
 
     private fun setupSwipeLayout() {
-        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.blue), ContextCompat.getColor(this, R.color.blue), ContextCompat.getColor(this, R.color.lightBlue))
+        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
 
         swipeLayout.setOnRefreshListener {
             swipeLayout.isRefreshing = true
@@ -439,7 +439,7 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
     }
 
     override fun onDelete(obj: ICProductQuestion) {
-        DialogHelper.showConfirm(this@ListProductQuestionActivity, "Bạn chắc chắn muốn xóa bình luận này?", null, "Để sau", "Đồng ý", true, null, R.color.red, object : ConfirmDialogListener {
+        DialogHelper.showConfirm(this@ListProductQuestionActivity, "Bạn chắc chắn muốn xóa bình luận này?", null, "Để sau", "Đồng ý", true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
             override fun onDisagree() {
 
             }

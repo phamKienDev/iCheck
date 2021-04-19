@@ -14,7 +14,7 @@
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_20"
         android:fontFamily="@font/roboto_regular"
-        android:textColor="@color/blue"
+        android:textColor="@color/colorSecondary"
         android:textSize="@dimen/font_18"
         android:text="Doanh nghiệp sở hữu" />
 

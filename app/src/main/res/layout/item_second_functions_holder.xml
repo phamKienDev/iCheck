@@ -28,7 +28,7 @@
         android:includeFontPadding="false"
         android:maxLines="2"
         android:minLines="2"
-        android:textColor="@color/gray_v2"
+        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_12"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

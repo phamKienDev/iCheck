@@ -23,7 +23,7 @@
         android:includeFontPadding="false"
         android:gravity="center"
         android:fontFamily="@font/barlow_medium"
-        android:textColor="@color/fast_survey_gray"
+        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_14" />
 
 </LinearLayout>

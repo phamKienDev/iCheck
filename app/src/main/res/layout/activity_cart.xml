@@ -31,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_40"
         android:layout_gravity="bottom"
-        android:background="@color/blue"
+        android:background="@color/colorSecondary"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingStart="@dimen/size_12"

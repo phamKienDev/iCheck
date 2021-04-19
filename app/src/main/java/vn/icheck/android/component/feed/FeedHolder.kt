@@ -45,15 +45,15 @@ class FeedHolder(parent: ViewGroup) : BaseViewHolder<ICFeed>(ViewHelper.createFe
                         when {
                             totalRating < 6 -> {
                                 text = context.getString(R.string.x_diem_danh_gia)
-                                background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(context, R.color.lightBlue), SizeHelper.size14.toFloat())
+                                background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(context, R.color.colorPrimary), SizeHelper.size14.toFloat())
                             }
                             totalRating < 7 -> {
                                 text = context.getString(R.string.x_hai_long)
-                                background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(context, R.color.lightBlue), SizeHelper.size14.toFloat())
+                                background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(context, R.color.colorPrimary), SizeHelper.size14.toFloat())
                             }
                             totalRating < 8 -> {
                                 text = context.getString(R.string.x_tot)
-                                background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(context, R.color.lightBlue), SizeHelper.size14.toFloat())
+                                background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(context, R.color.colorPrimary), SizeHelper.size14.toFloat())
                             }
                             totalRating < 9 -> {
                                 text = context.getString(R.string.x_tuyet_voi)
@@ -61,7 +61,7 @@ class FeedHolder(parent: ViewGroup) : BaseViewHolder<ICFeed>(ViewHelper.createFe
                             }
                             else -> {
                                 text = context.getString(R.string.x_tren_ca_tuyet_voi)
-                                background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(context, R.color.lightBlue), SizeHelper.size14.toFloat())
+                                background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(context, R.color.colorPrimary), SizeHelper.size14.toFloat())
                             }
                         }
                     }

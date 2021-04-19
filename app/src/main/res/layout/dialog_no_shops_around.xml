@@ -45,7 +45,7 @@
                 android:singleLine="true"
                 android:text="@string/khong_co_diem_ban_nao_gan_ban"
                 android:textAlignment="center"
-                android:textColor="@color/blue"
+                android:textColor="@color/colorSecondary"
                 android:textSize="@dimen/font_14"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"

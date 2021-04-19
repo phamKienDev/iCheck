@@ -41,8 +41,8 @@
                 android:paddingEnd="@dimen/size_8"
                 android:paddingBottom="@dimen/size_5"
                 android:textAlignment="gravity"
-                android:textColor="@color/collection_product_name"
-                android:textColorHint="@color/darkGray2"
+                android:textColor="@color/colorNormalText"
+                android:textColorHint="@color/colorDisableText"
                 android:textSize="@dimen/font_16"
                 tools:visibility="gone" />
 

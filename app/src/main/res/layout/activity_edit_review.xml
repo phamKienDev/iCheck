@@ -41,7 +41,7 @@
             android:paddingEnd="@dimen/size_12"
             android:singleLine="true"
             android:textAlignment="center"
-            android:textColor="@color/lightBlue"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_18"
             app:fontFamily="@font/barlow_semi_bold"
             android:text="@string/chinh_sua_danh_gia" />
@@ -102,8 +102,8 @@
             android:hint="@string/viet_danh_gia"
             android:inputType="textMultiLine"
             android:lines="3"
-            android:textColor="@color/collection_product_name"
-            android:textColorHint="@color/fast_survey_gray"
+            android:textColor="@color/colorNormalText"
+            android:textColorHint="@color/colorSecondText"
             android:textSize="@dimen/font_14" />
 
         <View

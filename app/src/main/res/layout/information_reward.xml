@@ -22,7 +22,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:lineSpacingExtra="@dimen/font_6"
             android:text="Địa chỉ đến lấy quà"
-            android:textColor="@color/blue"
+            android:textColor="@color/colorSecondary"
             android:textSize="@dimen/font_14" />
 
         <View
@@ -66,7 +66,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:lineSpacingExtra="@dimen/font_6"
             android:text="Thông tin quà"
-            android:textColor="@color/blue"
+            android:textColor="@color/colorSecondary"
             android:textSize="@dimen/font_14" />
 
         <View

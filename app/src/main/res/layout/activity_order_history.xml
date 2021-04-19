@@ -22,7 +22,7 @@
         app:tabMode="scrollable"
         app:tabSelectedTextColor="@color/light_blue"
         app:tabTextAppearance="@style/TabLayout_16sp_Barlow"
-        app:tabTextColor="@color/darkGray2" />
+        app:tabTextColor="@color/colorDisableText" />
 
     <View
         android:id="@+id/viewShadow"

@@ -28,7 +28,7 @@
                 android:layout_marginTop="@dimen/size_20"
                 android:fontFamily="@font/roboto_medium"
                 android:text="Thông tin nhận quà"
-                android:textColor="@color/blue" />
+                android:textColor="@color/colorSecondary" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"

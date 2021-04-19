@@ -23,7 +23,7 @@
         android:layout_marginRight="@dimen/size_50"
         android:fontFamily="@font/barlow_semi_bold"
         android:text="Lời nhắc"
-        android:textColor="@color/lightBlue"
+        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/font_16"
         app:layout_constraintBottom_toBottomOf="@+id/btn_cancel"
         app:layout_constraintEnd_toEndOf="parent"

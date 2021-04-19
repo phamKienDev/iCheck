@@ -16,14 +16,14 @@
         android:background="@color/white"
         app:tabGravity="fill"
         app:tabIndicatorHeight="@dimen/size_3"
-        app:tabIndicatorColor="@color/lightBlue"
+        app:tabIndicatorColor="@color/colorPrimary"
         app:tabIndicator="@drawable/bg_campaign_history_title"
         app:tabTextAppearance="@style/MyTabLayoutTextAppearance"
         app:tabMode="fixed"
         app:tabRippleColor="@null"
         app:tabInlineLabel="true"
-        app:tabSelectedTextColor="@color/lightBlue"
-        app:tabTextColor="@color/darkGray2" />
+        app:tabSelectedTextColor="@color/colorPrimary"
+        app:tabTextColor="@color/colorDisableText" />
 
     <View
         android:layout_width="match_parent"

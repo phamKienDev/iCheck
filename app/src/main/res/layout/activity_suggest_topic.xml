@@ -37,7 +37,7 @@
         android:paddingTop="@dimen/size_10"
         android:paddingBottom="@dimen/size_10"
         android:textAlignment="center"
-        android:textColor="@color/fast_survey_gray"
+        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toBottomOf="@+id/tv_bg"
         tools:text="@string/chon_it_nhat_3_chu_de" />
@@ -85,7 +85,7 @@
             android:paddingTop="@dimen/size_6"
             android:paddingBottom="@dimen/size_6"
             android:text="@string/bo_qua"
-            android:textColor="@color/lightBlue"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_16"
             android:visibility="gone" />
 

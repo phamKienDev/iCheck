@@ -63,7 +63,7 @@ Vui lòng kiểm tra kỹ lại thông tin và ảnh chụp giấy tờ chính c
                 android:gravity="center"
                 android:includeFontPadding="false"
                 android:text="Xác thực danh tính để bảo vệ tài khoản và nhận Dấu Tích Xanh từ iCheck."
-                android:textColor="@color/fast_survey_gray"
+                android:textColor="@color/colorSecondText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvErrorVerify" />
@@ -80,7 +80,7 @@ Vui lòng kiểm tra kỹ lại thông tin và ảnh chụp giấy tờ chính c
                 android:gravity="center_vertical"
                 android:includeFontPadding="false"
                 android:text="Dấu Tích Xanh là gì?"
-                android:textColor="@color/blue"
+                android:textColor="@color/colorSecondary"
                 android:textSize="@dimen/font_16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -95,7 +95,7 @@ Vui lòng kiểm tra kỹ lại thông tin và ảnh chụp giấy tờ chính c
                 android:layout_marginTop="@dimen/size_22"
                 android:fontFamily="@font/barlow_medium"
                 android:text="Loại giấy tờ"
-                android:textColor="@color/collection_product_name"
+                android:textColor="@color/colorNormalText"
                 android:textSize="@dimen/font_12"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvGuide" />
@@ -119,7 +119,7 @@ Vui lòng kiểm tra kỹ lại thông tin và ảnh chụp giấy tờ chính c
                 android:paddingRight="@dimen/size_10"
                 android:paddingBottom="@dimen/size_8"
                 android:text="Chứng minh nhân dân"
-                android:textColor="@color/collection_product_name"
+                android:textColor="@color/colorNormalText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/textView43"
                 app:layout_constraintTop_toBottomOf="@+id/textView43" />
@@ -133,7 +133,7 @@ Vui lòng kiểm tra kỹ lại thông tin và ảnh chụp giấy tờ chính c
                 android:layout_marginTop="@dimen/size_38"
                 android:fontFamily="@font/barlow_medium"
                 android:text="@string/mat_truoc_cmnd"
-                android:textColor="@color/collection_product_name"
+                android:textColor="@color/colorNormalText"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvSelectPassport" />
 
@@ -201,7 +201,7 @@ Vui lòng kiểm tra kỹ lại thông tin và ảnh chụp giấy tờ chính c
                 android:layout_marginTop="@dimen/size_30"
                 android:fontFamily="@font/barlow_medium"
                 android:text="@string/mat_sau_cmnd"
-                android:textColor="@color/collection_product_name"
+                android:textColor="@color/colorNormalText"
                 app:layout_constraintStart_toStartOf="@id/containerFront"
                 app:layout_constraintTop_toBottomOf="@id/containerFront" />
 

@@ -133,7 +133,7 @@
                 android:layout_marginBottom="@dimen/size_12"
                 android:fontFamily="sans-serif-medium"
                 android:hint="0 đ"
-                android:textColor="@color/blue"
+                android:textColor="@color/colorSecondary"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintBottom_toTopOf="@+id/btn_checkout"
                 app:layout_constraintEnd_toEndOf="@+id/btn_checkout" />

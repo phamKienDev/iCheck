@@ -54,7 +54,7 @@ class ProductDetailShopHolder(parent: View) : BaseHolder(ViewHelper.createProduc
                     layoutMoreShop.addView(TextBarlowSemiBold(context).also { text ->
                         text.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
                         text.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
-                        text.setTextColor(ContextCompat.getColor(context, R.color.lightBlue))
+                        text.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary))
                         text.gravity = Gravity.CENTER
                         text.setText(R.string.xem_tat_ca_diem_ban)
                         text.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_blue_24px, 0)

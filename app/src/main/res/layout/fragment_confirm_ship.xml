@@ -86,7 +86,7 @@
                     android:layout_marginEnd="@dimen/size_12"
                     android:fontFamily="@font/barlow_medium"
                     android:text="Thời gian đặt hàng"
-                    android:textColor="@color/blue"
+                    android:textColor="@color/colorSecondary"
                     android:textSize="@dimen/font_16"
                     android:visibility="gone"
                     app:layout_constraintEnd_toStartOf="@+id/img_status"
@@ -157,7 +157,7 @@
                     android:layout_marginTop="@dimen/size_10"
                     android:fontFamily="@font/barlow_medium"
                     android:text="Địa chỉ nhận hàng"
-                    android:textColor="@color/blue"
+                    android:textColor="@color/colorSecondary"
                     android:textSize="@dimen/font_16"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -171,7 +171,7 @@
                     android:layout_marginRight="@dimen/size_12"
                     android:fontFamily="@font/barlow_medium"
                     android:text="Thay đổi"
-                    android:textColor="@color/lightBlue"
+                    android:textColor="@color/colorPrimary"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -232,7 +232,7 @@
                     android:layout_marginTop="@dimen/size_10"
                     android:fontFamily="@font/barlow_medium"
                     android:text="Phí giao hàng (COD)"
-                    android:textColor="@color/blue"
+                    android:textColor="@color/colorSecondary"
                     android:textSize="@dimen/font_16"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -278,7 +278,7 @@
                 android:layout_marginTop="@dimen/size_10"
                 android:fontFamily="@font/barlow_medium"
                 android:text="Danh sách sản phẩm"
-                android:textColor="@color/blue"
+                android:textColor="@color/colorSecondary"
                 android:textSize="@dimen/font_16" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -312,7 +312,7 @@
                     android:layout_height="@dimen/size_30"
                     android:padding="@dimen/size_1"
                     android:layout_marginStart="@dimen/size_12"
-                    app:civ_border_color="@color/darkGray2"
+                    app:civ_border_color="@color/colorDisableText"
                     app:civ_border_width="@dimen/size_1"
                     android:layout_marginTop="@dimen/size_12"
                     android:src="@drawable/ic_business_v2"
@@ -448,7 +448,7 @@
                 android:gravity="center"
                 android:padding="@dimen/size_8"
                 android:text="Báo lỗi"
-                android:textColor="@color/lightBlue"
+                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/font_16"
                 android:visibility="gone"
                 tools:visibility="visible" />

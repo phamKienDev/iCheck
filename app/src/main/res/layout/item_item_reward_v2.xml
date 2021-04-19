@@ -87,7 +87,7 @@
             android:includeFontPadding="false"
             android:maxLines="1"
             android:singleLine="true"
-            android:textColor="@color/blue"
+            android:textColor="@color/colorSecondary"
             android:textSize="@dimen/font_12"
             app:layout_constraintEnd_toEndOf="@id/tvProduct"
             app:layout_constraintHorizontal_bias="0.0"

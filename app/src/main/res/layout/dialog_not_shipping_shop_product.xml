@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_8"
         android:fontFamily="sans-serif-medium"
-        android:textColor="@color/blue"
+        android:textColor="@color/colorSecondary"
         android:textSize="@dimen/font_18"
         android:text="@string/don_vi_van_chuyen"
         android:textStyle="normal"
@@ -48,7 +48,7 @@
         android:includeFontPadding="false"
         android:maxLines="1"
         android:text="@string/hinh_thuc_van_chuyen_cua_hang_van_chuyen"
-        android:textColor="@color/blue"
+        android:textColor="@color/colorSecondary"
         android:textSize="@dimen/font_14"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view27" />

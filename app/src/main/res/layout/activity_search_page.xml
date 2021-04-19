@@ -44,7 +44,7 @@
                     android:paddingRight="@dimen/size_10"
                     android:paddingBottom="@dimen/size_6"
                     android:text="@string/bo_loc"
-                    android:textColor="@color/collection_product_name"
+                    android:textColor="@color/colorNormalText"
                     android:textSize="@dimen/font_14"
                     app:fontFamily="@font/barlow_medium" />
 
@@ -63,7 +63,7 @@
                     android:paddingRight="@dimen/size_10"
                     android:paddingBottom="@dimen/size_6"
                     android:text="@string/tinh_thanh_pho"
-                    android:textColor="@color/collection_product_name"
+                    android:textColor="@color/colorNormalText"
                     android:textSize="@dimen/font_14"
                     app:fontFamily="@font/barlow_medium" />
 
@@ -81,7 +81,7 @@
                     android:paddingRight="@dimen/size_10"
                     android:paddingBottom="@dimen/size_6"
                     android:text="@string/da_xac_thuc"
-                    android:textColor="@color/collection_product_name"
+                    android:textColor="@color/colorNormalText"
                     android:textSize="@dimen/font_14"
                     app:fontFamily="@font/barlow_medium" />
 
@@ -101,7 +101,7 @@
                     android:paddingRight="@dimen/size_10"
                     android:paddingBottom="@dimen/size_6"
                     android:text="@string/danh_muc"
-                    android:textColor="@color/collection_product_name"
+                    android:textColor="@color/colorNormalText"
                     android:textSize="@dimen/font_14"
                     app:fontFamily="@font/barlow_medium" />
             </LinearLayout>

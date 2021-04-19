@@ -35,7 +35,7 @@
         android:includeFontPadding="false"
         android:maxLines="2"
         android:text="Sữa rửa mặt sạch dầu (1 dòng)..  ssgfafafafafafafaafafafafafa."
-        android:textColor="@color/collection_product_name"
+        android:textColor="@color/colorNormalText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/imgProduct"
         app:layout_constraintTop_toTopOf="@id/imgProduct" />
@@ -50,7 +50,7 @@
         android:singleLine="true"
         android:text="x1"
         android:layout_marginTop="@dimen/size_4"
-        android:textColor="@color/fast_survey_gray"
+        android:textColor="@color/colorSecondText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/tvProduct"
         app:layout_constraintTop_toBottomOf="@id/tvProduct" />

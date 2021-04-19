@@ -41,7 +41,7 @@
             android:gravity="center_vertical"
             android:includeFontPadding="false"
             android:singleLine="true"
-            android:textColor="@color/blue"
+            android:textColor="@color/colorSecondary"
             android:drawablePadding="@dimen/size_8"
             android:textSize="@dimen/font_16"
             tools:text="Công ty Cổ phần ViviDa" />
@@ -55,7 +55,7 @@
         android:ellipsize="end"
         android:fontFamily="@font/barlow_medium"
         android:singleLine="true"
-        android:textColor="@color/gray_v2"
+        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
         app:layout_constraintEnd_toStartOf="@+id/imgDetail"
@@ -97,7 +97,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvPhone"
             style="@style/style_text_barlow_page"
-            android:textColor="@color/lightBlue"
+            android:textColor="@color/colorPrimary"
             android:layout_width="wrap_content"
             tools:text="0325.332.201" />
 

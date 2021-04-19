@@ -36,7 +36,7 @@
         android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center_horizontal"
         android:includeFontPadding="false"
-        android:textColor="@color/collection_product_name"
+        android:textColor="@color/colorNormalText"
         android:textSize="@dimen/font_16"
         tools:text="Hiện tại đang không có sự kiện nào!" />
 
@@ -50,7 +50,7 @@
         android:fontFamily="@font/barlow_medium"
         android:gravity="center_horizontal"
         android:lineSpacingExtra="@dimen/size_6"
-        android:textColor="@color/fast_survey_gray"
+        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_14"
         tools:text="Thường xuyên theo dõi các sự kiện hấp dẫn trên iCheck để tham gia và nhận quà nhé!"/>
 </LinearLayout>

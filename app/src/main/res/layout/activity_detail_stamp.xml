@@ -40,7 +40,7 @@
                 android:gravity="center"
                 android:singleLine="true"
                 android:text="Xác thực sản phẩm"
-                android:textColor="@color/blue"
+                android:textColor="@color/colorSecondary"
                 android:textSize="@dimen/font_18"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -395,7 +395,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/size_4"
-                                android:textColor="@color/blue"
+                                android:textColor="@color/colorSecondary"
                                 android:textSize="@dimen/font_16"
                                 android:textStyle="bold" />
                         </LinearLayout>
@@ -428,7 +428,7 @@
                                 android:background="@drawable/btn_check_code"
                                 android:text="Check mã"
                                 android:textAllCaps="false"
-                                android:textColor="@color/lightBlue" />
+                                android:textColor="@color/colorPrimary" />
 
                         </LinearLayout>
                     </LinearLayout>
@@ -1304,7 +1304,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/thuong_mai_dien_tu"
-                        android:textColor="@color/blue"
+                        android:textColor="@color/colorSecondary"
                         android:textSize="@dimen/font_18"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -1316,7 +1316,7 @@
                         android:layout_marginEnd="@dimen/size_9"
                         android:padding="@dimen/size_3"
                         android:text="@string/xem_tat_ca"
-                        android:textColor="@color/blue"
+                        android:textColor="@color/colorSecondary"
                         android:textSize="@dimen/font_14"
                         app:layout_constraintBottom_toBottomOf="@id/tvTitle"
                         app:layout_constraintEnd_toEndOf="parent"

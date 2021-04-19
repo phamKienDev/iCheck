@@ -40,7 +40,7 @@
             android:drawablePadding="@dimen/size_8"
             android:fontFamily="@font/barlow_medium"
             android:text="@string/tinh_thanh_pho"
-            android:textColor="@color/collection_product_name"
+            android:textColor="@color/colorNormalText"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider27"
             app:drawableStartCompat="@drawable/ic_location_filer_12dp" />
@@ -153,7 +153,7 @@
             android:gravity="right"
             android:maxLines="1"
             android:text="@string/tat_ca"
-            android:textColor="@color/fast_survey_gray"
+            android:textColor="@color/colorSecondText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider29" />
 

@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_14"
             android:text="@string/tuy_chon_vai_tro"
-            android:textColor="@color/lightBlue"
+            android:textColor="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -40,7 +40,7 @@
             android:layout_marginRight="@dimen/size_4"
             android:padding="@dimen/size_12"
             android:text="@string/xong"
-            android:textColor="@color/lightBlue"
+            android:textColor="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="@id/tvTitle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/tvTitle" />

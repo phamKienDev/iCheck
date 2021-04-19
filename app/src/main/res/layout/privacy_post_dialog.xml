@@ -34,7 +34,7 @@
             android:layout_marginTop="@dimen/size_10"
             android:gravity="center_horizontal"
             android:text="Ai có thể xem bài viết này của bạn?"
-            android:textColor="@color/collection_product_name"
+            android:textColor="@color/colorNormalText"
             android:textSize="@dimen/font_14"
             app:fontFamily="@font/barlow_semi_bold" />
 

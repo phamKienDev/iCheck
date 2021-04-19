@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:textAlignment="center"
         android:padding="@dimen/size_12"
-        android:textColor="@color/blue"
+        android:textColor="@color/colorSecondary"
         android:layout_height="wrap_content"
         android:text="Chọn ảnh từ thư viện" />
 
@@ -23,7 +23,7 @@
         android:textAlignment="center"
         android:id="@+id/tv_pick_camera"
         android:padding="@dimen/size_12"
-        android:textColor="@color/blue"
+        android:textColor="@color/colorSecondary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Chụp ảnh" />
@@ -35,7 +35,7 @@
 
     <TextView
         android:textAlignment="center"
-        android:textColor="@color/blue"
+        android:textColor="@color/colorSecondary"
         android:id="@+id/tv_cancel"
         android:padding="@dimen/size_12"
         android:layout_width="match_parent"

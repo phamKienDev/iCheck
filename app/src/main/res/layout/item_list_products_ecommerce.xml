@@ -13,7 +13,7 @@
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_12"
         android:text="@string/thuong_mai_dien_tu"
-        android:textColor="@color/blue"
+        android:textColor="@color/colorSecondary"
         android:textSize="@dimen/font_18"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,7 +25,7 @@
         android:layout_marginEnd="@dimen/size_9"
         android:padding="@dimen/size_3"
         android:text="@string/xem_tat_ca"
-        android:textColor="@color/blue"
+        android:textColor="@color/colorSecondary"
         android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toBottomOf="@id/tvTitle"
         app:layout_constraintEnd_toEndOf="parent"

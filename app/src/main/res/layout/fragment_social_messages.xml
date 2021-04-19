@@ -19,7 +19,7 @@
             android:drawablePadding="@dimen/size_12"
             android:fontFamily="@font/barlow_medium"
             android:text="Bạn chưa có tin nhắn nào"
-            android:textColor="@color/black_15"
+            android:textColor="@color/colorSecondText"
             app:drawableTopCompat="@drawable/no_message_placeholder"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

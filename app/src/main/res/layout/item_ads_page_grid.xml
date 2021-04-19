@@ -62,7 +62,7 @@
                 android:maxHeight="@dimen/size_40"
                 android:maxLines="2"
                 android:minHeight="@dimen/size_40"
-                android:textColor="@color/collection_product_name"
+                android:textColor="@color/colorNormalText"
                 android:textSize="@dimen/font_14"
                 tools:text=" dòng)... Adidas Store (tối 1 dòng)... Adidas Store (tối 1 dòng)... Adidas Store (tối 1 dòng)... Adidas Store (tối 1 dòng)... Adidas Store (tối 1 dòng)..." />
 

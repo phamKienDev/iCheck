@@ -31,7 +31,7 @@
             android:layout_marginEnd="@dimen/size_44"
             android:gravity="center"
             android:text="Thanh toán"
-            android:textColor="@color/lightBlue" />
+            android:textColor="@color/colorPrimary" />
     </FrameLayout>
 
     <LinearLayout

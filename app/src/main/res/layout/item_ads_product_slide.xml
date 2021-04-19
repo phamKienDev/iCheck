@@ -83,7 +83,7 @@
         android:ellipsize="end"
         android:fontFamily="@font/barlow_medium"
         android:maxLines="2"
-        android:textColor="@color/collection_product_name"
+        android:textColor="@color/colorNormalText"
         android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -128,7 +128,7 @@
                     android:drawableEnd="@drawable/ic_down_blue_18px"
                     android:fontFamily="sans-serif-medium"
                     android:text="Xem chi tiết đánh giá"
-                    android:textColor="@color/lightBlue"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/font_14" />
 
                 <TextView
@@ -138,7 +138,7 @@
                     android:drawableEnd="@drawable/ic_up_blue_18px"
                     android:fontFamily="sans-serif-medium"
                     android:text="Thu gọn"
-                    android:textColor="@color/lightBlue"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/font_14"
                     android:visibility="gone" />
             </LinearLayout>

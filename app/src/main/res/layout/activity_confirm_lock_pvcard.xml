@@ -27,7 +27,7 @@
             android:gravity="center"
             android:fontFamily="@font/barlow_semi_bold"
             android:text="Xác nhận khóa thẻ"
-            android:textColor="@color/lightBlue"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_18" />
     </FrameLayout>
 

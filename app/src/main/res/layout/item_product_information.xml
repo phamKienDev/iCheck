@@ -24,7 +24,7 @@
             android:includeFontPadding="false"
             android:singleLine="true"
             android:text="@string/thong_tin_san_pham"
-            android:textColor="@color/blue"
+            android:textColor="@color/colorSecondary"
             android:textSize="@dimen/font_18"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -77,6 +77,6 @@
         android:paddingEnd="@dimen/size_0"
         android:paddingRight="@dimen/size_0"
         android:text="@string/xem_chi_tiet"
-        android:textColor="@color/blue"
+        android:textColor="@color/colorSecondary"
         android:textSize="@dimen/font_14" />
 </LinearLayout>

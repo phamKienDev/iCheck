@@ -49,7 +49,7 @@ class ReportWrongContributionSuccessDialog(val context: Context, isCancelable: B
                     ViewHelper.createLayoutParams(SizeHelper.size42, SizeHelper.size16, SizeHelper.size42, 0),
                     null,
                     ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
-                    ContextCompat.getColor(context, R.color.collection_product_name),
+                    ContextCompat.getColor(context, R.color.colorNormalText),
                     16f).also {
                 it.text = title
                         ?: context.getString(R.string.report_wrong_contribution_success_title)
@@ -60,7 +60,7 @@ class ReportWrongContributionSuccessDialog(val context: Context, isCancelable: B
                     ViewHelper.createLayoutParams(SizeHelper.size42, SizeHelper.size6, SizeHelper.size42, 0),
                     null,
                     ViewHelper.createTypeface(context, R.font.barlow_medium),
-                    ContextCompat.getColor(context, R.color.fast_survey_gray),
+                    ContextCompat.getColor(context, R.color.colorSecondText),
                     14f).also {
                 it.setText(R.string.report_wrong_contribution_success_message)
                 it.gravity = Gravity.CENTER_HORIZONTAL
@@ -79,7 +79,7 @@ class ReportWrongContributionSuccessDialog(val context: Context, isCancelable: B
                     },
                     null,
                     ViewHelper.createTypeface(context, R.font.barlow_medium),
-                    ContextCompat.getColor(context, R.color.fast_survey_gray),
+                    ContextCompat.getColor(context, R.color.colorSecondText),
                     14f).also {
                 if (type!="order") {
                     it.setText(R.string.noi_dung_bao_cao)
@@ -111,7 +111,7 @@ class ReportWrongContributionSuccessDialog(val context: Context, isCancelable: B
 
                         params.addView(ViewHelper.createText(context, ViewHelper.createLayoutParams().also {
                             it.setMargins(SizeHelper.size16, 0, SizeHelper.size16, 0)
-                        }, null, ViewHelper.createTypeface(context, R.font.barlow_medium), ContextCompat.getColor(context, R.color.blue), 14f).also {
+                        }, null, ViewHelper.createTypeface(context, R.font.barlow_medium), ContextCompat.getColor(context, R.color.colorSecondary), 14f).also {
                             it.text = "Nếu bạn biết thông tin chính xác về sản phẩm này, \n hãy đóng góp thêm nhé!"
                             it.gravity = Gravity.CENTER
                         })

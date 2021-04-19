@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
-            android:textColor="@color/collection_product_name"
+            android:textColor="@color/colorNormalText"
             android:textSize="@dimen/font_14"
             tools:text="Nguyễn Quang Hải Nguyễn Quang Hải Nguyễn Quang Hải Nguyễn Quang Hải" />
 
@@ -53,7 +53,7 @@
         android:layout_marginRight="@dimen/size_10"
         android:fontFamily="@font/barlow_medium"
         android:includeFontPadding="false"
-        android:textColor="@color/fast_survey_gray"
+        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_12"
         app:layout_constraintEnd_toStartOf="@+id/tv_follow_shop"
         app:layout_constraintStart_toStartOf="@+id/layoutName"
@@ -73,7 +73,7 @@
         android:paddingRight="@dimen/size_12"
         android:paddingBottom="@dimen/size_6"
         android:text="@string/dang_theo_doi"
-        android:textColor="@color/fast_survey_gray"
+        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_14"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/tv_count_like"

@@ -99,7 +99,7 @@
             app:layout_constraintEnd_toEndOf="@id/top2"
             app:layout_constraintStart_toStartOf="@id/top2"
             app:layout_constraintTop_toTopOf="@id/top2"
-            tools:src="@color/yellow" />
+            tools:src="@color/colorAccentYellow" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="wrap_content"
@@ -141,7 +141,7 @@
             android:includeFontPadding="false"
             android:singleLine="true"
             android:text="@string/dang_cap_nhat"
-            android:textColor="@color/yellow"
+            android:textColor="@color/colorAccentYellow"
             android:textSize="@dimen/font_12"
             app:layout_constraintBottom_toBottomOf="@id/top2"
             app:layout_constraintEnd_toEndOf="@id/tvNameTop2"
@@ -173,7 +173,7 @@
             app:layout_constraintEnd_toEndOf="@id/top1"
             app:layout_constraintStart_toStartOf="@id/top1"
             app:layout_constraintTop_toTopOf="@id/top1"
-            tools:src="@color/red" />
+            tools:src="@color/colorAccentRed" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="wrap_content"
@@ -213,7 +213,7 @@
             android:gravity="center"
             android:includeFontPadding="false"
             android:singleLine="true"
-            android:textColor="@color/yellow"
+            android:textColor="@color/colorAccentYellow"
             android:textSize="@dimen/font_12"
             app:layout_constraintBottom_toBottomOf="@id/top1"
             app:layout_constraintEnd_toEndOf="@id/tvNameTop1"
@@ -245,7 +245,7 @@
             app:layout_constraintEnd_toEndOf="@id/top3"
             app:layout_constraintStart_toStartOf="@id/top3"
             app:layout_constraintTop_toTopOf="@id/top3"
-            tools:src="@color/yellow" />
+            tools:src="@color/colorAccentYellow" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="wrap_content"
@@ -287,7 +287,7 @@
             android:includeFontPadding="false"
             android:singleLine="true"
             android:text="@string/dang_cap_nhat"
-            android:textColor="@color/yellow"
+            android:textColor="@color/colorAccentYellow"
             android:textSize="@dimen/font_12"
             app:layout_constraintBottom_toBottomOf="@id/top3"
             app:layout_constraintEnd_toEndOf="@id/tvNameTop3"

@@ -15,7 +15,7 @@
         android:paddingStart="@dimen/size_12"
         android:paddingEnd="@dimen/size_12"
         android:textAlignment="gravity"
-        android:textColor="@color/collection_product_name"
+        android:textColor="@color/colorNormalText"
         android:textSize="@dimen/font_14"
         tools:text="Tất cả các giá" />
 

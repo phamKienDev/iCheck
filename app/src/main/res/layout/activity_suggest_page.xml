@@ -30,7 +30,7 @@
             android:gravity="center"
             android:singleLine="true"
             android:text="@string/goi_y_theo_doi"
-            android:textColor="@color/lightBlue"
+            android:textColor="@color/colorPrimary"
             android:textStyle="normal" />
     </LinearLayout>
 
@@ -71,7 +71,7 @@
         android:paddingTop="@dimen/size_6"
         android:paddingBottom="@dimen/size_6"
         android:text="@string/ve_trang_chu"
-        android:textColor="@color/lightBlue"
+        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/font_16" />
 
 </LinearLayout>

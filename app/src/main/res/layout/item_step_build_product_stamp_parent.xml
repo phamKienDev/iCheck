@@ -20,7 +20,7 @@
         android:paddingBottom="@dimen/size_12"
         android:singleLine="true"
         android:text="Truy xuất nguồn gốc Trứng"
-        android:textColor="@color/blue"
+        android:textColor="@color/colorSecondary"
         android:textSize="@dimen/font_18" />
 
     <androidx.recyclerview.widget.RecyclerView

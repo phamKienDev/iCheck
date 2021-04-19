@@ -36,7 +36,7 @@
             android:gravity="center"
             android:singleLine="true"
             android:text="Sản phẩm đã thích"
-            android:textColor="@color/lightBlue" />
+            android:textColor="@color/colorPrimary" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@id/imgHome"
@@ -72,7 +72,7 @@
         android:paddingRight="@dimen/size_10"
         android:singleLine="true"
         android:imeOptions="actionSearch"
-        android:textColorHint="@color/darkGray2"
+        android:textColorHint="@color/colorDisableText"
         android:textSize="@dimen/font_14"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
 

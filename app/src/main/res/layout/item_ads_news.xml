@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_12"
             android:text="Title"
-            android:textColor="@color/blue"
+            android:textColor="@color/colorSecondary"
             android:layout_marginLeft="@dimen/size_12" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -32,7 +32,7 @@
             android:gravity="center"
             android:layout_marginEnd="@dimen/size_12"
             android:text="Xem thêm"
-            android:textColor="@color/blue"
+            android:textColor="@color/colorSecondary"
             android:textSize="@dimen/font_14"
             app:fontFamily="@font/barlow_semi_bold"
             android:layout_marginRight="@dimen/size_12" />

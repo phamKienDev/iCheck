@@ -23,7 +23,7 @@
         android:layout_marginTop="@dimen/size_30"
         android:gravity="center"
         android:fontFamily="@font/barlow_semi_bold"
-        android:textColor="@color/collection_product_name"
+        android:textColor="@color/colorNormalText"
         android:textSize="@dimen/font_14" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -36,7 +36,7 @@
         android:includeFontPadding="false"
         android:gravity="center"
         android:fontFamily="@font/barlow_medium"
-        android:textColor="@color/fast_survey_gray"
+        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_14" />
 
     <androidx.appcompat.widget.AppCompatTextView

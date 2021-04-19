@@ -57,7 +57,7 @@
                         android:textColor="#757575"
                         android:textSize="@dimen/font_12" />
 
-                    <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+                    <vn.icheck.android.ui.view.TextBarlowSemiBold
                         android:id="@id/tvName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

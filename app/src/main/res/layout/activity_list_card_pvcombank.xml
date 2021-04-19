@@ -28,7 +28,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:text="Danh sách thẻ"
-            android:textColor="@color/lightBlue"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_18" />
 
         <androidx.appcompat.widget.AppCompatImageButton

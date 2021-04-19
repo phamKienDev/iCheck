@@ -20,7 +20,7 @@
         android:includeFontPadding="false"
         android:singleLine="true"
         android:text="Cập nhật mới nhất"
-        android:textColor="@color/fast_survey_gray"
+        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_16"
         android:visibility="gone" />
 
@@ -79,7 +79,7 @@
             android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:singleLine="true"
-            android:textColor="@color/gray_v2"
+            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_12"
             app:layout_constraintEnd_toEndOf="@id/tvPhone"
             app:layout_constraintStart_toStartOf="@+id/tvPhone"

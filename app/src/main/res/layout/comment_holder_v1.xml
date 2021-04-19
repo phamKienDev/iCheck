@@ -31,7 +31,7 @@
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginTop="@dimen/size_8"
             android:fontFamily="sans-serif-medium"
-            android:textColor="@color/blue"
+            android:textColor="@color/colorSecondary"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toStartOf="@+id/tv_time"
             app:layout_constraintStart_toStartOf="parent"

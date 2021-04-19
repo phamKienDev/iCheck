@@ -98,7 +98,7 @@
         android:includeFontPadding="false"
         android:padding="@dimen/size_10"
         android:text="@string/hotline_dang_ky"
-        android:textColor="@color/collection_product_name"
+        android:textColor="@color/colorNormalText"
         android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

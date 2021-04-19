@@ -34,7 +34,7 @@
             android:layout_width="@dimen/size_32"
             android:layout_height="@dimen/size_32"
             android:layout_marginBottom="@dimen/size_5"
-            android:src="@color/blue"
+            android:src="@color/colorSecondary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -153,7 +153,7 @@
                 android:layout_marginBottom="@dimen/size_8"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
-                android:textColor="@color/lightBlue"
+                android:textColor="@color/colorPrimary"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

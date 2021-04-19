@@ -189,7 +189,7 @@
                     android:fontFamily="@font/barlow_semi_bold"
                     android:gravity="center"
                     android:text="@string/so_du_the"
-                    android:textColor="@color/blue"
+                    android:textColor="@color/colorSecondary"
                     android:textSize="@dimen/font_16" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -218,7 +218,7 @@
                 android:layout_marginTop="@dimen/size_12"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:text="@string/thong_tin_the"
-                android:textColor="@color/blue"
+                android:textColor="@color/colorSecondary"
                 android:textSize="@dimen/font_16" />
 
             <LinearLayout
@@ -355,7 +355,7 @@
                         android:gravity="end"
                         android:src="@drawable/ic_copy_24px"
                         android:text="@string/dinh_danh_ngay"
-                        android:textColor="@color/lightBlue"
+                        android:textColor="@color/colorPrimary"
                         android:textSize="@dimen/font_14" />
 
                 </LinearLayout>

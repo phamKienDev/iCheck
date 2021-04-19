@@ -50,7 +50,7 @@
                     android:includeFontPadding="false"
                     android:lineHeight="@dimen/size_20"
                     android:text="Tiếp tục thực hiện thử thách để \n ghi danh lên bảng vàng xếp hạng nào!"
-                    android:textColor="@color/fast_survey_gray" />
+                    android:textColor="@color/colorSecondText" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/btnMission"
@@ -64,7 +64,7 @@
                     android:paddingTop="@dimen/size_9"
                     android:paddingBottom="@dimen/size_9"
                     android:text="Xem thêm các thử thách"
-                    android:textColor="@color/lightBlue"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/font_16" />
             </LinearLayout>
         </LinearLayout>

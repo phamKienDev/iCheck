@@ -39,7 +39,7 @@
                 android:layout_width="@dimen/size_0"
                 android:layout_height="wrap_content"
                 android:text="@string/so_du_ví"
-                android:textColor="@color/collection_product_name"
+                android:textColor="@color/colorNormalText"
                 android:textSize="@dimen/font_16"
                 app:layout_constraintBottom_toBottomOf="@id/imgImage"
                 app:layout_constraintEnd_toStartOf="@id/imgImage"
@@ -56,7 +56,7 @@
                 android:gravity="center_vertical"
                 android:text="0 đ"
                 android:textAlignment="gravity"
-                android:textColor="@color/gray_v2"
+                android:textColor="@color/colorSecondText"
                 android:textSize="@dimen/font_12"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_10"
                 android:text="@string/mo_the_va_kich_hoat_vi_de_thanh_toan_moi_luc_moi_noi"
-                android:textColor="@color/gray_v2"
+                android:textColor="@color/colorSecondText"
                 android:textSize="@dimen/font_12"
                 app:layout_constraintTop_toBottomOf="@id/viewLine" />
 

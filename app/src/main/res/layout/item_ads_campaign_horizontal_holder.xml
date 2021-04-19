@@ -30,7 +30,7 @@
             android:adjustViewBounds="true"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@color/collection_product_name" />
+            app:srcCompat="@color/colorNormalText" />
 
         <TextView
             android:id="@+id/tvTimeStart"
@@ -41,7 +41,7 @@
             android:layout_marginTop="@dimen/size_8"
             android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
-            android:textColor="@color/red"
+            android:textColor="@color/colorAccentRed"
             android:textSize="@dimen/font_12"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgCampaign"
@@ -60,7 +60,7 @@
             android:includeFontPadding="false"
             android:lineSpacingExtra="@dimen/font_6"
             android:maxLines="1"
-            android:textColor="@color/collection_product_name"
+            android:textColor="@color/colorNormalText"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tvTimeStart"
@@ -74,7 +74,7 @@
             android:layout_marginTop="@dimen/size_4"
             android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
-            android:textColor="@color/fast_survey_gray"
+            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_12"
             app:layout_constraintStart_toStartOf="@+id/tvName"
             app:layout_constraintTop_toBottomOf="@+id/tvName"

@@ -1,6 +1,5 @@
 package vn.icheck.android.component.post
 
-import android.graphics.Color
 import android.graphics.drawable.StateListDrawable
 import android.os.Bundle
 import android.text.TextUtils
@@ -12,12 +11,10 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatEditText
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.dialog_report_post.*
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialogFragment
-import vn.icheck.android.component.view.ButtonLightBlueCorners4
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.network.models.product.report.ICReportForm
@@ -58,8 +55,8 @@ class ReportPostDialog(val listData: MutableList<ICReportForm>) : BaseBottomShee
                 radioButton.typeface = ViewHelper.createTypeface(requireContext(), R.font.barlow_medium)
                 radioButton.setBackgroundResource(ViewHelper.outValue.resourceId)
                 radioButton.setTextColor(ViewHelper.createColorStateList(
-                        ContextCompat.getColor(requireContext(), R.color.fast_survey_gray),
-                        ContextCompat.getColor(requireContext(), R.color.collection_product_name)))
+                        ContextCompat.getColor(requireContext(), R.color.colorSecondText),
+                        ContextCompat.getColor(requireContext(), R.color.colorNormalText)))
                 radioButton.includeFontPadding = false
                 radioButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
                 radioButton.maxLines = 1

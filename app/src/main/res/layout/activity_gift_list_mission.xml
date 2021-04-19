@@ -24,7 +24,7 @@
             android:gravity="center"
             android:includeFontPadding="false"
             android:text="@string/thu_thach_nhan_them_luot_mo_qua"
-            android:textColor="@color/lightBlue"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_18"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -136,7 +136,7 @@
                 android:gravity="center"
                 android:includeFontPadding="false"
                 android:text="@string/thu_thach_nhan_them_luot_mo_qua"
-                android:textColor="@color/lightBlue"
+                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/font_18"
                 app:layout_constraintTop_toTopOf="parent" />
 

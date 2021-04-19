@@ -35,7 +35,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
             android:maxLines="2"
-            android:textColor="@color/collection_product_name"
+            android:textColor="@color/colorNormalText"
             android:textSize="@dimen/font_16"
             tools:text="Công ty Thư 1141222222222222222222222" />
     </LinearLayout>
@@ -59,7 +59,7 @@
         android:fontFamily="@font/barlow_medium"
         android:includeFontPadding="false"
         android:maxLines="1"
-        android:textColor="@color/fast_survey_gray"
+        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_14"
         app:layout_constraintStart_toStartOf="@id/layoutName"
         app:layout_constraintTop_toBottomOf="@id/layoutName"

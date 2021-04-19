@@ -10,7 +10,7 @@
         <ripple android:color="@color/black_10">
             <item>
                 <shape android:shape="rectangle">
-                    <stroke android:width="@dimen/size_1" android:color="@color/lightBlue" />
+                    <stroke android:width="@dimen/size_1" android:color="@color/colorPrimary" />
                     <corners android:radius="@dimen/size_4" />
                     <solid android:color="@color/white" />
                 </shape>

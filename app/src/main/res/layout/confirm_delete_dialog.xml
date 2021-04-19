@@ -46,7 +46,7 @@
             android:paddingBottom="@dimen/size_12"
             android:text="Không"
             android:textAlignment="center"
-            android:textColor="@color/blue"
+            android:textColor="@color/colorSecondary"
             android:textSize="@dimen/font_16" />
 
         <View
@@ -63,7 +63,7 @@
             android:paddingBottom="@dimen/size_12"
             android:text="Có"
             android:textAlignment="center"
-            android:textColor="@color/blue"
+            android:textColor="@color/colorSecondary"
             android:textSize="@dimen/font_16" />
     </LinearLayout>
 </LinearLayout>

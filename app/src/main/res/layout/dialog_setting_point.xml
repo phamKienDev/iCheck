@@ -93,7 +93,7 @@
             android:paddingEnd="@dimen/size_6"
             android:paddingRight="@dimen/size_6"
             android:textColor="@color/black"
-            android:textColorHint="@color/darkGray2"
+            android:textColorHint="@color/colorDisableText"
             android:textSize="@dimen/font_14"
             android:textStyle="normal" />
 
@@ -116,7 +116,7 @@
             android:paddingEnd="@dimen/size_6"
             android:paddingRight="@dimen/size_6"
             android:textColor="@color/black"
-            android:textColorHint="@color/darkGray2"
+            android:textColorHint="@color/colorDisableText"
             android:textSize="@dimen/font_14"
             android:textStyle="normal" />
 
@@ -154,7 +154,7 @@
             android:paddingLeft="@dimen/size_12"
 
             android:text="@string/tat_ca"
-            android:textColor="@color/collection_product_name" />
+            android:textColor="@color/colorNormalText" />
 
         <RadioButton
             android:id="@+id/radioXuVao"
@@ -167,7 +167,7 @@
             android:paddingStart="@dimen/size_12"
             android:paddingLeft="@dimen/size_12"
             android:text="@string/xu_vao"
-            android:textColor="@color/collection_product_name" />
+            android:textColor="@color/colorNormalText" />
 
         <RadioButton
             android:id="@+id/radioXuRa"
@@ -180,7 +180,7 @@
             android:paddingStart="@dimen/size_12"
             android:paddingLeft="@dimen/size_12"
             android:text="@string/xu_ra"
-            android:textColor="@color/collection_product_name" />
+            android:textColor="@color/colorNormalText" />
     </RadioGroup>
 
 
@@ -199,7 +199,7 @@
         android:paddingTop="@dimen/size_8"
         android:paddingBottom="@dimen/size_8"
         android:text="@string/thiet_lap_lai"
-        android:textColor="@color/darkGray2"
+        android:textColor="@color/colorDisableText"
         android:textSize="@dimen/font_16"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"

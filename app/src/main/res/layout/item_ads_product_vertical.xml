@@ -85,7 +85,7 @@
             android:gravity="center|start"
             android:includeFontPadding="false"
             android:maxLines="2"
-            android:textColor="@color/collection_product_name"
+            android:textColor="@color/colorNormalText"
             android:textSize="@dimen/font_14"
             tools:text="Adidas Store (tối 2 dòng) Adidas Store (tối 2 dòng) Adidas Store (tối 2 dòng) Adidas Store (tối 2 dòng)" />
 
@@ -101,7 +101,7 @@
         android:gravity="center|start"
         android:includeFontPadding="false"
         android:maxLines="2"
-        android:textColor="@color/collection_product_name"
+        android:textColor="@color/colorNormalText"
         android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="@+id/layoutName"
         app:layout_constraintStart_toStartOf="@+id/imgAvatar"

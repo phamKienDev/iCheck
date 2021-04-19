@@ -33,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/lich_su_quet"
-                android:textColor="@color/lightBlue"
+                android:textColor="@color/colorPrimary"
                 app:layout_constraintBottom_toBottomOf="@id/imgMenu"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -232,7 +232,7 @@
                 android:layout_marginTop="@dimen/size_12"
                 android:fontFamily="@font/barlow_medium"
                 android:text="Để hiển thị dữ liệu Cửa hàng, vui lòng bật GPS"
-                android:textColor="@color/fast_survey_gray"
+                android:textColor="@color/colorSecondText"
                 android:textSize="@dimen/font_14" />
 
             <androidx.appcompat.widget.AppCompatTextView

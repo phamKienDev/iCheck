@@ -14,7 +14,6 @@ import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.network.models.ICNotificationPage
-import vn.icheck.android.network.models.ICRelatedPage
 
 class NotificationPageComponent(parent: ViewGroup) : BaseViewHolder<MutableList<ICNotificationPage>>(createView(parent.context)) {
     private val friendRequestAdapter = NotificationPageAdapter()
@@ -51,7 +50,7 @@ class NotificationPageComponent(parent: ViewGroup) : BaseViewHolder<MutableList<
                         ViewHelper.createLayoutParams(SizeHelper.size12, SizeHelper.size10, SizeHelper.size12, 0),
                         null,
                         ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
-                        ContextCompat.getColor(context, R.color.blue),
+                        ContextCompat.getColor(context, R.color.colorSecondary),
                         18f
                 ).also {
                     it.setPadding(0, 0, SizeHelper.size12, 0)

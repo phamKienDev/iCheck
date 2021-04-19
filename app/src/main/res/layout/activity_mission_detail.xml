@@ -63,7 +63,7 @@
                         android:layout_marginTop="@dimen/size_20"
                         android:layout_marginBottom="@dimen/size_20"
                         android:text="@string/da_ket_thuc"
-                        android:textColor="@color/fast_survey_gray"
+                        android:textColor="@color/colorSecondText"
                         android:textSize="@dimen/font_14"
                         android:visibility="gone" />
 
@@ -96,7 +96,7 @@
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/barlow_medium"
                                     android:includeFontPadding="false"
-                                    android:textColor="@color/fast_survey_gray"
+                                    android:textColor="@color/colorSecondText"
                                     android:textSize="@dimen/font_12"
                                     tools:text="Thời gian còn lại" />
 
@@ -137,7 +137,7 @@
                                 android:paddingEnd="@dimen/size_15"
                                 android:paddingRight="@dimen/size_15"
                                 android:textAlignment="gravity"
-                                android:textColor="@color/red"
+                                android:textColor="@color/colorAccentRed"
                                 android:textSize="@dimen/font_14"
                                 tools:text="5 Lượt mở quà" />
 
@@ -172,7 +172,7 @@
                                 android:layout_marginTop="@dimen/size_4"
                                 android:fontFamily="@font/barlow_medium"
                                 android:includeFontPadding="false"
-                                android:textColor="@color/fast_survey_gray"
+                                android:textColor="@color/colorSecondText"
                                 android:textSize="@dimen/font_14"
                                 android:visibility="gone"
                                 app:layout_constraintTop_toBottomOf="@id/tvProgress"
@@ -200,7 +200,7 @@
                                     android:layout_marginEnd="@dimen/size_12"
                                     android:fontFamily="@font/barlow_semi_bold"
                                     android:includeFontPadding="false"
-                                    android:textColor="@color/collection_product_name"
+                                    android:textColor="@color/colorNormalText"
                                     android:textSize="@dimen/font_14"
                                     app:layout_constraintEnd_toStartOf="@id/tvProgressCount"
                                     app:layout_constraintStart_toEndOf="@id/imgIcon"
@@ -215,7 +215,7 @@
                                     android:layout_marginEnd="@dimen/size_12"
                                     android:fontFamily="@font/barlow_medium"
                                     android:includeFontPadding="false"
-                                    android:textColor="@color/fast_survey_gray"
+                                    android:textColor="@color/colorSecondText"
                                     android:textSize="@dimen/font_14"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintTop_toTopOf="@id/tvProgressTitle"
@@ -268,7 +268,7 @@
                     android:fontFamily="@font/barlow_semi_bold"
                     android:includeFontPadding="false"
                     android:text="@string/huong_dan_thuc_hien"
-                    android:textColor="@color/blue"
+                    android:textColor="@color/colorSecondary"
                     android:textSize="@dimen/font_14"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -304,7 +304,7 @@
                     android:fontFamily="@font/barlow_semi_bold"
                     android:includeFontPadding="false"
                     android:text="@string/ap_dung_cho_san_pham"
-                    android:textColor="@color/blue"
+                    android:textColor="@color/colorSecondary"
                     android:textSize="@dimen/font_14"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -345,7 +345,7 @@
                     android:fontFamily="@font/barlow_semi_bold"
                     android:includeFontPadding="false"
                     android:text="@string/ap_dung_cho_danh_muc"
-                    android:textColor="@color/blue"
+                    android:textColor="@color/colorSecondary"
                     android:textSize="@dimen/font_14"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -386,7 +386,7 @@
                     android:fontFamily="@font/barlow_semi_bold"
                     android:includeFontPadding="false"
                     android:text="@string/ap_dung_cho_doanh_nghiep"
-                    android:textColor="@color/blue"
+                    android:textColor="@color/colorSecondary"
                     android:textSize="@dimen/font_14"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -429,7 +429,7 @@
                     android:fontFamily="@font/barlow_semi_bold"
                     android:includeFontPadding="false"
                     android:text="@string/thong_tin_chi_tiet_chuong_trinh"
-                    android:textColor="@color/blue"
+                    android:textColor="@color/colorSecondary"
                     android:textSize="@dimen/font_14"
                     app:layout_constraintBottom_toBottomOf="@id/tvViewInfomation"
                     app:layout_constraintEnd_toStartOf="@id/tvViewInfomation"
@@ -556,7 +556,7 @@
             android:gravity="center"
             android:includeFontPadding="false"
             android:singleLine="true"
-            android:textColor="@color/lightBlue"
+            android:textColor="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="@id/imgBack"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/imgBack"

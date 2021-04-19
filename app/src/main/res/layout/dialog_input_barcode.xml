@@ -47,7 +47,7 @@
         android:paddingTop="@dimen/size_6"
         android:paddingBottom="@dimen/size_6"
         android:singleLine="true"
-        android:textColor="@color/blue"
+        android:textColor="@color/colorSecondary"
         android:textColorHint="#d8d8d8"
         android:textSize="@dimen/font_18"
         android:textStyle="normal"
@@ -56,7 +56,7 @@
     <View
         style="@style/Line_Gray.Horizontal"
         android:layout_width="@dimen/size_0"
-        android:background="@color/blue"
+        android:background="@color/colorSecondary"
         app:layout_constraintEnd_toEndOf="@id/edtBarcode"
         app:layout_constraintStart_toStartOf="@id/edtBarcode"
         app:layout_constraintTop_toBottomOf="@id/edtBarcode" />

@@ -98,7 +98,7 @@
             android:ellipsize="end"
             android:gravity="center"
             android:singleLine="true"
-            android:textColor="@color/lightBlue"
+            android:textColor="@color/colorPrimary"
             android:textStyle="normal"
             app:layout_constraintBottom_toBottomOf="@id/imgBack"
             app:layout_constraintEnd_toStartOf="@id/imgAction"

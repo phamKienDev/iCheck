@@ -45,7 +45,7 @@
         android:fontFamily="@font/barlow_medium"
         android:includeFontPadding="false"
         android:text="@string/quy_doi_1000_icoin"
-        android:textColor="@color/fast_survey_gray"
+        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_12"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@id/tvCoin"

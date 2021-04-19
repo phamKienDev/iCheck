@@ -145,7 +145,7 @@
             android:layout_height="@dimen/size_20"
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginLeft="@dimen/size_12"
-            android:src="@color/lightBlue"
+            android:src="@color/colorPrimary"
             app:civ_border_color="@color/gray"
             app:civ_border_width="@dimen/size_0_5" />
 
@@ -215,7 +215,7 @@
                 android:hint="@string/viet_binh_luan"
                 android:maxLines="4"
                 android:textColor="@color/darkGray1"
-                android:textColorHint="@color/darkGray2"
+                android:textColorHint="@color/colorDisableText"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/imgCamera"

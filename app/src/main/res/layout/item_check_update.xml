@@ -16,7 +16,7 @@
         android:includeFontPadding="false"
         android:maxLines="2"
         android:text="@string/da_co_phien_ban_moi_cho_ung_dung_roi_nhe"
-        android:textColor="@color/collection_product_name"
+        android:textColor="@color/colorNormalText"
         app:layout_constraintBottom_toTopOf="@id/btnUpdate"
         app:layout_constraintEnd_toStartOf="@+id/imgImage"
         app:layout_constraintStart_toStartOf="parent"

@@ -22,7 +22,7 @@
             app:civ_border_width="@dimen/size_1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@color/lightBlue" />
+            tools:src="@color/colorPrimary" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@id/imgEditAvatar"

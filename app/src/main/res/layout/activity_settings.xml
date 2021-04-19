@@ -23,7 +23,7 @@
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_10"
         android:text="@string/thong_bao"
-        android:textColor="@color/blue" />
+        android:textColor="@color/colorSecondary" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -124,7 +124,7 @@
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_20"
         android:text="Hệ thống"
-        android:textColor="@color/blue" />
+        android:textColor="@color/colorSecondary" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -350,6 +350,6 @@
         android:paddingTop="@dimen/size_9"
         android:paddingBottom="@dimen/size_9"
         android:text="Đặt lại mặc định"
-        android:textColor="@color/lightBlue"
+        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/font_16" />
 </LinearLayout>

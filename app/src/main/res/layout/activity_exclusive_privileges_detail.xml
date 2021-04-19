@@ -34,7 +34,7 @@
             android:gravity="center"
             android:singleLine="true"
             android:text="Đặc quyền riêng"
-            android:textColor="@color/lightBlue" />
+            android:textColor="@color/colorPrimary" />
     </FrameLayout>
 
     <androidx.core.widget.NestedScrollView

@@ -237,7 +237,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:text="@string/xem_kho_qua"
-            android:textColor="@color/red"
+            android:textColor="@color/colorAccentRed"
             android:textSize="@dimen/font_16"
             app:layout_constraintEnd_toEndOf="@+id/linearLayout14"
             app:layout_constraintStart_toEndOf="@id/btnShare"

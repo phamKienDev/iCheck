@@ -9,7 +9,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Typeface
-import android.location.Location
 import android.net.Uri
 import android.os.Build
 import android.os.Handler
@@ -41,7 +40,6 @@ import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivity
 import vn.icheck.android.base.adapter.RecyclerViewAdapter
-import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.holder.StampECommerceHolder
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.component.banner.ListBannerAdapter

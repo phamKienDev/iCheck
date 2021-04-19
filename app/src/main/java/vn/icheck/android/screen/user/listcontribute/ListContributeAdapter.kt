@@ -209,11 +209,11 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
 
             itemView.tvPrice.run {
                 if (obj.data?.price != null && obj.data?.price != 0L) {
-                    setTextColor(getColor(R.color.lightBlue))
+                    setTextColor(getColor(R.color.colorPrimary))
                     typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
                     text = itemView.context.getString(R.string.xxx__d, TextHelper.formatMoney(obj.data?.price))
                 } else {
-                    setTextColor(getColor(R.color.darkGray2))
+                    setTextColor(getColor(R.color.colorDisableText))
                     setTypeface(null, Typeface.ITALIC)
                     text = getString(R.string.gia_dang_cap_nhat)
                 }

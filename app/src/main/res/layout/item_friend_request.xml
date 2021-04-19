@@ -80,7 +80,7 @@
         android:paddingStart="@dimen/size_12"
         android:paddingEnd="@dimen/size_12"
         android:text="@string/tu_choi"
-        android:textColor="@color/lightBlue"
+        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/font_14"
         app:layout_constraintStart_toEndOf="@id/btnAgree"
         app:layout_constraintTop_toBottomOf="@id/tvName" />
@@ -92,7 +92,7 @@
         android:ellipsize="end"
         android:includeFontPadding="false"
         android:maxLines="2"
-        android:textColor="@color/fast_survey_gray"
+        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
         app:layout_constraintEnd_toEndOf="parent"

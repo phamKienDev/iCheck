@@ -24,7 +24,7 @@
         android:layout_marginStart="@dimen/size_10"
         android:ellipsize="end"
         android:singleLine="true"
-        android:textColor="@color/collection_product_name"
+        android:textColor="@color/colorNormalText"
         android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toStartOf="@id/imgImage"
         app:layout_constraintStart_toEndOf="@id/imgAvatar"
@@ -46,7 +46,7 @@
             android:layout_marginEnd="@dimen/size_10"
             android:ellipsize="end"
             android:singleLine="true"
-            android:textColor="@color/fast_survey_gray"
+            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_14"
             tools:text="Tiki.vn" />
 
@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:singleLine="true"
-            android:textColor="@color/red"
+            android:textColor="@color/colorAccentRed"
             android:textSize="@dimen/font_14"
             tools:text="Tiki.vn" />
     </LinearLayout>

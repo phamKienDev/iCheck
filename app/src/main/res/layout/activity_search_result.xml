@@ -60,7 +60,7 @@
                     android:paddingRight="@dimen/size_10"
                     android:paddingBottom="@dimen/size_6"
                     android:text="@string/san_pham"
-                    android:textColor="@color/collection_product_name"
+                    android:textColor="@color/colorNormalText"
                     android:textSize="@dimen/font_14"
                     app:fontFamily="@font/barlow_medium" />
 
@@ -75,7 +75,7 @@
                     android:paddingRight="@dimen/size_10"
                     android:paddingBottom="@dimen/size_6"
                     android:text="@string/danh_gia"
-                    android:textColor="@color/collection_product_name"
+                    android:textColor="@color/colorNormalText"
                     android:textSize="@dimen/font_14"
                     app:fontFamily="@font/barlow_medium" />
 
@@ -91,7 +91,7 @@
                     android:paddingRight="@dimen/size_10"
                     android:paddingBottom="@dimen/size_6"
                     android:text="@string/trang"
-                    android:textColor="@color/collection_product_name"
+                    android:textColor="@color/colorNormalText"
                     android:textSize="@dimen/font_14"
                     app:fontFamily="@font/barlow_medium" />
 
@@ -106,7 +106,7 @@
                     android:paddingRight="@dimen/size_10"
                     android:paddingBottom="@dimen/size_6"
                     android:text="@string/moi_nguoi"
-                    android:textColor="@color/collection_product_name"
+                    android:textColor="@color/colorNormalText"
                     android:textSize="@dimen/font_14"
                     app:fontFamily="@font/barlow_medium" />
 
@@ -121,7 +121,7 @@
                     android:paddingRight="@dimen/size_10"
                     android:paddingBottom="@dimen/size_6"
                     android:text="@string/shop"
-                    android:textColor="@color/collection_product_name"
+                    android:textColor="@color/colorNormalText"
                     android:textSize="@dimen/font_14"
                     android:visibility="gone"
                     app:fontFamily="@font/barlow_medium" />

@@ -28,7 +28,7 @@
         android:drawablePadding="@dimen/size_8"
         android:fontFamily="@font/barlow_medium"
         android:text="@string/bai_da_xem"
-        android:textColor="@color/collection_product_name"
+        android:textColor="@color/colorNormalText"
         app:drawableStartCompat="@drawable/ic_filter_post_review_14dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider27" />
@@ -93,7 +93,7 @@
             android:drawablePadding="@dimen/size_8"
             android:fontFamily="@font/barlow_medium"
             android:text="@string/tat_ca"
-            android:textColor="@color/fast_survey_gray"
+            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider28" />
@@ -151,7 +151,7 @@
             android:drawablePadding="@dimen/size_8"
             android:fontFamily="@font/barlow_medium"
             android:text="@string/moi_nguoi"
-            android:textColor="@color/fast_survey_gray"
+            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider29" />

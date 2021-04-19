@@ -122,7 +122,7 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvPhone"
                 style="@style/style_text_barlow_page"
-                android:textColor="@color/lightBlue"
+                android:textColor="@color/colorPrimary"
                 android:layout_width="wrap_content"
                 tools:text="0325.332.201" />
 
@@ -219,7 +219,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center_horizontal"
             android:text="Xem tất cả"
-            android:textColor="@color/lightCyan"
+            android:textColor="@color/colorAccentBlue"
             android:textSize="@dimen/font_14" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -34,7 +34,7 @@
             android:fontFamily="@font/barlow_medium"
             android:gravity="center"
             android:text="@string/chup_anh"
-            android:textColor="@color/lightBlue"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_18"
             android:textStyle="normal" />
 
@@ -48,7 +48,7 @@
             android:fontFamily="@font/barlow_medium"
             android:gravity="center"
             android:text="@string/quay_video"
-            android:textColor="@color/lightBlue"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_18"
             android:textStyle="normal" />
     </LinearLayout>
@@ -62,7 +62,7 @@
         android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center"
         android:text="@string/bo_qua"
-        android:textColor="@color/lightBlue"
+        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/font_18"
         android:textStyle="bold" />
 </LinearLayout>

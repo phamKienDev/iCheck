@@ -16,7 +16,6 @@ import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.network.models.ICFriendSuggestion
 import vn.icheck.android.network.models.ICUser
 import vn.icheck.android.screen.user.listnotification.friendsuggestion.ListFriendSuggestionActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
@@ -81,7 +80,7 @@ class FriendSuggestionComponent(parent: ViewGroup): BaseViewHolder<MutableList<I
                             ViewHelper.createLayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f),
                             null,
                             ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
-                            ContextCompat.getColor(context, R.color.blue),
+                            ContextCompat.getColor(context, R.color.colorSecondary),
                             18f
                     ).also {
                         it.setPadding(0, 0, SizeHelper.size12, 0)
@@ -92,7 +91,7 @@ class FriendSuggestionComponent(parent: ViewGroup): BaseViewHolder<MutableList<I
                             ViewHelper.createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT),
                             ViewHelper.outValue.resourceId,
                             ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
-                            ContextCompat.getColor(context, R.color.blue),
+                            ContextCompat.getColor(context, R.color.colorSecondary),
                             14f
                     ).also {
                         it.setPadding(0, SizeHelper.size6, 0, SizeHelper.size6)

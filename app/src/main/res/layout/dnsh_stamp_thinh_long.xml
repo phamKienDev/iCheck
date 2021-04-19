@@ -16,7 +16,7 @@
         android:layout_marginTop="@dimen/size_20"
         android:fontFamily="@font/roboto_regular"
         android:text="Doanh nghiệp sở hữu"
-        android:textColor="@color/blue"
+        android:textColor="@color/colorSecondary"
         android:textSize="@dimen/font_18" />
 
     <androidx.cardview.widget.CardView

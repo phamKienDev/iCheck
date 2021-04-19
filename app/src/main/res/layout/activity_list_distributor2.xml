@@ -27,7 +27,7 @@
                 android:id="@+id/tvCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/blue"
+                android:textColor="@color/colorSecondary"
                 android:layout_marginLeft="@dimen/size_10"
                 android:layout_marginTop="@dimen/size_10"
                 android:includeFontPadding="false"

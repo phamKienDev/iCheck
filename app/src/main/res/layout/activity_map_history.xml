@@ -53,7 +53,7 @@
             android:ellipsize="end"
             android:includeFontPadding="false"
             android:singleLine="true"
-            android:textColor="@color/lightBlue"
+            android:textColor="@color/colorPrimary"
             app:layout_constraintStart_toEndOf="@+id/imgAvatar"
             app:layout_constraintTop_toTopOf="@+id/imgAvatar"
             tools:text="Converse Store Mỹ Đình" />

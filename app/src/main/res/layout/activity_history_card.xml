@@ -18,14 +18,14 @@
         android:background="@color/white"
         app:tabGravity="fill"
         app:tabIndicatorHeight="@dimen/size_2"
-        app:tabIndicatorColor="@color/lightBlue"
+        app:tabIndicatorColor="@color/colorPrimary"
         app:tabIndicator="@drawable/ic_tab_indicator_24"
         app:tabTextAppearance="@style/MyTabLayoutTextAppearance"
         app:tabMode="fixed"
         app:tabRippleColor="@null"
         app:tabInlineLabel="true"
-        app:tabSelectedTextColor="@color/lightBlue"
-        app:tabTextColor="@color/darkGray2" />
+        app:tabSelectedTextColor="@color/colorPrimary"
+        app:tabTextColor="@color/colorDisableText" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@id/viewPager"

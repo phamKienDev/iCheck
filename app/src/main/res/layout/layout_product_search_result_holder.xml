@@ -19,7 +19,7 @@
         android:fontFamily="@font/barlow_semi_bold"
         android:text="@string/san_pham"
         android:visibility="gone"
-        android:textColor="@color/blue"
+        android:textColor="@color/colorSecondary"
         android:textSize="@dimen/font_16" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -41,7 +41,7 @@
         android:fontFamily="@font/barlow_medium"
         android:gravity="center_vertical"
         android:text="@string/xem_them"
-        android:textColor="@color/lightBlue"
+        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/font_14" />
 
 </LinearLayout>

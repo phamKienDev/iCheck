@@ -22,7 +22,7 @@
         android:paddingStart="@dimen/size_18"
         android:paddingEnd="@dimen/size_18"
         android:textAlignment="center"
-        android:textColor="@color/lightBlue"
+        android:textColor="@color/colorPrimary"
         android:layout_marginBottom="@dimen/size_60"
         android:textSize="@dimen/font_16"
         app:layout_constraintBottom_toTopOf="@+id/btnHome"

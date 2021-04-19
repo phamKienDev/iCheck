@@ -51,7 +51,7 @@
             android:layout_marginRight="@dimen/size_10"
             android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
-            android:textColor="@color/lightBlue"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_14"
             android:visibility="visible"
             tools:text="25.900 ₫" />
@@ -66,7 +66,7 @@
             android:gravity="center_vertical"
             android:lineSpacingExtra="@dimen/font_14"
             android:text="@string/verified"
-            android:textColor="@color/green_v3"
+            android:textColor="@color/colorAccentGreen"
             android:textSize="@dimen/font_12" />
     </LinearLayout>
 

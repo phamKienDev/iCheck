@@ -38,7 +38,7 @@
             android:layout_weight="1"
             android:textAlignment="center"
             android:text="Huỷ"
-            android:textColor="@color/blue"
+            android:textColor="@color/colorSecondary"
             android:textSize="@dimen/font_16" />
 
         <View
@@ -55,7 +55,7 @@
             android:text="Đồng ý"
             android:layout_marginTop="@dimen/size_15"
             android:layout_marginBottom="@dimen/size_15"
-            android:textColor="@color/blue"
+            android:textColor="@color/colorSecondary"
             android:textSize="@dimen/font_16" />
     </LinearLayout>
 </LinearLayout>

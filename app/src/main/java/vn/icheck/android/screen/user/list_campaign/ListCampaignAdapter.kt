@@ -190,7 +190,7 @@ class ListCampaignAdapter constructor(val callback: ListCampaignCallback) : Recy
                     it.topMargin = SizeHelper.size28
 
                 }
-                it.setTextColor(ContextCompat.getColor(context, R.color.collection_product_name))
+                it.setTextColor(ContextCompat.getColor(context, R.color.colorNormalText))
                 it.gravity = Gravity.CENTER
                 it.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
                 it.textSize = 16f
@@ -201,7 +201,7 @@ class ListCampaignAdapter constructor(val callback: ListCampaignCallback) : Recy
                 it.layoutParams = ViewHelper.createLayoutParams().also {
                     it.setMargins(SizeHelper.size38, SizeHelper.size10, SizeHelper.size38, 0)
                 }
-                it.setTextColor(ContextCompat.getColor(context, R.color.fast_survey_gray))
+                it.setTextColor(ContextCompat.getColor(context, R.color.colorSecondText))
                 it.gravity = Gravity.CENTER
                 it.typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
                 it.textSize = 14f

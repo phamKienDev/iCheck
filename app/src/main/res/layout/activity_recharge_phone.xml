@@ -35,7 +35,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:text="Nạp thẻ điện thoại"
-            android:textColor="@color/lightBlue"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_18" />
 
         <androidx.appcompat.widget.AppCompatImageButton

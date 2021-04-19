@@ -22,7 +22,7 @@
         android:layout_marginEnd="@dimen/size_44"
         android:fontFamily="@font/barlow_medium"
         android:gravity="center"
-        android:textColor="@color/fast_survey_gray"
+        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_14"
         tools:text="Kết nối mạng của bạn có vấn đề. Vui lòng thử lại" />
 
@@ -34,7 +34,7 @@
         android:textSize="@dimen/font_16"
         android:visibility="invisible"
         android:gravity="center"
-        android:textColor="@color/blue"
+        android:textColor="@color/colorSecondary"
         android:background="@drawable/bg_corner_dark_blue_6"
         android:layout_marginStart="@dimen/size_44"
         android:layout_marginTop="@dimen/size_16"

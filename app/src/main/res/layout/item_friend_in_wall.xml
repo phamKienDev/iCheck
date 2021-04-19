@@ -28,7 +28,7 @@
         android:ellipsize="end"
         android:fontFamily="@font/barlow_semi_bold"
         android:maxLines="1"
-        android:textColor="@color/collection_product_name"
+        android:textColor="@color/colorNormalText"
         android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="@id/imgAvatar"
         app:layout_constraintStart_toStartOf="@id/imgAvatar"

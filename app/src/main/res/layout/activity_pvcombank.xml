@@ -45,7 +45,7 @@
             android:paddingLeft="@dimen/size_8"
             android:layout_marginTop="@dimen/size_8"
             android:text="@string/toi_dong_y_voi_dieu_khoan_nay"
-            android:textColor="@color/collection_product_name"
+            android:textColor="@color/colorNormalText"
             android:textSize="@dimen/size_14"
             android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@id/containerButton"

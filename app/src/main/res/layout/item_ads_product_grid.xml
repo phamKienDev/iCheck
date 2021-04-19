@@ -116,7 +116,7 @@
                 android:layout_marginStart="@dimen/size_6"
                 android:includeFontPadding="false"
                 android:lineSpacingExtra="@dimen/font_14"
-                android:textColor="@color/fast_survey_gray"
+                android:textColor="@color/colorSecondText"
                 android:textSize="@dimen/font_12"
                 app:fontFamily="@font/barlow_medium"
                 tools:text="(586)" />

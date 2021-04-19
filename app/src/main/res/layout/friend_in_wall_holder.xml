@@ -20,7 +20,7 @@
             android:layout_marginTop="@dimen/size_10"
             android:layout_weight="1"
             android:fontFamily="@font/barlow_semi_bold"
-            android:textColor="@color/blue"
+            android:textColor="@color/colorSecondary"
             android:textSize="@dimen/font_18"
             tools:text="Bạn bè (34)"
             android:layout_marginLeft="@dimen/size_12" />
@@ -35,7 +35,7 @@
             android:layout_marginEnd="@dimen/size_12"
             android:layout_weight="1"
             android:fontFamily="@font/barlow_semi_bold"
-            android:textColor="@color/blue"
+            android:textColor="@color/colorSecondary"
             android:textSize="@dimen/font_14"
             android:text="Xem tất cả" />
 

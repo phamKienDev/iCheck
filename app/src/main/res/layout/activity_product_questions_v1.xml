@@ -26,7 +26,7 @@
         android:paddingStart="@dimen/size_57"
         android:paddingEnd="@dimen/size_57"
         android:singleLine="true"
-        android:textColor="@color/blue"
+        android:textColor="@color/colorSecondary"
         android:textSize="@dimen/font_18"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"

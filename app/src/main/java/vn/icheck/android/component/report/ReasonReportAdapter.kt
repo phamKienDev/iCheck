@@ -35,7 +35,7 @@ class ReasonReportAdapter(val listData: MutableList<ICReportForm>) : RecyclerVie
                         ViewHelper.createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0, SizeHelper.size4, SizeHelper.size6, SizeHelper.size4),
                             ViewHelper.createShapeDrawable(ContextCompat.getColor(context, R.color.darkGray6), SizeHelper.size32.toFloat()),
                         ViewHelper.createTypeface(context, R.font.barlow_medium),
-                        ContextCompat.getColor(context, R.color.collection_product_name),
+                        ContextCompat.getColor(context, R.color.colorNormalText),
                         14f).also {
                     it.setPadding(SizeHelper.size16, SizeHelper.size6, SizeHelper.size16, SizeHelper.size6)
                 }

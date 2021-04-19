@@ -86,7 +86,7 @@
             android:includeFontPadding="false"
             android:singleLine="true"
             android:text="2335432323327"
-            android:textColor="@color/lightBlue"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_18"
             tools:text="Tiêu đề" />
 

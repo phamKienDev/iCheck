@@ -34,7 +34,7 @@
             android:layout_marginEnd="@dimen/size_44"
             android:gravity="center"
             android:text="Mua thẻ điện thoại"
-            android:textColor="@color/lightBlue" />
+            android:textColor="@color/colorPrimary" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/imgActionHistoryTopup"

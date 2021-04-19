@@ -42,10 +42,10 @@ class TopTendencyCategoryAdapter(val listener: ITopTendencyListener) : RecyclerV
                 if (obj.isSelected) {
                     oldPos = adapterPosition
                     background = ContextCompat.getDrawable(context, R.drawable.bg_white_corners_16)
-                    setTextColor(ContextCompat.getColor(context, R.color.yellow))
+                    setTextColor(ContextCompat.getColor(context, R.color.colorAccentYellow))
                 } else {
                     background = ViewHelper.createStateListDrawable(
-                            ContextCompat.getColor(context, R.color.yellow), ContextCompat.getColor(context, R.color.yellow),
+                            ContextCompat.getColor(context, R.color.colorAccentYellow), ContextCompat.getColor(context, R.color.colorAccentYellow),
                             ContextCompat.getColor(context, R.color.black_21_v2), ContextCompat.getColor(context, R.color.black_21_v2),
                             SizeHelper.size1, SizeHelper.size16.toFloat())
                     setTextColor(ContextCompat.getColor(context, R.color.black_21_v2))

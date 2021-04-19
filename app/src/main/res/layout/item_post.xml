@@ -28,7 +28,7 @@
                 android:layout_width="@dimen/size_40"
                 android:layout_height="@dimen/size_40"
                 android:layout_marginTop="@dimen/size_8"
-                android:src="@color/blue"
+                android:src="@color/colorSecondary"
                 app:civ_border_color="@color/gray"
                 app:civ_border_width="@dimen/size_0_5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -63,7 +63,7 @@
                     android:includeFontPadding="false"
                     android:singleLine="true"
                     android:textAlignment="gravity"
-                    android:textColor="@color/collection_product_name"
+                    android:textColor="@color/colorNormalText"
                     android:textSize="@dimen/font_16"
                     app:layout_constraintEnd_toStartOf="@id/imgMore"
                     app:layout_constraintStart_toEndOf="@id/imgLogo"
@@ -79,7 +79,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:includeFontPadding="false"
                 android:singleLine="true"
-                android:textColor="@color/fast_survey_gray"
+                android:textColor="@color/colorSecondText"
                 android:textSize="@dimen/font_12"
                 app:layout_constraintBottom_toBottomOf="@id/imgLogo"
                 app:layout_constraintEnd_toEndOf="@id/layoutName"
@@ -156,7 +156,7 @@
             android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:maxLines="3"
-            android:textColor="@color/collection_product_name"
+            android:textColor="@color/colorNormalText"
             android:textSize="@dimen/font_14"
             app:layout_constraintTop_toBottomOf="@id/imgLogo"
             tools:text="Sản phẩm tốt, chất lượng cao. Chính hãng nên đảm bảo lắm nhé. Mọi người đều nên sử dụng thử một lần! nhưng phải dùng lâu dài mới tác dụng (Tối đa 3 dòng)..." />
@@ -210,7 +210,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:includeFontPadding="false"
                 android:maxLines="2"
-                android:textColor="@color/fast_survey_gray"
+                android:textColor="@color/colorSecondText"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintEnd_toEndOf="@id/tvProduct"
                 app:layout_constraintStart_toStartOf="@id/tvProduct"
@@ -250,7 +250,7 @@
                 android:gravity="center_vertical"
                 android:includeFontPadding="false"
                 android:textAlignment="gravity"
-                android:textColor="@color/fast_survey_gray"
+                android:textColor="@color/colorSecondText"
                 android:textSize="@dimen/font_14"
                 tools:text="12,781" />
 
@@ -265,7 +265,7 @@
                 android:gravity="center_vertical"
                 android:includeFontPadding="false"
                 android:textAlignment="gravity"
-                android:textColor="@color/fast_survey_gray"
+                android:textColor="@color/colorSecondText"
                 android:textSize="@dimen/font_14"
                 tools:text="12,781" />
 
@@ -280,7 +280,7 @@
                 android:gravity="center_vertical"
                 android:includeFontPadding="false"
                 android:textAlignment="gravity"
-                android:textColor="@color/fast_survey_gray"
+                android:textColor="@color/colorSecondText"
                 android:textSize="@dimen/font_14"
                 tools:text="12,781" />
         </LinearLayout>
@@ -351,7 +351,7 @@
                         android:drawablePadding="@dimen/size_4"
                         android:singleLine="true"
                         android:textAlignment="gravity"
-                        android:textColor="@color/collection_product_name"
+                        android:textColor="@color/colorNormalText"
                         android:textSize="@dimen/font_14"
                         tools:text="Trần Văn Lâm" />
 
@@ -363,7 +363,7 @@
                         android:fontFamily="@font/barlow_medium"
                         android:includeFontPadding="false"
                         android:singleLine="true"
-                        android:textColor="@color/collection_product_name"
+                        android:textColor="@color/colorNormalText"
                         android:textSize="@dimen/font_14"
                         tools:text="" />
                 </LinearLayout>
@@ -404,7 +404,7 @@
                 android:fontFamily="@font/barlow_semi_bold"
                 android:includeFontPadding="false"
                 android:text="@string/xem_them_cac_binh_luan"
-                android:textColor="@color/blue"
+                android:textColor="@color/colorSecondary"
                 android:textSize="@dimen/font_14"
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
@@ -444,7 +444,7 @@
                     android:paddingEnd="@dimen/size_10"
                     android:text="@string/viet_binh_luan"
                     android:textAlignment="gravity"
-                    android:textColor="@color/darkGray2"
+                    android:textColor="@color/colorDisableText"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/imgCommentAvatar"
                     app:layout_constraintTop_toTopOf="parent" />

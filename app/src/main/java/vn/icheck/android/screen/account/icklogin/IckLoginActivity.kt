@@ -12,15 +12,11 @@ import androidx.activity.viewModels
 import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
-import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_ick_login.*
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseCoroutineActivity
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
@@ -33,7 +29,7 @@ import vn.icheck.android.helper.CartHelper
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.tracking.insider.InsiderHelper
 import vn.icheck.android.helper.ShareSessionToModule
-import vn.icheck.android.network.base.ICNetworkManager2
+import vn.icheck.android.network.base.ICNetworkManager
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.*
 import vn.icheck.android.util.toICBaseResponse
@@ -244,7 +240,7 @@ class IckLoginActivity : BaseCoroutineActivity() {
             if (event.type == ICMessageEvent.Type.ON_LOG_IN) {
                 setResult(Activity.RESULT_OK)
                 overridePendingTransition(R.anim.none, R.anim.left_to_right_pop_exit)
-                ICNetworkManager2.getLoginProtocol?.onLogin()
+                ICNetworkManager.getLoginProtocol?.onLogin()
                 finish()
             }
         } catch (e: Exception) {

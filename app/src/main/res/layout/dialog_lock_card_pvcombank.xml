@@ -43,7 +43,7 @@
             android:fontFamily="@font/barlow_medium"
             android:gravity="center_horizontal"
             android:includeFontPadding="false"
-            android:textColor="@color/collection_product_name"
+            android:textColor="@color/colorNormalText"
             card_view:layout_constraintTop_toBottomOf="@id/txtTitle"
             tools:text="Thẻ bị tạm khóa sẽ không thể sử dụng để thanh toán, giao dịch online, POS... Bạn có thể mở khóa lại thẻ trên ứng dụng này." />
 

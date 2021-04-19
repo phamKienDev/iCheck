@@ -22,7 +22,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:includeFontPadding="false"
-            android:textColor="@color/collection_product_name"
+            android:textColor="@color/colorNormalText"
             android:textSize="@dimen/font_14"
             app:drawableEndCompat="@drawable/ic_mission_gift_24dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +36,7 @@
             android:layout_marginTop="@dimen/size_3"
             android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
-            android:textColor="@color/fast_survey_gray"
+            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_12"
             app:layout_constraintStart_toStartOf="@id/tvOrderId"
             app:layout_constraintTop_toBottomOf="@id/tvOrderId"
@@ -52,7 +52,7 @@
             android:gravity="center"
             android:includeFontPadding="false"
             android:text="@string/huy_don"
-            android:textColor="@color/lightBlue"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toBottomOf="@id/tvTime"
             app:layout_constraintEnd_toEndOf="parent"
@@ -93,7 +93,7 @@
             android:layout_marginTop="@dimen/size_5"
             android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
-            android:textColor="@color/lightBlue"
+            android:textColor="@color/colorPrimary"
             tools:text="4 sản phẩm khác" />
     </LinearLayout>
 

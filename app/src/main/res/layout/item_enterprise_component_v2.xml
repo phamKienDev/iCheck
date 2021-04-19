@@ -12,7 +12,7 @@
         android:id="@+id/backgroundVerified"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_0"
-        tools:background="@color/lightBlue"
+        tools:background="@color/colorPrimary"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/view"/>
 
@@ -101,7 +101,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvPhone"
             style="@style/style_text_barlow_page"
-            android:textColor="@color/lightBlue"
+            android:textColor="@color/colorPrimary"
             android:layout_width="wrap_content"
             tools:text="0325.332.201" />
 

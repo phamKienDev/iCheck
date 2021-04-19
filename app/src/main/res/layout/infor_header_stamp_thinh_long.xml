@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/barlow_medium"
         android:lineSpacingExtra="@dimen/font_6"
-        android:textColor="@color/blue"
+        android:textColor="@color/colorSecondary"
         android:layout_marginStart="@dimen/size_1"
         android:textSize="@dimen/font_14"
         android:textStyle="normal"

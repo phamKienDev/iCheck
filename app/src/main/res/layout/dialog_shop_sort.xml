@@ -22,7 +22,7 @@
             android:paddingTop="@dimen/size_17"
             android:paddingBottom="@dimen/size_17"
             android:text="Sắp xếp theo"
-            android:textColor="@color/darkGray2"
+            android:textColor="@color/colorDisableText"
             android:textSize="@dimen/font_14"
             android:textStyle="normal" />
 

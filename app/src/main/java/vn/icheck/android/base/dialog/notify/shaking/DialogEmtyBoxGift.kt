@@ -57,7 +57,7 @@ abstract class DialogEmtyBoxGift(context: Context, private val image: Int, priva
                             }, SizeHelper.size12, 0)
                         }
                         it.gravity = Gravity.CENTER_VERTICAL
-                        it.setTextColor(ContextCompat.getColor(context, R.color.collection_product_name))
+                        it.setTextColor(ContextCompat.getColor(context, R.color.colorNormalText))
                         it.typeface = ViewHelper.createTypeface(context, R.font.barlow_medium)
                         it.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_list_blue_12px, 0, 0, 0)
                         it.text = missions[i].missionName
