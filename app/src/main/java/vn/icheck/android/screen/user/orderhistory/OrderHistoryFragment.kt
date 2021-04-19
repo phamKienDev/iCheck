@@ -2,16 +2,11 @@ package vn.icheck.android.screen.user.orderhistory
 
 import android.os.Bundle
 import android.view.View
-import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.fragment_order_history.*
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 import vn.icheck.android.R
 import vn.icheck.android.base.fragment.BaseFragmentMVVM
-import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.models.ICOrderHistoryV2
@@ -54,7 +49,7 @@ class OrderHistoryFragment : BaseFragmentMVVM(), IRecyclerViewCallback {
 
     private fun setupRefreshLayout() {
         context?.let {
-            swipeLayout.setColorSchemeColors(ContextCompat.getColor(it, R.color.blue), ContextCompat.getColor(it, R.color.lightBlue), ContextCompat.getColor(it, R.color.lightBlue))
+            swipeLayout.setColorSchemeColors(ContextCompat.getColor(it, R.color.colorSecondary), ContextCompat.getColor(it, R.color.colorPrimary), ContextCompat.getColor(it, R.color.colorPrimary))
         }
 
         swipeLayout.setOnRefreshListener {

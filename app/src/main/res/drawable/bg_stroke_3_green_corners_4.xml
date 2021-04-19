@@ -5,5 +5,5 @@
 
     <stroke
         android:width="@dimen/size_3"
-        android:color="@color/green_v3" />
+        android:color="@color/colorAccentGreen" />
 </shape>

@@ -172,12 +172,12 @@ class FilterCategoryDialog(val category: MutableList<ICCategorySearch>?, val cal
             //set màu xanh cho dấu > và category cuối cùng
             for (i in 0 until cates.length) {
                 if (cates[i].toString() == ">") {
-                    spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(tv_list_category.context, R.color.lightBlue)), i, i + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(tv_list_category.context, R.color.colorPrimary)), i, i + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
                 }
             }
 
             val lastItem = cates.indexOf(cateString.last())
-            spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(tv_list_category.context, R.color.lightBlue)), lastItem, lastItem + cateString.last().length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(tv_list_category.context, R.color.colorPrimary)), lastItem, lastItem + cateString.last().length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 
             //callback Parent khi ấn Tất cả
             val callCateParent = object : ClickableSpan() {
@@ -198,7 +198,7 @@ class FilterCategoryDialog(val category: MutableList<ICCategorySearch>?, val cal
             }
             val firstItem = cates.indexOf(cateString.first())
             spannable.setSpan(callCateParent, firstItem, firstItem + cateString.first().length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-            spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(tv_list_category.context, R.color.fast_survey_gray)), firstItem, firstItem + cateString.first().length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(tv_list_category.context, R.color.colorSecondText)), firstItem, firstItem + cateString.first().length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 
             // callback các category ở giữa
             if (cateString.size > 2) {
@@ -228,7 +228,7 @@ class FilterCategoryDialog(val category: MutableList<ICCategorySearch>?, val cal
                                 }
                             }
                         }, midItem, midItem + cateString[i].length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-                        spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(tv_list_category.context, R.color.fast_survey_gray)), midItem, midItem + cateString[i].length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                        spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(tv_list_category.context, R.color.colorSecondText)), midItem, midItem + cateString[i].length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
                     }
                 }
             }

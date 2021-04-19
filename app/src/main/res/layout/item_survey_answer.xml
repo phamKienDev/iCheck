@@ -17,6 +17,6 @@
     android:paddingEnd="@dimen/size_20"
     android:paddingBottom="@dimen/size_10"
     android:textColor="@color/text_color_detail_survey_option"
-    android:textSize="14sp"
+    android:textSize="@dimen/font_14"
     android:textStyle="normal"
     tools:text="Cũng bình thường" />

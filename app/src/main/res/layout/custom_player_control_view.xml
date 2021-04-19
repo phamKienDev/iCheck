@@ -23,7 +23,7 @@
     <View
         android:id="@id/exo_progress_placeholder"
         android:layout_width="0dp"
-        android:layout_height="26dp"
+        android:layout_height="@dimen/size_26"
         android:layout_weight="1" />
 
     <TextView
@@ -37,6 +37,6 @@
         android:fontFamily="@font/barlow_medium"
         android:includeFontPadding="false"
         android:textColor="@color/white"
-        android:textSize="14sp" />
+        android:textSize="@dimen/font_14" />
 
 </LinearLayout>

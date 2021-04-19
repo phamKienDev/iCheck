@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/collection_product_name"
+    android:background="@color/colorNormalText"
     tools:background="@color/gray"
     tools:context="vn.icheck.android.screen.user.media_in_post.MediaInPostActivity">
 
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginLeft="@dimen/size_12"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="@dimen/size_30"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imgBack">
 
@@ -68,8 +68,8 @@
             android:id="@+id/layoutName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="@dimen/size_8"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginLeft="@dimen/size_8"
             android:gravity="center_vertical"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
@@ -88,9 +88,8 @@
                 android:singleLine="true"
                 android:textAlignment="gravity"
                 android:textColor="@color/white"
-                android:textSize="16sp"
-                tools:drawableEnd="@drawable/ic_verified_user_16dp"
-                tools:text="Hà Linh layout_constraintTop_toTopOf layout_constraintTop_toTopOf layout_constraintTop_toTopOf" />
+                android:textSize="@dimen/font_16"
+                tools:text="Hà Linh layout_constraintTop_toTopOf layout_constraintTop_toTopOf" />
 
         </LinearLayout>
 
@@ -98,11 +97,11 @@
             android:id="@+id/tvTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="@dimen/size_6"
             android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:textColor="#b4b4b4"
-            android:textSize="12sp"
+            android:textSize="@dimen/font_12"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/layoutName"
             app:layout_constraintTop_toBottomOf="@id/layoutName"
@@ -126,7 +125,7 @@
         android:id="@+id/containerRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="@dimen/size_10"
         app:layout_constraintBottom_toTopOf="@id/tvContent"
         app:layout_constraintStart_toStartOf="@id/tvContent" />
 
@@ -139,7 +138,7 @@
         android:includeFontPadding="false"
         android:maxLines="2"
         android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toTopOf="@id/layoutIcon"
         app:layout_constraintEnd_toEndOf="@id/layoutIcon"
         app:layout_constraintStart_toStartOf="@id/layoutIcon"
@@ -168,7 +167,7 @@
             android:includeFontPadding="false"
             android:textAlignment="gravity"
             android:textColor="@color/white"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             tools:text="12,781" />
 
         <androidx.appcompat.widget.AppCompatCheckedTextView
@@ -184,7 +183,7 @@
             android:includeFontPadding="false"
             android:textAlignment="gravity"
             android:textColor="@color/white"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             tools:text="12,781" />
 
         <androidx.appcompat.widget.AppCompatCheckedTextView
@@ -200,7 +199,7 @@
             android:includeFontPadding="false"
             android:textAlignment="gravity"
             android:textColor="@color/white"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             tools:text="12,781" />
 
         <androidx.appcompat.widget.AppCompatCheckedTextView
@@ -216,7 +215,7 @@
             android:includeFontPadding="false"
             android:textAlignment="gravity"
             android:textColor="@color/white"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             tools:text="12,781" />
     </LinearLayout>
 
@@ -270,7 +269,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:text="@string/viet_binh_luan"
                 android:textColor="#b4b4b4"
-                android:textSize="14sp" />
+                android:textSize="@dimen/font_14" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"

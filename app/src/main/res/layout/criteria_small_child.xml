@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
+    android:layout_marginTop="@dimen/size_8"
     android:orientation="horizontal">
 
     <TextView
@@ -12,10 +12,10 @@
         android:layout_width="@dimen/size_0"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:padding="8dp"
+        android:padding="@dimen/size_8"
         android:singleLine="true"
         android:ellipsize="end"
-        android:textSize="12sp"
+        android:textSize="@dimen/font_12"
         android:gravity="start"
         android:fontFamily="sans-serif-medium"
         android:textColor="@color/darkGray1"
@@ -39,6 +39,6 @@
         app:srb_drawableFilled="@drawable/star_filled_layer"
         app:srb_numStars="5"
         app:srb_starHeight="@dimen/size_24"
-        app:srb_starPadding="4dp"
+        app:srb_starPadding="@dimen/size_4"
         app:srb_starWidth="@dimen/size_24" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -39,7 +39,7 @@ class UserFollowPageActivity : BaseActivityMVVM(), IRecyclerViewCallback {
         DialogHelper.showLoading(this)
         viewModel.getData(intent)
 
-        swipe_container.setColorSchemeColors(ContextCompat.getColor(this, R.color.blue), ContextCompat.getColor(this, R.color.blue), ContextCompat.getColor(this, R.color.lightBlue))
+        swipe_container.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
         swipe_container.setOnRefreshListener {
             getData()
         }

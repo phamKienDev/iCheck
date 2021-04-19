@@ -24,7 +24,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.fragment_scan_history.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -36,7 +35,6 @@ import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.dialog.notify.internal_stamp.InternalStampDialog
 import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.base.model.ICMessageEvent
-import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
 import vn.icheck.android.helper.NetworkHelper
@@ -52,13 +50,11 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
 import vn.icheck.android.screen.user.history_search.HistorySearchActivity
 import vn.icheck.android.screen.user.home.HomeActivity
 import vn.icheck.android.screen.user.scan_history.adapter.ScanHistoryAdapter
-import vn.icheck.android.screen.user.scan_history.holder.ListBigCorpHolder
 import vn.icheck.android.screen.user.scan_history.view.IScanHistoryView
 import vn.icheck.android.screen.user.scan_history.view_model.ScanHistoryViewModel
 import vn.icheck.android.screen.user.shipping.ship.ShipActivity
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
-import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.ick.*
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.ContactUtils
@@ -760,7 +756,7 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
 
         if (!isCreateView) {
             layoutContainer.setPadding(0, getStatusBarHeight, 0, 0)
-            swipe_container.setColorSchemeColors(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.lightBlue), ContextCompat.getColor(ICheckApplication.getInstance(), R.color.lightBlue), ContextCompat.getColor(ICheckApplication.getInstance(), R.color.lightBlue))
+            swipe_container.setColorSchemeColors(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorPrimary), ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorPrimary), ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorPrimary))
 
             if (!checkAllowPermission || !NetworkHelper.isOpenedGPS(requireContext())) {
                 containerGps.visibility = View.VISIBLE

@@ -13,7 +13,7 @@ import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.models.ICAdsNew
 import vn.icheck.android.screen.user.campaign.calback.IBannerV2Listener
-import vn.icheck.android.ui.view.HeightWrappingViewPager
+import vn.icheck.android.ui.layout.HeightWrappingViewPager
 import vn.icheck.android.util.ick.beInvisible
 import vn.icheck.android.util.ick.beVisible
 import java.util.concurrent.TimeUnit

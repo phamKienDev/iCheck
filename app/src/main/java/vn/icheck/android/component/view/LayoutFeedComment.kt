@@ -41,7 +41,7 @@ class LayoutFeedComment : FrameLayout {
                 },
                 ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size1, ContextCompat.getColor(context, R.color.gray), SizeHelper.size4.toFloat()),
                 ViewHelper.createTypeface(context, R.font.barlow_medium),
-                ContextCompat.getColor(context, R.color.fast_survey_gray),
+                ContextCompat.getColor(context, R.color.colorSecondText),
                 14f
         ).also {
             it.setPadding(SizeHelper.size10, 0, SizeHelper.size74, 0)

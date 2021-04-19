@@ -168,7 +168,7 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
             }
         })
 
-        swipeRefresh.setColorSchemeColors(ContextCompat.getColor(this, R.color.blue), ContextCompat.getColor(this, R.color.blue), ContextCompat.getColor(this, R.color.lightBlue))
+        swipeRefresh.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
         swipeRefresh.setOnRefreshListener {
             getData()
         }
@@ -492,7 +492,7 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
                         postDialog = object : PostOptionDialog(this, post) {
                             override fun onPin(isPin: Boolean) {
                                 if (post.pinned) {
-                                    DialogHelper.showConfirm(dialog.context, "Bạn chắc chắn muốn bỏ ghim bài viết này?", null, "Để sau", "Đồng ý", true, null, R.color.lightBlue, object : ConfirmDialogListener {
+                                    DialogHelper.showConfirm(dialog.context, "Bạn chắc chắn muốn bỏ ghim bài viết này?", null, "Để sau", "Đồng ý", true, null, R.color.colorPrimary, object : ConfirmDialogListener {
                                         override fun onDisagree() {
 
                                         }

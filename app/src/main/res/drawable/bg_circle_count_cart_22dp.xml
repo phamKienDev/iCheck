@@ -20,7 +20,7 @@
                 android:width="@dimen/size_20"
                 android:height="@dimen/size_20" />
             <corners android:radius="@dimen/size_20" />
-            <solid android:color="@color/green_v3" />
+            <solid android:color="@color/colorAccentGreen" />
         </shape>
     </item>
 </layer-list>

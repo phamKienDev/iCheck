@@ -161,7 +161,7 @@ class CustomButtomPageDialog(val pageId: Long, val buttonConfigs: ArrayList<ICBu
                     it.setMargins(SizeHelper.size14, 0, SizeHelper.size14, SizeHelper.size12)
                 }
                 setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
-                setTextColor(ContextCompat.getColor(parent.context, R.color.collection_product_name))
+                setTextColor(ContextCompat.getColor(parent.context, R.color.colorNormalText))
                 typeface = Typeface.create(ViewHelper.barlowMedium, Typeface.NORMAL)
                 compoundDrawablePadding = SizeHelper.size10
             }

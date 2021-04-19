@@ -16,8 +16,9 @@ import vn.icheck.android.databinding.ItemCommentPostBinding
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.beGone
+import vn.icheck.android.ichecklibs.beVisible
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -26,10 +27,7 @@ import vn.icheck.android.network.feature.post.PostInteractor
 import vn.icheck.android.network.models.ICCommentPost
 import vn.icheck.android.network.models.ICNotification
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
-import vn.icheck.android.util.ick.beGone
-import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
-import vn.icheck.android.util.ick.getImageSize
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -168,7 +166,7 @@ class CommentPostHolder(val binding: ItemCommentPostBinding, val listener: IComm
                 }
 
                 override fun onDelete() {
-                    DialogHelper.showConfirm(dialog.context, "Bạn chắc chắn muốn xóa bình luận này?", null, "Để sau", "Đồng ý", true, null, R.color.red, object : ConfirmDialogListener {
+                    DialogHelper.showConfirm(dialog.context, "Bạn chắc chắn muốn xóa bình luận này?", null, "Để sau", "Đồng ý", true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
                         override fun onDisagree() {
 
                         }

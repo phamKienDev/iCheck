@@ -21,18 +21,16 @@
             android:padding="@dimen/size_8"
             android:src="@drawable/ic_cancel_light_blue_24dp" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ui.view.TextHeader
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
             android:paddingTop="@dimen/size_10"
             android:paddingBottom="@dimen/size_10"
             android:text="@string/bao_cao_bai_viet"
-            android:textColor="#057dda"
-            android:textSize="18sp" />
+            android:textColor="#057dda" />
     </FrameLayout>
 
     <View style="@style/Shadow_Bottom" />
@@ -84,9 +82,9 @@
             android:paddingEnd="@dimen/size_10"
             android:paddingBottom="@dimen/size_6"
             android:textAlignment="gravity"
-            android:textColor="@color/collection_product_name"
-            android:textColorHint="@color/darkGray2"
-            android:textSize="14sp"
+            android:textColor="@color/colorNormalText"
+            android:textColorHint="@color/colorDisableText"
+            android:textSize="@dimen/font_14"
             android:visibility="gone" />
 
         <View
@@ -110,7 +108,7 @@
             android:paddingBottom="@dimen/size_6"
             android:text="@string/gui_bao_loi"
             android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             android:visibility="visible" />
     </LinearLayout>
 </LinearLayout>

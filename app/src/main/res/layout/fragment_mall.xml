@@ -82,7 +82,7 @@
         android:text="@string/danh_muc"
         android:textAlignment="gravity"
         android:textColor="#3c5a99"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         android:textStyle="normal"
         android:visibility="invisible"
         app:layout_constraintEnd_toStartOf="@id/imgHideOrShow"

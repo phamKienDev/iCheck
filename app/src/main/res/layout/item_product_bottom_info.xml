@@ -98,8 +98,8 @@
         android:includeFontPadding="false"
         android:padding="@dimen/size_10"
         android:text="@string/hotline_dang_ky"
-        android:textColor="@color/collection_product_name"
-        android:textSize="14sp"
+        android:textColor="@color/colorNormalText"
+        android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/viewCenter" />
@@ -108,7 +108,7 @@
         android:id="@+id/rcvContacSetting"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="5dp"
+        android:paddingTop="@dimen/size_5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvHotline" />
 </androidx.constraintlayout.widget.ConstraintLayout>

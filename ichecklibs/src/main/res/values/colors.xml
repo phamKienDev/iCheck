@@ -1,17 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="colorPrimary">#057DDA</color>
+    <color name="colorSecondary">#3C5A99</color>
+
+    <color name="colorAccentBlue">#00BAF2</color>
+    <color name="colorAccentGreen">#85c440</color>
+    <color name="colorAccentRed">#ff0000</color>
+    <color name="colorAccentCyan">#CCF1FC</color>
+    <color name="colorAccentYellow">#FFB800</color>
+
+    <color name="colorNormalText">#212121</color>
+    <color name="colorSecondText">#757575</color>
+    <color name="colorDisableText">#B4B4B4</color>
+
+    <color name="colorLine">#8D8D8D</color>
+
+    <color name="colorBackgroundGray">#F0F0F0</color>
+    <color name="colorBackgroundWhite">#FFFFFF</color>
+    <color name="colorBackgroundPopup">#80000000</color>
+
+
+
     <color name="white_alpha_50">#80ffffff</color>
-    <color name="colorPrimary">#0580dc</color>
     <color name="colorPrimaryDark">#0580dc</color>
-    <color name="colorAccent">@color/lightBlue</color>
     <color name="darkBlue">#20336B</color>
-    <color name="blue">#3C5A99</color>
     <color name="titleToolbar">#CC1E1E</color>
-    <color name="lightBlue">#057DDA</color>
-    <color name="lightCyan">#00BAF2</color>
     <color name="black">#000000</color>
     <color name="black_10">#1A000000</color>
-    <color name="black_15">#757575</color>
     <color name="black_20">#33000000</color>
     <color name="black_26">#26000000</color>
     <color name="black_25">#40000000</color>
@@ -19,20 +34,17 @@
     <color name="black_50">#80000000</color>
     <color name="black_60">#99000000</color>
     <color name="darkGray1">#434343</color>
-    <color name="darkGray2">#B4B4B4</color>
     <color name="darkGray3">#828282</color>
     <color name="darkGray4">#E0E0E0</color>
     <color name="darkGray7">#f4f4f4</color>
     <color name="darkGray6">#F0F0F0</color>
     <color name="gray">#D8D8D8</color>
-    <color name="red">#ff0000</color>
     <color name="red_05">#0Dff0000</color>
     <color name="gray_60">#99D8D8D8</color>
     <color name="lightGray">#F1F1F1</color>
     <color name="white">#FFFFFF</color>
     <color name="green">#62AF58</color>
     <color name="green_v2">#49CA4E</color>
-    <color name="green_v3">#85c440</color>
     <color name="errorColor">#EB5757</color>
     <color name="orange">#FBBB00</color>
     <color name="transparent">@android:color/transparent</color>
@@ -44,7 +56,6 @@
     <color name="orange_opactity">#33FBBB00</color>
     <color name="campaign_space">#f2f2f2</color>
     <color name="black_blue">#35384b</color>
-    <color name="collection_product_name">#212121</color>
     <color name="collection_product_sale">#bdbdbd</color>
     <color name="warning_scan_buy">#f2994a</color>
     <color name="green2">#49aa2d</color>
@@ -61,7 +72,6 @@
     <color name="placeholder_bg">#D8D8D8</color>
     <color name="orange_v2">#FC9603</color>
     <color name="green_text_verified_product">#85C440</color>
-    <color name="fast_survey_gray">#757575</color>
     <color name="violet">#8488DA</color>
     <color name="placeholder_bg1">#ECEBEB</color>
     <color name="point_review">#dd6800</color>
@@ -73,10 +83,8 @@
     <color name="orange_nhat">#10FF9A24</color>
     <color name="orange_nhat_25">#40FF9A24</color>
 
-    <color name="gray_v2">#757575</color>
     <color name="black_21_v2">#212121</color>
     <color name="gray_ef">#efefef</color>
-    <color name="yellow">#FFB800</color>
     <color name="gray_e5">#E5E5E5</color>
     <color name="unread_notification_color">#fff5ec</color>
     <color name="elevation_color_card">#1A0365E5</color>

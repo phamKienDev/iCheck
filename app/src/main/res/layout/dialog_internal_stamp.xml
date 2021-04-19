@@ -32,6 +32,6 @@
         android:text="@string/huy"
         android:textAlignment="gravity"
         android:textColor="#3fa2f7"
-        android:textSize="18sp"
+        android:textSize="@dimen/font_18"
         android:textStyle="bold" />
 </LinearLayout>

@@ -32,7 +32,7 @@
             android:text="@string/nha_mang"
             android:textAllCaps="true"
             android:textColor="#3C5A99"
-            android:textSize="@dimen/font_size_4" />
+            android:textSize="@dimen/font_14" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcv_msp"
@@ -57,7 +57,7 @@
             android:text="@string/menh_gia"
             android:textAllCaps="true"
             android:textColor="#3C5A99"
-            android:textSize="@dimen/font_size_4" />
+            android:textSize="@dimen/font_14" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcv_denomination"
@@ -76,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="@dimen/size_8"
             android:visibility="gone"
             app:srcCompat="@drawable/ic_group_error_card"
             tools:visibility="invisible" />
@@ -89,8 +89,8 @@
             <View
                 android:id="@id/viewShadow"
                 android:layout_width="0dp"
-                android:layout_height="2dp"
-                android:layout_marginBottom="8dp"
+                android:layout_height="@dimen/size_2"
+                android:layout_marginBottom="@dimen/size_8"
                 android:background="@drawable/shadow_bottom"
                 app:layout_constraintBottom_toTopOf="@+id/textView44"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -100,16 +100,16 @@
                 android:id="@+id/btn_checkout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginStart="@dimen/size_16"
+                android:layout_marginEnd="@dimen/size_16"
+                android:layout_marginBottom="@dimen/size_16"
                 android:background="@drawable/bg_checkout_border_35"
                 android:elevation="@dimen/size_2"
                 android:enabled="false"
                 android:text="Thanh Toán"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_16"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -118,11 +118,11 @@
                 android:id="@+id/textView44"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="@dimen/size_8"
                 android:fontFamily="sans-serif"
                 android:text="THÀNH TIỀN"
                 android:textColor="@color/darkGray1"
-                android:textSize="13sp"
+                android:textSize="@dimen/font_13"
                 app:layout_constraintBottom_toTopOf="@+id/btn_checkout"
                 app:layout_constraintStart_toStartOf="@+id/btn_checkout" />
 
@@ -130,11 +130,11 @@
                 android:id="@+id/tv_total"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
+                android:layout_marginBottom="@dimen/size_12"
                 android:fontFamily="sans-serif-medium"
                 android:hint="0 đ"
-                android:textColor="@color/blue"
-                android:textSize="@dimen/font_size_4"
+                android:textColor="@color/colorSecondary"
+                android:textSize="@dimen/font_14"
                 app:layout_constraintBottom_toTopOf="@+id/btn_checkout"
                 app:layout_constraintEnd_toEndOf="@+id/btn_checkout" />
 

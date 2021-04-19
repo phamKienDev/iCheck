@@ -1,7 +1,6 @@
 package vn.icheck.android.screen.dialog
 
 import android.content.Context
-import android.widget.RadioGroup
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.dialog_setting_point.*
 import vn.icheck.android.R
@@ -99,11 +98,11 @@ abstract class CointSettingDialog(context: Context, var type: Int, val begin: St
 
     private fun setButton(type: Boolean) {
         if (type) {
-            dialog.txtSettingAgain.setTextColor(ContextCompat.getColor(dialog.context, R.color.lightBlue))
+            dialog.txtSettingAgain.setTextColor(ContextCompat.getColor(dialog.context, R.color.colorPrimary))
             dialog.txtSettingAgain.setBackgroundResource(R.drawable.bg_corners_4_light_blue_no_solid)
             dialog.txtSettingAgain.isEnabled = true
         } else {
-            dialog.txtSettingAgain.setTextColor(ContextCompat.getColor(dialog.context, R.color.darkGray2))
+            dialog.txtSettingAgain.setTextColor(ContextCompat.getColor(dialog.context, R.color.colorDisableText))
             dialog.txtSettingAgain.setBackgroundResource(R.drawable.bg_border_gray_4dp_shop)
             dialog.txtSettingAgain.isEnabled = false
         }

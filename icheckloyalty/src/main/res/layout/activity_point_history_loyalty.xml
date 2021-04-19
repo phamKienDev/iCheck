@@ -41,7 +41,7 @@
             app:tabMaxWidth="@dimen/size_0"
             app:tabRippleColor="@null"
             app:tabSelectedTextColor="@color/white"
-            app:tabTextColor="@color/blue" />
+            app:tabTextColor="@color/colorSecondary" />
     </FrameLayout>
 
     <androidx.viewpager.widget.ViewPager

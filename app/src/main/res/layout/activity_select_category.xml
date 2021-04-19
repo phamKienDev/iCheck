@@ -11,7 +11,7 @@
     <LinearLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/size_50"
         android:background="@android:color/white"
         android:orientation="horizontal"
         android:visibility="visible"
@@ -19,11 +19,11 @@
 
         <ImageButton
             android:id="@+id/btnBack"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/size_50"
+            android:layout_height="@dimen/size_50"
             android:adjustViewBounds="true"
             android:background="@null"
-            android:padding="14dp"
+            android:padding="@dimen/size_14"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/ic_back_blue_24px" />
 
@@ -32,7 +32,7 @@
             style="@style/Tittle_blue"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginEnd="50dp"
+            android:layout_marginEnd="@dimen/size_50"
             android:layout_weight="1"
             android:gravity="center"
             android:text="Chọn danh mục"
@@ -68,7 +68,7 @@
         android:paddingEnd="@dimen/size_10"
         android:singleLine="true"
         android:textColorHint="@color/gray"
-        android:textSize="@dimen/font_size_4"
+        android:textSize="@dimen/font_14"
         android:textStyle="normal" />
 
     <View

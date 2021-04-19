@@ -24,7 +24,7 @@ import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.io.Serializable
 
-abstract class BaseFragment<P : BaseFragmentPresenter> : Fragment(), BaseFragmentView, ICRequireLogin, ICNetworkCallback {
+abstract class BaseFragment<P : BaseFragmentPresenter> : Fragment(), BaseFragmentView, ICRequireLogin {
     val presenter = getPresenter
 
     private val requestLogin = 101
@@ -60,13 +60,13 @@ abstract class BaseFragment<P : BaseFragmentPresenter> : Fragment(), BaseFragmen
     override fun onResume() {
         super.onResume()
 
-        ICNetworkManager.getInstance().registerCallback(ICNetworkClient.networkCallbackManager, this)
+//        ICNetworkManager.getInstance().registerCallback(ICNetworkClient.networkCallbackManager, this)
     }
 
     override fun onPause() {
         super.onPause()
 
-        ICNetworkManager.getInstance().unregisterCallback(ICNetworkClient.networkCallbackManager)
+//        ICNetworkManager.getInstance().unregisterCallback(ICNetworkClient.networkCallbackManager)
     }
 
     override fun onDestroy() {
@@ -109,19 +109,6 @@ abstract class BaseFragment<P : BaseFragmentPresenter> : Fragment(), BaseFragmen
     /**
      * End Public Function
      * */
-
-
-    override fun forceRequiredLogin() {
-
-    }
-
-    override fun refreshToken() {
-
-    }
-
-    override fun onNetworkError(throwable: Throwable) {
-
-    }
 
 
     /**

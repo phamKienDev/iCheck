@@ -189,6 +189,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         fun start(activity: Activity, productID: Long) {
             ActivityUtils.startActivity<IckProductDetailActivity, Long>(activity, Constant.DATA_3, productID)
         }
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -582,7 +583,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
     }
 
     private fun setupSwipeLayout() {
-        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.lightBlue), ContextCompat.getColor(this, R.color.lightBlue), ContextCompat.getColor(this, R.color.lightBlue))
+        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorPrimary), ContextCompat.getColor(this, R.color.colorPrimary), ContextCompat.getColor(this, R.color.colorPrimary))
 
         swipeLayout.setOnRefreshListener {
             getLayoutData()

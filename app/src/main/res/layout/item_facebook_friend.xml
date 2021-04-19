@@ -29,16 +29,16 @@
         android:id="@+id/tvName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginLeft="@dimen/size_12"
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
         android:ellipsize="end"
         android:fontFamily="@font/barlow_semi_bold"
         android:includeFontPadding="false"
         android:singleLine="true"
-        android:textColor="@color/collection_product_name"
-        android:textSize="14sp"
+        android:textColor="@color/colorNormalText"
+        android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/avatar"
         app:layout_constraintTop_toTopOf="@+id/avatar"
@@ -46,7 +46,7 @@
 
     <TextView
         android:id="@+id/tvChat"
-        android:layout_width="100dp"
+        android:layout_width="@dimen/size_100"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_corners_4_light_blue_solid"
         android:fontFamily="@font/barlow_semi_bold"
@@ -55,7 +55,7 @@
         android:paddingBottom="@dimen/size_4"
         android:text="@string/nhan_tin"
         android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toBottomOf="@id/avatar"
         app:layout_constraintStart_toStartOf="@+id/tvName" />
 

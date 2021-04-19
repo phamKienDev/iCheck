@@ -20,6 +20,8 @@ import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.network.base.ICNetworkCallback
+import vn.icheck.android.network.base.ICNetworkManager
 import vn.icheck.android.network.base.ICRequireLogin
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
@@ -27,7 +29,7 @@ import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.io.Serializable
 
-abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin {
+abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetworkCallback {
     var job: Job? = null
 
     open val getStatusBarHeight: Int
@@ -92,7 +94,13 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin {
 
     override fun onResume() {
         super.onResume()
+        ICNetworkManager.register(this)
         EventBus.getDefault().post(ICMessageEvent.Type.ON_CHECK_UPDATE_LOCATION)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        ICNetworkManager.unregister(this)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -135,6 +143,10 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin {
     }
 
     override fun onRequireLoginCancel() {
+    }
+
+    override fun onEndOfToken() {
+        onRequireLogin()
     }
 
     /**

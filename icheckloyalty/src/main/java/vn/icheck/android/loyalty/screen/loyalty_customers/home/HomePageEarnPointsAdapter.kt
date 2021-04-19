@@ -176,7 +176,7 @@ internal class HomePageEarnPointsAdapter(private val banner: String?, private va
 
                     itemView.tvPoint.apply {
                         text = "-" + TextHelper.formatMoneyPhay(obj.point)
-                        setTextColor(ContextCompat.getColor(itemView.context, R.color.red))
+                        setTextColor(ContextCompat.getColor(itemView.context, R.color.colorAccentRed))
                     }
                 }
                 else -> {

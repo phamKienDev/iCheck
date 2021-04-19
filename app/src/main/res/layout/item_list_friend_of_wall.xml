@@ -18,8 +18,8 @@
         android:id="@id/layoutName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:layout_marginEnd="14dp"
+        android:layout_marginStart="@dimen/size_14"
+        android:layout_marginEnd="@dimen/size_14"
         app:layout_constraintEnd_toStartOf="@+id/imgMore"
         app:layout_constraintStart_toEndOf="@id/avatar_friend"
         app:layout_constraintTop_toTopOf="@id/avatar_friend">
@@ -35,7 +35,7 @@
             android:gravity="center_vertical"
             android:textAlignment="gravity"
             android:textColor="#212121"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             tools:text="Xuyến Đỗ" />
     </FrameLayout>
 
@@ -50,15 +50,15 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvChat"
-        android:layout_width="100dp"
-        android:layout_height="28dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="@dimen/size_100"
+        android:layout_height="@dimen/size_28"
+        android:layout_marginTop="@dimen/size_10"
         android:background="@drawable/bg_corners_4_light_blue_solid"
         android:gravity="center"
-        android:lineSpacingExtra="6sp"
+        android:lineSpacingExtra="@dimen/font_6"
         android:text="Nhắn tin"
         android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/avatar_friend"
         app:layout_constraintStart_toStartOf="@id/layoutName"
@@ -66,9 +66,9 @@
 
     <LinearLayout
         android:id="@+id/tvAddFriend"
-        android:layout_width="100dp"
-        android:layout_height="28dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="@dimen/size_100"
+        android:layout_height="@dimen/size_28"
+        android:layout_marginTop="@dimen/size_10"
         android:background="@drawable/bg_corners_4_light_blue_solid"
         android:gravity="center"
         android:visibility="gone"
@@ -81,12 +81,12 @@
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_add_white_12px"
             android:drawableLeft="@drawable/ic_add_white_12px"
-            android:drawablePadding="6dp"
+            android:drawablePadding="@dimen/size_6"
             android:gravity="center"
-            android:lineSpacingExtra="6sp"
+            android:lineSpacingExtra="@dimen/font_6"
             android:text="Kết bạn"
             android:textColor="@color/white"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toBottomOf="@id/avatar_friend"
             app:layout_constraintStart_toStartOf="@id/layoutName"
             app:layout_constraintTop_toBottomOf="@id/layoutName" />
@@ -94,9 +94,9 @@
 
     <LinearLayout
         android:id="@+id/tvSendRequest"
-        android:layout_width="100dp"
-        android:layout_height="28dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="@dimen/size_100"
+        android:layout_height="@dimen/size_28"
+        android:layout_marginTop="@dimen/size_10"
         android:background="@drawable/bg_corner_4_gray"
         android:gravity="center"
         android:visibility="gone"
@@ -109,10 +109,10 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
-            android:lineSpacingExtra="6sp"
+            android:lineSpacingExtra="@dimen/font_6"
             android:text="Đã gửi lời mời"
-            android:textColor="@color/fast_survey_gray"
-            android:textSize="14sp"
+            android:textColor="@color/colorSecondText"
+            android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toBottomOf="@id/avatar_friend"
             app:layout_constraintStart_toStartOf="@id/layoutName"
             app:layout_constraintTop_toBottomOf="@id/layoutName" />
@@ -122,7 +122,7 @@
         android:id="@+id/layoutInviteToMe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/size_10"
         android:orientation="horizontal"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/avatar_friend"
@@ -130,10 +130,10 @@
         app:layout_constraintTop_toBottomOf="@id/layoutName">
 
         <LinearLayout
-            android:layout_width="100dp"
-            android:layout_height="28dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
+            android:layout_width="@dimen/size_100"
+            android:layout_height="@dimen/size_28"
+            android:layout_marginEnd="@dimen/size_5"
+            android:layout_marginRight="@dimen/size_5"
             android:background="@drawable/bg_corners_4_light_blue_solid"
             android:gravity="center"
             app:layout_constraintBottom_toBottomOf="@id/avatar_friend"
@@ -146,12 +146,12 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_add_white_12px"
                 android:drawableLeft="@drawable/ic_add_white_12px"
-                android:drawablePadding="6dp"
+                android:drawablePadding="@dimen/size_6"
                 android:gravity="center"
-                android:lineSpacingExtra="6sp"
+                android:lineSpacingExtra="@dimen/font_6"
                 android:text="Xác nhận"
                 android:textColor="@color/white"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 app:layout_constraintBottom_toBottomOf="@id/avatar_friend"
                 app:layout_constraintStart_toStartOf="@id/layoutName"
                 app:layout_constraintTop_toBottomOf="@id/layoutName" />
@@ -159,28 +159,26 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/btnRefuseFriend"
-            android:layout_width="100dp"
-            android:layout_height="28dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginLeft="5dp"
+            android:layout_width="@dimen/size_100"
+            android:layout_height="@dimen/size_28"
+            android:layout_marginStart="@dimen/size_5"
+            android:layout_marginLeft="@dimen/size_5"
             android:background="@drawable/bg_corner_4_light_blue_white"
             android:gravity="center"
-            android:lineSpacingExtra="6sp"
+            android:lineSpacingExtra="@dimen/font_6"
             android:text="Xác nhận"
-            android:textColor="@color/lightBlue"
-            android:textSize="14sp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toBottomOf="@id/avatar_friend"
             app:layout_constraintStart_toStartOf="@id/layoutName"
             app:layout_constraintTop_toBottomOf="@id/layoutName" />
-
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/size_10"
         android:background="@color/placeholder_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/avatar_friend" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

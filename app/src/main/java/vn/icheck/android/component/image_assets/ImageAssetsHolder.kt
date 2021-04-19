@@ -10,7 +10,7 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.header_page.bottom_sheet_header_page.IListReportView
 import vn.icheck.android.component.view.ViewHelper
-import vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+import vn.icheck.android.ui.view.TextBarlowSemiBold
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.models.ICImageAsset
 import vn.icheck.android.screen.user.image_asset_page.ImageAssetPageActivity
@@ -22,7 +22,7 @@ class ImageAssetsHolder(parent: ViewGroup, private val recyclerViewPool: Recycle
     override fun bind(obj: ICImageAsset) {
         (itemView as ViewGroup).run {
             (getChildAt(0) as LinearLayout).run {
-                (getChildAt(1) as TextViewBarlowSemiBold).setOnClickListener {
+                (getChildAt(1) as TextBarlowSemiBold).setOnClickListener {
                     ICheckApplication.currentActivity()?.let { activity ->
                         val intent = Intent(activity, ImageAssetPageActivity::class.java)
                         intent.putExtra(Constant.DATA_1, obj.pageName)

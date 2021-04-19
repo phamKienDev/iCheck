@@ -4,13 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="700dp"
     android:orientation="vertical"
-    android:paddingTop="40dp">
+    android:paddingTop="@dimen/size_40">
 
     <View
-        android:layout_width="51dp"
-        android:layout_height="6dp"
+        android:layout_width="@dimen/size_51"
+        android:layout_height="@dimen/size_6"
         android:layout_gravity="center"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="@dimen/size_8"
         android:background="@drawable/bg_indicator_selected" />
 
     <LinearLayout
@@ -18,19 +18,19 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bg_red_corners_top_16">
 
-        <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+        <vn.icheck.android.ui.view.TextBarlowSemiBold
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="14dp"
-            android:layout_marginBottom="12dp"
+            android:layout_marginStart="@dimen/size_15"
+            android:layout_marginTop="@dimen/size_16"
+            android:layout_marginEnd="@dimen/size_14"
+            android:layout_marginBottom="@dimen/size_12"
             android:drawableStart="@drawable/ic_warning_white_40px"
-            android:drawablePadding="14dp"
+            android:drawablePadding="@dimen/size_14"
             android:gravity="start|center"
             android:text="Tiếc quá,\nBạn không thể mua hàng tại nhà sản xuất!"
             android:textColor="#ffffff"
-            android:textSize="14sp" />
+            android:textSize="@dimen/font_14" />
 
     </LinearLayout>
 

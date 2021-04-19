@@ -24,13 +24,13 @@
             android:id="@id/imgBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="52dp"
-            android:padding="8dp"
+            android:layout_marginStart="@dimen/size_4"
+            android:layout_marginTop="@dimen/size_52"
+            android:padding="@dimen/size_8"
             android:src="@drawable/ic_back_black_28px"
             app:layout_constraintStart_toStartOf="@id/imgBanner"
             app:layout_constraintTop_toTopOf="@id/imgBanner"
-            android:layout_marginLeft="4dp" />
+            android:layout_marginLeft="@dimen/size_4" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -50,11 +50,11 @@
                 android:id="@+id/appCompatTextView40"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:lineSpacingExtra="6sp"
+                android:layout_marginTop="@dimen/size_12"
+                android:lineSpacingExtra="@dimen/font_6"
                 android:text="Hãy chọn một hình may mắn để mở!"
                 android:textColor="#212121"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:fontFamily="@font/barlow_semi_bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -64,9 +64,9 @@
                 android:id="@id/btnMore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:layout_marginEnd="4dp"
-                android:layout_marginRight="4dp"
+                android:padding="@dimen/size_8"
+                android:layout_marginEnd="@dimen/size_4"
+                android:layout_marginRight="@dimen/size_4"
                 android:src="@drawable/ic_more_blue_vertical_24_px"
                 app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView40"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -77,9 +77,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:paddingTop="22.5dp"
-                android:paddingStart="11dp"
+                android:paddingStart="@dimen/size_11"
                 android:paddingBottom="19.5dp"
-                android:paddingEnd="11dp"
+                android:paddingEnd="@dimen/size_11"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/appCompatTextView40" />
 
@@ -94,7 +94,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:background="@color/white"
-            android:elevation="8dp">
+            android:elevation="@dimen/size_8">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -104,21 +104,20 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ui.view.TextBarlowMedium
                     android:id="@+id/tvSubCountGift"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginBottom="19dp"
+                    android:layout_marginStart="@dimen/size_8"
+                    android:layout_marginLeft="@dimen/size_8"
+                    android:layout_marginTop="@dimen/size_6"
+                    android:layout_marginBottom="@dimen/size_19"
                     android:drawableStart="@drawable/ic_gift_box_v2"
-                    android:drawablePadding="6dp"
-                    android:fontFamily="@font/barlow_medium"
+                    android:drawablePadding="@dimen/size_6"
                     android:gravity="center_vertical"
                     android:text="Bạn có "
                     android:textColor="#212121"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -131,35 +130,34 @@
                     android:gravity="center_vertical"
                     android:text=" 4/12 "
                     android:textColor="#df1733"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     app:layout_constraintBottom_toBottomOf="@+id/tvSubCountGift"
                     app:layout_constraintStart_toEndOf="@+id/tvSubCountGift"
                     app:layout_constraintTop_toTopOf="@+id/tvSubCountGift" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ui.view.TextBarlowMedium
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:fontFamily="@font/barlow_medium"
                     android:gravity="center_vertical"
                     android:text=" lượt mở quà "
                     android:textColor="#212121"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     app:layout_constraintBottom_toBottomOf="@+id/tvCountGift"
                     app:layout_constraintStart_toEndOf="@+id/tvCountGift"
                     app:layout_constraintTop_toTopOf="@+id/tvCountGift" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvAddMoreTurn"
-                    android:layout_width="95dp"
-                    android:layout_height="32dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_width="@dimen/size_95"
+                    android:layout_height="@dimen/size_32"
+                    android:layout_marginEnd="@dimen/size_20"
+                    android:layout_marginRight="@dimen/size_20"
                     android:background="@drawable/bg_more_turn"
                     android:fontFamily="@font/barlow_semi_bold"
                     android:gravity="center"
                     android:text="Thêm lượt"
                     android:textColor="#057dda"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/font_16"
                     app:layout_constraintBottom_toBottomOf="@+id/tvCountGift"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/tvCountGift" />

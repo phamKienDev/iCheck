@@ -185,7 +185,7 @@ class ItemQuestionAdapter(val questionListener: ProductDetailListener) : Recycle
 
         private fun checkLike(expressived: String?) {
             if (expressived == null) {
-                itemView.tvLike.setTextColor(ContextCompat.getColor(itemView.context, R.color.fast_survey_gray))
+                itemView.tvLike.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorSecondText))
             } else {
                 itemView.tvLike.setTextColor(ContextCompat.getColor(itemView.context, R.color.red_like_question))
             }

@@ -10,20 +10,20 @@
         android:id="@+id/imgAction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/size_16"
         app:srcCompat="@drawable/ic_group_120dp"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
+        android:layout_marginStart="@dimen/size_68"
         android:layout_marginTop="@dimen/size_10"
-        android:layout_marginEnd="68dp"
+        android:layout_marginEnd="@dimen/size_68"
         android:includeFontPadding="false"
         android:gravity="center"
         android:fontFamily="@font/barlow_medium"
-        android:textColor="@color/fast_survey_gray"
-        android:textSize="14sp" />
+        android:textColor="@color/colorSecondText"
+        android:textSize="@dimen/font_14" />
 
 </LinearLayout>

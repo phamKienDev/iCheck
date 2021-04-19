@@ -32,7 +32,6 @@ import vn.icheck.android.constant.ICK_REQUEST_CAMERA
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.helper.TextHelper.setTextNameProductInPost
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaHelper
@@ -476,7 +475,7 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
     override fun onBackPressed() {
         if (layoutImage.childCount > 1 || edtContent.text.toString().isNotEmpty() || layoutProduct.childCount > 0) {
             if (viewModel.postDetail?.id == null) {
-                DialogHelper.showConfirm(this, "Bạn muốn bỏ bài viết này?", null, "Tiếp tục chỉnh sửa", "Bỏ bài viết", true, null, R.color.red, object : ConfirmDialogListener {
+                DialogHelper.showConfirm(this, "Bạn muốn bỏ bài viết này?", null, "Tiếp tục chỉnh sửa", "Bỏ bài viết", true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
                     override fun onDisagree() {
 
                     }

@@ -13,7 +13,6 @@ import kotlinx.android.synthetic.main.layout_title_filter_search.*
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialog
-import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.models.ICProvince
 import vn.icheck.android.util.ick.beVisible
 
@@ -74,7 +73,7 @@ abstract class FilterUserDialog(val activity: FragmentActivity, val city: Mutabl
         if (list.isNullOrEmpty()) {
             dialog.tv_location.setText(R.string.tat_ca)
             dialog.img_clear_location.visibility = View.GONE
-            dialog.tv_location.setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.fast_survey_gray))
+            dialog.tv_location.setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorSecondText))
         } else {
             if (list[0].id != -1L) {
                 val names = mutableListOf<String>()
@@ -92,13 +91,13 @@ abstract class FilterUserDialog(val activity: FragmentActivity, val city: Mutabl
                 }
 
                 dialog.tv_location.text = city
-                dialog.tv_location.setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.lightBlue))
+                dialog.tv_location.setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorPrimary))
 
                 dialog.img_clear_location.beVisible()
             } else {
                 dialog.tv_location.setText(R.string.tat_ca)
                 dialog.img_clear_location.visibility = View.GONE
-                dialog.tv_location.setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.fast_survey_gray))
+                dialog.tv_location.setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorSecondText))
             }
         }
     }
@@ -110,11 +109,11 @@ abstract class FilterUserDialog(val activity: FragmentActivity, val city: Mutabl
         if (selectedGender.isNullOrEmpty() || selectedGender.size == 3) {
             dialog.tv_gender.setText(R.string.tat_ca)
             dialog.img_clear_gender.visibility = View.GONE
-            dialog.tv_gender.setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.fast_survey_gray))
+            dialog.tv_gender.setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorSecondText))
         } else {
             dialog.tv_gender.setText(selectedGender.toString().substring(1, selectedGender.toString().length - 1))
             dialog.img_clear_gender.visibility = View.VISIBLE
-            dialog.tv_gender.setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.lightBlue))
+            dialog.tv_gender.setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorPrimary))
         }
     }
 

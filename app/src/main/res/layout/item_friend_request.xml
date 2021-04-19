@@ -12,7 +12,7 @@
         android:layout_width="@dimen/size_56"
         android:layout_height="@dimen/size_56"
         android:layout_marginTop="@dimen/size_12"
-        app:avatarSize="56dp"
+        app:avatarSize="@dimen/size_56"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/tvIcoin"
         app:rankSize="@dimen/size_24"
@@ -50,7 +50,7 @@
             android:drawableEnd="@drawable/ic_verified_user_16dp"
             android:textAlignment="gravity"
             android:textColor="#212121"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/imgAvatar"
             app:layout_constraintTop_toTopOf="@id/imgAvatar"
@@ -72,7 +72,7 @@
         android:paddingEnd="@dimen/size_12"
         android:text="@string/xac_nhan"
         android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         app:layout_constraintStart_toStartOf="@id/layoutName"
         app:layout_constraintTop_toBottomOf="@id/layoutName" />
 
@@ -91,8 +91,8 @@
         android:paddingStart="@dimen/size_12"
         android:paddingEnd="@dimen/size_12"
         android:text="@string/tu_choi"
-        android:textColor="@color/lightBlue"
-        android:textSize="14sp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/font_14"
         app:layout_constraintStart_toEndOf="@id/btnAgree"
         app:layout_constraintTop_toBottomOf="@id/layoutName" />
 
@@ -103,8 +103,8 @@
         android:ellipsize="end"
         android:includeFontPadding="false"
         android:maxLines="2"
-        android:textColor="@color/fast_survey_gray"
-        android:textSize="14sp"
+        android:textColor="@color/colorSecondText"
+        android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/layoutName"

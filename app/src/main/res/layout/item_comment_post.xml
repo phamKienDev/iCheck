@@ -60,8 +60,8 @@
                 android:includeFontPadding="false"
                 android:singleLine="true"
                 android:textAlignment="gravity"
-                android:textColor="@color/collection_product_name"
-                android:textSize="14sp"
+                android:textColor="@color/colorNormalText"
+                android:textSize="@dimen/font_14"
                 tools:drawableEnd="@drawable/ic_verified_16px"
                 tools:text="Trần  Văn  Lâm Trần Văn Lâm" />
 
@@ -72,8 +72,8 @@
                 android:layout_marginTop="@dimen/size_2"
                 android:fontFamily="@font/barlow_medium"
                 android:includeFontPadding="false"
-                android:textColor="@color/collection_product_name"
-                android:textSize="14sp"
+                android:textColor="@color/colorNormalText"
+                android:textSize="@dimen/font_14"
                 tools:text="Tôi thấy loại này hơi đắt so với giá thị trường. Có nhiều chỗ bán rẻ hơn thì đó có phải hàng fake k?" />
         </LinearLayout>
 
@@ -84,8 +84,8 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imageView"
-                android:layout_width="115dp"
-                android:layout_height="115dp"
+                android:layout_width="@dimen/size_115"
+                android:layout_height="@dimen/size_115"
                 android:layout_marginTop="@dimen/size_4"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -111,8 +111,8 @@
         android:layout_marginTop="@dimen/size_6"
         android:fontFamily="@font/barlow_medium"
         android:includeFontPadding="false"
-        android:textColor="@color/fast_survey_gray"
-        android:textSize="12sp"
+        android:textColor="@color/colorSecondText"
+        android:textSize="@dimen/font_12"
         app:layout_constraintStart_toStartOf="@id/layoutContent"
         app:layout_constraintTop_toBottomOf="@id/layoutContent"
         tools:text="7 phút trước" />
@@ -126,8 +126,8 @@
         android:fontFamily="@font/barlow_semi_bold"
         android:includeFontPadding="false"
         android:text="@string/thich"
-        android:textColor="@color/fast_survey_gray"
-        android:textSize="12sp"
+        android:textColor="@color/colorSecondText"
+        android:textSize="@dimen/font_12"
         app:layout_constraintBottom_toBottomOf="@id/tvTime"
         app:layout_constraintStart_toEndOf="@id/tvTime"
         app:layout_constraintTop_toTopOf="@id/tvTime" />
@@ -141,8 +141,8 @@
         android:fontFamily="@font/barlow_semi_bold"
         android:includeFontPadding="false"
         android:text="@string/tra_loi"
-        android:textColor="@color/fast_survey_gray"
-        android:textSize="12sp"
+        android:textColor="@color/colorSecondText"
+        android:textSize="@dimen/font_12"
         app:layout_constraintBottom_toBottomOf="@id/tvTime"
         app:layout_constraintStart_toEndOf="@id/tvLike"
         app:layout_constraintTop_toTopOf="@id/tvTime" />

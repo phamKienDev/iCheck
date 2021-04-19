@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_marginTop="8dp"
+    android:layout_marginTop="@dimen/size_8"
     android:layout_marginStart="@dimen/size_12"
     android:layout_marginEnd="@dimen/size_12">
 
@@ -12,7 +12,7 @@
         android:id="@+id/tvStatusName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:fontFamily="sans-serif-medium"
         android:textStyle="normal"
         android:textColor="#434343"
@@ -22,7 +22,7 @@
         android:id="@+id/tvCreatedTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:fontFamily="sans-serif"
         android:textStyle="normal"
         android:textColor="#828282"
@@ -32,7 +32,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_marginTop="9.5dp"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/size_1"
         android:background="#d8d8d8"/>
 
 </LinearLayout>

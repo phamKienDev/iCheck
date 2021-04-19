@@ -55,7 +55,7 @@ class ReviewInPostComponent : LinearLayout {
                         ViewHelper.createLayoutParams(LayoutParams.MATCH_PARENT, 0, 1f),
                         null,
                         ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
-                        ContextCompat.getColor(context, R.color.collection_product_name),
+                        ContextCompat.getColor(context, R.color.colorNormalText),
                         16f,
                         1).also {
                     it.gravity = Gravity.CENTER_VERTICAL
@@ -69,7 +69,7 @@ class ReviewInPostComponent : LinearLayout {
                 ViewHelper.createLayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT),
                 null,
                 Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf"),
-                ContextCompat.getColor(context, R.color.collection_product_name),
+                ContextCompat.getColor(context, R.color.colorNormalText),
                 14f,
                 3).also {
             it.lineHeight = SizeHelper.size20

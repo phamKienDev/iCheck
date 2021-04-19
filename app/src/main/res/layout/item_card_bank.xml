@@ -9,7 +9,7 @@
     android:layout_marginStart="@dimen/size_16"
     android:layout_marginTop="@dimen/size_16"
     android:layout_marginEnd="@dimen/size_16"
-    android:layout_marginBottom="28dp"
+    android:layout_marginBottom="@dimen/size_28"
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="@dimen/size_12">
 
@@ -51,18 +51,18 @@
                 app:layout_constraintBottom_toBottomOf="@id/imgBackground"
                 app:layout_constraintTop_toTopOf="@id/imgBackground">
 
-                <vn.icheck.android.component.view.text_view.AutoResizeTextView
+                <vn.icheck.android.ui.view.AutoResizeTextView
                     android:id="@id/tvMoney"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/size_0"
-                    android:layout_marginTop="70dp"
+                    android:layout_marginTop="@dimen/size_70"
                     android:fontFamily="@font/barlow_semi_bold"
                     android:includeFontPadding="false"
                     android:shadowColor="#59000000"
                     android:shadowDy="1"
                     android:shadowRadius="1"
                     android:textColor="@color/white"
-                    android:textSize="100sp"
+                    android:textSize="@dimen/font_100"
                     app:layout_constraintBottom_toTopOf="@id/view4"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHeight_percent="0.16"
@@ -77,7 +77,7 @@
                     app:layout_constraintHeight_percent="0.068"
                     app:layout_constraintStart_toStartOf="parent" />
 
-                <vn.icheck.android.component.view.text_view.AutoResizeTextView
+                <vn.icheck.android.ui.view.AutoResizeTextView
                     android:id="@+id/tvCardNumber"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/size_0"
@@ -87,7 +87,7 @@
                     android:shadowDy="1"
                     android:shadowRadius="1"
                     android:textColor="@color/white"
-                    android:textSize="100sp"
+                    android:textSize="@dimen/font_100"
                     app:layout_constraintBottom_toTopOf="@id/view3"
                     app:layout_constraintHeight_percent="0.1"
                     tools:text="5119 6288 8888 8888" />
@@ -100,27 +100,27 @@
                     app:layout_constraintHeight_percent="0.045"
                     app:layout_constraintStart_toStartOf="parent" />
 
-                <vn.icheck.android.component.view.text_view.AutoResizeTextView
+                <vn.icheck.android.ui.view.AutoResizeTextView
                     android:id="@+id/tvDateEnd"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/size_0"
                     android:fontFamily="@font/barlow_medium"
                     tools:text="10/24"
                     android:textColor="@color/white"
-                    android:textSize="100sp"
+                    android:textSize="@dimen/font_100"
                     app:layout_constraintBottom_toTopOf="@id/view2"
                     app:layout_constraintHeight_percent="0.073"
                     app:layout_constraintStart_toStartOf="@+id/tvName" />
 
-                <vn.icheck.android.component.view.text_view.AutoResizeTextView
+                <vn.icheck.android.ui.view.AutoResizeTextView
                     android:id="@+id/tvCCV"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/size_0"
-                    android:layout_marginStart="50dp"
+                    android:layout_marginStart="@dimen/size_50"
                     android:fontFamily="@font/barlow_medium"
                     tools:text="CCV: ***"
                     android:textColor="@color/white"
-                    android:textSize="100sp"
+                    android:textSize="@dimen/font_100"
                     android:textStyle="normal"
                     app:layout_constraintBottom_toBottomOf="@id/tvDateEnd"
                     app:layout_constraintStart_toEndOf="@id/tvDateEnd"
@@ -130,7 +130,7 @@
                     android:id="@+id/btnShowHide"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp"
+                    android:layout_marginStart="@dimen/size_40"
                     app:layout_constraintBottom_toBottomOf="@id/tvDateEnd"
                     app:layout_constraintStart_toEndOf="@id/tvCCV"
                     app:layout_constraintTop_toTopOf="@id/tvDateEnd"
@@ -144,7 +144,7 @@
                     app:layout_constraintHeight_percent="0.07"
                     app:layout_constraintStart_toStartOf="parent" />
 
-                <vn.icheck.android.component.view.text_view.AutoResizeTextView
+                <vn.icheck.android.ui.view.AutoResizeTextView
                     android:id="@+id/tvName"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/size_0"
@@ -153,7 +153,7 @@
                     android:shadowDy="1"
                     android:shadowRadius="1"
                     android:textColor="@color/white"
-                    android:textSize="100sp"
+                    android:textSize="@dimen/font_100"
                     app:layout_constraintBottom_toTopOf="@id/view1"
                     app:layout_constraintHeight_percent="0.073"
                     app:layout_constraintStart_toStartOf="parent"
@@ -177,10 +177,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="12dp"
+                android:layout_marginStart="@dimen/size_16"
+                android:layout_marginTop="@dimen/size_8"
+                android:layout_marginEnd="@dimen/size_16"
+                android:layout_marginBottom="@dimen/size_12"
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -189,8 +189,8 @@
                     android:fontFamily="@font/barlow_semi_bold"
                     android:gravity="center"
                     android:text="@string/so_du_the"
-                    android:textColor="@color/blue"
-                    android:textSize="16sp" />
+                    android:textColor="@color/colorSecondary"
+                    android:textSize="@dimen/font_16" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvAvlBalance"
@@ -200,33 +200,33 @@
                     android:gravity="center|end"
                     tools:text="254.241.000 đ"
                     android:textColor="#ffb800"
-                    android:textSize="20sp" />
+                    android:textSize="@dimen/font_20" />
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_height="@dimen/size_2"
+                android:layout_marginStart="@dimen/size_16"
+                android:layout_marginEnd="@dimen/size_16"
                 android:layerType="software"
                 android:src="@drawable/line_dotted_horizontal_gray" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginStart="@dimen/size_16"
+                android:layout_marginTop="@dimen/size_12"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:text="@string/thong_tin_the"
-                android:textColor="@color/blue"
-                android:textSize="16sp" />
+                android:textColor="@color/colorSecondary"
+                android:textSize="@dimen/font_16" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="@dimen/size_16"
+                android:layout_marginTop="@dimen/size_8"
+                android:layout_marginEnd="@dimen/size_16"
                 android:layout_marginBottom="9.5dp"
                 android:gravity="center"
                 android:orientation="horizontal">
@@ -237,7 +237,7 @@
                     android:fontFamily="@font/barlow_medium"
                     android:text="@string/so_the"
                     android:textColor="#757575"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/font_12" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvNumberCard"
@@ -248,13 +248,13 @@
                     android:gravity="end"
                     tools:text="2541 1145 1114 2225"
                     android:textColor="#212121"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/font_14" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/btnCopyCard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
+                    android:layout_marginStart="@dimen/size_6"
                     android:src="@drawable/ic_copy_24px" />
 
             </LinearLayout>
@@ -262,16 +262,16 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="@dimen/size_16"
+                android:layout_marginEnd="@dimen/size_16"
                 android:background="#d8d8d8" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="@dimen/size_16"
+                android:layout_marginTop="@dimen/size_8"
+                android:layout_marginEnd="@dimen/size_16"
                 android:layout_marginBottom="9.5dp"
                 android:gravity="center"
                 android:orientation="horizontal">
@@ -282,7 +282,7 @@
                     android:fontFamily="@font/barlow_medium"
                     android:text="@string/han_su_dung"
                     android:textColor="#757575"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/font_12" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvExpDate"
@@ -293,13 +293,13 @@
                     android:gravity="end"
                     tools:text="10/28"
                     android:textColor="#212121"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/font_14" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/btnEndDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
+                    android:layout_marginStart="@dimen/size_6"
                     android:src="@drawable/ic_copy_24px" />
 
             </LinearLayout>
@@ -307,16 +307,16 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="@dimen/size_16"
+                android:layout_marginEnd="@dimen/size_16"
                 android:background="#d8d8d8" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="12dp"
+                android:layout_marginStart="@dimen/size_16"
+                android:layout_marginTop="@dimen/size_8"
+                android:layout_marginEnd="@dimen/size_12"
                 android:layout_marginBottom="9.5dp"
                 android:gravity="center"
                 android:orientation="horizontal">
@@ -327,7 +327,7 @@
                     android:fontFamily="@font/barlow_medium"
                     android:text="@string/trang_thai_the"
                     android:textColor="#757575"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/font_12" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -344,7 +344,7 @@
                         android:gravity="end"
                         android:text="@string/chua_dinh_danh"
                         android:textColor="#EB5757"
-                        android:textSize="14sp" />
+                        android:textSize="@dimen/font_14" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvActionAuthen"
@@ -355,8 +355,8 @@
                         android:gravity="end"
                         android:src="@drawable/ic_copy_24px"
                         android:text="@string/dinh_danh_ngay"
-                        android:textColor="@color/lightBlue"
-                        android:textSize="14sp" />
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/font_14" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -364,8 +364,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp">
+                android:layout_marginTop="@dimen/size_16"
+                android:layout_marginBottom="@dimen/size_16">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvUnLockCard"
@@ -373,12 +373,12 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:drawableTop="@drawable/ic_pv_unlock_32_px"
-                    android:drawablePadding="6dp"
+                    android:drawablePadding="@dimen/size_6"
                     android:fontFamily="@font/barlow_medium"
                     android:gravity="center"
                     android:text="Mở khóa thẻ"
                     android:textColor="#212121"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     android:visibility="gone" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -387,12 +387,12 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:drawableTop="@drawable/ic_pv_lock_32_px"
-                    android:drawablePadding="6dp"
+                    android:drawablePadding="@dimen/size_6"
                     android:fontFamily="@font/barlow_medium"
                     android:gravity="center"
                     android:text="Khóa thẻ"
                     android:textColor="#212121"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     android:visibility="gone" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -401,12 +401,12 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:drawableTop="@drawable/ic_pv_lock_32_px"
-                    android:drawablePadding="6dp"
+                    android:drawablePadding="@dimen/size_6"
                     android:fontFamily="@font/barlow_medium"
                     android:gravity="center"
                     android:text="Thông tin thẻ"
                     android:textColor="#212121"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/font_14" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvChangePassword"
@@ -414,46 +414,46 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:drawableTop="@drawable/ic_pv_changepass_32_px"
-                    android:drawablePadding="6dp"
+                    android:drawablePadding="@dimen/size_6"
                     android:fontFamily="@font/barlow_medium"
                     android:gravity="center"
                     android:text="Đổi mật khẩu"
                     android:textColor="#212121"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/font_14" />
 
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/btnUseDefault"
                 android:layout_width="match_parent"
-                android:layout_height="36dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="12dp"
+                android:layout_height="@dimen/size_36"
+                android:layout_marginStart="@dimen/size_16"
+                android:layout_marginEnd="@dimen/size_16"
+                android:layout_marginBottom="@dimen/size_12"
                 android:background="@drawable/bg_corners_4_light_blue_solid"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:text="Đặt làm thẻ chính"
                 android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_16"
                 android:visibility="gone" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@id/tvUsed"
-                android:layout_width="89dp"
-                android:layout_height="20dp"
+                android:layout_width="@dimen/size_89"
+                android:layout_height="@dimen/size_20"
                 android:layout_gravity="end"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="12dp"
+                android:layout_marginStart="@dimen/size_16"
+                android:layout_marginTop="@dimen/size_16"
+                android:layout_marginEnd="@dimen/size_16"
+                android:layout_marginBottom="@dimen/size_12"
                 android:background="@drawable/bg_corners_4_green"
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center"
                 android:includeFontPadding="false"
                 android:text="Thẻ mặc định"
                 android:textColor="#85c440"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 android:visibility="gone" />
         </LinearLayout>
     </LinearLayout>

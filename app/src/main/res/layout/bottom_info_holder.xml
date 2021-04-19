@@ -3,17 +3,17 @@
     android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
-    android:layout_height="36dp"
-    android:layout_marginBottom="12dp"
-    android:paddingStart="12dp"
+    android:layout_height="@dimen/size_36"
+    android:layout_marginBottom="@dimen/size_12"
+    android:paddingStart="@dimen/size_12"
     android:background="@drawable/bg_bottom_detail_product"
-    android:layout_marginStart="24dp">
+    android:layout_marginStart="@dimen/size_24">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/img_icon"
-        android:layout_width="34dp"
-        android:layout_height="34dp"
-        android:layout_marginTop="1dp"
+        android:layout_width="@dimen/size_34"
+        android:layout_height="@dimen/size_34"
+        android:layout_marginTop="@dimen/size_1"
         android:adjustViewBounds="true"
         tools:src="@color/white" />
 
@@ -21,7 +21,7 @@
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="@dimen/size_12"
         android:layout_weight="1"
         android:gravity="center_vertical"
         android:textColor="#434343"

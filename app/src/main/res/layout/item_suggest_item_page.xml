@@ -9,10 +9,10 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/img_logo_page"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="18dp"
-        android:src="@color/colorAccent"
+        android:layout_width="@dimen/size_60"
+        android:layout_height="@dimen/size_60"
+        android:layout_marginTop="@dimen/size_18"
+        android:src="@color/colorPrimary"
         app:civ_border_color="@color/gray"
         app:civ_border_width="@dimen/size_0_5"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,36 +27,36 @@
         app:layout_constraintEnd_toEndOf="@+id/img_logo_page"
         app:srcCompat="@drawable/ic_verified_24px" />
 
-    <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+    <vn.icheck.android.ui.view.TextBarlowMedium
         android:id="@+id/tv_name_page"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/size_8"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="@dimen/size_6"
         android:layout_marginRight="@dimen/size_8"
         android:ellipsize="end"
         android:gravity="center_horizontal"
         android:includeFontPadding="false"
-        android:lineSpacingExtra="6sp"
+        android:lineSpacingExtra="@dimen/font_6"
         android:singleLine="true"
         android:textColor="@color/black_21_v2"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_logo_page"
         tools:text="Công ty sữa Việt..." />
 
-    <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+    <vn.icheck.android.ui.view.TextBarlowMedium
         android:id="@+id/tv_number_follow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="@dimen/size_4"
         android:ellipsize="end"
         android:includeFontPadding="false"
         android:singleLine="true"
-        android:textColor="@color/fast_survey_gray"
-        android:textSize="12sp"
+        android:textColor="@color/colorSecondText"
+        android:textSize="@dimen/font_12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_name_page"
@@ -74,7 +74,7 @@
         android:paddingBottom="@dimen/size_4"
         android:text="Theo dõi"
         android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_number_follow" />

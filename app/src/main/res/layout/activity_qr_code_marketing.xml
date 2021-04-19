@@ -124,7 +124,7 @@
                     android:includeFontPadding="false"
                     android:paddingRight="@dimen/size_8"
                     android:textColor="#333333"
-                    android:textSize="@dimen/font_size_4"
+                    android:textSize="@dimen/font_14"
                     tools:text="Vui lòng đưa mã QR này \n cho nhân viên để kích hoạt" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -139,7 +139,7 @@
                     android:paddingBottom="@dimen/size_12"
                     android:text="@string/tham_gia_ngay"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/font_size_4"
+                    android:textSize="@dimen/font_14"
                     android:textStyle="normal" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

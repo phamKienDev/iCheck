@@ -29,7 +29,7 @@
         android:maxWidth="245dp"
         android:textAlignment="gravity"
         android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:textStyle="normal"
         tools:text="@string/ban_da_doc_tat_ca_cac_thong_bao" />
 </LinearLayout>

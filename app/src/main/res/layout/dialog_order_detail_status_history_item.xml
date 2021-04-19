@@ -15,7 +15,7 @@
         android:fontFamily="sans-serif"
         android:includeFontPadding="false"
         android:textColor="#434343"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:textStyle="normal"
         tools:text="@string/don_hang_duoc_tao_" />
 
@@ -28,7 +28,7 @@
         android:includeFontPadding="false"
         android:singleLine="true"
         android:textColor="#3c5a99"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:textStyle="normal"
         tools:text="12:00, 12/03/1994" />
 </TableRow>

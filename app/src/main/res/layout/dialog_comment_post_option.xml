@@ -41,7 +41,7 @@
             android:text="@string/tra_loi"
             android:textAlignment="gravity"
             android:textColor="@color/darkGray1"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/imgDelete"
             app:layout_constraintTop_toTopOf="@id/imgDelete" />
@@ -64,7 +64,7 @@
             android:text="@string/chinh_sua_binh_luan"
             android:textAlignment="gravity"
             android:textColor="@color/darkGray1"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/imgDelete"
             app:layout_constraintTop_toTopOf="@id/imgDelete" />
@@ -87,7 +87,7 @@
             android:text="@string/xoa_binh_luan"
             android:textAlignment="gravity"
             android:textColor="@color/darkGray1"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/imgDelete"
             app:layout_constraintTop_toTopOf="@id/imgDelete" />
@@ -110,7 +110,7 @@
             android:text="@string/sao_chep_binh_luan"
             android:textAlignment="gravity"
             android:textColor="@color/darkGray1"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/imgDelete"
             app:layout_constraintTop_toTopOf="@id/imgDelete" />

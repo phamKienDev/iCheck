@@ -30,7 +30,7 @@ class LayoutFeedAction : ConstraintLayout {
                 LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT),
                 ViewHelper.outValue.resourceId,
                 ViewHelper.createTypeface(context, R.font.barlow_medium),
-                ContextCompat.getColor(context, R.color.fast_survey_gray),
+                ContextCompat.getColor(context, R.color.colorSecondText),
                 14f
         ).also {
             it.id = R.id.tvLike
@@ -44,7 +44,7 @@ class LayoutFeedAction : ConstraintLayout {
                 LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT),
                 ViewHelper.outValue.resourceId,
                 ViewHelper.createTypeface(context, R.font.barlow_medium),
-                ContextCompat.getColor(context, R.color.fast_survey_gray),
+                ContextCompat.getColor(context, R.color.colorSecondText),
                 14f
         ).also {
             it.id = R.id.tvComment
@@ -58,7 +58,7 @@ class LayoutFeedAction : ConstraintLayout {
                 LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT),
                 ViewHelper.outValue.resourceId,
                 ViewHelper.createTypeface(context, R.font.barlow_medium),
-                ContextCompat.getColor(context, R.color.fast_survey_gray),
+                ContextCompat.getColor(context, R.color.colorSecondText),
                 14f
         ).also {
             it.id = R.id.tvShare

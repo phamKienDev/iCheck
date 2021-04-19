@@ -16,7 +16,7 @@
         android:includeFontPadding="false"
         android:text="@string/hinh_thuc_thanh_toan"
         android:textColor="#3c5a99"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:textStyle="normal" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -33,7 +33,7 @@
         android:padding="@dimen/size_8"
         android:textAlignment="gravity"
         android:textColor="#434343"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:textStyle="normal"
         tools:text="Thanh toán khi nhận hàng - COD" />
 </LinearLayout>

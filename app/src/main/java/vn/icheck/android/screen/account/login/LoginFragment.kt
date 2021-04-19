@@ -20,7 +20,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.loyalty.helper.ActivityHelper
-import vn.icheck.android.network.base.ICNetworkManager2
+import vn.icheck.android.network.base.ICNetworkManager
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.screen.account.registeruser.register.RegisterUserActivity
 import vn.icheck.android.screen.account.verifyfacebookphone.VerifyFacebookPhoneActivity
@@ -201,7 +201,7 @@ class LoginFragment : BaseFragmentMVVM(), View.OnClickListener {
                     activity?.setResult(Activity.RESULT_OK)
                     activity?.finish()
                     activity?.overridePendingTransition(R.anim.none, R.anim.left_to_right_pop_exit)
-                    ICNetworkManager2.getLoginProtocol?.onLogin()
+                    ICNetworkManager.getLoginProtocol?.onLogin()
                     EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_LOG_IN))
                 }
                 else -> {

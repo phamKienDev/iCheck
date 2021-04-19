@@ -29,7 +29,7 @@
             android:singleLine="true"
             android:text="@string/icheck_thong_bao"
             android:textColor="#424242"
-            android:textSize="18sp"
+            android:textSize="@dimen/font_18"
             android:textStyle="normal" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -42,7 +42,7 @@
             android:fontFamily="sans-serif"
             android:gravity="center_horizontal"
             android:textColor="#343434"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal"
             tools:text="Bạn chắc chắn bỏ qua khảo sát này chứ?" />
 
@@ -62,7 +62,7 @@
             android:text="@string/ok"
             android:textAllCaps="false"
             android:textColor="#3c5a99"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             android:textStyle="normal" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

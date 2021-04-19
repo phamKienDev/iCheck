@@ -32,8 +32,8 @@ class ButtonLightBlueCorners4 : BaseButton {
         defaultTextColor = ColorStateList(arrayOf(intArrayOf()), intArrayOf(Color.WHITE))
 
         defaultDisableBackground = ContextCompat.getColor(context, R.color.gray)
-        defaultEnableBackground = ContextCompat.getColor(context, R.color.lightBlue)
-        defaultPressedBackground = ContextCompat.getColor(context, R.color.blue)
+        defaultEnableBackground = ContextCompat.getColor(context, R.color.colorPrimary)
+        defaultPressedBackground = ContextCompat.getColor(context, R.color.colorSecondary)
 
         defaultRadius = SizeHelper.size4.toFloat()
     }

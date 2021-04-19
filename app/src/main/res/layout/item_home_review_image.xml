@@ -23,7 +23,7 @@
         android:gravity="center"
         android:textAlignment="gravity"
         android:textColor="@color/white"
-        android:textSize="28sp"
+        android:textSize="@dimen/font_28"
         android:textStyle="bold"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/imgProduct"

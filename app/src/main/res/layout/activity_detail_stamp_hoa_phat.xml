@@ -46,11 +46,11 @@
                     android:ellipsize="end"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
-                    android:paddingStart="80dp"
-                    android:paddingEnd="80dp"
+                    android:paddingStart="@dimen/size_80"
+                    android:paddingEnd="@dimen/size_80"
                     android:singleLine="true"
                     android:textColor="#20336B"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/font_18"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:text="09293938383" />
@@ -98,21 +98,21 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
                     android:textColor="#828282"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     android:textStyle="normal" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnAgainError"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="40dp"
+                    android:layout_marginStart="@dimen/size_40"
+                    android:layout_marginTop="@dimen/size_16"
+                    android:layout_marginEnd="@dimen/size_40"
                     android:background="@drawable/bg_corner_solid_white_strokke_blue"
                     android:fontFamily="sans-serif-medium"
                     android:text="Thử Lại"
                     android:textColor="#3c5a99"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/font_16"
                     android:textStyle="normal" />
 
             </LinearLayout>
@@ -135,12 +135,12 @@
                     android:id="@+id/tvMessageLocation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="@dimen/size_8"
                     android:fontFamily="sans-serif"
                     android:gravity="center"
                     android:textAlignment="center"
                     android:textColor="#828282"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     android:textStyle="normal"
                     tools:text="Để hiển thị dữ liệu Cửa hàng, vui lòng bật GPS" />
 
@@ -148,34 +148,34 @@
                     android:id="@+id/btnRequestPermission"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="38dp"
-                    android:layout_marginTop="13dp"
-                    android:layout_marginEnd="38dp"
+                    android:layout_marginStart="@dimen/size_38"
+                    android:layout_marginTop="@dimen/size_13"
+                    android:layout_marginEnd="@dimen/size_38"
                     android:background="@drawable/bg_blue_corners_40_solid_white"
                     android:fontFamily="sans-serif-medium"
                     android:gravity="center"
-                    android:paddingTop="11dp"
-                    android:paddingBottom="11dp"
+                    android:paddingTop="@dimen/size_11"
+                    android:paddingBottom="@dimen/size_11"
                     android:text="@string/bat_gps"
                     android:textColor="#3c5a99"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/font_16"
                     android:textStyle="normal" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/btnEnableLocation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="38dp"
-                    android:layout_marginTop="13dp"
-                    android:layout_marginEnd="38dp"
+                    android:layout_marginStart="@dimen/size_38"
+                    android:layout_marginTop="@dimen/size_13"
+                    android:layout_marginEnd="@dimen/size_38"
                     android:background="@drawable/bg_blue_corners_40_solid_white"
                     android:fontFamily="sans-serif-medium"
                     android:gravity="center"
-                    android:paddingTop="11dp"
-                    android:paddingBottom="11dp"
+                    android:paddingTop="@dimen/size_11"
+                    android:paddingBottom="@dimen/size_11"
                     android:text="@string/bat_vi_tri"
                     android:textColor="#3c5a99"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/font_16"
                     android:textStyle="normal"
                     android:visibility="gone" />
 
@@ -198,9 +198,9 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="17dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginEnd="17dp"
+                        android:layout_marginStart="@dimen/size_17"
+                        android:layout_marginTop="@dimen/size_20"
+                        android:layout_marginEnd="@dimen/size_17"
                         android:background="@drawable/bg_corner_red_10"
                         android:gravity="center">
 
@@ -208,16 +208,16 @@
                             android:id="@+id/tvMessageStampError"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="12dp"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginEnd="12dp"
-                            android:layout_marginBottom="17dp"
+                            android:layout_marginStart="@dimen/size_12"
+                            android:layout_marginTop="@dimen/size_15"
+                            android:layout_marginEnd="@dimen/size_12"
+                            android:layout_marginBottom="@dimen/size_17"
                             android:drawableTop="@drawable/ic_stamp_fake_50_dp"
-                            android:drawablePadding="9dp"
+                            android:drawablePadding="@dimen/size_9"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
                             android:textColor="#ffffff"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/font_14"
                             android:textStyle="normal"
                             tools:text="CẢNH BÁO! \n MÃ TEM KHÔNG HỢP LỆ (TEXT KHÔNG CỐ ĐỊNH)" />
 
@@ -263,16 +263,16 @@
                     android:id="@+id/btnChat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginEnd="12dp"
-                    android:layout_marginBottom="3dp"
+                    android:layout_marginStart="@dimen/size_12"
+                    android:layout_marginTop="@dimen/size_6"
+                    android:layout_marginEnd="@dimen/size_12"
+                    android:layout_marginBottom="@dimen/size_3"
                     android:drawableTop="@drawable/ic_chat_temp_white_24_px"
-                    android:drawablePadding="3dp"
+                    android:drawablePadding="@dimen/size_3"
                     android:fontFamily="sans-serif-medium"
                     android:text="Chat ngay"
                     android:textColor="#ffffff"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/font_12"
                     android:textStyle="normal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -280,10 +280,10 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <!--                <View-->
-                <!--                    android:layout_width="1dp"-->
+                <!--                    android:layout_width="@dimen/size_1"-->
                 <!--                    android:layout_height="0dp"-->
-                <!--                    android:layout_marginStart="24dp"-->
-                <!--                    android:layout_marginEnd="24dp"-->
+                <!--                    android:layout_marginStart="@dimen/size_24"-->
+                <!--                    android:layout_marginEnd="@dimen/size_24"-->
                 <!--                    android:background="@color/white"-->
                 <!--                    app:layout_constraintBottom_toBottomOf="@+id/btnChat"-->
                 <!--                    app:layout_constraintEnd_toStartOf="@+id/btnAddToCart"-->
@@ -294,15 +294,15 @@
                 <!--                    android:id="@+id/btnAddToCart"-->
                 <!--                    android:layout_width="wrap_content"-->
                 <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:layout_marginTop="6dp"-->
-                <!--                    android:layout_marginEnd="24dp"-->
-                <!--                    android:layout_marginBottom="3dp"-->
+                <!--                    android:layout_marginTop="@dimen/size_6"-->
+                <!--                    android:layout_marginEnd="@dimen/size_24"-->
+                <!--                    android:layout_marginBottom="@dimen/size_3"-->
                 <!--                    android:drawableTop="@drawable/ic_shop_white_24px"-->
-                <!--                    android:drawablePadding="3dp"-->
+                <!--                    android:drawablePadding="@dimen/size_3"-->
                 <!--                    android:fontFamily="sans-serif-medium"-->
                 <!--                    android:text="+ Giỏ hàng"-->
                 <!--                    android:textColor="#ffffff"-->
-                <!--                    android:textSize="12sp"-->
+                <!--                    android:textSize="@dimen/font_12"-->
                 <!--                    android:textStyle="normal"-->
                 <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
                 <!--                    app:layout_constraintEnd_toEndOf="parent"-->
@@ -327,7 +327,7 @@
                     android:fontFamily="sans-serif-medium"
                     android:text="Mua ngay"
                     android:textColor="#ffffff"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/font_16"
                     android:textStyle="normal" />
             </LinearLayout>
 
@@ -340,19 +340,19 @@
             android:layout_alignParentBottom="true"
             android:layout_centerInParent="true"
             android:layout_gravity="center"
-            android:layout_marginBottom="68dp"
+            android:layout_marginBottom="@dimen/size_68"
             android:background="@drawable/bg_corner_dark_blue_45"
             android:drawableStart="@drawable/ic_update_user_info_white_24px"
-            android:drawablePadding="6dp"
+            android:drawablePadding="@dimen/size_6"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
-            android:paddingStart="12dp"
-            android:paddingTop="10dp"
-            android:paddingEnd="12dp"
-            android:paddingBottom="10dp"
+            android:paddingStart="@dimen/size_12"
+            android:paddingTop="@dimen/size_10"
+            android:paddingEnd="@dimen/size_12"
+            android:paddingBottom="@dimen/size_10"
             android:text="Cập nhật thông tin khách hàng"
             android:textColor="#ffffff"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             android:textStyle="normal"
             android:visibility="invisible"
             tools:visibility="visible" />

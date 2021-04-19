@@ -6,10 +6,10 @@
     android:layout_height="wrap_content"
     android:id="@+id/layoutParent"
     android:background="@drawable/bg_default_card_loyalty"
-    android:layout_marginStart="6dp"
-    android:layout_marginEnd="6dp"
-    android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp"
+    android:layout_marginStart="@dimen/size_6"
+    android:layout_marginEnd="@dimen/size_6"
+    android:layout_marginTop="@dimen/size_5"
+    android:layout_marginBottom="@dimen/size_5"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -18,7 +18,7 @@
         android:layout_height="0dp"
         android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="H,110:64"
         app:layout_constraintEnd_toEndOf="parent"

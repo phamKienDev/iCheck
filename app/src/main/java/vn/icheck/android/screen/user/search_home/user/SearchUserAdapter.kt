@@ -16,7 +16,6 @@ import vn.icheck.android.base.adapter.RecyclerViewSearchAdapter
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.IRecyclerViewSearchCallback
-import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
@@ -192,7 +191,7 @@ class SearchUserAdapter(val typeView: Int, val callback: IRecyclerViewSearchCall
                         itemView.btnConfirm.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                         itemView.btnConfirm.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_gray_f0_corners_4)
                         itemView.btnConfirm.setText(R.string.da_gui_loi_moi)
-                        itemView.btnConfirm.setTextColor(ContextCompat.getColor(itemView.context, R.color.fast_survey_gray))
+                        itemView.btnConfirm.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorSecondText))
 
                         itemView.btnConfirm.visibility = View.VISIBLE
                         itemView.tvMessage.visibility = View.INVISIBLE

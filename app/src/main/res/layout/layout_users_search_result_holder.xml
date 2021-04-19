@@ -19,8 +19,8 @@
         android:fontFamily="@font/barlow_semi_bold"
         android:text="@string/moi_nguoi"
         android:visibility="gone"
-        android:textColor="@color/blue"
-        android:textSize="16sp" />
+        android:textColor="@color/colorSecondary"
+        android:textSize="@dimen/font_16" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_users_search"
@@ -39,7 +39,7 @@
         android:gravity="center_vertical"
         android:text="@string/xem_them"
         android:fontFamily="@font/barlow_medium"
-        android:textColor="@color/lightBlue"
-        android:textSize="14sp" />
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/font_14" />
 
 </LinearLayout>

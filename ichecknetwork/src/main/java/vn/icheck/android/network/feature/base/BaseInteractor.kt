@@ -36,16 +36,26 @@ open class BaseInteractor {
                             if (it.statusCode == "200" || it.code == 1) {
                                 listener.onSuccess(it)
                             } else {
-                                if (it.statusCode == "P401"){
-                                    SettingManager.setSessionIdPvcombank("")
-                                    ICNetworkManager2.onEndOfPVCombankToken()
+                                it.message = APIConstants.checkErrorString(it.statusCode, it.message)
+
+                                when (it.statusCode) {
+                                    "P401" -> {
+                                        SettingManager.setSessionIdPvcombank("")
+                                        ICNetworkManager.onEndOfPVCombankToken()
+                                    }
+                                    "U102", "S402" -> {
+                                        ICNetworkManager.onEndOfToken()
+                                        listener.onError(it.apply {
+                                            it.message = null
+                                        })
+                                    }
                                 }
-                                it.message = it.message ?: APIConstants.checkErrorString(it.statusCode)
+
                                 listener.onError(it)
                             }
                         },
                         {
-                            checkRequestErrorSocial(it,listener)
+                            checkRequestErrorSocial(it, listener)
                         }
                 )
 
@@ -62,7 +72,7 @@ open class BaseInteractor {
                             listener.onSuccess(it)
                         },
                         {
-                            checkRequestErrorSocial(it,listener)
+                            checkRequestErrorSocial(it, listener)
                         }
                 )
 
@@ -175,7 +185,16 @@ open class BaseInteractor {
                 val error = JsonHelper.parseJson(throws.response?.errorBody()?.string(), ICResponseCode::class.java)
 
                 if (error != null) {
-                    error.message = APIConstants.checkErrorString(error.statusCode)
+                    when (error.statusCode) {
+                        "U102", "S402" -> {
+                            ICNetworkManager.onEndOfToken()
+                            error.message = null
+                        }
+                        else -> {
+                            error.message = APIConstants.checkErrorString(error.statusCode, error.message)
+                        }
+                    }
+
                     listener.onError(error)
                     return
                 }
@@ -184,6 +203,16 @@ open class BaseInteractor {
                 val error = JsonHelper.parseJson(throws.response()?.errorBody()?.string(), ICResponseCode::class.java)
 
                 if (error != null) {
+                    when (error.statusCode) {
+                        "U102", "S402" -> {
+                            ICNetworkManager.onEndOfToken()
+                            error.message = null
+                        }
+                        else -> {
+                            error.message = APIConstants.checkErrorString(error.statusCode, error.message)
+                        }
+                    }
+
                     listener.onError(error)
                     return
                 }

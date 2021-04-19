@@ -89,7 +89,7 @@
             app:layout_constraintEnd_toEndOf="@id/top2"
             app:layout_constraintStart_toStartOf="@id/top2"
             app:layout_constraintTop_toTopOf="@id/top2"
-            tools:src="@color/yellow" />
+            tools:src="@color/colorAccentYellow" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="wrap_content"
@@ -163,7 +163,7 @@
             android:layout_width="58dp"
             android:layout_height="58dp"
             android:padding="@dimen/size_4"
-            tools:src="@color/red"
+            tools:src="@color/colorAccentRed"
             android:background="@drawable/ic_stroke_line_yellow"
             android:layout_marginTop="27dp"
             app:layout_constraintEnd_toEndOf="@id/top1"
@@ -244,7 +244,7 @@
             app:layout_constraintEnd_toEndOf="@id/top3"
             app:layout_constraintStart_toStartOf="@id/top3"
             app:layout_constraintTop_toTopOf="@id/top3"
-            tools:src="@color/yellow" />
+            tools:src="@color/colorAccentYellow" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="wrap_content"

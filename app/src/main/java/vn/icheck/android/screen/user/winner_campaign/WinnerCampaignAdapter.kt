@@ -133,23 +133,23 @@ class WinnerCampaignAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
         private fun setReward(textView: AppCompatTextView, value: Long?) {
             if (value != null) {
                 textView.text = "${TextHelper.formatMoneyPhay(value)}"
-                textView.setTextColor(ContextCompat.getColor(itemView.context, R.color.yellow))
+                textView.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorAccentYellow))
                 textView.setTypeface(null, Typeface.NORMAL)
             } else {
                 textView.text = itemView.context.getString(R.string.dang_cap_nhat)
                 textView.setTypeface(null, Typeface.ITALIC)
-                textView.setTextColor(ContextCompat.getColor(itemView.context, R.color.darkGray2))
+                textView.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorDisableText))
             }
         }
 
         private fun setName(tv: AppCompatTextView, value: String?) {
             if (value.isNullOrEmpty()) {
-                tv.setTextColor(ContextCompat.getColor(itemView.context, R.color.darkGray2))
+                tv.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorDisableText))
                 tv.text = itemView.context.getString(R.string.dang_cap_nhat)
                 tv.typeface = Typeface.createFromAsset(itemView.context.assets, "font/barlow_medium.ttf")
             } else {
                 tv.text = value
-                tv.setTextColor(ContextCompat.getColor(itemView.context, R.color.collection_product_name))
+                tv.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorNormalText))
                 tv.typeface = Typeface.createFromAsset(itemView.context.assets, "font/barlow_semi_bold.ttf")
             }
         }

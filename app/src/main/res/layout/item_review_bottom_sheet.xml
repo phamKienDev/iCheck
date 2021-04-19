@@ -20,7 +20,7 @@
         android:fontFamily="@font/barlow_medium"
         android:singleLine="true"
         android:textColor="@color/black_21_v2"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         tools:text="Chất lượng sản phẩm" />
 
     <com.willy.ratingbar.ScaleRatingBar

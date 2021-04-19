@@ -37,7 +37,7 @@
         android:fontFamily="sans-serif"
         android:text="Bạn chưa có voucher nào!"
         android:textColor="#828282"
-        android:textSize="@dimen/font_size_4"
+        android:textSize="@dimen/font_14"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="@+id/appCompatImageView13"
         app:layout_constraintStart_toStartOf="@+id/appCompatImageView13"

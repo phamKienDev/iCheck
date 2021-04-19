@@ -25,8 +25,8 @@
         android:paddingEnd="@dimen/size_0"
         android:paddingRight="@dimen/size_0"
         android:text="@string/bo_qua"
-        android:textColor="@color/darkGray2"
-        android:textSize="16sp"
+        android:textColor="@color/colorDisableText"
+        android:textSize="@dimen/font_16"
         android:visibility="gone" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -39,8 +39,8 @@
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
         android:singleLine="true"
-        android:textColor="@color/blue"
-        android:textSize="18sp"
+        android:textColor="@color/colorSecondary"
+        android:textSize="@dimen/font_18"
         android:textStyle="normal"
         tools:text="Tiêu đề" />
 

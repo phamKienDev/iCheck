@@ -85,13 +85,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_10"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/size_8"
                 android:singleLine="true"
                 android:ellipsize="end"
                 android:background="@drawable/bg_solid_gray_stroke_1_radius_10"
                 android:drawableStart="@drawable/ic_close_gray_18_dp"
                 android:drawablePadding="@dimen/size_6"
-                android:elevation="4dp"
+                android:elevation="@dimen/size_4"
                 android:fontFamily="sans-serif"
                 android:gravity="center_vertical"
                 android:paddingStart="@dimen/size_8"
@@ -99,7 +99,7 @@
                 android:paddingEnd="@dimen/size_8"
                 android:paddingBottom="@dimen/size_2"
                 android:textColor="#434343"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 android:textStyle="normal"
                 tools:text="Trả lời  Đặng Trung Đức" />
 
@@ -117,7 +117,7 @@
                 android:paddingStart="@dimen/size_12"
                 android:textColor="#434343"
                 android:textColorHint="#b4b4b4"
-                android:textSize="14sp" />
+                android:textSize="@dimen/font_14" />
 
         </LinearLayout>
 

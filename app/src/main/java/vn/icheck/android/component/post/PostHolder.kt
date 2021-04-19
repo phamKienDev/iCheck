@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ShareCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
@@ -28,7 +27,6 @@ import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.component.view.ViewHelper.onDelayClick
 import vn.icheck.android.constant.*
 import vn.icheck.android.helper.*
-import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.helper.TextHelper.setTextNameProductInPost
 import vn.icheck.android.model.posts.PostViewModel
 import vn.icheck.android.network.base.ICNewApiListener
@@ -227,7 +225,7 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
             itemView.tvLike.setTextColor(ContextCompat.getColor(itemView.context, R.color.red_like_question))
         } else {
             itemView.tvLike.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_like_off_24dp, 0, 0, 0)
-            itemView.tvLike.setTextColor(ContextCompat.getColor(itemView.context, R.color.fast_survey_gray))
+            itemView.tvLike.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorSecondText))
         }
 
         itemView.tvLike.text = TextHelper.formatCount(obj.expressiveCount)
@@ -470,7 +468,7 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
                 object : PostOptionDialog(activity, obj) {
                     override fun onPin(isPin: Boolean) {
                         if (obj.pinned) {
-                            DialogHelper.showConfirm(dialog.context, "Bạn chắc chắn muốn bỏ ghim bài viết này?", null, "Để sau", "Đồng ý", true, null, R.color.lightBlue, object : ConfirmDialogListener {
+                            DialogHelper.showConfirm(dialog.context, "Bạn chắc chắn muốn bỏ ghim bài viết này?", null, "Để sau", "Đồng ý", true, null, R.color.colorPrimary, object : ConfirmDialogListener {
                                 override fun onDisagree() {
 
                                 }
