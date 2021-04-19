@@ -367,6 +367,9 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
 //                }
                 }
                 listImageAdapter.notifyDataSetChanged()
+            } else {
+                binding.rcvImages.beGone()
+                binding.tvDescription.beVisible()
             }
 
 
@@ -595,7 +598,7 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
                                     val data = rp.get("data") as Map<String, Any?>
                                     if (data["hidden"] != null) {
                                         if (data["hidden"] as Boolean) {
-                                            val msg = if (!(data["reason"] as String?).isNullOrEmpty()) "Đóng góp trước đó của bạn đã bị Huỷ duyệt với lý do: " + data["reason"].toString() else "Đóng góp trước đó của bạn đã bị Huỷ duyệt bởi người quản trị. Bạn có muốn thực hiện đóng góp thông tin lại cho sản phẩm này?"
+                                            val msg = if (!(data["reason"] as String?).isNullOrEmpty()) "Đóng góp trước đó của bạn đã bị Huỷ duyệt với lý do: \"" + data["reason"].toString() +"\". Bạn có muốn thực hiện đóng góp thông tin lại cho sản phẩm này?" else "Đóng góp trước đó của bạn đã bị Huỷ duyệt bởi người quản trị. Bạn có muốn thực hiện đóng góp thông tin lại cho sản phẩm này?"
                                             DialogHelper.showConfirm(this@IckContributeProductActivity, "Thông báo",
                                                     msg,
                                                     "Hủy",
@@ -608,11 +611,11 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
 
                                                         override fun onAgree() {
                                                             try {
+                                                                firstJob?.cancel()
+                                                                secondJob?.cancel()
                                                                 ickContributeProductViewModel.requestBody.clear()
                                                                 categoryAttributesAdapter.notifyDataSetChanged()
-                                                                ickContributeProductViewModel.listImageModel.clear()
-                                                                listImageAdapter.notifyDataSetChanged()
-                                                                ickContributeProductViewModel.postSize()
+
                                                                 binding.edtNameProduct.setText("")
                                                                 binding.edtPrice.setText("")
                                                                 binding.edtAddressPage.setText("")
@@ -628,8 +631,12 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
                                                                 binding.imgFirst.setImageResource(R.drawable.ic_front_image_holder)
                                                                 binding.imgSecond.setImageResource(R.drawable.ic_back_image_holder)
                                                                 binding.tvImgSecond simpleText "+ Ảnh mặt sau"
-                                                                firstJob?.cancel()
-                                                                secondJob?.cancel()
+                                                                lifecycleScope.launch {
+                                                                    delay(200)
+                                                                    ickContributeProductViewModel.listImageModel.clear()
+                                                                    ickContributeProductViewModel.arrayListImage.clear()
+                                                                    ickContributeProductViewModel.postSize()
+                                                                }
                                                             } catch (e: Exception) {
                                                             }
                                                         }

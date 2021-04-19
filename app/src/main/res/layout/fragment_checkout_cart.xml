@@ -65,7 +65,7 @@
                 android:layout_marginTop="@dimen/size_4"
                 android:fontFamily="sans-serif-medium"
                 android:includeFontPadding="false"
-                android:textColor="#ff0000"
+                android:textColor="@color/colorAccentRed"
                 android:textSize="@dimen/font_20"
                 android:textStyle="normal"
                 tools:text="1,250,000đ" />

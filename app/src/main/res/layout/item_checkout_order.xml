@@ -222,7 +222,7 @@
             android:layout_marginEnd="@dimen/size_8"
             android:fontFamily="sans-serif-medium"
             android:includeFontPadding="false"
-            android:textColor="#ff0000"
+            android:textColor="@color/colorAccentRed"
             android:textSize="@dimen/font_16"
             android:textStyle="normal"
             app:layout_constraintBottom_toBottomOf="@id/tvAmount"
