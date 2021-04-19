@@ -330,8 +330,10 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
             }else if (RelationshipManager.checkFriendInvitationMe(ickUserProfileModel.id)) {
                 binding.btnAddFriend.beVisible()
                 binding.tvAddFriend.setText("Đồng ý kết bạn")
+                binding.tvAddFriend.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,0,0)
                 binding.tvRequestSent.beGone()
             } else {
+                binding.tvAddFriend.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_add_white_12px, 0,0,0)
                 binding.btnAddFriend.beVisible()
                 binding.tvRequestSent.beGone()
             }
