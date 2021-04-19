@@ -40,7 +40,7 @@ class StoreSellHistoryActivity : BaseActivityMVVM(), StoreSellHistoryView {
     }
 
     private fun initSwipeLayout() {
-        swipe_layout.setColorSchemeColors(ContextCompat.getColor(this, R.color.lightBlue), ContextCompat.getColor(this, R.color.lightBlue), ContextCompat.getColor(this, R.color.lightBlue))
+        swipe_layout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorPrimary), ContextCompat.getColor(this, R.color.colorPrimary), ContextCompat.getColor(this, R.color.colorPrimary))
 
         swipe_layout.setOnRefreshListener {
             getData()

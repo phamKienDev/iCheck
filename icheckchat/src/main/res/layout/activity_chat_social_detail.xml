@@ -52,7 +52,7 @@
                 android:paddingEnd="@dimen/size_4"
                 android:paddingBottom="@dimen/size_2"
                 android:text="@string/co_tin_nhan_moi"
-                android:textColor="@color/lightBlue" />
+                android:textColor="@color/colorPrimary" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
@@ -220,7 +220,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:background="@color/lightBlue" />
+            tools:background="@color/colorPrimary" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvBarcode"

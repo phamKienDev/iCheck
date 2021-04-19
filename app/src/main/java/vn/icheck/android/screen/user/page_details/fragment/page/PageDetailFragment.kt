@@ -5,7 +5,6 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
@@ -178,7 +177,7 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
     }
 
     private fun setupSwipeLayout() {
-        swipeLayout.setColorSchemeColors(ContextCompat.getColor(requireContext(), R.color.blue), ContextCompat.getColor(requireContext(), R.color.blue), ContextCompat.getColor(requireContext(), R.color.lightBlue))
+        swipeLayout.setColorSchemeColors(ContextCompat.getColor(requireContext(), R.color.colorSecondary), ContextCompat.getColor(requireContext(), R.color.colorSecondary), ContextCompat.getColor(requireContext(), R.color.colorPrimary))
 
         swipeLayout.setOnRefreshListener {
             getData()

@@ -10,7 +10,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_44"
-        android:elevation="4dp"
+        android:elevation="@dimen/size_4"
         android:background="@color/white">
 
         <androidx.appcompat.widget.AppCompatImageButton
@@ -31,8 +31,8 @@
             android:gravity="center"
             android:singleLine="true"
             android:text="@string/qua_cua_toi"
-            android:textColor="@color/lightBlue"
-            android:textSize="18sp" />
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/font_18" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@id/imgAction"
@@ -67,11 +67,11 @@
                 android:text="Hộp quà"
                 android:textAlignment="center"
                 android:textColor="@color/text_color_my_gift_title"
-                android:textSize="16sp" />
+                android:textSize="@dimen/font_16" />
 
             <androidx.appcompat.widget.AppCompatCheckedTextView
                 android:id="@+id/line"
-                android:layout_width="80dp"
+                android:layout_width="@dimen/size_80"
                 android:layout_height="@dimen/size_3"
                 android:layout_gravity="center"
                 android:background="@drawable/bg_my_gift_title"
@@ -96,11 +96,11 @@
                 android:text="Quà hiện vật"
                 android:textAlignment="center"
                 android:textColor="@color/text_color_my_gift_title"
-                android:textSize="16sp" />
+                android:textSize="@dimen/font_16" />
 
             <androidx.appcompat.widget.AppCompatCheckedTextView
                 android:id="@+id/line1"
-                android:layout_width="80dp"
+                android:layout_width="@dimen/size_80"
                 android:layout_height="@dimen/size_3"
                 android:layout_gravity="center"
                 android:background="@drawable/bg_my_gift_title"
@@ -134,7 +134,7 @@
                 android:id="@+id/ic_no_gift"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="120dp"
+                android:layout_marginTop="@dimen/size_120"
                 android:visibility="gone"
                 app:srcCompat="@drawable/ic_no_gift" />
 

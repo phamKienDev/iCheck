@@ -90,7 +90,7 @@ class ApplyMisssionAdapter : RecyclerViewAdapter<Any>() {
                     ViewHelper.createLayoutParams(SizeHelper.size12, 0, 0, 0),
                     null,
                     ViewHelper.createTypeface(context, R.font.barlow_medium),
-                    ContextCompat.getColor(context, R.color.collection_product_name),
+                    ContextCompat.getColor(context, R.color.colorNormalText),
                     14f,
                     2).apply {
             })

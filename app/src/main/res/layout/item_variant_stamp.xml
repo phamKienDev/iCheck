@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="4dp"
-    android:layout_marginBottom="4dp"
+    android:layout_marginTop="@dimen/size_4"
+    android:layout_marginBottom="@dimen/size_4"
     android:background="?android:attr/selectableItemBackground"
     android:orientation="vertical">
 
@@ -11,26 +11,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginEnd="@dimen/size_12"
+        android:layout_marginBottom="@dimen/size_12"
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@id/imgAva"
-            android:layout_width="60dp"
-            android:layout_height="60dp"/>
+            android:layout_width="@dimen/size_60"
+            android:layout_height="@dimen/size_60"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@id/tvName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="@dimen/size_12"
             android:ellipsize="end"
             android:gravity="center_vertical"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             android:singleLine="true"
-            android:textColor="@color/collection_product_name"/>
+            android:textColor="@color/colorNormalText"/>
 
     </LinearLayout>
 

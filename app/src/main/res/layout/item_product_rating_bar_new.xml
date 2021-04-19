@@ -8,7 +8,7 @@
     android:focusable="false"
     android:isIndicator="true"
     app:srb_numStars="5"
-    app:srb_starHeight="10dp"
-    app:srb_starPadding="2dp"
-    app:srb_starWidth="10dp"
+    app:srb_starHeight="@dimen/size_10"
+    app:srb_starPadding="@dimen/size_2"
+    app:srb_starWidth="@dimen/size_10"
     app:srb_stepSize="0.5" />

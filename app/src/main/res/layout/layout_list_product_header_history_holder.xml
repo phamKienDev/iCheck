@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="11dp"
-    android:layout_marginLeft="11dp"
-    android:layout_marginTop="16dp">
+    android:layout_marginStart="@dimen/size_11"
+    android:layout_marginLeft="@dimen/size_11"
+    android:layout_marginTop="@dimen/size_16">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvListBigCorp"

@@ -9,13 +9,13 @@
     <TextView
         android:id="@+id/textView56"
         android:layout_width="0dp"
-        android:layout_height="44dp"
+        android:layout_height="@dimen/size_44"
         android:background="@android:color/white"
         android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center"
         android:text="@string/quan_ly_trang"
-        android:textColor="@color/lightBlue"
-        android:textSize="18sp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/font_18"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -63,8 +63,8 @@
                         android:layout_marginStart="@dimen/size_12"
                         android:fontFamily="@font/barlow_semi_bold"
                         tools:text="Trang của tôi (12)"
-                        android:textColor="@color/blue"
-                        android:textSize="18sp"
+                        android:textColor="@color/colorSecondary"
+                        android:textSize="@dimen/font_18"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -75,8 +75,8 @@
                         android:layout_marginEnd="@dimen/size_12"
                         android:fontFamily="@font/barlow_semi_bold"
                         android:text="@string/xem_tat_ca"
-                        android:textColor="@color/blue"
-                        android:textSize="14sp"
+                        android:textColor="@color/colorSecondary"
+                        android:textSize="@dimen/font_14"
                         app:layout_constraintBottom_toBottomOf="@id/tvOwnerTitle"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@id/tvOwnerTitle" />
@@ -107,8 +107,8 @@
                         android:layout_marginStart="@dimen/size_12"
                         android:fontFamily="@font/barlow_semi_bold"
                         tools:text="Trang của tôi (12)"
-                        android:textColor="@color/blue"
-                        android:textSize="18sp"
+                        android:textColor="@color/colorSecondary"
+                        android:textSize="@dimen/font_18"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -119,8 +119,8 @@
                         android:layout_marginEnd="@dimen/size_12"
                         android:fontFamily="@font/barlow_semi_bold"
                         android:text="@string/xem_tat_ca"
-                        android:textColor="@color/blue"
-                        android:textSize="14sp"
+                        android:textColor="@color/colorSecondary"
+                        android:textSize="@dimen/font_14"
                         app:layout_constraintBottom_toBottomOf="@id/tvFollowTitle"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@id/tvFollowTitle" />

@@ -25,7 +25,7 @@
             android:background="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_back_blue_24px_new" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ui.view.TextHeader
             android:id="@id/tvProductName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -33,11 +33,9 @@
             android:layout_marginRight="@dimen/size_6"
             android:layout_weight="1"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:singleLine="true"
             android:textColor="#057dda"
-            android:textSize="18sp"
             tools:text="Dầu tẩy trang DHC fcjsbsabcnc..." />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -154,16 +152,16 @@
                     android:layout_marginStart="@dimen/size_6"
                     android:layout_marginTop="@dimen/size_4"
                     android:layout_marginEnd="@dimen/size_6"
-                    android:lineSpacingExtra="4sp"
+                    android:lineSpacingExtra="@dimen/font_14"
                     android:text="@string/hoi_dap_voi_tu_cach"
                     android:textColor="#757575"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/font_12"
                     app:fontFamily="@font/barlow_medium" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rcvPermission"
                     android:layout_width="match_parent"
-                    android:layout_height="108dp"
+                    android:layout_height="@dimen/size_108"
                     android:orientation="vertical"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
             </LinearLayout>
@@ -176,7 +174,7 @@
             android:layout_gravity="end"
             android:layout_marginStart="@dimen/size_16"
             android:layout_marginLeft="@dimen/size_16"
-            android:layout_marginBottom="44dp"
+            android:layout_marginBottom="@dimen/size_44"
             android:rotation="-135"
             app:cardBackgroundColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"

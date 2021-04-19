@@ -21,8 +21,8 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
             android:singleLine="true"
-            android:textColor="@color/gray_v2"
-            android:textSize="14sp" />
+            android:textColor="@color/colorSecondText"
+            android:textSize="@dimen/font_14" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

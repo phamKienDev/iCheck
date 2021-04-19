@@ -16,16 +16,16 @@
             android:id="@+id/picker_month"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp" />
+            android:layout_marginEnd="@dimen/size_20"
+            android:layout_marginRight="@dimen/size_20" />
 
 
         <NumberPicker
             android:id="@+id/picker_day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp" />
+            android:layout_marginEnd="@dimen/size_20"
+            android:layout_marginRight="@dimen/size_20" />
 
         <NumberPicker
             android:id="@+id/picker_year"

@@ -5,5 +5,5 @@
 
     <stroke
         android:width="@dimen/size_1"
-        android:color="@color/lightBlue" />
+        android:color="@color/colorPrimary" />
 </shape>

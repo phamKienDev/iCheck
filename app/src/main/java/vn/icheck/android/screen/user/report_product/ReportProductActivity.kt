@@ -113,7 +113,7 @@ class ReportProductActivity : BaseActivityMVVM() {
                     radioButton.layoutParams = ViewHelper.createLayoutParams()
                     radioButton.typeface = ViewHelper.createTypeface(this, R.font.barlow_medium)
                     radioButton.setBackgroundResource(ViewHelper.outValue.resourceId)
-                    radioButton.setTextColor(ViewHelper.createColorStateList(ContextCompat.getColor(this, R.color.fast_survey_gray), ContextCompat.getColor(this, R.color.collection_product_name)))
+                    radioButton.setTextColor(ViewHelper.createColorStateList(ContextCompat.getColor(this, R.color.colorSecondText), ContextCompat.getColor(this, R.color.colorNormalText)))
                     radioButton.includeFontPadding = false
                     radioButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
                     radioButton.maxLines = 1
@@ -137,8 +137,8 @@ class ReportProductActivity : BaseActivityMVVM() {
             }
         })
 
-        layoutParent.addView(ViewHelper.createEditText(this, ViewHelper.createLayoutParams(SizeHelper.size12, 0, SizeHelper.size12, 0), ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size1, ContextCompat.getColor(this, R.color.gray), SizeHelper.size4.toFloat()), ViewHelper.createTypeface(this, R.font.barlow_medium), ContextCompat.getColor(this, R.color.collection_product_name), 14f).also {
-            it.setHintTextColor(ContextCompat.getColor(this, R.color.darkGray2))
+        layoutParent.addView(ViewHelper.createEditText(this, ViewHelper.createLayoutParams(SizeHelper.size12, 0, SizeHelper.size12, 0), ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size1, ContextCompat.getColor(this, R.color.gray), SizeHelper.size4.toFloat()), ViewHelper.createTypeface(this, R.font.barlow_medium), ContextCompat.getColor(this, R.color.colorNormalText), 14f).also {
+            it.setHintTextColor(ContextCompat.getColor(this, R.color.colorDisableText))
             it.minLines = 3
             it.maxLines = 6
             it.setPadding(SizeHelper.size10, SizeHelper.size6, SizeHelper.size10, SizeHelper.size6)
@@ -171,7 +171,7 @@ class ReportProductActivity : BaseActivityMVVM() {
             }
 
             if (!listReasonID.isNullOrEmpty()) {
-                DialogHelper.showConfirm(this, "Bạn muốn bỏ báo cáo này?", null, "Tiếp tục báo cáo", "Bỏ báo cáo", true, null, R.color.red, object : ConfirmDialogListener {
+                DialogHelper.showConfirm(this, "Bạn muốn bỏ báo cáo này?", null, "Tiếp tục báo cáo", "Bỏ báo cáo", true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
                     override fun onDisagree() {
                         DialogHelper.closeLoading(this@ReportProductActivity)
                     }

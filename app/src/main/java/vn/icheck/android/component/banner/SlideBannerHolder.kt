@@ -13,7 +13,7 @@ import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.models.ICAds
 import vn.icheck.android.screen.user.campaign.calback.IBannerListener
-import vn.icheck.android.ui.view.HeightWrappingViewPager
+import vn.icheck.android.ui.layout.HeightWrappingViewPager
 import java.util.concurrent.TimeUnit
 
 class SlideBannerHolder(parent: ViewGroup) : RecyclerView.ViewHolder(ViewHelper.createSlideBannerHolder(parent.context)) {

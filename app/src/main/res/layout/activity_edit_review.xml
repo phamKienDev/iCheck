@@ -11,7 +11,7 @@
     <LinearLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/size_50"
         android:background="@android:color/white"
         android:orientation="horizontal"
         android:visibility="visible"
@@ -21,11 +21,11 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btnBack"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/size_50"
+            android:layout_height="@dimen/size_50"
             android:adjustViewBounds="true"
             android:background="@null"
-            android:padding="14dp"
+            android:padding="@dimen/size_14"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/ic_cancel_light_blue_24dp" />
 
@@ -41,18 +41,18 @@
             android:paddingEnd="@dimen/size_12"
             android:singleLine="true"
             android:textAlignment="center"
-            android:textColor="@color/lightBlue"
-            android:textSize="18sp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/font_18"
             app:fontFamily="@font/barlow_semi_bold"
             android:text="@string/chinh_sua_danh_gia" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imgProduct"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/size_30"
+            android:layout_height="@dimen/size_30"
             android:layout_gravity="center"
-            android:layout_marginEnd="12dp"
-            android:layout_marginRight="12dp"
+            android:layout_marginEnd="@dimen/size_12"
+            android:layout_marginRight="@dimen/size_12"
             app:srcCompat="@drawable/product_images_new_placeholder" />
 
     </LinearLayout>
@@ -102,9 +102,9 @@
             android:hint="@string/viet_danh_gia"
             android:inputType="textMultiLine"
             android:lines="3"
-            android:textColor="@color/collection_product_name"
-            android:textColorHint="@color/fast_survey_gray"
-            android:textSize="14sp" />
+            android:textColor="@color/colorNormalText"
+            android:textColorHint="@color/colorSecondText"
+            android:textSize="@dimen/font_14" />
 
         <View
             android:layout_width="match_parent"
@@ -137,15 +137,15 @@
         android:id="@+id/btnSend"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_36"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="@dimen/size_8"
+        android:layout_marginEnd="@dimen/size_8"
         android:layout_marginBottom="@dimen/size_20"
         android:background="@drawable/btn_light_blue_corners_4"
         android:gravity="center"
         android:text="@string/hoan_tat"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         app:fontFamily="@font/barlow_semi_bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -360,7 +360,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
     }
 
     private fun setupSwipeLayout() {
-        swipeLayout.setColorSchemeColors(ContextCompat.getColor(requireContext(), R.color.lightBlue), ContextCompat.getColor(requireContext(), R.color.lightBlue), ContextCompat.getColor(requireContext(), R.color.lightBlue))
+        swipeLayout.setColorSchemeColors(ContextCompat.getColor(requireContext(), R.color.colorPrimary), ContextCompat.getColor(requireContext(), R.color.colorPrimary), ContextCompat.getColor(requireContext(), R.color.colorPrimary))
 
         swipeLayout.setOnRefreshListener {
             swipeLayout.isRefreshing = true

@@ -20,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:rankSize="@dimen/size_16"
-        tools:src="@color/blue" />
+        tools:src="@color/colorSecondary" />
 
     <FrameLayout
         android:id="@id/layoutName"
@@ -43,8 +43,8 @@
             android:gravity="center_vertical"
             android:includeFontPadding="false"
             android:textAlignment="gravity"
-            android:textColor="@color/collection_product_name"
-            android:textSize="14sp"
+            android:textColor="@color/colorNormalText"
+            android:textSize="@dimen/font_14"
             tools:text="Xuyến Đỗ" />
     </FrameLayout>
 
@@ -52,13 +52,13 @@
         android:id="@+id/tvContent"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="@dimen/size_4"
         android:ellipsize="end"
         android:fontFamily="@font/barlow_medium"
         android:includeFontPadding="false"
         android:singleLine="true"
-        android:textColor="@color/gray_v2"
-        android:textSize="12sp"
+        android:textSize="@dimen/font_12"
+        android:textColor="@color/colorSecondText"
         app:layout_constraintBottom_toBottomOf="@+id/layoutAvatar"
         app:layout_constraintEnd_toEndOf="@id/layoutName"
         app:layout_constraintStart_toStartOf="@+id/layoutName"
@@ -80,7 +80,7 @@
         android:paddingEnd="@dimen/size_16"
         android:text="@string/ket_ban"
         android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -98,8 +98,8 @@
         android:paddingStart="@dimen/size_16"
         android:paddingEnd="@dimen/size_16"
         android:text="@string/nhan_tin"
-        android:textColor="@color/lightBlue"
-        android:textSize="14sp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/font_14"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@id/btnConfirm"
         app:layout_constraintStart_toStartOf="@id/btnConfirm"

@@ -546,7 +546,7 @@ object APIConstants {
     external fun themeSetting(): String
     external fun productsECommerce(): String
 
-    fun checkErrorString(code: String): String {
+    fun checkErrorString(code: String, default: String?): String {
         return when (code) {
             "500" -> {
                 getApplicationByReflect().applicationContext.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
@@ -687,7 +687,7 @@ object APIConstants {
                 getApplicationByReflect().applicationContext.getString(R.string.application_permission_denied)
             }
             else -> {
-                ""
+                default ?: ""
             }
         }
     }

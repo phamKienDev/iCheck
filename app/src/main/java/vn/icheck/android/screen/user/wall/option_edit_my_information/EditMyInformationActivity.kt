@@ -579,19 +579,19 @@ class EditMyInformationActivity : CoroutineFragment() {
                 1 -> {
                     binding.txtConfirmedDanhtinh.setBackgroundResource(R.drawable.bg_yellow_20_corner_23)
                     binding.txtConfirmedDanhtinh.setText(R.string.cho_xac_thuc)
-                    binding.txtConfirmedDanhtinh.setTextColor(ContextCompat.getColor(requireContext(), R.color.yellow))
+                    binding.txtConfirmedDanhtinh.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorAccentYellow))
                 }
                 2 -> {
                     binding.txtConfirmedDanhtinh.setBackgroundResource(R.drawable.bg_green_20_corner_23)
                     binding.txtConfirmedDanhtinh.setText(R.string.da_xac_thuc)
-                    binding.txtConfirmedDanhtinh.setTextColor(ContextCompat.getColor(requireContext(), R.color.green_v3))
+                    binding.txtConfirmedDanhtinh.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorAccentGreen))
 
                     binding.imgDanhtinh.beGone()
                 }
                 3 -> {
                     binding.txtConfirmedDanhtinh.setBackgroundResource(R.drawable.bg_red_20_corner_23)
                     binding.txtConfirmedDanhtinh.setText("Lỗi xác thực")
-                    binding.txtConfirmedDanhtinh.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
+                    binding.txtConfirmedDanhtinh.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorAccentRed))
                 }
             }
         }

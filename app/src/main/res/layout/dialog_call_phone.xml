@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:layout_marginStart="52dp"
-    android:layout_marginEnd="52dp"
+    android:layout_marginStart="@dimen/size_52"
+    android:layout_marginEnd="@dimen/size_52"
     android:background="@drawable/bg_corner_white_10"
     android:orientation="vertical">
 
@@ -18,7 +18,7 @@
         android:fontFamily="@font/barlow_medium"
         android:gravity="center"
         android:textColor="@color/black"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Gọi *100*54564897564567#" />
 
@@ -43,7 +43,7 @@
             android:gravity="center"
             android:text="Hủy"
             android:textColor="#757575"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             app:layout_constraintTop_toTopOf="parent" />
 
         <View
@@ -63,7 +63,7 @@
             android:gravity="center"
             android:text="@string/ok"
             android:textColor="#0572FA"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
 </LinearLayout>

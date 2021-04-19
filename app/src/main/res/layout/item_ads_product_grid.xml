@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="6dp"
+    android:layout_margin="@dimen/size_6"
     android:background="@color/white"
     android:orientation="vertical">
 
@@ -38,27 +38,27 @@
         android:ellipsize="end"
         android:fontFamily="@font/barlow_medium"
         android:includeFontPadding="false"
-        android:maxHeight="40dp"
+        android:maxHeight="@dimen/size_40"
         android:maxLines="2"
         android:minLines="2"
         android:textColor="@color/darkGray1"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         tools:text="Adidas Store (tối 2 dòng)..." />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvTenSpUpdating"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/size_40"
         android:layout_marginStart="@dimen/size_6"
         android:layout_marginTop="@dimen/size_6"
         android:layout_marginEnd="@dimen/size_6"
         android:fontFamily="@font/barlow_semi_bold"
         android:gravity="top|start"
         android:includeFontPadding="false"
-        android:lineSpacingExtra="4sp"
+        android:lineSpacingExtra="@dimen/font_14"
         android:text="Tên đang cập nhật"
         android:textColor="#b4b4b4"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:textStyle="italic"
         android:visibility="gone" />
 
@@ -71,7 +71,7 @@
             android:id="@id/layoutRating"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="@dimen/size_2"
             android:gravity="start|center"
             android:orientation="horizontal">
 
@@ -80,11 +80,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/barlow_medium"
-                android:lineSpacingExtra="2.7sp"
+                android:lineSpacingExtra="@dimen/font_2_7"
                 android:text="@string/chua_co_danh_gia"
                 android:textColor="#b4b4b4"
                 android:includeFontPadding="false"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 android:textStyle="italic"
                 android:visibility="gone" />
 
@@ -100,12 +100,12 @@
                 android:id="@+id/tvRatingText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
+                android:layout_marginStart="@dimen/size_6"
                 android:includeFontPadding="false"
-                android:layout_marginLeft="6dp"
-                android:lineSpacingExtra="4sp"
+                android:layout_marginLeft="@dimen/size_6"
+                android:lineSpacingExtra="@dimen/font_14"
                 android:textColor="#057dda"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 app:fontFamily="@font/barlow_medium"
                 tools:text="8,9" />
 
@@ -113,11 +113,11 @@
                 android:id="@id/tvRatingCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
+                android:layout_marginStart="@dimen/size_6"
                 android:includeFontPadding="false"
-                android:lineSpacingExtra="4sp"
-                android:textColor="@color/fast_survey_gray"
-                android:textSize="12sp"
+                android:lineSpacingExtra="@dimen/font_14"
+                android:textColor="@color/colorSecondText"
+                android:textSize="@dimen/font_12"
                 app:fontFamily="@font/barlow_medium"
                 tools:text="(586)" />
         </LinearLayout>
@@ -127,10 +127,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/barlow_medium"
-            android:lineSpacingExtra="4sp"
+            android:lineSpacingExtra="@dimen/font_14"
             android:text="Giá đang cập nhật"
             android:textColor="#b4b4b4"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="italic"
             android:visibility="gone" />
 
@@ -138,10 +138,10 @@
             android:id="@id/tvPrice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="@dimen/size_4"
             android:includeFontPadding="false"
             android:textColor="#057dda"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:fontFamily="@font/barlow_semi_bold"
             tools:text="27.900 ₫" />
 
@@ -149,30 +149,30 @@
             android:id="@id/tvVerified"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="6dp"
+            android:layout_marginTop="@dimen/size_2"
+            android:layout_marginBottom="@dimen/size_6"
             android:drawableStart="@drawable/ic_home_verify_16dp"
             android:drawableLeft="@drawable/ic_home_verify_16dp"
-            android:drawablePadding="2dp"
-            android:lineSpacingExtra="4sp"
+            android:drawablePadding="@dimen/size_2"
+            android:lineSpacingExtra="@dimen/font_14"
             android:text="Verified"
             android:textColor="#85c440"
-            android:textSize="12sp" />
+            android:textSize="@dimen/font_12" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@id/tvAction"
             android:layout_width="match_parent"
-            android:layout_height="28dp"
+            android:layout_height="@dimen/size_28"
             android:layout_gravity="center"
-            android:layout_marginTop="6dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="@dimen/size_6"
+            android:layout_marginBottom="@dimen/size_8"
             android:background="@drawable/btn_white_outline_light_blue_1_corners_4"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:includeFontPadding="false"
             android:singleLine="true"
             android:textColor="@color/text_color_light_blue"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toBottomOf="@id/btnAction"
             app:layout_constraintEnd_toEndOf="@id/btnAction"
             app:layout_constraintStart_toStartOf="@id/btnAction"

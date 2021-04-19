@@ -10,14 +10,14 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/img_topic"
         android:layout_width="match_parent"
-        android:layout_height="108dp"
+        android:layout_height="@dimen/size_108"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_name_topic"
         android:layout_width="match_parent"
-        android:layout_height="37dp"
+        android:layout_height="@dimen/size_37"
         android:background="@drawable/bg_gradient_sugget_topic"
         android:ellipsize="end"
         android:fontFamily="@font/barlow_semi_bold"
@@ -27,7 +27,7 @@
         android:paddingLeft="@dimen/size_7"
         android:paddingRight="@dimen/size_7"
         android:textColor="@color/white"
-        android:textSize="12sp"
+        android:textSize="@dimen/font_12"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +46,7 @@
     <ImageView
         android:id="@+id/bg_selected"
         android:layout_width="match_parent"
-        android:layout_height="108dp"
+        android:layout_height="@dimen/size_108"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/img_topic"
         app:layout_constraintEnd_toEndOf="@+id/img_topic"

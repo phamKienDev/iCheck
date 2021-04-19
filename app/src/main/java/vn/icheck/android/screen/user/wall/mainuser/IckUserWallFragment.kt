@@ -10,7 +10,6 @@ import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,7 +36,6 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.component.post.IPostListener
 import vn.icheck.android.constant.*
 import vn.icheck.android.databinding.FragmentUserWallBinding
-import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.model.ApiErrorResponse
 import vn.icheck.android.model.ApiSuccessResponse
 import vn.icheck.android.model.posts.PostViewModel
@@ -277,7 +275,7 @@ class IckUserWallFragment : Fragment(), IPostListener {
             EventBus.getDefault().register(this)
         }
         binding.root.isRefreshing = true
-        binding.root.setColorSchemeColors(ContextCompat.getColor(requireContext(), R.color.blue), ContextCompat.getColor(requireContext(), R.color.blue), ContextCompat.getColor(requireContext(), R.color.lightBlue))
+        binding.root.setColorSchemeColors(ContextCompat.getColor(requireContext(), R.color.colorSecondary), ContextCompat.getColor(requireContext(), R.color.colorSecondary), ContextCompat.getColor(requireContext(), R.color.colorPrimary))
         binding.root.setOnRefreshListener {
             binding.root.isRefreshing = true
             ickUserWallViewModel.reachedEnd = false

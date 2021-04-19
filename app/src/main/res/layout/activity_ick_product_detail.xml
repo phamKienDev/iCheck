@@ -71,7 +71,7 @@
             android:padding="@dimen/size_10"
             android:src="@drawable/ic_back_blue_v2_24px" />
 
-        <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+        <vn.icheck.android.ui.view.TextBarlowSemiBold
             android:id="@id/txtTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -86,8 +86,8 @@
             android:includeFontPadding="false"
             android:singleLine="true"
             android:text="2335432323327"
-            android:textColor="@color/lightBlue"
-            android:textSize="18sp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/font_18"
             tools:text="Tiêu đề" />
 
         <androidx.appcompat.widget.AppCompatImageButton
@@ -155,43 +155,43 @@
             android:id="@+id/imgError"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="@dimen/size_60"
             tools:src="@drawable/ic_holder_product_notfound" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTitleError"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="@dimen/size_16"
+            android:layout_marginTop="@dimen/size_30"
+            android:layout_marginEnd="@dimen/size_16"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:textColor="#212121"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             tools:text="Thông tin sản phẩm chưa được cập nhật" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvDescError"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="@dimen/size_16"
+            android:layout_marginTop="@dimen/size_10"
+            android:layout_marginEnd="@dimen/size_16"
             android:fontFamily="@font/barlow_medium"
             android:gravity="center"
-            android:lineSpacingExtra="6sp"
+            android:lineSpacingExtra="@dimen/font_6"
             android:textColor="#757575"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             tools:text="Chúng tôi không thể giúp bạn kiểm tra thông tin nguồn gốc xuất xứ của sản phầm này." />
 
         <LinearLayout
             android:id="@+id/layoutNotFound"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="12dp"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_40"
+            android:layout_marginEnd="@dimen/size_12"
             android:orientation="horizontal"
             android:visibility="gone"
             tools:visibility="visible">
@@ -199,23 +199,23 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/btn_contact_not_found"
                 android:layout_width="0dp"
-                android:layout_height="36dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginRight="5dp"
+                android:layout_height="@dimen/size_36"
+                android:layout_marginEnd="@dimen/size_5"
+                android:layout_marginRight="@dimen/size_5"
                 android:layout_weight="1"
                 android:background="@drawable/bg_corners_4_light_blue_no_solid"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:text="Liên hệ iCheck"
                 android:textColor="#057dda"
-                android:textSize="16sp" />
+                android:textSize="@dimen/font_16" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/btn_contribute"
                 android:layout_width="0dp"
-                android:layout_height="36dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
+                android:layout_height="@dimen/size_36"
+                android:layout_marginStart="@dimen/size_5"
+                android:layout_marginLeft="@dimen/size_5"
                 android:layout_weight="1"
                 android:background="@drawable/bg_corners_4_light_blue_solid"
                 android:fontFamily="@font/barlow_semi_bold"
@@ -223,68 +223,68 @@
                 android:includeFontPadding="false"
                 android:text="Đóng góp thông tin"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="@dimen/font_16" />
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/btn_lien_he"
             android:layout_width="match_parent"
-            android:layout_height="36dp"
-            android:layout_marginStart="38dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="38dp"
+            android:layout_height="@dimen/size_36"
+            android:layout_marginStart="@dimen/size_38"
+            android:layout_marginTop="@dimen/size_40"
+            android:layout_marginEnd="@dimen/size_38"
             android:background="@drawable/bg_corners_4_light_blue_no_solid"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:text="Liên hệ iCheck"
             android:textColor="#057dda"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             android:visibility="gone" />
 
         <LinearLayout
             android:id="@+id/layoutHideFromBusiness"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="12dp"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_40"
+            android:layout_marginEnd="@dimen/size_12"
             android:orientation="horizontal"
             android:visibility="gone">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/btn_contact_icheck"
                 android:layout_width="0dp"
-                android:layout_height="36dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginRight="5dp"
+                android:layout_height="@dimen/size_36"
+                android:layout_marginEnd="@dimen/size_5"
+                android:layout_marginRight="@dimen/size_5"
                 android:layout_weight="1"
                 android:background="@drawable/bg_corners_4_light_blue_no_solid"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:text="Liên hệ iCheck"
                 android:textColor="#057dda"
-                android:textSize="16sp" />
+                android:textSize="@dimen/font_16" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/btn_contact_dn"
                 android:layout_width="0dp"
-                android:layout_height="36dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
+                android:layout_height="@dimen/size_36"
+                android:layout_marginStart="@dimen/size_5"
+                android:layout_marginLeft="@dimen/size_5"
                 android:layout_weight="1"
                 android:background="@drawable/bg_corners_4_light_blue_solid"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:text="Liên hệ doanh nghiệp"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="@dimen/font_16" />
         </LinearLayout>
     </LinearLayout>
 
     <View
         android:id="@id/view"
         android:layout_width="match_parent"
-        android:layout_height="5dp"
+        android:layout_height="@dimen/size_5"
         android:background="@drawable/shadow_top"
         app:layout_constraintBottom_toTopOf="@id/layoutBottom"
         app:layout_constraintEnd_toEndOf="@id/layoutBottom"
@@ -296,7 +296,7 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:orientation="horizontal"
-        android:paddingBottom="25dp"
+        android:paddingBottom="@dimen/size_25"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -304,13 +304,13 @@
 
         <LinearLayout
             android:id="@id/btnRate"
-            android:layout_width="142dp"
-            android:layout_height="42dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
+            android:layout_width="@dimen/size_142"
+            android:layout_height="@dimen/size_42"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginLeft="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_5"
+            android:layout_marginEnd="@dimen/size_5"
+            android:layout_marginRight="@dimen/size_5"
             android:background="@drawable/bg_btn_contact"
             android:gravity="center">
 
@@ -319,21 +319,21 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_star_white_24px"
                 android:drawableLeft="@drawable/ic_star_white_24px"
-                android:drawablePadding="7dp"
+                android:drawablePadding="@dimen/size_7"
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center"
                 android:text="Đánh giá"
                 android:textColor="@color/white"
-                android:textSize="12sp" />
+                android:textSize="@dimen/font_12" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@id/btnBuy"
             android:layout_width="match_parent"
-            android:layout_height="42dp"
+            android:layout_height="@dimen/size_42"
             android:layout_marginStart="@dimen/size_5"
             android:layout_marginLeft="@dimen/size_5"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/size_5"
             android:layout_marginEnd="@dimen/size_12"
             android:layout_marginRight="@dimen/size_12"
             android:background="@drawable/background_button_enable"
@@ -348,7 +348,7 @@
                 android:text="@string/dang_ky_mua_hang_chinh_hang"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textSize="@dimen/font_14" />
         </LinearLayout>
     </LinearLayout>
 
@@ -363,21 +363,21 @@
             android:id="@+id/img_polygon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="18dp"
-            android:layout_marginRight="18dp"
-            android:elevation="6dp"
+            android:layout_marginTop="@dimen/size_32"
+            android:layout_marginEnd="@dimen/size_18"
+            android:layout_marginRight="@dimen/size_18"
+            android:elevation="@dimen/size_6"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_polygon" />
 
         <LinearLayout
-            android:layout_width="160dp"
+            android:layout_width="@dimen/size_160"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="6dp"
-            android:layout_marginRight="6dp"
+            android:layout_marginEnd="@dimen/size_6"
+            android:layout_marginRight="@dimen/size_6"
             android:background="@drawable/bg_more_group"
-            android:elevation="6dp"
+            android:elevation="@dimen/size_6"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/img_polygon">
@@ -388,7 +388,7 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_home_white_24px"
                 android:drawableLeft="@drawable/ic_home_white_24px"
-                android:drawablePadding="8dp"
+                android:drawablePadding="@dimen/size_8"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center_vertical"
                 android:includeFontPadding="false"
@@ -407,7 +407,7 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_product_share_white_24px"
                 android:drawableLeft="@drawable/ic_product_share_white_24px"
-                android:drawablePadding="8dp"
+                android:drawablePadding="@dimen/size_8"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center_vertical"
                 android:includeFontPadding="false"
@@ -426,7 +426,7 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_product_report_white_24px"
                 android:drawableLeft="@drawable/ic_product_report_white_24px"
-                android:drawablePadding="8dp"
+                android:drawablePadding="@dimen/size_8"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center_vertical"
                 android:includeFontPadding="false"

@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_44"
         android:background="@color/white"
-        android:elevation="4dp">
+        android:elevation="@dimen/size_4">
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@id/imgBack"
@@ -29,8 +29,8 @@
             android:gravity="center"
             android:singleLine="true"
             android:text="Chương trình ưu đãi"
-            android:textColor="@color/lightBlue"
-            android:textSize="18sp" />
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/font_18" />
     </FrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView

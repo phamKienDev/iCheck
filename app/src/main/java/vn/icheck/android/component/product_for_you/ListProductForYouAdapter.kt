@@ -135,8 +135,8 @@ class ListProductForYouAdapter(val listData: MutableList<ICProductForYouMedia>) 
                 }
                 else -> {
                     itemView.tv_rating.text = itemView.context.getString(R.string.x_tren_ca_tuyet_voi)
-                    itemView.tv_rating.setTextColor(ContextCompat.getColor(itemView.context, R.color.lightBlue))
-                    itemView.tv_rating.background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(itemView.context, R.color.lightBlue), SizeHelper.size14.toFloat())
+                    itemView.tv_rating.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorPrimary))
+                    itemView.tv_rating.background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(itemView.context, R.color.colorPrimary), SizeHelper.size14.toFloat())
                 }
             }
         }

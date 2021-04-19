@@ -54,7 +54,7 @@ class InviteFriendFollowPageActivity : BaseActivityMVVM(), InviteFriendFollowPag
     }
 
     private fun initSwipeLayout() {
-        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.blue), ContextCompat.getColor(this, R.color.blue), ContextCompat.getColor(this, R.color.lightBlue))
+        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
         swipeLayout.setOnRefreshListener {
             findListUser(edtSearch.text.toString())
         }

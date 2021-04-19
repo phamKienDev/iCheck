@@ -3,32 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="96dp"
+    android:layout_height="@dimen/size_96"
     android:background="@color/white"
-    android:elevation="4dp">
+    android:elevation="@dimen/size_4">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imgCloseDrawer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingStart="12dp"
-        android:paddingTop="10dp"
-        android:paddingEnd="12dp"
-        android:paddingBottom="10dp"
+        android:paddingStart="@dimen/size_12"
+        android:paddingTop="@dimen/size_10"
+        android:paddingEnd="@dimen/size_12"
+        android:paddingBottom="@dimen/size_10"
         android:src="@drawable/ic_cancel_blue_24px"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ui.view.TextHeader
         android:id="@+id/appCompatTextView44"
         tools:layout_editor_absoluteX="329dp"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center"
         android:text="Bộ lọc"
         android:textColor="#057dda"
-        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/imgCloseDrawer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,10 +39,10 @@
         android:layout_height="0dp"
         android:fontFamily="@font/barlow_regular"
         android:gravity="center"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
+        android:paddingStart="@dimen/size_12"
+        android:paddingEnd="@dimen/size_12"
         android:textColor="#757575"
-        android:textSize="18sp"
+        android:textSize="@dimen/font_18"
         app:layout_constraintBottom_toBottomOf="@id/appCompatTextView44"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/appCompatTextView44" />

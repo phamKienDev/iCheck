@@ -66,7 +66,7 @@ class MyFollowPageActivity : BaseActivityMVVM(), IRecyclerViewCallback {
 
         DialogHelper.showLoading(this)
 
-        swipe_layout.setColorSchemeColors(ContextCompat.getColor(this, R.color.blue), ContextCompat.getColor(this, R.color.blue), ContextCompat.getColor(this, R.color.lightBlue))
+        swipe_layout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
         swipe_layout.setOnRefreshListener {
             getData()
         }

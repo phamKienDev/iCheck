@@ -12,8 +12,8 @@
         android:layout_height="match_parent" />
 
     <FrameLayout
-        android:layout_width="54dp"
-        android:layout_height="54dp"
+        android:layout_width="@dimen/size_54"
+        android:layout_height="@dimen/size_54"
         android:layout_marginTop="@dimen/size_24"
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
@@ -37,7 +37,7 @@
             android:text="0"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="14sp" />
+            android:textSize="@dimen/font_14" />
 
         <ProgressBar
             android:id="@id/progressBar"

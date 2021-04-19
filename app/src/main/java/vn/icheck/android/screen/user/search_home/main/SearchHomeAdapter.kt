@@ -37,11 +37,11 @@ class SearchHomeAdapter(val callback: IRecyclerViewSearchCallback) : RecyclerVie
         override fun bind(obj: String) {
             if (adapterPosition < listData.size - 1) {
                 itemView.tv_key.text = obj
-                itemView.tv_key.setTextColor(ContextCompat.getColor(itemView.context, R.color.collection_product_name))
+                itemView.tv_key.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorNormalText))
                 itemView.tv_key.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_search_gray_16, 0, 0, 0)
             } else {
                 itemView.tv_key.text = Html.fromHtml(itemView.context.getString(R.string.xem_ket_qua_tim_kiem_cho_x, obj))
-                itemView.tv_key.setTextColor(ContextCompat.getColor(itemView.context, R.color.lightBlue))
+                itemView.tv_key.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorPrimary))
                 itemView.tv_key.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
 

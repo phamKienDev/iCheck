@@ -37,18 +37,18 @@
             android:paddingEnd="@dimen/size_12"
             android:singleLine="true"
             android:textAlignment="center"
-            android:textColor="@color/lightBlue"
-            android:textSize="18sp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/font_18"
             app:fontFamily="@font/barlow_semi_bold"
             android:text="@string/danh_sach_dong_gop_thong_tin" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imgProduct"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/size_30"
+            android:layout_height="@dimen/size_30"
             android:layout_gravity="center"
-            android:layout_marginEnd="12dp"
-            android:layout_marginRight="12dp"
+            android:layout_marginEnd="@dimen/size_12"
+            android:layout_marginRight="@dimen/size_12"
             app:srcCompat="@drawable/error_load_image" />
 
     </LinearLayout>

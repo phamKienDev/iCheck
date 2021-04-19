@@ -3,9 +3,9 @@
     <stroke
         android:width="@dimen/size_1"
         android:color="#D8D8D8"
-        android:dashWidth="10dp"
-        android:dashGap="6dp"/>
-    <padding android:left="7dp" android:top="7dp"
-        android:right="7dp" android:bottom="7dp" />
+        android:dashWidth="@dimen/size_10"
+        android:dashGap="@dimen/size_6"/>
+    <padding android:left="@dimen/size_7" android:top="@dimen/size_7"
+        android:right="@dimen/size_7" android:bottom="@dimen/size_7" />
     <corners android:radius="@dimen/size_10" />
 </shape>

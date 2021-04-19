@@ -36,7 +36,7 @@
             android:fontFamily="sans-serif-medium"
             android:includeFontPadding="false"
             android:textColor="#3c5a99"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal"
             tools:text="J&amp;T Express: 16,500đ" />
     </LinearLayout>
@@ -51,7 +51,7 @@
         android:fontFamily="sans-serif"
         android:includeFontPadding="false"
         android:textColor="#828282"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:textStyle="normal"
         tools:text="Thời gian giao hàng từ 3 - 9 ngày. Phí giao hàng được tính dựa trên tổng khối lượng, kích thước đóng gói sản phẩm bạn đã mua." />
 

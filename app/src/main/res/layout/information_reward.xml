@@ -17,18 +17,18 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_10"
             android:fontFamily="@font/barlow_semi_bold"
-            android:lineSpacingExtra="6sp"
+            android:lineSpacingExtra="@dimen/font_6"
             android:text="Địa chỉ đến lấy quà"
-            android:textColor="@color/blue"
-            android:textSize="14sp" />
+            android:textColor="@color/colorSecondary"
+            android:textSize="@dimen/font_14" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="@dimen/size_12"
             android:layout_marginTop="9.5dp"
             android:background="#d8d8d8" />
 
@@ -36,14 +36,14 @@
             android:id="@+id/tvAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_10"
+            android:layout_marginEnd="@dimen/size_12"
+            android:layout_marginBottom="@dimen/size_10"
             android:fontFamily="@font/barlow_medium"
-            android:lineSpacingExtra="6sp"
+            android:lineSpacingExtra="@dimen/font_6"
             android:textColor="#212121"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             tools:text="Bài viết này sẽ cập nhật mã giảm giá Lotte " />
 
         <View
@@ -61,18 +61,18 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_10"
             android:fontFamily="@font/barlow_semi_bold"
-            android:lineSpacingExtra="6sp"
+            android:lineSpacingExtra="@dimen/font_6"
             android:text="Thông tin quà"
-            android:textColor="@color/blue"
-            android:textSize="14sp" />
+            android:textColor="@color/colorSecondary"
+            android:textSize="@dimen/font_14" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="@dimen/size_12"
             android:layout_marginTop="9.5dp"
             android:background="#d8d8d8" />
 
@@ -80,14 +80,14 @@
             android:id="@+id/tvInformation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_10"
+            android:layout_marginEnd="@dimen/size_12"
+            android:layout_marginBottom="@dimen/size_10"
             android:fontFamily="@font/barlow_medium"
-            android:lineSpacingExtra="6sp"
+            android:lineSpacingExtra="@dimen/font_6"
             android:textColor="#212121"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             tools:text="Bài viết này sẽ cập nhật mã giảm giá Lotte tháng 9/2019 và các chương trình khuyến mãi mới nhất của Lotte. Lưu lại nếu bạn thấy hữu ích, chia sẻ với bạn bè
 Lưu ý: Nếu quà tặng là vật phẩm, iCheck sẽ tiến hành ship hàng đến bạn trong vòng 3 - 9 ngày kể từ khi bạn xác nhận nhận phần quà này.
 Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận thông tin của bạn và thỏa thuận phí vận chuyển quà. Hãy để ý điện thoại để không bỏ lỡ phần quà hấp dẫn nhé.

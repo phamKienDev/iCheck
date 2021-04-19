@@ -5,11 +5,9 @@ package vn.icheck.android.util.kotlin
 import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ValueAnimator
-import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.media.MediaMetadataRetriever
 import android.text.method.PasswordTransformationMethod
-import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatImageButton
@@ -33,7 +31,6 @@ import vn.icheck.android.R
 import vn.icheck.android.callback.LoadImageListener
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ui.RoundedCornersTransformation
-import vn.icheck.android.util.ick.logDebug
 import vn.icheck.android.util.ick.logError
 import java.io.File
 import java.io.FileInputStream
@@ -61,7 +58,7 @@ object WidgetUtils {
             val circularProgress = CircularProgressDrawable(ICheckApplication.getInstance().applicationContext)
             circularProgress.strokeWidth = 5f
             circularProgress.centerRadius = 30f
-            circularProgress.setColorSchemeColors(R.color.lightBlue)
+            circularProgress.setColorSchemeColors(R.color.colorPrimary)
             circularProgress.start()
             return circularProgress
         }

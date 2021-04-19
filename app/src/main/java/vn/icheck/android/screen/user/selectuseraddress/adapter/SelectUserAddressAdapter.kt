@@ -158,7 +158,7 @@ class SelectUserAddressAdapter(val listener: ISelectUserAddressView) : RecyclerV
         override fun bind(obj: ICAddress) {
             if (obj.id == addressID) {
                 itemView.tvChecked.setImageResource(R.drawable.ic_radio_checked_blue_24dp)
-                itemView.tvName.setTextColor(ContextCompat.getColor(itemView.context, R.color.blue))
+                itemView.tvName.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorSecondary))
                 itemView.tvNote.setTextColor(ContextCompat.getColor(itemView.context, R.color.darkGray1))
             } else {
                 itemView.tvChecked.setImageResource(R.drawable.ic_radio_un_checked_gray_24dp)

@@ -64,7 +64,7 @@ class CoinHistoryActivity : BaseActivityMVVM(), ICoinHistoryView {
     }
 
     private fun initSwipelayout() {
-        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.blue), ContextCompat.getColor(this, R.color.lightBlue), ContextCompat.getColor(this, R.color.lightBlue))
+        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary), ContextCompat.getColor(this, R.color.colorPrimary))
 
         swipeLayout.isRefreshing = true
 

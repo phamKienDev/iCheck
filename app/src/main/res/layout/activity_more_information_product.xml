@@ -52,21 +52,21 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
             android:textColor="#828282"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnAgainError"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="40dp"
+            android:layout_marginStart="@dimen/size_40"
+            android:layout_marginTop="@dimen/size_16"
+            android:layout_marginEnd="@dimen/size_40"
             android:background="@drawable/bg_corner_solid_white_strokke_blue"
             android:fontFamily="sans-serif-medium"
             android:text="Thử Lại"
             android:textColor="#3c5a99"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             android:textStyle="normal" />
 
     </LinearLayout>

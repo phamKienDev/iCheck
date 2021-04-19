@@ -15,7 +15,7 @@
     <View
         android:id="@id/divider27"
         android:layout_width="0dp"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/size_1"
         android:background="#D8D8D8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +37,7 @@
             android:layout_height="@dimen/size_50"
             android:drawableStart="@drawable/ic_location_filer_12dp"
             android:drawableLeft="@drawable/ic_location_filer_12dp"
-            android:drawablePadding="8dp"
+            android:drawablePadding="@dimen/size_8"
             android:fontFamily="@font/barlow_medium"
             android:gravity="center_vertical"
             android:includeFontPadding="false"
@@ -45,7 +45,7 @@
             android:paddingEnd="@dimen/size_12"
             android:text="@string/tinh_thanh_pho"
             android:textAlignment="gravity"
-            android:textColor="@color/collection_product_name"
+            android:textColor="@color/colorNormalText"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider27" />
 
@@ -62,7 +62,7 @@
             android:includeFontPadding="false"
             android:maxLines="1"
             android:text="@string/tat_ca"
-            android:textColor="@color/fast_survey_gray" />
+            android:textColor="@color/colorSecondText" />
 
         <ImageView
             android:id="@+id/img_clear_location"
@@ -76,9 +76,9 @@
     <View
         android:id="@id/divider28"
         android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
+        android:layout_height="@dimen/size_1"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginLeft="@dimen/size_12"
         android:background="#D8D8D8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -100,7 +100,7 @@
             android:layout_height="@dimen/size_50"
             android:drawableStart="@drawable/ic_sex_filer_16dp"
             android:drawableLeft="@drawable/ic_sex_filer_16dp"
-            android:drawablePadding="8dp"
+            android:drawablePadding="@dimen/size_8"
             android:fontFamily="@font/barlow_medium"
             android:gravity="center_vertical"
             android:includeFontPadding="false"
@@ -117,12 +117,12 @@
             android:layout_marginEnd="@dimen/size_12"
             android:layout_marginRight="@dimen/size_12"
             android:layout_weight="1"
-            android:drawablePadding="8dp"
+            android:drawablePadding="@dimen/size_8"
             android:fontFamily="@font/barlow_medium"
             android:gravity="right"
             android:includeFontPadding="false"
             android:text="@string/tat_ca"
-            android:textColor="@color/fast_survey_gray" />
+            android:textColor="@color/colorSecondText" />
 
         <ImageView
             android:id="@+id/img_clear_gender"
@@ -137,9 +137,9 @@
     <View
         android:id="@id/divider30"
         android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
+        android:layout_height="@dimen/size_1"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginLeft="@dimen/size_12"
         android:background="#D8D8D8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -147,7 +147,7 @@
 
     <TextView
         android:id="@+id/tv_clear"
-        android:layout_width="120dp"
+        android:layout_width="@dimen/size_120"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_20"
         android:layout_marginEnd="@dimen/size_12"
@@ -159,7 +159,7 @@
         android:paddingBottom="@dimen/size_8"
         android:text="@string/thiet_lap_lai"
         android:textColor="@color/light_blue"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/divider30" />
 

@@ -7,15 +7,15 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="horizontal"
-    android:paddingBottom="12dp">
+    android:paddingBottom="@dimen/size_12">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/one_user"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="@dimen/size_28"
+        android:layout_height="@dimen/size_28"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_12"
+        android:layout_marginEnd="@dimen/size_8"
         android:src="@drawable/user_placeholder"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,20 +28,20 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="12dp"
+            android:layout_marginEnd="@dimen/size_12"
             android:layout_marginBottom="@dimen/size_4"
             android:background="@drawable/bg_gray_corner_10"
-            android:elevation="2dp">
+            android:elevation="@dimen/size_2">
 
             <TextView
                 android:id="@+id/tv_1_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginTop="@dimen/size_8"
+                android:layout_marginEnd="@dimen/size_8"
                 android:includeFontPadding="false"
                 android:textColor="#828282"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="3 ngày trước" />
@@ -50,15 +50,15 @@
                 android:id="@+id/user_1_rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="@dimen/size_8"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tv_1_time"
                 app:srb_drawableEmpty="@drawable/ic_star_outline_16px"
                 app:srb_drawableFilled="@drawable/ic_star_full_16px"
                 app:srb_isIndicator="true"
-                app:srb_starHeight="10dp"
-                app:srb_starPadding="2dp"
-                app:srb_starWidth="10dp"
+                app:srb_starHeight="@dimen/size_10"
+                app:srb_starPadding="@dimen/size_2"
+                app:srb_starWidth="@dimen/size_10"
                 app:srb_stepSize="0.5" />
 
             <TextView
@@ -80,7 +80,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/darkGray1"
-                android:textSize="@dimen/font_size_4"
+                android:textSize="@dimen/font_14"
                 android:includeFontPadding="false"
                 app:layout_constraintEnd_toEndOf="@id/tv_1_time"
                 app:layout_constraintStart_toStartOf="@+id/tv_user_1_name"
@@ -101,8 +101,8 @@
             <View
                 android:id="@+id/view24"
                 android:layout_width="0dp"
-                android:layout_height="5dp"
-                android:layout_marginTop="8dp"
+                android:layout_height="@dimen/size_5"
+                android:layout_marginTop="@dimen/size_8"
                 android:background="@drawable/dotted"
                 android:layerType="software"
                 app:layout_constraintEnd_toEndOf="@id/tv_1_time"
@@ -113,8 +113,8 @@
                 android:id="@+id/tv_1_detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
+                android:paddingTop="@dimen/size_8"
+                android:paddingBottom="@dimen/size_8"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toTopOf="@+id/gv_useful"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -128,8 +128,8 @@
                     android:drawableEnd="@drawable/ic_down_blue_18px"
                     android:fontFamily="sans-serif-medium"
                     android:text="Xem chi tiết đánh giá"
-                    android:textColor="@color/lightBlue"
-                    android:textSize="@dimen/font_size_4" />
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/font_14" />
 
                 <TextView
                     android:id="@+id/coplapse"
@@ -138,8 +138,8 @@
                     android:drawableEnd="@drawable/ic_up_blue_18px"
                     android:fontFamily="sans-serif-medium"
                     android:text="Thu gọn"
-                    android:textColor="@color/lightBlue"
-                    android:textSize="@dimen/font_size_4"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/font_14"
                     android:visibility="gone" />
             </LinearLayout>
 
@@ -163,7 +163,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_gray_bottom_border_10"
                 android:orientation="horizontal"
-                android:paddingTop="4dp"
+                android:paddingTop="@dimen/size_4"
                 android:paddingBottom="@dimen/size_4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"

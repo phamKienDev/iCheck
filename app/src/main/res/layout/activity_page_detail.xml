@@ -46,17 +46,17 @@
                 android:id="@+id/tvPrimary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_marginLeft="62dp"
-                android:layout_marginEnd="11dp"
-                android:layout_marginRight="62dp"
-                android:layout_marginBottom="62dp"
+                android:layout_margin="@dimen/size_10"
+                android:layout_marginLeft="@dimen/size_62"
+                android:layout_marginEnd="@dimen/size_11"
+                android:layout_marginRight="@dimen/size_62"
+                android:layout_marginBottom="@dimen/size_62"
                 android:drawablePadding="@dimen/size_8"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:includeFontPadding="false"
                 android:singleLine="true"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="@dimen/font_16" />
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -68,10 +68,10 @@
             android:background="@drawable/bg_corners_4_light_blue_no_solid"
             android:drawableStart="@drawable/ic_phone_blue_16dp"
             android:drawableLeft="@drawable/ic_phone_blue_16dp"
-            android:paddingStart="23dp"
-            android:paddingLeft="23dp"
-            android:paddingEnd="23dp"
-            android:paddingRight="23dp" />
+            android:paddingStart="@dimen/size_23"
+            android:paddingLeft="@dimen/size_23"
+            android:paddingEnd="@dimen/size_23"
+            android:paddingRight="@dimen/size_23" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imgMenu"
@@ -80,10 +80,10 @@
             android:layout_marginStart="@dimen/size_8"
             android:layout_marginLeft="@dimen/size_8"
             android:background="@drawable/bg_corners_4_light_blue_no_solid"
-            android:paddingStart="23dp"
-            android:paddingLeft="23dp"
-            android:paddingEnd="23dp"
-            android:paddingRight="23dp"
+            android:paddingStart="@dimen/size_23"
+            android:paddingLeft="@dimen/size_23"
+            android:paddingEnd="@dimen/size_23"
+            android:paddingRight="@dimen/size_23"
             android:src="@drawable/ic_3_cham_light_blue_16" />
     </LinearLayout>
 

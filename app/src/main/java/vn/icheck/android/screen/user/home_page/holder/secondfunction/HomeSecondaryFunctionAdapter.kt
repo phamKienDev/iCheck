@@ -68,7 +68,7 @@ class HomeSecondaryFunctionAdapter(private val listData: MutableList<ICThemeFunc
                     if (isUseTheme && !obj.label_color.isNullOrEmpty()) {
                         setTextColor(Color.parseColor(obj.label_color))
                     } else {
-                        setTextColor(ContextCompat.getColor(context, R.color.gray_v2))
+                        setTextColor(ContextCompat.getColor(context, R.color.colorSecondText))
                     }
                 }
 

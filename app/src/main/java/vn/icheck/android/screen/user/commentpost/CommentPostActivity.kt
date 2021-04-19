@@ -229,7 +229,7 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
     }
 
     private fun setUpSwipeLayout() {
-        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.blue), ContextCompat.getColor(this, R.color.lightBlue), ContextCompat.getColor(this, R.color.lightBlue))
+        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary), ContextCompat.getColor(this, R.color.colorPrimary))
         swipeLayout.isNestedScrollingEnabled = false
         swipeLayout.setOnRefreshListener {
             viewModel.getData()

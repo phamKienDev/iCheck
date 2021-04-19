@@ -5,39 +5,37 @@
     android:id="@id/layoutParent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
+    android:layout_marginTop="@dimen/size_10"
     android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/layoutTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/size_10"
         android:orientation="horizontal">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ui.view.TextHeader
             android:id="@id/tvTitle"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="@dimen/size_12"
             android:text="Title"
-            android:textColor="@color/blue"
-            android:textSize="18sp"
-            app:fontFamily="@font/barlow_semi_bold"
-            android:layout_marginLeft="12dp" />
+            android:textColor="@color/colorSecondary"
+            android:layout_marginLeft="@dimen/size_12" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@id/btnMore"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:layout_marginEnd="12dp"
+            android:layout_marginEnd="@dimen/size_12"
             android:text="Xem thêm"
-            android:textColor="@color/blue"
-            android:textSize="14sp"
+            android:textColor="@color/colorSecondary"
+            android:textSize="@dimen/font_14"
             app:fontFamily="@font/barlow_semi_bold"
-            android:layout_marginRight="12dp" />
+            android:layout_marginRight="@dimen/size_12" />
 
     </LinearLayout>
 

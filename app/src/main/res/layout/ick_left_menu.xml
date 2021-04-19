@@ -13,14 +13,13 @@
         <ImageView
             android:id="@+id/background"
             android:layout_width="match_parent"
-            android:layout_height="135dp"
+            android:layout_height="@dimen/size_135"
             android:scaleType="centerCrop"
             android:src="@drawable/left_menu_bg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -34,37 +33,37 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginRight="12dp"
+                android:layout_marginTop="@dimen/size_16"
+                android:layout_marginEnd="@dimen/size_12"
+                android:layout_marginRight="@dimen/size_12"
                 android:orientation="horizontal">
 
                 <LinearLayout
                     android:id="@+id/group_history_topup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="@dimen/size_12"
+                    android:layout_marginLeft="@dimen/size_12"
                     android:layout_weight="1"
                     android:background="@drawable/bg_white_corners_4"
                     android:orientation="vertical">
 
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="26dp"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginTop="12dp"
+                        android:layout_height="@dimen/size_26"
+                        android:layout_marginStart="@dimen/size_12"
+                        android:layout_marginLeft="@dimen/size_12"
+                        android:layout_marginTop="@dimen/size_12"
                         android:src="@drawable/ic_lsnt" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="12dp"
-                        android:layout_marginBottom="12dp"
+                        android:layout_marginStart="@dimen/size_12"
+                        android:layout_marginLeft="@dimen/size_12"
+                        android:layout_marginTop="@dimen/size_8"
+                        android:layout_marginEnd="@dimen/size_12"
+                        android:layout_marginBottom="@dimen/size_12"
                         android:fontFamily="@font/barlow_medium"
                         android:text="Lịch sử nạp thẻ &amp; Dịch vụ"
                         android:textColor="@color/black" />
@@ -74,27 +73,27 @@
                     android:id="@+id/group_favorite_products"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="@dimen/size_12"
+                    android:layout_marginLeft="@dimen/size_12"
                     android:layout_weight="1"
                     android:background="@drawable/bg_white_corners_4"
                     android:orientation="vertical">
 
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="26dp"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginTop="12dp"
+                        android:layout_height="@dimen/size_26"
+                        android:layout_marginStart="@dimen/size_12"
+                        android:layout_marginLeft="@dimen/size_12"
+                        android:layout_marginTop="@dimen/size_12"
                         android:src="@drawable/ic_yeu_thich" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="12dp"
+                        android:layout_marginStart="@dimen/size_12"
+                        android:layout_marginLeft="@dimen/size_12"
+                        android:layout_marginTop="@dimen/size_8"
+                        android:layout_marginEnd="@dimen/size_12"
                         android:fontFamily="@font/barlow_medium"
                         android:gravity="center_vertical"
                         android:text="Sản phẩm yêu thích"
@@ -103,12 +102,12 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginLeft="12dp"
-                        android:drawablePadding="4dp"
+                        android:layout_marginStart="@dimen/size_12"
+                        android:layout_marginLeft="@dimen/size_12"
+                        android:drawablePadding="@dimen/size_4"
                         android:fontFamily="@font/barlow_medium"
                         android:textColor="#757575"
-                        android:textSize="12sp"
+                        android:textSize="@dimen/font_12"
                         android:visibility="gone"
                         tools:text="4 sản phẩm" />
                 </LinearLayout>
@@ -119,36 +118,35 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginRight="12dp"
+                android:layout_marginTop="@dimen/size_12"
+                android:layout_marginEnd="@dimen/size_12"
+                android:layout_marginRight="@dimen/size_12"
                 android:orientation="horizontal">
 
                 <LinearLayout
                     android:id="@+id/btn_icheck_xu"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="@dimen/size_12"
+                    android:layout_marginLeft="@dimen/size_12"
                     android:layout_weight="1"
                     android:background="@drawable/bg_white_corners_4"
                     android:orientation="vertical">
 
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="26dp"
-                        android:layout_margin="12dp"
+                        android:layout_height="@dimen/size_26"
+                        android:layout_margin="@dimen/size_12"
                         app:srcCompat="@drawable/ic_leftmenu_xu_26dp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginEnd="12dp"
-                        android:layout_marginBottom="12dp"
+                        android:layout_marginStart="@dimen/size_12"
+                        android:layout_marginLeft="@dimen/size_12"
+                        android:layout_marginEnd="@dimen/size_12"
+                        android:layout_marginBottom="@dimen/size_12"
                         android:fontFamily="@font/barlow_medium"
-                        android:text="iCheck Xu"
                         android:textColor="@color/black" />
                 </LinearLayout>
 
@@ -156,25 +154,24 @@
                     android:id="@+id/btn_rank_user"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="@dimen/size_12"
+                    android:layout_marginLeft="@dimen/size_12"
                     android:layout_weight="1"
                     android:background="@drawable/bg_white_corners_4"
                     android:orientation="vertical">
 
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="26dp"
-                        android:layout_margin="12dp"
+                        android:layout_height="@dimen/size_26"
+                        android:layout_margin="@dimen/size_12"
                         app:srcCompat="@drawable/ic_leftmenu_standard_26dp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginEnd="12dp"
-                        android:layout_marginBottom="12dp"
+                        android:layout_marginStart="@dimen/size_12"
+                        android:layout_marginEnd="@dimen/size_12"
+                        android:layout_marginBottom="@dimen/size_12"
                         android:fontFamily="@font/barlow_medium"
                         android:text="Hạng thành viên"
                         android:textColor="@color/black" />
@@ -184,36 +181,35 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginRight="12dp"
+                android:layout_marginTop="@dimen/size_12"
+                android:layout_marginEnd="@dimen/size_12"
+                android:layout_marginRight="@dimen/size_12"
                 android:orientation="horizontal">
 
                 <LinearLayout
                     android:id="@+id/btn_manage_page"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="@dimen/size_12"
+                    android:layout_marginLeft="@dimen/size_12"
                     android:layout_weight="1"
                     android:background="@drawable/bg_white_corners_4"
                     android:orientation="vertical">
 
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="26dp"
-                        android:layout_margin="12dp"
+                        android:layout_height="@dimen/size_26"
+                        android:layout_margin="@dimen/size_12"
                         android:src="@drawable/ic_qlt" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginEnd="12dp"
-                        android:layout_marginBottom="12dp"
+                        android:layout_marginStart="@dimen/size_12"
+                        android:layout_marginLeft="@dimen/size_12"
+                        android:layout_marginEnd="@dimen/size_12"
+                        android:layout_marginBottom="@dimen/size_12"
                         android:fontFamily="@font/barlow_medium"
-                        android:text="Quản lý trang"
                         android:textColor="@color/black" />
                 </LinearLayout>
 
@@ -221,27 +217,26 @@
                     android:id="@+id/btnCreateQr"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="@dimen/size_12"
+                    android:layout_marginLeft="@dimen/size_12"
                     android:layout_weight="1"
                     android:background="@drawable/bg_white_corners_4"
                     android:orientation="vertical">
 
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="26dp"
-                        android:layout_margin="12dp"
+                        android:layout_height="@dimen/size_26"
+                        android:layout_margin="@dimen/size_12"
                         android:src="@drawable/ic_create_qr" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginEnd="12dp"
-                        android:layout_marginBottom="12dp"
+                        android:layout_marginStart="@dimen/size_12"
+                        android:layout_marginLeft="@dimen/size_12"
+                        android:layout_marginEnd="@dimen/size_12"
+                        android:layout_marginBottom="@dimen/size_12"
                         android:fontFamily="@font/barlow_medium"
-                        android:text="Tạo QR Code"
                         android:textColor="@color/black" />
                 </LinearLayout>
             </LinearLayout>
@@ -249,17 +244,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginRight="12dp"
+                android:layout_marginTop="@dimen/size_12"
+                android:layout_marginEnd="@dimen/size_12"
+                android:layout_marginRight="@dimen/size_12"
                 android:orientation="horizontal"
                 android:weightSum="2">
 
                 <!--                <LinearLayout-->
                 <!--                    android:layout_width="match_parent"-->
                 <!--                    android:layout_height="match_parent"-->
-                <!--                    android:layout_marginStart="12dp"-->
-                <!--                    android:layout_marginLeft="12dp"-->
+                <!--                    android:layout_marginStart="@dimen/size_12"-->
+                <!--                    android:layout_marginLeft="@dimen/size_12"-->
                 <!--                    android:layout_weight="1"-->
                 <!--                    android:visibility="gone"-->
                 <!--                    android:background="@drawable/bg_white_corners_4"-->
@@ -268,46 +263,44 @@
                 <!--                    <ImageView-->
                 <!--                        android:layout_width="wrap_content"-->
                 <!--                        android:layout_height="wrap_content"-->
-                <!--                        android:layout_margin="12dp"-->
+                <!--                        android:layout_margin="@dimen/size_12"-->
                 <!--                        android:src="@drawable/ic_tltk" />-->
 
                 <!--                    <TextView-->
                 <!--                        android:layout_width="match_parent"-->
                 <!--                        android:layout_height="match_parent"-->
                 <!--                        android:fontFamily="@font/barlow_medium"-->
-                <!--                        android:layout_marginStart="12dp"-->
-                <!--                        android:layout_marginBottom="12dp"-->
+                <!--                        android:layout_marginStart="@dimen/size_12"-->
+                <!--                        android:layout_marginBottom="@dimen/size_12"-->
                 <!--                        android:text="Thiết lập tài khoản"-->
                 <!--                        android:textColor="@color/black"-->
-                <!--                        android:layout_marginLeft="12dp" />-->
+                <!--                        android:layout_marginLeft="@dimen/size_12" />-->
                 <!--                </LinearLayout>-->
 
                 <LinearLayout
                     android:id="@+id/layoutSetting"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginEnd="12dp"
+                    android:layout_marginStart="@dimen/size_12"
+                    android:layout_marginLeft="@dimen/size_12"
+                    android:layout_marginEnd="@dimen/size_12"
                     android:layout_weight="1"
                     android:background="@drawable/bg_white_corners_4"
                     android:orientation="vertical">
 
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="26dp"
-                        android:layout_margin="12dp"
+                        android:layout_height="@dimen/size_26"
+                        android:layout_margin="@dimen/size_12"
                         android:src="@drawable/ic_setting_left" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginEnd="12dp"
-                        android:layout_marginBottom="12dp"
+                        android:layout_marginStart="@dimen/size_12"
+                        android:layout_marginEnd="@dimen/size_12"
+                        android:layout_marginBottom="@dimen/size_12"
                         android:fontFamily="@font/barlow_medium"
-                        android:text="Cấu hình"
                         android:textColor="@color/black" />
                 </LinearLayout>
             </LinearLayout>
@@ -316,10 +309,10 @@
                 android:id="@+id/help_root"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginBottom="12dp"
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginTop="@dimen/size_12"
+                android:layout_marginEnd="@dimen/size_12"
+                android:layout_marginBottom="@dimen/size_12"
                 android:background="@drawable/bg_white_corners_4"
                 android:orientation="vertical"
                 tools:visibility="visible">
@@ -332,18 +325,18 @@
                     android:drawableLeft="@drawable/ic_help_left_menu"
                     android:drawableEnd="@drawable/ic_arrow_down_gray_24dp"
                     android:drawableRight="@drawable/ic_arrow_down_gray_24dp"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="@dimen/size_10"
                     android:fontFamily="@font/barlow_medium"
                     android:gravity="center_vertical"
-                    android:padding="16dp"
+                    android:padding="@dimen/size_16"
                     android:text="Trợ giúp và hỗ trợ"
                     android:textColor="@color/black" />
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
+                    android:layout_height="@dimen/size_1"
+                    android:layout_marginStart="@dimen/size_12"
+                    android:layout_marginLeft="@dimen/size_12"
                     android:background="?android:attr/listDivider"
                     android:visibility="gone"
                     tools:visibility="visible" />
@@ -352,10 +345,10 @@
                     android:id="@+id/tv_hdsd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="@dimen/size_10"
                     android:fontFamily="@font/barlow_medium"
                     android:gravity="center_vertical"
-                    android:padding="16dp"
+                    android:padding="@dimen/size_16"
                     android:text="Hướng dẫn sử dụng"
                     android:textColor="#757575"
                     android:visibility="gone"
@@ -363,9 +356,9 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
+                    android:layout_height="@dimen/size_1"
+                    android:layout_marginStart="@dimen/size_12"
+                    android:layout_marginLeft="@dimen/size_12"
                     android:background="?android:attr/listDivider"
                     android:visibility="gone"
                     tools:visibility="visible" />
@@ -374,10 +367,10 @@
                     android:id="@+id/tv_dksd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="@dimen/size_10"
                     android:fontFamily="@font/barlow_medium"
                     android:gravity="center_vertical"
-                    android:padding="16dp"
+                    android:padding="@dimen/size_16"
                     android:text="Điều khoản sử dụng"
                     android:textColor="#757575"
                     android:visibility="gone"
@@ -385,9 +378,9 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
+                    android:layout_height="@dimen/size_1"
+                    android:layout_marginStart="@dimen/size_12"
+                    android:layout_marginLeft="@dimen/size_12"
                     android:background="?android:attr/listDivider"
                     android:visibility="gone"
                     tools:visibility="visible" />
@@ -396,10 +389,10 @@
                     android:id="@+id/tv_chtg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="@dimen/size_10"
                     android:fontFamily="@font/barlow_medium"
                     android:gravity="center_vertical"
-                    android:padding="16dp"
+                    android:padding="@dimen/size_16"
                     android:text="Câu hỏi thường gặp"
                     android:textColor="#757575"
                     android:visibility="gone"
@@ -407,9 +400,9 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
+                    android:layout_height="@dimen/size_1"
+                    android:layout_marginStart="@dimen/size_12"
+                    android:layout_marginLeft="@dimen/size_12"
                     android:background="?android:attr/listDivider"
                     android:visibility="gone"
                     tools:visibility="visible" />
@@ -418,20 +411,19 @@
                     android:id="@+id/tv_lhic"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="@dimen/size_10"
                     android:fontFamily="@font/barlow_medium"
                     android:gravity="center_vertical"
-                    android:padding="16dp"
-                    android:text="Liên hệ và hỗ trợ"
+                    android:padding="@dimen/size_16"
                     android:textColor="#757575"
                     android:visibility="gone"
                     tools:visibility="visible" />
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
+                    android:layout_height="@dimen/size_1"
+                    android:layout_marginStart="@dimen/size_12"
+                    android:layout_marginLeft="@dimen/size_12"
                     android:background="?android:attr/listDivider"
                     android:visibility="gone"
                     tools:visibility="visible" />
@@ -440,10 +432,10 @@
                     android:id="@+id/tv_ttud"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="@dimen/size_10"
                     android:fontFamily="@font/barlow_medium"
                     android:gravity="center_vertical"
-                    android:padding="16dp"
+                    android:padding="@dimen/size_16"
                     android:text="Thông tin ứng dụng"
                     android:textColor="#757575"
                     android:visibility="gone"
@@ -456,17 +448,17 @@
                 android:id="@+id/tv_logout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginBottom="30dp"
+                android:layout_marginTop="@dimen/size_12"
+                android:layout_marginEnd="@dimen/size_12"
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginBottom="@dimen/size_30"
                 android:background="@drawable/bg_white_corners_4"
                 android:drawableStart="@drawable/ic_logout_red"
                 android:drawableLeft="@drawable/ic_logout_red"
-                android:drawablePadding="10dp"
+                android:drawablePadding="@dimen/size_10"
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center_vertical"
-                android:padding="16dp"
+                android:padding="@dimen/size_16"
                 android:text="Đăng xuất"
                 android:textColor="@color/black" />
 
@@ -485,7 +477,7 @@
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="@dimen/size_100"
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
                 android:src="@drawable/top_left_menu"
@@ -497,9 +489,9 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imgAvatar"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_marginTop="70dp"
+                android:layout_width="@dimen/size_80"
+                android:layout_height="@dimen/size_80"
+                android:layout_marginTop="@dimen/size_70"
                 android:src="@drawable/ic_avatar_default_84px"
                 app:civ_circle_background_color="@android:color/white"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -508,18 +500,18 @@
 
             <ImageView
                 android:id="@+id/img_rank_user"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_marginStart="48dp"
-                android:layout_marginLeft="48dp"
-                android:layout_marginBottom="65dp"
-                android:elevation="4dp"
+                android:layout_width="@dimen/size_36"
+                android:layout_height="@dimen/size_36"
+                android:layout_marginStart="@dimen/size_48"
+                android:layout_marginLeft="@dimen/size_48"
+                android:layout_marginBottom="@dimen/size_65"
+                android:elevation="@dimen/size_4"
                 android:scaleType="fitXY"
                 app:layout_constraintBottom_toBottomOf="@+id/imgAvatar"
                 app:layout_constraintStart_toStartOf="@+id/imgAvatar"
                 app:srcCompat="@drawable/ic_leftmenu_avatar_standard_36dp" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ui.view.TextTitle
                 android:id="@+id/tv_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -528,7 +520,6 @@
                 android:gravity="center"
                 android:textAlignment="gravity"
                 android:textColor="#3C5A99"
-                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imgAvatar"
@@ -551,12 +542,12 @@
             <View
                 android:id="@+id/div_1"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginRight="12dp"
+                android:layout_height="@dimen/size_1"
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginLeft="@dimen/size_12"
+                android:layout_marginTop="@dimen/size_12"
+                android:layout_marginEnd="@dimen/size_12"
+                android:layout_marginRight="@dimen/size_12"
                 android:background="#D8D8D8"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -574,14 +565,14 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_marginStart="@dimen/size_12"
+                    android:layout_marginLeft="@dimen/size_12"
+                    android:layout_marginTop="@dimen/size_12"
+                    android:layout_marginBottom="@dimen/size_15"
                     android:layout_weight="1"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="@dimen/size_10"
                     android:fontFamily="@font/barlow_medium"
-                    android:paddingTop="6dp"
+                    android:paddingTop="@dimen/size_6"
                     android:text="Đơn mua"
                     android:textColor="#212121"
                     app:drawableStartCompat="@drawable/ic_cart_red" />
@@ -589,14 +580,14 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="12dp"
-                    android:layout_marginRight="12dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="@dimen/size_12"
+                    android:layout_marginEnd="@dimen/size_12"
+                    android:layout_marginRight="@dimen/size_12"
+                    android:layout_marginBottom="@dimen/size_15"
                     android:layout_weight="1"
                     android:fontFamily="@font/barlow_medium"
                     android:gravity="end"
-                    android:paddingTop="6dp"
+                    android:paddingTop="@dimen/size_6"
                     android:text="Lịch sử mua hàng"
                     app:drawableEndCompat="@drawable/ic_arrow_right_gray_24dp" />
             </LinearLayout>

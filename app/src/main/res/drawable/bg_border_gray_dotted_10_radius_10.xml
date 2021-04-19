@@ -3,7 +3,7 @@
     <stroke
         android:width="@dimen/size_1"
         android:color="#D8D8D8"
-        android:dashWidth="10dp"
-        android:dashGap="6dp"/>
+        android:dashWidth="@dimen/size_10"
+        android:dashGap="@dimen/size_6"/>
     <corners android:radius="@dimen/size_10" />
 </shape>

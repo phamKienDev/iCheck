@@ -23,15 +23,15 @@
             android:id="@+id/layoutUnfollow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="4dp">
+            android:layout_marginStart="@dimen/size_4"
+            android:layout_marginTop="@dimen/size_20"
+            android:layout_marginEnd="@dimen/size_4">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@id/imgFollow"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_margin="8dp"
+                android:layout_width="@dimen/size_40"
+                android:layout_height="@dimen/size_40"
+                android:layout_margin="@dimen/size_8"
                 android:src="@drawable/ic_unfollow_40px"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -40,11 +40,11 @@
                 android:id="@id/tvFollow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="@dimen/size_10"
+                android:layout_marginLeft="@dimen/size_10"
                 android:fontFamily="@font/barlow_medium"
                 android:textColor="#212121"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 app:layout_constraintStart_toEndOf="@id/imgFollow"
                 app:layout_constraintTop_toTopOf="@id/imgFollow"
                 tools:text="Bỏ theo dõi" />
@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/barlow_medium"
                 android:textColor="#757575"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -67,15 +67,15 @@
             android:id="@+id/layoutStateNotification"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="4dp">
+            android:layout_marginStart="@dimen/size_4"
+            android:layout_marginTop="@dimen/size_16"
+            android:layout_marginEnd="@dimen/size_4">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@id/imgNotification"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_margin="8dp"
+                android:layout_width="@dimen/size_40"
+                android:layout_height="@dimen/size_40"
+                android:layout_margin="@dimen/size_8"
                 android:src="@drawable/ic_turn_on_notification_40px"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -84,11 +84,11 @@
                 android:id="@+id/tv_notify"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="@dimen/size_10"
+                android:layout_marginLeft="@dimen/size_10"
                 android:fontFamily="@font/barlow_medium"
                 android:textColor="#212121"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 app:layout_constraintStart_toEndOf="@id/imgNotification"
                 app:layout_constraintTop_toTopOf="@id/imgNotification"
                 tools:text="Bật thông báo cho Trang này" />
@@ -99,7 +99,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/barlow_medium"
                 android:textColor="#757575"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -111,16 +111,16 @@
             android:id="@+id/layoutReport"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginBottom="30dp">
+            android:layout_marginStart="@dimen/size_4"
+            android:layout_marginTop="@dimen/size_16"
+            android:layout_marginEnd="@dimen/size_4"
+            android:layout_marginBottom="@dimen/size_30">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imgReport"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_margin="8dp"
+                android:layout_width="@dimen/size_40"
+                android:layout_height="@dimen/size_40"
+                android:layout_margin="@dimen/size_8"
                 android:src="@drawable/ic_report_40px"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -129,12 +129,12 @@
                 android:id="@+id/tv_report"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="@dimen/size_10"
+                android:layout_marginLeft="@dimen/size_10"
                 android:fontFamily="@font/barlow_medium"
                 android:text="Báo cáo Trang này"
                 android:textColor="#212121"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 app:layout_constraintStart_toEndOf="@id/imgReport"
                 app:layout_constraintTop_toTopOf="@id/imgReport" />
 
@@ -144,7 +144,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:text="Bạn nhận thấy trang này mang nội dung không hữu ích? Hãy cho chúng tôi biết."
                 android:textColor="#757575"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

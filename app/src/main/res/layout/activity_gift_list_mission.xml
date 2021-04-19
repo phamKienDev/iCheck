@@ -24,8 +24,8 @@
             android:gravity="center"
             android:includeFontPadding="false"
             android:text="@string/thu_thach_nhan_them_luot_mo_qua"
-            android:textColor="@color/lightBlue"
-            android:textSize="18sp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/font_18"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageButton
@@ -71,7 +71,7 @@
                 android:includeFontPadding="false"
                 android:text="@string/that_tuyet_voi"
                 android:textColor="#057dda"
-                android:textSize="18sp" />
+                android:textSize="@dimen/font_18" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
@@ -82,7 +82,7 @@
                 android:lineSpacingExtra="@dimen/size_4"
                 android:text="@string/gift_list_mission_success_message"
                 android:textColor="#757575"
-                android:textSize="14sp" />
+                android:textSize="@dimen/font_14" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@id/btnAction"
@@ -98,7 +98,7 @@
                 android:includeFontPadding="false"
                 android:text="Xem quà của tôi"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="@dimen/font_16" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -115,14 +115,14 @@
         <View
             android:id="@+id/viewHide"
             android:layout_width="match_parent"
-            android:layout_height="90dp"
+            android:layout_height="@dimen/size_90"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@id/layoutContent"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="90dp"
+            android:layout_marginTop="@dimen/size_90"
             android:background="@drawable/bg_white_corners_top_16"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -136,8 +136,8 @@
                 android:gravity="center"
                 android:includeFontPadding="false"
                 android:text="@string/thu_thach_nhan_them_luot_mo_qua"
-                android:textColor="@color/lightBlue"
-                android:textSize="18sp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/font_18"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatImageButton

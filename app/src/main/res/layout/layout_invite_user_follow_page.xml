@@ -42,7 +42,7 @@
         android:fontFamily="@font/barlow_medium"
         android:gravity="center_vertical"
         android:maxLines="1"
-        android:textColor="@color/collection_product_name"
+        android:textColor="@color/colorNormalText"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/selectButton"

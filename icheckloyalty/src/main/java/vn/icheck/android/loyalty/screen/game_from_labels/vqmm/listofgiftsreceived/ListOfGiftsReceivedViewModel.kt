@@ -35,9 +35,9 @@ class ListOfGiftsReceivedViewModel : BaseViewModel<ICKRewardGameVQMMLoyalty>() {
                 if (!isLoadMore) {
                     if (obj.data?.rows.isNullOrEmpty()) {
                         if (SharedLoyaltyHelper(ApplicationHelper.getApplicationByReflect()).getBoolean(ConstantsLoyalty.HAS_CHANGE_CODE_VQMM)){
-                            setErrorEmpty(R.drawable.ic_default_loyalty, "Bạn chưa có quà nào", "Thử nhập ngay biết đâu vận may tới", "Nhập mã ngay", R.drawable.bg_corner_53_no_solid_stroke_1_blue, R.color.blue)
+                            setErrorEmpty(R.drawable.ic_default_loyalty, "Bạn chưa có quà nào", "Thử nhập ngay biết đâu vận may tới", "Nhập mã ngay", R.drawable.bg_corner_53_no_solid_stroke_1_blue, R.color.colorSecondary)
                         }else{
-                            setErrorEmpty(R.drawable.ic_default_loyalty, "Bạn chưa có quà nào", "Thử quét ngay biết đâu vận may tới", "Quét mã ngay", R.drawable.bg_corner_53_no_solid_stroke_1_blue, R.color.blue)
+                            setErrorEmpty(R.drawable.ic_default_loyalty, "Bạn chưa có quà nào", "Thử quét ngay biết đâu vận may tới", "Quét mã ngay", R.drawable.bg_corner_53_no_solid_stroke_1_blue, R.color.colorSecondary)
                         }
                     } else {
                         onSetData.postValue(obj.data?.rows)

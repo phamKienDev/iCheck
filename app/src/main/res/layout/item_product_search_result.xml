@@ -7,9 +7,9 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imgProduct"
-        android:layout_width="77dp"
+        android:layout_width="@dimen/size_77"
         android:layout_height="@dimen/size_70"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="@dimen/size_12"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_payment_vnpay_40dp" />
@@ -18,8 +18,8 @@
         android:id="@+id/tv_name_product"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="@dimen/size_10"
+        android:layout_marginLeft="@dimen/size_10"
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
         android:ellipsize="end"
@@ -28,7 +28,7 @@
         android:maxLines="2"
         android:minLines="2"
         android:textColor="@color/darkGray1"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imgProduct"
         app:layout_constraintTop_toTopOf="@+id/imgProduct"
@@ -37,7 +37,7 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="@dimen/size_4"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,8 +51,8 @@
             android:layout_marginRight="@dimen/size_10"
             android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
-            android:textColor="@color/lightBlue"
-            android:textSize="14sp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/font_14"
             android:visibility="visible"
             tools:text="25.900 ₫" />
 
@@ -64,10 +64,10 @@
             android:drawablePadding="@dimen/size_5"
             android:fontFamily="@font/barlow_medium"
             android:gravity="center_vertical"
-            android:lineSpacingExtra="4sp"
+            android:lineSpacingExtra="@dimen/font_14"
             android:text="@string/verified"
-            android:textColor="@color/green_v3"
-            android:textSize="12sp" />
+            android:textColor="@color/colorAccentGreen"
+            android:textSize="@dimen/font_12" />
     </LinearLayout>
 
     <View

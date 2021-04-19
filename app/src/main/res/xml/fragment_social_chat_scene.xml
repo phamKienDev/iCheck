@@ -61,11 +61,11 @@
                 app:customColorValue="#057DDA" />
         </Constraint>
         <Constraint
-            android:layout_height="3dp"
+            android:layout_height="@dimen/size_3"
             motion:layout_constraintStart_toStartOf="@+id/tv_phonebook"
             motion:layout_constraintBottom_toTopOf="@+id/div"
             motion:layout_constraintEnd_toEndOf="@+id/tv_phonebook"
-            android:layout_width="80dp"
+            android:layout_width="@dimen/size_80"
             android:id="@+id/div_selector"
             android:layout_marginLeft="0dp"
             android:layout_marginStart="0dp" />
