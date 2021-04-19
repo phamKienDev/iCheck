@@ -1,7 +1,7 @@
 package vn.icheck.android.room.dao
 
 import androidx.room.*
-import vn.icheck.android.model.chat.ChatConversation
+import vn.icheck.android.network.model.chat.ChatConversation
 
 @Dao
 interface ConversationDao {

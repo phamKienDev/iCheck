@@ -36,9 +36,9 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.component.post.IPostListener
 import vn.icheck.android.constant.*
 import vn.icheck.android.databinding.FragmentUserWallBinding
-import vn.icheck.android.model.ApiErrorResponse
-import vn.icheck.android.model.ApiSuccessResponse
-import vn.icheck.android.model.posts.PostViewModel
+import vn.icheck.android.network.model.ApiErrorResponse
+import vn.icheck.android.network.model.ApiSuccessResponse
+import vn.icheck.android.network.model.posts.PostViewModel
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -373,7 +373,7 @@ class IckUserWallFragment : Fragment(), IPostListener {
             if (it is ApiSuccessResponse) {
                 if (it.body.data?.rows != null) {
 
-                    for (item in it.body.data.rows) {
+                    for (item in it.body.data?.rows ?: arrayListOf()) {
                         val icViewModel = PostViewModel(item)
                         ickUserWallViewModel.arrPost.add(icViewModel)
                         ickUserWallViewModel.addView(icViewModel)

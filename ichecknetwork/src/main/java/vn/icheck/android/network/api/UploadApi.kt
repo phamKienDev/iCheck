@@ -6,7 +6,7 @@ import retrofit2.http.Headers
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
-import vn.icheck.android.model.upload.V2UploadResponse
+import vn.icheck.android.network.model.upload.V2UploadResponse
 import vn.icheck.android.network.models.upload.UploadResponse
 
 interface UploadApi {

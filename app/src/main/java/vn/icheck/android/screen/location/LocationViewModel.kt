@@ -7,7 +7,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import okhttp3.ResponseBody
-import vn.icheck.android.model.location.CityResponse
+import vn.icheck.android.network.model.location.CityResponse
 
 class LocationViewModel @ViewModelInject constructor(
         private val locationRepository: LocationRepository,

@@ -28,7 +28,7 @@ import vn.icheck.android.component.view.ViewHelper.onDelayClick
 import vn.icheck.android.constant.*
 import vn.icheck.android.helper.*
 import vn.icheck.android.helper.TextHelper.setTextNameProductInPost
-import vn.icheck.android.model.posts.PostViewModel
+import vn.icheck.android.network.model.posts.PostViewModel
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode

@@ -387,7 +387,7 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
             ickContributeProductViewModel.getCategoryAttributes(it).observe(this, Observer { data ->
                 if (data?.data != null) {
                     ickContributeProductViewModel.categoryAttributes.clear()
-                    for (item in data.data) {
+                    for (item in data.data ?: arrayListOf()) {
                         ickContributeProductViewModel.categoryAttributes.add(CategoryAttributesModel(item))
                     }
                     ickContributeProductViewModel.categoryAttributes.filter { model ->
@@ -516,7 +516,7 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
                                                                              */
                                                                             val att = ickContributeProductViewModel.requestBody["attributes"] as ArrayList<LinkedTreeMap<String, Any?>>
                                                                             ickContributeProductViewModel.categoryAttributes.clear()
-                                                                            for (item in data.data) {
+                                                                            for (item in data.data ?: arrayListOf()) {
                                                                                 ickContributeProductViewModel.categoryAttributes.add(CategoryAttributesModel(item).apply {
                                                                                     val filt = att.firstOrNull { map ->
                                                                                         map.containsValue("${item.code}")

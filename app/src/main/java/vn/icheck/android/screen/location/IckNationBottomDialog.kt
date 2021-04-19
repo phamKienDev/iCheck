@@ -20,8 +20,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.bottom_nation_dialog.*
 import vn.icheck.android.R
-import vn.icheck.android.model.country.CountryCode
-import vn.icheck.android.model.country.Nation
+import vn.icheck.android.network.model.country.CountryCode
+import vn.icheck.android.network.model.country.Nation
 import vn.icheck.android.screen.account.icklogin.viewmodel.IckLoginViewModel
 import vn.icheck.android.util.AfterTextWatcher
 

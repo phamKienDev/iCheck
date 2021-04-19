@@ -12,8 +12,8 @@ import androidx.navigation.fragment.navArgs
 import vn.icheck.android.base.fragment.CoroutineFragment
 import vn.icheck.android.databinding.FragmentNewPwBinding
 import vn.icheck.android.helper.DialogHelper
-import vn.icheck.android.model.ApiErrorResponse
-import vn.icheck.android.model.ApiSuccessResponse
+import vn.icheck.android.network.model.ApiErrorResponse
+import vn.icheck.android.network.model.ApiSuccessResponse
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.screen.user.wall.IckUserWallViewModel
 import vn.icheck.android.util.ick.showShortError
