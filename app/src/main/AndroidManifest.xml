@@ -607,9 +607,6 @@
             android:name=".screen.user.productlanding.LandingPageActivity"
             android:theme="@style/Theme.AppCompat.Translucent" />
         <activity
-            android:name=".activities.image.DetailImagesActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".screen.user.surveydetail.success.SurveyDetailSuccessActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme_White" />

@@ -11,11 +11,9 @@ import com.yarolegovich.discretescrollview.DiscreteScrollView
 import kotlinx.android.synthetic.main.activity_detail_media2.*
 import kotlinx.android.synthetic.main.ic_image_holder2.view.*
 import vn.icheck.android.R
-import vn.icheck.android.activities.image.DetailImagesActivity
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.constant.POSITION
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.DownloadHelper
 import vn.icheck.android.helper.NetworkHelper
@@ -62,7 +60,21 @@ class DetailMediaActivity : BaseActivityMVVM(), View.OnClickListener {
 
             val intent = Intent(activity, DetailMediaActivity::class.java)
             intent.putExtra(Constant.DATA_1, json)
+            intent.putExtra(Constant.DATA_2, pos)
             ActivityUtils.startActivity(activity, intent)
+        }
+
+        fun start(context: Context, listImage: ArrayList<String?>, pos: Int = 0) {
+            val listMedia = arrayListOf<ICMedia>()
+            listImage.filter { !it.isNullOrEmpty() }.forEach {
+                listMedia.add(ICMedia(it, Constant.IMAGE))
+            }
+            val json = JsonHelper.toJson(listMedia)
+
+            val intent = Intent(context, DetailMediaActivity::class.java)
+            intent.putExtra(Constant.DATA_1, json)
+            intent.putExtra(Constant.DATA_2, pos)
+            context.startActivity(intent)
         }
     }
 
@@ -89,9 +101,20 @@ class DetailMediaActivity : BaseActivityMVVM(), View.OnClickListener {
             }
 
             adapter.setData(listExo)
-            tvSlide.text = "1/${listExo.size}"
-            listExo[0].exoPlayer?.playWhenReady = true
-            positionView = 0
+
+            val position = intent.getIntExtra(Constant.DATA_2, -1)
+            if (position != -1) {
+                rcvMedia.scrollToPosition(position)
+                tvSlide.text = "${position + 1}/${listExo.size}"
+                listExo[position].exoPlayer?.playWhenReady = true
+                positionView = position
+            } else {
+                tvSlide.text = "1/${listExo.size}"
+                listExo[0].exoPlayer?.playWhenReady = true
+                positionView = 0
+            }
+
+
 
             rcvMedia.addScrollStateChangeListener(object : DiscreteScrollView.ScrollStateChangeListener<RecyclerView.ViewHolder> {
                 override fun onScroll(p0: Float, p1: Int, p2: Int, p3: RecyclerView.ViewHolder?, p4: RecyclerView.ViewHolder?) {

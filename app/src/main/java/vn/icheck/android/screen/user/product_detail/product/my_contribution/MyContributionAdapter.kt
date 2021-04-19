@@ -10,11 +10,10 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.google.gson.internal.LinkedTreeMap
 import org.json.JSONObject
-import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
-import vn.icheck.android.activities.image.DetailImagesActivity
 import vn.icheck.android.databinding.ItemMyContributeBinding
 import vn.icheck.android.screen.user.contribute_product.viewmodel.CategoryAttributesModel
+import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
 import vn.icheck.android.util.ick.*
 
 class MyContributionAdapter(val listCategory: List<CategoryAttributesModel>, val maxLine: Int = 0, val maxLength: Int = Int.MAX_VALUE) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -57,7 +56,7 @@ class MyContributionAdapter(val listCategory: List<CategoryAttributesModel>, val
 
                         holder.binding.image1.loadRoundedImage((data.values as ArrayList<String>).firstOrNull(), R.drawable.error_load_image, corner = 4, width = 100.toPx())
                         holder.binding.image1.setOnClickListener {
-                            DetailImagesActivity.start(data.values as ArrayList<String?>, it.context)
+                            DetailMediaActivity.start(it.context, data.values as ArrayList<String?>)
                         }
 
                     } catch (e: Exception) {
@@ -72,7 +71,7 @@ class MyContributionAdapter(val listCategory: List<CategoryAttributesModel>, val
                         if ((data.values as ArrayList<String>).size == 2) {
                             holder.binding.image2.beVisible()
                             holder.binding.image2.loadRoundedImage((data.values as ArrayList<String>).get(1), R.drawable.error_load_image, corner = 4, width = 100.toPx())
-                        } else if((data.values as ArrayList<String>).size > 2){
+                        } else if ((data.values as ArrayList<String>).size > 2) {
                             holder.binding.image2.beVisible()
                             holder.binding.image2.loadRoundedImage((data.values as ArrayList<String>).get(1), R.drawable.error_load_image, corner = 4, width = 100.toPx())
                             holder.binding.imgBlur.beVisible()
@@ -84,10 +83,10 @@ class MyContributionAdapter(val listCategory: List<CategoryAttributesModel>, val
                             holder.binding.tvCountRemain simpleText "+${(data.values as ArrayList<String>).size - 2}"
                         }
                         holder.binding.image1.setOnClickListener {
-                            DetailImagesActivity.start(data.values as ArrayList<String?>, it.context)
+                            DetailMediaActivity.start(it.context, data.values as ArrayList<String?>)
                         }
                         holder.binding.image2.setOnClickListener {
-                            DetailImagesActivity.start(data.values as ArrayList<String?>, it.context)
+                            DetailMediaActivity.start(it.context, data.values as ArrayList<String?>)
                         }
                     } catch (e: Exception) {
                     }
@@ -107,7 +106,7 @@ class MyContributionAdapter(val listCategory: List<CategoryAttributesModel>, val
                     }
                     holder.binding.tvData simpleText text
                 }
-                "date" ->{
+                "date" -> {
                     holder.binding.tvData simpleText data.values.toString().getDayTime()
                 }
                 else -> {

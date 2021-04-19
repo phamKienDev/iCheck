@@ -29,23 +29,34 @@
         tools:drawableEnd="@drawable/ic_avatar_standard_24dp"
         tools:drawableRight="@drawable/ic_avatar_rank_silver_16dp" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@id/tvName"
+    <LinearLayout
+        android:id="@+id/layoutName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/size_14"
-        android:drawablePadding="@dimen/size_4"
-        android:ellipsize="end"
-        android:fontFamily="@font/barlow_semi_bold"
-        android:gravity="center_vertical"
-        android:textAlignment="gravity"
-        android:singleLine="true"
-        android:textColor="#212121"
-        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="@dimen/size_14"
         app:layout_constraintStart_toEndOf="@id/imgAvatar"
-        app:layout_constraintTop_toTopOf="@id/imgAvatar"
-        tools:text="Xuyến Đỗ" />
+        app:layout_constraintTop_toTopOf="@id/imgAvatar">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/size_4"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:drawableEnd="@drawable/ic_verified_user_16dp"
+            android:textAlignment="gravity"
+            android:textColor="#212121"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgAvatar"
+            app:layout_constraintTop_toTopOf="@id/imgAvatar"
+            tools:text="Xuyến Đỗ Xuyến Đỗ Xuyến Đỗ Xuyến Đỗ Xuyến Đỗ Xuyến Đỗ" />
+
+    </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@id/btnAgree"
@@ -62,8 +73,8 @@
         android:text="@string/xac_nhan"
         android:textColor="@color/white"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@id/tvName"
-        app:layout_constraintTop_toBottomOf="@id/tvName" />
+        app:layout_constraintStart_toStartOf="@id/layoutName"
+        app:layout_constraintTop_toBottomOf="@id/layoutName" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/btnDisagree"
@@ -83,7 +94,7 @@
         android:textColor="@color/lightBlue"
         android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@id/btnAgree"
-        app:layout_constraintTop_toBottomOf="@id/tvName" />
+        app:layout_constraintTop_toBottomOf="@id/layoutName" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@id/tvStatus"
@@ -96,7 +107,7 @@
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/tvName"
-        app:layout_constraintTop_toBottomOf="@id/tvName"
+        app:layout_constraintStart_toStartOf="@id/layoutName"
+        app:layout_constraintTop_toBottomOf="@id/layoutName"
         tools:text="Vân Trương đã trở thành bạn bè của bạn" />
 </androidx.constraintlayout.widget.ConstraintLayout>

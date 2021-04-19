@@ -15,19 +15,20 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@id/tvName"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_4"
         android:drawablePadding="@dimen/size_4"
         android:ellipsize="end"
         android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center_vertical"
-        android:textAlignment="gravity"
         android:includeFontPadding="false"
         android:singleLine="true"
+        android:textAlignment="gravity"
         android:textColor="@color/collection_product_name"
         android:textSize="14sp"
-        tools:text="Xuyến Đỗ" />
+        tools:drawableEnd="@drawable/ic_verified_user_16dp"
+        tools:text="Xuyến Đỗ Xuyến Đỗ Xuyến Đỗ" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@id/btnAgree"
