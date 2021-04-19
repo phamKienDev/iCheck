@@ -48,7 +48,7 @@
                     android:gravity="center"
                     android:text="@string/ma_xac_thuc"
                     android:textColor="#66000000"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     android:textStyle="normal" />
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -71,7 +71,7 @@
                         android:inputType="number"
                         android:maxLength="8"
                         android:textColor="#3c5a99"
-                        android:textSize="36sp"
+                        android:textSize="@dimen/font_36"
                         android:textStyle="bold" />
                 </com.google.android.material.textfield.TextInputLayout>
             </FrameLayout>
@@ -110,7 +110,7 @@
                         android:paddingBottom="@dimen/size_4"
                         android:text="@string/gui_lai_ma"
                         android:textColor="#3c5a99"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/font_14"
                         android:textStyle="normal" />
                 </LinearLayout>
 
@@ -123,7 +123,7 @@
                     android:gravity="center"
                     android:textAlignment="gravity"
                     android:textColor="#66000000"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     android:textStyle="normal" />
             </FrameLayout>
 
@@ -136,7 +136,7 @@
                 android:layout_marginEnd="@dimen/size_38"
                 android:fontFamily="sans-serif"
                 android:textColor="#b4b4b4"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
         </LinearLayout>
 

@@ -7,21 +7,21 @@
     android:orientation="vertical">
 
     <TextView
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/size_8"
         android:id="@+id/tv_category_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginEnd="@dimen/size_12"
         android:textColor="#828282"
         tools:text="Test" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="12dp"
+        android:layout_height="@dimen/size_1"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_8"
+        android:layout_marginEnd="@dimen/size_12"
+        android:layout_marginBottom="@dimen/size_12"
         android:background="@color/gray" />
 </LinearLayout>

@@ -110,7 +110,7 @@ class SuggestPageAdapter(val callback: IRecyclerViewCallback) : RecyclerViewCust
                     it.setMargins(SizeHelper.size30, SizeHelper.size6, SizeHelper.size30, SizeHelper.size12)
                 },
                 null, ViewHelper.createTypeface(parent.context, R.font.barlow_medium),
-                ContextCompat.getColor(parent.context, R.color.fast_survey_gray), 14f).also {
+                ContextCompat.getColor(parent.context, R.color.colorSecondText), 14f).also {
             it.gravity = Gravity.CENTER
             it.includeFontPadding = false
             it.text = parent.context.getString(R.string.goi_y_page)
@@ -140,7 +140,7 @@ class SuggestPageAdapter(val callback: IRecyclerViewCallback) : RecyclerViewCust
 
             itemView.tv_follow.setOnClickListener {
                 if (!obj.selected) {
-                    itemView.tv_follow.setTextColor(ContextCompat.getColor(itemView.context, R.color.black_15))
+                    itemView.tv_follow.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorSecondText))
                     itemView.tv_follow.text = itemView.context.getString(R.string.dang_theo_doi)
                     itemView.tv_follow.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_gray_f0_corners_4)
                     listSelected.add(obj)

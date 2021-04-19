@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:lineHeight="@dimen/size_16"
                 android:textColor="@color/white"
-                android:textSize="@dimen/font_size_4"
+                android:textSize="@dimen/font_14"
                 android:textStyle="bold"
                 tools:text="Lỗi thanh toán" />
 
@@ -51,7 +51,7 @@
                 android:layout_marginTop="@dimen/size_3"
                 android:lineHeight="@dimen/size_20"
                 android:textColor="@color/white"
-                android:textSize="@dimen/font_size_4"
+                android:textSize="@dimen/font_14"
                 tools:text="Thanh toán đơn hàng không thàng công. \n Mã đơn hàng: #A565S648 - 100.000 đ" />
         </LinearLayout>
     </LinearLayout>

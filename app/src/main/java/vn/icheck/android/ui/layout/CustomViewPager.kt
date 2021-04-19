@@ -1,4 +1,4 @@
-package vn.icheck.android.ui.view
+package vn.icheck.android.ui.layout
 
 import android.content.Context
 import android.util.AttributeSet

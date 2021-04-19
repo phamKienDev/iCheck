@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="128dp"
+    android:layout_width="@dimen/size_128"
     android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/size_5"
     android:layout_marginEnd="@dimen/size_5"
@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/gray_stroke_corner_4"
-        android:padding="1dp"
+        android:padding="@dimen/size_1"
         tools:src="@drawable/ic_square_avatar_default" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -25,8 +25,8 @@
         android:fontFamily="@font/barlow_semi_bold"
         android:includeFontPadding="false"
         android:singleLine="true"
-        android:textColor="@color/collection_product_name"
-        android:textSize="14sp"
+        android:textColor="@color/colorNormalText"
+        android:textSize="@dimen/font_14"
         tools:text="Trang sức hàng ngày" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -43,5 +43,5 @@
         android:text="@string/theo_doi"
         android:textAlignment="gravity"
         android:textColor="#ffffff"
-        android:textSize="14sp" />
+        android:textSize="@dimen/font_14" />
 </LinearLayout>

@@ -33,8 +33,8 @@
             android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:singleLine="true"
-            android:textColor="@color/gray_v2"
-            android:textSize="@dimen/font_size_2"
+            android:textColor="@color/colorSecondText"
+            android:textSize="@dimen/font_12"
             tools:text="Đánh giá của Vân Trương (tối đa 1 dòng thôi nhé)..." />
 
         <LinearLayout
@@ -54,8 +54,8 @@
                 android:paddingEnd="@dimen/size_5"
                 android:paddingRight="@dimen/size_5"
                 android:singleLine="true"
-                android:textColor="@color/lightBlue"
-                android:textSize="18sp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/font_18"
                 tools:text="8,7 Tuyệt vời" />
 
             <com.willy.ratingbar.BaseRatingBar
@@ -79,7 +79,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/size_1"
             android:layout_marginTop="@dimen/size_1"
             android:background="@color/gray" />
 

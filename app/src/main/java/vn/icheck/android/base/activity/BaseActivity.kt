@@ -113,20 +113,20 @@ abstract class BaseActivity<P : BaseActivityPresenter> : AppCompatActivity(), Ba
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        ICNetworkManager.unregister(this)
+    }
+
     override fun onResume() {
         super.onResume()
 
+        ICNetworkManager.register(this)
         try {
-            ICNetworkManager.getInstance().registerCallback(ICNetworkClient.networkCallbackManager, this)
             EventBus.getDefault().post(ICMessageEvent.Type.ON_CHECK_UPDATE_LOCATION)
         } catch (e: Exception) {
             logError(e)
         }
-    }
-
-    override fun onPause() {
-        super.onPause()
-        ICNetworkManager.getInstance().unregisterCallback(ICNetworkClient.networkCallbackManager)
     }
 
     override fun onDestroy() {
@@ -184,16 +184,8 @@ abstract class BaseActivity<P : BaseActivityPresenter> : AppCompatActivity(), Ba
     /**
      * ICNetworkCallback
      * */
-    override fun forceRequiredLogin() {
-
-    }
-
-    override fun refreshToken() {
-
-    }
-
-    override fun onNetworkError(throwable: Throwable) {
-
+    override fun onEndOfToken() {
+        onRequireLogin()
     }
 
     /**

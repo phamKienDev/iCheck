@@ -55,7 +55,7 @@ class ListCampaignActivity : BaseActivityMVVM(), ListCampaignCallback {
             finish()
         }
 
-        swipe.setColorSchemeColors(ContextCompat.getColor(this, R.color.lightBlue), ContextCompat.getColor(this, R.color.lightBlue), ContextCompat.getColor(this, R.color.lightBlue))
+        swipe.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorPrimary), ContextCompat.getColor(this, R.color.colorPrimary), ContextCompat.getColor(this, R.color.colorPrimary))
 
         swipe.setOnRefreshListener {
             getData()

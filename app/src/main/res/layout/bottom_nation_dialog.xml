@@ -20,15 +20,13 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_cancel_blue_24px" />
 
-        <TextView
+        <vn.icheck.android.ui.view.TextHeader
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:fontFamily="@font/barlow_semi_bold"
+            android:layout_marginTop="@dimen/size_12"
             android:text="Chọn quốc gia"
             android:textColor="#057DDA"
-            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -36,7 +34,7 @@
         <View
             android:id="@+id/view9"
             android:layout_width="wrap_content"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/size_1"
             android:background="@color/gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -48,24 +46,24 @@
         android:id="@+id/edt_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginRight="12dp"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginLeft="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_10"
+        android:layout_marginEnd="@dimen/size_12"
+        android:layout_marginRight="@dimen/size_12"
         android:background="@drawable/bg_gray_f0_corners_4"
         android:drawableStart="@drawable/ic_search_gray_24dp"
         android:drawableLeft="@drawable/ic_search_gray_24dp"
-        android:drawablePadding="8dp"
+        android:drawablePadding="@dimen/size_8"
         android:fontFamily="@font/barlow_medium"
         android:hint="Tìm kiếm"
-        android:padding="6dp"
-        android:textSize="16sp" />
+        android:padding="@dimen/size_6"
+        android:textSize="@dimen/font_16" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_nation"
         android:layout_width="match_parent"
         android:layout_height="280dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="@dimen/size_12"
         tools:listitem="@layout/nation_holder" />
 </LinearLayout>

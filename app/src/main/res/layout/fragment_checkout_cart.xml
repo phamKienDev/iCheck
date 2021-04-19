@@ -55,7 +55,7 @@
                 android:includeFontPadding="false"
                 android:text="@string/tong_thanh_toan"
                 android:textColor="#828282"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 android:textStyle="normal" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -66,7 +66,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:includeFontPadding="false"
                 android:textColor="#ff0000"
-                android:textSize="20sp"
+                android:textSize="@dimen/font_20"
                 android:textStyle="normal"
                 tools:text="1,250,000đ" />
         </LinearLayout>
@@ -82,7 +82,7 @@
             android:text="@string/hoan_tat_dat_hang"
             android:textAllCaps="false"
             android:textColor="#ffffff"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

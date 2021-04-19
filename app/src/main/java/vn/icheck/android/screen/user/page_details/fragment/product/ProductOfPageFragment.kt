@@ -4,22 +4,15 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_product.*
 import kotlinx.android.synthetic.main.fragment_product.imgBack
 import kotlinx.android.synthetic.main.fragment_product.recyclerView
 import kotlinx.android.synthetic.main.fragment_product.swipeLayout
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 import vn.icheck.android.R
 import vn.icheck.android.base.fragment.BaseFragmentMVVM
-import vn.icheck.android.base.model.ICMessageEvent
-import vn.icheck.android.constant.Constant
 import vn.icheck.android.screen.user.page_details.PageDetailViewModel
-import vn.icheck.android.screen.user.page_details.fragment.page.PageDetailFragment
 import vn.icheck.android.util.kotlin.ToastUtils
 
 /**
@@ -69,7 +62,7 @@ class ProductOfPageFragment : BaseFragmentMVVM() {
             getData()
         }
         activity?.let {
-            swipeLayout.setColorSchemeColors(ContextCompat.getColor(it, R.color.blue), ContextCompat.getColor(it, R.color.blue), ContextCompat.getColor(it, R.color.lightBlue))
+            swipeLayout.setColorSchemeColors(ContextCompat.getColor(it, R.color.colorSecondary), ContextCompat.getColor(it, R.color.colorSecondary), ContextCompat.getColor(it, R.color.colorPrimary))
         }
 
         swipeLayout.post {

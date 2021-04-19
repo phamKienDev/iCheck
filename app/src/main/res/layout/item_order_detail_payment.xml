@@ -16,7 +16,7 @@
         android:includeFontPadding="false"
         android:text="@string/thong_tin_thanh_toan"
         android:textColor="#3c5a99"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:textStyle="normal" />
 
     <TableLayout
@@ -47,7 +47,7 @@
                 android:singleLine="true"
                 android:text="@string/tong_thanh_toan"
                 android:textColor="#3c5a99"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -61,7 +61,7 @@
                 android:singleLine="true"
                 android:textAlignment="gravity"
                 android:textColor="#FF0000"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_16"
                 android:textStyle="normal"
                 tools:text="400,000₫" />
         </TableRow>
@@ -94,7 +94,7 @@
                 android:includeFontPadding="false"
                 android:maxLines="2"
                 android:textColor="#434343"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:textStyle="normal"
                 tools:text="Số lượng: 3 sản phẩm" />
 
@@ -109,7 +109,7 @@
                 android:maxLines="2"
                 android:textAlignment="gravity"
                 android:textColor="#3c5a99"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:textStyle="normal"
                 tools:text="0đ" />
         </TableRow>
@@ -129,7 +129,7 @@
                 android:maxLines="2"
                 android:text="@string/phi_van_chuyen_"
                 android:textColor="#434343"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -143,7 +143,7 @@
                 android:maxLines="2"
                 android:textAlignment="gravity"
                 android:textColor="#3c5a99"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:textStyle="normal"
                 tools:text="0đ" />
         </TableRow>

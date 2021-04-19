@@ -84,7 +84,7 @@ class SearchShopActivity : BaseActivityMVVM(), View.OnClickListener, IRecyclerVi
 
     private fun initSwipeLayout() {
         swipe_container.isRefreshing = true
-        swipe_container.setColorSchemeColors(ContextCompat.getColor(this, R.color.blue), ContextCompat.getColor(this, R.color.blue), ContextCompat.getColor(this, R.color.lightBlue))
+        swipe_container.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
         swipe_container.setOnRefreshListener {
             getData()
         }
@@ -154,7 +154,7 @@ class SearchShopActivity : BaseActivityMVVM(), View.OnClickListener, IRecyclerVi
             btn_filter_verified.setTextColor(Color.WHITE)
         } else {
             btn_filter_verified.background = ContextCompat.getDrawable(applicationContext, R.drawable.bg_corner_gray_4)
-            btn_filter_verified.setTextColor(ContextCompat.getColor(applicationContext, R.color.collection_product_name))
+            btn_filter_verified.setTextColor(ContextCompat.getColor(applicationContext, R.color.colorNormalText))
         }
     }
 
@@ -163,7 +163,7 @@ class SearchShopActivity : BaseActivityMVVM(), View.OnClickListener, IRecyclerVi
         if (viewModel.getCategory.isNullOrEmpty()) {
             btn_filer_categories.background = ContextCompat.getDrawable(applicationContext, R.drawable.bg_corner_gray_4)
             btn_filer_categories.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_bottom_filter_8dp, 0)
-            btn_filer_categories.setTextColor(ContextCompat.getColor(applicationContext, R.color.collection_product_name))
+            btn_filer_categories.setTextColor(ContextCompat.getColor(applicationContext, R.color.colorNormalText))
             btn_filer_categories.text = getString(R.string.danh_muc)
         } else {
             btn_filer_categories.background = ContextCompat.getDrawable(applicationContext, R.drawable.bg_corners_4_light_blue_solid)

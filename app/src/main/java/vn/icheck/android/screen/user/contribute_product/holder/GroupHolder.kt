@@ -22,13 +22,12 @@ import vn.icheck.android.constant.ATTRIBUTES_POSITION
 import vn.icheck.android.constant.CONTRIBUTIONS_ACTION
 import vn.icheck.android.constant.PUT_ATTRIBUTES
 import vn.icheck.android.databinding.ItemGroupBinding
+import vn.icheck.android.ichecklibs.beGone
+import vn.icheck.android.ichecklibs.beVisible
 import vn.icheck.android.screen.user.contribute_product.viewmodel.CategoryAttributesModel
 import vn.icheck.android.util.AfterTextWatcher
-import vn.icheck.android.util.ick.beGone
-import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.util.ick.showSimpleSuccessToast
 import vn.icheck.android.util.ick.simpleText
-
 
 class GroupHolder(private val itemGroupBinding: ItemGroupBinding) : CoroutineViewHolder(itemGroupBinding.root) {
     var balloon: Balloon? = null
@@ -37,7 +36,7 @@ class GroupHolder(private val itemGroupBinding: ItemGroupBinding) : CoroutineVie
         if (pasteBalloon == null) {
             pasteBalloon = createBalloon(itemView.context) {
                 setLayout(R.layout.popup_tooltip)
-                setBackgroundColorResource(R.color.lightBlue)
+                setBackgroundColorResource(R.color.colorPrimary)
                 setArrowConstraints(ArrowConstraints.ALIGN_ANCHOR)
                 setBalloonAnimation(BalloonAnimation.OVERSHOOT)
             }

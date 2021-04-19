@@ -35,8 +35,8 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imgProduct"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="@dimen/size_80"
+            android:layout_height="@dimen/size_80"
             android:layout_marginLeft="@dimen/size_8"
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginBottom="@dimen/size_10"
@@ -89,8 +89,8 @@
             android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:singleLine="true"
-            android:textColor="@color/blue"
-            android:textSize="12sp"
+            android:textColor="@color/colorSecondary"
+            android:textSize="@dimen/font_12"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/tvProduct"
             app:layout_constraintTop_toBottomOf="@id/tvProduct" />
@@ -106,8 +106,8 @@
             android:gravity="center_vertical"
             android:includeFontPadding="false"
             android:singleLine="true"
-            android:textColor="@color/gray_v2"
-            android:textSize="12sp"
+            android:textColor="@color/colorSecondText"
+            android:textSize="@dimen/font_12"
             app:layout_constraintBottom_toBottomOf="@id/btnUse"
             app:layout_constraintEnd_toStartOf="@id/btnUse"
             app:layout_constraintStart_toStartOf="@id/tvPage"

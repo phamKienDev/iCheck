@@ -3,22 +3,22 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/rounded_dialog"
-    android:paddingStart="12dp"
-    android:paddingEnd="12dp"
+    android:paddingStart="@dimen/size_12"
+    android:paddingEnd="@dimen/size_12"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:textAlignment="center"
         android:textColor="#434343"
-        android:layout_margin="12dp"
+        android:layout_margin="@dimen/size_12"
         android:layout_height="wrap_content"
         android:text="Chọn tiêu đề nội dung" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginBottom="12dp"
+        android:layout_height="@dimen/size_1"
+        android:layout_marginBottom="@dimen/size_12"
         android:background="@color/gray" />
 
     <androidx.recyclerview.widget.RecyclerView

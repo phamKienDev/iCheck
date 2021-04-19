@@ -19,7 +19,7 @@
 
     <View
         android:background="@color/gray"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/size_1"
         android:layout_width="match_parent" />
 
     <LinearLayout
@@ -35,8 +35,8 @@
             android:id="@+id/btn_homepage"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:paddingBottom="8dp"
-            android:paddingTop="8dp"
+            android:paddingBottom="@dimen/size_8"
+            android:paddingTop="@dimen/size_8"
             android:layout_width="match_parent"
             android:text="Trang chủ"
             android:textColor="#B4B4B4"
@@ -48,8 +48,8 @@
             android:id="@+id/btn_my_page"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:paddingBottom="8dp"
-            android:paddingTop="8dp"
+            android:paddingBottom="@dimen/size_8"
+            android:paddingTop="@dimen/size_8"
             android:layout_width="match_parent"
             android:text="Trang cá nhân"
             android:textColor="#057DDA"
@@ -61,8 +61,8 @@
             android:id="@+id/btn_manage_page"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:paddingBottom="8dp"
-            android:paddingTop="8dp"
+            android:paddingBottom="@dimen/size_8"
+            android:paddingTop="@dimen/size_8"
             android:layout_width="match_parent"
             android:text="Quản lý trang"
             android:textColor="#B4B4B4"

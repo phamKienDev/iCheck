@@ -369,11 +369,11 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
 
             val spannable = SpannableString(getString(R.string.menu_note))
 
-            spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(this, R.color.lightBlue)), 19, 26, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(this, R.color.colorPrimary)), 19, 26, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
             spannable.setSpan(StyleSpan(Typeface.BOLD), 19, 26, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
             spannable.setSpan(registerClickable, 19, 26, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 
-            spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(this, R.color.lightBlue)), 32, spannable.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(this, R.color.colorPrimary)), 32, spannable.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
             spannable.setSpan(StyleSpan(Typeface.BOLD), 32, spannable.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
             spannable.setSpan(loginClickable, 32, spannable.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 
@@ -560,7 +560,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
     private fun setupTheme() {
         val theme = SettingManager.themeSetting?.theme
         val bottomBarTextColor = if (!theme?.bottomBarSelectedTextColor.isNullOrEmpty()) {
-            ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.darkGray2), Color.parseColor(theme!!.bottomBarSelectedTextColor))
+            ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.colorDisableText), Color.parseColor(theme!!.bottomBarSelectedTextColor))
         } else {
             ContextCompat.getColorStateList(this@HomeActivity, R.color.text_color_home_tab)
         }
@@ -773,7 +773,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
             }
             R.id.imgAvatar, R.id.tv_username -> {
                 if (!SessionManager.isUserLogged) {
-                    onRequireLogin()
+                    onEndOfToken()
                 } else {
                     IckUserWallActivity.create(SessionManager.session.user?.id, this)
                 }
@@ -998,7 +998,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                     if (SessionManager.isUserLogged) {
                         simpleStartActivity(BookmarkHistoryActivity::class.java)
                     } else {
-                        onRequireLogin()
+                        onEndOfToken()
                     }
                 })
 

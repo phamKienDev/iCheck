@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="12dp"
+    android:layout_marginTop="@dimen/size_12"
     android:background="@drawable/bg_gray_stroke_corner_10"
     android:orientation="vertical">
 
@@ -11,14 +11,14 @@
         android:id="@+id/info_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="12dp"
+        android:layout_margin="@dimen/size_12"
         android:drawableEnd="@drawable/ic_history_delete_gray_24px"
         android:text="Chọn tiêu đề nội dung"
         android:textColor="#434343" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/size_1"
         android:background="@color/gray" />
 
     <EditText
@@ -31,7 +31,7 @@
         android:hint="Nội dung"
         android:inputType="textMultiLine"
         android:lines="5"
-        android:padding="8dp"
+        android:padding="@dimen/size_8"
         android:textColor="@color/black"
-        android:textSize="14sp" />
+        android:textSize="@dimen/font_14" />
 </LinearLayout>

@@ -83,7 +83,7 @@ class ListProductActivity : BaseActivity<ListProductPresenter>(), IListProductVi
      * Lắng nghe người dùng refresh data
      */
     private fun initSwipeLayout() {
-        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.blue), ContextCompat.getColor(this, R.color.blue), ContextCompat.getColor(this, R.color.lightBlue))
+        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
 
         swipeLayout.isRefreshing = true
 

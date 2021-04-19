@@ -19,6 +19,6 @@
         android:paddingBottom="@dimen/size_8"
         android:textAlignment="gravity"
         android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:textStyle="normal" />
 </FrameLayout>

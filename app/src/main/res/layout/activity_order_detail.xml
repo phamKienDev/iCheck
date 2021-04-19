@@ -61,7 +61,7 @@
                 android:text="@string/ghe_tham_shop"
                 android:textAllCaps="false"
                 android:textColor="#ffffff"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_16"
                 android:textStyle="normal"
                 tools:text="Ghé thăm shop" />
         </androidx.cardview.widget.CardView>
@@ -94,7 +94,7 @@
                 android:text="@string/ghe_tham_shop"
                 android:textAllCaps="false"
                 android:textColor="#3c5a99"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_16"
                 android:textStyle="normal"
                 tools:text="Đặt lại đơn này" />
         </androidx.cardview.widget.CardView>

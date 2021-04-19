@@ -660,15 +660,15 @@ class IckProductDetailViewModel : BaseViewModel() {
             layout.viewType = ICViewTypes.ENTERPRISE_TYPE
             layout.data = if (verifyProduct) {
                 if (owner!!.verified == true) {
-                    EnterpriseModelV2(owner!!, R.drawable.ic_verified_24px, R.color.lightBlue)
+                    EnterpriseModelV2(owner!!, R.drawable.ic_verified_24px, R.color.colorPrimary)
                 } else {
-                    EnterpriseModelV2(owner!!, null, R.color.lightBlue)
+                    EnterpriseModelV2(owner!!, null, R.color.colorPrimary)
                 }
             } else {
                 if (owner!!.verified == true) {
-                    EnterpriseModelV2(owner!!, null, R.color.lightBlue)
+                    EnterpriseModelV2(owner!!, null, R.color.colorPrimary)
                 } else {
-                    EnterpriseModelV2(owner!!, R.drawable.ic_not_verified_24px, R.color.darkGray2)
+                    EnterpriseModelV2(owner!!, R.drawable.ic_not_verified_24px, R.color.colorDisableText)
                 }
             }
 
@@ -682,7 +682,7 @@ class IckProductDetailViewModel : BaseViewModel() {
             if (productDetail?.unverifiedOwner != null) {
                 val newLayout = ICLayout()
                 newLayout.viewType = ICViewTypes.ENTERPRISE_TYPE
-                newLayout.data = EnterpriseModelV2(productDetail.unverifiedOwner, R.drawable.ic_not_verified_24px, R.color.darkGray2)
+                newLayout.data = EnterpriseModelV2(productDetail.unverifiedOwner, R.drawable.ic_not_verified_24px, R.color.colorDisableText)
                 onAddLayout.value = newLayout
             }
         }

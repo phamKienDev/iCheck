@@ -24,7 +24,6 @@ import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
-import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.fragments.ProductReviewsBottomDialog
 import vn.icheck.android.helper.DialogHelper
@@ -95,7 +94,7 @@ class DetailStampHoaPhatActivity : BaseActivityMVVM(), SlideHeaderStampHoaPhatLi
     }
 
     private fun setupSwipeLayout() {
-        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.blue), ContextCompat.getColor(this, R.color.blue), ContextCompat.getColor(this, R.color.lightBlue))
+        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
 
         swipeLayout.setOnRefreshListener {
             swipeLayout.isRefreshing = true

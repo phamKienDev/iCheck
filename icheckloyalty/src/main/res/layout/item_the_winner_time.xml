@@ -102,7 +102,7 @@
             android:fontFamily="@font/roboto_medium"
             android:includeFontPadding="false"
             android:singleLine="true"
-            android:textColor="@color/gray_v2"
+            android:textColor="@color/colorSecondText"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@id/tvPhone"
             app:layout_constraintStart_toStartOf="@+id/tvPhone"

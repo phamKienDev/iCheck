@@ -40,7 +40,7 @@
             android:layout_gravity="center"
             android:fontFamily="@font/roboto_medium"
             android:text="Lịch sử giao dịch"
-            android:textColor="@color/blue"
+            android:textColor="@color/colorSecondary"
             android:textSize="18sp" />
     </androidx.cardview.widget.CardView>
 
@@ -137,7 +137,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_medium"
                 android:text="Bộ lọc"
-                android:textColor="@color/blue"
+                android:textColor="@color/colorSecondary"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@+id/img_clear"
                 app:layout_constraintEnd_toStartOf="@+id/tv_done"

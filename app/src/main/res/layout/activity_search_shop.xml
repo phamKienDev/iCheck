@@ -44,8 +44,8 @@
                     android:paddingRight="@dimen/size_10"
                     android:paddingBottom="@dimen/size_6"
                     android:text="@string/bo_loc"
-                    android:textColor="@color/collection_product_name"
-                    android:textSize="14sp"
+                    android:textColor="@color/colorNormalText"
+                    android:textSize="@dimen/font_14"
                     app:fontFamily="@font/barlow_medium" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -63,8 +63,8 @@
                     android:paddingRight="@dimen/size_10"
                     android:paddingBottom="@dimen/size_6"
                     android:text="@string/vi_tri"
-                    android:textColor="@color/collection_product_name"
-                    android:textSize="14sp"
+                    android:textColor="@color/colorNormalText"
+                    android:textSize="@dimen/font_14"
                     app:fontFamily="@font/barlow_medium" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -81,8 +81,8 @@
                     android:paddingRight="@dimen/size_10"
                     android:paddingBottom="@dimen/size_6"
                     android:text="@string/da_xac_minh"
-                    android:textColor="@color/collection_product_name"
-                    android:textSize="14sp"
+                    android:textColor="@color/colorNormalText"
+                    android:textSize="@dimen/font_14"
                     app:fontFamily="@font/barlow_medium" />
 
 
@@ -101,8 +101,8 @@
                     android:paddingRight="@dimen/size_10"
                     android:paddingBottom="@dimen/size_6"
                     android:text="@string/danh_muc"
-                    android:textColor="@color/collection_product_name"
-                    android:textSize="14sp"
+                    android:textColor="@color/colorNormalText"
+                    android:textSize="@dimen/font_14"
                     app:fontFamily="@font/barlow_medium" />
             </LinearLayout>
 

@@ -6,7 +6,6 @@ import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -73,7 +72,7 @@ class InteractiveComponent(parent: ViewGroup) : BaseViewHolder<MutableList<ICNot
                             ViewHelper.createLayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f),
                             null,
                             ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
-                            ContextCompat.getColor(context, R.color.blue),
+                            ContextCompat.getColor(context, R.color.colorSecondary),
                             18f
                     ).also {
                         it.setPadding(0, 0, SizeHelper.size12, 0)
@@ -84,7 +83,7 @@ class InteractiveComponent(parent: ViewGroup) : BaseViewHolder<MutableList<ICNot
                             ViewHelper.createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT),
                             ViewHelper.outValue.resourceId,
                             ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
-                            ContextCompat.getColor(context, R.color.blue),
+                            ContextCompat.getColor(context, R.color.colorSecondary),
                             14f
                     ).also {
                         it.setPadding(0, SizeHelper.size6, 0, SizeHelper.size6)

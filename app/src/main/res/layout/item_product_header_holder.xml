@@ -3,27 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bgItem"
-    android:layout_width="64dp"
+    android:layout_width="@dimen/size_64"
     android:layout_height="wrap_content"
-    android:layout_marginStart="2dp"
-    android:layout_marginEnd="2dp"
+    android:layout_marginStart="@dimen/size_2"
+    android:layout_marginEnd="@dimen/size_2"
     android:gravity="center"
     android:orientation="vertical">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imgBigCorp"
-        android:layout_width="31dp"
-        android:layout_height="31dp"
-        android:layout_marginTop="7dp" />
+        android:layout_width="@dimen/size_31"
+        android:layout_height="@dimen/size_31"
+        android:layout_marginTop="@dimen/size_7" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvNameBigCorp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginStart="@dimen/size_5"
+        android:layout_marginTop="@dimen/size_12"
+        android:layout_marginEnd="@dimen/size_5"
+        android:layout_marginBottom="@dimen/size_12"
         android:ellipsize="end"
         android:fontFamily="@font/barlow_medium"
         android:gravity="center"
@@ -31,7 +31,7 @@
         android:maxLines="2"
         android:minLines="2"
         android:textColor="#757575"
-        android:textSize="10sp"
+        android:textSize="@dimen/font_10"
         tools:text="iCheck" />
 
 </LinearLayout>

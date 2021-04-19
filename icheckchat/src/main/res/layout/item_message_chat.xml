@@ -43,6 +43,6 @@
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:singleLine="true"
-        android:textColor="@color/lightBlue"
+        android:textColor="@color/colorPrimary"
         android:textSize="16sp" />
 </LinearLayout>

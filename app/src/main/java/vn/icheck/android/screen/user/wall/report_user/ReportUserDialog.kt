@@ -71,7 +71,7 @@ class ReportUserDialog : CoroutineBottomSheetDialogFragment() {
 
             if (filter != null) {
                 delayAction({
-                    DialogHelper.showConfirm(dialog?.context, "Bạn muốn bỏ báo cáo này?", null, "Tiếp tục báo cáo", "Bỏ báo cáo", true, null, R.color.red, object : ConfirmDialogListener {
+                    DialogHelper.showConfirm(dialog?.context, "Bạn muốn bỏ báo cáo này?", null, "Tiếp tục báo cáo", "Bỏ báo cáo", true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
                         override fun onDisagree() {
 
                         }

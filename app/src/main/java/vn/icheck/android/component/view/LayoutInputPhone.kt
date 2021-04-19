@@ -33,7 +33,7 @@ class LayoutInputPhone : LinearLayout {
                 ViewHelper.createLayoutParams(),
                 ViewHelper.outValue.resourceId,
                 ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
-                ContextCompat.getColor(context, R.color.lightBlue),
+                ContextCompat.getColor(context, R.color.colorPrimary),
                 18f).also {
             it.setPadding(0, SizeHelper.size10, 0, SizeHelper.size10)
             it.setText(R.string.viet_nam)
@@ -54,7 +54,7 @@ class LayoutInputPhone : LinearLayout {
                 ViewHelper.createLayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT, 0, 0, SizeHelper.size5, 0),
                 ContextCompat.getDrawable(context, R.drawable.under_line_gray_1dp),
                 ViewHelper.createTypeface(context, R.font.barlow_medium),
-                ContextCompat.getColor(context, R.color.fast_survey_gray),
+                ContextCompat.getColor(context, R.color.colorSecondText),
                 24f).also {
             it.setPadding(SizeHelper.size4, 0, SizeHelper.size4, 0)
             it.gravity = Gravity.CENTER
@@ -65,11 +65,11 @@ class LayoutInputPhone : LinearLayout {
                 ViewHelper.createLayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT, SizeHelper.size5, 0, 0, 0),
                 ContextCompat.getDrawable(context, R.drawable.under_line_light_blue_1dp),
                 ViewHelper.createTypeface(context, R.font.barlow_medium),
-                ContextCompat.getColor(context, R.color.collection_product_name),
+                ContextCompat.getColor(context, R.color.colorNormalText),
                 24f).also {
             it.setPadding(SizeHelper.size4, 0, SizeHelper.size4, 0)
             it.gravity = Gravity.CENTER
-            it.setHintTextColor(ContextCompat.getColor(context, R.color.darkGray2))
+            it.setHintTextColor(ContextCompat.getColor(context, R.color.colorDisableText))
             it.setHint(R.string.nhap_so_dien_thoai)
         })
     }

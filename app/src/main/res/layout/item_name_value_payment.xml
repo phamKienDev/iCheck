@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp">
+    android:layout_marginTop="@dimen/size_5"
+    android:layout_marginBottom="@dimen/size_5">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@id/tvName"
@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/barlow_medium"
         android:textColor="#757575"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/tvValue"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +27,7 @@
         android:fontFamily="@font/barlow_medium"
         android:gravity="end"
         android:textColor="#212121"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toBottomOf="@id/tvName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tvName"

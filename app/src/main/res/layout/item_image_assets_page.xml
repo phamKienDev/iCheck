@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="2dp">
+    android:layout_margin="@dimen/size_2">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@id/imageView"
-        android:layout_width="121dp"
-        android:layout_height="121dp"
+        android:layout_width="@dimen/size_121"
+        android:layout_height="@dimen/size_121"
         android:scaleType="centerCrop"
         tools:src="@mipmap/ic_launcher"/>
 

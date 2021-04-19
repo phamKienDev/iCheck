@@ -48,7 +48,7 @@ class WidgetCampaignAdapter(val listData: MutableList<ICCampaign>) : RecyclerVie
                 if (obj.state is String) {
                     when (obj.state) {
                         "running" -> {
-                            setTextColor(ContextCompat.getColor(itemView.context, R.color.red))
+                            setTextColor(ContextCompat.getColor(itemView.context, R.color.colorAccentRed))
                             text = "Đang diễn ra"
                         }
                         "finished" -> {
@@ -57,7 +57,7 @@ class WidgetCampaignAdapter(val listData: MutableList<ICCampaign>) : RecyclerVie
                             (params.getChildAt(4) as LinearLayout).visibility = View.INVISIBLE
                         }
                         else -> {
-                            setTextColor(ContextCompat.getColor(itemView.context, R.color.gray_v2))
+                            setTextColor(ContextCompat.getColor(itemView.context, R.color.colorSecondText))
                             text = TimeHelper.convertDateSvToDateVn(obj.startTime)
                         }
                     }

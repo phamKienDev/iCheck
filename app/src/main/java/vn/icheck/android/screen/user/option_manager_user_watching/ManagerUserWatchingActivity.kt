@@ -60,7 +60,7 @@ class ManagerUserWatchingActivity : BaseActivityMVVM(), IUserFollowWallView {
     }
 
     private fun initSwipeLayput() {
-        swipe_layout.setColorSchemeColors(ContextCompat.getColor(this, R.color.lightBlue), ContextCompat.getColor(this, R.color.lightBlue), ContextCompat.getColor(this, R.color.lightBlue))
+        swipe_layout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorPrimary), ContextCompat.getColor(this, R.color.colorPrimary), ContextCompat.getColor(this, R.color.colorPrimary))
 
         swipe_layout.setOnRefreshListener {
             swipe_layout.isRefreshing = true

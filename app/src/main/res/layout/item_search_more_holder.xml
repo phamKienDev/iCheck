@@ -19,8 +19,8 @@
         android:gravity="center"
         android:includeFontPadding="false"
         android:text="@string/xem_them"
-        android:textColor="@color/lightBlue"
-        android:textSize="14sp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/font_14"
         app:fontFamily="@font/barlow_semi_bold" />
 
 </LinearLayout>

@@ -30,14 +30,12 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
-import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.network.base.*
 import vn.icheck.android.screen.user.pvcombank.authen.CreatePVCardActivity
 import vn.icheck.android.screen.user.pvcombank.home.HomePVCardActivity
 import vn.icheck.android.screen.user.pvcombank.listcard.ListPVCardActivity
 import vn.icheck.android.util.ick.spToPx
-import vn.icheck.android.util.ick.toPx
 import vn.icheck.android.util.kotlin.ActivityUtils
 import java.net.URL
 import java.util.*
@@ -272,7 +270,7 @@ class WebViewActivity : BaseActivityMVVM() {
             }
 
             override fun onGeolocationPermissionsShowPrompt(origin: String?, callback: GeolocationPermissions.Callback?) {
-                DialogHelper.showConfirm(this@WebViewActivity, null, "'$origin' muốn biết vị trí của bạn", "Từ chối", "Cho phép", true, null, R.color.blue, object : ConfirmDialogListener {
+                DialogHelper.showConfirm(this@WebViewActivity, null, "'$origin' muốn biết vị trí của bạn", "Từ chối", "Cho phép", true, null, R.color.colorSecondary, object : ConfirmDialogListener {
                     override fun onDisagree() {
                         callback?.invoke(origin, false, false)
 
@@ -301,7 +299,7 @@ class WebViewActivity : BaseActivityMVVM() {
     }
 
     private fun confirmAllowCamera(request: PermissionRequest?) {
-        DialogHelper.showConfirm(this@WebViewActivity, null, "'${URL(webView.url).host}' muốn sử dụng camera của bạn", "Từ chối", "Cho phép", true, null, R.color.blue, object : ConfirmDialogListener {
+        DialogHelper.showConfirm(this@WebViewActivity, null, "'${URL(webView.url).host}' muốn sử dụng camera của bạn", "Từ chối", "Cho phép", true, null, R.color.colorSecondary, object : ConfirmDialogListener {
             override fun onDisagree() {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     request?.deny()
@@ -384,7 +382,7 @@ class WebViewActivity : BaseActivityMVVM() {
             val hotline = SettingManager.clientSetting?.hotline ?: "0902195488"
             val spannable = SpannableString(getString(R.string.ma_qr_khong_phai_do_icheck_phat_hanh, hotline))
 
-            spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(this, R.color.lightBlue)), 67, 67 + hotline.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(this, R.color.colorPrimary)), 67, 67 + hotline.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
             spannable.setSpan(object : ClickableSpan() {
                 override fun onClick(p0: View) {
                     val callIntent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$hotline"))

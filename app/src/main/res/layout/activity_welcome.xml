@@ -55,7 +55,7 @@
         android:paddingBottom="@dimen/size_10"
         android:text="@string/bo_qua"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         app:layout_constraintBottom_toTopOf="@+id/waveLoadingView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/waveLoadingView" />
@@ -71,7 +71,7 @@
         android:paddingBottom="@dimen/size_10"
         android:text="@string/tiep"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/txtSkip" />
 

@@ -49,8 +49,8 @@
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center_vertical"
                 android:textAlignment="gravity"
-                android:textColor="@color/fast_survey_gray"
-                android:textSize="14sp"
+                android:textColor="@color/colorSecondText"
+                android:textSize="@dimen/font_14"
                 app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/imgAvatar" />
@@ -123,8 +123,8 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imgImage"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="@dimen/size_80"
+                    android:layout_height="@dimen/size_80"
                     android:layout_marginStart="@dimen/size_12"
                     android:layout_marginTop="@dimen/size_13"
                     android:layout_marginEnd="@dimen/size_10"
@@ -152,7 +152,7 @@
                     android:id="@id/imgCloseImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="68dp"
+                    android:layout_marginStart="@dimen/size_68"
                     android:layout_marginTop="@dimen/size_3"
                     android:visibility="gone"
                     android:drawableStart="@drawable/ic_delete_red_24px"
@@ -211,7 +211,7 @@
                             android:paddingBottom="@dimen/size_2"
                             android:singleLine="true"
                             android:textColor="@color/darkGray1"
-                            android:textSize="12sp"
+                            android:textSize="@dimen/font_12"
                             android:visibility="visible"
                             tools:text="Trả lời  Đặng Trung Đ  Đặng Trung Đức ặng Trung Đức ặng Trung Đức" />
                     </LinearLayout>
@@ -220,7 +220,7 @@
                         android:id="@id/edtContent"
                         android:layout_width="@dimen/size_0"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="46dp"
+                        android:layout_marginEnd="@dimen/size_46"
                         android:background="@android:color/transparent"
                         android:fontFamily="@font/barlow_medium"
                         android:gravity="center_vertical"
@@ -232,9 +232,9 @@
                         android:paddingEnd="@dimen/size_10"
                         android:paddingBottom="@dimen/size_6"
                         android:textAlignment="gravity"
-                        android:textColor="@color/collection_product_name"
-                        android:textColorHint="@color/darkGray2"
-                        android:textSize="14sp"
+                        android:textColor="@color/colorNormalText"
+                        android:textColorHint="@color/colorDisableText"
+                        android:textSize="@dimen/font_14"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -354,10 +354,10 @@
                         android:layout_marginStart="@dimen/size_6"
                         android:layout_marginTop="@dimen/size_4"
                         android:layout_marginEnd="@dimen/size_6"
-                        android:lineSpacingExtra="4sp"
+                        android:lineSpacingExtra="@dimen/font_14"
                         android:text="@string/binh_luan_voi_tu_cach"
                         android:textColor="#757575"
-                        android:textSize="12sp"
+                        android:textSize="@dimen/font_12"
                         app:fontFamily="@font/barlow_medium" />
 
                     <androidx.recyclerview.widget.RecyclerView

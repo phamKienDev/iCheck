@@ -18,7 +18,7 @@
         android:includeFontPadding="false"
         android:singleLine="true"
         android:textColor="#3c5a99"
-        android:textSize="18sp"
+        android:textSize="@dimen/font_18"
         android:textStyle="normal"
         tools:text="Địa chỉ nhận hàng" />
 
@@ -31,7 +31,7 @@
         android:paddingStart="@dimen/size_12"
         android:paddingEnd="@dimen/size_12"
         android:textColor="#3c5a99"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:textStyle="normal"
         tools:text="Thay đổi" />
 </LinearLayout>

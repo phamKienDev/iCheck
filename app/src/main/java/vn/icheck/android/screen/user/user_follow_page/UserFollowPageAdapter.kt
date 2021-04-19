@@ -156,7 +156,7 @@ class UserFollowPageAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
                     }
                     it.ellipsize = TextUtils.TruncateAt.END
                     it.maxLines = 1
-                    it.setTextColor(ContextCompat.getColor(context, R.color.blue))
+                    it.setTextColor(ContextCompat.getColor(context, R.color.colorSecondary))
                     it.setTypeface(Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf"))
                     it.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
                 }
@@ -288,7 +288,7 @@ class UserFollowPageAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
                             itemView.btnConfirm.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                             itemView.btnConfirm.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_gray_f0_corners_4)
                             itemView.btnConfirm.setText(R.string.da_gui_loi_moi)
-                            itemView.btnConfirm.setTextColor(ContextCompat.getColor(itemView.context, R.color.fast_survey_gray))
+                            itemView.btnConfirm.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorSecondText))
 
                             itemView.btnConfirm.visibility = View.VISIBLE
                             itemView.tvMessage.visibility = View.INVISIBLE

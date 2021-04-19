@@ -8,9 +8,9 @@
         android:id="@+id/tvCountUserReward"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="12dp"
-        android:textSize="14sp"
+        android:layout_marginTop="@dimen/size_16"
+        android:layout_marginStart="@dimen/size_12"
+        android:textSize="@dimen/font_14"
         android:fontFamily="sans-serif-medium"
         android:textStyle="normal"
         android:textColor="#3c5a99" />
@@ -19,8 +19,8 @@
         android:id="@+id/rcvUserReward"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="12dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"/>
+        android:layout_marginTop="@dimen/size_12"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginEnd="@dimen/size_12"/>
 
 </LinearLayout>

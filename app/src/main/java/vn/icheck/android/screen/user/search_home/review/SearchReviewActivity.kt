@@ -91,7 +91,7 @@ class SearchReviewActivity : BaseActivityMVVM(), View.OnClickListener, IRecycler
 
     private fun initSwipeLayout() {
         swipe_container.isRefreshing = true
-        swipe_container.setColorSchemeColors(ContextCompat.getColor(this, R.color.blue), ContextCompat.getColor(this, R.color.blue), ContextCompat.getColor(this, R.color.lightBlue))
+        swipe_container.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
         swipe_container.setOnRefreshListener {
             refreshData()
         }

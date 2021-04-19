@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="12dp"
+    android:layout_marginTop="@dimen/size_12"
     android:background="@color/white"
     android:orientation="vertical">
 
@@ -20,8 +20,8 @@
         android:paddingBottom="@dimen/size_12"
         android:singleLine="true"
         android:text="Truy xuất nguồn gốc Trứng"
-        android:textColor="@color/blue"
-        android:textSize="18sp" />
+        android:textColor="@color/colorSecondary"
+        android:textSize="@dimen/font_18" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@id/recyclerView"
@@ -62,7 +62,7 @@
                 android:maxLength="2"
                 android:text="1"
                 android:textColor="#315fa5"
-                android:textSize="16sp" />
+                android:textSize="@dimen/font_16" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@id/tvName"
@@ -78,7 +78,7 @@
                 android:maxLines="2"
                 android:text="Tự chủ nguồn cám sạch - an toàn - title tối đa 2 dòng)..."
                 android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textSize="@dimen/font_14" />
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -87,18 +87,18 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_regular"
             android:includeFontPadding="false"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginStart="12dp"
+            android:layout_marginTop="@dimen/size_12"
+            android:layout_marginEnd="@dimen/size_12"
+            android:layout_marginStart="@dimen/size_12"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:textSize="@dimen/font_14" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:layout_marginEnd="14dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="@dimen/size_6"
+            android:layout_marginEnd="@dimen/size_14"
+            android:layout_marginBottom="@dimen/size_8"
             android:layout_gravity="end"
             android:src="@drawable/img_egg_default"/>
     </LinearLayout>

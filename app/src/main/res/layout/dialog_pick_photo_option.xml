@@ -21,7 +21,7 @@
             android:text="@string/chon_anh"
             android:visibility="gone"
             android:textColor="#b4b4b4"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal" />
 
         <View style="@style/Line_Gray.Horizontal" />
@@ -34,8 +34,8 @@
             android:fontFamily="@font/barlow_medium"
             android:gravity="center"
             android:text="@string/chup_anh"
-            android:textColor="@color/lightBlue"
-            android:textSize="18sp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/font_18"
             android:textStyle="normal" />
 
         <View style="@style/Line_Gray.Horizontal" />
@@ -48,8 +48,8 @@
             android:fontFamily="@font/barlow_medium"
             android:gravity="center"
             android:text="@string/quay_video"
-            android:textColor="@color/lightBlue"
-            android:textSize="18sp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/font_18"
             android:textStyle="normal" />
     </LinearLayout>
 
@@ -62,7 +62,7 @@
         android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center"
         android:text="@string/bo_qua"
-        android:textColor="@color/lightBlue"
-        android:textSize="18sp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/font_18"
         android:textStyle="bold" />
 </LinearLayout>
