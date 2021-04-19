@@ -122,20 +122,22 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
 
     override fun onRequireLogin(requestCode: Int) {
         requestLogin = requestCode
+        runOnUiThread {
 
-        object : RewardLoginDialog(this@BaseActivityMVVM) {
-            override fun onLogin() {
-                startActivityForResult<IckLoginActivity>(requestLogin)
-            }
+            object : RewardLoginDialog(this@BaseActivityMVVM) {
+                override fun onLogin() {
+                    startActivityForResult<IckLoginActivity>(requestLogin)
+                }
 
-            override fun onRegister() {
-                startActivityForResult<IckLoginActivity>(Constant.DATA_1, Constant.REGISTER_TYPE, requestLogin)
-            }
+                override fun onRegister() {
+                    startActivityForResult<IckLoginActivity>(Constant.DATA_1, Constant.REGISTER_TYPE, requestLogin)
+                }
 
-            override fun onDismiss() {
-                onRequireLoginCancel()
-            }
-        }.show()
+                override fun onDismiss() {
+                    onRequireLoginCancel()
+                }
+            }.show()
+        }
     }
 
 

@@ -154,21 +154,22 @@ abstract class BaseActivity<P : BaseActivityPresenter> : AppCompatActivity(), Ba
 
     override fun onRequireLogin(requestCode: Int) {
         requestRequireLogin = requestCode
+        runOnUiThread {
+            object : RewardLoginDialog(this@BaseActivity) {
+                override fun onLogin() {
+                    startActivityForResult<IckLoginActivity>(requestLogin)
+                }
 
-        object : RewardLoginDialog(this@BaseActivity) {
-            override fun onLogin() {
-                startActivityForResult<IckLoginActivity>(requestLogin)
-            }
-
-            override fun onRegister() {
-                simpleStartForResultActivity(IckLoginActivity::class.java, 1)
+                override fun onRegister() {
+                    simpleStartForResultActivity(IckLoginActivity::class.java, 1)
 //                startActivityForResult<IckLoginActivity>(Constant.DATA_1, Constant.REGISTER_TYPE, requestLogin)
-            }
+                }
 
-            override fun onDismiss() {
-                onRequireLoginCancel()
-            }
-        }.show()
+                override fun onDismiss() {
+                    onRequireLoginCancel()
+                }
+            }.show()
+        }
     }
 
     override fun onRequireLoginSuccess(requestCode: Int) {
