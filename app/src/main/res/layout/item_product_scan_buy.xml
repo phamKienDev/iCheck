@@ -90,7 +90,7 @@
         android:fontFamily="@font/barlow_semi_bold"
         android:includeFontPadding="false"
         android:singleLine="true"
-        android:textColor="#ff0000"
+        android:textColor="@color/colorAccentRed"
         android:textSize="@dimen/font_18"
         app:layout_constraintEnd_toEndOf="@+id/tvVariant"
         app:layout_constraintStart_toEndOf="@+id/tvPriceNoSale"

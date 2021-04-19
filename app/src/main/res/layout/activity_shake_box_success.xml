@@ -68,7 +68,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/size_12"
                 android:text="@string/chuc_mung_ban"
-                android:textColor="#ff0000" />
+                android:textColor="@color/colorAccentRed" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

@@ -216,10 +216,10 @@ class CoinHistoryAdapter(val callback: ICoinHistoryView) : RecyclerView.Adapter<
 
             if (obj.type == 1) {
                 itemView.imgType.setImageResource(R.drawable.ic_xu_add_20px)
-                itemView.tvMoney.setTextColor(Color.parseColor("#85C440"))
+                itemView.tvMoney.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorAccentGreen))
             } else {
                 itemView.imgType.setImageResource(R.drawable.ic_xu_contract_20px)
-                itemView.tvMoney.setTextColor(Color.parseColor("#FF0000"))
+                itemView.tvMoney.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorAccentRed))
             }
 
             itemView.tvMission.text = obj.title

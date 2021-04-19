@@ -51,7 +51,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
             android:singleLine="true"
-            android:textColor="#FF0000"
+            android:textColor="@color/colorAccentRed"
             android:textSize="@dimen/font_14"
             tools:text="+2.000" />
     </LinearLayout>

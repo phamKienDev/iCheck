@@ -49,7 +49,7 @@
                 android:layout_marginEnd="@dimen/size_12"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:text="Xem tất cả lời nhắc"
-                android:textColor="#FF0000"
+                android:textColor="@color/colorAccentRed"
                 app:drawableEndCompat="@drawable/ic_arrow_down_blue_24px_vector"
                 app:drawableRightCompat="@drawable/ic_arrow_down_blue_24px_vector"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView13"

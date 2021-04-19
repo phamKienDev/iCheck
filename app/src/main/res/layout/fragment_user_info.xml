@@ -113,7 +113,7 @@
                 android:drawablePadding="@dimen/size_6"
                 android:fontFamily="@font/barlow_medium"
                 android:text="Nhập sai định dạng. Thử lại!"
-                android:textColor="#FF0000"
+                android:textColor="@color/colorAccentRed"
                 android:textSize="@dimen/font_12"
                 android:visibility="gone"
                 app:drawableStartCompat="@drawable/ic_error_red_18dp"
