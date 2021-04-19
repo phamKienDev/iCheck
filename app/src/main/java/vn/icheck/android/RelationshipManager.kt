@@ -2,7 +2,6 @@ package vn.icheck.android
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.observe
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.installations.FirebaseInstallations
@@ -23,15 +22,14 @@ import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.util.DeviceUtils
 import vn.icheck.android.room.database.AppDatabase
+import vn.icheck.android.room.entity.ICFriendInvitationMeUserId
 import vn.icheck.android.room.entity.ICMeFollowUser
 import vn.icheck.android.room.entity.ICMyFriendIdUser
 import vn.icheck.android.room.entity.ICMyFriendInvitationUserId
-import vn.icheck.android.screen.account.icklogin.viewmodel.IckLoginRepository
 import vn.icheck.android.util.ick.logDebug
 import vn.icheck.android.util.ick.logError
 import vn.icheck.android.util.ick.toStringNotNull
 import java.util.concurrent.TimeUnit
-import javax.inject.Inject
 
 object RelationshipManager {
     const val FRIEND_LIST_UPDATE = 1
@@ -62,22 +60,41 @@ object RelationshipManager {
     var unreadCount = 0L
 
     /**
-     * Friend invitation database actions
+     * My Friend invitation database actions
      */
-    fun checkFriendInvitation(userId: Long): Boolean {
+    fun checkMyFriendInvitation(userId: Long): Boolean {
         return AppDatabase.getDatabase().myFriendInvitationUserIdDao().getUserByID(userId) != null
     }
 
-    fun removeFriendInvitation(userId: Long) {
+    fun removeMyFriendInvitation(userId: Long) {
         AppDatabase.getDatabase().myFriendInvitationUserIdDao().deleteUserById(userId)
     }
 
-    private fun addFriendInvitation(userId: Long) {
+    private fun addMyFriendInvitation(userId: Long) {
         AppDatabase.getDatabase().myFriendInvitationUserIdDao().insertMyFriendInvitationUserID(ICMyFriendInvitationUserId(userId))
     }
 
-    private fun clearAllFriendInvitation() {
+    private fun clearAllMyFriendInvitation() {
         AppDatabase.getDatabase().myFriendInvitationUserIdDao().deleteAll()
+    }
+
+    /**
+     * Friend invitation me database actions
+     */
+    fun checkFriendInvitationMe(userId: Long): Boolean {
+        return AppDatabase.getDatabase().friendInvitationMeUserIdDao().getUserByID(userId) != null
+    }
+
+    fun removeFriendInvitationMe(userId: Long) {
+        AppDatabase.getDatabase().friendInvitationMeUserIdDao().deleteUserById(userId)
+    }
+
+    private fun addFriendInvitationMe(userId: Long) {
+        AppDatabase.getDatabase().friendInvitationMeUserIdDao().insertFriendInvitationMeUserID(ICFriendInvitationMeUserId(userId))
+    }
+
+    private fun clearAllFriendInvitationMe() {
+        AppDatabase.getDatabase().friendInvitationMeUserIdDao().deleteAll()
     }
 
     /**
@@ -142,6 +159,7 @@ object RelationshipManager {
      */
     private lateinit var friendListReference: DatabaseReference
     private lateinit var friendInvitationReference: DatabaseReference
+    private lateinit var friendInvitationMeReference: DatabaseReference
     private lateinit var myFollowingUsersReference: DatabaseReference
     private lateinit var myFollowedUserReference: DatabaseReference
 
@@ -176,10 +194,26 @@ object RelationshipManager {
 
     private val friendInvitationListener = object : ValueEventListener {
         override fun onDataChange(snapshot: DataSnapshot) {
-            clearAllFriendInvitation()
+            clearAllMyFriendInvitation()
             if (snapshot.hasChildren()) {
                 for (item in snapshot.children) {
-                    addFriendInvitation(item.value as Long)
+                    addMyFriendInvitation(item.value as Long)
+                }
+            }
+            logDebug(snapshot.toString())
+        }
+
+        override fun onCancelled(error: DatabaseError) {
+            logError(error.toException())
+        }
+    }
+
+    private val friendInvitationMeListener =  object : ValueEventListener {
+        override fun onDataChange(snapshot: DataSnapshot) {
+            clearAllFriendInvitationMe()
+            if (snapshot.hasChildren()) {
+                for (item in snapshot.children) {
+                    addFriendInvitationMe(item.value as Long)
                 }
             }
             logDebug(snapshot.toString())
@@ -334,6 +368,7 @@ object RelationshipManager {
         if (FirebaseAuth.getInstance().currentUser != null) {// Relationship
             friendListReference.addValueEventListener(friendListListener)
             friendInvitationReference.addValueEventListener(friendInvitationListener)
+            friendInvitationMeReference.addValueEventListener(friendInvitationMeListener)
             myFollowingUsersReference.addValueEventListener(myFollowingUserListener)
             myFollowedUserReference.addValueEventListener(myFollowedUsersListener)
             // References
@@ -431,6 +466,8 @@ object RelationshipManager {
         val id = FirebaseAuth.getInstance().currentUser?.uid
         friendInvitationReference = firebaseDatabase
                 .getReference("relationships/$id/myFriendInvitationUserIdList")
+        friendInvitationMeReference = firebaseDatabase
+                .getReference("relationships/$id/friendInvitationMeUserIdList")
         friendListReference = firebaseDatabase
                 .getReference("relationships/$id/myFriendIdList")
         myFollowingUsersReference = firebaseDatabase
@@ -457,12 +494,15 @@ object RelationshipManager {
 
             conversationList.clear()
             clearConversation()
-            clearAllFriendInvitation()
+            clearAllMyFriendInvitation()
             clearFollowingUser()
             clearAllFriend()
 
             if (::friendInvitationReference.isInitialized) {
                 friendInvitationReference.removeEventListener(friendInvitationListener)
+            }
+            if (::friendInvitationMeReference.isInitialized) {
+                friendInvitationMeReference.removeEventListener(friendInvitationMeListener)
             }
             if (::friendListReference.isInitialized) {
                 friendListReference.removeEventListener(friendListListener)

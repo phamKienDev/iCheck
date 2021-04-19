@@ -86,7 +86,7 @@ import vn.icheck.android.screen.user.coinhistory.CoinHistoryActivity
 import vn.icheck.android.screen.user.contact.ContactActivity
 import vn.icheck.android.screen.user.createqrcode.home.CreateQrCodeHomeActivity
 import vn.icheck.android.screen.user.history_loading_card.home.HistoryCardActivity
-import vn.icheck.android.screen.user.home_page.home.HomePageFragment
+import vn.icheck.android.screen.user.home_page.HomePageFragment
 import vn.icheck.android.screen.user.newslistv2.ListNewsFragment
 import vn.icheck.android.screen.user.orderhistory.OrderHistoryActivity
 import vn.icheck.android.screen.user.rank_of_user.RankOfUserActivity
@@ -221,28 +221,31 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
         listPage.add(ICFragment(null, ListNewsFragment.newInstance(false)))
         listPage.add(ICFragment(null, ScanHistoryFragment()))
         listPage.add(ICFragment(null, SocialChatFragment()))
-//        listPage.add(ICFragment(null, ChatSocialFragment(object : ListConversationFragment.Companion.ICountMessageListener {
-//            override fun getCountMessage(count: Long) {
+//        listPage.add(ICFragment(null, ChatSocialFragment().apply {
+//            setDataFromHome(object : ListConversationFragment.Companion.ICountMessageListener {
+//                override fun getCountMessage(count: Long) {
 //
-//                tvChatCount.post {
-//                    tvChatCount.visibility = if (count != 0L) {
-//                        View.VISIBLE
-//                    } else {
-//                        View.GONE
-//                    }
+//                    val tvChatCount = findViewById<AppCompatTextView>(R.id.tvChatCount)
+//                    tvChatCount.post {
+//                        tvChatCount.visibility = if (count != 0L) {
+//                            View.VISIBLE
+//                        } else {
+//                            View.GONE
+//                        }
 //
-//                    tvChatCount.text = if (count > 9) {
-//                        "+9"
-//                    } else {
-//                        "$count"
+//                        tvChatCount.text = if (count > 9) {
+//                            "+9"
+//                        } else {
+//                            "$count"
+//                        }
 //                    }
 //                }
-//            }
 //
-//            override fun onClickLeftMenu() {
-//                openSlideMenu()
-//            }
-//        }, SessionManager.isUserLogged)))
+//                override fun onClickLeftMenu() {
+//                    openSlideMenu()
+//                }
+//            }, SessionManager.isUserLogged)
+//        }))
 
         viewPager.offscreenPageLimit = 5
         viewPager.setPagingEnabled(false)
@@ -1173,7 +1176,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
         }
     }
 
-    private fun checkLoginOrLogoutChat(isLogin: Boolean){
+    private fun checkLoginOrLogoutChat(isLogin: Boolean) {
         (viewPager.adapter as ViewPagerAdapter).apply {
             for (item in listData) {
                 if (item.fragment is ChatSocialFragment) {

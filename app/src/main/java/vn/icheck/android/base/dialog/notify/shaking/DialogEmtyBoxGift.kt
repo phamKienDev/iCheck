@@ -12,7 +12,7 @@ import vn.icheck.android.base.dialog.notify.base.BaseDialog
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.network.models.ICMission
-import vn.icheck.android.screen.user.home_page.my_gift_warehouse.list_mission.list.ListMissionActivity
+import vn.icheck.android.screen.user.my_gift_warehouse.list_mission.list.ListMissionActivity
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
 

@@ -19,10 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_20"
-        android:ellipsize="end"
         android:fontFamily="@font/roboto_medium"
         android:gravity="center"
-        android:singleLine="true"
         android:text="Bạn chưa có lịch sử đổi quà"
         android:textColor="#757575" />
 
@@ -31,10 +29,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_4"
-        android:ellipsize="end"
         android:fontFamily="@font/roboto_medium"
         android:gravity="center"
-        android:singleLine="true"
         android:text="Tham gia tích điểm để đổi quà to nào!"
         android:textColor="#757575" />
 

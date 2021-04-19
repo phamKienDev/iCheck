@@ -5,6 +5,11 @@
     <application android:theme="@style/AppTheme">
         <activity android:name=".web.WebViewActivity"></activity>
         <activity android:name=".CropImageActivity" />
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".camera.CameraActivity"  android:clearTaskOnLaunch="true"  android:theme="@style/CameraTheme"/>
     </application>
 
 </manifest>

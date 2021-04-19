@@ -162,7 +162,7 @@ class TakeMediaDialog(val activity: Activity,
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        takeMediaHelper?.onActivityResult(requestCode, resultCode)
+        takeMediaHelper?.onActivityResult(requestCode, resultCode, data)
         if (!cropImage) {
             dismiss()
         } else {

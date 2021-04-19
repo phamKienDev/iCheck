@@ -185,7 +185,7 @@ class IckContributeProductViewModel @ViewModelInject constructor(
         postSize()
     }
 
-    private fun postSize() {
+    fun postSize() {
         listImages.postValue(arrayListImage)
     }
 

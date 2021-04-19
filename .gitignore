@@ -41,3 +41,5 @@ captures/
 /.idea/
 /.idea/codeStyles/
 /ichecknetwork/.cxx/
+
+.gitlab-ci.yml

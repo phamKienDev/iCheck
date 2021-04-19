@@ -48,7 +48,7 @@ import vn.icheck.android.network.models.chat.Stickers
 import vn.icheck.android.screen.user.commentpost.CommentPermissionAdapter
 import vn.icheck.android.screen.user.commentpost.EmojiAdapter
 import vn.icheck.android.network.models.ICCommentPermission
-import vn.icheck.android.screen.user.editcomment.EditCommentActivity
+import vn.icheck.android.screen.user.edit_comment.EditCommentActivity
 import vn.icheck.android.screen.user.list_product_question.adapter.ListProductQuestionAdapter
 import vn.icheck.android.screen.user.list_product_question.view.IListProductQuestionView
 import vn.icheck.android.screen.user.list_product_question.viewmodel.ListProductQuestionViewModel

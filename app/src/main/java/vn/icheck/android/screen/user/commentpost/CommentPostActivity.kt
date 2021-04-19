@@ -53,7 +53,7 @@ import vn.icheck.android.network.models.ICMedia
 import vn.icheck.android.network.models.ICPost
 import vn.icheck.android.network.models.chat.Stickers
 import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
-import vn.icheck.android.screen.user.editcomment.EditCommentActivity
+import vn.icheck.android.screen.user.edit_comment.EditCommentActivity
 import vn.icheck.android.util.KeyboardUtils
 import vn.icheck.android.util.ick.*
 import vn.icheck.android.util.kotlin.ActivityUtils

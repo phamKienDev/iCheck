@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="vn.icheck.android.screen.user.home_page.my_gift_warehouse.shake_gift.list_box_gift.ListShakeGridBoxActivity">
+    tools:context=".screen.user.my_gift_warehouse.shake_gift.list_box_gift.ListShakeGridBoxActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

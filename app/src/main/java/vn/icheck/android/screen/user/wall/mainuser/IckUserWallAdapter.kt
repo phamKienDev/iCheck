@@ -14,7 +14,6 @@ import vn.icheck.android.R
 import vn.icheck.android.RelationshipManager
 import vn.icheck.android.activities.image.DetailImagesActivity
 import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
-import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.component.ICViewModel
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.component.`null`.NullHolder
@@ -304,11 +303,20 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
         }
         binding.btnAddFriend.setOnClickListener {
             if (SessionManager.isUserLogged) {
-                binding.btnAddFriend.beGone()
-                binding.tvRequestSent.beVisible()
-                it.context.sendBroadcast(Intent(USER_WALL_BROADCAST).apply {
-                    putExtra(USER_WALL_BROADCAST, USER_WALL_ADD_FRIEND)
-                })
+                if (binding.tvAddFriend.text == "Đồng ý kết bạn") {
+//                    showFriend()
+                    it.context.sendBroadcast(Intent(USER_WALL_BROADCAST).apply {
+                        putExtra(USER_WALL_BROADCAST, USER_WALL_ACCEPT_FRIEND)
+                    })
+                } else {
+                    binding.btnAddFriend.beGone()
+                    binding.tvRequestSent.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,0,0)
+                    binding.tvRequestSent.beVisible()
+                    it.context.sendBroadcast(Intent(USER_WALL_BROADCAST).apply {
+                        putExtra(USER_WALL_BROADCAST, USER_WALL_ADD_FRIEND)
+                    })
+                }
+
             } else {
                 ICheckApplication.currentActivity()?.let { act ->
                     (act as FragmentActivity).showLogin()
@@ -316,9 +324,13 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
             }
         }
         if (ickUserProfileModel.profile.getInvitePrivacy() == Privacy.EVERYONE) {
-            if (RelationshipManager.checkFriendInvitation(ickUserProfileModel.id)) {
+            if (RelationshipManager.checkMyFriendInvitation(ickUserProfileModel.id)) {
                 binding.btnAddFriend.beGone()
                 binding.tvRequestSent.beVisible()
+            }else if (RelationshipManager.checkFriendInvitationMe(ickUserProfileModel.id)) {
+                binding.btnAddFriend.beVisible()
+                binding.tvAddFriend.setText("Đồng ý kết bạn")
+                binding.tvRequestSent.beGone()
             } else {
                 binding.btnAddFriend.beVisible()
                 binding.tvRequestSent.beGone()

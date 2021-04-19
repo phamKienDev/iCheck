@@ -80,18 +80,19 @@
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:textColor="@android:color/white"
-                tools:visibility="gone">
+                tools:visibility="visible">
 
                 <TextView
+                    android:id="@+id/tv_add_friend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/ic_add_white_12px"
-                    android:drawableLeft="@drawable/ic_add_white_12px"
-                    android:drawablePadding="@dimen/size_8"
+                    android:drawablePadding="8dp"
                     android:fontFamily="@font/barlow_medium"
                     android:text="Kết bạn"
                     android:textColor="@android:color/white"
-                    android:textSize="@dimen/font_16" />
+                    android:textSize="16sp"
+                    app:drawableStartCompat="@drawable/ic_add_white_12px"
+                    app:drawableLeftCompat="@drawable/ic_add_white_12px" />
             </LinearLayout>
 
             <TextView

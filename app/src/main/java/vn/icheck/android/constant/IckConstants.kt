@@ -42,6 +42,7 @@ const val SHOW_LIST_MUTUAL_FRIEND = 13
 const val SHOW_LIST_INVITATION = 14
 const val SHOW_COMMENT_POST = 15
 const val SCAN_REVIEW = 16
+const val USER_WALL_ACCEPT_FRIEND = 17
 // User setting
 const val UPDATE_PW = 1
 const val CHANGE_PW = 2

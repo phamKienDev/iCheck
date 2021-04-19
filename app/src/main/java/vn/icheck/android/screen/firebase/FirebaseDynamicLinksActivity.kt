@@ -31,7 +31,6 @@ import vn.icheck.android.R
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.ISettingListener
-import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.constant.ICK_REQUEST_CAMERA
 import vn.icheck.android.helper.*
@@ -60,9 +59,9 @@ import vn.icheck.android.screen.user.detail_stamp_v5.home.DetailStampV5Activity
 import vn.icheck.android.screen.user.detail_stamp_v6.home.DetailStampV6Activity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
 import vn.icheck.android.screen.user.home.HomeActivity
-import vn.icheck.android.screen.user.home_page.campaign.list_campaign.ListCampaignActivity
-import vn.icheck.android.screen.user.home_page.my_gift_warehouse.list_mission.list.ListMissionActivity
-import vn.icheck.android.screen.user.home_page.my_gift_warehouse.shake_gift.list_box_gift.ListShakeGridBoxActivity
+import vn.icheck.android.screen.user.list_campaign.ListCampaignActivity
+import vn.icheck.android.screen.user.my_gift_warehouse.list_mission.list.ListMissionActivity
+import vn.icheck.android.screen.user.my_gift_warehouse.shake_gift.list_box_gift.ListShakeGridBoxActivity
 import vn.icheck.android.screen.user.icheckstore.list.ProductStoreiCheckActivity
 import vn.icheck.android.screen.user.list_product_question.ListProductQuestionActivity
 import vn.icheck.android.screen.user.listnotification.ListNotificationActivity
@@ -1292,8 +1291,9 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
 
         if (PermissionHelper.checkResult(grantResults)) {
             if (requestCode == ICK_REQUEST_CAMERA) {
-                checkTarget()
-                return
+                if (requestCode == ICK_REQUEST_CAMERA) {
+                    V6ScanditActivity.create(this)
+                }
             }
         }
 

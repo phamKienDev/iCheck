@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
-    tools:context="vn.icheck.android.screen.user.home_page.my_gift_warehouse.shake_gift.shake_box_success.ShakeBoxSuccessActivity">
+    tools:context=".screen.user.my_gift_warehouse.shake_gift.shake_box_success.ShakeBoxSuccessActivity">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@id/view"
