@@ -51,7 +51,7 @@ class HeaderInforRewardHolder(parent: ViewGroup) : BaseViewHolder<ICItemReward>(
         when (obj.state) {
             //chưa dùng
             1 -> {
-                itemView.tvRefuseDes.setTextColor(ContextCompat.getColor(this, R.color.colorAccentGreen))
+                itemView.tvRefuseDes.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorAccentGreen))
                 itemView.tvRefuseDes.text = obj.refuse
 
                 itemView.imgUsed.visibility = View.GONE
@@ -134,7 +134,7 @@ class HeaderInforRewardHolder(parent: ViewGroup) : BaseViewHolder<ICItemReward>(
             //giao thành công
             4 -> {
                 itemView.tvState.visibility = View.VISIBLE
-                itemView.tvState.setTextColor(ContextCompat.getColor(this, R.color.colorAccentGreen))
+                itemView.tvState.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorAccentGreen))
                 itemView.tvState.text = "Giao quà thành công"
 
                 itemView.tvRefuse.visibility = View.VISIBLE
