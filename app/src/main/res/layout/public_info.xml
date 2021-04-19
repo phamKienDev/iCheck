@@ -465,7 +465,7 @@
                         android:paddingLeft="@dimen/size_8"
                         android:paddingTop="@dimen/size_3"
                         android:paddingRight="@dimen/size_8"
-                        android:textColor="#85C440"
+                        android:textColor="@color/colorAccentGreen"
                         android:paddingBottom="@dimen/size_3"
                         android:text="Đã xác thực"
                         android:textSize="@dimen/font_14"

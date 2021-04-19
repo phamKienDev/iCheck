@@ -119,7 +119,7 @@
                 android:layout_marginEnd="@dimen/size_7"
                 android:layout_marginRight="@dimen/size_7"
                 android:text="Cập nhật ngay"
-                android:textColor="#85c440"
+                android:textColor="@color/colorAccentGreen"
                 android:textSize="@dimen/font_20"
                 android:visibility="gone"
                 app:fontFamily="@font/barlow_semi_bold" />

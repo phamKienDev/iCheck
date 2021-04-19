@@ -473,7 +473,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
         android:fontFamily="@font/barlow_medium"
-        android:textColor="#FF0000"
+        android:textColor="@color/colorAccentRed"
         android:textSize="@dimen/font_18"
         app:layout_constraintEnd_toStartOf="@+id/btn_confirm"
         app:layout_constraintHorizontal_bias="0.5"

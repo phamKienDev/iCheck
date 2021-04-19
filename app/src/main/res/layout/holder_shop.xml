@@ -99,7 +99,7 @@
                     android:id="@+id/tv_sale_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#ff0000"
+                    android:textColor="@color/colorAccentRed"
                     android:fontFamily="@font/barlow_semi_bold"
                     android:textSize="@dimen/font_16"
                     tools:text="23,004,000đ" />

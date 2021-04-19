@@ -8,7 +8,7 @@
 <!--    <color name="darkBlue">#20336B</color>-->
 <!--    <color name="blue">#3C5A99</color>-->
 <!--    <color name="titleToolbar">#CC1E1E</color>-->
-<!--    <color name="lightCyan">#00BAF2</color>-->
+<!--    <color name="lightCyan">@color/colorAccentBlue</color>-->
 <!--    <color name="black">#000000</color>-->
 <!--    <color name="black_10">#1A000000</color>-->
 <!--    <color name="black_15">#757575</color>-->

@@ -8,6 +8,7 @@ import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatEditText
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
 import vn.icheck.android.R
@@ -47,7 +48,7 @@ open class CustomErrorEditText : AppCompatEditText {
         mLinePaint.strokeWidth = 1f.toPx()
 
         setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom + 20.toPx())
-        mErrorTextPaint.color = Color.parseColor("#FF0000")
+        mErrorTextPaint.color = ContextCompat.getColor(context, R.color.colorAccentRed)
         setBackgroundResource(0)
     }
 
@@ -56,7 +57,7 @@ open class CustomErrorEditText : AppCompatEditText {
         canvas?.apply {
             val bottom = height - paddingBottom + 2.5f.toPx()
             if (!mError.isNullOrEmpty()) {
-                mLinePaint.setColor(Color.parseColor("#FF0000"))
+                mLinePaint.setColor(ContextCompat.getColor(context, R.color.colorAccentRed))
                 drawLine(0f + paddingStart, bottom.toFloat(), (width - paddingStart - paddingEnd).toFloat(), bottom.toFloat(), mLinePaint)
                 drawBitmap(
                         mErrorDrawable!!.toBitmap(),

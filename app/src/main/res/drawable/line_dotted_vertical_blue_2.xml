@@ -8,7 +8,7 @@
             <solid android:color="@android:color/transparent" />
             <stroke
                 android:width="@dimen/size_2"
-                android:color="#00BAF2"
+                android:color="@color/colorAccentBlue"
                 android:dashWidth="@dimen/size_4"
                 android:dashGap="@dimen/size_6" />
         </shape>
@@ -22,7 +22,7 @@
 
     <!--    <stroke-->
     <!--        android:width="@dimen/size_7"-->
-    <!--        android:color="#00BAF2"-->
+    <!--        android:color="@color/colorAccentBlue"-->
     <!--        android:dashWidth="@dimen/size_4"-->
     <!--        android:dashGap="@dimen/size_4" />-->
     <!--</shape>-->

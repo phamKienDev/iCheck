@@ -156,7 +156,7 @@
             android:drawablePadding="@dimen/size_2"
             android:lineSpacingExtra="@dimen/font_14"
             android:text="Verified"
-            android:textColor="#85c440"
+            android:textColor="@color/colorAccentGreen"
             android:textSize="@dimen/font_12" />
 
         <androidx.appcompat.widget.AppCompatTextView
