@@ -8,6 +8,15 @@ import java.util.regex.Pattern
 
 object Constant {
 
+    var primaryColor: String = ""
+    var secondaryColor: String = ""
+    var normalTextColor: String = ""
+    var secondTextColor: String = ""
+    var disableTextColor: String = ""
+    var lineColor: String = ""
+    var appBackgroundColor: String = ""
+    var popupBackgroundColo: String = ""
+
     const val TYPE_URL = 1
     const val TYPE_DOCUMENT = 2
     const val TYPE_PHONE_NUMBER = 3

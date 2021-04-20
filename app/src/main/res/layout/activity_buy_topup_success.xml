@@ -208,7 +208,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.TextPrimary
             android:id="@+id/btnTopupAgain"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_36"
@@ -219,7 +219,6 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:text="Nạp thẻ điện thoại khác"
-            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_16"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

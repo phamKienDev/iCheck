@@ -1,11 +1,11 @@
-package vn.icheck.android.ui.view
+package vn.icheck.android.ichecklibs.view
 
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
-import vn.icheck.android.constant.Constant
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
 
 class TextPrimary : AppCompatTextView {
