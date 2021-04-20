@@ -60,7 +60,7 @@
         tools:text="Chào bạn, Công ty Sữa Vinamilk rất vui nếu có thể giúp bạn mua hàng chính hãng. Hãy cho chúng tôi biết bạn đang cần tư vấn gì?"
         tools:visibility="gone" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.TextPrimary
         android:id="@+id/tv_second"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -74,7 +74,6 @@
         android:drawablePadding="@dimen/size_12"
         android:padding="@dimen/size_8"
         android:text="Tôi muốn mua sản phẩm "
-        android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_first" />

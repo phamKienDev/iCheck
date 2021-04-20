@@ -1,18 +1,30 @@
-package vn.icheck.android.component.view
+package vn.icheck.android.ichecklibs.view
 
 import android.content.Context
 import android.content.res.Resources
+import android.graphics.Color
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.ViewTreeObserver
 import android.widget.LinearLayout
+import androidx.core.content.ContextCompat
 import com.google.android.material.tabs.TabLayout
+import vn.icheck.android.ichecklibs.R
 import java.lang.reflect.Field
 
-internal class TabLayoutWidthIndicator @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : TabLayout(context, attrs, defStyleAttr) {
+class TabLayoutWidthIndicatorPrimary @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : TabLayout(context, attrs, defStyleAttr) {
+
     private fun init(attrs: AttributeSet?) {
         isTabIndicatorFullWidth = false
         setIndicatorWidth(70)
+
+        val colorPrimary = if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
+            Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
+        } else {
+            ContextCompat.getColor(context, vn.icheck.android.ichecklibs.R.color.colorPrimary)
+        }
+        setSelectedTabIndicatorColor(colorPrimary)
+        setTabTextColors(ContextCompat.getColor(context, R.color.colorDisableText), colorPrimary)
     }
 
     private inner class DefPreDrawListener : ViewTreeObserver.OnPreDrawListener {

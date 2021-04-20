@@ -155,20 +155,6 @@
                     android:textSize="@dimen/font_18"
                     android:textStyle="normal" />
 
-                <!--                <androidx.appcompat.widget.AppCompatTextView-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:layout_marginTop="@dimen/size_12"-->
-                <!--                    android:drawableStart="@drawable/ic_coin_status_24dp"-->
-                <!--                    android:drawablePadding="@dimen/size_6"-->
-                <!--                    android:fontFamily="sans-serif-medium"-->
-                <!--                    android:gravity="center_vertical"-->
-                <!--                    android:includeFontPadding="false"-->
-                <!--                    android:text="+558.000"-->
-                <!--                    android:textColor="@color/colorPrimary"-->
-                <!--                    android:textSize="@dimen/font_18"-->
-                <!--                    android:textStyle="normal" />-->
-
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

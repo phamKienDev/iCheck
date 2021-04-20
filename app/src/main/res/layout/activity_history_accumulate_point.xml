@@ -9,21 +9,18 @@
 
     <include layout="@layout/toolbar_blue_v2" />
 
-    <vn.icheck.android.component.view.TabLayoutWidthIndicator
+    <vn.icheck.android.ichecklibs.view.TabLayoutWidthIndicatorPrimary
         android:id="@id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_40"
         android:background="@color/white"
         app:tabGravity="fill"
         app:tabIndicatorHeight="@dimen/size_3"
-        app:tabIndicatorColor="@color/colorPrimary"
         app:tabIndicator="@drawable/bg_campaign_history_title"
         app:tabTextAppearance="@style/MyTabLayoutTextAppearance"
         app:tabMode="fixed"
         app:tabRippleColor="@null"
-        app:tabInlineLabel="true"
-        app:tabSelectedTextColor="@color/colorPrimary"
-        app:tabTextColor="@color/colorDisableText" />
+        app:tabInlineLabel="true" />
 
     <View
         android:layout_width="match_parent"

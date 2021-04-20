@@ -6,7 +6,6 @@
             <solid android:color="#d8d8d8" />
         </shape>
     </item>
-    <!-- todo custom app -->
     <item android:id="@android:id/secondaryProgress">
         <clip>
             <shape>
