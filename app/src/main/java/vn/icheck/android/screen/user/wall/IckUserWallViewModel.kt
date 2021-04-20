@@ -7,34 +7,26 @@ import androidx.work.WorkInfo
 import com.google.firebase.database.*
 import kotlinx.coroutines.*
 import okhttp3.ResponseBody
-import vn.icheck.android.ICheckApplication
-import vn.icheck.android.R
 import vn.icheck.android.RelationshipManager
-import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.component.ICViewModel
 import vn.icheck.android.component.ICViewTypes
-import vn.icheck.android.helper.NetworkHelper
-import vn.icheck.android.model.ApiResponse
-import vn.icheck.android.model.icklogin.IckLoginFacebookResponse
-import vn.icheck.android.model.icklogin.IckUserInfoResponse
-import vn.icheck.android.model.icklogin.RequestOtpResponse
-import vn.icheck.android.model.posts.PostResponse
-import vn.icheck.android.model.posts.PostViewModel
-import vn.icheck.android.model.privacy.UserPrivacyResponse
-import vn.icheck.android.model.profile.IckUserFriendModel
-import vn.icheck.android.model.profile.IckUserProfileModel
-import vn.icheck.android.model.reports.ReportUserCategoryResponse
-import vn.icheck.android.model.wall.LayoutResponse
+import vn.icheck.android.network.model.ApiResponse
+import vn.icheck.android.network.model.icklogin.IckUserInfoResponse
+import vn.icheck.android.network.model.icklogin.RequestOtpResponse
+import vn.icheck.android.network.model.posts.PostResponse
+import vn.icheck.android.network.model.posts.PostViewModel
+import vn.icheck.android.network.model.privacy.UserPrivacyResponse
+import vn.icheck.android.network.model.profile.IckUserFriendModel
+import vn.icheck.android.network.model.profile.IckUserProfileModel
+import vn.icheck.android.network.model.reports.ReportUserCategoryResponse
+import vn.icheck.android.network.model.wall.LayoutResponse
 import vn.icheck.android.network.base.*
-import vn.icheck.android.network.feature.post.PostInteractor
 import vn.icheck.android.network.models.ICCommentPost
 import vn.icheck.android.network.models.ICPost
 import vn.icheck.android.network.models.ICSearchUser
 import vn.icheck.android.network.models.ICUser
 import vn.icheck.android.network.models.wall.IcFriendResponse
 import vn.icheck.android.room.database.AppDatabase
-import vn.icheck.android.room.entity.ICMyFriendIdUser
-import vn.icheck.android.screen.account.icklogin.viewmodel.IckLoginRepository
 import vn.icheck.android.screen.user.wall.option_edit_my_information.TAKE_AVATAR
 import vn.icheck.android.screen.user.wall.report_user.ReportUserViewModel
 import vn.icheck.android.util.ick.logError
@@ -182,7 +174,7 @@ class IckUserWallViewModel @ViewModelInject constructor(
                 clearList()
                 val arrJob = arrayListOf<Deferred<Any?>>()
                 val arrResponse = arrayListOf<Any?>()
-                for (layout in layoutResponse.layout) {
+                for (layout in layoutResponse.layout ?: arrayListOf()) {
                     when (layout?.id.toString()) {
                         "user-private-info-1" -> {
                             arrJob.add(async {
@@ -261,7 +253,7 @@ class IckUserWallViewModel @ViewModelInject constructor(
 //                    arrResponse.add(invitation)
 //                }
                 arrJob.awaitAll()
-                for (layout in layoutResponse.layout) {
+                for (layout in layoutResponse.layout ?: arrayListOf()) {
                     when (layout?.id.toString()) {
                         "user-private-info-1" -> {
                             arrResponse.firstOrNull {

@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.R
 import vn.icheck.android.databinding.ItemIckCategoryBinding
-import vn.icheck.android.model.category.CategoryItem
+import vn.icheck.android.network.model.category.CategoryItem
 import vn.icheck.android.util.ick.simpleText
 
 class IckCategoryAdapter(private val onClick: (category: CategoryItem?) -> Unit):PagingDataAdapter<CategoryItem, RecyclerView.ViewHolder>(CATEGORY_DIFF) {

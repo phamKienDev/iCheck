@@ -6,7 +6,7 @@ import vn.icheck.android.base.activity.BaseActivityPresenter
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.CartHelper
 import vn.icheck.android.helper.NetworkHelper
-import vn.icheck.android.model.interactor.LocalCartInteractor
+import vn.icheck.android.network.model.interactor.LocalCartInteractor
 import vn.icheck.android.network.base.ICApiListener
 import vn.icheck.android.network.base.ICBaseResponse
 import vn.icheck.android.network.base.ICListResponse
@@ -74,21 +74,21 @@ class CheckoutCartPresenter(val view: ICheckoutCartView) : BaseActivityPresenter
     }
 
     fun getCartsOffline() {
-        cartInteraction.getListCartsOffline(object : ICApiListener<MutableList<ICCart>> {
-            override fun onSuccess(obj: MutableList<ICCart>) {
-                if (obj.isEmpty()) {
-                    view.onCloseLoading()
-                    view.onSetCheckout(mutableListOf(), 0)
-                } else {
-                    createCheckouts(getBody(obj), true)
-                }
-            }
-
-            override fun onError(error: ICBaseResponse?) {
-                view.onCloseLoading()
-                view.onCheckoutError(getError(error?.message), null, true)
-            }
-        })
+//        cartInteraction.getListCartsOffline(object : ICApiListener<MutableList<ICCart>> {
+//            override fun onSuccess(obj: MutableList<ICCart>) {
+//                if (obj.isEmpty()) {
+//                    view.onCloseLoading()
+//                    view.onSetCheckout(mutableListOf(), 0)
+//                } else {
+//                    createCheckouts(getBody(obj), true)
+//                }
+//            }
+//
+//            override fun onError(error: ICBaseResponse?) {
+//                view.onCloseLoading()
+//                view.onCheckoutError(getError(error?.message), null, true)
+//            }
+//        })
     }
 
     fun createCheckouts(addressID: Long?, paymentID: Int?, shopID: Long?, shippingID: Int?, list: MutableList<Checkout>, isChangeAddress: Boolean) {
@@ -398,6 +398,6 @@ class CheckoutCartPresenter(val view: ICheckoutCartView) : BaseActivityPresenter
     fun disposeApi() {
         userInteraction.dispose()
         checkoutInteraction.dispose()
-        cartInteraction.dispose()
+//        cartInteraction.dispose()
     }
 }

@@ -15,7 +15,7 @@ import org.greenrobot.eventbus.EventBus
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import vn.icheck.android.base.model.ICMessageEvent
-import vn.icheck.android.model.chat.ChatConversation
+import vn.icheck.android.network.model.chat.ChatConversation
 import vn.icheck.android.network.api.ICKApi
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.SessionManager

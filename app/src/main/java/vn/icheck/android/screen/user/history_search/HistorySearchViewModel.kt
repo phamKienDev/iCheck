@@ -5,17 +5,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import vn.icheck.android.ICheckApplication
-import vn.icheck.android.R
-import vn.icheck.android.base.model.ICError
 import vn.icheck.android.base.model.ICMessageEvent
-import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.history.HistoryInteractor
-import vn.icheck.android.network.models.ICHistory_Product
 import vn.icheck.android.network.models.history.ICItemHistory
-import vn.icheck.android.screen.user.scan_history.model.ICScanHistory
 
 class HistorySearchViewModel : ViewModel() {
 

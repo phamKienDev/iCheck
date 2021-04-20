@@ -13,12 +13,10 @@ import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.network.api.ICKApi
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.history.HistoryInteractor
-import vn.icheck.android.network.models.ICHistory_Product
 import vn.icheck.android.network.models.ICValidStampSocial
 import vn.icheck.android.network.models.history.ICBigCorp
 import vn.icheck.android.network.models.history.ICItemHistory
 import vn.icheck.android.network.models.history.ICTypeHistory
-import vn.icheck.android.screen.user.scan_history.ScanHistoryFragment
 import vn.icheck.android.screen.user.scan_history.model.ICScanHistory
 import vn.icheck.android.util.ick.logError
 

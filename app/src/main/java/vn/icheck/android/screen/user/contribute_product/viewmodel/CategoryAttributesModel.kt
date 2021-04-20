@@ -2,8 +2,8 @@ package vn.icheck.android.screen.user.contribute_product.viewmodel
 
 import androidx.annotation.MainThread
 import androidx.fragment.app.FragmentManager
-import vn.icheck.android.model.category.CategoryAttributesItem
-import vn.icheck.android.model.category.CategoryItem
+import vn.icheck.android.network.model.category.CategoryAttributesItem
+import vn.icheck.android.network.model.category.CategoryItem
 import vn.icheck.android.screen.user.contribute_product.adapter.ListImageAdapter
 import java.io.File
 import java.util.*
@@ -80,10 +80,10 @@ class CategoryAttributesModel(
     fun getValues() {
         values = when (categoryItem.value) {
             is Double -> {
-                String.format("%d", categoryItem.value.toLong())
+                String.format("%d", categoryItem.value?.toString()?.toLong())
             }
             is Boolean -> {
-                if(categoryItem.value) "Có" else "Không"
+                if(categoryItem.value == true) "Có" else "Không"
             }
             else -> {
                 categoryItem.value

@@ -5,7 +5,7 @@ import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
 import org.json.JSONArray
 import vn.icheck.android.component.ICViewTypes
-import vn.icheck.android.model.category.CategoryAttributesItem
+import vn.icheck.android.network.model.category.CategoryAttributesItem
 import vn.icheck.android.network.models.*
 import vn.icheck.android.network.util.JsonHelper
 

@@ -41,7 +41,7 @@ import vn.icheck.android.component.product_review.submit_review.SubmitReviewMode
 import vn.icheck.android.component.shopvariant.product_detail.ShopProductModel
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
-import vn.icheck.android.model.category.CategoryAttributesItem
+import vn.icheck.android.network.model.category.CategoryAttributesItem
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.ads.AdsRepository
 import vn.icheck.android.network.feature.post.PostInteractor

@@ -27,7 +27,6 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.constant.POSITION
 import vn.icheck.android.constant.SHOW_ATTACHMENTS
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
 import vn.icheck.android.util.DimensionUtil
 import vn.icheck.android.util.ick.beGone

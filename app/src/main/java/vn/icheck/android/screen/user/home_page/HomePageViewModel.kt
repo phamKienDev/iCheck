@@ -19,7 +19,7 @@ import vn.icheck.android.component.tendency.ICTopTrend
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.CartHelper
 import vn.icheck.android.helper.NetworkHelper
-import vn.icheck.android.model.reminders.ReminderResponse
+import vn.icheck.android.network.model.reminders.ReminderResponse
 import vn.icheck.android.network.api.ICKApi
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.ads.AdsRepository

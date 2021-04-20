@@ -1,9 +1,9 @@
 package vn.icheck.android.tracking
 
 import com.useinsider.insider.Insider
-import vn.icheck.android.model.cart.ItemCartItem
-import vn.icheck.android.model.cart.PurchasedOrderResponse
-import vn.icheck.android.model.loyalty.ShipAddressResponse
+import vn.icheck.android.network.model.cart.ItemCartItem
+import vn.icheck.android.network.model.cart.PurchasedOrderResponse
+import vn.icheck.android.network.model.loyalty.ShipAddressResponse
 import vn.icheck.android.network.models.ICPageOverview
 import vn.icheck.android.network.models.ICStoreiCheck
 import vn.icheck.android.network.models.product_detail.ICDataProductDetail

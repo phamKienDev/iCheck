@@ -22,27 +22,13 @@ import vn.icheck.android.constant.ICK_REQUEST_CAMERA
 import vn.icheck.android.databinding.ActivitySocialChatBinding
 import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.network.base.SessionManager
+import vn.icheck.android.network.model.chat.*
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.scan.V6ScanditActivity
 import vn.icheck.android.util.ick.logDebug
 import vn.icheck.android.util.ick.showSimpleSuccessToast
 
 
-@Retention(AnnotationRetention.SOURCE)
-@StringDef(USER, PAGE)
-annotation class ChatUserType
-
-const val USER = "\"user\""
-const val PAGE = "\"page\""
-const val MEMBER = "\"member\""
-const val ADMIN = "\"admin\""
-
-@Retention(AnnotationRetention.SOURCE)
-@StringDef(MEMBER, ADMIN)
-annotation class ChatRoleType
-
-@Parcelize
-data class ChatMember(val id: Long?, @ChatUserType val type: String = USER, @ChatRoleType val role: String = MEMBER) : Parcelable
 
 class SocialChatActivity : ViewBindingActivity<ActivitySocialChatBinding>() {
 

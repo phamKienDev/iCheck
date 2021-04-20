@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import vn.icheck.android.R
 import vn.icheck.android.databinding.ConversationHolderBinding
-import vn.icheck.android.model.chat.ChatConversation
+import vn.icheck.android.network.model.chat.ChatConversation
 import vn.icheck.android.util.ick.*
 
 class ConversationAdapter(var data:List<ChatConversation>):RecyclerView.Adapter<RecyclerView.ViewHolder>() {
