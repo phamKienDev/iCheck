@@ -99,9 +99,6 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
     private fun setupHeader(obj: ICPost) {
         if (obj.page != null) {
             WidgetUtils.loadImageUrl(itemView.imgLogo, obj.page?.avatar, R.drawable.ic_business_v2)
-//            itemView.imgLogo.layoutParams = ConstraintLayout.LayoutParams(SizeHelper.size40, SizeHelper.size40).also {
-//                it.topMargin = 0
-//            }
             itemView.tvPageName.text = obj.page?.getName
             itemView.imgRank.beGone()
             if (obj.page!!.isVerify) {
@@ -111,9 +108,6 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
             }
         } else {
             WidgetUtils.loadImageUrl(itemView.imgLogo, obj.user?.avatar, R.drawable.ic_avatar_default_84px)
-//            itemView.imgLogo.layoutParams = ConstraintLayout.LayoutParams(SizeHelper.size40, SizeHelper.size40).also {
-//                it.topMargin = SizeHelper.size8
-//            }
             itemView.tvPageName.apply {
                 text = obj.user?.getName
                 if (obj.user?.kycStatus == 2) {

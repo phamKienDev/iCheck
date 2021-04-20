@@ -158,7 +158,6 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
                         setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                     }
                 }
-                tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
             if (!it.customerCriteria.isNullOrEmpty() && it.avgPoint != 0f) {
                 containerRating.beVisible()

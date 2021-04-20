@@ -151,15 +151,16 @@ class CreateOrUpdatePostViewModel : ViewModel() {
     private fun uploadImage(privacyID: Long?, content: String, productID: Long?, listFile: MutableList<String>) {
         viewModelScope.launch {
             val listCall = mutableListOf<Deferred<Any?>>()
-            listFile.forEach {
-                if (it.startsWith("http")) {
-                    listImage.add(it)
+            val listResponse = hashMapOf<String, String>()
+            listFile.forEach { fileName ->
+                if (fileName.startsWith("http")) {
+                    listImage.add(fileName)
                 } else {
                     listCall.add(async {
                         try {
-                            val response = withTimeout(60000) { ImageHelper.uploadMediaV2(File(it)) }
+                            val response = withTimeout(60000) { ImageHelper.uploadMediaV2(File(fileName)) }
                             if (!response.data?.src.isNullOrEmpty()) {
-                                listImage.add(response.data?.src!!)
+                                listResponse[fileName] = response.data?.src!!
                             }
                         } catch (e: Exception) {
                             logError(e)
@@ -169,6 +170,17 @@ class CreateOrUpdatePostViewModel : ViewModel() {
             }
 
             listCall.awaitAll()
+
+            //sắp xếp lại vị trí response theo đúng vị trí file ng dùng chọn
+            listFile.forEach { file ->
+                listResponse.filterKeys { key ->
+                    key == file
+                }.apply {
+                    if (!this.isNullOrEmpty()) {
+                        listImage.add(this[this.keys.first()] ?: "")
+                    }
+                }
+            }
 
             if (!listImage.isNullOrEmpty()) {
                 if (postDetail?.id == null) {
