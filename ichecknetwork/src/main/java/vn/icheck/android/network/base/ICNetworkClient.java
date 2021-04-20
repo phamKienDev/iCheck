@@ -48,7 +48,9 @@ public class ICNetworkClient {
                 @Nullable
                 @Override
                 public Request authenticate(@Nullable Route route, @NotNull Response response) throws IOException {
-                    ICNetworkManager.INSTANCE.onEndOfToken();
+                    if (!response.request().url().url().toString().contains("/ads")) {
+                        ICNetworkManager.INSTANCE.onEndOfToken();
+                    }
                     return null;
                 }
             })
@@ -65,7 +67,9 @@ public class ICNetworkClient {
                     @Nullable
                     @Override
                     public Request authenticate(@Nullable Route route, @NotNull Response response) throws IOException {
-                        ICNetworkManager.INSTANCE.onEndOfToken();
+                        if (!response.request().url().url().toString().contains("/ads")) {
+                            ICNetworkManager.INSTANCE.onEndOfToken();
+                        }
                         return null;
                     }
                 })
