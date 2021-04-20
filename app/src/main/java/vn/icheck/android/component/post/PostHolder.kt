@@ -17,7 +17,9 @@ import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
+import vn.icheck.android.base.dialog.reward_login.RewardLoginCallback
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
+import vn.icheck.android.base.dialog.reward_login.RewardLoginDialogV2
 import vn.icheck.android.base.holder.CoroutineViewHolder
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.ItemClickListener
@@ -540,19 +542,20 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
                     DialogHelper.closeLoading(activity)
                     if (error?.statusCode == "S402") {
                         ICheckApplication.currentActivity()?.let { activity ->
-                            object : RewardLoginDialog(activity) {
+                            RewardLoginDialogV2.show((activity as AppCompatActivity).supportFragmentManager, object : RewardLoginCallback {
                                 override fun onLogin() {
-                                    (activity as AppCompatActivity) simpleStartActivity IckLoginActivity::class.java
+                                    activity simpleStartActivity IckLoginActivity::class.java
+
                                 }
 
                                 override fun onRegister() {
-                                    (activity as AppCompatActivity).simpleStartForResultActivity(IckLoginActivity::class.java, 1)
+                                    activity.simpleStartForResultActivity(IckLoginActivity::class.java, 1)
+
                                 }
 
                                 override fun onDismiss() {
-
                                 }
-                            }.show()
+                            })
                         }
                     } else {
                         itemView.context.showSimpleErrorToast(error?.message

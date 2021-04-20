@@ -9,6 +9,7 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
 import com.facebook.shimmer.ShimmerFrameLayout
@@ -24,7 +25,9 @@ import vn.icheck.android.base.dialog.notify.confirm.ConfirmDialog
 import vn.icheck.android.base.dialog.notify.lock_card_pvcombank.DialogLockCardBank
 import vn.icheck.android.base.dialog.notify.notification.NotificationDialog
 import vn.icheck.android.base.dialog.notify.shaking.DialogEmtyBoxGift
+import vn.icheck.android.base.dialog.reward_login.RewardLoginCallback
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
+import vn.icheck.android.base.dialog.reward_login.RewardLoginDialogV2
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.models.ICMission
 import vn.icheck.android.screen.account.home.AccountActivity
@@ -423,7 +426,7 @@ object DialogHelper {
     }
 
     fun showLoginPopup(activity: Activity) {
-        object : RewardLoginDialog(activity) {
+        RewardLoginDialogV2.show((activity as AppCompatActivity).supportFragmentManager, object : RewardLoginCallback {
             override fun onLogin() {
                 ActivityUtils.startActivity<AccountActivity>(activity)
             }
@@ -434,6 +437,6 @@ object DialogHelper {
 
             override fun onDismiss() {
             }
-        }.show()
+        })
     }
 }

@@ -15,8 +15,11 @@ import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
+import vn.icheck.android.base.dialog.reward_login.RewardLoginCallback
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
+import vn.icheck.android.base.dialog.reward_login.RewardLoginDialogV2
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
 import vn.icheck.android.helper.DialogHelper
@@ -155,20 +158,19 @@ abstract class BaseActivity<P : BaseActivityPresenter> : AppCompatActivity(), Ba
     override fun onRequireLogin(requestCode: Int) {
         requestRequireLogin = requestCode
         runOnUiThread {
-            object : RewardLoginDialog(this@BaseActivity) {
+            RewardLoginDialogV2.show(supportFragmentManager, object : RewardLoginCallback {
+                override fun onDismiss() {
+                    onRequireLoginCancel()
+                }
+
                 override fun onLogin() {
                     startActivityForResult<IckLoginActivity>(requestLogin)
                 }
 
                 override fun onRegister() {
                     simpleStartForResultActivity(IckLoginActivity::class.java, 1)
-//                startActivityForResult<IckLoginActivity>(Constant.DATA_1, Constant.REGISTER_TYPE, requestLogin)
                 }
-
-                override fun onDismiss() {
-                    onRequireLoginCancel()
-                }
-            }.show()
+            })
         }
     }
 

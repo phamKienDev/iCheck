@@ -28,7 +28,9 @@ import com.tripi.hotel.config.HotelSDK
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
+import vn.icheck.android.base.dialog.reward_login.RewardLoginCallback
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
+import vn.icheck.android.base.dialog.reward_login.RewardLoginDialogV2
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.ISettingListener
 import vn.icheck.android.constant.Constant
@@ -1253,20 +1255,22 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
     }
 
     private fun showLoginDialog() {
-        object : RewardLoginDialog(this@FirebaseDynamicLinksActivity) {
+        RewardLoginDialogV2.show(supportFragmentManager, object : RewardLoginCallback {
             override fun onLogin() {
                 ActivityUtils.startActivityForResult<IckLoginActivity>(this@FirebaseDynamicLinksActivity, requestLogin)
+
             }
 
             override fun onRegister() {
                 this@FirebaseDynamicLinksActivity.simpleStartForResultActivity(IckLoginActivity::class.java, requestLogin)
-//                ActivityUtils.startActivityForResult<IckLoginActivity>(this@FirebaseDynamicLinksActivity, Constant.DATA_1, Constant.REGISTER_TYPE, requestLogin)
+
             }
 
             override fun onDismiss() {
                 finishActivity()
             }
-        }.show()
+        })
+
     }
 
     private fun finishActivity() {
