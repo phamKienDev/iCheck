@@ -14,6 +14,7 @@
             </shape>
         </scale>
     </item>
+    <!-- todo custom app -->
     <item android:id="@android:id/progress">
         <scale android:scaleWidth="100%">
             <shape>

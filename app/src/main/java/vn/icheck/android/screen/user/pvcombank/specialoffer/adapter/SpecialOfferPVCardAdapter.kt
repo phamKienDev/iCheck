@@ -1,5 +1,6 @@
 package vn.icheck.android.screen.user.pvcombank.specialoffer.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -156,7 +157,12 @@ class SpecialOfferPVCardAdapter (private val listener: SpecialOfferPVCardListene
 
     inner class LoadHolder constructor(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind() {
-            view.progressBar.indeterminateDrawable.setColorFilter(ContextCompat.getColor(itemView.context, R.color.colorPrimary), android.graphics.PorterDuff.Mode.MULTIPLY)
+            val colorPrimary = if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
+                Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
+            } else {
+                ContextCompat.getColor(view.context, vn.icheck.android.ichecklibs.R.color.colorPrimary)
+            }
+            view.progressBar.indeterminateDrawable.setColorFilter(colorPrimary, android.graphics.PorterDuff.Mode.MULTIPLY)
         }
     }
 

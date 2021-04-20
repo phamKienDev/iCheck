@@ -1,5 +1,6 @@
 package vn.icheck.android.screen.user.detail_stamp_v6_1.more_product_verified_by_distributor.adapter
 
+import android.graphics.Color
 import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
@@ -160,7 +161,12 @@ class MoreProductVerifiedByDistributorAdapter(val viewCallback: IMoreProductVeri
 
     class LoadHolder constructor(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind() {
-            view.progressBar.indeterminateDrawable.setColorFilter(ContextCompat.getColor(itemView.context, R.color.colorPrimary), android.graphics.PorterDuff.Mode.MULTIPLY)
+            val colorPrimary = if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
+                Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
+            } else {
+                ContextCompat.getColor(view.context, vn.icheck.android.ichecklibs.R.color.colorPrimary)
+            }
+            view.progressBar.indeterminateDrawable.setColorFilter(colorPrimary, android.graphics.PorterDuff.Mode.MULTIPLY)
         }
     }
 

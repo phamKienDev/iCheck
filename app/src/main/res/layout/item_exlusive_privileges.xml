@@ -42,14 +42,13 @@
                 tools:text="Còn lại 29 ngày"
                 android:fontFamily="@font/barlow_medium"/>
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.TextPrimary
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_6"
                 android:drawableStart="@drawable/ic_exclusive_privileges"
                 android:drawablePadding="6.7dp"
                 android:textSize="@dimen/font_14"
-                android:textColor="@color/colorPrimary"
                 tools:text="150.000 điểm"
                 />
 

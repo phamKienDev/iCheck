@@ -2,6 +2,7 @@ package vn.icheck.android.screen.user.selectuseraddress
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_select_address.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
@@ -62,7 +63,12 @@ class SelectUserAddressActivity : BaseActivity<SelectUserAddressPresenter>(), IS
     }
 
     private fun setupSwipeRefreshLayout() {
-        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
+        val colorPrimary = if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
+            Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
+        } else {
+            ContextCompat.getColor(this, vn.icheck.android.ichecklibs.R.color.colorPrimary)
+        }
+        swipeLayout.setColorSchemeColors(colorPrimary, colorPrimary, colorPrimary)
 
         swipeLayout.setOnRefreshListener {
             getListAddress()

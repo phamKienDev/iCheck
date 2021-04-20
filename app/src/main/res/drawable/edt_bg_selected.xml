@@ -9,9 +9,7 @@
             <stroke
                 android:width="@dimen/size_1"
                 android:color="@color/colorPrimary" />
-
-<!--            <solid android:color="@color/colorPrimary" />-->
-
+            <!-- todo custom app -->
             <padding
                 android:bottom="@dimen/size_5"
                 android:left="@dimen/size_5"

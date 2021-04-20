@@ -18,4 +18,5 @@
             <solid android:color="@color/colorPrimary" />
         </shape>
     </item>
+    <!-- todo custom app -->
 </selector>

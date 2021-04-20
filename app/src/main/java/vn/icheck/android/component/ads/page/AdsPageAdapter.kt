@@ -367,7 +367,11 @@ class AdsPageAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     tvButton.setTextColor(Color.parseColor("#757575"))
                     tvButton.setText(R.string.dang_theo_doi)
                 } else {
-                    tvButton.setTextColor(ContextCompat.getColor(tvButton.context, R.color.colorPrimary))
+                    tvButton.setTextColor(if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
+                        Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
+                    } else {
+                        ContextCompat.getColor(tvButton.context, vn.icheck.android.ichecklibs.R.color.colorPrimary)
+                    })
                     tvButton.setText(R.string.theo_doi)
                 }
             }

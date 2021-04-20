@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.google.gson.internal.LinkedTreeMap
 import com.skydoves.balloon.*
 import kotlinx.coroutines.CoroutineScope
@@ -36,7 +37,11 @@ class GroupHolder(private val itemGroupBinding: ItemGroupBinding) : CoroutineVie
         if (pasteBalloon == null) {
             pasteBalloon = createBalloon(itemView.context) {
                 setLayout(R.layout.popup_tooltip)
-                setBackgroundColorResource(R.color.colorPrimary)
+                setBackgroundColor(if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
+                    Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
+                } else {
+                    ContextCompat.getColor(itemView.context, vn.icheck.android.ichecklibs.R.color.colorPrimary)
+                })
                 setArrowConstraints(ArrowConstraints.ALIGN_ANCHOR)
                 setBalloonAnimation(BalloonAnimation.OVERSHOOT)
             }
@@ -44,7 +49,7 @@ class GroupHolder(private val itemGroupBinding: ItemGroupBinding) : CoroutineVie
                 if (!itemGroupBinding.edtInfo.text.isNullOrEmpty()) {
                     ICheckApplication.currentActivity()?.let { act ->
                         val clipboard = act.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                        val clip = ClipData.newPlainText(null,itemGroupBinding.edtInfo.text.toString())
+                        val clip = ClipData.newPlainText(null, itemGroupBinding.edtInfo.text.toString())
                         clipboard.setPrimaryClip(clip)
                         it.context.showSimpleSuccessToast("Sao chép thành công")
                         pasteBalloon?.dismiss()
@@ -87,7 +92,7 @@ class GroupHolder(private val itemGroupBinding: ItemGroupBinding) : CoroutineVie
 //            TooltipCompat.setTooltipText(itemGroupBinding.imgHelp,null)
         } else {
 //            TooltipCompat.setTooltipText(itemGroupBinding.imgHelp,categoryAttributesModel.categoryItem.description)
-            balloon = createBalloon(itemView.context){
+            balloon = createBalloon(itemView.context) {
                 setLayout(R.layout.item_popup)
                 setHeight(BalloonSizeSpec.WRAP)
                 setWidth(BalloonSizeSpec.WRAP)
