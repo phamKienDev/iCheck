@@ -429,6 +429,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                 }
 
                 override fun onSubmit(mCode: String) {
+                    binding.imgNmbt.isEnabled = true
                     val code = mCode.trim()
                     if (viewModel.scanOnlyChat) {
                         setResult(Activity.RESULT_OK, Intent().apply {

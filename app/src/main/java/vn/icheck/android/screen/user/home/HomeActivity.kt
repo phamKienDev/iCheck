@@ -67,6 +67,7 @@ import vn.icheck.android.helper.*
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.base.SettingManager
+import vn.icheck.android.network.base.TokenTimeoutCallback
 import vn.icheck.android.network.models.ICClientSetting
 import vn.icheck.android.network.models.ICUser
 import vn.icheck.android.network.models.history.ICBigCorp

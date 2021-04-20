@@ -432,7 +432,9 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
                                     binding.textView4 simpleText "Chỉnh sửa đóng góp"
                                     DialogHelper.showLoading(this@IckContributeProductActivity)
                                     ickContributeProductViewModel.requestBody.putAll(rp.get("data") as Map<String, Any?>)
-                                    ickContributeProductViewModel.myContributionId = (ickContributeProductViewModel.requestBody.get("id") as Double?)?.toLong()
+                                    if (ickContributeProductViewModel.requestBody.get("id") != null) {
+                                        ickContributeProductViewModel.myContributionId = (ickContributeProductViewModel.requestBody.get("id") as Double?)?.toLong()
+                                    }
                                     if (ickContributeProductViewModel.requestBody.get("name") as String? != null) {
                                         binding.edtNameProduct simpleText ickContributeProductViewModel.requestBody.get("name") as String?
                                     }
@@ -500,7 +502,7 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
                                         binding.edtEmail simpleText (ickContributeProductViewModel.requestBody.get("unverifiedOwner") as Map<*, *>).get("email") as String?
                                         binding.edtTax simpleText (ickContributeProductViewModel.requestBody.get("unverifiedOwner") as Map<*, *>).get("tax") as String?
                                     }
-                                    if (ickContributeProductViewModel.requestBody.get("categoryId") is Double?) {
+                                    if (ickContributeProductViewModel.requestBody.get("categoryId") != null && ickContributeProductViewModel.requestBody.get("categoryId") is Double?) {
                                         ickContributeProductViewModel.getCategoryById((ickContributeProductViewModel.requestBody.get("categoryId") as Double).toLong())
                                                 .observe(this@IckContributeProductActivity, Observer { category ->
                                                     lifecycleScope.launch {
