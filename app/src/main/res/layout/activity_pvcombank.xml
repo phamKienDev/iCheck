@@ -46,7 +46,7 @@
             android:layout_marginTop="@dimen/size_8"
             android:text="@string/toi_dong_y_voi_dieu_khoan_nay"
             android:textColor="@color/colorNormalText"
-            android:textSize="@dimen/size_14"
+            android:textSize="@dimen/font_14"
             android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@id/containerButton"
             app:layout_constraintTop_toTopOf="parent" />
