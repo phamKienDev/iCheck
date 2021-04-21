@@ -13,7 +13,12 @@ abstract class CallPhoneDialog(context: Context, val phone: String) : BaseDialog
         get() = true
 
     override fun onInitView() {
-        tvContent.text = Html.fromHtml("Gọi <font color=#057DDA>*100*${phone}#</font>")
+        val colorPrimary = if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
+            vn.icheck.android.ichecklibs.Constant.primaryColor
+        } else {
+            "#057DDA"
+        }
+        tvContent.text = Html.fromHtml("Gọi <font color=$colorPrimary>*100*${phone}#</font>")
 
         tvCancel.setOnClickListener {
             dismiss()

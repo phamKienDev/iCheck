@@ -7,6 +7,7 @@ import android.util.AttributeSet
 import androidx.core.content.ContextCompat
 import vn.icheck.android.R
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.Constant
 
 /**
  * Created by VuLCL on 04/27/2020.
@@ -22,21 +23,26 @@ import vn.icheck.android.helper.SizeHelper
  * app:buttonTextColor - Thay đổi màu của text
  * app:buttonTextSize - Thay đổi size của text
  */
-class ButtonWhiteOutlineLightBlueCorners4 : BaseButton {
+class ButtonWhiteOutlinePrimaryBlueCorners4 : BaseButton {
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
     override fun onSetupDefault() {
-        defaultTextColor = ColorStateList(arrayOf(intArrayOf()), intArrayOf(ContextCompat.getColor(context, R.color.colorPrimary)))
+        val colorPrimary = if (Constant.primaryColor.isNotEmpty()) {
+            Color.parseColor(Constant.primaryColor)
+        } else {
+            ContextCompat.getColor(context, vn.icheck.android.ichecklibs.R.color.colorPrimary)
+        }
+        defaultTextColor = ColorStateList(arrayOf(intArrayOf()), intArrayOf(colorPrimary))
 
         defaultDisableBackground = ContextCompat.getColor(context, R.color.gray)
         defaultEnableBackground = Color.WHITE
         defaultPressedBackground = ContextCompat.getColor(context, R.color.black_10)
 
         defaultStrokeWidth = SizeHelper.size1
-        defaultStrokeColor = ContextCompat.getColor(context, R.color.colorPrimary)
+        defaultStrokeColor = colorPrimary
         defaultRadius = SizeHelper.size4.toFloat()
     }
 }

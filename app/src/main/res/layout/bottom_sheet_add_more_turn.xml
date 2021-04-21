@@ -23,12 +23,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <vn.icheck.android.ichecklibs.view.TextHeader
+        <vn.icheck.android.ichecklibs.view.TextHeaderPrimary
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Thử thách nhận thêm lượt mở quà"
-            android:textColor="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="@id/imgCancel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -57,7 +56,7 @@
             android:layout_above="@id/btnInforCampaign"
             tools:listitem="@layout/item_add_more_turn" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.TextPrimary
             android:id="@+id/btnInforCampaign"
             android:layout_width="200dp"
             android:layout_height="@dimen/size_36"
@@ -69,7 +68,6 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:text="Thông tin sự kiện"
-            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_16" />
 
     </RelativeLayout>

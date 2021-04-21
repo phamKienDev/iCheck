@@ -19,6 +19,7 @@ import android.view.inputmethod.InputMethodManager
 import android.view.inputmethod.InputMethodManager.SHOW_IMPLICIT
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -86,8 +87,11 @@ class IckOtpFragment : Fragment() {
         arr.add(7, ' ')
         arr.add(4, ' ')
         val span = SpannableString("Mã xác nhận OTP đã được gửi đến số điện thoại ${arr.joinToString(separator = "")}")
-        span.setSpan(ForegroundColorSpan(Color.parseColor("#057DDA")), 45, span.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        val text = String.format("<p>Mã xác nhận OTP đã được gửi đến số điện thoại <font color=#057DDA>%s</font></p>", arr.joinToString(separator = ""))
+        span.setSpan(ForegroundColorSpan(if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
+            Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
+        } else {
+            ContextCompat.getColor(requireContext(), vn.icheck.android.ichecklibs.R.color.colorPrimary)
+        }), 45, span.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 
         val spannableString = SpannableString(span)
         val onclickPhone = object : ClickableSpan() {

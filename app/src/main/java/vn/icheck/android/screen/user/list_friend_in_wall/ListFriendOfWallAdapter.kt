@@ -1,5 +1,6 @@
 package vn.icheck.android.screen.user.list_friend_in_wall
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -224,7 +225,11 @@ class ListFriendOfWallAdapter(val view: ListFriendListener) : RecyclerView.Adapt
 
     private class LoadHolder constructor(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind() {
-            itemView.progressBar.indeterminateDrawable.setColorFilter(ContextCompat.getColor(itemView.context, R.color.colorPrimary), android.graphics.PorterDuff.Mode.MULTIPLY)
+            itemView.progressBar.indeterminateDrawable.setColorFilter(if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
+                Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
+            } else {
+                ContextCompat.getColor(view.context, vn.icheck.android.ichecklibs.R.color.colorPrimary)
+            }, android.graphics.PorterDuff.Mode.MULTIPLY)
         }
     }
 

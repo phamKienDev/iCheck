@@ -103,7 +103,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Bạn có 1 đơn hàng 800.000 đ thanh toán tại VinMarrt+ ( tối đa 2 dòng)..." />
 
-                <TextView
+                <vn.icheck.android.ichecklibs.view.TextPrimary
                     android:id="@+id/tv_action"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
@@ -115,7 +115,6 @@
                     android:layout_marginBottom="@dimen/size_10"
                     android:fontFamily="@font/barlow_medium"
                     android:lines="1"
-                    android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/font_16"
                     app:drawableEndCompat="@drawable/ic_arrow_right_light_blue_24dp"
                     app:layout_constraintBottom_toBottomOf="parent"

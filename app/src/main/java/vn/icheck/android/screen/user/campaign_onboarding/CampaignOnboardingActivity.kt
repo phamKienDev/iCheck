@@ -97,7 +97,11 @@ class CampaignOnboardingActivity : BaseActivityMVVM() {
                     setUpWebView(it.onboardLanding ?: "")
 
                     btnActionBack.beGone()
-                    var color = it.btnColor ?: "#057DDA"
+                    var color = it.btnColor ?: if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
+                        vn.icheck.android.ichecklibs.Constant.primaryColor
+                    } else {
+                        "#057DDA"
+                    }
                     if (!color.startsWith("#")) {
                         color = "#$color"
                     }

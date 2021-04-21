@@ -93,7 +93,7 @@
         android:background="@drawable/shadow_bottom"
         app:layout_constraintTop_toBottomOf="@id/layoutToolbar" />
 
-    <vn.icheck.android.component.view.ButtonWhiteOutlineLightBlueCorners4
+    <vn.icheck.android.component.view.ButtonWhiteOutlinePrimaryBlueCorners4
         android:id="@id/btnCancel"
         android:layout_width="@dimen/size_0"
         android:layout_height="@dimen/size_36"

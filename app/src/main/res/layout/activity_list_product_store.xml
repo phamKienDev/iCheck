@@ -27,11 +27,10 @@
             android:layout_marginTop="@dimen/size_10" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <LinearLayout
+    <vn.icheck.android.ichecklibs.view.LinearLayoutPrimary
         android:id="@+id/layoutAddToCart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="@dimen/size_12"
@@ -72,5 +71,5 @@
             android:singleLine="true"
             android:textColor="@color/white"
             tools:text="2 Sản phẩm" />
-    </LinearLayout>
+    </vn.icheck.android.ichecklibs.view.LinearLayoutPrimary>
 </LinearLayout>

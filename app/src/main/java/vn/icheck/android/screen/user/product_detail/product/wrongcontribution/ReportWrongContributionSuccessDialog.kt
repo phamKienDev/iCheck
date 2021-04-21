@@ -19,7 +19,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialog
 import vn.icheck.android.component.report.ReasonReportAdapter
 import vn.icheck.android.component.view.ButtonLightBlueCorners4
-import vn.icheck.android.component.view.ButtonWhiteOutlineLightBlueCorners4
+import vn.icheck.android.component.view.ButtonWhiteOutlinePrimaryBlueCorners4
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.network.models.product.report.ICReportForm
@@ -122,7 +122,7 @@ class ReportWrongContributionSuccessDialog(val context: Context, isCancelable: B
                             }
                             linear.orientation = LinearLayout.HORIZONTAL
 
-                            linear.addView(ButtonWhiteOutlineLightBlueCorners4(context).also {
+                            linear.addView(ButtonWhiteOutlinePrimaryBlueCorners4(context).also {
                                 it.layoutParams = ViewHelper.createLayoutParams(SizeHelper.size120, SizeHelper.size36)
                                 it.gravity = Gravity.CENTER
                                 it.typeface = ViewHelper.createTypeface(context, R.font.barlow_semi_bold)

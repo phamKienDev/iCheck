@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_cancel_blue_24px" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.TextPrimary
         android:id="@+id/tv_reminder_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,7 +23,6 @@
         android:layout_marginRight="@dimen/size_50"
         android:fontFamily="@font/barlow_semi_bold"
         android:text="Lời nhắc"
-        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/font_16"
         app:layout_constraintBottom_toBottomOf="@+id/btn_cancel"
         app:layout_constraintEnd_toEndOf="parent"
