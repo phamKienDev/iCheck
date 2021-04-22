@@ -55,7 +55,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/imgLevel" />
 
-            <androidx.appcompat.widget.AppCompatEditText
+            <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalTextColor
                 android:id="@id/edtComment"
                 android:layout_width="@dimen/size_0"
                 android:layout_height="wrap_content"
@@ -69,7 +69,6 @@
                 android:hint="@string/viet_binh_luan"
                 android:minLines="5"
                 android:padding="@dimen/size_4"
-                android:textColor="@color/colorNormalEdittext"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/layoutAvatar"

@@ -1,15 +1,14 @@
-package vn.icheck.android.ichecklibs.view
+package vn.icheck.android.ichecklibs.view.normal_text
 
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
-import androidx.appcompat.widget.AppCompatTextView
+import android.widget.RadioButton
 import androidx.core.content.ContextCompat
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
 
-class TextNormal : AppCompatTextView {
-
+class RadioButtonNormalTextColor : androidx.appcompat.widget.AppCompatRadioButton {
     constructor(context: Context) : super(context) {
         setup()
     }
@@ -28,5 +27,6 @@ class TextNormal : AppCompatTextView {
         } else {
             ContextCompat.getColor(context, R.color.colorNormalText)
         })
+        includeFontPadding = false
     }
 }

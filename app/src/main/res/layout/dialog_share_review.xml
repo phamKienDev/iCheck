@@ -27,7 +27,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_popup_review_success" />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
             android:id="@+id/textView69"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,13 +36,12 @@
             android:gravity="center_horizontal"
             android:text="Cảm ơn đánh giá của bạn!"
             android:textAlignment="center"
-            android:textColor="@color/colorNormalText"
             android:textSize="@dimen/font_16"
             app:layout_constraintEnd_toEndOf="@+id/imageView28"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imageView28" />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
             android:id="@+id/textView70"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -53,7 +52,6 @@
             android:textAlignment="center"
             android:layout_marginTop="@dimen/size_12"
             android:textSize="@dimen/font_14"
-            android:textColor="@color/colorNormalText"
             android:fontFamily="@font/barlow_medium"
             app:layout_constraintEnd_toEndOf="@id/imageView28"
             app:layout_constraintStart_toStartOf="@id/imageView28"

@@ -20,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layoutHeader" />
 
-    <vn.icheck.android.ichecklibs.view.TextNormal
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
         android:id="@id/tvAll"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_50"
@@ -45,7 +45,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvAll" />
 
-    <vn.icheck.android.ichecklibs.view.TextNormal
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
         android:id="@id/tvFemale"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_50"
@@ -72,7 +72,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvFemale" />
 
-    <vn.icheck.android.ichecklibs.view.TextNormal
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
         android:id="@id/tvMale"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_50"
@@ -96,7 +96,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvMale" />
 
-    <vn.icheck.android.ichecklibs.view.TextNormal
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
         android:id="@id/tvOther"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_50"

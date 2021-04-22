@@ -30,7 +30,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
         android:id="@+id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -42,7 +42,6 @@
         android:fontFamily="@font/barlow_medium"
         android:gravity="center_vertical"
         android:maxLines="1"
-        android:textColor="@color/colorNormalText"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/selectButton"

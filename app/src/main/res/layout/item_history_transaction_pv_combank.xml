@@ -36,14 +36,13 @@
             android:textColor="@color/colorAccentGreen"
             android:textSize="@dimen/font_16" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
             android:id="@+id/tvMission"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_2"
             android:fontFamily="@font/barlow_medium"
             android:text="Hoàn thành nhiệm vụ"
-            android:textColor="@color/colorNormalText"
             android:textSize="@dimen/font_14" />
 
         <androidx.appcompat.widget.AppCompatTextView

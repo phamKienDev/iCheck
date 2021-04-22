@@ -183,7 +183,7 @@
                 android:layout_marginTop="@dimen/size_14"
                 android:src="@drawable/ic_default_square" />
 
-            <vn.icheck.android.ui.view.TextBarlowSemiBold
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
                 android:id="@+id/tvNameProduct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -196,11 +196,9 @@
                 android:layout_toEndOf="@id/imgAvaProduct"
                 android:layout_toRightOf="@id/imgAvaProduct"
                 android:ellipsize="end"
-                android:fontFamily="@font/barlow_semi_bold"
                 android:includeFontPadding="false"
                 android:maxLines="1"
                 android:text="Nước hoa hồng Langege dung tích 201..."
-                android:textColor="@color/colorNormalText"
                 android:textSize="@dimen/font_14" />
 
 
@@ -352,7 +350,7 @@
                 android:layout_toLeftOf="@id/tvBuyNow"
                 app:srcCompat="@drawable/ic_add_cart_32dp" />
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                 android:id="@+id/tvCountCart"
                 android:layout_width="@dimen/size_32"
                 android:layout_height="@dimen/size_32"
@@ -364,7 +362,6 @@
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center"
                 android:text="1"
-                android:textColor="@color/colorNormalText"
                 android:textSize="@dimen/font_14" />
 
             <ImageView

@@ -52,18 +52,16 @@
                 app:layout_constraintStart_toEndOf="@id/imgLogo"
                 app:layout_constraintTop_toTopOf="@id/imgLogo">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
                     android:id="@id/tvPageName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawablePadding="@dimen/size_4"
                     android:ellipsize="middle"
-                    android:fontFamily="@font/barlow_semi_bold"
                     android:gravity="center_vertical"
                     android:includeFontPadding="false"
                     android:singleLine="true"
                     android:textAlignment="gravity"
-                    android:textColor="@color/colorNormalText"
                     android:textSize="@dimen/font_16"
                     app:layout_constraintEnd_toStartOf="@id/imgMore"
                     app:layout_constraintStart_toEndOf="@id/imgLogo"
@@ -148,15 +146,13 @@
             </LinearLayout>
         </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:id="@id/tvContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_6"
-            android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:maxLines="3"
-            android:textColor="@color/colorNormalText"
             android:textSize="@dimen/font_14"
             app:layout_constraintTop_toBottomOf="@id/imgLogo"
             tools:text="Sản phẩm tốt, chất lượng cao. Chính hãng nên đảm bảo lắm nhé. Mọi người đều nên sử dụng thử một lần! nhưng phải dùng lâu dài mới tác dụng (Tối đa 3 dòng)..." />
@@ -340,30 +336,26 @@
                     android:orientation="vertical"
                     android:padding="@dimen/size_8">
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
                         android:id="@id/tvName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ellipsize="middle"
-                        android:fontFamily="@font/barlow_semi_bold"
                         android:gravity="center_vertical"
                         android:includeFontPadding="false"
                         android:drawablePadding="@dimen/size_4"
                         android:singleLine="true"
                         android:textAlignment="gravity"
-                        android:textColor="@color/colorNormalText"
                         android:textSize="@dimen/font_14"
                         tools:text="Trần Văn Lâm" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                         android:id="@id/tvComment"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
-                        android:fontFamily="@font/barlow_medium"
                         android:includeFontPadding="false"
                         android:singleLine="true"
-                        android:textColor="@color/colorNormalText"
                         android:textSize="@dimen/font_14"
                         tools:text="" />
                 </LinearLayout>

@@ -56,7 +56,7 @@
         android:layout_marginTop="@dimen/size_16"
         android:orientation="vertical" />
 
-    <androidx.appcompat.widget.AppCompatEditText
+    <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalTextColor
         android:id="@id/edtContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -74,7 +74,6 @@
         android:paddingEnd="@dimen/size_10"
         android:paddingBottom="@dimen/size_6"
         android:textAlignment="gravity"
-        android:textColor="@color/colorNormalText"
         android:textColorHint="@color/colorDisableText"
         android:textSize="@dimen/font_14"
         android:visibility="gone" />

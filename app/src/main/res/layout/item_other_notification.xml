@@ -62,32 +62,28 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
             android:id="@id/tvTitle"
             android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_8"
             android:layout_marginEnd="@dimen/size_8"
-            android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
             android:maxLines="3"
             android:ellipsize="end"
-            android:textColor="@color/colorNormalText"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toStartOf="@id/imgOption"
             app:layout_constraintStart_toEndOf="@id/imgAvatar"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="(Thông báo liên quan đến điểm)..." />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:id="@id/tvMessage"
             android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_4"
-            android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:maxLines="2"
-            android:textColor="@color/colorNormalText"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="@id/tvTitle"
             app:layout_constraintStart_toStartOf="@id/tvTitle"
