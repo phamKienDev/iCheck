@@ -158,7 +158,7 @@ abstract class BaseActivity<P : BaseActivityPresenter> : AppCompatActivity(), Ba
                         }
 
                         override fun onDismiss() {
-                            HomePageFragment.INSTANCE?.refreshHomeData()
+//                            HomePageFragment.INSTANCE?.refreshHomeData()
                         }
                     }
                     if (!it.isFinishing && !it.isDestroyed) {

@@ -638,6 +638,9 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
                                                                     ickContributeProductViewModel.listImageModel.clear()
                                                                     ickContributeProductViewModel.arrayListImage.clear()
                                                                     ickContributeProductViewModel.postSize()
+                                                                    ickContributeProductViewModel.requestBody.remove("categoryId")
+                                                                    ickContributeProductViewModel.requestBody.remove("name")
+                                                                    ickContributeProductViewModel.currentCategory = null
                                                                 }
                                                             } catch (e: Exception) {
                                                             }
