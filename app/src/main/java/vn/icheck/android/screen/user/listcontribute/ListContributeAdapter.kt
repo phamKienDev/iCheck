@@ -1,11 +1,13 @@
 package vn.icheck.android.screen.user.listcontribute
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatCheckedTextView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_contribute.view.*
@@ -209,7 +211,11 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
 
             itemView.tvPrice.run {
                 if (obj.data?.price != null && obj.data?.price != 0L) {
-                    setTextColor(getColor(R.color.colorPrimary))
+                    setTextColor(if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
+                        Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
+                    } else {
+                        ContextCompat.getColor(itemView.context, vn.icheck.android.ichecklibs.R.color.colorPrimary)
+                    })
                     typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
                     text = itemView.context.getString(R.string.xxx__d, TextHelper.formatMoney(obj.data?.price))
                 } else {

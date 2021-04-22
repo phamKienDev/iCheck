@@ -18,13 +18,13 @@ class TabLayoutWidthIndicatorPrimary @JvmOverloads constructor(context: Context,
         isTabIndicatorFullWidth = false
         setIndicatorWidth(70)
 
-        val colorPrimary = if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
+        val primaryColor = if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
             Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
         } else {
             ContextCompat.getColor(context, vn.icheck.android.ichecklibs.R.color.colorPrimary)
         }
-        setSelectedTabIndicatorColor(colorPrimary)
-        setTabTextColors(ContextCompat.getColor(context, R.color.colorDisableText), colorPrimary)
+        setSelectedTabIndicatorColor(primaryColor)
+        setTabTextColors(ContextCompat.getColor(context, R.color.colorDisableText), primaryColor)
     }
 
     private inner class DefPreDrawListener : ViewTreeObserver.OnPreDrawListener {

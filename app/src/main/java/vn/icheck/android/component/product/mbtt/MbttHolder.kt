@@ -55,7 +55,7 @@ class MbttHolder(view: View) : BaseHolder(view) {
             tvYes.text = "$totalYes%"
             tvNo.text = "$totalNo%"
 
-            val colorPrimary = if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
+            val primaryColor = if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
                 Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
             } else {
                 ContextCompat.getColor(itemView.context, vn.icheck.android.ichecklibs.R.color.colorPrimary)
@@ -65,8 +65,8 @@ class MbttHolder(view: View) : BaseHolder(view) {
                 progress.progress = totalYes
                 progress.rotation = 0f
 
-                tvYes.setTextColor(colorPrimary)
-                textHintYes.setTextColor(colorPrimary)
+                tvYes.setTextColor(primaryColor)
+                textHintYes.setTextColor(primaryColor)
                 tvYes.textSize = 16f
 
                 tvNo.setTextColor(Color.parseColor("#757575"))
@@ -80,8 +80,8 @@ class MbttHolder(view: View) : BaseHolder(view) {
                 textHintYes.setTextColor(Color.parseColor("#757575"))
                 tvYes.textSize = 14f
 
-                tvNo.setTextColor(colorPrimary)
-                textHintNo.setTextColor(colorPrimary)
+                tvNo.setTextColor(primaryColor)
+                textHintNo.setTextColor(primaryColor)
                 tvNo.textSize = 16f
             }
         } else {

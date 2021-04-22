@@ -3,6 +3,7 @@ package vn.icheck.android.screen.user.invite_friend_follow_page
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import androidx.core.content.ContextCompat
@@ -54,7 +55,12 @@ class InviteFriendFollowPageActivity : BaseActivityMVVM(), InviteFriendFollowPag
     }
 
     private fun initSwipeLayout() {
-        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
+        val swipeColor = if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
+            Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
+        } else {
+            ContextCompat.getColor(this, vn.icheck.android.ichecklibs.R.color.colorPrimary)
+        }
+        swipeLayout.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
         swipeLayout.setOnRefreshListener {
             findListUser(edtSearch.text.toString())
         }

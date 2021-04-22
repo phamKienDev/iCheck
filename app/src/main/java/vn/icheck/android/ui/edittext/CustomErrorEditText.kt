@@ -73,7 +73,11 @@ open class CustomErrorEditText : AppCompatEditText {
                 )
             } else {
                 if (hasFocus()) {
-                    mLinePaint.setColor(ContextCompat.getColor(context, R.color.colorPrimary))
+                    mLinePaint.color = if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
+                        Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
+                    } else {
+                        ContextCompat.getColor(context, vn.icheck.android.ichecklibs.R.color.colorPrimary)
+                    }
                 } else {
                     mLinePaint.setColor(Color.parseColor("#D8D8D8"))
                 }

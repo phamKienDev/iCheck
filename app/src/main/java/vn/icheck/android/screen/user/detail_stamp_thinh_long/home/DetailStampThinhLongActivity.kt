@@ -4,6 +4,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import android.location.Location
 import android.net.Uri
 import android.os.Bundle
@@ -91,7 +92,12 @@ class DetailStampThinhLongActivity : BaseActivityMVVM(), SlideHeaderStampHoaPhat
     }
 
     private fun setupSwipeLayout() {
-        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
+        val primaryColor = if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
+            Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
+        } else {
+            ContextCompat.getColor(this, vn.icheck.android.ichecklibs.R.color.colorPrimary)
+        }
+        swipeLayout.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
 
         swipeLayout.setOnRefreshListener {
             swipeLayout.isRefreshing = true

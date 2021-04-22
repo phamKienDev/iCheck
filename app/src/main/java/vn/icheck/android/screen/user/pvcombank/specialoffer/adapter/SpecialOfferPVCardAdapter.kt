@@ -157,12 +157,11 @@ class SpecialOfferPVCardAdapter (private val listener: SpecialOfferPVCardListene
 
     inner class LoadHolder constructor(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind() {
-            val colorPrimary = if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
+            view.progressBar.indeterminateDrawable.setColorFilter(if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
                 Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
             } else {
                 ContextCompat.getColor(view.context, vn.icheck.android.ichecklibs.R.color.colorPrimary)
-            }
-            view.progressBar.indeterminateDrawable.setColorFilter(colorPrimary, android.graphics.PorterDuff.Mode.MULTIPLY)
+            }, android.graphics.PorterDuff.Mode.MULTIPLY)
         }
     }
 

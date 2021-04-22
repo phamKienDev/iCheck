@@ -57,7 +57,11 @@ class OtpEditText:AppCompatEditText {
         paint.getTextWidths(text, 0, text?.length!!, textWidth)
         for (i in 0 until mNumChar) {
             if (i + 1 <= textLength) {
-                mLinePaint.color = ContextCompat.getColor(context, R.color.colorPrimary)
+                mLinePaint.color = if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
+                    Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
+                } else {
+                    ContextCompat.getColor(context, vn.icheck.android.ichecklibs.R.color.colorPrimary)
+                }
             } else {
                 mLinePaint.color = Color.parseColor("#b4b4b4")
             }

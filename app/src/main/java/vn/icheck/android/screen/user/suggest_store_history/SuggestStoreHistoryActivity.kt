@@ -1,6 +1,7 @@
 package vn.icheck.android.screen.user.suggest_store_history
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
@@ -103,7 +104,12 @@ class SuggestStoreHistoryActivity : BaseActivityMVVM(), SuggestStoreHistoryView 
     }
 
     private fun initSwipeLayout() {
-        swipe_layout.setColorSchemeColors(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorPrimary), ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorPrimary), ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorPrimary))
+        val swipeColor = if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
+            Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
+        } else {
+            ContextCompat.getColor(this, vn.icheck.android.ichecklibs.R.color.colorPrimary)
+        }
+        swipe_layout.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
 
         swipe_layout.setOnRefreshListener {
             getData()

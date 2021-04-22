@@ -191,7 +191,11 @@ class ProductOfShopHistoryAdapter constructor(val view: ProductOfShopHistoryView
 
     class LoadHolder constructor(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind() {
-            view.progressBar.indeterminateDrawable.setColorFilter(ContextCompat.getColor(itemView.context, R.color.colorPrimary), android.graphics.PorterDuff.Mode.MULTIPLY)
+            view.progressBar.indeterminateDrawable.setColorFilter(if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
+                Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
+            } else {
+                ContextCompat.getColor(view.context, vn.icheck.android.ichecklibs.R.color.colorPrimary)
+            }, android.graphics.PorterDuff.Mode.MULTIPLY)
         }
     }
 

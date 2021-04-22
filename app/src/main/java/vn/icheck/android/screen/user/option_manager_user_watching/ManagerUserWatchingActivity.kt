@@ -1,5 +1,6 @@
 package vn.icheck.android.screen.user.option_manager_user_watching
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
@@ -60,7 +61,12 @@ class ManagerUserWatchingActivity : BaseActivityMVVM(), IUserFollowWallView {
     }
 
     private fun initSwipeLayput() {
-        swipe_layout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorPrimary), ContextCompat.getColor(this, R.color.colorPrimary), ContextCompat.getColor(this, R.color.colorPrimary))
+        val swipeColor = if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
+            Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
+        } else {
+            ContextCompat.getColor(this, vn.icheck.android.ichecklibs.R.color.colorPrimary)
+        }
+        swipe_layout.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
 
         swipe_layout.setOnRefreshListener {
             swipe_layout.isRefreshing = true

@@ -63,12 +63,12 @@ class SelectUserAddressActivity : BaseActivity<SelectUserAddressPresenter>(), IS
     }
 
     private fun setupSwipeRefreshLayout() {
-        val colorPrimary = if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
+        val primaryColor = if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
             Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
         } else {
             ContextCompat.getColor(this, vn.icheck.android.ichecklibs.R.color.colorPrimary)
         }
-        swipeLayout.setColorSchemeColors(colorPrimary, colorPrimary, colorPrimary)
+        swipeLayout.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
 
         swipeLayout.setOnRefreshListener {
             getListAddress()

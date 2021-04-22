@@ -73,7 +73,11 @@ class ConfirmUnlockPVCardActivity : BaseActivityMVVM() {
         arr.add(7, ' ')
         arr.add(4, ' ')
         val span = SpannableString("Mã xác nhận OTP đã được gửi đến số điện thoại ${arr.joinToString(separator = "")}")
-        span.setSpan(ForegroundColorSpan(ContextCompat.getColor(this, R.color.colorPrimary)), 45, span.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        span.setSpan(ForegroundColorSpan(if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
+            Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
+        } else {
+            ContextCompat.getColor(this, vn.icheck.android.ichecklibs.R.color.colorPrimary)
+        }), 45, span.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         val spannableString = SpannableString(span)
         val onclickPhone = object : ClickableSpan() {
             override fun onClick(widget: View) {

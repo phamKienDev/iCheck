@@ -3,6 +3,7 @@ package vn.icheck.android.screen.user.wall.manage_page
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -75,7 +76,12 @@ class PageManagementFragment : Fragment() {
     }
 
     private fun initSwipeLayout() {
-        binding.swipeLayout.setColorSchemeColors(ContextCompat.getColor(requireContext(), R.color.colorSecondary), ContextCompat.getColor(requireContext(), R.color.colorPrimary), ContextCompat.getColor(requireContext(), R.color.colorPrimary))
+        val swipeColor = if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
+            Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
+        } else {
+            ContextCompat.getColor(requireContext(), vn.icheck.android.ichecklibs.R.color.colorPrimary)
+        }
+        binding.swipeLayout.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
         binding.swipeLayout.setOnRefreshListener {
             getData()
         }

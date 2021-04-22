@@ -2,6 +2,7 @@ package vn.icheck.android.screen.user.listproduct
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.activity_list_product.*
@@ -83,7 +84,12 @@ class ListProductActivity : BaseActivity<ListProductPresenter>(), IListProductVi
      * Lắng nghe người dùng refresh data
      */
     private fun initSwipeLayout() {
-        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
+        val swipeColor = if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
+            Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
+        } else {
+            ContextCompat.getColor(this, vn.icheck.android.ichecklibs.R.color.colorPrimary)
+        }
+        swipeLayout.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
 
         swipeLayout.isRefreshing = true
 
