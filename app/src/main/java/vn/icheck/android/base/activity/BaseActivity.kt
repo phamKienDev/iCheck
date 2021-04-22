@@ -146,7 +146,7 @@ abstract class BaseActivity<P : BaseActivityPresenter> : AppCompatActivity(), Ba
                     confirmLogin = object : ConfirmDialog(it,
                             "Thông báo",
                             "Phiên đăng nhập hết hạn, vui lòng đăng nhập lại!",
-                            "Hủy bỏ",
+                            "Để sau",
                             "Đăng nhập ngay",
                             false) {
                         override fun onDisagree() {
