@@ -37,7 +37,9 @@ object NetworkModule {
                 .writeTimeout(30, TimeUnit.SECONDS)
                 .authenticator(object : Authenticator {
                     override fun authenticate(route: Route?, response: Response): Request? {
-                        if (!response.request.url.toUrl().toString().contains("/ads")) {
+                        if (!response.request.url.toUrl().toString().contains("/ads") &&
+                                !response.request.url.toUrl().toString().contains("system-setting")
+                                && !response.request.url.toUrl().toString().contains("relationships/information")) {
                             if (response.peekBody(1000).string().contains("U102")) {
                                 onTokenTimeout()
                             } else {

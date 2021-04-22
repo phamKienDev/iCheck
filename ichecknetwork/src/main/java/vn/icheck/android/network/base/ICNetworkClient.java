@@ -40,11 +40,13 @@ public class ICNetworkClient {
             .serializeNulls()
             .create();
 
-    private static final Authenticator authenticator = new Authenticator(){
+    private static final Authenticator authenticator = new Authenticator() {
         @Nullable
         @Override
         public Request authenticate(@Nullable Route route, @NotNull Response response) throws IOException {
-            if (!response.request().url().url().toString().contains("/ads")) {
+            if (!response.request().url().url().toString().contains("/ads") &&
+                    !response.request().url().url().toString().contains("system-setting")
+            && !response.request().url().url().toString().contains("relationships/information")) {
                 if (response.peekBody(1000).string().contains("U102")) {
                     ICNetworkManager.INSTANCE.onTokenTimeout();
                 } else {
@@ -310,7 +312,7 @@ public class ICNetworkClient {
     private static OkHttpClient client() {
         return new OkHttpClient.Builder()
                 .retryOnConnectionFailure(true)
-                .authenticator(new Authenticator(){
+                .authenticator(new Authenticator() {
                     @Nullable
                     @Override
                     public Request authenticate(@Nullable Route route, @NotNull Response response) throws IOException {

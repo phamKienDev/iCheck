@@ -162,9 +162,7 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
     override fun onTokenTimeout() {
         runOnUiThread {
             ICheckApplication.currentActivity()?.let {
-                if (SessionManager.isUserLogged && it is HomeActivity) {
-                    HomeActivity.INSTANCE?.logoutFromHome()
-                }
+
 
                 if (confirmLogin == null) {
                     confirmLogin = object : ConfirmDialog(it,
@@ -187,11 +185,29 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
                     }
                     if (!it.isFinishing && !it.isDestroyed) {
                         confirmLogin?.show()
+                        if (it is HomeActivity) {
+                            HomeActivity.INSTANCE?.logoutFromHome()
+                            lifecycleScope.launch {
+                                delay(200)
+                                HomePageFragment.INSTANCE?.refreshHomeData()
+                                delay(200)
+                                HomePageFragment.INSTANCE?.refreshHomeData()
+                            }
+                        }
                     }
                 } else {
                     if (!it.isFinishing && !it.isDestroyed) {
                         if (SessionManager.isUserLogged && confirmLogin?.isShowing == false) {
                             confirmLogin?.show()
+                            if (it is HomeActivity) {
+                                HomeActivity.INSTANCE?.logoutFromHome()
+                                lifecycleScope.launch {
+                                    delay(200)
+                                    HomePageFragment.INSTANCE?.refreshHomeData()
+                                    delay(200)
+                                    HomePageFragment.INSTANCE?.refreshHomeData()
+                                }
+                            }
                         }
                     }
                 }
