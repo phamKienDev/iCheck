@@ -15,8 +15,11 @@ import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
+import vn.icheck.android.base.dialog.reward_login.RewardLoginCallback
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
+import vn.icheck.android.base.dialog.reward_login.RewardLoginDialogV2
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
 import vn.icheck.android.constant.Constant
@@ -24,6 +27,7 @@ import vn.icheck.android.network.base.ICNetworkCallback
 import vn.icheck.android.network.base.ICNetworkManager
 import vn.icheck.android.network.base.ICRequireLogin
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
+import vn.icheck.android.util.ick.simpleStartForResultActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -122,20 +126,21 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
 
     override fun onRequireLogin(requestCode: Int) {
         requestLogin = requestCode
+        runOnUiThread {
+            RewardLoginDialogV2.show(supportFragmentManager, object : RewardLoginCallback {
+                override fun onDismiss() {
+                    onRequireLoginCancel()
+                }
 
-        object : RewardLoginDialog(this@BaseActivityMVVM) {
-            override fun onLogin() {
-                startActivityForResult<IckLoginActivity>(requestLogin)
-            }
+                override fun onLogin() {
+                    startActivityForResult<IckLoginActivity>(requestLogin)
+                }
 
-            override fun onRegister() {
-                startActivityForResult<IckLoginActivity>(Constant.DATA_1, Constant.REGISTER_TYPE, requestLogin)
-            }
-
-            override fun onDismiss() {
-                onRequireLoginCancel()
-            }
-        }.show()
+                override fun onRegister() {
+                    simpleStartForResultActivity(IckLoginActivity::class.java, 1)
+                }
+            })
+        }
     }
 
 

@@ -9,7 +9,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import kotlinx.coroutines.flow.Flow
-import vn.icheck.android.model.bookmark.BookmarkHistoryResponse
+import vn.icheck.android.network.model.bookmark.BookmarkHistoryResponse
 import vn.icheck.android.network.api.ICKApi
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.models.wall.RowsItem

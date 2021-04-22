@@ -26,7 +26,7 @@ import vn.icheck.android.databinding.FragmentUserInfoBinding
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
-import vn.icheck.android.model.location.CityItem
+import vn.icheck.android.network.model.location.CityItem
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.screen.account.icklogin.viewmodel.CHOOSE_TOPIC
 import vn.icheck.android.screen.account.icklogin.viewmodel.IckLoginViewModel

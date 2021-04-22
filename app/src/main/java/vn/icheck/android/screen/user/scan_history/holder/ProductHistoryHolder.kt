@@ -25,6 +25,7 @@ import vn.icheck.android.network.util.JsonHelper
 import vn.icheck.android.screen.user.map_scan_history.MapScanHistoryActivity
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.screen.user.store_sell_history.StoreSellHistoryActivity
+import vn.icheck.android.util.KeyboardUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryHolderBinding = LayoutProductHistoryHolderBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : RecyclerView.ViewHolder(binding.root) {
@@ -155,6 +156,7 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
 
         binding.btnSearchNear.setOnClickListener {
             if (obj.product?.sourceId != null && obj.product?.sourceId != 0L) {
+                ICheckApplication.currentActivity()?.let { activity -> KeyboardUtils.hideSoftInput(activity) }
                 val intent = Intent(itemView.context, MapScanHistoryActivity::class.java)
                 intent.putExtra(Constant.DATA_2, obj.product?.sourceId!!)
                 intent.putExtra(Constant.DATA_3, obj.nearestShop?.shop?.location?.lat)

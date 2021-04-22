@@ -1172,6 +1172,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                 startLocationUpdates()
             }
             else -> {
+//                onRequireLogin()
             }
         }
     }

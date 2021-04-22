@@ -4,10 +4,10 @@ import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityPresenter
 import vn.icheck.android.helper.CartHelper
 import vn.icheck.android.helper.NetworkHelper
-import vn.icheck.android.model.interactor.LocalCartInteractor
 import vn.icheck.android.network.base.ICApiListener
 import vn.icheck.android.network.base.ICBaseResponse
 import vn.icheck.android.network.feature.cart.CartInteractor
+import vn.icheck.android.network.model.interactor.LocalCartInteractor
 import vn.icheck.android.network.models.ICItemCart
 import vn.icheck.android.network.models.ICRespCart
 import vn.icheck.android.room.entity.ICCart
@@ -24,16 +24,16 @@ class CartPresenter(val view: ICartView) : BaseActivityPresenter(view) {
     private val cartHelper = CartHelper()
 
     fun getCartOffline() {
-        localCartInteraction.getListCartsOffline(object : ICApiListener<MutableList<ICCart>> {
-            override fun onSuccess(obj: MutableList<ICCart>) {
-                view.onSetListCart(obj)
-            }
-
-            override fun onError(error: ICBaseResponse?) {
-                val message = error?.message ?: getString(R.string.khong_the_truy_xuat_du_lieu_vui_long_thu_lai)
-                view.onSetError(R.drawable.ic_error_request, message)
-            }
-        })
+//        localCartInteraction.getListCartsOffline(object : ICApiListener<MutableList<ICCart>> {
+//            override fun onSuccess(obj: MutableList<ICCart>) {
+//                view.onSetListCart(obj)
+//            }
+//
+//            override fun onError(error: ICBaseResponse?) {
+//                val message = error?.message ?: getString(R.string.khong_the_truy_xuat_du_lieu_vui_long_thu_lai)
+//                view.onSetError(R.drawable.ic_error_request, message)
+//            }
+//        })
     }
 
     fun getCartOnline() {
@@ -82,7 +82,7 @@ class CartPresenter(val view: ICartView) : BaseActivityPresenter(view) {
     }
 
     fun disposeApi() {
-        localCartInteraction.dispose()
+//        localCartInteraction.dispose()
         serverCartInteraction.dispose()
     }
 }

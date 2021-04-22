@@ -49,7 +49,7 @@
                     android:fontFamily="sans-serif-medium"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/font_size_2"
+                    android:textSize="@dimen/font_12"
                     android:textStyle="normal"
                     tools:text="ĐANG THAM GIA" />
             </LinearLayout>
@@ -95,7 +95,7 @@
                 android:includeFontPadding="false"
                 android:text="Thời gian diễn ra"
                 android:textColor="@color/darkGray3"
-                android:textSize="@dimen/font_size_2"
+                android:textSize="@dimen/font_12"
                 android:textStyle="normal"
                 app:layout_constraintStart_toEndOf="@+id/imgAvatar"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -108,7 +108,7 @@
                 android:layout_marginTop="4dp"
                 android:fontFamily="sans-serif"
                 android:textColor="@color/black"
-                android:textSize="@dimen/font_size_4"
+                android:textSize="@dimen/font_14"
                 android:textStyle="normal"
                 app:layout_constraintStart_toEndOf="@+id/imgAvatar"
                 app:layout_constraintTop_toBottomOf="@id/tv1"

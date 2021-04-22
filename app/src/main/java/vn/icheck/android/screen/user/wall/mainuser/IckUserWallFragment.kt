@@ -13,6 +13,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -31,14 +32,16 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.RelationshipManager
 import vn.icheck.android.WrapContentLinearLayoutManager
+import vn.icheck.android.base.dialog.reward_login.RewardLoginCallback
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
+import vn.icheck.android.base.dialog.reward_login.RewardLoginDialogV2
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.component.post.IPostListener
 import vn.icheck.android.constant.*
 import vn.icheck.android.databinding.FragmentUserWallBinding
-import vn.icheck.android.model.ApiErrorResponse
-import vn.icheck.android.model.ApiSuccessResponse
-import vn.icheck.android.model.posts.PostViewModel
+import vn.icheck.android.network.model.ApiErrorResponse
+import vn.icheck.android.network.model.ApiSuccessResponse
+import vn.icheck.android.network.model.posts.PostViewModel
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -174,7 +177,8 @@ class IckUserWallFragment : Fragment(), IPostListener {
                                 }
 
                                 override fun onError(error: ICResponseCode?) {
-                                    requireContext().showSimpleErrorToast(error?.message ?: requireContext().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                                    requireContext().showSimpleErrorToast(error?.message
+                                            ?: requireContext().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
 //                        ToastUtils.showLongError(activity, R.string.co_loi_xay_ra_vui_long_thu_lai)
                                 }
                             })
@@ -373,7 +377,7 @@ class IckUserWallFragment : Fragment(), IPostListener {
             if (it is ApiSuccessResponse) {
                 if (it.body.data?.rows != null) {
 
-                    for (item in it.body.data.rows) {
+                    for (item in it.body.data?.rows ?: arrayListOf()) {
                         val icViewModel = PostViewModel(item)
                         ickUserWallViewModel.arrPost.add(icViewModel)
                         ickUserWallViewModel.addView(icViewModel)
@@ -486,7 +490,7 @@ class IckUserWallFragment : Fragment(), IPostListener {
             ICMessageEvent.Type.ON_REQUIRE_LOGIN -> {
                 if (isActivityVisble) {
                     ICheckApplication.currentActivity()?.let { activity ->
-                        object : RewardLoginDialog(activity) {
+                        RewardLoginDialogV2.show((activity as AppCompatActivity).supportFragmentManager, object : RewardLoginCallback {
                             override fun onLogin() {
                                 val intent = Intent(context, IckLoginActivity::class.java)
                                 startActivityForResult(intent, requestLogin)
@@ -499,8 +503,9 @@ class IckUserWallFragment : Fragment(), IPostListener {
                             }
 
                             override fun onDismiss() {
+
                             }
-                        }.show()
+                        })
                     }
                 }
             }

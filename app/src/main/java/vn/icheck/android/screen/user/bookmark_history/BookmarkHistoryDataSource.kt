@@ -3,7 +3,7 @@ package vn.icheck.android.screen.user.bookmark_history
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import vn.icheck.android.model.bookmark.BookmarkHistoryResponse
+import vn.icheck.android.network.model.bookmark.BookmarkHistoryResponse
 import vn.icheck.android.network.api.ICKApi
 import javax.inject.Inject
 

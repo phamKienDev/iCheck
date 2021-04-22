@@ -36,10 +36,10 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
-import vn.icheck.android.model.ApiErrorResponse
-import vn.icheck.android.model.ApiSuccessResponse
-import vn.icheck.android.model.icklogin.IckUserInfoResponse
-import vn.icheck.android.model.location.CityItem
+import vn.icheck.android.network.model.ApiErrorResponse
+import vn.icheck.android.network.model.ApiSuccessResponse
+import vn.icheck.android.network.model.icklogin.IckUserInfoResponse
+import vn.icheck.android.network.model.location.CityItem
 import vn.icheck.android.network.base.*
 import vn.icheck.android.screen.location.CITY
 import vn.icheck.android.screen.location.CityPicker
@@ -575,7 +575,7 @@ class EditMyInformationActivity : CoroutineFragment() {
             binding.edtDanhtinh.beGone()
             binding.txtConfirmedDanhtinh.beVisible()
 
-            when (user.data.kycStatus) {
+            when (user.data?.kycStatus) {
                 1 -> {
                     binding.txtConfirmedDanhtinh.setBackgroundResource(R.drawable.bg_yellow_20_corner_23)
                     binding.txtConfirmedDanhtinh.setText(R.string.cho_xac_thuc)

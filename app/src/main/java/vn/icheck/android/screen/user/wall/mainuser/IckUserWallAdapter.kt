@@ -24,11 +24,11 @@ import vn.icheck.android.constant.*
 import vn.icheck.android.databinding.FriendInWallHolderBinding
 import vn.icheck.android.databinding.ItemCreatePostBinding
 import vn.icheck.android.databinding.ItemUserProfileWallBinding
-import vn.icheck.android.model.posts.PostViewModel
-import vn.icheck.android.model.profile.IckUserFriendModel
-import vn.icheck.android.model.profile.IckUserProfileModel
 import vn.icheck.android.network.base.ICListResponse
 import vn.icheck.android.network.base.SessionManager
+import vn.icheck.android.network.model.posts.PostViewModel
+import vn.icheck.android.network.model.profile.IckUserFriendModel
+import vn.icheck.android.network.model.profile.IckUserProfileModel
 import vn.icheck.android.network.models.ICSearchUser
 import vn.icheck.android.network.models.ICUser
 import vn.icheck.android.room.database.AppDatabase

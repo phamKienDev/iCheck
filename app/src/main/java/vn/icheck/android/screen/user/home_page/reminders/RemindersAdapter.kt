@@ -6,7 +6,7 @@ import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.databinding.ItemReminderBinding
-import vn.icheck.android.model.reminders.ReminderResponse
+import vn.icheck.android.network.model.reminders.ReminderResponse
 import vn.icheck.android.util.ick.*
 
 class RemindersAdapter(val listData: List<ReminderResponse>, val onDismissReminder:(Int) -> Unit):RecyclerView.Adapter<RecyclerView.ViewHolder>() {

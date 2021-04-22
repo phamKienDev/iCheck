@@ -3,7 +3,7 @@ package vn.icheck.android.screen.user.shipping.ship.holder
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.databinding.HolderShipBinding
-import vn.icheck.android.model.loyalty.ShipAddressResponse
+import vn.icheck.android.network.model.loyalty.ShipAddressResponse
 import vn.icheck.android.util.ick.getLayoutInflater
 import vn.icheck.android.util.ick.setCustomChecked
 import vn.icheck.android.util.ick.simpleText

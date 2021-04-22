@@ -4,7 +4,6 @@ import vn.icheck.android.component.ICViewModel
 import vn.icheck.android.component.ICViewTags
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.network.models.ICOwner
-import vn.icheck.android.network.models.ICPage
 
 class EnterpriseModelV2(val business: ICOwner?,
                         val icon: Int?,

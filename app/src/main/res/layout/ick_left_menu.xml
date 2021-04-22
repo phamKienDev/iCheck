@@ -147,6 +147,7 @@
                         android:layout_marginEnd="@dimen/size_12"
                         android:layout_marginBottom="@dimen/size_12"
                         android:fontFamily="@font/barlow_medium"
+                        android:text="iCheck Xu"
                         android:textColor="@color/black" />
                 </LinearLayout>
 
@@ -210,6 +211,7 @@
                         android:layout_marginEnd="@dimen/size_12"
                         android:layout_marginBottom="@dimen/size_12"
                         android:fontFamily="@font/barlow_medium"
+                        android:text="Quản lý trang"
                         android:textColor="@color/black" />
                 </LinearLayout>
 
@@ -237,6 +239,7 @@
                         android:layout_marginEnd="@dimen/size_12"
                         android:layout_marginBottom="@dimen/size_12"
                         android:fontFamily="@font/barlow_medium"
+                        android:text="Tạo QR Code"
                         android:textColor="@color/black" />
                 </LinearLayout>
             </LinearLayout>
@@ -301,6 +304,7 @@
                         android:layout_marginEnd="@dimen/size_12"
                         android:layout_marginBottom="@dimen/size_12"
                         android:fontFamily="@font/barlow_medium"
+                        android:text="Cấu hình"
                         android:textColor="@color/black" />
                 </LinearLayout>
             </LinearLayout>
@@ -415,6 +419,7 @@
                     android:fontFamily="@font/barlow_medium"
                     android:gravity="center_vertical"
                     android:padding="@dimen/size_16"
+                    android:text="Liên hệ và hỗ trợ"
                     android:textColor="#757575"
                     android:visibility="gone"
                     tools:visibility="visible" />
@@ -448,9 +453,9 @@
                 android:id="@+id/tv_logout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_12"
                 android:layout_marginEnd="@dimen/size_12"
-                android:layout_marginStart="@dimen/size_12"
                 android:layout_marginBottom="@dimen/size_30"
                 android:background="@drawable/bg_white_corners_4"
                 android:drawableStart="@drawable/ic_logout_red"

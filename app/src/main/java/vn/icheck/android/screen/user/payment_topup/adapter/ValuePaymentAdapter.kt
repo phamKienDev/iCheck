@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_name_value_payment.view.*
 import kotlinx.android.synthetic.main.item_service_shop_variant.view.*
 import vn.icheck.android.R
-import vn.icheck.android.model.ICNameValue
+import vn.icheck.android.network.model.ICNameValue
 
 class ValuePaymentAdapter (val context: Context?) : RecyclerView.Adapter<ValuePaymentAdapter.ViewHolder>() {
 
