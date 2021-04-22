@@ -17,25 +17,27 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
+import vn.icheck.android.base.dialog.notify.confirm.ConfirmDialog
 import vn.icheck.android.base.dialog.reward_login.RewardLoginCallback
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialogV2
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.network.base.ICNetworkCallback
-import vn.icheck.android.network.base.ICNetworkManager
-import vn.icheck.android.network.base.ICRequireLogin
+import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.network.base.*
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
+import vn.icheck.android.screen.user.home.HomeActivity
+import vn.icheck.android.screen.user.home_page.HomePageFragment
 import vn.icheck.android.util.ick.simpleStartForResultActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.io.Serializable
 
-abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetworkCallback {
+abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetworkCallback, TokenTimeoutCallback {
     var job: Job? = null
-
+    var confirmLogin:ConfirmDialog? = null
     open val getStatusBarHeight: Int
         get() {
             var result = 0
@@ -92,6 +94,7 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
 
     override fun onDestroy() {
         super.onDestroy()
+        confirmLogin = null
 
         EventBus.getDefault().unregister(this)
     }
@@ -99,12 +102,14 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
     override fun onResume() {
         super.onResume()
         ICNetworkManager.register(this)
+        ICNetworkManager.registerTokenTimeoutCallback(this)
         EventBus.getDefault().post(ICMessageEvent.Type.ON_CHECK_UPDATE_LOCATION)
     }
 
     override fun onPause() {
         super.onPause()
         ICNetworkManager.unregister(this)
+        ICNetworkManager.unregisterTokenTimeoutCallback(this)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -152,6 +157,47 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
 
     override fun onEndOfToken() {
         onRequireLogin()
+    }
+
+    override fun onTokenTimeout() {
+        runOnUiThread {
+            ICheckApplication.currentActivity()?.let {
+                if (SessionManager.isUserLogged && it is HomeActivity) {
+                    HomeActivity.INSTANCE?.logoutFromHome()
+                }
+
+                if (confirmLogin == null) {
+                    confirmLogin = object : ConfirmDialog(it,
+                            "Thông báo",
+                            "Phiên đăng nhập hết hạn, vui lòng đăng nhập lại!",
+                            "Hủy bỏ",
+                            "Đăng nhập ngay",
+                            false) {
+                        override fun onDisagree() {
+
+                        }
+
+                        override fun onAgree() {
+                            startActivityForResult<IckLoginActivity>(requestLogin)
+                        }
+
+                        override fun onDismiss() {
+//                            HomePageFragment.INSTANCE?.refreshHomeData()
+                        }
+                    }
+                    if (!it.isFinishing && !it.isDestroyed) {
+                        confirmLogin?.show()
+                    }
+                } else {
+                    if (!it.isFinishing && !it.isDestroyed) {
+                        if (SessionManager.isUserLogged && confirmLogin?.isShowing == false) {
+                            confirmLogin?.show()
+                        }
+                    }
+                }
+            }
+
+        }
     }
 
     /**

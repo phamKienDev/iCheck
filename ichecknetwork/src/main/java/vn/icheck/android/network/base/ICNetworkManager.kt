@@ -4,6 +4,8 @@ object ICNetworkManager {
     private val callbacks = mutableListOf<ICNetworkCallback>()
     private var loginProtocol: ICLoginProtocol? = null
     private var pvCombankListener = mutableListOf<PVComBankListener>()
+    private val tokenTimeoutCallbacks = mutableListOf<TokenTimeoutCallback>()
+
 
     /**
      * Đăng ký sự kiện lắng nghe khi server yêu cầu đăng nhập
@@ -22,12 +24,20 @@ object ICNetworkManager {
         this.loginProtocol = loginProtocol
     }
 
+    fun registerTokenTimeoutCallback(tokenTimeoutCallback: TokenTimeoutCallback) {
+        tokenTimeoutCallbacks.add(tokenTimeoutCallback)
+    }
+
     /**
      * Hủy đăng ký sự kiện lắng nghe khi server yêu cầu đăng nhập
      *
      */
     fun unregister(listener: ICNetworkCallback) {
         callbacks.remove(listener)
+    }
+
+    fun unregisterTokenTimeoutCallback(tokenTimeoutCallback: TokenTimeoutCallback) {
+        tokenTimeoutCallbacks.remove(tokenTimeoutCallback)
     }
 
     fun unregisterPVCombank(listener: PVComBankListener) {
@@ -51,6 +61,12 @@ object ICNetworkManager {
     fun onEndOfPVCombankToken() {
         for (callback in pvCombankListener) {
             callback.onEndOfToken()
+        }
+    }
+
+    fun onTokenTimeout() {
+        for (callback in tokenTimeoutCallbacks) {
+            callback.onTokenTimeout()
         }
     }
 

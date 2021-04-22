@@ -67,6 +67,7 @@ import vn.icheck.android.helper.*
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.base.SettingManager
+import vn.icheck.android.network.base.TokenTimeoutCallback
 import vn.icheck.android.network.models.ICClientSetting
 import vn.icheck.android.network.models.ICUser
 import vn.icheck.android.network.models.history.ICBigCorp
@@ -165,6 +166,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
 
     companion object {
         var isOpen: Boolean? = false
+        var INSTANCE:HomeActivity? = null
     }
 
     override val getLayoutID: Int
@@ -198,6 +200,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
 
         ringtoneHelper = RingtoneHelper(this)
         AndroidSchedulers.mainThread()
+        INSTANCE = this
     }
 
 
@@ -900,23 +903,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                     }
 
                     override fun onAgree() {
-                        if (NetworkHelper.isNotConnected(this@HomeActivity)) {
-                            showLongError(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
-                            return
-                        }
-                        FirebaseMessaging.getInstance().token.addOnCompleteListener {
-                            if (it.isSuccessful) {
-                                ickLoginViewModel.logoutDevice(it.result)
-                            } else {
-                                ickLoginViewModel.logoutDevice("unknown")
-                            }
-                            RelationshipManager.removeListener()
-
-                            ickLoginViewModel.logout()
-//                        ickLoginViewModel.loginAnonymous()
-                            presenter.onLogOut()
-                        }
-
+                        logoutFromHome()
                     }
 
                     override fun onDismiss() {
@@ -1046,6 +1033,25 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
 
                 drawerLayout.closeDrawer(GravityCompat.END)
             }
+        }
+    }
+
+    fun logoutFromHome() {
+        if (NetworkHelper.isNotConnected(this@HomeActivity)) {
+            showLongError(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
+            return
+        }
+        FirebaseMessaging.getInstance().token.addOnCompleteListener {
+            if (it.isSuccessful) {
+                ickLoginViewModel.logoutDevice(it.result)
+            } else {
+                ickLoginViewModel.logoutDevice("unknown")
+            }
+            RelationshipManager.removeListener()
+
+            ickLoginViewModel.logout()
+    //                        ickLoginViewModel.loginAnonymous()
+            presenter.onLogOut()
         }
     }
 
@@ -1252,5 +1258,6 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
         stopLocationUpdates()
         isOpen = false
         RelationshipManager.removeListener()
+        INSTANCE = null
     }
 }
