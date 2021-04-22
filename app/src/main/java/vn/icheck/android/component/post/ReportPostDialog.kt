@@ -17,6 +17,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialogFragment
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.helper.TextColorHelper
 import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.util.kotlin.ToastUtils
 
@@ -56,7 +57,7 @@ class ReportPostDialog(val listData: MutableList<ICReportForm>) : BaseBottomShee
                 radioButton.setBackgroundResource(ViewHelper.outValue.resourceId)
                 radioButton.setTextColor(ViewHelper.createColorStateList(
                         ContextCompat.getColor(requireContext(), R.color.colorSecondText),
-                        ContextCompat.getColor(requireContext(), R.color.colorNormalText)))
+                        TextColorHelper.getColorNormalText(requireContext())))
                 radioButton.includeFontPadding = false
                 radioButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
                 radioButton.maxLines = 1
