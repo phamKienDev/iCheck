@@ -232,7 +232,7 @@
                         android:paddingEnd="@dimen/size_10"
                         android:paddingBottom="@dimen/size_6"
                         android:textAlignment="gravity"
-                        android:textColor="@color/colorNormalText"
+                        android:textColor="@color/colorNormalEdittext"
                         android:textColorHint="@color/colorDisableText"
                         android:textSize="@dimen/font_14"
                         app:layout_constraintBottom_toBottomOf="parent"

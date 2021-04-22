@@ -11,6 +11,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseDialog
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.view.TextNormal
 import vn.icheck.android.network.models.ICMission
 import vn.icheck.android.screen.user.my_gift_warehouse.list_mission.list.ListMissionActivity
 import vn.icheck.android.util.ick.beGone
@@ -48,7 +49,7 @@ abstract class DialogEmtyBoxGift(context: Context, private val image: Int, priva
                 btnAction.beVisible()
 
                 for (i in 0 until missions.size) {
-                    addView(AppCompatTextView(context).also {
+                    addView(TextNormal(context).also {
                         it.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT).also { params ->
                             params.setMargins(SizeHelper.size12, if (i == 0) {
                                 SizeHelper.size12
