@@ -68,7 +68,7 @@
                     android:paddingTop="@dimen/size_8"
                     android:paddingEnd="@dimen/size_45"
                     android:paddingBottom="@dimen/size_8"
-                    android:textColor="@color/colorNormalText"
+                    android:textColor="@color/colorNormalEdittext"
                     android:textColorHint="@color/colorDisableText"
                     android:textSize="@dimen/font_14"
                     android:visibility="visible"

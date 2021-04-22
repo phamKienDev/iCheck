@@ -3,7 +3,9 @@ package vn.icheck.android.ichecklibs
 import android.app.AlarmManager
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
+import androidx.core.content.ContextCompat
 import java.util.regex.Pattern
 
 object Constant {

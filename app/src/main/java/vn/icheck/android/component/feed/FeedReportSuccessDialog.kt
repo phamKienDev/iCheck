@@ -19,6 +19,8 @@ import vn.icheck.android.component.report.ReasonReportAdapter
 import vn.icheck.android.component.view.ButtonLightBlueCorners4
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.helper.TextColorHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.ui.SafeFlexboxLayoutManager
 
@@ -45,7 +47,7 @@ class FeedReportSuccessDialog(val context: Context) : BaseBottomSheetDialog(cont
                     ViewHelper.createLayoutParams(SizeHelper.size42, SizeHelper.size16, SizeHelper.size42, 0),
                     null,
                     ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
-                    ContextCompat.getColor(context, R.color.colorNormalText),
+                    TextColorHelper.getColorNormalText(context),
                     16f).also {
                 it.setText(R.string.feed_report_success_title)
                 it.gravity = Gravity.CENTER_HORIZONTAL
