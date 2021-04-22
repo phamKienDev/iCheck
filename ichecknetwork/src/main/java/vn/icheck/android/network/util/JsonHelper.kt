@@ -2,6 +2,7 @@ package vn.icheck.android.network.util
 
 import android.util.Log
 import com.google.gson.GsonBuilder
+import com.google.gson.JsonArray
 import com.google.gson.reflect.TypeToken
 import com.google.gson.JsonObject
 import vn.icheck.android.network.models.*
@@ -33,8 +34,21 @@ object JsonHelper {
         }
     }
 
+    private fun checkFormatMedia(json: JsonObject) {
+        if (json.has("media")) {
+            (json["media"] as JsonArray).forEachIndexed { index, jsonElement ->
+                try {
+                    parseJson(jsonElement.toString(), ICMedia::class.java)
+                }catch (e:Exception){
+                    Log.e("e", e.localizedMessage, e)
+                }
+            }
+        }
+    }
+
     fun <T> parseJson(json: JsonObject, clazz: Class<T>): T? {
         return try {
+            checkFormatMedia(json)
             gson.fromJson(json, clazz)
         } catch (e: Exception) {
             Log.e("e", e.localizedMessage, e)
@@ -42,7 +56,7 @@ object JsonHelper {
         }
     }
 
-    fun  <T> parseList(json: String?): MutableList<T>? {
+    fun <T> parseList(json: String?): MutableList<T>? {
         return try {
             val listType = object : TypeToken<List<T>>() {}.type
             gson.fromJson(json, listType)
