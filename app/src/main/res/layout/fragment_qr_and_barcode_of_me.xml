@@ -94,15 +94,13 @@
             android:background="@drawable/group_my_code_bottom"
             android:orientation="vertical">
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
                 android:id="@+id/tv_default_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_20"
-                android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:text="Đây là ID của bạn"
-                android:textColor="#212121"
                 android:textSize="@dimen/font_16"
                 android:visibility="gone" />
 

@@ -104,7 +104,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.appcompat.widget.AppCompatEditText
+            <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalTextColor
                 android:id="@id/edtContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -114,7 +114,6 @@
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/barlow_medium"
                 android:includeFontPadding="false"
-                android:textColor="#212121"
                 android:textSize="@dimen/font_14"
                 tools:hint="@string/hom_nay_ban_thay_the_nao_xxx" />
 

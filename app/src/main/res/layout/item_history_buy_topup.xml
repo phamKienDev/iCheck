@@ -32,14 +32,12 @@
 
         </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
             android:id="@+id/tvNameNetwork"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_8"
-            android:fontFamily="@font/barlow_semi_bold"
             android:textSize="@dimen/font_14"
-            android:textColor="#212121"
             android:textStyle="normal"
             app:layout_constraintStart_toEndOf="@+id/layoutImg"
             app:layout_constraintTop_toTopOf="@+id/layoutImg"
@@ -98,12 +96,10 @@
             app:layout_constraintStart_toStartOf="@id/line"
             app:layout_constraintTop_toBottomOf="@id/line" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
             android:id="@+id/tvMaThe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/barlow_semi_bold"
-            android:textColor="#212121"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="@id/line"
             app:layout_constraintTop_toTopOf="@+id/tvSubMaThe"
@@ -123,12 +119,10 @@
             app:layout_constraintStart_toStartOf="@id/tvSubMaThe"
             app:layout_constraintTop_toBottomOf="@id/tvSubMaThe" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
             android:id="@+id/tvSeri"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/barlow_semi_bold"
-            android:textColor="#212121"
             android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toBottomOf="@id/tvSubSoSeri"
             app:layout_constraintEnd_toEndOf="@id/tvMaThe"

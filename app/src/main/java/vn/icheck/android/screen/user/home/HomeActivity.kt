@@ -530,7 +530,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                 setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
             tv_user_rank.visibility = View.VISIBLE
-            tv_user_rank.setTextColor(Color.parseColor("#212121"))
+            tv_user_rank.setTextColor(TextColorHelper.getColorNormalText(this))
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 val spannableString = SpannableString(Html.fromHtml("Vui lòng <font color=#057DDA><u>Đăng kí</u></font> hoặc <font color=#057DDA><u>Đăng nhập</u></font>", Html.FROM_HTML_MODE_COMPACT))
                 spannableString.setSpan(registerClickable, 8, 16, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)

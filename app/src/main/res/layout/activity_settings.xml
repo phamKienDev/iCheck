@@ -31,7 +31,7 @@
         android:layout_marginTop="@dimen/size_8"
         android:background="@color/white">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:id="@+id/tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,9 +39,7 @@
             android:layout_marginLeft="@dimen/size_12"
             android:layout_marginTop="@dimen/size_15"
             android:layout_marginBottom="@dimen/size_15"
-            android:fontFamily="@font/barlow_medium"
             android:text="Tin tức"
-            android:textColor="#212121"
             android:textSize="@dimen/font_14" />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -61,7 +59,7 @@
             android:layout_marginLeft="@dimen/size_12"
             android:background="#D8D8D8" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,9 +68,7 @@
             android:layout_marginLeft="@dimen/size_12"
             android:layout_marginTop="@dimen/size_15"
             android:layout_marginBottom="@dimen/size_15"
-            android:fontFamily="@font/barlow_medium"
             android:text="Chương trình mới"
-            android:textColor="#212121"
             android:textSize="@dimen/font_14" />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -93,7 +89,7 @@
             android:layout_marginLeft="@dimen/size_12"
             android:background="#D8D8D8" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:id="@+id/textView11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -102,9 +98,7 @@
             android:layout_marginLeft="@dimen/size_12"
             android:layout_marginTop="@dimen/size_15"
             android:layout_marginBottom="@dimen/size_15"
-            android:fontFamily="@font/barlow_medium"
             android:text="Tin nhắn"
-            android:textColor="#212121"
             android:textSize="@dimen/font_14" />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -132,7 +126,7 @@
         android:layout_marginTop="@dimen/size_8"
         android:background="@color/white">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:id="@+id/tvv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -140,9 +134,7 @@
             android:layout_marginLeft="@dimen/size_12"
             android:layout_marginTop="@dimen/size_15"
             android:layout_marginBottom="@dimen/size_15"
-            android:fontFamily="@font/barlow_medium"
             android:text="Rung"
-            android:textColor="#212121"
             android:textSize="@dimen/font_14" />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -162,7 +154,7 @@
             android:layout_marginLeft="@dimen/size_12"
             android:background="#D8D8D8" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:id="@+id/textView111"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -171,9 +163,7 @@
             android:layout_marginLeft="@dimen/size_12"
             android:layout_marginTop="@dimen/size_15"
             android:layout_marginBottom="@dimen/size_15"
-            android:fontFamily="@font/barlow_medium"
             android:text="Âm thanh"
-            android:textColor="#212121"
             android:textSize="@dimen/font_14" />
 
         <androidx.appcompat.widget.AppCompatImageView

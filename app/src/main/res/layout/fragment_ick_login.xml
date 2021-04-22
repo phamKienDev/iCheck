@@ -11,11 +11,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="wrap_content">
 
-       >
-
-        <vn.icheck.android.ui.edittext.FocusableEditText
+        <vn.icheck.android.ichecklibs.view.normal_text.FocusableEditTextNormalTextColor
             android:id="@+id/edt_phone"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -25,10 +23,8 @@
             android:layout_marginEnd="@dimen/size_62"
             android:layout_marginRight="@dimen/size_62"
             android:digits="0123456789"
-
             android:ems="10"
             android:textAlignment="center"
-            android:textColor="#212121"
             android:hint="@string/nhap_so_dien_thoai"
             android:inputType="phone"
             android:focusableInTouchMode="true"
@@ -38,7 +34,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <vn.icheck.android.ui.edittext.FocusableEditText
+        <vn.icheck.android.ichecklibs.view.normal_text.FocusableEditTextNormalTextColor
             android:id="@+id/edt_password"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -52,7 +48,6 @@
             android:hint="@string/nhap_mat_khau"
             android:inputType="textPassword"
             android:paddingBottom="@dimen/size_20"
-            android:textColor="#212121"
             android:textSize="@dimen/font_16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

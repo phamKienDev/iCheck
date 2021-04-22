@@ -24,17 +24,15 @@
         app:layout_constraintStart_toEndOf="@id/avatar_friend"
         app:layout_constraintTop_toTopOf="@id/avatar_friend">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
             android:id="@id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawablePadding="@dimen/size_4"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
             android:maxLines="1"
             android:gravity="center_vertical"
             android:textAlignment="gravity"
-            android:textColor="#212121"
             android:textSize="@dimen/font_14"
             tools:text="Xuyến Đỗ" />
     </FrameLayout>

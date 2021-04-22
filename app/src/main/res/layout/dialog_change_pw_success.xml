@@ -34,16 +34,14 @@
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/bg_login_required_335x193" />
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                 android:id="@+id/textView6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_20"
-                android:fontFamily="@font/barlow_medium"
                 android:gravity="center_horizontal"
                 android:text="Bạn đã thay đổi mật khẩu thành công!"
                 android:textAlignment="center"
-                android:textColor="#212121"
                 android:textSize="@dimen/font_16" />
 
             <TextView

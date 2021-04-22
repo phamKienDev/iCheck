@@ -17,14 +17,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_back_blue_24px_new" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
         android:id="@+id/textView22"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/size_50"
         android:layout_marginRight="@dimen/size_50"
-        android:fontFamily="@font/barlow_semi_bold"
-        android:textColor="#212121"
         android:textSize="@dimen/font_18"
         app:layout_constraintBottom_toBottomOf="@+id/btn_back"
         app:layout_constraintEnd_toEndOf="parent"
@@ -102,7 +100,7 @@
                 app:layout_constraintStart_toStartOf="@+id/tv_nation"
                 app:layout_constraintTop_toBottomOf="@+id/tv_nation" />
 
-            <vn.icheck.android.ui.edittext.FocusableEditText
+            <vn.icheck.android.ichecklibs.FocusableEditText
                 android:id="@+id/tv_phone_head"
                 android:layout_width="@dimen/size_50"
                 android:layout_height="wrap_content"
@@ -118,7 +116,7 @@
                 app:layout_constraintStart_toStartOf="@+id/divider18"
                 app:layout_constraintTop_toBottomOf="@+id/divider18" />
 
-            <vn.icheck.android.ui.edittext.FocusableEditText
+            <vn.icheck.android.ichecklibs.view.normal_text.FocusableEditTextNormalTextColor
                 android:id="@+id/edt_phone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -131,13 +129,12 @@
                 android:imeOptions="actionSend"
                 android:inputType="phone"
                 android:paddingBottom="@dimen/size_20"
-                android:textColor="#212121"
                 android:textSize="@dimen/font_20"
                 app:layout_constraintEnd_toEndOf="@+id/divider18"
                 app:layout_constraintStart_toEndOf="@+id/tv_phone_head"
                 app:layout_constraintTop_toTopOf="@+id/tv_phone_head" />
 
-            <vn.icheck.android.ui.edittext.FocusableEditText
+            <vn.icheck.android.ichecklibs.view.normal_text.FocusableEditTextNormalTextColor
                 android:id="@+id/group_pw"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -149,14 +146,13 @@
                 android:inputType="textPassword"
                 android:orientation="horizontal"
                 android:paddingBottom="@dimen/size_20"
-                android:textColor="#212121"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_phone_head"
                 tools:visibility="visible" />
 
-            <vn.icheck.android.ui.edittext.FocusableEditText
+            <vn.icheck.android.ichecklibs.view.normal_text.FocusableEditTextNormalTextColor
                 android:id="@+id/group_re_pw"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -169,7 +165,6 @@
                 android:inputType="textPassword"
                 android:orientation="horizontal"
                 android:paddingBottom="@dimen/size_20"
-                android:textColor="#212121"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

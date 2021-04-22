@@ -40,13 +40,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/imgType">
 
-        <vn.icheck.android.ui.view.TextBarlowSemiBold
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
             android:id="@+id/tvNameType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/font_14"
-            android:textColor="#212121"
-            android:fontFamily="@font/barlow_semi_bold"
             tools:text="iCheck Xu"/>
 
         <vn.icheck.android.ui.view.TextBarlowMedium

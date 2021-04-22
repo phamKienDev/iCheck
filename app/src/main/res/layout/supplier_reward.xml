@@ -39,7 +39,7 @@
         app:layout_constraintTop_toTopOf="@id/imgLogoSupplier"
         android:text="Được cung cấp bởi" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
         android:id="@+id/tvNameSupplier"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -47,9 +47,7 @@
         android:layout_marginEnd="@dimen/size_8"
         android:layout_marginRight="@dimen/size_8"
         android:lineSpacingExtra="@dimen/font_6"
-        android:textColor="#212121"
         android:textSize="@dimen/font_14"
-        android:fontFamily="@font/barlow_semi_bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/appCompatTextView33"

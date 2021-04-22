@@ -12,13 +12,11 @@
         android:layout_height="wrap_content"
         android:src="@drawable/bg_product_empty_qa" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/barlow_semi_bold"
         android:lineSpacingExtra="@dimen/font_6"
         android:text="Bạn có thắc mắc gì về sản phẩm này không?"
-        android:textColor="#212121"
         android:textSize="@dimen/font_14" />
 
     <androidx.appcompat.widget.AppCompatTextView

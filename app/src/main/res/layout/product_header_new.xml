@@ -48,7 +48,7 @@
         app:layout_constraintTop_toBottomOf="@+id/images_rcv"
         app:srcCompat="@drawable/ic_fav_product" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
         android:id="@+id/tv_product_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -57,7 +57,6 @@
         android:layout_marginTop="@dimen/size_10"
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
-        android:textColor="#212121"
         android:textSize="@dimen/font_16"
         style="@style/barlow_text"
         app:layout_constraintEnd_toEndOf="parent"

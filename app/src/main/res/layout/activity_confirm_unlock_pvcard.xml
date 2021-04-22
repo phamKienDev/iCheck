@@ -41,14 +41,13 @@
             android:background="@color/white"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_40"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:text="Nhập mã OTP"
-                android:textColor="#212121"
                 android:textSize="@dimen/font_20" />
 
             <vn.icheck.android.ui.view.TextBarlowMedium

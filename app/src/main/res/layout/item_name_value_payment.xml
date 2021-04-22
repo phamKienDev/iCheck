@@ -20,13 +20,11 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Dịch vụ:" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
         android:id="@id/tvValue"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/barlow_medium"
         android:gravity="end"
-        android:textColor="#212121"
         android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toBottomOf="@id/tvName"
         app:layout_constraintEnd_toEndOf="parent"

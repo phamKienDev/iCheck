@@ -20,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layoutHeader" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
         android:id="@+id/tv_select_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -30,9 +30,7 @@
         android:drawableStart="@drawable/ic_product_verified_check"
         android:drawableLeft="@drawable/ic_product_verified_check"
         android:drawablePadding="@dimen/size_8"
-        android:fontFamily="@font/barlow_medium"
         android:text="Sản phẩm đã xác thực"
-        android:textColor="#212121"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider27" />
 
@@ -69,7 +67,7 @@
         android:paddingRight="@dimen/size_4"
         app:layout_constraintTop_toBottomOf="@id/divider28">
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:id="@+id/tv_select_time"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -81,9 +79,7 @@
             android:drawableStart="@drawable/ic_price_tag"
             android:drawableLeft="@drawable/ic_price_tag"
             android:drawablePadding="@dimen/size_8"
-            android:fontFamily="@font/barlow_medium"
             android:text="Giá từ"
-            android:textColor="#212121"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider28" />
 
@@ -131,7 +127,7 @@
         android:paddingRight="@dimen/size_4"
         app:layout_constraintTop_toBottomOf="@id/divider29">
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:id="@+id/textView40"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -143,9 +139,7 @@
             android:drawableStart="@drawable/ic_star_black"
             android:drawableLeft="@drawable/ic_star_black"
             android:drawablePadding="@dimen/size_8"
-            android:fontFamily="@font/barlow_medium"
             android:text="@string/danh_gia"
-            android:textColor="#212121"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider29" />
 

@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
         android:id="@+id/tvNameProduct"
         android:layout_width="@dimen/size_0"
         android:layout_height="wrap_content"
@@ -26,11 +26,9 @@
         android:layout_marginEnd="@dimen/size_10"
         android:layout_marginRight="@dimen/size_10"
         android:ellipsize="end"
-        android:fontFamily="@font/barlow_medium"
         android:includeFontPadding="false"
         android:maxLines="2"
         android:minLines="1"
-        android:textColor="#212121"
         android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toStartOf="@id/imgClose"
         app:layout_constraintStart_toEndOf="@+id/imgProduct"
