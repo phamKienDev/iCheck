@@ -26,6 +26,8 @@ import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFra
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.network.base.*
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
+import vn.icheck.android.screen.user.home.HomeActivity
+import vn.icheck.android.screen.user.home_page.HomePageFragment
 import vn.icheck.android.util.ick.logError
 import vn.icheck.android.util.ick.simpleStartForResultActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
@@ -137,18 +139,26 @@ abstract class BaseActivity<P : BaseActivityPresenter> : AppCompatActivity(), Ba
     override fun onTokenTimeout() {
         runOnUiThread {
             ICheckApplication.currentActivity()?.let {
+                if (SessionManager.isUserLogged && it is HomeActivity) {
+                    HomeActivity.INSTANCE?.logoutFromHome()
+                }
                 if (confirmLogin == null) {
-                    confirmLogin = object : ConfirmDialog(it, "Thông báo", "Phiên đăng nhập hết hạn, vui lòng đăng nhập lại!", "Hủy bỏ", "Đồng ý", false) {
+                    confirmLogin = object : ConfirmDialog(it,
+                            "Thông báo",
+                            "Phiên đăng nhập hết hạn, vui lòng đăng nhập lại!",
+                            "Hủy bỏ",
+                            "Đăng nhập ngay",
+                            false) {
                         override fun onDisagree() {
 
                         }
 
                         override fun onAgree() {
-                            onRequireLogin()
+                            startActivityForResult<IckLoginActivity>(requestLogin)
                         }
 
                         override fun onDismiss() {
-
+                            HomePageFragment.INSTANCE?.refreshHomeData()
                         }
                     }
                     if (!it.isFinishing && !it.isDestroyed) {
@@ -156,7 +166,7 @@ abstract class BaseActivity<P : BaseActivityPresenter> : AppCompatActivity(), Ba
                     }
                 } else {
                     if (!it.isFinishing && !it.isDestroyed) {
-                        if (confirmLogin?.isShowing == false) {
+                        if (SessionManager.isUserLogged && confirmLogin?.isShowing == false) {
                             confirmLogin?.show()
                         }
                     }

@@ -1,14 +1,13 @@
 package vn.icheck.android.di
 
+//import okhttp3.logging.HttpLoggingInterceptor
 import android.content.SharedPreferences
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
-import kotlinx.coroutines.runBlocking
 import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
-//import okhttp3.logging.HttpLoggingInterceptor
 import org.greenrobot.eventbus.EventBus
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -18,8 +17,8 @@ import vn.icheck.android.network.api.ICKApi
 import vn.icheck.android.network.api.UploadApi
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.APIConstants.socialHost
-import vn.icheck.android.network.base.SessionManager
-import vn.icheck.android.network.base.SessionManager.session
+import vn.icheck.android.network.base.ICNetworkManager.onEndOfToken
+import vn.icheck.android.network.base.ICNetworkManager.onTokenTimeout
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.util.DeviceUtils
 import java.net.SocketTimeoutException
@@ -36,9 +35,15 @@ object NetworkModule {
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.SECONDS)
                 .writeTimeout(30, TimeUnit.SECONDS)
-                .authenticator(object : Authenticator{
+                .authenticator(object : Authenticator {
                     override fun authenticate(route: Route?, response: Response): Request? {
-                        EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_REQUIRE_LOGIN))
+                        if (!response.request.url.toUrl().toString().contains("/ads")) {
+                            if (response.peekBody(1000).string().contains("U102")) {
+                                onTokenTimeout()
+                            } else {
+                                onEndOfToken()
+                            }
+                        }
                         return null
                     }
                 })
