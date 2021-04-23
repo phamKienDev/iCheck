@@ -18,14 +18,13 @@
         app:avatarSize="@dimen/size_40"
         app:rankSize="@dimen/size_16" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:layout_marginStart="@dimen/size_8"
         android:layout_marginEnd="@dimen/size_8"
         android:lineSpacingExtra="@dimen/font_6"
-        android:textColor="#212121"
         android:textSize="@dimen/font_14"
         tools:text="Xuyến Đỗ" />
 

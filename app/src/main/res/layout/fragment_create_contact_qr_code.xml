@@ -299,7 +299,6 @@
                 android:fontFamily="@font/barlow_medium"
                 android:paddingStart="@dimen/size_10"
                 android:paddingEnd="@dimen/size_10"
-                android:textColor="#212121"
                 android:textSize="@dimen/font_14" />
 
             <androidx.appcompat.widget.AppCompatTextView

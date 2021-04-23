@@ -213,16 +213,14 @@
             app:layout_constraintStart_toStartOf="@id/textView76"
             app:layout_constraintTop_toBottomOf="@id/textView76" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:id="@+id/tv_serial"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/size_8"
             android:drawableEnd="@drawable/ic_copy_24px"
             android:drawablePadding="@dimen/size_8"
-            android:fontFamily="@font/barlow_medium"
             android:gravity="end"
-            android:textColor="#212121"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/textView77"
@@ -242,15 +240,13 @@
             app:layout_constraintStart_toStartOf="@id/textView77"
             app:layout_constraintTop_toBottomOf="@id/textView77" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:id="@+id/tv_code"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_copy_24px"
             android:drawablePadding="@dimen/size_8"
-            android:fontFamily="@font/barlow_medium"
             android:gravity="end"
-            android:textColor="#212121"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="@id/tv_serial"
             app:layout_constraintStart_toEndOf="@id/textView78"

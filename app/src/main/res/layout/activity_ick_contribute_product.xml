@@ -416,7 +416,7 @@
                 android:text="Mã số thuế"
                 android:textSize="@dimen/font_12" />
 
-            <EditText
+            <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalTextColor
                 android:id="@+id/edt_tax"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -430,7 +430,6 @@
                 android:hint="Nhập mã số thuế"
                 android:inputType="number"
                 android:padding="@dimen/size_8"
-                android:textColor="#212121"
                 android:textColorHint="#B4B4B4"
                 android:textSize="@dimen/font_14" />
 

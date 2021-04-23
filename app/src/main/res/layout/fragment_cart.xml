@@ -66,7 +66,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:id="@+id/tv_business_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -76,9 +76,7 @@
             android:layout_marginEnd="@dimen/size_8"
             android:layout_marginRight="@dimen/size_8"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_medium"
             android:maxLines="1"
-            android:textColor="#212121"
             app:layout_constraintEnd_toStartOf="@+id/tv_price"
             app:layout_constraintStart_toEndOf="@+id/business_logo"
             app:layout_constraintTop_toTopOf="parent"

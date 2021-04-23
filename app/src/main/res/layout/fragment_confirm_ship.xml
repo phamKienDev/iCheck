@@ -106,7 +106,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:srcCompat="@tools:sample/avatars" />
 
-                <TextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                     android:id="@+id/tv_ship_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -115,8 +115,6 @@
                     android:layout_marginTop="@dimen/size_10"
                     android:layout_marginEnd="@dimen/size_12"
                     android:layout_marginRight="@dimen/size_12"
-                    android:fontFamily="@font/barlow_medium"
-                    android:textColor="#212121"
                     app:layout_constraintEnd_toStartOf="@+id/img_status"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -175,15 +173,13 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                     android:id="@+id/tv_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_12"
                     android:layout_marginLeft="@dimen/size_12"
                     android:layout_marginTop="@dimen/size_10"
-                    android:fontFamily="@font/barlow_medium"
-                    android:textColor="#212121"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView85"
                     tools:text="Trần Văn Hoàng" />
@@ -237,15 +233,13 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                     android:id="@+id/tv_fee"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_10"
                     android:layout_marginEnd="@dimen/size_12"
-                    android:fontFamily="@font/barlow_medium"
                     android:gravity="end"
-                    android:textColor="#212121"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView93"
                     app:layout_constraintTop_toTopOf="parent"
@@ -288,7 +282,7 @@
                 android:background="@android:color/white"
                 android:paddingBottom="@dimen/size_8">
 
-                <TextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                     android:id="@+id/tv_business_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -298,9 +292,7 @@
                     android:layout_marginEnd="@dimen/size_8"
                     android:layout_marginRight="@dimen/size_8"
                     android:ellipsize="end"
-                    android:fontFamily="@font/barlow_medium"
                     android:maxLines="1"
-                    android:textColor="#212121"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/business_logo"
                     app:layout_constraintTop_toTopOf="parent"
@@ -358,7 +350,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/divider21"
                     tools:srcCompat="@tools:sample/avatars" />
 
-                <TextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                     android:id="@+id/tv_gift"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -367,9 +359,7 @@
                     android:layout_marginEnd="@dimen/size_8"
                     android:layout_marginRight="@dimen/size_8"
                     android:ellipsize="end"
-                    android:fontFamily="@font/barlow_medium"
                     android:maxLines="1"
-                    android:textColor="#212121"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/img_gift"
                     app:layout_constraintTop_toTopOf="@+id/img_gift"

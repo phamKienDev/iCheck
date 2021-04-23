@@ -29,7 +29,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
         android:id="@+id/tv_product_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -39,10 +39,8 @@
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
         android:ellipsize="end"
-        android:fontFamily="@font/barlow_medium"
         android:lines="2"
         android:maxLines="2"
-        android:textColor="#212121"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_product"

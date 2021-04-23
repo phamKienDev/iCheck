@@ -34,7 +34,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
         android:id="@+id/tv_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,9 +44,7 @@
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
         android:drawablePadding="@dimen/size_8"
-        android:fontFamily="@font/barlow_medium"
         android:gravity="center_vertical"
-        android:textColor="#212121"
         app:drawableLeftCompat="@drawable/ic_gps_off_24dp"
         app:drawableStartCompat="@drawable/ic_gps_off_24dp"
         tools:text="0979 999 888 0979 999 888 0979 999 888 0979 999 888 0979 999 888 0979 999 888" />

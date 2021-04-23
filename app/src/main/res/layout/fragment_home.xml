@@ -85,7 +85,7 @@
                     app:layout_constraintVertical_bias="0.0"
                     app:srcCompat="@drawable/ic_reminder_item" />
 
-                <TextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                     android:id="@+id/tv_reminder_content"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -95,9 +95,7 @@
                     android:layout_marginEnd="@dimen/size_12"
                     android:layout_marginRight="@dimen/size_12"
                     android:ellipsize="end"
-                    android:fontFamily="@font/barlow_medium"
                     android:maxLines="2"
-                    android:textColor="#212121"
                     app:layout_constraintEnd_toStartOf="@id/imageView14"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"

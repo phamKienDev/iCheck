@@ -81,16 +81,14 @@
                     android:textColor="#757575"
                     android:textSize="@dimen/font_12" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                     android:id="@id/txtDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_2"
                     android:layout_marginBottom="@dimen/size_6"
-                    android:fontFamily="@font/barlow_medium"
                     android:includeFontPadding="false"
                     android:lineSpacingExtra="@dimen/font_6"
-                    android:textColor="#212121"
                     android:textSize="@dimen/font_14"
                     tools:text="Đến 31/12" />
             </LinearLayout>
@@ -128,7 +126,7 @@
                     android:textColor="#757575"
                     android:textSize="@dimen/font_12" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                     android:id="@+id/txtCountUserJoin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -136,10 +134,8 @@
                     android:drawableEnd="@drawable/ic_fire_18px"
                     android:drawableRight="@drawable/ic_fire_18px"
                     android:drawablePadding="@dimen/size_5"
-                    android:fontFamily="@font/barlow_medium"
                     android:includeFontPadding="false"
                     android:lineSpacingExtra="@dimen/font_6"
-                    android:textColor="#212121"
                     android:textSize="@dimen/font_14"
                     tools:text="27,254" />
             </LinearLayout>
