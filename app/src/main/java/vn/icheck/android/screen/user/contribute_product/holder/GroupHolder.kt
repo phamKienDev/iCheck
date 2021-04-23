@@ -135,6 +135,8 @@ class GroupHolder(private val itemGroupBinding: ItemGroupBinding) : CoroutineVie
                     itemGroupBinding.edtInfo.setText(categoryAttributesModel.values.toString())
                 }
             }
+        } else {
+            itemGroupBinding.edtInfo.setText("")
         }
         itemGroupBinding.edtInfo.setOnTouchListener { view, event ->
             view.parent.requestDisallowInterceptTouchEvent(true)

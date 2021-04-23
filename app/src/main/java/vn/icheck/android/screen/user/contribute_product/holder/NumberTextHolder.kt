@@ -69,7 +69,8 @@ class NumberTextHolder(private val itemNumberBinding: ItemNumberBinding) : Corou
         if (categoryAttributesModel.values != null && categoryAttributesModel.values.toString().isNotEmpty()) {
             when {
                 categoryAttributesModel.values.toString().toDoubleOrNull() != null -> {
-                    itemNumberBinding.edtPrice.setText(categoryAttributesModel.values?.toStringNotNull()?.toLongOrNull()?.toString() ?: "")
+                    itemNumberBinding.edtPrice.setText(categoryAttributesModel.values?.toStringNotNull()?.toLongOrNull()?.toString()
+                            ?: "")
                 }
                 categoryAttributesModel.values.toString().toIntOrNull() != null -> {
                     itemNumberBinding.edtPrice.setText((categoryAttributesModel.values.toString().toLongOrNull()).toString())
@@ -78,6 +79,8 @@ class NumberTextHolder(private val itemNumberBinding: ItemNumberBinding) : Corou
                     itemNumberBinding.edtPrice.setText((categoryAttributesModel.values.toString()).toString())
                 }
             }
+        } else {
+            itemNumberBinding.edtPrice.setText("")
         }
 //        itemNumberBinding.edtPrice.setImeActionDone({
 //            itemNumberBinding.edtPrice.clearFocus()

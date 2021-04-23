@@ -579,6 +579,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                     checkTheme()
                     delay(400)
                     getReminders()
+                    refreshHomeData()
                 }
             }
             ICMessageEvent.Type.ON_LOG_OUT -> {
