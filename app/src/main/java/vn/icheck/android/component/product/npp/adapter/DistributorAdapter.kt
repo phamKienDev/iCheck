@@ -1,6 +1,7 @@
 package vn.icheck.android.component.product.npp.adapter
 
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.text.SpannableString
 import android.text.Spanned
@@ -15,6 +16,7 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_distributor.view.*
@@ -99,7 +101,7 @@ class DistributorAdapter(val listData: MutableList<ICPage>, val url: String) : R
             }
 
 //            if (obj.verified == true) {
-                itemView.findViewById<View>(R.id.viewBackground).setBackgroundResource(R.color.colorPrimary)
+                itemView.findViewById<View>(R.id.viewBackground).setBackgroundColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(itemView.context))
                 itemView.findViewById<AppCompatImageView>(R.id.imgDetail).setImageResource(R.drawable.ic_arrow_right_white_bg_blue_28px)
 //            } else {
 //                itemView.findViewById<View>(R.id.viewBackground).setBackgroundResource(R.color.darkGray2)

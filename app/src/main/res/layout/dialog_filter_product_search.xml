@@ -184,7 +184,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/containerReview" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.TextPrimary
         android:id="@+id/tv_clear"
         android:layout_width="@dimen/size_120"
         android:layout_height="wrap_content"
@@ -197,7 +197,6 @@
         android:paddingTop="@dimen/size_8"
         android:paddingBottom="@dimen/size_8"
         android:text="@string/thiet_lap_lai"
-        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/font_16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider30" />

@@ -275,7 +275,8 @@ class IckUserWallFragment : Fragment(), IPostListener {
             EventBus.getDefault().register(this)
         }
         binding.root.isRefreshing = true
-        binding.root.setColorSchemeColors(ContextCompat.getColor(requireContext(), R.color.colorSecondary), ContextCompat.getColor(requireContext(), R.color.colorSecondary), ContextCompat.getColor(requireContext(), R.color.colorPrimary))
+        val swipeColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(requireContext())
+        binding.root.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
         binding.root.setOnRefreshListener {
             binding.root.isRefreshing = true
             ickUserWallViewModel.reachedEnd = false

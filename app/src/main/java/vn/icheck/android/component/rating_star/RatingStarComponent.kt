@@ -81,9 +81,10 @@ class RatingStarComponent : LinearLayout {
                     background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(context, R.color.red_v2), SizeHelper.size14.toFloat())
                 }
                 else -> {
+                    val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context)
                     text = context.getString(R.string.x_tren_ca_tuyet_voi, String.format("%.1f", pointDouble))
-                    setTextColor(ContextCompat.getColor(context, R.color.colorPrimary))
-                    background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(context, R.color.colorPrimary), SizeHelper.size14.toFloat())
+                    setTextColor(primaryColor)
+                    background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, primaryColor, SizeHelper.size14.toFloat())
                 }
             }
         }

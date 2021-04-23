@@ -421,14 +421,13 @@
                                 android:textAllCaps="true"
                                 android:textSize="@dimen/font_14" />
 
-                            <androidx.appcompat.widget.AppCompatButton
+                            <vn.icheck.android.ichecklibs.view.ButtonPrimary
                                 android:id="@+id/btnCheckCode"
                                 android:layout_width="@dimen/size_83"
                                 android:layout_height="match_parent"
                                 android:background="@drawable/btn_check_code"
                                 android:text="Check mã"
-                                android:textAllCaps="false"
-                                android:textColor="@color/colorPrimary" />
+                                android:textAllCaps="false" />
 
                         </LinearLayout>
                     </LinearLayout>

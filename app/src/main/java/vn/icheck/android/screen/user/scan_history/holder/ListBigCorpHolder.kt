@@ -58,7 +58,7 @@ class ListBigCorpHolder(parent: ViewGroup, val listener: IScanHistoryView) : Rec
 
                 if (selectedPos == absoluteAdapterPosition) {
                     itemView.bgItem.setBackgroundResource(R.drawable.bg_corner_white_4_stroke_light_blue)
-                    itemView.tvNameBigCorp.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorPrimary))
+                    itemView.tvNameBigCorp.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(itemView.context))
                 } else {
                     itemView.bgItem.setBackgroundResource(R.drawable.bg_corners_white_4)
                     itemView.tvNameBigCorp.setTextColor(Color.parseColor("#757575"))

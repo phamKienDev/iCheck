@@ -15,14 +15,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_cancel_blue_24px" />
 
-    <vn.icheck.android.ui.view.TextHeader
+    <vn.icheck.android.ichecklibs.view.TextHeaderPrimary
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/size_50"
         android:layout_marginRight="@dimen/size_50"
         android:text="Báo cáo người dùng này"
-        android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="@+id/img_cancel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/img_cancel"

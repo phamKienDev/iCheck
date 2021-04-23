@@ -59,7 +59,7 @@ class FilterTypeAdapter(var listData: MutableList<ICTypeHistory>, val listener: 
             if (item.select) {
                 itemView.layoutContent.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_4_light_blue_white)
                 itemView.img_tick.visibility = View.VISIBLE
-                itemView.tvName.setTextColor(Color.parseColor("#057DDA"))
+                itemView.tvName.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(itemView.context))
             } else {
                 itemView.layoutContent.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_4_f2f2f2)
                 itemView.img_tick.visibility = View.INVISIBLE

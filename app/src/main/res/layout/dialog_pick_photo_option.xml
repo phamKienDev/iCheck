@@ -26,7 +26,7 @@
 
         <View style="@style/Line_Gray.Horizontal" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.TextPrimary
             android:id="@id/txtCamera"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_50"
@@ -34,13 +34,12 @@
             android:fontFamily="@font/barlow_medium"
             android:gravity="center"
             android:text="@string/chup_anh"
-            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_18"
             android:textStyle="normal" />
 
         <View style="@style/Line_Gray.Horizontal" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.TextPrimary
             android:id="@id/txtDocument"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_50"
@@ -48,12 +47,11 @@
             android:fontFamily="@font/barlow_medium"
             android:gravity="center"
             android:text="@string/quay_video"
-            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_18"
             android:textStyle="normal" />
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.TextPrimary
         android:id="@id/txtCancel"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_50"
@@ -62,7 +60,6 @@
         android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center"
         android:text="@string/bo_qua"
-        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/font_18"
         android:textStyle="bold" />
 </LinearLayout>

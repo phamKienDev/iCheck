@@ -25,7 +25,7 @@
             android:background="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_back_blue_v2_24px"/>
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.TextPrimary
             android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -37,7 +37,6 @@
             android:paddingEnd="@dimen/size_12"
             android:singleLine="true"
             android:textAlignment="center"
-            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_18"
             app:fontFamily="@font/barlow_semi_bold"
             android:text="@string/danh_sach_dong_gop_thong_tin" />

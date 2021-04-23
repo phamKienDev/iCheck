@@ -153,6 +153,8 @@ class AdsProductVerticalHolderV2(parent: ViewGroup) : BaseViewHolder<ICProductTr
                 it.text = Html.fromHtml(context.getString(R.string.chua_co_danh_gia_i))
             })
 
+            val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context)
+
             /* Layout Rating */
             layoutParent.addView(LinearLayout(context).also { layoutRating ->
                 layoutRating.layoutParams = ViewHelper.createLayoutParams(SizeHelper.size6, SizeHelper.size5, SizeHelper.size6, 0)
@@ -170,7 +172,7 @@ class AdsProductVerticalHolderV2(parent: ViewGroup) : BaseViewHolder<ICProductTr
                     tvRate.layoutParams = rateParams
                     tvRate.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
                     tvRate.typeface = ViewHelper.createTypeface(context, R.font.barlow_medium)
-                    tvRate.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary))
+                    tvRate.setTextColor(primaryColor)
                     tvRate.includeFontPadding = false
                     tvRate.isSingleLine = true
                     tvRate.text = "0,0"
@@ -195,7 +197,7 @@ class AdsProductVerticalHolderV2(parent: ViewGroup) : BaseViewHolder<ICProductTr
                 tvPrice.layoutParams = priceParams
                 tvPrice.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
                 tvPrice.typeface = ViewHelper.createTypeface(context, R.font.barlow_semi_bold)
-                tvPrice.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary))
+                tvPrice.setTextColor(primaryColor)
                 tvPrice.includeFontPadding = false
                 tvPrice.isSingleLine = true
                 tvPrice.ellipsize = TextUtils.TruncateAt.END

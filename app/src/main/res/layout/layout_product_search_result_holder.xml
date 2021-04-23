@@ -30,7 +30,7 @@
         android:visibility="gone"
         android:layout_marginLeft="@dimen/size_12" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.TextPrimary
         android:id="@+id/tv_xem_them"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -41,7 +41,6 @@
         android:fontFamily="@font/barlow_medium"
         android:gravity="center_vertical"
         android:text="@string/xem_them"
-        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/font_14" />
 
 </LinearLayout>

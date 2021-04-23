@@ -17,7 +17,7 @@
         android:layout_height="@dimen/size_4"
         android:background="@drawable/shadow_bottom" />
 
-    <vn.icheck.android.ui.view.TextHeader
+    <vn.icheck.android.ichecklibs.view.TextHeader
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/size_12"
@@ -118,7 +118,7 @@
             app:srcCompat="@drawable/ic_switch_off_24px" />
     </RelativeLayout>
 
-    <vn.icheck.android.ui.view.TextHeader
+    <vn.icheck.android.ichecklibs.view.TextHeader
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/size_12"
@@ -337,7 +337,7 @@
                 android:visibility="invisible" />
         </RelativeLayout>
     </RelativeLayout>
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.TextPrimary
         android:id="@+id/btnReset"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -350,6 +350,5 @@
         android:paddingTop="@dimen/size_9"
         android:paddingBottom="@dimen/size_9"
         android:text="Đặt lại mặc định"
-        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/font_16" />
 </LinearLayout>

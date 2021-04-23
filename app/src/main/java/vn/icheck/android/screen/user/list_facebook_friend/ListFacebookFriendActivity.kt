@@ -1,5 +1,6 @@
 package vn.icheck.android.screen.user.list_facebook_friend
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
@@ -61,7 +62,8 @@ class ListFacebookFriendActivity : BaseActivityMVVM(), IRecyclerViewCallback {
     }
 
     private fun initSwipeLayout() {
-        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
+        val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        swipeLayout.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
         swipeLayout.setOnRefreshListener {
             getData()
         }

@@ -1,5 +1,6 @@
 package vn.icheck.android.screen.user.listproductcategory
 
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -83,7 +84,8 @@ class ListProductCategoryActivity : BaseActivity<ListProductCategoryPresenter>()
     }
 
     private fun setupSwipeLayout() {
-        swipe.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
+        val swipeColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        swipe.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
 
         swipe.setOnRefreshListener {
             adapter.disableLoadMore()

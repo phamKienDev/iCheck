@@ -26,7 +26,7 @@
             android:background="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.TextPrimary
             android:id="@id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -35,7 +35,6 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:text="Nạp thẻ điện thoại"
-            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_18" />
 
         <androidx.appcompat.widget.AppCompatImageButton
@@ -261,7 +260,7 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginLeft="@dimen/size_12" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.TextPrimary
             android:id="@+id/tvPrice"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -269,7 +268,6 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="end"
             android:hint="0 đ"
-            android:textColor="@color/colorPrimary"
             android:textColorHint="@color/colorPrimary"
             android:textSize="@dimen/font_16"
             app:layout_constraintEnd_toEndOf="parent"

@@ -97,6 +97,8 @@ class ProductNotVerifiedHolder(parent: ViewGroup) : BaseViewHolder<ProductNotVer
                     layoutBottom.setBackgroundColor(ContextCompat.getColor(context, R.color.white))
                     layoutBottom.setPadding(SizeHelper.size12, 0, SizeHelper.size12, 0)
 
+                    val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context)
+
                     // Layout start
                     layoutBottom.addView(FrameLayout(context).also { layoutStart ->
                         layoutStart.layoutParams = ViewHelper.createLayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1f)
@@ -109,7 +111,7 @@ class ProductNotVerifiedHolder(parent: ViewGroup) : BaseViewHolder<ProductNotVer
                                 },
                                 null,
                                 ViewHelper.createTypeface(context, R.font.barlow_medium),
-                                ContextCompat.getColor(context, R.color.colorPrimary),
+                                primaryColor,
                                 12f).also {
                             it.compoundDrawablePadding = SizeHelper.size6
                             it.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_circle_phone_blue_18dp, 0, 0, 0)
@@ -139,7 +141,7 @@ class ProductNotVerifiedHolder(parent: ViewGroup) : BaseViewHolder<ProductNotVer
                                 },
                                 null,
                                 ViewHelper.createTypeface(context, R.font.barlow_medium),
-                                ContextCompat.getColor(context, R.color.colorPrimary),
+                                primaryColor,
                                 12f).also {
                             it.compoundDrawablePadding = SizeHelper.size6
                             it.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_circle_help_blue_18dp, 0, 0, 0)

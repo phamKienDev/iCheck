@@ -117,7 +117,7 @@ class MapHistoryActivity : BaseActivityMVVM() {
             tvDescription.run {
                 if (!obj.newDetail?.description.isNullOrEmpty()) {
                     text = obj.newDetail?.description
-                    makeTextViewResizable(this@MapHistoryActivity, tvDescription, 5, "Đọc tiếp", "#057dda", obj.newDetail?.description!!)
+                    makeTextViewResizable(this@MapHistoryActivity, tvDescription, 5, "Đọc tiếp", vn.icheck.android.ichecklibs.Constant.getPrimaryColorCode, obj.newDetail?.description!!)
                 }
             }
 

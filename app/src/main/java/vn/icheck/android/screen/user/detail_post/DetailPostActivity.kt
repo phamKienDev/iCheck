@@ -3,6 +3,7 @@ package vn.icheck.android.screen.user.detail_post
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
@@ -168,7 +169,8 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
             }
         })
 
-        swipeRefresh.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
+        val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        swipeRefresh.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
         swipeRefresh.setOnRefreshListener {
             getData()
         }

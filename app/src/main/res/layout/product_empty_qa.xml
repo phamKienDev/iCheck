@@ -32,7 +32,7 @@
         android:textColor="#757575"
         android:textSize="@dimen/font_14" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.TextPrimary
         android:id="@+id/btnQueston"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_36"
@@ -45,7 +45,5 @@
         android:gravity="center"
         android:lineSpacingExtra="@dimen/font_8"
         android:text="Đặt câu hỏi"
-        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/font_16" />
-
 </LinearLayout>

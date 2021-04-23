@@ -180,7 +180,7 @@ class FocusableEditText : AppCompatEditText {
                 )
             } else {
                 if (hasFocus()) {
-                    mLinePaint.setColor(Color.parseColor("#057DDA"))
+                    mLinePaint.setColor(Constant.getPrimaryColor(context))
                 } else {
                     mLinePaint.setColor(Color.parseColor("#D8D8D8"))
                 }

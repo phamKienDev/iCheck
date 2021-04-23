@@ -98,7 +98,8 @@ class ReviewProductV1Activity : BaseActivity<ReviewProductPresenter>(), IReviewP
     }
 
     private fun initSwipeLayout() {
-        swipe_layout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
+        val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        swipe_layout.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
 
         swipe_layout.setOnRefreshListener { getData() }
     }

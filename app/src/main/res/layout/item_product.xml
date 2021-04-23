@@ -77,7 +77,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_product_name"
         tools:text="8,9" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.TextPrimary
         android:id="@+id/tv_price"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -85,7 +85,6 @@
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_4"
         android:fontFamily="@font/barlow_medium"
-        android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_rate"

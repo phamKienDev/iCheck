@@ -31,7 +31,7 @@
         app:layout_constraintTop_toTopOf="@+id/imgStar"
         tools:text="8,7" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.TextPrimary
         android:id="@+id/tvRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,7 +40,6 @@
         android:layout_marginTop="@dimen/size_16"
         android:fontFamily="@font/barlow_semi_bold"
         android:includeFontPadding="false"
-        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/font_20"
         app:layout_constraintStart_toEndOf="@+id/imgStar"
         app:layout_constraintTop_toTopOf="@+id/imgStar"

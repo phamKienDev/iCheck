@@ -184,7 +184,7 @@ class FocusableEditText : AppCompatEditText {
                 )
             } else {
                 if (hasFocus()) {
-                    mLinePaint.setColor(ContextCompat.getColor(context, R.color.colorPrimary))
+                    mLinePaint.color = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context)
                 } else {
                     mLinePaint.setColor(Color.parseColor("#D8D8D8"))
                 }

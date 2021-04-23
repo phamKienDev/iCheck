@@ -28,7 +28,7 @@ class CategoryHeadlineAdapter(val onClick:(Int) -> Unit, val listCategory:List<C
             }
             listCategory.lastIndex -> {
                 holder.binding.tvTitle simpleText listCategory[position]?.name
-                holder.binding.tvTitle.setTextColor(Color.parseColor("#057DDA"))
+                holder.binding.tvTitle.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(holder.itemView.context))
             }
             else -> {
                 holder.binding.tvTitle simpleText listCategory[position]?.name

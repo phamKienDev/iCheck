@@ -121,24 +121,22 @@
                 app:layout_constraintTop_toBottomOf="@+id/rcv_rating"
                 tools:visibility="visible">
 
-                <TextView
+                <vn.icheck.android.ichecklibs.view.TextPrimary
                     android:id="@+id/detail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableEnd="@drawable/ic_down_blue_18px"
                     android:fontFamily="sans-serif-medium"
                     android:text="Xem chi tiết đánh giá"
-                    android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/font_14" />
 
-                <TextView
+                <vn.icheck.android.ichecklibs.view.TextPrimary
                     android:id="@+id/coplapse"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableEnd="@drawable/ic_up_blue_18px"
                     android:fontFamily="sans-serif-medium"
                     android:text="Thu gọn"
-                    android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/font_14"
                     android:visibility="gone" />
             </LinearLayout>

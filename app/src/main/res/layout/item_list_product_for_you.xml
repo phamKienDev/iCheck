@@ -77,14 +77,13 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_name_product"
             tools:text="Adidas Store Việt Nam" />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.TextPrimary
             android:id="@+id/tv_count_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_6"
             android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
-            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_12"
             app:layout_constraintStart_toStartOf="@+id/tv_name_enterprise"
             app:layout_constraintTop_toBottomOf="@+id/tv_name_enterprise"
@@ -136,13 +135,12 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_count_rating"
             tools:text="2.753.900 ₫" />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.TextPrimary
             android:id="@+id/tv_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
-            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_14"
             app:layout_constraintStart_toEndOf="@+id/tv_special_price"
             app:layout_constraintTop_toBottomOf="@+id/tv_count_rating"
@@ -153,9 +151,7 @@
             android:id="@+id/btn_buy_now"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/size_18"
             android:layout_marginEnd="@dimen/size_10"
-            android:layout_marginRight="@dimen/size_10"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:paddingLeft="@dimen/size_18"

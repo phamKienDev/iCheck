@@ -52,7 +52,7 @@
                 app:layout_constraintTop_toTopOf="@+id/notify"
                 app:srcCompat="@drawable/ic_back_black_28px" />
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.TextPrimary
                 android:id="@+id/title"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -61,7 +61,6 @@
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:maxLines="1"
-                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/font_18"
                 app:layout_constraintBottom_toBottomOf="@+id/btn_back"
                 app:layout_constraintEnd_toStartOf="@+id/notify"

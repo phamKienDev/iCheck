@@ -1,5 +1,6 @@
 package vn.icheck.android.screen.user.search_home.main
 
+import android.graphics.Color
 import android.text.Html
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -41,7 +42,7 @@ class SearchHomeAdapter(val callback: IRecyclerViewSearchCallback) : RecyclerVie
                 itemView.tv_key.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_search_gray_16, 0, 0, 0)
             } else {
                 itemView.tv_key.text = Html.fromHtml(itemView.context.getString(R.string.xem_ket_qua_tim_kiem_cho_x, obj))
-                itemView.tv_key.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorPrimary))
+                itemView.tv_key.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(itemView.context))
                 itemView.tv_key.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
 
