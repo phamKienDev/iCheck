@@ -1,4 +1,4 @@
-package vn.icheck.android.ui.edittext
+package vn.icheck.android.ichecklibs.view.edit_text
 
 import android.content.Context
 import android.graphics.*
@@ -6,15 +6,15 @@ import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
-import vn.icheck.android.R
-import vn.icheck.android.util.ick.toPx
+import vn.icheck.android.ichecklibs.R
+import vn.icheck.android.ichecklibs.toPx
 
-class CornerErrorEditText:AppCompatEditText {
+open class CornerErrorEditText : AppCompatEditText {
     var originalPadding = 0
     lateinit var mErrorTextPaint: Paint
     lateinit var mBackgroundPaint: Paint
     var mError: CharSequence? = null
-    lateinit var rect:RectF
+    lateinit var rect: RectF
     constructor(context: Context) : super(context) {
         initView()
     }
