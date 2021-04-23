@@ -34,22 +34,23 @@ object JsonHelper {
         }
     }
 
-    private fun checkFormatMedia(json: JsonObject) {
+    private fun checkFormatMedia(json: JsonObject): JsonObject {
         if (json.has("media")) {
             (json["media"] as JsonArray).forEachIndexed { index, jsonElement ->
                 try {
-                    parseJson(jsonElement.toString(), ICMedia::class.java)
-                }catch (e:Exception){
-                    Log.e("e", e.localizedMessage, e)
+                    gson.fromJson(jsonElement.toString(), ICMedia::class.java)
+                } catch (e: Exception) {
+                    (json["media"] as JsonArray).remove(index)
                 }
             }
         }
+        return json
     }
 
     fun <T> parseJson(json: JsonObject, clazz: Class<T>): T? {
         return try {
-            checkFormatMedia(json)
-            gson.fromJson(json, clazz)
+            val jsonChecked = checkFormatMedia(json)
+            gson.fromJson(jsonChecked, clazz)
         } catch (e: Exception) {
             Log.e("e", e.localizedMessage, e)
             null
