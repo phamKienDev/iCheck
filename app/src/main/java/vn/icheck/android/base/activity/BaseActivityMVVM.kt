@@ -188,7 +188,7 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
                         if (it is HomeActivity) {
                             HomeActivity.INSTANCE?.logoutFromHome()
                             lifecycleScope.launch {
-                                delay(200)
+                                delay(500)
                                 HomePageFragment.INSTANCE?.refreshHomeData()
                                 delay(200)
                                 HomePageFragment.INSTANCE?.refreshHomeData()

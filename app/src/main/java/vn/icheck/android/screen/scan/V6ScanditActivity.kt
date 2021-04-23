@@ -416,6 +416,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                 offCamera()
 //                resetHeight()
                 request(takeImageDialog)
+                delay(500)
                 binding.imgSdha.isEnabled = true
             }
         }
