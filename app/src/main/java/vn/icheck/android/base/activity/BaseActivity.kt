@@ -139,14 +139,12 @@ abstract class BaseActivity<P : BaseActivityPresenter> : AppCompatActivity(), Ba
     override fun onTokenTimeout() {
         runOnUiThread {
             ICheckApplication.currentActivity()?.let {
-                if (SessionManager.isUserLogged && it is HomeActivity) {
-                    HomeActivity.INSTANCE?.logoutFromHome()
-                }
+
                 if (confirmLogin == null) {
                     confirmLogin = object : ConfirmDialog(it,
                             "Thông báo",
                             "Phiên đăng nhập hết hạn, vui lòng đăng nhập lại!",
-                            "Hủy bỏ",
+                            "Để sau",
                             "Đăng nhập ngay",
                             false) {
                         override fun onDisagree() {
@@ -163,11 +161,29 @@ abstract class BaseActivity<P : BaseActivityPresenter> : AppCompatActivity(), Ba
                     }
                     if (!it.isFinishing && !it.isDestroyed) {
                         confirmLogin?.show()
+                        if (it is HomeActivity) {
+                            HomeActivity.INSTANCE?.logoutFromHome()
+                            lifecycleScope.launch {
+                                delay(200)
+                                HomePageFragment.INSTANCE?.refreshHomeData()
+                                delay(200)
+                                HomePageFragment.INSTANCE?.refreshHomeData()
+                            }
+                        }
                     }
                 } else {
                     if (!it.isFinishing && !it.isDestroyed) {
                         if (SessionManager.isUserLogged && confirmLogin?.isShowing == false) {
                             confirmLogin?.show()
+                            if (it is HomeActivity) {
+                                HomeActivity.INSTANCE?.logoutFromHome()
+                                lifecycleScope.launch {
+                                    delay(200)
+                                    HomePageFragment.INSTANCE?.refreshHomeData()
+                                    delay(200)
+                                    HomePageFragment.INSTANCE?.refreshHomeData()
+                                }
+                            }
                         }
                     }
                 }

@@ -112,13 +112,13 @@ class IcFcmService : FirebaseMessagingService() {
                     })
                 }
             }
-            targetType.contains("popup_image") -> {
+            path.contains("popup_image") -> {
                 showDialogNotification(image = targetID, schema = path)
             }
-            targetType.contains("popup_html") -> {
+            path.contains("popup_html") -> {
                 showDialogNotification(htmlText = targetID)
             }
-            targetType.contains("popup_link") -> {
+            path.contains("popup_link") -> {
                 showDialogNotification(link = targetID)
             }
             else -> {
