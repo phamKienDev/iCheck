@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/size_16">
 
-        <vn.icheck.android.ichecklibs.view.TextPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextPrimary
             android:id="@+id/tv_shop_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

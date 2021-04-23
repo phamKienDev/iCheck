@@ -49,15 +49,17 @@ class ReviewsContentStampHolder(parent: ViewGroup) : BaseViewHolder<ICProductRev
             itemView.gv_useful.visibility = View.GONE
         }
 
+        val secondaryColor = vn.icheck.android.ichecklibs.Constant.getSecondaryColor(itemView.context)
+
         obj.actionUseful?.let {
             if ("useful" == it) {
                 itemView.tv_1_useful.text = setTextUseful(obj.useful)
-                itemView.tv_1_useful.setTextColor(Color.parseColor("#3C5A99"))
+                itemView.tv_1_useful.setTextColor(secondaryColor)
                 itemView.tv_1_useful.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_useful_fc_24px, 0, 0, 0)
                 useful = 1
             } else if ("unuseful" == it) {
                 itemView.tv_1_unuseful.text = setTextUnUseful(obj.unuseful)
-                itemView.tv_1_unuseful.setTextColor(Color.parseColor("#3C5A99"))
+                itemView.tv_1_unuseful.setTextColor(secondaryColor)
                 itemView.tv_1_unuseful.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_unuseful_fc_24px, 0, 0, 0)
                 unuseful = 1
             }
@@ -67,7 +69,7 @@ class ReviewsContentStampHolder(parent: ViewGroup) : BaseViewHolder<ICProductRev
                 if (useful == 0) {
                     obj.useful++
                     itemView.tv_1_useful.text = setTextUseful(obj.useful)
-                    itemView.tv_1_useful.setTextColor(Color.parseColor("#3C5A99"))
+                    itemView.tv_1_useful.setTextColor(secondaryColor)
                     itemView.tv_1_useful.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_useful_fc_24px, 0, 0, 0)
                     useful = 1
                     if (unuseful == 1) {
@@ -96,7 +98,7 @@ class ReviewsContentStampHolder(parent: ViewGroup) : BaseViewHolder<ICProductRev
                 if (unuseful == 0) {
                     obj.unuseful++
                     itemView.tv_1_unuseful.text = setTextUnUseful(obj.unuseful)
-                    itemView.tv_1_unuseful.setTextColor(Color.parseColor("#3C5A99"))
+                    itemView.tv_1_unuseful.setTextColor(secondaryColor)
                     itemView.tv_1_unuseful.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_unuseful_fc_24px, 0, 0, 0)
                     unuseful = 1
                     if (useful == 1) {

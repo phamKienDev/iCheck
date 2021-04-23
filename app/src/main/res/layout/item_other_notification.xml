@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:background="@android:color/white"
-    android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
     android:orientation="vertical">
-    <TextView
-        android:layout_marginTop="@dimen/size_10"
-        android:layout_marginStart="@dimen/size_12"
+
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Thông báo khác"
-        android:textColor="#3C5A99"
-        android:fontFamily="@font/barlow_medium"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_10"
         android:layout_marginBottom="@dimen/size_10"
+        android:fontFamily="@font/barlow_medium"
+        android:text="@string/thong_bao_khac"
         android:textSize="@dimen/font_18"
         android:visibility="gone"
-        tools:visibility="visible"
-        android:id="@+id/title"
-        android:layout_marginLeft="@dimen/size_12" />
+        tools:visibility="visible" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/root"

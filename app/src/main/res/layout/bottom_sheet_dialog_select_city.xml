@@ -26,13 +26,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center"
                 android:text="Chọn Tỉnh thành"
-                android:textColor="#3c5a99"
                 android:textSize="@dimen/font_18"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="parent"

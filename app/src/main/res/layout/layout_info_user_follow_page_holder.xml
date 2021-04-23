@@ -24,19 +24,17 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <vn.icheck.android.ichecklibs.view.TextHeader
+            <vn.icheck.android.ichecklibs.view.secondary.TextHeaderSecondary
                 android:id="@+id/tv_count_like"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textColor="@color/colorSecondary" />
+                android:text="TextView" />
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/barlow_medium"
                 android:text="Lượt thích bài viết"
-                android:textColor="@color/colorSecondary"
                 android:textSize="@dimen/font_14" />
         </LinearLayout>
 
@@ -53,19 +51,17 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <vn.icheck.android.ichecklibs.view.TextHeader
+            <vn.icheck.android.ichecklibs.view.secondary.TextHeaderSecondary
                 android:id="@+id/tv_count_follow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textColor="@color/colorSecondary" />
+                android:text="TextView" />
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/barlow_medium"
                 android:text="Số người theo dõi"
-                android:textColor="@color/colorSecondary"
                 android:textSize="@dimen/font_14" />
         </LinearLayout>
     </LinearLayout>

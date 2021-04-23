@@ -41,7 +41,7 @@
             android:textColor="#434343"
             tools:text="Đào Văn Tâm" />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
             android:id="@+id/btn_wrong"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -52,10 +52,9 @@
             android:padding="@dimen/size_8"
             android:text="@string/sai"
             android:textAllCaps="false"
-            android:textColor="#3C5A99"
             android:textSize="@dimen/font_12" />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
             android:id="@+id/btn_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -64,7 +63,6 @@
             android:padding="@dimen/size_8"
             android:text="@string/dung"
             android:textAllCaps="false"
-            android:textColor="#3C5A99"
             android:textSize="@dimen/font_12" />
     </LinearLayout>
 </LinearLayout>

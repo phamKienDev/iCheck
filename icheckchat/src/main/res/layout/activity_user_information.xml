@@ -142,7 +142,7 @@
                 android:background="@color/gray_f0"
                 android:orientation="vertical">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                     android:id="@+id/tvTitleImage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -151,8 +151,7 @@
                     android:includeFontPadding="false"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
-                    android:text="@string/thu_vien_anh"
-                    android:textColor="@color/colorSecondary" />
+                    android:text="@string/thu_vien_anh" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"

@@ -25,7 +25,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-        <vn.icheck.android.ichecklibs.view.TextHeaderPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
             android:id="@id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_44"
@@ -197,7 +197,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <vn.icheck.android.ichecklibs.view.TextPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
             android:id="@+id/btnTopupAgain"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_36"
@@ -205,7 +205,6 @@
             android:layout_marginStart="@dimen/size_37"
             android:layout_marginEnd="@dimen/size_38"
             android:background="@drawable/bg_corners_4_light_blue_no_solid"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:text="Nạp thẻ điện thoại khác"
             android:textSize="@dimen/font_16"

@@ -20,7 +20,7 @@
             android:background="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-        <vn.icheck.android.ichecklibs.view.TextHeaderPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
             android:id="@id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -73,7 +73,7 @@
                 android:layout_marginTop="@dimen/size_46"
                 android:layout_marginEnd="@dimen/size_88" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                 android:id="@+id/btnResend"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -86,7 +86,6 @@
                 android:paddingEnd="@dimen/size_10"
                 android:paddingBottom="@dimen/size_5"
                 android:text="Gửi lại mã (60s)"
-                android:textColor="@color/colorSecondary"
                 android:textSize="@dimen/font_14" />
 
         </LinearLayout>

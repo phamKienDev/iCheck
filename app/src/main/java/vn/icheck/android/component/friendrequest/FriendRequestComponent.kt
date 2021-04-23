@@ -73,11 +73,13 @@ class FriendRequestComponent(parent: ViewGroup): BaseViewHolder<ICListResponse<I
                     layoutTitle.orientation = LinearLayout.HORIZONTAL
                     layoutTitle.gravity = Gravity.CENTER_VERTICAL
 
+                    val secondaryColor = vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context)
+
                     layoutTitle.addView(ViewHelper.createText(context,
                             ViewHelper.createLayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f),
                             null,
                             ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
-                            ContextCompat.getColor(context, R.color.colorSecondary),
+                            secondaryColor,
                             18f
                     ).also {
                         it.setPadding(0, 0, SizeHelper.size12, 0)
@@ -87,7 +89,7 @@ class FriendRequestComponent(parent: ViewGroup): BaseViewHolder<ICListResponse<I
                             ViewHelper.createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT),
                             ViewHelper.outValue.resourceId,
                             ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
-                            ContextCompat.getColor(context, R.color.colorSecondary),
+                            secondaryColor,
                             14f
                     ).also {
                         it.setPadding(0, SizeHelper.size6, 0, SizeHelper.size6)

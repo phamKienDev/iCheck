@@ -149,7 +149,7 @@ class RegisterUserOtpActivity : BaseActivity<RegisterUserOtpPresenter>(), IRegis
         val startPosition = contentStart.length
         val endPosition = spannable.length - contentEnd.length
 
-        spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(this, R.color.colorSecondary)), startPosition, endPosition, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannable.setSpan(ForegroundColorSpan(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(this)), startPosition, endPosition, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         spannable.setSpan(StyleSpan(Typeface.BOLD), startPosition, endPosition, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         spannable.setSpan(clickableSpan, startPosition, endPosition, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 

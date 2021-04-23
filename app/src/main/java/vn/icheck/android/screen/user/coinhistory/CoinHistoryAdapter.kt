@@ -206,7 +206,7 @@ class CoinHistoryAdapter(val callback: ICoinHistoryView) : RecyclerView.Adapter<
                 },
                 null,
                 Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf"),
-                ContextCompat.getColor(context, R.color.colorSecondary),
+                vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context),
                 18f)
     }
 

@@ -10,8 +10,8 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_44"
-        android:elevation="@dimen/size_4"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:elevation="@dimen/size_4">
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@id/imgBack"
@@ -20,14 +20,13 @@
             android:background="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-        <vn.icheck.android.ichecklibs.view.TextPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
             android:id="@id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/size_44"
             android:layout_marginEnd="@dimen/size_44"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:singleLine="true"
             android:text="@string/qua_cua_toi"
@@ -45,9 +44,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_44"
-        android:visibility="gone"
         android:background="@color/white"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="@dimen/size_0"
@@ -109,14 +108,14 @@
     </LinearLayout>
 
     <!--    <vn.icheck.android.helper.ViewPagerNoScroll-->
-<!--        android:id="@+id/viewPager"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent" />-->
+    <!--        android:id="@+id/viewPager"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent" />-->
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeLayout"
-        android:background="@color/darkGray6"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/darkGray6">
 
         <LinearLayout
             android:layout_width="match_parent"

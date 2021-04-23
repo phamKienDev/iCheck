@@ -111,7 +111,7 @@ class ReportWrongContributionSuccessDialog(val context: Context, isCancelable: B
 
                         params.addView(ViewHelper.createText(context, ViewHelper.createLayoutParams().also {
                             it.setMargins(SizeHelper.size16, 0, SizeHelper.size16, 0)
-                        }, null, ViewHelper.createTypeface(context, R.font.barlow_medium), ContextCompat.getColor(context, R.color.colorSecondary), 14f).also {
+                        }, null, ViewHelper.createTypeface(context, R.font.barlow_medium), vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context), 14f).also {
                             it.text = "Nếu bạn biết thông tin chính xác về sản phẩm này, \n hãy đóng góp thêm nhé!"
                             it.gravity = Gravity.CENTER
                         })

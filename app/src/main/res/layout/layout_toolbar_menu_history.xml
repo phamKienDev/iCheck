@@ -19,7 +19,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <vn.icheck.android.ichecklibs.view.TextHeaderPrimary
+    <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
         android:id="@+id/appCompatTextView44"
         tools:layout_editor_absoluteX="329dp"
         android:layout_width="0dp"

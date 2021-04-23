@@ -42,7 +42,7 @@ class TabSegment : FrameLayout {
         tabLayout.setSelectedTabIndicator(null)
         tabLayout.setSelectedTabIndicatorHeight(0)
         tabLayout.tabRippleColor = null
-        tabLayout.setTabTextColors(ContextCompat.getColor(context, R.color.colorSecondary), ContextCompat.getColor(context, R.color.white))
+        tabLayout.setTabTextColors(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context), ContextCompat.getColor(context, R.color.white))
 
         addView(tabLayout)
     }
@@ -70,7 +70,7 @@ class TabSegment : FrameLayout {
                     if (i == 0) {
                         tabTextView.setTextColor(ContextCompat.getColor(context, R.color.white))
                     } else {
-                        tabTextView.setTextColor(ContextCompat.getColor(context, R.color.colorSecondary))
+                        tabTextView.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context))
                     }
                 }
             }
@@ -87,7 +87,7 @@ class TabSegment : FrameLayout {
                     for (i in 0 until tabChildsCount) {
                         val tabViewChild = vgTab.getChildAt(i)
                         if (tabViewChild is TextView) {
-                            tabViewChild.setTextColor(ContextCompat.getColor(context, R.color.colorSecondary))
+                            tabViewChild.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context))
                         }
                     }
                 }

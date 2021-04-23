@@ -196,15 +196,13 @@
             app:layout_constraintStart_toEndOf="@id/imgWallpaper"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <vn.icheck.android.ichecklibs.view.TextPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
             android:id="@id/btnSend"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/size_0"
             android:layout_marginTop="@dimen/size_4"
             android:layout_marginEnd="@dimen/size_12"
-            android:layout_marginRight="@dimen/size_12"
             android:background="?android:attr/selectableItemBackground"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center_vertical"
             android:includeFontPadding="false"
             android:text="@string/dang_bai"

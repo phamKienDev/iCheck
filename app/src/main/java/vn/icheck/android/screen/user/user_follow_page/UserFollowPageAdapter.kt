@@ -156,7 +156,7 @@ class UserFollowPageAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
                     }
                     it.ellipsize = TextUtils.TruncateAt.END
                     it.maxLines = 1
-                    it.setTextColor(ContextCompat.getColor(context, R.color.colorSecondary))
+                    it.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context))
                     it.setTypeface(Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf"))
                     it.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
                 }

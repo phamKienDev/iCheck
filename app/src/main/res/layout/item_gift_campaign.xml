@@ -54,14 +54,13 @@
             android:layout_marginLeft="@dimen/size_6"
             android:layout_marginTop="@dimen/size_10">
 
-            <vn.icheck.android.ichecklibs.view.TextPrimary
+            <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
                 android:id="@+id/tvPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/size_0"
                 android:ellipsize="end"
                 android:layout_marginTop="@dimen/size_4"
                 android:layout_marginBottom="@dimen/size_4"
-                android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:includeFontPadding="false"
                 android:minWidth="@dimen/size_100"

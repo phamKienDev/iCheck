@@ -121,7 +121,7 @@ class ContributeModule(view: View): BaseHolder(view) {
             } else {
                 state = -1
                 view.setBackgroundResource(R.drawable.bg_solid_white_corner_5)
-                view.setTextColor(Color.parseColor("#3C5A99"))
+                view.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(view.context))
                 vote--
             }
         }

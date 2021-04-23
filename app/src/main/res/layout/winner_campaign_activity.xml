@@ -21,9 +21,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:visibility="gone"
                 android:clipToPadding="false"
                 android:paddingBottom="@dimen/size_30"
+                android:visibility="gone"
                 tools:itemCount="1"
                 tools:listitem="@layout/item_header_the_winner" />
 
@@ -52,7 +52,7 @@
                     android:text="Tiếp tục thực hiện thử thách để \n ghi danh lên bảng vàng xếp hạng nào!"
                     android:textColor="@color/colorSecondText" />
 
-                <vn.icheck.android.ichecklibs.view.TextPrimary
+                <vn.icheck.android.ichecklibs.view.primary.TextPrimary
                     android:id="@+id/btnMission"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -113,7 +113,7 @@
             android:background="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-        <vn.icheck.android.ichecklibs.view.TextHeaderPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
             android:id="@id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

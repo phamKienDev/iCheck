@@ -69,14 +69,12 @@
         app:layout_constraintStart_toEndOf="@+id/tvCountTurn"
         app:layout_constraintTop_toTopOf="@+id/tvCountTurn" />
 
-    <vn.icheck.android.ichecklibs.view.TextPrimary
+    <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
         android:id="@+id/appCompatTextView43"
         android:layout_width="@dimen/size_95"
         android:layout_height="@dimen/size_32"
         android:layout_marginEnd="@dimen/size_12"
-        android:layout_marginRight="@dimen/size_12"
         android:background="@drawable/bg_more_turn"
-        android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center"
         android:textSize="@dimen/font_16"
         app:layout_constraintBottom_toBottomOf="@+id/tvCountTurn"

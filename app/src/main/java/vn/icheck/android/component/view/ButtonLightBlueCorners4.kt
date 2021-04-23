@@ -33,7 +33,7 @@ class ButtonLightBlueCorners4 : BaseButton {
 
         defaultDisableBackground = ContextCompat.getColor(context, R.color.gray)
         defaultEnableBackground = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context)
-        defaultPressedBackground = ContextCompat.getColor(context, R.color.colorSecondary)
+        defaultPressedBackground = vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context)
 
         defaultRadius = SizeHelper.size4.toFloat()
     }

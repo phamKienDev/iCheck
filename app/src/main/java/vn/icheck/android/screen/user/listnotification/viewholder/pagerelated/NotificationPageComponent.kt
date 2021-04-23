@@ -50,7 +50,7 @@ class NotificationPageComponent(parent: ViewGroup) : BaseViewHolder<MutableList<
                         ViewHelper.createLayoutParams(SizeHelper.size12, SizeHelper.size10, SizeHelper.size12, 0),
                         null,
                         ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
-                        ContextCompat.getColor(context, R.color.colorSecondary),
+                        vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context),
                         18f
                 ).also {
                     it.setPadding(0, 0, SizeHelper.size12, 0)

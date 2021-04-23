@@ -71,7 +71,7 @@
             android:padding="@dimen/size_10"
             android:src="@drawable/ic_back_blue_v2_24px" />
 
-        <vn.icheck.android.ichecklibs.view.TextPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
             android:id="@id/txtTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -79,7 +79,6 @@
             android:layout_marginEnd="@dimen/size_8"
             android:layout_weight="1"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:includeFontPadding="false"
             android:singleLine="true"
@@ -191,14 +190,13 @@
             android:visibility="gone"
             tools:visibility="visible">
 
-            <vn.icheck.android.ichecklibs.view.TextPrimary
+            <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
                 android:id="@+id/btn_contact_not_found"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/size_36"
                 android:layout_marginEnd="@dimen/size_5"
                 android:layout_weight="1"
                 android:background="@drawable/bg_corners_4_light_blue_no_solid"
-                android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:text="Liên hệ iCheck"
                 android:textSize="@dimen/font_16" />
@@ -219,7 +217,7 @@
                 android:textSize="@dimen/font_16" />
         </LinearLayout>
 
-        <vn.icheck.android.ichecklibs.view.TextPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
             android:id="@+id/btn_lien_he"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_36"
@@ -227,7 +225,6 @@
             android:layout_marginTop="@dimen/size_40"
             android:layout_marginEnd="@dimen/size_38"
             android:background="@drawable/bg_corners_4_light_blue_no_solid"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:text="Liên hệ iCheck"
             android:textSize="@dimen/font_16"
@@ -243,15 +240,13 @@
             android:orientation="horizontal"
             android:visibility="gone">
 
-            <vn.icheck.android.ichecklibs.view.TextPrimary
+            <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
                 android:id="@+id/btn_contact_icheck"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/size_36"
                 android:layout_marginEnd="@dimen/size_5"
-                android:layout_marginRight="@dimen/size_5"
                 android:layout_weight="1"
                 android:background="@drawable/bg_corners_4_light_blue_no_solid"
-                android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:text="Liên hệ iCheck"
                 android:textSize="@dimen/font_16" />

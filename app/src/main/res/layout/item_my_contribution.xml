@@ -3,33 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:paddingBottom="@dimen/size_12"
+    android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/size_10"
     android:background="@android:color/white"
-    android:layout_height="wrap_content">
+    android:paddingBottom="@dimen/size_12">
 
-    <vn.icheck.android.ichecklibs.view.TextHeader
+    <vn.icheck.android.ichecklibs.view.secondary.TextHeaderSecondary
         android:id="@+id/textView34"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
-        android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_10"
         android:text="Thông tin thêm"
-        android:textColor="#3C5A99"
         app:layout_constraintEnd_toStartOf="@+id/btn_show_all"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:id="@+id/btn_show_all"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/size_12"
-        android:layout_marginRight="@dimen/size_12"
         android:fontFamily="@font/barlow_semi_bold"
         android:text="Xem tất cả"
-        android:textColor="#3C5A99"
         app:layout_constraintBottom_toBottomOf="@+id/textView34"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView34" />

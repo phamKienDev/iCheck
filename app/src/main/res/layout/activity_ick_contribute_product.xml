@@ -19,16 +19,14 @@
             android:scaleType="centerInside"
             app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-        <vn.icheck.android.ichecklibs.view.TextPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
             android:id="@+id/textView4"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:fontFamily="@font/barlow_medium"
             android:layout_marginEnd="@dimen/size_50"
-            android:layout_marginRight="@dimen/size_50"
             android:layout_weight="1"
-            android:gravity="center"
             android:focusableInTouchMode="true"
+            android:gravity="center"
             android:text="Đóng góp thông tin"
             android:textSize="@dimen/font_18" />
     </LinearLayout>
@@ -53,14 +51,13 @@
             android:focusableInTouchMode="true"
             android:orientation="vertical">
 
-            <vn.icheck.android.ui.view.TextBarlowMedium
+            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
-                android:layout_marginLeft="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_10"
+                android:fontFamily="@font/barlow_medium"
                 android:text="Thông tin sản phẩm"
-                android:textColor="#3C5A99"
                 android:textSize="@dimen/font_18" />
 
             <LinearLayout
@@ -242,11 +239,11 @@
                 android:layout_marginTop="@dimen/size_6"
                 android:layout_marginEnd="@dimen/size_12"
                 android:background="@drawable/bg_edt_ick_contribute_product"
-                android:maxLines="1"
                 android:fontFamily="@font/barlow_medium"
-                android:inputType="number"
                 android:hint="Nhập giá sản phẩm"
+                android:inputType="number"
                 android:maxLength="11"
+                android:maxLines="1"
                 android:padding="@dimen/size_8"
                 android:textColorHint="#B4B4B4"
                 android:textSize="@dimen/font_14" />
@@ -298,14 +295,13 @@
                 android:layout_marginTop="@dimen/size_10"
                 android:background="?android:attr/listDivider" />
 
-            <vn.icheck.android.ui.view.TextBarlowMedium
+            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
-                android:layout_marginLeft="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_10"
+                android:fontFamily="@font/barlow_medium"
                 android:text="Thông tin doanh nghiệp"
-                android:textColor="#3C5A99"
                 android:textSize="@dimen/font_18" />
 
             <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
@@ -433,19 +429,16 @@
                 android:textColorHint="#B4B4B4"
                 android:textSize="@dimen/font_14" />
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                 android:id="@+id/tv_search_gg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
-                android:layout_marginLeft="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_10"
                 android:drawableStart="@drawable/ic_google_24px"
-                android:drawableLeft="@drawable/ic_google_24px"
                 android:drawablePadding="@dimen/size_10"
                 android:fontFamily="@font/barlow_medium"
                 android:text="Tìm kiếm ngay với Google"
-                android:textColor="#3C5A99"
                 android:textSize="@dimen/font_14" />
 
             <TextView

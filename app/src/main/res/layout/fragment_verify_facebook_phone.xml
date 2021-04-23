@@ -39,7 +39,7 @@
                     app:civ_border_width="@dimen/size_2" />
             </androidx.cardview.widget.CardView>
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                 android:id="@id/tvName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -51,7 +51,6 @@
                 android:gravity="center"
                 android:singleLine="true"
                 android:textAlignment="gravity"
-                android:textColor="#3c5a99"
                 android:textSize="@dimen/font_16"
                 android:textStyle="normal"
                 tools:text="MaiLan Nguyễn" />

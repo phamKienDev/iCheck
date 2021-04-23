@@ -43,13 +43,11 @@
             app:srb_starWidth="@dimen/size_16"
             app:srb_stepSize="0.5" />
 
-        <vn.icheck.android.ichecklibs.view.TextPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
             android:id="@id/tvRatingCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_6"
-            android:layout_marginLeft="@dimen/size_6"
-            android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toBottomOf="@id/ratingBar"
@@ -77,13 +75,11 @@
             app:layout_goneMarginTop="@dimen/size_10"
             tools:text="93% Sẽ giới thiệu cho bạn bè" />
 
-        <vn.icheck.android.ichecklibs.view.TextPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
             android:id="@id/tvViewAll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_arrow_right_light_blue_24dp"
-            android:drawableRight="@drawable/ic_arrow_right_light_blue_24dp"
-            android:fontFamily="@font/barlow_medium"
             android:gravity="center_vertical"
             android:includeFontPadding="false"
             app:layout_constraintBottom_toBottomOf="@id/tvSuggest"
@@ -113,13 +109,12 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <vn.icheck.android.ichecklibs.view.TextPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
             android:id="@+id/appCompatTextView7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_2"
             android:layout_marginBottom="@dimen/size_10"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:text="Sản phẩm chưa có đánh giá.\nHãy là người đầu tiên để lại đánh giá!"
             android:textSize="@dimen/font_14"

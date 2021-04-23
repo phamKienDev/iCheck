@@ -17,7 +17,7 @@
         tools:src="@drawable/ic_avatar_default_84px"
         tools:visibility="invisible" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:id="@+id/tv_business_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -25,7 +25,6 @@
         android:layout_marginTop="@dimen/size_8"
         android:background="@drawable/bg_business_name"
         android:padding="@dimen/size_3"
-        android:textColor="@color/colorSecondary"
         android:textSize="@dimen/font_10"
         app:layout_constraintStart_toEndOf="@+id/user_avatar"
         app:layout_constraintTop_toTopOf="parent"
@@ -60,14 +59,12 @@
         tools:text="Chào bạn, Công ty Sữa Vinamilk rất vui nếu có thể giúp bạn mua hàng chính hãng. Hãy cho chúng tôi biết bạn đang cần tư vấn gì?"
         tools:visibility="gone" />
 
-    <vn.icheck.android.ichecklibs.view.TextPrimary
+    <vn.icheck.android.ichecklibs.view.primary.TextPrimary
         android:id="@+id/tv_second"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_50"
-        android:layout_marginLeft="@dimen/size_50"
         android:layout_marginEnd="@dimen/size_64"
-        android:layout_marginRight="@dimen/size_64"
         android:gravity="center_vertical"
         android:background="@drawable/bg_second_msg_business"
         android:drawableEnd="@drawable/ic_send_light_blue_24px"
