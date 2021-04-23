@@ -478,6 +478,9 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
                                                     mapArr.indexOf(file.name)
                                                 }
                                                 when (arr.size) {
+                                                    0 -> {
+
+                                                    }
                                                     1 -> {
                                                         binding.imgFirst.loadSimpleFile(arr[0])
                                                         binding.tvImgFirst simpleText "Chỉnh sửa"
