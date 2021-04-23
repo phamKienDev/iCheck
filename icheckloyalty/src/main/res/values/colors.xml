@@ -30,7 +30,4 @@
     <color name="darkGray1">#434343</color>
     <color name="lightGray">#F1F1F1</color>
     <color name="gray_item_search">#F5F5F5</color>
-    <color name="colorNormalText">#212121</color>
-    <color name="colorNormalEdittext">#212121</color>
-    <color name="colorNormalViewGroup">#212121</color>
 </resources>

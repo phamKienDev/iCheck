@@ -29,18 +29,16 @@
         tools:drawableEnd="@drawable/ic_avatar_standard_24dp"
         tools:drawableRight="@drawable/ic_avatar_rank_silver_16dp" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
         android:id="@id/tvName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_14"
         android:drawablePadding="@dimen/size_4"
         android:ellipsize="end"
-        android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center_vertical"
         android:textAlignment="gravity"
         android:singleLine="true"
-        android:textColor="#212121"
         android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/imgAvatar"

@@ -13,6 +13,7 @@ import vn.icheck.android.base.adapter.RecyclerViewSearchAdapter
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.callback.IRecyclerViewSearchCallback
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.helper.TextColorHelper
 import vn.icheck.android.screen.user.search_home.result.SearchResultActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
 
@@ -38,7 +39,7 @@ class SearchHomeAdapter(val callback: IRecyclerViewSearchCallback) : RecyclerVie
         override fun bind(obj: String) {
             if (adapterPosition < listData.size - 1) {
                 itemView.tv_key.text = obj
-                itemView.tv_key.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorNormalText))
+                itemView.tv_key.setTextColor(TextColorHelper.getColorNormalText(itemView.context))
                 itemView.tv_key.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_search_gray_16, 0, 0, 0)
             } else {
                 itemView.tv_key.text = Html.fromHtml(itemView.context.getString(R.string.xem_ket_qua_tim_kiem_cho_x, obj))
@@ -48,7 +49,7 @@ class SearchHomeAdapter(val callback: IRecyclerViewSearchCallback) : RecyclerVie
 
             itemView.tv_key.setOnClickListener {
                 ICheckApplication.currentActivity()?.let {
-                    ActivityUtils.startActivity<SearchResultActivity>(it,Constant.DATA_1,obj)
+                    ActivityUtils.startActivity<SearchResultActivity>(it, Constant.DATA_1, obj)
                 }
             }
         }

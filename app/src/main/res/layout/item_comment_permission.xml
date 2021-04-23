@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/ic_circle_avatar_default" />
 
-    <vn.icheck.android.ui.view.TextBarlowMedium
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
         android:id="@id/tvName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -30,7 +30,6 @@
         android:includeFontPadding="false"
         android:lineSpacingExtra="@dimen/font_14"
         android:singleLine="true"
-        android:textColor="#212121"
         android:textSize="@dimen/font_12"
         app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
         app:layout_constraintEnd_toEndOf="parent"

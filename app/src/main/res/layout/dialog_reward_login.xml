@@ -34,7 +34,7 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/bg_login_required_335x193" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_20"
@@ -42,7 +42,6 @@
                 android:gravity="center_horizontal"
                 android:includeFontPadding="false"
                 android:text="@string/login_reward_title_1"
-                android:textColor="@color/colorNormalText"
                 android:textSize="@dimen/font_16"
                 android:textStyle="normal" />
 

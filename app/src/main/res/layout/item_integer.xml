@@ -6,14 +6,12 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginEnd="@dimen/size_32"
-        android:fontFamily="@font/barlow_medium"
-        android:textColor="#212121"
         android:textSize="@dimen/font_14"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -38,7 +36,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_add_blue_2_24px" />
 
-    <androidx.appcompat.widget.AppCompatEditText
+    <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalTextColor
         android:id="@+id/tv_value"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/size_34"
@@ -51,7 +49,6 @@
         android:inputType="number"
         android:digits="0123456789"
         android:maxLength="10"
-        android:textColor="#212121"
         app:layout_constraintBottom_toBottomOf="@+id/btn_add"
         app:layout_constraintEnd_toStartOf="@+id/btn_add"
         app:layout_constraintTop_toTopOf="@+id/btn_add"

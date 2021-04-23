@@ -7,17 +7,15 @@
     android:layout_marginTop="@dimen/size_10"
     android:background="@color/white">
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
         android:id="@+id/appCompatTextView11"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_16"
-        android:fontFamily="@font/barlow_semi_bold"
         android:lineSpacingExtra="@dimen/font_6"
         android:text="Đóng góp thông tin doanh nghiệp nếu bạn biết về sản phẩm này nhé!"
-        android:textColor="#212121"
         android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="@id/btn_contribution"
         app:layout_constraintStart_toStartOf="parent"

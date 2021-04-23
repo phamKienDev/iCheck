@@ -28,17 +28,15 @@
         app:layout_constraintStart_toEndOf="@id/layoutAvatar"
         app:layout_constraintTop_toTopOf="@+id/layoutAvatar">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center_vertical"
             android:includeFontPadding="false"
             android:maxLines="2"
             android:textAlignment="gravity"
-            android:textColor="@color/colorNormalText"
             android:textSize="@dimen/font_14"
             tools:text="X" />
     </FrameLayout>

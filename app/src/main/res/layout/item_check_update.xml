@@ -7,7 +7,7 @@
     android:layout_marginBottom="@dimen/size_10"
     android:background="@android:color/white">
 
-    <vn.icheck.android.ui.view.TextBarlowSemiBold
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
         android:id="@+id/textView75"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -16,7 +16,6 @@
         android:includeFontPadding="false"
         android:maxLines="2"
         android:text="@string/da_co_phien_ban_moi_cho_ung_dung_roi_nhe"
-        android:textColor="@color/colorNormalText"
         app:layout_constraintBottom_toTopOf="@id/btnUpdate"
         app:layout_constraintEnd_toStartOf="@+id/imgImage"
         app:layout_constraintStart_toStartOf="parent"

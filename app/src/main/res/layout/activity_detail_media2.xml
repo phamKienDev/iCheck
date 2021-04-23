@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorNormalText"
+    android:background="@color/colorNormalViewGroup"
     tools:background="@color/gray"
     tools:context="vn.icheck.android.screen.user.media_in_post.MediaInPostActivity">
 

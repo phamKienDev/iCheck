@@ -7,6 +7,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.component.ICViewModel
 import vn.icheck.android.databinding.ItemTickReportBinding
+import vn.icheck.android.helper.TextColorHelper
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.util.ick.simpleText
@@ -20,7 +21,7 @@ class ReportUserAdapter(val listData: List<ReportUserViewModel>, val onUpdate:(I
         (holder as TickHolder)
         holder.itemTickReportBinding.checkBox.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                holder.itemTickReportBinding.checkBox.setTextColor(Color.parseColor("#212121"))
+                holder.itemTickReportBinding.checkBox.setTextColor(TextColorHelper.getColorNormalText(holder.itemView.context))
                 if (position == listData.lastIndex) {
                     holder.itemTickReportBinding.edtReport.beVisible()
                 } else {

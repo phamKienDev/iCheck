@@ -56,3 +56,11 @@ fun Context.showCustomIconToast(msg: String, @DrawableRes id: Int) {
     toast?.duration = Toast.LENGTH_SHORT
     toast?.show()
 }
+
+fun Float.toPx(): Float {
+    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this, Resources.getSystem().displayMetrics)
+}
+
+fun Int.toPx(): Int {
+    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this.toFloat(), Resources.getSystem().displayMetrics).toInt()
+}

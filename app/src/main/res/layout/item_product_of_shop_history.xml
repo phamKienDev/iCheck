@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:src="#03A9F4" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
         android:id="@+id/tvNameShop"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -32,7 +32,6 @@
         android:fontFamily="@font/barlow_regular"
         android:maxLines="1"
         android:singleLine="true"
-        android:textColor="#212121"
         android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imgAvatar"

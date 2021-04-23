@@ -192,15 +192,13 @@
                                     app:layout_constraintTop_toTopOf="parent"
                                     tools:src="@drawable/ic_mission_barcode_inprogress_24dp" />
 
-                                <androidx.appcompat.widget.AppCompatTextView
+                                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
                                     android:id="@+id/tvProgressTitle"
                                     android:layout_width="@dimen/size_0"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="@dimen/size_12"
                                     android:layout_marginEnd="@dimen/size_12"
-                                    android:fontFamily="@font/barlow_semi_bold"
                                     android:includeFontPadding="false"
-                                    android:textColor="@color/colorNormalText"
                                     android:textSize="@dimen/font_14"
                                     app:layout_constraintEnd_toStartOf="@id/tvProgressCount"
                                     app:layout_constraintStart_toEndOf="@id/imgIcon"

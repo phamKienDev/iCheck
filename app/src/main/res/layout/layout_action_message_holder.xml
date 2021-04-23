@@ -16,14 +16,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_group_120dp" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_30"
         android:gravity="center"
-        android:fontFamily="@font/barlow_semi_bold"
-        android:textColor="@color/colorNormalText"
         android:textSize="@dimen/font_14" />
 
     <androidx.appcompat.widget.AppCompatTextView

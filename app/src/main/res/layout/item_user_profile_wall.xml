@@ -29,7 +29,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
             android:id="@id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,10 +37,8 @@
             android:layout_marginTop="@dimen/size_84"
             android:drawablePadding="@dimen/size_4"
             android:ellipsize="middle"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center_vertical"
             android:textAlignment="gravity"
-            android:textColor="#212121"
             android:includeFontPadding="false"
             android:textSize="@dimen/font_18"
             tools:text="Mai Lan Nguyễn"
@@ -186,15 +184,13 @@
                 android:text="Sống tại"
                 android:textSize="@dimen/font_12" />
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
                 android:id="@+id/tv_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginLeft="@dimen/size_12"
-                android:fontFamily="@font/barlow_semi_bold"
                 android:paddingBottom="@dimen/size_2"
-                android:textColor="#212121"
                 tools:text="Hà Nội" />
         </LinearLayout>
 
@@ -218,14 +214,12 @@
                 android:text="Tài khoản"
                 android:textSize="@dimen/font_12" />
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
                 android:id="@+id/tv_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginLeft="@dimen/size_12"
-                android:fontFamily="@font/barlow_semi_bold"
-                android:textColor="#212121"
                 tools:text="IC - 0002323421" />
         </LinearLayout>
 
@@ -249,14 +243,12 @@
                 android:text="Đang theo dõi"
                 android:textSize="@dimen/font_12" />
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
                 android:id="@+id/tv_watch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginLeft="@dimen/size_12"
-                android:fontFamily="@font/barlow_semi_bold"
-                android:textColor="#212121"
                 tools:text="14.248" />
         </LinearLayout>
 
@@ -280,14 +272,12 @@
                 android:text="Người theo dõi"
                 android:textSize="@dimen/font_12" />
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
                 android:id="@+id/tv_follow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginLeft="@dimen/size_12"
-                android:fontFamily="@font/barlow_semi_bold"
-                android:textColor="#212121"
                 tools:text="104.248" />
         </LinearLayout>
 

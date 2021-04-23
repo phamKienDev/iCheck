@@ -64,7 +64,7 @@
                 android:gravity="center"
                 android:text="@string/title_update_pw" />
 
-            <vn.icheck.android.ui.edittext.FocusableEditText
+            <vn.icheck.android.ichecklibs.FocusableEditText
                 android:id="@+id/group_old_pw"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/divider20"
                 tools:visibility="visible" />
 
-            <vn.icheck.android.ui.edittext.FocusableEditText
+            <vn.icheck.android.ichecklibs.FocusableEditText
                 android:id="@+id/group_pw"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -104,7 +104,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/divider20"
                 tools:visibility="visible" />
 
-            <vn.icheck.android.ui.edittext.FocusableEditText
+            <vn.icheck.android.ichecklibs.FocusableEditText
                 android:id="@+id/group_re_pw"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -644,7 +644,7 @@
         <item name="colorControlNormal">#D8D8D8</item>
         <item name="colorControlActivated">#057DDA</item>
         <item name="colorControlHighlight">#057DDA</item>
-        <item name="android:textColor">#212121</item>
+        <item name="android:textColor">@color/colorNormalText</item>
         <item name="android:fontFamily">@font/barlow_medium</item>
     </style>
 
@@ -661,6 +661,6 @@
 
     <style name="text_black_barlow">
         <item name="android:fontFamily">@font/barlow_medium</item>
-        <item name="android:textColor">#212121</item>
+        <item name="android:textColor">@color/colorNormalText</item>
     </style>
 </resources>

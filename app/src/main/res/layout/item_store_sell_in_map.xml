@@ -89,7 +89,7 @@
         app:layout_constraintTop_toTopOf="@id/tvAddress"
         android:src="@drawable/ic_pin_map_14_gray"/>
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
         android:id="@+id/tvAddress"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -101,7 +101,6 @@
         android:fontFamily="@font/barlow_regular"
         android:lineSpacingExtra="@dimen/font_7_6"
         android:maxLines="2"
-        android:textColor="#212121"
         android:textSize="@dimen/font_12"
         app:layout_constraintStart_toEndOf="@id/imgPin"
         app:layout_constraintEnd_toEndOf="parent"
@@ -115,7 +114,7 @@
         app:layout_constraintTop_toTopOf="@id/tvPhone"
         app:layout_constraintStart_toStartOf="@id/imgPin"/>
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
         android:id="@+id/tvPhone"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -123,7 +122,6 @@
         android:lineSpacingExtra="@dimen/font_7_6"
         android:layout_marginTop="@dimen/size_4"
         android:layout_marginBottom="@dimen/size_17"
-        android:textColor="#212121"
         android:maxLines="1"
         android:minLines="1"
         android:ellipsize="end"

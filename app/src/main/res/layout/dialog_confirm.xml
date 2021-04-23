@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/size_20">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
             android:id="@id/txtTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -26,24 +26,21 @@
             android:layout_marginEnd="@dimen/size_16"
             android:layout_marginRight="@dimen/size_16"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center_horizontal"
             android:includeFontPadding="false"
             android:inputType="textMultiLine"
             android:text="@string/icheck_thong_bao"
-            android:textColor="#212121"
             android:textSize="@dimen/font_16"
             android:textStyle="normal"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent" />
 
-        <vn.icheck.android.ichecklibs.view.TextNormal
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
             android:id="@id/txtMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_24"
-            tools:textColor="@color/colorNormalText"
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginEnd="@dimen/size_24"
             android:fontFamily="@font/barlow_medium"

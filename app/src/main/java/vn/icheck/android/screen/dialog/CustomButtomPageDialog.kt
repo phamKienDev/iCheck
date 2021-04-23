@@ -19,6 +19,7 @@ import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.view.normal_text.TextNormal
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -155,13 +156,12 @@ class CustomButtomPageDialog(val pageId: Long, val buttonConfigs: ArrayList<ICBu
             }
         }
 
-        fun createView(parent: ViewGroup): AppCompatTextView {
-            return AppCompatTextView(parent.context).apply {
+        fun createView(parent: ViewGroup): TextNormal {
+            return TextNormal(parent.context).apply {
                 layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT).also {
                     it.setMargins(SizeHelper.size14, 0, SizeHelper.size14, SizeHelper.size12)
                 }
                 setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
-                setTextColor(ContextCompat.getColor(parent.context, R.color.colorNormalText))
                 typeface = Typeface.create(ViewHelper.barlowMedium, Typeface.NORMAL)
                 compoundDrawablePadding = SizeHelper.size10
             }

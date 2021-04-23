@@ -44,16 +44,14 @@
             app:layout_constraintStart_toEndOf="@id/imgLogo"
             app:layout_constraintTop_toTopOf="@id/imgLogo">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
                 android:id="@id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawablePadding="@dimen/size_4"
                 android:ellipsize="middle"
-                android:fontFamily="@font/barlow_semi_bold"
                 android:includeFontPadding="false"
                 android:singleLine="true"
-                android:textColor="@color/colorNormalText"
                 android:textSize="@dimen/font_16"
                 tools:text="Unilever Vietnam OfficialUnilever Vietnam Official Unilever Vietnam Official" />
 
@@ -121,14 +119,13 @@
             app:layout_constraintTop_toBottomOf="@id/layoutName"
             tools:text="43 phút trước" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
             android:id="@id/tvContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_6"
             android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
-            android:textColor="@color/colorNormalText"
             android:textSize="@dimen/font_14"
             app:layout_constraintTop_toBottomOf="@id/layoutRating"
             tools:text="Sản phẩm tốt, chất lượng cao. Chính hãng nên đảm bảo lắm nhé. Mọi người đều nên sử dụng thử một lần! nhưng phải dùng lâu dài mới tác dụng (Tối đa 3 dòng)..." />

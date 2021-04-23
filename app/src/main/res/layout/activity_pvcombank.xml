@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <vn.icheck.android.ichecklibs.view.CheckBoxNormalTextColor
+        <vn.icheck.android.ichecklibs.view.normal_text.CheckBoxNormalTextColor
             android:id="@+id/checkbox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,7 +45,6 @@
             android:paddingLeft="@dimen/size_8"
             android:layout_marginTop="@dimen/size_8"
             android:text="@string/toi_dong_y_voi_dieu_khoan_nay"
-            tools:textColor="@color/colorNormalText"
             android:textSize="@dimen/size_14"
             android:visibility="visible"
             app:layout_constraintBottom_toTopOf="@id/containerButton"

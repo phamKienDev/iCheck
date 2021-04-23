@@ -49,30 +49,27 @@
             android:orientation="vertical"
             android:padding="@dimen/size_8">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
                 android:id="@id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="middle"
-                android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center_vertical"
                 android:drawablePadding="@dimen/size_4"
                 android:includeFontPadding="false"
                 android:singleLine="true"
                 android:textAlignment="gravity"
-                android:textColor="@color/colorNormalText"
                 android:textSize="@dimen/font_14"
                 tools:drawableEnd="@drawable/ic_verified_16px"
                 tools:text="Trần  Văn  Lâm Trần Văn Lâm" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                 android:id="@id/tvContent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_2"
                 android:fontFamily="@font/barlow_medium"
                 android:includeFontPadding="false"
-                android:textColor="@color/colorNormalText"
                 android:textSize="@dimen/font_14"
                 tools:text="Tôi thấy loại này hơi đắt so với giá thị trường. Có nhiều chỗ bán rẻ hơn thì đó có phải hàng fake k?" />
         </LinearLayout>
