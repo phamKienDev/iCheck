@@ -22,7 +22,7 @@
         app:layout_constraintTop_toBottomOf="@id/layoutToolbar"
         tools:visibility="visible">
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.TextSecondary
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_12"
@@ -31,7 +31,6 @@
             android:fontFamily="sans-serif-medium"
             android:text="@string/nha_mang"
             android:textAllCaps="true"
-            android:textColor="#3C5A99"
             android:textSize="@dimen/font_14" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -47,7 +46,7 @@
             tools:itemCount="6"
             tools:listitem="@layout/msp_holder" />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.TextSecondary
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_12"
@@ -56,7 +55,6 @@
             android:fontFamily="sans-serif-medium"
             android:text="@string/menh_gia"
             android:textAllCaps="true"
-            android:textColor="#3C5A99"
             android:textSize="@dimen/font_14" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -126,14 +124,13 @@
                 app:layout_constraintBottom_toTopOf="@+id/btn_checkout"
                 app:layout_constraintStart_toStartOf="@+id/btn_checkout" />
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.TextSecondary
                 android:id="@+id/tv_total"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/size_12"
                 android:fontFamily="sans-serif-medium"
                 android:hint="0 đ"
-                android:textColor="@color/colorSecondary"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintBottom_toTopOf="@+id/btn_checkout"
                 app:layout_constraintEnd_toEndOf="@+id/btn_checkout" />

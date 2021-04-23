@@ -28,7 +28,7 @@
             android:descendantFocusability="blocksDescendants"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.TextSecondary
                 android:id="@+id/tvCustomerInfor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -36,7 +36,6 @@
                 android:layout_marginTop="@dimen/size_20"
                 android:fontFamily="sans-serif"
                 tools:text="Thông tin khách hàng"
-                android:textColor="#3c5a99"
                 android:textSize="@dimen/font_18"
                 android:textStyle="normal" />
 
@@ -106,7 +105,7 @@
 
             </LinearLayout>
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.TextSecondary
                 android:id="@+id/tvWarrantyInfor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -114,7 +113,6 @@
                 android:layout_marginTop="@dimen/size_20"
                 android:fontFamily="sans-serif"
                 tools:text="Thông tin bảo hành"
-                android:textColor="#3c5a99"
                 android:textSize="@dimen/font_18"
                 android:textStyle="normal" />
 

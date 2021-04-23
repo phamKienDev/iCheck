@@ -56,21 +56,19 @@
                 tools:text="Unilever Vietnam Official Unilever Vietnam Official  Unilever Vietnam Official Unilever Vietnam Official  " />
         </LinearLayout>
 
-        <vn.icheck.android.ui.view.TextBarlowMedium
+        <vn.icheck.android.ichecklibs.view.TextSecondary
             android:id="@+id/tvNameTypePage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
+            android:fontFamily="@font/barlow_medium"
             android:maxLines="1"
             android:singleLine="true"
             android:text="Doanh nghiệp"
-            android:textColor="#3c5a99"
             android:textSize="@dimen/font_12"
             app:layout_constraintBottom_toBottomOf="@id/imgAvaPage"
             app:layout_constraintStart_toStartOf="@id/layoutName"
             app:layout_constraintTop_toBottomOf="@id/layoutName" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
@@ -184,21 +182,20 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <vn.icheck.android.ui.view.TextBarlowSemiBold
+            <vn.icheck.android.ichecklibs.view.TextSecondary
                 android:id="@id/tvCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#3c5a99"
+                android:fontFamily="@font/barlow_semi_bold"
                 android:textSize="@dimen/font_20"
                 tools:text="10" />
 
-            <vn.icheck.android.ui.view.TextBarlowMedium
+            <vn.icheck.android.ichecklibs.view.TextSecondary
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/barlow_semi_bold"
                 android:text="Sản phẩm"
-                android:textColor="#3c5a99"
                 android:textSize="@dimen/font_14" />
-
         </LinearLayout>
 
         <LinearLayout
@@ -208,21 +205,20 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <vn.icheck.android.ui.view.TextBarlowSemiBold
+            <vn.icheck.android.ichecklibs.view.TextSecondary
                 android:id="@id/tvRating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#3c5a99"
+                android:fontFamily="@font/barlow_semi_bold"
                 android:textSize="@dimen/font_20"
                 tools:text="4.5/5" />
 
-            <vn.icheck.android.ui.view.TextBarlowMedium
+            <vn.icheck.android.ichecklibs.view.TextSecondary
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/barlow_semi_bold"
                 android:text="Đánh giá"
-                android:textColor="#3c5a99"
                 android:textSize="@dimen/font_14" />
-
         </LinearLayout>
 
         <LinearLayout
@@ -232,19 +228,19 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <vn.icheck.android.ui.view.TextBarlowSemiBold
+            <vn.icheck.android.ichecklibs.view.TextSecondary
                 android:id="@+id/tvCountScan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#3c5a99"
+                android:fontFamily="@font/barlow_semi_bold"
                 android:textSize="@dimen/font_20"
                 tools:text="186.820" />
 
-            <vn.icheck.android.ui.view.TextBarlowMedium
+            <vn.icheck.android.ichecklibs.view.TextSecondary
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/barlow_semi_bold"
                 android:text="Lượt quét"
-                android:textColor="#3c5a99"
                 android:textSize="@dimen/font_14" />
 
         </LinearLayout>
@@ -262,16 +258,14 @@
         android:layout_height="wrap_content"
         android:background="@android:color/white">
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.TextSecondary
             android:id="@+id/textView36"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_12"
-            android:layout_marginLeft="@dimen/size_12"
             android:layout_marginTop="@dimen/size_10"
             android:fontFamily="@font/barlow_medium"
             android:text="Đăng bài mới"
-            android:textColor="#3C5A99"
             android:textSize="@dimen/font_18"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

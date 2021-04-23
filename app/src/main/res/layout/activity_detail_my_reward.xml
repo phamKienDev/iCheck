@@ -136,14 +136,13 @@
                             app:layout_constraintTop_toTopOf="@id/imgLogo"
                             tools:visibility="visible" />
 
-                        <androidx.appcompat.widget.AppCompatTextView
+                        <vn.icheck.android.ichecklibs.view.TextSecondary
                             android:id="@id/tvNameProduct"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/size_24"
                             android:layout_marginEnd="@dimen/size_32"
                             android:fontFamily="@font/barlow_semi_bold"
-                            android:textColor="@color/colorSecondary"
                             android:textSize="@dimen/font_16"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/imgLogo"
@@ -291,7 +290,7 @@
                 android:orientation="vertical"
                 android:visibility="gone">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.TextSecondary
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_12"
@@ -300,7 +299,6 @@
                     android:fontFamily="@font/barlow_semi_bold"
                     android:lineSpacingExtra="@dimen/font_6"
                     android:text="Địa chỉ đến lấy quà"
-                    android:textColor="@color/colorSecondary"
                     android:textSize="@dimen/font_14" />
 
                 <View
@@ -402,7 +400,7 @@
                 android:orientation="vertical"
                 tools:visibility="gone">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.TextSecondary
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_12"
@@ -410,7 +408,6 @@
                     android:fontFamily="@font/barlow_semi_bold"
                     android:lineSpacingExtra="@dimen/font_6"
                     android:text="Thông tin quà"
-                    android:textColor="@color/colorSecondary"
                     android:textSize="@dimen/font_14" />
 
                 <View

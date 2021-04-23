@@ -54,7 +54,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider27">
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.TextSecondary
             android:id="@+id/tvMain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -63,7 +63,6 @@
             android:layout_marginTop="@dimen/size_10"
             android:fontFamily="@font/barlow_semi_bold"
             android:text="Nút chính"
-            android:textColor="@color/colorSecondary"
             android:textSize="@dimen/font_14"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider27" />
@@ -113,7 +112,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view">
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.TextSecondary
             android:id="@+id/tvMain2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -122,7 +121,6 @@
             android:layout_marginTop="@dimen/size_10"
             android:fontFamily="@font/barlow_semi_bold"
             android:text="Nút phụ"
-            android:textColor="@color/colorSecondary"
             android:textSize="@dimen/font_14" />
 
         <TextView

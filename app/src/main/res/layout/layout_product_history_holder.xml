@@ -85,18 +85,18 @@
                 android:drawableStart="@drawable/ic_start_alone_15_dp"
                 android:drawablePadding="@dimen/size_5"
                 android:fontFamily="@font/barlow_medium"
-                android:textColor="#4f4f4f"
                 android:includeFontPadding="false"
+                android:textColor="#4f4f4f"
                 android:textSize="@dimen/font_12"
                 tools:text="8,9" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@id/tvCountReview"
                 android:layout_width="wrap_content"
-                android:includeFontPadding="false"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5.2dp"
                 android:fontFamily="@font/barlow_medium"
+                android:includeFontPadding="false"
                 android:textColor="#828282"
                 android:textSize="@dimen/font_12"
                 tools:text="(999+)" />
@@ -114,7 +114,7 @@
                 android:textSize="@dimen/font_12" />
         </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.TextSecondary
             android:id="@+id/tvCountShop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -123,13 +123,11 @@
             android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:paddingTop="@dimen/size_18"
-            android:textColor="#3c5a99"
             android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toBottomOf="@+id/imgAvaProduct"
             app:layout_constraintStart_toStartOf="@+id/tvNameProduct"
             app:layout_constraintTop_toBottomOf="@id/layoutBarcode"
             tools:text="Có 12 cửa hàng bán sản phẩm này" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -187,7 +185,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.TextSecondary
         android:id="@+id/btnSearchNear"
         android:layout_width="193dp"
         android:layout_height="@dimen/size_38"
@@ -197,11 +195,9 @@
         android:fontFamily="@font/barlow_medium"
         android:gravity="center"
         android:text="Tìm kiếm quanh đây"
-        android:textColor="#3c5a99"
         android:textSize="@dimen/font_16"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/layoutShop"
         app:layout_constraintStart_toStartOf="@+id/layoutShop"
         app:layout_constraintTop_toBottomOf="@id/layoutShop" />
-
 </LinearLayout>

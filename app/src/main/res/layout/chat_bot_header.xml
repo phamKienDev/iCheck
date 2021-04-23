@@ -17,7 +17,7 @@
         tools:src="@drawable/ic_avatar_default_84px"
         tools:visibility="invisible" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.TextSecondary
         android:id="@+id/tv_business_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -25,7 +25,6 @@
         android:layout_marginTop="@dimen/size_8"
         android:background="@drawable/bg_business_name"
         android:padding="@dimen/size_3"
-        android:textColor="@color/colorSecondary"
         android:textSize="@dimen/font_10"
         app:layout_constraintStart_toEndOf="@+id/user_avatar"
         app:layout_constraintTop_toTopOf="parent"

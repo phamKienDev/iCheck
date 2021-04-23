@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.TextSecondary
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,10 +14,9 @@
         android:layout_marginTop="@dimen/size_8"
         android:layout_marginEnd="@dimen/size_12"
         android:fontFamily="sans-serif"
-        tools:text="Mô tả sản phẩm"
-        android:textColor="#3c5a99"
         android:textSize="@dimen/font_18"
-        android:textStyle="normal" />
+        android:textStyle="normal"
+        tools:text="Mô tả sản phẩm" />
 
     <LinearLayout
         android:id="@+id/layoutInformaion"

@@ -15,13 +15,12 @@
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ic_home_review_stars" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.TextSecondary
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_8"
         android:layout_weight="1"
         android:drawableEnd="@drawable/ic_right_blue_24px"
         android:text="Sản phẩm chưa có đánh giá. Hãy là người đầu tiên để lại nhận xét"
-        android:textAlignment="center"
-        android:textColor="#3C5A99" />
+        android:textAlignment="center" />
 </LinearLayout>

@@ -38,20 +38,19 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_8"
             android:fontFamily="@font/barlow_semi_bold"
-            android:textSize="@dimen/font_14"
             android:textColor="#212121"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal"
             app:layout_constraintStart_toEndOf="@+id/layoutImg"
             app:layout_constraintTop_toTopOf="@+id/layoutImg"
             tools:text="Thẻ Mobifone" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.TextSecondary
             android:id="@+id/tvPriceTopup"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/size_8"
             android:fontFamily="@font/barlow_semi_bold"
-            android:textColor="#3c5a99"
             android:textSize="@dimen/font_16"
             android:textStyle="normal"
             app:layout_constraintBottom_toBottomOf="@+id/tvDate"
@@ -140,10 +139,10 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
+        android:layout_marginStart="@dimen/size_9"
         android:layout_marginTop="15.5dp"
         android:layout_marginEnd="@dimen/size_9"
-        android:layout_marginStart="@dimen/size_9"
-        android:background="#d8d8d8"/>
+        android:background="#d8d8d8" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -153,9 +152,9 @@
             android:id="@+id/tvSelectUsed"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:fontFamily="@font/barlow_medium"
             android:gravity="center"
             android:text="Đánh dấu đã dùng"
-            android:fontFamily="@font/barlow_medium"
             android:textColor="@color/colorAccentRed"
             android:textSize="@dimen/font_14"
             android:visibility="visible"
@@ -179,9 +178,9 @@
             android:id="@+id/tvLoadNow"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:fontFamily="@font/barlow_medium"
             android:gravity="center"
             android:text="Nạp ngay"
-            android:fontFamily="@font/barlow_medium"
             android:textSize="@dimen/font_14"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="@id/view"
@@ -193,6 +192,7 @@
             android:id="@+id/tvUsed"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="#d8d8d8"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:paddingTop="@dimen/size_8"
@@ -200,7 +200,6 @@
             android:text="Mã thẻ đã dùng"
             android:textColor="#757575"
             android:textSize="@dimen/font_14"
-            android:background="#d8d8d8"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

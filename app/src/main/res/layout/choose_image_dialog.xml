@@ -5,12 +5,11 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.TextSecondary
         android:id="@+id/tv_pick_gallery"
         android:layout_width="match_parent"
         android:textAlignment="center"
         android:padding="@dimen/size_12"
-        android:textColor="@color/colorSecondary"
         android:layout_height="wrap_content"
         android:text="Chọn ảnh từ thư viện" />
 
@@ -19,11 +18,10 @@
         android:layout_height="@dimen/size_1"
         android:background="@color/gray" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.TextSecondary
         android:textAlignment="center"
         android:id="@+id/tv_pick_camera"
         android:padding="@dimen/size_12"
-        android:textColor="@color/colorSecondary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Chụp ảnh" />
@@ -33,9 +31,8 @@
         android:layout_height="@dimen/size_1"
         android:background="@color/gray" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.TextSecondary
         android:textAlignment="center"
-        android:textColor="@color/colorSecondary"
         android:id="@+id/tv_cancel"
         android:padding="@dimen/size_12"
         android:layout_width="match_parent"

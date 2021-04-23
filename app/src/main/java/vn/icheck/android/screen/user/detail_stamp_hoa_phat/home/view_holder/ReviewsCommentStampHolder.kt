@@ -32,8 +32,8 @@ class ReviewsCommentStampHolder(parent: ViewGroup) : BaseViewHolder<ICProductRev
         itemView.tv_comment.text = obj.activityValue
         if (obj.ownerType == "page") {
             itemView.ava.borderWidth = 1
-            itemView.ava.borderColor = Color.parseColor("#3C5A99")
-            itemView.tv_name.setTextColor(Color.parseColor("#3C5A99"))
+            itemView.ava.borderColor = vn.icheck.android.ichecklibs.Constant.getSecondaryColor(itemView.context)
+            itemView.tv_name.setTextColor(itemView.ava.borderColor)
             itemView.img_verified.visibility = View.VISIBLE
         } else {
             itemView.ava.borderWidth = 0

@@ -61,7 +61,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <androidx.appcompat.widget.AppCompatEditText
+                    <vn.icheck.android.ichecklibs.view.EditTextSecondary
                         android:id="@id/edtOtp"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/size_42"
@@ -70,7 +70,6 @@
                         android:gravity="center"
                         android:inputType="number"
                         android:maxLength="8"
-                        android:textColor="#3c5a99"
                         android:textSize="@dimen/font_36"
                         android:textStyle="bold" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -98,7 +97,7 @@
                         android:theme="@style/Theme_Blue"
                         android:visibility="invisible" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.TextSecondary
                         android:id="@id/txtStatus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -109,7 +108,6 @@
                         android:paddingEnd="@dimen/size_8"
                         android:paddingBottom="@dimen/size_4"
                         android:text="@string/gui_lai_ma"
-                        android:textColor="#3c5a99"
                         android:textSize="@dimen/font_14"
                         android:textStyle="normal" />
                 </LinearLayout>

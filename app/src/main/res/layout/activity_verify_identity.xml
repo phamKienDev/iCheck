@@ -68,7 +68,7 @@ Vui lòng kiểm tra kỹ lại thông tin và ảnh chụp giấy tờ chính c
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvErrorVerify" />
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.TextSecondary
                 android:id="@+id/tvGuide"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -80,7 +80,6 @@ Vui lòng kiểm tra kỹ lại thông tin và ảnh chụp giấy tờ chính c
                 android:gravity="center_vertical"
                 android:includeFontPadding="false"
                 android:text="Dấu Tích Xanh là gì?"
-                android:textColor="@color/colorSecondary"
                 android:textSize="@dimen/font_16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

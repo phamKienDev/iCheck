@@ -236,4 +236,21 @@ object Constant {
                 "#057DDA"
             }
         }
+
+    fun getSecondaryColor(context: Context): Int {
+        return if (secondaryColor.isNotEmpty()) {
+            Color.parseColor(secondaryColor)
+        } else {
+            ContextCompat.getColor(context, R.color.colorSecondary)
+        }
+    }
+
+    val getSecondaryColorCode: String
+        get() {
+            return if (secondaryColor.isNotEmpty()) {
+                secondaryColor
+            } else {
+                "#3C5A99"
+            }
+        }
 }

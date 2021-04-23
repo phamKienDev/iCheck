@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,14 +14,13 @@
         android:layout_height="@dimen/size_1"
         android:background="@drawable/shadow_bottom" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.TextSecondary
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_20"
         android:fontFamily="sans-serif"
-        android:text="Thông tin khách hàng"
-        android:textColor="#3c5a99"
+        android:text="@string/thong_tin_khach_hang"
         android:textSize="@dimen/font_18"
         android:textStyle="normal" />
 
@@ -66,14 +64,13 @@
 
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.TextSecondary
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_20"
         android:fontFamily="sans-serif"
-        android:text="Thông tin bảo hành"
-        android:textColor="#3c5a99"
+        android:text="@string/thong_tin_bao_hanh"
         android:textSize="@dimen/font_18"
         android:textStyle="normal" />
 
@@ -153,16 +150,14 @@
             android:textSize="@dimen/font_14"
             android:textStyle="normal"
             tools:text="Ngày hẹn trả: 27/12/2017" />
-
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.TextSecondary
         android:id="@+id/tvSubInforGuarantee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
-        android:text="Nội dung bảo hành"
-        android:textColor="#3c5a99"
+        android:text="@string/noi_dung_bao_hanh"
         android:textSize="@dimen/font_18"
         android:textStyle="normal"
         android:layout_marginStart="@dimen/size_12"

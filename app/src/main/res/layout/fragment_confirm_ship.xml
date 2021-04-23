@@ -76,7 +76,7 @@
                 android:visibility="gone"
                 tools:visibility="visible">
 
-                <TextView
+                <vn.icheck.android.ichecklibs.view.TextSecondary
                     android:id="@+id/textView91"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -85,7 +85,6 @@
                     android:layout_marginEnd="@dimen/size_12"
                     android:fontFamily="@font/barlow_medium"
                     android:text="Thời gian đặt hàng"
-                    android:textColor="@color/colorSecondary"
                     android:textSize="@dimen/font_16"
                     android:visibility="gone"
                     app:layout_constraintEnd_toStartOf="@+id/img_status"
@@ -147,7 +146,7 @@
                 android:layout_marginTop="@dimen/size_10"
                 android:background="@android:color/white">
 
-                <TextView
+                <vn.icheck.android.ichecklibs.view.TextSecondary
                     android:id="@+id/textView85"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -156,7 +155,6 @@
                     android:layout_marginTop="@dimen/size_10"
                     android:fontFamily="@font/barlow_medium"
                     android:text="Địa chỉ nhận hàng"
-                    android:textColor="@color/colorSecondary"
                     android:textSize="@dimen/font_16"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -221,7 +219,7 @@
                 android:layout_marginTop="@dimen/size_10"
                 android:background="@android:color/white">
 
-                <TextView
+                <vn.icheck.android.ichecklibs.view.TextSecondary
                     android:id="@+id/textView93"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -230,7 +228,6 @@
                     android:layout_marginTop="@dimen/size_10"
                     android:fontFamily="@font/barlow_medium"
                     android:text="Phí giao hàng (COD)"
-                    android:textColor="@color/colorSecondary"
                     android:textSize="@dimen/font_16"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -267,7 +264,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView93" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.TextSecondary
                 android:id="@+id/textView95"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -276,7 +273,6 @@
                 android:layout_marginTop="@dimen/size_10"
                 android:fontFamily="@font/barlow_medium"
                 android:text="Danh sách sản phẩm"
-                android:textColor="@color/colorSecondary"
                 android:textSize="@dimen/font_16" />
 
             <androidx.constraintlayout.widget.ConstraintLayout

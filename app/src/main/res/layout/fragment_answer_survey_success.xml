@@ -41,19 +41,18 @@
             android:textSize="@dimen/font_18"
             android:textStyle="normal" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.TextSecondary
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/size_12"
-            android:visibility="gone"
             android:drawableStart="@drawable/ic_coin_status_20dp"
             android:drawablePadding="@dimen/size_6"
             android:fontFamily="sans-serif-medium"
             android:text="+558.000"
-            android:textColor="#3c5a99"
             android:textSize="@dimen/font_18"
-            android:textStyle="normal" />
+            android:textStyle="normal"
+            android:visibility="gone" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="match_parent"
@@ -96,9 +95,9 @@
         style="@style/Button_Blue_Corners_6"
         android:layout_width="@dimen/size_0"
         android:layout_marginStart="@dimen/size_6"
-        android:visibility="gone"
         android:layout_marginEnd="@dimen/size_24"
         android:text="@string/chia_se_title"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/btnHome"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/btnHome"

@@ -52,11 +52,13 @@ class CountReviewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(creatView(p
             layoutParent.gravity = Gravity.CENTER_VERTICAL
             layoutParent.setBackgroundColor(ContextCompat.getColor(context, R.color.darkGray6))
 
+            val secondaryColor = vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context)
+
             layoutParent.addView(AppCompatTextView(context).also {
                 it.layoutParams = ViewHelper.createLayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f).also {
                     it.leftMargin = SizeHelper.size12
                 }
-                it.setTextColor(ContextCompat.getColor(context, R.color.colorSecondary))
+                it.setTextColor(secondaryColor)
                 it.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
                 it.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
                 it.includeFontPadding = false
@@ -66,7 +68,7 @@ class CountReviewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(creatView(p
                 it.layoutParams = ViewHelper.createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT).also {
                     it.rightMargin = SizeHelper.size12
                 }
-                it.setTextColor(ContextCompat.getColor(context, R.color.colorSecondary))
+                it.setTextColor(secondaryColor)
                 it.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
                 it.gravity = Gravity.CENTER_VERTICAL
                 it.setBackgroundColor(Color.TRANSPARENT)

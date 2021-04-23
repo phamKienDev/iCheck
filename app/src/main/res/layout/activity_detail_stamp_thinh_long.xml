@@ -104,7 +104,7 @@
                     android:textSize="@dimen/font_14"
                     android:textStyle="normal" />
 
-                <androidx.appcompat.widget.AppCompatButton
+                <vn.icheck.android.ichecklibs.view.ButtonSecondary
                     android:id="@+id/btnAgainError"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -114,10 +114,8 @@
                     android:background="@drawable/bg_corner_solid_white_strokke_blue"
                     android:fontFamily="sans-serif-medium"
                     android:text="Thử Lại"
-                    android:textColor="#3c5a99"
                     android:textSize="@dimen/font_16"
                     android:textStyle="normal" />
-
             </LinearLayout>
 
             <!--Require Location-->
@@ -147,7 +145,7 @@
                     android:textStyle="normal"
                     tools:text="Để hiển thị dữ liệu Cửa hàng, vui lòng bật GPS" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.TextSecondary
                     android:id="@+id/btnRequestPermission"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -160,11 +158,10 @@
                     android:paddingTop="@dimen/size_11"
                     android:paddingBottom="@dimen/size_11"
                     android:text="@string/bat_gps"
-                    android:textColor="#3c5a99"
                     android:textSize="@dimen/font_16"
                     android:textStyle="normal" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.TextSecondary
                     android:id="@+id/btnEnableLocation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -177,11 +174,9 @@
                     android:paddingTop="@dimen/size_11"
                     android:paddingBottom="@dimen/size_11"
                     android:text="@string/bat_vi_tri"
-                    android:textColor="#3c5a99"
                     android:textSize="@dimen/font_16"
                     android:textStyle="normal"
                     android:visibility="gone" />
-
             </LinearLayout>
 
             <!--Error Stamp-->

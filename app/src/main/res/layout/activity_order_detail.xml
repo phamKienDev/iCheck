@@ -81,7 +81,7 @@
             app:layout_constraintStart_toEndOf="@id/layoutStart"
             app:layout_constraintTop_toTopOf="@id/layoutStart">
 
-            <androidx.appcompat.widget.AppCompatButton
+            <vn.icheck.android.ichecklibs.view.ButtonSecondary
                 android:id="@id/btnActionTwo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -93,7 +93,6 @@
                 android:singleLine="true"
                 android:text="@string/ghe_tham_shop"
                 android:textAllCaps="false"
-                android:textColor="#3c5a99"
                 android:textSize="@dimen/font_16"
                 android:textStyle="normal"
                 tools:text="Đặt lại đơn này" />

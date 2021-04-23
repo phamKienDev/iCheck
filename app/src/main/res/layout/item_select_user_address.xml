@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:scaleType="fitCenter" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.TextSecondary
             android:id="@id/tvName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -30,7 +30,6 @@
             android:layout_weight="1"
             android:fontFamily="sans-serif"
             android:includeFontPadding="false"
-            android:textColor="#3c5a99"
             android:textSize="@dimen/font_14"
             android:textStyle="bold"
             tools:text="J&amp;T Express: 16,500đ" />

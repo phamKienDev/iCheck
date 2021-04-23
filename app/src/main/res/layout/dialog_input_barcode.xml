@@ -31,7 +31,7 @@
         android:layout_width="match_parent"
         app:layout_constraintTop_toBottomOf="@id/tvClose" />
 
-    <androidx.appcompat.widget.AppCompatEditText
+    <vn.icheck.android.ichecklibs.view.EditTextSecondary
         android:id="@id/edtBarcode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -47,16 +47,14 @@
         android:paddingTop="@dimen/size_6"
         android:paddingBottom="@dimen/size_6"
         android:singleLine="true"
-        android:textColor="@color/colorSecondary"
         android:textColorHint="#d8d8d8"
         android:textSize="@dimen/font_18"
         android:textStyle="normal"
         app:layout_constraintTop_toBottomOf="@id/tvClose" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.ViewSecondary
         style="@style/Line_Gray.Horizontal"
         android:layout_width="@dimen/size_0"
-        android:background="@color/colorSecondary"
         app:layout_constraintEnd_toEndOf="@id/edtBarcode"
         app:layout_constraintStart_toStartOf="@id/edtBarcode"
         app:layout_constraintTop_toBottomOf="@id/edtBarcode" />

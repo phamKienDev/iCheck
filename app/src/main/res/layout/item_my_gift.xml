@@ -79,7 +79,7 @@
             app:layout_constraintStart_toStartOf="@id/idTwo"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.TextSecondary
             android:id="@+id/tvPage"
             android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
@@ -89,7 +89,6 @@
             android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:singleLine="true"
-            android:textColor="@color/colorSecondary"
             android:textSize="@dimen/font_12"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/tvProduct"

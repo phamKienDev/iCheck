@@ -39,12 +39,12 @@
             android:ellipsize="middle"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center_vertical"
+            android:includeFontPadding="false"
+            android:singleLine="true"
             android:textAlignment="gravity"
             android:textColor="#212121"
-            android:includeFontPadding="false"
             android:textSize="@dimen/font_18"
-            tools:text="Mai Lan Nguyễn"
-            android:singleLine="true" />
+            tools:text="Mai Lan Nguyễn" />
 
         <LinearLayout
             android:id="@+id/group_friend"
@@ -91,8 +91,8 @@
                     android:text="Kết bạn"
                     android:textColor="@android:color/white"
                     android:textSize="16sp"
-                    app:drawableStartCompat="@drawable/ic_add_white_12px"
-                    app:drawableLeftCompat="@drawable/ic_add_white_12px" />
+                    app:drawableLeftCompat="@drawable/ic_add_white_12px"
+                    app:drawableStartCompat="@drawable/ic_add_white_12px" />
             </LinearLayout>
 
             <vn.icheck.android.ichecklibs.view.TextPrimary
@@ -291,7 +291,7 @@
                 tools:text="104.248" />
         </LinearLayout>
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.TextSecondary
             android:id="@+id/more_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -299,11 +299,8 @@
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginEnd="@dimen/size_12"
             android:drawableEnd="@drawable/ic_arrow_right_light_blue_24dp"
-            android:drawableRight="@drawable/ic_arrow_right_light_blue_24dp"
             android:fontFamily="@font/barlow_medium"
-            android:text="Xem thêm thông tin cá nhân"
-            android:textColor="#3C5A99" />
-
+            android:text="Xem thêm thông tin cá nhân" />
     </LinearLayout>
 
     <de.hdodenhof.circleimageview.CircleImageView

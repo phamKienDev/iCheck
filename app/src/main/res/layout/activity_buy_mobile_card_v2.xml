@@ -71,7 +71,7 @@
             android:textSize="@dimen/font_14"
             android:textStyle="normal" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <vn.icheck.android.ichecklibs.view.ButtonSecondary
             android:id="@+id/btnAgainError"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -81,10 +81,8 @@
             android:background="@drawable/bg_corner_solid_white_strokke_blue"
             android:fontFamily="sans-serif-medium"
             android:text="Thử Lại"
-            android:textColor="#3c5a99"
             android:textSize="@dimen/font_16"
             android:textStyle="normal" />
-
     </LinearLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -110,15 +108,14 @@
                 android:background="@color/white"
                 android:orientation="vertical">
 
-                <vn.icheck.android.ichecklibs.view.TextSubheader2
+                <vn.icheck.android.ichecklibs.view.TextSubheader2Secondary
                     android:id="@id/tv2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_12"
                     android:layout_marginTop="@dimen/size_10"
                     android:layout_marginEnd="@dimen/size_12"
-                    android:text="Nhà mạng"
-                    android:textColor="#3c5a99" />
+                    android:text="Nhà mạng" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rcvNetwork"
@@ -138,14 +135,13 @@
                 android:background="@color/white"
                 android:orientation="vertical">
 
-                <vn.icheck.android.ichecklibs.view.TextSubheader2
+                <vn.icheck.android.ichecklibs.view.TextSubheader2Secondary
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_12"
                     android:layout_marginTop="@dimen/size_10"
                     android:layout_marginEnd="@dimen/size_12"
-                    android:text="Mệnh giá"
-                    android:textColor="#3c5a99" />
+                    android:text="Mệnh giá" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rcvCardValue"

@@ -19,7 +19,7 @@
             android:background="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_categories_menu_blue_24" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.TextSecondary
             android:id="@id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -29,7 +29,6 @@
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:singleLine="true"
-            android:textColor="@color/colorSecondary"
             android:textSize="@dimen/font_18"
             android:textStyle="normal"
             tools:text="Tiêu đề" />
@@ -83,17 +82,17 @@
                 android:textStyle="normal"
                 android:visibility="gone" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.TextSecondary
                 android:id="@+id/tvLabelInforCustomer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/font_16"
-                android:paddingTop="@dimen/size_8"
-                app:fontFamily="@font/roboto_bold"
-                android:paddingBottom="@dimen/size_8"
+                android:background="#F5F5F5"
                 android:paddingStart="@dimen/size_12"
-                android:textColor="#3C5A99"
-                android:background="#F5F5F5"/>
+                android:paddingTop="@dimen/size_8"
+                android:paddingEnd="@dimen/size_0"
+                android:paddingBottom="@dimen/size_8"
+                android:textSize="@dimen/font_16"
+                app:fontFamily="@font/roboto_bold" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvSubPhone"
@@ -328,8 +327,8 @@
                 android:fontFamily="sans-serif"
                 android:textColor="#434343"
                 android:textSize="@dimen/font_14"
-                android:visibility="gone"
-                android:textStyle="normal" />
+                android:textStyle="normal"
+                android:visibility="gone" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/edtProductCode"
@@ -346,8 +345,8 @@
                 android:textColor="#000000"
                 android:textColorHint="#b4b4b4"
                 android:textSize="@dimen/font_14"
-                android:visibility="gone"
-                android:textStyle="normal" />
+                android:textStyle="normal"
+                android:visibility="gone" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvSubProductVariant"
@@ -358,8 +357,8 @@
                 android:fontFamily="sans-serif"
                 android:textColor="#434343"
                 android:textSize="@dimen/font_14"
-                android:visibility="gone"
-                android:textStyle="normal" />
+                android:textStyle="normal"
+                android:visibility="gone" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/edtVariant"
@@ -369,36 +368,36 @@
                 android:layout_marginTop="@dimen/size_8"
                 android:layout_marginEnd="@dimen/size_12"
                 android:background="@drawable/bg_gray_corners_40_solid_white"
+                android:focusable="false"
                 android:fontFamily="sans-serif"
                 android:paddingStart="@dimen/size_16"
                 android:paddingTop="@dimen/size_10"
                 android:paddingBottom="@dimen/size_10"
                 android:textColor="#000000"
-                android:focusable="false"
                 android:textColorHint="#b4b4b4"
                 android:textSize="@dimen/font_14"
-                android:visibility="gone"
-                android:textStyle="normal" />
+                android:textStyle="normal"
+                android:visibility="gone" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.TextSecondary
                 android:id="@+id/tvTitleField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/font_16"
                 android:layout_marginTop="@dimen/size_12"
-                android:paddingTop="@dimen/size_8"
-                android:visibility="gone"
-                app:fontFamily="@font/roboto_bold"
-                android:paddingBottom="@dimen/size_8"
+                android:background="#F5F5F5"
                 android:paddingStart="@dimen/size_12"
-                android:textColor="#3C5A99"
-                android:background="#F5F5F5"/>
+                android:paddingTop="@dimen/size_8"
+                android:paddingEnd="@dimen/size_0"
+                android:paddingBottom="@dimen/size_8"
+                android:textSize="@dimen/font_16"
+                android:visibility="gone"
+                app:fontFamily="@font/roboto_bold" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcvField"
                 android:layout_width="match_parent"
-                android:visibility="gone"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnUpdate"

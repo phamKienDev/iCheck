@@ -25,14 +25,13 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_back_blue_24px" />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.TextSecondary
             android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/cai_dat_nhom_chat"
             android:textAlignment="center"
-            android:textColor="#3C5A99"
             android:textSize="@dimen/font_18"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

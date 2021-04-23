@@ -19,7 +19,7 @@
         android:layout_height="@dimen/size_24"
         android:layout_gravity="center" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.TextSecondary
         android:id="@id/btnMore"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,7 +27,6 @@
         android:layout_marginLeft="@dimen/size_36"
         android:fontFamily="@font/barlow_semi_bold"
         android:includeFontPadding="false"
-        android:textColor="@color/colorSecondary"
         android:textSize="@dimen/font_14"
         tools:text="Xem thêm câu trả lời (13)" />
 </LinearLayout>

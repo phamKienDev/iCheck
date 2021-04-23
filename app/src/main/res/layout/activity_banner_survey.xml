@@ -163,7 +163,7 @@
         android:paddingEnd="@dimen/size_18"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <androidx.appcompat.widget.AppCompatButton
+        <vn.icheck.android.ichecklibs.view.ButtonSecondary
             android:id="@id/btnHome"
             android:layout_width="@dimen/size_0"
             android:layout_height="match_parent"
@@ -173,10 +173,9 @@
             android:background="@drawable/btn_white_outline_blue_1_corners_6"
             android:text="@string/trang_chu_title"
             android:textAllCaps="false"
-            android:textColor="@color/colorSecondary"
             android:visibility="gone" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <vn.icheck.android.ichecklibs.view.ButtonSecondary
             android:id="@id/btnLeft"
             android:layout_width="@dimen/size_0"
             android:layout_height="match_parent"
@@ -186,7 +185,6 @@
             android:background="@drawable/btn_white_outline_blue_1_corners_6"
             android:fontFamily="sans-serif-medium"
             android:textAllCaps="false"
-            android:textColor="@color/colorSecondary"
             android:textSize="@dimen/font_16"
             android:textStyle="normal"
             tools:text="Câu 1" />

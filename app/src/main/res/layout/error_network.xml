@@ -10,18 +10,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ic_error_request" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/font_14"
-        android:fontFamily="sans-serif"
-        android:textStyle="normal"
         android:layout_margin="@dimen/size_16"
-        android:textColor="#828282"
+        android:fontFamily="sans-serif"
         android:text="Không thể truy cập. Vui lòng thử lại sau"
-        />
+        android:textColor="#828282"
+        android:textSize="@dimen/font_14"
+        android:textStyle="normal" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.TextSecondary
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_32"
@@ -31,7 +31,6 @@
         android:padding="@dimen/size_16"
         android:text="Trang Chủ"
         android:textAlignment="center"
-        android:textColor="#3c5a99"
         android:textSize="@dimen/font_16"
         android:textStyle="normal" />
 </LinearLayout>

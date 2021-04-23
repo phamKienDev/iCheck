@@ -24,7 +24,7 @@
             app:srcCompat="@drawable/small_logo_icheck" />
     </LinearLayout>
 
-    <Button
+    <vn.icheck.android.ichecklibs.view.ButtonSecondary
         android:id="@+id/btn_xall"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="match_parent"
@@ -35,7 +35,5 @@
         android:fontFamily="sans-serif-medium"
         android:text="Xem tất cả đánh giá"
         android:textAllCaps="false"
-        android:textColor="#3C5A99"
         android:textSize="@dimen/font_14" />
-
 </LinearLayout>

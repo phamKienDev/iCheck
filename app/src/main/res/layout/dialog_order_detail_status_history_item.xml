@@ -19,7 +19,7 @@
         android:textStyle="normal"
         tools:text="@string/don_hang_duoc_tao_" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.TextSecondary
         android:id="@id/tvDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,7 +27,6 @@
         android:fontFamily="sans-serif-medium"
         android:includeFontPadding="false"
         android:singleLine="true"
-        android:textColor="#3c5a99"
         android:textSize="@dimen/font_14"
         android:textStyle="normal"
         tools:text="12:00, 12/03/1994" />

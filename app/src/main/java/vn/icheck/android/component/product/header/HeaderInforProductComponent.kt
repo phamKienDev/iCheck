@@ -92,7 +92,7 @@ class HeaderInforProductComponent(view: View, val listener: ProductDetailListene
             itemView.tvGiaNiemYet.beVisible()
             itemView.tvPriceUpdating.beGone()
             itemView.tv_price.text = TextHelper.formatMoneyPhay(productHeaderModel.icBarcodeProduct.price) + "đ"
-            itemView.tv_price.setTextColor(ContextCompat.getColor(itemView.context,R.color.colorSecondary))
+            itemView.tv_price.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(itemView.context))
         } else {
             itemView.tvPriceUpdating.beVisible()
             itemView.tv_price.beGone()

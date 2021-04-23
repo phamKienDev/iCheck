@@ -41,8 +41,8 @@
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_8"
         android:layout_marginEnd="@dimen/size_12"
-        android:textColor="@android:color/black"
         android:fontFamily="sans-serif-medium"
+        android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/owner_name_vg"
@@ -62,7 +62,7 @@
         app:layout_constraintTop_toBottomOf="@id/tv_owner_mst"
         tools:text="149/30 Bành Văn Trân, Phường 7, Quận Tân Bình, TP Hồ Chí Minh" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.TextSecondary
         android:id="@+id/tv_owner_website"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -71,34 +71,31 @@
         android:layout_marginEnd="@dimen/size_12"
         android:ellipsize="end"
         android:maxLines="1"
-        android:textColor="#3C5A99"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_owner_address"
         tools:text="www.mediwhite.vn" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.TextSecondary
         android:id="@+id/tv_owner_phone"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_4"
         android:maxLines="1"
-        android:textColor="#3C5A99"
         app:layout_constraintEnd_toStartOf="@+id/tv_owner_mail"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_owner_website"
         tools:text="0985771133" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.TextSecondary
         android:id="@+id/tv_owner_mail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/size_12"
         android:gravity="end"
         android:maxLines="1"
-        android:textColor="#3C5A99"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/tv_owner_phone"

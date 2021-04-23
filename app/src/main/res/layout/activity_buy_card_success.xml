@@ -194,7 +194,7 @@
         android:layout_height="match_parent"
         android:background="@color/white">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.TextSecondary
             android:id="@+id/textView76"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -203,7 +203,6 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:text="Mã thẻ"
             android:textSize="@dimen/font_16"
-            android:textColor="#3c5a99"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

@@ -33,7 +33,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/img_seller" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.TextSecondary
                 android:id="@+id/appCompatTextView36"
                 android:layout_width="@dimen/size_0"
                 android:layout_height="wrap_content"
@@ -45,7 +45,6 @@
                 android:singleLine="true"
                 android:text="@string/khong_co_diem_ban_nao_gan_ban"
                 android:textAlignment="center"
-                android:textColor="@color/colorSecondary"
                 android:textSize="@dimen/font_14"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"

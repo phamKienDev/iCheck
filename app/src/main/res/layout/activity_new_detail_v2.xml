@@ -66,7 +66,7 @@
                 android:background="#F0F0F0"
                 android:visibility="gone">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.TextSecondary
                     android:id="@+id/appCompatTextView30"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -76,13 +76,12 @@
                     android:paddingLeft="@dimen/size_12"
                     android:paddingTop="@dimen/size_12"
                     android:text="Tin tức liên quan"
-                    android:textColor="@color/colorSecondary"
                     android:textSize="@dimen/font_16"
                     android:textStyle="normal"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.TextSecondary
                     android:id="@id/txtViewAll"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -92,7 +91,6 @@
                     android:paddingEnd="@dimen/size_12"
                     android:paddingRight="@dimen/size_12"
                     android:text="Xem thêm"
-                    android:textColor="@color/colorSecondary"
                     android:textSize="@dimen/font_14"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"

@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:paddingBottom="@dimen/size_15"
-    android:background="@color/white"
+    android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/size_10"
-    android:layout_height="wrap_content">
+    android:background="@color/white"
+    android:paddingBottom="@dimen/size_15">
 
     <com.yarolegovich.discretescrollview.DiscreteScrollView
         android:id="@+id/images_rcv"
@@ -50,6 +50,7 @@
 
     <TextView
         android:id="@+id/tv_product_name"
+        style="@style/barlow_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
@@ -59,22 +60,20 @@
         android:layout_marginRight="@dimen/size_12"
         android:textColor="#212121"
         android:textSize="@dimen/font_16"
-        style="@style/barlow_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_fav"
         tools:text="Tinh chất dưỡng trắng 3IN1 Whitening Serum - KAESUNG LOVESKIN - 24K Gold" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.TextSecondary
         android:id="@+id/tv_price"
+        style="@style/barlow_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_6"
-        android:textColor="#3C5A99"
         android:textSize="@dimen/font_20"
-       style="@style/barlow_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_product_name"
         tools:text="890,000đ" />
@@ -122,8 +121,8 @@
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_11"
         android:layout_marginEnd="@dimen/size_12"
-        android:layerType="software"
         android:layout_marginRight="@dimen/size_12"
+        android:layerType="software"
         android:src="@drawable/dotted"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -149,24 +148,24 @@
 
     <vn.icheck.android.ichecklibs.view.TextPrimary
         android:id="@+id/tv_score"
+        style="@style/barlow_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_6"
         android:layout_marginLeft="@dimen/size_6"
         android:layout_marginTop="@dimen/size_6"
-        style="@style/barlow_text"
         app:layout_constraintStart_toEndOf="@+id/product_rate"
         app:layout_constraintTop_toBottomOf="@+id/div"
         tools:text="8,9 Tuyệt vời" />
 
     <TextView
         android:id="@+id/tv_suggest"
+        style="@style/barlow_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_10"
-        style="@style/barlow_text"
         android:textColor="@color/colorAccentGreen"
         android:textSize="@dimen/font_12"
         app:layout_constraintStart_toStartOf="parent"
@@ -175,13 +174,13 @@
 
     <vn.icheck.android.ichecklibs.view.TextPrimary
         android:id="@+id/tv_all_reviews"
+        style="@style/barlow_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_31"
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
         android:drawableEnd="@drawable/ic_arrow_right_light_blue_24dp"
-        style="@style/barlow_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/div"
         tools:text="Xem 1.884 đánh giá" />

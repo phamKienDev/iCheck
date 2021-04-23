@@ -16,13 +16,12 @@
         android:layout_marginBottom="@dimen/size_10"
         android:orientation="horizontal">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.TextSecondary
             android:id="@+id/tv_dgsp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Hỏi đáp về sản phẩm"
-            android:textColor="#3C5A99"
             android:textSize="@dimen/font_18" />
 
         <androidx.appcompat.widget.AppCompatTextView

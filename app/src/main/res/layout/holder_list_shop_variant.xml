@@ -6,14 +6,13 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <vn.icheck.android.ichecklibs.view.TextHeader
+    <vn.icheck.android.ichecklibs.view.TextHeaderSecondary
         android:id="@id/tvCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_11"
         android:layout_marginTop="@dimen/size_16"
         android:layout_marginBottom="@dimen/size_10"
-        android:textColor="#3c5a99"
         tools:text="14 Điểm bán gần đây" />
 
     <FrameLayout
@@ -28,16 +27,14 @@
             android:layout_marginBottom="@dimen/size_10"
             android:background="@color/white">
 
-            <vn.icheck.android.ui.view.TextBarlowSemiBold
+            <vn.icheck.android.ichecklibs.view.TextSecondary
                 android:id="@+id/tv_shop_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_64"
-                android:layout_marginLeft="@dimen/size_64"
                 android:layout_marginTop="@dimen/size_5"
                 android:layout_marginEnd="@dimen/size_14"
-                android:layout_marginRight="@dimen/size_14"
-                android:textColor="#3c5a99"
+                android:fontFamily="@font/barlow_semi_bold"
                 android:textSize="@dimen/font_16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -120,8 +117,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/barlow_medium"
-                        android:textSize="@dimen/font_12"
                         android:textColor="#b4b4b4"
+                        android:textSize="@dimen/font_12"
                         tools:text="23,504,000đ" />
 
                 </LinearLayout>
@@ -142,8 +139,8 @@
                         android:layout_height="match_parent"
                         android:drawableStart="@drawable/ic_location_item_shop_variant"
                         android:drawablePadding="@dimen/size_8"
-                        android:gravity="center_vertical"
                         android:fontFamily="@font/barlow_semi_bold"
+                        android:gravity="center_vertical"
                         android:text="Chỉ đường"
                         android:textSize="@dimen/font_16" />
 

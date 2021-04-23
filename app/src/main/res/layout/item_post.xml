@@ -396,7 +396,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.TextSecondary
                 android:id="@id/tvViewMore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -404,7 +404,6 @@
                 android:fontFamily="@font/barlow_semi_bold"
                 android:includeFontPadding="false"
                 android:text="@string/xem_them_cac_binh_luan"
-                android:textColor="@color/colorSecondary"
                 android:textSize="@dimen/font_14"
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"

@@ -23,14 +23,13 @@
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/ic_back_blue_24px" />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.TextSecondary
             android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:textSize="@dimen/font_16"
-            android:textColor="@color/colorSecondary"
             android:text="Cửa hàng nhãn dán"
             android:layout_marginEnd="@dimen/size_50"
             android:textAlignment="center" />

@@ -26,14 +26,13 @@
             android:descendantFocusability="blocksDescendants"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.TextSecondary
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_20"
                 android:fontFamily="sans-serif"
                 android:text="Thông tin "
-                android:textColor="#3c5a99"
                 android:textSize="@dimen/font_18"
                 android:textStyle="normal" />
 
@@ -269,7 +268,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.TextSecondary
                     android:id="@+id/appCompatTextView7"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -277,30 +276,29 @@
                     android:layout_marginTop="@dimen/size_8"
                     android:fontFamily="sans-serif-medium"
                     android:text="Sản phẩm xác thực"
-                    android:textColor="#3c5a99"
                     android:textSize="@dimen/font_16"
                     android:textStyle="normal"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
-<!--                <androidx.appcompat.widget.AppCompatTextView-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:drawableEnd="@drawable/ic_next_gray_18_px"-->
-<!--                    android:fontFamily="sans-serif"-->
-<!--                    android:gravity="end"-->
-<!--                    android:paddingEnd="@dimen/size_12"-->
-<!--                    android:text="Xem tất cả"-->
-<!--                    android:textColor="#828282"-->
-<!--                    android:textSize="@dimen/font_14"-->
-<!--                    android:textStyle="normal"-->
-<!--                    app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView7"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                    app:layout_constraintStart_toEndOf="@+id/appCompatTextView7"-->
-<!--                    app:layout_constraintTop_toTopOf="@+id/appCompatTextView7" />-->
+                <!--                <androidx.appcompat.widget.AppCompatTextView-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:drawableEnd="@drawable/ic_next_gray_18_px"-->
+                <!--                    android:fontFamily="sans-serif"-->
+                <!--                    android:gravity="end"-->
+                <!--                    android:paddingEnd="@dimen/size_12"-->
+                <!--                    android:text="Xem tất cả"-->
+                <!--                    android:textColor="#828282"-->
+                <!--                    android:textSize="@dimen/font_14"-->
+                <!--                    android:textStyle="normal"-->
+                <!--                    app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView7"-->
+                <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+                <!--                    app:layout_constraintStart_toEndOf="@+id/appCompatTextView7"-->
+                <!--                    app:layout_constraintTop_toTopOf="@+id/appCompatTextView7" />-->
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
