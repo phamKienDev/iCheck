@@ -1,5 +1,6 @@
 package vn.icheck.android.screen.user.search_home.dialog
 
+import android.graphics.Color
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
@@ -91,7 +92,7 @@ abstract class FilterUserDialog(val activity: FragmentActivity, val city: Mutabl
                 }
 
                 dialog.tv_location.text = city
-                dialog.tv_location.setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorPrimary))
+                dialog.tv_location.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(dialog.context))
 
                 dialog.img_clear_location.beVisible()
             } else {
@@ -113,7 +114,7 @@ abstract class FilterUserDialog(val activity: FragmentActivity, val city: Mutabl
         } else {
             dialog.tv_gender.setText(selectedGender.toString().substring(1, selectedGender.toString().length - 1))
             dialog.img_clear_gender.visibility = View.VISIBLE
-            dialog.tv_gender.setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorPrimary))
+            dialog.tv_gender.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(dialog.context))
         }
     }
 

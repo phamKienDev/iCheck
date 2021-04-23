@@ -25,7 +25,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.TextPrimary
             android:id="@id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_44"
@@ -33,7 +33,6 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:text="Giao dịch thành công"
-            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_18"
             android:textStyle="normal"
             app:layout_constraintTop_toTopOf="parent" />
@@ -253,7 +252,7 @@
             app:layout_constraintTop_toTopOf="@id/textView78"
             tools:text="05613081439641" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.TextPrimary
             android:id="@+id/btn_again"
             android:layout_width="0dp"
             android:layout_height="@dimen/size_36"
@@ -266,7 +265,6 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:text="Mua mã thẻ khác"
-            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_16"
             app:layout_constraintEnd_toStartOf="@id/btn_charge"
             app:layout_constraintStart_toStartOf="parent"

@@ -42,7 +42,7 @@
             android:textColor="#B4B4B4"
             app:drawableTopCompat="@drawable/ic_bottombar_home_unfc_27px" />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.TextPrimary
             android:fontFamily="@font/barlow_medium"
             android:gravity="center"
             android:id="@+id/btn_my_page"
@@ -52,7 +52,6 @@
             android:paddingTop="@dimen/size_8"
             android:layout_width="match_parent"
             android:text="Trang cá nhân"
-            android:textColor="@color/colorPrimary"
             app:drawableTopCompat="@drawable/ic_bottom_wall_fc_27px" />
 
         <TextView

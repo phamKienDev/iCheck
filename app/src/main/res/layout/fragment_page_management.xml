@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/gray_e5">
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.TextPrimary
         android:id="@+id/textView56"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_44"
@@ -14,7 +14,6 @@
         android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center"
         android:text="@string/quan_ly_trang"
-        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/font_18"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

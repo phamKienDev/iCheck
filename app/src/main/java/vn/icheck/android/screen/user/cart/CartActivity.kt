@@ -2,6 +2,7 @@ package vn.icheck.android.screen.user.cart
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
@@ -69,7 +70,8 @@ class CartActivity : BaseActivity<CartPresenter>(), ICartView {
     }
 
     private fun setupSwipeLayout() {
-        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
+        val swipeColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        swipeLayout.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
 
         swipeLayout.setOnRefreshListener {
             presenter.getCartOnline()

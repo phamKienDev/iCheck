@@ -196,7 +196,7 @@
             app:layout_constraintStart_toEndOf="@id/imgWallpaper"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.TextPrimary
             android:id="@id/btnSend"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/size_0"
@@ -208,7 +208,6 @@
             android:gravity="center_vertical"
             android:includeFontPadding="false"
             android:text="@string/dang_bai"
-            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_16"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

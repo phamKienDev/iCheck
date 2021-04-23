@@ -71,14 +71,12 @@
             android:padding="@dimen/size_10"
             android:src="@drawable/ic_back_blue_v2_24px" />
 
-        <vn.icheck.android.ui.view.TextBarlowSemiBold
+        <vn.icheck.android.ichecklibs.view.TextPrimary
             android:id="@id/txtTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_40"
-            android:layout_marginLeft="@dimen/size_40"
             android:layout_marginEnd="@dimen/size_8"
-            android:layout_marginRight="@dimen/size_8"
             android:layout_weight="1"
             android:ellipsize="end"
             android:fontFamily="@font/barlow_semi_bold"
@@ -86,7 +84,6 @@
             android:includeFontPadding="false"
             android:singleLine="true"
             android:text="2335432323327"
-            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_18"
             tools:text="Tiêu đề" />
 
@@ -194,18 +191,16 @@
             android:visibility="gone"
             tools:visibility="visible">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.TextPrimary
                 android:id="@+id/btn_contact_not_found"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/size_36"
                 android:layout_marginEnd="@dimen/size_5"
-                android:layout_marginRight="@dimen/size_5"
                 android:layout_weight="1"
                 android:background="@drawable/bg_corners_4_light_blue_no_solid"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:text="Liên hệ iCheck"
-                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/font_16" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -224,7 +219,7 @@
                 android:textSize="@dimen/font_16" />
         </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.TextPrimary
             android:id="@+id/btn_lien_he"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_36"
@@ -235,7 +230,6 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:text="Liên hệ iCheck"
-            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_16"
             android:visibility="gone" />
 
@@ -249,7 +243,7 @@
             android:orientation="horizontal"
             android:visibility="gone">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.TextPrimary
                 android:id="@+id/btn_contact_icheck"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/size_36"
@@ -260,7 +254,6 @@
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:text="Liên hệ iCheck"
-                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/font_16" />
 
             <androidx.appcompat.widget.AppCompatTextView

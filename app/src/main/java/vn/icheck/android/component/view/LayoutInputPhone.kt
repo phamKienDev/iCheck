@@ -1,6 +1,7 @@
 package vn.icheck.android.component.view
 
 import android.content.Context
+import android.graphics.Color
 import android.util.AttributeSet
 import android.view.Gravity
 import android.view.View
@@ -33,7 +34,7 @@ class LayoutInputPhone : LinearLayout {
                 ViewHelper.createLayoutParams(),
                 ViewHelper.outValue.resourceId,
                 ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
-                ContextCompat.getColor(context, R.color.colorPrimary),
+                vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context),
                 18f).also {
             it.setPadding(0, SizeHelper.size10, 0, SizeHelper.size10)
             it.setText(R.string.viet_nam)

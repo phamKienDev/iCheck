@@ -223,7 +223,7 @@
                         app:layout_constraintStart_toEndOf="@id/tvMyGift"
                         app:layout_constraintTop_toTopOf="@+id/tvMyGift" />
 
-                    <vn.icheck.android.component.view.ButtonWhiteOutlineLightBlueCorners4
+                    <vn.icheck.android.component.view.ButtonWhiteOutlinePrimaryBlueCorners4
                         android:id="@+id/tvBenefit"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/size_36"

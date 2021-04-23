@@ -95,7 +95,7 @@ class RankOfUserActivity : BaseActivityMVVM() {
                 }
                 Constant.USER_LEVEL_DIAMOND -> {
                     tvPoint.text = "${score} Điểm"
-                    tvPoint.setTextColor(Color.parseColor("#057dda"))
+                    tvPoint.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this))
                     tvNameRank.text = "Thành viên Kim cương"
                     img_rank_user.setImageResource(R.drawable.ic_leftmenu_avatar_diamond_36dp)
                     goToHistory.setImageResource(R.drawable.ic_arrow_right_diamond_8)
@@ -172,6 +172,7 @@ class RankOfUserActivity : BaseActivityMVVM() {
             startActivity<ListCampaignActivity>()
         }
 
+        tvBenefit.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this))
         tvBenefit.setOnClickListener {
             DialogHelper.showLoading(this)
             SettingHelper.getSystemSetting("ranking-support.benefit-url", "ranking-support", object : ISettingListener {

@@ -1,5 +1,6 @@
 package vn.icheck.android.screen.user.history_search
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
@@ -59,7 +60,8 @@ class HistorySearchActivity : BaseActivityMVVM(), HistoryScanSearchView {
     }
 
     private fun initSwipelayout() {
-        swipe_container.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorPrimary), ContextCompat.getColor(this, R.color.colorPrimary), ContextCompat.getColor(this, R.color.colorPrimary))
+        val swipeColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        swipe_container.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
         swipe_container.setOnRefreshListener {
             if (!key.isNullOrEmpty()) {
                 viewModel.getHistoryByKey(key!!, false, true)

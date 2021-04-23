@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_back_blue_24px_new" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.TextPrimary
         android:id="@+id/textView26"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,7 +24,6 @@
         android:layout_marginRight="@dimen/size_50"
         android:fontFamily="@font/barlow_medium"
         android:text="Chọn địa chỉ giao hàng"
-        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/font_18"
         app:layout_constraintBottom_toBottomOf="@+id/btn_back"
         app:layout_constraintEnd_toEndOf="parent"

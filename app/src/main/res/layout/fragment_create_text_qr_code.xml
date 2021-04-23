@@ -27,7 +27,7 @@
             android:background="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-        <vn.icheck.android.ui.view.TextHeader
+        <vn.icheck.android.ichecklibs.view.TextHeaderPrimary
             android:id="@id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_44"
@@ -36,7 +36,6 @@
             android:ellipsize="end"
             android:gravity="center"
             android:singleLine="true"
-            android:textColor="@color/colorPrimary"
             android:textStyle="normal"
             tools:text="Tiêu đề" />
 

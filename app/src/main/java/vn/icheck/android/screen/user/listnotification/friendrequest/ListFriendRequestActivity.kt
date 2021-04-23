@@ -1,5 +1,6 @@
 package vn.icheck.android.screen.user.listnotification.friendrequest
 
+import android.graphics.Color
 import android.graphics.drawable.ShapeDrawable
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -98,7 +99,8 @@ class ListFriendRequestActivity : BaseActivityMVVM(), IRecyclerViewCallback {
     }
 
     private fun setupSwipeLayout() {
-        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
+        val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        swipeLayout.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
 
         swipeLayout.setOnRefreshListener {
             getListFriend()

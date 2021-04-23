@@ -17,13 +17,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_cancel_blue_24px" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.TextPrimary
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_12"
         android:text="Nhập mã bằng tay"
         android:fontFamily="@font/barlow_semi_bold"
-        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/font_18"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

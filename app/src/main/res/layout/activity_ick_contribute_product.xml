@@ -19,17 +19,17 @@
             android:scaleType="centerInside"
             app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-        <vn.icheck.android.ui.view.TextBarlowMedium
+        <vn.icheck.android.ichecklibs.view.TextPrimary
             android:id="@+id/textView4"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:fontFamily="@font/barlow_medium"
             android:layout_marginEnd="@dimen/size_50"
             android:layout_marginRight="@dimen/size_50"
             android:layout_weight="1"
             android:gravity="center"
             android:focusableInTouchMode="true"
             android:text="Đóng góp thông tin"
-            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_18" />
     </LinearLayout>
 

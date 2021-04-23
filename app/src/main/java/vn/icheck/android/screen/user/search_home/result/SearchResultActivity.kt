@@ -96,7 +96,8 @@ class SearchResultActivity : BaseActivityMVVM(), View.OnClickListener {
         swipe_container.setOnRefreshListener {
             getData()
         }
-        swipe_container.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
+        val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        swipe_container.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
     }
 
     private fun initRecyclerView() {

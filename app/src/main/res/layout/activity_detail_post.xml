@@ -23,7 +23,7 @@
             android:background="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_back_blue_24px_new" />
 
-        <vn.icheck.android.ui.view.TextHeader
+        <vn.icheck.android.ichecklibs.view.TextHeaderPrimary
             android:id="@+id/tvNameProduct"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -31,8 +31,7 @@
             android:ellipsize="end"
             android:gravity="center"
             android:singleLine="true"
-            android:text="@string/chi_tiet_bai_viet"
-            android:textColor="@color/colorPrimary" />
+            android:text="@string/chi_tiet_bai_viet" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imgAction"

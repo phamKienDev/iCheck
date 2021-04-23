@@ -618,7 +618,7 @@ object ViewHelper {
                 it.setMargins(SizeHelper.size6, 0, SizeHelper.size6, 0)
             }
             it.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
-            it.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary))
+            it.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(it.context))
             it.includeFontPadding = false
             it.maxLines = 1
             it.ellipsize = TextUtils.TruncateAt.END
@@ -642,7 +642,7 @@ object ViewHelper {
             it.topMargin = SizeHelper.size4
         }
         tvPrice.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
-        tvPrice.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary))
+        tvPrice.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context))
         tvPrice.includeFontPadding = false
         tvPrice.isSingleLine = true
         tvPrice.ellipsize = TextUtils.TruncateAt.END
@@ -683,7 +683,7 @@ object ViewHelper {
         indicator.setInteractiveAnimation(true)
         indicator.setAnimationType(AnimationType.WORM)
         indicator.selectedColor = ContextCompat.getColor(context, R.color.colorSecondary)
-        indicator.unselectedColor = ContextCompat.getColor(context, R.color.colorPrimary)
+        indicator.unselectedColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context)
         indicator.setViewPager(viewPager)
         layoutParent.addView(indicator)
 
@@ -1163,6 +1163,8 @@ object ViewHelper {
             layoutParent.layoutParams = createLayoutParams()
             layoutParent.orientation = LinearLayout.VERTICAL
 
+            val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context)
+
             // Layout Top
             layoutParent.addView(LinearLayout(context).also { layoutTitle ->
                 layoutTitle.layoutParams = createLayoutParams()
@@ -1172,7 +1174,7 @@ object ViewHelper {
                         createLayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f),
                         null,
                         createTypeface(context, R.font.barlow_semi_bold),
-                        ContextCompat.getColor(context, R.color.colorPrimary),
+                        primaryColor,
                         16f))
 
                 layoutTitle.addView(createText(context,
@@ -1200,7 +1202,7 @@ object ViewHelper {
                         createLayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f),
                         null,
                         createTypeface(context, R.font.barlow_medium),
-                        ContextCompat.getColor(context, R.color.colorPrimary),
+                        primaryColor,
                         14f))
 
                 layoutTitle.addView(createText(context,
@@ -1660,7 +1662,7 @@ object ViewHelper {
                 },
                 null,
                 Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf"),
-                ContextCompat.getColor(context, R.color.colorPrimary),
+                vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context),
                 16f,
                 1).also {
             it.text = "Xem thêm"
@@ -1769,6 +1771,8 @@ object ViewHelper {
                 img.layoutParams = createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size120)
             })
 
+            val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context)
+
             layoutParent.addView(ConstraintLayout(context).also { constraintLayout ->
                 constraintLayout.id = R.id.constraintLayout
                 constraintLayout.layoutParams = createLayoutParams(SizeHelper.size8, SizeHelper.size9, SizeHelper.size8, SizeHelper.size9)
@@ -1794,7 +1798,7 @@ object ViewHelper {
                     params.setMargins(0, SizeHelper.size6, 0, 0)
                 }
                 rate.textSize = 12f
-                rate.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary))
+                rate.setTextColor(primaryColor)
                 rate.typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
                 rate.includeFontPadding = false
                 rate.ellipsize = TextUtils.TruncateAt.END
@@ -1811,7 +1815,7 @@ object ViewHelper {
                 text.background = ContextCompat.getDrawable(context, R.drawable.bg_corners_14_light_blue_no_solid)
                 text.textSize = 12f
                 text.setPadding(SizeHelper.size6, SizeHelper.size2, SizeHelper.size6, SizeHelper.size2)
-                text.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary))
+                text.setTextColor(primaryColor)
                 text.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
                 text.includeFontPadding = false
                 text.ellipsize = TextUtils.TruncateAt.END
@@ -2152,7 +2156,7 @@ object ViewHelper {
             it.includeFontPadding = false
             it.ellipsize = TextUtils.TruncateAt.END
             it.isSingleLine = true
-            it.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary))
+            it.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(it.context))
             it.textSize = 14f
             it.includeFontPadding = false
             it.id = R.id.tv_price
@@ -2330,7 +2334,7 @@ object ViewHelper {
             it.addView(AppCompatTextView(context).also {
                 it.layoutParams = createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
                 it.gravity = Gravity.CENTER_HORIZONTAL
-                it.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary))
+                it.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(it.context))
                 it.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
                 it.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
                 it.includeFontPadding = false
@@ -2359,7 +2363,7 @@ object ViewHelper {
                 it.topMargin = SizeHelper.size8
             }
             it.setPadding(0, SizeHelper.size4, 0, SizeHelper.size4)
-            it.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary))
+            it.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(it.context))
             it.gravity = Gravity.CENTER
             it.text = context.getString(R.string.chinh_sua_dong_gop)
             it.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
@@ -2406,7 +2410,7 @@ object ViewHelper {
                 it.topMargin = SizeHelper.size6
                 it.bottomMargin = SizeHelper.dpToPx(15)
             }
-            it.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary))
+            it.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(it.context))
             it.gravity = Gravity.CENTER_VERTICAL
             it.text = context.getString(R.string.xem_tat_ca)
             it.typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
@@ -2754,7 +2758,7 @@ object ViewHelper {
         layoutParent.addView(AppCompatTextView(context).also {
             it.layoutParams = createLayoutParams(SizeHelper.size12, SizeHelper.size16, SizeHelper.size12, SizeHelper.size10)
             it.setPadding(0, SizeHelper.size10, 0, SizeHelper.size10)
-            it.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary))
+            it.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(it.context))
             it.typeface = createTypeface(context, R.font.barlow_semi_bold)
             it.isSingleLine = true
             it.gravity = Gravity.CENTER
@@ -2911,12 +2915,7 @@ object ViewHelper {
                     ).also {
                         it.topMargin = SizeHelper.size4
                     }
-                    it.setTextColor(
-                            ContextCompat.getColor(
-                                    parent.context,
-                                    R.color.colorPrimary
-                            )
-                    )
+                    it.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(it.context))
                     it.typeface =
                             Typeface.createFromAsset(parent.context.assets, "font/barlow_semi_bold.ttf")
                     it.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
@@ -2940,12 +2939,7 @@ object ViewHelper {
                 it.layoutParams = createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).also {
                     it.setMargins(SizeHelper.size12, SizeHelper.size8, SizeHelper.size12, SizeHelper.size10)
                 }
-                it.setTextColor(
-                        ContextCompat.getColor(
-                                parent.context,
-                                R.color.colorPrimary
-                        )
-                )
+                it.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(it.context))
                 it.gravity = Gravity.CENTER_VERTICAL or Gravity.END
                 it.text = parent.context.getString(R.string.xem_chi_tiet)
                 it.typeface = Typeface.createFromAsset(parent.context.assets, "font/barlow_medium.ttf")
@@ -3019,7 +3013,7 @@ object ViewHelper {
             it.typeface = createTypeface(ICheckApplication.getInstance(), R.font.barlow_semi_bold)
             it.textSize = 16f
             it.setBackgroundResource(R.drawable.bg_corners_4_light_blue_no_solid)
-            it.setTextColor(ContextCompat.getColor(parent.context, R.color.colorPrimary))
+            it.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(it.context))
         })
 
         layoutParent.addView(layoutPermission)
@@ -3246,7 +3240,7 @@ object ViewHelper {
                     text.setPadding(SizeHelper.size10, 0, 0, 0)
                     text.textSize = 14f
                     text.text = "Xem chỉ đường"
-                    text.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary))
+                    text.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(text.context))
                     text.typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
                     text.includeFontPadding = false
                 })
@@ -3258,7 +3252,7 @@ object ViewHelper {
                     it.setMargins(SizeHelper.size12, SizeHelper.size12, SizeHelper.size12, 0)
                 }
                 params.textSize = 14f
-                params.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary))
+                params.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(params.context))
                 params.typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
                 params.includeFontPadding = false
                 params.isSingleLine = true
@@ -3274,7 +3268,7 @@ object ViewHelper {
                     it.setMargins(SizeHelper.size12, SizeHelper.size12, SizeHelper.size12, 0)
                 }
                 params.textSize = 14f
-                params.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary))
+                params.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(params.context))
                 params.typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
                 params.includeFontPadding = false
                 params.isSingleLine = true
@@ -3290,7 +3284,7 @@ object ViewHelper {
                     it.setMargins(SizeHelper.size12, SizeHelper.size12, SizeHelper.size12, 0)
                 }
                 params.textSize = 14f
-                params.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary))
+                params.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(params.context))
                 params.typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
                 params.includeFontPadding = false
                 params.isSingleLine = true
@@ -3306,7 +3300,7 @@ object ViewHelper {
                     it.setMargins(SizeHelper.size12, SizeHelper.size12, SizeHelper.size12, 0)
                 }
                 params.textSize = 14f
-                params.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary))
+                params.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(params.context))
                 params.typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
                 params.includeFontPadding = false
                 params.isSingleLine = true
@@ -3467,7 +3461,7 @@ object ViewHelper {
                     text.layoutParams = createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).also {
                         it.setMargins(0, SizeHelper.size12, 0, SizeHelper.size12)
                     }
-                    text.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary))
+                    text.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context))
                     text.gravity = Gravity.CENTER_VERTICAL
                     text.text = "Đọc tiếp"
                     text.gravity = Gravity.CENTER
@@ -3563,16 +3557,19 @@ object ViewHelper {
                 it.gravity = Gravity.CENTER_HORIZONTAL
             })
 
+            val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context)
+
             layoutParent.addView(createText(context,
                     createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size44).also { params ->
                         params.topMargin = SizeHelper.size16
                     },
                     createStateListDrawable(
                             Color.WHITE, ContextCompat.getColor(context, R.color.lightGray),
-                            ContextCompat.getColor(context, R.color.colorPrimary), ContextCompat.getColor(context, R.color.colorPrimary),
+                            primaryColor,
+                            primaryColor,
                             SizeHelper.size1, SizeHelper.size6.toFloat()),
                     Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf"),
-                    ContextCompat.getColor(context, R.color.colorPrimary),
+                    primaryColor,
                     16f).also {
                 it.gravity = Gravity.CENTER
                 it.setPadding(SizeHelper.size16, 0, SizeHelper.size16, 0)

@@ -51,7 +51,7 @@
         app:srb_stepSize="0.5"
         android:layout_marginRight="@dimen/size_8" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.TextPrimary
         android:id="@+id/tv_xem_chi_tiet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -60,7 +60,6 @@
         android:drawableEnd="@drawable/ic_down_blue_18px"
         android:paddingBottom="@dimen/size_8"
         android:text="Xem chi tiết"
-        android:textColor="@color/colorPrimary"
         android:includeFontPadding="false"
         app:layout_constraintEnd_toEndOf="@+id/customer_rating"
         app:layout_constraintTop_toBottomOf="@+id/customer_rating"
@@ -129,7 +128,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rcv_image" />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.TextPrimary
             android:id="@+id/tv_collapse_drv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -137,7 +136,6 @@
             android:layout_marginBottom="@dimen/size_8"
             android:drawableEnd="@drawable/ic_up_blue_18px"
             android:text="Thu gọn"
-            android:textColor="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="@+id/btn_edit"
             app:layout_constraintTop_toBottomOf="@+id/btn_edit"
             android:drawableRight="@drawable/ic_up_blue_18px" />

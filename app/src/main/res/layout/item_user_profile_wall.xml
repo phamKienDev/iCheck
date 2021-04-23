@@ -93,7 +93,7 @@
                     app:drawableLeftCompat="@drawable/ic_add_white_12px" />
             </LinearLayout>
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.TextPrimary
                 android:id="@+id/btn_send_msg"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/size_35"
@@ -104,7 +104,6 @@
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center"
                 android:text="Nhắn tin"
-                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/font_16" />
 
             <ImageView

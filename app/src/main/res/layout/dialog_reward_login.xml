@@ -66,8 +66,7 @@
                 android:layout_marginBottom="@dimen/size_12"
                 android:orientation="horizontal">
 
-
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.TextPrimary
                     android:id="@id/btnRegister"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -82,7 +81,6 @@
                     android:paddingTop="@dimen/size_8"
                     android:paddingBottom="@dimen/size_8"
                     android:text="@string/dang_ky"
-                    android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/font_16" />
 
                 <androidx.appcompat.widget.AppCompatTextView

@@ -142,7 +142,7 @@
                     app:layout_constraintStart_toEndOf="@+id/tvCountGift"
                     app:layout_constraintTop_toTopOf="@+id/tvCountGift" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.TextPrimary
                     android:id="@+id/tvAddMoreTurn"
                     android:layout_width="@dimen/size_95"
                     android:layout_height="@dimen/size_32"
@@ -152,7 +152,6 @@
                     android:fontFamily="@font/barlow_semi_bold"
                     android:gravity="center"
                     android:text="Thêm lượt"
-                    android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/font_16"
                     app:layout_constraintBottom_toBottomOf="@+id/tvCountGift"
                     app:layout_constraintEnd_toEndOf="parent"

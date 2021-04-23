@@ -24,7 +24,7 @@
             android:background="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.TextPrimary
             android:id="@id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_44"
@@ -34,7 +34,6 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:singleLine="true"
-            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_18"
             android:textStyle="normal"
             tools:text="Tiêu đề" />

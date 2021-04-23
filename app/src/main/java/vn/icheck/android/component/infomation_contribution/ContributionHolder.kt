@@ -1,5 +1,6 @@
 package vn.icheck.android.component.infomation_contribution
 
+import android.graphics.Color
 import android.os.Build
 import android.view.View
 import android.view.ViewGroup
@@ -141,7 +142,7 @@ class ContributionHolder(parent: ViewGroup) : BaseViewHolder<ContributrionModel>
             } else {
                 if (contribution.contribution!!.myVote!!) {
                     tvUpVote.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_contribute_correct_fc_30px, 0, 0)
-                    tvUpVote.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorPrimary))
+                    tvUpVote.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(itemView.context))
 
                     tvDownVote.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_contribute_incorrect_unfc_30px, 0, 0)
                     tvDownVote.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorSecondText))

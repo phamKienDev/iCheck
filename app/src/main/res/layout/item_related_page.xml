@@ -80,7 +80,7 @@
             app:layout_constraintEnd_toEndOf="@id/layoutName"
             app:layout_constraintStart_toStartOf="@id/layoutName" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.TextPrimary
             android:id="@+id/tvAction"
             android:layout_width="@dimen/size_80"
             android:layout_height="wrap_content"
@@ -93,7 +93,6 @@
             android:paddingTop="@dimen/size_8"
             android:paddingBottom="@dimen/size_8"
             android:text="@string/ghe_tham"
-            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
             app:layout_constraintEnd_toEndOf="parent"

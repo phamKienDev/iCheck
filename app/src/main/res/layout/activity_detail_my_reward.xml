@@ -176,14 +176,13 @@
                         android:background="@drawable/bg_reward_bottom"
                      >
 
-                        <androidx.appcompat.widget.AppCompatTextView
+                        <vn.icheck.android.ichecklibs.view.TextPrimary
                             android:id="@+id/tvState"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/size_8"
                             android:layout_marginEnd="@dimen/size_32"
                             android:fontFamily="@font/barlow_semi_bold"
-                            android:textColor="@color/colorPrimary"
                             android:textSize="@dimen/font_16"
                             android:visibility="gone"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -494,7 +493,7 @@ Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận t
                 android:background="?android:attr/selectableItemBackground"
                 app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-            <vn.icheck.android.ui.view.TextHeader
+            <vn.icheck.android.ichecklibs.view.TextHeaderPrimary
                 android:id="@id/txtTitle"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -505,7 +504,6 @@ Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận t
                 android:ellipsize="end"
                 android:gravity="center"
                 android:singleLine="true"
-                android:textColor="@color/colorPrimary"
                 tools:text="Tiêu đề" />
         </LinearLayout>
     </FrameLayout>
@@ -528,7 +526,7 @@ Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận t
         app:layout_constraintBottom_toBottomOf="parent"
         tools:visibility="visible">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.TextPrimary
             android:id="@id/btnRefuse"
             android:layout_width="0dp"
             android:layout_height="@dimen/size_36"
@@ -542,7 +540,6 @@ Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận t
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:text="@string/tu_choi_qua"
-            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_16"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btnAcceptDaLay"

@@ -338,49 +338,50 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
         }
     }
 
-    private fun updateUserStatus(user: ICUser?) {
-        if (user != null) {
-//            txtStatus.text = (user.phone + " | " + getString(R.string.thanh_vien_xxx, Constant.getUserLevelNameUpcase(this, SettingManager.getRankLevel)))
-//            txtStatus.movementMethod = null
-        } else {
-            val registerClickable = object : ClickableSpan() {
-                override fun onClick(p0: View) {
-                    drawerLayout.closeDrawer(GravityCompat.START)
-                    startActivity<RegisterUserActivity, Boolean>(Constant.DATA_1, true)
-                }
-
-                override fun updateDrawState(ds: TextPaint) {
-                    super.updateDrawState(ds)
-                    ds.isUnderlineText = true
-                }
-            }
-
-            val loginClickable = object : ClickableSpan() {
-                override fun onClick(p0: View) {
-                    drawerLayout.closeDrawer(GravityCompat.START)
-                    startActivity<IckLoginActivity>()
-                }
-
-                override fun updateDrawState(ds: TextPaint) {
-                    super.updateDrawState(ds)
-                    ds.isUnderlineText = true
-                }
-            }
-
-            val spannable = SpannableString(getString(R.string.menu_note))
-
-            spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(this, R.color.colorPrimary)), 19, 26, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-            spannable.setSpan(StyleSpan(Typeface.BOLD), 19, 26, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-            spannable.setSpan(registerClickable, 19, 26, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-
-            spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(this, R.color.colorPrimary)), 32, spannable.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-            spannable.setSpan(StyleSpan(Typeface.BOLD), 32, spannable.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-            spannable.setSpan(loginClickable, 32, spannable.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-
-//            txtStatus.text = spannable
-//            txtStatus.movementMethod = LinkMovementMethod.getInstance()
-        }
-    }
+//    private fun updateUserStatus(user: ICUser?) {
+//        if (user != null) {
+////            txtStatus.text = (user.phone + " | " + getString(R.string.thanh_vien_xxx, Constant.getUserLevelNameUpcase(this, SettingManager.getRankLevel)))
+////            txtStatus.movementMethod = null
+//        } else {
+//            val registerClickable = object : ClickableSpan() {
+//                override fun onClick(p0: View) {
+//                    drawerLayout.closeDrawer(GravityCompat.START)
+//                    startActivity<RegisterUserActivity, Boolean>(Constant.DATA_1, true)
+//                }
+//
+//                override fun updateDrawState(ds: TextPaint) {
+//                    super.updateDrawState(ds)
+//                    ds.isUnderlineText = true
+//                }
+//            }
+//
+//            val loginClickable = object : ClickableSpan() {
+//                override fun onClick(p0: View) {
+//                    drawerLayout.closeDrawer(GravityCompat.START)
+//                    startActivity<IckLoginActivity>()
+//                }
+//
+//                override fun updateDrawState(ds: TextPaint) {
+//                    super.updateDrawState(ds)
+//                    ds.isUnderlineText = true
+//                }
+//            }
+//
+//            val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+//            val spannable = SpannableString(getString(R.string.menu_note))
+//
+//            spannable.setSpan(ForegroundColorSpan(primaryColor), 19, 26, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+//            spannable.setSpan(StyleSpan(Typeface.BOLD), 19, 26, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+//            spannable.setSpan(registerClickable, 19, 26, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+//
+//            spannable.setSpan(ForegroundColorSpan(primaryColor), 32, spannable.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+//            spannable.setSpan(StyleSpan(Typeface.BOLD), 32, spannable.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+//            spannable.setSpan(loginClickable, 32, spannable.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+//
+////            txtStatus.text = spannable
+////            txtStatus.movementMethod = LinkMovementMethod.getInstance()
+//        }
+//    }
 
     private fun setListenerDrawerLayout() {
         val drawerToggle = object : ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
@@ -398,11 +399,11 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
 //        tvCoin.text = TextHelper.formatMoney(SettingManager.getUserCoin)
 //        imgLevel.setImageResource(Constant.getUserLevelIcon28(SettingManager.getRankLevel))
 
-        updateUserStatus(if (SessionManager.isUserLogged) {
-            SessionManager.session.user
-        } else {
-            null
-        })
+//        updateUserStatus(if (SessionManager.isUserLogged) {
+//            SessionManager.session.user
+//        } else {
+//            null
+//        })
     }
 
     fun openSlideMenu() {
@@ -532,17 +533,14 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
             tv_user_rank.visibility = View.VISIBLE
             tv_user_rank.setTextColor(TextColorHelper.getColorNormalText(this))
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                val spannableString = SpannableString(Html.fromHtml("Vui lòng <font color=#057DDA><u>Đăng kí</u></font> hoặc <font color=#057DDA><u>Đăng nhập</u></font>", Html.FROM_HTML_MODE_COMPACT))
+                val spannableString = SpannableString(Html.fromHtml("Vui lòng <font color=${vn.icheck.android.ichecklibs.Constant.getPrimaryColorCode}><u>Đăng kí</u></font> hoặc <font color=${vn.icheck.android.ichecklibs.Constant.getPrimaryColorCode}><u>Đăng nhập</u></font>", Html.FROM_HTML_MODE_COMPACT))
                 spannableString.setSpan(registerClickable, 8, 16, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-
                 spannableString.setSpan(loginClickable, 23, spannableString.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
                 tv_user_rank.text = spannableString
                 tv_user_rank.movementMethod = LinkMovementMethod.getInstance()
             } else {
-                val spannableString = SpannableString(Html.fromHtml("Vui lòng <font color=#057DDA><u>Đăng kí</u></font> hoặc <font color=#057DDA><u>Đăng nhập</u></font>"))
-
+                val spannableString = SpannableString(Html.fromHtml("Vui lòng <font color=${vn.icheck.android.ichecklibs.Constant.getPrimaryColorCode}><u>Đăng kí</u></font> hoặc <font color=${vn.icheck.android.ichecklibs.Constant.getPrimaryColorCode}><u>Đăng nhập</u></font>"))
                 spannableString.setSpan(registerClickable, 8, 16, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-
                 spannableString.setSpan(loginClickable, 23, spannableString.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
                 tv_user_rank.text = spannableString
                 tv_user_rank.movementMethod = LinkMovementMethod.getInstance()

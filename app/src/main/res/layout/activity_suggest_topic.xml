@@ -75,7 +75,7 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.TextPrimary
             android:id="@+id/btn_skip"
             android:layout_width="@dimen/size_90"
             android:layout_height="wrap_content"
@@ -85,7 +85,6 @@
             android:paddingTop="@dimen/size_6"
             android:paddingBottom="@dimen/size_6"
             android:text="@string/bo_qua"
-            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_16"
             android:visibility="gone" />
 

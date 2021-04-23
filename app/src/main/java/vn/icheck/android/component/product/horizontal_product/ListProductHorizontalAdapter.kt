@@ -87,7 +87,7 @@ class ListProductHorizontalAdapter(val url: String, val params: HashMap<String, 
                             layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).also {
                                 it.setMargins(SizeHelper.size6, 0, SizeHelper.size6, 0)
                             }
-                            setTextColor(getColor(R.color.colorPrimary))
+                            setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context))
                             typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
                             text = "${obj.rating * 2}"
                         }

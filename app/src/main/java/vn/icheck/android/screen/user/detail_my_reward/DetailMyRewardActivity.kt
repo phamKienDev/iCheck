@@ -300,7 +300,7 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                     resetTvWidth()
                     binding.tvMathecao.beVisible()
                     binding.tvMathecao simpleText "Đã xác nhận giao quà"
-                    binding.tvMathecao.setTextColor(ContextCompat.getColor(this, R.color.colorPrimary))
+                    binding.tvMathecao.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this))
                     binding.tvMathecao.typeface = Typeface.createFromAsset(assets, "font/barlow_semi_bold.ttf")
                     binding.layoutBottom.beGone()
                     binding.tvTime.beInvisible()

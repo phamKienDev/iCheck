@@ -172,12 +172,12 @@ class FilterCategoryDialog(val category: MutableList<ICCategorySearch>?, val cal
             //set màu xanh cho dấu > và category cuối cùng
             for (i in 0 until cates.length) {
                 if (cates[i].toString() == ">") {
-                    spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(tv_list_category.context, R.color.colorPrimary)), i, i + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    spannable.setSpan(ForegroundColorSpan(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(tv_list_category.context)), i, i + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
                 }
             }
 
             val lastItem = cates.indexOf(cateString.last())
-            spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(tv_list_category.context, R.color.colorPrimary)), lastItem, lastItem + cateString.last().length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            spannable.setSpan(ForegroundColorSpan(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(tv_list_category.context)), lastItem, lastItem + cateString.last().length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 
             //callback Parent khi ấn Tất cả
             val callCateParent = object : ClickableSpan() {

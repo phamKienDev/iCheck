@@ -1,5 +1,6 @@
 package vn.icheck.android.screen.user.orderhistory
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -49,7 +50,8 @@ class OrderHistoryFragment : BaseFragmentMVVM(), IRecyclerViewCallback {
 
     private fun setupRefreshLayout() {
         context?.let {
-            swipeLayout.setColorSchemeColors(ContextCompat.getColor(it, R.color.colorSecondary), ContextCompat.getColor(it, R.color.colorPrimary), ContextCompat.getColor(it, R.color.colorPrimary))
+            val swipeColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(it)
+            swipeLayout.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
         }
 
         swipeLayout.setOnRefreshListener {

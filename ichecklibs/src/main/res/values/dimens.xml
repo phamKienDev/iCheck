@@ -59,4 +59,5 @@
     <dimen name="size_52">52dp</dimen>
     <dimen name="width_your_card_item_horizontal">331dp</dimen>
     <dimen name="margin_your_card_item_horizontal">3.5dp</dimen>
+    <dimen name="font_18">18sp</dimen>
 </resources>

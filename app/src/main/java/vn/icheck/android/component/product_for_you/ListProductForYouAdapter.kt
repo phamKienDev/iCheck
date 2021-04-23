@@ -134,9 +134,12 @@ class ListProductForYouAdapter(val listData: MutableList<ICProductForYouMedia>) 
                     itemView.tv_rating.background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(itemView.context, R.color.red_v2), SizeHelper.size14.toFloat())
                 }
                 else -> {
-                    itemView.tv_rating.text = itemView.context.getString(R.string.x_tren_ca_tuyet_voi)
-                    itemView.tv_rating.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorPrimary))
-                    itemView.tv_rating.background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(itemView.context, R.color.colorPrimary), SizeHelper.size14.toFloat())
+                    itemView.tv_rating.apply {
+                        val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context)
+                        text = itemView.context.getString(R.string.x_tren_ca_tuyet_voi)
+                        setTextColor(primaryColor)
+                        background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, primaryColor, SizeHelper.size14.toFloat())
+                    }
                 }
             }
         }

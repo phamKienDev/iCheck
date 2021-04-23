@@ -25,14 +25,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.TextPrimary
             android:id="@+id/tvTitle"
             android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:text="Tùy chọn trang chia sẻ"
-            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_18"
             app:layout_constraintBottom_toBottomOf="@id/imgCancel"
             app:layout_constraintEnd_toEndOf="parent"
