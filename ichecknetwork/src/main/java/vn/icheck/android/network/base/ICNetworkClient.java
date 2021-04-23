@@ -40,20 +40,29 @@ public class ICNetworkClient {
             .serializeNulls()
             .create();
 
+    private static final Authenticator authenticator = new Authenticator() {
+        @Nullable
+        @Override
+        public Request authenticate(@Nullable Route route, @NotNull Response response) throws IOException {
+            if (!response.request().url().url().toString().contains("/ads") &&
+                    !response.request().url().url().toString().contains("system-setting")
+            && !response.request().url().url().toString().contains("relationships/information")) {
+                if (response.peekBody(1000).string().contains("U102")) {
+                    ICNetworkManager.INSTANCE.onTokenTimeout();
+                } else {
+                    ICNetworkManager.INSTANCE.onEndOfToken();
+                }
+            }
+
+            return null;
+        }
+    };
+
     private static final OkHttpClient client = new OkHttpClient.Builder()
             .connectTimeout(20, TimeUnit.SECONDS)
             .readTimeout(20, TimeUnit.SECONDS)
             .writeTimeout(20, TimeUnit.SECONDS)
-            .authenticator(new Authenticator(){
-                @Nullable
-                @Override
-                public Request authenticate(@Nullable Route route, @NotNull Response response) throws IOException {
-                    if (!response.request().url().url().toString().contains("/ads")) {
-                        ICNetworkManager.INSTANCE.onEndOfToken();
-                    }
-                    return null;
-                }
-            })
+            .authenticator(authenticator)
 //            .authenticator(new TokenAuthenticator())
             .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .addInterceptor(ICNetworkClient::requireLoginCallback).build();
@@ -63,16 +72,7 @@ public class ICNetworkClient {
                 .connectTimeout(timeRequest, TimeUnit.SECONDS)
                 .readTimeout(timeRequest, TimeUnit.SECONDS)
                 .writeTimeout(timeRequest, TimeUnit.SECONDS)
-                .authenticator(new Authenticator(){
-                    @Nullable
-                    @Override
-                    public Request authenticate(@Nullable Route route, @NotNull Response response) throws IOException {
-                        if (!response.request().url().url().toString().contains("/ads")) {
-                            ICNetworkManager.INSTANCE.onEndOfToken();
-                        }
-                        return null;
-                    }
-                })
+                .authenticator(authenticator)
 //            .authenticator(new TokenAuthenticator())
                 .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .addInterceptor(ICNetworkClient::requireLoginCallback).build();
@@ -82,14 +82,7 @@ public class ICNetworkClient {
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
-            .authenticator(new Authenticator(){
-                @Nullable
-                @Override
-                public Request authenticate(@Nullable Route route, @NotNull Response response) throws IOException {
-                    ICNetworkManager.INSTANCE.onEndOfToken();
-                    return null;
-                }
-            })
+            .authenticator(authenticator)
 //            .authenticator(new TokenAuthenticator())
             .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .addInterceptor(ICNetworkClient::requireLoginCallback2).build();
@@ -98,14 +91,7 @@ public class ICNetworkClient {
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
-            .authenticator(new Authenticator(){
-                @Nullable
-                @Override
-                public Request authenticate(@Nullable Route route, @NotNull Response response) throws IOException {
-                    ICNetworkManager.INSTANCE.onEndOfToken();
-                    return null;
-                }
-            })
+            .authenticator(authenticator)
 //            .authenticator(new TokenAuthenticator())
             .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .addInterceptor(ICNetworkClient::requireLoginCallback3).build();
@@ -114,14 +100,7 @@ public class ICNetworkClient {
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
-            .authenticator(new Authenticator(){
-                @Nullable
-                @Override
-                public Request authenticate(@Nullable Route route, @NotNull Response response) throws IOException {
-                    ICNetworkManager.INSTANCE.onEndOfToken();
-                    return null;
-                }
-            })
+            .authenticator(authenticator)
 //            .authenticator(new TokenAuthenticator())
             .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .addInterceptor(ICNetworkClient::requireLoginCallback4).build();
@@ -130,14 +109,7 @@ public class ICNetworkClient {
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
-            .authenticator(new Authenticator(){
-                @Nullable
-                @Override
-                public Request authenticate(@Nullable Route route, @NotNull Response response) throws IOException {
-                    ICNetworkManager.INSTANCE.onEndOfToken();
-                    return null;
-                }
-            })
+            .authenticator(authenticator)
 //            .authenticator(new TokenAuthenticator())
             .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .addInterceptor(ICNetworkClient::requireLoginCallbackStamp).build();
@@ -146,14 +118,7 @@ public class ICNetworkClient {
             .connectTimeout(60, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)
-            .authenticator(new Authenticator(){
-                @Nullable
-                @Override
-                public Request authenticate(@Nullable Route route, @NotNull Response response) throws IOException {
-                    ICNetworkManager.INSTANCE.onEndOfToken();
-                    return null;
-                }
-            })
+            .authenticator(authenticator)
             .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .addInterceptor(ICNetworkClient::requireLoginCallback).build();
 
@@ -162,14 +127,7 @@ public class ICNetworkClient {
         return new OkHttpClient.Builder()
                 .retryOnConnectionFailure(true)
                 .readTimeout(60, TimeUnit.SECONDS)
-                .authenticator(new Authenticator(){
-                    @Nullable
-                    @Override
-                    public Request authenticate(@Nullable Route route, @NotNull Response response) throws IOException {
-                        ICNetworkManager.INSTANCE.onEndOfToken();
-                        return null;
-                    }
-                })
+                .authenticator(authenticator)
                 .connectTimeout(60, TimeUnit.SECONDS)
                 .writeTimeout(60, TimeUnit.SECONDS)
                 .build();
@@ -354,7 +312,7 @@ public class ICNetworkClient {
     private static OkHttpClient client() {
         return new OkHttpClient.Builder()
                 .retryOnConnectionFailure(true)
-                .authenticator(new Authenticator(){
+                .authenticator(new Authenticator() {
                     @Nullable
                     @Override
                     public Request authenticate(@Nullable Route route, @NotNull Response response) throws IOException {

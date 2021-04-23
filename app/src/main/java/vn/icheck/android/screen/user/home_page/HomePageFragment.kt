@@ -113,8 +113,14 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         }
     }
 
+    companion object{
+        var INSTANCE:HomePageFragment? = null
+    }
+
     override val getLayoutID: Int
         get() = R.layout.fragment_home
+
+
 
     override fun isRegisterEventBus(): Boolean {
         return true
@@ -125,6 +131,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
 
         setupView()
         checkTheme()
+        INSTANCE = this
     }
 
     private fun setupView() {
@@ -363,20 +370,24 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         swipeLayout.setColorSchemeColors(ContextCompat.getColor(requireContext(), R.color.colorPrimary), ContextCompat.getColor(requireContext(), R.color.colorPrimary), ContextCompat.getColor(requireContext(), R.color.colorPrimary))
 
         swipeLayout.setOnRefreshListener {
-            swipeLayout.isRefreshing = true
-//            setToolbarBackground(0f)
-            homeAdapter.removeAllView()
-            viewModel.getHomeLayout()
-            lifecycleScope.launch {
-                delay(400)
-                getReminders()
-            }
+            refreshHomeData()
         }
 
         swipeLayout.post {
             viewModel.getHomeLayout()
             viewModel.getHomePopup()
             // Gọi api pvcombank
+        }
+    }
+
+    fun refreshHomeData() {
+        swipeLayout.isRefreshing = true
+        //            setToolbarBackground(0f)
+        homeAdapter.removeAllView()
+        viewModel.getHomeLayout()
+        lifecycleScope.launch {
+            delay(400)
+            getReminders()
         }
     }
 
@@ -794,6 +805,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
             e.printStackTrace()
         }
         super.onDestroy()
+        INSTANCE = null
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

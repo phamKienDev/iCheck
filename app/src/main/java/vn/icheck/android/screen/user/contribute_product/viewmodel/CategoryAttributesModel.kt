@@ -78,15 +78,17 @@ class CategoryAttributesModel(
     }
 
     fun getValues() {
-        values = when (categoryItem.value) {
-            is Double -> {
-                String.format("%d", categoryItem.value?.toString()?.toLong())
-            }
-            is Boolean -> {
-                if(categoryItem.value == true) "Có" else "Không"
-            }
-            else -> {
-                categoryItem.value
+        if (categoryItem.value != null) {
+            values = when (categoryItem.value) {
+                is Double -> {
+                    String.format("%f", categoryItem.value?.toString()?.toDouble())
+                }
+                is Boolean -> {
+                    if(categoryItem.value == true) "Có" else "Không"
+                }
+                else -> {
+                    categoryItem.value
+                }
             }
         }
     }
