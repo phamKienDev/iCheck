@@ -51,11 +51,7 @@ object ReviewPointText {
             when {
                 total >= 9 -> {
                     text = ICheckApplication.getInstance().getString(R.string.x_tren_ca_tuyet_voi, String.format("%.1f", total))
-                    setTextColor(if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
-                        Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
-                    } else {
-                        ContextCompat.getColor(context, vn.icheck.android.ichecklibs.R.color.colorPrimary)
-                    })
+                    setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context))
                 }
                 total >= 8 -> {
                     text = ICheckApplication.getInstance().getString(R.string.x_tuyet_voi, String.format("%.1f", total))
@@ -82,11 +78,7 @@ object ReviewPointText {
             when {
                 point >= 4.5 -> {
                     text = context.getString(R.string.x_tren_ca_tuyet_voi, String.format("%.1f", point * 2))
-                    val primaryColor = if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
-                        Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
-                    } else {
-                        ContextCompat.getColor(context, vn.icheck.android.ichecklibs.R.color.colorPrimary)
-                    }
+                    val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context)
                     setTextColor(primaryColor)
                     background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, primaryColor, SizeHelper.size14.toFloat())
                 }
@@ -119,11 +111,7 @@ object ReviewPointText {
             when {
                 point >= 4.5 -> {
                     text = context.getString(R.string.tren_ca_tuyet_voi)
-                    val primaryColor = if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
-                        Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
-                    } else {
-                        ContextCompat.getColor(context, vn.icheck.android.ichecklibs.R.color.colorPrimary)
-                    }
+                    val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context)
                     setTextColor(primaryColor)
                     background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, primaryColor, SizeHelper.size14.toFloat())
                 }

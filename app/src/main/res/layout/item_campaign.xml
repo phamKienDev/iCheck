@@ -144,7 +144,7 @@
                     tools:text="27,254" />
             </LinearLayout>
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.TextPrimary
                 android:id="@id/tvReward"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -153,7 +153,6 @@
                 android:layout_marginBottom="@dimen/size_8"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
-                android:textColor="@color/colorPrimary"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

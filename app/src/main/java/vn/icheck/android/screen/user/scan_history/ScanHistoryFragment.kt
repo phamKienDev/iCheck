@@ -725,7 +725,7 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
             ICMessageEvent.Type.ON_TICK_HISTORY -> {
                 imgFilterHis.setImageResource(R.drawable.ic_filter_24px)
                 imgDot.beVisible()
-                tvFilter.setTextColor(Color.parseColor("#057DDA"))
+                tvFilter.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(requireContext()))
             }
             ICMessageEvent.Type.ON_UNTICK_HISTORY -> {
                 imgFilterHis.setImageResource(R.drawable.ic_filter_gray_24_px)
@@ -756,7 +756,8 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
 
         if (!isCreateView) {
             layoutContainer.setPadding(0, getStatusBarHeight, 0, 0)
-            swipe_container.setColorSchemeColors(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorPrimary), ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorPrimary), ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorPrimary))
+            val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(requireContext())
+            swipe_container.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
 
             if (!checkAllowPermission || !NetworkHelper.isOpenedGPS(requireContext())) {
                 containerGps.visibility = View.VISIBLE

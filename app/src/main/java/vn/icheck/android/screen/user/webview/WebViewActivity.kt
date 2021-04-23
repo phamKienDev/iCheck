@@ -384,11 +384,7 @@ class WebViewActivity : BaseActivityMVVM() {
             val hotline = SettingManager.clientSetting?.hotline ?: "0902195488"
             val spannable = SpannableString(getString(R.string.ma_qr_khong_phai_do_icheck_phat_hanh, hotline))
 
-            spannable.setSpan(ForegroundColorSpan(if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
-                Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
-            } else {
-                ContextCompat.getColor(this, vn.icheck.android.ichecklibs.R.color.colorPrimary)
-            }), 67, 67 + hotline.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            spannable.setSpan(ForegroundColorSpan(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)), 67, 67 + hotline.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 
             spannable.setSpan(object : ClickableSpan() {
                 override fun onClick(p0: View) {

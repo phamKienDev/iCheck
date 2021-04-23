@@ -219,4 +219,21 @@ object Constant {
             phone
         }
     }
+
+    fun getPrimaryColor(context: Context): Int {
+        return if (primaryColor.isNotEmpty()) {
+            Color.parseColor(primaryColor)
+        } else {
+            ContextCompat.getColor(context, R.color.colorPrimary)
+        }
+    }
+
+    val getPrimaryColorCode: String
+        get() {
+            return if (primaryColor.isNotEmpty()) {
+                primaryColor
+            } else {
+                "#057DDA"
+            }
+        }
 }

@@ -87,11 +87,7 @@ class IckOtpFragment : Fragment() {
         arr.add(7, ' ')
         arr.add(4, ' ')
         val span = SpannableString("Mã xác nhận OTP đã được gửi đến số điện thoại ${arr.joinToString(separator = "")}")
-        span.setSpan(ForegroundColorSpan(if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
-            Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
-        } else {
-            ContextCompat.getColor(requireContext(), vn.icheck.android.ichecklibs.R.color.colorPrimary)
-        }), 45, span.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        span.setSpan(ForegroundColorSpan(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(requireContext())), 45, span.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 
         val spannableString = SpannableString(span)
         val onclickPhone = object : ClickableSpan() {

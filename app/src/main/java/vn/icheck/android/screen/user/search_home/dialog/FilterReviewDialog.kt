@@ -79,7 +79,7 @@ class FilterReviewDialog(isWatched: Boolean = false, val time: MutableList<Strin
             img_clear_time.visibility = View.GONE
             tv_time.text = getString(R.string.tat_ca)
         } else {
-            tv_time.setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorPrimary))
+            tv_time.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(dialog!!.context))
             tv_time.compoundDrawablePadding = SizeHelper.size8
             img_clear_time.visibility = View.VISIBLE
             tv_time.text = year.toString().substring(1, year.toString().length - 1)
@@ -109,7 +109,7 @@ class FilterReviewDialog(isWatched: Boolean = false, val time: MutableList<Strin
             img_clear_from.visibility = View.GONE
             tv_from.text = getString(R.string.moi_nguoi)
         } else {
-            tv_from.setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorPrimary))
+            tv_from.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(tv_from.context))
             tv_from.compoundDrawablePadding = SizeHelper.size8
             img_clear_from.visibility = View.VISIBLE
             tv_from.text = fromType.toString().substring(1, fromType.toString().length - 1)

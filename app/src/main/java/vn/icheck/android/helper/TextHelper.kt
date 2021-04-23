@@ -312,7 +312,7 @@ object TextHelper {
         } else {
             typeface = ViewHelper.createTypeface(ICheckApplication.getInstance(), R.font.barlow_semi_bold)
             setText(ICheckApplication.getInstance().getString(R.string.xxx__d, formatMoneyPhay(price)))
-            setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorPrimary))
+            setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context))
         }
     }
 

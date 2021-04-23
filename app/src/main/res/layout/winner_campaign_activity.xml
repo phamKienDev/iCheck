@@ -52,7 +52,7 @@
                     android:text="Tiếp tục thực hiện thử thách để \n ghi danh lên bảng vàng xếp hạng nào!"
                     android:textColor="@color/colorSecondText" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.TextPrimary
                     android:id="@+id/btnMission"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -64,7 +64,6 @@
                     android:paddingTop="@dimen/size_9"
                     android:paddingBottom="@dimen/size_9"
                     android:text="Xem thêm các thử thách"
-                    android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/font_16" />
             </LinearLayout>
         </LinearLayout>
@@ -114,7 +113,7 @@
             android:background="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-        <vn.icheck.android.ichecklibs.view.TextHeader
+        <vn.icheck.android.ichecklibs.view.TextHeaderPrimary
             android:id="@id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -124,7 +123,6 @@
             android:gravity="center"
             android:singleLine="true"
             android:text="Xếp hạng"
-            android:textColor="@color/colorPrimary"
             android:textStyle="normal" />
 
         <androidx.appcompat.widget.AppCompatImageButton

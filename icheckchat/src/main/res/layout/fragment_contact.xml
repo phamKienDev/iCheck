@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.TextPrimary
                 android:id="@+id/btnMergeRequest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -33,7 +33,6 @@
                 android:paddingEnd="@dimen/size_12"
                 android:paddingBottom="@dimen/size_14"
                 android:text="@string/dong_bo_danh_ba"
-                android:textColor="@color/colorPrimary"
                 android:textSize="14sp" />
 
             <androidx.recyclerview.widget.RecyclerView

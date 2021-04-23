@@ -106,7 +106,7 @@ class HeaderInforRewardHolder(parent: ViewGroup) : BaseViewHolder<ICItemReward>(
             //đã ship
             2 -> {
                 itemView.tvState.visibility = View.VISIBLE
-                itemView.tvState.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorPrimary))
+                itemView.tvState.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(itemView.context))
                 itemView.tvState.text = "Đã xác nhận giao quà"
 
                 itemView.tvRefuse.visibility = View.VISIBLE

@@ -72,7 +72,9 @@ class WinnerCampaignActivity : BaseActivityMVVM(), IRecyclerViewCallback {
             adapter.resetData()
             getData()
         }
-        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
+
+        val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        swipeLayout.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
 
         swipeLayout.post {
             getData()

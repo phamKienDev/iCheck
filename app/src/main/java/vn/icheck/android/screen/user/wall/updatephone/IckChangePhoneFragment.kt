@@ -36,7 +36,7 @@ class IckChangePhoneFragment:Fragment() {
         binding.edtPhone.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
                 binding.imgClear.visibility = View.VISIBLE
-                binding.divider20.background = ColorDrawable(Color.parseColor("#057DDA"))
+                binding.divider20.background = ColorDrawable(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(requireContext()))
             } else {
                 binding.imgClear.visibility = View.INVISIBLE
                 binding.divider20.background = ColorDrawable(Color.parseColor("#F0F0F0"))

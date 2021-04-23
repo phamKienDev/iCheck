@@ -147,11 +147,7 @@ class ListNotificationActivity : BaseActivityMVVM(), IMessageListener {
     }
 
     private fun setupSwipeLayout() {
-        val primaryColor = if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
-            Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
-        } else {
-            ContextCompat.getColor(this, vn.icheck.android.ichecklibs.R.color.colorPrimary)
-        }
+        val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
         swipeLayout.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
 
         swipeLayout.setOnRefreshListener {

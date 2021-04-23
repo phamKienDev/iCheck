@@ -55,11 +55,7 @@ class MbttHolder(view: View) : BaseHolder(view) {
             tvYes.text = "$totalYes%"
             tvNo.text = "$totalNo%"
 
-            val primaryColor = if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
-                Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
-            } else {
-                ContextCompat.getColor(itemView.context, vn.icheck.android.ichecklibs.R.color.colorPrimary)
-            }
+            val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(itemView.context)
 
             if (obj.icTransparency.isVoted!!) {
                 progress.progress = totalYes

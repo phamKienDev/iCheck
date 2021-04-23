@@ -361,11 +361,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
     }
 
     private fun setupSwipeLayout() {
-        val swipeColor = if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
-            Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
-        } else {
-            ContextCompat.getColor(requireContext(), vn.icheck.android.ichecklibs.R.color.colorPrimary)
-        }
+        val swipeColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(requireContext())
         swipeLayout.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
 
         swipeLayout.setOnRefreshListener {

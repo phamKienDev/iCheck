@@ -104,11 +104,7 @@ class IckUserWallActivity : BaseCoroutineActivity() {
                 delay(200)
                 val navFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
                 if (navFragment?.childFragmentManager?.fragments?.last() !is IckUserWallFragment) {
-                    binding.btnMyPage.setTextColor(if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
-                        Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
-                    } else {
-                        ContextCompat.getColor(this@IckUserWallActivity, vn.icheck.android.ichecklibs.R.color.colorPrimary)
-                    })
+                    binding.btnMyPage.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this@IckUserWallActivity))
                     binding.btnMyPage.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_bottom_wall_fc_27px, 0, 0)
                     binding.btnManagePage.setTextColor(Color.parseColor("#b4b4b4"))
                     binding.btnManagePage.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_bottombar_group_page_unfc_27px, 0, 0)
@@ -142,7 +138,7 @@ class IckUserWallActivity : BaseCoroutineActivity() {
     private fun setChoosePageManage() {
         binding.btnMyPage.setTextColor(Color.parseColor("#b4b4b4"))
         binding.btnMyPage.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_bottombar_wall_unfc_27px, 0, 0)
-        binding.btnManagePage.setTextColor(Color.parseColor("#057DDA"))
+        binding.btnManagePage.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this))
         binding.btnManagePage.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_bottombar_group_page_fc_27px, 0, 0)
     }
 
@@ -168,7 +164,7 @@ class IckUserWallActivity : BaseCoroutineActivity() {
         val navFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
         val last = navFragment?.childFragmentManager?.fragments?.last()
         if (last is PageManagementFragment) {
-            binding.btnMyPage.setTextColor(Color.parseColor("#057DDA"))
+            binding.btnMyPage.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this))
             binding.btnMyPage.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_bottom_wall_fc_27px, 0, 0)
             binding.btnManagePage.setTextColor(Color.parseColor("#b4b4b4"))
             binding.btnManagePage.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_bottombar_group_page_unfc_27px, 0, 0)

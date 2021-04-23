@@ -42,7 +42,7 @@
             android:visibility="gone"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.TextPrimary
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_white_corner_4dp"
@@ -51,8 +51,7 @@
                 android:paddingTop="@dimen/size_2"
                 android:paddingEnd="@dimen/size_4"
                 android:paddingBottom="@dimen/size_2"
-                android:text="@string/co_tin_nhan_moi"
-                android:textColor="@color/colorPrimary" />
+                android:text="@string/co_tin_nhan_moi" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"

@@ -92,11 +92,7 @@ abstract class FilterUserDialog(val activity: FragmentActivity, val city: Mutabl
                 }
 
                 dialog.tv_location.text = city
-                dialog.tv_location.setTextColor(if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
-                    Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
-                } else {
-                    ContextCompat.getColor(dialog.context, vn.icheck.android.ichecklibs.R.color.colorPrimary)
-                })
+                dialog.tv_location.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(dialog.context))
 
                 dialog.img_clear_location.beVisible()
             } else {
@@ -118,11 +114,7 @@ abstract class FilterUserDialog(val activity: FragmentActivity, val city: Mutabl
         } else {
             dialog.tv_gender.setText(selectedGender.toString().substring(1, selectedGender.toString().length - 1))
             dialog.img_clear_gender.visibility = View.VISIBLE
-            dialog.tv_gender.setTextColor(if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
-                Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
-            } else {
-                ContextCompat.getColor(dialog.context, vn.icheck.android.ichecklibs.R.color.colorPrimary)
-            })
+            dialog.tv_gender.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(dialog.context))
         }
     }
 

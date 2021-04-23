@@ -61,11 +61,7 @@ class ManagerUserWatchingActivity : BaseActivityMVVM(), IUserFollowWallView {
     }
 
     private fun initSwipeLayput() {
-        val swipeColor = if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
-            Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
-        } else {
-            ContextCompat.getColor(this, vn.icheck.android.ichecklibs.R.color.colorPrimary)
-        }
+        val swipeColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
         swipe_layout.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
 
         swipe_layout.setOnRefreshListener {

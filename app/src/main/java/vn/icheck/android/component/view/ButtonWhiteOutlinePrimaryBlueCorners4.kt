@@ -30,11 +30,7 @@ class ButtonWhiteOutlinePrimaryBlueCorners4 : BaseButton {
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
     override fun onSetupDefault() {
-        val primaryColor = if (Constant.primaryColor.isNotEmpty()) {
-            Color.parseColor(Constant.primaryColor)
-        } else {
-            ContextCompat.getColor(context, vn.icheck.android.ichecklibs.R.color.colorPrimary)
-        }
+        val primaryColor = Constant.getPrimaryColor(context)
         defaultTextColor = ColorStateList(arrayOf(intArrayOf()), intArrayOf(primaryColor))
 
         defaultDisableBackground = ContextCompat.getColor(context, R.color.gray)

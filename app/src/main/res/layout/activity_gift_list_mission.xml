@@ -24,7 +24,6 @@
             android:gravity="center"
             android:includeFontPadding="false"
             android:text="@string/thu_thach_nhan_them_luot_mo_qua"
-            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_18"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -63,14 +62,13 @@
                 android:layout_marginTop="@dimen/size_20"
                 android:drawableTop="@drawable/ic_gift_list_mission_success" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.TextPrimary
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_12"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:includeFontPadding="false"
                 android:text="@string/that_tuyet_voi"
-                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/font_18" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -127,7 +125,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.TextPrimary
                 android:id="@+id/tvTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -136,7 +134,6 @@
                 android:gravity="center"
                 android:includeFontPadding="false"
                 android:text="@string/thu_thach_nhan_them_luot_mo_qua"
-                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/font_18"
                 app:layout_constraintTop_toTopOf="parent" />
 

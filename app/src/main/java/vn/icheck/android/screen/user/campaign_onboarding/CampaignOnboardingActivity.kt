@@ -21,7 +21,6 @@ import vn.icheck.android.base.model.ICError
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.tracking.insider.InsiderHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.network.models.ICCampaignOnboarding
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
@@ -97,18 +96,14 @@ class CampaignOnboardingActivity : BaseActivityMVVM() {
                     setUpWebView(it.onboardLanding ?: "")
 
                     btnActionBack.beGone()
-                    var color = it.btnColor ?: if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
-                        vn.icheck.android.ichecklibs.Constant.primaryColor
-                    } else {
-                        "#057DDA"
-                    }
+                    var color = it.btnColor ?: vn.icheck.android.ichecklibs.Constant.getPrimaryColorCode
                     if (!color.startsWith("#")) {
                         color = "#$color"
                     }
                     try {
                         btnActionContinue.background = ViewHelper.createShapeDrawable(Color.parseColor(color), SizeHelper.size4.toFloat())
                     } catch (e: IllegalArgumentException) {
-                        btnActionContinue.background = ViewHelper.createShapeDrawable(Color.parseColor("#057DDA"), SizeHelper.size4.toFloat())
+                        btnActionContinue.background = ViewHelper.createShapeDrawable(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this), SizeHelper.size4.toFloat())
                     }
                     btnActionContinue.text = it.btnName ?: ""
 
@@ -159,14 +154,14 @@ class CampaignOnboardingActivity : BaseActivityMVVM() {
             }
             btnPosition == it?.onboardCTA?.size?.minus(1) ?: 0 -> {
                 btnActionBack.beGone()
-                var color = it?.btnColor ?: "#057DDA"
+                var color = it?.btnColor ?: vn.icheck.android.ichecklibs.Constant.getPrimaryColorCode
                 if (!color.startsWith("#")) {
                     color = "#$color"
                 }
                 try {
                     btnActionContinue.background = ViewHelper.createShapeDrawable(Color.parseColor(color), SizeHelper.size4.toFloat())
                 } catch (e: IllegalArgumentException) {
-                    btnActionContinue.background = ViewHelper.createShapeDrawable(Color.parseColor("#057DDA"), SizeHelper.size4.toFloat())
+                    btnActionContinue.background = ViewHelper.createShapeDrawable(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this), SizeHelper.size4.toFloat())
                 }
                 btnActionContinue.text = it?.btnName ?: ""
                 recyclerview.scrollToPosition(it?.onboardCTA?.size?.minus(1) ?: 0)

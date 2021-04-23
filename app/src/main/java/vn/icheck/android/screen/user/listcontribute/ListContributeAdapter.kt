@@ -211,11 +211,7 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
 
             itemView.tvPrice.run {
                 if (obj.data?.price != null && obj.data?.price != 0L) {
-                    setTextColor(if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
-                        Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
-                    } else {
-                        ContextCompat.getColor(itemView.context, vn.icheck.android.ichecklibs.R.color.colorPrimary)
-                    })
+                    setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context))
                     typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
                     text = itemView.context.getString(R.string.xxx__d, TextHelper.formatMoney(obj.data?.price))
                 } else {

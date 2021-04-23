@@ -50,11 +50,7 @@ class OrderHistoryFragment : BaseFragmentMVVM(), IRecyclerViewCallback {
 
     private fun setupRefreshLayout() {
         context?.let {
-            val swipeColor = if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
-                Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
-            } else {
-                ContextCompat.getColor(it, vn.icheck.android.ichecklibs.R.color.colorPrimary)
-            }
+            val swipeColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(it)
             swipeLayout.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
         }
 

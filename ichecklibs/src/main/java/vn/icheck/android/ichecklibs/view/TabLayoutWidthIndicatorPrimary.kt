@@ -18,11 +18,7 @@ class TabLayoutWidthIndicatorPrimary @JvmOverloads constructor(context: Context,
         isTabIndicatorFullWidth = false
         setIndicatorWidth(70)
 
-        val primaryColor = if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
-            Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
-        } else {
-            ContextCompat.getColor(context, vn.icheck.android.ichecklibs.R.color.colorPrimary)
-        }
+        val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context)
         setSelectedTabIndicatorColor(primaryColor)
         setTabTextColors(ContextCompat.getColor(context, R.color.colorDisableText), primaryColor)
     }

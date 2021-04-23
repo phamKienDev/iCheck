@@ -2,10 +2,11 @@ package vn.icheck.android.ichecklibs.view
 
 import android.content.Context
 import android.util.AttributeSet
+import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatTextView
 import vn.icheck.android.ichecklibs.Constant
 
-class TextPrimary : AppCompatTextView {
+class EditTextPrimary : AppCompatEditText {
 
     constructor(context: Context) : super(context) { setup() }
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { setup() }

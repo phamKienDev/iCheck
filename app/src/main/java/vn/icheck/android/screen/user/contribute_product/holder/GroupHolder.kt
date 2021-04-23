@@ -37,11 +37,7 @@ class GroupHolder(private val itemGroupBinding: ItemGroupBinding) : CoroutineVie
         if (pasteBalloon == null) {
             pasteBalloon = createBalloon(itemView.context) {
                 setLayout(R.layout.popup_tooltip)
-                setBackgroundColor(if (vn.icheck.android.ichecklibs.Constant.primaryColor.isNotEmpty()) {
-                    Color.parseColor(vn.icheck.android.ichecklibs.Constant.primaryColor)
-                } else {
-                    ContextCompat.getColor(itemView.context, vn.icheck.android.ichecklibs.R.color.colorPrimary)
-                })
+                setBackgroundColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(itemView.context))
                 setArrowConstraints(ArrowConstraints.ALIGN_ANCHOR)
                 setBalloonAnimation(BalloonAnimation.OVERSHOOT)
             }

@@ -172,7 +172,7 @@
                 app:layout_constraintStart_toStartOf="@id/tvBarcode"
                 app:layout_constraintTop_toBottomOf="@id/tvBarcode" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.TextPrimary
                 android:id="@+id/tvPrice"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -181,7 +181,6 @@
                 android:fontFamily="@font/barlow_semi_bold"
                 android:includeFontPadding="false"
                 android:singleLine="true"
-                android:textColor="@color/colorPrimary"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@id/view"
                 app:layout_constraintStart_toStartOf="@id/view"
@@ -344,7 +343,7 @@
                     tools:targetApi="lollipop"
                     tools:text="SACH10GHFC" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.TextPrimary
                     android:id="@+id/btnCopy"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -354,7 +353,6 @@
                     android:includeFontPadding="false"
                     android:singleLine="true"
                     android:text="@string/sao_chep"
-                    android:textColor="@color/colorPrimary"
                     android:textSize="14sp" />
             </LinearLayout>
 

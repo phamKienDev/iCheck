@@ -62,7 +62,8 @@ class ProductOfPageFragment : BaseFragmentMVVM() {
             getData()
         }
         activity?.let {
-            swipeLayout.setColorSchemeColors(ContextCompat.getColor(it, R.color.colorSecondary), ContextCompat.getColor(it, R.color.colorSecondary), ContextCompat.getColor(it, R.color.colorPrimary))
+            val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(it)
+            swipeLayout.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
         }
 
         swipeLayout.post {
