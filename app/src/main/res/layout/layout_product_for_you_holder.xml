@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:paddingTop="@dimen/size_16">
 
-    <vn.icheck.android.ichecklibs.view.TextHeaderSecondary
+    <vn.icheck.android.ichecklibs.view.secondary.TextHeaderSecondary
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"

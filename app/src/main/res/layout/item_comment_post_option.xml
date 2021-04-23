@@ -19,7 +19,7 @@
         android:layout_height="@dimen/size_24"
         android:layout_gravity="center" />
 
-    <vn.icheck.android.ichecklibs.view.TextSecondary
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:id="@id/btnMore"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

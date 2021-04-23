@@ -41,7 +41,7 @@
             android:textColor="#434343"
             tools:text="Đào Văn Tâm" />
 
-        <vn.icheck.android.ichecklibs.view.TextSecondary
+        <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
             android:id="@+id/btn_wrong"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
             android:textAllCaps="false"
             android:textSize="@dimen/font_12" />
 
-        <vn.icheck.android.ichecklibs.view.TextSecondary
+        <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
             android:id="@+id/btn_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

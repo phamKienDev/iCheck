@@ -16,13 +16,11 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_back_blue_24px_new" />
 
-    <vn.icheck.android.ichecklibs.view.TextPrimary
+    <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
         android:id="@+id/textView26"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/size_50"
-        android:layout_marginRight="@dimen/size_50"
-        android:fontFamily="@font/barlow_medium"
         android:text="Xác nhận giao hàng"
         android:textSize="@dimen/font_18"
         app:layout_constraintBottom_toBottomOf="@+id/btn_back"
@@ -76,7 +74,7 @@
                 android:visibility="gone"
                 tools:visibility="visible">
 
-                <vn.icheck.android.ichecklibs.view.TextSecondary
+                <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                     android:id="@+id/textView91"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -144,7 +142,7 @@
                 android:layout_marginTop="@dimen/size_10"
                 android:background="@android:color/white">
 
-                <vn.icheck.android.ichecklibs.view.TextSecondary
+                <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                     android:id="@+id/textView85"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -157,14 +155,12 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <vn.icheck.android.ichecklibs.view.TextPrimary
+                <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
                     android:id="@+id/tv_change"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_12"
                     android:layout_marginEnd="@dimen/size_12"
-                    android:layout_marginRight="@dimen/size_12"
-                    android:fontFamily="@font/barlow_medium"
                     android:text="Thay đổi"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -215,7 +211,7 @@
                 android:layout_marginTop="@dimen/size_10"
                 android:background="@android:color/white">
 
-                <vn.icheck.android.ichecklibs.view.TextSecondary
+                <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                     android:id="@+id/textView93"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -258,7 +254,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView93" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <vn.icheck.android.ichecklibs.view.TextSecondary
+            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                 android:id="@+id/textView95"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -420,7 +416,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <vn.icheck.android.ichecklibs.view.TextPrimary
+            <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
                 android:id="@+id/tv_report"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -428,7 +424,6 @@
                 android:layout_marginTop="@dimen/size_20"
                 android:layout_marginEnd="@dimen/size_12"
                 android:background="@drawable/btn_white_outline_light_blue_1_corners_4"
-                android:fontFamily="@font/barlow_medium"
                 android:gravity="center"
                 android:padding="@dimen/size_8"
                 android:text="Báo lỗi"

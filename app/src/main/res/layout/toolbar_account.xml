@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/size_44">
 
-    <vn.icheck.android.ichecklibs.view.TextSecondary
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:id="@id/txtTitle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

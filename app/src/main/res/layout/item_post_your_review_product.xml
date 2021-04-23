@@ -6,7 +6,7 @@
     android:background="@drawable/rounded_dialog"
     android:orientation="vertical">
 
-    <vn.icheck.android.ichecklibs.view.TextSecondary
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:id="@+id/textView39"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -28,7 +28,7 @@
             android:includeFontPadding="false"
             android:scaleType="fitCenter" />
 
-        <vn.icheck.android.ichecklibs.view.TextSecondary
+        <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
             android:id="@id/tvName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

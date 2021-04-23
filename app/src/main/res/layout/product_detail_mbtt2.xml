@@ -18,15 +18,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <vn.icheck.android.ichecklibs.view.TextPrimary
+    <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
         android:id="@+id/btn_yes"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_16"
         android:layout_marginEnd="@dimen/size_8"
-        android:layout_marginRight="@dimen/size_8"
         android:background="@drawable/bg_corners_4_light_blue_no_solid"
-        android:fontFamily="@font/barlow_medium"
         android:gravity="center"
         android:padding="@dimen/size_8"
         android:text="Có"
@@ -35,15 +33,13 @@
         app:layout_constraintStart_toStartOf="@+id/tvName"
         app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
-    <vn.icheck.android.ichecklibs.view.TextPrimary
+    <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
         android:id="@+id/btn_no"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_8"
-        android:layout_marginLeft="@dimen/size_8"
         android:layout_marginTop="@dimen/size_16"
         android:background="@drawable/bg_corners_4_light_blue_no_solid"
-        android:fontFamily="@font/barlow_medium"
         android:gravity="center"
         android:padding="@dimen/size_8"
         android:text="Không"
@@ -52,14 +48,12 @@
         app:layout_constraintStart_toEndOf="@+id/btn_yes"
         app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
-    <vn.icheck.android.ichecklibs.view.TextPrimary
+    <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
         android:id="@+id/tvPercentYes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_16"
-        android:layout_marginLeft="@dimen/size_16"
         android:layout_marginTop="@dimen/size_24"
-        android:fontFamily="@font/barlow_medium"
         android:textSize="@dimen/font_16"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_yes"
@@ -105,12 +99,11 @@
         app:layout_constraintBottom_toBottomOf="@+id/bgProgress"
         app:layout_constraintTop_toTopOf="@+id/bgProgress" />
 
-    <vn.icheck.android.ichecklibs.view.TextPrimary
+    <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
         android:id="@+id/textHintYes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_4"
-        android:fontFamily="@font/barlow_medium"
         android:text="Có"
         android:textSize="@dimen/font_14"
         app:layout_constraintStart_toStartOf="@id/progressbar"

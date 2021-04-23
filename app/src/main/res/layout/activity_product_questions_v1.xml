@@ -15,7 +15,7 @@
         app:layout_constraintBottom_toBottomOf="@id/txt_title_toolbar"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <vn.icheck.android.ichecklibs.view.TextSecondary
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:id="@+id/txt_title_toolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_44"

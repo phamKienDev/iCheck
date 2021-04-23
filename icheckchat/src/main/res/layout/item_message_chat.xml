@@ -31,7 +31,7 @@
         android:gravity="center"
         android:textColor="#757575" />
 
-    <vn.icheck.android.ichecklibs.view.TextPrimary
+    <vn.icheck.android.ichecklibs.view.primary.TextPrimary
         android:id="@+id/btnDefault"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

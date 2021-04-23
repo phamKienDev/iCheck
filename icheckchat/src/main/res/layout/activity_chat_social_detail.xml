@@ -42,7 +42,7 @@
             android:visibility="gone"
             android:orientation="vertical">
 
-            <vn.icheck.android.ichecklibs.view.TextPrimary
+            <vn.icheck.android.ichecklibs.view.primary.TextPrimary
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_white_corner_4dp"

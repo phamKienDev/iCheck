@@ -33,7 +33,7 @@
         app:layout_constraintTop_toTopOf="@+id/imgAva"
         tools:text="Tổng đài hỗ trợ khách hàng" />
 
-    <vn.icheck.android.ichecklibs.view.TextSecondary
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:id="@+id/tvValue"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

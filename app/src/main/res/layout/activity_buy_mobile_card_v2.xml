@@ -26,7 +26,7 @@
             android:background="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-        <vn.icheck.android.ichecklibs.view.TextHeaderPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
             android:id="@id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -71,7 +71,7 @@
             android:textSize="@dimen/font_14"
             android:textStyle="normal" />
 
-        <vn.icheck.android.ichecklibs.view.ButtonSecondary
+        <vn.icheck.android.ichecklibs.view.secondary.ButtonSecondary
             android:id="@+id/btnAgainError"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -108,7 +108,7 @@
                 android:background="@color/white"
                 android:orientation="vertical">
 
-                <vn.icheck.android.ichecklibs.view.TextSubheader2Secondary
+                <vn.icheck.android.ichecklibs.view.secondary.TextSubheader2Secondary
                     android:id="@id/tv2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -135,7 +135,7 @@
                 android:background="@color/white"
                 android:orientation="vertical">
 
-                <vn.icheck.android.ichecklibs.view.TextSubheader2Secondary
+                <vn.icheck.android.ichecklibs.view.secondary.TextSubheader2Secondary
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_12"
@@ -201,7 +201,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <vn.icheck.android.ichecklibs.view.TextSubheader2Primary
+        <vn.icheck.android.ichecklibs.view.primary.TextSubheader2Primary
             android:id="@+id/tvPrice"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

@@ -17,7 +17,7 @@
         android:layout_height="@dimen/size_4"
         android:background="@drawable/shadow_bottom" />
 
-    <vn.icheck.android.ichecklibs.view.TextHeaderSecondary
+    <vn.icheck.android.ichecklibs.view.secondary.TextHeaderSecondary
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
@@ -111,7 +111,7 @@
             app:srcCompat="@drawable/ic_switch_off_24px" />
     </RelativeLayout>
 
-    <vn.icheck.android.ichecklibs.view.TextHeaderSecondary
+    <vn.icheck.android.ichecklibs.view.secondary.TextHeaderSecondary
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
@@ -325,7 +325,7 @@
                 android:visibility="invisible" />
         </RelativeLayout>
     </RelativeLayout>
-    <vn.icheck.android.ichecklibs.view.TextPrimary
+    <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
         android:id="@+id/btnReset"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -333,7 +333,6 @@
         android:layout_marginTop="@dimen/size_30"
         android:layout_marginRight="@dimen/size_38"
         android:background="@drawable/bg_corner_4_light_blue_white"
-        android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center"
         android:paddingTop="@dimen/size_9"
         android:paddingBottom="@dimen/size_9"

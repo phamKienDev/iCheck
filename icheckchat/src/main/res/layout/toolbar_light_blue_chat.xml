@@ -11,7 +11,7 @@
         android:background="?android:attr/selectableItemBackground"
         android:src="@drawable/ic_back_light_blue_24dp_chat" />
 
-    <vn.icheck.android.ichecklibs.view.TextPrimary
+    <vn.icheck.android.ichecklibs.view.primary.TextPrimary
         android:id="@+id/txtTitle"
         android:layout_width="match_parent"
         android:layout_height="44dp"

@@ -1,14 +1,13 @@
-package vn.icheck.android.ichecklibs.view
+package vn.icheck.android.ichecklibs.view.primary
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.TypedValue
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.res.ResourcesCompat
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
 
-class TextSubheader2Primary : AppCompatTextView {
+class TextBarlowSemiBoldPrimary : AppCompatTextView {
 
     constructor(context: Context) : super(context) { setup() }
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { setup() }
@@ -16,7 +15,6 @@ class TextSubheader2Primary : AppCompatTextView {
 
     private fun setup() {
         setTextColor(Constant.getPrimaryColor(context))
-        setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
         typeface = ResourcesCompat.getFont(context, R.font.barlow_semi_bold)
         includeFontPadding = false
     }

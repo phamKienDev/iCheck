@@ -52,7 +52,7 @@
             android:layout_marginTop="@dimen/size_20"
             android:background="#33000000" />
 
-        <vn.icheck.android.ichecklibs.view.ButtonSecondary
+        <vn.icheck.android.ichecklibs.view.secondary.ButtonSecondary
             android:id="@id/btnDone"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_45"

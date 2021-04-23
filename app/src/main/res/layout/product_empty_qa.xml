@@ -30,14 +30,13 @@
         android:textColor="#757575"
         android:textSize="@dimen/font_14" />
 
-    <vn.icheck.android.ichecklibs.view.TextPrimary
+    <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
         android:id="@+id/btnQueston"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_36"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_16"
         android:layout_marginEnd="@dimen/size_12"
-        android:fontFamily="@font/barlow_semi_bold"
         android:layout_marginBottom="@dimen/size_10"
         android:background="@drawable/bg_corners_4_light_blue_no_solid"
         android:gravity="center"

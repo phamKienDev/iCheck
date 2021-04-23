@@ -41,7 +41,7 @@
         app:layout_constraintTop_toBottomOf="@id/imgAvatar"
         tools:text="Nhà Phân phối độc quyền Mỹ phẩm DHC Việt Nam (Tên không giới hạn số dòng)" />
 
-    <vn.icheck.android.ichecklibs.view.TextPrimary
+    <vn.icheck.android.ichecklibs.view.primary.TextPrimary
         android:id="@+id/textView19"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

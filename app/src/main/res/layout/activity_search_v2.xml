@@ -98,7 +98,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/tv_title_recent" />
 
-        <vn.icheck.android.ichecklibs.view.TextSecondary
+        <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
             android:id="@+id/tv_title_recent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -168,7 +168,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <vn.icheck.android.ichecklibs.view.TextSecondary
+        <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
             android:id="@+id/tv_title_popular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

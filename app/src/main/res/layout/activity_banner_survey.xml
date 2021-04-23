@@ -163,7 +163,7 @@
         android:paddingEnd="@dimen/size_18"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <vn.icheck.android.ichecklibs.view.ButtonSecondary
+        <vn.icheck.android.ichecklibs.view.secondary.ButtonSecondary
             android:id="@id/btnHome"
             android:layout_width="@dimen/size_0"
             android:layout_height="match_parent"
@@ -175,7 +175,7 @@
             android:textAllCaps="false"
             android:visibility="gone" />
 
-        <vn.icheck.android.ichecklibs.view.ButtonSecondary
+        <vn.icheck.android.ichecklibs.view.secondary.ButtonSecondary
             android:id="@id/btnLeft"
             android:layout_width="@dimen/size_0"
             android:layout_height="match_parent"

@@ -23,7 +23,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <vn.icheck.android.ichecklibs.view.TextHeaderPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
             android:id="@+id/tvTitle"
             android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
@@ -64,12 +64,11 @@
             android:textColor="#757575"
             android:textSize="@dimen/font_12" />
 
-        <vn.icheck.android.ichecklibs.view.TextPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
             android:id="@+id/tvPhone"
             android:layout_width="0dp"
             android:layout_height="@dimen/size_20"
             android:layout_weight="1"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center|end"
             android:lineSpacingExtra="@dimen/font_6"
             android:textSize="@dimen/font_14"
@@ -108,12 +107,11 @@
             android:textColor="#757575"
             android:textSize="@dimen/font_12" />
 
-        <vn.icheck.android.ichecklibs.view.TextPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
             android:id="@+id/tvEmail"
             android:layout_width="0dp"
             android:layout_height="@dimen/size_20"
             android:layout_weight="1"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center|end"
             android:lineSpacingExtra="@dimen/font_6"
             android:textSize="@dimen/font_14"
@@ -152,12 +150,11 @@
             android:textColor="#757575"
             android:textSize="@dimen/font_12" />
 
-        <vn.icheck.android.ichecklibs.view.TextPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
             android:id="@+id/btnChat"
             android:layout_width="@dimen/size_100"
             android:layout_height="@dimen/size_28"
             android:background="@drawable/bg_corner_4_light_blue_white"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:lineSpacingExtra="@dimen/font_6"
             android:text="Nhắn tin"

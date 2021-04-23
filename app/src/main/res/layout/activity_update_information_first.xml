@@ -19,7 +19,7 @@
             android:background="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_categories_menu_blue_24" />
 
-        <vn.icheck.android.ichecklibs.view.TextSecondary
+        <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
             android:id="@id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -82,7 +82,7 @@
                 android:textStyle="normal"
                 android:visibility="gone" />
 
-            <vn.icheck.android.ichecklibs.view.TextSecondary
+            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                 android:id="@+id/tvLabelInforCustomer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -379,7 +379,7 @@
                 android:textStyle="normal"
                 android:visibility="gone" />
 
-            <vn.icheck.android.ichecklibs.view.TextSecondary
+            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                 android:id="@+id/tvTitleField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

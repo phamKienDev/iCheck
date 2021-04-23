@@ -43,7 +43,7 @@
             app:layout_constraintTop_toTopOf="@+id/layoutImg"
             tools:text="Thẻ Mobifone" />
 
-        <vn.icheck.android.ichecklibs.view.TextSecondary
+        <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
             android:id="@+id/tvPriceTopup"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -168,11 +168,10 @@
             app:layout_constraintStart_toEndOf="@id/tvSelectUsed"
             app:layout_constraintTop_toTopOf="@id/tvSelectUsed" />
 
-        <vn.icheck.android.ichecklibs.view.TextPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
             android:id="@+id/tvLoadNow"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:fontFamily="@font/barlow_medium"
             android:gravity="center"
             android:text="Nạp ngay"
             android:textSize="@dimen/font_14"

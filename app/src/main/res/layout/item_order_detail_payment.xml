@@ -9,7 +9,7 @@
     android:paddingEnd="@dimen/size_12"
     android:paddingBottom="@dimen/size_8">
 
-    <vn.icheck.android.ichecklibs.view.TextSecondary
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
@@ -32,7 +32,7 @@
 
         <TableRow>
 
-            <vn.icheck.android.ichecklibs.view.TextSecondary
+            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                 android:id="@id/tvName"
                 android:layout_width="@dimen/size_0"
                 android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
             android:layout_marginTop="@dimen/size_8"
             android:layout_marginEnd="@dimen/size_2">
 
-            <vn.icheck.android.ichecklibs.view.ViewSecondary
+            <vn.icheck.android.ichecklibs.view.secondary.ViewSecondary
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/size_1"
                 android:layout_span="2"
@@ -95,7 +95,7 @@
                 android:textStyle="normal"
                 tools:text="Số lượng: 3 sản phẩm" />
 
-            <vn.icheck.android.ichecklibs.view.TextSecondary
+            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                 android:id="@id/tvProductPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -128,7 +128,7 @@
                 android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
 
-            <vn.icheck.android.ichecklibs.view.TextSecondary
+            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                 android:id="@id/tvShippingPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

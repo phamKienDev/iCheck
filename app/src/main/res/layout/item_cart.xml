@@ -31,7 +31,7 @@
         app:layout_constraintTop_toTopOf="@+id/img_gift"
         tools:text="Sữa rửa mặt sạch dầu (1 dòng)..." />
 
-    <vn.icheck.android.ichecklibs.view.TextSecondary
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:id="@+id/tv_quantity_gift"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

@@ -33,7 +33,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <vn.icheck.android.ichecklibs.view.TextSecondary
+            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                 android:id="@id/tvName"
                 android:layout_width="@dimen/size_0"
                 android:layout_height="wrap_content"
@@ -125,7 +125,7 @@
         android:paddingBottom="@dimen/size_12"
         app:layout_constraintTop_toBottomOf="@id/layoutTop">
 
-        <vn.icheck.android.ichecklibs.view.TextSecondary
+        <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
             android:id="@id/tvChange"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -139,7 +139,7 @@
             app:layout_constraintTop_toTopOf="@id/tvShippingUnit"
             tools:text="Thay đổi" />
 
-        <vn.icheck.android.ichecklibs.view.TextSecondary
+        <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
             android:id="@id/tvShippingUnit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -197,7 +197,7 @@
             android:background="@color/gray"
             app:layout_constraintTop_toBottomOf="@id/tvShippingTime" />
 
-        <vn.icheck.android.ichecklibs.view.TextSecondary
+        <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
             android:id="@id/tvAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

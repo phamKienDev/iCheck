@@ -69,16 +69,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <vn.icheck.android.ichecklibs.view.TextPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
             android:id="@+id/phone"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_8"
-            android:layout_marginLeft="@dimen/size_8"
             android:layout_marginEnd="@dimen/size_12"
-            android:layout_marginRight="@dimen/size_12"
             android:layout_weight="0"
-            android:fontFamily="@font/barlow_medium"
             android:gravity="end"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView67"
             app:layout_constraintEnd_toEndOf="parent"
@@ -103,16 +100,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider11" />
 
-        <vn.icheck.android.ichecklibs.view.TextPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
             android:id="@+id/email"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_8"
-            android:layout_marginLeft="@dimen/size_8"
             android:layout_marginEnd="@dimen/size_12"
-            android:layout_marginRight="@dimen/size_12"
             android:layout_weight="0"
-            android:fontFamily="@font/barlow_medium"
             android:gravity="end"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView74"
             app:layout_constraintEnd_toEndOf="parent"
@@ -138,17 +132,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider17" />
 
-        <vn.icheck.android.ichecklibs.view.TextPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
             android:id="@+id/fb"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_8"
-            android:layout_marginLeft="@dimen/size_8"
             android:layout_marginEnd="@dimen/size_12"
-            android:layout_marginRight="@dimen/size_12"
             android:layout_marginBottom="@dimen/size_16"
             android:layout_weight="1"
-            android:fontFamily="@font/barlow_medium"
             android:gravity="end"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

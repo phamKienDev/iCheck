@@ -122,7 +122,7 @@
                 android:visibility="gone"
                 app:fontFamily="@font/barlow_semi_bold" />
 
-            <vn.icheck.android.ichecklibs.view.TextSecondary
+            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                 android:id="@+id/tv_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -130,7 +130,7 @@
                 android:textSize="@dimen/font_20"
                 tools:text="890,000đ" />
 
-            <vn.icheck.android.ichecklibs.view.TextSecondary
+            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                 android:id="@+id/tvGiaNiemYet"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

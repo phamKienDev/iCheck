@@ -183,7 +183,7 @@
                 android:layout_marginBottom="@dimen/size_12"
                 android:orientation="horizontal">
 
-                <vn.icheck.android.ichecklibs.view.TextSecondary
+                <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/barlow_semi_bold"
@@ -210,7 +210,7 @@
                 android:layerType="software"
                 android:src="@drawable/line_dotted_horizontal_gray" />
 
-            <vn.icheck.android.ichecklibs.view.TextSecondary
+            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_16"
@@ -340,12 +340,11 @@
                         android:textColor="#EB5757"
                         android:textSize="@dimen/font_14" />
 
-                    <vn.icheck.android.ichecklibs.view.TextPrimary
+                    <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
                         android:id="@+id/tvActionAuthen"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableEnd="@drawable/ic_arrow_right_light_blue_24dp"
-                        android:fontFamily="@font/barlow_semi_bold"
                         android:gravity="end"
                         android:src="@drawable/ic_copy_24px"
                         android:text="@string/dinh_danh_ngay"

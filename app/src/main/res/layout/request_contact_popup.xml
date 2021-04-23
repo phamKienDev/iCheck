@@ -89,13 +89,12 @@
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@id/viewBottom" />
 
-        <vn.icheck.android.ichecklibs.view.TextPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
             android:id="@id/btnAgree"
             android:layout_width="@dimen/size_0"
             android:layout_height="@dimen/size_0"
             android:layout_weight="1"
             android:background="@drawable/btn_white_right_bottom_corners_8"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:includeFontPadding="false"
             android:text="Đồng bộ"
@@ -107,12 +106,11 @@
             card_view:layout_constraintStart_toEndOf="@id/viewCenter"
             card_view:layout_constraintTop_toTopOf="@id/viewCenter" />
 
-        <vn.icheck.android.ichecklibs.view.TextPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
             android:id="@+id/tv_dksd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_4"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:text="Điều khoản sử dụng"
             card_view:drawableEndCompat="@drawable/ic_arrow_right_light_blue_24dp"

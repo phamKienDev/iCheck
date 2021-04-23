@@ -66,7 +66,7 @@
                 android:background="#F0F0F0"
                 android:visibility="gone">
 
-                <vn.icheck.android.ichecklibs.view.TextSecondary
+                <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                     android:id="@+id/appCompatTextView30"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <vn.icheck.android.ichecklibs.view.TextSecondary
+                <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                     android:id="@id/txtViewAll"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -150,7 +150,7 @@
             android:background="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-        <vn.icheck.android.ichecklibs.view.TextHeaderPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
             android:id="@id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

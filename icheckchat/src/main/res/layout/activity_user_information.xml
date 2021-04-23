@@ -142,7 +142,7 @@
                 android:background="@color/gray_f0"
                 android:orientation="vertical">
 
-                <vn.icheck.android.ichecklibs.view.TextSecondary
+                <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                     android:id="@+id/tvTitleImage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

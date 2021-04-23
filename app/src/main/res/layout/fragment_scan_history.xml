@@ -28,7 +28,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <vn.icheck.android.ichecklibs.view.TextHeaderPrimary
+            <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
                 android:id="@+id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

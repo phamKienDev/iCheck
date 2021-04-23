@@ -6,12 +6,11 @@
     android:layout_height="match_parent"
     android:background="@color/gray_e5">
 
-    <vn.icheck.android.ichecklibs.view.TextPrimary
+    <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
         android:id="@+id/textView56"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_44"
         android:background="@android:color/white"
-        android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center"
         android:text="@string/quan_ly_trang"
         android:textSize="@dimen/font_18"
@@ -55,7 +54,7 @@
                     android:paddingTop="@dimen/size_10"
                     android:visibility="gone">
 
-                    <vn.icheck.android.ichecklibs.view.TextSecondary
+                    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                         android:id="@+id/tvOwnerTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -66,7 +65,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <vn.icheck.android.ichecklibs.view.TextSecondary
+                    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                         android:id="@+id/tvOwnerAll"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -97,7 +96,7 @@
                     android:paddingTop="@dimen/size_10"
                     android:visibility="gone">
 
-                    <vn.icheck.android.ichecklibs.view.TextSecondary
+                    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                         android:id="@+id/tvFollowTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -108,7 +107,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <vn.icheck.android.ichecklibs.view.TextSecondary
+                    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                         android:id="@+id/tvFollowAll"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

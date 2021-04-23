@@ -1,4 +1,4 @@
-package vn.icheck.android.ichecklibs.view
+package vn.icheck.android.ichecklibs.view.secondary
 
 import android.content.Context
 import android.util.AttributeSet

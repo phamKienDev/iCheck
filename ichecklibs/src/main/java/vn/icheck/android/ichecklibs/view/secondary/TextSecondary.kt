@@ -1,18 +1,17 @@
-package vn.icheck.android.ichecklibs.view
+package vn.icheck.android.ichecklibs.view.secondary
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.View
-import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.appcompat.widget.AppCompatTextView
 import vn.icheck.android.ichecklibs.Constant
 
-class ViewPrimary : View {
+class TextSecondary : AppCompatTextView {
 
     constructor(context: Context) : super(context) { setup() }
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { setup() }
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) { setup() }
 
     private fun setup() {
-        setBackgroundColor(Constant.getPrimaryColor(context))
+        setTextColor(Constant.getSecondaryColor(context))
     }
 }

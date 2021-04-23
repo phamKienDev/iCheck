@@ -1,8 +1,7 @@
-package vn.icheck.android.ichecklibs.view
+package vn.icheck.android.ichecklibs.view.primary
 
 import android.content.Context
 import android.content.res.Resources
-import android.graphics.Color
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.ViewTreeObserver

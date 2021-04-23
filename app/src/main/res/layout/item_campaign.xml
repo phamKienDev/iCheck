@@ -140,14 +140,12 @@
                     tools:text="27,254" />
             </LinearLayout>
 
-            <vn.icheck.android.ichecklibs.view.TextPrimary
+            <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
                 android:id="@id/tvReward"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/size_8"
-                android:layout_marginRight="@dimen/size_8"
                 android:layout_marginBottom="@dimen/size_8"
-                android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"

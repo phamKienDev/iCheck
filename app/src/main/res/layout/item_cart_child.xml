@@ -166,7 +166,7 @@
         app:layout_constraintEnd_toEndOf="@id/tvProductPrice"
         tools:text="205,000₫" />
 
-    <vn.icheck.android.ichecklibs.view.TextSecondary
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:id="@id/tvProductPrice"
         android:layout_width="@dimen/size_0"
         android:layout_height="wrap_content"

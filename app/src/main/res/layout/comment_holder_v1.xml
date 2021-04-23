@@ -24,7 +24,7 @@
         android:background="@drawable/bg_gray_corner_10"
         android:paddingBottom="@dimen/size_8">
 
-        <vn.icheck.android.ichecklibs.view.TextSecondary
+        <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
             android:id="@+id/tv_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

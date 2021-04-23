@@ -15,7 +15,7 @@
         android:layout_height="@dimen/size_1"
         android:background="@drawable/shadow_bottom" />
 
-    <vn.icheck.android.ichecklibs.view.TextSecondary
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
@@ -65,7 +65,7 @@
 
     </LinearLayout>
 
-    <vn.icheck.android.ichecklibs.view.TextSecondary
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
@@ -154,7 +154,7 @@
 
     </LinearLayout>
 
-    <vn.icheck.android.ichecklibs.view.TextSecondary
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:id="@+id/tvSubInforGuarantee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

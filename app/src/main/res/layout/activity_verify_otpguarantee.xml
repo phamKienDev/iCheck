@@ -47,7 +47,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <vn.icheck.android.ichecklibs.view.EditTextSecondary
+                <vn.icheck.android.ichecklibs.view.secondary.EditTextSecondary
                     android:id="@id/edtOtp"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/size_42"
@@ -83,7 +83,7 @@
                     android:theme="@style/Theme_Blue"
                     android:visibility="invisible" />
 
-                <vn.icheck.android.ichecklibs.view.TextSecondary
+                <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                     android:id="@id/txtStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

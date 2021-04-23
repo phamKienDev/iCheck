@@ -31,7 +31,7 @@
             android:textColor="@android:color/black"
             android:textSize="@dimen/font_14" />
 
-        <vn.icheck.android.ichecklibs.view.TextSecondary
+        <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
             android:id="@+id/btn_invite_user"
             android:layout_width="@dimen/size_50"
             android:layout_height="@dimen/size_26"

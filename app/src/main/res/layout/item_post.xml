@@ -388,7 +388,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
 
-            <vn.icheck.android.ichecklibs.view.TextSecondary
+            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                 android:id="@id/tvViewMore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

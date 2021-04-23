@@ -21,7 +21,7 @@
             android:scaleType="centerInside"
             app:srcCompat="@drawable/ic_cancel_light_blue_24dp" />
 
-        <vn.icheck.android.ichecklibs.view.TextHeaderPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
             android:id="@id/tvTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

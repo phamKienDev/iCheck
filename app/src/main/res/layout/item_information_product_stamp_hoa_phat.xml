@@ -14,7 +14,7 @@
         android:background="@drawable/bg_corner_top_gray_10"
         android:orientation="vertical">
 
-        <vn.icheck.android.ichecklibs.view.TextSecondary
+        <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
             android:id="@id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
         </FrameLayout>
     </LinearLayout>
 
-    <vn.icheck.android.ichecklibs.view.TextSecondary
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:id="@id/tv_more"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

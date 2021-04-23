@@ -9,7 +9,7 @@
 
     <include layout="@layout/toolbar_blue_v2" />
 
-    <vn.icheck.android.ichecklibs.view.TabLayoutWidthIndicatorPrimary
+    <vn.icheck.android.ichecklibs.view.primary.TabLayoutWidthIndicatorPrimary
         android:id="@id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_40"

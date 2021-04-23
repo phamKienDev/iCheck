@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:paddingBottom="@dimen/size_8"
-    android:elevation="@dimen/size_2"
+    android:layout_height="wrap_content"
     android:layout_margin="@dimen/size_12"
     android:background="@drawable/bg_gray_corner_10"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:elevation="@dimen/size_2"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/size_8">
 
     <TextView
         android:id="@+id/textView62"
@@ -23,7 +23,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <vn.icheck.android.ichecklibs.view.TextSecondary
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:id="@+id/tv_your_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -42,13 +42,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srb_drawableEmpty="@drawable/star_empty_layer"
         app:srb_drawableFilled="@drawable/star_filled_layer"
-        app:srb_numStars="5"
         app:srb_isIndicator="true"
+        app:srb_numStars="5"
         app:srb_starHeight="@dimen/size_24"
         app:srb_starWidth="@dimen/size_24"
         app:srb_stepSize="0.5" />
 
-    <vn.icheck.android.ichecklibs.view.TextPrimary
+    <vn.icheck.android.ichecklibs.view.primary.TextPrimary
         android:id="@+id/tv_xem_chi_tiet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -58,6 +58,7 @@
         android:text="Xem chi tiết"
         app:layout_constraintEnd_toEndOf="@+id/customer_rating"
         app:layout_constraintTop_toBottomOf="@+id/customer_rating" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container_detail_review"
         android:layout_width="0dp"
@@ -71,7 +72,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_xem_chi_tiet"
         tools:visibility="visible">
 
-        <vn.icheck.android.ichecklibs.view.TextSecondary
+        <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
             android:id="@+id/textView68"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -107,7 +108,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rcvImage" />
 
-        <vn.icheck.android.ichecklibs.view.TextPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextPrimary
             android:id="@+id/tv_collapse_drv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

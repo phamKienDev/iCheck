@@ -20,11 +20,10 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_back_blue_24px_new" />
 
-        <vn.icheck.android.ichecklibs.view.TextPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
             android:id="@+id/textView22"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/barlow_semi_bold"
             android:text="Xác thực số điện thoại"
             android:textSize="@dimen/font_18"
             app:layout_constraintBottom_toBottomOf="@+id/btn_back"
@@ -52,14 +51,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider12" />
 
-        <vn.icheck.android.ichecklibs.view.TextPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
             android:id="@+id/tv_nation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_34"
-            android:layout_marginLeft="@dimen/size_34"
             android:layout_marginTop="@dimen/size_26"
-            android:fontFamily="@font/barlow_semi_bold"
             android:text="Việt Nam"
             android:textSize="@dimen/font_18"
             app:layout_constraintStart_toStartOf="parent"

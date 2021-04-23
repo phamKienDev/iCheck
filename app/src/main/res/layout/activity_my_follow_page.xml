@@ -16,10 +16,9 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_back_blue_24px_new" />
 
-    <vn.icheck.android.ichecklibs.view.TextPrimary
+    <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/barlow_semi_bold"
         android:text="@string/trang_dang_theo_doi"
         android:textSize="@dimen/font_18"
         app:layout_constraintBottom_toBottomOf="@id/img_back"
@@ -71,7 +70,7 @@
         app:layout_constraintEnd_toEndOf="@id/edtSearch"
         app:layout_constraintTop_toTopOf="@id/edtSearch" />
 
-    <vn.icheck.android.ichecklibs.view.TextSecondary
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:id="@+id/tvPageCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -19,15 +19,13 @@
             android:scaleType="centerInside"
             app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-        <vn.icheck.android.ichecklibs.view.TextPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
             android:id="@+id/textView4"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginEnd="@dimen/size_50"
-            android:layout_marginRight="@dimen/size_50"
             android:layout_weight="1"
             android:focusableInTouchMode="true"
-            android:fontFamily="@font/barlow_medium"
             android:gravity="center"
             android:text="Đóng góp thông tin"
             android:textSize="@dimen/font_18" />
@@ -53,7 +51,7 @@
             android:focusableInTouchMode="true"
             android:orientation="vertical">
 
-            <vn.icheck.android.ichecklibs.view.TextSecondary
+            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
@@ -297,7 +295,7 @@
                 android:layout_marginTop="@dimen/size_10"
                 android:background="?android:attr/listDivider" />
 
-            <vn.icheck.android.ichecklibs.view.TextSecondary
+            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
@@ -431,7 +429,7 @@
                 android:textColorHint="#B4B4B4"
                 android:textSize="@dimen/font_14" />
 
-            <vn.icheck.android.ichecklibs.view.TextSecondary
+            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                 android:id="@+id/tv_search_gg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

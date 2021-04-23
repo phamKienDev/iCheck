@@ -24,7 +24,7 @@
         tools:text="Nước Hoa Hồng"
         tools:visibility="visible" />
 
-    <vn.icheck.android.ichecklibs.view.TextSecondary
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:id="@+id/tv_price"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
         app:layout_constraintStart_toStartOf="@id/tv_product_name"
         tools:text="130,000đ" />
 
-    <vn.icheck.android.ichecklibs.view.TextSecondary
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:id="@+id/tvGiaNiemYet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -89,7 +89,7 @@
         app:srb_starWidth="@dimen/size_12"
         app:srb_stepSize="0.5" />
 
-    <vn.icheck.android.ichecklibs.view.TextPrimary
+    <vn.icheck.android.ichecklibs.view.primary.TextPrimary
         android:id="@+id/tv_product_avg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

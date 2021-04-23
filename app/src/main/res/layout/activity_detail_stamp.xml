@@ -31,7 +31,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_categories_menu_blue_24" />
 
-            <vn.icheck.android.ichecklibs.view.TextSecondary
+            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                 android:id="@id/txtTitle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -98,7 +98,7 @@
                 android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
 
-            <vn.icheck.android.ichecklibs.view.ButtonSecondary
+            <vn.icheck.android.ichecklibs.view.secondary.ButtonSecondary
                 android:id="@+id/btnAgainError"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -140,7 +140,7 @@
                 android:textStyle="normal"
                 tools:text="Để hiển thị dữ liệu Cửa hàng, vui lòng bật GPS" />
 
-            <vn.icheck.android.ichecklibs.view.TextSecondary
+            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                 android:id="@+id/btnRequestPermission"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -156,7 +156,7 @@
                 android:textSize="@dimen/font_16"
                 android:textStyle="normal" />
 
-            <vn.icheck.android.ichecklibs.view.TextSecondary
+            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                 android:id="@+id/btnEnableLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -385,7 +385,7 @@
                             android:layout_height="wrap_content"
                             android:paddingHorizontal="@dimen/size_8">
 
-                            <vn.icheck.android.ichecklibs.view.TextSecondary
+                            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                                 android:id="@+id/loyalty_description"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -415,7 +415,7 @@
                                 android:textAllCaps="true"
                                 android:textSize="@dimen/font_14" />
 
-                            <vn.icheck.android.ichecklibs.view.ButtonPrimary
+                            <vn.icheck.android.ichecklibs.view.primary.ButtonPrimary
                                 android:id="@+id/btnCheckCode"
                                 android:layout_width="@dimen/size_83"
                                 android:layout_height="match_parent"
@@ -790,7 +790,7 @@
                             android:layout_height="wrap_content"
                             android:background="@drawable/bg_corner_bottom_gray_10">
 
-                            <vn.icheck.android.ichecklibs.view.TextSecondary
+                            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                                 android:id="@+id/tvSerialFake"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -831,7 +831,7 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/view1" />
 
-                            <vn.icheck.android.ichecklibs.view.TextSecondary
+                            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                                 android:id="@+id/tvCountScanFake"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -874,7 +874,7 @@
                                 app:layout_constraintStart_toEndOf="@id/viewNotVerify"
                                 app:layout_constraintTop_toBottomOf="@+id/view1" />
 
-                            <vn.icheck.android.ichecklibs.view.TextSecondary
+                            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                                 android:id="@+id/tvCountUserScanFake"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -944,7 +944,7 @@
                             android:layout_height="wrap_content"
                             android:background="@drawable/bg_corner_bottom_gray_10">
 
-                            <vn.icheck.android.ichecklibs.view.TextSecondary
+                            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                                 android:id="@+id/tvSerialVerified"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -985,7 +985,7 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/view2" />
 
-                            <vn.icheck.android.ichecklibs.view.TextSecondary
+                            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                                 android:id="@+id/tvCountScanVerified"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -1028,7 +1028,7 @@
                                 app:layout_constraintStart_toEndOf="@id/viewVerify"
                                 app:layout_constraintTop_toBottomOf="@+id/view2" />
 
-                            <vn.icheck.android.ichecklibs.view.TextSecondary
+                            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                                 android:id="@+id/tvCountUserScanVerified"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -1099,7 +1099,7 @@
                             android:layout_height="wrap_content"
                             android:background="@drawable/bg_corner_bottom_gray_10">
 
-                            <vn.icheck.android.ichecklibs.view.TextSecondary
+                            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                                 android:id="@+id/tvSerialVerifiedChongGia"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -1168,7 +1168,7 @@
                             android:layout_height="wrap_content"
                             android:background="@drawable/bg_corner_bottom_gray_10">
 
-                            <vn.icheck.android.ichecklibs.view.TextSecondary
+                            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                                 android:id="@+id/tvSerialVerifiedBaoHanh"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -1209,7 +1209,7 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/view3" />
 
-                            <vn.icheck.android.ichecklibs.view.TextSecondary
+                            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                                 android:id="@+id/tvCountScanVerifiedBaoHanh"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -1252,7 +1252,7 @@
                                 app:layout_constraintStart_toEndOf="@id/viewBaoHanh"
                                 app:layout_constraintTop_toBottomOf="@+id/view3" />
 
-                            <vn.icheck.android.ichecklibs.view.TextSecondary
+                            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                                 android:id="@+id/tvCountUserScanVerifiedBaoHanh"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -1282,7 +1282,7 @@
                     android:visibility="gone"
                     tools:visibility="visible">
 
-                    <vn.icheck.android.ichecklibs.view.TextSecondary
+                    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                         android:id="@id/tvTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -1292,7 +1292,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <vn.icheck.android.ichecklibs.view.TextSecondary
+                    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                         android:id="@id/tvViewMore"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -1378,7 +1378,7 @@
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
-                        <vn.icheck.android.ichecklibs.view.TextSecondary
+                        <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                             android:id="@+id/tvDetailsWarranty"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -1450,7 +1450,7 @@
                     android:layout_marginBottom="@dimen/size_8"
                     android:visibility="gone">
 
-                    <vn.icheck.android.ichecklibs.view.TextSecondary
+                    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                         android:id="@+id/appCompatTextView6"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -1490,7 +1490,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <!--Vendor-->
-                <vn.icheck.android.ichecklibs.view.TextSecondary
+                <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                     android:id="@+id/tvSubVendor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -1584,7 +1584,7 @@
                             android:textStyle="normal"
                             tools:text="Số 50, Ngõ 125 Nguyễn Ngọc Vũ, Trung Hòa,Cầu Giấy, Hà Nội" />
 
-                        <vn.icheck.android.ichecklibs.view.TextSecondary
+                        <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                             android:id="@+id/tvWebsiteVendor"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -1604,7 +1604,7 @@
                             android:layout_marginBottom="@dimen/size_12"
                             android:orientation="horizontal">
 
-                            <vn.icheck.android.ichecklibs.view.TextSecondary
+                            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                                 android:id="@+id/tvPhoneVendor"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
@@ -1614,7 +1614,7 @@
                                 android:textStyle="normal"
                                 tools:text="0902195488" />
 
-                            <vn.icheck.android.ichecklibs.view.TextSecondary
+                            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                                 android:id="@+id/tvMailVendor"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
@@ -1633,7 +1633,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <!--Distributor-->
-                <vn.icheck.android.ichecklibs.view.TextSecondary
+                <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                     android:id="@+id/tvSubDistributor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -1723,7 +1723,7 @@
                             android:textStyle="normal"
                             tools:text="Số 50, Ngõ 125 Nguyễn Ngọc Vũ, Trung Hòa,Cầu Giấy, Hà Nội" />
 
-                        <vn.icheck.android.ichecklibs.view.TextSecondary
+                        <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                             android:id="@+id/tvWebsiteDistributor"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -1743,7 +1743,7 @@
                             android:layout_marginBottom="@dimen/size_12"
                             android:orientation="horizontal">
 
-                            <vn.icheck.android.ichecklibs.view.TextSecondary
+                            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                                 android:id="@+id/tvPhoneDistributor"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
@@ -1753,7 +1753,7 @@
                                 android:textStyle="normal"
                                 tools:text="0902195488" />
 
-                            <vn.icheck.android.ichecklibs.view.TextSecondary
+                            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                                 android:id="@+id/tvMailDistributor"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
@@ -1787,7 +1787,7 @@
                     android:layout_marginEnd="@dimen/size_12"
                     android:visibility="gone">
 
-                    <vn.icheck.android.ichecklibs.view.TextSecondary
+                    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                         android:id="@+id/appCompatTextView9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -1946,7 +1946,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <vn.icheck.android.ichecklibs.view.LinearLayoutSecondary
+        <vn.icheck.android.ichecklibs.view.secondary.LinearLayoutSecondary
             android:id="@+id/layoutBuyNow"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -1964,6 +1964,6 @@
                 android:textColor="#ffffff"
                 android:textSize="@dimen/font_16"
                 android:textStyle="normal" />
-        </vn.icheck.android.ichecklibs.view.LinearLayoutSecondary>
+        </vn.icheck.android.ichecklibs.view.secondary.LinearLayoutSecondary>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>

@@ -75,12 +75,11 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <vn.icheck.android.ichecklibs.view.TextPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
             android:id="@+id/btn_skip"
             android:layout_width="@dimen/size_90"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_stroke_blue_corner_4"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:paddingTop="@dimen/size_6"
             android:paddingBottom="@dimen/size_6"

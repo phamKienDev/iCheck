@@ -104,7 +104,7 @@
                     android:textSize="@dimen/font_14"
                     android:textStyle="normal" />
 
-                <vn.icheck.android.ichecklibs.view.ButtonSecondary
+                <vn.icheck.android.ichecklibs.view.secondary.ButtonSecondary
                     android:id="@+id/btnAgainError"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -145,7 +145,7 @@
                     android:textStyle="normal"
                     tools:text="Để hiển thị dữ liệu Cửa hàng, vui lòng bật GPS" />
 
-                <vn.icheck.android.ichecklibs.view.TextSecondary
+                <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                     android:id="@+id/btnRequestPermission"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -161,7 +161,7 @@
                     android:textSize="@dimen/font_16"
                     android:textStyle="normal" />
 
-                <vn.icheck.android.ichecklibs.view.TextSecondary
+                <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                     android:id="@+id/btnEnableLocation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

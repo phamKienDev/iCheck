@@ -28,7 +28,7 @@
             android:descendantFocusability="blocksDescendants"
             android:orientation="vertical">
 
-            <vn.icheck.android.ichecklibs.view.TextSecondary
+            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                 android:id="@+id/tvCustomerInfor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -105,7 +105,7 @@
 
             </LinearLayout>
 
-            <vn.icheck.android.ichecklibs.view.TextSecondary
+            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                 android:id="@+id/tvWarrantyInfor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

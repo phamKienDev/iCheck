@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ic_home_review_stars" />
 
-    <vn.icheck.android.ichecklibs.view.TextSecondary
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_8"
