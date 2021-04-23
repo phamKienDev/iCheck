@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.item_payment_type.view.*
 import vn.icheck.android.R
 import vn.icheck.android.callback.ItemClickListener
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.helper.TextColorHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.base.SettingManager
@@ -79,8 +80,8 @@ class PaymentTypeAdapter(val context: Context?, val listener: ItemClickListener<
                 itemView.tvValue.setTextColor(Color.parseColor("#757575"))
             } else {
                 itemView.radioButton1.setImageResource(R.drawable.ic_radio_on_24dp)
-                itemView.tvNameType.setTextColor(Color.parseColor("#212121"))
-                itemView.tvValue.setTextColor(Color.parseColor("#212121"))
+                itemView.tvNameType.setTextColor(TextColorHelper.getColorNormalText(itemView.context))
+                itemView.tvValue.setTextColor(TextColorHelper.getColorNormalText(itemView.context))
             }
 
             WidgetUtils.loadImageUrlRounded(itemView.imgType, item.agent?.avatar, SizeHelper.size4)

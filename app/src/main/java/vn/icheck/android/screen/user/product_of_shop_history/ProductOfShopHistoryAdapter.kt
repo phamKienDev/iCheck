@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.item_product_of_shop_history.view.*
 import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.helper.TextColorHelper
 import vn.icheck.android.network.models.history.ICProductOfShopHistory
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -147,7 +148,7 @@ class ProductOfShopHistoryAdapter constructor(val view: ProductOfShopHistoryView
                 if (!item.name.isNullOrEmpty()) {
                     itemView.tvNameShop.text = item.name
                     itemView.tvNameShop.typeface = ResourcesCompat.getFont(itemView.context, R.font.barlow_regular)
-                    itemView.tvNameShop.setTextColor(Color.parseColor("#212121"))
+                    itemView.tvNameShop.setTextColor(TextColorHelper.getColorNormalText(itemView.context))
                     itemView.tvNameShop.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_home_verify_16dp, 0, 0, 0)
                     itemView.tvNameShop.compoundDrawablePadding = SizeHelper.size5
                 } else {
@@ -161,7 +162,7 @@ class ProductOfShopHistoryAdapter constructor(val view: ProductOfShopHistoryView
                 if (!item.name.isNullOrEmpty()) {
                     itemView.tvNameShop.text = item.name
                     itemView.tvNameShop.typeface = ResourcesCompat.getFont(itemView.context, R.font.barlow_regular)
-                    itemView.tvNameShop.setTextColor(Color.parseColor("#212121"))
+                    itemView.tvNameShop.setTextColor(TextColorHelper.getColorNormalText(itemView.context))
                     itemView.tvNameShop.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                 } else {
                     itemView.tvNameShop.text = itemView.context.getString(R.string.ten_dang_cap_nhat)

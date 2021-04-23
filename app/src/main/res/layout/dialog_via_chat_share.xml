@@ -79,13 +79,11 @@
             app:layout_constraintStart_toEndOf="@id/avatarUserPost"
             app:layout_constraintTop_toTopOf="@id/avatarUserPost">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
                 android:id="@id/tvName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:text="Quỳnh Hoa"
-                android:fontFamily="@font/barlow_semi_bold"
-                android:textColor="#212121"
                 android:textSize="@dimen/font_16" />
 
             <vn.icheck.android.component.rating_star.RatingStarComponent
@@ -125,15 +123,13 @@
             app:layout_constraintStart_toStartOf="@id/avatarUserPost"
             app:layout_constraintTop_toBottomOf="@id/layoutName">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                 android:id="@id/tvDesc"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginStart="@dimen/size_12"
-                android:fontFamily="@font/barlow_medium"
                 android:lineSpacingExtra="@dimen/font_5_6"
-                android:textColor="#212121"
                 android:textSize="@dimen/font_14"
                 tools:text="Sản phẩm tốt, chất lượng cao. Chính hãng nên đảm bảo lắm nhé. Mọi người đều nên sử dụ (3 dòng)..." />
 

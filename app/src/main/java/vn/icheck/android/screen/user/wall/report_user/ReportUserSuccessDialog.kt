@@ -19,6 +19,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import vn.icheck.android.R
 import vn.icheck.android.databinding.DialogReportUserSuccessBinding
+import vn.icheck.android.helper.TextColorHelper
 import vn.icheck.android.screen.user.wall.IckUserWallViewModel
 import vn.icheck.android.util.ick.toPx
 
@@ -62,7 +63,7 @@ class ReportUserSuccessDialog:BottomSheetDialogFragment() {
                             setMargins(12.toPx(), 12.toPx(), 12.toPx(), 0)
                         }
                         typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
-                        setTextColor(Color.parseColor("#212121"))
+                        setTextColor(TextColorHelper.getColorNormalText(context))
                     })
                 } else if(item.content.isNullOrEmpty()) {
                     binding.linearLayout5.addView(TextView(requireContext()).apply {
@@ -73,7 +74,7 @@ class ReportUserSuccessDialog:BottomSheetDialogFragment() {
                             setMargins(12.toPx(), 12.toPx(), 12.toPx(), 0)
                         }
                         typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
-                        setTextColor(Color.parseColor("#212121"))
+                        setTextColor(TextColorHelper.getColorNormalText(context))
                     })
                 }
             }
@@ -86,7 +87,7 @@ class ReportUserSuccessDialog:BottomSheetDialogFragment() {
                         setMargins(12.toPx(), 12.toPx(), 12.toPx(), 0)
                     }
                     typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
-                    setTextColor(Color.parseColor("#212121"))
+                    setTextColor(TextColorHelper.getColorNormalText(context))
                 })
             }
         }

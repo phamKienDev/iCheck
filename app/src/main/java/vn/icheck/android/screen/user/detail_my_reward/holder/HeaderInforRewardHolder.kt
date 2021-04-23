@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.header_infor_reward.*
 import kotlinx.android.synthetic.main.header_infor_reward.view.*
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
+import vn.icheck.android.helper.TextColorHelper
 import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.network.models.ICDetail_Campaign
 import vn.icheck.android.network.models.ICItemReward
@@ -58,7 +59,7 @@ class HeaderInforRewardHolder(parent: ViewGroup) : BaseViewHolder<ICItemReward>(
             }
             //đã dùng
             2 -> {
-                itemView.tvRefuseDes.setTextColor(Color.parseColor("#212121"))
+                itemView.tvRefuseDes.setTextColor(TextColorHelper.getColorNormalText(itemView.context))
                 itemView.tvRefuseDes.text = obj.refuse
 
                 itemView.imgUsed.visibility = View.VISIBLE
@@ -75,19 +76,19 @@ class HeaderInforRewardHolder(parent: ViewGroup) : BaseViewHolder<ICItemReward>(
         itemView.tvTimeDes.visibility = View.VISIBLE
 
         itemView.tvRefuse.text = "Hạn lấy quà"
-        itemView.tvRefuseDes.setTextColor(Color.parseColor("#212121"))
+        itemView.tvRefuseDes.setTextColor(TextColorHelper.getColorNormalText(itemView.context))
         itemView.tvRefuseDes.text = obj.refuse
 
         itemView.tvTime.text = "Loại quà"
-        itemView.tvTimeDes.setTextColor(Color.parseColor("#212121"))
+        itemView.tvTimeDes.setTextColor(TextColorHelper.getColorNormalText(itemView.context))
         itemView.tvRefuseDes.text = "Qùa lấy tại cửa hàng"
 
     }
 
     fun stateProductShip(obj: ICItemReward) {
         itemView.imgUsed.visibility = View.GONE
-        itemView.tvRefuseDes.setTextColor(Color.parseColor("#212121"))
-        itemView.tvTimeDes.setTextColor(Color.parseColor("#212121"))
+        itemView.tvRefuseDes.setTextColor(TextColorHelper.getColorNormalText(itemView.context))
+        itemView.tvTimeDes.setTextColor(TextColorHelper.getColorNormalText(itemView.context))
         when (obj.state) {
             //chưa nhận
             1 -> {
