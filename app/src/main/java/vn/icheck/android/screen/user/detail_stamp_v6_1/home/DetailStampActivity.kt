@@ -224,7 +224,7 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
         }
 
         getData()
-        getUserDetail()
+//        getUserDetail()
 //        initUpdateLocation()
         listener()
     }

@@ -59,7 +59,7 @@ object NetworkModule {
 
                                 .build()
                         val hasMultipart = request.headers.names().contains("multipart")
-                        if (hasMultipart) httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.NONE) else httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+//                        if (hasMultipart) httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.NONE) else httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
                         chain.proceed(request)
                     } catch (e: SocketTimeoutException) {
                         EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.SOCKET_TIMEOUT))
@@ -70,7 +70,7 @@ object NetworkModule {
                                 .addHeader("User-Agent", "Model:${DeviceUtils.getModel()}  +  AppVersion:${SettingManager.appVersion}")
                                 .build()
                         val hasMultipart = request.headers.names().contains("multipart")
-                        if (hasMultipart) httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.NONE) else httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+//                        if (hasMultipart) httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.NONE) else httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
                         chain.proceed(request)
                     }
                 }
