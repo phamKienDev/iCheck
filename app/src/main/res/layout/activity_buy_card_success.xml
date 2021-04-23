@@ -68,18 +68,16 @@
         android:background="@color/white"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:id="@+id/tvMessageSuccess"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_37"
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginEnd="@dimen/size_37"
-            android:fontFamily="@font/barlow_medium"
             android:gravity="center"
             android:lineSpacingExtra="@dimen/font_5_6"
             android:textAlignment="center"
-            android:textColor="#212121"
             android:textSize="@dimen/font_14"
             android:textStyle="normal"
             tools:text="Quý khách đã mua thành công mã thẻ điện thoại Mobifone" />
@@ -114,13 +112,11 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                 android:id="@id/tvName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/barlow_medium"
                 android:gravity="end"
-                android:textColor="#212121"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/appCompatTextView28"
@@ -140,14 +136,12 @@
                 app:layout_constraintStart_toStartOf="@id/appCompatTextView28"
                 app:layout_constraintTop_toBottomOf="@id/appCompatTextView28" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                 android:id="@+id/tvTotal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_10"
-                android:fontFamily="@font/barlow_medium"
                 android:gravity="end"
-                android:textColor="#212121"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintEnd_toEndOf="@id/tvName"
                 app:layout_constraintStart_toEndOf="@id/appCompatTextView29"
@@ -167,14 +161,12 @@
                 app:layout_constraintStart_toStartOf="@id/appCompatTextView29"
                 app:layout_constraintTop_toBottomOf="@id/appCompatTextView29" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                 android:id="@+id/tvTypePayment"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_10"
-                android:fontFamily="@font/barlow_medium"
                 android:gravity="end"
-                android:textColor="#212121"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintEnd_toEndOf="@id/tvTotal"
                 app:layout_constraintStart_toEndOf="@id/appCompatTextView31"
@@ -219,16 +211,14 @@
             app:layout_constraintStart_toStartOf="@id/textView76"
             app:layout_constraintTop_toBottomOf="@id/textView76" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:id="@+id/tv_serial"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/size_8"
             android:drawableEnd="@drawable/ic_copy_24px"
             android:drawablePadding="@dimen/size_8"
-            android:fontFamily="@font/barlow_medium"
             android:gravity="end"
-            android:textColor="#212121"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/textView77"
@@ -248,15 +238,13 @@
             app:layout_constraintStart_toStartOf="@id/textView77"
             app:layout_constraintTop_toBottomOf="@id/textView77" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:id="@+id/tv_code"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_copy_24px"
             android:drawablePadding="@dimen/size_8"
-            android:fontFamily="@font/barlow_medium"
             android:gravity="end"
-            android:textColor="#212121"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="@id/tv_serial"
             app:layout_constraintStart_toEndOf="@id/textView78"

@@ -25,19 +25,17 @@
             android:layout_marginTop="@dimen/size_35"
             app:srcCompat="@drawable/ic_out_of_gifts" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
             android:id="@+id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_30"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:includeFontPadding="false"
             android:lineSpacingExtra="@dimen/font_6"
             android:singleLine="true"
             android:text="Bạn đã hết lượt mở quà rồi!"
-            android:textColor="#212121"
             android:textSize="@dimen/font_14" />
 
         <androidx.appcompat.widget.AppCompatTextView

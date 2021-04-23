@@ -97,6 +97,7 @@
     <string name="qua_cua_toi">Quà của tôi</string>
     <string name="mua_ma_the_dien_thoai">Mua mã thẻ điện thoại</string>
     <string name="bo_qua_khao_sat">Bỏ qua khảo sát</string>
+    <string name="loai_giay_to">Loại giấy tờ</string>
     <string name="ban_chac_chan_bo_qua_khao_sat_nay_chu">Bạn chắc chắn bỏ qua khảo sát này chứ?</string>
     <string name="trang_chu">Trang chủ</string>
     <string name="lich_su">Lịch sử</string>
@@ -766,6 +767,7 @@
     <string name="khong_co_loi_moi_ket_ban_nao">Không có lời mời kết bạn nào</string>
     <string name="xac_thuc_danh_tinh">Xác thực danh tính</string>
     <string name="chung_minh_nhan_dan">Chứng minh nhân dân</string>
+    <string name="loi_thong_tin">Lỗi thông tin</string>
     <string name="can_cuoc_cong_dan">Căn cước công dân</string>
     <string name="mat_truoc_cccd">Mặt trước CCCD</string>
     <string name="mat_sau_cccd">Mặt sau CCCD</string>

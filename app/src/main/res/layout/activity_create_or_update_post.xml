@@ -61,7 +61,7 @@
                     app:layout_constraintStart_toEndOf="@id/imgAvatar"
                     app:layout_constraintTop_toTopOf="@id/imgAvatar">
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
                         android:id="@id/tvName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -69,10 +69,9 @@
                         android:layout_marginEnd="@dimen/size_8"
                         android:drawablePadding="@dimen/size_4"
                         android:ellipsize="middle"
-                        android:fontFamily="@font/barlow_semi_bold"
+                        tools:fontFamily="@font/barlow_semi_bold"
                         android:includeFontPadding="false"
                         android:singleLine="true"
-                        android:textColor="@color/colorNormalText"
                         android:textSize="@dimen/font_16"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/imgAvatar"
@@ -105,7 +104,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.appcompat.widget.AppCompatEditText
+            <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalTextColor
                 android:id="@id/edtContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -115,7 +114,6 @@
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/barlow_medium"
                 android:includeFontPadding="false"
-                android:textColor="#212121"
                 android:textSize="@dimen/font_14"
                 tools:hint="@string/hom_nay_ban_thay_the_nao_xxx" />
 

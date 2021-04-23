@@ -5,15 +5,13 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
         android:id="@+id/title_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_18"
-        android:fontFamily="@font/barlow_medium"
-        android:textColor="#212121"
         android:textSize="@dimen/font_12"
         tools:text="Tên sản phẩm (*)" />
 

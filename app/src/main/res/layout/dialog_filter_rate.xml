@@ -21,7 +21,7 @@
         app:layout_constraintTop_toBottomOf="@id/layoutHeader" />
 
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
         android:id="@+id/tv_1"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_24"
@@ -30,10 +30,8 @@
         android:layout_marginTop="@dimen/size_14"
         android:layout_marginEnd="@dimen/size_14"
         android:layout_marginRight="@dimen/size_14"
-        android:fontFamily="@font/barlow_medium"
         android:gravity="center_vertical"
         android:text="@string/one_sao"
-        android:textColor="#212121"
         android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,7 +51,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_1" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
         android:id="@+id/tv_2"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_24"
@@ -62,10 +60,8 @@
         android:layout_marginTop="@dimen/size_14"
         android:layout_marginEnd="@dimen/size_14"
         android:layout_marginRight="@dimen/size_14"
-        android:fontFamily="@font/barlow_medium"
         android:gravity="center_vertical"
         android:text="@string/two_sao"
-        android:textColor="#212121"
         android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -85,7 +81,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_2" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
         android:id="@+id/tv_3"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_24"
@@ -94,10 +90,8 @@
         android:layout_marginTop="@dimen/size_14"
         android:layout_marginEnd="@dimen/size_14"
         android:layout_marginRight="@dimen/size_14"
-        android:fontFamily="@font/barlow_medium"
         android:gravity="center_vertical"
         android:text="@string/three_sao"
-        android:textColor="#212121"
         android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -117,7 +111,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_3" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
         android:id="@+id/tv_4"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_24"
@@ -126,10 +120,8 @@
         android:layout_marginTop="@dimen/size_14"
         android:layout_marginEnd="@dimen/size_14"
         android:layout_marginRight="@dimen/size_14"
-        android:fontFamily="@font/barlow_medium"
         android:gravity="center_vertical"
         android:text="@string/four_sao"
-        android:textColor="#212121"
         android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -149,7 +141,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_4" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
         android:id="@+id/tv_5"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_24"
@@ -158,10 +150,8 @@
         android:layout_marginTop="@dimen/size_14"
         android:layout_marginEnd="@dimen/size_14"
         android:layout_marginRight="@dimen/size_14"
-        android:fontFamily="@font/barlow_medium"
         android:gravity="center_vertical"
         android:text="@string/five_sao"
-        android:textColor="#212121"
         android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

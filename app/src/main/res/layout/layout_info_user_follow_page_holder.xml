@@ -84,14 +84,12 @@
             android:gravity="center_horizontal" />
     </LinearLayout>
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_16"
-        android:fontFamily="@font/barlow_semi_bold"
         android:includeFontPadding="false"
         android:text="Mời bạn bè theo dõi trang này"
-        android:textColor="@color/colorNormalText"
         android:textSize="@dimen/font_16" />
 
     <TextView

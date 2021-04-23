@@ -60,19 +60,17 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginLeft="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_16"
-                android:fontFamily="@font/barlow_medium"
                 android:lineSpacingExtra="@dimen/font_14"
                 android:text="Tên sự kiện"
-                android:textColor="#212121"
                 android:textSize="@dimen/font_12" />
 
-            <androidx.appcompat.widget.AppCompatEditText
+            <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalTextColor
                 android:id="@id/edtEvent"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_36"
@@ -85,7 +83,6 @@
                 android:hint="Bắt buộc"
                 android:paddingStart="@dimen/size_10"
                 android:paddingEnd="@dimen/size_10"
-                android:textColor="#212121"
                 android:textColorHint="#b4b4b4"
                 android:textSize="@dimen/font_14" />
 
@@ -106,19 +103,17 @@
                 android:visibility="gone"
                 tools:text="Nhập sai định dạng. Thử lại!" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginLeft="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_16"
-                android:fontFamily="@font/barlow_medium"
                 android:lineSpacingExtra="@dimen/font_14"
                 android:text="Địa chỉ"
-                android:textColor="#212121"
                 android:textSize="@dimen/font_12" />
 
-            <androidx.appcompat.widget.AppCompatEditText
+            <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalTextColor
                 android:id="@id/edtAddress"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_36"
@@ -131,7 +126,6 @@
                 android:hint="Bắt buộc"
                 android:paddingStart="@dimen/size_10"
                 android:paddingEnd="@dimen/size_10"
-                android:textColor="#212121"
                 android:textColorHint="#b4b4b4"
                 android:textSize="@dimen/font_14" />
 
@@ -152,19 +146,17 @@
                 android:visibility="gone"
                 tools:text="Nhập sai định dạng. Thử lại!" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginLeft="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_16"
-                android:fontFamily="@font/barlow_medium"
                 android:lineSpacingExtra="@dimen/font_14"
                 android:text="Đường dẫn sự kiện"
-                android:textColor="#212121"
                 android:textSize="@dimen/font_12" />
 
-            <androidx.appcompat.widget.AppCompatEditText
+            <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalTextColor
                 android:id="@id/edtEventLink"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_36"
@@ -177,7 +169,6 @@
                 android:hint="Bắt buộc"
                 android:paddingStart="@dimen/size_10"
                 android:paddingEnd="@dimen/size_10"
-                android:textColor="#212121"
                 android:textColorHint="#b4b4b4"
                 android:textSize="@dimen/font_14" />
 
@@ -198,19 +189,17 @@
                 android:visibility="gone"
                 tools:text="Nhập sai định dạng. Thử lại!" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginLeft="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_16"
-                android:fontFamily="@font/barlow_medium"
                 android:lineSpacingExtra="@dimen/font_14"
                 android:text="Ngày bắt đầu"
-                android:textColor="#212121"
                 android:textSize="@dimen/font_12" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                 android:id="@id/edtStartDate"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_36"
@@ -220,12 +209,10 @@
                 android:background="@drawable/bg_corner_gray_solid_white"
                 android:drawableEnd="@drawable/ic_calendar_off_24px"
                 android:drawableRight="@drawable/ic_calendar_off_24px"
-                android:fontFamily="@font/barlow_medium"
                 android:gravity="start|center"
                 android:hint="Bắt buộc"
                 android:paddingStart="@dimen/size_10"
                 android:paddingEnd="@dimen/size_10"
-                android:textColor="#212121"
                 android:textColorHint="#b4b4b4"
                 android:textSize="@dimen/font_14" />
 
@@ -246,19 +233,17 @@
                 android:visibility="gone"
                 tools:text="Nhập sai định dạng. Thử lại!" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginLeft="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_16"
-                android:fontFamily="@font/barlow_medium"
                 android:lineSpacingExtra="@dimen/font_14"
                 android:text="Ngày kết thúc"
-                android:textColor="#212121"
                 android:textSize="@dimen/font_12" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                 android:id="@id/edtEndDate"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_36"
@@ -268,12 +253,10 @@
                 android:background="@drawable/bg_corner_gray_solid_white"
                 android:drawableEnd="@drawable/ic_calendar_off_24px"
                 android:drawableRight="@drawable/ic_calendar_off_24px"
-                android:fontFamily="@font/barlow_medium"
                 android:gravity="start|center"
                 android:hint="Bắt buộc"
                 android:paddingStart="@dimen/size_10"
                 android:paddingEnd="@dimen/size_10"
-                android:textColor="#212121"
                 android:textColorHint="#b4b4b4"
                 android:textSize="@dimen/font_14" />
 

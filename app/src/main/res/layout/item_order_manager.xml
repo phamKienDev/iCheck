@@ -13,16 +13,14 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/size_8">
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
             android:id="@+id/tvOrderId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginTop="@dimen/size_10"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:includeFontPadding="false"
-            android:textColor="@color/colorNormalText"
             android:textSize="@dimen/font_14"
             app:drawableEndCompat="@drawable/ic_mission_gift_24dp"
             app:layout_constraintStart_toStartOf="parent"

@@ -32,13 +32,11 @@
         app:layout_constraintStart_toEndOf="@id/img_avatar"
         app:layout_constraintTop_toTopOf="@id/img_avatar">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
-            android:textColor="@color/colorNormalText"
             android:textSize="@dimen/font_14"
             tools:text="Nguyễn Quang Hải Nguyễn Quang Hải Nguyễn Quang Hải Nguyễn Quang Hải" />
 

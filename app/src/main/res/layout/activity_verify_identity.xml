@@ -85,21 +85,19 @@ Vui lòng kiểm tra kỹ lại thông tin và ảnh chụp giấy tờ chính c
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView31" />
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                 android:id="@+id/textView43"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
-                android:layout_marginLeft="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_22"
                 android:fontFamily="@font/barlow_medium"
-                android:text="Loại giấy tờ"
-                android:textColor="@color/colorNormalText"
+                android:text="@string/loai_giay_to"
                 android:textSize="@dimen/font_12"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvGuide" />
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                 android:id="@+id/tvSelectPassport"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -117,13 +115,12 @@ Vui lòng kiểm tra kỹ lại thông tin và ảnh chụp giấy tờ chính c
                 android:paddingEnd="@dimen/size_10"
                 android:paddingRight="@dimen/size_10"
                 android:paddingBottom="@dimen/size_8"
-                android:text="Chứng minh nhân dân"
-                android:textColor="@color/colorNormalText"
+                android:text="@string/chung_minh_nhan_dan"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/textView43"
                 app:layout_constraintTop_toBottomOf="@+id/textView43" />
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                 android:id="@+id/textView46"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -132,7 +129,6 @@ Vui lòng kiểm tra kỹ lại thông tin và ảnh chụp giấy tờ chính c
                 android:layout_marginTop="@dimen/size_38"
                 android:fontFamily="@font/barlow_medium"
                 android:text="@string/mat_truoc_cmnd"
-                android:textColor="@color/colorNormalText"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvSelectPassport" />
 
@@ -169,7 +165,7 @@ Vui lòng kiểm tra kỹ lại thông tin và ảnh chụp giấy tờ chính c
                         android:paddingTop="@dimen/size_4"
                         android:paddingEnd="@dimen/size_6"
                         android:paddingBottom="@dimen/size_4"
-                        android:text="Lỗi thông tin"
+                        android:text="@string/loi_thong_tin"
                         android:textColor="@color/white"
                         android:textSize="@dimen/font_14"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -193,14 +189,13 @@ Vui lòng kiểm tra kỹ lại thông tin và ảnh chụp giấy tờ chính c
             </RelativeLayout>
 
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                 android:id="@+id/textView47"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_30"
                 android:fontFamily="@font/barlow_medium"
                 android:text="@string/mat_sau_cmnd"
-                android:textColor="@color/colorNormalText"
                 app:layout_constraintStart_toStartOf="@id/containerFront"
                 app:layout_constraintTop_toBottomOf="@id/containerFront" />
 
@@ -236,7 +231,7 @@ Vui lòng kiểm tra kỹ lại thông tin và ảnh chụp giấy tờ chính c
                         android:paddingTop="@dimen/size_4"
                         android:paddingEnd="@dimen/size_6"
                         android:paddingBottom="@dimen/size_4"
-                        android:text="Lỗi thông tin"
+                        android:text="@string/loi_thong_tin"
                         android:textColor="@color/white"
                         android:textSize="@dimen/font_14"
                         app:layout_constraintBottom_toBottomOf="parent"

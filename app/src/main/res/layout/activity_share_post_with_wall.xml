@@ -74,14 +74,12 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/avatarUser">
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
                         android:id="@id/tvName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/size_8"
                         android:layout_marginEnd="@dimen/size_8"
-                        android:fontFamily="@font/barlow_semi_bold"
-                        android:textColor="#212121"
                         android:textSize="@dimen/font_16" />
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -100,7 +98,7 @@
 
                 </LinearLayout>
 
-                <androidx.appcompat.widget.AppCompatEditText
+                <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalTextColor
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_10"
@@ -111,7 +109,6 @@
                     android:background="@null"
                     android:fontFamily="@font/barlow_medium"
                     android:hint="Bạn cảm thấy bài viết này thế nào?"
-                    android:textColor="#212121"
                     android:textColorLink="#757575"
                     android:textSize="@dimen/font_14"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -148,14 +145,12 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:rankSize="@dimen/size_16" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
                         android:id="@+id/tvNameUserPost"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/size_8"
-                        android:fontFamily="@font/barlow_semi_bold"
                         android:text="Hà Linh"
-                        android:textColor="#212121"
                         android:textSize="@dimen/font_16"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/avatarUserPost"
@@ -184,7 +179,7 @@
                         app:layout_constraintTop_toBottomOf="@id/tvNameUserPost"
                         tools:text="43 phút trước" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                         android:id="@id/tvDesc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -192,9 +187,7 @@
                         android:layout_marginTop="@dimen/size_10"
                         android:layout_marginEnd="@dimen/size_4"
                         android:layout_marginBottom="@dimen/size_4"
-                        android:fontFamily="@font/barlow_medium"
                         android:lineSpacingExtra="@dimen/font_6"
-                        android:textColor="#212121"
                         android:textSize="@dimen/font_14"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"

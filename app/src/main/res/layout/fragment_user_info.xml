@@ -25,7 +25,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
+        <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalTextColor
             android:id="@+id/tv_firstname"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -41,14 +41,13 @@
             android:fontFamily="@font/barlow_medium"
             android:hint="Tên đệm và tên"
             android:inputType="textPersonName"
-            android:textColor="#212121"
             android:textColorHint="#B4B4B4"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_last_name" />
 
-        <EditText
+        <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalTextColor
             android:id="@+id/edt_birthday"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -69,7 +68,6 @@
             android:fontFamily="@font/barlow_medium"
             android:hint="Ngày tháng năm sinh"
             android:inputType="textPersonName"
-            android:textColor="#212121"
             android:textColorHint="#B4B4B4"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
@@ -90,7 +88,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_birthday" >
-            <vn.icheck.android.ui.edittext.FocusableEditText
+            <vn.icheck.android.ichecklibs.view.normal_text.FocusableEditTextNormalTextColor
                 android:id="@+id/edt_email_input"
                 android:drawableStart="@drawable/ic_register_mail_gray_24px"
                 android:drawableLeft="@drawable/ic_register_mail_gray_24px"
@@ -100,7 +98,6 @@
                 android:fontFamily="@font/barlow_medium"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
-                android:textColor="#212121"
                 android:textColorHint="#B4B4B4"
                 android:textSize="@dimen/font_14"
                 android:layout_width="match_parent"
@@ -120,7 +117,7 @@
                 tools:visibility="visible" />
         </LinearLayout>
 
-        <vn.icheck.android.ui.edittext.FocusableEditText
+        <vn.icheck.android.ichecklibs.view.normal_text.FocusableEditTextNormalTextColor
             android:id="@+id/edt_tinh"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -141,14 +138,13 @@
             android:fontFamily="@font/barlow_medium"
             android:hint="Tỉnh/thành phố"
             android:inputType="textPersonName"
-            android:textColor="#212121"
             android:textColorHint="#B4B4B4"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_email" />
 
-        <vn.icheck.android.ui.edittext.FocusableEditText
+        <vn.icheck.android.ichecklibs.view.normal_text.FocusableEditTextNormalTextColor
             android:id="@+id/edt_quan"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -169,14 +165,13 @@
             android:fontFamily="@font/barlow_medium"
             android:hint="Quận/huyện"
             android:inputType="textPersonName"
-            android:textColor="#212121"
             android:textColorHint="#B4B4B4"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_tinh" />
 
-        <vn.icheck.android.ui.edittext.FocusableEditText
+        <vn.icheck.android.ichecklibs.view.normal_text.FocusableEditTextNormalTextColor
             android:id="@+id/edt_phuong_xa"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -197,14 +192,13 @@
             android:fontFamily="@font/barlow_medium"
             android:hint="Phường/xã"
             android:inputType="textPersonName"
-            android:textColor="#212121"
             android:textColorHint="#B4B4B4"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_quan" />
 
-        <EditText
+        <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalTextColor
             android:id="@+id/edt_dia_chi"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -221,7 +215,6 @@
             android:background="@drawable/edt_bg_selector"
             android:hint="Địa chỉ"
             android:inputType="textPersonName"
-            android:textColor="#212121"
             android:textColorHint="#B4B4B4"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
@@ -298,7 +291,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_dia_chi" />
 
-        <EditText
+        <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalTextColor
             android:id="@+id/edt_last_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -317,7 +310,6 @@
             android:fontFamily="@font/barlow_medium"
             android:hint="Họ"
             android:inputType="textPersonName"
-            android:textColor="#212121"
             android:textColorHint="#B4B4B4"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"

@@ -18,6 +18,7 @@ import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.IRecyclerViewSearchCallback
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.helper.TextColorHelper
 import vn.icheck.android.helper.TextHelper.setTextDataSearch
 import vn.icheck.android.helper.TextHelper.setTextEmpitySearch
 import vn.icheck.android.network.models.ICCategorySearch
@@ -155,7 +156,7 @@ class SearchShopActivity : BaseActivityMVVM(), View.OnClickListener, IRecyclerVi
             btn_filter_verified.setTextColor(Color.WHITE)
         } else {
             btn_filter_verified.background = ContextCompat.getDrawable(applicationContext, R.drawable.bg_corner_gray_4)
-            btn_filter_verified.setTextColor(ContextCompat.getColor(applicationContext, R.color.colorNormalText))
+            btn_filter_verified.setTextColor(TextColorHelper.getColorNormalText(this))
         }
     }
 
@@ -164,7 +165,7 @@ class SearchShopActivity : BaseActivityMVVM(), View.OnClickListener, IRecyclerVi
         if (viewModel.getCategory.isNullOrEmpty()) {
             btn_filer_categories.background = ContextCompat.getDrawable(applicationContext, R.drawable.bg_corner_gray_4)
             btn_filer_categories.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_bottom_filter_8dp, 0)
-            btn_filer_categories.setTextColor(ContextCompat.getColor(applicationContext, R.color.colorNormalText))
+            btn_filer_categories.setTextColor(TextColorHelper.getColorNormalText(this))
             btn_filer_categories.text = getString(R.string.danh_muc)
         } else {
             btn_filer_categories.background = ContextCompat.getDrawable(applicationContext, R.drawable.bg_corners_4_light_blue_solid)

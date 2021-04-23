@@ -64,15 +64,13 @@
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
         android:id="@+id/tv_no_bookmark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawablePadding="@dimen/size_32"
-        android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center"
         android:text="Chưa có sản phẩm yêu thích nào!"
-        android:textColor="#212121"
         android:visibility="gone"
         app:drawableTopCompat="@drawable/ic_no_campaign"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -30,7 +30,7 @@
             android:adjustViewBounds="true"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@color/colorNormalText" />
+            app:srcCompat="@color/colorNormalImageView" />
 
         <TextView
             android:id="@+id/tvTimeStart"
@@ -47,7 +47,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imgCampaign"
             tools:text="CHỦ NHẬT TUẦN NÀY: 21:00" />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
             android:id="@+id/tvName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -56,11 +56,9 @@
             android:layout_marginEnd="@dimen/size_8"
             android:layout_marginRight="@dimen/size_8"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
             android:lineSpacingExtra="@dimen/font_6"
             android:maxLines="1"
-            android:textColor="@color/colorNormalText"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tvTimeStart"

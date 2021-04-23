@@ -13,13 +13,12 @@
         android:layout_marginTop="31.8dp"
         app:srcCompat="@drawable/ic_feed_report_success" />
 
-    <vn.icheck.android.ui.view.TextBarlowSemiBold
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="18.6dp"
         android:gravity="center"
         android:text="Cảm ơn bạn đã tố cáo sản phẩm này!"
-        android:textColor="#212121"
         android:textSize="@dimen/font_16" />
 
     <vn.icheck.android.ui.view.TextBarlowMedium

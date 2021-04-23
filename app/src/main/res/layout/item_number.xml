@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,9 +14,7 @@
         android:layout_marginTop="@dimen/size_8"
         android:layout_marginEnd="@dimen/size_32"
         android:layout_marginBottom="@dimen/size_6"
-        android:fontFamily="@font/barlow_medium"
         app:layout_constrainedWidth="true"
-        android:textColor="#212121"
         android:textSize="@dimen/font_12"
         app:layout_constraintBottom_toTopOf="@+id/edt_price"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Giá sản phẩm" />
 
-    <androidx.appcompat.widget.AppCompatEditText
+    <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalTextColor
         android:id="@+id/edt_price"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -42,7 +40,6 @@
         android:maxLength="10"
         android:maxLines="1"
         android:padding="@dimen/size_8"
-        android:textColor="#212121"
         android:textColorHint="#B4B4B4"
         android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toBottomOf="parent"

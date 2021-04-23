@@ -15,6 +15,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.adapter.RecyclerViewCustomAdapter
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.callback.IRecyclerViewCallback
+import vn.icheck.android.helper.TextColorHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.network.models.ICCampaign
@@ -149,7 +150,7 @@ class WinnerCampaignAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
                 tv.typeface = Typeface.createFromAsset(itemView.context.assets, "font/barlow_medium.ttf")
             } else {
                 tv.text = value
-                tv.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorNormalText))
+                tv.setTextColor(TextColorHelper.getColorNormalText(itemView.context))
                 tv.typeface = Typeface.createFromAsset(itemView.context.assets, "font/barlow_semi_bold.ttf")
             }
         }

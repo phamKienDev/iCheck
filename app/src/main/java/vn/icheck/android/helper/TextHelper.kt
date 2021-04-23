@@ -320,7 +320,7 @@ object TextHelper {
     fun AppCompatTextView.setTextEmpitySearch(text: Int) {
         background = ContextCompat.getDrawable(ICheckApplication.getInstance(), R.drawable.bg_corner_gray_4)
         setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_bottom_filter_8dp, 0)
-        setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorNormalText))
+        setTextColor(TextColorHelper.getColorNormalText(ICheckApplication.getInstance()))
         setText(text)
     }
 
@@ -337,7 +337,7 @@ object TextHelper {
             setTextColor(Color.WHITE)
         } else {
             background = ContextCompat.getDrawable(ICheckApplication.getInstance(), R.drawable.bg_corner_gray_4)
-            setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorNormalText))
+            setTextColor(TextColorHelper.getColorNormalText(ICheckApplication.getInstance()))
         }
     }
 

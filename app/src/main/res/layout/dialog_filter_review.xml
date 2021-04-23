@@ -19,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layoutHeader" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
         android:id="@+id/tv_select_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,7 +28,6 @@
         android:drawablePadding="@dimen/size_8"
         android:fontFamily="@font/barlow_medium"
         android:text="@string/bai_da_xem"
-        android:textColor="@color/colorNormalText"
         app:drawableStartCompat="@drawable/ic_filter_post_review_14dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider27" />
@@ -67,7 +66,7 @@
         android:paddingEnd="@dimen/size_4"
         app:layout_constraintTop_toBottomOf="@id/divider28">
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
             android:id="@+id/tv_select_time"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -78,7 +77,6 @@
             android:drawablePadding="@dimen/size_8"
             android:fontFamily="@font/barlow_medium"
             android:text="@string/ngay_dang"
-            android:textColor="#212121"
             app:drawableStartCompat="@drawable/ic_filter_time_post_14dp"
             app:layout_constraintBottom_toBottomOf="@id/divider29"
             app:layout_constraintStart_toStartOf="parent"
@@ -126,7 +124,7 @@
         android:paddingRight="@dimen/size_4"
         app:layout_constraintTop_toBottomOf="@id/divider29">
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
             android:id="@+id/tv_select_category"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -138,7 +136,6 @@
             android:drawablePadding="@dimen/size_8"
             android:fontFamily="@font/barlow_medium"
             android:text="@string/nguoi_dang"
-            android:textColor="#212121"
             app:drawableStartCompat="@drawable/ic_filter_review_from_16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider29" />

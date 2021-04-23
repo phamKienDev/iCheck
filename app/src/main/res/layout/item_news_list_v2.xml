@@ -20,7 +20,7 @@
         app:layout_constraintStart_toEndOf="@id/txtTitle"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
         android:id="@+id/txtTitle"
         android:layout_width="@dimen/size_0"
         android:layout_height="wrap_content"
@@ -32,8 +32,6 @@
         android:minLines="1"
         android:paddingEnd="@dimen/size_4"
         android:paddingRight="@dimen/size_4"
-        android:fontFamily="@font/barlow_medium"
-        android:textColor="#212121"
         android:textSize="@dimen/font_16"
         app:layout_constraintBottom_toTopOf="@id/txtTime"
         app:layout_constraintEnd_toStartOf="@id/imgNews"

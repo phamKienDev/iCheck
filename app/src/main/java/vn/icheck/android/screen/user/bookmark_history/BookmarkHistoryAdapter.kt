@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
 import vn.icheck.android.databinding.ItemBookmarkBinding
+import vn.icheck.android.helper.TextColorHelper
 import vn.icheck.android.model.bookmark.BookmarkHistoryResponse
 import vn.icheck.android.util.ick.*
 
@@ -32,7 +33,7 @@ class BookmarkHistoryAdapter : PagingDataAdapter<BookmarkHistoryResponse, Recycl
         if (!data?.name?.trim().isNullOrEmpty()) {
             holder.binding.tvNameProduct simpleText data?.name
             holder.binding.tvNameProduct.typeface =Typeface.createFromAsset(holder.binding.root.context.assets, "font/barlow_medium.ttf")
-            holder.binding.tvNameProduct.setTextColor(Color.parseColor("#212121"))
+            holder.binding.tvNameProduct.setTextColor(TextColorHelper.getColorNormalText(holder.binding.root.context))
         } else {
             holder.binding.tvNameProduct.typeface = Typeface.createFromAsset(holder.binding.root.context.assets, "font/barlow_semi_bold_italic.ttf")
             holder.binding.tvNameProduct simpleText "Tên đang cập nhật"

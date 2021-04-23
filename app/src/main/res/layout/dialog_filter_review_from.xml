@@ -19,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layoutHeader" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
         android:id="@+id/tv_all"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_48"
@@ -28,12 +28,10 @@
         android:layout_marginEnd="@dimen/size_14"
         android:layout_marginRight="@dimen/size_14"
         android:drawableEnd="@drawable/ic_checkbox_single_on_24px"
-        android:drawableRight="@drawable/ic_checkbox_single_on_24px"
         android:fontFamily="@font/barlow_medium"
         android:gravity="center_vertical"
         android:includeFontPadding="false"
         android:text="@string/moi_nguoi"
-        android:textColor="@color/colorNormalText"
         android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,7 +47,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_all" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
         android:id="@+id/tv_friend"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_48"
@@ -60,7 +58,6 @@
         android:fontFamily="@font/barlow_medium"
         android:gravity="center_vertical"
         android:text="@string/chinh_ban"
-        android:textColor="@color/colorNormalText"
         android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,7 +73,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_friend" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
         android:id="@+id/tv_friend_2"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_48"
@@ -87,7 +84,6 @@
         android:fontFamily="@font/barlow_medium"
         android:gravity="center_vertical"
         android:text="@string/ban_be"
-        android:textColor="@color/colorNormalText"
         android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -103,7 +99,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_friend_2" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
         android:id="@+id/tv_page"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_48"
@@ -114,7 +110,6 @@
         android:fontFamily="@font/barlow_medium"
         android:gravity="center_vertical"
         android:text="@string/trang_cua_ban"
-        android:textColor="@color/colorNormalText"
         android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

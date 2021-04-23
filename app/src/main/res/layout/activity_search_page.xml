@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <vn.icheck.android.ichecklibs.view.TextNormal
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                     android:id="@+id/btn_filer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -45,11 +45,10 @@
                     android:paddingRight="@dimen/size_10"
                     android:paddingBottom="@dimen/size_6"
                     android:text="@string/bo_loc"
-                    tools:textColor="@color/colorNormalText"
                     android:textSize="@dimen/font_14"
                     app:fontFamily="@font/barlow_medium" />
 
-                <vn.icheck.android.ichecklibs.view.TextNormal
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                     android:id="@+id/btn_filer_location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -64,11 +63,10 @@
                     android:paddingRight="@dimen/size_10"
                     android:paddingBottom="@dimen/size_6"
                     android:text="@string/tinh_thanh_pho"
-                    tools:textColor="@color/colorNormalText"
                     android:textSize="@dimen/font_14"
                     app:fontFamily="@font/barlow_medium" />
 
-                <vn.icheck.android.ichecklibs.view.TextNormal
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                     android:id="@+id/btn_filter_verified"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -82,12 +80,11 @@
                     android:paddingRight="@dimen/size_10"
                     android:paddingBottom="@dimen/size_6"
                     android:text="@string/da_xac_thuc"
-                    tools:textColor="@color/colorNormalText"
                     android:textSize="@dimen/font_14"
                     app:fontFamily="@font/barlow_medium" />
 
 
-                <vn.icheck.android.ichecklibs.view.TextNormal
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                     android:id="@+id/btn_filer_categories"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -102,7 +99,6 @@
                     android:paddingRight="@dimen/size_10"
                     android:paddingBottom="@dimen/size_6"
                     android:text="@string/danh_muc"
-                    tools:textColor="@color/colorNormalText"
                     android:textSize="@dimen/font_14"
                     app:fontFamily="@font/barlow_medium" />
             </LinearLayout>
