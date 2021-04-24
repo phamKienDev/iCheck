@@ -126,7 +126,7 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
             binding.tvNameShop.text = obj.nearestShop?.shop?.name
                     ?: itemView.context.getString(R.string.dang_cap_nhat)
 
-            if (obj.nearestShop?.distance != null) {
+            if (obj.nearestShop?.distance != null && obj.nearestShop?.distance != Double.POSITIVE_INFINITY && obj.nearestShop?.distance != Double.NEGATIVE_INFINITY) {
                 TextHelper.convertMtoKm(obj.nearestShop?.distance!!.toLong(), binding.tvDistance)
             } else {
                 binding.tvDistance.text = itemView.context.getString(R.string.dang_cap_nhat)
