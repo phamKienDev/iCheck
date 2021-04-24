@@ -21,6 +21,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ItemGiftListMissionTitleBinding
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
 import vn.icheck.android.network.models.ICCampaign
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
@@ -197,13 +198,11 @@ class ListCampaignAdapter constructor(val callback: ListCampaignCallback) : Recy
                 it.text = context.getString(R.string.hien_tai_dang_khong_co_su_kien_nao)
             })
 
-            it.addView(AppCompatTextView(context).also {
+            it.addView(TextSecondBarlowMedium(context).also {
                 it.layoutParams = ViewHelper.createLayoutParams().also {
                     it.setMargins(SizeHelper.size38, SizeHelper.size10, SizeHelper.size38, 0)
                 }
-                it.setTextColor(ContextCompat.getColor(context, R.color.colorSecondText))
                 it.gravity = Gravity.CENTER
-                it.typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
                 it.textSize = 14f
                 it.text = context.getString(R.string.thuong_xuyen_tham_gia_su_kien)
             })

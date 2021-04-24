@@ -43,32 +43,28 @@
         app:layout_constraintTop_toBottomOf="@+id/tvName"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/tvNamePage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_3"
         android:layout_marginLeft="@dimen/size_3"
         android:textSize="@dimen/font_12"
-        android:textColor="@color/colorSecondText"
         tools:text="Công ty Cổ Phần iCheck (1 dòng)"
         android:singleLine="true"
-        android:fontFamily="@font/barlow_medium"
         android:ellipsize="end"
         app:layout_constraintBottom_toBottomOf="@+id/imgLogoPage"
         app:layout_constraintStart_toEndOf="@+id/imgLogoPage"
         app:layout_constraintTop_toTopOf="@+id/imgLogoPage" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/tvTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_8"
         android:singleLine="true"
-        android:fontFamily="@font/barlow_medium"
         android:ellipsize="end"
         android:textSize="@dimen/font_12"
-        android:textColor="@color/colorSecondText"
         tools:text="12:45, 12/05/2020"
         app:layout_constraintStart_toStartOf="@+id/imgLogoPage"
         app:layout_constraintTop_toBottomOf="@+id/imgLogoPage" />

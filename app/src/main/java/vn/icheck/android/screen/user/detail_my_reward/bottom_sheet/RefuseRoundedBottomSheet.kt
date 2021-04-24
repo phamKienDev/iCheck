@@ -73,7 +73,7 @@ class RefuseRoundedBottomSheet(val mId: String?) : BottomSheetDialogFragment() {
                 radioButton.typeface = ViewHelper.createTypeface(requireContext(), R.font.barlow_medium)
                 radioButton.setBackgroundResource(ViewHelper.outValue.resourceId)
                 radioButton.setTextColor(ViewHelper.createColorStateList(
-                        ContextCompat.getColor(requireContext(), R.color.colorSecondText),
+                        Constant.getNormalTextColor(requireContext()),
                         Constant.getNormalTextColor(requireContext())))
                 radioButton.includeFontPadding = false
                 radioButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)

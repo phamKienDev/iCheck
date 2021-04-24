@@ -114,7 +114,7 @@ class ReportProductActivity : BaseActivityMVVM() {
                     radioButton.layoutParams = ViewHelper.createLayoutParams()
                     radioButton.typeface = ViewHelper.createTypeface(this, R.font.barlow_medium)
                     radioButton.setBackgroundResource(ViewHelper.outValue.resourceId)
-                    radioButton.setTextColor(ViewHelper.createColorStateList(ContextCompat.getColor(this, R.color.colorSecondText), Constant.getNormalTextColor(this)))
+                    radioButton.setTextColor(ViewHelper.createColorStateList(Constant.getSecondTextColor(this), Constant.getNormalTextColor(this)))
                     radioButton.includeFontPadding = false
                     radioButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
                     radioButton.maxLines = 1

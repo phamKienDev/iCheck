@@ -18,6 +18,7 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponseCode
 import vn.icheck.android.network.base.SessionManager
@@ -314,7 +315,7 @@ class ListProductQuestionAdapter(val callback: IListProductQuestionView) : Recyc
 
         private fun checkLike(expressived: String?) {
             if (expressived == null) {
-                itemView.tvLike.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorSecondText))
+                itemView.tvLike.setTextColor(Constant.getSecondTextColor(itemView.context))
             } else {
                 itemView.tvLike.setTextColor(ContextCompat.getColor(itemView.context, R.color.red_like_question))
             }

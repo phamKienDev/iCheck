@@ -25,6 +25,7 @@ import vn.icheck.android.component.view.ButtonLightBlueCorners4
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.util.KeyboardUtils
 
@@ -95,8 +96,8 @@ class ReportWrongContributionDialog(val listData: MutableList<ICReportForm>, val
                     radioButton.typeface = ViewHelper.createTypeface(requireContext(), R.font.barlow_medium)
                     radioButton.setBackgroundResource(ViewHelper.outValue.resourceId)
                     radioButton.setTextColor(ViewHelper.createColorStateList(
-                            ContextCompat.getColor(requireContext(), R.color.colorSecondText),
-                            ContextCompat.getColor(requireContext(), R.color.colorNormalText)))
+                            Constant.getSecondTextColor(requireContext()),
+                            Constant.getNormalTextColor(requireContext())))
                     radioButton.includeFontPadding = false
                     radioButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
                     radioButton.maxLines = 1

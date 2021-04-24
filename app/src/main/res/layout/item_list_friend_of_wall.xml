@@ -102,14 +102,12 @@
         app:layout_constraintStart_toStartOf="@id/layoutName"
         app:layout_constraintTop_toBottomOf="@id/layoutName">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowSemiBold
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:lineSpacingExtra="@dimen/font_6"
             android:text="Đã gửi lời mời"
-            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toBottomOf="@id/avatar_friend"
             app:layout_constraintStart_toStartOf="@id/layoutName"

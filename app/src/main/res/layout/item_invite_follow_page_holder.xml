@@ -48,7 +48,7 @@
         tools:drawableEnd="@drawable/ic_verified_16px"
         tools:visibility="visible" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/textView71"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -57,11 +57,9 @@
         android:layout_marginTop="@dimen/size_6"
         android:layout_marginEnd="@dimen/size_24"
         android:layout_marginRight="@dimen/size_24"
-        android:fontFamily="@font/barlow_medium"
         android:gravity="center"
         android:includeFontPadding="false"
         android:text="Mời thêm bạn bè để cùng cập nhập các thông tin mới nhất từ trang này"
-        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_14"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"

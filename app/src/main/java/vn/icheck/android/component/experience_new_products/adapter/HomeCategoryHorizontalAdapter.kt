@@ -7,9 +7,9 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.R
+import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.experience_new_products.IExperienceNewProducts
-import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.ICExperienceCategory

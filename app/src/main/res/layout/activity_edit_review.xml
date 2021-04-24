@@ -101,7 +101,6 @@
             android:hint="@string/viet_danh_gia"
             android:inputType="textMultiLine"
             android:lines="3"
-            android:textColorHint="@color/colorSecondText"
             android:textSize="@dimen/font_14" />
 
         <View

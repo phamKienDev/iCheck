@@ -66,15 +66,13 @@
 
         </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/tvFollowCount"
             android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:text="@string/nhan_hang_san_xuat"
-            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_12"
             app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
             app:layout_constraintEnd_toEndOf="@id/layoutName"
