@@ -359,7 +359,7 @@ object ViewHelper {
         tvTitle.layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
         tvTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
         tvTitle.typeface = Typeface.create(sansSerifMedium, Typeface.NORMAL)
-        tvTitle.setTextColor(ContextCompat.getColor(context, R.color.colorSecondary))
+        tvTitle.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context))
         tvTitle.includeFontPadding = false
         tvTitle.setPadding(0, 0, SizeHelper.size12, 0)
         layoutParent.addView(tvTitle)
@@ -563,7 +563,7 @@ object ViewHelper {
         }
         tvPrice.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
         tvPrice.typeface = Typeface.create(sansSerifMedium, Typeface.NORMAL)
-        tvPrice.setTextColor(ContextCompat.getColor(context, R.color.colorSecondary))
+        tvPrice.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context))
         tvPrice.includeFontPadding = false
         tvPrice.isSingleLine = true
         tvPrice.ellipsize = TextUtils.TruncateAt.END
@@ -668,29 +668,6 @@ object ViewHelper {
         return layoutParent
     }
 
-    fun createReviewHolder(context: Context): View {
-        val layoutParent = LinearLayout(context)
-        layoutParent.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-        layoutParent.orientation = LinearLayout.VERTICAL
-        layoutParent.gravity = Gravity.CENTER_HORIZONTAL
-
-        val viewPager = HeightWrappingViewPager(context)
-        viewPager.id = R.id.viewPager
-        viewPager.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-        layoutParent.addView(viewPager)
-
-        val indicator = LayoutInflater.from(context).inflate(R.layout.item_indicator, layoutParent, false) as PageIndicatorView
-        indicator.setDynamicCount(true)
-        indicator.setInteractiveAnimation(true)
-        indicator.setAnimationType(AnimationType.WORM)
-        indicator.selectedColor = ContextCompat.getColor(context, R.color.colorSecondary)
-        indicator.unselectedColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context)
-        indicator.setViewPager(viewPager)
-        layoutParent.addView(indicator)
-
-        return layoutParent
-    }
-
     fun createBusinessItemHolder(context: Context): View {
         val imageButton = AppCompatImageButton(context)
         val layoutParams = LinearLayout.LayoutParams(SizeHelper.size74, SizeHelper.size74)
@@ -699,27 +676,6 @@ object ViewHelper {
         imageButton.setPadding(SizeHelper.size1, SizeHelper.size1, SizeHelper.size1, SizeHelper.size1)
         imageButton.background = ContextCompat.getDrawable(context, R.drawable.bg_outline_blue_1_corners_10)
         return imageButton
-    }
-
-    fun createListProductHorizontal(context: Context): View {
-        val layoutParent = LinearLayout(context)
-        layoutParent.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT).also {
-            it.setMargins(0, SizeHelper.size6, 0, SizeHelper.size6)
-        }
-        layoutParent.orientation = LinearLayout.VERTICAL
-
-        layoutParent.addView(createText(context,
-                createLayoutParams(SizeHelper.size12, SizeHelper.size12, SizeHelper.size12, SizeHelper.size12), null,
-                createTypeface(sansSerifMedium, Typeface.NORMAL),
-                ContextCompat.getColor(context, R.color.colorSecondary),
-                16f, 1))
-
-        val recyclerView = RecyclerView(context)
-        recyclerView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-        recyclerView.setPadding(SizeHelper.size6, 0, SizeHelper.size6, 0)
-        recyclerView.clipToPadding = false
-        layoutParent.addView(recyclerView)
-        return layoutParent
     }
 
     fun createListProductHorizontalNew(context: Context, recycledViewPool: RecyclerView.RecycledViewPool?): View {
@@ -735,12 +691,11 @@ object ViewHelper {
             layoutTitle.setBackgroundColor(Color.WHITE)
             layoutTitle.setPadding(SizeHelper.size12, SizeHelper.size12, SizeHelper.size12, SizeHelper.size10)
 
-
             val tvTitle = AppCompatTextView(context)
             tvTitle.layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
             tvTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
             tvTitle.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
-            tvTitle.setTextColor(ContextCompat.getColor(context, R.color.colorSecondary))
+            tvTitle.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context))
             tvTitle.includeFontPadding = false
             tvTitle.isSingleLine = true
             tvTitle.setPadding(0, 0, SizeHelper.size12, 0)
@@ -794,7 +749,7 @@ object ViewHelper {
                 createLayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f),
                 null,
                 createTypeface(context, R.font.barlow_semi_bold),
-                ContextCompat.getColor(context, R.color.colorSecondary),
+                vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context),
                 18f
         ).also {
             it.setPadding(0, 0, SizeHelper.size12, 0)
@@ -819,7 +774,7 @@ object ViewHelper {
                 createLayoutParams(),
                 null,
                 createTypeface(context, R.font.barlow_semi_bold),
-                ContextCompat.getColor(context, R.color.colorSecondary),
+                vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context),
                 18f
         ).also {
             it.setPadding(SizeHelper.size12, SizeHelper.size12, SizeHelper.size12, SizeHelper.size12)
@@ -832,11 +787,13 @@ object ViewHelper {
         layoutParent.setPadding(SizeHelper.size12, SizeHelper.size16, SizeHelper.size12, 0)
         layoutParent.orientation = LinearLayout.HORIZONTAL
 
+        val secondaryColor = vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context)
+
         layoutParent.addView(createText(context,
                 createLayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f),
                 null,
                 createTypeface(context, R.font.barlow_semi_bold),
-                ContextCompat.getColor(context, R.color.colorSecondary),
+                secondaryColor,
                 18f
         ).also {
             it.setPadding(0, 0, SizeHelper.size12, 0)
@@ -846,45 +803,12 @@ object ViewHelper {
                 createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT),
                 outValue.resourceId,
                 createTypeface(context, R.font.barlow_semi_bold),
-                ContextCompat.getColor(context, R.color.colorSecondary),
+                secondaryColor,
                 14f
         ).also {
             it.setPadding(0, SizeHelper.size5, 0, 0)
             it.setText(R.string.xem_tat_ca)
         })
-
-        return layoutParent
-    }
-
-    fun createNewsItem(context: Context): View {
-        val layoutParent = ColorCardView(context)
-        val parentParams = LinearLayout.LayoutParams(SizeHelper.size246, LinearLayout.LayoutParams.WRAP_CONTENT)
-        parentParams.setMargins(SizeHelper.size6, SizeHelper.size12, SizeHelper.size6, SizeHelper.size20)
-        layoutParent.layoutParams = parentParams
-        layoutParent.setCardBackgroundColor(ContextCompat.getColor(context, R.color.white))
-        layoutParent.radius = SizeHelper.size4.toFloat()
-        layoutParent.useCompatPadding = false
-
-        val layoutContent = LinearLayout(context)
-        layoutContent.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-        layoutContent.orientation = LinearLayout.VERTICAL
-        layoutParent.addView(layoutContent)
-
-        val imgNews = AppCompatImageView(context)
-        imgNews.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size170)
-        imgNews.scaleType = ImageView.ScaleType.CENTER_CROP
-        layoutContent.addView(imgNews)
-
-        val tvTitle = TextBarlowMedium(context)
-        val titleParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-        titleParams.setMargins(SizeHelper.size12, SizeHelper.size8, SizeHelper.size12, SizeHelper.size12)
-        tvTitle.layoutParams = titleParams
-        tvTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
-        tvTitle.maxLines = 2
-        tvTitle.typeface = Typeface.create("sans-serif-medium", Typeface.NORMAL)
-        tvTitle.setTextColor(ContextCompat.getColor(context, R.color.black_21_v2))
-        tvTitle.includeFontPadding = false
-        layoutContent.addView(tvTitle)
 
         return layoutParent
     }
@@ -1007,7 +931,9 @@ object ViewHelper {
         btnRight.setTextColor(Color.WHITE)
         btnRight.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
         btnRight.background = createStateListDrawable(
-                ContextCompat.getColor(context, R.color.gray), ContextCompat.getColor(context, R.color.colorSecondary), ContextCompat.getColor(context, R.color.darkBlue),
+                ContextCompat.getColor(context, R.color.gray),
+                ContextCompat.getColor(context, R.color.colorSecondary),
+                ContextCompat.getColor(context, R.color.darkBlue),
                 Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT, 0, (SizeHelper.size16 + SizeHelper.size2).toFloat()
         )
         layoutButton.addView(btnRight)
@@ -1137,11 +1063,14 @@ object ViewHelper {
             layoutParent.layoutParams = createLayoutParams()
             layoutParent.orientation = LinearLayout.HORIZONTAL
 
+            val secondaryColor = vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context)
+
             layoutParent.addView(createText(context,
                     createLayoutParams(0, SizeHelper.size36, 1f, 0, 0, SizeHelper.size5, 0),
                     createStateListDrawable(
                             Color.WHITE, ContextCompat.getColor(context, R.color.lightGray),
-                            ContextCompat.getColor(context, R.color.colorSecondary), ContextCompat.getColor(context, R.color.colorSecondary),
+                            secondaryColor,
+                            secondaryColor,
                             SizeHelper.size1, SizeHelper.size36.toFloat()),
                     createTypeface(context, R.font.barlow_semi_bold),
                     ContextCompat.getColor(context, R.color.colorNormalText),
@@ -1151,7 +1080,8 @@ object ViewHelper {
                     createLayoutParams(0, SizeHelper.size36, 1f, SizeHelper.size5, 0, 0, 0),
                     createStateListDrawable(
                             Color.WHITE, ContextCompat.getColor(context, R.color.lightGray),
-                            ContextCompat.getColor(context, R.color.colorSecondary), ContextCompat.getColor(context, R.color.colorSecondary),
+                            secondaryColor,
+                            secondaryColor,
                             SizeHelper.size1, SizeHelper.size36.toFloat()),
                     createTypeface(context, R.font.barlow_semi_bold),
                     ContextCompat.getColor(context, R.color.colorNormalText),
@@ -1277,7 +1207,7 @@ object ViewHelper {
             it.bottomMargin = SizeHelper.size5
         }
         tvTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
-        tvTitle.setTextColor(ContextCompat.getColor(context, R.color.colorSecondary))
+        tvTitle.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context))
         tvTitle.includeFontPadding = false
         tvTitle.setPadding(SizeHelper.size12, SizeHelper.size12, SizeHelper.size12, 0)
 
@@ -1296,7 +1226,7 @@ object ViewHelper {
         val title = TextBarlowSemiBold(context)
         title.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
         title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
-        title.setTextColor(ContextCompat.getColor(context, R.color.colorSecondary))
+        title.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context))
         title.includeFontPadding = false
         title.text = context.getString(R.string.chung_toi_can_ban_danh_gia)
         title.setPadding(SizeHelper.size12, SizeHelper.size20, 0, 0)
@@ -1340,10 +1270,12 @@ object ViewHelper {
                 layoutTitle.orientation = LinearLayout.HORIZONTAL
                 layoutTitle.gravity = Gravity.CENTER_VERTICAL
 
+                val secondaryColor = vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context)
+
                 layoutTitle.addView(TextBarlowSemiBold(context).also { title ->
                     title.layoutParams = createLayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
                     title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
-                    title.setTextColor(ContextCompat.getColor(context, R.color.colorSecondary))
+                    title.setTextColor(secondaryColor)
                     title.includeFontPadding = false
                     title.text = "Hình ảnh"
                 })
@@ -1351,7 +1283,7 @@ object ViewHelper {
                 layoutTitle.addView(TextBarlowSemiBold(context).also { tvMore ->
                     tvMore.layoutParams = createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
                     tvMore.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
-                    tvMore.setTextColor(ContextCompat.getColor(context, R.color.colorSecondary))
+                    tvMore.setTextColor(secondaryColor)
                     tvMore.includeFontPadding = false
                     tvMore.text = "Xem tất cả"
                 })
@@ -1379,7 +1311,7 @@ object ViewHelper {
                 layoutTitle.addView(TextBarlowSemiBold(context).also { title ->
                     title.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f))
                     title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
-                    title.setTextColor(ContextCompat.getColor(context, R.color.colorSecondary))
+                    title.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context))
                     title.includeFontPadding = false
                     title.text = "Trải nghiệm mua sắm"
                     title.setPadding(SizeHelper.size12, 0, 0, 0)
@@ -1566,16 +1498,19 @@ object ViewHelper {
                 it.gravity = Gravity.CENTER_HORIZONTAL
             })
 
+            val secondaryColor = vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context)
+
             layoutParent.addView(createText(context,
                     createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size44).also { params ->
                         params.topMargin = SizeHelper.size16
                     },
                     createStateListDrawable(
                             Color.WHITE, ContextCompat.getColor(context, R.color.lightGray),
-                            ContextCompat.getColor(context, R.color.colorSecondary), ContextCompat.getColor(context, R.color.colorSecondary),
+                            secondaryColor,
+                            secondaryColor,
                             SizeHelper.size1, SizeHelper.size6.toFloat()),
                     createTypeface(context, R.font.barlow_semi_bold),
-                    ContextCompat.getColor(context, R.color.colorSecondary),
+                    secondaryColor,
                     16f).also {
                 it.gravity = Gravity.CENTER
                 it.setPadding(SizeHelper.size16, 0, SizeHelper.size16, 0)
@@ -1611,16 +1546,20 @@ object ViewHelper {
                     it.gravity = Gravity.CENTER
                 })
 
+                val secondaryColor = vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context)
+
                 layoutParent.addView(createText(context,
                         createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size44).also { params ->
                             params.topMargin = SizeHelper.size16
                         },
                         createStateListDrawable(
                                 ContextCompat.getColor(context, R.color.colorSecondText), Color.WHITE, ContextCompat.getColor(context, R.color.colorSecondText),
-                                ContextCompat.getColor(context, R.color.colorSecondary), ContextCompat.getColor(context, R.color.colorSecondary), ContextCompat.getColor(context, R.color.colorSecondary),
+                                secondaryColor,
+                                secondaryColor,
+                                secondaryColor,
                                 SizeHelper.size1, SizeHelper.size6.toFloat()),
                         createTypeface(context, R.font.barlow_semi_bold),
-                        ContextCompat.getColor(context, R.color.colorSecondary),
+                        secondaryColor,
                         16f).also {
                     it.gravity = Gravity.CENTER
                     it.setPadding(SizeHelper.size16, 0, SizeHelper.size16, 0)
@@ -1643,7 +1582,7 @@ object ViewHelper {
                 createLayoutParams(SizeHelper.size12, SizeHelper.size16, 0, 0),
                 null,
                 Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf"),
-                ContextCompat.getColor(context, R.color.colorSecondary),
+                vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context),
                 18f,
                 1).also {
             it.text = "Trải nghiệm sản phẩm mới"
@@ -1718,7 +1657,7 @@ object ViewHelper {
         tvTitle.layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
         tvTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
         tvTitle.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
-        tvTitle.setTextColor(ContextCompat.getColor(context, R.color.colorSecondary))
+        tvTitle.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context))
         tvTitle.includeFontPadding = false
         tvTitle.setPadding(0, 0, SizeHelper.size12, 0)
         layoutParent.addView(tvTitle)
@@ -2424,7 +2363,7 @@ object ViewHelper {
             it.layoutParams = createLayoutParams().also {
                 it.setMargins(SizeHelper.size12, 0, SizeHelper.size12, 0)
             }
-            it.setTextColor(ContextCompat.getColor(context, R.color.colorSecondary))
+            it.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context))
             it.gravity = Gravity.CENTER_HORIZONTAL
             it.text = context.getString(R.string.danh_gia_cua_ban_se_rat_huu_ich_cho_cong_dong)
             it.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
@@ -2699,10 +2638,12 @@ object ViewHelper {
             it.gravity = Gravity.BOTTOM
             it.orientation = LinearLayout.HORIZONTAL
 
+            val secondaryColor = vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context)
+
             it.addView(AppCompatTextView(context).also { tvName ->
                 tvName.layoutParams =
                         createLayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
-                tvName.setTextColor(ContextCompat.getColor(context, R.color.colorSecondary))
+                tvName.setTextColor(secondaryColor)
                 tvName.typeface =
                         Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
                 tvName.isSingleLine = true
@@ -2712,9 +2653,8 @@ object ViewHelper {
 
             it.addView(AppCompatTextView(context).also { tvAll ->
                 tvAll.layoutParams = createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-                tvAll.setTextColor(ContextCompat.getColor(context, R.color.colorSecondary))
-                tvAll.typeface =
-                        Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
+                tvAll.setTextColor(secondaryColor)
+                tvAll.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
                 tvAll.isSingleLine = true
                 tvAll.text = context.getString(R.string.xem_tat_ca)
                 tvAll.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
@@ -2756,10 +2696,12 @@ object ViewHelper {
             it.gravity = Gravity.BOTTOM
             it.orientation = LinearLayout.HORIZONTAL
 
+            val secondaryColor = vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context)
+
             it.addView(AppCompatTextView(context).also { tvName ->
                 tvName.layoutParams =
                         createLayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
-                tvName.setTextColor(ContextCompat.getColor(context, R.color.colorSecondary))
+                tvName.setTextColor(secondaryColor)
                 tvName.typeface =
                         Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
                 tvName.isSingleLine = true
@@ -2769,7 +2711,7 @@ object ViewHelper {
 
             it.addView(AppCompatTextView(context).also { tvAll ->
                 tvAll.layoutParams = createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-                tvAll.setTextColor(ContextCompat.getColor(context, R.color.colorSecondary))
+                tvAll.setTextColor(secondaryColor)
                 tvAll.typeface =
                         Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
                 tvAll.isSingleLine = true
@@ -3139,6 +3081,8 @@ object ViewHelper {
             layoutParams.orientation = LinearLayout.VERTICAL
             layoutParams.setBackgroundColor(ContextCompat.getColor(context, R.color.white))
 
+            val secondaryColor = vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context)
+
             //0
             layoutParams.addView(AppCompatTextView(context).also { params ->
                 params.layoutParams = createLayoutParams().also {
@@ -3146,13 +3090,12 @@ object ViewHelper {
                 }
                 params.text = "Giới thiệu"
                 params.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
-                params.setTextColor(ContextCompat.getColor(context, R.color.colorSecondary))
+                params.setTextColor(secondaryColor)
                 params.isSingleLine = true
                 params.ellipsize = TextUtils.TruncateAt.END
                 params.includeFontPadding = false
                 params.textSize = 16f
             })
-
 
             //1
             layoutParams.addView(CardView(context).also { cardView ->
@@ -3366,7 +3309,7 @@ object ViewHelper {
                         it.setMargins(SizeHelper.size12, SizeHelper.size12, SizeHelper.size12, 0)
                     }
                     text.textSize = 16f
-                    text.setTextColor(ContextCompat.getColor(context, R.color.colorSecondary))
+                    text.setTextColor(secondaryColor)
                     text.isSingleLine = true
                     text.ellipsize = TextUtils.TruncateAt.END
                     text.includeFontPadding = false
@@ -3454,7 +3397,7 @@ object ViewHelper {
                         it.setMargins(0, SizeHelper.size10, 0, 0)
                     }
                     text.textSize = 14f
-                    text.setTextColor(ContextCompat.getColor(context, R.color.colorSecondary))
+                    text.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context))
                     text.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
                     text.includeFontPadding = false
                     text.isSingleLine = true
@@ -3729,8 +3672,7 @@ object ViewHelper {
                             }
                             textView.text = text
                             textView.movementMethod = LinkMovementMethod.getInstance()
-                            textView.setText(addClickablePartTextViewResizableColor(text, textColor
-                                    ?: "#3C5A99", expandText), TextView.BufferType.SPANNABLE)
+                            textView.setText(addClickablePartTextViewResizableColor(text, textColor ?: vn.icheck.android.ichecklibs.Constant.getSecondaryColorCode, expandText), TextView.BufferType.SPANNABLE)
                         }
                     }
                 }

@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_close_blue_24" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:id="@+id/appCompatTextView26"
         android:layout_width="@dimen/size_0"
         android:layout_height="@dimen/size_0"
@@ -28,7 +28,6 @@
         android:gravity="center"
         android:includeFontPadding="false"
         android:text="Bộ lọc"
-        android:textColor="@color/colorSecondary"
         android:textSize="@dimen/font_18"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="@id/view"

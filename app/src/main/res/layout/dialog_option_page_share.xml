@@ -24,11 +24,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <vn.icheck.android.ichecklibs.view.TextPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
             android:id="@+id/tvTitle"
             android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:text="Tùy chọn trang chia sẻ"
             android:textSize="@dimen/font_18"

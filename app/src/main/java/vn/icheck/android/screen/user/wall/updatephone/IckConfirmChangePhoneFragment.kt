@@ -43,7 +43,7 @@ class IckConfirmChangePhoneFragment:Fragment() {
 
     private fun initViews() {
         val text = String.format("<p>Mã xác nhận OTP đã được gửi đến\n" +
-                "số điện thoại <span style='color:#3C5A99'>%s</span></p>", args.phone)
+                "số điện thoại <span style='color:${vn.icheck.android.ichecklibs.Constant.getSecondaryColorCode}'>%s</span></p>", args.phone)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             binding.textView25.text = Html.fromHtml(text, Html.FROM_HTML_MODE_COMPACT)
         } else {
@@ -65,7 +65,7 @@ class IckConfirmChangePhoneFragment:Fragment() {
 
             override fun onFinish() {
                 try {
-                    binding.tvTimer.setTextColor(Color.parseColor("#3C5A99"))
+                    binding.tvTimer.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(requireContext()))
                     binding.tvTimer.text = "Gửi lại mã"
                 } catch (e: Exception) {
                     this.cancel()

@@ -9,7 +9,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
-import vn.icheck.android.ichecklibs.view.TextHeaderPrimary
 
 class TextHeaderNormalTextColor : AppCompatTextView {
 

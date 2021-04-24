@@ -221,15 +221,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_phuong_xa" />
 
-        <vn.icheck.android.ichecklibs.view.TextPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
             android:id="@+id/btn_skip"
             android:layout_width="@dimen/size_90"
             android:layout_height="@dimen/size_36"
             android:layout_marginStart="@dimen/size_12"
-            android:layout_marginLeft="@dimen/size_12"
             android:layout_marginBottom="@dimen/size_20"
             android:background="@drawable/bg_login_otp"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:text="Bỏ qua"
             android:textAllCaps="false"
@@ -270,7 +268,7 @@
             app:layout_constraintTop_toTopOf="@+id/user_ava"
             app:srcCompat="@drawable/ic_edit_img_18px" />
 
-        <vn.icheck.android.ichecklibs.view.EditTextPrimary
+        <vn.icheck.android.ichecklibs.view.primary.EditTextPrimary
             android:id="@+id/edt_mgt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

@@ -78,14 +78,13 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                     android:id="@+id/tvSerial"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_8"
                     android:layout_marginBottom="@dimen/size_8"
                     android:fontFamily="@font/roboto_bold"
-                    android:textColor="#3c5a99"
                     android:textSize="@dimen/font_14"
                     tools:text="Serial: L - 00123" />
 
@@ -117,7 +116,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/view1" />
 
-                <vn.icheck.android.ichecklibs.view.TextHeader
+                <vn.icheck.android.ichecklibs.view.secondary.TextHeaderSecondary
                     android:id="@+id/tvCountScan"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -125,7 +124,6 @@
                     android:layout_marginLeft="@dimen/size_16"
                     android:gravity="center"
                     android:includeFontPadding="false"
-                    android:textColor="#3c5a99"
                     app:layout_constraintStart_toEndOf="@id/imgScanQr"
                     app:layout_constraintTop_toTopOf="@id/imgScanQr"
                     app:layout_constraintEnd_toEndOf="@id/appCompatTextView12"
@@ -180,19 +178,16 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvCountUserScan" />
 
-                <vn.icheck.android.ichecklibs.view.TextHeader
+                <vn.icheck.android.ichecklibs.view.secondary.TextHeaderSecondary
                     android:id="@+id/tvCountUserScan"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:includeFontPadding="false"
-                    android:textColor="#3c5a99"
                     app:layout_constraintEnd_toEndOf="@id/appCompatTextView13"
                     app:layout_constraintStart_toStartOf="@id/appCompatTextView13"
                     app:layout_constraintTop_toTopOf="@id/view2"
                     tools:text="140,842" />
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

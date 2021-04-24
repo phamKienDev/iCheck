@@ -1,11 +1,11 @@
-package vn.icheck.android.ichecklibs.view
+package vn.icheck.android.ichecklibs.view.primary
 
 import android.content.Context
 import android.util.AttributeSet
-import android.widget.LinearLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import vn.icheck.android.ichecklibs.Constant
 
-class LinearLayoutPrimary : LinearLayout {
+class ConstraintLayoutPrimary : ConstraintLayout {
 
     constructor(context: Context) : super(context) { setup() }
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { setup() }

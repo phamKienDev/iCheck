@@ -100,7 +100,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@tools:sample/avatars" />
 
-            <vn.icheck.android.ichecklibs.view.TextHeaderPrimary
+            <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
                 android:id="@+id/tv_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

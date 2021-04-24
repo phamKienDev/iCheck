@@ -77,7 +77,7 @@
             tools:layout_conversion_absoluteWidth="286dp"
             tools:text="Bánh trung thu đậu xanh (quà ship tận nơi) (tối đa 2 dòng)..." />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
             android:id="@+id/tvPage"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -87,7 +87,6 @@
             android:includeFontPadding="false"
             android:maxLines="1"
             android:singleLine="true"
-            android:textColor="@color/colorSecondary"
             android:textSize="@dimen/font_12"
             app:layout_constraintEnd_toEndOf="@id/tvProduct"
             app:layout_constraintHorizontal_bias="0.0"

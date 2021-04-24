@@ -19,7 +19,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_cancel_light_blue_24dp" />
 
-        <vn.icheck.android.ichecklibs.view.TextPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextPrimary
             android:id="@+id/tvTile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

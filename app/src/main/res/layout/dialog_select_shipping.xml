@@ -21,7 +21,7 @@
         app:layout_constraintStart_toStartOf="@id/tvTitle"
         app:layout_constraintTop_toTopOf="@id/tvTitle" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:id="@id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,7 +32,6 @@
         android:paddingTop="@dimen/size_10"
         android:paddingBottom="@dimen/size_10"
         android:text="@string/don_vi_van_chuyen"
-        android:textColor="#3c5a99"
         android:textSize="@dimen/font_18"
         android:textStyle="normal"
         app:layout_constraintTop_toTopOf="parent" />

@@ -172,7 +172,7 @@ class ConfirmUnlockPVCardActivity : BaseActivityMVVM() {
             }
 
             override fun onFinish() {
-                btnResend.setTextColor(Color.parseColor("#3C5A99"))
+                btnResend.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(this@ConfirmUnlockPVCardActivity))
                 btnResend.text = "Gửi lại mã"
                 btnResend.setOnClickListener {
                     btnResend.setOnClickListener(null)

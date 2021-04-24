@@ -15,12 +15,11 @@
         app:behavior_hideable="true"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
-        <vn.icheck.android.ichecklibs.view.TextPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
             android:id="@+id/tvTitleSuccess"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_12"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:includeFontPadding="false"
             android:text="@string/thu_thach_nhan_them_luot_mo_qua"
@@ -62,11 +61,10 @@
                 android:layout_marginTop="@dimen/size_20"
                 android:drawableTop="@drawable/ic_gift_list_mission_success" />
 
-            <vn.icheck.android.ichecklibs.view.TextPrimary
+            <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_12"
-                android:fontFamily="@font/barlow_semi_bold"
                 android:includeFontPadding="false"
                 android:text="@string/that_tuyet_voi"
                 android:textSize="@dimen/font_18" />
@@ -125,12 +123,11 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <vn.icheck.android.ichecklibs.view.TextPrimary
+            <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
                 android:id="@+id/tvTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_12"
-                android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:includeFontPadding="false"
                 android:text="@string/thu_thach_nhan_them_luot_mo_qua"

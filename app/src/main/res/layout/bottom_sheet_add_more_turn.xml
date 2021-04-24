@@ -23,7 +23,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <vn.icheck.android.ichecklibs.view.TextHeaderPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -45,18 +45,18 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:paddingBottom="@dimen/size_23"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/size_23">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
             android:layout_above="@id/btnInforCampaign"
+            android:layout_alignParentTop="true"
             tools:listitem="@layout/item_add_more_turn" />
 
-        <vn.icheck.android.ichecklibs.view.TextPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
             android:id="@+id/btnInforCampaign"
             android:layout_width="200dp"
             android:layout_height="@dimen/size_36"
@@ -65,7 +65,6 @@
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/size_23"
             android:background="@drawable/bg_corners_4_light_blue_no_solid"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:text="Thông tin sự kiện"
             android:textSize="@dimen/font_16" />

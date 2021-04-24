@@ -23,7 +23,7 @@
             android:background="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-        <vn.icheck.android.ichecklibs.view.TextHeaderPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
             android:id="@id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -39,7 +39,7 @@
         android:background="@color/white"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
             android:id="@id/tv1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,7 +47,6 @@
             android:layout_marginTop="@dimen/size_12"
             android:fontFamily="@font/barlow_semi_bold"
             android:text="Hình thức thanh toán"
-            android:textColor="#3c5a99"
             android:textSize="@dimen/font_16"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -67,7 +66,7 @@
         android:layout_marginTop="@dimen/size_10"
         android:background="@color/white">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
             android:id="@+id/appCompatTextView26"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -75,7 +74,6 @@
             android:layout_marginTop="@dimen/size_10"
             android:fontFamily="@font/barlow_semi_bold"
             android:text="Chi tiết giao dịch"
-            android:textColor="#3c5a99"
             android:textSize="@dimen/font_16"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -86,9 +84,9 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/size_12"
             android:paddingTop="@dimen/size_5"
-            app:layout_constraintTop_toBottomOf="@id/appCompatTextView26"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/appCompatTextView26"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/appCompatTextView26" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@id/view"
@@ -101,12 +99,11 @@
             app:layout_constraintStart_toStartOf="@+id/recyclerView"
             app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
 
-        <vn.icheck.android.ichecklibs.view.TextPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_13"
             android:layout_marginBottom="@dimen/size_10"
-            android:fontFamily="@font/barlow_medium"
             android:text="Thành tiền:"
             android:textSize="@dimen/font_14"
             android:textStyle="normal"
@@ -114,13 +111,12 @@
             app:layout_constraintStart_toStartOf="@id/view"
             app:layout_constraintTop_toBottomOf="@id/view" />
 
-        <vn.icheck.android.ichecklibs.view.TextPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
             android:id="@+id/tvTotalMoney"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_13"
             android:layout_marginBottom="@dimen/size_10"
-            android:fontFamily="@font/barlow_medium"
             android:textSize="@dimen/font_16"
             android:textStyle="normal"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -132,19 +128,19 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
+        android:layout_height="match_parent"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginEnd="@dimen/size_12"
         android:gravity="bottom"
-        android:layout_height="match_parent">
+        android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imgErrorCoin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="invisible"
             android:layout_marginBottom="@dimen/size_20"
-            app:srcCompat="@drawable/ic_error_point_top_up"/>
+            android:visibility="invisible"
+            app:srcCompat="@drawable/ic_error_point_top_up" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/btnAcceptPayment"
@@ -152,11 +148,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_marginBottom="@dimen/size_20"
-            android:paddingTop="@dimen/size_8"
-            android:paddingBottom="@dimen/size_9"
             android:background="@drawable/bg_corners_4_light_blue_solid"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
+            android:paddingTop="@dimen/size_8"
+            android:paddingBottom="@dimen/size_9"
             android:text="Xác nhận thanh toán"
             android:textColor="#ffffff"
             android:textSize="@dimen/font_16" />

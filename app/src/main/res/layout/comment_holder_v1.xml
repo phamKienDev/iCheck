@@ -24,14 +24,13 @@
         android:background="@drawable/bg_gray_corner_10"
         android:paddingBottom="@dimen/size_8">
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
             android:id="@+id/tv_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginTop="@dimen/size_8"
             android:fontFamily="sans-serif-medium"
-            android:textColor="@color/colorSecondary"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toStartOf="@+id/tv_time"
             app:layout_constraintStart_toStartOf="parent"

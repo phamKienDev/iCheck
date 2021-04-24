@@ -122,7 +122,7 @@ class AdsNewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             if (obj.name?.length!! < 80) {
                 itemView.tvContent.text = obj.name
             } else {
-                itemView.tvContent.text = Html.fromHtml(obj.name!!.substring(0, 80) + "..." + "<font color=#3C5A99>Xem chi tiết</font>")
+                itemView.tvContent.text = Html.fromHtml(obj.name!!.substring(0, 80) + "..." + "<font color=${vn.icheck.android.ichecklibs.Constant.getSecondaryColorCode}>Xem chi tiết</font>")
             }
 
             itemView.surfaceView.addOnLayoutChangeListener { view, i, i2, i3, i4, i5, i6, i7, i8 ->

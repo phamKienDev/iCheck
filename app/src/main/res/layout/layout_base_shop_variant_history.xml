@@ -147,13 +147,12 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <vn.icheck.android.ichecklibs.view.TextPrimary
+                <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
                     android:id="@+id/tvCountRating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_4"
                     android:layout_marginEnd="@dimen/size_8"
-                    android:fontFamily="@font/barlow_semi_bold"
                     android:textSize="@dimen/font_12"
                     app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
                     app:layout_constraintEnd_toStartOf="@+id/tvVerify"
@@ -307,12 +306,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/tvNameShop"
                 tools:text="Khoảng cách: 5km" />
 
-            <vn.icheck.android.ichecklibs.view.TextPrimary
+            <vn.icheck.android.ichecklibs.view.primary.TextPrimary
                 android:id="@+id/tvMap"
                 android:layout_width="@dimen/size_0"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_24"
-                android:layout_marginLeft="@dimen/size_24"
                 android:drawablePadding="@dimen/size_5"
                 android:paddingTop="@dimen/size_8"
                 android:paddingBottom="@dimen/size_8"

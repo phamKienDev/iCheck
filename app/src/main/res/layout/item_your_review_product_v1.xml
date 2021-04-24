@@ -1,16 +1,17 @@
-<androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/bg_rv"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bg_rv"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/rounded_dialog"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="@drawable/rounded_dialog">
 
     <TextView
         android:id="@+id/textView62"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
+        android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_12"
         android:includeFontPadding="false"
         android:text="Đánh giá của bạn"
@@ -18,17 +19,15 @@
         android:textSize="@dimen/font_12"
         app:layout_constraintEnd_toStartOf="@+id/customer_rating"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginLeft="@dimen/size_12" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:id="@+id/tv_your_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_4"
-        android:includeFontPadding="false"
         android:fontFamily="sans-serif-medium"
-        android:textColor="#3C5A99"
+        android:includeFontPadding="false"
         android:textSize="@dimen/font_16"
         app:layout_constraintStart_toStartOf="@+id/textView62"
         app:layout_constraintTop_toBottomOf="@+id/textView62"
@@ -40,6 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_8"
         android:layout_marginEnd="@dimen/size_8"
+        android:layout_marginRight="@dimen/size_8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srb_drawableEmpty="@drawable/star_outpine_24px"
@@ -48,23 +48,20 @@
         app:srb_numStars="5"
         app:srb_starHeight="@dimen/size_24"
         app:srb_starWidth="@dimen/size_24"
-        app:srb_stepSize="0.5"
-        android:layout_marginRight="@dimen/size_8" />
+        app:srb_stepSize="0.5" />
 
-    <vn.icheck.android.ichecklibs.view.TextPrimary
+    <vn.icheck.android.ichecklibs.view.primary.TextPrimary
         android:id="@+id/tv_xem_chi_tiet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_8"
         android:layout_marginEnd="@dimen/size_8"
         android:drawableEnd="@drawable/ic_down_blue_18px"
+        android:includeFontPadding="false"
         android:paddingBottom="@dimen/size_8"
         android:text="Xem chi tiết"
-        android:includeFontPadding="false"
         app:layout_constraintEnd_toEndOf="@+id/customer_rating"
-        app:layout_constraintTop_toBottomOf="@+id/customer_rating"
-        android:layout_marginRight="@dimen/size_8"
-        android:drawableRight="@drawable/ic_down_blue_18px" />
+        app:layout_constraintTop_toBottomOf="@+id/customer_rating" />
 
     <View
         android:id="@+id/divider2"
@@ -87,17 +84,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_xem_chi_tiet">
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
             android:id="@+id/textView68"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_12"
-            android:text="Nhận xét:"
             android:includeFontPadding="false"
-            android:textColor="#3C5A99"
+            android:text="Nhận xét:"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rcv_customer"
-            android:layout_marginLeft="@dimen/size_12" />
+            app:layout_constraintTop_toBottomOf="@+id/rcv_customer" />
 
         <TextView
             android:id="@+id/tv_msg_content"
@@ -105,13 +100,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_4"
             android:layout_marginEnd="@dimen/size_12"
+            android:layout_marginRight="@dimen/size_12"
             android:includeFontPadding="false"
             android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/textView68"
             app:layout_constraintTop_toBottomOf="@+id/textView68"
-            tools:text="Sản phẩm có nguồn gốc xuất xứ rõ ràng đáng tiền, nhưng không thích loại này bằng loại đỏ."
-            android:layout_marginRight="@dimen/size_12" />
+            tools:text="Sản phẩm có nguồn gốc xuất xứ rõ ràng đáng tiền, nhưng không thích loại này bằng loại đỏ." />
 
         <Button
             android:id="@+id/btn_edit"
@@ -128,7 +123,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rcv_image" />
 
-        <vn.icheck.android.ichecklibs.view.TextPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextPrimary
             android:id="@+id/tv_collapse_drv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -137,8 +132,7 @@
             android:drawableEnd="@drawable/ic_up_blue_18px"
             android:text="Thu gọn"
             app:layout_constraintEnd_toEndOf="@+id/btn_edit"
-            app:layout_constraintTop_toBottomOf="@+id/btn_edit"
-            android:drawableRight="@drawable/ic_up_blue_18px" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_edit" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcv_image"

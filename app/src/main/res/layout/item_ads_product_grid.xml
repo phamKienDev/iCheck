@@ -96,16 +96,14 @@
                 android:layout_gravity="center"
                 android:isIndicator="true" />
 
-            <vn.icheck.android.ichecklibs.view.TextPrimary
+            <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
                 android:id="@+id/tvRatingText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_6"
                 android:includeFontPadding="false"
-                android:layout_marginLeft="@dimen/size_6"
                 android:lineSpacingExtra="@dimen/font_14"
                 android:textSize="@dimen/font_12"
-                app:fontFamily="@font/barlow_medium"
                 tools:text="8,9" />
 
             <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
@@ -131,14 +129,13 @@
             android:textStyle="italic"
             android:visibility="gone" />
 
-        <vn.icheck.android.ichecklibs.view.TextPrimary
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
             android:id="@id/tvPrice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_4"
             android:includeFontPadding="false"
             android:textSize="@dimen/font_14"
-            app:fontFamily="@font/barlow_semi_bold"
             tools:text="27.900 ₫" />
 
         <androidx.appcompat.widget.AppCompatTextView

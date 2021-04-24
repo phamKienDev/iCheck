@@ -914,4 +914,8 @@
     <string name="chua_dinh_danh">Chưa định danh</string>
     <string name="dinh_danh_ngay">Định danh ngay</string>
     <string name="thuong_mai_dien_tu">Thương mại điện tử</string>
+    <string name="he_thong">Hệ thống</string>
+    <string name="noi_dung_bao_hanh">Nội dung bảo hành</string>
+    <string name="thong_tin_bao_hanh">Thông tin bảo hành</string>
+    <string name="thong_tin_khach_hang">Thông tin khách hàng</string>
 </resources>

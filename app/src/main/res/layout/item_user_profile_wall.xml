@@ -89,11 +89,11 @@
                     android:text="Kết bạn"
                     android:textColor="@android:color/white"
                     android:textSize="16sp"
-                    app:drawableStartCompat="@drawable/ic_add_white_12px"
-                    app:drawableLeftCompat="@drawable/ic_add_white_12px" />
+                    app:drawableLeftCompat="@drawable/ic_add_white_12px"
+                    app:drawableStartCompat="@drawable/ic_add_white_12px" />
             </LinearLayout>
 
-            <vn.icheck.android.ichecklibs.view.TextPrimary
+            <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
                 android:id="@+id/btn_send_msg"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/size_35"
@@ -101,7 +101,6 @@
                 android:layout_marginLeft="@dimen/size_12"
                 android:layout_weight="1"
                 android:background="@drawable/bg_corners_4_light_blue_no_solid"
-                android:fontFamily="@font/barlow_medium"
                 android:gravity="center"
                 android:text="Nhắn tin"
                 android:textSize="@dimen/font_16" />
@@ -281,7 +280,7 @@
                 tools:text="104.248" />
         </LinearLayout>
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
             android:id="@+id/more_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -289,11 +288,8 @@
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginEnd="@dimen/size_12"
             android:drawableEnd="@drawable/ic_arrow_right_light_blue_24dp"
-            android:drawableRight="@drawable/ic_arrow_right_light_blue_24dp"
             android:fontFamily="@font/barlow_medium"
-            android:text="Xem thêm thông tin cá nhân"
-            android:textColor="#3C5A99" />
-
+            android:text="Xem thêm thông tin cá nhân" />
     </LinearLayout>
 
     <de.hdodenhof.circleimageview.CircleImageView

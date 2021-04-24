@@ -1,12 +1,8 @@
 package vn.icheck.android.ichecklibs
 
-import android.app.AlarmManager
 import android.content.Context
-import android.content.Intent
 import android.graphics.Color
-import android.net.Uri
 import androidx.core.content.ContextCompat
-import java.util.regex.Pattern
 
 object Constant {
 
@@ -237,6 +233,27 @@ object Constant {
                 primaryColor
             } else {
                 "#057DDA"
+            }
+        }
+
+    /*
+    Color secondary
+    * * */
+
+    fun getSecondaryColor(context: Context): Int {
+        return if (secondaryColor.isNotEmpty()) {
+            Color.parseColor(secondaryColor)
+        } else {
+            ContextCompat.getColor(context, R.color.colorSecondary)
+        }
+    }
+
+    val getSecondaryColorCode: String
+        get() {
+            return if (secondaryColor.isNotEmpty()) {
+                secondaryColor
+            } else {
+                "#3C5A99"
             }
         }
 

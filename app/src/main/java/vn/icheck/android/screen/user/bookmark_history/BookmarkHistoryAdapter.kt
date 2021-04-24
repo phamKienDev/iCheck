@@ -72,7 +72,7 @@ class BookmarkHistoryAdapter : PagingDataAdapter<BookmarkHistoryResponse, Recycl
 //        }
         if (data?.price ?: 0 > 0) {
             holder.binding.tvPrice simpleText (data?.price ?: 0L).getMoneyFormat()
-            holder.binding.tvPrice.setTextColor(Color.parseColor("#3C5A99"))
+            holder.binding.tvPrice.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(holder.itemView.context))
             holder.binding.tvGiaNiemYet.beVisible()
             holder.binding.tvPrice.typeface = Typeface.createFromAsset(holder.binding.root.context.assets, "font/barlow_medium.ttf")
             holder.binding.tvPrice.textSize = 20f

@@ -76,7 +76,7 @@
         app:layout_constraintTop_toBottomOf="@id/tvMessage"
         tools:text="Cấp quyền Cuộc gọi" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:id="@id/tvSkip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -86,7 +86,6 @@
         android:includeFontPadding="false"
         android:padding="@dimen/size_8"
         android:text="@string/de_sau"
-        android:textColor="#3c5a99"
         android:textSize="@dimen/font_16"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -139,7 +139,7 @@ class IckOtpFragment : Fragment() {
         timer = object : CountDownTimer(61000, 1000) {
             override fun onFinish() {
                 try {
-                    binding.tvTimer.setTextColor(Color.parseColor("#3C5A99"))
+                    binding.tvTimer.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(requireContext()))
                     binding.tvTimer.text = "Gửi lại mã"
                     binding.tvTimer.setOnClickListener {
                         if (!ickLoginViewModel.waitResponse) {

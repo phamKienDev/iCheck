@@ -148,7 +148,7 @@
         app:layout_constraintTop_toTopOf="@id/imgProduct"
         tools:text="Sữa rửa mặt Neotrogena trị mụn 269ml (tên sản phẩm đóng góp giới hạn 2 dòng)..." />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:id="@+id/tvPrice"
         android:layout_width="@dimen/size_0"
         android:layout_height="wrap_content"
@@ -157,7 +157,6 @@
         android:fontFamily="@font/barlow_semi_bold"
         android:lineSpacingExtra="@dimen/font_6"
         android:singleLine="true"
-        android:textColor="@color/colorSecondary"
         android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="@+id/tvNameProduct"
         app:layout_constraintStart_toStartOf="@+id/tvNameProduct"
@@ -186,7 +185,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvPrice"
         tools:text="105604364600" />
 
-    <vn.icheck.android.ichecklibs.view.TextPrimary
+    <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
         android:id="@+id/btnAction"
         android:layout_width="@dimen/size_0"
         android:layout_height="wrap_content"
@@ -196,7 +195,6 @@
         android:textSize="@dimen/font_14"
         android:gravity="center"
         android:paddingTop="@dimen/size_5"
-        android:fontFamily="@font/barlow_semi_bold"
         android:paddingBottom="@dimen/size_5"
         android:background="@drawable/bg_corners_4_light_blue_no_solid"
         app:layout_constraintBottom_toBottomOf="parent"
