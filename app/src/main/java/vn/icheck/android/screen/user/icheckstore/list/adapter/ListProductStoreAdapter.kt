@@ -20,6 +20,7 @@ import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICStoreiCheck
@@ -167,7 +168,7 @@ class ListProductStoreAdapter constructor(val view: IGiftStoreView, val listener
 
                 if (obj.addToCart) {
                     btnAction.isEnabled = false
-                    btnAction.setTextColor(ContextCompat.getColor(context, R.color.colorSecondText))
+                    btnAction.setTextColor(Constant.getSecondTextColor(context))
                     btnAction.text = "Đã có trong giỏ hàng"
                     btnAction.background = ContextCompat.getDrawable(context, R.drawable.bg_corner_f0f0f0_4)
                 } else {
@@ -194,7 +195,7 @@ class ListProductStoreAdapter constructor(val view: IGiftStoreView, val listener
                         view.onLogin()
                     } else {
                         obj.addToCart = true
-                        btnAction.setTextColor(ContextCompat.getColor(context, R.color.colorSecondText))
+                        btnAction.setTextColor(Constant.getSecondTextColor(context))
                         btnAction.text = "Đã có trong giỏ hàng"
                         btnAction.background = ContextCompat.getDrawable(context, R.drawable.bg_corner_f0f0f0_4)
                         view.onExchangeGift(obj)

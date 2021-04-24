@@ -108,16 +108,14 @@
                 app:fontFamily="@font/barlow_medium"
                 tools:text="8,9" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:id="@id/tvRatingCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_6"
                 android:includeFontPadding="false"
                 android:lineSpacingExtra="@dimen/font_14"
-                android:textColor="@color/colorSecondText"
                 android:textSize="@dimen/font_12"
-                app:fontFamily="@font/barlow_medium"
                 tools:text="(586)" />
         </LinearLayout>
 

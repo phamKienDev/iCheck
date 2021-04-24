@@ -14,15 +14,12 @@ import vn.icheck.android.component.view.ViewHelper.onDelayClick
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.LayoutProductHistoryHolderBinding
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.helper.TextColorHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.ichecklibs.beGone
 import vn.icheck.android.ichecklibs.beInvisible
 import vn.icheck.android.ichecklibs.beVisible
 import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.network.models.history.ICItemHistory
-import vn.icheck.android.network.models.history.ICStoreNear
-import vn.icheck.android.network.util.JsonHelper
 import vn.icheck.android.screen.user.map_scan_history.MapScanHistoryActivity
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.screen.user.store_sell_history.StoreSellHistoryActivity
@@ -48,7 +45,7 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
                     if (!obj.product?.name.isNullOrEmpty()) {
                         binding.tvNameProduct.text = obj.product?.name
                         binding.tvNameProduct.typeface = ResourcesCompat.getFont(itemView.context, R.font.barlow_regular)
-                        binding.tvNameProduct.setTextColor(TextColorHelper.getColorNormalText(itemView.context))
+                        binding.tvNameProduct.setTextColor(vn.icheck.android.ichecklibs.Constant.getNormalTextColor(itemView.context))
                         binding.tvNameProduct.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_home_verify_16dp, 0, 0, 0)
                         binding.tvNameProduct.compoundDrawablePadding = SizeHelper.size5
                     } else {
@@ -62,7 +59,7 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
                     if (!obj.product?.name.isNullOrEmpty()) {
                         binding.tvNameProduct.text = obj.product?.name
                         binding.tvNameProduct.typeface = ResourcesCompat.getFont(itemView.context, R.font.barlow_regular)
-                        binding.tvNameProduct.setTextColor(TextColorHelper.getColorNormalText(itemView.context))
+                        binding.tvNameProduct.setTextColor(vn.icheck.android.ichecklibs.Constant.getNormalTextColor(itemView.context))
                         binding.tvNameProduct.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                     } else {
                         binding.tvNameProduct.text = itemView.context.getString(R.string.ten_dang_cap_nhat)

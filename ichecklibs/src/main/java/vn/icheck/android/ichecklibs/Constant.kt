@@ -219,6 +219,9 @@ object Constant {
             phone
         }
     }
+    /*
+    Color primary
+    * * */
 
     fun getPrimaryColor(context: Context): Int {
         return if (primaryColor.isNotEmpty()) {
@@ -234,6 +237,48 @@ object Constant {
                 primaryColor
             } else {
                 "#057DDA"
+            }
+        }
+
+    /*
+    Color normal text
+    * * */
+
+    fun getNormalTextColor(context: Context): Int {
+        return if (normalTextColor.isNotEmpty()) {
+            Color.parseColor(normalTextColor)
+        } else {
+            ContextCompat.getColor(context, R.color.colorNormalText)
+        }
+    }
+
+    val getNormalTextCode: String
+        get() {
+            return if (normalTextColor.isNotEmpty()) {
+                normalTextColor
+            } else {
+                "#212121"
+            }
+        }
+
+    /*
+    Color second text
+    * * */
+
+    fun getSecondTextColor(context: Context): Int {
+        return if (secondTextColor.isNotEmpty()) {
+            Color.parseColor(secondTextColor)
+        } else {
+            ContextCompat.getColor(context, R.color.colorSecondText)
+        }
+    }
+
+    val getSecondTextCode: String
+        get() {
+            return if (secondTextColor.isNotEmpty()) {
+                secondTextColor
+            } else {
+                "#757575"
             }
         }
 }

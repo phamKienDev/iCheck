@@ -24,16 +24,14 @@
         android:paddingEnd="@dimen/size_13"
         android:paddingRight="@dimen/size_13">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@id/txtContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_10"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:singleLine="true"
-            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_12"
             tools:text="Đánh giá của Vân Trương (tối đa 1 dòng thôi nhé)..." />
 

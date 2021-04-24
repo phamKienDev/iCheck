@@ -24,7 +24,7 @@
         android:gravity="center"
         android:textSize="@dimen/font_14" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/tvMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,8 +33,6 @@
         android:layout_marginEnd="@dimen/size_68"
         android:includeFontPadding="false"
         android:gravity="center"
-        android:fontFamily="@font/barlow_medium"
-        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_14" />
 
     <androidx.appcompat.widget.AppCompatTextView

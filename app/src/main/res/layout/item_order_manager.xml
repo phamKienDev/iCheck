@@ -27,14 +27,12 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Mã đơn: CDJA56BHC" />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/tvTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_3"
-            android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
-            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_12"
             app:layout_constraintStart_toStartOf="@id/tvOrderId"
             app:layout_constraintTop_toBottomOf="@id/tvOrderId"

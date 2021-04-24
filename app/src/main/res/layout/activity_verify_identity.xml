@@ -52,18 +52,16 @@ Vui lòng kiểm tra kỹ lại thông tin và ảnh chụp giấy tờ chính c
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:id="@+id/textView31"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_62"
                 android:layout_marginTop="@dimen/size_12"
                 android:layout_marginEnd="@dimen/size_62"
-                android:fontFamily="@font/barlow_medium"
                 android:gravity="center"
                 android:includeFontPadding="false"
                 android:text="Xác thực danh tính để bảo vệ tài khoản và nhận Dấu Tích Xanh từ iCheck."
-                android:textColor="@color/colorSecondText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvErrorVerify" />

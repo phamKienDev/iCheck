@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ShareCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_post_detail.view.*
@@ -209,6 +210,12 @@ class DetailPostHolder(val binding: ItemPostDetailBinding, val listener: IDetail
         } else {
             R.drawable.ic_like_on_24dp
         }, 0, 0, 0)
+
+        binding.tvLike.setTextColor(if (obj.expressive == null) {
+            ContextCompat.getColor(itemView.context, R.color.colorSecondText)
+        } else {
+            ContextCompat.getColor(itemView.context, R.color.red_like_question)
+        })
     }
 
     private fun sharePost(obj: ICPost) {
