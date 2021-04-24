@@ -56,16 +56,14 @@
                 app:layout_constraintTop_toTopOf="@id/imgUnfollow"
                 tools:text="Bỏ theo dõi Tùng Thanh" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:layout_width="@dimen/size_0"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_4"
                 android:ellipsize="end"
-                android:fontFamily="@font/barlow_medium"
                 android:includeFontPadding="false"
                 android:maxLines="2"
                 android:text="Khi bỏ theo dõi, các bài viết của người này sẽ không hiển thị trên trang chủ của bạn nữa."
-                android:textColor="@color/colorSecondText"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintEnd_toEndOf="@id/tvNameUnfollow"
                 app:layout_constraintStart_toStartOf="@id/tvNameUnfollow"
@@ -106,16 +104,14 @@
                 app:layout_constraintStart_toEndOf="@id/imgUnfriend"
                 app:layout_constraintTop_toTopOf="@id/imgUnfriend" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:layout_width="@dimen/size_0"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_4"
                 android:ellipsize="end"
-                android:fontFamily="@font/barlow_medium"
                 android:includeFontPadding="false"
                 android:maxLines="2"
                 android:text="Tất cả các hoạt động của người này sẽ không hiển thị tới bạn. "
-                android:textColor="@color/colorSecondText"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintEnd_toEndOf="@id/tvUnfriend"
                 app:layout_constraintStart_toStartOf="@id/tvUnfriend"
@@ -156,14 +152,12 @@
                 app:layout_constraintStart_toEndOf="@id/imgReportUser"
                 app:layout_constraintTop_toTopOf="@id/imgReportUser" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:layout_width="@dimen/size_0"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_4"
-                android:fontFamily="@font/barlow_medium"
                 android:includeFontPadding="false"
                 android:text="Bạn nhận thấy người dùng này có những hoạt động mang nội dung spam, nhạy cảm? Hãy cho chúng tôi biết."
-                android:textColor="@color/colorSecondText"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintEnd_toEndOf="@id/tvReportUser"
                 app:layout_constraintStart_toStartOf="@id/tvReportUser"

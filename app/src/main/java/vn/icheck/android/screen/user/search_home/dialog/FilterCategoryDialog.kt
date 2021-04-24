@@ -29,6 +29,7 @@ import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.search.SearchInteractor
 import vn.icheck.android.network.models.ICCategorySearch
@@ -198,7 +199,7 @@ class FilterCategoryDialog(val category: MutableList<ICCategorySearch>?, val cal
             }
             val firstItem = cates.indexOf(cateString.first())
             spannable.setSpan(callCateParent, firstItem, firstItem + cateString.first().length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-            spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(tv_list_category.context, R.color.colorSecondText)), firstItem, firstItem + cateString.first().length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            spannable.setSpan(ForegroundColorSpan(Constant.getSecondTextColor(tv_list_category.context)), firstItem, firstItem + cateString.first().length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 
             // callback các category ở giữa
             if (cateString.size > 2) {
@@ -228,7 +229,7 @@ class FilterCategoryDialog(val category: MutableList<ICCategorySearch>?, val cal
                                 }
                             }
                         }, midItem, midItem + cateString[i].length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-                        spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(tv_list_category.context, R.color.colorSecondText)), midItem, midItem + cateString[i].length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                        spannable.setSpan(ForegroundColorSpan(Constant.getSecondTextColor(tv_list_category.context)), midItem, midItem + cateString[i].length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
                     }
                 }
             }

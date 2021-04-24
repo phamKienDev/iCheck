@@ -49,16 +49,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/layoutName" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/tvCountFollow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_4"
         android:ellipsize="end"
-        android:fontFamily="@font/barlow_medium"
         android:includeFontPadding="false"
         android:maxLines="1"
-        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_14"
         app:layout_constraintStart_toStartOf="@id/layoutName"
         app:layout_constraintTop_toBottomOf="@id/layoutName"

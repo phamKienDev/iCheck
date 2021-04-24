@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_menh_gia.view.*
 import vn.icheck.android.R
 import vn.icheck.android.callback.OnItemClickListener
-import vn.icheck.android.helper.TextColorHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.recharge_phone.ICMenhGia
 
 class MenhGiaTheAdapter (private var listInfor: MutableList<ICMenhGia>) : RecyclerView.Adapter<MenhGiaTheAdapter.ViewHolder>() {
@@ -47,7 +47,7 @@ class MenhGiaTheAdapter (private var listInfor: MutableList<ICMenhGia>) : Recycl
 
             if (item.select){
                 itemView.layoutParent.setBackgroundResource(R.drawable.bg_choose_card)
-                itemView.tvMenhGia.setTextColor(TextColorHelper.getColorNormalText(itemView.context))
+                itemView.tvMenhGia.setTextColor(Constant.getNormalTextColor(itemView.context))
                 itemView.tvMenhGia.typeface = Typeface.createFromAsset(itemView.context.assets,"font/barlow_semi_bold.ttf")
             }else{
                 itemView.layoutParent.setBackgroundResource(R.drawable.bg_default_card_loyalty)

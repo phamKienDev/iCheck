@@ -92,18 +92,16 @@
         android:text="Mời bạn bè theo dõi trang này"
         android:textSize="@dimen/font_16" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/textView73"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/size_24"
         android:layout_marginTop="@dimen/size_5"
         android:layout_marginRight="@dimen/size_24"
-        android:fontFamily="@font/barlow_medium"
         android:gravity="center"
         android:includeFontPadding="false"
         android:text="Mời thêm bạn bè để cùng cập nhập các thông tin mới nhất từ trang này"
-        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_14" />
 
     <TextView

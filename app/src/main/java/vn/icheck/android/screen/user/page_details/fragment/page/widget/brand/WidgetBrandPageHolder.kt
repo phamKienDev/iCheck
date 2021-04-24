@@ -17,6 +17,7 @@ import vn.icheck.android.R
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
 import vn.icheck.android.network.models.ICPageTrend
 import vn.icheck.android.screen.user.brand.BrandPageActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
@@ -84,12 +85,10 @@ class WidgetBrandPageHolder(parent: ViewGroup) : RecyclerView.ViewHolder(createV
                         text.setPadding(0, 0, 0, 0)
                     })
 
-                    linear.addView(AppCompatTextView(context).also { text ->
+                    linear.addView(TextSecondBarlowMedium(context).also { text ->
                         text.layoutParams = ViewHelper.createLayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f, SizeHelper.size3, 0, 0, 0)
                         text.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
                         text.gravity = Gravity.CENTER_VERTICAL
-                        text.typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
-                        text.setTextColor(ContextCompat.getColor(context, R.color.colorSecondText))
                         text.includeFontPadding = false
                         text.setPadding(0, 0, SizeHelper.size12, 0)
                     })

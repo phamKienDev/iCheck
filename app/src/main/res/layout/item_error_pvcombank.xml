@@ -13,16 +13,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_44"
         android:layout_marginTop="@dimen/size_16"
         android:layout_marginEnd="@dimen/size_44"
-        android:fontFamily="@font/barlow_medium"
         android:gravity="center"
-        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_14"
         tools:text="Kết nối mạng của bạn có vấn đề. Vui lòng thử lại" />
 

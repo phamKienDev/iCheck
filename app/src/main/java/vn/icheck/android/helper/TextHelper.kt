@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.item_product_search_result.view.*
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.component.view.ViewHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.ICCountry
 import vn.icheck.android.network.models.ICDistrict
 import vn.icheck.android.network.models.ICProvince
@@ -320,7 +321,7 @@ object TextHelper {
     fun AppCompatTextView.setTextEmpitySearch(text: Int) {
         background = ContextCompat.getDrawable(ICheckApplication.getInstance(), R.drawable.bg_corner_gray_4)
         setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_bottom_filter_8dp, 0)
-        setTextColor(TextColorHelper.getColorNormalText(ICheckApplication.getInstance()))
+        setTextColor(Constant.getNormalTextColor(ICheckApplication.getInstance()))
         setText(text)
     }
 
@@ -337,7 +338,7 @@ object TextHelper {
             setTextColor(Color.WHITE)
         } else {
             background = ContextCompat.getDrawable(ICheckApplication.getInstance(), R.drawable.bg_corner_gray_4)
-            setTextColor(TextColorHelper.getColorNormalText(ICheckApplication.getInstance()))
+            setTextColor(Constant.getNormalTextColor(ICheckApplication.getInstance()))
         }
     }
 

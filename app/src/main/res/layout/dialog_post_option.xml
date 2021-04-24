@@ -41,16 +41,14 @@
             app:layout_constraintTop_toTopOf="@id/imgFollow"
             android:text="@string/bo_theo_doi" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/tvFollowContent"
             android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_4"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:maxLines="2"
-            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="@id/tvFollowTitle"
             app:layout_constraintStart_toStartOf="@id/tvFollowTitle"
@@ -93,16 +91,14 @@
             app:layout_constraintTop_toTopOf="@id/imgPin"
             android:text="@string/review_pin_option_title" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/tvPinContent"
             android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_4"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:maxLines="2"
-            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="@id/tvPinTitle"
             app:layout_constraintStart_toStartOf="@id/tvPinTitle"
@@ -144,17 +140,15 @@
             app:layout_constraintStart_toEndOf="@id/imgEdit"
             app:layout_constraintTop_toTopOf="@id/imgEdit" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/tvEditContent"
             android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_4"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:maxLines="2"
             android:text="@string/feed_option_edit"
-            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="@id/tvEditTitle"
             app:layout_constraintStart_toStartOf="@id/tvEditTitle"
@@ -195,17 +189,15 @@
             app:layout_constraintStart_toEndOf="@id/imgNotify"
             app:layout_constraintTop_toTopOf="@id/imgNotify" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/tvNotifyContent"
             android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_4"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:maxLines="2"
             android:text="@string/post_turn_off_notification_option_content"
-            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="@id/tvNotifyTitle"
             app:layout_constraintStart_toStartOf="@id/tvNotifyTitle"
@@ -291,17 +283,15 @@
             app:layout_constraintStart_toEndOf="@id/imgReport"
             app:layout_constraintTop_toTopOf="@id/imgReport" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/tvReportContent"
             android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_4"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:maxLines="2"
             android:text="@string/bao_cao_bai_viet_content"
-            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="@id/tvReportTitle"
             app:layout_constraintHorizontal_bias="0.0"
@@ -343,17 +333,15 @@
             app:layout_constraintStart_toEndOf="@id/imgDelete"
             app:layout_constraintTop_toTopOf="@id/imgDelete" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/tvDeleteContent"
             android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_4"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:maxLines="2"
             android:text="@string/post_delete_option_content"
-            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="@id/tvDeleteTitle"
             app:layout_constraintStart_toStartOf="@id/tvDeleteTitle"

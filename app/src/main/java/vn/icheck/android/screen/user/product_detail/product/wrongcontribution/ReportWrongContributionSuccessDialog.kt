@@ -22,6 +22,7 @@ import vn.icheck.android.component.view.ButtonLightBlueCorners4
 import vn.icheck.android.component.view.ButtonWhiteOutlinePrimaryBlueCorners4
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.screen.user.contribute_product.IckContributeProductActivity
 import vn.icheck.android.ui.SafeFlexboxLayoutManager
@@ -60,7 +61,7 @@ class ReportWrongContributionSuccessDialog(val context: Context, isCancelable: B
                     ViewHelper.createLayoutParams(SizeHelper.size42, SizeHelper.size6, SizeHelper.size42, 0),
                     null,
                     ViewHelper.createTypeface(context, R.font.barlow_medium),
-                    ContextCompat.getColor(context, R.color.colorSecondText),
+                    Constant.getSecondTextColor(context),
                     14f).also {
                 it.setText(R.string.report_wrong_contribution_success_message)
                 it.gravity = Gravity.CENTER_HORIZONTAL
@@ -79,7 +80,7 @@ class ReportWrongContributionSuccessDialog(val context: Context, isCancelable: B
                     },
                     null,
                     ViewHelper.createTypeface(context, R.font.barlow_medium),
-                    ContextCompat.getColor(context, R.color.colorSecondText),
+                    Constant.getSecondTextColor(context),
                     14f).also {
                 if (type!="order") {
                     it.setText(R.string.noi_dung_bao_cao)

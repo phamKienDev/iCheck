@@ -23,7 +23,7 @@
             android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@color/colorNormalImageView" />
+            app:srcCompat="@color/colorNormalView" />
 
         <TextView
             android:id="@+id/tvTimeStart"
@@ -57,15 +57,13 @@
             app:layout_constraintStart_toStartOf="@+id/tvTimeStart"
             app:layout_constraintTop_toBottomOf="@+id/tvTimeStart" />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/tvTimeLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_2"
-            android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:text="Còn 29 ngày"
-            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_12"
             app:layout_constraintStart_toStartOf="@+id/tvName"
             app:layout_constraintTop_toBottomOf="@+id/tvName" />

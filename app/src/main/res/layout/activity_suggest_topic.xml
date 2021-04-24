@@ -26,18 +26,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/textView25"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_40"
         android:background="@drawable/bg_white_corners_top_16"
-        android:fontFamily="@font/barlow_medium"
         android:gravity="center_horizontal"
         android:lineSpacingExtra="@dimen/font_6"
         android:paddingTop="@dimen/size_10"
         android:paddingBottom="@dimen/size_10"
         android:textAlignment="center"
-        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toBottomOf="@+id/tv_bg"
         tools:text="@string/chon_it_nhat_3_chu_de" />

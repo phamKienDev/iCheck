@@ -39,17 +39,15 @@
         app:layout_constraintStart_toEndOf="@id/imgProduct"
         app:layout_constraintTop_toTopOf="@id/imgProduct" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/tvCount"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ellipsize="end"
-        android:fontFamily="@font/barlow_medium"
         android:includeFontPadding="false"
         android:singleLine="true"
         android:text="x1"
         android:layout_marginTop="@dimen/size_4"
-        android:textColor="@color/colorSecondText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/tvProduct"
         app:layout_constraintTop_toBottomOf="@id/tvProduct" />

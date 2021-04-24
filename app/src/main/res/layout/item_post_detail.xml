@@ -104,16 +104,14 @@
                 android:src="@drawable/ic_arrow_down_gray_24dp" />
         </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@id/tvTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_6"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:singleLine="true"
-            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_12"
             app:layout_constraintStart_toStartOf="@id/layoutName"
             app:layout_constraintTop_toBottomOf="@id/layoutName"
@@ -184,16 +182,14 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Viên Uống Vitamin Tổng Hợp DHViên Uống Vitamin Tổng Hợp DHC Multi Vitamin 120 viên (Tên tối đa 2 dòng nhé)...C Multi Vitamin 120 viên (Tên tối đa 2 dòng nhé)..." />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@id/tvShopName"
             android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_6"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:maxLines="2"
-            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="@id/tvProduct"
             app:layout_constraintStart_toStartOf="@id/tvProduct"
@@ -222,11 +218,10 @@
             android:gravity="center_vertical"
             android:includeFontPadding="false"
             android:textAlignment="gravity"
-            android:textColor="@color/text_color_post"
             android:textSize="@dimen/font_14"
             tools:text="12,781" />
 
-        <androidx.appcompat.widget.AppCompatCheckedTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@id/tvViewComment"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -234,15 +229,13 @@
             android:drawableStart="@drawable/ic_comment_24dp"
             android:drawableLeft="@drawable/ic_comment_24dp"
             android:drawablePadding="@dimen/size_6"
-            android:fontFamily="@font/barlow_medium"
             android:gravity="center_vertical"
             android:includeFontPadding="false"
             android:textAlignment="gravity"
-            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_14"
             tools:text="12,781" />
 
-        <androidx.appcompat.widget.AppCompatCheckedTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@id/tvView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -250,15 +243,13 @@
             android:drawableStart="@drawable/ic_view_24dp"
             android:drawableLeft="@drawable/ic_view_24dp"
             android:drawablePadding="@dimen/size_6"
-            android:fontFamily="@font/barlow_medium"
             android:gravity="center_vertical"
             android:includeFontPadding="false"
             android:textAlignment="gravity"
-            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_14"
             tools:text="12,781" />
 
-        <androidx.appcompat.widget.AppCompatCheckedTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@id/tvShare"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -266,11 +257,9 @@
             android:drawableStart="@drawable/ic_share_24px"
             android:drawableLeft="@drawable/ic_share_24px"
             android:drawablePadding="@dimen/size_6"
-            android:fontFamily="@font/barlow_medium"
             android:gravity="center_vertical"
             android:includeFontPadding="false"
             android:textAlignment="gravity"
-            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_14"
             tools:text="12,781" />
     </LinearLayout>

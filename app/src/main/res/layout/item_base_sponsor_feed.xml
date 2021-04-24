@@ -7,14 +7,12 @@
     android:paddingTop="@dimen/size_10"
     android:paddingBottom="@dimen/size_10">
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowRegular
         android:id="@+id/appCompatTextView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/size_12"
-        android:fontFamily="@font/barlow_regular"
         android:text="@string/co_the_chua_ban_quan_tam"
-        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_12"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -62,13 +60,12 @@
         app:layout_constraintStart_toEndOf="@+id/circleImageView"
         app:layout_constraintTop_toTopOf="@+id/circleImageView" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_6"
         android:includeFontPadding="false"
         android:text="@string/duoc_tai_tro"
-        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_12"
         app:layout_constraintBottom_toBottomOf="@+id/circleImageView"
         app:layout_constraintStart_toStartOf="@+id/tvNameEnterprise"

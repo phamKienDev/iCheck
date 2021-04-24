@@ -46,15 +46,13 @@
             tools:text="Công ty Cổ phần ViviDa" />
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/tvPageCategory"
         android:layout_width="@dimen/size_0"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_3"
         android:ellipsize="end"
-        android:fontFamily="@font/barlow_medium"
         android:singleLine="true"
-        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
         app:layout_constraintEnd_toStartOf="@+id/imgDetail"

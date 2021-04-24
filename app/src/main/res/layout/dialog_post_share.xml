@@ -42,16 +42,14 @@
             app:layout_constraintStart_toEndOf="@id/imgShareMyPage"
             app:layout_constraintTop_toTopOf="@id/imgShareMyPage" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_4"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:maxLines="2"
             android:text="@string/share_to_my_page_content"
-            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="@id/tvShareMyPageTitle"
             app:layout_constraintStart_toStartOf="@id/tvShareMyPageTitle"
@@ -93,16 +91,14 @@
             app:layout_constraintStart_toEndOf="@id/imgSharePage"
             app:layout_constraintTop_toTopOf="@id/imgSharePage" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_4"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:maxLines="2"
             android:text="@string/share_page_content"
-            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="@id/tvSharePageTitle"
             app:layout_constraintStart_toStartOf="@id/tvSharePageTitle"
@@ -143,16 +139,14 @@
             app:layout_constraintStart_toEndOf="@id/imgShareChat"
             app:layout_constraintTop_toTopOf="@id/imgShareChat" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_4"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:maxLines="2"
             android:text="@string/share_chat_content"
-            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="@id/tvShareChatTitle"
             app:layout_constraintStart_toStartOf="@id/tvShareChatTitle"
@@ -193,16 +187,14 @@
             app:layout_constraintStart_toEndOf="@id/imgShareMore"
             app:layout_constraintTop_toTopOf="@id/imgShareMore" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_4"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:maxLines="2"
             android:text="@string/share_more_content"
-            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="@id/tvShareMoreTitle"
             app:layout_constraintStart_toStartOf="@id/tvShareMoreTitle"
