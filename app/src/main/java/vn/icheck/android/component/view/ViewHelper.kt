@@ -53,6 +53,8 @@ import vn.icheck.android.component.rating_star.RatingStarComponent
 import vn.icheck.android.ui.view.TextBarlowSemiBold
 import vn.icheck.android.ui.view.TextBarlowMedium
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
 import vn.icheck.android.ui.colorcardview.ColorCardView
 import vn.icheck.android.ui.layout.CustomGridLayoutManager
 import vn.icheck.android.ui.layout.HeightWrappingViewPager
@@ -624,10 +626,9 @@ object ViewHelper {
             it.ellipsize = TextUtils.TruncateAt.END
         }
         ratingLayout.addView(tvPoint)
-        val tvReviewCount = TextBarlowMedium(context).also {
+        val tvReviewCount = TextSecondBarlowMedium(context).also {
             it.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
             it.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
-            it.setTextColor(ContextCompat.getColor(context, R.color.colorSecondText))
             it.includeFontPadding = false
             it.maxLines = 1
             it.ellipsize = TextUtils.TruncateAt.END
@@ -749,7 +750,7 @@ object ViewHelper {
             tvViewMore.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
             tvViewMore.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
             tvViewMore.typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
-            tvViewMore.setTextColor(ContextCompat.getColor(context, R.color.colorSecondText))
+            tvViewMore.setTextColor(Constant.getSecondTextColor(context))
             tvViewMore.includeFontPadding = false
             tvViewMore.setPadding(0, SizeHelper.size5, 0, SizeHelper.size5)
             tvViewMore.setText(R.string.xem_tat_ca)
@@ -803,7 +804,7 @@ object ViewHelper {
                 createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT),
                 outValue.resourceId,
                 createTypeface(context, R.font.barlow_medium),
-                ContextCompat.getColor(context, R.color.colorSecondText),
+                Constant.getSecondTextColor(context),
                 14f
         ).also {
             it.setPadding(0, SizeHelper.size5, 0, SizeHelper.size5)
@@ -1096,7 +1097,7 @@ object ViewHelper {
                         createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1f),
                         null,
                         createTypeface(context, R.font.barlow_medium),
-                        ContextCompat.getColor(context, R.color.colorSecondText),
+                        Constant.getSecondTextColor(context),
                         12f), 1)
             })
         })

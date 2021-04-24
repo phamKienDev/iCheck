@@ -18,6 +18,7 @@ import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.ICProduct
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.ui.view.RatioImageView
@@ -130,7 +131,7 @@ class CollectionProductHorizontalHolder(parent: ViewGroup) : BaseViewHolder<ICPr
                     layoutRating.addView(ViewHelper.createText(context, ViewHelper.createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT), null, ViewHelper.createTypeface(context, R.font.barlow_medium), primaryColor, 12f))
 
                     // Text total review
-                    layoutRating.addView(ViewHelper.createText(context, ViewHelper.createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT), null, ViewHelper.createTypeface(context, R.font.barlow_medium), ContextCompat.getColor(context, R.color.colorSecondText), 12f))
+                    layoutRating.addView(ViewHelper.createText(context, ViewHelper.createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT), null, ViewHelper.createTypeface(context, R.font.barlow_medium), Constant.getSecondTextColor(context), 12f))
                 })
 
                 // Text price

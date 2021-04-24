@@ -11,6 +11,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import vn.icheck.android.R
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.ICCountry
 
 class LayoutInputPhone : LinearLayout {
@@ -55,7 +56,7 @@ class LayoutInputPhone : LinearLayout {
                 ViewHelper.createLayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT, 0, 0, SizeHelper.size5, 0),
                 ContextCompat.getDrawable(context, R.drawable.under_line_gray_1dp),
                 ViewHelper.createTypeface(context, R.font.barlow_medium),
-                ContextCompat.getColor(context, R.color.colorSecondText),
+                Constant.getSecondTextColor(context),
                 24f).also {
             it.setPadding(SizeHelper.size4, 0, SizeHelper.size4, 0)
             it.gravity = Gravity.CENTER
