@@ -345,7 +345,11 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
 
     private fun offCamera() {
-        barcodeCapture.isEnabled = false
+        if (::barcodeCapture.isInitialized) {
+            barcodeCapture.isEnabled = false
+        } else {
+
+        }
         camera?.switchToDesiredState(FrameSourceState.OFF, object : Callback<Boolean> {
             override fun run(result: Boolean) {
                 if (!result) {
