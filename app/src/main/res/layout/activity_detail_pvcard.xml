@@ -102,7 +102,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                         android:id="@+id/tvNapTien"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -110,13 +110,11 @@
                         android:layout_marginBottom="@dimen/size_17"
                         android:layout_weight="1"
                         android:drawableTop="@drawable/ic_pv_home_recharge_54px"
-                        android:fontFamily="@font/barlow_medium"
                         android:gravity="center_horizontal"
                         android:text="Nạp tiền"
-                        android:textColor="@color/colorSecondText"
                         android:textSize="@dimen/font_12" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                         android:id="@+id/tvDanhSachThe"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -124,13 +122,11 @@
                         android:layout_marginBottom="@dimen/size_17"
                         android:layout_weight="1"
                         android:drawableTop="@drawable/ic_pv_home_list_card_54px"
-                        android:fontFamily="@font/barlow_medium"
                         android:gravity="center_horizontal"
                         android:text="Danh sách thẻ"
-                        android:textColor="@color/colorSecondText"
                         android:textSize="@dimen/font_12" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                         android:id="@+id/tvSuaTaiKhoan"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -138,13 +134,11 @@
                         android:layout_marginBottom="@dimen/size_17"
                         android:layout_weight="1"
                         android:drawableTop="@drawable/ic_pv_home_edit_card_54px"
-                        android:fontFamily="@font/barlow_medium"
                         android:gravity="center_horizontal"
                         android:text="Sửa tài khoản"
-                        android:textColor="@color/colorSecondText"
                         android:textSize="@dimen/font_12" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                         android:id="@+id/tvTaoThemThe"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -152,10 +146,8 @@
                         android:layout_marginBottom="@dimen/size_17"
                         android:layout_weight="1"
                         android:drawableTop="@drawable/ic_disable_pv_home_newcard_54px"
-                        android:fontFamily="@font/barlow_medium"
                         android:gravity="center_horizontal"
                         android:text="Tạo thêm thẻ"
-                        android:textColor="@color/colorSecondText"
                         android:textSize="@dimen/font_12" />
                 </LinearLayout>
             </vn.icheck.android.ui.colorcardview.ColorCardView>

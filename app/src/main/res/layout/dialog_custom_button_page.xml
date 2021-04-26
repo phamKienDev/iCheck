@@ -65,16 +65,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider27" />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/textView60"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/size_12"
             android:layout_marginTop="@dimen/size_2"
             android:layout_marginRight="@dimen/size_12"
-            android:fontFamily="@font/barlow_medium"
             android:text="Là nút nổi bật màu xanh trên trang Doanh nghiệp của bạn, đây sẽ là hành động chính người dùng thực hiện với trang của bạn"
-            android:textColor="@color/colorSecondText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tvMain"
             app:layout_constraintTop_toBottomOf="@+id/tvMain" />
@@ -119,16 +117,14 @@
             android:text="Nút phụ"
             android:textSize="@dimen/font_14" />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/textView61"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/size_12"
             android:layout_marginTop="@dimen/size_2"
             android:layout_marginRight="@dimen/size_12"
-            android:fontFamily="@font/barlow_medium"
             android:text="Là nút thứ cấp trên trang Doanh nghiệp của bạn, đây là hành động phụ người dùng có thể thực hiện với trang của bạn"
-            android:textColor="@color/colorSecondText"
             app:layout_constraintEnd_toEndOf="parent" />
 
 

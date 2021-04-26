@@ -45,17 +45,15 @@
                 android:textSize="@dimen/font_16"
                 android:textStyle="normal" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_42"
                 android:layout_marginTop="@dimen/size_8"
                 android:layout_marginEnd="@dimen/size_42"
-                android:fontFamily="@font/barlow_medium"
                 android:gravity="center_horizontal"
                 android:includeFontPadding="false"
                 android:text="@string/login_reward_title_2"
-                android:textColor="@color/colorSecondText"
                 android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
 

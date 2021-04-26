@@ -1,4 +1,4 @@
-package vn.icheck.android.ichecklibs.view.normal_text
+package vn.icheck.android.ichecklibs.view.second_text
 
 import android.content.Context
 import android.graphics.Color
@@ -9,7 +9,7 @@ import androidx.core.content.ContextCompat
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
 
-class EditTextNormalTextColor : EditText {
+class EditTextSecondTextColor : EditText {
     constructor(context: Context) : super(context) {
         setup()
     }
@@ -24,6 +24,5 @@ class EditTextNormalTextColor : EditText {
 
     private fun setup() {
         setTextColor(Constant.getNormalTextColor(context))
-        setHintTextColor(Constant.getSecondTextColor(context))
     }
 }

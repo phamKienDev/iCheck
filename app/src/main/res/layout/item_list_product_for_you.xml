@@ -61,7 +61,7 @@
             app:layout_constraintTop_toTopOf="@+id/img_logo"
             tools:text="Giày Adidas Hunter X ..." />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/tv_name_enterprise"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -69,7 +69,6 @@
             android:ellipsize="end"
             android:includeFontPadding="false"
             android:singleLine="true"
-            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_12"
             app:layout_constraintEnd_toEndOf="@id/tv_name_product"
             app:layout_constraintStart_toStartOf="@+id/tv_name_product"
@@ -118,14 +117,12 @@
             app:layout_constraintTop_toTopOf="@+id/tv_count_rating"
             tools:text="Tuyệt vời" />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/tv_special_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_8"
-            android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
-            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_14"
             android:paddingRight="@dimen/size_8"
             app:layout_constraintEnd_toStartOf="@id/tv_price"

@@ -231,7 +231,7 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
             itemView.tvLike.setTextColor(ContextCompat.getColor(itemView.context, R.color.red_like_question))
         } else {
             itemView.tvLike.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_like_off_24dp, 0, 0, 0)
-            itemView.tvLike.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorSecondText))
+            itemView.tvLike.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondTextColor(itemView.context))
         }
 
         itemView.tvLike.text = TextHelper.formatCount(obj.expressiveCount)

@@ -69,14 +69,12 @@
                 app:layout_constraintTop_toTopOf="@id/imgLogo"
                 tools:text="Son kem lì Innissfree (tên quà dài không giới hạn...)" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:id="@+id/tvCongty"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_4"
-                android:fontFamily="@font/barlow_medium"
                 android:lineSpacingExtra="@dimen/font_14"
-                android:textColor="@color/colorSecondText"
                 android:textSize="@dimen/font_12"
                 app:layout_constraintEnd_toEndOf="@id/tvNameProduct"
                 app:layout_constraintStart_toStartOf="@id/tvNameProduct"
@@ -135,14 +133,12 @@
                 tools:text="Lý do: Phí ship quá cao"
                 tools:visibility="visible" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:id="@+id/tvTime"
                 android:layout_width="@dimen/size_120"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_6"
-                android:fontFamily="@font/barlow_medium"
                 android:lineSpacingExtra="@dimen/font_6"
-                android:textColor="@color/colorSecondText"
                 android:textSize="@dimen/font_14"
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"

@@ -225,13 +225,11 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_location_permission_history" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_12"
-                android:fontFamily="@font/barlow_medium"
                 android:text="Để hiển thị dữ liệu Cửa hàng, vui lòng bật GPS"
-                android:textColor="@color/colorSecondText"
                 android:textSize="@dimen/font_14" />
 
             <androidx.appcompat.widget.AppCompatTextView

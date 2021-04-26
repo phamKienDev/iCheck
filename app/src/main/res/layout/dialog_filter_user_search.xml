@@ -48,7 +48,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider27" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@id/tv_location"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -56,12 +56,10 @@
             android:layout_marginRight="@dimen/size_8"
             android:layout_weight="1"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_medium"
             android:gravity="right"
             android:includeFontPadding="false"
             android:maxLines="1"
-            android:text="@string/tat_ca"
-            android:textColor="@color/colorSecondText" />
+            android:text="@string/tat_ca"/>
 
         <ImageView
             android:id="@+id/img_clear_location"
@@ -108,7 +106,7 @@
             android:text="@string/gioi_tinh"
             android:textAlignment="gravity" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/tv_gender"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -116,11 +114,9 @@
             android:layout_marginRight="@dimen/size_12"
             android:layout_weight="1"
             android:drawablePadding="@dimen/size_8"
-            android:fontFamily="@font/barlow_medium"
             android:gravity="right"
             android:includeFontPadding="false"
-            android:text="@string/tat_ca"
-            android:textColor="@color/colorSecondText" />
+            android:text="@string/tat_ca"/>
 
         <ImageView
             android:id="@+id/img_clear_gender"

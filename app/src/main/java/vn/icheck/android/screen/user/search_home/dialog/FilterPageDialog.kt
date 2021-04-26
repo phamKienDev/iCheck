@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.dialog_filter_page_search.*
 import kotlinx.android.synthetic.main.layout_title_filter_search.*
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialogFragment
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.ICCategorySearch
 import vn.icheck.android.network.models.ICProvince
 
@@ -76,11 +77,11 @@ class FilterPageDialog(val locations: MutableList<ICProvince>?, val verified: Bo
     private fun setLocation(locations: MutableList<ICProvince>?) {
         selectedLocations = locations ?: mutableListOf()
         if (locations.isNullOrEmpty()) {
-            tv_location.setTextColor(ContextCompat.getColor(dialog?.context!!, R.color.colorSecondText))
+            tv_location.setTextColor(Constant.getSecondTextColor(dialog?.context!!))
             img_clear_location.visibility = View.GONE
             tv_location.text = getString(R.string.tat_ca)
         } else {
-            tv_location.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(dialog!!.context))
+            tv_location.setTextColor(Constant.getPrimaryColor(dialog!!.context))
             img_clear_location.visibility = View.VISIBLE
 
             val list = mutableListOf<String>()
@@ -104,11 +105,11 @@ class FilterPageDialog(val locations: MutableList<ICProvince>?, val verified: Bo
     private fun setFiltterCategory(category: MutableList<ICCategorySearch>?) {
         selectedCategory = category ?: mutableListOf()
         if (category.isNullOrEmpty()) {
-            tv_category.setTextColor(ContextCompat.getColor(dialog?.context!!, R.color.colorSecondText))
+            tv_category.setTextColor(Constant.getSecondTextColor(dialog?.context!!))
             img_clear_cate.visibility = View.GONE
             tv_category.text = getString(R.string.tat_ca)
         } else {
-            tv_category.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(dialog!!.context))
+            tv_category.setTextColor(Constant.getPrimaryColor(dialog!!.context))
             img_clear_cate.visibility = View.VISIBLE
             tv_category.text = category.last().name.toString()
         }

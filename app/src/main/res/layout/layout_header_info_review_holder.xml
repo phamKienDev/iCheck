@@ -43,14 +43,12 @@
         app:layout_constraintTop_toTopOf="@+id/imgStar"
         tools:text="Tuyệt vời" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowSemiBold
         android:id="@+id/tvCountReview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_4"
-        android:fontFamily="@font/barlow_semi_bold"
         android:includeFontPadding="false"
-        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_14"
         app:layout_constraintStart_toStartOf="@+id/tvRating"
         app:layout_constraintTop_toBottomOf="@+id/tvRating"

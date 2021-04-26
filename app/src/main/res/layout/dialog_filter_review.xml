@@ -83,15 +83,13 @@
             app:layout_constraintTop_toBottomOf="@+id/divider28" />
 
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/tv_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/size_8"
             android:drawablePadding="@dimen/size_8"
-            android:fontFamily="@font/barlow_medium"
             android:text="@string/tat_ca"
-            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider28" />
@@ -140,15 +138,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider29" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/tv_from"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/size_12"
             android:drawablePadding="@dimen/size_8"
-            android:fontFamily="@font/barlow_medium"
             android:text="@string/moi_nguoi"
-            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider29" />

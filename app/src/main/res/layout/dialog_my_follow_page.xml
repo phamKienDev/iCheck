@@ -55,16 +55,14 @@
                 app:layout_constraintTop_toTopOf="@id/imgFollow"
                 android:text="@string/bo_theo_doi" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:id="@+id/tvFollowContent"
                 android:layout_width="@dimen/size_0"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_4"
                 android:ellipsize="end"
-                android:fontFamily="@font/barlow_medium"
                 android:includeFontPadding="false"
                 android:maxLines="2"
-                android:textColor="@color/colorSecondText"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintEnd_toEndOf="@id/tvFollowTitle"
                 app:layout_constraintStart_toStartOf="@id/tvFollowTitle"
@@ -106,17 +104,15 @@
                 app:layout_constraintStart_toEndOf="@id/imgReport"
                 app:layout_constraintTop_toTopOf="@id/imgReport" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:id="@+id/tvReportContent"
                 android:layout_width="@dimen/size_0"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_4"
                 android:ellipsize="end"
-                android:fontFamily="@font/barlow_medium"
                 android:includeFontPadding="false"
                 android:maxLines="2"
                 android:text="@string/post_report_option_content"
-                android:textColor="@color/colorSecondText"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintEnd_toEndOf="@id/tvReportTitle"
                 app:layout_constraintStart_toStartOf="@id/tvReportTitle"

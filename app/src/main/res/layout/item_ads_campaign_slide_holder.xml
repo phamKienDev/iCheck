@@ -105,15 +105,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvNameSlide">
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:id="@+id/tvTimeLeftSlide"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_8"
                 android:layout_marginLeft="@dimen/size_8"
-                android:fontFamily="@font/barlow_medium"
                 android:includeFontPadding="false"
-                android:textColor="@color/colorSecondText"
                 android:textSize="@dimen/font_12"
                 app:layout_constraintBottom_toBottomOf="@id/tvJoin"
                 app:layout_constraintStart_toStartOf="@+id/tvName"

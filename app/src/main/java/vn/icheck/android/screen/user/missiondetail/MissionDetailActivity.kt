@@ -199,7 +199,7 @@ class MissionDetailActivity : BaseActivityMVVM(), View.OnClickListener {
                 layoutHeader.visibility = View.GONE
                 progressBar.isEnabled = false
                 tvEnded.visibility = View.VISIBLE
-                tvProgress.setTextColor(ContextCompat.getColor(this, R.color.colorSecondText))
+                tvProgress.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondTextColor(this))
 
                 if (obj.image.isNullOrEmpty()) {
                     imgIcon.setImageResource(Constant.getMissionFailedIcon(obj.event))

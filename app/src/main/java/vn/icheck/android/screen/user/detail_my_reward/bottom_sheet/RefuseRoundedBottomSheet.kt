@@ -17,8 +17,7 @@ import vn.icheck.android.R
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.helper.TextColorHelper
-import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.model.ICNameId
 
 class RefuseRoundedBottomSheet(val mId: String?) : BottomSheetDialogFragment() {
@@ -74,8 +73,8 @@ class RefuseRoundedBottomSheet(val mId: String?) : BottomSheetDialogFragment() {
                 radioButton.typeface = ViewHelper.createTypeface(requireContext(), R.font.barlow_medium)
                 radioButton.setBackgroundResource(ViewHelper.outValue.resourceId)
                 radioButton.setTextColor(ViewHelper.createColorStateList(
-                        ContextCompat.getColor(requireContext(), R.color.colorSecondText),
-                        TextColorHelper.getColorNormalText(requireContext())))
+                        Constant.getNormalTextColor(requireContext()),
+                        Constant.getNormalTextColor(requireContext())))
                 radioButton.includeFontPadding = false
                 radioButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
                 radioButton.maxLines = 1

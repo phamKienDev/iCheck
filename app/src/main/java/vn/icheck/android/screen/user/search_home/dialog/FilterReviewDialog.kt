@@ -11,6 +11,7 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialogFragment
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.Constant
 
 class FilterReviewDialog(isWatched: Boolean = false, val time: MutableList<String>? = null, val from: MutableList<String>? = null, val callback: ReviewCallback) : BaseBottomSheetDialogFragment() {
 
@@ -75,7 +76,7 @@ class FilterReviewDialog(isWatched: Boolean = false, val time: MutableList<Strin
     fun setYear(year: MutableList<String>?) {
         seletedTime = year ?: mutableListOf()
         if (year.isNullOrEmpty()) {
-            tv_time.setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorSecondText))
+            tv_time.setTextColor(Constant.getSecondTextColor(ICheckApplication.getInstance()))
             img_clear_time.visibility = View.GONE
             tv_time.text = getString(R.string.tat_ca)
         } else {
@@ -105,7 +106,7 @@ class FilterReviewDialog(isWatched: Boolean = false, val time: MutableList<Strin
     fun setFrom(fromType: MutableList<String>?) {
         seletedFrom = fromType ?: mutableListOf()
         if (fromType.isNullOrEmpty()) {
-            tv_from.setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorSecondText))
+            tv_from.setTextColor(Constant.getSecondTextColor(ICheckApplication.getInstance()))
             img_clear_from.visibility = View.GONE
             tv_from.text = getString(R.string.moi_nguoi)
         } else {

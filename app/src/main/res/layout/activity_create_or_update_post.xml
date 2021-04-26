@@ -79,7 +79,7 @@
                         tools:drawableEnd="@drawable/ic_verified_16px"
                         tools:text="Hà Linh  " />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                         android:id="@id/tvType"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -87,7 +87,6 @@
                         android:layout_marginLeft="@dimen/size_8"
                         android:drawableEnd="@drawable/ic_arrow_down_gray_24dp"
                         android:drawableRight="@drawable/ic_arrow_down_gray_24dp"
-                        android:fontFamily="@font/barlow_medium"
                         android:gravity="center_vertical"
                         android:includeFontPadding="false"
                         android:paddingStart="@dimen/size_0"
@@ -96,7 +95,6 @@
                         android:paddingRight="@dimen/size_25"
                         android:paddingBottom="@dimen/size_1"
                         android:text="@string/cong_khai"
-                        android:textColor="@color/colorSecondText"
                         android:textSize="@dimen/font_12"
                         app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
                         app:layout_constraintStart_toEndOf="@id/imgAvatar" />

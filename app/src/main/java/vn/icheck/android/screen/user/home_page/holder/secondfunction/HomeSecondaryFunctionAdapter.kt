@@ -15,6 +15,7 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.helper.FileHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.ICThemeFunction
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -68,7 +69,7 @@ class HomeSecondaryFunctionAdapter(private val listData: MutableList<ICThemeFunc
                     if (isUseTheme && !obj.label_color.isNullOrEmpty()) {
                         setTextColor(Color.parseColor(obj.label_color))
                     } else {
-                        setTextColor(ContextCompat.getColor(context, R.color.colorSecondText))
+                        setTextColor(Constant.getSecondTextColor(context))
                     }
                 }
 
