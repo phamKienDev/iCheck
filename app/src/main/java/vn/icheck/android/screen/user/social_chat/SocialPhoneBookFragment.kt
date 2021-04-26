@@ -18,6 +18,7 @@ import kotlinx.coroutines.launch
 import vn.icheck.android.callback.ISettingListener
 import vn.icheck.android.databinding.FragmentPhoneBookBinding
 import vn.icheck.android.helper.SettingHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICClientSetting
 import vn.icheck.android.screen.user.social_chat.popup.RequestContactPopup
 import vn.icheck.android.screen.user.webview.WebViewActivity
@@ -55,6 +56,7 @@ class SocialPhoneBookFragment:Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.rcvPhoneBook.adapter = phoneBookAdapter
+        binding.tvSyncPhoneBook.background = ViewHelper.backgroundPrimaryCorners4(requireContext())
         if (socialChatViewModel.getSyncPhoneBook()) {
             showSynced()
             lifecycleScope.launch {

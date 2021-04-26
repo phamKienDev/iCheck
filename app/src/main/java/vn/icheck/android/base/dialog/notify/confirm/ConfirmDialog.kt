@@ -2,15 +2,14 @@ package vn.icheck.android.base.dialog.notify.confirm
 
 import android.app.Dialog
 import android.content.Context
-import android.graphics.Color
 import android.os.Bundle
 import android.text.Html
 import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
 import vn.icheck.android.R
 import vn.icheck.android.databinding.DialogConfirmBinding
-import vn.icheck.android.ichecklibs.beGone
-import vn.icheck.android.ichecklibs.beVisible
+import vn.icheck.android.ichecklibs.util.beGone
+import vn.icheck.android.ichecklibs.util.beVisible
 
 abstract class ConfirmDialog(
         context: Context,

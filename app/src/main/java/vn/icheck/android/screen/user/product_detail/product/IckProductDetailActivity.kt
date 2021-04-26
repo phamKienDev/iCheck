@@ -47,6 +47,7 @@ import vn.icheck.android.component.product_review.submit_review.SubmitReviewMode
 import vn.icheck.android.constant.*
 import vn.icheck.android.fragments.ReviewTributeDialog
 import vn.icheck.android.helper.*
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.loyalty.base.listener.IClickListener
@@ -213,6 +214,8 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
 //        txtTitle.text = intent.getStringExtra("barcode")
         layoutToolbarAlpha.setPadding(0, getStatusBarHeight + SizeHelper.size16, 0, 0)
         layoutAction.setPadding(0, getStatusBarHeight + SizeHelper.size16, 0, 0)
+
+        btnBuy.background = ViewHelper.backgroundPrimaryCorners4(this)
     }
 
     private fun setupRecyclerView() {

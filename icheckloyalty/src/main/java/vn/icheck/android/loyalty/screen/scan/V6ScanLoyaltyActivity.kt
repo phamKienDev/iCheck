@@ -14,7 +14,6 @@ import android.net.wifi.WifiConfiguration
 import android.net.wifi.WifiManager
 import android.net.wifi.WifiNetworkSpecifier
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.provider.CalendarContract
@@ -24,6 +23,7 @@ import android.util.Log
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.scale
@@ -32,7 +32,6 @@ import androidx.lifecycle.lifecycleScope
 import com.scandit.datacapture.barcode.capture.BarcodeCapture
 import com.scandit.datacapture.barcode.capture.BarcodeCaptureListener
 import com.scandit.datacapture.barcode.capture.BarcodeCaptureSession
-import com.scandit.datacapture.barcode.capture.BarcodeCaptureSettings
 import com.scandit.datacapture.barcode.data.Symbology
 import com.scandit.datacapture.core.capture.DataCaptureContext
 import com.scandit.datacapture.core.common.async.Callback
@@ -48,11 +47,10 @@ import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ichecklibs.*
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
-import vn.icheck.android.ichecklibs.util.PermissionHelper
+import vn.icheck.android.ichecklibs.util.*
 import vn.icheck.android.ichecklibs.web.WebViewActivity
 import vn.icheck.android.icheckscanditv6.*
 import vn.icheck.android.icheckscanditv6.databinding.IckScanCustomViewBinding
-import vn.icheck.android.loyalty.BuildConfig
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.base.ICMessageEvent

@@ -12,6 +12,7 @@ import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.component.`null`.NullHolder
 import vn.icheck.android.databinding.ItemConfirmPrivacyBinding
 import vn.icheck.android.databinding.ItemPrivacySettingBinding
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.model.privacy.UserPrivacyModel
 import vn.icheck.android.util.ick.logError
 
@@ -64,10 +65,12 @@ class PrivacySettingsAdapter(val onSaveChangeListener: OnSaveChangeListener):Rec
             }
         }
         else if (holder.itemViewType == ICViewTypes.ITEM_PRIVACY_CONFIRM) {
-            (holder as ItemButton).binding.btnContinue.setOnClickListener {
-                onSaveChangeListener.onSave()
+            (holder as ItemButton).binding.btnContinue.apply {
+                background = ViewHelper.backgroundPrimaryCorners4(context)
+                setOnClickListener {
+                    onSaveChangeListener.onSave()
+                }
             }
-
         }
     }
 

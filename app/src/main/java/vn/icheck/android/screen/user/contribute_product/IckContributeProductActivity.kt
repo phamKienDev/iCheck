@@ -38,6 +38,7 @@ import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.constant.*
 import vn.icheck.android.databinding.ActivityIckContributeProductBinding
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.screen.user.contribute_product.adapter.*
@@ -648,6 +649,8 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
     }
 
     private fun initViews() {
+        binding.btnContinue.background = ViewHelper.backgroundPrimaryCorners4(this)
+
         val barcode = intent.getStringExtra(ICK_BARCODE)
         binding.edtBarcode.setText(barcode)
 

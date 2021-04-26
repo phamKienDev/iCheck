@@ -26,6 +26,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.FragmentQrAndBarcodeOfMeBinding
 import vn.icheck.android.helper.SettingHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.models.ICClientSetting
@@ -57,6 +58,9 @@ class MyQrActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = FragmentQrAndBarcodeOfMeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setupView()
+
         showLoadingTimeOut(10000)
         if (intent.getIntExtra(Constant.DATA_1, -1) == 3) {
             binding.btnScan.beInvisible()
@@ -113,6 +117,10 @@ class MyQrActivity : AppCompatActivity() {
         viewModel.getMyID()
         createQrCodeMarketing()
         initListener()
+    }
+
+    private fun setupView() {
+        binding.btnCampaign.background = ViewHelper.backgroundPrimaryCorners4(this)
     }
 
     private fun createQrCodeMarketing() {

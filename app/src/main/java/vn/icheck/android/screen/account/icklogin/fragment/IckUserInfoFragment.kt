@@ -24,6 +24,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.ICK_IMAGE_UPLOADED_SRC
 import vn.icheck.android.databinding.FragmentUserInfoBinding
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.model.location.CityItem
@@ -274,17 +275,20 @@ class IckUserInfoFragment : CoroutineFragment() {
         binding.edtDiaChi.addTextChangedListener {
             ickLoginViewModel.setAddress(it?.trim().toString())
         }
-        binding.btnContinue.setOnClickListener {
-            if (binding.edtEmailInput.text!!.trim().isNotEmpty()) {
-                if (binding.edtEmailInput.text!!.trim().isValidEmail()) {
-                    finalStep()
-                } else {
-                    binding.edtEmailInput.setError("Nhập sai định dạng. Thử lại!")
+        binding.btnContinue.apply {
+            background = ViewHelper.backgroundPrimaryCorners4(context)
+            setOnClickListener {
+                if (binding.edtEmailInput.text!!.trim().isNotEmpty()) {
+                    if (binding.edtEmailInput.text!!.trim().isValidEmail()) {
+                        finalStep()
+                    } else {
+                        binding.edtEmailInput.setError("Nhập sai định dạng. Thử lại!")
 //                    binding.tvErrorEmail.beVisible()
-                    return@setOnClickListener
+                        return@setOnClickListener
+                    }
                 }
+                finalStep()
             }
-            finalStep()
         }
         binding.btnSkip.setOnClickListener {
             hideKeyboard()

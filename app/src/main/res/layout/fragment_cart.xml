@@ -121,7 +121,7 @@
         app:layout_constraintTop_toBottomOf="@+id/group_items"
         tools:listitem="@layout/item_cart" />
 
-    <vn.icheck.android.ui.EnableButton
+    <vn.icheck.android.ichecklibs.EnableButton
         android:id="@+id/btn_confirm"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_36"
@@ -131,7 +131,6 @@
         android:textSize="@dimen/font_16"
         android:visibility="gone"
         android:gravity="center"
-        android:background="@drawable/background_button_enable"
         android:textColor="@android:color/white"
         android:fontFamily="@font/barlow_medium"
         android:layout_marginEnd="@dimen/size_12"

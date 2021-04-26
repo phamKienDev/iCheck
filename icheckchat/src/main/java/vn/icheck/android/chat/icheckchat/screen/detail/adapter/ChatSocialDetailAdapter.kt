@@ -34,7 +34,7 @@ import vn.icheck.android.chat.icheckchat.model.MCDetailMessage
 import vn.icheck.android.chat.icheckchat.model.MCMessageEvent
 import vn.icheck.android.chat.icheckchat.model.MCStatus
 import vn.icheck.android.chat.icheckchat.screen.detail_image.ImageDetailActivity
-import vn.icheck.android.ichecklibs.beGone
+import vn.icheck.android.ichecklibs.util.beGone
 
 class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val listData = mutableListOf<MCDetailMessage>()

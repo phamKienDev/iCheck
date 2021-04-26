@@ -19,6 +19,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import vn.icheck.android.R
 import vn.icheck.android.databinding.DialogReportUserSuccessBinding
 import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.wall.IckUserWallViewModel
 import vn.icheck.android.util.ick.toPx
 
@@ -90,8 +91,11 @@ class ReportUserSuccessDialog:BottomSheetDialogFragment() {
                 })
             }
         }
-        binding.btnDone.setOnClickListener {
-            dismiss()
+        binding.btnDone.apply {
+            background = ViewHelper.backgroundPrimaryCorners4(context)
+            setOnClickListener {
+                dismiss()
+            }
         }
     }
 }

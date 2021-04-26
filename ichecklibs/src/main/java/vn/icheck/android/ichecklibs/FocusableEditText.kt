@@ -10,6 +10,7 @@ import android.view.MotionEvent
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
+import vn.icheck.android.ichecklibs.util.toPx
 
 open class FocusableEditText : AppCompatEditText {
     var mErrorDrawable: Drawable? = null
