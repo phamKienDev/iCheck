@@ -51,7 +51,7 @@ class MenhGiaTheAdapter (private var listInfor: MutableList<ICMenhGia>) : Recycl
                 itemView.tvMenhGia.typeface = Typeface.createFromAsset(itemView.context.assets,"font/barlow_semi_bold.ttf")
             }else{
                 itemView.layoutParent.setBackgroundResource(R.drawable.bg_default_card_loyalty)
-                itemView.tvMenhGia.setTextColor(Color.parseColor("#757575"))
+                itemView.tvMenhGia.setTextColor(Color.parseColor(Constant.getNormalTextCode))
                 itemView.tvMenhGia.typeface = Typeface.createFromAsset(itemView.context.assets,"font/barlow_medium.ttf")
             }
 

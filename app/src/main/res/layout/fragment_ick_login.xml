@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <vn.icheck.android.ichecklibs.view.normal_text.FocusableEditTextNormalTextColor
+        <vn.icheck.android.ichecklibs.view.normal_text.FocusableEditTextNormalText
             android:id="@+id/edt_phone"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <vn.icheck.android.ichecklibs.view.normal_text.FocusableEditTextNormalTextColor
+        <vn.icheck.android.ichecklibs.view.normal_text.FocusableEditTextNormalText
             android:id="@+id/edt_password"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -71,16 +71,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_password" />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/btn_forgot_pw"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_62"
             android:layout_marginLeft="@dimen/size_62"
             android:layout_marginTop="@dimen/size_16"
-            android:fontFamily="@font/barlow_medium"
             android:text="@string/quen_mat_khau"
-            android:textColor="#757575"
             android:textSize="@dimen/font_12"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_login" />
@@ -96,15 +94,13 @@
             app:layout_constraintTop_toTopOf="@+id/btn_forgot_pw"
             app:srcCompat="@drawable/ic_bulkhead_12px" />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/tv_problem"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_4"
             android:layout_marginLeft="@dimen/size_4"
-            android:fontFamily="@font/barlow_medium"
             android:text="@string/ban_gap_van_de_voi_dang_nhap"
-            android:textColor="#757575"
             android:textSize="@dimen/font_12"
             app:layout_constraintBottom_toBottomOf="@+id/btn_forgot_pw"
             app:layout_constraintStart_toEndOf="@+id/imageView6"

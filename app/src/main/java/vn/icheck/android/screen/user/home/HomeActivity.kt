@@ -500,7 +500,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
 //            txtLogOut.visibility = View.VISIBLE
             tv_logout.visibility = View.VISIBLE
             tv_user_rank.text = user?.getPhoneAndRank()
-            tv_user_rank.setTextColor(Color.parseColor("#757575"))
+            tv_user_rank.setTextColor(Color.parseColor(vn.icheck.android.ichecklibs.Constant.getSecondTextCode))
             img_rank_user.beVisible()
             background.loadImageWithHolder(SessionManager.session.user?.background, R.drawable.left_menu_bg)
             when (user?.rank?.level) {

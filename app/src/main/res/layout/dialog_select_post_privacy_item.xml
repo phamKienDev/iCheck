@@ -34,7 +34,7 @@
         android:text="@string/cong_khai"
         android:textSize="@dimen/font_14" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/tvPublicContent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@id/tvPublicName"
@@ -45,6 +45,5 @@
         android:includeFontPadding="false"
         android:lineSpacingExtra="@dimen/font_6"
         android:text="@string/tat_ca_moi_nguoi_deu_xem_duoc"
-        android:textColor="#757575"
         android:textSize="@dimen/font_14" />
 </androidx.constraintlayout.widget.ConstraintLayout>

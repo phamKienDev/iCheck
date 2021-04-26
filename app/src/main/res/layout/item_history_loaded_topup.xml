@@ -42,14 +42,12 @@
             app:layout_constraintTop_toTopOf="@+id/layoutImg"
             tools:text="Thẻ Mobifone" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@id/tvDate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_4"
-            android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
-            android:textColor="#757575"
             android:textSize="@dimen/font_12"
             app:layout_constraintStart_toStartOf="@+id/tvNameNetwork"
             app:layout_constraintTop_toBottomOf="@+id/tvNameNetwork"
@@ -80,15 +78,13 @@
             app:layout_constraintStart_toStartOf="@+id/tvDate"
             app:layout_constraintTop_toBottomOf="@id/tvDate" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/appCompatTextView14"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginBottom="@dimen/size_10"
-            android:fontFamily="@font/barlow_medium"
             android:text="Nạp cho số:"
-            android:textColor="#757575"
             android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/tvPhoneNumber"

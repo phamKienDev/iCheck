@@ -36,16 +36,14 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Viên Uống Vitamin Tổng Hợp DHC Multi Vitamin 120 viên (Tên tối đa 2 dòng nhé), Viên Uống Vitamin Tổng Hợp DHC Multi Vitamin 120 viên (Tên tối đa 2 dòng nhé)" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@id/tvContent"
         android:layout_width="@dimen/size_0"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_6"
         android:ellipsize="end"
-        android:fontFamily="@font/barlow_medium"
         android:includeFontPadding="false"
         android:singleLine="false"
-        android:textColor="#757575"
         android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="@id/tvTitle"
         app:layout_constraintStart_toStartOf="@id/tvTitle"

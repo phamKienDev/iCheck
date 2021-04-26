@@ -26,14 +26,12 @@
         app:layout_constraintBottom_toBottomOf="@+id/imgLogoSupplier"
         app:layout_constraintEnd_toEndOf="@+id/imgLogoSupplier" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/appCompatTextView33"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_8"
-        android:fontFamily="@font/barlow_medium"
         android:lineSpacingExtra="@dimen/font_14"
-        android:textColor="#757575"
         android:textSize="@dimen/font_12"
         app:layout_constraintStart_toEndOf="@id/imgLogoSupplier"
         app:layout_constraintTop_toTopOf="@id/imgLogoSupplier"

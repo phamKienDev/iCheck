@@ -99,13 +99,11 @@
             android:layout_marginEnd="@dimen/size_12"
             android:layout_marginBottom="@dimen/size_10">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:id="@+id/appCompatTextView28"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/barlow_medium"
                 android:text="Nhà mạng:"
-                android:textColor="#757575"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintEnd_toStartOf="@id/tvName"
                 app:layout_constraintStart_toStartOf="parent"
@@ -122,14 +120,12 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Mobifone" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:id="@+id/appCompatTextView29"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_10"
-                android:fontFamily="@font/barlow_medium"
                 android:text="Tổng thanh toán:"
-                android:textColor="#757575"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintEnd_toStartOf="@id/tvTotal"
                 app:layout_constraintStart_toStartOf="@id/appCompatTextView28"
@@ -147,14 +143,12 @@
                 app:layout_constraintTop_toBottomOf="@id/tvName"
                 tools:text="100,000đ" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:id="@+id/appCompatTextView31"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_10"
-                android:fontFamily="@font/barlow_medium"
                 android:text="Hình thức thanh toán:"
-                android:textColor="#757575"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintEnd_toStartOf="@id/tvTypePayment"
                 app:layout_constraintStart_toStartOf="@id/appCompatTextView29"
@@ -197,14 +191,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/textView77"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_12"
-            android:fontFamily="@font/barlow_medium"
             android:text="Số seri:"
-            android:textColor="#757575"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toStartOf="@id/tv_serial"
             app:layout_constraintStart_toStartOf="@id/textView76"
@@ -224,14 +216,12 @@
             app:layout_constraintTop_toTopOf="@id/textView77"
             tools:text="05613081439641" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/textView78"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_14"
-            android:fontFamily="@font/barlow_medium"
             android:text="Mã nạp:"
-            android:textColor="#757575"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toStartOf="@id/tv_code"
             app:layout_constraintStart_toStartOf="@id/textView77"
@@ -265,7 +255,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_code" />
 
-        <vn.icheck.android.ui.view.TextBarlowSemiBold
+        <vn.icheck.android.ichecklibs.view.TextBarlowSemiBold
             android:id="@+id/btn_charge"
             android:layout_width="0dp"
             android:layout_height="@dimen/size_36"

@@ -54,12 +54,10 @@
                 app:layout_constraintTop_toTopOf="@id/imgUnfollow"
                 tools:text="Bỏ theo dõi Xuyến Đỗ" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowRegular
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/barlow_regular"
                 android:text="Khi bỏ theo dõi, các bài viết của người này sẽ không hiển thị trên trang chủ của bạn nữa."
-                android:textColor="#757575"
                 android:textSize="@dimen/font_14"
                 android:visibility="visible"
                 app:fontFamily="@font/barlow_medium"
@@ -97,12 +95,10 @@
                 app:layout_constraintTop_toTopOf="@id/imgNotify"
                 tools:text="Hủy kết bạn Tùng Thanh" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowRegular
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/barlow_regular"
                 android:text="Lời mời kết bạn trước đó sẽ bị hủy bỏ. Bạn vẫn có thể gửi lại  lời mời kết bạn cho người này."
-                android:textColor="#757575"
                 android:textSize="@dimen/font_14"
                 android:visibility="visible"
                 app:fontFamily="@font/barlow_medium"
@@ -141,12 +137,10 @@
                 app:layout_constraintStart_toEndOf="@id/imgReport"
                 app:layout_constraintTop_toTopOf="@id/imgReport" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowRegular
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/barlow_regular"
                 android:text="Bạn nhận thấy người dùng này có những hoạt động mang nội dung spam, nhạy cảm? Hãy cho chúng tôi biết."
-                android:textColor="#757575"
                 android:textSize="@dimen/font_14"
                 android:visibility="visible"
                 app:fontFamily="@font/barlow_medium"

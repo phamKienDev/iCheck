@@ -3,13 +3,11 @@ package vn.icheck.android.ichecklibs.view.normal_text
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
-import android.widget.EditText
-import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
 
-class EditTextNormalTextColor : EditText {
+class CheckBoxNormalText : androidx.appcompat.widget.AppCompatCheckBox {
     constructor(context: Context) : super(context) {
         setup()
     }
@@ -24,6 +22,6 @@ class EditTextNormalTextColor : EditText {
 
     private fun setup() {
         setTextColor(Constant.getNormalTextColor(context))
-        setHintTextColor(Constant.getSecondTextColor(context))
+        includeFontPadding = false
     }
 }

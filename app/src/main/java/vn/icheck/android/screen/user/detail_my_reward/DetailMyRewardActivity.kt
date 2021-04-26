@@ -199,10 +199,10 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                         binding.layoutBottom.beGone()
                         binding.imgLogo.alpha = 0.5f
                         binding.imgUsed.beVisible()
-                        binding.tvState.setTextColor(Color.parseColor("#757575"))
-                        binding.tvRefuseDes.setTextColor(Color.parseColor("#757575"))
+                        binding.tvState.setTextColor(Color.parseColor(vn.icheck.android.ichecklibs.Constant.getSecondTextCode))
+                        binding.tvRefuseDes.setTextColor(Color.parseColor(vn.icheck.android.ichecklibs.Constant.getSecondTextCode))
                         binding.tvTime simpleText "Ngày dùng"
-                        binding.tvTimeDes.setTextColor(Color.parseColor("#757575"))
+                        binding.tvTimeDes.setTextColor(Color.parseColor(vn.icheck.android.ichecklibs.Constant.getSecondTextCode))
                         binding.tvTimeDes.setText(data.confirmTime?.getDayTime())
                     }
 
@@ -366,8 +366,8 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
 
                         binding.tvTime simpleText "Loại quà"
                         binding.tvTimeDes simpleText "Quà giao tận nơi"
-                        binding.tvRefuseDes.setTextColor(Color.parseColor("#757575"))
-                        binding.tvTimeDes.setTextColor(Color.parseColor("#757575"))
+                        binding.tvRefuseDes.setTextColor(Color.parseColor(vn.icheck.android.ichecklibs.Constant.getSecondTextCode))
+                        binding.tvTimeDes.setTextColor(Color.parseColor(vn.icheck.android.ichecklibs.Constant.getSecondTextCode))
                         binding.layoutBottom.beGone()
                         binding.btnAcceptDaLay.setOnClickListener {
                             TrackingAllHelper.tagGiftDeliveryStarted(viewModel.detailReward?.data?.campaignId, viewModel.detailReward?.data?.name)

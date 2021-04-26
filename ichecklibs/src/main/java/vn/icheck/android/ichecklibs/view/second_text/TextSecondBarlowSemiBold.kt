@@ -1,15 +1,14 @@
 package vn.icheck.android.ichecklibs.view.second_text
 
 import android.content.Context
-import android.graphics.Color
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
+import vn.icheck.android.ichecklibs.view.TextBarlowSemiBold
 
-class TextSecondBarlowSemiBold : AppCompatTextView {
+class TextSecondBarlowSemiBold : TextBarlowSemiBold {
     constructor(context: Context) : super(context) {
         setup()
     }
@@ -23,8 +22,6 @@ class TextSecondBarlowSemiBold : AppCompatTextView {
     }
 
     private fun setup() {
-        Constant.getSecondTextColor(context)
-        typeface = ResourcesCompat.getFont(context, R.font.barlow_semi_bold)
-        includeFontPadding = false
+        setTextColor(Constant.getSecondTextColor(context))
     }
 }

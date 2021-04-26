@@ -94,7 +94,7 @@
                 android:text="Họ (*)"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.normal_text.CornerErrorEditTextNormalTextColor
+            <vn.icheck.android.ichecklibs.view.normal_text.CornerErrorEditTextNormalText
                 android:id="@+id/edt_last_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -113,7 +113,7 @@
                 android:text="Tên đệm và tên (*)"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.normal_text.CornerErrorEditTextNormalTextColor
+            <vn.icheck.android.ichecklibs.view.normal_text.CornerErrorEditTextNormalText
                 android:id="@+id/edt_first_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -132,7 +132,7 @@
                 android:layout_height="wrap_content"
                 android:text="Số điện thoại (*)"
                 android:textSize="@dimen/font_12" />
-            <vn.icheck.android.ichecklibs.view.normal_text.CornerErrorEditTextNormalTextColor
+            <vn.icheck.android.ichecklibs.view.normal_text.CornerErrorEditTextNormalText
                 android:id="@+id/edt_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -173,7 +173,7 @@
                     app:layout_constraintStart_toEndOf="@+id/textView86"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <vn.icheck.android.ichecklibs.view.normal_text.CornerErrorEditTextNormalTextColor
+                <vn.icheck.android.ichecklibs.view.normal_text.CornerErrorEditTextNormalText
                     android:id="@+id/edt_quan"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -192,7 +192,7 @@
                     app:layout_constraintStart_toEndOf="@+id/edt_tinh_thanh"
                     app:layout_constraintTop_toBottomOf="@+id/textView87" />
 
-                <vn.icheck.android.ichecklibs.view.normal_text.CornerErrorEditTextNormalTextColor
+                <vn.icheck.android.ichecklibs.view.normal_text.CornerErrorEditTextNormalText
                     android:id="@+id/edt_tinh_thanh"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -220,7 +220,7 @@
                 android:layout_height="wrap_content"
                 android:text="Xã phường (*)"
                 android:textSize="@dimen/font_12" />
-            <vn.icheck.android.ichecklibs.view.normal_text.CornerErrorEditTextNormalTextColor
+            <vn.icheck.android.ichecklibs.view.normal_text.CornerErrorEditTextNormalText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -240,7 +240,7 @@
                 android:layout_height="wrap_content"
                 android:text="Địa chỉ (*)"
                 android:textSize="@dimen/font_12" />
-            <vn.icheck.android.ichecklibs.view.normal_text.CornerErrorEditTextNormalTextColor
+            <vn.icheck.android.ichecklibs.view.normal_text.CornerErrorEditTextNormalText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"

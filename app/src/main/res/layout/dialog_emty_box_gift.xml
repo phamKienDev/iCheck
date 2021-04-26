@@ -35,18 +35,16 @@
             android:textSize="@dimen/font_14"
             tools:text="Bạn chưa có lượt mở quà nào!" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@id/tvDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_29"
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginEnd="@dimen/size_29"
-            android:fontFamily="@font/barlow_medium"
             android:gravity="center"
             android:lineSpacingExtra="@dimen/font_6"
             android:text="Hoàn thành các thử thách sau để nhận thêm lượt mở quà mới nào:"
-            android:textColor="#757575"
             android:textSize="@dimen/font_14" />
 
         <LinearLayout

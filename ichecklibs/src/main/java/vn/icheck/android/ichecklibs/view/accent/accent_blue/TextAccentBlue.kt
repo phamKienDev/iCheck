@@ -1,13 +1,12 @@
-package vn.icheck.android.ichecklibs.view.normal_text
+package vn.icheck.android.ichecklibs.view.accent.accent_blue
 
 import android.content.Context
-import android.graphics.Color
+import android.content.res.ColorStateList
 import android.util.AttributeSet
-import androidx.core.content.ContextCompat
+import androidx.appcompat.widget.AppCompatTextView
 import vn.icheck.android.ichecklibs.Constant
-import vn.icheck.android.ichecklibs.R
 
-class CheckBoxNormalTextColor : androidx.appcompat.widget.AppCompatCheckBox {
+open class TextAccentBlue : AppCompatTextView {
     constructor(context: Context) : super(context) {
         setup()
     }
@@ -21,11 +20,7 @@ class CheckBoxNormalTextColor : androidx.appcompat.widget.AppCompatCheckBox {
     }
 
     private fun setup() {
-        setTextColor(if (Constant.normalTextColor.isNotEmpty()) {
-            Color.parseColor(Constant.normalTextColor)
-        } else {
-            ContextCompat.getColor(context, R.color.colorNormalText)
-        })
+        setTextColor(Constant.getAccentBlueColor(context))
         includeFontPadding = false
     }
 }

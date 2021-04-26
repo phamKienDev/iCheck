@@ -73,8 +73,8 @@ class PaymentTypeAdapter(val context: Context?, val listener: ItemClickListener<
 
             if (selectedPosition != adapterPosition) {
                 itemView.radioButton1.setImageResource(R.drawable.ic_radio_un_checked_gray_24dp)
-                itemView.tvNameType.setTextColor(Color.parseColor("#757575"))
-                itemView.tvValue.setTextColor(Color.parseColor("#757575"))
+                itemView.tvNameType.setTextColor(Color.parseColor(Constant.getSecondTextCode))
+                itemView.tvValue.setTextColor(Color.parseColor(Constant.getSecondTextCode))
             } else {
                 itemView.radioButton1.setImageResource(R.drawable.ic_radio_on_24dp)
                 itemView.tvNameType.setTextColor(Constant.getNormalTextColor(itemView.context))

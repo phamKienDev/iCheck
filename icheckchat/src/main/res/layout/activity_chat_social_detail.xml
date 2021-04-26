@@ -221,7 +221,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:background="@color/colorPrimary" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/tvBarcode"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -231,27 +231,23 @@
             android:drawableLeft="@drawable/ic_scan_gray_24dp_chat"
             android:drawablePadding="6dp"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_medium"
             android:gravity="center_vertical"
             android:includeFontPadding="false"
             android:singleLine="true"
-            android:textColor="@color/gray_75"
             app:layout_constraintEnd_toStartOf="@id/imgDelete"
             app:layout_constraintStart_toEndOf="@id/imgProduct"
             app:layout_constraintTop_toTopOf="@id/imgProduct"
             tools:text="03514364161461" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
             android:id="@+id/tvNameProduct"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
             android:maxLines="2"
             android:minLines="1"
-            android:textColor="@color/black_21"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/tvBarcode"
@@ -294,27 +290,23 @@
         android:orientation="vertical"
         android:visibility="gone">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
             android:id="@+id/tvTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:includeFontPadding="false"
-            android:textColor="@color/black_21"
             android:textSize="14sp"
             tools:text="Bạn đã chặn tin nhắn của Mai Lan Nguyễn" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:fontFamily="@font/barlow_medium"
             android:gravity="center"
             android:includeFontPadding="false"
             android:text="Các bạn sẽ không thể nhắn tin trong mục Chat\n Hãy bỏ chặn để tiếp tục cuộc trò chuyện này."
-            android:textColor="@color/gray_75"
             android:textSize="14sp" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -341,28 +333,24 @@
         android:orientation="vertical"
         android:visibility="gone">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
             android:id="@+id/tvUserTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:includeFontPadding="false"
-            android:textColor="@color/black_21"
             android:textSize="14sp"
             tools:text="Bạn đã bị Xuyến Đỗ chặn tin nhắn" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="20dp"
-            android:fontFamily="@font/barlow_medium"
             android:gravity="center"
             android:includeFontPadding="false"
             android:text="Các bạn sẽ không thể nhắn tin trong mục Chat"
-            android:textColor="@color/gray_75"
             android:textSize="14sp" />
 
     </LinearLayout>

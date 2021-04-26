@@ -8,6 +8,11 @@ object Constant {
 
     var primaryColor: String = ""
     var secondaryColor: String = ""
+    var accentBlueColor: String = ""
+    var accentGreenColor: String = ""
+    var accentRedColor: String = ""
+    var accentCyanColor: String = ""
+    var accentYellowColor: String = ""
     var normalTextColor: String = ""
     var secondTextColor: String = ""
     var disableTextColor: String = ""
@@ -296,6 +301,27 @@ object Constant {
                 secondTextColor
             } else {
                 "#757575"
+            }
+        }
+
+    /*
+    Color accent blue
+    * * */
+
+    fun getAccentBlueColor(context: Context): Int {
+        return if (accentBlueColor.isNotEmpty()) {
+            Color.parseColor(accentBlueColor)
+        } else {
+            ContextCompat.getColor(context, R.color.colorAccentBlue)
+        }
+    }
+
+    val getAccentBlueCode: String
+        get() {
+            return if (accentBlueColor.isNotEmpty()) {
+                accentBlueColor
+            } else {
+                "#00BAF2"
             }
         }
 }

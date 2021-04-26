@@ -28,7 +28,7 @@ class ReportUserAdapter(val listData: List<ReportUserViewModel>, val onUpdate:(I
                 }
             } else {
                 holder.itemTickReportBinding.edtReport.beGone()
-                holder.itemTickReportBinding.checkBox.setTextColor(Color.parseColor("#757575"))
+                holder.itemTickReportBinding.checkBox.setTextColor(Color.parseColor(Constant.getNormalTextCode))
             }
             onUpdate(position, isChecked)
         }

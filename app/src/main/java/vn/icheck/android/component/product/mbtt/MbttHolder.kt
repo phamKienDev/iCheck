@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.product_detail_mbtt2.view.*
 import vn.icheck.android.R
 import vn.icheck.android.adapters.base.BaseHolder
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 
 class MbttHolder(view: View) : BaseHolder(view) {
@@ -55,7 +56,7 @@ class MbttHolder(view: View) : BaseHolder(view) {
             tvYes.text = "$totalYes%"
             tvNo.text = "$totalNo%"
 
-            val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(itemView.context)
+            val primaryColor = Constant.getPrimaryColor(itemView.context)
 
             if (obj.icTransparency.isVoted!!) {
                 progress.progress = totalYes
@@ -65,15 +66,15 @@ class MbttHolder(view: View) : BaseHolder(view) {
                 textHintYes.setTextColor(primaryColor)
                 tvYes.textSize = 16f
 
-                tvNo.setTextColor(Color.parseColor("#757575"))
-                textHintNo.setTextColor(Color.parseColor("#757575"))
+                tvNo.setTextColor(Constant.getSecondTextColor(itemView.context))
+                textHintNo.setTextColor(Constant.getSecondTextColor(itemView.context))
                 tvNo.textSize = 14f
             } else {
                 progress.progress = totalNo
                 progress.rotation = 180f
 
-                tvYes.setTextColor(Color.parseColor("#757575"))
-                textHintYes.setTextColor(Color.parseColor("#757575"))
+                tvYes.setTextColor(Constant.getSecondTextColor(itemView.context))
+                textHintYes.setTextColor(Constant.getSecondTextColor(itemView.context))
                 tvYes.textSize = 14f
 
                 tvNo.setTextColor(primaryColor)

@@ -144,7 +144,7 @@
         app:layout_constraintStart_toStartOf="@id/textView62"
         app:layout_constraintTop_toBottomOf="@id/textView63">
 
-        <vn.icheck.android.ichecklibs.view.normal_text.RadioButtonNormalTextColor
+        <vn.icheck.android.ichecklibs.view.normal_text.RadioButtonNormalText
             android:id="@+id/radioAll"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/size_24"
@@ -154,7 +154,7 @@
             android:paddingLeft="@dimen/size_12"
             android:text="@string/tat_ca" />
 
-        <vn.icheck.android.ichecklibs.view.normal_text.RadioButtonNormalTextColor
+        <vn.icheck.android.ichecklibs.view.normal_text.RadioButtonNormalText
             android:id="@+id/radioXuVao"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/size_24"
@@ -166,7 +166,7 @@
             android:paddingLeft="@dimen/size_12"
             android:text="@string/xu_vao"/>
 
-        <vn.icheck.android.ichecklibs.view.normal_text.RadioButtonNormalTextColor
+        <vn.icheck.android.ichecklibs.view.normal_text.RadioButtonNormalText
             android:id="@+id/radioXuRa"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/size_24"

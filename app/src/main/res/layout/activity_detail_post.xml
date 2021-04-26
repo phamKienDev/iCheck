@@ -354,7 +354,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_6"
@@ -362,9 +362,7 @@
                     android:layout_marginEnd="@dimen/size_6"
                     android:lineSpacingExtra="@dimen/font_14"
                     android:text="@string/binh_luan_voi_tu_cach"
-                    android:textColor="#757575"
-                    android:textSize="@dimen/font_12"
-                    app:fontFamily="@font/barlow_medium" />
+                    android:textSize="@dimen/font_12" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rcvPermission"

@@ -364,7 +364,7 @@ class AdsPageAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
             Constant.PAGE_CHANGE_SUBCRIBE -> { // Chuyển đổi tham gia
                 if (isFollow) {
-                    tvButton.setTextColor(Color.parseColor("#757575"))
+                    tvButton.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondTextColor(tvButton.context))
                     tvButton.setText(R.string.dang_theo_doi)
                 } else {
                     tvButton.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(tvButton.context))

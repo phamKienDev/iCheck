@@ -51,17 +51,15 @@
         android:paddingEnd="@dimen/size_12"
         android:paddingBottom="@dimen/size_16">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:layout_width="0dp"
             android:layout_height="@dimen/size_20"
             android:layout_weight="1"
             android:drawableStart="@drawable/ic_contact_22dp"
             android:drawablePadding="@dimen/size_6"
-            android:fontFamily="@font/barlow_medium"
             android:gravity="center|start"
             android:lineSpacingExtra="@dimen/font_14"
             android:text="@string/so_dien_thoai"
-            android:textColor="#757575"
             android:textSize="@dimen/font_12" />
 
         <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
@@ -94,17 +92,15 @@
         android:paddingEnd="@dimen/size_12"
         android:paddingBottom="@dimen/size_16">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:layout_width="0dp"
             android:layout_height="@dimen/size_20"
             android:layout_weight="1"
             android:drawableStart="@drawable/ic_contact_mail_22dp"
             android:drawablePadding="@dimen/size_6"
-            android:fontFamily="@font/barlow_medium"
             android:gravity="center|start"
             android:lineSpacingExtra="@dimen/font_14"
             android:text="@string/email"
-            android:textColor="#757575"
             android:textSize="@dimen/font_12" />
 
         <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
@@ -137,17 +133,15 @@
         android:paddingEnd="@dimen/size_12"
         android:paddingBottom="@dimen/size_24">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:layout_width="0dp"
             android:layout_height="@dimen/size_20"
             android:layout_weight="1"
             android:drawableStart="@drawable/ic_contact_chat_20_px"
             android:drawablePadding="@dimen/size_6"
-            android:fontFamily="@font/barlow_medium"
             android:gravity="center|start"
             android:lineSpacingExtra="@dimen/font_14"
             android:text="@string/nhan_tin"
-            android:textColor="#757575"
             android:textSize="@dimen/font_12" />
 
         <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary

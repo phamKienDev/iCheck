@@ -233,16 +233,14 @@
             app:layout_constraintStart_toEndOf="@id/imgPrivacy"
             app:layout_constraintTop_toTopOf="@id/imgPrivacy" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/tvPrivacyContent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/barlow_regular"
             android:text="Quyền riêng tư cho phép bạn có thể hiển thị bài đánh giá với người bạn chọn"
-            android:textColor="#757575"
             android:textSize="@dimen/font_14"
             android:visibility="visible"
-            app:fontFamily="@font/barlow_medium"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/tv_privacy"

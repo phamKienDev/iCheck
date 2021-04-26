@@ -3,13 +3,16 @@ package vn.icheck.android.ichecklibs.view.normal_text
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
+import android.view.MotionEvent
+import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
+import vn.icheck.android.ichecklibs.view.TextBarlowMedium
 
-class TextNormalBarlowMedium : AppCompatTextView {
+class TextNormalBarlowMedium : TextBarlowMedium {
     constructor(context: Context) : super(context) {
         setup()
     }
@@ -23,13 +26,6 @@ class TextNormalBarlowMedium : AppCompatTextView {
     }
 
     private fun setup() {
-        setTextColor(if (Constant.normalTextColor.isNotEmpty()) {
-            Color.parseColor(Constant.normalTextColor)
-        } else {
-            ContextCompat.getColor(context, R.color.colorNormalText)
-        })
-
-        typeface = ResourcesCompat.getFont(context, R.font.barlow_medium)
-        includeFontPadding = false
+        setTextColor(Constant.getNormalTextColor(context))
     }
 }

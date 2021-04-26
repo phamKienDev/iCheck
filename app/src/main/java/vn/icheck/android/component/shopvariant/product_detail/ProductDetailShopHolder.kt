@@ -10,7 +10,7 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.adapters.base.BaseHolder
 import vn.icheck.android.component.view.ViewHelper
-import vn.icheck.android.ui.view.TextBarlowSemiBold
+import vn.icheck.android.ichecklibs.view.TextBarlowSemiBold
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.loyalty.base.setGone

@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <vn.icheck.android.ui.view.TextBarlowSemiBold
+    <vn.icheck.android.ichecklibs.view.TextBarlowSemiBold
         android:id="@+id/tvTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
             app:layout_constraintStart_toEndOf="@+id/imgAvaProduct"
             app:layout_constraintTop_toTopOf="@+id/imgAvaProduct" />
 
-        <vn.icheck.android.ui.view.TextBarlowMedium
+        <vn.icheck.android.ichecklibs.view.TextBarlowMedium
             android:id="@+id/tvBarcodeProduct"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

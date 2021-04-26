@@ -23,7 +23,7 @@
         android:layout_marginStart="@dimen/size_4"
         android:layout_marginEnd="@dimen/size_4" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/tvMoreType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,9 +31,7 @@
         android:paddingTop="@dimen/size_7"
         android:drawableEnd="@drawable/ic_arrow_down_gray_10dp"
         android:drawablePadding="@dimen/size_4"
-        android:fontFamily="@font/barlow_medium"
         android:text="Hiển thị thêm"
-        android:textColor="#757575"
         android:textSize="@dimen/font_12" />
 
 </LinearLayout>

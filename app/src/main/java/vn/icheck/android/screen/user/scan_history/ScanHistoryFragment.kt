@@ -730,7 +730,7 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
             ICMessageEvent.Type.ON_UNTICK_HISTORY -> {
                 imgFilterHis.setImageResource(R.drawable.ic_filter_gray_24_px)
                 imgDot.beInvisible()
-                tvFilter.setTextColor(Color.parseColor("#757575"))
+                tvFilter.setTextColor(Color.parseColor(vn.icheck.android.ichecklibs.Constant.getSecondTextCode))
             }
             ICMessageEvent.Type.ON_LOG_IN -> {
                 listType.clear()

@@ -12,14 +12,12 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/total_gifts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginTop="@dimen/size_16"
-            android:fontFamily="@font/barlow_medium"
-            android:textColor="#757575"
             android:visibility="gone"
             tools:text="Sản phẩm quà: 12"
             tools:visibility="visible" />

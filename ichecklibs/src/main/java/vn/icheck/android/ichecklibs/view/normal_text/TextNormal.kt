@@ -23,11 +23,7 @@ class TextNormal : AppCompatTextView {
     }
 
     private fun setup() {
-        setTextColor(if (Constant.normalTextColor.isNotEmpty()) {
-            Color.parseColor(Constant.normalTextColor)
-        } else {
-            ContextCompat.getColor(context, R.color.colorNormalText)
-        })
+        setTextColor(Constant.getNormalTextColor(context))
         includeFontPadding = false
     }
 }

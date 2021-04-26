@@ -14,5 +14,6 @@ class EditTextPrimary : AppCompatEditText {
 
     private fun setup() {
         setTextColor(Constant.getPrimaryColor(context))
+        setHintTextColor(Constant.getSecondTextColor(context))
     }
 }

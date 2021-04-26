@@ -126,7 +126,7 @@
                     app:srcCompat="@drawable/ic_login_eye_gray_18"
                     tools:targetApi="lollipop" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondStateEnable
                     android:id="@id/txtForgetPassword"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -139,14 +139,13 @@
                     android:paddingTop="@dimen/size_10"
                     android:paddingBottom="@dimen/size_10"
                     android:text="@string/quen_mat_khau"
-                    android:textColor="@color/text_color_light_blue"
                     android:textSize="@dimen/font_12"
                     android:textStyle="normal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondStateEnable
                     android:id="@id/txtProblem"
                     android:layout_width="@dimen/size_0"
                     android:layout_height="wrap_content"
@@ -160,7 +159,6 @@
                     android:paddingTop="@dimen/size_10"
                     android:paddingBottom="@dimen/size_10"
                     android:text="@string/ban_gap_van_de_voi_dang_nhap"
-                    android:textColor="@color/text_color_light_blue"
                     android:textSize="@dimen/font_12"
                     android:textStyle="normal"
                     app:layout_constraintBottom_toBottomOf="@id/txtForgetPassword"

@@ -27,7 +27,7 @@
         app:layout_constraintEnd_toEndOf="@+id/img_logo_page"
         app:srcCompat="@drawable/ic_verified_24px" />
 
-    <vn.icheck.android.ui.view.TextBarlowMedium
+    <vn.icheck.android.ichecklibs.view.TextBarlowMedium
         android:id="@+id/tv_name_page"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

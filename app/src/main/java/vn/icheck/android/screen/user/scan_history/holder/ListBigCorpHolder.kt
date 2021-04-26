@@ -61,7 +61,7 @@ class ListBigCorpHolder(parent: ViewGroup, val listener: IScanHistoryView) : Rec
                     itemView.tvNameBigCorp.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(itemView.context))
                 } else {
                     itemView.bgItem.setBackgroundResource(R.drawable.bg_corners_white_4)
-                    itemView.tvNameBigCorp.setTextColor(Color.parseColor("#757575"))
+                    itemView.tvNameBigCorp.setTextColor(Color.parseColor(vn.icheck.android.ichecklibs.Constant.getSecondTextCode))
                 }
 
                 itemView.setOnClickListener {

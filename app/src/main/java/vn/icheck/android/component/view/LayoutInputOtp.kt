@@ -89,21 +89,19 @@ class LayoutInputOtp : LinearLayout {
             })
 
             // Text send
-            layoutCenter.addView(ViewHelper.createText(context,
+            layoutCenter.addView(ViewHelper.createTextSendOtpLogin(context,
                     ViewHelper.createLayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 0, SizeHelper.size24, 0, 0),
                     ViewHelper.outValue.resourceId,
                     ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
-                    ContextCompat.getColorStateList(context, R.color.text_send_otp_login),
                     14f).also {
                 it.setPadding(SizeHelper.size24, SizeHelper.size8, SizeHelper.size24, SizeHelper.size8)
             })
         })
 
-        addView(ViewHelper.createText(context,
+        addView(ViewHelper.createTextSendOtpLogin(context,
                 ViewHelper.createLayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 0, SizeHelper.size24, 0, 0),
                 ViewHelper.outValue.resourceId,
                 ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
-                ContextCompat.getColorStateList(context, R.color.text_send_otp_login),
                 14f).also {
             it.setPadding(SizeHelper.size24, SizeHelper.size8, SizeHelper.size24, SizeHelper.size8)
         })

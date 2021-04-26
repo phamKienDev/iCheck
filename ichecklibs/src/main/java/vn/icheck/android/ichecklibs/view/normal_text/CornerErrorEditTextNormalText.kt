@@ -3,12 +3,13 @@ package vn.icheck.android.ichecklibs.view.normal_text
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
-import android.widget.RadioButton
 import androidx.core.content.ContextCompat
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
+import vn.icheck.android.ichecklibs.view.edit_text.CornerErrorEditText
 
-class RadioButtonNormalTextColor : androidx.appcompat.widget.AppCompatRadioButton {
+class CornerErrorEditTextNormalText:CornerErrorEditText {
+
     constructor(context: Context) : super(context) {
         setup()
     }
@@ -22,11 +23,7 @@ class RadioButtonNormalTextColor : androidx.appcompat.widget.AppCompatRadioButto
     }
 
     private fun setup() {
-        setTextColor(if (Constant.normalTextColor.isNotEmpty()) {
-            Color.parseColor(Constant.normalTextColor)
-        } else {
-            ContextCompat.getColor(context, R.color.colorNormalText)
-        })
+        setTextColor(Constant.getNormalTextColor(context))
         includeFontPadding = false
     }
 }

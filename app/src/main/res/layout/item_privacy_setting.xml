@@ -28,7 +28,7 @@
             android:orientation="vertical"
             android:layout_marginLeft="@dimen/size_15">
 
-            <vn.icheck.android.ichecklibs.view.normal_text.RadioButtonCheckedNormalTextColor
+            <vn.icheck.android.ichecklibs.view.normal_text.RadioButtonCheckedNormalText
                 android:layout_marginTop="@dimen/size_12"
                 android:id="@+id/btn_friends"
                 android:fontFamily="@font/barlow_medium"
@@ -39,7 +39,7 @@
                 tools:checked="true"
                 android:text="Bạn bè của tôi" />
 
-            <vn.icheck.android.ichecklibs.view.normal_text.RadioButtonCheckedNormalTextColor
+            <vn.icheck.android.ichecklibs.view.normal_text.RadioButtonCheckedNormalText
                 android:layout_marginTop="@dimen/size_12"
                 android:id="@+id/btn_everyone"
                 android:paddingStart="@dimen/size_12"
@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:text="Tất cả mọi người" />
 
-            <vn.icheck.android.ichecklibs.view.normal_text.RadioButtonCheckedNormalTextColor
+            <vn.icheck.android.ichecklibs.view.normal_text.RadioButtonCheckedNormalText
                 android:paddingStart="@dimen/size_12"
                 android:paddingEnd="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_12"

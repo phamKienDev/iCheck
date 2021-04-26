@@ -75,15 +75,13 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_default_no_message" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowRegular
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:fontFamily="@font/barlow_regular"
                     android:gravity="center"
                     android:text="@string/ban_khong_co_tin_nhan_nao"
                     android:textAlignment="center"
-                    android:textColor="@color/gray_75"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -101,15 +99,13 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_search_gray_empty_90dp_chat" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowRegular
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:fontFamily="@font/barlow_regular"
                     android:gravity="center"
                     android:text="@string/tim_kiem_tin_nhan_loi"
                     android:textAlignment="center"
-                    android:textColor="@color/gray_75"
                     android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>

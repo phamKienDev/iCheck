@@ -1,10 +1,7 @@
 package vn.icheck.android.screen.user.search_home.dialog
 
-import android.graphics.Color
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
-import kotlinx.android.synthetic.main.dialog_filter_page_search.*
 import kotlinx.android.synthetic.main.dialog_filter_user_search.*
 import kotlinx.android.synthetic.main.dialog_filter_user_search.containerLocation
 import kotlinx.android.synthetic.main.dialog_filter_user_search.img_clear_location

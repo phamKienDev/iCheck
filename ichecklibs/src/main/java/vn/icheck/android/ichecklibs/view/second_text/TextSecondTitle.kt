@@ -1,15 +1,11 @@
 package vn.icheck.android.ichecklibs.view.second_text
 
 import android.content.Context
-import android.graphics.Color
 import android.util.AttributeSet
-import android.widget.EditText
-import androidx.appcompat.widget.AppCompatEditText
-import androidx.core.content.ContextCompat
 import vn.icheck.android.ichecklibs.Constant
-import vn.icheck.android.ichecklibs.R
+import vn.icheck.android.ichecklibs.view.TextTitle
 
-class EditTextSecondTextColor : EditText {
+class TextSecondTitle : TextTitle {
     constructor(context: Context) : super(context) {
         setup()
     }
@@ -23,6 +19,6 @@ class EditTextSecondTextColor : EditText {
     }
 
     private fun setup() {
-        setTextColor(Constant.getNormalTextColor(context))
+        setTextColor(Constant.getSecondTextColor(context))
     }
 }

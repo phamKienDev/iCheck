@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black_21"
-    tools:background="@color/gray_75">
+    android:background="@color/colorNormalView"
+    tools:background="@color/colorSecondViewGroup">
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/imgBack"

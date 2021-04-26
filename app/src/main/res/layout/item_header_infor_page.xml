@@ -46,7 +46,7 @@
             app:layout_constraintStart_toEndOf="@id/imgAvaPage"
             app:layout_constraintTop_toTopOf="@id/imgAvaPage">
 
-            <vn.icheck.android.ui.view.TextBarlowSemiBold
+            <vn.icheck.android.ichecklibs.view.TextBarlowSemiBold
                 android:id="@id/tvNamePage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -87,7 +87,7 @@
             android:background="@drawable/bg_corners_4_light_blue_solid"
             android:gravity="center">
 
-            <vn.icheck.android.ui.view.TextBarlowSemiBold
+            <vn.icheck.android.ichecklibs.view.TextBarlowSemiBold
                 android:id="@+id/tvChinh"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -146,7 +146,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal" />
 
-        <vn.icheck.android.ui.view.TextBarlowMedium
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@id/tv_number_follow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -154,7 +154,6 @@
             android:layout_marginLeft="@dimen/size_10"
             android:ellipsize="end"
             android:maxLines="2"
-            android:textColor="#757575"
             android:textSize="@dimen/font_14"
             tools:text="Huy, Quân, Hoàng và 3.000 người khác theo dõi trang này " />
     </LinearLayout>

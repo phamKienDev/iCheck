@@ -25,7 +25,7 @@
         android:layout_marginTop="@dimen/size_2"
         android:orientation="horizontal">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/tvMessage"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -33,11 +33,9 @@
             android:layout_marginRight="@dimen/size_50"
             android:layout_weight="1"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:maxLines="2"
             android:minLines="1"
-            android:textColor="#757575"
             android:textSize="@dimen/font_14"
             tools:text="Bạn nhận được từ đơn hàng mã KGFICIS2Bạn nhận được từ đơn hàng mã KGFICIS2Bạn nhận được từ đơn hàng mã KGFICIS2" />
 

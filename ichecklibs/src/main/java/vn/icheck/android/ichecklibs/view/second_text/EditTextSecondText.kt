@@ -1,15 +1,15 @@
-package vn.icheck.android.ichecklibs.view.normal_text
+package vn.icheck.android.ichecklibs.view.second_text
 
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
+import android.widget.EditText
+import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
-import vn.icheck.android.ichecklibs.view.edit_text.CornerErrorEditText
 
-class CornerErrorEditTextNormalTextColor:CornerErrorEditText {
-
+class EditTextSecondText : EditText {
     constructor(context: Context) : super(context) {
         setup()
     }
@@ -23,11 +23,6 @@ class CornerErrorEditTextNormalTextColor:CornerErrorEditText {
     }
 
     private fun setup() {
-        setTextColor(if (Constant.normalTextColor.isNotEmpty()) {
-            Color.parseColor(Constant.normalTextColor)
-        } else {
-            ContextCompat.getColor(context, R.color.colorNormalText)
-        })
-        includeFontPadding = false
+        setTextColor(Constant.getNormalTextColor(context))
     }
 }

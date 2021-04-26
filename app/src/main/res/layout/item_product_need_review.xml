@@ -49,7 +49,7 @@
                     android:minLines="2"
                     tools:text="Brightening Pore Facial Cleanser" />
 
-                <vn.icheck.android.ui.view.TextBarlowMedium
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                     android:id="@id/tvNameBusiness"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -57,7 +57,6 @@
                     android:textSize="@dimen/font_12"
                     android:maxLines="1"
                     android:ellipsize="end"
-                    android:textColor="#757575"
                     tools:text="Innisfree Official" />
 
             </LinearLayout>
