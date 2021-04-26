@@ -24,7 +24,7 @@ abstract class DialogNotificationFirebaseAds(context: Activity, private val imag
     override val getLayoutID: Int
         get() = R.layout.dialog_notification_firebase
     override val getIsCancelable: Boolean
-        get() = false
+        get() = true
 
     override fun onInitView() {
         setGoneView(imageView, textView, layoutWeb)
