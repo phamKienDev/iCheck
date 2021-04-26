@@ -54,23 +54,21 @@
                     android:paddingTop="@dimen/size_10"
                     android:visibility="gone">
 
-                    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+                    <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
                         android:id="@+id/tvOwnerTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/size_12"
-                        android:fontFamily="@font/barlow_semi_bold"
                         tools:text="Trang của tôi (12)"
                         android:textSize="@dimen/font_18"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+                    <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
                         android:id="@+id/tvOwnerAll"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/size_12"
-                        android:fontFamily="@font/barlow_semi_bold"
                         android:text="@string/xem_tat_ca"
                         android:textSize="@dimen/font_14"
                         app:layout_constraintBottom_toBottomOf="@id/tvOwnerTitle"
@@ -96,23 +94,21 @@
                     android:paddingTop="@dimen/size_10"
                     android:visibility="gone">
 
-                    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+                    <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
                         android:id="@+id/tvFollowTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/size_12"
-                        android:fontFamily="@font/barlow_semi_bold"
                         tools:text="Trang của tôi (12)"
                         android:textSize="@dimen/font_18"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+                    <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
                         android:id="@+id/tvFollowAll"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/size_12"
-                        android:fontFamily="@font/barlow_semi_bold"
                         android:text="@string/xem_tat_ca"
                         android:textSize="@dimen/font_14"
                         app:layout_constraintBottom_toBottomOf="@id/tvFollowTitle"

@@ -249,4 +249,12 @@ object Constant {
                 "#3C5A99"
             }
         }
+
+    fun getDisableTextColor(context: Context): Int {
+        return if (disableTextColor.isNotEmpty()) {
+            Color.parseColor(disableTextColor)
+        } else {
+            ContextCompat.getColor(context, R.color.colorDisableText)
+        }
+    }
 }

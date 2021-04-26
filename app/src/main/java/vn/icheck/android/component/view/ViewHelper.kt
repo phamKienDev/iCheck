@@ -50,6 +50,7 @@ import vn.icheck.android.component.avatar_user.AvatarUserComponent
 import vn.icheck.android.component.image.LayoutImageInPostComponent
 import vn.icheck.android.component.postofuser.ProductInFeedComponent
 import vn.icheck.android.component.rating_star.RatingStarComponent
+import vn.icheck.android.constant.Constant
 import vn.icheck.android.ui.view.TextBarlowSemiBold
 import vn.icheck.android.ui.view.TextBarlowMedium
 import vn.icheck.android.helper.SizeHelper
@@ -3722,7 +3723,8 @@ object ViewHelper {
                             }
                             textView.text = text
                             textView.movementMethod = LinkMovementMethod.getInstance()
-                            textView.setText(addClickablePartTextViewResizableColor(text, textColor ?: vn.icheck.android.ichecklibs.Constant.getSecondaryColorCode, expandText), TextView.BufferType.SPANNABLE)
+                            textView.setText(addClickablePartTextViewResizableColor(text, textColor
+                                    ?: vn.icheck.android.ichecklibs.Constant.getSecondaryColorCode, expandText), TextView.BufferType.SPANNABLE)
                         }
                     }
                 }

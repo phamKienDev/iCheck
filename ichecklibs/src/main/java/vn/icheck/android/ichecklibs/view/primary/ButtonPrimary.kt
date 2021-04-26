@@ -13,5 +13,6 @@ class ButtonPrimary : AppCompatTextView {
 
     private fun setup() {
         setTextColor(Constant.getPrimaryColor(context))
+        includeFontPadding = false
     }
 }

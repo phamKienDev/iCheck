@@ -15,12 +15,11 @@
         android:layout_height="@dimen/size_1"
         android:background="@drawable/shadow_bottom" />
 
-    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+    <vn.icheck.android.ichecklibs.view.secondary.TextSansSerifSecondary
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_20"
-        android:fontFamily="sans-serif"
         android:text="Thông tin khách hàng"
         android:textSize="@dimen/font_18"
         android:textStyle="normal" />
@@ -65,12 +64,11 @@
 
     </LinearLayout>
 
-    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+    <vn.icheck.android.ichecklibs.view.secondary.TextSansSerifSecondary
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_20"
-        android:fontFamily="sans-serif"
         android:text="Thông tin bảo hành"
         android:textSize="@dimen/font_18"
         android:textStyle="normal" />
@@ -154,11 +152,10 @@
 
     </LinearLayout>
 
-    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+    <vn.icheck.android.ichecklibs.view.secondary.TextSansSerifSecondary
         android:id="@+id/tvSubInforGuarantee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
         android:text="Nội dung bảo hành"
         android:textSize="@dimen/font_18"
         android:textStyle="normal"

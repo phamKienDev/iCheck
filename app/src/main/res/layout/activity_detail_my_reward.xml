@@ -136,13 +136,12 @@
                             app:layout_constraintTop_toTopOf="@id/imgLogo"
                             tools:visibility="visible" />
 
-                        <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+                        <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
                             android:id="@id/tvNameProduct"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/size_24"
                             android:layout_marginEnd="@dimen/size_32"
-                            android:fontFamily="@font/barlow_semi_bold"
                             android:textSize="@dimen/font_16"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/imgLogo"
@@ -285,13 +284,11 @@
                 android:orientation="vertical"
                 android:visibility="gone">
 
-                <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+                <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_12"
-                    android:layout_marginLeft="@dimen/size_12"
                     android:layout_marginTop="@dimen/size_10"
-                    android:fontFamily="@font/barlow_semi_bold"
                     android:lineSpacingExtra="@dimen/font_6"
                     android:text="Địa chỉ đến lấy quà"
                     android:textSize="@dimen/font_14" />
@@ -393,12 +390,11 @@
                 android:orientation="vertical"
                 tools:visibility="gone">
 
-                <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+                <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_12"
                     android:layout_marginTop="@dimen/size_10"
-                    android:fontFamily="@font/barlow_semi_bold"
                     android:lineSpacingExtra="@dimen/font_6"
                     android:text="Thông tin quà"
                     android:textSize="@dimen/font_14" />

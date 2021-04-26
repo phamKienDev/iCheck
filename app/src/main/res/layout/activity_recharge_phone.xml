@@ -150,14 +150,13 @@
                 android:background="@color/white"
                 android:orientation="vertical">
 
-                <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+                <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
                     android:id="@id/tv2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_12"
                     android:layout_marginTop="@dimen/size_10"
                     android:layout_marginEnd="@dimen/size_12"
-                    android:fontFamily="@font/barlow_semi_bold"
                     android:text="Nhà mạng"
                     android:textSize="@dimen/font_16" />
 
@@ -178,13 +177,12 @@
                 android:background="@color/white"
                 android:orientation="vertical">
 
-                <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+                <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_12"
                     android:layout_marginTop="@dimen/size_10"
                     android:layout_marginEnd="@dimen/size_12"
-                    android:fontFamily="@font/barlow_semi_bold"
                     android:text="Mệnh giá"
                     android:textSize="@dimen/font_16" />
 

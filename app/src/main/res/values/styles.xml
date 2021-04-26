@@ -317,7 +317,7 @@
         <item name="android:ellipsize">end</item>
         <item name="android:gravity">center</item>
         <item name="android:textAlignment">gravity</item>
-        <item name="android:textColor">@color/text_color_home_tab</item>
+<!--        <item name="android:textColor">@color/text_color_home_tab</item>-->
         <item name="android:includeFontPadding">false</item>
         <item name="android:paddingTop">@dimen/size_8</item>
         <item name="android:paddingBottom">@dimen/size_8</item>
