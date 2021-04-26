@@ -215,10 +215,10 @@ object Constant {
             phone
         }
     }
-    /*
-    Color primary
-    * * */
 
+    /*
+    * Color Primary
+    */
     fun getPrimaryColor(context: Context): Int {
         return if (primaryColor.isNotEmpty()) {
             Color.parseColor(primaryColor)
@@ -237,9 +237,8 @@ object Constant {
         }
 
     /*
-    Color secondary
-    * * */
-
+    * Color secondary
+    */
     fun getSecondaryColor(context: Context): Int {
         return if (secondaryColor.isNotEmpty()) {
             Color.parseColor(secondaryColor)
@@ -258,9 +257,8 @@ object Constant {
         }
 
     /*
-    Color normal text
-    * * */
-
+    * Color normal text
+    */
     fun getNormalTextColor(context: Context): Int {
         return if (normalTextColor.isNotEmpty()) {
             Color.parseColor(normalTextColor)
@@ -279,9 +277,8 @@ object Constant {
         }
 
     /*
-    Color second text
-    * * */
-
+    * Color second text
+    */
     fun getSecondTextColor(context: Context): Int {
         return if (secondTextColor.isNotEmpty()) {
             Color.parseColor(secondTextColor)
@@ -298,4 +295,15 @@ object Constant {
                 "#757575"
             }
         }
+
+    /*
+    * Color Disable Text
+    */
+    fun getDisableTextColor(context: Context): Int {
+        return if (disableTextColor.isNotEmpty()) {
+            Color.parseColor(disableTextColor)
+        } else {
+            ContextCompat.getColor(context, R.color.colorDisableText)
+        }
+    }
 }

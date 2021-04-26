@@ -775,7 +775,7 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
             } else {
                 ickContributeProductViewModel.setPrice(-1)
             }
-            if (ickContributeProductViewModel.arrayListImage.size >= 2 && binding.edtNameProduct.text.trim().trim().isNotEmpty()) {
+            if (ickContributeProductViewModel.arrayListImage.size >= 2 && binding.edtNameProduct.text!!.trim().trim().isNotEmpty()) {
 
                 ickContributeProductViewModel.finalStep()?.observe(this, Observer { listInfos ->
                     val filter = listInfos.firstOrNull {
@@ -864,7 +864,7 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
             } else {
                 if (ickContributeProductViewModel.arrayListImage.size < 2) {
                     showShortError("Sản phẩm cần tối thiểu 2 ảnh!")
-                } else if (binding.edtNameProduct.text.trim().isEmpty()) {
+                } else if (binding.edtNameProduct.text!!.trim().isEmpty()) {
                     showShortError("Sản phẩm phải có tên!")
                 }
                 dismissLoadingScreen()

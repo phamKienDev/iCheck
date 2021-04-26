@@ -30,10 +30,9 @@
                 android:layout_height="wrap_content"
                 android:text="TextView" />
 
-            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+            <vn.icheck.android.ichecklibs.view.secondary.TextBarlowMediumSecondary
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/barlow_medium"
                 android:text="Lượt thích bài viết"
                 android:textSize="@dimen/font_14" />
         </LinearLayout>
@@ -57,10 +56,9 @@
                 android:layout_height="wrap_content"
                 android:text="TextView" />
 
-            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+            <vn.icheck.android.ichecklibs.view.secondary.TextBarlowMediumSecondary
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/barlow_medium"
                 android:text="Số người theo dõi"
                 android:textSize="@dimen/font_14" />
         </LinearLayout>

@@ -184,6 +184,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
         isOpen = true
         WelcomeActivity.isWelcome = false
 
+        setupView()
         setupViewPager()
         setupTabListener()
         checkPermission()
@@ -200,6 +201,14 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
         AndroidSchedulers.mainThread()
     }
 
+    private fun setupView() {
+        vn.icheck.android.ichecklibs.ViewHelper.textColorHomeTab(this).apply {
+            tvHome.setTextColor(this)
+            tvFeed.setTextColor(this)
+            tvHistory.setTextColor(this)
+            tvChat.setTextColor(this)
+        }
+    }
 
     private fun setupViewModel() {
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
@@ -557,15 +566,16 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
 
     private fun setupTheme() {
         val theme = SettingManager.themeSetting?.theme
-        val bottomBarTextColor = if (!theme?.bottomBarSelectedTextColor.isNullOrEmpty()) {
-            ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.colorDisableText), Color.parseColor(theme!!.bottomBarSelectedTextColor))
+        if (!theme?.bottomBarSelectedTextColor.isNullOrEmpty()) {
+            ViewHelper.createColorStateList(vn.icheck.android.ichecklibs.Constant.getDisableTextColor(this), Color.parseColor(theme!!.bottomBarSelectedTextColor))
         } else {
-            ContextCompat.getColorStateList(this@HomeActivity, R.color.text_color_home_tab)
+            vn.icheck.android.ichecklibs.ViewHelper.textColorHomeTab(this)
+        }.apply {
+            tvHome.setTextColor(this)
+            tvFeed.setTextColor(this)
+            tvHistory.setTextColor(this)
+            tvChat.setTextColor(this)
         }
-        tvHome.setTextColor(bottomBarTextColor)
-        tvFeed.setTextColor(bottomBarTextColor)
-        tvHistory.setTextColor(bottomBarTextColor)
-        tvChat.setTextColor(bottomBarTextColor)
 
         val path = FileHelper.getPath(this@HomeActivity)
         val homeBitmap = BitmapFactory.decodeFile(path + FileHelper.homeIcon)

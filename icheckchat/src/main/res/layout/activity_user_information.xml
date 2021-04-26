@@ -142,12 +142,11 @@
                 android:background="@color/gray_f0"
                 android:orientation="vertical">
 
-                <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+                <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
                     android:id="@+id/tvTitleImage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:fontFamily="@font/barlow_semi_bold"
                     android:includeFontPadding="false"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
