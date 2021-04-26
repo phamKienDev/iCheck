@@ -128,9 +128,9 @@ class IckLoginActivity : BaseCoroutineActivity() {
             if (intent.getIntExtra("requestCode", 0) == 1) {
                 btn_login.setTextColor(Color.parseColor("#80ffffff"))
                 btn_register.setTextColor(Color.WHITE)
-                findNavController(R.id.nav_host_fragment).popBackStack(R.id.ickLoginFragment, false)
+                findNavController(R.id.nav_host_fragment_login).popBackStack(R.id.ickLoginFragment, false)
                 val action = IckLoginFragmentDirections.actionIckLoginFragmentToIckLoginOtpFragment(REGISTER)
-                findNavController(R.id.nav_host_fragment).navigate(action)
+                findNavController(R.id.nav_host_fragment_login).navigate(action)
                 btn_login.setTextSize(16F)
                 btn_register.setTextSize(18F)
                 ickLoginViewModel.state = 2
