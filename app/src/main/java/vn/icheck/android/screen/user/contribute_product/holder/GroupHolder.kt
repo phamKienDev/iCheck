@@ -77,7 +77,7 @@ class GroupHolder(private val itemGroupBinding: ItemGroupBinding) : CoroutineVie
                         } else {
                             itemGroupBinding.edtInfo.setText(pasteData)
                         }
-                        itemGroupBinding.edtInfo.setSelection(itemGroupBinding.edtInfo.text.length)
+                        itemGroupBinding.edtInfo.setSelection(itemGroupBinding.edtInfo.text!!.length)
                     }
                     pasteBalloon?.dismiss()
                 }

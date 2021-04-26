@@ -54,8 +54,8 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.ui.view.TextBarlowSemiBold
 import vn.icheck.android.ui.view.TextBarlowMedium
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
+import vn.icheck.android.ichecklibs.view.secondary.TextSecondary
 import vn.icheck.android.ui.colorcardview.ColorCardView
 import vn.icheck.android.ui.layout.CustomGridLayoutManager
 import vn.icheck.android.ui.layout.HeightWrappingViewPager
@@ -702,11 +702,10 @@ object ViewHelper {
             tvTitle.setPadding(0, 0, SizeHelper.size12, 0)
             layoutTitle.addView(tvTitle)
 
-            val tvViewMore = AppCompatTextView(context)
+            val tvViewMore = TextSecondary(context)
             tvViewMore.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
             tvViewMore.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
             tvViewMore.typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
-            tvViewMore.setTextColor(Constant.getSecondTextColor(context))
             tvViewMore.includeFontPadding = false
             tvViewMore.setPadding(0, SizeHelper.size5, 0, SizeHelper.size5)
             tvViewMore.setText(R.string.xem_tat_ca)
@@ -760,7 +759,7 @@ object ViewHelper {
                 createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT),
                 outValue.resourceId,
                 createTypeface(context, R.font.barlow_medium),
-                Constant.getSecondTextColor(context),
+                vn.icheck.android.ichecklibs.Constant.getSecondTextColor(context),
                 14f
         ).also {
             it.setPadding(0, SizeHelper.size5, 0, SizeHelper.size5)
@@ -1024,7 +1023,7 @@ object ViewHelper {
                         createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1f),
                         null,
                         createTypeface(context, R.font.barlow_medium),
-                        Constant.getSecondTextColor(context),
+                        vn.icheck.android.ichecklibs.Constant.getSecondTextColor(context),
                         12f), 1)
             })
         })
@@ -1113,7 +1112,7 @@ object ViewHelper {
                         createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT),
                         null,
                         createTypeface(context, R.font.barlow_semi_bold),
-                        Constant.getSecondTextColor(context),
+                        vn.icheck.android.ichecklibs.Constant.getSecondTextColor(context),
                         16f))
             })
 
@@ -1470,7 +1469,7 @@ object ViewHelper {
                 createLayoutParams(SizeHelper.size12, SizeHelper.size6, SizeHelper.size12, SizeHelper.size10),
                 null,
                 createTypeface(context, R.font.barlow_medium),
-                Constant.getSecondTextColor(context),
+                vn.icheck.android.ichecklibs.Constant.getSecondTextColor(context),
                 12f))
 
         return layoutParent
@@ -1624,7 +1623,7 @@ object ViewHelper {
                         ContextCompat.getColor(context, R.color.colorSecondText), ContextCompat.getColor(context, R.color.colorSecondText),
                         SizeHelper.size1, SizeHelper.size16.toFloat()),
                 Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf"),
-                Constant.getSecondTextColor(context),
+                vn.icheck.android.ichecklibs.Constant.getSecondTextColor(context),
                 14f,
                 1
         ).also {
@@ -2403,8 +2402,8 @@ object ViewHelper {
                 edt.setBackgroundColor(Color.TRANSPARENT)
                 edt.gravity = Gravity.TOP
                 edt.setTypeface(Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf"))
-                edt.setHintTextColor(Constant.getSecondTextColor(context))
-                edt.setTextColor(Constant.getNormalTextColor(context))
+                edt.setHintTextColor(vn.icheck.android.ichecklibs.Constant.getSecondTextColor(context))
+                edt.setTextColor(vn.icheck.android.ichecklibs.Constant.getNormalTextColor(context))
                 edt.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
             })
 
@@ -3352,7 +3351,7 @@ object ViewHelper {
                     view.layoutParams = createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size0_5).also {
                         it.setMargins(0, SizeHelper.size12, 0, 0)
                     }
-                    view.setBackgroundColor(ContextCompat.getColor(context, R.color.colorSecondViewGroup))
+                    view.setBackgroundColor(ContextCompat.getColor(context, vn.icheck.android.ichecklibs.R.color.colorSecondViewGroup))
                 })
 
                 params.addView(AppCompatTextView(context).also { text ->
@@ -3450,7 +3449,7 @@ object ViewHelper {
                     },
                     null,
                     Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf"),
-                    Constant.getSecondTextColor(context),
+                    vn.icheck.android.ichecklibs.Constant.getSecondTextColor(context),
                     14f).also {
                 it.gravity = Gravity.CENTER_HORIZONTAL
             })
