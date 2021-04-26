@@ -65,6 +65,8 @@ class IcFcmService : FirebaseMessagingService() {
             return
         }
 
+        val actions = remoteMessage.data["action"] ?: ""
+
         logDebug("$title - $body - $targetType - $targetID - $action - $path")
 
         playNotificationSound()

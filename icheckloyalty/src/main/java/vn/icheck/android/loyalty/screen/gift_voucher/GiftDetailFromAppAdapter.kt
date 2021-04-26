@@ -60,16 +60,24 @@ internal class GiftDetailFromAppAdapter : RecyclerViewCustomAdapter<ICKGift>() {
 
             itemView.tvCategoryGift.text = when (obj.rewardType) {
                 "spirit" -> {
+                    itemView.tvCode.setVisible()
                     "Tinh thần"
                 }
                 "PRODUCT_IN_SHOP" -> {
+                    itemView.tvCode.setVisible()
                     "Quà nhận tại cửa hàng"
                 }
                 "CARD" -> {
+                    itemView.tvCode.setVisible()
                     "Quà thẻ cào"
                 }
                 "product" -> {
+                    itemView.tvCode.setVisible()
                     "Hiện vật"
+                }
+                "VOUCHER" -> {
+                    itemView.tvCode.setGone()
+                    "Voucher"
                 }
                 else -> {
                     ""
@@ -79,15 +87,24 @@ internal class GiftDetailFromAppAdapter : RecyclerViewCustomAdapter<ICKGift>() {
             when (obj.state) {
                 1 -> {
                     itemView.layoutStatusGift.setGone()
-                    itemView.tvStatus.text = "Chưa nhận"
+                    itemView.tvStatus.text = if (obj.rewardType?.contains("VOUCHER") == true) {
+                        "Có thể sử dụng"
+                    } else {
+                        "Chưa nhận"
+                    }
                 }
                 2 -> {
-                    itemView.layoutStatusGift.setVisible()
-                    itemView.tvStatusGift.run {
-                        setTextColor(getColor(R.color.green2))
-                        text = "Đã nhận quà"
+                    itemView.tvStatus.text = if (obj.rewardType?.contains("VOUCHER") == true) {
+                        itemView.layoutStatusGift.setGone()
+                        "Hết lượt sử dụng"
+                    } else {
+                        itemView.layoutStatusGift.setVisible()
+                        itemView.tvStatusGift.run {
+                            setTextColor(getColor(R.color.green2))
+                            text = "Đã nhận quà"
+                        }
+                        "Đã nhận quà"
                     }
-                    itemView.tvStatus.text = "Đã nhận quà"
                 }
                 3 -> {
                     itemView.layoutStatusGift.setVisible()

@@ -107,6 +107,7 @@ class GiftDetailFromAppActivity : BaseActivityGame() {
             "product" -> {
                 if (obj.state == 1) {
                     layoutButton.setVisible()
+                    layoutButtonNotVoucher.setVisible()
                 } else {
                     layoutButton.setGone()
                 }
@@ -119,6 +120,16 @@ class GiftDetailFromAppActivity : BaseActivityGame() {
                     layoutButton.setGone()
                 } else {
                     layoutButton.setVisible()
+                    layoutButtonNotVoucher.setVisible()
+                }
+            }
+            "VOUCHER" -> {
+                if (obj.state == 1) {
+                    layoutButton.setVisible()
+                    layoutButtonNotVoucher.setGone()
+                    btnUsed.setVisible()
+                } else {
+                    layoutButton.setGone()
                 }
             }
             else -> {

@@ -19,6 +19,7 @@ import vn.icheck.android.loyalty.screen.game_from_labels.game_list.GameFromLabel
 import vn.icheck.android.loyalty.screen.loyalty_customers.campaign_of_business.CampaignOfBusinessActivity
 import vn.icheck.android.loyalty.screen.loyalty_customers.exchange_phonecard.ChangePhoneCardsActivity
 import vn.icheck.android.loyalty.screen.loyalty_customers.exchange_phonecard.ExchangePhonecardSuccessDialog
+import vn.icheck.android.loyalty.screen.scan.V6ScanLoyaltyActivity
 
 class DetailGiftLoyaltyActivity : BaseActivityGame() {
 
@@ -52,53 +53,55 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
         val type = intent.getIntExtra(ConstantsLoyalty.DATA_7, 1) // phân biệt vào từ màn lịch sử hay không?
 
         if (type == 1) {
+            tvStatus.setInvisible()
             layoutCountGift.setVisible()
-            tvStatus.visibility = View.INVISIBLE
             btnDoiQua.setVisible()
+            layoutPhiVanChuyen.setGone()
 
             when (obj?.gift?.type) {
                 "ICOIN" -> {
-                    layoutPhiVanChuyen.setGone()
-                    btnDoiQua.setVisible()
                 }
                 "PHONE_CARD" -> {
-                    layoutPhiVanChuyen.setGone()
-                    btnDoiQua.setVisible()
                 }
                 "RECEIVE_STORE" -> {
-                    layoutPhiVanChuyen.setGone()
-                    btnDoiQua.setVisible()
                     btnDoiQua.text = "Hướng dẫn đổi quà"
                 }
                 "PRODUCT" -> {
                     layoutPhiVanChuyen.setVisible()
-                    btnDoiQua.setVisible()
+                }
+                "VOUCHER" -> {
                 }
                 else -> {
-                    layoutPhiVanChuyen.setGone()
                     btnDoiQua.setGone()
                 }
             }
         } else {
             layoutPhiVanChuyen.setGone()
             btnDoiQua.setGone()
+            layoutCountGift.setGone()
+            tvStatus.setVisible()
 
             when (obj?.gift?.type) {
                 "ICOIN" -> {
-                    layoutCountGift.setGone()
-                    tvStatus.setVisible()
                 }
                 "PHONE_CARD" -> {
-                    layoutCountGift.setGone()
-                    tvStatus.setVisible()
                 }
                 "RECEIVE_STORE" -> {
-                    layoutCountGift.setGone()
                     tvStatus.setGone()
                 }
                 "PRODUCT" -> {
-                    layoutCountGift.setGone()
-                    tvStatus.setVisible()
+                }
+                "VOUCHER" -> {
+                    btnDoiQua.setVisible()
+
+                    btnDoiQua.text = if (obj?.userVoucher == true) {
+                        "Dùng ngay"
+                    } else {
+                        "Đánh dấu đã dùng"
+                    }
+                }
+                else -> {
+                    tvStatus.setGone()
                 }
             }
         }
@@ -113,21 +116,24 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
             getString(R.string.dang_cap_nhat)
         }
 
-        when (obj?.gift?.type) {
+        tvVanChuyen.text = when (obj?.gift?.type) {
             "ICOIN" -> {
-                tvVanChuyen.text = "Quà Xu iCheck"
+                "Quà Xu iCheck"
             }
             "PHONE_CARD" -> {
-                tvVanChuyen.text = "Quà thẻ cào"
+                "Quà thẻ cào"
             }
             "RECEIVE_STORE" -> {
-                tvVanChuyen.text = "Quà đổi tại cửa hàng"
+                "Quà đổi tại cửa hàng"
             }
             "PRODUCT" -> {
-                tvVanChuyen.text = "Quà giao tận nơi"
+                "Quà giao tận nơi"
+            }
+            "VOUCHER" -> {
+                "Quà voucher"
             }
             else -> {
-                tvVanChuyen.text = "Quà tinh thần"
+                "Quà tinh thần"
             }
         }
 
@@ -249,7 +255,7 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
                                         "Quét tem QRcode được dán trên bao bì\nsản phẩm để nhận điểm tích lũy đổi quà nhé!", R.drawable.ic_onboarding_scan, "Quét tem ngay", true, R.drawable.bg_button_not_enough_point, R.color.orange_red,
                                         object : IClickButtonDialog<ICKNone> {
                                             override fun onClickButtonData(obj: ICKNone?) {
-//                                                startActivity<ScanLoyaltyActivity, Long>(ConstantsLoyalty.DATA_1, campaignID)
+                                                startActivity<V6ScanLoyaltyActivity, Long>(ConstantsLoyalty.DATA_1, campaignID)
                                             }
                                         })
                             }
