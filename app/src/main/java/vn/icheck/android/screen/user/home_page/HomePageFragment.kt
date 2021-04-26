@@ -454,6 +454,10 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         checkPVCombank(3)
     }
 
+    fun scrollToTop() {
+        recyclerView.scrollToPosition(0)
+    }
+
     private fun checkPVCombank(type: Int) {
         CreatePVCardViewModel().apply {
             checkHasCard(5000L).observe(this@HomePageFragment, Observer { checkCardRes ->
