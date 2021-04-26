@@ -263,6 +263,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                     TrackingAllHelper.trackHomePageViewed()
                     viewPager.setCurrentItem(0, false)
                     HideWebUtils.showWeb("Home")
+                    HomePageFragment.INSTANCE?.scrollToTop()
                 }
             }
             2 -> {
