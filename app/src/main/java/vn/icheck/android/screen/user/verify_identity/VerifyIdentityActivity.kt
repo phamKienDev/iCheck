@@ -159,22 +159,34 @@ class VerifyIdentityActivity : BaseActivityMVVM(), View.OnClickListener {
         if (type == getString(R.string.chung_minh_nhan_dan)) {
             textView46.setText(R.string.mat_truoc_cmnd)
             textView47.setText(R.string.mat_sau_cmnd)
+            if (viewModel.frontImage != null) {
+                WidgetUtils.loadImageFile(imgFront, viewModel.frontImage, R.drawable.front_passport, SizeHelper.size4)
+            } else {
+                imgFront.setImageResource(R.drawable.front_passport)
+            }
+
+            if (viewModel.afterImage != null) {
+                WidgetUtils.loadImageFile(imgAfter, viewModel.afterImage, R.drawable.after_passport, SizeHelper.size4)
+            } else {
+                imgAfter.setImageResource(R.drawable.after_passport)
+            }
         } else {
             textView46.setText(R.string.mat_truoc_cccd)
             textView47.setText(R.string.mat_sau_cccd)
+            if (viewModel.frontImage != null) {
+                WidgetUtils.loadImageFile(imgFront, viewModel.frontImage, R.drawable.bg_cccd_front, SizeHelper.size4)
+            } else {
+                imgFront.setImageResource(R.drawable.bg_cccd_front)
+            }
+
+            if (viewModel.afterImage != null) {
+                WidgetUtils.loadImageFile(imgAfter, viewModel.afterImage, R.drawable.bg_cccd_back, SizeHelper.size4)
+            } else {
+                imgAfter.setImageResource(R.drawable.bg_cccd_back)
+            }
         }
 
-        if (viewModel.frontImage != null) {
-            WidgetUtils.loadImageFile(imgFront, viewModel.frontImage, R.drawable.front_passport, SizeHelper.size4)
-        } else {
-            imgFront.setImageResource(R.drawable.front_passport)
-        }
 
-        if (viewModel.afterImage != null) {
-            WidgetUtils.loadImageFile(imgAfter, viewModel.afterImage, R.drawable.after_passport, SizeHelper.size4)
-        } else {
-            imgAfter.setImageResource(R.drawable.after_passport)
-        }
         checkImageCmnd()
     }
 
