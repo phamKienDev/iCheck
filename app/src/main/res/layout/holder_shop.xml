@@ -142,6 +142,7 @@
                 android:visibility="gone">
 
                 <vn.icheck.android.ichecklibs.view.TextBarlowSemiBold
+                    android:id="@+id/viewLocation2"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:drawableStart="@drawable/ic_location_item_shop_variant"

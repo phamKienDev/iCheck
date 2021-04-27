@@ -51,7 +51,9 @@ import vn.icheck.android.component.rating_star.RatingStarComponent
 import vn.icheck.android.ichecklibs.view.TextBarlowSemiBold
 import vn.icheck.android.ichecklibs.view.TextBarlowMedium
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
+import vn.icheck.android.ichecklibs.view.second_text.TextSecondSendOtpLogin
 import vn.icheck.android.ichecklibs.view.secondary.TextSecondary
 import vn.icheck.android.ui.layout.CustomGridLayoutManager
 import vn.icheck.android.ui.layout.HeightWrappingViewPager

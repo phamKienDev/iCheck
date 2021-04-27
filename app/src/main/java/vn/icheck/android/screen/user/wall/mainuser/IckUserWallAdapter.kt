@@ -9,6 +9,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.item_user_profile_wall.view.*
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.RelationshipManager
@@ -268,6 +269,7 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
 //                .into(binding.imgWallCover)
 
         binding.btnAddFriend.background = ViewHelper.bgPrimaryCorners4(itemView.context)
+        binding.imgSettings.background = ViewHelper.bgOutlinePrimary1Corners4(itemView.context)
         when {
             ickUserProfileModel.id == SessionManager.session.user?.id -> showMainUser()
             AppDatabase.getDatabase().myFriendIdDao().getUserByID(ickUserProfileModel.id) != null -> showFriend()
