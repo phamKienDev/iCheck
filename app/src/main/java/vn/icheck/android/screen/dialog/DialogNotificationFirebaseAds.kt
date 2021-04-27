@@ -32,7 +32,7 @@ abstract class DialogNotificationFirebaseAds(context: Activity, private val imag
         when {
             image != null -> {
                 imageView.setVisible()
-                WidgetHelper.loadImageUrlRounded(imageView, image, SizeHelper.size10)
+                WidgetHelper.loadImageUrlRounded10FitCenter(imageView, image)
 
                 imageView.setOnClickListener {
                     dismiss()
