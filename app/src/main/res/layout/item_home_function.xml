@@ -5,13 +5,13 @@
     android:layout_height="wrap_content"
     android:background="@color/white">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@id/imgBackground"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/size_0"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="@id/rcvSecond"
-        app:layout_constraintTop_toTopOf="@id/imgHeader" />
+<!--    <androidx.appcompat.widget.AppCompatImageView-->
+<!--        android:id="@id/imgBackground"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="@dimen/size_0"-->
+<!--        android:scaleType="centerCrop"-->
+<!--        app:layout_constraintBottom_toBottomOf="@id/rcvSecond"-->
+<!--        app:layout_constraintTop_toTopOf="@id/imgHeader" />-->
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@id/imgHeader"

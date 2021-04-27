@@ -77,16 +77,16 @@ class HomeFunctionHolder(parent: ViewGroup, isExistTheme: Boolean, listener: IHo
     fun updateTheme() {
         val path = FileHelper.getPath(itemView.context)
 
-        itemView.imgBackground.requestLayout()
-        val backgroundImage = BitmapFactory.decodeFile(path + FileHelper.homeBackgroundImage)
-        if (backgroundImage != null) {
-            itemView.imgBackground.apply {
-                setVisible()
-                setImageBitmap(backgroundImage)
-            }
-        } else {
-            itemView.imgBackground.setGone()
-        }
+//        itemView.imgBackground.requestLayout()
+//        val backgroundImage = BitmapFactory.decodeFile(path + FileHelper.homeBackgroundImage)
+//        if (backgroundImage != null) {
+//            itemView.imgBackground.apply {
+//                setVisible()
+//                setImageBitmap(backgroundImage)
+//            }
+//        } else {
+//            itemView.imgBackground.setGone()
+//        }
 
         itemView.imgHeader.apply {
             val headerImage = BitmapFactory.decodeFile(path + FileHelper.homeHeaderImage)

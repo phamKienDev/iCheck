@@ -11,7 +11,6 @@ import vn.icheck.android.screen.user.campaign.calback.IProductNeedReviewListener
 class ProductNeedReviewHolder(parent: ViewGroup,val listener: IProductNeedReviewListener) : BaseViewHolder<MutableList<ICProductNeedReview>>(ViewHelper.createProductNeedReview(parent.context)) {
 
     override fun bind(obj: MutableList<ICProductNeedReview>) {
-
         (itemView as ViewGroup).run {
             (getChildAt(1) as RecyclerView).run {
                 layoutManager = LinearLayoutManager(itemView.context.applicationContext, LinearLayoutManager.HORIZONTAL, false)

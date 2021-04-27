@@ -43,6 +43,8 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.ExoPlayerManager
 import vn.icheck.android.helper.FileHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.beGone
+import vn.icheck.android.ichecklibs.beVisible
 import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.loyalty.helper.ToastHelper
 import vn.icheck.android.network.base.SessionManager
@@ -70,8 +72,6 @@ import vn.icheck.android.screen.user.search_home.main.SearchHomeActivity
 import vn.icheck.android.screen.user.shipping.ship.ShipActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.util.AdsUtils
-import vn.icheck.android.util.ick.beGone
-import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.util.ick.loadImageWithHolder
 import vn.icheck.android.util.ick.simpleText
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -113,13 +113,12 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         }
     }
 
-    companion object{
-        var INSTANCE:HomePageFragment? = null
+    companion object {
+        var INSTANCE: HomePageFragment? = null
     }
 
     override val getLayoutID: Int
         get() = R.layout.fragment_home
-
 
 
     override fun isRegisterEventBus(): Boolean {
@@ -179,13 +178,19 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         homeAdapter.notifyDataSetChanged()
 
         val backgroundImage = BitmapFactory.decodeFile(FileHelper.getPath(this@HomePageFragment.requireContext()) + FileHelper.homeBackgroundImage)
-        imgThemeBackground?.apply {
-            if (backgroundImage != null) {
+        if (backgroundImage != null) {
+            imgBackground.apply {
+                beVisible()
                 setImageBitmap(backgroundImage)
-            } else {
-                setImageResource(0)
             }
-            requestLayout()
+            imgThemeBackground?.apply {
+                beVisible()
+                setImageBitmap(backgroundImage)
+                requestLayout()
+            }
+        } else {
+            imgBackground.beGone()
+            imgThemeBackground.beGone()
         }
 
         val theme = SettingManager.themeSetting?.theme
