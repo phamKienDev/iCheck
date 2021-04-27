@@ -86,7 +86,7 @@
         </LinearLayout>
     </ScrollView>
 
-    <vn.icheck.android.ui.EnableButton
+    <vn.icheck.android.ichecklibs.EnableButton
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_36"

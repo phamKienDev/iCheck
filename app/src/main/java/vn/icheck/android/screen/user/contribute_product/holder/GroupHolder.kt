@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import com.google.gson.internal.LinkedTreeMap
 import com.skydoves.balloon.*
 import kotlinx.coroutines.CoroutineScope
@@ -23,8 +22,8 @@ import vn.icheck.android.constant.ATTRIBUTES_POSITION
 import vn.icheck.android.constant.CONTRIBUTIONS_ACTION
 import vn.icheck.android.constant.PUT_ATTRIBUTES
 import vn.icheck.android.databinding.ItemGroupBinding
-import vn.icheck.android.ichecklibs.beGone
-import vn.icheck.android.ichecklibs.beVisible
+import vn.icheck.android.ichecklibs.util.beGone
+import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.screen.user.contribute_product.viewmodel.CategoryAttributesModel
 import vn.icheck.android.util.AfterTextWatcher
 import vn.icheck.android.util.ick.showSimpleSuccessToast
@@ -77,7 +76,7 @@ class GroupHolder(private val itemGroupBinding: ItemGroupBinding) : CoroutineVie
                         } else {
                             itemGroupBinding.edtInfo.setText(pasteData)
                         }
-                        itemGroupBinding.edtInfo.setSelection(itemGroupBinding.edtInfo.text.length)
+                        itemGroupBinding.edtInfo.setSelection(itemGroupBinding.edtInfo.text!!.length)
                     }
                     pasteBalloon?.dismiss()
                 }

@@ -30,7 +30,6 @@
             android:layout_marginEnd="@dimen/size_40"
             android:layout_marginRight="@dimen/size_40"
             android:layout_marginBottom="@dimen/size_20"
-            android:background="@drawable/background_button_enable"
             android:fontFamily="@font/barlow_medium"
             android:gravity="center"
             android:padding="@dimen/size_8"
@@ -63,8 +62,7 @@
         app:layout_constraintBottom_toTopOf="@id/layoutBottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -136,13 +134,12 @@
                             app:layout_constraintTop_toTopOf="@id/imgLogo"
                             tools:visibility="visible" />
 
-                        <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+                        <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
                             android:id="@id/tvNameProduct"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/size_24"
                             android:layout_marginEnd="@dimen/size_32"
-                            android:fontFamily="@font/barlow_semi_bold"
                             android:textSize="@dimen/font_16"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/imgLogo"
@@ -277,13 +274,11 @@
                 android:orientation="vertical"
                 android:visibility="gone">
 
-                <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+                <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_12"
-                    android:layout_marginLeft="@dimen/size_12"
                     android:layout_marginTop="@dimen/size_10"
-                    android:fontFamily="@font/barlow_semi_bold"
                     android:lineSpacingExtra="@dimen/font_6"
                     android:text="Địa chỉ đến lấy quà"
                     android:textSize="@dimen/font_14" />
@@ -383,12 +378,11 @@
                 android:orientation="vertical"
                 tools:visibility="gone">
 
-                <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+                <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_12"
                     android:layout_marginTop="@dimen/size_10"
-                    android:fontFamily="@font/barlow_semi_bold"
                     android:lineSpacingExtra="@dimen/font_6"
                     android:text="Thông tin quà"
                     android:textSize="@dimen/font_14" />
@@ -428,6 +422,7 @@ Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận t
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
+        tools:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -440,6 +435,7 @@ Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận t
         android:background="@color/transparent"
         android:paddingTop="@dimen/size_40"
         android:paddingBottom="@dimen/size_12"
+        tools:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -457,6 +453,7 @@ Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận t
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:alpha="0"
+        tools:visibility="gone"
         android:background="@color/white"
         android:paddingTop="@dimen/size_40"
         android:paddingBottom="@dimen/size_12"
@@ -509,8 +506,7 @@ Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận t
         android:elevation="@dimen/size_35"
         android:orientation="horizontal"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:visibility="visible">
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
             android:id="@id/btnRefuse"
@@ -520,7 +516,6 @@ Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận t
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginEnd="@dimen/size_6"
             android:layout_marginBottom="@dimen/size_20"
-            android:background="@drawable/bg_corners_4_light_blue_no_solid"
             android:gravity="center"
             android:text="@string/tu_choi_qua"
             android:textSize="@dimen/font_16"

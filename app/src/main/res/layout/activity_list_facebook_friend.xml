@@ -63,7 +63,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+            <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
                 android:id="@+id/tvCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -71,7 +71,6 @@
                 android:layout_marginTop="@dimen/size_10"
                 android:layout_marginEnd="@dimen/size_0"
                 android:textSize="@dimen/font_16"
-                app:fontFamily="@font/barlow_semi_bold"
                 tools:text="2,345 Bạn bè" />
 
             <androidx.recyclerview.widget.RecyclerView

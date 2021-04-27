@@ -13,12 +13,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import android.view.animation.LinearInterpolator
 import android.view.animation.TranslateAnimation
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.widget.AppCompatCheckedTextView
-import androidx.appcompat.widget.ViewUtils
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -56,9 +54,8 @@ import vn.icheck.android.chat.icheckchat.screen.detail.adapter.ChatSocialDetailA
 import vn.icheck.android.chat.icheckchat.screen.detail.adapter.ImageAdapter
 import vn.icheck.android.chat.icheckchat.screen.detail.adapter.StickerAdapter
 import vn.icheck.android.chat.icheckchat.screen.user_information.UserInformationActivity
-import vn.icheck.android.ichecklibs.beGone
-import vn.icheck.android.ichecklibs.beVisible
-import vn.icheck.android.ichecklibs.showCustomIconToast
+import vn.icheck.android.ichecklibs.util.beGone
+import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.icheckscanditv6.IcheckScanActivity

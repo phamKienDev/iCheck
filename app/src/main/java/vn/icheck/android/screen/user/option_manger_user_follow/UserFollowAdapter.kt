@@ -1,10 +1,8 @@
 package vn.icheck.android.screen.user.option_manger_user_follow
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_load_more.view.*
 import kotlinx.android.synthetic.main.item_message_campaign.view.*
@@ -15,6 +13,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.constant.MAIN_USER
 import vn.icheck.android.constant.MAIN_USER_FRIEND
 import vn.icheck.android.constant.MAIN_USER_NOT_FRIEND
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.loyalty.base.setGone
 import vn.icheck.android.network.models.wall.ICUserFollowWall
 import vn.icheck.android.screen.user.social_chat.SocialChatActivity
@@ -182,6 +181,8 @@ class UserFollowAdapter constructor(val view: IUserFollowWallView) : RecyclerVie
             } else {
                 itemView.tv_related_friend.beGone()
             }
+
+            itemView.btnMessenger.background = ViewHelper.bgOutlinePrimary1Corners4(itemView.context)
 
             if (item.sendAddFriend == true) {
                 itemView.btnMessenger.visibility = View.INVISIBLE

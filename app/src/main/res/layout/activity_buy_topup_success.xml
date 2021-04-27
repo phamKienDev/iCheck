@@ -196,7 +196,6 @@
             android:layout_gravity="center"
             android:layout_marginStart="@dimen/size_37"
             android:layout_marginEnd="@dimen/size_38"
-            android:background="@drawable/bg_corners_4_light_blue_no_solid"
             android:gravity="center"
             android:text="Nạp thẻ điện thoại khác"
             android:textSize="@dimen/font_16"

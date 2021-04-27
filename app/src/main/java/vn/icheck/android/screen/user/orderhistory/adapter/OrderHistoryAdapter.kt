@@ -21,6 +21,7 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.order.OrderInteractor
 import vn.icheck.android.network.models.ICOrderHistoryV2
@@ -116,9 +117,12 @@ class OrderHistoryAdapter(val status: Int, callback: IRecyclerViewCallback) : Re
             }
 
 
-            itemView.tvError.setOnClickListener {
-                ICheckApplication.currentActivity()?.let {
-                    ReportActivity.start(ReportActivity.order, obj.id, "Báo lỗi đơn hàng", it)
+            itemView.tvError.apply {
+                background = ViewHelper.bgOutlinePrimary1Corners4(context)
+                setOnClickListener {
+                    ICheckApplication.currentActivity()?.let {
+                        ReportActivity.start(ReportActivity.order, obj.id, "Báo lỗi đơn hàng", it)
+                    }
                 }
             }
 

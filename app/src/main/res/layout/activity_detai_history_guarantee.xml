@@ -28,13 +28,12 @@
             android:descendantFocusability="blocksDescendants"
             android:orientation="vertical">
 
-            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+            <vn.icheck.android.ichecklibs.view.secondary.TextSansSerifSecondary
                 android:id="@+id/tvCustomerInfor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_20"
-                android:fontFamily="sans-serif"
                 tools:text="Thông tin khách hàng"
                 android:textSize="@dimen/font_18"
                 android:textStyle="normal" />
@@ -105,13 +104,12 @@
 
             </LinearLayout>
 
-            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+            <vn.icheck.android.ichecklibs.view.secondary.TextSansSerifSecondary
                 android:id="@+id/tvWarrantyInfor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_20"
-                android:fontFamily="sans-serif"
                 tools:text="Thông tin bảo hành"
                 android:textSize="@dimen/font_18"
                 android:textStyle="normal" />

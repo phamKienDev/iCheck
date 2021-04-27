@@ -23,7 +23,7 @@
             android:layout_weight="1"
             android:text="Title" />
 
-        <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+        <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
             android:id="@id/btnMore"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -31,8 +31,7 @@
             android:layout_marginRight="@dimen/size_12"
             android:gravity="center"
             android:text="Xem thêm"
-            android:textSize="@dimen/font_14"
-            app:fontFamily="@font/barlow_semi_bold" />
+            android:textSize="@dimen/font_14" />
 
     </LinearLayout>
 

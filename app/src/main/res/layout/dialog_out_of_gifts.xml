@@ -76,7 +76,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/size_4"
                 android:layout_weight="1"
-                android:background="@drawable/bg_corners_4_light_blue_no_solid"
                 android:gravity="center"
                 android:padding="@dimen/size_8"
                 android:text="Thực hiện thử thách"

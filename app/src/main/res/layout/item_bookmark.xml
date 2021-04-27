@@ -126,7 +126,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider38" />
 
-    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+    <vn.icheck.android.ichecklibs.view.secondary.TextBarlowMediumSecondary
         android:id="@+id/tv_gia_niem_yet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -134,7 +134,6 @@
         android:layout_marginLeft="@dimen/size_8"
         android:layout_marginEnd="@dimen/size_8"
         android:layout_marginRight="@dimen/size_8"
-        android:fontFamily="@font/barlow_medium"
         android:text="(Giá niêm yết)"
         android:visibility="gone"
         app:layout_constraintBaseline_toBaselineOf="@+id/tv_price"

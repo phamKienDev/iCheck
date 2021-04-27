@@ -111,7 +111,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-    <vn.icheck.android.ui.EnableButton
+    <vn.icheck.android.ichecklibs.EnableButton
         android:id="@+id/btn_continue"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="match_parent"
@@ -119,7 +119,6 @@
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginBottom="@dimen/size_12"
-        android:background="@drawable/background_button_disable"
         android:enabled="false"
         android:fontFamily="@font/barlow_semi_bold"
         android:text="Tiếp tục"

@@ -25,6 +25,7 @@ import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.component.header_page.bottom_sheet_header_page.MoreActionPageBottomSheet
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICMediaPage
 import vn.icheck.android.network.models.ICPageOverview
@@ -76,6 +77,7 @@ class PageDetailActivity : BaseActivityMVVM(), View.OnClickListener {
         getData()
         setupViewPager()
         setupViewModel()
+        setupView()
         setupListener()
         listenerFirebase()
         initButton()
@@ -98,6 +100,19 @@ class PageDetailActivity : BaseActivityMVVM(), View.OnClickListener {
 
     private fun setupViewModel() {
         viewModel = ViewModelProvider(this).get(PageDetailViewModel::class.java)
+    }
+
+    private fun setupView() {
+        ViewHelper.textColorHomeTab(this).apply {
+            tvHome.setTextColor(this)
+            tvPost.setTextColor(this)
+            tvProduct.setTextColor(this)
+        }
+
+        ViewHelper.bgOutlinePrimary1Corners4(this).apply {
+            tvExtra.background = this
+            imgMenu.background = this
+        }
     }
 
     private fun setupListener() {

@@ -19,13 +19,11 @@
         android:layout_height="@dimen/size_24"
         android:layout_gravity="center" />
 
-    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+    <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
         android:id="@id/btnMore"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_36"
-        android:layout_marginLeft="@dimen/size_36"
-        android:fontFamily="@font/barlow_semi_bold"
         android:includeFontPadding="false"
         android:textSize="@dimen/font_14"
         tools:text="Xem thêm câu trả lời (13)" />

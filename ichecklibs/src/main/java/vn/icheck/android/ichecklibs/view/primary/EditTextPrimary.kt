@@ -14,6 +14,7 @@ class EditTextPrimary : AppCompatEditText {
 
     private fun setup() {
         setTextColor(Constant.getPrimaryColor(context))
+        includeFontPadding = false
         setHintTextColor(Constant.getSecondTextColor(context))
     }
 }

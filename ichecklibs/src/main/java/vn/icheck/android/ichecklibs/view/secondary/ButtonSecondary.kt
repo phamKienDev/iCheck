@@ -13,5 +13,6 @@ class ButtonSecondary : AppCompatTextView {
 
     private fun setup() {
         setTextColor(Constant.getSecondaryColor(context))
+        includeFontPadding = false
     }
 }

@@ -43,12 +43,11 @@
             app:layout_constraintTop_toTopOf="@+id/layoutImg"
             tools:text="Thẻ Mobifone" />
 
-        <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+        <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
             android:id="@+id/tvPriceTopup"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/size_8"
-            android:fontFamily="@font/barlow_semi_bold"
             android:textSize="@dimen/font_16"
             android:textStyle="normal"
             app:layout_constraintBottom_toBottomOf="@+id/tvDate"

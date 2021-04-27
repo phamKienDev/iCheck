@@ -23,8 +23,8 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ActivityDetailMyRewardBinding
 import vn.icheck.android.helper.DialogHelper
-import vn.icheck.android.tracking.insider.InsiderHelper
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.campaign.DetailRewardData
 import vn.icheck.android.network.models.campaign.DetailRewardResponse
 import vn.icheck.android.screen.dialog.CallPhoneDialog
@@ -63,6 +63,8 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
             showSimpleErrorToast("Có lỗi xảy ra vui lòng thử lại sau")
             dismissLoadingScreen()
         })
+
+        setupView()
         listener()
         listenerGetData()
 
@@ -76,6 +78,11 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                 binding.toolbarAlpha.simpleGoneAnim()
             }
         }
+    }
+
+    private fun setupView() {
+        binding.btnShare.background = ViewHelper.bgPrimaryCorners4(this)
+        binding.btnRefuse.background = ViewHelper.bgOutlinePrimary1Corners4(this)
     }
 
     override fun onResume() {

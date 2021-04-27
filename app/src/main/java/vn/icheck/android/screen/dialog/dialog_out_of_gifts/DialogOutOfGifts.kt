@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.dialog_out_of_gifts.*
 import vn.icheck.android.R
 import vn.icheck.android.component.popup_view.BasePopupView
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICGiftReceived
 import vn.icheck.android.util.kotlin.ToastUtils
 
@@ -26,8 +27,11 @@ abstract class DialogOutOfGifts(context: Context, val default: Int, val title: S
             dismiss()
         }
 
-        btnThucHien.setOnClickListener {
-            ToastUtils.showLongWarning(context, "onClick Thực Hiện Thử Thách")
+        btnThucHien.apply {
+            background = ViewHelper.bgOutlinePrimary1Corners4(context)
+            setOnClickListener {
+                ToastUtils.showLongWarning(context, "onClick Thực Hiện Thử Thách")
+            }
         }
 
         btnListGifts.setOnClickListener {

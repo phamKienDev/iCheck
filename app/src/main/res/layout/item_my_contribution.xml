@@ -19,12 +19,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+    <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
         android:id="@+id/btn_show_all"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/size_12"
-        android:fontFamily="@font/barlow_semi_bold"
         android:text="Xem tất cả"
         app:layout_constraintBottom_toBottomOf="@+id/textView34"
         app:layout_constraintEnd_toEndOf="parent"

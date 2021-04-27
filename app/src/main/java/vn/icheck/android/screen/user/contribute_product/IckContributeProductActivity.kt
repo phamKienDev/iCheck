@@ -38,6 +38,7 @@ import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.constant.*
 import vn.icheck.android.databinding.ActivityIckContributeProductBinding
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.screen.user.contribute_product.adapter.*
@@ -648,6 +649,8 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
     }
 
     private fun initViews() {
+        binding.btnContinue.background = ViewHelper.bgPrimaryCorners4(this)
+
         val barcode = intent.getStringExtra(ICK_BARCODE)
         binding.edtBarcode.setText(barcode)
 
@@ -775,7 +778,7 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
             } else {
                 ickContributeProductViewModel.setPrice(-1)
             }
-            if (ickContributeProductViewModel.arrayListImage.size >= 2 && binding.edtNameProduct.text.trim().trim().isNotEmpty()) {
+            if (ickContributeProductViewModel.arrayListImage.size >= 2 && binding.edtNameProduct.text!!.trim().trim().isNotEmpty()) {
 
                 ickContributeProductViewModel.finalStep()?.observe(this, Observer { listInfos ->
                     val filter = listInfos.firstOrNull {
@@ -864,7 +867,7 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
             } else {
                 if (ickContributeProductViewModel.arrayListImage.size < 2) {
                     showShortError("Sản phẩm cần tối thiểu 2 ảnh!")
-                } else if (binding.edtNameProduct.text.trim().isEmpty()) {
+                } else if (binding.edtNameProduct.text!!.trim().isEmpty()) {
                     showShortError("Sản phẩm phải có tên!")
                 }
                 dismissLoadingScreen()

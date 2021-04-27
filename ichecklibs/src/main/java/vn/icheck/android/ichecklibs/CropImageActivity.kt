@@ -6,7 +6,6 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
@@ -16,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_crop_image.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import vn.icheck.android.ichecklibs.util.PermissionHelper
+import vn.icheck.android.ichecklibs.util.*
 
 import java.io.File
 import java.io.FileOutputStream

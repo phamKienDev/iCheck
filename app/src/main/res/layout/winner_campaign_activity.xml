@@ -56,7 +56,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/size_38"
                     android:layout_marginRight="@dimen/size_38"
-                    android:background="@drawable/bg_corners_4_light_blue_no_solid"
                     android:gravity="center"
                     android:includeFontPadding="false"
                     android:paddingTop="@dimen/size_9"

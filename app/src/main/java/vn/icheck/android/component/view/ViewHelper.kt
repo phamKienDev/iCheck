@@ -51,9 +51,8 @@ import vn.icheck.android.component.rating_star.RatingStarComponent
 import vn.icheck.android.ichecklibs.view.TextBarlowSemiBold
 import vn.icheck.android.ichecklibs.view.TextBarlowMedium
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
-import vn.icheck.android.ichecklibs.view.second_text.TextSecondSendOtpLogin
+import vn.icheck.android.ichecklibs.view.secondary.TextSecondary
 import vn.icheck.android.ui.layout.CustomGridLayoutManager
 import vn.icheck.android.ui.layout.HeightWrappingViewPager
 import vn.icheck.android.ui.view.SquareImageView
@@ -711,11 +710,10 @@ object ViewHelper {
             tvTitle.setPadding(0, 0, SizeHelper.size12, 0)
             layoutTitle.addView(tvTitle)
 
-            val tvViewMore = AppCompatTextView(context)
+            val tvViewMore = TextSecondary(context)
             tvViewMore.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
             tvViewMore.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
             tvViewMore.typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
-            tvViewMore.setTextColor(Constant.getSecondTextColor(context))
             tvViewMore.includeFontPadding = false
             tvViewMore.setPadding(0, SizeHelper.size5, 0, SizeHelper.size5)
             tvViewMore.setText(R.string.xem_tat_ca)
@@ -769,7 +767,7 @@ object ViewHelper {
                 createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT),
                 outValue.resourceId,
                 createTypeface(context, R.font.barlow_medium),
-                Constant.getSecondTextColor(context),
+                vn.icheck.android.ichecklibs.Constant.getSecondTextColor(context),
                 14f
         ).also {
             it.setPadding(0, SizeHelper.size5, 0, SizeHelper.size5)
@@ -1033,7 +1031,7 @@ object ViewHelper {
                         createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1f),
                         null,
                         createTypeface(context, R.font.barlow_medium),
-                        Constant.getSecondTextColor(context),
+                        vn.icheck.android.ichecklibs.Constant.getSecondTextColor(context),
                         12f), 1)
             })
         })
@@ -1760,7 +1758,7 @@ object ViewHelper {
                 text.layoutParams = ConstraintLayout.LayoutParams(0, ConstraintLayout.LayoutParams.WRAP_CONTENT).also { params ->
                     params.setMargins(SizeHelper.size10, 0, 0, 0)
                 }
-                text.background = ContextCompat.getDrawable(context, R.drawable.bg_corners_14_light_blue_no_solid)
+                text.background = vn.icheck.android.ichecklibs.ViewHelper.bgOutlinePrimary05Corners14(text.context)
                 text.textSize = 12f
                 text.setPadding(SizeHelper.size6, SizeHelper.size2, SizeHelper.size6, SizeHelper.size2)
                 text.setTextColor(primaryColor)
@@ -2309,7 +2307,7 @@ object ViewHelper {
             it.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
             it.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
             it.includeFontPadding = false
-            it.background = ContextCompat.getDrawable(context, R.drawable.bg_corners_4_light_blue_no_solid)
+            it.background = vn.icheck.android.ichecklibs.ViewHelper.bgOutlinePrimary1Corners4(it.context)
         })
 
         //view line
@@ -2687,7 +2685,7 @@ object ViewHelper {
             it.text = context.getString(R.string.dat_cau_hoi)
             it.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
             it.includeFontPadding = false
-            it.background = ContextCompat.getDrawable(context, R.drawable.bg_corners_4_light_blue_no_solid)
+            it.background = vn.icheck.android.ichecklibs.ViewHelper.bgOutlinePrimary1Corners4(it.context)
         })
 
         return layoutParent
@@ -2926,7 +2924,7 @@ object ViewHelper {
             it.setText(R.string.danh_gia_voi_vai_tro_khac)
             it.typeface = createTypeface(ICheckApplication.getInstance(), R.font.barlow_semi_bold)
             it.textSize = 16f
-            it.setBackgroundResource(R.drawable.bg_corners_4_light_blue_no_solid)
+            it.background = vn.icheck.android.ichecklibs.ViewHelper.bgOutlinePrimary1Corners4(it.context)
             it.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(it.context))
         })
 
@@ -3361,7 +3359,7 @@ object ViewHelper {
                     view.layoutParams = createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size0_5).also {
                         it.setMargins(0, SizeHelper.size12, 0, 0)
                     }
-                    view.setBackgroundColor(ContextCompat.getColor(context, R.color.colorSecondViewGroup))
+                    view.setBackgroundColor(ContextCompat.getColor(context, vn.icheck.android.ichecklibs.R.color.colorSecondViewGroup))
                 })
 
                 params.addView(AppCompatTextView(context).also { text ->
@@ -3459,7 +3457,7 @@ object ViewHelper {
                     },
                     null,
                     Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf"),
-                    Constant.getSecondTextColor(context),
+                    vn.icheck.android.ichecklibs.Constant.getSecondTextColor(context),
                     14f).also {
                 it.gravity = Gravity.CENTER_HORIZONTAL
             })
@@ -3682,7 +3680,8 @@ object ViewHelper {
                             }
                             textView.text = text
                             textView.movementMethod = LinkMovementMethod.getInstance()
-                            textView.setText(addClickablePartTextViewResizableColor(text, textColor ?: Constant.getSecondaryColorCode, expandText), TextView.BufferType.SPANNABLE)
+                            textView.setText(addClickablePartTextViewResizableColor(text, textColor
+                                    ?: vn.icheck.android.ichecklibs.Constant.getSecondaryColorCode, expandText), TextView.BufferType.SPANNABLE)
                         }
                     }
                 }

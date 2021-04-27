@@ -34,7 +34,6 @@ import androidx.lifecycle.lifecycleScope
 import com.scandit.datacapture.barcode.capture.BarcodeCapture
 import com.scandit.datacapture.barcode.capture.BarcodeCaptureListener
 import com.scandit.datacapture.barcode.capture.BarcodeCaptureSession
-import com.scandit.datacapture.barcode.capture.BarcodeCaptureSettings
 import com.scandit.datacapture.barcode.data.Symbology
 import com.scandit.datacapture.core.capture.DataCaptureContext
 import com.scandit.datacapture.core.common.async.Callback
@@ -49,7 +48,7 @@ import kotlinx.coroutines.launch
 import vn.icheck.android.ichecklibs.*
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
-import vn.icheck.android.ichecklibs.util.PermissionHelper
+import vn.icheck.android.ichecklibs.util.*
 import vn.icheck.android.ichecklibs.web.WebViewActivity
 import vn.icheck.android.icheckscanditv6.databinding.IckScanCustomViewBinding
 import vn.icheck.android.network.base.*

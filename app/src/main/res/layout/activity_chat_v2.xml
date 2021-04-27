@@ -43,14 +43,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+            <vn.icheck.android.ichecklibs.view.secondary.TextSansSerifMediumSecondary
                 android:id="@+id/textView12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_8"
                 android:layout_marginEnd="@dimen/size_8"
                 android:ellipsize="end"
-                android:fontFamily="sans-serif-medium"
                 android:gravity="center"
                 android:singleLine="true"
                 android:textAlignment="center"

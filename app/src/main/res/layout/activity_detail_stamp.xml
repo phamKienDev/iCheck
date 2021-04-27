@@ -31,12 +31,11 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_categories_menu_blue_24" />
 
-            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+            <vn.icheck.android.ichecklibs.view.secondary.TextSansSerifMediumSecondary
                 android:id="@id/txtTitle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:ellipsize="end"
-                android:fontFamily="sans-serif-medium"
                 android:gravity="center"
                 android:singleLine="true"
                 android:text="Xác thực sản phẩm"
@@ -140,7 +139,7 @@
                 android:textStyle="normal"
                 tools:text="Để hiển thị dữ liệu Cửa hàng, vui lòng bật GPS" />
 
-            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+            <vn.icheck.android.ichecklibs.view.secondary.TextSansSerifMediumSecondary
                 android:id="@+id/btnRequestPermission"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -148,7 +147,6 @@
                 android:layout_marginTop="@dimen/size_13"
                 android:layout_marginEnd="@dimen/size_38"
                 android:background="@drawable/bg_blue_corners_40_solid_white"
-                android:fontFamily="sans-serif-medium"
                 android:gravity="center"
                 android:paddingTop="@dimen/size_11"
                 android:paddingBottom="@dimen/size_11"
@@ -156,7 +154,7 @@
                 android:textSize="@dimen/font_16"
                 android:textStyle="normal" />
 
-            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+            <vn.icheck.android.ichecklibs.view.secondary.TextSansSerifMediumSecondary
                 android:id="@+id/btnEnableLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -164,7 +162,6 @@
                 android:layout_marginTop="@dimen/size_13"
                 android:layout_marginEnd="@dimen/size_38"
                 android:background="@drawable/bg_blue_corners_40_solid_white"
-                android:fontFamily="sans-serif-medium"
                 android:gravity="center"
                 android:paddingTop="@dimen/size_11"
                 android:paddingBottom="@dimen/size_11"
@@ -790,12 +787,11 @@
                             android:layout_height="wrap_content"
                             android:background="@drawable/bg_corner_bottom_gray_10">
 
-                            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+                            <vn.icheck.android.ichecklibs.view.secondary.TextSansSerifSecondary
                                 android:id="@+id/tvSerialFake"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/size_8"
-                                android:fontFamily="sans-serif"
                                 android:textSize="@dimen/font_14"
                                 android:textStyle="bold"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -831,13 +827,12 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/view1" />
 
-                            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+                            <vn.icheck.android.ichecklibs.view.secondary.TextSansSerifMediumSecondary
                                 android:id="@+id/tvCountScanFake"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/size_9"
                                 android:layout_marginBottom="@dimen/size_19"
-                                android:fontFamily="sans-serif-medium"
                                 android:textSize="@dimen/font_18"
                                 android:textStyle="normal"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -874,13 +869,12 @@
                                 app:layout_constraintStart_toEndOf="@id/viewNotVerify"
                                 app:layout_constraintTop_toBottomOf="@+id/view1" />
 
-                            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+                            <vn.icheck.android.ichecklibs.view.secondary.TextSansSerifMediumSecondary
                                 android:id="@+id/tvCountUserScanFake"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/size_9"
                                 android:layout_marginBottom="@dimen/size_19"
-                                android:fontFamily="sans-serif-medium"
                                 android:textSize="@dimen/font_18"
                                 android:textStyle="normal"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -944,12 +938,11 @@
                             android:layout_height="wrap_content"
                             android:background="@drawable/bg_corner_bottom_gray_10">
 
-                            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+                            <vn.icheck.android.ichecklibs.view.secondary.TextSansSerifSecondary
                                 android:id="@+id/tvSerialVerified"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/size_8"
-                                android:fontFamily="sans-serif"
                                 android:textSize="@dimen/font_14"
                                 android:textStyle="bold"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -1282,24 +1275,22 @@
                     android:visibility="gone"
                     tools:visibility="visible">
 
-                    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+                    <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
                         android:id="@id/tvTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/barlow_semi_bold"
                         android:text="@string/thuong_mai_dien_tu"
                         android:textSize="@dimen/font_18"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+                    <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
                         android:id="@id/tvViewMore"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/size_9"
                         android:padding="@dimen/size_3"
                         android:text="@string/xem_tat_ca"
-                        android:fontFamily="@font/barlow_semi_bold"
                         android:textSize="@dimen/font_14"
                         app:layout_constraintBottom_toBottomOf="@id/tvTitle"
                         app:layout_constraintEnd_toEndOf="parent"

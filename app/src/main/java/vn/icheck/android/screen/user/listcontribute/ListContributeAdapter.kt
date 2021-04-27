@@ -21,6 +21,7 @@ import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.product.ProductInteractor
 import vn.icheck.android.network.models.ICContribute
@@ -237,6 +238,7 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
 
             itemView.tvYes.run {
                 visibility = View.VISIBLE
+                setTextColor(ViewHelper.textColorHomeTab(context))
 
                 text = if (obj.upVotes > 0) {
                     "Đúng (${obj.upVotes})"
@@ -286,13 +288,13 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
                 }
             }
 
-            itemView.btnAction.visibility = if (!obj.isMe) {
-                View.GONE
-            } else {
-                View.VISIBLE
-            }
-
-            itemView.btnAction.run {
+            itemView.btnAction.apply {
+                background = ViewHelper.bgOutlinePrimary1Corners4(context)
+                visibility = if (!obj.isMe) {
+                    View.GONE
+                } else {
+                    View.VISIBLE
+                }
                 setOnClickListener {
                     ICheckApplication.currentActivity()?.let {
                         obj.data?.barcode?.let { barcode -> IckContributeProductActivity.start(it, barcode, obj.productId, "Chỉnh sửa đóng góp") }

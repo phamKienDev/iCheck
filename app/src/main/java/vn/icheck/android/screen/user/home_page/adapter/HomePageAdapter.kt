@@ -456,9 +456,12 @@ class HomePageAdapter(
     inner class CheckUpdateHolder(parent: ViewGroup, val binding: ItemCheckUpdateBinding = ItemCheckUpdateBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind() {
-            binding.btnUpdate.setOnClickListener {
-                ICheckApplication.currentActivity()?.let { activity ->
-                    activity.openAppInGooglePlay()
+            binding.btnUpdate.apply {
+                background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(context)
+                setOnClickListener {
+                    ICheckApplication.currentActivity()?.let { activity ->
+                        activity.openAppInGooglePlay()
+                    }
                 }
             }
         }

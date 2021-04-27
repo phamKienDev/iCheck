@@ -4,14 +4,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import vn.icheck.android.R
 import vn.icheck.android.component.ICViewModel
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.component.`null`.NullHolder
 import vn.icheck.android.databinding.ItemConfirmPrivacyBinding
 import vn.icheck.android.databinding.ItemPrivacySettingBinding
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.model.privacy.UserPrivacyModel
 import vn.icheck.android.util.ick.logError
 
@@ -64,10 +63,12 @@ class PrivacySettingsAdapter(val onSaveChangeListener: OnSaveChangeListener):Rec
             }
         }
         else if (holder.itemViewType == ICViewTypes.ITEM_PRIVACY_CONFIRM) {
-            (holder as ItemButton).binding.btnContinue.setOnClickListener {
-                onSaveChangeListener.onSave()
+            (holder as ItemButton).binding.btnContinue.apply {
+                background = ViewHelper.bgPrimaryCorners4(context)
+                setOnClickListener {
+                    onSaveChangeListener.onSave()
+                }
             }
-
         }
     }
 

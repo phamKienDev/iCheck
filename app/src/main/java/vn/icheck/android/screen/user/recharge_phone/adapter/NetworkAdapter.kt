@@ -3,11 +3,11 @@ package vn.icheck.android.screen.user.recharge_phone.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_network.view.*
 import vn.icheck.android.R
 import vn.icheck.android.callback.OnItemClickListener
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.recharge_phone.ICRechargePhone
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -35,7 +35,7 @@ class NetworkAdapter (val recyclerView: RecyclerView, var listData: MutableList<
             WidgetUtils.loadImageFitCenterUrl(itemView.imgAvaNetwork,item.avatar)
 
             if (item.select){
-                itemView.layoutParent.setBackgroundResource(R.drawable.bg_choose_card)
+                itemView.layoutParent.background = ViewHelper.bgOutlinePrimary1Corners6(itemView.context)
             }else{
                 itemView.layoutParent.setBackgroundResource(R.drawable.bg_default_card_loyalty)
             }
