@@ -23,7 +23,7 @@ class AppInfoActivity : AppCompatActivity() {
 
         binding.tvVersion simpleText BuildConfig.VERSION_NAME
 
-        binding.btnUpdate.background = ViewHelper.backgroundPrimaryCorners4(this)
+        binding.btnUpdate.background = ViewHelper.bgPrimaryCorners4(this)
         binding.btnUpdate.setOnClickListener {
             openAppInGooglePlay()
         }

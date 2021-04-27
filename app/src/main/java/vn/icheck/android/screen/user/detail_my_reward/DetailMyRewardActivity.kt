@@ -81,7 +81,8 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
     }
 
     private fun setupView() {
-        binding.btnShare.background = ViewHelper.backgroundPrimaryCorners4(this)
+        binding.btnShare.background = ViewHelper.bgPrimaryCorners4(this)
+        binding.btnRefuse.background = ViewHelper.bgOutlinePrimary1Corners4(this)
     }
 
     override fun onResume() {

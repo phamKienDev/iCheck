@@ -11,6 +11,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ItemRelatedPageBinding
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICRelatedPage
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
 import vn.icheck.android.util.ick.beGone
@@ -53,9 +54,12 @@ class RelatedPageAdapter() : RecyclerView.Adapter<RelatedPageAdapter.ViewHolder>
                 binding.tvFollowCount.text = TextHelper.formatMoneyPhay(obj.followCount) + " Người theo dõi"
             }
 
-            binding.tvAction.setOnClickListener {
-                ICheckApplication.currentActivity()?.let { act ->
-                    ActivityUtils.startActivity<PageDetailActivity, Long>(act, Constant.DATA_1, obj.id)
+            binding.tvAction.apply {
+                background = ViewHelper.bgOutlinePrimary1Corners4(context)
+                setOnClickListener {
+                    ICheckApplication.currentActivity()?.let { act ->
+                        ActivityUtils.startActivity<PageDetailActivity, Long>(act, Constant.DATA_1, obj.id)
+                    }
                 }
             }
         }

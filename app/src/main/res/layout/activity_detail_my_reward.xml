@@ -522,7 +522,6 @@ Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận t
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginEnd="@dimen/size_6"
             android:layout_marginBottom="@dimen/size_20"
-            android:background="@drawable/bg_corners_4_light_blue_no_solid"
             android:gravity="center"
             android:text="@string/tu_choi_qua"
             android:textSize="@dimen/font_16"

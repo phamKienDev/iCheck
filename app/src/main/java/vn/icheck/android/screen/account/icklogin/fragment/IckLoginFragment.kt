@@ -19,6 +19,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.ISettingListener
 import vn.icheck.android.databinding.FragmentIckLoginBinding
 import vn.icheck.android.helper.*
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.page.PageRepository
 import vn.icheck.android.network.models.ICClientSetting
@@ -111,10 +112,13 @@ class IckLoginFragment : CoroutineFragment() {
 
             }
         }
-        binding.btnLoginOtp.setOnSingleClickListener {
-            requireActivity().forceHideKeyboard()
-            val action = IckLoginFragmentDirections.actionIckLoginFragmentToIckLoginOtpFragment(LOGIN_OTP)
-            findNavController().navigate(action)
+        binding.btnLoginOtp.apply {
+            background = ViewHelper.bgWhiteOutlinePrimary1Corners4(context)
+            setOnSingleClickListener {
+                requireActivity().forceHideKeyboard()
+                val action = IckLoginFragmentDirections.actionIckLoginFragmentToIckLoginOtpFragment(LOGIN_OTP)
+                findNavController().navigate(action)
+            }
         }
         binding.btnForgotPw.setOnSingleClickListener {
             requireActivity().forceHideKeyboard()

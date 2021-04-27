@@ -1,13 +1,9 @@
 package vn.icheck.android.screen.user.shipping.ship.ui.main
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
-import androidx.core.content.ContextCompat.getSystemService
-import androidx.core.view.children
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -130,7 +126,7 @@ class AddShipAddressFragment : Fragment() {
             viewModel.setPhone(it?.trim().toString())
         }
         binding.btnConfirm.apply {
-            background = ViewHelper.backgroundPrimaryCorners4(context)
+            background = ViewHelper.bgPrimaryCorners4(context)
             setOnClickListener {
                 when {
                     binding.edtLastName.text?.trim().isNullOrEmpty() -> {

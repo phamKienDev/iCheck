@@ -3,7 +3,6 @@ package vn.icheck.android.screen.user.createpost.dialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.activity_create_or_update_post.*
 import kotlinx.android.synthetic.main.dialog_select_post_privacy.*
 import kotlinx.android.synthetic.main.dialog_select_post_privacy_item.view.*
 import vn.icheck.android.R
@@ -21,7 +20,7 @@ abstract class SelectPostPrivacyDialog(context: Context, private val listPrivacy
     }
 
     private fun setupView() {
-        dialog.btnDone.background = ViewHelper.backgroundPrimaryCorners4(dialog.context)
+        dialog.btnDone.background = ViewHelper.bgPrimaryCorners4(dialog.context)
 
         dialog.layoutContent.apply {
             for (i in 0 until listPrivacy.size) {

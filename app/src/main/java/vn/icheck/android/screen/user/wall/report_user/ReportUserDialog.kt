@@ -87,7 +87,7 @@ class ReportUserDialog : CoroutineBottomSheetDialogFragment() {
             }
         }
         binding.btnSendReport.apply {
-            background = ViewHelper.backgroundPrimaryCorners4(context)
+            background = ViewHelper.bgPrimaryCorners4(context)
             setOnClickListener {
                 delayAction({
                     val filter = ickUserWallViewModel.arrReport.firstOrNull {

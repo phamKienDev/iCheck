@@ -4,12 +4,12 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_product_header_holder.view.*
 import kotlinx.android.synthetic.main.layout_list_product_header_history_holder.view.*
 import vn.icheck.android.R
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.history.ICBigCorp
 import vn.icheck.android.screen.user.scan_history.ScanHistoryFragment
 import vn.icheck.android.screen.user.scan_history.view.IScanHistoryView
@@ -57,7 +57,7 @@ class ListBigCorpHolder(parent: ViewGroup, val listener: IScanHistoryView) : Rec
                         ?: itemView.context.getString(R.string.dang_cap_nhat)
 
                 if (selectedPos == absoluteAdapterPosition) {
-                    itemView.bgItem.setBackgroundResource(R.drawable.bg_corner_white_4_stroke_light_blue)
+                    itemView.bgItem.background = ViewHelper.bgWhiteOutlinePrimary1Corners4(itemView.context)
                     itemView.tvNameBigCorp.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(itemView.context))
                 } else {
                     itemView.bgItem.setBackgroundResource(R.drawable.bg_corners_white_4)

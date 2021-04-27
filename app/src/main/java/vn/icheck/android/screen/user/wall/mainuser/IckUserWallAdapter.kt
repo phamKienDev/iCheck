@@ -267,7 +267,7 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
 //                .placeholder(R.drawable.bg_image_cover_in_wall)
 //                .into(binding.imgWallCover)
 
-        binding.btnAddFriend.background = ViewHelper.backgroundPrimaryCorners4(itemView.context)
+        binding.btnAddFriend.background = ViewHelper.bgPrimaryCorners4(itemView.context)
         when {
             ickUserProfileModel.id == SessionManager.session.user?.id -> showMainUser()
             AppDatabase.getDatabase().myFriendIdDao().getUserByID(ickUserProfileModel.id) != null -> showFriend()
@@ -286,7 +286,7 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
         binding.groupMainUser.beGone()
         binding.groupFriend.beVisible()
         binding.btnSendMsg.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(itemView.context))
-        binding.btnSendMsg.background = ResourcesCompat.getDrawable(binding.root.context.resources, R.drawable.bg_corners_4_light_blue_no_solid, null)
+        binding.btnSendMsg.background = ViewHelper.bgOutlinePrimary1Corners4(itemView.context)
         binding.btnAddFriend.beVisible()
         binding.imgSettings.setOnClickListener {
             if (SessionManager.isUserLogged) {
@@ -347,7 +347,7 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
         binding.groupMainUser.beGone()
         binding.groupFriend.beVisible()
         binding.btnAddFriend.beGone()
-        binding.btnSendMsg.background = ViewHelper.backgroundPrimaryCorners4(itemView.context)
+        binding.btnSendMsg.background = ViewHelper.bgPrimaryCorners4(itemView.context)
         binding.imgSettings.setOnClickListener {
             if (SessionManager.isUserLogged) {
                 it.context.sendBroadcast(Intent(USER_WALL_BROADCAST).apply {

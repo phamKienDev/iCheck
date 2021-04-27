@@ -120,7 +120,7 @@ class MyQrActivity : AppCompatActivity() {
     }
 
     private fun setupView() {
-        binding.btnCampaign.background = ViewHelper.backgroundPrimaryCorners4(this)
+        binding.btnCampaign.background = ViewHelper.bgPrimaryCorners4(this)
     }
 
     private fun createQrCodeMarketing() {

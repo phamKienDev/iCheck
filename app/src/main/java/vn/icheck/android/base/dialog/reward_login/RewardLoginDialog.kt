@@ -5,6 +5,7 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseDialog
+import vn.icheck.android.ichecklibs.ViewHelper
 
 abstract class RewardLoginDialog(context: Context) : BaseDialog(context, R.style.DialogTheme) {
 
@@ -23,10 +24,13 @@ abstract class RewardLoginDialog(context: Context) : BaseDialog(context, R.style
             onLogin()
         }
 
-        findViewById<AppCompatTextView>(R.id.btnRegister)?.setOnClickListener {
-            isStartLogin = true
-            dismiss()
-            onRegister()
+        findViewById<AppCompatTextView>(R.id.btnRegister)?.apply {
+            background = ViewHelper.bgOutlinePrimary1Corners4(context)
+            setOnClickListener {
+                isStartLogin = true
+                dismiss()
+                onRegister()
+            }
         }
 
         findViewById<AppCompatTextView>(R.id.tvClose)?.setOnClickListener {

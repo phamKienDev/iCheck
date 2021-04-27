@@ -457,7 +457,7 @@ class HomePageAdapter(
 
         fun bind() {
             binding.btnUpdate.apply {
-                background = vn.icheck.android.ichecklibs.ViewHelper.backgroundPrimaryCorners4(context)
+                background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(context)
                 setOnClickListener {
                     ICheckApplication.currentActivity()?.let { activity ->
                         activity.openAppInGooglePlay()

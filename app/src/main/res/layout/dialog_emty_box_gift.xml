@@ -78,7 +78,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_8"
                 android:layout_marginLeft="@dimen/size_8"
-                android:background="@drawable/bg_corners_4_light_blue_no_solid"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:paddingTop="@dimen/size_10"

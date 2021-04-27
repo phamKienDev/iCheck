@@ -56,7 +56,7 @@ class SocialPhoneBookFragment:Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.rcvPhoneBook.adapter = phoneBookAdapter
-        binding.tvSyncPhoneBook.background = ViewHelper.backgroundPrimaryCorners4(requireContext())
+        binding.tvSyncPhoneBook.background = ViewHelper.bgPrimaryCorners4(requireContext())
         if (socialChatViewModel.getSyncPhoneBook()) {
             showSynced()
             lifecycleScope.launch {

@@ -316,7 +316,6 @@
         android:layout_marginTop="@dimen/size_20"
         android:layout_marginEnd="@dimen/size_20"
         android:layout_marginBottom="@dimen/size_20"
-        android:background="@drawable/bg_blue_border_18"
         android:includeFontPadding="false"
         android:text="@string/thiet_lap_lai"
         android:textAllCaps="false"

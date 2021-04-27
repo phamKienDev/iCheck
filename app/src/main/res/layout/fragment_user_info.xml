@@ -227,7 +227,6 @@
             android:layout_height="@dimen/size_36"
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginBottom="@dimen/size_20"
-            android:background="@drawable/bg_login_otp"
             android:gravity="center"
             android:text="Bỏ qua"
             android:textAllCaps="false"

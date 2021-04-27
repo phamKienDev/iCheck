@@ -276,7 +276,7 @@ class IckUserInfoFragment : CoroutineFragment() {
             ickLoginViewModel.setAddress(it?.trim().toString())
         }
         binding.btnContinue.apply {
-            background = ViewHelper.backgroundPrimaryCorners4(context)
+            background = ViewHelper.bgPrimaryCorners4(context)
             setOnClickListener {
                 if (binding.edtEmailInput.text!!.trim().isNotEmpty()) {
                     if (binding.edtEmailInput.text!!.trim().isValidEmail()) {
@@ -290,9 +290,12 @@ class IckUserInfoFragment : CoroutineFragment() {
                 finalStep()
             }
         }
-        binding.btnSkip.setOnClickListener {
-            hideKeyboard()
-            ickLoginViewModel.mState.postValue(CHOOSE_TOPIC)
+        binding.btnSkip.apply {
+            background = ViewHelper.bgWhiteOutlinePrimary1Corners4(context)
+            setOnClickListener {
+                hideKeyboard()
+                ickLoginViewModel.mState.postValue(CHOOSE_TOPIC)
+            }
         }
         hideKeyboard()
     }

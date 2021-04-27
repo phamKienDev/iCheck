@@ -45,7 +45,7 @@ class SuccessConfirmShipDialog(val orderId:Long):DialogFragment() {
             action?.invoke()
         }
         binding.btnObserve.apply {
-            background = ViewHelper.backgroundPrimaryCorners4(context)
+            background = ViewHelper.bgPrimaryCorners4(context)
             setOnClickListener {
                 ShipActivity.startDetailOrder(requireContext(), orderId)
                 dismiss()

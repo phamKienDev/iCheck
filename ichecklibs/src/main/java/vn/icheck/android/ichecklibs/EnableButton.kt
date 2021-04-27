@@ -1,7 +1,6 @@
 package vn.icheck.android.ichecklibs
 
 import android.content.Context
-import android.graphics.Typeface
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.res.ResourcesCompat
@@ -30,8 +29,8 @@ class EnableButton : AppCompatButton {
         transformationMethod = null
     }
 
-    private val enableBackground = ViewHelper.backgroundPrimaryCorners4(context)
-    private val disableBackground = ViewHelper.backgroundDisableTextCorners4(context)
+    private val enableBackground = ViewHelper.bgPrimaryCorners4(context)
+    private val disableBackground = ViewHelper.bgDisableTextCorners4(context)
 
     fun enable() {
         isEnabled = true

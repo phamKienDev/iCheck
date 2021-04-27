@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.layout_title_filter_search.*
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialogFragment
+import vn.icheck.android.ichecklibs.ViewHelper
 
 class FilterProductDialog(val listener: FilterProductCallback, verify: Boolean, price: String?, val reviews: MutableList<String>?) : BaseBottomSheetDialogFragment() {
 
@@ -60,10 +61,13 @@ class FilterProductDialog(val listener: FilterProductCallback, verify: Boolean, 
             setReview(null)
         }
 
-        tv_clear.setOnClickListener {
-            product_verified_switch.isChecked = false
-            setReview(null)
-            setPrice(null)
+        tv_clear.apply {
+            background = ViewHelper.bgOutlinePrimary1Corners4(context)
+            setOnClickListener {
+                product_verified_switch.isChecked = false
+                setReview(null)
+                setPrice(null)
+            }
         }
 
         tvDone.setOnClickListener {

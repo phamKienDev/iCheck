@@ -193,7 +193,6 @@
         android:gravity="center"
         android:paddingTop="@dimen/size_5"
         android:paddingBottom="@dimen/size_5"
-        android:background="@drawable/bg_corners_4_light_blue_no_solid"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/tvBarcode"
         app:layout_constraintStart_toStartOf="@+id/tvBarcode"

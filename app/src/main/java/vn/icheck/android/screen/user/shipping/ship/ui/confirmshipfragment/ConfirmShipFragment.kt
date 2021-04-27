@@ -21,7 +21,6 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.FragmentConfirmShipBinding
 import vn.icheck.android.databinding.ItemConfirmShipBinding
 import vn.icheck.android.helper.DialogHelper
-import vn.icheck.android.tracking.teko.TekoHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
@@ -68,7 +67,7 @@ class ConfirmShipFragment : Fragment() {
                 })
             }
             binding.btnConfirm.apply {
-                background = ViewHelper.backgroundPrimaryCorners4(context)
+                background = ViewHelper.bgPrimaryCorners4(context)
                 setOnClickListener {
                     showLoadingTimeOut(10000)
                     if (viewModel.arrayCart.isNotEmpty()) {

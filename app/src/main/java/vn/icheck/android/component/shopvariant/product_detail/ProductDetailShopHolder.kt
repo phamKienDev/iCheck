@@ -49,7 +49,7 @@ class ProductDetailShopHolder(parent: View) : BaseHolder(ViewHelper.createProduc
                     layoutMoreShop.layoutParams = ViewHelper.createLayoutParams32Dp(SizeHelper.size28, SizeHelper.size12, SizeHelper.size10, SizeHelper.size12, SizeHelper.size10)
                     layoutMoreShop.orientation = LinearLayout.VERTICAL
                     layoutMoreShop.gravity = Gravity.CENTER
-                    layoutMoreShop.background = ContextCompat.getDrawable(context, R.drawable.bg_corners_4_light_blue_no_solid)
+                    layoutMoreShop.background = vn.icheck.android.ichecklibs.ViewHelper.bgOutlinePrimary1Corners4(itemView.context)
 
                     layoutMoreShop.addView(TextBarlowSemiBold(context).also { text ->
                         text.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)

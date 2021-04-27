@@ -92,7 +92,7 @@ class ReportUserSuccessDialog:BottomSheetDialogFragment() {
             }
         }
         binding.btnDone.apply {
-            background = ViewHelper.backgroundPrimaryCorners4(context)
+            background = ViewHelper.bgPrimaryCorners4(context)
             setOnClickListener {
                 dismiss()
             }

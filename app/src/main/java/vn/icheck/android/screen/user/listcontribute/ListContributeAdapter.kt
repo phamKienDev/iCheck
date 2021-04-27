@@ -288,13 +288,13 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
                 }
             }
 
-            itemView.btnAction.visibility = if (!obj.isMe) {
-                View.GONE
-            } else {
-                View.VISIBLE
-            }
-
-            itemView.btnAction.run {
+            itemView.btnAction.apply {
+                background = ViewHelper.bgOutlinePrimary1Corners4(context)
+                visibility = if (!obj.isMe) {
+                    View.GONE
+                } else {
+                    View.VISIBLE
+                }
                 setOnClickListener {
                     ICheckApplication.currentActivity()?.let {
                         obj.data?.barcode?.let { barcode -> IckContributeProductActivity.start(it, barcode, obj.productId, "Chỉnh sửa đóng góp") }

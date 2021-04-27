@@ -196,7 +196,6 @@
                 android:layout_height="@dimen/size_36"
                 android:layout_marginEnd="@dimen/size_5"
                 android:layout_weight="1"
-                android:background="@drawable/bg_corners_4_light_blue_no_solid"
                 android:gravity="center"
                 android:text="Liên hệ iCheck"
                 android:textSize="@dimen/font_16" />
@@ -224,7 +223,6 @@
             android:layout_marginStart="@dimen/size_38"
             android:layout_marginTop="@dimen/size_40"
             android:layout_marginEnd="@dimen/size_38"
-            android:background="@drawable/bg_corners_4_light_blue_no_solid"
             android:gravity="center"
             android:text="Liên hệ iCheck"
             android:textSize="@dimen/font_16"
@@ -246,7 +244,6 @@
                 android:layout_height="@dimen/size_36"
                 android:layout_marginEnd="@dimen/size_5"
                 android:layout_weight="1"
-                android:background="@drawable/bg_corners_4_light_blue_no_solid"
                 android:gravity="center"
                 android:text="Liên hệ iCheck"
                 android:textSize="@dimen/font_16" />

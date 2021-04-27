@@ -109,6 +109,10 @@ class PageDetailActivity : BaseActivityMVVM(), View.OnClickListener {
             tvProduct.setTextColor(this)
         }
 
+        ViewHelper.bgOutlinePrimary1Corners4(this).apply {
+            tvExtra.background = this
+            imgMenu.background = this
+        }
     }
 
     private fun setupListener() {

@@ -7,11 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import org.greenrobot.eventbus.EventBus
-import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.databinding.DialogChangePwSuccessBinding
 import vn.icheck.android.ichecklibs.ViewHelper
-import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.user.home.HomeActivity
 import vn.icheck.android.util.ick.startClearTopActivity
 
@@ -46,7 +43,7 @@ class IckChangePasswordSuccessDialog(val login:() -> Unit):DialogFragment() {
             requireActivity().startClearTopActivity(HomeActivity::class.java)
         }
         binding.btnLogin.apply {
-            background = ViewHelper.backgroundPrimaryCorners4(context)
+            background = ViewHelper.bgPrimaryCorners4(context)
             setOnClickListener {
                 dismiss()
                 login()

@@ -41,8 +41,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.google.android.gms.maps.MapView
-import com.rd.PageIndicatorView
-import com.rd.animation.type.AnimationType
 import de.hdodenhof.circleimageview.CircleImageView
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
@@ -50,13 +48,11 @@ import vn.icheck.android.component.avatar_user.AvatarUserComponent
 import vn.icheck.android.component.image.LayoutImageInPostComponent
 import vn.icheck.android.component.postofuser.ProductInFeedComponent
 import vn.icheck.android.component.rating_star.RatingStarComponent
-import vn.icheck.android.constant.Constant
 import vn.icheck.android.ui.view.TextBarlowSemiBold
 import vn.icheck.android.ui.view.TextBarlowMedium
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
 import vn.icheck.android.ichecklibs.view.secondary.TextSecondary
-import vn.icheck.android.ui.colorcardview.ColorCardView
 import vn.icheck.android.ui.layout.CustomGridLayoutManager
 import vn.icheck.android.ui.layout.HeightWrappingViewPager
 import vn.icheck.android.ui.view.SquareImageView
@@ -1750,7 +1746,7 @@ object ViewHelper {
                 text.layoutParams = ConstraintLayout.LayoutParams(0, ConstraintLayout.LayoutParams.WRAP_CONTENT).also { params ->
                     params.setMargins(SizeHelper.size10, 0, 0, 0)
                 }
-                text.background = ContextCompat.getDrawable(context, R.drawable.bg_corners_14_light_blue_no_solid)
+                text.background = vn.icheck.android.ichecklibs.ViewHelper.bgOutlinePrimary05Corners14(text.context)
                 text.textSize = 12f
                 text.setPadding(SizeHelper.size6, SizeHelper.size2, SizeHelper.size6, SizeHelper.size2)
                 text.setTextColor(primaryColor)
@@ -2299,7 +2295,7 @@ object ViewHelper {
             it.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
             it.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
             it.includeFontPadding = false
-            it.background = ContextCompat.getDrawable(context, R.drawable.bg_corners_4_light_blue_no_solid)
+            it.background = vn.icheck.android.ichecklibs.ViewHelper.bgOutlinePrimary1Corners4(it.context)
         })
 
         //view line
@@ -2677,7 +2673,7 @@ object ViewHelper {
             it.text = context.getString(R.string.dat_cau_hoi)
             it.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
             it.includeFontPadding = false
-            it.background = ContextCompat.getDrawable(context, R.drawable.bg_corners_4_light_blue_no_solid)
+            it.background = vn.icheck.android.ichecklibs.ViewHelper.bgOutlinePrimary1Corners4(it.context)
         })
 
         return layoutParent
@@ -2916,7 +2912,7 @@ object ViewHelper {
             it.setText(R.string.danh_gia_voi_vai_tro_khac)
             it.typeface = createTypeface(ICheckApplication.getInstance(), R.font.barlow_semi_bold)
             it.textSize = 16f
-            it.setBackgroundResource(R.drawable.bg_corners_4_light_blue_no_solid)
+            it.background = vn.icheck.android.ichecklibs.ViewHelper.bgOutlinePrimary1Corners4(it.context)
             it.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(it.context))
         })
 

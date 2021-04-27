@@ -17,6 +17,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.dialog_filter_shop.*
 import vn.icheck.android.R
+import vn.icheck.android.ichecklibs.ViewHelper
 
 class FilterShopSettingBottomDialog(private var begin: String?,
                                     private var end: String?) : BottomSheetDialogFragment() {
@@ -137,8 +138,11 @@ class FilterShopSettingBottomDialog(private var begin: String?,
         view.findViewById<AppCompatTextView>(R.id.tvSuccess).setOnClickListener {
             successFilter()
         }
-        view.findViewById<AppCompatButton>(R.id.btnTryAgain).setOnClickListener {
-            tryAgain()
+        view.findViewById<AppCompatButton>(R.id.btnTryAgain).apply {
+            background = ViewHelper.bgPrimaryCorners18(context)
+            setOnClickListener {
+                tryAgain()
+            }
         }
     }
 
