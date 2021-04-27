@@ -26,7 +26,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/btn_back" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/textView25"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -35,26 +35,22 @@
         android:layout_marginTop="@dimen/size_16"
         android:layout_marginEnd="@dimen/size_62"
         android:layout_marginRight="@dimen/size_62"
-        android:fontFamily="@font/barlow_medium"
         android:gravity="center_horizontal"
         android:lineHeight="@dimen/size_20"
         android:text="Mã xác nhận OTP đã dược gửi đến
 số điện thoại của bạn"
         android:textAlignment="center"
-        android:textColor="#757575"
         android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider13" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowSemiBold
         android:id="@+id/tv_timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_32"
-        android:fontFamily="@font/barlow_semi_bold"
         android:text="Gửi lại mã (180s)"
-        android:textColor="#757575"
         app:layout_constraintEnd_toEndOf="@+id/edt_otp"
         app:layout_constraintStart_toStartOf="@+id/edt_otp"
         app:layout_constraintTop_toBottomOf="@+id/edt_otp" />

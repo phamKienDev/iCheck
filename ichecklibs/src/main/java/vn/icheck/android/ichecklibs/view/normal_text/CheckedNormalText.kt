@@ -3,15 +3,11 @@ package vn.icheck.android.ichecklibs.view.normal_text
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
-import android.util.TypedValue
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
 
-class TextHeaderNormalTextColor : AppCompatTextView {
-
+class CheckedNormalText : androidx.appcompat.widget.AppCompatCheckedTextView {
     constructor(context: Context) : super(context) {
         setup()
     }
@@ -25,13 +21,7 @@ class TextHeaderNormalTextColor : AppCompatTextView {
     }
 
     private fun setup() {
-        setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
-        typeface = ResourcesCompat.getFont(context, R.font.barlow_semi_bold)
-        setTextColor(if (Constant.normalTextColor.isNotEmpty()) {
-            Color.parseColor(Constant.normalTextColor)
-        } else {
-            ContextCompat.getColor(context, R.color.colorNormalText)
-        })
+        setTextColor(Constant.getNormalTextColor(context))
         includeFontPadding = false
     }
 }

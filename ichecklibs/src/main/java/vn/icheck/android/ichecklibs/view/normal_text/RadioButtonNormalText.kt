@@ -3,13 +3,12 @@ package vn.icheck.android.ichecklibs.view.normal_text
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
+import android.widget.RadioButton
 import androidx.core.content.ContextCompat
 import vn.icheck.android.ichecklibs.Constant
-import vn.icheck.android.ichecklibs.FocusableEditText
 import vn.icheck.android.ichecklibs.R
 
-class FocusableEditTextNormalTextColor:FocusableEditText {
-
+class RadioButtonNormalText : androidx.appcompat.widget.AppCompatRadioButton {
     constructor(context: Context) : super(context) {
         setup()
     }
@@ -23,10 +22,7 @@ class FocusableEditTextNormalTextColor:FocusableEditText {
     }
 
     private fun setup() {
-        setTextColor(if (Constant.normalTextColor.isNotEmpty()) {
-            Color.parseColor(Constant.normalTextColor)
-        } else {
-            ContextCompat.getColor(context, R.color.colorNormalText)
-        })
+        setTextColor(Constant.getNormalTextColor(context))
+        includeFontPadding = false
     }
 }

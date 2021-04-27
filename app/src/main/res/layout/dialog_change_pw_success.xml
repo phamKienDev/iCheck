@@ -44,15 +44,13 @@
                 android:textAlignment="center"
                 android:textSize="@dimen/font_16" />
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:id="@+id/textView7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/barlow_medium"
                 android:gravity="center_horizontal"
                 android:text="Hãy ghi nhớ mật khẩu cận thận nhé!"
-                android:textAlignment="center"
-                android:textColor="#757575" />
+                android:textAlignment="center" />
 
             <LinearLayout
                 android:layout_width="match_parent"

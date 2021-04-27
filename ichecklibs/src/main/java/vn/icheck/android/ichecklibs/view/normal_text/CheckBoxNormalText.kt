@@ -6,10 +6,8 @@ import android.util.AttributeSet
 import androidx.core.content.ContextCompat
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
-import vn.icheck.android.ichecklibs.view.edit_text.CornerErrorEditText
 
-class CornerErrorEditTextNormalTextColor:CornerErrorEditText {
-
+class CheckBoxNormalText : androidx.appcompat.widget.AppCompatCheckBox {
     constructor(context: Context) : super(context) {
         setup()
     }
@@ -23,11 +21,7 @@ class CornerErrorEditTextNormalTextColor:CornerErrorEditText {
     }
 
     private fun setup() {
-        setTextColor(if (Constant.normalTextColor.isNotEmpty()) {
-            Color.parseColor(Constant.normalTextColor)
-        } else {
-            ContextCompat.getColor(context, R.color.colorNormalText)
-        })
+        setTextColor(Constant.getNormalTextColor(context))
         includeFontPadding = false
     }
 }

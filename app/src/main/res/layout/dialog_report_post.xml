@@ -55,7 +55,7 @@
         android:layout_marginTop="@dimen/size_16"
         android:orientation="vertical" />
 
-    <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalTextColor
+    <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalText
         android:id="@id/edtContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

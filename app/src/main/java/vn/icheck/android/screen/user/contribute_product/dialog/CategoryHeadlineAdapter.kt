@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.databinding.ItemCategoryTitleBinding
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.model.category.CategoryItem
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beInvisible
@@ -32,7 +33,7 @@ class CategoryHeadlineAdapter(val onClick:(Int) -> Unit, val listCategory:List<C
             }
             else -> {
                 holder.binding.tvTitle simpleText listCategory[position]?.name
-                holder.binding.tvTitle.setTextColor(Color.parseColor("#757575"))
+                holder.binding.tvTitle.setTextColor(Color.parseColor(Constant.getSecondTextCode))
             }
         }
     }

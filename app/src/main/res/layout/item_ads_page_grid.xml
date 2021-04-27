@@ -68,16 +68,14 @@
         </LinearLayout>
 
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@id/tvStatus"
             android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_6"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:singleLine="true"
-            android:textColor="#757575"
             android:textSize="@dimen/font_12"
             app:layout_constraintEnd_toEndOf="@id/layoutName"
             app:layout_constraintStart_toStartOf="@id/layoutName"
@@ -99,7 +97,7 @@
             app:layout_constraintStart_toStartOf="@id/layoutName"
             app:layout_constraintTop_toBottomOf="@id/tvStatus" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondStateEnable
             android:id="@id/tvAction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -107,7 +105,6 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
             android:singleLine="true"
-            android:textColor="@color/text_color_light_blue"
             android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toBottomOf="@id/btnAction"
             app:layout_constraintEnd_toEndOf="@id/btnAction"

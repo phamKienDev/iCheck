@@ -47,13 +47,11 @@
             android:textSize="@dimen/font_14"
             tools:text="iCheck Xu"/>
 
-        <vn.icheck.android.ui.view.TextBarlowMedium
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@id/tvValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/font_12"
-            android:textColor="#757575"
-            android:fontFamily="@font/barlow_medium"
             tools:text="Số dư hiện tại: 34,970 Xu"/>
 
     </LinearLayout>

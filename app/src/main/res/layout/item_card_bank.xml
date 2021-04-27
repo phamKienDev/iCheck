@@ -227,12 +227,10 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/barlow_medium"
                     android:text="@string/so_the"
-                    android:textColor="#757575"
                     android:textSize="@dimen/font_12" />
 
                 <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
@@ -270,12 +268,10 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/barlow_medium"
                     android:text="@string/han_su_dung"
-                    android:textColor="#757575"
                     android:textSize="@dimen/font_12" />
 
                 <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
@@ -313,12 +309,10 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/barlow_medium"
                     android:text="@string/trang_thai_the"
-                    android:textColor="#757575"
                     android:textSize="@dimen/font_12" />
 
                 <LinearLayout

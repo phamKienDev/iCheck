@@ -232,7 +232,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="12,000 đ" />
 
-                <TextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                     android:id="@+id/textView94"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -240,9 +240,7 @@
                     android:layout_marginTop="@dimen/size_8"
                     android:layout_marginEnd="@dimen/size_12"
                     android:layout_marginBottom="@dimen/size_12"
-                    android:fontFamily="@font/barlow_medium"
                     android:text="Người nhận tự thanh toán phí COD."
-                    android:textColor="#757575"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"

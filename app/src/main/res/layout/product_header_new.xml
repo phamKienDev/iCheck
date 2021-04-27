@@ -98,15 +98,13 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_product_name"
         app:srcCompat="@drawable/vn_flag" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/tv_nation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_5"
         android:layout_marginLeft="@dimen/size_5"
         android:layout_marginTop="@dimen/size_12"
-        android:fontFamily="@font/barlow_regular"
-        android:textColor="#757575"
         app:layout_constraintStart_toEndOf="@+id/img_flag"
         app:layout_constraintTop_toBottomOf="@+id/tv_product_name"
         tools:text="Việt Nam" />

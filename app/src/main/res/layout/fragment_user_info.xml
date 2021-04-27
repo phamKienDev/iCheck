@@ -25,7 +25,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalTextColor
+        <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalText
             android:id="@+id/tv_firstname"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_last_name" />
 
-        <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalTextColor
+        <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalText
             android:id="@+id/edt_birthday"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -88,7 +88,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_birthday" >
-            <vn.icheck.android.ichecklibs.view.normal_text.FocusableEditTextNormalTextColor
+            <vn.icheck.android.ichecklibs.view.normal_text.FocusableEditTextNormalText
                 android:id="@+id/edt_email_input"
                 android:drawableStart="@drawable/ic_register_mail_gray_24px"
                 android:drawableLeft="@drawable/ic_register_mail_gray_24px"
@@ -117,7 +117,7 @@
                 tools:visibility="visible" />
         </LinearLayout>
 
-        <vn.icheck.android.ichecklibs.view.normal_text.FocusableEditTextNormalTextColor
+        <vn.icheck.android.ichecklibs.view.normal_text.FocusableEditTextNormalText
             android:id="@+id/edt_tinh"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -144,7 +144,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_email" />
 
-        <vn.icheck.android.ichecklibs.view.normal_text.FocusableEditTextNormalTextColor
+        <vn.icheck.android.ichecklibs.view.normal_text.FocusableEditTextNormalText
             android:id="@+id/edt_quan"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -171,7 +171,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_tinh" />
 
-        <vn.icheck.android.ichecklibs.view.normal_text.FocusableEditTextNormalTextColor
+        <vn.icheck.android.ichecklibs.view.normal_text.FocusableEditTextNormalText
             android:id="@+id/edt_phuong_xa"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -198,7 +198,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_quan" />
 
-        <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalTextColor
+        <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalText
             android:id="@+id/edt_dia_chi"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -279,13 +279,12 @@
             android:inputType="number"
             android:digits="0123456789"
             android:padding="@dimen/size_12"
-            android:textColorHint="#757575"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_dia_chi" />
 
-        <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalTextColor
+        <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalText
             android:id="@+id/edt_last_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

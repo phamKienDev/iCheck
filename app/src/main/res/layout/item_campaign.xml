@@ -71,14 +71,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                     android:id="@id/tv1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/barlow_medium"
                     android:includeFontPadding="false"
                     android:text="Thời gian"
-                    android:textColor="#757575"
                     android:textSize="@dimen/font_12" />
 
                 <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
@@ -115,15 +113,13 @@
                 app:layout_constraintStart_toEndOf="@id/view"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                     android:id="@id/tv2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/barlow_medium"
                     android:includeFontPadding="false"
                     android:lineSpacingExtra="@dimen/font_14"
                     android:text="@string/nguoi_tham_gia"
-                    android:textColor="#757575"
                     android:textSize="@dimen/font_12" />
 
                 <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium

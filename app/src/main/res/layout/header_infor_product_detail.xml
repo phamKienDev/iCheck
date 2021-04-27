@@ -157,20 +157,18 @@
                 android:layout_marginTop="@dimen/size_2"
                 tools:srcCompat="@drawable/vn_flag" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:id="@+id/tv_nation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_5"
                 android:layout_marginLeft="@dimen/size_5"
                 android:layout_marginTop="@dimen/size_2"
-                android:fontFamily="@font/barlow_medium"
-                android:textColor="#757575"
                 tools:text="Việt Nam" />
 
         </LinearLayout>
 
-        <vn.icheck.android.ui.view.TextBarlowMedium
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@id/tvBarcode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -178,7 +176,6 @@
             android:drawableStart="@drawable/ic_barcode_gray_24px"
             android:drawableLeft="@drawable/ic_barcode_gray_24px"
             android:drawablePadding="@dimen/size_4"
-            android:textColor="#757575"
             android:textSize="@dimen/font_14"
             tools:text="105604364600" />
 

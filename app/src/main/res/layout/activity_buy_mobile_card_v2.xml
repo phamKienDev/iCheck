@@ -154,25 +154,22 @@
 
             </LinearLayout>
 
-            <vn.icheck.android.ichecklibs.view.TextSubheader2
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondSubheader2
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_10"
-                android:text="Chú ý:"
-                android:textColor="#757575" />
+                android:text="Chú ý:" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_10"
                 android:layout_marginEnd="@dimen/size_8"
                 android:layout_marginBottom="@dimen/size_10"
-                android:fontFamily="@font/barlow_medium"
                 android:lineSpacingExtra="@dimen/font_6"
                 android:text="@string/sub_message_topup"
-                android:textColor="#757575"
                 android:textSize="@dimen/font_14" />
 
         </LinearLayout>
@@ -189,14 +186,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <vn.icheck.android.ichecklibs.view.TextSubheader2
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondSubheader2
             android:id="@+id/tvSubPrice"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginTop="@dimen/size_10"
             android:text="Thành tiền"
-            android:textColor="#757575"
             app:layout_constraintEnd_toStartOf="@+id/tvPrice"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

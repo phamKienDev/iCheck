@@ -184,15 +184,13 @@
                             android:text="Đang cập nhật"
                             tools:visibility="visible" />
 
-                        <androidx.appcompat.widget.AppCompatTextView
+                        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                             android:id="@+id/tvRefuse"
                             android:layout_width="@dimen/size_120"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/size_32"
                             android:layout_marginTop="@dimen/size_10"
-                            android:fontFamily="@font/barlow_medium"
                             android:lineSpacingExtra="@dimen/font_6"
-                            android:textColor="#757575"
                             android:textSize="@dimen/font_14"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tv_mathecao"
@@ -248,16 +246,14 @@
                             android:text="Đang cập nhật"
                             tools:visibility="visible" />
 
-                        <TextView
+                        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                             android:id="@+id/tv_mathecao"
                             android:layout_width="@dimen/size_120"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/size_32"
                             android:layout_marginTop="@dimen/size_8"
-                            android:fontFamily="@font/barlow_medium"
                             android:lineSpacingExtra="@dimen/font_6"
                             android:text="Mã thẻ cào"
-                            android:textColor="#757575"
                             android:textSize="@dimen/font_14"
                             android:visibility="gone"
                             app:layout_constraintStart_toStartOf="parent"
@@ -344,16 +340,14 @@
                     app:layout_constraintBottom_toBottomOf="@+id/imgLogoSupplier"
                     app:layout_constraintEnd_toEndOf="@+id/imgLogoSupplier" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                     android:id="@+id/appCompatTextView33"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_8"
                     android:layout_marginLeft="@dimen/size_8"
-                    android:fontFamily="@font/barlow_medium"
                     android:lineSpacingExtra="@dimen/font_14"
                     android:text="Đơn vị tài trợ"
-                    android:textColor="#757575"
                     android:textSize="@dimen/font_12"
                     app:layout_constraintStart_toEndOf="@id/imgLogoSupplier"
                     app:layout_constraintTop_toTopOf="@id/imgLogoSupplier" />

@@ -8,7 +8,7 @@ import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.MiddleMultilineTextView
 import vn.icheck.android.ichecklibs.R
 
-class TextNormalMiddleMultiline:MiddleMultilineTextView {
+class TextNormalMiddleMultiline : MiddleMultilineTextView {
 
     constructor(context: Context) : super(context) {
         setup()
@@ -23,11 +23,7 @@ class TextNormalMiddleMultiline:MiddleMultilineTextView {
     }
 
     private fun setup() {
-        setTextColor(if (Constant.normalTextColor.isNotEmpty()) {
-            Color.parseColor(Constant.normalTextColor)
-        } else {
-            ContextCompat.getColor(context, R.color.colorNormalText)
-        })
+        setTextColor(Constant.getNormalTextColor(context))
         includeFontPadding = false
     }
 }

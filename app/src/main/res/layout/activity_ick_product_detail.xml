@@ -165,17 +165,15 @@
             android:textSize="@dimen/font_16"
             tools:text="Thông tin sản phẩm chưa được cập nhật" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/tvDescError"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_16"
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginEnd="@dimen/size_16"
-            android:fontFamily="@font/barlow_medium"
             android:gravity="center"
             android:lineSpacingExtra="@dimen/font_6"
-            android:textColor="#757575"
             android:textSize="@dimen/font_14"
             tools:text="Chúng tôi không thể giúp bạn kiểm tra thông tin nguồn gốc xuất xứ của sản phầm này." />
 

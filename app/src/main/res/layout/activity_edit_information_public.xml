@@ -49,13 +49,11 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_empty_information_wall" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_20"
-            android:fontFamily="@font/barlow_medium"
             android:text="Thông tin cá nhân của bạn chưa được cập nhật"
-            android:textColor="#757575"
             android:textSize="@dimen/font_14" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -85,14 +83,12 @@
         android:orientation="vertical"
         tools:visibility="visible">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_10"
-            android:fontFamily="@font/barlow_medium"
             android:lineSpacingExtra="@dimen/font_6"
             android:text="Thông tin công khai là những thông tin cá nhân bạn cho phép người khác nhìn thấy trên trang cá nhân của mình."
-            android:textColor="#757575"
             android:textSize="@dimen/font_14" />
 
         <androidx.recyclerview.widget.RecyclerView

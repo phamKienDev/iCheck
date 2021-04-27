@@ -8,8 +8,9 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
+import vn.icheck.android.ichecklibs.view.TextBarlowSemiBold
 
-class TextNormalBarlowSemiBold : AppCompatTextView {
+class TextNormalBarlowSemiBold : TextBarlowSemiBold {
     constructor(context: Context) : super(context) {
         setup()
     }
@@ -23,13 +24,7 @@ class TextNormalBarlowSemiBold : AppCompatTextView {
     }
 
     private fun setup() {
-        setTextColor(if (Constant.normalTextColor.isNotEmpty()) {
-            Color.parseColor(Constant.normalTextColor)
-        } else {
-            ContextCompat.getColor(context, R.color.colorNormalText)
-        })
-
-        typeface = ResourcesCompat.getFont(context, R.font.barlow_semi_bold)
+        setTextColor(Constant.getNormalTextColor(context))
         includeFontPadding = false
     }
 }

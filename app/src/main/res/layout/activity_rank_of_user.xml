@@ -157,13 +157,12 @@
                         app:layout_constraintTop_toTopOf="@+id/tvPoint"
                         tools:src="@drawable/ic_arrow_right_standard_8" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                         android:id="@+id/tvNameRank"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/size_5"
                         tools:text="Thành viên Chuẩn"
-                        android:textColor="#757575"
                         android:textSize="@dimen/font_14"
                         app:layout_constraintBottom_toBottomOf="@+id/imgAvatar"
                         app:layout_constraintStart_toStartOf="@+id/tvPoint"

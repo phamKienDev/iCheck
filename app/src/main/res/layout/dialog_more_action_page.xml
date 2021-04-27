@@ -47,12 +47,10 @@
                 app:layout_constraintTop_toTopOf="@id/imgFollow"
                 tools:text="Bỏ theo dõi" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:id="@+id/tvSubUnfollow"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/barlow_medium"
-                android:textColor="#757575"
                 android:textSize="@dimen/font_14"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -89,12 +87,10 @@
                 app:layout_constraintTop_toTopOf="@id/imgNotification"
                 tools:text="Bật thông báo cho Trang này" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:id="@+id/tvNotificationOn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/barlow_medium"
-                android:textColor="#757575"
                 android:textSize="@dimen/font_14"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -132,12 +128,10 @@
                 app:layout_constraintStart_toEndOf="@id/imgReport"
                 app:layout_constraintTop_toTopOf="@id/imgReport" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/barlow_medium"
                 android:text="Bạn nhận thấy trang này mang nội dung không hữu ích? Hãy cho chúng tôi biết."
-                android:textColor="#757575"
                 android:textSize="@dimen/font_14"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"

@@ -69,7 +69,7 @@
                 android:text="Email"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalTextColor
+            <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalText
                 android:id="@id/edtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_36"
@@ -112,7 +112,7 @@
                 android:text="Tiêu đề"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalTextColor
+            <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalText
                 android:id="@id/edtTitle"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_36"
@@ -155,7 +155,7 @@
                 android:text="Nội dung tin nhắn"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalTextColor
+            <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalText
                 android:id="@id/edtContent"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_76"

@@ -48,10 +48,12 @@ import vn.icheck.android.component.avatar_user.AvatarUserComponent
 import vn.icheck.android.component.image.LayoutImageInPostComponent
 import vn.icheck.android.component.postofuser.ProductInFeedComponent
 import vn.icheck.android.component.rating_star.RatingStarComponent
-import vn.icheck.android.ui.view.TextBarlowSemiBold
-import vn.icheck.android.ui.view.TextBarlowMedium
+import vn.icheck.android.ichecklibs.view.TextBarlowSemiBold
+import vn.icheck.android.ichecklibs.view.TextBarlowMedium
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
+import vn.icheck.android.ichecklibs.view.second_text.TextSecondSendOtpLogin
 import vn.icheck.android.ichecklibs.view.secondary.TextSecondary
 import vn.icheck.android.ui.layout.CustomGridLayoutManager
 import vn.icheck.android.ui.layout.HeightWrappingViewPager
@@ -167,6 +169,18 @@ object ViewHelper {
             it.typeface = typeFace
             it.setBackgroundResource(backgroundResource)
             it.setTextColor(textColor)
+            it.includeFontPadding = false
+            it.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize)
+            it.ellipsize = TextUtils.TruncateAt.END
+            it.gravity = Gravity.CENTER_VERTICAL
+        }
+    }
+
+    fun createTextSendOtpLogin(context: Context, layoutParams: ViewGroup.LayoutParams, backgroundResource: Int, typeFace: Typeface, fontSize: Float): TextSecondSendOtpLogin {
+        return TextSecondSendOtpLogin(context).also {
+            it.layoutParams = layoutParams
+            it.typeface = typeFace
+            it.setBackgroundResource(backgroundResource)
             it.includeFontPadding = false
             it.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize)
             it.ellipsize = TextUtils.TruncateAt.END
@@ -356,7 +370,7 @@ object ViewHelper {
         tvTitle.layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
         tvTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
         tvTitle.typeface = Typeface.create(sansSerifMedium, Typeface.NORMAL)
-        tvTitle.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context))
+        tvTitle.setTextColor(Constant.getSecondaryColor(context))
         tvTitle.includeFontPadding = false
         tvTitle.setPadding(0, 0, SizeHelper.size12, 0)
         layoutParent.addView(tvTitle)
@@ -560,7 +574,7 @@ object ViewHelper {
         }
         tvPrice.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
         tvPrice.typeface = Typeface.create(sansSerifMedium, Typeface.NORMAL)
-        tvPrice.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context))
+        tvPrice.setTextColor(Constant.getSecondaryColor(context))
         tvPrice.includeFontPadding = false
         tvPrice.isSingleLine = true
         tvPrice.ellipsize = TextUtils.TruncateAt.END
@@ -692,7 +706,7 @@ object ViewHelper {
             tvTitle.layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
             tvTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
             tvTitle.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
-            tvTitle.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context))
+            tvTitle.setTextColor(Constant.getSecondaryColor(context))
             tvTitle.includeFontPadding = false
             tvTitle.isSingleLine = true
             tvTitle.setPadding(0, 0, SizeHelper.size12, 0)
@@ -745,7 +759,7 @@ object ViewHelper {
                 createLayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f),
                 null,
                 createTypeface(context, R.font.barlow_semi_bold),
-                vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context),
+                Constant.getSecondaryColor(context),
                 18f
         ).also {
             it.setPadding(0, 0, SizeHelper.size12, 0)
@@ -770,7 +784,7 @@ object ViewHelper {
                 createLayoutParams(),
                 null,
                 createTypeface(context, R.font.barlow_semi_bold),
-                vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context),
+                Constant.getSecondaryColor(context),
                 18f
         ).also {
             it.setPadding(SizeHelper.size12, SizeHelper.size12, SizeHelper.size12, SizeHelper.size12)
@@ -783,7 +797,7 @@ object ViewHelper {
         layoutParent.setPadding(SizeHelper.size12, SizeHelper.size16, SizeHelper.size12, 0)
         layoutParent.orientation = LinearLayout.HORIZONTAL
 
-        val secondaryColor = vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context)
+        val secondaryColor = Constant.getSecondaryColor(context)
 
         layoutParent.addView(createText(context,
                 createLayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f),
@@ -1059,7 +1073,7 @@ object ViewHelper {
             layoutParent.layoutParams = createLayoutParams()
             layoutParent.orientation = LinearLayout.HORIZONTAL
 
-            val secondaryColor = vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context)
+            val secondaryColor = Constant.getSecondaryColor(context)
 
             layoutParent.addView(createText(context,
                     createLayoutParams(0, SizeHelper.size36, 1f, 0, 0, SizeHelper.size5, 0),
@@ -1108,7 +1122,7 @@ object ViewHelper {
                         createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT),
                         null,
                         createTypeface(context, R.font.barlow_semi_bold),
-                        vn.icheck.android.ichecklibs.Constant.getSecondTextColor(context),
+                        Constant.getSecondTextColor(context),
                         16f))
             })
 
@@ -1203,7 +1217,7 @@ object ViewHelper {
             it.bottomMargin = SizeHelper.size5
         }
         tvTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
-        tvTitle.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context))
+        tvTitle.setTextColor(Constant.getSecondaryColor(context))
         tvTitle.includeFontPadding = false
         tvTitle.setPadding(SizeHelper.size12, SizeHelper.size12, SizeHelper.size12, 0)
 
@@ -1222,7 +1236,7 @@ object ViewHelper {
         val title = TextBarlowSemiBold(context)
         title.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
         title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
-        title.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context))
+        title.setTextColor(Constant.getSecondaryColor(context))
         title.includeFontPadding = false
         title.text = context.getString(R.string.chung_toi_can_ban_danh_gia)
         title.setPadding(SizeHelper.size12, SizeHelper.size20, 0, 0)
@@ -1266,7 +1280,7 @@ object ViewHelper {
                 layoutTitle.orientation = LinearLayout.HORIZONTAL
                 layoutTitle.gravity = Gravity.CENTER_VERTICAL
 
-                val secondaryColor = vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context)
+                val secondaryColor = Constant.getSecondaryColor(context)
 
                 layoutTitle.addView(TextBarlowSemiBold(context).also { title ->
                     title.layoutParams = createLayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
@@ -1307,7 +1321,7 @@ object ViewHelper {
                 layoutTitle.addView(TextBarlowSemiBold(context).also { title ->
                     title.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f))
                     title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
-                    title.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context))
+                    title.setTextColor(Constant.getSecondaryColor(context))
                     title.includeFontPadding = false
                     title.text = "Trải nghiệm mua sắm"
                     title.setPadding(SizeHelper.size12, 0, 0, 0)
@@ -1465,7 +1479,7 @@ object ViewHelper {
                 createLayoutParams(SizeHelper.size12, SizeHelper.size6, SizeHelper.size12, SizeHelper.size10),
                 null,
                 createTypeface(context, R.font.barlow_medium),
-                vn.icheck.android.ichecklibs.Constant.getSecondTextColor(context),
+                Constant.getSecondTextColor(context),
                 12f))
 
         return layoutParent
@@ -1494,7 +1508,7 @@ object ViewHelper {
                 it.gravity = Gravity.CENTER_HORIZONTAL
             })
 
-            val secondaryColor = vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context)
+            val secondaryColor = Constant.getSecondaryColor(context)
 
             layoutParent.addView(createText(context,
                     createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size44).also { params ->
@@ -1542,7 +1556,7 @@ object ViewHelper {
                     it.gravity = Gravity.CENTER
                 })
 
-                val secondaryColor = vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context)
+                val secondaryColor = Constant.getSecondaryColor(context)
 
                 layoutParent.addView(createText(context,
                         createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size44).also { params ->
@@ -1578,7 +1592,7 @@ object ViewHelper {
                 createLayoutParams(SizeHelper.size12, SizeHelper.size16, 0, 0),
                 null,
                 Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf"),
-                vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context),
+                Constant.getSecondaryColor(context),
                 18f,
                 1).also {
             it.text = "Trải nghiệm sản phẩm mới"
@@ -1619,7 +1633,7 @@ object ViewHelper {
                         ContextCompat.getColor(context, R.color.colorSecondText), ContextCompat.getColor(context, R.color.colorSecondText),
                         SizeHelper.size1, SizeHelper.size16.toFloat()),
                 Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf"),
-                vn.icheck.android.ichecklibs.Constant.getSecondTextColor(context),
+                Constant.getSecondTextColor(context),
                 14f,
                 1
         ).also {
@@ -1653,7 +1667,7 @@ object ViewHelper {
         tvTitle.layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
         tvTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
         tvTitle.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
-        tvTitle.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context))
+        tvTitle.setTextColor(Constant.getSecondaryColor(context))
         tvTitle.includeFontPadding = false
         tvTitle.setPadding(0, 0, SizeHelper.size12, 0)
         layoutParent.addView(tvTitle)
@@ -2359,7 +2373,7 @@ object ViewHelper {
             it.layoutParams = createLayoutParams().also {
                 it.setMargins(SizeHelper.size12, 0, SizeHelper.size12, 0)
             }
-            it.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context))
+            it.setTextColor(Constant.getSecondaryColor(context))
             it.gravity = Gravity.CENTER_HORIZONTAL
             it.text = context.getString(R.string.danh_gia_cua_ban_se_rat_huu_ich_cho_cong_dong)
             it.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
@@ -2398,8 +2412,8 @@ object ViewHelper {
                 edt.setBackgroundColor(Color.TRANSPARENT)
                 edt.gravity = Gravity.TOP
                 edt.setTypeface(Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf"))
-                edt.setHintTextColor(vn.icheck.android.ichecklibs.Constant.getSecondTextColor(context))
-                edt.setTextColor(vn.icheck.android.ichecklibs.Constant.getNormalTextColor(context))
+                edt.setHintTextColor(Constant.getSecondTextColor(context))
+                edt.setTextColor(Constant.getNormalTextColor(context))
                 edt.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
             })
 
@@ -2634,7 +2648,7 @@ object ViewHelper {
             it.gravity = Gravity.BOTTOM
             it.orientation = LinearLayout.HORIZONTAL
 
-            val secondaryColor = vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context)
+            val secondaryColor = Constant.getSecondaryColor(context)
 
             it.addView(AppCompatTextView(context).also { tvName ->
                 tvName.layoutParams =
@@ -2692,7 +2706,7 @@ object ViewHelper {
             it.gravity = Gravity.BOTTOM
             it.orientation = LinearLayout.HORIZONTAL
 
-            val secondaryColor = vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context)
+            val secondaryColor = Constant.getSecondaryColor(context)
 
             it.addView(AppCompatTextView(context).also { tvName ->
                 tvName.layoutParams =
@@ -3077,7 +3091,7 @@ object ViewHelper {
             layoutParams.orientation = LinearLayout.VERTICAL
             layoutParams.setBackgroundColor(ContextCompat.getColor(context, R.color.white))
 
-            val secondaryColor = vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context)
+            val secondaryColor = Constant.getSecondaryColor(context)
 
             //0
             layoutParams.addView(AppCompatTextView(context).also { params ->
@@ -3393,7 +3407,7 @@ object ViewHelper {
                         it.setMargins(0, SizeHelper.size10, 0, 0)
                     }
                     text.textSize = 14f
-                    text.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context))
+                    text.setTextColor(Constant.getSecondaryColor(context))
                     text.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
                     text.includeFontPadding = false
                     text.isSingleLine = true

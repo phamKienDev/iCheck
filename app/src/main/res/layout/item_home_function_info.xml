@@ -48,13 +48,11 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/barlow_medium"
                         android:includeFontPadding="false"
                         android:text="@string/xin_chao"
-                        android:textColor="#757575"
                         android:textSize="@dimen/font_12" />
 
                     <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold

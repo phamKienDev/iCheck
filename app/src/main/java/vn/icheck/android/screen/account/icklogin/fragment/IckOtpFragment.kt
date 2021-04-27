@@ -37,6 +37,7 @@ import vn.icheck.android.databinding.FragmentOtpBinding
 import vn.icheck.android.helper.CartHelper
 import vn.icheck.android.tracking.insider.InsiderHelper
 import vn.icheck.android.helper.ShareSessionToModule
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.model.icklogin.ConfirmOtpResponse
 import vn.icheck.android.model.icklogin.IckUserInfoData
 import vn.icheck.android.network.base.SessionManager
@@ -150,7 +151,7 @@ class IckOtpFragment : Fragment() {
                                     ickLoginViewModel.requestLoginOtp().observe(viewLifecycleOwner) {
                                         if (it?.statusCode == "200") {
                                             binding.tvTimer.setOnClickListener(null)
-                                            binding.tvTimer.setTextColor(Color.parseColor("#757575"))
+                                            binding.tvTimer.setTextColor(Color.parseColor(Constant.getSecondTextCode))
                                             ickLoginViewModel.waitResponse = false
                                             start()
                                         } else {
@@ -162,7 +163,7 @@ class IckOtpFragment : Fragment() {
                                     ickLoginViewModel.resendRegisterOtp().observe(viewLifecycleOwner) {
                                         if (it?.statusCode == "200") {
                                             binding.tvTimer.setOnClickListener(null)
-                                            binding.tvTimer.setTextColor(Color.parseColor("#757575"))
+                                            binding.tvTimer.setTextColor(Color.parseColor(Constant.getSecondTextCode))
                                             ickLoginViewModel.waitResponse = false
                                             start()
                                         } else {
@@ -175,7 +176,7 @@ class IckOtpFragment : Fragment() {
                                         ickLoginViewModel.resendRegisterOtp().observe(viewLifecycleOwner) {
                                             if (it?.statusCode == "200") {
                                                 binding.tvTimer.setOnClickListener(null)
-                                                binding.tvTimer.setTextColor(Color.parseColor("#757575"))
+                                                binding.tvTimer.setTextColor(Color.parseColor(Constant.getSecondTextCode))
                                                 ickLoginViewModel.waitResponse = false
                                                 start()
                                             } else {
@@ -186,7 +187,7 @@ class IckOtpFragment : Fragment() {
                                         ickLoginViewModel.requestRegisterFacebook(ickLoginViewModel.facebookPhone.toString(), ickLoginViewModel.facebookToken.toString()).observe(viewLifecycleOwner) {
                                             if (it?.statusCode == "200") {
                                                 binding.tvTimer.setOnClickListener(null)
-                                                binding.tvTimer.setTextColor(Color.parseColor("#757575"))
+                                                binding.tvTimer.setTextColor(Color.parseColor(Constant.getSecondTextCode))
                                                 ickLoginViewModel.waitResponse = false
                                                 start()
                                             } else {

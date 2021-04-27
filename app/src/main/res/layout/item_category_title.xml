@@ -15,14 +15,12 @@
         app:srcCompat="@drawable/ic_arrow_right_light_blue_24dp"
         tools:visibility="visible" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/size_8"
-        android:fontFamily="@font/barlow_medium"
         android:gravity="center"
-        android:textColor="#757575"
         android:textSize="@dimen/font_16"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/img_arr"

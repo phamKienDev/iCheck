@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_filter_type.view.*
 import vn.icheck.android.R
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.history.ICTypeHistory
 import vn.icheck.android.screen.user.scan_history.ScanHistoryFragment
 import vn.icheck.android.screen.user.scan_history.view.IScanHistoryView
@@ -63,7 +64,7 @@ class FilterTypeAdapter(var listData: MutableList<ICTypeHistory>, val listener: 
             } else {
                 itemView.layoutContent.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_4_f2f2f2)
                 itemView.img_tick.visibility = View.INVISIBLE
-                itemView.tvName.setTextColor(Color.parseColor("#757575"))
+                itemView.tvName.setTextColor(Color.parseColor(Constant.getNormalTextCode))
             }
 
             itemView.layoutContent.setOnClickListener {

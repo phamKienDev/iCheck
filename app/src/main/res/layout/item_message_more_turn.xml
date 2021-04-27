@@ -14,7 +14,7 @@
         android:layout_marginTop="@dimen/size_93"
         tools:srcCompat="@drawable/ic_emty_qrcode_history"/>
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/tvMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,9 +22,7 @@
         android:layout_margin="@dimen/size_12"
         android:gravity="center"
         android:textAlignment="center"
-        android:fontFamily="@font/barlow_medium"
         android:textStyle="normal"
-        android:textColor="#757575"
         tools:text="Bạn chưa có mã QR nào" />
 
 </LinearLayout>

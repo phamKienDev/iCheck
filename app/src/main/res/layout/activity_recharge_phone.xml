@@ -109,7 +109,7 @@
                 android:background="@color/white"
                 android:orientation="vertical">
 
-                <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalTextColor
+                <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalText
                     android:id="@id/edtPhone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -125,7 +125,7 @@
                     android:textSize="@dimen/font_14"
                     android:drawableRight="@drawable/ic_phonebook_24px" />
 
-                <vn.icheck.android.ui.view.TextBarlowMedium
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                     android:id="@id/tv1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -133,11 +133,9 @@
                     android:layout_marginTop="@dimen/size_10"
                     android:layout_marginEnd="@dimen/size_12"
                     android:layout_marginBottom="@dimen/size_10"
-                    android:fontFamily="@font/barlow_medium"
                     android:paddingStart="@dimen/size_3"
                     android:paddingLeft="@dimen/size_3"
                     android:text="Lưu ý: Không cần nhập số điện thoại của bạn nếu nạp cho bạn"
-                    android:textColor="#757575"
                     android:textSize="@dimen/font_12"
                     android:visibility="visible" />
 
@@ -197,27 +195,23 @@
 
             </LinearLayout>
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowSemiBold
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_10"
-                android:fontFamily="@font/barlow_semi_bold"
                 android:text="Chú ý:"
-                android:textColor="#757575"
                 android:textSize="@dimen/font_16" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_10"
                 android:layout_marginEnd="@dimen/size_8"
                 android:layout_marginBottom="@dimen/size_10"
-                android:fontFamily="@font/barlow_medium"
                 android:lineSpacingExtra="@dimen/font_6"
                 android:text="@string/sub_message_topup"
-                android:textColor="#757575"
                 android:textSize="@dimen/font_14" />
 
         </LinearLayout>
@@ -234,15 +228,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowSemiBold
             android:id="@+id/tvSubPrice"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginTop="@dimen/size_10"
-            android:fontFamily="@font/barlow_semi_bold"
             android:text="Thành tiền"
-            android:textColor="#757575"
             android:textSize="@dimen/font_16"
             app:layout_constraintEnd_toStartOf="@+id/tvPrice"
             app:layout_constraintStart_toStartOf="parent"

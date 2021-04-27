@@ -35,15 +35,13 @@
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/txtMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:textColor="@color/gray_75"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="24dp"
-            android:fontFamily="@font/barlow_medium"
             android:gravity="center_horizontal"
             android:includeFontPadding="false"
             android:textStyle="normal"
@@ -58,16 +56,14 @@
             android:background="#33000000"
             card_view:layout_constraintTop_toBottomOf="@id/txtMessage" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowSemiBold
             android:id="@+id/btnDisagree"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:includeFontPadding="false"
             android:text="@string/de_sau"
             android:textAllCaps="false"
-            android:textColor="#757575"
             android:textSize="16sp"
             android:textStyle="normal"
             card_view:layout_constraintBottom_toBottomOf="@+id/viewCenter"

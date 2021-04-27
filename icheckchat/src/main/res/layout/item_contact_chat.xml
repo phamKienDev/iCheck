@@ -27,7 +27,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@color/colorPrimary" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
         android:id="@+id/tvNameUser"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -36,10 +36,8 @@
         android:layout_marginEnd="12dp"
         android:layout_marginRight="12dp"
         android:ellipsize="end"
-        android:fontFamily="@font/barlow_semi_bold"
         android:includeFontPadding="false"
         android:singleLine="true"
-        android:textColor="@color/black_21"
         app:layout_constraintBottom_toBottomOf="@id/imgAvatarFriend"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/imgAvatarFriend"

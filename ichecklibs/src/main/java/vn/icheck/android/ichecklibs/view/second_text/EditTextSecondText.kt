@@ -9,7 +9,7 @@ import androidx.core.content.ContextCompat
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
 
-class EditTextSecondTextColor : EditText {
+class EditTextSecondText : EditText {
     constructor(context: Context) : super(context) {
         setup()
     }

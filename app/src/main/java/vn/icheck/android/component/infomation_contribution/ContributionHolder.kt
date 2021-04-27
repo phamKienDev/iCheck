@@ -1,6 +1,5 @@
 package vn.icheck.android.component.infomation_contribution
 
-import android.graphics.Color
 import android.os.Build
 import android.view.View
 import android.view.ViewGroup
