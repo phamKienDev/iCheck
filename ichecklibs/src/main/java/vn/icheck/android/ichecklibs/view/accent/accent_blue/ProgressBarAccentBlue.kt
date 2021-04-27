@@ -7,6 +7,7 @@ import android.graphics.drawable.LayerDrawable
 import android.graphics.drawable.ScaleDrawable
 import android.graphics.drawable.StateListDrawable
 import android.util.AttributeSet
+import android.view.Gravity
 import android.widget.ProgressBar
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.SizeHelper
@@ -30,18 +31,19 @@ class ProgressBarAccentBlue : ProgressBar {
             it.cornerRadius = SizeHelper.size8.toFloat()
         }
 
+
         val progressDrawable = GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT,
                 intArrayOf(
                         Constant.getPrimaryColor(context),
                         Constant.getAccentBlueColor(context)
                 )).also { it.cornerRadius = SizeHelper.size8.toFloat() }
-
-        val progress = ScaleDrawable(progressDrawable,0,100f,0f)
+        val progress = ScaleDrawable(progressDrawable, Gravity.START, 1f, 0.1f)
 
         val layers = arrayOf(background, progress)
-
         val layerDrawble = LayerDrawable(layers)
-        layerDrawble.setDrawableByLayerId(android.R.id.background, background)
-        layerDrawble.setDrawableByLayerId(android.R.id.progress, progress)
+        layerDrawble.setId(0, android.R.id.background)
+        layerDrawble.setId(1, android.R.id.progress)
+
+        setProgressDrawable(layerDrawble)
     }
 }
