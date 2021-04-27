@@ -11,7 +11,9 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@id/imgBackground"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        tools:src="@color/colorPrimary" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/group_notification"
@@ -34,12 +36,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imageView13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
-                android:layout_marginLeft="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_8"
                 android:paddingBottom="@dimen/size_12"
                 app:layout_constraintStart_toStartOf="parent"
@@ -75,13 +76,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageView13"
                 tools:visibility="visible">
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imageView14"
                     android:layout_width="@dimen/size_50"
                     android:layout_height="0dp"
                     android:layout_marginTop="@dimen/size_24"
                     android:layout_marginEnd="@dimen/size_16"
-                    android:layout_marginRight="@dimen/size_16"
                     android:layout_marginBottom="@dimen/size_24"
                     android:maxWidth="@dimen/size_50"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -145,30 +145,21 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#f0f0f0"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
             android:clipToPadding="false"
             android:descendantFocusability="blocksDescendants" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-<!--    <View-->
-<!--        android:id="@+id/toolbarBackground"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="@dimen/size_0"-->
-<!--        android:alpha="0"-->
-<!--        android:background="@color/white"-->
-<!--        app:layout_constraintBottom_toBottomOf="@id/layoutHeader"-->
-<!--        app:layout_constraintTop_toTopOf="@id/layoutHeader" />-->
 
     <ScrollView
         android:id="@+id/toolbarBackground"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_0"
         android:alpha="0"
+        android:background="@color/white"
         android:clickable="false"
         android:focusable="false"
-        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="@id/layoutHeader"
         app:layout_constraintTop_toTopOf="@id/layoutHeader">
 
@@ -189,17 +180,14 @@
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:visibility="invisible"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatCheckedTextView
             android:id="@+id/txtAvatar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_7"
-            android:layout_marginLeft="@dimen/size_7"
             android:drawableStart="@drawable/icon_home_menu_24dp"
-            android:drawableLeft="@drawable/icon_home_menu_24dp"
             android:padding="@dimen/size_8"
             app:layout_constraintBottom_toBottomOf="@id/txtSearch"
             app:layout_constraintStart_toStartOf="parent"
@@ -233,7 +221,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/icon_home_shop_24dp"
-            android:drawableLeft="@drawable/icon_home_shop_24dp"
             android:padding="@dimen/size_8"
             app:layout_constraintBottom_toBottomOf="@id/txtSearch"
             app:layout_constraintEnd_toStartOf="@id/txtNotification"
@@ -244,7 +231,6 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/size_22"
             android:layout_marginStart="@dimen/size_24"
-            android:layout_marginLeft="@dimen/size_24"
             android:background="@drawable/bg_home_notification"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
@@ -267,9 +253,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/size_8"
-            android:layout_marginRight="@dimen/size_8"
             android:drawableStart="@drawable/icon_home_notification_24dp"
-            android:drawableLeft="@drawable/icon_home_notification_24dp"
             android:padding="@dimen/size_8"
             app:layout_constraintBottom_toBottomOf="@id/txtSearch"
             app:layout_constraintEnd_toEndOf="parent"
@@ -280,7 +264,6 @@
             android:layout_width="@dimen/size_22"
             android:layout_height="@dimen/size_22"
             android:layout_marginStart="@dimen/size_18"
-            android:layout_marginLeft="@dimen/size_18"
             android:background="@drawable/bg_home_cart"
             android:gravity="center"
             android:includeFontPadding="false"
@@ -325,17 +308,17 @@
         tools:visibility="visible" />
 
     <FrameLayout
+        android:id="@id/layoutLoading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="@android:color/transparent"
         android:clickable="true"
-        android:focusable="true"
-        android:id="@id/layoutLoading"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
+        android:focusable="true">
 
         <com.airbnb.lottie.LottieAnimationView
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
             android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:scaleType="centerInside"
             app:lottie_autoPlay="true"
             app:lottie_enableMergePathsForKitKatAndAbove="true"

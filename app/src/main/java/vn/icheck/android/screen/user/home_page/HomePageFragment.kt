@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
@@ -335,7 +336,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                     setToolbarBackground(visibility)
                 } else if (!swipeLayout.isRefreshing) {
                     setToolbarBackground(1f)
-                    if (layoutContainer.currentState != layoutContainer.endState && viewModel.getRemindersCount() ?: 0 > 0) {
+                    if (layoutContainer.currentState != layoutContainer.endState && viewModel.getRemindersCount() > 0) {
                         layoutContainer.transitionToEnd()
                     }
                 }

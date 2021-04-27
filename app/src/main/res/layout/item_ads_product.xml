@@ -89,5 +89,4 @@
             app:layout_constraintEnd_toEndOf="@id/viewBackground"
             app:layout_constraintTop_toTopOf="@id/viewBackground" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </LinearLayout>
