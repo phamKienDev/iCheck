@@ -14,7 +14,6 @@ import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
-import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.component.header_page.bottom_sheet_header_page.IListReportView
 import vn.icheck.android.component.header_page.bottom_sheet_header_page.MoreActionPageBottomSheet
@@ -22,6 +21,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICMedia
 import vn.icheck.android.network.models.ICPageOverview
@@ -36,7 +36,7 @@ import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.io.Serializable
 
-class HeaderInforPageHolder(parent: ViewGroup, val view: IListReportView) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_header_infor_page, parent, false)) {
+class HeaderInforPageHolder(parent: ViewGroup, val listener: IListReportView) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_header_infor_page, parent, false)) {
     private val listAvatarFollower = mutableListOf<String>()
     private var isFollow: Boolean? = null
     fun bind(data: ICPageOverview) {
@@ -145,50 +145,56 @@ class HeaderInforPageHolder(parent: ViewGroup, val view: IListReportView) : Recy
 
                 SocialChatActivity.createRoomChat(it.context, data.id)
             } else {
-                view.followAndUnFollowPage(data)
+                listener.followAndUnFollowPage(data)
             }
         }
 
-        itemView.btnPhu.setOnClickListener {
-            val phone = data.pageDetail?.phone ?: ""
-            if (phone.isNotEmpty()) {
-                DialogHelper.showConfirm(itemView.context, itemView.context.getString(R.string.ban_co_muon_goi_dien_thoai_den_x, phone), null, "Để sau", "Đồng ý", null, null, true, object : ConfirmDialogListener {
-                    override fun onDisagree() {
+        itemView.btnPhu.apply {
+            background = ViewHelper.bgOutlinePrimary1Corners4(context)
+            setOnClickListener {
+                val phone = data.pageDetail?.phone ?: ""
+                if (phone.isNotEmpty()) {
+                    DialogHelper.showConfirm(itemView.context, itemView.context.getString(R.string.ban_co_muon_goi_dien_thoai_den_x, phone), null, "Để sau", "Đồng ý", null, null, true, object : ConfirmDialogListener {
+                        override fun onDisagree() {
 
-                    }
+                        }
 
-                    override fun onAgree() {
-                        phone.startCallPhone()
-                    }
-                })
+                        override fun onAgree() {
+                            phone.startCallPhone()
+                        }
+                    })
 
-            } else {
-                DialogHelper.showDialogErrorBlack(itemView.context, itemView.context.getString(R.string.sdt_dang_cap_nhat))
+                } else {
+                    DialogHelper.showDialogErrorBlack(itemView.context, itemView.context.getString(R.string.sdt_dang_cap_nhat))
+                }
             }
         }
 
-        itemView.btnMore.setOnClickListener {
-            object : MoreActionPageBottomSheet(itemView.context, data) {
-                override fun onClickUnfollow() {
-                    view.followAndUnFollowPage(data)
-                }
-
-                override fun onClickStateNotification() {
-                    if (!data.unsubscribeNotice) {
-                        view.subcribeNotification(data)
-                    } else {
-                        view.unSubcribeNotification(data)
+        itemView.btnMore.apply {
+            background = ViewHelper.bgOutlinePrimary1Corners4(context)
+            setOnClickListener {
+                object : MoreActionPageBottomSheet(itemView.context, data) {
+                    override fun onClickUnfollow() {
+                        listener.followAndUnFollowPage(data)
                     }
-                }
 
-                override fun onClickReportPage() {
-                    if (SessionManager.isUserLogged) {
-                        view.onShowReportForm()
-                    }else{
-                        view.onRequireLogin()
+                    override fun onClickStateNotification() {
+                        if (!data.unsubscribeNotice) {
+                            listener.subcribeNotification(data)
+                        } else {
+                            listener.unSubcribeNotification(data)
+                        }
                     }
-                }
-            }.show()
+
+                    override fun onClickReportPage() {
+                        if (SessionManager.isUserLogged) {
+                            listener.onShowReportForm()
+                        } else {
+                            listener.onRequireLogin()
+                        }
+                    }
+                }.show()
+            }
         }
 
         itemView.imgEditAvatar.setOnClickListener {

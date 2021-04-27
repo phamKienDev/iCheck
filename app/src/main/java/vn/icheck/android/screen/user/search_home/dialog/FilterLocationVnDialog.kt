@@ -16,6 +16,7 @@ import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialogFragment
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.ICListResponse
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
@@ -51,10 +52,13 @@ class FilterLocationVnDialog(val callback: LocationCallback, selectedID: Mutable
             dismiss()
         }
 
-        tv_clear.setOnClickListener {
-            adapter.isAll = true
-            adapter.oldSelectedID.clear()
-            adapter.setData(listData)
+        tv_clear.apply {
+            background = ViewHelper.bgOutlinePrimary1Corners4(context)
+            setOnClickListener {
+                adapter.isAll = true
+                adapter.oldSelectedID.clear()
+                adapter.setData(listData)
+            }
         }
     }
 

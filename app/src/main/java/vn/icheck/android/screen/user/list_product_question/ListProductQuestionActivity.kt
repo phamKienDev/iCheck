@@ -12,7 +12,6 @@ import android.text.Html
 import android.text.TextWatcher
 import android.view.View
 import android.widget.LinearLayout
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_list_product_question.*
 import kotlinx.android.synthetic.main.activity_list_product_question.imgBack
@@ -21,11 +20,6 @@ import kotlinx.android.synthetic.main.activity_list_product_question.rcvChildEmo
 import kotlinx.android.synthetic.main.activity_list_product_question.rcvParentEmoji
 import kotlinx.android.synthetic.main.activity_list_product_question.rcvPermission
 import kotlinx.android.synthetic.main.item_base_send_message_product_v2.*
-import kotlinx.android.synthetic.main.item_base_send_message_product_v2.imgAvatar
-import kotlinx.android.synthetic.main.item_base_send_message_product_v2.imgCamera
-import kotlinx.android.synthetic.main.item_base_send_message_product_v2.imgEmoji
-import kotlinx.android.synthetic.main.item_base_send_message_product_v2.imgSend
-import kotlinx.android.synthetic.main.item_base_send_message_product_v2.tvActor
 import vn.icheck.android.R
 import vn.icheck.android.activities.chat.sticker.StickerPackages
 import vn.icheck.android.base.activity.BaseActivityMVVM
@@ -38,6 +32,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.lib.keyboard.KeyboardVisibilityEvent
@@ -152,12 +147,17 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_product_question)
 
+        setupView()
         setupListener()
         setupRecyclerView()
         setRecyclerViewPermission()
         setupSwipeLayout()
         setupViewModel()
         checkUserLogin()
+    }
+
+    private fun setupView() {
+        containerEnter.background = ViewHelper.bgOutlinePrimary1Corners4(this)
     }
 
     private fun setupListener() {

@@ -53,7 +53,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_phone" />
 
-        <vn.icheck.android.ui.EnableButton
+        <vn.icheck.android.ichecklibs.EnableButton
             android:id="@+id/btn_login"
             android:layout_width="0dp"
             android:layout_height="@dimen/size_36"
@@ -120,7 +120,6 @@
             android:layout_marginTop="@dimen/size_50"
             android:layout_marginEnd="@dimen/size_62"
             android:layout_marginRight="@dimen/size_62"
-            android:background="@drawable/bg_login_otp"
             android:text="@string/dang_nhap_bang_otp"
             android:textAllCaps="false"
             android:textSize="@dimen/font_16"

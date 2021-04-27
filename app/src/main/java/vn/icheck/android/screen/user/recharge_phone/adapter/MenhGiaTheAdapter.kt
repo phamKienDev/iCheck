@@ -12,6 +12,7 @@ import vn.icheck.android.R
 import vn.icheck.android.callback.OnItemClickListener
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.recharge_phone.ICMenhGia
 
 class MenhGiaTheAdapter (private var listInfor: MutableList<ICMenhGia>) : RecyclerView.Adapter<MenhGiaTheAdapter.ViewHolder>() {
@@ -46,7 +47,7 @@ class MenhGiaTheAdapter (private var listInfor: MutableList<ICMenhGia>) : Recycl
             itemView.tvMenhGia.text = TextHelper.formatMoneyComma(item.menhGia.toLong()) + "đ"
 
             if (item.select){
-                itemView.layoutParent.setBackgroundResource(R.drawable.bg_choose_card)
+                itemView.layoutParent.background = ViewHelper.bgOutlinePrimary1Corners6(itemView.context)
                 itemView.tvMenhGia.setTextColor(Constant.getNormalTextColor(itemView.context))
                 itemView.tvMenhGia.typeface = Typeface.createFromAsset(itemView.context.assets,"font/barlow_semi_bold.ttf")
             }else{

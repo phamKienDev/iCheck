@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.product_detail_mbtt2.view.*
 import vn.icheck.android.R
 import vn.icheck.android.adapters.base.BaseHolder
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 
 class MbttHolder(view: View) : BaseHolder(view) {
@@ -18,6 +19,11 @@ class MbttHolder(view: View) : BaseHolder(view) {
     fun bind(obj: MbttModel) {
         showVoteLayout()
         hideLayoutProgress()
+
+        ViewHelper.bgOutlinePrimary1Corners4(itemView.context).apply {
+            itemView.btn_yes.background = this
+            itemView.btn_no.background = this
+        }
 
         setOnClick(R.id.btn_yes) { view ->
             view.isClickable = false

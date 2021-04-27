@@ -15,6 +15,7 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialog
 import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICProvince
 import vn.icheck.android.util.ick.beVisible
 
@@ -29,9 +30,12 @@ abstract class FilterUserDialog(val activity: FragmentActivity, val city: Mutabl
         setLocation(selectedCity)
         setGender(gender)
 
-        dialog.tv_clear.setOnClickListener {
-            setLocation(null)
-            setGender(null)
+        dialog.tv_clear.apply {
+            background = ViewHelper.bgOutlinePrimary1Corners4(context)
+            setOnClickListener {
+                setLocation(null)
+                setGender(null)
+            }
         }
 
         dialog.containerLocation.setOnClickListener {

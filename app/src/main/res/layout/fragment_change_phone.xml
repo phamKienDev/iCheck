@@ -144,7 +144,7 @@
             app:layout_constraintTop_toTopOf="@+id/edt_phone"
             app:srcCompat="@drawable/ic_delete_gray_24px" />
 
-        <vn.icheck.android.ui.EnableButton
+        <vn.icheck.android.ichecklibs.EnableButton
             android:id="@+id/btn_continue"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_48"
@@ -153,7 +153,6 @@
             android:layout_marginTop="@dimen/size_32"
             android:layout_marginEnd="@dimen/size_12"
             android:layout_marginRight="@dimen/size_12"
-            android:background="@drawable/background_button_disable"
             android:fontFamily="@font/barlow_semi_bold"
             android:text="Tiếp tục"
             android:textAllCaps="false"

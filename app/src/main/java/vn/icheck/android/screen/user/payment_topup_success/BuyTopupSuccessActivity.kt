@@ -11,6 +11,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.recharge_phone.ICRechargePhone
 import vn.icheck.android.screen.user.history_loading_card.home.HistoryCardActivity
 import vn.icheck.android.screen.user.home.HomeActivity
@@ -72,10 +73,13 @@ class BuyTopupSuccessActivity : AppCompatActivity() {
             }
         }
 
-        btnTopupAgain.setOnClickListener {
-            for (act in RechargePhoneActivity.listActivities) {
-                act.finish()
-                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REFRESH_DATA))
+        btnTopupAgain.apply {
+            background = ViewHelper.bgOutlinePrimary1Corners4(context)
+            setOnClickListener {
+                for (act in RechargePhoneActivity.listActivities) {
+                    act.finish()
+                    EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REFRESH_DATA))
+                }
             }
         }
 

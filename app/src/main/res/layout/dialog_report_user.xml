@@ -57,7 +57,6 @@
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
         android:layout_marginBottom="@dimen/size_12"
-        android:background="@drawable/background_button_enable"
         android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center"
         android:padding="@dimen/size_8"

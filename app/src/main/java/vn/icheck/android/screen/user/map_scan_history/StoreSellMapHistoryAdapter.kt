@@ -8,6 +8,7 @@ import vn.icheck.android.R
 import vn.icheck.android.databinding.ItemStoreSellInMapBinding
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.history.ICStoreNear
 import vn.icheck.android.util.ick.dpToPx
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -72,7 +73,7 @@ class StoreSellMapHistoryAdapter(val view: StoreSellMapHistoryView) : RecyclerVi
             WidgetUtils.loadImageUrlRoundedFitCenter(itemView.imgAva, item.avatar, R.drawable.ic_error_load_shop_40_px, R.drawable.ic_error_load_shop_40_px, SizeHelper.size12)
 
             if (selectedPos == absoluteAdapterPosition) {
-                itemView.layoutParent.setBackgroundResource(R.drawable.bg_blue_stroke_corners_16)
+                itemView.layoutParent.background = ViewHelper.bgWhiteOutlinePrimary2Corners16(itemView.context)
             } else {
                 itemView.layoutParent.setBackgroundResource(R.drawable.bg_white_corners_16)
             }

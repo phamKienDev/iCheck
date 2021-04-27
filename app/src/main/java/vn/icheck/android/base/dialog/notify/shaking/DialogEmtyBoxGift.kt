@@ -67,10 +67,13 @@ abstract class DialogEmtyBoxGift(context: Context, private val image: Int, priva
             }
         }
 
-        btnAction.setOnClickListener {
-            dismiss()
-            ICheckApplication.currentActivity()?.let {
-                ListMissionActivity.show(it, idCampaign)
+        btnAction.apply {
+            background = vn.icheck.android.ichecklibs.ViewHelper.bgOutlinePrimary1Corners4(context)
+            setOnClickListener {
+                dismiss()
+                ICheckApplication.currentActivity()?.let {
+                    ListMissionActivity.show(it, idCampaign)
+                }
             }
         }
 

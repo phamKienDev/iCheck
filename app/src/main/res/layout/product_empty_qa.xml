@@ -38,7 +38,6 @@
         android:layout_marginTop="@dimen/size_16"
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginBottom="@dimen/size_10"
-        android:background="@drawable/bg_corners_4_light_blue_no_solid"
         android:gravity="center"
         android:lineSpacingExtra="@dimen/font_8"
         android:text="Đặt câu hỏi"

@@ -44,7 +44,7 @@ class HomeCategoryHorizontalAdapter(val listener: IExperienceNewProducts) : Recy
 
                     if (obj.isSelected) {
                         oldPos = adapterPosition
-                        background = ContextCompat.getDrawable(context, R.drawable.bg_category_click_light_blue)
+                        background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners16(itemView.context)
                         setTextColor(ContextCompat.getColor(context, R.color.white))
                     } else {
                         background = ViewHelper.createStateListDrawable(

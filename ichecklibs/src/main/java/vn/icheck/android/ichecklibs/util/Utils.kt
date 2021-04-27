@@ -1,4 +1,4 @@
-package vn.icheck.android.ichecklibs
+package vn.icheck.android.ichecklibs.util
 
 import android.content.Context
 import android.content.res.Resources
@@ -46,8 +46,8 @@ fun Int.dpToPx(): Int {
     return (this * Resources.getSystem().displayMetrics.density).toInt()
 }
 
-fun Float.dpToPx(): Int {
-    return (this * Resources.getSystem().displayMetrics.density).toInt()
+fun Float.dpToPx(): Float {
+    return (this * Resources.getSystem().displayMetrics.density)
 }
 
 

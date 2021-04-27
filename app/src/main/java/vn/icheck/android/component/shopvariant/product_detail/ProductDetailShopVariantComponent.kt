@@ -15,7 +15,6 @@ import kotlinx.android.synthetic.main.item_store_sell_history.view.*
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
-import vn.icheck.android.base.dialog.notify.map.MapGoogleActivity
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.Constant
@@ -23,20 +22,18 @@ import vn.icheck.android.helper.CartHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
-import vn.icheck.android.ichecklibs.beGone
-import vn.icheck.android.ichecklibs.beInvisible
-import vn.icheck.android.ichecklibs.beVisible
+import vn.icheck.android.ichecklibs.util.beGone
+import vn.icheck.android.ichecklibs.util.beInvisible
+import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.network.base.ICApiListener
 import vn.icheck.android.network.base.ICBaseResponse
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.feature.cart.CartInteractor
 import vn.icheck.android.network.models.ICRespCart
-import vn.icheck.android.network.models.ICShopVariant
 import vn.icheck.android.network.models.ICShopVariantV2
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICServiceShopVariant
 import vn.icheck.android.network.models.history.ICStoreNear
-import vn.icheck.android.network.models.product.detail.ICProductVariant
 import vn.icheck.android.network.util.JsonHelper
 import vn.icheck.android.screen.account.home.AccountActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.adapter.ServiceShopVariantAdapter
@@ -93,10 +90,12 @@ class ProductDetailShopVariantComponent : LinearLayout {
                 layoutAddToCart?.visibility = View.GONE
             }
 
-            if (productRow.isOffline == true) {
-                layoutLocation?.visibility = View.VISIBLE
-            } else {
-                layoutLocation?.visibility = View.GONE
+            layoutLocation.apply {
+                if (productRow.isOffline == true) {
+                    beVisible()
+                } else {
+                    beGone()
+                }
             }
         }
 
@@ -152,6 +151,8 @@ class ProductDetailShopVariantComponent : LinearLayout {
             tv_sale_price?.beInvisible()
             tv_price?.beInvisible()
         }
+
+        viewLocation2.background = vn.icheck.android.ichecklibs.ViewHelper.bgOutlinePrimary1Corners4(context)
 
         vg_shop_top.setOnClickListener {
 

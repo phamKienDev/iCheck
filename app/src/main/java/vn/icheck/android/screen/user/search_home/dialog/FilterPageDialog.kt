@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.layout_title_filter_search.*
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialogFragment
 import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICCategorySearch
 import vn.icheck.android.network.models.ICProvince
 
@@ -37,10 +38,13 @@ class FilterPageDialog(val locations: MutableList<ICProvince>?, val verified: Bo
             dismiss()
         }
 
-        tv_clear.setOnClickListener {
-            switch_verfied.isChecked = false
-            setFiltterCategory(null)
-            setLocation(null)
+        tv_clear.apply {
+            background = ViewHelper.bgOutlinePrimary1Corners4(context)
+            setOnClickListener {
+                switch_verfied.isChecked = false
+                setFiltterCategory(null)
+                setLocation(null)
+            }
         }
 
         img_clear_location.setOnClickListener {

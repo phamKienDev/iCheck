@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.activity_web_view.*
 import kotlinx.android.synthetic.main.toolbar_light_blue.*
 import vn.icheck.android.ichecklibs.*
 import vn.icheck.android.ichecklibs.util.PermissionHelper
+import vn.icheck.android.ichecklibs.util.toPx
 import java.net.URL
 import java.util.*
 import java.util.regex.Pattern

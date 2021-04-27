@@ -12,6 +12,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialogFragment
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 
 class FilterReviewDialog(isWatched: Boolean = false, val time: MutableList<String>? = null, val from: MutableList<String>? = null, val callback: ReviewCallback) : BaseBottomSheetDialogFragment() {
 
@@ -52,11 +53,13 @@ class FilterReviewDialog(isWatched: Boolean = false, val time: MutableList<Strin
             }).show(parentFragmentManager, null)
         }
 
-        tv_clear.setOnClickListener {
-            setFrom(null)
-            setYear(null)
-            switch_watched.isChecked = false
-
+        tv_clear.apply {
+            background = ViewHelper.bgOutlinePrimary1Corners4(context)
+            setOnClickListener {
+                setFrom(null)
+                setYear(null)
+                switch_watched.isChecked = false
+            }
         }
 
         tvDone.setOnClickListener {
