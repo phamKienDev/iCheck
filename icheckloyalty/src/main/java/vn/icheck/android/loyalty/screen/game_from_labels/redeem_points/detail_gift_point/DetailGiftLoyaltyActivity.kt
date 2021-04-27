@@ -3,7 +3,6 @@ package vn.icheck.android.loyalty.screen.game_from_labels.redeem_points.detail_g
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Handler
-import android.view.View
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_detail_gift_loyalty.*
 import org.greenrobot.eventbus.EventBus
@@ -19,7 +18,7 @@ import vn.icheck.android.loyalty.screen.game_from_labels.game_list.GameFromLabel
 import vn.icheck.android.loyalty.screen.loyalty_customers.campaign_of_business.CampaignOfBusinessActivity
 import vn.icheck.android.loyalty.screen.loyalty_customers.exchange_phonecard.ChangePhoneCardsActivity
 import vn.icheck.android.loyalty.screen.loyalty_customers.exchange_phonecard.ExchangePhonecardSuccessDialog
-import vn.icheck.android.loyalty.screen.scan.V6ScanLoyaltyActivity
+import vn.icheck.android.loyalty.sdk.LoyaltySdk
 
 class DetailGiftLoyaltyActivity : BaseActivityGame() {
 
@@ -255,7 +254,7 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
                                         "Quét tem QRcode được dán trên bao bì\nsản phẩm để nhận điểm tích lũy đổi quà nhé!", R.drawable.ic_onboarding_scan, "Quét tem ngay", true, R.drawable.bg_button_not_enough_point, R.color.orange_red,
                                         object : IClickButtonDialog<ICKNone> {
                                             override fun onClickButtonData(obj: ICKNone?) {
-                                                startActivity<V6ScanLoyaltyActivity, Long>(ConstantsLoyalty.DATA_1, campaignID)
+                                                LoyaltySdk.openActivity("scan?typeLoyalty=accumulate_point&campaignId=$campaignID")
                                             }
                                         })
                             }
