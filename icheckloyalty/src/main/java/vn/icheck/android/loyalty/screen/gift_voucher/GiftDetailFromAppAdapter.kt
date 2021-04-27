@@ -1,7 +1,6 @@
 package vn.icheck.android.loyalty.screen.gift_voucher
 
 import android.annotation.SuppressLint
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_gift_detail_from_app.view.*
@@ -11,17 +10,9 @@ import vn.icheck.android.loyalty.base.ICKViewType
 import vn.icheck.android.loyalty.base.commons.RecyclerViewCustomAdapter
 import vn.icheck.android.loyalty.base.setGone
 import vn.icheck.android.loyalty.base.setVisible
-import vn.icheck.android.loyalty.dialog.ConfirmLoyaltyDialog
-import vn.icheck.android.loyalty.helper.*
-import vn.icheck.android.loyalty.helper.ApplicationHelper
-import vn.icheck.android.loyalty.helper.NetworkHelper
+import vn.icheck.android.loyalty.helper.TimeHelper
 import vn.icheck.android.loyalty.helper.WidgetHelper
-import vn.icheck.android.loyalty.model.ICKBaseResponse
 import vn.icheck.android.loyalty.model.ICKGift
-import vn.icheck.android.loyalty.model.ICKResponse
-import vn.icheck.android.loyalty.model.ICKWinner
-import vn.icheck.android.loyalty.network.ICApiListener
-import vn.icheck.android.loyalty.repository.CampaignRepository
 
 internal class GiftDetailFromAppAdapter : RecyclerViewCustomAdapter<ICKGift>() {
 
@@ -76,6 +67,7 @@ internal class GiftDetailFromAppAdapter : RecyclerViewCustomAdapter<ICKGift>() {
                     "Hiện vật"
                 }
                 "VOUCHER" -> {
+                    itemView.layoutMaDuThuong.setGone()
                     itemView.tvCode.setGone()
                     "Voucher"
                 }

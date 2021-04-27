@@ -18,6 +18,7 @@ import vn.icheck.android.loyalty.screen.game_from_labels.game_list.GameFromLabel
 import vn.icheck.android.loyalty.screen.loyalty_customers.campaign_of_business.CampaignOfBusinessActivity
 import vn.icheck.android.loyalty.screen.loyalty_customers.exchange_phonecard.ChangePhoneCardsActivity
 import vn.icheck.android.loyalty.screen.loyalty_customers.exchange_phonecard.ExchangePhonecardSuccessDialog
+import vn.icheck.android.loyalty.screen.voucher.VoucherLoyaltyActivity
 import vn.icheck.android.loyalty.sdk.LoyaltySdk
 
 class DetailGiftLoyaltyActivity : BaseActivityGame() {
@@ -93,10 +94,29 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
                 "VOUCHER" -> {
                     btnDoiQua.setVisible()
 
-                    btnDoiQua.text = if (obj?.userVoucher == true) {
-                        "Dùng ngay"
-                    } else {
-                        "Đánh dấu đã dùng"
+                    btnDoiQua.apply {
+                        when {
+                            obj?.voucher?.can_use == true -> {
+                                text = "Dùng ngay"
+
+                                setOnClickListener {
+                                    startActivity(Intent(this@DetailGiftLoyaltyActivity, VoucherLoyaltyActivity::class.java).apply {
+                                        putExtra(ConstantsLoyalty.DATA_1, obj?.voucher?.code)
+                                        putExtra(ConstantsLoyalty.DATA_2, obj?.voucher?.expired_at)
+                                    })
+                                }
+                            }
+                            obj?.voucher?.can_mark_use == true -> {
+                                text = "Đánh dấu đã dùng"
+
+                                setOnClickListener {
+                                    showCustomErrorToast(this@DetailGiftLoyaltyActivity, "Chưa có sự kiện")
+                                }
+                            }
+                            else -> {
+                                setGone()
+                            }
+                        }
                     }
                 }
                 else -> {
