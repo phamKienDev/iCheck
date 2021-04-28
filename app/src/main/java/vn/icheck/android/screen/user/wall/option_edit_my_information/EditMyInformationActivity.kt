@@ -34,6 +34,7 @@ import vn.icheck.android.constant.*
 import vn.icheck.android.databinding.ActivityEditMyInformationBinding
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.model.ApiErrorResponse
@@ -584,7 +585,7 @@ class EditMyInformationActivity : CoroutineFragment() {
                 2 -> {
                     binding.txtConfirmedDanhtinh.setBackgroundResource(R.drawable.bg_green_20_corner_23)
                     binding.txtConfirmedDanhtinh.setText(R.string.da_xac_thuc)
-                    binding.txtConfirmedDanhtinh.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorAccentGreen))
+                    binding.txtConfirmedDanhtinh.setTextColor(Constant.getAccentGreenColor(requireContext()))
 
                     binding.imgDanhtinh.beGone()
                 }

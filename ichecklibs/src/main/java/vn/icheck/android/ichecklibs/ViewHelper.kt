@@ -8,6 +8,7 @@ import android.graphics.drawable.GradientDrawable
 import android.widget.LinearLayout
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import vn.icheck.android.ichecklibs.util.dpToPx
 import kotlin.math.roundToInt
 
@@ -98,4 +99,20 @@ object ViewHelper {
     * Disable Text Color
     * */
     fun bgDisableTextCorners4(context: Context) = createBackground(ContextCompat.getColor(context, R.color.colorDisableText), 4f)
+
+
+    fun getDrawableFillColor(context: Context,resource: Int, color: String): Drawable? {
+        return ContextCompat.getDrawable(context, resource)?.apply {
+            DrawableCompat.setTint(this, Color.parseColor(color))
+        }
+    }
+
+
+    fun createShapeDrawable(color: Int, strokeWidth: Int, strokeColor: Int, radiusTopLeft: Float, radiusTopLRight: Float, radiusBottomRight: Float, radiusBottomLeft: Float): GradientDrawable {
+        return GradientDrawable().also { gradientDrawable ->
+            gradientDrawable.setColor(color)
+            gradientDrawable.setStroke(strokeWidth, strokeColor)
+            gradientDrawable.cornerRadii = floatArrayOf(radiusTopLeft, radiusTopLeft, radiusTopLRight, radiusTopLRight, radiusBottomRight, radiusBottomRight, radiusBottomLeft, radiusBottomLeft)
+        }
+    }
 }

@@ -12,6 +12,7 @@ import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.item_order_detail_status.view.*
 import vn.icheck.android.R
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.ICOrderDetail
 import vn.icheck.android.screen.user.campaign.holder.base.LongMessageHolder
 import vn.icheck.android.screen.user.orderdetail.view.IOrderDetailView
@@ -142,7 +143,7 @@ class OrderDetailAdapter(val listener: IOrderDetailView) : RecyclerView.Adapter<
                     itemView.tvStatus.setText(R.string.cho_xac_nhan)
                 }
                 OrderHistoryActivity.delivery -> {
-                    itemView.layoutTop.setBackgroundColor(Color.parseColor("#00BAF2"))
+                    itemView.layoutTop.setBackgroundColor(Color.parseColor(Constant.getAccentBlueCode))
                     itemView.tvStatus.setText(R.string.dang_giao)
                 }
                 OrderHistoryActivity.delivered -> {

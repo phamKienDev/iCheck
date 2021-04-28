@@ -10,6 +10,8 @@ import vn.icheck.android.base.adapter.RecyclerViewCustomAdapter
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.component.ICViewTypes
+import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.campaign.ICGiftOfCampaign
 import vn.icheck.android.screen.user.gift_campaign.GiftOfCampaignModel
 import vn.icheck.android.ui.layout.CustomGridLayoutManager
@@ -76,6 +78,8 @@ class GiftOfCampaignAdapter(callback: IRecyclerViewCallback, val banner: String?
             itemView.recyclerView.adapter = adapter
             adapter.setData()
 
+            itemView.btnMore.setCompoundDrawablesWithIntrinsicBounds(null, null,
+                    ViewHelper.getDrawableFillColor(itemView.context, R.drawable.ic_arrow_down_light_blue_accent_24px, Constant.getAccentBlueCode), null)
             if (obj.data.size > 6) {
                 itemView.btnMore.beVisible()
 

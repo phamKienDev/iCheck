@@ -92,7 +92,7 @@
                             android:scaleType="fitXY"
                             android:src="@drawable/ic_front_image_holder" />
 
-                        <TextView
+                        <vn.icheck.android.ichecklibs.view.accent.accent_blue.TextAccentBlue
                             android:id="@+id/tv_img_first"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -102,7 +102,6 @@
                             android:fontFamily="@font/barlow_semi_bold"
                             android:gravity="center_horizontal"
                             android:text="+ Ảnh mặt trước"
-                            android:textColor="@color/colorAccentBlue"
                             android:textSize="@dimen/font_12" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>

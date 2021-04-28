@@ -126,7 +126,6 @@ dependencies {
 //    api ('com.github.bumptech.glide:okhttp3-integration:4.11.0'){
 //        exclude group: 'glide-parent'
 //    }
-    implementation 'com.romandanylyk:pageindicatorview:1.0.3'
     implementation 'it.sephiroth.android.library.rangeseekbar:rangeseekbar:1.1.0'
     /** Facebook */
     implementation 'com.facebook.android:facebook-login:5.13.0'

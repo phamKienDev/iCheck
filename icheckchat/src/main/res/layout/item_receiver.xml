@@ -66,8 +66,7 @@
                 android:id="@+id/imgThumbnailLink"
                 android:layout_width="match_parent"
                 android:layout_height="141dp"
-                android:visibility="gone"
-                tools:src="@color/colorAccentBlue" />
+                android:visibility="gone"/>
 
             <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
                 android:id="@+id/tvTitle"

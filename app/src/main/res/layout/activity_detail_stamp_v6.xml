@@ -191,7 +191,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <com.rd.PageIndicatorView
+                    <vn.icheck.android.ichecklibs.view.accent.accent_blue.PageIndicatorSelectAccentBlue
                         android:id="@+id/indicatorAdvertisement"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -206,9 +206,7 @@
                         app:piv_dynamicCount="true"
                         app:piv_interactiveAnimation="true"
                         app:piv_padding="@dimen/size_8"
-                        app:piv_radius="@dimen/size_4"
-                        app:piv_selectedColor="@color/colorAccentBlue"
-                        app:piv_unselectedColor="@color/colorAccentBlue" />
+                        app:piv_radius="@dimen/size_4"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
