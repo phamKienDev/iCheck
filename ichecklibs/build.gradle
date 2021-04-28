@@ -92,6 +92,7 @@ dependencies {
     api 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
     api 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
 
+
     /** eventbus **/
     api 'org.greenrobot:eventbus:3.1.1'
 

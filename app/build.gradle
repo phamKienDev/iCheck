@@ -175,6 +175,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics:18.0.2'
 
     implementation 'com.tapadoo.android:alerter:5.1.2'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
     def multidex_version = "2.0.1"
     implementation "androidx.multidex:multidex:$multidex_version"

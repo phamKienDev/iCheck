@@ -16,6 +16,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.screen.user.crop_camera.CropCamera2Activity
 import vn.icheck.android.screen.user.crop_camera.CropCameraActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
@@ -151,7 +152,7 @@ class VerifyIdentityActivity : BaseActivityMVVM(), View.OnClickListener {
     }
 
     private fun startCamera() {
-        ActivityUtils.startActivityForResult<CropCameraActivity>(this, requestCrop)
+        ActivityUtils.startActivityForResult<CropCamera2Activity>(this, requestCrop)
     }
 
     fun setImage(type: String) {
