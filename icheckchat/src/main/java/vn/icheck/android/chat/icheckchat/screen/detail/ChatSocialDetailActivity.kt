@@ -245,15 +245,13 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                     if (it.data?.data != null) {
                         conversation = MCConversation()
 
-                        for (i in it.data.data.members ?: mutableListOf()) {
-                            if (i.source_id.toString().contains(userId.toString())) {
-                                viewModel.getChatSender(i.id.toString(), { success ->
-                                    conversation?.targetUserName = success.child("name").value.toString()
-                                    conversation?.imageTargetUser = success.child("image").value.toString()
-                                }, {
+                        if (it.data.data.members?.source_id.toString().contains(userId.toString())) {
+                            viewModel.getChatSender(it.data.data.members?.id.toString(), { success ->
+                                conversation?.targetUserName = success.child("name").value.toString()
+                                conversation?.imageTargetUser = success.child("image").value.toString()
+                            }, {
 
-                                })
-                            }
+                            })
                         }
 
                         conversation?.key = it.data.data.room_id
