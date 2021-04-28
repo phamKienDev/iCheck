@@ -10,6 +10,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
+import android.view.ViewTreeObserver
 import android.widget.FrameLayout
 import android.widget.ScrollView
 import androidx.core.content.ContextCompat
@@ -76,6 +77,7 @@ import vn.icheck.android.screen.user.search_home.main.SearchHomeActivity
 import vn.icheck.android.screen.user.shipping.ship.ShipActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.util.AdsUtils
+import vn.icheck.android.util.ick.beInvisible
 import vn.icheck.android.util.ick.loadImageWithHolder
 import vn.icheck.android.util.ick.simpleText
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -184,17 +186,15 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         val backgroundImage = BitmapFactory.decodeFile(FileHelper.getPath(this@HomePageFragment.requireContext()) + FileHelper.homeBackgroundImage)
         if (backgroundImage != null) {
             imgBackground?.apply {
-                beVisible()
                 setImageBitmap(backgroundImage)
             }
             imgThemeBackground?.apply {
-                beVisible()
-                layoutParams = FrameLayout.LayoutParams(imgBackground.width, imgBackground.height)
+                layoutParams = FrameLayout.LayoutParams(swipeLayout.width, swipeLayout.height)
                 setImageBitmap(backgroundImage)
             }
         } else {
-            imgBackground?.beGone()
-            imgThemeBackground?.beGone()
+            imgBackground?.setImageResource(0)
+            imgThemeBackground?.setImageResource(0)
         }
 
         val theme = SettingManager.themeSetting?.theme

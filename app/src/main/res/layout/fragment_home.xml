@@ -47,7 +47,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_remider_36px" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_show_all_reminders"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -151,7 +151,7 @@
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <ScrollView
+    <FrameLayout
         android:id="@+id/toolbarBackground"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_0"
@@ -166,9 +166,8 @@
             android:id="@+id/imgThemeBackground"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter" />
-    </ScrollView>
+            android:scaleType="centerCrop" />
+    </FrameLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@id/layoutHeader"
@@ -285,7 +284,7 @@
         android:background="@drawable/shadow_bottom"
         app:layout_constraintTop_toBottomOf="@id/layoutHeader" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
