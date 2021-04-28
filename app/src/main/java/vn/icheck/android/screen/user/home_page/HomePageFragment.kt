@@ -181,22 +181,21 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
     private fun checkTheme() {
         homeAdapter.notifyDataSetChanged()
 
-        val backgroundImage = File(FileHelper.getPath(this@HomePageFragment.requireContext()) + FileHelper.homeBackgroundImage)
-        WidgetUtils.loadImageFile(imgBackground, backgroundImage, 0, object : LoadImageListener {
-            override fun onSuccess() {
-                imgBackground.beVisible()
-                imgThemeBackground?.apply {
-                    beVisible()
-                    layoutParams = FrameLayout.LayoutParams(imgBackground.width, imgBackground.height)
-                    setImageDrawable(imgBackground.drawable)
-                }
+        val backgroundImage = BitmapFactory.decodeFile(FileHelper.getPath(this@HomePageFragment.requireContext()) + FileHelper.homeBackgroundImage)
+        if (backgroundImage != null) {
+            imgBackground?.apply {
+                beVisible()
+                setImageBitmap(backgroundImage)
             }
-
-            override fun onFailed() {
-                imgBackground.beGone()
-                imgThemeBackground.beGone()
+            imgThemeBackground?.apply {
+                beVisible()
+                layoutParams = FrameLayout.LayoutParams(imgBackground.width, imgBackground.height)
+                setImageBitmap(backgroundImage)
             }
-        })
+        } else {
+            imgBackground?.beGone()
+            imgThemeBackground?.beGone()
+        }
 
         val theme = SettingManager.themeSetting?.theme
         if (theme != null) {
