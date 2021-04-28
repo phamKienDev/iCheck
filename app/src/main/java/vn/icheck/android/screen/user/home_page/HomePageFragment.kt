@@ -10,6 +10,8 @@ import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
+import android.widget.FrameLayout
+import android.widget.ScrollView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -37,6 +39,7 @@ import vn.icheck.android.R
 import vn.icheck.android.RelationshipManager
 import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.base.model.ICMessageEvent
+import vn.icheck.android.callback.LoadImageListener
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.component.view.ViewHelper.setScrollSpeed
 import vn.icheck.android.constant.Constant
@@ -178,21 +181,22 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
     private fun checkTheme() {
         homeAdapter.notifyDataSetChanged()
 
-        val backgroundImage = BitmapFactory.decodeFile(FileHelper.getPath(this@HomePageFragment.requireContext()) + FileHelper.homeBackgroundImage)
-        if (backgroundImage != null) {
-            imgBackground.apply {
-                beVisible()
-                setImageBitmap(backgroundImage)
+        val backgroundImage = File(FileHelper.getPath(this@HomePageFragment.requireContext()) + FileHelper.homeBackgroundImage)
+        WidgetUtils.loadImageFile(imgBackground, backgroundImage, 0, object : LoadImageListener {
+            override fun onSuccess() {
+                imgBackground.beVisible()
+                imgThemeBackground?.apply {
+                    beVisible()
+                    layoutParams = FrameLayout.LayoutParams(imgBackground.width, imgBackground.height)
+                    setImageDrawable(imgBackground.drawable)
+                }
             }
-            imgThemeBackground?.apply {
-                beVisible()
-                setImageBitmap(backgroundImage)
-                requestLayout()
+
+            override fun onFailed() {
+                imgBackground.beGone()
+                imgThemeBackground.beGone()
             }
-        } else {
-            imgBackground.beGone()
-            imgThemeBackground.beGone()
-        }
+        })
 
         val theme = SettingManager.themeSetting?.theme
         if (theme != null) {
