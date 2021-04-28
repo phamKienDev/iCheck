@@ -2,9 +2,9 @@ package vn.icheck.android.network.base
 
 import com.google.gson.JsonObject
 import io.reactivex.Observable
-import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.http.*
+import vn.icheck.android.network.model.kyc.KycResponse
 import vn.icheck.android.network.models.*
 import vn.icheck.android.network.models.history.*
 import vn.icheck.android.network.models.product.detail.ICProductVariant
@@ -177,6 +177,9 @@ interface ICNetworkSocialApi {
 
     @PUT
     fun postKyc(@Url url: String, @Body body: ICPostKyc): Observable<ICResponse<String>>
+
+    @GET
+    fun getUserKyc(@Url url: String): Observable<ICResponse<ListResponse<KycResponse>>>
 
     /*
     * End Wall
