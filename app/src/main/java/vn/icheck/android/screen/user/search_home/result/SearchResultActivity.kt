@@ -21,6 +21,7 @@ import vn.icheck.android.component.view.ViewHelper.setScrollSpeed
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.Status
 import vn.icheck.android.network.models.ICPost
 import vn.icheck.android.network.models.ICSearchUser
@@ -89,6 +90,7 @@ class SearchResultActivity : BaseActivityMVVM(), View.OnClickListener {
                     getData()
                 }
 
+        btn_all.background = ViewHelper.bgPrimaryCorners4(this)
         WidgetUtils.setClickListener(this, btn_review, btn_product, btn_page, btn_shop, btn_user, imgBack, imgClear)
     }
 

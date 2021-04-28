@@ -25,6 +25,7 @@ import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.screen.user.pvcombank.confirmunlockcard.viewModel.ConfirmUnlockPVCardViewModel
 import vn.icheck.android.util.ick.forceHideKeyboard
@@ -97,7 +98,7 @@ class ConfirmUnlockPVCardActivity : BaseActivityMVVM() {
 
         edt_otp.addTextChangedListener {
             if (!it?.trim().isNullOrEmpty()) {
-                btnConfirm.setBackgroundResource(R.drawable.bg_corners_4_light_blue_solid)
+                btnConfirm.background = ViewHelper.bgPrimaryCorners4(this@ConfirmUnlockPVCardActivity)
                 btnConfirm.isEnabled = true
             } else {
                 btnConfirm.setBackgroundResource(R.drawable.bg_corner_gray_topup_4)

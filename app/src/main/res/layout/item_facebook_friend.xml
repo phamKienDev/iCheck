@@ -46,7 +46,6 @@
         android:id="@+id/tvChat"
         android:layout_width="@dimen/size_100"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_corners_4_light_blue_solid"
         android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center"
         android:paddingTop="@dimen/size_4"

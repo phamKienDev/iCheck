@@ -170,6 +170,12 @@ class ListFriendOfWallAdapter(val view: ListFriendListener) : RecyclerView.Adapt
 
     private class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: ICUserFollowWall) {
+            vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context).apply {
+                itemView.tvChat.background = this
+                itemView.tvAddFriend.background = this
+                itemView.layoutAccept.background = this
+            }
+
             when (item.userRelationStatus) {
                 //Chưa là bạn bè
                 1 -> {

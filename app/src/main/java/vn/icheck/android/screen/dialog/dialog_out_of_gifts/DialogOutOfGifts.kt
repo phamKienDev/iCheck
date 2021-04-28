@@ -34,8 +34,11 @@ abstract class DialogOutOfGifts(context: Context, val default: Int, val title: S
             }
         }
 
-        btnListGifts.setOnClickListener {
-            ToastUtils.showLongWarning(context, "onClick Danh sách quà")
+        btnListGifts.apply {
+            background = ViewHelper.bgPrimaryCorners4(context)
+            setOnClickListener {
+                ToastUtils.showLongWarning(context, "onClick Danh sách quà")
+            }
         }
 
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)

@@ -78,6 +78,7 @@ abstract class DialogEmtyBoxGift(context: Context, private val image: Int, priva
         }
 
         findViewById<AppCompatTextView>(R.id.btnMoreEvent)?.run {
+            background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(context)
             setOnClickListener {
                 dismiss()
                 onMoreEvent()

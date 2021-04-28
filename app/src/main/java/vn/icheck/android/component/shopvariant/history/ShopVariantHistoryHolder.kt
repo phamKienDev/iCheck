@@ -64,10 +64,13 @@ class ShopVariantHistoryHolder(view: View, val listData: MutableList<ICHistory_P
             itemView.tvNameProduct.text = itemView.context.getString(R.string.dang_cap_nhat)
         }
 
-        if (obj.variant?.can_add_to_cart == true && obj.shop?.is_online == true) {
-            itemView.tvAddToCart.visibility = View.VISIBLE
-        } else {
-            itemView.tvAddToCart.visibility = View.INVISIBLE
+        itemView.tvAddToCart.apply {
+            background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context)
+            visibility = if (obj.variant?.can_add_to_cart == true && obj.shop?.is_online == true) {
+                View.VISIBLE
+            } else {
+                View.INVISIBLE
+            }
         }
 
         if (!obj.product?.barcode.isNullOrEmpty()) {

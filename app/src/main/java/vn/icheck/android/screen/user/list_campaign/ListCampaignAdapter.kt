@@ -98,6 +98,7 @@ class ListCampaignAdapter constructor(val callback: ListCampaignCallback) : Recy
 
         @SuppressLint("SetTextI18n")
         override fun bind(obj: ICCampaign) {
+            itemView.btnJoinCampaign.background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context)
 
             WidgetUtils.loadImageUrlRounded4(itemView.imgBanner, obj.image, R.drawable.bg_error_campaign)
 
@@ -108,7 +109,7 @@ class ListCampaignAdapter constructor(val callback: ListCampaignCallback) : Recy
             when (obj.state.toString().toDouble().toInt()) {
                 //Chưa bắt đầu
                 0 -> {
-                    itemView.tv1.text = "Thời gian diễn ra"
+                    itemView.findViewById<AppCompatTextView>(R.id.tv1)?.text = "Thời gian diễn ra"
                     itemView.txtCountUserJoin.beGone()
                     itemView.tv2.beGone()
                     itemView.view.beGone()
@@ -117,11 +118,11 @@ class ListCampaignAdapter constructor(val callback: ListCampaignCallback) : Recy
                     itemView.btnJoinCampaign.beGone()
                     itemView.tvEnded.beGone()
 
-                    itemView.txtDate.text = "Từ ${TimeHelper.convertDateTimeSvToDayMonthVn(obj.beginAt)} - ${TimeHelper.convertDateTimeSvToDayMonthVn(obj.endedAt)}"
+                    itemView.findViewById<AppCompatTextView>(R.id.txtDate)?.text = "Từ ${TimeHelper.convertDateTimeSvToDayMonthVn(obj.beginAt)} - ${TimeHelper.convertDateTimeSvToDayMonthVn(obj.endedAt)}"
                 }
                 //Chưa tham gia
                 1 -> {
-                    itemView.tv1.text = "Thời gian"
+                    itemView.findViewById<AppCompatTextView>(R.id.tv1)?.text = "Thời gian"
                     itemView.txtCountUserJoin.beVisible()
                     itemView.tv2.beVisible()
                     itemView.view.beVisible()
@@ -131,15 +132,15 @@ class ListCampaignAdapter constructor(val callback: ListCampaignCallback) : Recy
                     itemView.imgUpcoming.beGone()
 
                     if (obj.beginAt.isNullOrEmpty() || obj.endedAt.isNullOrEmpty()) {
-                        itemView.txtDate.text = itemView.context.getString(R.string.dang_cap_nhat)
+                        itemView.findViewById<AppCompatTextView>(R.id.txtDate)?.text = itemView.context.getString(R.string.dang_cap_nhat)
                     } else {
-                        itemView.txtDate.text = "Đến ${TimeHelper.convertDateTimeSvToDayMonthVn(obj.endedAt)}"
+                        itemView.findViewById<AppCompatTextView>(R.id.txtDate)?.text = "Đến ${TimeHelper.convertDateTimeSvToDayMonthVn(obj.endedAt)}"
                     }
 
                 }
                 //Đã tham gia
                 2 -> {
-                    itemView.tv1.text = "Thời gian"
+                    itemView.findViewById<AppCompatTextView>(R.id.tv1)?.text = "Thời gian"
                     itemView.txtCountUserJoin.beVisible()
                     itemView.tv2.beVisible()
                     itemView.view.beVisible()
@@ -149,15 +150,15 @@ class ListCampaignAdapter constructor(val callback: ListCampaignCallback) : Recy
                     itemView.tvEnded.beGone()
 
                     if (obj.beginAt.isNullOrEmpty() || obj.endedAt.isNullOrEmpty()) {
-                        itemView.txtDate.text = itemView.context.getString(R.string.dang_cap_nhat)
+                        itemView.findViewById<AppCompatTextView>(R.id.txtDate)?.text = itemView.context.getString(R.string.dang_cap_nhat)
                     } else {
-                        itemView.txtDate.text = "Đến ${TimeHelper.convertDateTimeSvToDayMonthVn(obj.endedAt)}"
+                        itemView.findViewById<AppCompatTextView>(R.id.txtDate)?.text = "Đến ${TimeHelper.convertDateTimeSvToDayMonthVn(obj.endedAt)}"
                     }
                     itemView.tvReward.text = "${obj.itemCount} lượt mở"
                 }
                 //Đã hết hạn
                 else -> {
-                    itemView.tv1.text = "Thời gian"
+                    itemView.findViewById<AppCompatTextView>(R.id.tv1)?.text = "Thời gian"
                     itemView.txtCountUserJoin.beGone()
                     itemView.tv2.beGone()
                     itemView.view.beGone()

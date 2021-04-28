@@ -16,6 +16,7 @@ import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICCategory
 import vn.icheck.android.network.models.ICCompany
 import vn.icheck.android.network.models.ICMissionDetail
@@ -47,9 +48,14 @@ class MissionDetailActivity : BaseActivityMVVM(), View.OnClickListener {
         StatusBarUtils.setOverStatusBarLight(this)
 
         screenFrom = intent.getStringExtra(Constant.DATA_2)
+        setupView()
         setNestedScrollView()
         setupViewModel()
         WidgetUtils.setClickListener(this, tvAllProduct, tvAllCategory, tvAllCompany, imgBack)
+    }
+
+    private fun setupView() {
+        btnConfirm.background = ViewHelper.bgPrimaryCorners4(this)
     }
 
     private fun setNestedScrollView() {

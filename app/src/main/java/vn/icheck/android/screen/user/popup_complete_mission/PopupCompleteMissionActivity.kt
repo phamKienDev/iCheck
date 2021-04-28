@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.activity_popup_complete_mission.*
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.my_gift_warehouse.shake_gift.list_box_gift.ListShakeGridBoxActivity
 
 class PopupCompleteMissionActivity : BaseActivityMVVM() {
@@ -42,13 +43,14 @@ class PopupCompleteMissionActivity : BaseActivityMVVM() {
             this.overridePendingTransition(0, 0)
         }
 
-        btnGift.setOnClickListener {
-            if (campaignId != null) {
-                startActivity<ListShakeGridBoxActivity>(Constant.DATA_1, campaignId)
+        btnGift.apply {
+            background = ViewHelper.bgPrimaryCorners4(context)
+            setOnClickListener {
+                if (campaignId != null) {
+                    startActivity<ListShakeGridBoxActivity>(Constant.DATA_1, campaignId)
+                }
+                finish()
             }
-            finish()
-
         }
     }
-
 }

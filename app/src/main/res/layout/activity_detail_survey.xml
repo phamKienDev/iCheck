@@ -28,7 +28,7 @@
         android:id="@id/btnSkip"
         style="@style/Button_White_Corners_6"
         android:layout_width="@dimen/size_0"
-        android:layout_height="@dimen/size_48"
+        android:layout_height="@dimen/size_36"
         android:layout_marginStart="@dimen/size_24"
         android:layout_marginEnd="@dimen/size_6"
         android:layout_marginBottom="@dimen/size_16"

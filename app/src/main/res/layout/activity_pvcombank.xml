@@ -80,9 +80,8 @@
                 android:id="@+id/tvContinue"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/size_12"
+                android:layout_marginEnd="@dimen/size_12"
                 android:layout_weight="1"
-                android:background="@drawable/bg_corners_4_light_blue_solid"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:paddingTop="@dimen/size_8"
@@ -91,7 +90,6 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_16" />
         </LinearLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <include

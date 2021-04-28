@@ -21,7 +21,6 @@ import vn.icheck.android.base.adapter.ViewPagerAdapter
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.model.ICFragment
 import vn.icheck.android.base.model.ICMessageEvent
-import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.component.header_page.bottom_sheet_header_page.MoreActionPageBottomSheet
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
@@ -103,7 +102,7 @@ class PageDetailActivity : BaseActivityMVVM(), View.OnClickListener {
     }
 
     private fun setupView() {
-        ViewHelper.textColorHomeTab(this).apply {
+        ViewHelper.textColorDisableTextUncheckPrimaryChecked(this).apply {
             tvHome.setTextColor(this)
             tvPost.setTextColor(this)
             tvProduct.setTextColor(this)
@@ -113,6 +112,8 @@ class PageDetailActivity : BaseActivityMVVM(), View.OnClickListener {
             tvExtra.background = this
             imgMenu.background = this
         }
+
+        btnFollow.background = ViewHelper.bgPrimaryCorners4(this)
     }
 
     private fun setupListener() {

@@ -17,6 +17,7 @@ import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
 
@@ -133,8 +134,11 @@ class EditPrivacyActivity : BaseActivityMVVM() {
             viewModel.getPrivacy()
         }
 
-        tvFinish.setOnClickListener {
-            viewModel.editPrivacy(selectedPosition)
+        tvFinish.apply {
+            background = ViewHelper.bgPrimaryCorners4(context)
+            setOnClickListener {
+                viewModel.editPrivacy(selectedPosition)
+            }
         }
     }
 }
