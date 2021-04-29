@@ -77,7 +77,7 @@
         android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_flash_off_24px" />
+        app:srcCompat="@drawable/ic_flash_on_24px" />
 
 
     <androidx.appcompat.widget.AppCompatTextView

@@ -1,20 +1,5 @@
 package vn.icheck.android.screen.user.crop_camera;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleOwner;
-
-import kotlinx.coroutines.Dispatchers;
-import vn.icheck.android.R;
-import vn.icheck.android.base.activity.BaseActivityMVVM;
-import vn.icheck.android.constant.Constant;
-import vn.icheck.android.helper.DialogHelper;
-import vn.icheck.android.helper.TimeHelper;
-import vn.icheck.android.util.kotlin.ToastUtils;
-
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
@@ -38,7 +23,6 @@ import android.media.Image;
 import android.media.ImageReader;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.util.Log;
@@ -47,12 +31,16 @@ import android.util.SparseIntArray;
 import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
+
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -64,17 +52,21 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import vn.icheck.android.R;
+import vn.icheck.android.base.activity.BaseActivityMVVM;
+import vn.icheck.android.constant.Constant;
+import vn.icheck.android.helper.DialogHelper;
+
 @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-public class CropCamera2Activity extends BaseActivityMVVM implements LifecycleOwner {
+public class CropCamera2Activity extends BaseActivityMVVM {
     private static final String TAG = "AndroidCameraApi";
 
-    // Button cho capture ảnh
     private ImageView takePictureButton;
-
-    // preview camera
     private TextureView textureView;
     private ImageView imgScanFocus;
     private DialogHelper dialogHelper;
+    private ImageView btnClose;
+    private ImageView btnFlash;
 
     // kiểm tra trạng thái  ORIENTATION của ảnh đầu ra
     private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
@@ -86,17 +78,17 @@ public class CropCamera2Activity extends BaseActivityMVVM implements LifecycleOw
         ORIENTATIONS.append(Surface.ROTATION_270, 180);
     }
 
+    private boolean isFlash = false;
+
     private String cameraId;
     protected CameraDevice cameraDevice;
     protected CameraCaptureSession cameraCaptureSessions;
-    protected CaptureRequest captureRequest;
     protected CaptureRequest.Builder captureRequestBuilder;
     private Size imageDimension;
     private ImageReader imageReader;
 
     // LƯU RA FILE
     private static final int REQUEST_CAMERA_PERMISSION = 200;
-    private boolean mFlashSupported;
     private Handler mBackgroundHandler;
     private HandlerThread mBackgroundThread;
 
@@ -109,6 +101,8 @@ public class CropCamera2Activity extends BaseActivityMVVM implements LifecycleOw
         textureView.setSurfaceTextureListener(textureListener);
         takePictureButton = findViewById(R.id.btnCapture);
         imgScanFocus = findViewById(R.id.img_scan_focus);
+        btnClose = findViewById(R.id.btn_clear);
+        btnFlash = findViewById(R.id.img_flash);
         assert takePictureButton != null;
 
         dialogHelper = DialogHelper.INSTANCE;
@@ -119,6 +113,39 @@ public class CropCamera2Activity extends BaseActivityMVVM implements LifecycleOw
                 takePicture();
             }
         });
+
+        btnClose.setOnClickListener(v -> onBackPressed());
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            btnFlash.setOnClickListener(v -> setFlashLight());
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void setFlashLight() {
+        CameraManager manager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+        CameraCharacteristics cameraCharacteristics = null;
+        try {
+            cameraCharacteristics = manager.getCameraCharacteristics(cameraDevice.getId());
+            boolean flashAvailable = cameraCharacteristics.get(CameraCharacteristics.FLASH_INFO_AVAILABLE);
+            if (!flashAvailable) {
+                captureRequestBuilder.set(CaptureRequest.FLASH_MODE, CaptureRequest.FLASH_MODE_OFF);
+                Toast.makeText(CropCamera2Activity.this, "Không có đèn flash trên thiết bị của bạn", Toast.LENGTH_SHORT);
+                btnClose.setClickable(false);
+            } else {
+                if (isFlash) {
+                    captureRequestBuilder.set(CaptureRequest.FLASH_MODE, CaptureRequest.FLASH_MODE_OFF);
+                    btnFlash.setImageResource(R.drawable.ic_flash_on_24px);
+                } else {
+                    captureRequestBuilder.set(CaptureRequest.FLASH_MODE, CaptureRequest.FLASH_MODE_TORCH);
+                    btnFlash.setImageResource(R.drawable.ic_flash_off_24px);
+                }
+                isFlash = !isFlash;
+            }
+            cameraCaptureSessions.setRepeatingRequest(captureRequestBuilder.build(), null, null);
+        } catch (CameraAccessException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -188,6 +215,7 @@ public class CropCamera2Activity extends BaseActivityMVVM implements LifecycleOw
             Log.e(TAG, "cameraDevice is null");
             return;
         }
+
         CameraManager manager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
         dialogHelper.showLoading(this);
         try {
@@ -218,30 +246,37 @@ public class CropCamera2Activity extends BaseActivityMVVM implements LifecycleOw
             ImageReader.OnImageAvailableListener readerListener = new ImageReader.OnImageAvailableListener() {
                 @Override
                 public void onImageAvailable(ImageReader reader) {
-                    Image image;
+                    Image image = null;
                     try {
                         image = reader.acquireLatestImage();
                         ByteBuffer buffer = image.getPlanes()[0].getBuffer();
                         byte[] bytes = new byte[buffer.capacity()];
                         buffer.get(bytes);
                         save(bytes);
-                        image.close();
-                    } catch (IOException e) {
+                    } catch (Exception e) {
                         dialogHelper.closeLoading(CropCamera2Activity.this);
                         e.printStackTrace();
+                    } finally {
+                        if (image != null) {
+                            image.close();
+                        }
                     }
                 }
 
                 // Lưu ảnh
                 private void save(byte[] bytes) throws IOException {
-                    OutputStream output;
+                    OutputStream output = null;
                     try {
                         output = new FileOutputStream(file);
                         output.write(bytes);
                         getPictureCrop(file);
-                        output.close();
                     } catch (Exception e) {
                         dialogHelper.closeLoading(CropCamera2Activity.this);
+                        e.printStackTrace();
+                    } finally {
+                        if (null != output) {
+                            output.close();
+                        }
                     }
                 }
             };
@@ -250,7 +285,7 @@ public class CropCamera2Activity extends BaseActivityMVVM implements LifecycleOw
                 @Override
                 public void onCaptureCompleted(CameraCaptureSession session, CaptureRequest request, TotalCaptureResult result) {
                     super.onCaptureCompleted(session, request, result);
-                    createCameraPreview();
+//                    createCameraPreview();
                 }
             };
             cameraDevice.createCaptureSession(outputSurfaces, new CameraCaptureSession.StateCallback() {
@@ -290,7 +325,6 @@ public class CropCamera2Activity extends BaseActivityMVVM implements LifecycleOw
         //get viewfinder border size and position on the screen
         int x1 = imgScanFocus.getLeft();
         int y1 = imgScanFocus.getTop();
-
         int x2 = imgScanFocus.getWidth();
         int y2 = imgScanFocus.getHeight();
 
@@ -448,15 +482,10 @@ public class CropCamera2Activity extends BaseActivityMVVM implements LifecycleOw
     @Override
     protected void onPause() {
         Log.e(TAG, "onPause");
-        //closeCamera();
+        closeCamera();
         stopBackgroundThread();
         super.onPause();
     }
 
-    @NonNull
-    @Override
-    public Lifecycle getLifecycle() {
-        return super.getLifecycle();
-    }
 }
 
