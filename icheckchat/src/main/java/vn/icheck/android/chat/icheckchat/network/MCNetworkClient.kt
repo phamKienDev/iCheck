@@ -5,15 +5,12 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
-//import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import vn.icheck.android.chat.icheckchat.base.ConstantChat.CHAT_HOST
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.DEVICE_ID
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.SOCIAL_HOST
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.TOKEN
-import vn.icheck.android.chat.icheckchat.base.ConstantChat.UPLOAD_HOST
 import vn.icheck.android.chat.icheckchat.helper.ShareHelperChat
 import java.io.IOException
 import java.util.concurrent.TimeUnit

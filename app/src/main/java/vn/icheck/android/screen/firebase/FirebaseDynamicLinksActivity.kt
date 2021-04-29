@@ -407,7 +407,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
             }
             scan -> {
                 typeLoyalty = deepLink?.getQueryParameter("typeLoyalty")
-                campaignId = deepLink?.getQueryParameter("campaignId").toString().toLong()
+                campaignId = deepLink?.getQueryParameter("campaignId")?.toLong()
                 nameCampaign = deepLink?.getQueryParameter("nameCampaign")
                 nameShop = deepLink?.getQueryParameter("nameShop")
                 avatarShop = deepLink?.getQueryParameter("avatarShop")
