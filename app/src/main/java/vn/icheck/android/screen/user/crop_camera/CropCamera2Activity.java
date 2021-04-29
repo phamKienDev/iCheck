@@ -11,7 +11,9 @@ import kotlinx.coroutines.Dispatchers;
 import vn.icheck.android.R;
 import vn.icheck.android.base.activity.BaseActivityMVVM;
 import vn.icheck.android.constant.Constant;
+import vn.icheck.android.helper.DialogHelper;
 import vn.icheck.android.helper.TimeHelper;
+import vn.icheck.android.util.kotlin.ToastUtils;
 
 import android.Manifest;
 import android.app.Activity;
@@ -72,6 +74,7 @@ public class CropCamera2Activity extends BaseActivityMVVM implements LifecycleOw
     // preview camera
     private TextureView textureView;
     private ImageView imgScanFocus;
+    private DialogHelper dialogHelper;
 
     // kiểm tra trạng thái  ORIENTATION của ảnh đầu ra
     private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
@@ -92,7 +95,6 @@ public class CropCamera2Activity extends BaseActivityMVVM implements LifecycleOw
     private ImageReader imageReader;
 
     // LƯU RA FILE
-    private File file;
     private static final int REQUEST_CAMERA_PERMISSION = 200;
     private boolean mFlashSupported;
     private Handler mBackgroundHandler;
@@ -109,11 +111,15 @@ public class CropCamera2Activity extends BaseActivityMVVM implements LifecycleOw
         imgScanFocus = findViewById(R.id.img_scan_focus);
         assert takePictureButton != null;
 
+        dialogHelper = DialogHelper.INSTANCE;
+        dialogHelper.showLoading(this);
+
         takePictureButton.setOnClickListener(v -> {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 takePicture();
             }
         });
+
     }
 
     TextureView.SurfaceTextureListener textureListener = new TextureView.SurfaceTextureListener() {
@@ -159,16 +165,6 @@ public class CropCamera2Activity extends BaseActivityMVVM implements LifecycleOw
         }
     };
 
-    // Thực hiển việc capture ảnh thông qua CAMERACAPTURESESSION
-    final CameraCaptureSession.CaptureCallback captureCallbackListener = new CameraCaptureSession.CaptureCallback() {
-        @Override
-        public void onCaptureCompleted(CameraCaptureSession session, CaptureRequest request, TotalCaptureResult result) {
-            super.onCaptureCompleted(session, request, result);
-            Toast.makeText(CropCamera2Activity.this, "Saved:$file", Toast.LENGTH_SHORT).show();
-            createCameraPreview();
-        }
-    };
-
     protected void startBackgroundThread() {
         mBackgroundThread = new HandlerThread("Camera Background");
         mBackgroundThread.start();
@@ -193,6 +189,7 @@ public class CropCamera2Activity extends BaseActivityMVVM implements LifecycleOw
             return;
         }
         CameraManager manager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+        dialogHelper.showLoading(this);
         try {
             CameraCharacteristics characteristics = manager.getCameraCharacteristics(cameraDevice.getId());
             Size[] jpegSizes = null;
@@ -221,7 +218,7 @@ public class CropCamera2Activity extends BaseActivityMVVM implements LifecycleOw
             ImageReader.OnImageAvailableListener readerListener = new ImageReader.OnImageAvailableListener() {
                 @Override
                 public void onImageAvailable(ImageReader reader) {
-                    Image image = null;
+                    Image image;
                     try {
                         image = reader.acquireLatestImage();
                         ByteBuffer buffer = image.getPlanes()[0].getBuffer();
@@ -230,6 +227,7 @@ public class CropCamera2Activity extends BaseActivityMVVM implements LifecycleOw
                         save(bytes);
                         image.close();
                     } catch (IOException e) {
+                        dialogHelper.closeLoading(CropCamera2Activity.this);
                         e.printStackTrace();
                     }
                 }
@@ -243,7 +241,7 @@ public class CropCamera2Activity extends BaseActivityMVVM implements LifecycleOw
                         getPictureCrop(file);
                         output.close();
                     } catch (Exception e) {
-
+                        dialogHelper.closeLoading(CropCamera2Activity.this);
                     }
                 }
             };
@@ -270,6 +268,7 @@ public class CropCamera2Activity extends BaseActivityMVVM implements LifecycleOw
                 }
             }, mBackgroundHandler);
         } catch (CameraAccessException e) {
+            dialogHelper.closeLoading(CropCamera2Activity.this);
             e.printStackTrace();
         }
     }
@@ -278,7 +277,7 @@ public class CropCamera2Activity extends BaseActivityMVVM implements LifecycleOw
     private void getPictureCrop(File file) {
         //rotate bitmap, because camera sensor usually in landscape mode
         Matrix matrix = new Matrix();
-        matrix.postRotate(90F);
+//        matrix.postRotate(90F);
         Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
         Bitmap rotatedBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
 
@@ -317,7 +316,6 @@ public class CropCamera2Activity extends BaseActivityMVVM implements LifecycleOw
 
     }
 
-
     private void createImageFile(Bitmap bitmap) {
         new Handler().post(() -> {
             // Create an image file name
@@ -328,6 +326,7 @@ public class CropCamera2Activity extends BaseActivityMVVM implements LifecycleOw
                 os.flush();
                 os.close();
                 runOnUiThread(() -> {
+                    dialogHelper.closeLoading(CropCamera2Activity.this);
                     Intent intent = new Intent();
                     intent.putExtra(Constant.DATA_1, file.getAbsolutePath());
                     setResult(Activity.RESULT_OK, intent);
@@ -387,11 +386,12 @@ public class CropCamera2Activity extends BaseActivityMVVM implements LifecycleOw
             imageDimension = map.getOutputSizes(SurfaceTexture.class)[0];
             // Add permission for camera and let user grant the permission
             // Kiểm tra permission với android sdk >= 23
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(CropCamera2Activity.this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CAMERA_PERMISSION);
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(CropCamera2Activity.this, new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
                 return;
             }
             manager.openCamera(cameraId, stateCallback, null);
+            dialogHelper.closeLoading(this);
         } catch (CameraAccessException e) {
             e.printStackTrace();
         }
@@ -422,13 +422,12 @@ public class CropCamera2Activity extends BaseActivityMVVM implements LifecycleOw
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_CAMERA_PERMISSION) {
             if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
                 // close the app
-                Toast.makeText(CropCamera2Activity.this, "Sorry!!!, you can't use this app without granting permission", Toast.LENGTH_LONG).show();
+                Toast.makeText(CropCamera2Activity.this, "Để chụp ảnh xác thực, iCheck cần được cấp quyền truy cập Camera", Toast.LENGTH_LONG).show();
                 finish();
             }
         }
