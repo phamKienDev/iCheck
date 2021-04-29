@@ -199,30 +199,47 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
 
         itemView.imgAvatar.setOnClickListener {
             ICheckApplication.currentActivity()?.let {
-                IckUserWallActivity.create(obj.user?.id, it)
+                if (obj.page == null) {
+                    IckUserWallActivity.create(obj.user?.id, it)
+                } else {
+                    if (obj.meta?.product?.owner?.pageId != null)
+                        ActivityUtils.startActivity<PageDetailActivity, Long>(it, Constant.DATA_1, obj.meta?.product?.owner?.pageId!!)
+                }
             }
         }
 
-        itemView.tvLike.setOnClickListener {
+        itemView.layoutName.setOnClickListener {
+            ICheckApplication.currentActivity()?.let {
+                if (obj.page == null) {
+                    IckUserWallActivity.create(obj.user?.id, it)
+                } else {
+                    if (obj.meta?.product?.owner?.pageId != null)
+                        ActivityUtils.startActivity<PageDetailActivity, Long>(it, Constant.DATA_1, obj.meta?.product?.owner?.pageId!!)
+                }
+            }
+        }
+
+
+        itemView.tvLike.setOnClickListener{
             postLikeReview(obj)
         }
 
-        itemView.tvShop.setOnClickListener {
+        itemView.tvShop.setOnClickListener{
             ICheckApplication.currentActivity()?.let { activity ->
                 if (obj.meta?.product?.owner?.pageId != null)
                     ActivityUtils.startActivity<PageDetailActivity, Long>(activity, Constant.DATA_1, obj.meta?.product?.owner?.pageId!!)
             }
         }
 
-        itemView.tvComment.setOnClickListener {
+        itemView.tvComment.setOnClickListener{
             EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.OPEN_DETAIL_POST, obj))
         }
 
-        itemView.tvContent.setOnClickListener {
+        itemView.tvContent.setOnClickListener{
             EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.OPEN_DETAIL_POST, obj))
         }
 
-        itemView.setOnClickListener {
+        itemView.setOnClickListener{
             EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.OPEN_DETAIL_POST, obj))
         }
     }
