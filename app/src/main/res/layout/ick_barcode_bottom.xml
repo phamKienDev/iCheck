@@ -38,7 +38,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_clear" />
 
-    <vn.icheck.android.ui.edittext.FocusableEditText
+    <vn.icheck.android.ichecklibs.FocusableEditText
         android:id="@+id/edt_barcode"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_barcode" />
 
-    <vn.icheck.android.ui.EnableButton
+    <vn.icheck.android.ichecklibs.EnableButton
         android:id="@+id/submit_barcode"
         android:layout_width="0dp"
         android:layout_height="36dp"

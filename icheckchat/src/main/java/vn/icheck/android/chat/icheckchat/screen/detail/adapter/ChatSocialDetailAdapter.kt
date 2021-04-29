@@ -211,6 +211,10 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
                 binding.btnProductDetail.setOnClickListener {
                     ChatSdk.openActivity("product?id=${obj.product!!.productId}&barcode=${obj.product!!.barcode}")
                 }
+
+                binding.layoutProduct.setOnClickListener {
+                    ChatSdk.openActivity("product?id=${obj.product!!.productId}&barcode=${obj.product!!.barcode}")
+                }
             }
         }
 
