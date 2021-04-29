@@ -379,14 +379,14 @@ class EditMyInformationFragment : CoroutineFragment() {
 
         binding.imgDanhtinh.setOnClickListener {
             ickUserWallViewModel.userInfo?.data?.kycStatus?.let { kycStatus ->
-                val intent = Intent(requireContext(), VerifyIdentityActivity::class.java)
-                startActivityForResult(intent, requestUpdateKyc)
+               startKyc()
             }
         }
     }
 
     private fun startKyc() {
         val i = Intent(requireActivity(), VerifyIdentityActivity::class.java)
+        i.putExtra(Constant.DATA_1,  ickUserWallViewModel.userInfo?.data?.kycStatus )
         requireActivity().startActivityForResult(i, VERIFY_IDENTITY)
     }
 
