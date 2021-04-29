@@ -67,6 +67,7 @@ public class ICNetworkClient {
             .authenticator(authenticator)
 //            .authenticator(new TokenAuthenticator())
             .addInterceptor(loggingInterceptor)
+            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .addInterceptor(ICNetworkClient::requireLoginCallback).build();
 
     private static OkHttpClient getClient(int timeRequest) {
@@ -77,6 +78,7 @@ public class ICNetworkClient {
                 .authenticator(authenticator)
 //            .authenticator(new TokenAuthenticator())
                 .addInterceptor(loggingInterceptor)
+                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .addInterceptor(ICNetworkClient::requireLoginCallback).build();
     }
 
@@ -87,6 +89,7 @@ public class ICNetworkClient {
             .authenticator(authenticator)
 //            .authenticator(new TokenAuthenticator())
             .addInterceptor(loggingInterceptor)
+            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .addInterceptor(ICNetworkClient::requireLoginCallback2).build();
 
     private static final OkHttpClient client3 = new OkHttpClient.Builder()
@@ -96,6 +99,7 @@ public class ICNetworkClient {
             .authenticator(authenticator)
 //            .authenticator(new TokenAuthenticator())
             .addInterceptor(loggingInterceptor)
+            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .addInterceptor(ICNetworkClient::requireLoginCallback3).build();
 
     private static final OkHttpClient client4 = new OkHttpClient.Builder()
@@ -104,6 +108,7 @@ public class ICNetworkClient {
             .writeTimeout(30, TimeUnit.SECONDS)
             .authenticator(authenticator)
 //            .authenticator(new TokenAuthenticator())
+            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .addInterceptor(loggingInterceptor)
             .addInterceptor(ICNetworkClient::requireLoginCallback4).build();
 
@@ -113,6 +118,7 @@ public class ICNetworkClient {
             .writeTimeout(30, TimeUnit.SECONDS)
             .authenticator(authenticator)
 //            .authenticator(new TokenAuthenticator())
+            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .addInterceptor(loggingInterceptor)
             .addInterceptor(ICNetworkClient::requireLoginCallbackStamp).build();
 
@@ -120,6 +126,7 @@ public class ICNetworkClient {
             .connectTimeout(60, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)
+            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .authenticator(authenticator)
             .addInterceptor(loggingInterceptor)
             .addInterceptor(ICNetworkClient::requireLoginCallback).build();
