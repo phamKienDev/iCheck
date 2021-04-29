@@ -66,6 +66,8 @@ class IcFcmService : FirebaseMessagingService() {
             return
         }
 
+        val schema = remoteMessage.data["action"] ?: ""
+
         logDebug("$title - $body - $targetType - $targetID - $action - $path")
 
         playNotificationSound()
@@ -114,7 +116,7 @@ class IcFcmService : FirebaseMessagingService() {
                 }
             }
             path.contains("popup_image") -> {
-                showDialogNotification(image = targetID, schema = path)
+                showDialogNotification(image = targetID, schema = schema)
             }
             path.contains("popup_html") -> {
                 showDialogNotification(htmlText = targetID)
@@ -147,9 +149,9 @@ class IcFcmService : FirebaseMessagingService() {
 
     @WorkerThread
     private fun showDialogNotification(image: String? = null, htmlText: String? = null, link: String? = null, schema: String? = null) {
-        ICheckApplication.currentActivity().let { activity ->
-            activity?.runOnUiThread {
-                object : DialogNotificationFirebaseAds(activity, image, htmlText, link, schema) {
+        ICheckApplication.currentActivity()?.apply {
+            runOnUiThread {
+                object : DialogNotificationFirebaseAds(this, image, htmlText, link, schema) {
                     override fun onDismiss() {
 
                     }

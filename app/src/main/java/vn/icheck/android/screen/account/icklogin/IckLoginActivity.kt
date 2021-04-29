@@ -13,6 +13,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
+import com.facebook.login.LoginManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_ick_login.*
 import kotlinx.coroutines.launch
@@ -43,6 +44,7 @@ import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.util.ick.forceHideKeyboard
 import vn.icheck.android.util.ick.logError
 import vn.icheck.android.util.ick.showSimpleErrorToast
+import javax.inject.Inject
 
 const val LOGIN_OTP = 1
 const val FORGOT_PW = 2
@@ -58,6 +60,9 @@ class IckLoginActivity : BaseCoroutineActivity() {
     val ickLoginViewModel: IckLoginViewModel by viewModels()
 
     private lateinit var facebookReceiver: BroadcastReceiver
+
+    @Inject
+    lateinit var loginManager: LoginManager
 
     private fun loginFacebookSuccess(it: String) {
         val icSession = ICSessionData()
@@ -157,7 +162,7 @@ class IckLoginActivity : BaseCoroutineActivity() {
                                                     intent.getStringExtra(FACEBOOK_USERNAME),
                                                     it
                                             )
-                                            findNavController(R.id.nav_host_fragment).navigate(action)
+                                            findNavController(R.id.nav_host_fragment_login).navigate(action)
                                         } catch (e: Exception) {
                                             logError(e)
                                         }
@@ -184,6 +189,7 @@ class IckLoginActivity : BaseCoroutineActivity() {
                 launchRegister()
             }
         }
+        loginManager.logOut()
     }
 
     private fun launchLogin() {

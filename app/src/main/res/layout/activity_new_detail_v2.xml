@@ -9,9 +9,9 @@
     <androidx.core.widget.NestedScrollView
         android:id="@id/nestedScrollView"
         android:layout_width="match_parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="@dimen/size_0"
         app:layout_constraintBottom_toTopOf="@id/viewShadowBottom"
-        android:layout_height="@dimen/size_0">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,7 +22,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/size_4">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@id/imgBanner"
@@ -33,11 +34,32 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <vn.icheck.android.ui.view.TextBarlowSemiBold
+                android:id="@id/tvStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginTop="@dimen/size_6"
+                android:background="@drawable/bg_normal_text_color_opacity_25_corners_3"
+                android:drawableStart="@drawable/ic_world_12dp"
+                android:drawablePadding="@dimen/size_3"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/size_3"
+                android:paddingTop="@dimen/size_2"
+                android:paddingEnd="@dimen/size_4"
+                android:paddingBottom="@dimen/size_2"
+                android:singleLine="true"
+                android:text="@string/duoc_tai_tro"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_10"
+                android:visibility="gone" />
+
             <vn.icheck.android.ui.view.TextHeader
                 android:id="@id/tvTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_10"
+                android:layout_marginTop="@dimen/size_6"
                 android:background="@color/white"
                 android:gravity="center_vertical"
                 android:includeFontPadding="false"

@@ -120,8 +120,9 @@ class CropCameraActivity : BaseActivityMVVM() {
             //rotate bitmap, because camera sensor usually in landscape mode
             val matrix = Matrix()
             matrix.postRotate(90F)
-            val rotatedBitmap = Bitmap.createBitmap(bitmapPicture, 0, 0,
-                    bitmapPicture.width, bitmapPicture.height, matrix, true)
+            val bm2=BitmapFactory.decodeFile("/data/user/0/vn.icheck.android.develop/files/IMG_2021_04_28_09_50_35_126.jpg")
+            val rotatedBitmap = Bitmap.createBitmap(bm2, 0, 0,
+                    bm2.width, bm2.height, matrix, true)
 
             //calculate aspect ratio
             val koefX = rotatedBitmap.width.toFloat() / camera_preview.width.toFloat()

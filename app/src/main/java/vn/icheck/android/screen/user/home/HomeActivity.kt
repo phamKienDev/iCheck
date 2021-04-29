@@ -564,15 +564,17 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
 
     private fun setupTheme() {
         val theme = SettingManager.themeSetting?.theme
-        val bottomBarTextColor = if (!theme?.bottomBarSelectedTextColor.isNullOrEmpty()) {
+
+        if (!theme?.bottomBarSelectedTextColor.isNullOrEmpty()) {
             ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.colorDisableText), Color.parseColor(theme!!.bottomBarSelectedTextColor))
         } else {
             ContextCompat.getColorStateList(this@HomeActivity, R.color.text_color_home_tab)
+        }.apply {
+            tvHome.setTextColor(this)
+            tvFeed.setTextColor(this)
+            tvHistory.setTextColor(this)
+            tvChat.setTextColor(this)
         }
-        tvHome.setTextColor(bottomBarTextColor)
-        tvFeed.setTextColor(bottomBarTextColor)
-        tvHistory.setTextColor(bottomBarTextColor)
-        tvChat.setTextColor(bottomBarTextColor)
 
         val path = FileHelper.getPath(this@HomeActivity)
         val homeBitmap = BitmapFactory.decodeFile(path + FileHelper.homeIcon)
