@@ -76,7 +76,9 @@
         tools:ignore="GoogleAppIndexingWarning,HardcodedDebugMode"
         tools:replace="android:allowBackup"
         tools:targetApi="m">
-        <activity android:name=".screen.user.crop_camera.CropCamera2Activity"></activity>
+        <activity android:name=".screen.user.crop_camera.CropCamera2Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppFullScreenTheme"/>
         <activity android:name=".screen.scan.MyQrActivity" />
         <activity
             android:name=".screen.scan.V6ScanditActivity"
