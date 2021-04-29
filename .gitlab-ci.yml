@@ -11,7 +11,7 @@ assembleDevDebug:
     - autobuild
   only:
     refs:
-      - develop_chat
+      - develop
   stage: build_develop
   script:
     - ./gradlew clean
@@ -24,7 +24,7 @@ assembleProdRelease:
     - autobuild
   only:
     refs:
-      - develop_chat
+      - develop
   stage: build_production
   script:
     - ./gradlew clean
