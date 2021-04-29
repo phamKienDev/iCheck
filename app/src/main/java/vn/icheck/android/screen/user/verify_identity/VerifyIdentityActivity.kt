@@ -61,16 +61,20 @@ class VerifyIdentityActivity : BaseActivityMVVM(), View.OnClickListener {
                 lifecycleScope.launch {
                     var firstJob: Job? = null
                     var secondJob: Job? = null
-
+                    val listImage = arrayListOf<File>()
                     firstJob = async(Dispatchers.IO) {
 
-                        val f = Glide.with(ICheckApplication.getInstance())
-                                .asFile()
-                                .timeout(30000)
-                                .load(kycDocuments?.firstOrNull()?.document?.firstOrNull().toString())
-                                .submit()
-                                .get()
-                        viewModel.frontImage = f
+                        try {
+                            val f = Glide.with(ICheckApplication.getInstance())
+                                    .asFile()
+                                    .timeout(30000)
+                                    .load(kycDocuments?.firstOrNull()?.document?.firstOrNull().toString())
+                                    .submit()
+                                    .get()
+                            listImage.add(f)
+                        } catch (e: Exception) {
+
+                        }
                     }
                     secondJob = async(Dispatchers.IO) {
                         try {
@@ -80,14 +84,19 @@ class VerifyIdentityActivity : BaseActivityMVVM(), View.OnClickListener {
                                     .load(kycDocuments?.get(1)?.document?.firstOrNull().toString())
                                     .submit()
                                     .get()
-                            viewModel.afterImage = b
+                            listImage.add(b)
+
                         } catch (e: Exception) {
                             logError(e)
                         }
                     }
                     awaitAll(firstJob, secondJob)
-
-
+                    if (listImage.firstOrNull() != null) {
+                        setFrontImage(listImage.first())
+                    }
+                    if (listImage.size >= 2) {
+                        setAfterImage(listImage[1])
+                    }
                     if (viewModel.frontImage != null) {
                         WidgetUtils.loadImageFile(imgFront, viewModel.frontImage, R.drawable.front_passport, SizeHelper.size4)
                     } else {

@@ -181,6 +181,9 @@ interface ICNetworkSocialApi {
     @GET
     fun getUserKyc(@Url url: String): Observable<ICResponse<ListResponse<KycResponse>>>
 
+    @POST
+    fun createUserKyc(@Url url: String, @Body body: HashMap<String, Any?>): Observable<ResponseBody>
+
     /*
     * End Wall
     * */

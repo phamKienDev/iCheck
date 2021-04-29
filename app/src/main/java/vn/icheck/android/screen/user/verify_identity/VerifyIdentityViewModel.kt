@@ -3,6 +3,10 @@ package vn.icheck.android.screen.user.verify_identity
 import android.content.Intent
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import io.reactivex.Observer
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import okhttp3.ResponseBody
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
@@ -56,7 +60,14 @@ class VerifyIdentityViewModel : ViewModel() {
             }
 
             override fun onError(error: ICResponseCode?) {
-                logDebug(error?.message)
+                position = -1
+                listImage.clear()
+                statusCode.postValue(ICMessageEvent(ICMessageEvent.Type.MESSAGE_ERROR,
+                        if (error?.message.isNullOrEmpty()) {
+                            ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                        } else {
+                            error!!.message
+                        }))
             }
         })
     }
@@ -74,22 +85,68 @@ class VerifyIdentityViewModel : ViewModel() {
                 }
                 val kyc = ICPostKyc(1, document)
 
-                UserInteractor().postKyc(kyc, object : ICNewApiListener<ICResponse<String>> {
-                    override fun onSuccess(obj: ICResponse<String>) {
-                        onSuccess.postValue(1)
-                    }
+//                UserInteractor().postKyc(kyc, object : ICNewApiListener<ICResponse<String>> {
+//                    override fun onSuccess(obj: ICResponse<String>) {
+//                        onSuccess.postValue(1)
+//                    }
+//
+//                    override fun onError(error: ICResponseCode?) {
+//                        position = -1
+//                        listImage.clear()
+//                        statusCode.postValue(ICMessageEvent(ICMessageEvent.Type.MESSAGE_ERROR,
+//                                if (error?.message.isNullOrEmpty()) {
+//                                    ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+//                                } else {
+//                                    error!!.message
+//                                }))
+//                    }
+//                })
+                val requestBody = hashMapOf<String, Any?>()
+                val documents = arrayListOf<HashMap<String, Any?>>()
+                documents.add(hashMapOf(
+                        "type" to if (typeCard == ICheckApplication.getString(R.string.can_cuoc_cong_dan)) {
+                            2
+                        } else {
+                            1
+                        },
+                        "documents" to listImage.firstOrNull(),
+                        "documentName" to typeCard
+                ))
+                documents.add(hashMapOf(
+                        "type" to if (typeCard == ICheckApplication.getString(R.string.can_cuoc_cong_dan)) {
+                            2
+                        } else {
+                            1
+                        },
+                        "documents" to listImage.get(1),
+                        "documentName" to typeCard
+                ))
+                requestBody["kycDocuments"] = documents
+                requestBody["requestKycLevel"] = 1
+                val url = APIConstants.socialHost + "social/api/users/kyc-request"
+                ICNetworkClient.getNewSocialApi().createUserKyc(url, requestBody)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(object : Observer<ResponseBody>{
+                            override fun onSubscribe(d: Disposable) {
 
-                    override fun onError(error: ICResponseCode?) {
-                        position = -1
-                        listImage.clear()
-                        statusCode.postValue(ICMessageEvent(ICMessageEvent.Type.MESSAGE_ERROR,
-                                if (error?.message.isNullOrEmpty()) {
-                                    ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
-                                } else {
-                                    error!!.message
-                                }))
-                    }
-                })
+                            }
+
+                            override fun onNext(t: ResponseBody) {
+                                onSuccess.postValue(1)
+                            }
+
+                            override fun onError(e: Throwable) {
+                                position = -1
+                                listImage.clear()
+                                statusCode.postValue(ICMessageEvent(ICMessageEvent.Type.MESSAGE_ERROR,
+                                        ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai)))
+                            }
+
+                            override fun onComplete() {
+
+                            }
+                        })
             } else {
                 position = -1
                 listImage.clear()
