@@ -9,7 +9,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Typeface
-import android.location.Location
 import android.net.Uri
 import android.os.Build
 import android.os.Handler
@@ -41,7 +40,6 @@ import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivity
 import vn.icheck.android.base.adapter.RecyclerViewAdapter
-import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.holder.StampECommerceHolder
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.component.banner.ListBannerAdapter
@@ -149,12 +147,10 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
     var banner = ""
     var description = ""
     var targetType = ""
-    var hasChanceCode = false
 
     private var nameProduct: String? = null
     private var url: String? = null
     private var km: String? = null
-    var ownerImage = ""
 
     private var bannerAdapter: BannerAdapter? = null
     private lateinit var adapterSuggestion: MoreProductVerifiedAdapter
@@ -169,13 +165,6 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
 
     var codeInput = ""
     var obj: ICKLoyalty? = null
-
-//    private val loyaltyCampaign = LoyaltyInteractor()
-
-    private var nameCampaign: String? = null
-    private lateinit var user: ICUser
-    private val userInteraction = UserInteractor()
-
 
     override fun isRegisterEventBus(): Boolean {
         return true
@@ -226,24 +215,12 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
         }
 
         getData()
-        getUserDetail()
+//        getUserDetail()
 //        initUpdateLocation()
         listener()
     }
 
     // Loyalty Campaign
-
-    fun getUserDetail() {
-        userInteraction.getUserMeDelay(object : ICApiListener<ICUser> {
-            override fun onSuccess(obj: ICUser) {
-                user = obj
-            }
-
-            override fun onError(error: ICBaseResponse?) {
-
-            }
-        })
-    }
 
     //End Loyalty (longdq)
 

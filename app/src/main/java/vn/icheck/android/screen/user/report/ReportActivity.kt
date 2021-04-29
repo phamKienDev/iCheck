@@ -90,8 +90,8 @@ class ReportActivity : BaseActivityMVVM() {
                         radioButton.typeface = ViewHelper.createTypeface(this, R.font.barlow_medium)
                         radioButton.setBackgroundResource(ViewHelper.outValue.resourceId)
                         radioButton.setTextColor(ViewHelper.createColorStateList(
-                                ContextCompat.getColor(this, R.color.fast_survey_gray),
-                                ContextCompat.getColor(this, R.color.collection_product_name)))
+                                ContextCompat.getColor(this, R.color.colorSecondText),
+                                ContextCompat.getColor(this, R.color.colorNormalText)))
                         radioButton.includeFontPadding = false
                         radioButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
                         radioButton.maxLines = 1
@@ -178,7 +178,7 @@ class ReportActivity : BaseActivityMVVM() {
         }
 
         if (isChecked) {
-            DialogHelper.showConfirm(this, "Bạn muốn bỏ báo lỗi này?", null, "Tiếp tục báo lỗi", "Bỏ báo cáo", true, null, R.color.red, object : ConfirmDialogListener {
+            DialogHelper.showConfirm(this, "Bạn muốn bỏ báo lỗi này?", null, "Tiếp tục báo lỗi", "Bỏ báo cáo", true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
                 override fun onDisagree() {
 
                 }

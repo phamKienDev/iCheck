@@ -20,8 +20,8 @@
         android:layout_marginRight="@dimen/size_48"
         android:fontFamily="@font/barlow_medium"
         android:gravity="center"
-        android:textColor="@color/fast_survey_gray"
-        android:textSize="14sp"
+        android:textColor="@color/colorSecondText"
+        android:textSize="@dimen/font_14"
         android:text="Xin lỗi chúng tôi không thể tìm được kết quả phù hợp với tìm kiếm của bạn" />
 
     <TextView
@@ -31,12 +31,12 @@
         android:layout_marginTop="@dimen/size_20"
         android:background="@drawable/bg_corners_4_light_blue_solid"
         android:fontFamily="@font/barlow_semi_bold"
-        android:paddingLeft="66dp"
+        android:paddingLeft="@dimen/size_66"
         android:paddingTop="@dimen/size_10"
-        android:paddingRight="66dp"
+        android:paddingRight="@dimen/size_66"
         android:visibility="gone"
         android:paddingBottom="@dimen/size_10"
         android:text="Thử lại với từ khoá khác"
         android:textColor="@color/white"
-        android:textSize="16sp" />
+        android:textSize="@dimen/font_16" />
 </LinearLayout>

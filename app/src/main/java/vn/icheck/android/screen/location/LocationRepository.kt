@@ -1,6 +1,6 @@
 package vn.icheck.android.screen.location
 
-import vn.icheck.android.model.location.CityResponse
+import vn.icheck.android.network.model.location.CityResponse
 import vn.icheck.android.network.api.ICKApi
 import vn.icheck.android.util.ick.logDebug
 import javax.inject.Inject
@@ -10,7 +10,7 @@ class LocationRepository @Inject constructor(
 ) {
 
 
-    suspend fun getCities():CityResponse?{
+    suspend fun getCities(): CityResponse?{
         return try {
             ickApi.getCities()
         } catch (e: Exception) {
@@ -19,7 +19,7 @@ class LocationRepository @Inject constructor(
         }
     }
 
-    suspend fun getDistricts(cityId:Int?):CityResponse?{
+    suspend fun getDistricts(cityId:Int?): CityResponse?{
         return try {
             ickApi.getDistricts(cityId)
         } catch (e: Exception) {
@@ -28,7 +28,7 @@ class LocationRepository @Inject constructor(
         }
     }
 
-    suspend fun getWards(districtId:Int?):CityResponse?{
+    suspend fun getWards(districtId:Int?): CityResponse?{
         return try {
             ickApi.getWards(districtId)
         } catch (e: Exception) {

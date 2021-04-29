@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_comment_post.view.*
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
-import vn.icheck.android.activities.image.DetailImagesActivity
 import vn.icheck.android.callback.ItemClickListener
 import vn.icheck.android.component.commentpost.CommentPostMoreHolder
 import vn.icheck.android.component.commentpost.ICCommentPostMore
@@ -17,15 +16,18 @@ import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponseCode
 import vn.icheck.android.network.feature.comment.CommentRepository
 import vn.icheck.android.network.models.ICProductQuestion
+import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
-import vn.icheck.android.util.ick.*
+import vn.icheck.android.util.ick.beGone
+import vn.icheck.android.util.ick.getImageSize
+import vn.icheck.android.util.ick.setRankUser
+import vn.icheck.android.util.ick.visibleOrGone
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -147,7 +149,7 @@ class ItemQuestionAdapter(val questionListener: ProductDetailListener) : Recycle
                 listString.add(image.content)
             }
             itemView.imageView.setOnClickListener {
-                DetailImagesActivity.start(listString, itemView.context)
+                DetailMediaActivity.start(itemView.context, listString)
             }
 
             itemView.imgAvatar.setOnClickListener {
@@ -183,7 +185,7 @@ class ItemQuestionAdapter(val questionListener: ProductDetailListener) : Recycle
 
         private fun checkLike(expressived: String?) {
             if (expressived == null) {
-                itemView.tvLike.setTextColor(ContextCompat.getColor(itemView.context, R.color.fast_survey_gray))
+                itemView.tvLike.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorSecondText))
             } else {
                 itemView.tvLike.setTextColor(ContextCompat.getColor(itemView.context, R.color.red_like_question))
             }

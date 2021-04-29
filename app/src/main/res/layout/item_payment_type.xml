@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
-    android:layout_marginBottom="8dp"
-    android:layout_marginStart="12dp"
-    android:layout_marginEnd="12dp"
+    android:layout_marginTop="@dimen/size_8"
+    android:layout_marginBottom="@dimen/size_8"
+    android:layout_marginStart="@dimen/size_12"
+    android:layout_marginEnd="@dimen/size_12"
     android:background="?android:attr/selectableItemBackground"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -21,10 +21,10 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@id/imgType"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="@dimen/size_40"
+        android:layout_height="@dimen/size_40"
         android:src="@mipmap/ic_launcher"
-        android:layout_marginStart="13dp"
+        android:layout_marginStart="@dimen/size_13"
         app:layout_constraintStart_toEndOf="@id/radioButton1"
         app:layout_constraintTop_toTopOf="@id/radioButton1"
         app:layout_constraintBottom_toBottomOf="@id/radioButton1"/>
@@ -34,26 +34,26 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center|start"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="@dimen/size_8"
         app:layout_constraintStart_toEndOf="@id/imgType"
         app:layout_constraintTop_toTopOf="@id/imgType"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/imgType">
 
-        <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+        <vn.icheck.android.ui.view.TextBarlowSemiBold
             android:id="@+id/tvNameType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textColor="#212121"
             android:fontFamily="@font/barlow_semi_bold"
             tools:text="iCheck Xu"/>
 
-        <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+        <vn.icheck.android.ui.view.TextBarlowMedium
             android:id="@id/tvValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
+            android:textSize="@dimen/font_12"
             android:textColor="#757575"
             android:fontFamily="@font/barlow_medium"
             tools:text="Số dư hiện tại: 34,970 Xu"/>

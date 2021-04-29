@@ -12,15 +12,11 @@ import androidx.activity.viewModels
 import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
-import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.findNavController
+import com.facebook.login.LoginManager
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_ick_login.*
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseCoroutineActivity
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
@@ -29,11 +25,12 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.constant.FACEBOOK_AVATAR
 import vn.icheck.android.constant.FACEBOOK_TOKEN
 import vn.icheck.android.constant.FACEBOOK_USERNAME
+import vn.icheck.android.databinding.ActivityIckLoginBinding
 import vn.icheck.android.helper.CartHelper
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.tracking.insider.InsiderHelper
 import vn.icheck.android.helper.ShareSessionToModule
-import vn.icheck.android.network.base.ICNetworkManager2
+import vn.icheck.android.network.base.ICNetworkManager
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.*
 import vn.icheck.android.util.toICBaseResponse
@@ -47,6 +44,7 @@ import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.util.ick.forceHideKeyboard
 import vn.icheck.android.util.ick.logError
 import vn.icheck.android.util.ick.showSimpleErrorToast
+import javax.inject.Inject
 
 const val LOGIN_OTP = 1
 const val FORGOT_PW = 2
@@ -62,6 +60,9 @@ class IckLoginActivity : BaseCoroutineActivity() {
     val ickLoginViewModel: IckLoginViewModel by viewModels()
 
     private lateinit var facebookReceiver: BroadcastReceiver
+
+    @Inject
+    lateinit var loginManager: LoginManager
 
     private fun loginFacebookSuccess(it: String) {
         val icSession = ICSessionData()
@@ -85,26 +86,27 @@ class IckLoginActivity : BaseCoroutineActivity() {
         })
     }
 
-
+    private lateinit var binding: ActivityIckLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_ick_login)
-        nav_host_fragment.view?.background = ResourcesCompat.getDrawable(resources, R.drawable.ick_bg_top_corner_20, null)
+        binding = ActivityIckLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this)
         }
-        btn_exit.setOnClickListener {
+        binding.btnExit.setOnClickListener {
             setResult(Activity.RESULT_CANCELED)
             finish()
         }
-        btn_register.setOnClickListener {
+        binding.btnRegister.setOnClickListener {
             if (!ickLoginViewModel.onAction && ickLoginViewModel.state == 1) {
                 ickLoginViewModel.onAction = true
                 launchRegister()
             }
         }
-        btn_login.setOnClickListener {
+        binding.btnLogin.setOnClickListener {
             if (!ickLoginViewModel.onAction && ickLoginViewModel.state == 2) {
                 ickLoginViewModel.onAction = true
                 launchLogin()
@@ -120,8 +122,7 @@ class IckLoginActivity : BaseCoroutineActivity() {
                     hideBtns()
                 }
                 CHOOSE_TOPIC -> {
-                    val i = Intent(this, SuggestTopicActivity::class.java)
-                    startActivity(i)
+                    startActivity<SuggestTopicActivity>()
                 }
                 SHOW_LOGIN_REGISTER -> {
                     showBtn()
@@ -130,17 +131,17 @@ class IckLoginActivity : BaseCoroutineActivity() {
         })
         lifecycleScope.launch {
             if (intent.getIntExtra("requestCode", 0) == 1) {
-                btn_login.setTextColor(Color.parseColor("#80ffffff"))
-                btn_register.setTextColor(Color.WHITE)
-                findNavController(R.id.nav_host_fragment).popBackStack(R.id.ickLoginFragment, false)
+                binding.btnLogin.setTextColor(Color.parseColor("#80ffffff"))
+                binding.btnRegister.setTextColor(Color.WHITE)
+                findNavController(R.id.nav_host_fragment_login).popBackStack(R.id.ickLoginFragment, false)
                 val action = IckLoginFragmentDirections.actionIckLoginFragmentToIckLoginOtpFragment(REGISTER)
-                findNavController(R.id.nav_host_fragment).navigate(action)
-                btn_login.setTextSize(16F)
-                btn_register.setTextSize(18F)
+                findNavController(R.id.nav_host_fragment_login).navigate(action)
+                binding.btnLogin.setTextSize(16F)
+                binding.btnRegister.setTextSize(18F)
                 ickLoginViewModel.state = 2
             } else {
-                btn_login.setTextSize(18F)
-                btn_register.setTextSize(16F)
+                binding.btnLogin.setTextSize(18F)
+                binding.btnRegister.setTextSize(16F)
             }
         }
         forceHideKeyboard()
@@ -161,7 +162,7 @@ class IckLoginActivity : BaseCoroutineActivity() {
                                                     intent.getStringExtra(FACEBOOK_USERNAME),
                                                     it
                                             )
-                                            findNavController(R.id.nav_host_fragment).navigate(action)
+                                            findNavController(R.id.nav_host_fragment_login).navigate(action)
                                         } catch (e: Exception) {
                                             logError(e)
                                         }
@@ -188,6 +189,7 @@ class IckLoginActivity : BaseCoroutineActivity() {
                 launchRegister()
             }
         }
+        loginManager.logOut()
     }
 
     private fun launchLogin() {
@@ -210,11 +212,11 @@ class IckLoginActivity : BaseCoroutineActivity() {
     }
 
     private fun chooseLogin() {
-        btn_login.setTextSize(18F)
-        btn_register.setTextSize(16F)
-        btn_login.setTextColor(Color.WHITE)
-        btn_register.setTextColor(Color.parseColor("#80ffffff"))
-        findNavController(R.id.nav_host_fragment).popBackStack(R.id.ickLoginFragment, false)
+        binding.btnLogin.setTextSize(18F)
+        binding.btnRegister.setTextSize(16F)
+        binding.btnLogin.setTextColor(Color.WHITE)
+        binding.btnRegister.setTextColor(Color.parseColor("#80ffffff"))
+        findNavController(R.id.nav_host_fragment_login).popBackStack(R.id.ickLoginFragment, false)
         forceHideKeyboard()
         ickLoginViewModel.stateRegister.postValue(1)
         ickLoginViewModel.state = 1
@@ -224,14 +226,14 @@ class IckLoginActivity : BaseCoroutineActivity() {
     private fun launchRegister() {
         ickLoginViewModel.state = 2
         ickLoginViewModel.stateRegister.postValue(2)
-        if (btn_login.textSize != 16f * getResources().getDisplayMetrics().scaledDensity) {
-            btn_login.setTextColor(Color.parseColor("#80ffffff"))
-            btn_register.setTextColor(Color.WHITE)
-            btn_login.setTextSize(16F)
-            btn_register.setTextSize(18F)
-            findNavController(R.id.nav_host_fragment).popBackStack(R.id.ickLoginFragment, false)
+        if (binding.btnLogin.textSize != 16f * getResources().getDisplayMetrics().scaledDensity) {
+            binding.btnLogin.setTextColor(Color.parseColor("#80ffffff"))
+            binding.btnRegister.setTextColor(Color.WHITE)
+            binding.btnLogin.setTextSize(16F)
+            binding.btnRegister.setTextSize(18F)
+            findNavController(R.id.nav_host_fragment_login).popBackStack(R.id.ickLoginFragment, false)
             val action = IckLoginFragmentDirections.actionIckLoginFragmentToIckLoginOtpFragment(REGISTER)
-            findNavController(R.id.nav_host_fragment).navigate(action)
+            findNavController(R.id.nav_host_fragment_login).navigate(action)
             forceHideKeyboard()
             ickLoginViewModel.onAction = false
         }
@@ -244,7 +246,7 @@ class IckLoginActivity : BaseCoroutineActivity() {
             if (event.type == ICMessageEvent.Type.ON_LOG_IN) {
                 setResult(Activity.RESULT_OK)
                 overridePendingTransition(R.anim.none, R.anim.left_to_right_pop_exit)
-                ICNetworkManager2.getLoginProtocol?.onLogin()
+                ICNetworkManager.getLoginProtocol?.onLogin()
                 finish()
             }
         } catch (e: Exception) {
@@ -259,12 +261,12 @@ class IckLoginActivity : BaseCoroutineActivity() {
     }
 
     private fun hideBtns() {
-        btn_login.visibility = View.INVISIBLE
-        btn_register.visibility = View.INVISIBLE
+        binding.btnLogin.visibility = View.INVISIBLE
+        binding.btnRegister.visibility = View.INVISIBLE
     }
 
     private fun showBtn() {
-        btn_login.beVisible()
-        btn_register.beVisible()
+        binding.btnLogin.beVisible()
+        binding.btnRegister.beVisible()
     }
 }

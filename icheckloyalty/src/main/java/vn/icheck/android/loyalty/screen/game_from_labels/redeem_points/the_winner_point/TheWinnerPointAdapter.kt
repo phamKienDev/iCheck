@@ -84,14 +84,14 @@ internal class TheWinnerPointAdapter(callback: IRecyclerViewCallback) : Recycler
             if (!obj[0].name.isNullOrEmpty()) {
                 itemView.tvNameTop1.text = obj[0].name
             } else {
-                itemView.tvNameTop1.setTextColor(ContextCompat.getColor(itemView.context, R.color.darkGray2))
+                itemView.tvNameTop1.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorDisableText))
                 itemView.tvNameTop1.text = itemView.context.getString(R.string.dang_cap_nhat)
             }
 
             if (obj[0].total_points != null) {
                 itemView.tviCoinTop1.text = TextHelper.formatMoneyPhay(obj[0].total_points)
             } else {
-                itemView.tviCoinTop1.setTextColor(ContextCompat.getColor(itemView.context, R.color.darkGray2))
+                itemView.tviCoinTop1.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorDisableText))
                 itemView.tviCoinTop1.text = itemView.context.getString(R.string.dang_cap_nhat)
             }
 
@@ -127,19 +127,19 @@ internal class TheWinnerPointAdapter(callback: IRecyclerViewCallback) : Recycler
                         itemView.tviCoinTop3.text = itemView.context.getString(R.string.dang_cap_nhat)
                     }
                 } else {
-                    itemView.tvNameTop3.setTextColor(ContextCompat.getColor(itemView.context, R.color.darkGray2))
-                    itemView.tviCoinTop3.setTextColor(ContextCompat.getColor(itemView.context, R.color.darkGray2))
+                    itemView.tvNameTop3.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorDisableText))
+                    itemView.tviCoinTop3.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorDisableText))
                     itemView.tviCoinTop3.textSize = 12f
                     itemView.tviCoinTop3.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                 }
             } else {
-                itemView.tvNameTop2.setTextColor(ContextCompat.getColor(itemView.context, R.color.darkGray2))
-                itemView.tviCoinTop2.setTextColor(ContextCompat.getColor(itemView.context, R.color.darkGray2))
+                itemView.tvNameTop2.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorDisableText))
+                itemView.tviCoinTop2.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorDisableText))
                 itemView.tviCoinTop2.textSize = 12f
                 itemView.tviCoinTop2.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
 
-                itemView.tvNameTop3.setTextColor(ContextCompat.getColor(itemView.context, R.color.darkGray2))
-                itemView.tviCoinTop3.setTextColor(ContextCompat.getColor(itemView.context, R.color.darkGray2))
+                itemView.tvNameTop3.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorDisableText))
+                itemView.tviCoinTop3.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorDisableText))
                 itemView.tviCoinTop3.textSize = 12f
                 itemView.tviCoinTop3.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }

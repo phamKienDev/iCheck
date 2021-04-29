@@ -16,7 +16,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import vn.icheck.android.BuildConfig
+import vn.icheck.android.base.dialog.reward_login.RewardLoginCallback
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
+import vn.icheck.android.base.dialog.reward_login.RewardLoginDialogV2
 import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 
@@ -154,19 +156,21 @@ open class KeyboardToggleListener(
 }
 
 fun FragmentActivity.showLogin() {
-    object : RewardLoginDialog(this) {
+    RewardLoginDialogV2.show(this.supportFragmentManager, object : RewardLoginCallback {
         override fun onLogin() {
             this@showLogin simpleStartActivity IckLoginActivity::class.java
+
         }
 
         override fun onRegister() {
             this@showLogin.simpleStartForResultActivity(IckLoginActivity::class.java, 1)
+
         }
 
         override fun onDismiss() {
-        }
 
-    }.show()
+        }
+    })
 
 }
 

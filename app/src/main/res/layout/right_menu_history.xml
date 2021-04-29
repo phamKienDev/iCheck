@@ -14,14 +14,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/size_10"
         android:background="@color/white">
 
         <vn.icheck.android.component.view.ButtonLightBlueCorners4
             android:id="@+id/btnApply"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_margin="12dp"
+            android:layout_height="@dimen/size_40"
+            android:layout_margin="@dimen/size_12"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:text="Áp dụng"
@@ -40,19 +40,19 @@
     <!--            android:layout_height="wrap_content"-->
     <!--            android:background="@color/white"-->
     <!--            android:orientation="vertical"-->
-    <!--            android:paddingStart="12dp"-->
-    <!--            android:paddingEnd="12dp"-->
-    <!--            android:paddingBottom="16dp"-->
+    <!--            android:paddingStart="@dimen/size_12"-->
+    <!--            android:paddingEnd="@dimen/size_12"-->
+    <!--            android:paddingBottom="@dimen/size_16"-->
     <!--            android:visibility="gone">-->
 
     <!--            <androidx.appcompat.widget.AppCompatTextView-->
     <!--                android:layout_width="wrap_content"-->
     <!--                android:layout_height="wrap_content"-->
-    <!--                android:layout_marginTop="16dp"-->
+    <!--                android:layout_marginTop="@dimen/size_16"-->
     <!--                android:fontFamily="@font/barlow_medium"-->
     <!--                android:text="Giá từ 250.000 đ đến 800.000 đ"-->
     <!--                android:textColor="#212121"-->
-    <!--                android:textSize="14sp"-->
+    <!--                android:textSize="@dimen/font_14"-->
     <!--                android:textStyle="normal" />-->
 
     <!--            <it.sephiroth.android.library.rangeseekbar.RangeSeekBar-->
@@ -60,7 +60,7 @@
     <!--                style="@style/Base.Sephiroth.Widget.RangeSeekBar"-->
     <!--                android:layout_width="match_parent"-->
     <!--                android:layout_height="wrap_content"-->
-    <!--                android:layout_marginTop="10dp"-->
+    <!--                android:layout_marginTop="@dimen/size_10"-->
     <!--                android:max="100"-->
     <!--                app:range_progress_endValue="60"-->
     <!--                app:range_progress_startEnd_minDiff="1"-->
@@ -71,28 +71,28 @@
     <!--        <LinearLayout-->
     <!--            android:layout_width="match_parent"-->
     <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_marginTop="10dp"-->
+    <!--            android:layout_marginTop="@dimen/size_10"-->
     <!--            android:background="@color/white"-->
     <!--            android:orientation="vertical"-->
-    <!--            android:paddingTop="16dp"-->
-    <!--            android:paddingBottom="16dp"-->
+    <!--            android:paddingTop="@dimen/size_16"-->
+    <!--            android:paddingBottom="@dimen/size_16"-->
     <!--            android:visibility="gone">-->
 
     <!--            <androidx.appcompat.widget.AppCompatTextView-->
     <!--                android:layout_width="wrap_content"-->
     <!--                android:layout_height="wrap_content"-->
     <!--                android:fontFamily="@font/barlow_medium"-->
-    <!--                android:paddingStart="12dp"-->
+    <!--                android:paddingStart="@dimen/size_12"-->
     <!--                android:text="Đánh giá"-->
     <!--                android:textColor="#212121"-->
-    <!--                android:textSize="14sp" />-->
+    <!--                android:textSize="@dimen/font_14" />-->
 
     <!--            <com.willy.ratingbar.ScaleRatingBar-->
     <!--                android:id="@id/ratingBar"-->
     <!--                android:layout_width="wrap_content"-->
     <!--                android:layout_height="wrap_content"-->
-    <!--                android:layout_marginStart="4dp"-->
-    <!--                android:layout_marginTop="12dp"-->
+    <!--                android:layout_marginStart="@dimen/size_4"-->
+    <!--                android:layout_marginTop="@dimen/size_12"-->
     <!--                app:srb_drawableEmpty="@drawable/ic_star_empty_36px"-->
     <!--                app:srb_isIndicator="true"-->
     <!--                app:srb_numStars="5" />-->

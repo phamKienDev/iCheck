@@ -44,6 +44,9 @@ class ICKBoxGifts: Serializable {
     var gift: ICKGift? = null
 
     @Expose
+    var voucher: ICKVoucher? = null
+
+    @Expose
     var export_gift_to: String? = null
 
     @Expose

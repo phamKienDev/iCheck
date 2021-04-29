@@ -21,8 +21,8 @@
         android:fontFamily="@font/barlow_medium"
         android:gravity="center"
         android:text="Bạn chưa có mã QR nào"
-        android:textColor="@color/fast_survey_gray"
-        android:textSize="14sp" />
+        android:textColor="@color/colorSecondText"
+        android:textSize="@dimen/font_14" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvCreate"
@@ -43,5 +43,5 @@
         android:paddingBottom="@dimen/size_10"
         android:text="@string/tao_qrcode"
         android:textColor="@color/white"
-        android:textSize="16sp" />
+        android:textSize="@dimen/font_16" />
 </LinearLayout>

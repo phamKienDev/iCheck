@@ -1,14 +1,13 @@
 package vn.icheck.android.base.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_image_product_question.view.*
 import vn.icheck.android.R
-import vn.icheck.android.activities.image.DetailImagesActivity
 import vn.icheck.android.base.holder.BaseViewHolder
+import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class HorizontalImageAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -67,7 +66,7 @@ class HorizontalImageAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>()
 
             itemView.setOnClickListener {
                 if (listUrl.isNotEmpty()) {
-                    DetailImagesActivity.start(listUrl, itemView.context)
+                    DetailMediaActivity.start(itemView.context,listUrl)
                 }
 
             }

@@ -1,5 +1,6 @@
 package vn.icheck.android.loyalty.screen.gift_voucher
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
@@ -7,17 +8,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_gift_detail_from_app.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.loyalty.R
-import vn.icheck.android.loyalty.base.ConstantsLoyalty
-import vn.icheck.android.loyalty.base.ICMessageEvent
+import vn.icheck.android.loyalty.base.*
 import vn.icheck.android.loyalty.base.activity.BaseActivityGame
-import vn.icheck.android.loyalty.base.setGone
-import vn.icheck.android.loyalty.base.setVisible
 import vn.icheck.android.loyalty.dialog.ConfirmLoyaltyDialog
 import vn.icheck.android.loyalty.dialog.DialogNotification
 import vn.icheck.android.loyalty.model.ICKGift
 import vn.icheck.android.loyalty.screen.loyalty_customers.accept_ship_gift.AcceptShipGiftActivity
 import vn.icheck.android.loyalty.screen.loyalty_customers.exchange_phonecard.ChangePhoneCardsActivity
 import vn.icheck.android.loyalty.screen.loyalty_customers.exchange_phonecard.ExchangePhonecardSuccessDialog
+import vn.icheck.android.loyalty.screen.voucher.VoucherLoyaltyActivity
 
 /**
  * Happy new year
@@ -98,6 +97,7 @@ class GiftDetailFromAppActivity : BaseActivityGame() {
         })
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setUpButton(obj: ICKGift) {
 
         when (obj.rewardType) {
@@ -107,6 +107,7 @@ class GiftDetailFromAppActivity : BaseActivityGame() {
             "product" -> {
                 if (obj.state == 1) {
                     layoutButton.setVisible()
+                    layoutButtonNotVoucher.setVisible()
                 } else {
                     layoutButton.setGone()
                 }
@@ -119,6 +120,39 @@ class GiftDetailFromAppActivity : BaseActivityGame() {
                     layoutButton.setGone()
                 } else {
                     layoutButton.setVisible()
+                    layoutButtonNotVoucher.setVisible()
+                }
+            }
+            "VOUCHER" -> {
+                layoutButton.setVisible()
+                layoutButtonNotVoucher.setGone()
+                btnUsed.setVisible()
+
+                when {
+                    obj.voucher?.can_use == true -> {
+                        btnUsed.apply {
+                            text = "Dùng ngay"
+
+                            setOnClickListener {
+                                startActivity(Intent(this@GiftDetailFromAppActivity, VoucherLoyaltyActivity::class.java).apply {
+                                    putExtra(ConstantsLoyalty.DATA_1, obj.voucher.code)
+                                    putExtra(ConstantsLoyalty.DATA_2, obj.voucher.expired_at)
+                                })
+                            }
+                        }
+                    }
+                    obj.voucher?.can_mark_use == true -> {
+                        btnUsed.apply {
+                            text = "Đánh dấu sử dụng"
+
+                            setOnClickListener {
+                                showCustomErrorToast(this@GiftDetailFromAppActivity, "Chưa có sự kiện")
+                            }
+                        }
+                    }
+                    else -> {
+                        layoutButton.setGone()
+                    }
                 }
             }
             else -> {

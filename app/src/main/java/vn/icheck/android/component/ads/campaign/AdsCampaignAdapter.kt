@@ -22,7 +22,7 @@ import vn.icheck.android.network.feature.campaign.ListCampaignInteractor
 import vn.icheck.android.network.models.ICAdsData
 import vn.icheck.android.network.models.ICCampaign
 import vn.icheck.android.screen.user.campaign_onboarding.CampaignOnboardingActivity
-import vn.icheck.android.screen.user.home_page.my_gift_warehouse.shake_gift.list_box_gift.ListShakeGridBoxActivity
+import vn.icheck.android.screen.user.my_gift_warehouse.shake_gift.list_box_gift.ListShakeGridBoxActivity
 import vn.icheck.android.ui.RoundedCornersTransformation
 import vn.icheck.android.util.ick.showSimpleErrorToast
 import vn.icheck.android.util.kotlin.WidgetUtils

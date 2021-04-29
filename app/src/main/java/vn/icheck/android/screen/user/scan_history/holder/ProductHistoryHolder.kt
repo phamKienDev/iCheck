@@ -25,6 +25,7 @@ import vn.icheck.android.network.util.JsonHelper
 import vn.icheck.android.screen.user.map_scan_history.MapScanHistoryActivity
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.screen.user.store_sell_history.StoreSellHistoryActivity
+import vn.icheck.android.util.KeyboardUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryHolderBinding = LayoutProductHistoryHolderBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : RecyclerView.ViewHolder(binding.root) {
@@ -113,7 +114,7 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
             binding.layoutShop.visibility = View.GONE
         }
 
-        if (obj.nearestShop != null) {
+        if (obj.nearestShop?.shop != null) {
             binding.layoutShop.visibility = View.VISIBLE
             binding.btnSearchNear.visibility = View.VISIBLE
             if (!obj.nearestShop?.shop?.avatar.isNullOrEmpty()) {
@@ -125,8 +126,8 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
             binding.tvNameShop.text = obj.nearestShop?.shop?.name
                     ?: itemView.context.getString(R.string.dang_cap_nhat)
 
-            if (obj.nearestShop?.distance != null) {
-                TextHelper.convertMtoKm(obj.nearestShop?.distance!!, binding.tvDistance)
+            if (obj.nearestShop?.distance != null && obj.nearestShop?.distance != Double.POSITIVE_INFINITY && obj.nearestShop?.distance != Double.NEGATIVE_INFINITY) {
+                TextHelper.convertMtoKm(obj.nearestShop?.distance!!.toLong(), binding.tvDistance)
             } else {
                 binding.tvDistance.text = itemView.context.getString(R.string.dang_cap_nhat)
             }
@@ -155,6 +156,7 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
 
         binding.btnSearchNear.setOnClickListener {
             if (obj.product?.sourceId != null && obj.product?.sourceId != 0L) {
+                ICheckApplication.currentActivity()?.let { activity -> KeyboardUtils.hideSoftInput(activity) }
                 val intent = Intent(itemView.context, MapScanHistoryActivity::class.java)
                 intent.putExtra(Constant.DATA_2, obj.product?.sourceId!!)
                 intent.putExtra(Constant.DATA_3, obj.nearestShop?.shop?.location?.lat)

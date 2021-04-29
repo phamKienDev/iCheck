@@ -20,31 +20,31 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="@dimen/size_18"
             android:src="@drawable/img_phone_calling" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_8"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="@dimen/size_35"
             android:layout_marginEnd="@dimen/size_8"
             android:fontFamily="sans-serif"
             android:gravity="center"
             android:text="Cảm ơn bạn đã sử dụng dịch vụ của iCheck.\nCửa hàng sẽ liên lạc với bạn sớm để xác nhận đơn quà này!"
             android:textAlignment="center"
             android:textColor="#434343"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/btnDetailShipGift"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="28dp"
-            android:layout_marginBottom="12dp"
+            android:layout_marginStart="@dimen/size_28"
+            android:layout_marginTop="@dimen/size_24"
+            android:layout_marginEnd="@dimen/size_28"
+            android:layout_marginBottom="@dimen/size_12"
             android:background="@drawable/bg_orange_ship_gift_corners_26"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
@@ -52,7 +52,7 @@
             android:paddingBottom="@dimen/size_10"
             android:text="Xem chi tiết đơn hàng"
             android:textColor="#ffffff"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             android:textStyle="normal" />
 
     </LinearLayout>
@@ -61,7 +61,7 @@
         android:id="@+id/btnClose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/size_20"
         android:src="@drawable/ic_cancel_popup_32px"
         card_view:layout_constraintBottom_toBottomOf="parent"
         card_view:layout_constraintEnd_toEndOf="parent"

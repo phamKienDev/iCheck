@@ -4,7 +4,6 @@ import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_my_gift.view.*
 import vn.icheck.android.R
@@ -14,9 +13,7 @@ import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.models.ICItemReward
 import vn.icheck.android.screen.user.campaign.holder.base.LoadingHolder
-import vn.icheck.android.screen.user.mygift.fragment.reward_item_v2.RewardItemV2Adapter
 import vn.icheck.android.screen.user.page_details.fragment.page.widget.message.MessageHolder
-import vn.icheck.android.util.kotlin.WidgetUtils
 
 class MyGiftAdapter () : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     val listData = mutableListOf<ICItemReward>()

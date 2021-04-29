@@ -54,6 +54,7 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <uses-permission-sdk-23 android:name="android.permission.READ_CALENDAR" />
+    <uses-feature android:name="android.hardware.camera2.full" />
     <uses-permission-sdk-23 android:name="android.permission.WRITE_CALENDAR" /> <!-- Insider Required -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission
@@ -76,10 +77,14 @@
         tools:ignore="GoogleAppIndexingWarning,HardcodedDebugMode"
         tools:replace="android:allowBackup"
         tools:targetApi="m">
-        <activity android:name=".screen.scan.MyQrActivity"></activity>
-        <activity android:name=".screen.scan.V6ScanditActivity"
+        <activity android:name=".screen.user.crop_camera.CropCamera2Activity"
             android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden|screenSize"/>
+            android:theme="@style/AppFullScreenTheme"/>
+        <activity android:name=".screen.scan.MyQrActivity" />
+        <activity
+            android:name=".screen.scan.V6ScanditActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
         <activity android:name=".TestActivity" />
         <activity
             android:name=".screen.user.listproductecommerce.ListProductsECommerceActivity"
@@ -248,7 +253,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppFullScreenTheme" />
         <activity
-            android:name=".screen.user.home_page.my_gift_warehouse.list_mission.list.ListMissionActivity"
+            android:name=".screen.user.my_gift_warehouse.list_mission.list.ListMissionActivity"
             android:theme="@style/Theme.AppCompat.Translucent"
             android:windowSoftInputMode="adjustResize" />
         <activity
@@ -349,7 +354,7 @@
             android:theme="@style/AppTheme_White"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".screen.user.editcomment.EditCommentActivity"
+            android:name=".screen.user.edit_comment.EditCommentActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme_White"
             android:windowSoftInputMode="adjustResize" />
@@ -358,7 +363,7 @@
             android:theme="@style/Theme.AppCompat.Translucent"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".screen.user.home_page.my_gift_warehouse.shake_gift.shake_box_success.ShakeBoxSuccessActivity"
+            android:name=".screen.user.my_gift_warehouse.shake_gift.shake_box_success.ShakeBoxSuccessActivity"
             android:screenOrientation="portrait"
             android:theme="@style/TranslucentStatusBarDapQua" />
         <activity
@@ -376,15 +381,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme_White" />
         <activity
-            android:name=".screen.user.home_page.my_gift_warehouse.shake_gift.shake.ShakeGiftActivity"
+            android:name=".screen.user.my_gift_warehouse.shake_gift.shake.ShakeGiftActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".screen.user.home_page.my_gift_warehouse.shake_gift.list_box_gift.ListShakeGridBoxActivity"
+            android:name=".screen.user.my_gift_warehouse.shake_gift.list_box_gift.ListShakeGridBoxActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".screen.user.home_page.campaign.detail_campagin_v2.DetailCampaignV2Activity"
-            android:screenOrientation="portrait"
-            android:theme="@style/TranslucentStatusBarDapQua" />
         <activity
             android:name=".screen.user.bookmark.BookMarkV2Activity"
             android:exported="true"
@@ -526,17 +527,13 @@
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme_White" />
-        <activity
-            android:name=".screen.user.home_page.my_gift_warehouse.open_reward_box_tet.OpenRewardBoxTetActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/TranslucentStatusBarDapQua" />
+<!--        <activity-->
+<!--            android:name=".screen.user.my_gift_warehouse.open_reward_box_tet.OpenRewardBoxTetActivity"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:theme="@style/TranslucentStatusBarDapQua" />-->
         <activity
             android:name=".screen.user.qr_code_marketing.QrCodeMarketingActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".screen.user.popup_giftcode_lucky.PopupGiftCodeLucky"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Translucent" />
         <activity android:name=".activities.chat.sticker.StickerStoreActivity" />
         <activity
             android:name=".screen.user.detail_stamp_v5.detail_history_guarantee_v5.DetaiHistoryGuaranteeV5Activity"
@@ -544,9 +541,6 @@
         <activity
             android:name=".screen.user.detail_stamp_v6.detail_history_guarantee_v6.DetaiHistoryGuaranteeV6Activity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".screen.user.popup_gift_loyalty.PopupGiftLoyalty"
-            android:theme="@style/Theme.AppCompat.Translucent" />
         <activity
             android:name=".activities.product.ListDistributorActivity"
             android:screenOrientation="portrait" />
@@ -617,9 +611,6 @@
         <activity
             android:name=".screen.user.productlanding.LandingPageActivity"
             android:theme="@style/Theme.AppCompat.Translucent" />
-        <activity
-            android:name=".activities.image.DetailImagesActivity"
-            android:screenOrientation="portrait" />
         <activity
             android:name=".screen.user.surveydetail.success.SurveyDetailSuccessActivity"
             android:screenOrientation="portrait"
@@ -845,9 +836,9 @@
             android:name=".screen.user.missiondetail.MissionDetailActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".activities.InviteFriendActivity"
-            android:screenOrientation="portrait" />
+<!--        <activity-->
+<!--            android:name=".activities.InviteFriendActivity"-->
+<!--            android:screenOrientation="portrait" />-->
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -864,28 +855,9 @@
             android:name=".screen.user.viewimage.ViewImageActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".screen.user.home_page.my_gift_warehouse.open_reward_box.OpenRewardBoxActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".screen.user.home_page.my_gift_warehouse.comfirm_ship_gift.ComfirmShipGiftActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".screen.user.home_page.my_gift_warehouse.detail_my_gift_warehouse.DetailMyGiftWareHouseActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".screen.user.home_page.my_gift_warehouse.home.MyGiftWareHouseActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".screen.user.home_page.campaign.list_campaign.ListCampaignActivity"
+            android:name=".screen.user.list_campaign.ListCampaignActivity"
             android:exported="true"
             android:theme="@style/AppTheme_White" />
-        <activity
-            android:name=".screen.user.home_page.campaign.detail_campaign.DetailCampaignActivity"
-            android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|orientation|screenLayout|touchscreen|uiMode"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.OverStatusBar"
-            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".screen.account.registeruser.inputotp.RegisterUserOtpActivity"
             android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|orientation|screenLayout|touchscreen|uiMode"
@@ -961,6 +933,7 @@
  Set custom default icon. This is used when no icon is set for incoming notification messages.
      See README(https://goo.gl/l4GJaQ) for more.
         -->
+
         <meta-data
             android:name="com.facebook.accountkit.ApplicationName"
             android:value="@string/app_name" />
@@ -1021,7 +994,6 @@
         <meta-data
             android:name="firebase_performance_logcat_enabled"
             android:value="true" />
-
     </application>
 
 </manifest>

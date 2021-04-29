@@ -2,19 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingTop="@dimen/size_16">
+    android:orientation="vertical">
 
-    <TextView
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_10"
+        android:background="@color/colorBackgroundGray" />
+
+    <vn.icheck.android.ui.view.TextHeader
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
-        android:layout_marginLeft="@dimen/size_12"
-        android:fontFamily="@font/barlow_semi_bold"
+        android:layout_marginTop="@dimen/size_10"
         android:includeFontPadding="false"
         android:text="@string/san_pham_danh_cho_ban"
-        android:textColor="@color/blue"
-        android:textSize="18sp" />
+        android:textColor="@color/colorSecondary" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_product_for_you"

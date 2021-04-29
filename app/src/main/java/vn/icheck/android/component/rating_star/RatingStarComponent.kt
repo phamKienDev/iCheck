@@ -82,8 +82,8 @@ class RatingStarComponent : LinearLayout {
                 }
                 else -> {
                     text = context.getString(R.string.x_tren_ca_tuyet_voi, String.format("%.1f", pointDouble))
-                    setTextColor(ContextCompat.getColor(context, R.color.lightBlue))
-                    background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(context, R.color.lightBlue), SizeHelper.size14.toFloat())
+                    setTextColor(ContextCompat.getColor(context, R.color.colorPrimary))
+                    background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(context, R.color.colorPrimary), SizeHelper.size14.toFloat())
                 }
             }
         }

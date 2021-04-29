@@ -45,7 +45,7 @@ class FeedReportSuccessDialog(val context: Context) : BaseBottomSheetDialog(cont
                     ViewHelper.createLayoutParams(SizeHelper.size42, SizeHelper.size16, SizeHelper.size42, 0),
                     null,
                     ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
-                    ContextCompat.getColor(context, R.color.collection_product_name),
+                    ContextCompat.getColor(context, R.color.colorNormalText),
                     16f).also {
                 it.setText(R.string.feed_report_success_title)
                 it.gravity = Gravity.CENTER_HORIZONTAL
@@ -55,7 +55,7 @@ class FeedReportSuccessDialog(val context: Context) : BaseBottomSheetDialog(cont
                     ViewHelper.createLayoutParams(SizeHelper.size42, SizeHelper.size6, SizeHelper.size42, 0),
                     null,
                     ViewHelper.createTypeface(context, R.font.barlow_medium),
-                    ContextCompat.getColor(context, R.color.fast_survey_gray),
+                    ContextCompat.getColor(context, R.color.colorSecondText),
                     14f).also {
                 it.setText(R.string.feed_report_success_message)
                 it.gravity = Gravity.CENTER_HORIZONTAL
@@ -74,7 +74,7 @@ class FeedReportSuccessDialog(val context: Context) : BaseBottomSheetDialog(cont
                     },
                     null,
                     ViewHelper.createTypeface(context, R.font.barlow_medium),
-                    ContextCompat.getColor(context, R.color.fast_survey_gray),
+                    ContextCompat.getColor(context, R.color.colorSecondText),
                     14f).also {
                 it.setText(R.string.noi_dung_bao_cao)
             })

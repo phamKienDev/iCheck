@@ -17,7 +17,7 @@ import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICClientSetting
 import vn.icheck.android.screen.user.history_accumulate_points.HistoryAccumulatePointActivity
-import vn.icheck.android.screen.user.home_page.campaign.list_campaign.ListCampaignActivity
+import vn.icheck.android.screen.user.list_campaign.ListCampaignActivity
 import vn.icheck.android.screen.user.mygift.MyGiftActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.util.ick.logDebug

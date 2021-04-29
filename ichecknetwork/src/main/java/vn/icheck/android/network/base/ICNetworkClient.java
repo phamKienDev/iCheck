@@ -3,7 +3,9 @@ package vn.icheck.android.network.base;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import org.greenrobot.eventbus.EventBus;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -23,6 +25,7 @@ import okhttp3.Route;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import vn.icheck.android.ichecklibs.event.ICMessageEvent;
 import vn.icheck.android.network.BuildConfig;
 import vn.icheck.android.network.models.ICSessionData;
 import vn.icheck.android.network.util.DeviceUtils;
@@ -36,12 +39,33 @@ public class ICNetworkClient {
             .serializeNulls()
             .create();
 
+    private static final Authenticator authenticator = new Authenticator() {
+        @Nullable
+        @Override
+        public Request authenticate(@Nullable Route route, @NotNull Response response) throws IOException {
+            if (!response.request().url().url().toString().contains("/ads") &&
+                    !response.request().url().url().toString().contains("system-setting")
+                    && !response.request().url().url().toString().contains("relationships/information")) {
+                if (response.peekBody(1000).string().contains("U102")) {
+                    ICNetworkManager.INSTANCE.onTokenTimeout();
+                } else {
+                    ICNetworkManager.INSTANCE.onEndOfToken();
+                }
+            }
+
+            return null;
+        }
+    };
+
+//    private static final HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
+
     private static final OkHttpClient client = new OkHttpClient.Builder()
             .connectTimeout(20, TimeUnit.SECONDS)
             .readTimeout(20, TimeUnit.SECONDS)
             .writeTimeout(20, TimeUnit.SECONDS)
+            .authenticator(authenticator)
 //            .authenticator(new TokenAuthenticator())
-//            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+//            .addInterceptor(loggingInterceptor)
             .addInterceptor(ICNetworkClient::requireLoginCallback).build();
 
     private static OkHttpClient getClient(int timeRequest) {
@@ -49,8 +73,9 @@ public class ICNetworkClient {
                 .connectTimeout(timeRequest, TimeUnit.SECONDS)
                 .readTimeout(timeRequest, TimeUnit.SECONDS)
                 .writeTimeout(timeRequest, TimeUnit.SECONDS)
+                .authenticator(authenticator)
 //            .authenticator(new TokenAuthenticator())
-//                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+//                .addInterceptor(loggingInterceptor)
                 .addInterceptor(ICNetworkClient::requireLoginCallback).build();
     }
 
@@ -58,39 +83,44 @@ public class ICNetworkClient {
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
+            .authenticator(authenticator)
 //            .authenticator(new TokenAuthenticator())
-//            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+//            .addInterceptor(loggingInterceptor)
             .addInterceptor(ICNetworkClient::requireLoginCallback2).build();
 
     private static final OkHttpClient client3 = new OkHttpClient.Builder()
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
+            .authenticator(authenticator)
 //            .authenticator(new TokenAuthenticator())
-//            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+//            .addInterceptor(loggingInterceptor)
             .addInterceptor(ICNetworkClient::requireLoginCallback3).build();
 
     private static final OkHttpClient client4 = new OkHttpClient.Builder()
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
+            .authenticator(authenticator)
 //            .authenticator(new TokenAuthenticator())
-//            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+//            .addInterceptor(loggingInterceptor)
             .addInterceptor(ICNetworkClient::requireLoginCallback4).build();
 
     private static final OkHttpClient clientStamp = new OkHttpClient.Builder()
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
+            .authenticator(authenticator)
 //            .authenticator(new TokenAuthenticator())
-//            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+//            .addInterceptor(loggingInterceptor)
             .addInterceptor(ICNetworkClient::requireLoginCallbackStamp).build();
 
     private static final OkHttpClient uploadClient = new OkHttpClient.Builder()
             .connectTimeout(60, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)
-//            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+            .authenticator(authenticator)
+//            .addInterceptor(loggingInterceptor)
             .addInterceptor(ICNetworkClient::requireLoginCallback).build();
 
 
@@ -98,6 +128,7 @@ public class ICNetworkClient {
         return new OkHttpClient.Builder()
                 .retryOnConnectionFailure(true)
                 .readTimeout(60, TimeUnit.SECONDS)
+                .authenticator(authenticator)
                 .connectTimeout(60, TimeUnit.SECONDS)
                 .writeTimeout(60, TimeUnit.SECONDS)
                 .build();
@@ -134,7 +165,7 @@ public class ICNetworkClient {
                                 .connectTimeout(30, TimeUnit.SECONDS)
                                 .readTimeout(30, TimeUnit.SECONDS)
                                 .writeTimeout(30, TimeUnit.SECONDS)
-//                                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+//                                .addInterceptor(loggingInterceptor)
                                 .addInterceptor(ICNetworkClient::requireLoginCallback).build())
                         .addConverterFactory(GsonConverterFactory.create(gson))
                         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -282,11 +313,19 @@ public class ICNetworkClient {
     private static OkHttpClient client() {
         return new OkHttpClient.Builder()
                 .retryOnConnectionFailure(true)
+                .authenticator(new Authenticator() {
+                    @Nullable
+                    @Override
+                    public Request authenticate(@Nullable Route route, @NotNull Response response) throws IOException {
+                        ICNetworkManager.INSTANCE.onEndOfToken();
+                        return null;
+                    }
+                })
                 .readTimeout(30, TimeUnit.SECONDS)
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .writeTimeout(30, TimeUnit.SECONDS)
                 .authenticator(new TokenAuthenticator())
-//                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+//                .addInterceptor(loggingInterceptor)
                 .addInterceptor(ICNetworkClient::requireLoginCallback)
                 .build();
     }
@@ -500,7 +539,7 @@ public class ICNetworkClient {
                     .connectTimeout(60, TimeUnit.SECONDS)
                     .readTimeout(60, TimeUnit.SECONDS)
                     .writeTimeout(60, TimeUnit.SECONDS)
-//                    .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+//                    .addInterceptor(loggingInterceptor)
                     .build();
         } else {
             chatClient = client;
@@ -528,7 +567,7 @@ public class ICNetworkClient {
                             .connectTimeout(60, TimeUnit.SECONDS)
                             .readTimeout(60, TimeUnit.SECONDS)
                             .writeTimeout(60, TimeUnit.SECONDS)
-//                            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+//                            .addInterceptor(loggingInterceptor)
                             .build();
                 } else {
                     throw new NullPointerException("Firebase token not found");

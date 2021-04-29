@@ -12,41 +12,41 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/size_1"
         android:background="@drawable/shadow_bottom" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_20"
         android:fontFamily="sans-serif"
         android:text="Thông tin khách hàng"
         android:textColor="#3c5a99"
-        android:textSize="18sp"
+        android:textSize="@dimen/font_18"
         android:textStyle="normal" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_8"
+        android:layout_marginEnd="@dimen/size_12"
         android:background="@drawable/bg_corner_gray_10"
         android:orientation="vertical"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp">
+        android:paddingStart="@dimen/size_8"
+        android:paddingEnd="@dimen/size_8">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvNameCustomer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/size_8"
             android:drawableStart="@drawable/ic_outline_person_blue_18px"
-            android:drawablePadding="8dp"
+            android:drawablePadding="@dimen/size_8"
             android:fontFamily="sans-serif"
             android:textColor="#000000"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal"
             tools:text="Họ và tên: Đặng Trung Đức" />
 
@@ -54,13 +54,13 @@
             android:id="@+id/tvPhoneCustomer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="12dp"
+            android:layout_marginTop="@dimen/size_8"
+            android:layout_marginBottom="@dimen/size_12"
             android:drawableStart="@drawable/ic_outline_phone_blue_18px"
-            android:drawablePadding="8dp"
+            android:drawablePadding="@dimen/size_8"
             android:fontFamily="sans-serif"
             android:textColor="#000000"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal"
             tools:text="Số điện thoại: 098 123 ***" />
 
@@ -69,35 +69,35 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_20"
         android:fontFamily="sans-serif"
         android:text="Thông tin bảo hành"
         android:textColor="#3c5a99"
-        android:textSize="18sp"
+        android:textSize="@dimen/font_18"
         android:textStyle="normal" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_8"
+        android:layout_marginEnd="@dimen/size_12"
         android:background="@drawable/bg_corner_gray_10"
         android:orientation="vertical"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp">
+        android:paddingStart="@dimen/size_8"
+        android:paddingEnd="@dimen/size_8">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTimeGuarantee"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:drawablePadding="8dp"
+            android:layout_marginTop="@dimen/size_8"
+            android:drawablePadding="@dimen/size_8"
             android:drawableStart="@drawable/ic_time_start_blue_18_px"
             android:fontFamily="sans-serif"
             android:textColor="#000000"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal"
             tools:text="Thời gian: 5h30 24/12/2018" />
 
@@ -107,10 +107,10 @@
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_store_blue_18px"
             android:fontFamily="sans-serif"
-            android:layout_marginTop="8dp"
-            android:drawablePadding="8dp"
+            android:layout_marginTop="@dimen/size_8"
+            android:drawablePadding="@dimen/size_8"
             android:textColor="#000000"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal"
             tools:text="Điểm bảo hành: Cơ sở 1" />
 
@@ -120,9 +120,9 @@
             android:drawableStart="@drawable/ic_outline_person_blue_18px"
             android:fontFamily="sans-serif"
             android:textColor="#000000"
-            android:layout_marginTop="8dp"
-            android:drawablePadding="8dp"
-            android:textSize="14sp"
+            android:layout_marginTop="@dimen/size_8"
+            android:drawablePadding="@dimen/size_8"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal"
             android:visibility="gone"
             tools:text="Nhân viên phụ trách: Phạm Lệ Mỹ" />
@@ -133,10 +133,10 @@
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_warranty_blue_18px"
             android:fontFamily="sans-serif"
-            android:layout_marginTop="8dp"
-            android:drawablePadding="8dp"
+            android:layout_marginTop="@dimen/size_8"
+            android:drawablePadding="@dimen/size_8"
             android:textColor="#000000"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal"
             tools:text="Tình trạng: Kích hoạt bảo hành lần 1" />
 
@@ -147,10 +147,10 @@
             android:drawableStart="@drawable/ic_time_start_blue_18_px"
             android:fontFamily="sans-serif"
             android:textColor="#000000"
-            android:layout_marginTop="8dp"
-            android:drawablePadding="8dp"
-            android:layout_marginBottom="12dp"
-            android:textSize="14sp"
+            android:layout_marginTop="@dimen/size_8"
+            android:drawablePadding="@dimen/size_8"
+            android:layout_marginBottom="@dimen/size_12"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal"
             tools:text="Ngày hẹn trả: 27/12/2017" />
 
@@ -163,18 +163,18 @@
         android:fontFamily="sans-serif"
         android:text="Nội dung bảo hành"
         android:textColor="#3c5a99"
-        android:textSize="18sp"
+        android:textSize="@dimen/font_18"
         android:textStyle="normal"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_20"/>
 
     <LinearLayout
         android:id="@+id/layoutInforGuarantee"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginTop="@dimen/size_8"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginEnd="@dimen/size_12"
         android:background="@drawable/bg_corner_gray_10"
         android:orientation="vertical">
 
@@ -184,11 +184,11 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
             android:textColor="#434343"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:textSize="14sp"
+            android:layout_marginTop="@dimen/size_12"
+            android:layout_marginBottom="@dimen/size_12"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginEnd="@dimen/size_8"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal"
             tools:text="Nội dung bảo hành được nhập khi tiếp nhận khi tiếp nhận bảo hành hoặc trả bảo hành.Không nhập ẩn cả mục này đi nhé" />
 

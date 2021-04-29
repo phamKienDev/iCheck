@@ -24,10 +24,10 @@
         android:id="@id/img_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginRight="4dp"
-        android:padding="8dp"
+        android:layout_marginTop="@dimen/size_22"
+        android:layout_marginEnd="@dimen/size_4"
+        android:layout_marginRight="@dimen/size_4"
+        android:padding="@dimen/size_8"
         android:src="@drawable/ic_back_black_28px"
         app:layout_constraintStart_toStartOf="@id/imgBackground"
         app:layout_constraintTop_toTopOf="@id/imgBackground" />
@@ -48,11 +48,11 @@
         android:id="@id/layoutCenter"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="@dimen/size_50"
+        android:layout_marginBottom="@dimen/size_8"
         android:background="@drawable/bg_white_corners_top_16"
         android:fillViewport="true"
-        android:paddingTop="72dp"
+        android:paddingTop="@dimen/size_72"
         app:layout_constraintBottom_toTopOf="@+id/btnUpdate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -114,7 +114,7 @@
                                 android:includeFontPadding="false"
                                 android:text="@string/update_profile_note_title"
                                 android:textColor="#434343"
-                                android:textSize="12sp"
+                                android:textSize="@dimen/font_12"
                                 android:textStyle="normal"
                                 app:layout_constraintEnd_toStartOf="@id/tvClose"
                                 app:layout_constraintStart_toEndOf="@id/tvIcon"
@@ -128,7 +128,7 @@
                                 android:includeFontPadding="false"
                                 android:text="@string/update_profile_note_content"
                                 android:textColor="#828282"
-                                android:textSize="12sp"
+                                android:textSize="@dimen/font_12"
                                 android:textStyle="normal"
                                 app:layout_constraintEnd_toStartOf="@id/tvClose"
                                 app:layout_constraintStart_toEndOf="@id/tvIcon"
@@ -238,8 +238,8 @@
                     android:id="@+id/edt_lastname"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginEnd="12dp"
-                    android:layout_marginRight="12dp"
+                    android:layout_marginEnd="@dimen/size_12"
+                    android:layout_marginRight="@dimen/size_12"
                     android:layout_weight="1"
                     android:background="@null"
                     android:ellipsize="end"
@@ -247,7 +247,7 @@
                     android:inputType="textCapWords"
                     android:maxLength="30"
                     android:textColorHint="#b4b4b4"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/font_14" />
 
             </TableRow>
 
@@ -269,15 +269,15 @@
                     android:id="@+id/edt_firstname"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginEnd="12dp"
-                    android:layout_marginRight="12dp"
+                    android:layout_marginEnd="@dimen/size_12"
+                    android:layout_marginRight="@dimen/size_12"
                     android:layout_weight="1"
                     android:background="@null"
                     android:hint="Nhập tên đệm và tên"
                     android:inputType="textCapWords"
                     android:maxLength="30"
                     android:textColorHint="#b4b4b4"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/font_14" />
 
             </TableRow>
 
@@ -336,8 +336,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginEnd="14dp"
-                        android:layout_marginRight="14dp"
+                        android:layout_marginEnd="@dimen/size_14"
+                        android:layout_marginRight="@dimen/size_14"
                         android:src="@drawable/ic_checkbox_single_on_24px"
                         android:visibility="visible" />
 
@@ -375,14 +375,14 @@
                     android:id="@id/edtEmail"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginEnd="12dp"
+                    android:layout_marginEnd="@dimen/size_12"
                     android:layout_weight="1"
                     android:background="@null"
                     android:hint="@string/nhap_email"
                     android:maxLength="255"
                     android:inputType="textEmailAddress"
                     android:textColorHint="#b4b4b4"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/font_14" />
             </TableRow>
 
             <TableRow>
@@ -477,8 +477,8 @@
                     android:id="@id/edtAddress"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginEnd="12dp"
-                    android:layout_marginRight="12dp"
+                    android:layout_marginEnd="@dimen/size_12"
+                    android:layout_marginRight="@dimen/size_12"
                     android:layout_weight="1"
                     android:maxLines="1"
                     android:ellipsize="end"
@@ -487,7 +487,7 @@
                     android:inputType="text"
                     android:maxLength="512"
                     android:textColorHint="#b4b4b4"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/font_14" />
             </TableRow>
 
             <TableRow>
@@ -579,7 +579,7 @@
                         android:paddingRight="@dimen/size_8"
                         android:paddingBottom="@dimen/size_3"
                         android:text="@string/da_lien_ket"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/font_14"
                         android:visibility="gone" />
 
                     <LinearLayout
@@ -594,8 +594,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginEnd="14dp"
-                            android:layout_marginRight="14dp"
+                            android:layout_marginEnd="@dimen/size_14"
+                            android:layout_marginRight="@dimen/size_14"
                             android:src="@drawable/ic_checkbox_single_on_24px"
                             android:visibility="gone" />
 
@@ -603,8 +603,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginEnd="12dp"
-                            android:layout_marginRight="12dp"
+                            android:layout_marginEnd="@dimen/size_12"
+                            android:layout_marginRight="@dimen/size_12"
                             android:src="@drawable/ic_arrow_right_light_blue_24dp" />
 
                     </LinearLayout>
@@ -645,8 +645,8 @@
 
     <FrameLayout
         android:id="@id/layoutAvatar"
-        android:layout_width="84dp"
-        android:layout_height="84dp"
+        android:layout_width="@dimen/size_84"
+        android:layout_height="@dimen/size_84"
         app:layout_constraintBottom_toTopOf="@id/layoutCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -678,12 +678,12 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@id/btnUpdate"
         android:layout_width="match_parent"
-        android:layout_height="36dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginRight="12dp"
-        android:layout_marginBottom="24dp"
+        android:layout_height="@dimen/size_36"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginLeft="@dimen/size_12"
+        android:layout_marginEnd="@dimen/size_12"
+        android:layout_marginRight="@dimen/size_12"
+        android:layout_marginBottom="@dimen/size_24"
         android:layout_span="2"
         android:layout_weight="1"
         android:background="@drawable/bg_corners_4_light_blue_solid"
@@ -691,7 +691,7 @@
         android:gravity="center"
         android:text="@string/luu_thay_doi"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

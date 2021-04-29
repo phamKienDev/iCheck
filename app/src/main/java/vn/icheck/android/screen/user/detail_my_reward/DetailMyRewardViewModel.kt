@@ -11,7 +11,7 @@ import vn.icheck.android.network.api.ICKApi
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.models.ICItemReward
 import vn.icheck.android.network.models.campaign.DetailRewardResponse
-import vn.icheck.android.screen.user.home_page.home.model.ICHomeItem
+import vn.icheck.android.screen.user.home_page.model.ICHomeItem
 import vn.icheck.android.util.ick.logError
 
 class DetailMyRewardViewModel @ViewModelInject constructor(val ickApi: ICKApi, @Assisted val savedStateHandle: SavedStateHandle) : ViewModel() {

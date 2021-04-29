@@ -30,19 +30,17 @@ class NewsListViewModel : ViewModel() {
             offset = 0
         }
 
-        viewModelScope.launch {
-            listener.getListNews(offset, APIConstants.LIMIT, object : ICNewApiListener<ICResponse<ICListResponse<ICNews>>> {
-                override fun onSuccess(obj: ICResponse<ICListResponse<ICNews>>) {
-                    offset += APIConstants.LIMIT
-                    liveData.postValue(
-                            BaseModelList(isLoadMore, obj.data?.rows ?: mutableListOf(), null, null)
-                    )
-                }
+        listener.getListNews(offset, APIConstants.LIMIT, object : ICNewApiListener<ICResponse<ICListResponse<ICNews>>> {
+            override fun onSuccess(obj: ICResponse<ICListResponse<ICNews>>) {
+                offset += APIConstants.LIMIT
+                liveData.postValue(
+                        BaseModelList(isLoadMore, obj.data?.rows ?: mutableListOf(), null, null)
+                )
+            }
 
-                override fun onError(error: ICResponseCode?) {
-                    onError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai)))
-                }
-            })
-        }
+            override fun onError(error: ICResponseCode?) {
+                onError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai)))
+            }
+        })
     }
 }

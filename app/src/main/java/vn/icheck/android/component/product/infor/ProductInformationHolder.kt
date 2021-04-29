@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_product_information.view.*
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
-import vn.icheck.android.activities.image.DetailImagesActivity
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.models.ICMedia

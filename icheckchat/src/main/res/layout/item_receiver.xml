@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="bottom"
     android:rotation="180"
+    tools:rotation="0"
+    android:layout_height="wrap_content"
     tools:ignore="RtlSymmetry">
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -15,10 +18,11 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:src="@color/lightBlue" />
+        tools:src="@color/colorPrimary" />
 
     <LinearLayout
         android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -69,7 +73,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="141dp"
                 android:visibility="gone"
-                tools:src="@color/lightCyan" />
+                tools:src="@color/colorAccentBlue" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvTitle"
@@ -119,7 +123,7 @@
                 app:layout_constraintDimensionRatio="H, 228:119"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@color/lightBlue" />
+                tools:src="@color/colorPrimary" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvNameProduct"
@@ -181,7 +185,7 @@
                 android:fontFamily="@font/barlow_semi_bold"
                 android:includeFontPadding="false"
                 android:singleLine="true"
-                android:textColor="@color/lightBlue"
+                android:textColor="@color/colorPrimary"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@id/view"
                 app:layout_constraintStart_toStartOf="@id/view"
@@ -224,7 +228,7 @@
                 android:layout_marginTop="10dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@color/lightBlue" />
+                tools:src="@color/colorPrimary" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvNamePage"
@@ -296,7 +300,7 @@
                 app:layout_constraintDimensionRatio="H, 270:141"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@color/lightBlue" />
+                tools:src="@color/colorPrimary" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvNameVoucher"
@@ -354,7 +358,7 @@
                     android:includeFontPadding="false"
                     android:singleLine="true"
                     android:text="@string/sao_chep"
-                    android:textColor="@color/lightBlue"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -378,7 +382,9 @@
 
         <include
             android:id="@+id/layoutImageDetail"
-            layout="@layout/item_image_chat_detail" />
+            layout="@layout/item_image_chat_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTime"
@@ -394,4 +400,4 @@
             android:textSize="12sp"
             tools:text="12:34, 13/09/2020" />
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

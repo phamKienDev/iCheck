@@ -11,7 +11,6 @@ import kotlinx.android.synthetic.main.activity_list_product_history.*
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.helper.DialogHelper
-import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class ListProductHistoryActivity : BaseActivityMVVM(), View.OnClickListener {
@@ -37,7 +36,7 @@ class ListProductHistoryActivity : BaseActivityMVVM(), View.OnClickListener {
 
     private fun initView() {
         WidgetUtils.setClickListener(this, imgClose)
-        swipe_container.setColorSchemeColors(ContextCompat.getColor(this, R.color.blue), ContextCompat.getColor(this, R.color.blue), ContextCompat.getColor(this, R.color.lightBlue))
+        swipe_container.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
 
         swipe_container.setOnRefreshListener {
             getData()

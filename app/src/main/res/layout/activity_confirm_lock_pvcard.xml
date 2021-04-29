@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_44"
         android:background="@color/white"
-        android:elevation="4dp">
+        android:elevation="@dimen/size_4">
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@id/imgBack"
@@ -27,8 +27,8 @@
             android:gravity="center"
             android:fontFamily="@font/barlow_semi_bold"
             android:text="Xác nhận khóa thẻ"
-            android:textColor="@color/lightBlue"
-            android:textSize="18sp" />
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/font_18" />
     </FrameLayout>
 
     <LinearLayout
@@ -40,21 +40,21 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="@dimen/size_40"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center_horizontal"
             android:text="Nhập mã pin của thẻ"
             android:textColor="#212121"
-            android:textSize="20sp" />
+            android:textSize="@dimen/font_20" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="51dp"
-            android:layout_marginLeft="51dp"
-            android:layout_marginTop="35dp"
-            android:layout_marginEnd="52dp"
-            android:layout_marginRight="52dp">
+            android:layout_marginStart="@dimen/size_51"
+            android:layout_marginLeft="@dimen/size_51"
+            android:layout_marginTop="@dimen/size_35"
+            android:layout_marginEnd="@dimen/size_52"
+            android:layout_marginRight="@dimen/size_52">
 
             <vn.icheck.android.ui.edittext.FocusableEditText
                 android:id="@+id/edt_pin"
@@ -65,10 +65,10 @@
                 android:gravity="center_horizontal"
                 android:hint="@string/nhap_ma_pin"
                 android:inputType="textPassword"
-                android:paddingBottom="20dp"
+                android:paddingBottom="@dimen/size_20"
                 android:textAlignment="center"
                 android:textColor="#212121"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_16"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -81,18 +81,16 @@
             android:layout_height="match_parent"
             android:gravity="bottom">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ui.view.TextSubheader2
                 android:id="@id/btnConfirm"
                 android:layout_width="match_parent"
-                android:layout_height="36dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_height="@dimen/size_36"
+                android:layout_marginStart="@dimen/size_16"
+                android:layout_marginEnd="@dimen/size_16"
+                android:layout_marginBottom="@dimen/size_16"
                 android:background="@drawable/bg_corner_gray_topup_4"
-                android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:textColor="@color/white"
-                android:textSize="16sp"
                 android:text="Xác nhận" />
 
         </LinearLayout>

@@ -38,7 +38,7 @@
                 android:fontFamily="@font/roboto_bold"
                 android:gravity="center"
                 android:text="Chúc mừng bạn!"
-                android:textColor="@color/red" />
+                android:textColor="@color/colorAccentRed" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layoutGift"
@@ -222,8 +222,8 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/btnClose"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/size_24"
+            android:layout_height="@dimen/size_24"
             android:layout_marginTop="@dimen/size_20"
             android:src="@drawable/ic_close_popup_32px"
             app:layout_constraintBottom_toBottomOf="parent"

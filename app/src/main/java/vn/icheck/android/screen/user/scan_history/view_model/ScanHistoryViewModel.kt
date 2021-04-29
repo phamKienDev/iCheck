@@ -13,12 +13,10 @@ import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.network.api.ICKApi
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.history.HistoryInteractor
-import vn.icheck.android.network.models.ICHistory_Product
 import vn.icheck.android.network.models.ICValidStampSocial
 import vn.icheck.android.network.models.history.ICBigCorp
 import vn.icheck.android.network.models.history.ICItemHistory
 import vn.icheck.android.network.models.history.ICTypeHistory
-import vn.icheck.android.screen.user.scan_history.ScanHistoryFragment
 import vn.icheck.android.screen.user.scan_history.model.ICScanHistory
 import vn.icheck.android.util.ick.logError
 
@@ -163,7 +161,7 @@ class ScanHistoryViewModel @ViewModelInject constructor(@Assisted val savedState
                     val list = mutableListOf<ICScanHistory>()
                     val item = ICScanHistory(ICViewTypes.MESSAGE_SCAN_HISTORY, ICError(R.drawable.ic_error_request, null, ICheckApplication.getInstance().getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai), R.string.thu_lai))
                     list.add(item)
-                    onAddData.value = list
+                    onErrorListData.value = list
                 } else {
                     onErrorString.value = ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                 }

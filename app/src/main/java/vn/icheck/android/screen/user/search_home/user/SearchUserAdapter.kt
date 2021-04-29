@@ -82,8 +82,8 @@ class SearchUserAdapter(val typeView: Int, val callback: IRecyclerViewSearchCall
             }
 
             itemView.tvMessage.setOnClickListener {
-                SocialChatActivity.createRoomChat(it.context, obj.id)
-//                ChatSocialDetailActivity.createRoomChat(it.context, obj.id, "user")
+//                SocialChatActivity.createRoomChat(it.context, obj.id)
+                ChatSocialDetailActivity.createRoomChat(it.context, obj.id, "user")
             }
 
             itemView.setOnClickListener {
@@ -192,7 +192,7 @@ class SearchUserAdapter(val typeView: Int, val callback: IRecyclerViewSearchCall
                         itemView.btnConfirm.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                         itemView.btnConfirm.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_gray_f0_corners_4)
                         itemView.btnConfirm.setText(R.string.da_gui_loi_moi)
-                        itemView.btnConfirm.setTextColor(ContextCompat.getColor(itemView.context, R.color.fast_survey_gray))
+                        itemView.btnConfirm.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorSecondText))
 
                         itemView.btnConfirm.visibility = View.VISIBLE
                         itemView.tvMessage.visibility = View.INVISIBLE

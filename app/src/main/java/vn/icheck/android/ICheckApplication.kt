@@ -6,7 +6,6 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Looper
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.multidex.MultiDex
@@ -29,14 +28,13 @@ import vn.icheck.android.loyalty.helper.CampaignLoyaltyHelper
 import vn.icheck.android.loyalty.model.ICKLoyalty
 import vn.icheck.android.loyalty.sdk.LoyaltySdk
 import vn.icheck.android.network.base.APIConstants
-import vn.icheck.android.network.base.ICNetworkManager2
+import vn.icheck.android.network.base.ICNetworkManager
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.splashscreen.SplashScreenActivity
 import vn.icheck.android.screen.user.home.HomeActivity
 import vn.icheck.android.services.FTActivityLifecycleCallbacks
 import vn.icheck.android.tracking.insider.TrackingBridge
-import vn.icheck.android.util.ick.logDebug
 import vn.teko.android.tracker.core.Tracker
 import vn.teko.android.tracker.core.TrackerConfig
 import vn.teko.hestia.trackingbridge.AppTrackingBridgeManager
@@ -82,23 +80,7 @@ class ICheckApplication : Application(), Configuration.Provider {
     lateinit var barcodeCapture: BarcodeCapture
     override fun onCreate() {
         super.onCreate()
-        val key = if (BuildConfig.FLAVOR.contentEquals("dev")) getString(R.string.scandit_v6_key_dev) else getString(R.string.scandit_v6_key_live)
-        dataCaptureContext = DataCaptureContext.forLicenseKey(key)
-        val settings = BarcodeCaptureSettings().apply {
-            Symbology.values().forEach {
-                if (it != Symbology.MICRO_PDF417 && it != Symbology.PDF417 && it != Symbology.USPS_INTELLIGENT_MAIL) {
-                    enableSymbology(it, true)
-                    getSymbologySettings(it).isColorInvertedEnabled = true
-                }
-            }
-        }
-        settings.getSymbologySettings(Symbology.EAN13_UPCA).setExtensionEnabled("remove_leading_upca_zero", true)
-        settings.getSymbologySettings(Symbology.UPCE).setExtensionEnabled("remove_leading_upca_zero", true)
-
-        barcodeCapture = BarcodeCapture.forDataCaptureContext(dataCaptureContext, settings)
-
-        DataCaptureManager.barcodeCapture = barcodeCapture
-        DataCaptureManager.dataCaptureContext = dataCaptureContext
+        initScandit()
         FirebaseApp.initializeApp(this)
         FacebookSdk.sdkInitialize(this)
         AppEventsLogger.activateApp(this)
@@ -108,7 +90,7 @@ class ICheckApplication : Application(), Configuration.Provider {
         mFirebase = FirebaseContainer()
         registerActivityLifecycleCallbacks(mFTActivityLifecycleCallbacks)
 
-        ICNetworkManager2.registerPVCombank(object : ICNetworkManager2.PVComBankListener {
+        ICNetworkManager.registerPVCombank(object : ICNetworkManager.PVComBankListener {
             override fun onEndOfToken() {
                 EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.FINISH_ALL_PVCOMBANK))
             }
@@ -180,6 +162,26 @@ class ICheckApplication : Application(), Configuration.Provider {
                 currentActivity()?.recreate()
             }
         }
+    }
+
+    fun initScandit() {
+        val key = if (BuildConfig.FLAVOR.contentEquals("dev")) getString(R.string.scandit_v6_key_dev) else getString(R.string.scandit_v6_key_live)
+        dataCaptureContext = DataCaptureContext.forLicenseKey(key)
+        val settings = BarcodeCaptureSettings().apply {
+            Symbology.values().forEach {
+                if (it != Symbology.MICRO_PDF417 && it != Symbology.PDF417 && it != Symbology.USPS_INTELLIGENT_MAIL) {
+                    enableSymbology(it, true)
+                    getSymbologySettings(it).isColorInvertedEnabled = true
+                }
+            }
+        }
+        settings.getSymbologySettings(Symbology.EAN13_UPCA).setExtensionEnabled("remove_leading_upca_zero", true)
+        settings.getSymbologySettings(Symbology.UPCE).setExtensionEnabled("remove_leading_upca_zero", true)
+
+        barcodeCapture = BarcodeCapture.forDataCaptureContext(dataCaptureContext, settings)
+
+        DataCaptureManager.barcodeCapture = barcodeCapture
+        DataCaptureManager.dataCaptureContext = dataCaptureContext
     }
 
     private fun initDeeplinkInsider() {

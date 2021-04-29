@@ -126,7 +126,7 @@
                             android:singleLine="true"
                             android:text="@string/tuy_chon"
                             android:textColor="#434343"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/font_14"
                             android:textStyle="normal" />
                     </FrameLayout>
                 </LinearLayout>
@@ -177,7 +177,7 @@
                             android:singleLine="true"
                             android:text="@string/tuy_chon"
                             android:textColor="#434343"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/font_14"
                             android:textStyle="normal" />
                     </FrameLayout>
                 </LinearLayout>
@@ -222,7 +222,7 @@
                     android:singleLine="true"
                     android:text="@string/tuy_chon"
                     android:textColor="#434343"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     android:textStyle="normal" />
             </FrameLayout>
 

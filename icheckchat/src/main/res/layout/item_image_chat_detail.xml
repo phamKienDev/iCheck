@@ -18,7 +18,7 @@
             android:id="@+id/img"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:src="@color/lightBlue" />
+            tools:src="@color/colorPrimary" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imgView"
@@ -33,7 +33,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"

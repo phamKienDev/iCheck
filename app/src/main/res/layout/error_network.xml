@@ -13,10 +13,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:fontFamily="sans-serif"
         android:textStyle="normal"
-        android:layout_margin="16dp"
+        android:layout_margin="@dimen/size_16"
         android:textColor="#828282"
         android:text="Không thể truy cập. Vui lòng thử lại sau"
         />
@@ -24,14 +24,14 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginStart="@dimen/size_32"
+        android:layout_marginEnd="@dimen/size_32"
         android:background="@drawable/bg_corner_solid_white_strokke_blue"
         android:fontFamily="sans-serif-medium"
-        android:padding="16dp"
+        android:padding="@dimen/size_16"
         android:text="Trang Chủ"
         android:textAlignment="center"
         android:textColor="#3c5a99"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         android:textStyle="normal" />
 </LinearLayout>

@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:elevation="4dp">
+            android:elevation="@dimen/size_4">
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/imgMenu"
@@ -28,14 +28,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <vn.icheck.android.ui.view.TextHeader
                 android:id="@+id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/barlow_semi_bold"
                 android:text="@string/lich_su_quet"
-                android:textColor="@color/lightBlue"
-                android:textSize="18sp"
+                android:textColor="@color/colorPrimary"
                 app:layout_constraintBottom_toBottomOf="@id/imgMenu"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -44,7 +42,7 @@
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/imgSearch"
                 android:layout_width="@dimen/size_44"
-                android:layout_height="44dp"
+                android:layout_height="@dimen/size_44"
                 android:background="@color/transparent"
                 android:src="@drawable/ic_search_light_blue_24dp"
                 app:layout_constraintEnd_toStartOf="@id/imgCart"
@@ -53,7 +51,7 @@
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/imgCart"
                 android:layout_width="@dimen/size_44"
-                android:layout_height="44dp"
+                android:layout_height="@dimen/size_44"
                 android:background="@color/transparent"
                 android:src="@drawable/ic_cart_blue_no_bg_24"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -70,7 +68,7 @@
                 android:gravity="center"
                 android:text="99"
                 android:textColor="@color/white"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="@id/imgCart"
                 app:layout_constraintTop_toTopOf="@id/imgCart" />
@@ -94,15 +92,15 @@
                     android:id="@+id/tvSort"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
+                    android:layout_marginStart="@dimen/size_12"
                     android:drawableStart="@drawable/ic_selected_history_27"
                     android:drawableEnd="@drawable/ic_sort_arrow_down_gray_24_px"
-                    android:drawablePadding="5dp"
+                    android:drawablePadding="@dimen/size_5"
                     android:fontFamily="@font/barlow_medium"
                     android:gravity="center"
                     android:text="Sắp xếp: Mới nhất"
                     android:textColor="#757575"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/font_16"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/tvFilter"
                     app:layout_constraintBottom_toBottomOf="@id/tvFilter"/>
@@ -111,7 +109,7 @@
                     android:id="@+id/imgFilterHis"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="7dp"
+                    android:layout_marginEnd="@dimen/size_7"
                     app:layout_constraintBottom_toBottomOf="@+id/tvFilter"
                     app:layout_constraintEnd_toStartOf="@+id/tvFilter"
                     app:layout_constraintTop_toTopOf="@+id/tvFilter"
@@ -121,14 +119,14 @@
                     android:id="@+id/tvFilter"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_marginEnd="13dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginBottom="12dp"
+                    android:layout_marginEnd="@dimen/size_13"
+                    android:layout_marginTop="@dimen/size_12"
+                    android:layout_marginBottom="@dimen/size_12"
                     android:fontFamily="@font/barlow_medium"
                     android:gravity="center_horizontal|end"
                     android:text="Lọc theo"
                     android:textColor="#757575"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/font_16"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/view" />
@@ -183,31 +181,31 @@
                         android:id="@+id/btnNearest"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="14dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="10dp"
+                        android:layout_marginStart="@dimen/size_14"
+                        android:layout_marginTop="@dimen/size_10"
+                        android:layout_marginEnd="@dimen/size_10"
                         android:fontFamily="@font/barlow_medium"
-                        android:paddingTop="7dp"
-                        android:paddingBottom="7dp"
+                        android:paddingTop="@dimen/size_7"
+                        android:paddingBottom="@dimen/size_7"
                         android:text="Mới nhất"
                         android:textColor="#757575"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/font_16"
                         android:textStyle="normal" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/btnfurthest"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="14dp"
-                        android:layout_marginTop="17dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginBottom="20dp"
+                        android:layout_marginStart="@dimen/size_14"
+                        android:layout_marginTop="@dimen/size_17"
+                        android:layout_marginEnd="@dimen/size_10"
+                        android:layout_marginBottom="@dimen/size_20"
                         android:fontFamily="@font/barlow_medium"
-                        android:paddingTop="7dp"
-                        android:paddingBottom="7dp"
+                        android:paddingTop="@dimen/size_7"
+                        android:paddingBottom="@dimen/size_7"
                         android:text="Cũ nhất"
                         android:textColor="#757575"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/font_16" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -234,12 +232,12 @@
                 android:layout_marginTop="@dimen/size_12"
                 android:fontFamily="@font/barlow_medium"
                 android:text="Để hiển thị dữ liệu Cửa hàng, vui lòng bật GPS"
-                android:textColor="@color/fast_survey_gray"
-                android:textSize="14sp" />
+                android:textColor="@color/colorSecondText"
+                android:textSize="@dimen/font_14" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/btnGps"
-                android:layout_width="170dp"
+                android:layout_width="@dimen/size_170"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_12"
                 android:background="@drawable/bg_corners_4_light_blue_solid"
@@ -249,7 +247,7 @@
                 android:paddingBottom="@dimen/size_10"
                 android:text="@string/bat_gps_ngay"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="@dimen/font_16" />
         </LinearLayout>
 
     </LinearLayout>

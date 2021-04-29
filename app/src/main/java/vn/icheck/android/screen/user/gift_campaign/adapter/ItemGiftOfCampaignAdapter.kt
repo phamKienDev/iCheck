@@ -81,7 +81,7 @@ class ItemGiftOfCampaignAdapter(private val listData: MutableList<ICGiftOfCampai
                     itemView.tvName.visibility = View.GONE
                     itemView.imgAvatar.setImageResource(R.drawable.ic_icheck_logo)
 
-                    itemView.imgICoin.setImageResource(R.drawable.ic_icheck_xu)
+                    WidgetUtils.loadImageUrlFitCenter(itemView.imgICoin, obj.icoinIcon, R.drawable.ic_icheck_xu)
 
                     itemView.imgAvatar.layoutParams = ConstraintLayout.LayoutParams(SizeHelper.size32, SizeHelper.size32).also {
                         it.topMargin = SizeHelper.size16

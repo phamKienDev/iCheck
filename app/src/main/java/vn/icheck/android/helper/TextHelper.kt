@@ -1,10 +1,8 @@
 package vn.icheck.android.helper
 
-import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.text.*
 import android.text.style.ImageSpan
-import android.widget.TextView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_search_review.*
@@ -41,6 +39,24 @@ object TextHelper {
                 textView.text = "${key} " + distance.toString() + "m"
             } else {
                 textView.text = distance.toString() + "m"
+            }
+        }
+    }
+
+    // Có thêm khoảng cách giữa số và KM
+    fun convertMtoKmV2(distance: Long, textView: AppCompatTextView, key: String? = null) {
+        if (distance > 999) {
+            val value = distance / 1000
+            if (!key.isNullOrEmpty()) {
+                textView.text = "${key} " + value.toString() + " km"
+            } else {
+                textView.text = value.toString() + " km"
+            }
+        } else {
+            if (!key.isNullOrEmpty()) {
+                textView.text = "${key} " + distance.toString() + " m"
+            } else {
+                textView.text = distance.toString() + " m"
             }
         }
     }
@@ -284,7 +300,7 @@ object TextHelper {
         if (name.isNullOrEmpty()) {
             text = ICheckApplication.getInstance().getString(R.string.ten_dang_cap_nhat)
             typeface = ViewHelper.createTypeface(ICheckApplication.getInstance(), R.font.barlow_semi_bold_italic)
-            setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.darkGray2))
+            setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorDisableText))
         } else {
             setText(name)
             typeface = ViewHelper.createTypeface(ICheckApplication.getInstance(), R.font.barlow_medium)
@@ -297,7 +313,7 @@ object TextHelper {
             setText(Html.fromHtml(ICheckApplication.getInstance().getString(R.string.ten_dang_cap_nhat_i)))
             textSize = 14f
             typeface = ViewHelper.createTypeface(ICheckApplication.getInstance(), R.font.barlow_semi_bold_italic)
-            setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.darkGray2))
+            setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorDisableText))
         } else {
             setText(name)
             textSize = 16f
@@ -310,11 +326,11 @@ object TextHelper {
         if (price == null) {
             typeface = ViewHelper.createTypeface(ICheckApplication.getInstance(), R.font.barlow_semi_bold_italic)
             text = ICheckApplication.getInstance().getString(R.string.gia_dang_cap_nhat)
-            setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.darkGray2))
+            setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorDisableText))
         } else {
             typeface = ViewHelper.createTypeface(ICheckApplication.getInstance(), R.font.barlow_semi_bold)
             setText(ICheckApplication.getInstance().getString(R.string.xxx__d, formatMoneyPhay(price)))
-            setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.lightBlue))
+            setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorPrimary))
         }
     }
 
@@ -322,7 +338,7 @@ object TextHelper {
     fun AppCompatTextView.setTextEmpitySearch(text: Int) {
         background = ContextCompat.getDrawable(ICheckApplication.getInstance(), R.drawable.bg_corner_gray_4)
         setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_bottom_filter_8dp, 0)
-        setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.collection_product_name))
+        setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorNormalText))
         setText(text)
     }
 
@@ -339,7 +355,7 @@ object TextHelper {
             setTextColor(Color.WHITE)
         } else {
             background = ContextCompat.getDrawable(ICheckApplication.getInstance(), R.drawable.bg_corner_gray_4)
-            setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.collection_product_name))
+            setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorNormalText))
         }
     }
 

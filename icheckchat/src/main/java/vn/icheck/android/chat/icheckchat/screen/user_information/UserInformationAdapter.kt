@@ -46,7 +46,6 @@ class UserInformationAdapter(callback: IRecyclerViewCallback) : BaseRecyclerView
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-
         if (holder is ImageInformationViewHolder) {
             holder.bind(listData[position])
         } else {

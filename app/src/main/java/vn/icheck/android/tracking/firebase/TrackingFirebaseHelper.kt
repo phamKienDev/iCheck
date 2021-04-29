@@ -3,9 +3,9 @@ package vn.icheck.android.tracking.firebase
 import android.os.Bundle
 import com.google.firebase.analytics.FirebaseAnalytics
 import vn.icheck.android.ICheckApplication
-import vn.icheck.android.model.cart.ItemCartItem
-import vn.icheck.android.model.cart.PurchasedOrderResponse
-import vn.icheck.android.model.loyalty.ShipAddressResponse
+import vn.icheck.android.network.model.cart.ItemCartItem
+import vn.icheck.android.network.model.cart.PurchasedOrderResponse
+import vn.icheck.android.network.model.loyalty.ShipAddressResponse
 import vn.icheck.android.network.models.ICPageOverview
 import vn.icheck.android.network.models.ICStoreiCheck
 import vn.icheck.android.network.models.product_detail.ICDataProductDetail
@@ -339,7 +339,7 @@ object TrackingFirebaseHelper {
         }
 
         val bundle = Bundle()
-        bundle.putLong("order_id", obj.id)
+        bundle.putLong("order_id", obj.id ?: 0)
         bundle.putInt("order_value", totalValue)
         bundle.putInt("number_of_products", totalProduct) // số lượng sản phẩm
         bundle.putString("phone number", obj.customer?.phone)

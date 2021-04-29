@@ -46,35 +46,59 @@
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/btnCancel"
-                    android:layout_width="@dimen/size_0"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/size_6"
-                    android:layout_marginRight="@dimen/size_6"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_corner_20_outline_1_blue"
-                    android:fontFamily="@font/roboto_medium"
-                    android:gravity="center"
-                    android:paddingTop="@dimen/size_10"
-                    android:paddingBottom="@dimen/size_10"
-                    android:text="Từ chối nhận"
-                    android:textColor="@color/blue"
-                    android:textSize="16sp" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/btnAccept"
+                    android:id="@+id/btnUsed"
                     android:layout_width="@dimen/size_0"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/size_6"
                     android:layout_weight="1"
                     android:textSize="16sp"
+                    android:visibility="gone"
                     android:background="@drawable/bg_corner_20_blue"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:paddingTop="@dimen/size_10"
                     android:paddingBottom="@dimen/size_10"
-                    android:text="Nhận quà"
+                    android:text="Dùng ngay"
                     android:textColor="@color/white" />
+
+                <LinearLayout
+                    android:id="@+id/layoutButtonNotVoucher"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/btnCancel"
+                        android:layout_width="@dimen/size_0"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/size_6"
+                        android:layout_marginRight="@dimen/size_6"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_corner_20_outline_1_blue"
+                        android:fontFamily="@font/roboto_medium"
+                        android:gravity="center"
+                        android:paddingTop="@dimen/size_10"
+                        android:paddingBottom="@dimen/size_10"
+                        android:text="Từ chối nhận"
+                        android:textColor="@color/colorSecondary"
+                        android:textSize="16sp" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/btnAccept"
+                        android:layout_width="@dimen/size_0"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/size_6"
+                        android:layout_weight="1"
+                        android:textSize="16sp"
+                        android:background="@drawable/bg_corner_20_blue"
+                        android:fontFamily="@font/roboto_medium"
+                        android:gravity="center"
+                        android:paddingTop="@dimen/size_10"
+                        android:paddingBottom="@dimen/size_10"
+                        android:text="Nhận quà"
+                        android:textColor="@color/white" />
+                </LinearLayout>
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.Response
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.model.ICNameValue
+import vn.icheck.android.network.model.ICNameValue
 import vn.icheck.android.network.models.ICChoosePage
 import vn.icheck.android.network.models.ICPageUserManager
 import vn.icheck.android.network.models.ICPost

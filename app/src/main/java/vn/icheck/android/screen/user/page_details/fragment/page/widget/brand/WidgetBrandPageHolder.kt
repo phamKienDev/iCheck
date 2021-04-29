@@ -14,15 +14,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
-import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.network.models.ICPageTrend
 import vn.icheck.android.screen.user.brand.BrandPageActivity
-import vn.icheck.android.screen.user.page_details.PageDetailActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
-import vn.icheck.android.util.kotlin.ToastUtils
 
 class WidgetBrandPageHolder(parent: ViewGroup) : RecyclerView.ViewHolder(createView(parent.context)) {
 
@@ -81,7 +78,7 @@ class WidgetBrandPageHolder(parent: ViewGroup) : RecyclerView.ViewHolder(createV
                         text.layoutParams = ViewHelper.createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
                         text.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
                         text.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
-                        text.setTextColor(ContextCompat.getColor(context, R.color.blue))
+                        text.setTextColor(ContextCompat.getColor(context, R.color.colorSecondary))
                         text.includeFontPadding = false
                         text.text = "Các nhãn hàng"
                         text.setPadding(0, 0, 0, 0)
@@ -92,7 +89,7 @@ class WidgetBrandPageHolder(parent: ViewGroup) : RecyclerView.ViewHolder(createV
                         text.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
                         text.gravity = Gravity.CENTER_VERTICAL
                         text.typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
-                        text.setTextColor(ContextCompat.getColor(context, R.color.gray_v2))
+                        text.setTextColor(ContextCompat.getColor(context, R.color.colorSecondText))
                         text.includeFontPadding = false
                         text.setPadding(0, 0, SizeHelper.size12, 0)
                     })

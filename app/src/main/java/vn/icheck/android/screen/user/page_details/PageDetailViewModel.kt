@@ -10,7 +10,6 @@ import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.util.Util
 import com.google.gson.JsonObject
-import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
@@ -31,7 +30,7 @@ import vn.icheck.android.network.feature.post.PostInteractor
 import vn.icheck.android.network.models.*
 import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.network.models.upload.UploadResponse
-import vn.icheck.android.screen.user.home_page.home.model.ICListHomeItem
+import vn.icheck.android.screen.user.home_page.model.ICListHomeItem
 import vn.icheck.android.util.ick.logError
 import java.io.File
 import kotlin.collections.set

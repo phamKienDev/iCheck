@@ -26,7 +26,7 @@
         android:singleLine="true"
         android:textColor="#828282"
         android:textColorHint="#bdbdbd"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         app:layout_constraintTop_toBottomOf="@id/layoutToolbar" />
 
     <View

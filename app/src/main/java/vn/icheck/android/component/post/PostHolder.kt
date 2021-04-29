@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ShareCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
@@ -18,7 +17,9 @@ import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
+import vn.icheck.android.base.dialog.reward_login.RewardLoginCallback
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
+import vn.icheck.android.base.dialog.reward_login.RewardLoginDialogV2
 import vn.icheck.android.base.holder.CoroutineViewHolder
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.ItemClickListener
@@ -28,9 +29,8 @@ import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.component.view.ViewHelper.onDelayClick
 import vn.icheck.android.constant.*
 import vn.icheck.android.helper.*
-import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.helper.TextHelper.setTextNameProductInPost
-import vn.icheck.android.model.posts.PostViewModel
+import vn.icheck.android.network.model.posts.PostViewModel
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -99,9 +99,6 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
     private fun setupHeader(obj: ICPost) {
         if (obj.page != null) {
             WidgetUtils.loadImageUrl(itemView.imgLogo, obj.page?.avatar, R.drawable.ic_business_v2)
-//            itemView.imgLogo.layoutParams = ConstraintLayout.LayoutParams(SizeHelper.size40, SizeHelper.size40).also {
-//                it.topMargin = 0
-//            }
             itemView.tvPageName.text = obj.page?.getName
             itemView.imgRank.beGone()
             if (obj.page!!.isVerify) {
@@ -111,9 +108,6 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
             }
         } else {
             WidgetUtils.loadImageUrl(itemView.imgLogo, obj.user?.avatar, R.drawable.ic_avatar_default_84px)
-//            itemView.imgLogo.layoutParams = ConstraintLayout.LayoutParams(SizeHelper.size40, SizeHelper.size40).also {
-//                it.topMargin = SizeHelper.size8
-//            }
             itemView.tvPageName.apply {
                 text = obj.user?.getName
                 if (obj.user?.kycStatus == 2) {
@@ -233,7 +227,7 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
             itemView.tvLike.setTextColor(ContextCompat.getColor(itemView.context, R.color.red_like_question))
         } else {
             itemView.tvLike.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_like_off_24dp, 0, 0, 0)
-            itemView.tvLike.setTextColor(ContextCompat.getColor(itemView.context, R.color.fast_survey_gray))
+            itemView.tvLike.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorSecondText))
         }
 
         itemView.tvLike.text = TextHelper.formatCount(obj.expressiveCount)
@@ -476,7 +470,7 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
                 object : PostOptionDialog(activity, obj) {
                     override fun onPin(isPin: Boolean) {
                         if (obj.pinned) {
-                            DialogHelper.showConfirm(dialog.context, "Bạn chắc chắn muốn bỏ ghim bài viết này?", null, "Để sau", "Đồng ý", true, null, R.color.lightBlue, object : ConfirmDialogListener {
+                            DialogHelper.showConfirm(dialog.context, "Bạn chắc chắn muốn bỏ ghim bài viết này?", null, "Để sau", "Đồng ý", true, null, R.color.colorPrimary, object : ConfirmDialogListener {
                                 override fun onDisagree() {
 
                                 }
@@ -542,19 +536,20 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
                     DialogHelper.closeLoading(activity)
                     if (error?.statusCode == "S402") {
                         ICheckApplication.currentActivity()?.let { activity ->
-                            object : RewardLoginDialog(activity) {
+                            RewardLoginDialogV2.show((activity as AppCompatActivity).supportFragmentManager, object : RewardLoginCallback {
                                 override fun onLogin() {
-                                    (activity as AppCompatActivity) simpleStartActivity IckLoginActivity::class.java
+                                    activity simpleStartActivity IckLoginActivity::class.java
+
                                 }
 
                                 override fun onRegister() {
-                                    (activity as AppCompatActivity).simpleStartForResultActivity(IckLoginActivity::class.java, 1)
+                                    activity.simpleStartForResultActivity(IckLoginActivity::class.java, 1)
+
                                 }
 
                                 override fun onDismiss() {
-
                                 }
-                            }.show()
+                            })
                         }
                     } else {
                         itemView.context.showSimpleErrorToast(error?.message

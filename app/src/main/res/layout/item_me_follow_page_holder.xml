@@ -12,7 +12,7 @@
         android:layout_width="@dimen/size_60"
         android:layout_height="@dimen/size_60"
         app:civ_border_color="#D8D8D8"
-        app:civ_border_width="1dp"
+        app:civ_border_width="@dimen/size_1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -20,7 +20,7 @@
         android:id="@+id/layoutName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="@dimen/size_8"
         android:layout_marginEnd="@dimen/size_8"
         android:orientation="horizontal"
         app:layout_constraintEnd_toStartOf="@id/imgMore"
@@ -30,13 +30,13 @@
         <vn.icheck.android.ichecklibs.MiddleMultilineTextView
             android:id="@+id/tvName"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
-            android:textColor="@color/collection_product_name"
-            android:textSize="16sp"
             android:maxLines="2"
+            android:textColor="@color/colorNormalText"
+            android:textSize="@dimen/font_16"
             tools:text="Công ty Thư 1141222222222222222222222" />
     </LinearLayout>
 
@@ -59,8 +59,8 @@
         android:fontFamily="@font/barlow_medium"
         android:includeFontPadding="false"
         android:maxLines="1"
-        android:textColor="@color/fast_survey_gray"
-        android:textSize="14sp"
+        android:textColor="@color/colorSecondText"
+        android:textSize="@dimen/font_14"
         app:layout_constraintStart_toStartOf="@id/layoutName"
         app:layout_constraintTop_toBottomOf="@id/layoutName"
         tools:text="147,214 Người đang theo dõi" />

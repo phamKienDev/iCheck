@@ -12,7 +12,7 @@
         android:layout_height="200dp"
         android:layout_marginBottom="-20dp"
         android:visibility="gone"
-        tools:src="@color/lightBlue" />
+        tools:src="@color/colorPrimary" />
 
     <LinearLayout
         android:id="@+id/layoutData"
@@ -21,7 +21,7 @@
         android:background="@drawable/bg_corner_top_20"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ui.view.TextHeader
             android:id="@+id/tvTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,11 +31,9 @@
             android:layout_marginEnd="@dimen/size_12"
             android:layout_marginRight="@dimen/size_12"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
             android:singleLine="true"
-            android:textColor="@color/blue"
-            android:textSize="18sp" />
+            android:textColor="@color/colorSecondary" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -56,14 +54,14 @@
         android:layout_gravity="center_horizontal"
         android:background="@color/white"
         android:layout_marginTop="@dimen/size_6"
-        android:drawableTint="@color/lightCyan"
+        android:drawableTint="@color/colorAccentBlue"
         android:padding="@dimen/size_10"
         android:visibility="gone"
         android:gravity="center"
         android:drawableEnd="@drawable/ic_arrow_down_light_blue_accent_24px"
         android:fontFamily="@font/barlow_semi_bold"
         android:text="Xem thêm"
-        android:textColor="@color/lightCyan" />
+        android:textColor="@color/colorAccentBlue" />
 
     <View
         android:id="@+id/view"

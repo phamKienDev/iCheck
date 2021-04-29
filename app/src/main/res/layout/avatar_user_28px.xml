@@ -8,8 +8,8 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/ava"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
+        android:layout_width="@dimen/size_28"
+        android:layout_height="@dimen/size_28"
         android:src="@drawable/user_placeholder"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,10 +18,10 @@
 
     <ImageView
         android:id="@+id/img_verified"
-        android:layout_width="12dp"
-        android:layout_height="12dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="@dimen/size_12"
+        android:layout_height="@dimen/size_12"
+        android:layout_marginStart="@dimen/size_16"
+        android:layout_marginTop="@dimen/size_16"
         android:padding="0dp"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="@+id/ava"

@@ -89,7 +89,7 @@ class PublicInfoFragment : Fragment() {
             binding.rowPhone goneIf user.infoPrivacyConfig?.phone
             binding.viewPhone goneIf user.infoPrivacyConfig?.phone
             binding.rowEmail goneIf user.infoPrivacyConfig?.email
-            if (user.infoPrivacyConfig?.email==false && user.infoPrivacyConfig.phone ==false) {
+            if (user.infoPrivacyConfig?.email==false && user.infoPrivacyConfig?.phone ==false) {
                 binding.viewEmail.beGone()
             }
             binding.rowGender goneIf user.infoPrivacyConfig?.gender

@@ -17,15 +17,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+    <vn.icheck.android.ui.view.TextBarlowSemiBold
         android:id="@id/tvName"
         android:layout_width="@dimen/size_0"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_10"
         android:ellipsize="end"
         android:singleLine="true"
-        android:textColor="@color/collection_product_name"
-        android:textSize="14sp"
+        android:textColor="@color/colorNormalText"
+        android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toStartOf="@id/imgImage"
         app:layout_constraintStart_toEndOf="@id/imgAvatar"
         app:layout_constraintTop_toTopOf="@id/imgAvatar"
@@ -39,25 +39,25 @@
         app:layout_constraintEnd_toEndOf="@id/tvName"
         app:layout_constraintStart_toStartOf="@id/tvName">
 
-        <vn.icheck.android.component.view.text_view.TextViewBarlowRegular
+        <vn.icheck.android.ui.view.TextBarlowRegular
             android:id="@id/tvOldPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/size_10"
             android:ellipsize="end"
             android:singleLine="true"
-            android:textColor="@color/fast_survey_gray"
-            android:textSize="14sp"
+            android:textColor="@color/colorSecondText"
+            android:textSize="@dimen/font_14"
             tools:text="Tiki.vn" />
 
-        <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+        <vn.icheck.android.ui.view.TextBarlowSemiBold
             android:id="@id/tvPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:singleLine="true"
-            android:textColor="@color/red"
-            android:textSize="14sp"
+            android:textColor="@color/colorAccentRed"
+            android:textSize="@dimen/font_14"
             tools:text="Tiki.vn" />
     </LinearLayout>
 

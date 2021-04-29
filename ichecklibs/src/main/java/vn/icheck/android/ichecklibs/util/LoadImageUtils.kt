@@ -15,7 +15,7 @@ object LoadImageUtils {
         val circularProgress = CircularProgressDrawable(context)
         circularProgress.strokeWidth = 5f
         circularProgress.centerRadius = 30f
-        circularProgress.setColorSchemeColors(R.color.lightBlue)
+        circularProgress.setColorSchemeColors(R.color.colorPrimary)
         circularProgress.start()
         return circularProgress
     }

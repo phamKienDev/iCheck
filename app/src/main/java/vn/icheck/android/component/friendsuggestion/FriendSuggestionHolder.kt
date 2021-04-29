@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.widget.AppCompatTextView
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.item_friend_suggestion.view.*
 import vn.icheck.android.ICheckApplication
@@ -74,7 +73,7 @@ class FriendSuggestionHolder(parent: ViewGroup) : BaseViewHolder<ICUser>(LayoutI
 
 
 
-            checkSend(RelationshipManager.checkFriendInvitation(obj.id), obj)
+            checkSend(RelationshipManager.checkMyFriendInvitation(obj.id), obj)
 
         }
     }
@@ -88,8 +87,8 @@ class FriendSuggestionHolder(parent: ViewGroup) : BaseViewHolder<ICUser>(LayoutI
                 getChildAt(5).visibility = View.VISIBLE
                 // Text nhan tin
                 getChildAt(4).setOnClickListener {
-//                    ChatSocialDetailActivity.createRoomChat(it.context, obj.id, "user")
-                    SocialChatActivity.createRoomChat(it.context, obj.id)
+                    ChatSocialDetailActivity.createRoomChat(it.context, obj.id, "user")
+//                    SocialChatActivity.createRoomChat(it.context, obj.id)
                 }
             } else {
                 getChildAt(3).visibility = View.VISIBLE

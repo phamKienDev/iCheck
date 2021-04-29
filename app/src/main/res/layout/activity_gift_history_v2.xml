@@ -27,13 +27,13 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@color/lightBlue" />
+                tools:src="@color/colorPrimary" />
 
             <LinearLayout
                 android:id="@+id/layoutNoData"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_0"
-                android:layout_marginTop="180dp"
+                android:layout_marginTop="@dimen/size_180"
                 android:background="@drawable/bg_corner_top_20"
                 android:orientation="vertical"
                 android:visibility="gone"
@@ -43,7 +43,7 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="97dp"
+                    android:layout_marginTop="@dimen/size_97"
                     android:src="@drawable/ic_no_campaign" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -55,7 +55,7 @@
                     android:includeFontPadding="false"
                     android:text="Bạn chưa nhận được quà nào!"
                     android:textColor="@color/black_21_v2"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/font_14" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
@@ -66,8 +66,8 @@
                     android:includeFontPadding="false"
                     android:lineHeight="@dimen/size_20"
                     android:text="Thực hiện các thử thách để nhận lượt\nmở quà tương ứng nhé"
-                    android:textColor="@color/gray_v2"
-                    android:textSize="14sp" />
+                    android:textColor="@color/colorSecondText"
+                    android:textSize="@dimen/font_14" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/btnAction"
@@ -84,7 +84,7 @@
                     android:paddingBottom="@dimen/size_9"
                     android:text="@string/xem_them_thu_thach"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/font_16" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -132,7 +132,7 @@
         android:layout_height="wrap_content"
         android:alpha="0"
         android:background="@color/white"
-        android:paddingTop="41dp"
+        android:paddingTop="@dimen/size_41"
         android:paddingBottom="@dimen/size_12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -156,7 +156,7 @@
             android:gravity="center"
             android:singleLine="true"
             android:textColor="#057DDA"
-            android:textSize="18sp"
+            android:textSize="@dimen/font_18"
             android:textStyle="normal"
             tools:text="Tiêu đề" />
 

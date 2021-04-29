@@ -80,7 +80,7 @@ class SearchUserActivity : BaseActivityMVVM(), IRecyclerViewSearchCallback, View
     }
 
     private fun setupSwipeLayout() {
-        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.blue), ContextCompat.getColor(this, R.color.blue), ContextCompat.getColor(this, R.color.lightBlue))
+        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
         swipeLayout.setOnRefreshListener {
             refreshData()
         }
@@ -130,8 +130,11 @@ class SearchUserActivity : BaseActivityMVVM(), IRecyclerViewSearchCallback, View
     private fun selectCity(obj: MutableList<ICProvince>?) {
         viewModel.setCity(obj)
         if (!obj.isNullOrEmpty() && obj[0].id != -1L) {
-            val listString = viewModel.getListCity.filterIndexed { index, icProvince ->
+            val listString = mutableListOf<String>()
+            viewModel.getListCity.filterIndexed { index, icProvince ->
                 index < 3
+            }.forEach {
+                listString.add(it.name)
             }
 
             var city = listString.toString().substring(1, listString.toString().length - 1)

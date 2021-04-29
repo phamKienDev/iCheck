@@ -143,8 +143,8 @@ class UserFollowAdapter constructor(val view: IUserFollowWallView) : RecyclerVie
                 }
 
                 holder.itemView.btnMessenger.setOnClickListener {
-                    SocialChatActivity.createRoomChat(holder.itemView.context, item.id)
-//                    ChatSocialDetailActivity.createRoomChat(holder.itemView.context, item.id ?: -1, "user")
+//                    SocialChatActivity.createRoomChat(holder.itemView.context, item.id)
+                    ChatSocialDetailActivity.createRoomChat(holder.itemView.context, item.id ?: -1, "user")
                 }
             }
             is LoadHolder -> {
@@ -199,7 +199,7 @@ class UserFollowAdapter constructor(val view: IUserFollowWallView) : RecyclerVie
                         itemView.tv_related_friend.visibility = View.INVISIBLE
                     }
                     MAIN_USER_NOT_FRIEND -> {
-                        if (RelationshipManager.checkFriendInvitation(item.id ?: 0L)) {
+                        if (RelationshipManager.checkMyFriendInvitation(item.id ?: 0L)) {
                             itemView.btnMessenger.visibility = View.INVISIBLE
                             itemView.btnDaGuiLoiMoi.visibility = View.VISIBLE
                             itemView.layoutAddFriend.visibility = View.INVISIBLE

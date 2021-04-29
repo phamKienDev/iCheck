@@ -2,6 +2,7 @@ package vn.icheck.android.screen.user.listcontribute
 
 import android.annotation.SuppressLint
 import android.graphics.Typeface
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,9 @@ import androidx.appcompat.widget.AppCompatCheckedTextView
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_contribute.view.*
+import kotlinx.android.synthetic.main.item_contribute.view.imgAvatar
+import kotlinx.android.synthetic.main.item_contribute.view.tvName
+import kotlinx.android.synthetic.main.item_me_follow_page_holder.view.*
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
@@ -19,6 +23,7 @@ import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.product.ProductInteractor
 import vn.icheck.android.network.models.ICContribute
@@ -173,7 +178,14 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
             }
 
             itemView.tvName.run {
-                text = obj.user?.getName
+                if (obj.user?.kycStatus == 2) {
+                    setDrawbleNextEndText(obj.user?.getName, R.drawable.ic_verified_user_16dp)
+                    Handler().postDelayed({
+                      setDrawbleNextEndText(text?.toString(), R.drawable.ic_verified_user_16dp)
+                    }, 100)
+                } else {
+                    text = obj.user?.getName
+                }
 
                 setOnClickListener {
                     IckUserWallActivity.create(obj.user?.id, itemView.context)
@@ -209,11 +221,11 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
 
             itemView.tvPrice.run {
                 if (obj.data?.price != null && obj.data?.price != 0L) {
-                    setTextColor(getColor(R.color.lightBlue))
+                    setTextColor(getColor(R.color.colorPrimary))
                     typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
                     text = itemView.context.getString(R.string.xxx__d, TextHelper.formatMoney(obj.data?.price))
                 } else {
-                    setTextColor(getColor(R.color.darkGray2))
+                    setTextColor(getColor(R.color.colorDisableText))
                     setTypeface(null, Typeface.ITALIC)
                     text = getString(R.string.gia_dang_cap_nhat)
                 }

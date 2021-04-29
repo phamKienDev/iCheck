@@ -59,8 +59,11 @@ import vn.icheck.android.loyalty.base.ICMessageEvent
 import vn.icheck.android.loyalty.dialog.base.DialogHelperGame
 import vn.icheck.android.loyalty.dialog.listener.IClickButtonDialog
 import vn.icheck.android.loyalty.dialog.listener.IDismissDialog
+import vn.icheck.android.loyalty.helper.ActivityHelper
+import vn.icheck.android.loyalty.helper.ToastHelper.showLongError
 import vn.icheck.android.loyalty.model.ICKNone
 import vn.icheck.android.loyalty.screen.game_from_labels.vqmm.viewmodel.ScanGameViewModel
+import vn.icheck.android.loyalty.screen.loyalty_customers.gift_shop.GiftShopActivity
 import java.io.File
 import java.util.*
 import java.util.concurrent.atomic.AtomicBoolean
@@ -74,27 +77,10 @@ class V6ScanLoyaltyActivity : AppCompatActivity(), BarcodeCaptureListener {
             context.startActivity(i)
         }
 
-        fun scanOnly(context: FragmentActivity, requestCode: Int) {
-            val i = Intent(context, V6ScanLoyaltyActivity::class.java)
-            i.putExtra("scan_only", true)
-            context.startActivityForResult(i, requestCode)
-        }
-
         fun scanOnlyChat(context: FragmentActivity, requestCode: Int) {
             val i = Intent(context, V6ScanLoyaltyActivity::class.java)
             i.putExtra("scan_only_chat", true)
             context.startActivityForResult(i, requestCode)
-        }
-
-        fun reviewOnly(context: FragmentActivity) {
-            val i = Intent(context, V6ScanLoyaltyActivity::class.java)
-            i.putExtra("review_only", true)
-            context.startActivityForResult(i, 1)
-        }
-
-        fun scanLoyalty(context: FragmentActivity, intent: Intent) {
-            intent.putExtra("scan_loyalty", true)
-            context.startActivity(intent)
         }
     }
 
@@ -135,12 +121,6 @@ class V6ScanLoyaltyActivity : AppCompatActivity(), BarcodeCaptureListener {
         }
 
         override fun onDismiss() {
-
-//            if (!scanImage.get()) {
-//                pushUpHeight()
-//                resetCamera()
-//            }
-
             pushUpHeight()
             resetCamera()
         }
@@ -246,8 +226,8 @@ class V6ScanLoyaltyActivity : AppCompatActivity(), BarcodeCaptureListener {
                             R.drawable.bg_gradient_button_blue, it?.statistic?.point_loyalty?.point_name,
                             object : IClickButtonDialog<Long> {
                                 override fun onClickButtonData(obj: Long?) {
-                                    //todo start giftshop
-//                                        this@IcheckScanActivity.startActivity<GiftShopActivity, Long>(ConstantsLoyalty.ID, obj ?: -1)
+                                    ActivityHelper.startActivity<GiftShopActivity, Long>(this@V6ScanLoyaltyActivity, ConstantsLoyalty.ID, obj
+                                            ?: -1)
                                 }
                             }, object : IDismissDialog {
                         override fun onDismiss() {
@@ -354,36 +334,10 @@ class V6ScanLoyaltyActivity : AppCompatActivity(), BarcodeCaptureListener {
             }
         })
 
-    }
-
-    private fun checkIsScan() {
-        if (intent.getBooleanExtra("scan_only", false)) {
-            viewModel.scanOnly = true
-            _binding?.btnMyCode.beGone()
-            _binding?.btnQm.beGone()
-        } else {
-            viewModel.scanOnly = false
-        }
-    }
-
-    private fun checkIsScanChatOnly() {
-        if (intent.getBooleanExtra("scan_only_chat", false)) {
-            viewModel.scanOnlyChat = true
-            _binding?.btnMyCode.beGone()
-            _binding?.btnQm.beGone()
-        } else {
-            viewModel.scanOnlyChat = false
-        }
-    }
-
-    private fun checkIsReview() {
-        if (intent.getBooleanExtra("review_only", false)) {
-            viewModel.reviewOnly = true
-            _binding?.btnMyCode.beGone()
-            _binding?.btnQm.beGone()
-        } else {
-            viewModel.reviewOnly = false
-        }
+        viewModel.onErrorString.observe(this, {
+            resetCamera()
+            showLongError(this@V6ScanLoyaltyActivity, it)
+        })
     }
 
     private fun initTakeImageDialog() {
@@ -391,20 +345,6 @@ class V6ScanLoyaltyActivity : AppCompatActivity(), BarcodeCaptureListener {
     }
 
     private fun initBarcodeCapture() {
-//        val key = if (BuildConfig.FLAVOR.contentEquals("dev")) getString(R.string.scandit_v6_key_dev) else getString(R.string.scandit_v6_key_live)
-//        dataCaptureContext = DataCaptureContext.forLicenseKey(key)
-//        val settings = BarcodeCaptureSettings().apply {
-//            Symbology.values().forEach {
-//                if (it != Symbology.MICRO_PDF417 && it != Symbology.PDF417  && it != Symbology.USPS_INTELLIGENT_MAIL) {
-//                    enableSymbology(it, true)
-//                    getSymbologySettings(it).isColorInvertedEnabled = true
-//                }
-//            }
-//        }
-//        settings.getSymbologySettings(Symbology.EAN13_UPCA).setExtensionEnabled("remove_leading_upca_zero", true)
-//        settings.getSymbologySettings(Symbology.UPCE).setExtensionEnabled("remove_leading_upca_zero", true)
-//
-//        barcodeCapture = BarcodeCapture.forDataCaptureContext(dataCaptureContext, settings)
         if (DataCaptureManager.barcodeCapture == null) {
             showSimpleErrorToast("Đã xảy ra lỗi vui lòng thử lại sau")
             finish()
@@ -429,9 +369,6 @@ class V6ScanLoyaltyActivity : AppCompatActivity(), BarcodeCaptureListener {
 
     private fun initDataCaptureView() {
         dataCaptureView = DataCaptureView.newInstance(this, dataCaptureContext)
-//        dataCaptureView.addOverlay(BarcodeCaptureOverlay.newInstance(barcodeCapture, dataCaptureView).apply {
-//            shouldShowScanAreaGuides = true
-//        })
         _binding = IckScanCustomViewBinding.inflate(layoutInflater, dataCaptureView, false)
         dataCaptureView.addView(binding.root, getDeviceWidth(), getDeviceHeight())
         setContentView(dataCaptureView)
@@ -646,11 +583,44 @@ class V6ScanLoyaltyActivity : AppCompatActivity(), BarcodeCaptureListener {
                 val symbology = barcode.symbology
 
                 if (symbology == Symbology.QR) {
-                    EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.QR_SCANNED, code))
-                    setResult(Activity.RESULT_OK, Intent().apply { putExtra(Constant.DATA_1, code) })
-                    finish()
+                    checkCode(code)
+//                    EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.QR_SCANNED, code))
+//                    setResult(Activity.RESULT_OK, Intent().apply { putExtra(Constant.DATA_1, code) })
+//                    finish()
                 }
             }
+        }
+    }
+
+    private fun checkCode(code: String) {
+        val nc: String = when {
+            code.contains("https://qcheck-dev.vn/") -> {
+                code.replace("https://qcheck-dev.vn/", "")
+            }
+            code.contains("http://dev.qcheck.vn/") -> {
+                code.replace("http://dev.qcheck.vn/", "")
+            }
+            code.contains("https://dev.qcheck.vn/") -> {
+                code.replace("https://dev.qcheck.vn/", "")
+            }
+            code.contains("https://qcheck.vn/") -> {
+                code.replace("https://qcheck.vn/", "")
+            }
+            code.contains("http://qcheck.vn/") -> {
+                code.replace("http://qcheck.vn/", "")
+            }
+            code.contains("http://qcheck-dev.vn/") -> {
+                code.replace("http://qcheck-dev.vn/", "")
+            }
+            else -> {
+                code
+            }
+        }
+        if (code == nc) {
+            showLongError(this@V6ScanLoyaltyActivity, "Đây không phải là QR code vui lòng quét lại!")
+            resetCamera()
+        } else {
+            viewModel.postAccumulatePoint(nc)
         }
     }
 
@@ -704,7 +674,6 @@ class V6ScanLoyaltyActivity : AppCompatActivity(), BarcodeCaptureListener {
             enableCapture(barcodeCapture)
         })
         viewModel.stampFake.observe(this, {
-//            TrackingAllHelper.trackScanFailed(Constant.MA_QR)
             DialogHelper.showNotification(this, it, false, object : NotificationDialogListener {
                 override fun onDone() {
                     enableCapture(barcodeCapture)
@@ -722,53 +691,6 @@ class V6ScanLoyaltyActivity : AppCompatActivity(), BarcodeCaptureListener {
     private fun checkStampQr(it: String) {
         Handler().postDelayed({
             when {
-//                it.startsWith("u-") || it.startsWith("U-") -> {
-//                    when {
-//                        viewModel.scanOnly || viewModel.reviewOnly -> {
-//                            showSimpleErrorToast("Không tìm thấy sản phẩm")
-//                            enableCapture(barcodeCapture)
-//                        }
-//                        else -> {
-//                            if (it.count { "-".contains(it) } == 1) {
-//                                try {
-//                                    val userID = it.split("-")[1]
-//                                    if (userID.isNotEmpty() && ValidHelper.validNumber(userID)) {
-//                                        IckUserWallActivity.create(userID.toLong(), this)
-//                                    }
-//                                } catch (e: Exception) {
-//                                    TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
-//                                    e.printStackTrace()
-//                                }
-//                            }
-//                            enableCapture(barcodeCapture)
-//                        }
-//                    }
-//                }
-//                Constant.isMarketingStamps(it) -> {
-//                    WebViewActivity.start(this, it, 1, null, true)
-//                }
-//                it.contains("qcheck-dev.vn") || it.contains("qcheck.vn") || it.contains("qrcode.icheck.com.vn") -> {
-//                    ActivityUtils.startActivity<DetailStampActivity, String>(this, Constant.DATA, it)
-//                }
-//                it.contains("ktra.vn") -> {
-//                    var path = URL(it).path
-//
-//                    if (path.isNotEmpty() && path.first() == '/') {
-//                        path = path.removeRange(0, 1)
-//                    }
-//
-//                    if (!path.contains("/") && !path.contains("?") && !path.contains(".")) {
-//                        ActivityHelper.startActivity(this, Intent(this, WebViewActivity::class.java).apply {
-//                            putExtra(Constant.DATA_1, getString(R.string.stamp_v3_format, path, DeviceUtils.getUniqueDeviceId()))
-//                            putExtra(Constant.DATA_2, 1)
-//                        })
-//                    } else {
-//                        ActivityUtils.startActivity<DetailStampV6Activity, String>(this, Constant.DATA, it)
-//                    }
-//                }
-//                it.contains("cg.icheck.com.vn") -> {
-//                    ActivityUtils.startActivity<DetailStampV5Activity, String>(this, Constant.DATA, it)
-//                }
                 it.startsWith("http") || it.startsWith("https") -> {
                     WebViewActivity.start(this, it, 1)
                 }
@@ -998,48 +920,6 @@ class V6ScanLoyaltyActivity : AppCompatActivity(), BarcodeCaptureListener {
             }
         }
     }
-
-//    private fun showDialogSuggestApp(obj: ICValidStampSocial, codeStamp: String) {
-//        object : InternalStampDialog(this, obj.suggest_apps!!, obj.code) {
-//            override fun onDismiss() {
-//                enableCapture(barcodeCapture)
-//            }
-//
-//            override fun onGoToDetail(code: String?) {
-//                ActivityUtils.startActivity<DetailStampActivity, String>(this@V6ScanditActivity, Constant.DATA, codeStamp)
-//            }
-//
-//            override fun onGoToSms(target: String?, content: String?) {
-//                startActivity(Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:$target")).apply {
-//                    putExtra("sms_body", content)
-//                })
-//            }
-//
-//            override fun onGoToEmail(target: String?, content: String?) {
-//                startActivity(Intent.createChooser(Intent(Intent.ACTION_SENDTO).apply {
-//                    data = Uri.parse("mailto:$target")
-//                }, "Send Email"))
-//            }
-//
-//            override fun onGoToLink(target: String?, content: String?) {
-//                if (target != null) {
-//                    startActivity(Intent().apply {
-//                        action = Intent.ACTION_VIEW
-//                        data = Uri.parse(target)
-//                    })
-//                }
-//            }
-//
-//            override fun onGoToPhone(target: String?) {
-//                if (target != null) {
-//                    phoneNumber = target
-//                    if (PermissionHelper.checkPermission(this@V6ScanditActivity, Manifest.permission.CALL_PHONE, requestPhone)) {
-//                        ContactUtils.callFast(this@V6ScanditActivity, target)
-//                    }
-//                }
-//            }
-//        }.show()
-//    }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)

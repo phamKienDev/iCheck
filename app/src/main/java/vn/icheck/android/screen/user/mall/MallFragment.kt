@@ -74,7 +74,7 @@ class MallFragment : BaseFragment<MallPresenter>(),
     }
 
     private fun setupSwipeRefreshLayout() {
-        swipeLayout.setColorSchemeColors(ContextCompat.getColor(requireContext(), R.color.blue), ContextCompat.getColor(requireContext(), R.color.blue), ContextCompat.getColor(requireContext(), R.color.lightBlue))
+        swipeLayout.setColorSchemeColors(ContextCompat.getColor(requireContext(), R.color.colorSecondary), ContextCompat.getColor(requireContext(), R.color.colorSecondary), ContextCompat.getColor(requireContext(), R.color.colorPrimary))
 
         swipeLayout.setOnRefreshListener {
             swipeLayout.isRefreshing = true

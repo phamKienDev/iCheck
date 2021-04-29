@@ -101,7 +101,7 @@ class ProductOfShopHistoryActivity : BaseActivityMVVM(), ProductOfShopHistoryVie
     }
 
     private fun initSwipeLayout() {
-        swipe_layout.setColorSchemeColors(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.lightBlue), ContextCompat.getColor(ICheckApplication.getInstance(), R.color.lightBlue), ContextCompat.getColor(ICheckApplication.getInstance(), R.color.lightBlue))
+        swipe_layout.setColorSchemeColors(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorPrimary), ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorPrimary), ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorPrimary))
 
         swipe_layout.setOnRefreshListener {
             getData()

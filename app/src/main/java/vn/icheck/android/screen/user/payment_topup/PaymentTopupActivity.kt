@@ -28,7 +28,7 @@ import vn.icheck.android.network.base.Status
 import vn.icheck.android.network.models.recharge_phone.ICRechargePhone
 import vn.icheck.android.screen.user.buy_mobile_card.BuyMobileCardV2Activity
 import vn.icheck.android.screen.user.buy_mobile_card_success.BuyCardSuccessActivity
-import vn.icheck.android.screen.user.home_page.campaign.list_campaign.ListCampaignActivity
+import vn.icheck.android.screen.user.list_campaign.ListCampaignActivity
 import vn.icheck.android.screen.user.payment_topup.adapter.PaymentTypeAdapter
 import vn.icheck.android.screen.user.payment_topup.adapter.ValuePaymentAdapter
 import vn.icheck.android.screen.user.payment_topup.viewmodel.PaymentViewModel

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_marginTop="10dp"
+    android:layout_marginTop="@dimen/size_10"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -14,9 +14,9 @@
             android:id="@+id/tv_group_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginLeft="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_4"
             android:fontFamily="@font/barlow_semi_bold"
             android:textColor="#212121"
             tools:text="1. Ai có thể xem thông tin cá nhân của bạn?" />
@@ -24,29 +24,29 @@
         <RadioGroup
             android:id="@+id/privacy_group"
             android:layout_width="match_parent"
-            android:layout_marginStart="15dp"
-            android:paddingBottom="12dp"
+            android:layout_marginStart="@dimen/size_15"
+            android:paddingBottom="@dimen/size_12"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginLeft="15dp">
+            android:layout_marginLeft="@dimen/size_15">
 
             <RadioButton
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="@dimen/size_12"
                 android:id="@+id/btn_friends"
                 android:textColor="@drawable/radio_text_selected"
                 android:fontFamily="@font/barlow_medium"
                 android:layout_width="match_parent"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
+                android:paddingStart="@dimen/size_12"
+                android:paddingEnd="@dimen/size_12"
                 android:layout_height="wrap_content"
                 tools:checked="true"
                 android:text="Bạn bè của tôi" />
 
             <RadioButton
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="@dimen/size_12"
                 android:id="@+id/btn_everyone"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
+                android:paddingStart="@dimen/size_12"
+                android:paddingEnd="@dimen/size_12"
                 android:textColor="@drawable/radio_text_selected"
                 android:fontFamily="@font/barlow_medium"
                 android:layout_width="match_parent"
@@ -54,10 +54,10 @@
                 android:text="Tất cả mọi người" />
 
             <RadioButton
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
+                android:paddingStart="@dimen/size_12"
+                android:paddingEnd="@dimen/size_12"
                 android:textColor="@drawable/radio_text_selected"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="@dimen/size_12"
                 android:id="@+id/btn_private"
                 android:fontFamily="@font/barlow_medium"
                 android:layout_width="match_parent"

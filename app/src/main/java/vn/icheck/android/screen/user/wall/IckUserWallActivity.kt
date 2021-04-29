@@ -161,12 +161,13 @@ class IckUserWallActivity : BaseCoroutineActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         val navFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
-        if (navFragment?.childFragmentManager?.fragments?.last() is PageManagementFragment) {
+        val last = navFragment?.childFragmentManager?.fragments?.last()
+        if (last is PageManagementFragment) {
             binding.btnMyPage.setTextColor(Color.parseColor("#057DDA"))
             binding.btnMyPage.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_bottom_wall_fc_27px, 0, 0)
             binding.btnManagePage.setTextColor(Color.parseColor("#b4b4b4"))
             binding.btnManagePage.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_bottombar_group_page_unfc_27px, 0, 0)
-        } else {
+        } else if(last is IckUserWallFragment){
             finish()
         }
     }

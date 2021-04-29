@@ -87,7 +87,7 @@ class ListProductHorizontalAdapter(val url: String, val params: HashMap<String, 
                             layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).also {
                                 it.setMargins(SizeHelper.size6, 0, SizeHelper.size6, 0)
                             }
-                            setTextColor(getColor(R.color.lightBlue))
+                            setTextColor(getColor(R.color.colorPrimary))
                             typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
                             text = "${obj.rating * 2}"
                         }
@@ -109,7 +109,7 @@ class ListProductHorizontalAdapter(val url: String, val params: HashMap<String, 
                             }
                             setText(Html.fromHtml(ICheckApplication.getInstance().getString(R.string.chua_co_danh_gia_i)))
                             typeface = ViewHelper.createTypeface(ICheckApplication.getInstance(), R.font.barlow_semi_bold_italic)
-                            setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.darkGray2))
+                            setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorDisableText))
                         }
                         (getChildAt(2) as AppCompatTextView).run {
                             visibility = View.GONE

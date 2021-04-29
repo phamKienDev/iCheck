@@ -50,6 +50,32 @@ class DetailMediaActivity : BaseActivityMVVM(), View.OnClickListener {
             intent.putExtra(Constant.DATA_1, json)
             ActivityUtils.startActivity(activity, intent)
         }
+
+        fun start(activity: Activity, listImage: ArrayList<String?>, pos: Int = 0) {
+            val listMedia = arrayListOf<ICMedia>()
+            listImage.filter { !it.isNullOrEmpty() }.forEach {
+                listMedia.add(ICMedia(it, Constant.IMAGE))
+            }
+            val json = JsonHelper.toJson(listMedia)
+
+            val intent = Intent(activity, DetailMediaActivity::class.java)
+            intent.putExtra(Constant.DATA_1, json)
+            intent.putExtra(Constant.DATA_2, pos)
+            ActivityUtils.startActivity(activity, intent)
+        }
+
+        fun start(context: Context, listImage: ArrayList<String?>, pos: Int = 0) {
+            val listMedia = arrayListOf<ICMedia>()
+            listImage.filter { !it.isNullOrEmpty() }.forEach {
+                listMedia.add(ICMedia(it, Constant.IMAGE))
+            }
+            val json = JsonHelper.toJson(listMedia)
+
+            val intent = Intent(context, DetailMediaActivity::class.java)
+            intent.putExtra(Constant.DATA_1, json)
+            intent.putExtra(Constant.DATA_2, pos)
+            context.startActivity(intent)
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,7 +87,7 @@ class DetailMediaActivity : BaseActivityMVVM(), View.OnClickListener {
     }
 
     private fun initRecyclerView() {
-       val listData = JsonHelper.parseListAttachment(intent.getStringExtra(Constant.DATA_1))
+        val listData = JsonHelper.parseListAttachment(intent.getStringExtra(Constant.DATA_1))
 
         if (listData.isNullOrEmpty()) {
             showShortError(getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
@@ -75,9 +101,20 @@ class DetailMediaActivity : BaseActivityMVVM(), View.OnClickListener {
             }
 
             adapter.setData(listExo)
-            tvSlide.text = "1/${listExo.size}"
-            listExo[0].exoPlayer?.playWhenReady = true
-            positionView = 0
+
+            val position = intent.getIntExtra(Constant.DATA_2, -1)
+            if (position != -1) {
+                rcvMedia.scrollToPosition(position)
+                tvSlide.text = "${position + 1}/${listExo.size}"
+                listExo[position].exoPlayer?.playWhenReady = true
+                positionView = position
+            } else {
+                tvSlide.text = "1/${listExo.size}"
+                listExo[0].exoPlayer?.playWhenReady = true
+                positionView = 0
+            }
+
+
 
             rcvMedia.addScrollStateChangeListener(object : DiscreteScrollView.ScrollStateChangeListener<RecyclerView.ViewHolder> {
                 override fun onScroll(p0: Float, p1: Int, p2: Int, p3: RecyclerView.ViewHolder?, p4: RecyclerView.ViewHolder?) {

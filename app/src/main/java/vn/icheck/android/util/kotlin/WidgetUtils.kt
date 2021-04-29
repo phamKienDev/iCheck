@@ -5,11 +5,9 @@ package vn.icheck.android.util.kotlin
 import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ValueAnimator
-import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.media.MediaMetadataRetriever
 import android.text.method.PasswordTransformationMethod
-import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatImageButton
@@ -33,7 +31,6 @@ import vn.icheck.android.R
 import vn.icheck.android.callback.LoadImageListener
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ui.RoundedCornersTransformation
-import vn.icheck.android.util.ick.logDebug
 import vn.icheck.android.util.ick.logError
 import java.io.File
 import java.io.FileInputStream
@@ -61,7 +58,7 @@ object WidgetUtils {
             val circularProgress = CircularProgressDrawable(ICheckApplication.getInstance().applicationContext)
             circularProgress.strokeWidth = 5f
             circularProgress.centerRadius = 30f
-            circularProgress.setColorSchemeColors(R.color.lightBlue)
+            circularProgress.setColorSchemeColors(R.color.colorPrimary)
             circularProgress.start()
             return circularProgress
         }
@@ -322,6 +319,23 @@ object WidgetUtils {
                 .into(image)
     }
 
+    fun loadImageUrlFitCenter(image: AppCompatImageView, url: String?, error: Int?) {
+        if (url.isNullOrEmpty()) {
+            Glide.with(image.context.applicationContext)
+                    .load(error ?: defaultError)
+                    .transform(FitCenter())
+                    .into(image)
+            return
+        }
+
+        Glide.with(image.context.applicationContext)
+                .load(url)
+                .placeholder(circularProgressDrawable)
+                .error(error ?: defaultError)
+                .transform(FitCenter())
+                .into(image)
+    }
+
     fun loadImageUrlFitCenter(image: AppCompatImageButton, url: String?, placeHolder: Int, error: Int) {
         if (url.isNullOrEmpty()) {
             Glide.with(image.context.applicationContext)
@@ -484,6 +498,35 @@ object WidgetUtils {
                 .placeholder(circularProgressDrawable)
                 .error(error)
                 .transform(CenterCrop())
+                .into(image)
+    }
+
+    fun loadImageFile(image: AppCompatImageView, file: File?, error: Int, listener: LoadImageListener) {
+        if (file == null || !file.exists()) {
+            Glide.with(image.context.applicationContext)
+                    .load(error)
+                    .transform(CenterCrop())
+                    .into(image)
+            listener.onFailed()
+            return
+        }
+
+        Glide.with(image.context.applicationContext)
+                .load(file)
+                .placeholder(circularProgressDrawable)
+                .error(error)
+                .transform(CenterCrop())
+                .listener(object : RequestListener<Drawable> {
+                    override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+                        listener.onFailed()
+                        return false
+                    }
+
+                    override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                        listener.onSuccess()
+                        return false
+                    }
+                })
                 .into(image)
     }
 

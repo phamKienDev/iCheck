@@ -24,12 +24,12 @@
         android:id="@id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="@dimen/size_11"
         android:fontFamily="@font/barlow_semi_bold"
         android:includeFontPadding="false"
         android:text="@string/chinh_sua_quyen_rieng_tu"
         android:textColor="#057dda"
-        android:textSize="18sp"
+        android:textSize="@dimen/font_18"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -46,7 +46,7 @@
         android:id="@+id/textView33"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/size_10"
         android:fontFamily="@font/barlow_medium"
         android:gravity="center"
         android:text="Ai có thể xem bài viết này của bạn?"
@@ -74,11 +74,11 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@id/btnDone"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/size_20"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginEnd="@dimen/size_12"
                 android:background="@drawable/background_button_enable"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
@@ -89,7 +89,7 @@
                 android:paddingBottom="@dimen/size_10"
                 android:text="@string/xong"
                 android:textColor="@android:color/white"
-                android:textSize="18sp" />
+                android:textSize="@dimen/font_18" />
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

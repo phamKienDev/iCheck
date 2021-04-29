@@ -1,6 +1,5 @@
 package vn.icheck.android.component.product.header
 
-import android.animation.LayoutTransition
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -93,7 +92,7 @@ class HeaderInforProductComponent(view: View, val listener: ProductDetailListene
             itemView.tvGiaNiemYet.beVisible()
             itemView.tvPriceUpdating.beGone()
             itemView.tv_price.text = TextHelper.formatMoneyPhay(productHeaderModel.icBarcodeProduct.price) + "đ"
-            itemView.tv_price.setTextColor(ContextCompat.getColor(itemView.context,R.color.blue))
+            itemView.tv_price.setTextColor(ContextCompat.getColor(itemView.context,R.color.colorSecondary))
         } else {
             itemView.tvPriceUpdating.beVisible()
             itemView.tv_price.beGone()

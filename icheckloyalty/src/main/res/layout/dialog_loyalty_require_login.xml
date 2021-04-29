@@ -84,7 +84,7 @@
                     android:padding="8dp"
                     android:text="Đăng Ký"
                     android:textAllCaps="false"
-                    android:textColor="@color/blue"
+                    android:textColor="@color/colorSecondary"
                     android:textSize="16sp" />
 
                 <androidx.appcompat.widget.AppCompatTextView

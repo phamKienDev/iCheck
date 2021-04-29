@@ -13,7 +13,7 @@ import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.models.ICAdsNew
 import vn.icheck.android.screen.user.campaign.calback.IBannerV2Listener
-import vn.icheck.android.ui.view.HeightWrappingViewPager
+import vn.icheck.android.ui.layout.HeightWrappingViewPager
 import vn.icheck.android.util.ick.beInvisible
 import vn.icheck.android.util.ick.beVisible
 import java.util.concurrent.TimeUnit
@@ -26,7 +26,7 @@ class SlideBannerV2Holder(parent: ViewGroup) : RecyclerView.ViewHolder(ViewHelpe
         this.listener = listener
 
         (itemView as ViewGroup).run {
-            (getChildAt(0) as HeightWrappingViewPager).run {
+            (getChildAt(1) as HeightWrappingViewPager).run {
                 removeAllViews()
 
                 adapter = SlideBannerV2Adapter(obj.data, listener)
@@ -50,11 +50,11 @@ class SlideBannerV2Holder(parent: ViewGroup) : RecyclerView.ViewHolder(ViewHelpe
 
             if (!obj.data.isNullOrEmpty()){
                 if (obj.data.size > 1){
-                    (getChildAt(1) as IndicatorLineHorizontal).beVisible()
+                    (getChildAt(2) as IndicatorLineHorizontal).beVisible()
                 } else {
-                    (getChildAt(1) as IndicatorLineHorizontal).beInvisible()
+                    (getChildAt(2) as IndicatorLineHorizontal).beInvisible()
                 }
-                (getChildAt(1) as IndicatorLineHorizontal).run {
+                (getChildAt(2) as IndicatorLineHorizontal).run {
                     bind(obj.data.size)
                 }
             }
@@ -71,7 +71,7 @@ class SlideBannerV2Holder(parent: ViewGroup) : RecyclerView.ViewHolder(ViewHelpe
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
-                    ((itemView as ViewGroup).getChildAt(0) as HeightWrappingViewPager?)?.let { viewPager ->
+                    ((itemView as ViewGroup).getChildAt(1) as HeightWrappingViewPager?)?.let { viewPager ->
                         val totalCount = viewPager.adapter?.count ?: 0
 
                         viewPager.currentItem = if (viewPager.currentItem < totalCount - 1) {

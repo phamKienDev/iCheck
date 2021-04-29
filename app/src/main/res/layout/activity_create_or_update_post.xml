@@ -72,8 +72,8 @@
                         android:fontFamily="@font/barlow_semi_bold"
                         android:includeFontPadding="false"
                         android:singleLine="true"
-                        android:textColor="@color/collection_product_name"
-                        android:textSize="16sp"
+                        android:textColor="@color/colorNormalText"
+                        android:textSize="@dimen/font_16"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/imgAvatar"
                         app:layout_constraintTop_toTopOf="@id/imgAvatar"
@@ -97,8 +97,8 @@
                         android:paddingRight="@dimen/size_25"
                         android:paddingBottom="@dimen/size_1"
                         android:text="@string/cong_khai"
-                        android:textColor="@color/fast_survey_gray"
-                        android:textSize="12sp"
+                        android:textColor="@color/colorSecondText"
+                        android:textSize="@dimen/font_12"
                         app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
                         app:layout_constraintStart_toEndOf="@id/imgAvatar" />
                 </LinearLayout>
@@ -116,7 +116,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:includeFontPadding="false"
                 android:textColor="#212121"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 tools:hint="@string/hom_nay_ban_thay_the_nao_xxx" />
 
             <LinearLayout
@@ -211,7 +211,7 @@
             android:includeFontPadding="false"
             android:text="@string/dang_bai"
             android:textColor="#057dda"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

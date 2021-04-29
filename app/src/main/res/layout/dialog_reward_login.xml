@@ -2,8 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@id/layoutContainer"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_gravity="center"
+    android:gravity="center"
     android:background="@color/transparent"
     android:orientation="vertical">
 
@@ -42,8 +43,8 @@
                 android:gravity="center_horizontal"
                 android:includeFontPadding="false"
                 android:text="@string/login_reward_title_1"
-                android:textColor="@color/collection_product_name"
-                android:textSize="16sp"
+                android:textColor="@color/colorNormalText"
+                android:textSize="@dimen/font_16"
                 android:textStyle="normal" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -56,8 +57,8 @@
                 android:gravity="center_horizontal"
                 android:includeFontPadding="false"
                 android:text="@string/login_reward_title_2"
-                android:textColor="@color/fast_survey_gray"
-                android:textSize="14sp"
+                android:textColor="@color/colorSecondText"
+                android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
 
             <LinearLayout
@@ -83,8 +84,8 @@
                     android:paddingTop="@dimen/size_8"
                     android:paddingBottom="@dimen/size_8"
                     android:text="@string/dang_ky"
-                    android:textColor="@color/lightBlue"
-                    android:textSize="16sp" />
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/font_16" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@id/btnLogin"
@@ -102,7 +103,7 @@
                     android:paddingBottom="@dimen/size_8"
                     android:text="@string/dang_nhap"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/font_16" />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

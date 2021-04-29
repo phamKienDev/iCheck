@@ -24,7 +24,7 @@
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
             android:text="Hướng dẫn đổi quà tại cửa hàng"
-            android:textColor="@color/blue"
+            android:textColor="@color/colorSecondary"
             android:textSize="16sp" />
 
         <androidx.appcompat.widget.AppCompatTextView

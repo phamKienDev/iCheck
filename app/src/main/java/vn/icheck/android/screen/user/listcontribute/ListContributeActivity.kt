@@ -13,6 +13,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class ListContributeActivity : BaseActivityMVVM(), IRecyclerViewCallback, IListContributeListener {
@@ -88,13 +89,15 @@ class ListContributeActivity : BaseActivityMVVM(), IRecyclerViewCallback, IListC
         super.onMessageEvent(event)
         when (event.type) {
             ICMessageEvent.Type.OPEN_PRODUCT_DETAIL -> {
-                Intent().apply {
+                val i = Intent(this, IckProductDetailActivity::class.java).apply {
                     if (event.data != null && event.data is Long) {
-                        putExtra(Constant.DATA_1, event.data)
+                        putExtra(Constant.DATA_3, event.data)
                         setResult(Activity.RESULT_OK, this)
-                        finish()
+                        flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+//                        finish()
                     }
                 }
+                startActivity(i)
             }
             ICMessageEvent.Type.REQUEST_VOTE_CONTRIBUTION -> {
                 if (isActivityVisible) {

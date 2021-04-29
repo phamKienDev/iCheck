@@ -36,7 +36,7 @@
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
             android:singleLine="true"
-            android:textColor="@color/blue"
+            android:textColor="@color/colorSecondary"
             android:textSize="18sp"
             app:layout_constraintTop_toBottomOf="@id/imgAvatar"
             tools:text="Hoàng Hà Mobile" />
@@ -157,6 +157,7 @@
             android:layout_marginTop="@dimen/size_8" />
 
         <LinearLayout
+            android:id="@+id/layoutMaDuThuong"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_20"
@@ -189,7 +190,7 @@
                 android:paddingTop="@dimen/size_36"
                 android:paddingBottom="@dimen/size_36"
                 android:singleLine="true"
-                android:textColor="@color/lightBlue"
+                android:textColor="@color/colorPrimary"
                 android:textSize="24sp"
                 tools:targetApi="lollipop"
                 tools:text="ABCXYZ" />

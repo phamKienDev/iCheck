@@ -42,18 +42,18 @@
             app:layout_constraintTop_toTopOf="@id/imgBackground"
             app:layout_constraintWidth_percent="0.877">
 
-            <vn.icheck.android.component.view.text_view.AutoResizeTextView
+            <vn.icheck.android.ui.view.AutoResizeTextView
                 android:id="@id/tvMoney"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/size_0"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="@dimen/size_70"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:includeFontPadding="false"
                 android:shadowColor="#59000000"
                 android:shadowDy="1"
                 android:shadowRadius="1"
                 android:textColor="@color/white"
-                android:textSize="100sp"
+                android:textSize="@dimen/font_100"
                 app:layout_constraintBottom_toTopOf="@id/view4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent="0.16"
@@ -68,7 +68,7 @@
                 app:layout_constraintHeight_percent="0.068"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <vn.icheck.android.component.view.text_view.AutoResizeTextView
+            <vn.icheck.android.ui.view.AutoResizeTextView
                 android:id="@+id/tvCardNumber"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_0"
@@ -78,7 +78,7 @@
                 android:shadowDy="1"
                 android:shadowRadius="1"
                 android:textColor="@color/white"
-                android:textSize="100sp"
+                android:textSize="@dimen/font_100"
                 app:layout_constraintBottom_toTopOf="@id/view3"
                 app:layout_constraintHeight_percent="0.1"
                 tools:text="5119 6288 8888 8888" />
@@ -91,26 +91,26 @@
                 app:layout_constraintHeight_percent="0.045"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <vn.icheck.android.component.view.text_view.AutoResizeTextView
+            <vn.icheck.android.ui.view.AutoResizeTextView
                 android:id="@+id/tvDateEnd"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_0"
                 android:fontFamily="@font/barlow_medium"
                 android:textColor="@color/white"
-                android:textSize="100sp"
+                android:textSize="@dimen/font_100"
                 app:layout_constraintBottom_toTopOf="@id/view2"
                 app:layout_constraintHeight_percent="0.073"
                 app:layout_constraintStart_toStartOf="@+id/tvName"
                 tools:text="10/24" />
 
-            <vn.icheck.android.component.view.text_view.AutoResizeTextView
+            <vn.icheck.android.ui.view.AutoResizeTextView
                 android:id="@+id/tvCCV"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_0"
-                android:layout_marginStart="50dp"
+                android:layout_marginStart="@dimen/size_50"
                 android:fontFamily="@font/barlow_medium"
                 android:textColor="@color/white"
-                android:textSize="100sp"
+                android:textSize="@dimen/font_100"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="@id/tvDateEnd"
                 app:layout_constraintStart_toEndOf="@id/tvDateEnd"
@@ -125,7 +125,7 @@
                 app:layout_constraintHeight_percent="0.07"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <vn.icheck.android.component.view.text_view.AutoResizeTextView
+            <vn.icheck.android.ui.view.AutoResizeTextView
                 android:id="@+id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/size_0"
@@ -134,7 +134,7 @@
                 android:shadowDy="1"
                 android:shadowRadius="1"
                 android:textColor="@color/white"
-                android:textSize="100sp"
+                android:textSize="@dimen/font_100"
                 app:layout_constraintBottom_toTopOf="@id/view1"
                 app:layout_constraintHeight_percent="0.073"
                 app:layout_constraintStart_toStartOf="parent"

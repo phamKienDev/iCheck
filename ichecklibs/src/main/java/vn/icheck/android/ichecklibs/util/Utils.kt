@@ -2,13 +2,12 @@ package vn.icheck.android.ichecklibs
 
 import android.content.Context
 import android.content.res.Resources
+import android.graphics.Point
 import android.util.TypedValue
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.annotation.MainThread
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.children
 import vn.icheck.android.ichecklibs.databinding.ToastSimpleErrorBinding
 import vn.icheck.android.ichecklibs.databinding.ToastSimpleSuccessBinding
@@ -28,6 +27,14 @@ fun View.beVisible() {
 
 fun View.beInvisible() {
     this.visibility = View.INVISIBLE
+}
+
+fun View.visibleOrGone(logic: Boolean) {
+    if (logic) {
+        this.visibility = View.VISIBLE
+    } else {
+        this.visibility = View.GONE
+    }
 }
 
 fun View.visibleOrInvisible(logic: Boolean) {
@@ -133,4 +140,44 @@ infix fun Context.showSimpleErrorToast(msg: Int) {
 fun View.setAllEnabled(enabled: Boolean) {
     isEnabled = enabled
     if (this is ViewGroup) this.children.forEach { child -> child.isEnabled = enabled }
+}
+
+fun Context.isSoftNavigationBarAvailable(): Boolean {
+    val navBarInteractionModeId = resources.getIdentifier(
+            "config_navBarInteractionMode",
+            "integer",
+            "android"
+    )
+    if (navBarInteractionModeId > 0 && resources.getInteger(navBarInteractionModeId) > 0) {
+        // nav gesture is enabled in the settings
+        return false
+    }
+    val appUsableScreenSize = Point()
+    val realScreenSize = Point()
+    val defaultDisplay = (getSystemService(Context.WINDOW_SERVICE) as WindowManager).defaultDisplay
+    defaultDisplay.getSize(appUsableScreenSize)
+    defaultDisplay.getRealSize(realScreenSize)
+    return appUsableScreenSize.y < realScreenSize.y
+}
+
+fun Context.getNavigationHeight():Int {
+    return if (isSoftNavigationBarAvailable()) {
+        val resources: Resources = resources
+        val resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android")
+        return if (resourceId > 0) {
+            resources.getDimensionPixelSize(resourceId)
+        } else 0
+    } else {
+        0
+    }
+}
+
+fun View.setMarginConstraintLayout(left:Int, right:Int, top:Int, bottom:Int) {
+    try {
+        val lp = layoutParams as ConstraintLayout.LayoutParams
+        lp.setMargins(left,top, right, bottom)
+        requestLayout()
+    } catch (e: Exception) {
+    }
+
 }

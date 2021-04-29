@@ -11,7 +11,7 @@ import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.databinding.FragmentCartBinding
 import vn.icheck.android.tracking.insider.InsiderHelper
-import vn.icheck.android.model.cart.ItemCartItem
+import vn.icheck.android.network.model.cart.ItemCartItem
 import vn.icheck.android.room.database.AppDatabase
 import vn.icheck.android.screen.user.shipping.ship.adpter.vm.ShipViewModel
 import vn.icheck.android.screen.user.shipping.ship.adpter.adapter.CartItemsAdapter

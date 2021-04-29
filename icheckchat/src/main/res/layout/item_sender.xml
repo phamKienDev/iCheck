@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:rotation="180"
     android:gravity="center_vertical|right"
-    android:orientation="vertical">
+    android:rotation="180"
+    android:orientation="vertical"
+    tools:rotation="0">
 
 
     <LinearLayout
@@ -36,6 +37,7 @@
                 android:layout_width="228dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
+                tools:visibility="gone"
                 android:background="@drawable/bg_corner_10_gray_f0"
                 android:paddingBottom="10dp"
                 android:visibility="visible">
@@ -47,7 +49,7 @@
                     app:layout_constraintDimensionRatio="H, 228:119"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:src="@color/lightBlue" />
+                    tools:src="@color/colorPrimary" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvNameProduct"
@@ -107,7 +109,7 @@
                     android:fontFamily="@font/barlow_semi_bold"
                     android:includeFontPadding="false"
                     android:singleLine="true"
-                    android:textColor="@color/lightBlue"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="@id/view"
                     app:layout_constraintStart_toStartOf="@id/view"
@@ -134,7 +136,9 @@
 
             <include
                 android:id="@+id/layoutImageDetail"
-                layout="@layout/item_image_chat_detail" />
+                layout="@layout/item_image_chat_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvMessage"
@@ -149,16 +153,16 @@
                 android:textSize="14sp"
                 android:visibility="visible"
                 tools:targetApi="p"
-                tools:text="Tôi muốn ất ở đâu? ( độ rộng maximum)" />
+                tools:text="Tôi muốn ất ở đâu?" />
 
             <LinearLayout
                 android:id="@+id/layoutLink"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:visibility="gone"
                 android:background="@drawable/bg_corner_10_gray_f0"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvLink"
@@ -177,7 +181,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="141dp"
                     android:visibility="gone"
-                    tools:src="@color/lightCyan" />
+                    tools:src="@color/colorAccentBlue" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvTitle"
