@@ -646,6 +646,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 addMessageAdapter(obj)
             }
 
+            EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.UPDATE_DATA))
+
             if (obj.type == "media") {
                 viewModel.uploadImage(adapterImage.getListData)
                 sentMessage = obj
