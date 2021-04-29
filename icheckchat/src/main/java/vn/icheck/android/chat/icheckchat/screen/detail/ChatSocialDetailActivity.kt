@@ -530,8 +530,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                         image = itemProduct.child("image").value.toString()
                         name = itemProduct.child("name").value.toString()
                         state = itemProduct.child("state").value.toString()
-                        productId = if (itemProduct.child("product_id").value is Long) {
-                            itemProduct.child("product_id").value as Long?
+                        productId = if (itemProduct.child("productId").value is Long) {
+                            itemProduct.child("productId").value as Long?
                         } else {
                             -1
                         }
