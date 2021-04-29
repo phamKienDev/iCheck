@@ -560,7 +560,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
     private fun formatMessage(key: String) {
         if (!adapterImage.isEmpty) {
-            if (adapter.getListData.size > 20) {
+            if (adapterImage.getListData.size > 20) {
                 showToastError(getString(R.string.chon_20_muc))
                 return
             }
