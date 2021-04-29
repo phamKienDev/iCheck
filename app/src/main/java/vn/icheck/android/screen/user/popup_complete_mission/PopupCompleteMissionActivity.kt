@@ -9,8 +9,7 @@ import kotlinx.android.synthetic.main.activity_popup_complete_mission.*
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.screen.user.home_page.my_gift_warehouse.shake_gift.list_box_gift.ListShakeGridBoxActivity
-import vn.icheck.android.screen.user.mygift.MyGiftActivity
+import vn.icheck.android.screen.user.my_gift_warehouse.shake_gift.list_box_gift.ListShakeGridBoxActivity
 
 class PopupCompleteMissionActivity : BaseActivityMVVM() {
 

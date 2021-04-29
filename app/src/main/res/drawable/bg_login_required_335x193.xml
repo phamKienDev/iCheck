@@ -182,6 +182,6 @@
         android:fillColor="#3C5A99"/>
     <path
         android:pathData="M265.484,67.866c-1.852,1.496 -3.349,2.636 -3.634,2.779l0.214,-2.209c0.071,-0.427 -0.998,0 -1.069,0.428l-0.285,2.992c-0.071,1.14 5.059,-3.705 4.774,-3.99z"
-        android:fillColor="#00BAF2"/>
+        android:fillColor="@color/colorAccentBlue"/>
   </group>
 </vector>

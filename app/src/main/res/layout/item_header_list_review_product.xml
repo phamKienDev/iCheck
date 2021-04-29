@@ -9,4 +9,4 @@
     android:fontFamily="sans-serif-medium"
     android:text="@string/tat_ca_danh_gia"
     android:textColor="#3C5A99"
-    android:textSize="16sp" />
+    android:textSize="@dimen/font_16" />

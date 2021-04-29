@@ -10,10 +10,10 @@
         android:id="@+id/slide_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="@dimen/size_12"
         android:text="@string/san_pham_cung_shop"
         android:textColor="#3C5A99"
-        android:textSize="18sp" />
+        android:textSize="@dimen/font_18" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_slide_product"

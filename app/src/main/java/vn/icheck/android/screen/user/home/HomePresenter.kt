@@ -153,7 +153,7 @@ class HomePresenter(val view: IHomeView) : BaseActivityPresenter(view) {
         view.onUpdateUserInfo()
 
         EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.UPDATE_UNREAD_NOTIFICATION, 0L))
-        ICNetworkManager2.getLoginProtocol?.onLogout()
+        ICNetworkManager.getLoginProtocol?.onLogout()
 
         InsiderHelper.onLogout()
         loginAnonymous()

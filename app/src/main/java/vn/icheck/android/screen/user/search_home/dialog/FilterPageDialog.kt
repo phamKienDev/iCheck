@@ -76,11 +76,11 @@ class FilterPageDialog(val locations: MutableList<ICProvince>?, val verified: Bo
     private fun setLocation(locations: MutableList<ICProvince>?) {
         selectedLocations = locations ?: mutableListOf()
         if (locations.isNullOrEmpty()) {
-            tv_location.setTextColor(ContextCompat.getColor(dialog?.context!!, R.color.fast_survey_gray))
+            tv_location.setTextColor(ContextCompat.getColor(dialog?.context!!, R.color.colorSecondText))
             img_clear_location.visibility = View.GONE
             tv_location.text = getString(R.string.tat_ca)
         } else {
-            tv_location.setTextColor(ContextCompat.getColor(dialog?.context!!, R.color.lightBlue))
+            tv_location.setTextColor(ContextCompat.getColor(dialog?.context!!, R.color.colorPrimary))
             img_clear_location.visibility = View.VISIBLE
 
             val list = mutableListOf<String>()
@@ -104,11 +104,11 @@ class FilterPageDialog(val locations: MutableList<ICProvince>?, val verified: Bo
     private fun setFiltterCategory(category: MutableList<ICCategorySearch>?) {
         selectedCategory = category ?: mutableListOf()
         if (category.isNullOrEmpty()) {
-            tv_category.setTextColor(ContextCompat.getColor(dialog?.context!!, R.color.fast_survey_gray))
+            tv_category.setTextColor(ContextCompat.getColor(dialog?.context!!, R.color.colorSecondText))
             img_clear_cate.visibility = View.GONE
             tv_category.text = getString(R.string.tat_ca)
         } else {
-            tv_category.setTextColor(ContextCompat.getColor(dialog?.context!!, R.color.lightBlue))
+            tv_category.setTextColor(ContextCompat.getColor(dialog?.context!!, R.color.colorPrimary))
             img_clear_cate.visibility = View.VISIBLE
             tv_category.text = category.last().name.toString()
         }

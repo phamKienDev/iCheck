@@ -18,12 +18,13 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
-import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.base.model.ICError
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.databinding.FragmentPageManagementBinding
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.beGone
+import vn.icheck.android.ichecklibs.beVisible
 import vn.icheck.android.network.base.ICListResponse
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.models.ICPage
@@ -31,8 +32,6 @@ import vn.icheck.android.screen.user.wall.manage_page.my_follow_page.MyFollowPag
 import vn.icheck.android.screen.user.wall.manage_page.my_follow_page.MyFollowPageAdapter
 import vn.icheck.android.screen.user.wall.manage_page.my_owner_page.MyOwnerPageActivity
 import vn.icheck.android.screen.user.wall.manage_page.my_owner_page.MyOwnerPageAdapter
-import vn.icheck.android.util.ick.beGone
-import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.util.kotlin.ActivityUtils
 
 class PageManagementFragment : Fragment() {
@@ -76,7 +75,7 @@ class PageManagementFragment : Fragment() {
     }
 
     private fun initSwipeLayout() {
-        binding.swipeLayout.setColorSchemeColors(ContextCompat.getColor(requireContext(), R.color.blue), ContextCompat.getColor(requireContext(), R.color.lightBlue), ContextCompat.getColor(requireContext(), R.color.lightBlue))
+        binding.swipeLayout.setColorSchemeColors(ContextCompat.getColor(requireContext(), R.color.colorSecondary), ContextCompat.getColor(requireContext(), R.color.colorPrimary), ContextCompat.getColor(requireContext(), R.color.colorPrimary))
         binding.swipeLayout.setOnRefreshListener {
             getData()
         }

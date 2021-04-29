@@ -10,7 +10,6 @@ import kotlinx.android.synthetic.main.item_message_campaign.view.*
 import kotlinx.android.synthetic.main.item_user_follow.view.*
 import vn.icheck.android.R
 import vn.icheck.android.RelationshipManager
-import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.constant.MAIN_USER
 import vn.icheck.android.constant.MAIN_USER_FRIEND
@@ -199,7 +198,7 @@ class UserFollowAdapter constructor(val view: IUserFollowWallView) : RecyclerVie
                         itemView.tv_related_friend.visibility = View.INVISIBLE
                     }
                     MAIN_USER_NOT_FRIEND -> {
-                        if (RelationshipManager.checkFriendInvitation(item.id ?: 0L)) {
+                        if (RelationshipManager.checkMyFriendInvitation(item.id ?: 0L)) {
                             itemView.btnMessenger.visibility = View.INVISIBLE
                             itemView.btnDaGuiLoiMoi.visibility = View.VISIBLE
                             itemView.layoutAddFriend.visibility = View.INVISIBLE

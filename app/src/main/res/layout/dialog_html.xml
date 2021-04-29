@@ -39,7 +39,7 @@
                 android:singleLine="true"
                 android:textAlignment="gravity"
                 android:textColor="#4f4f4f"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:textStyle="normal"
                 tools:text="https://news.zing.vn/" />
 

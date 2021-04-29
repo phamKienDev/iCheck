@@ -39,7 +39,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:includeFontPadding="false"
                 android:textColor="#ffffff"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 android:textStyle="normal" />
 
             <androidx.appcompat.widget.AppCompatImageButton

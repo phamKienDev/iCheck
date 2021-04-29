@@ -4,14 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.widget.AppCompatTextView
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.item_friend_suggestion.view.*
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.RelationshipManager
 import vn.icheck.android.base.holder.BaseViewHolder
-import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
@@ -74,7 +72,7 @@ class FriendSuggestionHolder(parent: ViewGroup) : BaseViewHolder<ICUser>(LayoutI
 
 
 
-            checkSend(RelationshipManager.checkFriendInvitation(obj.id), obj)
+            checkSend(RelationshipManager.checkMyFriendInvitation(obj.id), obj)
 
         }
     }

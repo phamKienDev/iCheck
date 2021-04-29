@@ -29,12 +29,11 @@ import vn.icheck.android.chat.icheckchat.model.MCMessageEvent
 import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import java.util.*
 
-class ListConversationFragment(val listener: ICountMessageListener) : BaseFragmentChat<FragmentListConversationBinding>(), IRecyclerViewCallback {
+class ListConversationFragment : BaseFragmentChat<FragmentListConversationBinding>(), IRecyclerViewCallback {
 
+    private var listener: ICountMessageListener?=null
     private val adapter = ListConversationAdapter(this@ListConversationFragment)
-
     private lateinit var viewModel: ListConversationViewModel
-
     private val listData = mutableListOf<MCConversation>()
 
     companion object {
@@ -54,6 +53,10 @@ class ListConversationFragment(val listener: ICountMessageListener) : BaseFragme
 
     override fun isRegisterEventBus(): Boolean {
         return true
+    }
+
+    fun setListener(listener:ICountMessageListener?){
+        this.listener=listener
     }
 
     override fun setBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentListConversationBinding {
@@ -282,7 +285,7 @@ class ListConversationFragment(val listener: ICountMessageListener) : BaseFragme
 
     private fun getChatSender() {
         viewModel.getChatSender("user|${ShareHelperChat.getLong(USER_ID)}", { snapshot ->
-            listener.getCountMessage(try {
+            listener?.getCountMessage(try {
                 if (snapshot.hasChildren()) {
                     if (snapshot.child("unread_count").exists()) {
                         snapshot.child("unread_count").value.toString().toLong()
@@ -296,7 +299,7 @@ class ListConversationFragment(val listener: ICountMessageListener) : BaseFragme
                 0
             })
         }, {
-            listener.getCountMessage(0)
+            listener?.getCountMessage(0)
         })
     }
 

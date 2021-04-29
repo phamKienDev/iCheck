@@ -57,11 +57,11 @@
 
     <ImageView
         android:id="@+id/btn_clear"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="@dimen/size_40"
+        android:layout_height="@dimen/size_40"
+        android:layout_marginStart="@dimen/size_8"
+        android:layout_marginLeft="@dimen/size_8"
+        android:layout_marginTop="@dimen/size_8"
         android:scaleType="centerInside"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -70,11 +70,11 @@
 
     <ImageView
         android:id="@+id/img_flash"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_width="@dimen/size_40"
+        android:layout_height="@dimen/size_40"
+        android:layout_marginTop="@dimen/size_8"
+        android:layout_marginEnd="@dimen/size_8"
+        android:layout_marginRight="@dimen/size_8"
         android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -89,7 +89,7 @@
         android:fontFamily="@font/barlow_medium"
         android:text="Vui lòng căn chỉnh giấy tờ đúng khung chụp ảnh"
         android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -114,28 +114,28 @@
     <View
         android:id="@+id/divider23"
         android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="@dimen/size_1"
+        android:layout_marginTop="@dimen/size_16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/img_scan_focus" />
 
     <View
         android:id="@+id/divider24"
-        android:layout_width="1dp"
+        android:layout_width="@dimen/size_1"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="@dimen/size_16"
+        android:layout_marginLeft="@dimen/size_16"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/img_scan_focus"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/divider25"
-        android:layout_width="1dp"
+        android:layout_width="@dimen/size_1"
         android:layout_height="0dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginEnd="@dimen/size_16"
+        android:layout_marginRight="@dimen/size_16"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/img_scan_focus"
         app:layout_constraintTop_toTopOf="parent" />
@@ -143,8 +143,8 @@
     <View
         android:id="@+id/divider26"
         android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginBottom="16dp"
+        android:layout_height="@dimen/size_1"
+        android:layout_marginBottom="@dimen/size_16"
         app:layout_constraintBottom_toBottomOf="@+id/img_scan_focus"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -31,10 +31,10 @@
         android:layout_marginLeft="@dimen/size_8"
         android:fontFamily="@font/barlow_medium"
         android:includeFontPadding="false"
-        android:lineSpacingExtra="6sp"
+        android:lineSpacingExtra="@dimen/font_6"
         android:text="@string/cong_khai"
         android:textColor="#212121"
-        android:textSize="14sp" />
+        android:textSize="@dimen/font_14" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvPublicContent"
@@ -45,8 +45,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_6"
         android:includeFontPadding="false"
-        android:lineSpacingExtra="6sp"
+        android:lineSpacingExtra="@dimen/font_6"
         android:text="@string/tat_ca_moi_nguoi_deu_xem_duoc"
         android:textColor="#757575"
-        android:textSize="14sp" />
+        android:textSize="@dimen/font_14" />
 </androidx.constraintlayout.widget.ConstraintLayout>

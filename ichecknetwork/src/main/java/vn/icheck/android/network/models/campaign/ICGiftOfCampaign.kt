@@ -46,4 +46,7 @@ class ICGiftOfCampaign : Serializable {
 
     @Expose
     val icoin: Long? = null
+
+    @Expose
+    val icoinIcon: String? = null
 }

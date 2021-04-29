@@ -13,16 +13,16 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgAvaPage"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="@dimen/size_70"
+            android:layout_height="@dimen/size_70"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginLeft="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_16"
             app:civ_border_color="#D8D8D8"
-            app:civ_border_width="1dp"
+            app:civ_border_width="@dimen/size_1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@color/lightBlue" />
+            tools:src="@color/colorPrimary" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@id/imgEditAvatar"
@@ -37,26 +37,26 @@
             android:id="@+id/layoutName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginRight="12dp"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginLeft="@dimen/size_12"
+            android:layout_marginEnd="@dimen/size_12"
+            android:layout_marginRight="@dimen/size_12"
             app:layout_constraintBottom_toTopOf="@id/tvNameTypePage"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/imgAvaPage"
             app:layout_constraintTop_toTopOf="@id/imgAvaPage">
 
-            <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+            <vn.icheck.android.ui.view.TextBarlowSemiBold
                 android:id="@id/tvNamePage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:textColor="#000000"
-                android:textSize="20sp"
-                tools:text="Công ty Thư 11412222222222222222222221 1" />
+                android:textSize="@dimen/font_20"
+                tools:text="Unilever Vietnam Official Unilever Vietnam Official  Unilever Vietnam Official Unilever Vietnam Official  " />
         </LinearLayout>
 
-        <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+        <vn.icheck.android.ui.view.TextBarlowMedium
             android:id="@+id/tvNameTypePage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
             android:singleLine="true"
             android:text="Doanh nghiệp"
             android:textColor="#3c5a99"
-            android:textSize="12sp"
+            android:textSize="@dimen/font_12"
             app:layout_constraintBottom_toBottomOf="@id/imgAvaPage"
             app:layout_constraintStart_toStartOf="@id/layoutName"
             app:layout_constraintTop_toBottomOf="@id/layoutName" />
@@ -76,20 +76,20 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_16"
+        android:layout_marginEnd="@dimen/size_12"
         android:orientation="horizontal">
 
         <LinearLayout
             android:id="@+id/btnChinh"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/size_40"
             android:layout_weight="1"
             android:background="@drawable/bg_corners_4_light_blue_solid"
             android:gravity="center">
 
-            <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+            <vn.icheck.android.ui.view.TextBarlowSemiBold
                 android:id="@+id/tvChinh"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -99,7 +99,7 @@
                 android:gravity="center"
                 android:text="@string/theo_doi"
                 android:textColor="#ffffff"
-                android:textSize="16sp" />
+                android:textSize="@dimen/font_16" />
 
         </LinearLayout>
 
@@ -107,28 +107,28 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/btnPhu"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
+            android:layout_height="@dimen/size_40"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginLeft="@dimen/size_8"
             android:background="@drawable/bg_corners_4_light_blue_no_solid"
             android:drawableStart="@drawable/ic_phone_blue_16dp"
             android:drawableLeft="@drawable/ic_phone_blue_16dp"
             android:gravity="center"
-            android:paddingStart="23dp"
-            android:paddingEnd="23dp" />
+            android:paddingStart="@dimen/size_23"
+            android:paddingEnd="@dimen/size_23" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/btnMore"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
+            android:layout_height="@dimen/size_40"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginLeft="@dimen/size_8"
             android:background="@drawable/bg_corners_4_light_blue_no_solid"
             android:drawableStart="@drawable/ic_more_blue_16"
             android:drawableLeft="@drawable/ic_more_blue_16"
             android:gravity="center"
-            android:paddingStart="23dp"
-            android:paddingEnd="23dp" />
+            android:paddingStart="@dimen/size_23"
+            android:paddingEnd="@dimen/size_23" />
 
     </LinearLayout>
 
@@ -136,9 +136,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_14"
+        android:layout_marginEnd="@dimen/size_12"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -148,16 +148,16 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal" />
 
-        <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+        <vn.icheck.android.ui.view.TextBarlowMedium
             android:id="@id/tv_number_follow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="@dimen/size_10"
+            android:layout_marginLeft="@dimen/size_10"
             android:ellipsize="end"
             android:maxLines="2"
             android:textColor="#757575"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             tools:text="Huy, Quân, Hoàng và 3.000 người khác theo dõi trang này " />
     </LinearLayout>
 
@@ -172,8 +172,8 @@
         android:id="@+id/containerOverview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginTop="@dimen/size_12"
+        android:layout_marginBottom="@dimen/size_12"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -184,20 +184,20 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+            <vn.icheck.android.ui.view.TextBarlowSemiBold
                 android:id="@id/tvCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#3c5a99"
-                android:textSize="20sp"
+                android:textSize="@dimen/font_20"
                 tools:text="10" />
 
-            <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+            <vn.icheck.android.ui.view.TextBarlowMedium
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sản phẩm"
                 android:textColor="#3c5a99"
-                android:textSize="14sp" />
+                android:textSize="@dimen/font_14" />
 
         </LinearLayout>
 
@@ -208,20 +208,20 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+            <vn.icheck.android.ui.view.TextBarlowSemiBold
                 android:id="@id/tvRating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#3c5a99"
-                android:textSize="20sp"
+                android:textSize="@dimen/font_20"
                 tools:text="4.5/5" />
 
-            <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+            <vn.icheck.android.ui.view.TextBarlowMedium
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Đánh giá"
                 android:textColor="#3c5a99"
-                android:textSize="14sp" />
+                android:textSize="@dimen/font_14" />
 
         </LinearLayout>
 
@@ -232,20 +232,20 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+            <vn.icheck.android.ui.view.TextBarlowSemiBold
                 android:id="@+id/tvCountScan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#3c5a99"
-                android:textSize="20sp"
+                android:textSize="@dimen/font_20"
                 tools:text="186.820" />
 
-            <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+            <vn.icheck.android.ui.view.TextBarlowMedium
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Lượt quét"
                 android:textColor="#3c5a99"
-                android:textSize="14sp" />
+                android:textSize="@dimen/font_14" />
 
         </LinearLayout>
     </LinearLayout>
@@ -266,13 +266,13 @@
             android:id="@+id/textView36"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginLeft="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_10"
             android:fontFamily="@font/barlow_medium"
             android:text="Đăng bài mới"
             android:textColor="#3C5A99"
-            android:textSize="18sp"
+            android:textSize="@dimen/font_18"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -280,8 +280,8 @@
             android:id="@+id/user_avatar"
             android:layout_width="@dimen/size_40"
             android:layout_height="@dimen/size_40"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="18dp"
+            android:layout_marginTop="@dimen/size_10"
+            android:layout_marginBottom="@dimen/size_18"
             android:src="@drawable/ic_business_v2"
             app:civ_border_color="@color/gray"
             app:civ_border_width="@dimen/size_0_5"
@@ -294,10 +294,10 @@
             android:id="@+id/textView45"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginLeft="@dimen/size_8"
+            android:layout_marginEnd="@dimen/size_8"
+            android:layout_marginRight="@dimen/size_8"
             android:gravity="center_vertical"
             android:text="Hãy chia sẻ những thông tin hữu ích nào!"
             android:textColor="#B4B4B4"
@@ -306,6 +306,4 @@
             app:layout_constraintStart_toEndOf="@+id/user_avatar"
             app:layout_constraintTop_toTopOf="@+id/user_avatar" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </LinearLayout>

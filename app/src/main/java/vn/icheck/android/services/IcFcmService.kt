@@ -3,6 +3,7 @@ package vn.icheck.android.services
 import android.content.Intent
 import android.net.Uri
 import android.os.Handler
+import androidx.annotation.WorkerThread
 import androidx.preference.PreferenceManager
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
@@ -22,6 +23,7 @@ import vn.icheck.android.network.base.ICResponseCode
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.feature.mission.MissionInteractor
 import vn.icheck.android.network.models.ICMissionDetail
+import vn.icheck.android.screen.dialog.DialogNotificationFirebaseAds
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.user.popup_complete_mission.PopupCompleteMissionActivity
 import vn.icheck.android.screen.user.rank_of_user.RankUpActivity
@@ -48,9 +50,9 @@ class IcFcmService : FirebaseMessagingService() {
             body = remoteMessage.data["body"]
         }
 
-        var targetType = remoteMessage.data["target_type"]
-        if (targetType.isNullOrEmpty()) {
-            targetType = remoteMessage.data["type"]
+        var targetType = remoteMessage.data["target_type"] ?: ""
+        if (targetType.isEmpty()) {
+            targetType = remoteMessage.data["type"] ?: ""
         }
 
         var targetID = remoteMessage.data["target_id"]
@@ -111,6 +113,15 @@ class IcFcmService : FirebaseMessagingService() {
                     })
                 }
             }
+            path.contains("popup_image") -> {
+                showDialogNotification(image = targetID, schema = path)
+            }
+            path.contains("popup_html") -> {
+                showDialogNotification(htmlText = targetID)
+            }
+            path.contains("popup_link") -> {
+                showDialogNotification(link = targetID)
+            }
             else -> {
                 ICheckApplication.currentActivity()?.let { act ->
                     act.runOnUiThread {
@@ -130,6 +141,19 @@ class IcFcmService : FirebaseMessagingService() {
                         }, 1000)
                     }
                 }
+            }
+        }
+    }
+
+    @WorkerThread
+    private fun showDialogNotification(image: String? = null, htmlText: String? = null, link: String? = null, schema: String? = null) {
+        ICheckApplication.currentActivity().let { activity ->
+            activity?.runOnUiThread {
+                object : DialogNotificationFirebaseAds(activity, image, htmlText, link, schema) {
+                    override fun onDismiss() {
+
+                    }
+                }.show()
             }
         }
     }

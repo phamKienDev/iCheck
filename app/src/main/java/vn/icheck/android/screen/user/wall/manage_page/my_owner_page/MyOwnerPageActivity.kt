@@ -12,7 +12,6 @@ import kotlinx.coroutines.launch
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.callback.IRecyclerViewCallback
-import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.Status
@@ -49,7 +48,7 @@ class MyOwnerPageActivity : BaseActivityMVVM(), IRecyclerViewCallback {
 
         StatusBarUtils.setOverStatusBarDark(this)
 
-        swipe_layout.setColorSchemeColors(ContextCompat.getColor(this, R.color.blue), ContextCompat.getColor(this, R.color.blue), ContextCompat.getColor(this, R.color.lightBlue))
+        swipe_layout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
         swipe_layout.setOnRefreshListener {
             getData()
         }

@@ -21,14 +21,14 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/size_6"
         android:background="@drawable/bg_the_winner"
-        android:paddingTop="147dp"
+        android:paddingTop="@dimen/size_147"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <View
             android:id="@+id/top1"
             android:layout_width="0dp"
-            android:layout_height="164dp"
+            android:layout_height="@dimen/size_164"
             android:layout_marginLeft="@dimen/size_2"
             android:layout_marginTop="@dimen/size_2"
             android:background="@drawable/bg_corners_top_6_white"
@@ -38,7 +38,7 @@
 
         <View
             android:id="@+id/top2"
-            android:layout_width="115dp"
+            android:layout_width="@dimen/size_115"
             android:layout_height="@dimen/size_0"
             android:layout_marginLeft="@dimen/size_16"
             android:layout_marginTop="@dimen/size_2"
@@ -49,7 +49,7 @@
 
         <View
             android:id="@+id/top3"
-            android:layout_width="115dp"
+            android:layout_width="@dimen/size_115"
             android:layout_height="@dimen/size_0"
             android:layout_marginTop="@dimen/size_2"
             android:layout_marginRight="@dimen/size_16"
@@ -86,7 +86,7 @@
             android:includeFontPadding="false"
             android:text="2"
             android:textColor="@color/white"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintStart_toStartOf="@id/top2"
             app:layout_constraintTop_toTopOf="@id/top1" />
 
@@ -99,12 +99,12 @@
             app:layout_constraintEnd_toEndOf="@id/top2"
             app:layout_constraintStart_toStartOf="@id/top2"
             app:layout_constraintTop_toTopOf="@id/top2"
-            tools:src="@color/yellow" />
+            tools:src="@color/colorAccentYellow" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="27dp"
+            android:layout_marginLeft="@dimen/size_27"
             android:layout_marginBottom="@dimen/size_36"
             app:layout_constraintBottom_toBottomOf="@+id/imgAvatarTop2"
             app:layout_constraintStart_toStartOf="@id/imgAvatarTop2" />
@@ -123,7 +123,7 @@
             android:minLines="2"
             android:text="@string/dang_cap_nhat"
             android:textColor="@color/black"
-            android:textSize="@dimen/font_size_4"
+            android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toTopOf="@+id/tviCoinTop2"
             app:layout_constraintEnd_toEndOf="@id/top2"
             app:layout_constraintStart_toStartOf="@id/top2"
@@ -141,8 +141,8 @@
             android:includeFontPadding="false"
             android:singleLine="true"
             android:text="@string/dang_cap_nhat"
-            android:textColor="@color/yellow"
-            android:textSize="12sp"
+            android:textColor="@color/colorAccentYellow"
+            android:textSize="@dimen/font_12"
             app:layout_constraintBottom_toBottomOf="@id/top2"
             app:layout_constraintEnd_toEndOf="@id/tvNameTop2"
             app:layout_constraintStart_toStartOf="@id/tvNameTop2"
@@ -159,21 +159,21 @@
             android:includeFontPadding="false"
             android:text="1"
             android:textColor="@color/white"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintStart_toStartOf="@id/top1"
             app:layout_constraintTop_toTopOf="parent" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgAvatarTop1"
-            android:layout_width="58dp"
-            android:layout_height="58dp"
-            android:layout_marginTop="27dp"
+            android:layout_width="@dimen/size_58"
+            android:layout_height="@dimen/size_58"
+            android:layout_marginTop="@dimen/size_27"
             android:background="@drawable/ic_stroke_line_yellow"
             android:padding="@dimen/size_4"
             app:layout_constraintEnd_toEndOf="@id/top1"
             app:layout_constraintStart_toStartOf="@id/top1"
             app:layout_constraintTop_toTopOf="@id/top1"
-            tools:src="@color/red" />
+            tools:src="@color/colorAccentRed" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="wrap_content"
@@ -197,7 +197,7 @@
             android:maxLines="2"
             android:minLines="2"
             android:textColor="@color/black"
-            android:textSize="@dimen/font_size_4"
+            android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toTopOf="@+id/tviCoinTop1"
             app:layout_constraintEnd_toEndOf="@id/top1"
             app:layout_constraintStart_toStartOf="@id/top1"
@@ -213,8 +213,8 @@
             android:gravity="center"
             android:includeFontPadding="false"
             android:singleLine="true"
-            android:textColor="@color/yellow"
-            android:textSize="12sp"
+            android:textColor="@color/colorAccentYellow"
+            android:textSize="@dimen/font_12"
             app:layout_constraintBottom_toBottomOf="@id/top1"
             app:layout_constraintEnd_toEndOf="@id/tvNameTop1"
             app:layout_constraintStart_toStartOf="@id/tvNameTop1"
@@ -232,7 +232,7 @@
             android:includeFontPadding="false"
             android:text="3"
             android:textColor="@color/white"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="@id/top3"
             app:layout_constraintTop_toTopOf="@id/top1" />
 
@@ -245,13 +245,13 @@
             app:layout_constraintEnd_toEndOf="@id/top3"
             app:layout_constraintStart_toStartOf="@id/top3"
             app:layout_constraintTop_toTopOf="@id/top3"
-            tools:src="@color/yellow" />
+            tools:src="@color/colorAccentYellow" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/size_22"
-            android:layout_marginBottom="31dp"
+            android:layout_marginBottom="@dimen/size_31"
             app:layout_constraintBottom_toBottomOf="@+id/imgAvatarTop3"
             app:layout_constraintStart_toStartOf="@id/imgAvatarTop3" />
 
@@ -269,7 +269,7 @@
             android:minLines="2"
             android:text="@string/dang_cap_nhat"
             android:textColor="@color/black"
-            android:textSize="@dimen/font_size_4"
+            android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toTopOf="@+id/tviCoinTop3"
             app:layout_constraintEnd_toEndOf="@id/top3"
             app:layout_constraintStart_toStartOf="@id/top3"
@@ -287,8 +287,8 @@
             android:includeFontPadding="false"
             android:singleLine="true"
             android:text="@string/dang_cap_nhat"
-            android:textColor="@color/yellow"
-            android:textSize="12sp"
+            android:textColor="@color/colorAccentYellow"
+            android:textSize="@dimen/font_12"
             app:layout_constraintBottom_toBottomOf="@id/top3"
             app:layout_constraintEnd_toEndOf="@id/tvNameTop3"
             app:layout_constraintStart_toStartOf="@id/tvNameTop3"

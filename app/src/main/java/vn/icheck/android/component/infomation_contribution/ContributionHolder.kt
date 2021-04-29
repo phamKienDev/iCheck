@@ -19,7 +19,6 @@ import vn.icheck.android.component.view.ListAvatar
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
-import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.product.ProductInteractor
 import vn.icheck.android.network.models.ICProductContribution
@@ -27,7 +26,6 @@ import vn.icheck.android.network.models.feed.ICAvatarOfFriend
 import vn.icheck.android.network.models.product.report.ICReportContribute
 import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.screen.user.contribute_product.IckContributeProductActivity
-import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionDialog
 import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionSuccessDialog
 import vn.icheck.android.util.ick.showSimpleErrorToast
@@ -136,23 +134,23 @@ class ContributionHolder(parent: ViewGroup) : BaseViewHolder<ContributrionModel>
         if (contribution.contribution != null) {
             if (contribution.contribution!!.myVote == null) {
                 tvUpVote.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_contribute_correct_unfc_30_px, 0, 0)
-                tvUpVote.setTextColor(ContextCompat.getColor(itemView.context, R.color.fast_survey_gray))
+                tvUpVote.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorSecondText))
 
                 tvDownVote.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_contribute_incorrect_unfc_30px, 0, 0)
-                tvDownVote.setTextColor(ContextCompat.getColor(itemView.context, R.color.fast_survey_gray))
+                tvDownVote.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorSecondText))
             } else {
                 if (contribution.contribution!!.myVote!!) {
                     tvUpVote.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_contribute_correct_fc_30px, 0, 0)
-                    tvUpVote.setTextColor(ContextCompat.getColor(itemView.context, R.color.lightBlue))
+                    tvUpVote.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorPrimary))
 
                     tvDownVote.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_contribute_incorrect_unfc_30px, 0, 0)
-                    tvDownVote.setTextColor(ContextCompat.getColor(itemView.context, R.color.fast_survey_gray))
+                    tvDownVote.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorSecondText))
                 } else {
                     tvUpVote.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_contribute_correct_unfc_30_px, 0, 0)
-                    tvUpVote.setTextColor(ContextCompat.getColor(itemView.context, R.color.fast_survey_gray))
+                    tvUpVote.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorSecondText))
 
                     tvDownVote.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_contribute_incorrect_fc_30px, 0, 0)
-                    tvDownVote.setTextColor(ContextCompat.getColor(itemView.context, R.color.yellow))
+                    tvDownVote.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorAccentYellow))
                 }
             }
             tvUpVote.text = if (contribution.contribution!!.upVotes > 0) {

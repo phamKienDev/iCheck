@@ -18,7 +18,6 @@ import vn.icheck.android.loyalty.base.network.BaseModel
 import vn.icheck.android.loyalty.helper.TextHelper
 import vn.icheck.android.loyalty.helper.WidgetHelper
 import vn.icheck.android.loyalty.model.ICKCampaign
-import vn.icheck.android.loyalty.model.ICThumbnail
 
 internal class TheWinnerLoyaltyAdapter(callback: IRecyclerViewCallback) : RecyclerViewCustomAdapter<BaseModel<ICKCampaign>>(callback) {
 
@@ -102,14 +101,14 @@ internal class TheWinnerLoyaltyAdapter(callback: IRecyclerViewCallback) : Recycl
                 if (!obj.get(0).name.isNullOrEmpty()) {
                     nameTop1.text = obj.get(0).name
                 } else {
-                    nameTop1.setTextColor(ContextCompat.getColor(itemView.context, R.color.darkGray2))
+                    nameTop1.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorDisableText))
                     nameTop1.text = itemView.context.getString(R.string.dang_cap_nhat)
                 }
 
                 if (obj.get(0).winner_gifts?.get(0)?.gift?.icoin != null) {
                     coinTop1.text = "${TextHelper.formatMoneyPhay(obj.get(0).winner_gifts?.get(0)?.gift?.icoin)} Xu"
                 } else {
-                    coinTop1.setTextColor(ContextCompat.getColor(itemView.context, R.color.darkGray2))
+                    coinTop1.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorDisableText))
                     coinTop1.text = itemView.context.getString(R.string.dang_cap_nhat)
                 }
 
@@ -137,17 +136,17 @@ internal class TheWinnerLoyaltyAdapter(callback: IRecyclerViewCallback) : Recycl
                             coinTop3.text = itemView.context.getString(R.string.dang_cap_nhat)
                         }
                     } else {
-                        nameTop3.setTextColor(ContextCompat.getColor(itemView.context, R.color.darkGray2))
-                        coinTop3.setTextColor(ContextCompat.getColor(itemView.context, R.color.darkGray2))
+                        nameTop3.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorDisableText))
+                        coinTop3.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorDisableText))
                         coinTop3.textSize = 12f
                     }
                 } else {
-                    nameTop2.setTextColor(ContextCompat.getColor(itemView.context, R.color.darkGray2))
-                    coinTop2.setTextColor(ContextCompat.getColor(itemView.context, R.color.darkGray2))
+                    nameTop2.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorDisableText))
+                    coinTop2.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorDisableText))
                     coinTop2.textSize = 12f
 
-                    nameTop3.setTextColor(ContextCompat.getColor(itemView.context, R.color.darkGray2))
-                    coinTop3.setTextColor(ContextCompat.getColor(itemView.context, R.color.darkGray2))
+                    nameTop3.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorDisableText))
+                    coinTop3.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorDisableText))
                     coinTop3.textSize = 12f
                 }
             }

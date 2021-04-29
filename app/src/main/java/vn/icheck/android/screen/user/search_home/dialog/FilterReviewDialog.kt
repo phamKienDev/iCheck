@@ -75,11 +75,11 @@ class FilterReviewDialog(isWatched: Boolean = false, val time: MutableList<Strin
     fun setYear(year: MutableList<String>?) {
         seletedTime = year ?: mutableListOf()
         if (year.isNullOrEmpty()) {
-            tv_time.setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.fast_survey_gray))
+            tv_time.setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorSecondText))
             img_clear_time.visibility = View.GONE
             tv_time.text = getString(R.string.tat_ca)
         } else {
-            tv_time.setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.lightBlue))
+            tv_time.setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorPrimary))
             tv_time.compoundDrawablePadding = SizeHelper.size8
             img_clear_time.visibility = View.VISIBLE
             tv_time.text = year.toString().substring(1, year.toString().length - 1)
@@ -105,11 +105,11 @@ class FilterReviewDialog(isWatched: Boolean = false, val time: MutableList<Strin
     fun setFrom(fromType: MutableList<String>?) {
         seletedFrom = fromType ?: mutableListOf()
         if (fromType.isNullOrEmpty()) {
-            tv_from.setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.fast_survey_gray))
+            tv_from.setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorSecondText))
             img_clear_from.visibility = View.GONE
             tv_from.text = getString(R.string.moi_nguoi)
         } else {
-            tv_from.setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.lightBlue))
+            tv_from.setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorPrimary))
             tv_from.compoundDrawablePadding = SizeHelper.size8
             img_clear_from.visibility = View.VISIBLE
             tv_from.text = fromType.toString().substring(1, fromType.toString().length - 1)

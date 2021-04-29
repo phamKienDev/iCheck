@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/size_20"
         android:background="@null"
         app:srcCompat="@drawable/ic_cancel_popup_32px" />
 </LinearLayout>

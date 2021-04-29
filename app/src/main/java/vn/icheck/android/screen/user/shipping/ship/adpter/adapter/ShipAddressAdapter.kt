@@ -2,7 +2,7 @@ package vn.icheck.android.screen.user.shipping.ship.adpter.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import vn.icheck.android.model.loyalty.ShipAddressResponse
+import vn.icheck.android.network.model.loyalty.ShipAddressResponse
 import vn.icheck.android.screen.user.shipping.ship.holder.AddShipAddressHolder
 import vn.icheck.android.screen.user.shipping.ship.holder.ShipAddressHolder
 

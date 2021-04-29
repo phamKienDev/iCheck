@@ -63,7 +63,7 @@ class MultiSelectHolder(val binding:ItemMultiSelectBinding):RecyclerView.ViewHol
             if (binding.root.childCount > 1) {
                 binding.root.removeViewsInLayout(1, binding.root.childCount - 1)
             }
-            for (item in categoryAttributesModel.categoryItem.options) {
+            for (item in categoryAttributesModel.categoryItem.options ?: arrayListOf()) {
                 binding.root.addView(CheckBox(binding.root.context).apply {
                     viewTreeObserver.addOnGlobalLayoutListener {
                         val lp = layoutParams as LinearLayout.LayoutParams

@@ -42,7 +42,7 @@
         android:fontFamily="sans-serif"
         android:gravity="center"
         android:textColor="#B4B4B4"
-        android:textSize="15sp"
+        android:textSize="@dimen/font_15"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

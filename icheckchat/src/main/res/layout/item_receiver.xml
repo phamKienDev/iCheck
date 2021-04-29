@@ -18,7 +18,7 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:src="@color/lightBlue" />
+        tools:src="@color/colorPrimary" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -73,7 +73,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="141dp"
                 android:visibility="gone"
-                tools:src="@color/lightCyan" />
+                tools:src="@color/colorAccentBlue" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvTitle"
@@ -123,7 +123,7 @@
                 app:layout_constraintDimensionRatio="H, 228:119"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@color/lightBlue" />
+                tools:src="@color/colorPrimary" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvNameProduct"
@@ -185,7 +185,7 @@
                 android:fontFamily="@font/barlow_semi_bold"
                 android:includeFontPadding="false"
                 android:singleLine="true"
-                android:textColor="@color/lightBlue"
+                android:textColor="@color/colorPrimary"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@id/view"
                 app:layout_constraintStart_toStartOf="@id/view"
@@ -228,7 +228,7 @@
                 android:layout_marginTop="10dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@color/lightBlue" />
+                tools:src="@color/colorPrimary" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvNamePage"
@@ -300,7 +300,7 @@
                 app:layout_constraintDimensionRatio="H, 270:141"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@color/lightBlue" />
+                tools:src="@color/colorPrimary" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvNameVoucher"
@@ -358,7 +358,7 @@
                     android:includeFontPadding="false"
                     android:singleLine="true"
                     android:text="@string/sao_chep"
-                    android:textColor="@color/lightBlue"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="14sp" />
             </LinearLayout>
 

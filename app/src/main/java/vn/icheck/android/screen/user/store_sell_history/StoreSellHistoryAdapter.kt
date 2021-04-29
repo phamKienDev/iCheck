@@ -166,7 +166,7 @@ class StoreSellHistoryAdapter constructor(val view: StoreSellHistoryView) : Recy
             when (errorCode) {
                 Constant.ERROR_EMPTY -> {
                     itemView.imgIcon.setImageResource(R.drawable.ic_error_emty_history_topup)
-                    itemView.txtMessage.text = "Bạn chưa mua thẻ nào!"
+                    itemView.txtMessage.text = "Không có cửa hàng nào!"
                 }
 
                 Constant.ERROR_SERVER -> {

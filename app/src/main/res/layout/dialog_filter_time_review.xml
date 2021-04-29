@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/rounded_dialog"
-    android:paddingBottom="30dp">
+    android:paddingBottom="@dimen/size_30">
 
     <include
         android:id="@+id/layoutHeader"
@@ -13,7 +13,7 @@
     <View
         android:id="@+id/divider27"
         android:layout_width="0dp"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/size_1"
         android:background="#D8D8D8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +29,7 @@
 
     <TextView
         android:id="@+id/tvClear"
-        android:layout_width="120dp"
+        android:layout_width="@dimen/size_120"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_20"
         android:layout_marginEnd="@dimen/size_12"
@@ -40,7 +40,7 @@
         android:paddingBottom="@dimen/size_8"
         android:text="@string/thiet_lap_lai"
         android:textColor="@color/light_blue"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/rcv_list_time" />
 

@@ -2,13 +2,8 @@ package vn.icheck.android.helper
 
 import android.app.DownloadManager
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Environment
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.transition.Transition
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -17,15 +12,17 @@ import retrofit2.Callback
 import retrofit2.Response
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
+import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.base.ICApiListener
 import vn.icheck.android.network.base.ICBaseResponse
 import vn.icheck.android.network.base.ICNetworkClient
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.feature.base.BaseInteractor
+import vn.icheck.android.network.models.ICMedia
 import vn.icheck.android.network.models.upload.UploadResponse
-import java.io.ByteArrayOutputStream
 import java.io.File
 import java.util.*
+import kotlin.collections.HashMap
 
 object ImageHelper : BaseInteractor() {
 

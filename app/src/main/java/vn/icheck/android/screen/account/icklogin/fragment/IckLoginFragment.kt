@@ -23,6 +23,7 @@ import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.page.PageRepository
 import vn.icheck.android.network.models.ICClientSetting
 import vn.icheck.android.network.models.ICRelationshipsInformation
+import vn.icheck.android.network.models.ICSessionData
 import vn.icheck.android.screen.account.icklogin.FORGOT_PW
 import vn.icheck.android.screen.account.icklogin.LOGIN_OTP
 import vn.icheck.android.screen.account.icklogin.viewmodel.IckLoginViewModel
@@ -154,9 +155,9 @@ class IckLoginFragment : CoroutineFragment() {
 
                     ickLoginViewModel.getUserInfo().observe(viewLifecycleOwner, Observer {
                         it?.data?.let { userInfoRes ->
-                            loginRes.data.user = userInfoRes.createICUser()
-                            SessionManager.session = loginRes.data
-                            ShareSessionToModule.setSession(loginRes.data)
+                            loginRes.data?.user = userInfoRes.createICUser()
+                            SessionManager.session = loginRes.data ?: ICSessionData()
+                            ShareSessionToModule.setSession(loginRes.data ?: ICSessionData())
                             CartHelper().getCartSocial()
                             InsiderHelper.onLogin()
 

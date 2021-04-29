@@ -39,14 +39,14 @@
                     android:layout_marginEnd="@dimen/size_8"
                     android:background="@drawable/bg_corner_gray_4"
                     android:drawableStart="@drawable/ic_filter_vector"
-                    android:drawablePadding="6dp"
+                    android:drawablePadding="@dimen/size_6"
                     android:paddingLeft="@dimen/size_10"
                     android:paddingTop="@dimen/size_6"
                     android:paddingRight="@dimen/size_10"
                     android:paddingBottom="@dimen/size_6"
                     android:text="@string/bo_loc"
-                    android:textColor="@color/collection_product_name"
-                    android:textSize="14sp"
+                    android:textColor="@color/colorNormalText"
+                    android:textSize="@dimen/font_14"
                     app:fontFamily="@font/barlow_medium" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -60,8 +60,8 @@
                     android:paddingRight="@dimen/size_10"
                     android:paddingBottom="@dimen/size_6"
                     android:text="@string/da_xac_thuc"
-                    android:textColor="@color/collection_product_name"
-                    android:textSize="14sp"
+                    android:textColor="@color/colorNormalText"
+                    android:textSize="@dimen/font_14"
                     app:fontFamily="@font/barlow_medium" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -71,14 +71,14 @@
                     android:layout_marginEnd="@dimen/size_8"
                     android:background="@drawable/bg_corner_gray_4"
                     android:drawableEnd="@drawable/ic_vector_down"
-                    android:drawablePadding="6dp"
+                    android:drawablePadding="@dimen/size_6"
                     android:paddingLeft="@dimen/size_10"
                     android:paddingTop="@dimen/size_6"
                     android:paddingRight="@dimen/size_10"
                     android:paddingBottom="@dimen/size_6"
                     android:text="@string/gia_tu"
-                    android:textColor="@color/collection_product_name"
-                    android:textSize="14sp"
+                    android:textColor="@color/colorNormalText"
+                    android:textSize="@dimen/font_14"
                     app:fontFamily="@font/barlow_medium" />
 
 
@@ -89,14 +89,14 @@
                     android:layout_marginEnd="@dimen/size_8"
                     android:background="@drawable/bg_corner_gray_4"
                     android:drawableEnd="@drawable/ic_vector_down"
-                    android:drawablePadding="6dp"
+                    android:drawablePadding="@dimen/size_6"
                     android:paddingLeft="@dimen/size_10"
                     android:paddingTop="@dimen/size_6"
                     android:paddingRight="@dimen/size_10"
                     android:paddingBottom="@dimen/size_6"
                     android:text="@string/danh_gia"
-                    android:textColor="@color/collection_product_name"
-                    android:textSize="14sp"
+                    android:textColor="@color/colorNormalText"
+                    android:textSize="@dimen/font_14"
                     app:fontFamily="@font/barlow_medium" />
 
             </LinearLayout>

@@ -33,43 +33,43 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/barlow_semi_bold"
             android:text="2000"
-            android:textColor="@color/green_v3"
-            android:textSize="16sp" />
+            android:textColor="@color/colorAccentGreen"
+            android:textSize="@dimen/font_16" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvMission"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="@dimen/size_2"
             android:fontFamily="@font/barlow_medium"
             android:text="Hoàn thành nhiệm vụ"
-            android:textColor="@color/collection_product_name"
-            android:textSize="14sp" />
+            android:textColor="@color/colorNormalText"
+            android:textSize="@dimen/font_14" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="@dimen/size_2"
             android:ellipsize="end"
             android:fontFamily="@font/barlow_medium"
             android:maxLines="2"
             android:text="Bạn nhận được từ nhiệm vụ Đăng nhập (2 dòng)...Bạn nhận được từ nhiệm vụ Đăng nhập Bạn nhận được từ nhiệm vụ Đăng nhập (2 dòng)...Bạn nhận được từ nhiệm vụ Đăng nhập (2 dòng)...(2 dòng)..."
-            android:textColor="@color/fast_survey_gray"
-            android:textSize="14sp" />
+            android:textColor="@color/colorSecondText"
+            android:textSize="@dimen/font_14" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="@dimen/size_6"
             android:layout_marginBottom="@dimen/size_10"
             android:ellipsize="end"
             android:fontFamily="@font/barlow_medium"
             android:maxLines="2"
             android:text="15:12, 24/5/2018"
-            android:textColor="@color/fast_survey_gray"
-            android:textSize="12sp" />
+            android:textColor="@color/colorSecondText"
+            android:textSize="@dimen/font_12" />
     </LinearLayout>
 
     <View

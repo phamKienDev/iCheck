@@ -23,18 +23,16 @@
             android:background="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_back_blue_24px_new" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ui.view.TextHeader
             android:id="@+id/tvNameProduct"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:singleLine="true"
             android:text="@string/chi_tiet_bai_viet"
-            android:textColor="#057dda"
-            android:textSize="18sp" />
+            android:textColor="#057dda" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imgAction"
@@ -89,8 +87,8 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imgCommentSend"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="@dimen/size_80"
+            android:layout_height="@dimen/size_80"
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginTop="@dimen/size_12"
             android:layout_marginBottom="@dimen/size_10"
@@ -116,7 +114,7 @@
             android:id="@+id/imgClearImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="68dp"
+            android:layout_marginStart="@dimen/size_68"
             android:background="@drawable/ic_delete_red_24px"
             android:visibility="gone"
             app:layout_constraintStart_toStartOf="@id/imgCommentSend"
@@ -147,7 +145,7 @@
             android:layout_height="@dimen/size_20"
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginLeft="@dimen/size_12"
-            android:src="@color/lightBlue"
+            android:src="@color/colorPrimary"
             app:civ_border_color="@color/gray"
             app:civ_border_width="@dimen/size_0_5" />
 
@@ -197,7 +195,7 @@
                     android:paddingBottom="@dimen/size_2"
                     android:singleLine="true"
                     android:textColor="@color/darkGray1"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/font_12"
                     android:visibility="gone"
                     tools:text="Trả lời  Đặng Trung Đ  Đặng Trung Đức ặng Trung Đức ặng Trung Đức" />
             </LinearLayout>
@@ -217,8 +215,8 @@
                 android:hint="@string/viet_binh_luan"
                 android:maxLines="4"
                 android:textColor="@color/darkGray1"
-                android:textColorHint="@color/darkGray2"
-                android:textSize="14sp"
+                android:textColorHint="@color/colorDisableText"
+                android:textSize="@dimen/font_14"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/imgCamera"
                 app:layout_constraintStart_toStartOf="parent"
@@ -363,10 +361,10 @@
                     android:layout_marginStart="@dimen/size_6"
                     android:layout_marginTop="@dimen/size_4"
                     android:layout_marginEnd="@dimen/size_6"
-                    android:lineSpacingExtra="4sp"
+                    android:lineSpacingExtra="@dimen/font_14"
                     android:text="@string/binh_luan_voi_tu_cach"
                     android:textColor="#757575"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/font_12"
                     app:fontFamily="@font/barlow_medium" />
 
                 <androidx.recyclerview.widget.RecyclerView

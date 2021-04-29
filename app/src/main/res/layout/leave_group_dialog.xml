@@ -11,16 +11,16 @@
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/size_20"
         tools:text="Rời nhóm"
         android:textAlignment="center"
         android:textColor="#424242"
-        android:textSize="18sp" />
+        android:textSize="@dimen/font_18" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="@dimen/size_1"
+        android:layout_marginTop="@dimen/size_20"
         android:background="#E0E0E0" />
 
 
@@ -33,16 +33,16 @@
             android:id="@+id/btn_yes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginTop="@dimen/size_15"
+            android:layout_marginBottom="@dimen/size_15"
             android:layout_weight="1"
             android:textAlignment="center"
             android:text="Huỷ"
-            android:textColor="@color/blue"
-            android:textSize="16sp" />
+            android:textColor="@color/colorSecondary"
+            android:textSize="@dimen/font_16" />
 
         <View
-            android:layout_width="1dp"
+            android:layout_width="@dimen/size_1"
             android:layout_height="match_parent"
             android:background="#E0E0E0" />
 
@@ -53,9 +53,9 @@
             android:layout_weight="1"
             android:textAlignment="center"
             android:text="Đồng ý"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:textColor="@color/blue"
-            android:textSize="16sp" />
+            android:layout_marginTop="@dimen/size_15"
+            android:layout_marginBottom="@dimen/size_15"
+            android:textColor="@color/colorSecondary"
+            android:textSize="@dimen/font_16" />
     </LinearLayout>
 </LinearLayout>

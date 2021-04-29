@@ -22,8 +22,8 @@
             android:paddingTop="@dimen/size_17"
             android:paddingBottom="@dimen/size_17"
             android:text="Sắp xếp theo"
-            android:textColor="@color/darkGray2"
-            android:textSize="@dimen/font_size_4"
+            android:textColor="@color/colorDisableText"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal" />
 
         <View
@@ -43,7 +43,7 @@
             android:paddingBottom="@dimen/size_14"
             android:text="Mặc định"
             android:textColor="@color/light_blue"
-            android:textSize="18sp"
+            android:textSize="@dimen/font_18"
             android:textStyle="normal" />
 
         <View
@@ -63,7 +63,7 @@
             android:paddingBottom="@dimen/size_14"
             android:text="Giá: thấp - cao"
             android:textColor="@color/light_blue"
-            android:textSize="18sp"
+            android:textSize="@dimen/font_18"
             android:textStyle="normal" />
 
         <View
@@ -83,7 +83,7 @@
             android:paddingBottom="@dimen/size_14"
             android:text="Giá: cao - thấp"
             android:textColor="@color/light_blue"
-            android:textSize="18sp"
+            android:textSize="@dimen/font_18"
             android:textStyle="normal" />
 
         <View
@@ -103,7 +103,7 @@
             android:paddingBottom="@dimen/size_14"
             android:text="Mới nhất"
             android:textColor="@color/light_blue"
-            android:textSize="18sp"
+            android:textSize="@dimen/font_18"
             android:textStyle="normal" />
 
         <View
@@ -122,7 +122,7 @@
             android:paddingBottom="@dimen/size_14"
             android:text="Bán chạy nhất"
             android:textColor="@color/light_blue"
-            android:textSize="18sp"
+            android:textSize="@dimen/font_18"
             android:textStyle="normal" />
 
         <View
@@ -151,7 +151,7 @@
             android:paddingBottom="@dimen/size_14"
             android:text="Đóng"
             android:textColor="@color/light_blue"
-            android:textSize="18sp"
+            android:textSize="@dimen/font_18"
             android:textStyle="bold" />
     </LinearLayout>
 </LinearLayout>

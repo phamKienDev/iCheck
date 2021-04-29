@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatTextView
@@ -207,7 +206,7 @@ class CoinHistoryAdapter(val callback: ICoinHistoryView) : RecyclerView.Adapter<
                 },
                 null,
                 Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf"),
-                ContextCompat.getColor(context, R.color.blue),
+                ContextCompat.getColor(context, R.color.colorSecondary),
                 18f)
     }
 
@@ -217,10 +216,10 @@ class CoinHistoryAdapter(val callback: ICoinHistoryView) : RecyclerView.Adapter<
 
             if (obj.type == 1) {
                 itemView.imgType.setImageResource(R.drawable.ic_xu_add_20px)
-                itemView.tvMoney.setTextColor(Color.parseColor("#85C440"))
+                itemView.tvMoney.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorAccentGreen))
             } else {
                 itemView.imgType.setImageResource(R.drawable.ic_xu_contract_20px)
-                itemView.tvMoney.setTextColor(Color.parseColor("#FF0000"))
+                itemView.tvMoney.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorAccentRed))
             }
 
             itemView.tvMission.text = obj.title

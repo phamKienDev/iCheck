@@ -12,7 +12,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import vn.icheck.android.databinding.FragmentAddShipAddressBinding
-import vn.icheck.android.model.location.CityItem
+import vn.icheck.android.network.model.location.CityItem
 import vn.icheck.android.screen.location.CITY
 import vn.icheck.android.screen.location.CityPicker
 import vn.icheck.android.screen.location.DISTRICT

@@ -14,8 +14,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.ExoPlayerManager
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.network.models.ICAdsNew
-import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
-import vn.icheck.android.screen.user.home_page.campaign.list_campaign.ListCampaignActivity
+import vn.icheck.android.screen.user.list_campaign.ListCampaignActivity
 import vn.icheck.android.ui.layout.CustomGridLayoutManager
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible

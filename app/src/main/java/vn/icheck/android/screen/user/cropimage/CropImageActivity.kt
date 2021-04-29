@@ -85,7 +85,7 @@ class CropImageActivity : BaseActivityMVVM() {
             }
         }
 
-        fun  start(fragment: Fragment, filePath: String?, uri: Uri?, ratio: String?, requestCode: Int? = null) {
+        fun start(fragment: Fragment, filePath: String?, uri: Uri?, ratio: String?, requestCode: Int? = null) {
             val intent = Intent(fragment.requireContext(), CropImageActivity::class.java)
 
             if (!filePath.isNullOrEmpty()) {
@@ -172,7 +172,11 @@ class CropImageActivity : BaseActivityMVVM() {
                 try {
                     path = cacheDir.absolutePath + "/" + System.currentTimeMillis() + ".png"
                     FileOutputStream(path).use { out ->
-                        isSaveSuccess = bm.compress(Bitmap.CompressFormat.PNG, 100, out)
+                        isSaveSuccess = if (out != null) {
+                            bm.compress(Bitmap.CompressFormat.PNG, 100, out)
+                        } else {
+                            false
+                        }
                     }
                 } catch (e: IOException) {
                 }

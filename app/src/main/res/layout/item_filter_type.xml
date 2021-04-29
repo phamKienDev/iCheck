@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@id/layoutContainer"
     android:layout_width="match_parent"
-    android:layout_height="42dp"
-    android:layout_marginStart="8dp"
-    android:layout_marginTop="5dp"
-    android:layout_marginEnd="8dp"
-    android:layout_marginBottom="5dp">
+    android:layout_height="@dimen/size_42"
+    android:layout_marginStart="@dimen/size_8"
+    android:layout_marginTop="@dimen/size_5"
+    android:layout_marginEnd="@dimen/size_8"
+    android:layout_marginBottom="@dimen/size_5">
 
     <LinearLayout
         android:id="@id/layoutContent"
@@ -25,14 +25,14 @@
             android:id="@id/tvName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginEnd="@dimen/size_12"
             android:ellipsize="end"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:maxLines="2"
             android:textColor="#757575"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             tools:text="Mã vạch cửa hàng" />
     </LinearLayout>
 

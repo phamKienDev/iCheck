@@ -5,9 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.work.*
 import okhttp3.ResponseBody
 import vn.icheck.android.constant.ICK_URI
-import vn.icheck.android.model.category.CategoryAttributesResponse
-import vn.icheck.android.model.category.IckCategoryResponse
+import vn.icheck.android.network.model.category.CategoryAttributesResponse
 import vn.icheck.android.network.api.ICKApi
+import vn.icheck.android.network.model.category.IckCategoryResponse
 import vn.icheck.android.util.makeSimpleRequest
 import vn.icheck.android.network.models.ICContribute
 import vn.icheck.android.util.ick.logError

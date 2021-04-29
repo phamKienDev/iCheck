@@ -15,7 +15,7 @@ import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.tracking.insider.InsiderHelper
+import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.models.ICStoreiCheck
@@ -91,7 +91,7 @@ class ProductStoreiCheckActivity : BaseActivityMVVM(), IGiftStoreView, IRecycler
         recyclerView.adapter = adapter
 
         recyclerView.addItemDecoration(ItemDecorationAlbumColumns(
-                resources.getDimensionPixelSize(R.dimen.recycle_list_spacing),
+                SizeHelper.size1,
                 resources.getInteger(R.integer.list_preview_columns)))
     }
 

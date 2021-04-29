@@ -6,7 +6,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorPrimary</item>
     </style>
 
     <style name="AppTheme_SplashScreen" parent="Theme.AppCompat.Light.NoActionBar">
@@ -19,9 +19,9 @@
     <!-- Base application theme. -->
     <style name="AppTheme_Blue" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/blue</item>
-        <item name="colorPrimaryDark">@color/blue</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/colorSecondary</item>
+        <item name="colorPrimaryDark">@color/colorSecondary</item>
+        <item name="colorAccent">@color/colorPrimary</item>
     </style>
 
     <style name="MyTabLayoutTextAppearance" parent="TextAppearance.Design.Tab">
@@ -110,15 +110,15 @@
     </style>
 
     <style name="AppTheme_Black" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/collection_product_name</item>
-        <item name="colorPrimaryDark">@color/collection_product_name</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/colorNormalText</item>
+        <item name="colorPrimaryDark">@color/colorNormalText</item>
+        <item name="colorAccent">@color/colorPrimary</item>
     </style>
 
     <style name="Theme.AppCompat.Translucent" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorPrimary</item>
         <item name="android:background">@android:color/transparent</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
@@ -189,8 +189,8 @@
 
     <style name="Theme_Blue">
         <item name="colorControlNormal">@color/darkGray3</item>
-        <item name="colorControlActivated">@color/blue</item>
-        <item name="colorControlHighlight">@color/blue</item>
+        <item name="colorControlActivated">@color/colorSecondary</item>
+        <item name="colorControlHighlight">@color/colorSecondary</item>
     </style>
 
     <!-- DatePicker and TimePicker Theme -->
@@ -265,7 +265,7 @@
         <item name="android:background">@drawable/btn_white_outline_blue_1_corners_6</item>
         <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textAllCaps">false</item>
-        <item name="android:textColor">@color/blue</item>
+        <item name="android:textColor">@color/colorSecondary</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">normal</item>
         <item name="android:gravity">center</item>
@@ -462,7 +462,7 @@
 
     <style name="Tittle_blue">
         <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/blue</item>
+        <item name="android:textColor">@color/colorSecondary</item>
     </style>
 
     <!-- Scan and go -->
@@ -586,7 +586,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/barlow_medium</item>
-        <item name="android:textSize">@dimen/font_size_4</item>
+        <item name="android:textSize">@dimen/font_14</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:drawableStart">@drawable/ic_list_blue_12px</item>
         <item name="android:drawableLeft">@drawable/ic_list_blue_12px</item>
@@ -613,7 +613,7 @@
         <item name="android:includeFontPadding">false</item>
         <item name="fontFamily">@font/barlow_medium</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/fast_survey_gray</item>
+        <item name="android:textColor">@color/colorSecondText</item>
         <item name="android:layout_marginStart">@dimen/size_26</item>
         <item name="android:layout_marginLeft">@dimen/size_26</item>
         <item name="android:gravity">center_vertical</item>
@@ -631,7 +631,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/collection_product_name</item>
+        <item name="android:textColor">@color/colorNormalText</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:drawablePadding">@dimen/size_10</item>

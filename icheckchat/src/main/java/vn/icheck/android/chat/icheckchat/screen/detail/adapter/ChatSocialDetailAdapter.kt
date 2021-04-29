@@ -18,7 +18,6 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -250,7 +249,7 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
                 }
                 else -> {
                     binding.imgRetry.setVisible()
-                    binding.tvTime.setTextColor(ContextCompat.getColor(itemView.context, R.color.red))
+                    binding.tvTime.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorAccentRed))
                     binding.tvTime.text = itemView.context.getString(R.string.loi_gui_tin_nhan)
                     binding.tvMessage.setBackgroundDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_10_blue_opacity))
                 }

@@ -12,7 +12,7 @@ class ProductHeaderModel(
         var icCriteria:ICCriteria?,
         var icProductReviews:ICProductReviews?,
         val headerClickListener: HeaderClickListener
-        ):ICViewModel {
+        ): ICViewModel {
 
     var vt = ICViewTypes.HEADER_TYPE
 

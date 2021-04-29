@@ -3,29 +3,23 @@ package vn.icheck.android.component.friendrequestwall
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.drawable.ShapeDrawable
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.SHOW_LIST_INVITATION
-import vn.icheck.android.constant.USER_WALL_ADD_FRIEND
 import vn.icheck.android.constant.USER_WALL_BROADCAST
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.network.base.ICListResponse
 import vn.icheck.android.network.models.ICSearchUser
-import vn.icheck.android.screen.user.listnotification.friendrequest.ListFriendRequestActivity
 import vn.icheck.android.util.ick.toPx
-import vn.icheck.android.util.kotlin.ActivityUtils
 
 class FriendRequestWallHolder(parent: ViewGroup) : BaseViewHolder<ICListResponse<ICSearchUser>>(createView(parent.context)) {
     private val friendRequestAdapter = FriendRequestWallAdapter()
@@ -99,7 +93,7 @@ class FriendRequestWallHolder(parent: ViewGroup) : BaseViewHolder<ICListResponse
                             ViewHelper.createLayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f),
                             null,
                             ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
-                            ContextCompat.getColor(context, R.color.blue),
+                            ContextCompat.getColor(context, R.color.colorSecondary),
                             18f
                     ).also {
                         it.setPadding(0, 0, SizeHelper.size12, 0)
@@ -109,7 +103,7 @@ class FriendRequestWallHolder(parent: ViewGroup) : BaseViewHolder<ICListResponse
                             ViewHelper.createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT),
                             ViewHelper.outValue.resourceId,
                             ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
-                            ContextCompat.getColor(context, R.color.blue),
+                            ContextCompat.getColor(context, R.color.colorSecondary),
                             14f
                     ).also {
                         it.setPadding(0, SizeHelper.size6, 0, SizeHelper.size6)

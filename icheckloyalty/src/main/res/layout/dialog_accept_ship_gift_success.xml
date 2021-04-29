@@ -28,7 +28,7 @@
             android:paddingRight="@dimen/size_18"
             android:paddingBottom="@dimen/size_25"
             android:rotation="-9"
-            tools:src="@color/lightBlue" />
+            tools:src="@color/colorPrimary" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="match_parent"

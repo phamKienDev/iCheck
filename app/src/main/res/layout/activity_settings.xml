@@ -17,15 +17,13 @@
         android:layout_height="@dimen/size_4"
         android:background="@drawable/shadow_bottom" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ui.view.TextHeader
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_10"
-        android:fontFamily="@font/barlow_semi_bold"
         android:text="@string/thong_bao"
-        android:textColor="@color/blue"
-        android:textSize="@dimen/font_size_6" />
+        android:textColor="@color/colorSecondary" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -44,7 +42,7 @@
             android:fontFamily="@font/barlow_medium"
             android:text="Tin tức"
             android:textColor="#212121"
-            android:textSize="@dimen/font_size_4" />
+            android:textSize="@dimen/font_14" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/switchNews"
@@ -75,7 +73,7 @@
             android:fontFamily="@font/barlow_medium"
             android:text="Chương trình mới"
             android:textColor="#212121"
-            android:textSize="@dimen/font_size_4" />
+            android:textSize="@dimen/font_14" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/switchCampaign"
@@ -107,7 +105,7 @@
             android:fontFamily="@font/barlow_medium"
             android:text="Tin nhắn"
             android:textColor="#212121"
-            android:textSize="@dimen/font_size_4" />
+            android:textSize="@dimen/font_14" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/switchMessage"
@@ -120,15 +118,13 @@
             app:srcCompat="@drawable/ic_switch_off_24px" />
     </RelativeLayout>
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ui.view.TextHeader
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_20"
-        android:fontFamily="@font/barlow_semi_bold"
         android:text="Hệ thống"
-        android:textColor="@color/blue"
-        android:textSize="@dimen/font_size_6" />
+        android:textColor="@color/colorSecondary" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -147,7 +143,7 @@
             android:fontFamily="@font/barlow_medium"
             android:text="Rung"
             android:textColor="#212121"
-            android:textSize="@dimen/font_size_4" />
+            android:textSize="@dimen/font_14" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/switchVibrate"
@@ -178,7 +174,7 @@
             android:fontFamily="@font/barlow_medium"
             android:text="Âm thanh"
             android:textColor="#212121"
-            android:textSize="@dimen/font_size_4" />
+            android:textSize="@dimen/font_14" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/switchSound"
@@ -209,7 +205,7 @@
             android:fontFamily="@font/barlow_medium"
             android:text="Xóa cache"
             android:textColor="@color/black_21_v2"
-            android:textSize="@dimen/font_size_4" />
+            android:textSize="@dimen/font_14" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvClearCache"
@@ -224,7 +220,7 @@
             android:gravity="center_vertical"
             android:singleLine="true"
             android:textColor="@color/black_21_v2"
-            android:textSize="@dimen/font_size_4"
+            android:textSize="@dimen/font_14"
             tools:text="300Mb" />
 
     </RelativeLayout>
@@ -247,7 +243,7 @@
             android:fontFamily="@font/barlow_medium"
             android:text="Ngôn ngữ:"
             android:textColor="@color/black_21_v2"
-            android:textSize="@dimen/font_size_4" />
+            android:textSize="@dimen/font_14" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvLanguage"
@@ -260,7 +256,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:text="Tiếng Việt"
             android:textColor="@color/black_21_v2"
-            android:textSize="@dimen/font_size_4" />
+            android:textSize="@dimen/font_14" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgLanguage"
@@ -308,7 +304,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:text="Language:"
                 android:textColor="@color/black_21_v2"
-                android:textSize="@dimen/font_size_4" />
+                android:textSize="@dimen/font_14" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvLanguageEN"
@@ -320,7 +316,7 @@
                 android:fontFamily="@font/barlow_semi_bold"
                 android:text="English"
                 android:textColor="@color/black_21_v2"
-                android:textSize="@dimen/font_size_4" />
+                android:textSize="@dimen/font_14" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imgLanguageEN"
@@ -354,6 +350,6 @@
         android:paddingTop="@dimen/size_9"
         android:paddingBottom="@dimen/size_9"
         android:text="Đặt lại mặc định"
-        android:textColor="@color/lightBlue"
-        android:textSize="16sp" />
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/font_16" />
 </LinearLayout>

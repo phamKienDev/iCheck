@@ -16,7 +16,7 @@
         android:includeFontPadding="false"
         android:text="@string/thong_tin_nguoi_nhan_hang"
         android:textColor="#3c5a99"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:textStyle="normal" />
 
     <LinearLayout
@@ -39,7 +39,7 @@
             android:fontFamily="sans-serif-medium"
             android:includeFontPadding="false"
             android:textColor="#3c5a99"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal"
             tools:text="Trần Văn Lâm" />
 
@@ -54,7 +54,7 @@
             android:includeFontPadding="false"
             android:singleLine="true"
             android:textColor="#434343"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal"
             tools:text="0365 222 111" />
 
@@ -69,7 +69,7 @@
             android:includeFontPadding="false"
             android:maxLines="2"
             android:textColor="#434343"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal"
             tools:text="Số 50, ngõ 125, Nguyễn Ngọc Vũ, Trung Hòa, Cầu giấy, Hà Nội, Việt Nam" />
     </LinearLayout>

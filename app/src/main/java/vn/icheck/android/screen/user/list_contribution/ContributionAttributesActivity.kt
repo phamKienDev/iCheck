@@ -13,7 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import vn.icheck.android.R
 import vn.icheck.android.databinding.ActivityContributionAttributesBinding
-import vn.icheck.android.model.category.CategoryAttributesItem
+import vn.icheck.android.network.model.category.CategoryAttributesItem
 import vn.icheck.android.screen.user.contribute_product.IckContributeProductViewModel
 import vn.icheck.android.screen.user.contribute_product.adapter.CategoryAttributesAdapter
 import vn.icheck.android.screen.user.contribute_product.viewmodel.CategoryAttributesModel

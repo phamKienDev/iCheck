@@ -12,7 +12,7 @@
         android:layout_width="@dimen/size_56"
         android:layout_height="@dimen/size_56"
         android:layout_marginTop="@dimen/size_12"
-        app:avatarSize="56dp"
+        app:avatarSize="@dimen/size_56"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/tvIcoin"
         app:rankSize="@dimen/size_24"
@@ -37,19 +37,18 @@
         app:layout_constraintStart_toEndOf="@id/layoutAvatar"
         app:layout_constraintTop_toTopOf="@id/layoutAvatar">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ui.view.TextBarlowSemiBold
             android:id="@id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_14"
             android:drawablePadding="@dimen/size_4"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center_vertical"
             android:singleLine="true"
             android:textAlignment="gravity"
             android:textColor="#212121"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             tools:text="Xuyến Đỗ" />
     </FrameLayout>
 
@@ -68,7 +67,7 @@
         android:paddingEnd="@dimen/size_10"
         android:text="@string/ket_ban"
         android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         app:layout_constraintStart_toStartOf="@id/layoutName"
         app:layout_constraintTop_toBottomOf="@id/layoutName" />
 
@@ -86,8 +85,8 @@
         android:paddingStart="@dimen/size_12"
         android:paddingEnd="@dimen/size_12"
         android:text="@string/xoa"
-        android:textColor="@color/lightBlue"
-        android:textSize="14sp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/font_14"
         app:layout_constraintStart_toEndOf="@id/btnAgree"
         app:layout_constraintTop_toBottomOf="@id/layoutName" />
 
@@ -103,8 +102,8 @@
         android:paddingStart="@dimen/size_10"
         android:paddingEnd="@dimen/size_10"
         android:text="@string/da_gui_loi_moi"
-        android:textColor="@color/fast_survey_gray"
-        android:textSize="14sp"
+        android:textColor="@color/colorSecondText"
+        android:textSize="@dimen/font_14"
         app:layout_constraintStart_toStartOf="@id/layoutName"
         app:layout_constraintTop_toBottomOf="@id/layoutName" />
 </androidx.constraintlayout.widget.ConstraintLayout>

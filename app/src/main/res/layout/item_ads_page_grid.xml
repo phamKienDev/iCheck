@@ -59,11 +59,11 @@
                 android:ellipsize="middle"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:includeFontPadding="false"
-                android:maxHeight="40dp"
+                android:maxHeight="@dimen/size_40"
                 android:maxLines="2"
-                android:minHeight="40dp"
-                android:textColor="@color/collection_product_name"
-                android:textSize="14sp"
+                android:minHeight="@dimen/size_40"
+                android:textColor="@color/colorNormalText"
+                android:textSize="@dimen/font_14"
                 tools:text=" dòng)... Adidas Store (tối 1 dòng)... Adidas Store (tối 1 dòng)... Adidas Store (tối 1 dòng)... Adidas Store (tối 1 dòng)... Adidas Store (tối 1 dòng)..." />
 
         </LinearLayout>
@@ -79,7 +79,7 @@
             android:includeFontPadding="false"
             android:singleLine="true"
             android:textColor="#757575"
-            android:textSize="12sp"
+            android:textSize="@dimen/font_12"
             app:layout_constraintEnd_toEndOf="@id/layoutName"
             app:layout_constraintStart_toStartOf="@id/layoutName"
             app:layout_constraintTop_toBottomOf="@id/layoutName"
@@ -109,7 +109,7 @@
             android:includeFontPadding="false"
             android:singleLine="true"
             android:textColor="@color/text_color_light_blue"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toBottomOf="@id/btnAction"
             app:layout_constraintEnd_toEndOf="@id/btnAction"
             app:layout_constraintStart_toStartOf="@id/btnAction"

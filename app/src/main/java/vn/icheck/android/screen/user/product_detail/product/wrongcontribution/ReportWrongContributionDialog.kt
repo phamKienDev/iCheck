@@ -65,7 +65,7 @@ class ReportWrongContributionDialog(val listData: MutableList<ICReportForm>, val
                     ViewHelper.createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, 0, 0, SizeHelper.size36, 0),
                     null,
                     ViewHelper.createTypeface(requireContext(), R.font.barlow_semi_bold),
-                    ContextCompat.getColor(requireContext(), R.color.lightBlue),
+                    ContextCompat.getColor(requireContext(), R.color.colorPrimary),
                     18f,
                     1).also {
                 it.gravity = Gravity.CENTER
@@ -95,8 +95,8 @@ class ReportWrongContributionDialog(val listData: MutableList<ICReportForm>, val
                     radioButton.typeface = ViewHelper.createTypeface(requireContext(), R.font.barlow_medium)
                     radioButton.setBackgroundResource(ViewHelper.outValue.resourceId)
                     radioButton.setTextColor(ViewHelper.createColorStateList(
-                            ContextCompat.getColor(requireContext(), R.color.fast_survey_gray),
-                            ContextCompat.getColor(requireContext(), R.color.collection_product_name)))
+                            ContextCompat.getColor(requireContext(), R.color.colorSecondText),
+                            ContextCompat.getColor(requireContext(), R.color.colorNormalText)))
                     radioButton.includeFontPadding = false
                     radioButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
                     radioButton.maxLines = 1
@@ -128,9 +128,9 @@ class ReportWrongContributionDialog(val listData: MutableList<ICReportForm>, val
                 ViewHelper.createLayoutParams(SizeHelper.size12, 0, SizeHelper.size12, 0),
                 ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size1, ContextCompat.getColor(requireContext(), R.color.gray), SizeHelper.size4.toFloat()),
                 ViewHelper.createTypeface(requireContext(), R.font.barlow_medium),
-                ContextCompat.getColor(requireContext(), R.color.collection_product_name),
+                ContextCompat.getColor(requireContext(), R.color.colorNormalText),
                 14f).also {
-            it.setHintTextColor(ContextCompat.getColor(requireContext(), R.color.darkGray2))
+            it.setHintTextColor(ContextCompat.getColor(requireContext(), R.color.colorDisableText))
             it.minLines = 3
             it.maxLines = 6
             it.setPadding(SizeHelper.size10, SizeHelper.size6, SizeHelper.size10, SizeHelper.size6)
@@ -175,7 +175,7 @@ class ReportWrongContributionDialog(val listData: MutableList<ICReportForm>, val
 
 
         if (isSelected) {
-            DialogHelper.showConfirm(dialog?.context, "Bạn muốn bỏ báo cáo này?", null, "Tiếp tục báo cáo", "Bỏ báo cáo", true, null, R.color.red, object : ConfirmDialogListener {
+            DialogHelper.showConfirm(dialog?.context, "Bạn muốn bỏ báo cáo này?", null, "Tiếp tục báo cáo", "Bỏ báo cáo", true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
                 override fun onDisagree() {
 
                 }

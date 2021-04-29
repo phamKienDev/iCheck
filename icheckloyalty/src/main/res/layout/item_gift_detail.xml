@@ -30,7 +30,7 @@
         android:layout_marginTop="35dp"
         app:layout_constraintStart_toStartOf="@+id/appCompatImageView5"
         app:layout_constraintTop_toTopOf="@+id/appCompatImageView5"
-        tools:src="@color/lightBlue" />
+        tools:src="@color/colorPrimary" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvProduct"
@@ -307,7 +307,7 @@
                 android:layout_marginTop="@dimen/size_10"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@color/lightBlue" />
+                tools:src="@color/colorPrimary" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/appCompatTextView40"
@@ -373,7 +373,7 @@
                 android:letterSpacing="0.2"
                 android:padding="@dimen/size_36"
                 android:singleLine="true"
-                android:textColor="@color/lightBlue"
+                android:textColor="@color/colorPrimary"
                 tools:text="FNSJ51DAS" />
         </LinearLayout>
     </LinearLayout>

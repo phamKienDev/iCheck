@@ -6,11 +6,11 @@ import com.useinsider.insider.InsiderUser
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.model.cart.ItemCartItem
-import vn.icheck.android.model.cart.PurchasedOrderResponse
-import vn.icheck.android.model.loyalty.ShipAddressResponse
+import vn.icheck.android.network.model.cart.ItemCartItem
+import vn.icheck.android.network.model.cart.PurchasedOrderResponse
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.setting.SettingRepository
+import vn.icheck.android.network.model.loyalty.ShipAddressResponse
 import vn.icheck.android.network.models.*
 import vn.icheck.android.network.models.product_detail.ICDataProductDetail
 import vn.icheck.android.network.models.v1.ICBarcodeProductV1
@@ -424,7 +424,7 @@ object InsiderHelper {
         }
 
         Insider.Instance.tagEvent("checkout_success")
-                .addParameterWithDouble("order_id", obj.id.toDouble())
+                .addParameterWithDouble("order_id", obj.id?.toDouble() ?: 0.0)
                 .addParameterWithInt("order_value", totalValue)
                 .addParameterWithInt("number_of_products", totalProduct) // số lượng sản phẩm
                 .addParameterWithString("phone number", obj.customer?.phone)

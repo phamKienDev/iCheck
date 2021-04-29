@@ -13,12 +13,14 @@ import kotlinx.android.synthetic.main.ctsp_reviewcontent_holder_v1.view.*
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
-import vn.icheck.android.activities.image.DetailImagesActivity
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.network.base.*
+import vn.icheck.android.network.base.APIConstants
+import vn.icheck.android.network.base.ICNetworkClient
+import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICProductReviews
+import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.adapter.criteria.CriteriaAdapter
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.adapter.criteria.CriteriaChild
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -160,7 +162,7 @@ class ReviewsContentStampHolder(parent: ViewGroup) : BaseViewHolder<ICProductRev
                 }
 
                 ICheckApplication.currentActivity()?.let { activity ->
-                    DetailImagesActivity.start(listImg, activity)
+                    DetailMediaActivity.start(activity,listImg)
                 }
             }
             when (obj.imageThumbs.size) {

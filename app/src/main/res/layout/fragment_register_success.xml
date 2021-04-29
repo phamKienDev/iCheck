@@ -17,7 +17,7 @@
         android:fontFamily="sans-serif"
         android:text="@string/dang_ky_thanh_cong_upper_case"
         android:textColor="#3c5a99"
-        android:textSize="18sp"
+        android:textSize="@dimen/font_18"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/btnLogin"
         app:layout_constraintEnd_toEndOf="parent"

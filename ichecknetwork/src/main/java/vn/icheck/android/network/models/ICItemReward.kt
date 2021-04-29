@@ -118,6 +118,10 @@ class ICItemReward : Serializable {
     @Expose
     var refuse:String? = null
 
+    @Expose
+    var icoinIcon:String? = null
+
+
     var totalGifts = 0
 
 }

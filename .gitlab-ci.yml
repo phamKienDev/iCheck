@@ -1,7 +1,3 @@
-stages:
-  - build_develop
-  - build_production
-
 before_script:
   - chmod +x ./gradlew
   - source ~/.zshrc

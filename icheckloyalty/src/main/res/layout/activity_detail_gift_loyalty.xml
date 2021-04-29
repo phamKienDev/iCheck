@@ -16,7 +16,7 @@
             android:layout_height="@dimen/size_0"
             app:layout_constraintDimensionRatio="H, 375:150"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@color/lightBlue" />
+            tools:src="@color/colorPrimary" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/appCompatImageView5"
@@ -36,7 +36,7 @@
             android:layout_marginTop="35dp"
             app:layout_constraintStart_toStartOf="@+id/appCompatImageView5"
             app:layout_constraintTop_toTopOf="@+id/appCompatImageView5"
-            tools:src="@color/lightBlue"
+            tools:src="@color/colorPrimary"
             android:layout_marginStart="@dimen/size_36" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -195,7 +195,7 @@
                 android:fontFamily="@font/roboto_medium"
                 android:paddingLeft="@dimen/size_12"
                 android:text="@string/thong_tin_qua"
-                android:textColor="@color/blue"
+                android:textColor="@color/colorSecondary"
                 android:paddingStart="@dimen/size_12"
                 tools:ignore="RtlSymmetry" />
 
@@ -237,7 +237,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:paddingLeft="@dimen/size_12"
                     android:text="@string/phi_van_chuyen"
-                    android:textColor="@color/blue"
+                    android:textColor="@color/colorSecondary"
                     android:paddingStart="@dimen/size_12"
                     tools:ignore="RtlSymmetry" />
 
@@ -282,7 +282,7 @@
                     android:layout_marginTop="@dimen/size_10"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:src="@color/lightBlue"
+                    tools:src="@color/colorPrimary"
                     android:layout_marginStart="@dimen/size_12" />
 
                 <androidx.appcompat.widget.AppCompatImageView
