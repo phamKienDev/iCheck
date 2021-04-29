@@ -76,10 +76,14 @@
         tools:ignore="GoogleAppIndexingWarning,HardcodedDebugMode"
         tools:replace="android:allowBackup"
         tools:targetApi="m">
-        <activity android:name=".screen.scan.MyQrActivity"></activity>
-        <activity android:name=".screen.scan.V6ScanditActivity"
+        <activity android:name=".screen.user.crop_camera.CropCamera2Activity"
             android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden|screenSize"/>
+            android:theme="@style/AppFullScreenTheme"/>
+        <activity android:name=".screen.scan.MyQrActivity" />
+        <activity
+            android:name=".screen.scan.V6ScanditActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
         <activity android:name=".TestActivity" />
         <activity
             android:name=".screen.user.listproductecommerce.ListProductsECommerceActivity"
@@ -248,7 +252,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppFullScreenTheme" />
         <activity
-            android:name="vn.icheck.android.screen.user.my_gift_warehouse.list_mission.list.ListMissionActivity"
+            android:name=".screen.user.my_gift_warehouse.list_mission.list.ListMissionActivity"
             android:theme="@style/Theme.AppCompat.Translucent"
             android:windowSoftInputMode="adjustResize" />
         <activity
@@ -358,7 +362,7 @@
             android:theme="@style/Theme.AppCompat.Translucent"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="vn.icheck.android.screen.user.my_gift_warehouse.shake_gift.shake_box_success.ShakeBoxSuccessActivity"
+            android:name=".screen.user.my_gift_warehouse.shake_gift.shake_box_success.ShakeBoxSuccessActivity"
             android:screenOrientation="portrait"
             android:theme="@style/TranslucentStatusBarDapQua" />
         <activity
@@ -376,10 +380,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme_White" />
         <activity
-            android:name="vn.icheck.android.screen.user.my_gift_warehouse.shake_gift.shake.ShakeGiftActivity"
+            android:name=".screen.user.my_gift_warehouse.shake_gift.shake.ShakeGiftActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="vn.icheck.android.screen.user.my_gift_warehouse.shake_gift.list_box_gift.ListShakeGridBoxActivity"
+            android:name=".screen.user.my_gift_warehouse.shake_gift.list_box_gift.ListShakeGridBoxActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".screen.user.bookmark.BookMarkV2Activity"
@@ -523,7 +527,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme_White" />
         <activity
-            android:name="vn.icheck.android.screen.user.my_gift_warehouse.open_reward_box_tet.OpenRewardBoxTetActivity"
+            android:name=".screen.user.my_gift_warehouse.open_reward_box_tet.OpenRewardBoxTetActivity"
             android:screenOrientation="portrait"
             android:theme="@style/TranslucentStatusBarDapQua" />
         <activity
@@ -850,7 +854,7 @@
             android:name=".screen.user.viewimage.ViewImageActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="vn.icheck.android.screen.user.list_campaign.ListCampaignActivity"
+            android:name=".screen.user.list_campaign.ListCampaignActivity"
             android:exported="true"
             android:theme="@style/AppTheme_White" />
         <activity
@@ -988,7 +992,6 @@
         <meta-data
             android:name="firebase_performance_logcat_enabled"
             android:value="true" />
-
     </application>
 
 </manifest>

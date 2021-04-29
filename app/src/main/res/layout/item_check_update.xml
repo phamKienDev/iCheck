@@ -3,9 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/size_10"
-    android:layout_marginBottom="@dimen/size_10"
     android:background="@android:color/white">
+
+    <View
+        android:id="@id/viewTop"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_10"
+        android:background="@color/colorBackgroundGray"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <vn.icheck.android.ui.view.TextBarlowSemiBold
         android:id="@+id/textView75"
@@ -49,6 +54,6 @@
         android:layout_marginBottom="@dimen/size_12"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewTop"
         app:srcCompat="@drawable/update_icheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>

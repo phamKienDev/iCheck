@@ -51,9 +51,7 @@ class BooleanHolder(private val itemBooleanBinding: ItemBooleanBinding):Recycler
         } else {
             itemBooleanBinding.tvTitle simpleText categoryAttributesModel.categoryItem.name
         }
-        if (categoryAttributesModel.values != null && categoryAttributesModel.values as Boolean? != null) {
-            itemBooleanBinding.btnSwitch.isChecked = true
-        }
+        itemBooleanBinding.btnSwitch.isChecked = categoryAttributesModel.values != null && categoryAttributesModel.values as Boolean? != null
         if (categoryAttributesModel.isEditable) {
             itemBooleanBinding.btnSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
                 itemBooleanBinding.root.context.sendBroadcast(Intent(CONTRIBUTIONS_ACTION).apply {

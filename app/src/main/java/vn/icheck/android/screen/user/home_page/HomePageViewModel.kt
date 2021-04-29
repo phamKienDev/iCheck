@@ -199,7 +199,10 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
             }
 
             override fun onError(error: ICResponseCode?) {
-                onError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getInstance().getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai), null, null))
+                if (!error?.message.isNullOrEmpty()) {
+                    onError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getInstance().getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai), null, null))
+                }
+//                onError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getInstance().getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai), null, null))
             }
         })
     }
@@ -211,7 +214,7 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
         }
 
         if (errorRequest == totalRequest) {
-            onError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getInstance().getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai), null, null))
+//            onError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getInstance().getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai), null, null))
         }
     }
 

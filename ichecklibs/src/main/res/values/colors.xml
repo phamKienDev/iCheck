@@ -9,7 +9,6 @@
     <color name="colorAccentCyan">#CCF1FC</color>
     <color name="colorAccentYellow">#FFB800</color>
 
-    <color name="colorNormalText">#212121</color>
     <color name="colorSecondText">#757575</color>
     <color name="colorDisableText">#B4B4B4</color>
 
@@ -21,6 +20,7 @@
 
 
 
+    <color name="colorNormalTextOpacity25">#40212121</color>
     <color name="white_alpha_50">#80ffffff</color>
     <color name="colorPrimaryDark">#0580dc</color>
     <color name="darkBlue">#20336B</color>

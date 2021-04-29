@@ -31,18 +31,16 @@
         app:layout_constraintStart_toStartOf="@id/text"
         app:layout_constraintTop_toBottomOf="@id/text" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.MiddleMultilineTextView
+
         android:id="@+id/tvName"
-        android:layout_width="@dimen/size_0"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_8"
-        android:layout_marginLeft="@dimen/size_8"
         android:layout_marginEnd="@dimen/size_12"
-        android:layout_marginRight="@dimen/size_12"
-        android:ellipsize="end"
         android:fontFamily="@font/barlow_medium"
         android:includeFontPadding="false"
-        android:singleLine="true"
+        android:maxLines="2"
         android:textColor="#212121"
         android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toBottomOf="@+id/imgAvatar"

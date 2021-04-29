@@ -60,6 +60,8 @@ class DateHolder(val binding: ItemDateBinding) : RecyclerView.ViewHolder(binding
         }
         if (categoryAttributesModel.values != null) {
             binding.edtText.setText(categoryAttributesModel.values.toString().getDayTime())
+        } else {
+            binding.edtText.setText("")
         }
 
         binding.edtText.setOnClickListener {
