@@ -223,7 +223,7 @@ class VerifyIdentityActivity : BaseActivityMVVM(), View.OnClickListener {
     }
 
     private fun startCamera() {
-        ActivityUtils.startActivityForResult<CropCamera2Activity>(this, requestCrop)
+        ActivityUtils.startActivityForResult<CropCameraActivity>(this, requestCrop)
     }
 
     fun setImage(type: String) {

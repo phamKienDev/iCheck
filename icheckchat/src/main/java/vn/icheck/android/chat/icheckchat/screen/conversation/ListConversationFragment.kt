@@ -31,7 +31,7 @@ import java.util.*
 
 class ListConversationFragment : BaseFragmentChat<FragmentListConversationBinding>(), IRecyclerViewCallback {
 
-    private var listener: ICountMessageListener?=null
+    private var listener: ICountMessageListener? = null
     private val adapter = ListConversationAdapter(this@ListConversationFragment)
     private lateinit var viewModel: ListConversationViewModel
     private val listData = mutableListOf<MCConversation>()
@@ -55,8 +55,8 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
         return true
     }
 
-    fun setListener(listener:ICountMessageListener?){
-        this.listener=listener
+    fun setListener(listener: ICountMessageListener?) {
+        this.listener = listener
     }
 
     override fun setBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentListConversationBinding {
@@ -278,8 +278,24 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
                         }
                     }
                 }, { obj ->
-            adapter.getListData[0] = convertDataFirebase(obj)
-            adapter.notifyItemChanged(0)
+            adapter.getListData[0] = adapter.getListData[0].apply {
+                key = obj.key.toString()
+                enableAlert = obj.child("enable_alert").value.toString().toBoolean()
+                keyRoom = obj.key.toString()
+                unreadCount = obj.child("unread_count").value as Long? ?: 0L
+                time = obj.child("last_activity").child("time").value as Long?
+                        ?: System.currentTimeMillis()
+                lastMessage = if (obj.child("last_activity").child("content").value != null) {
+                    obj.child("last_activity").child("content").value.toString()
+                } else {
+                    ""
+                }
+            }
+            binding.recyclerView.findViewHolderForAdapterPosition(0)?.let { holder ->
+                if (holder is ListConversationAdapter.ConversationHolder) {
+                    holder.updateConversation(adapter.getListData[0])
+                }
+            }
         })
     }
 

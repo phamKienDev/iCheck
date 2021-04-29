@@ -30,15 +30,13 @@ import android.util.Size;
 import android.util.SparseIntArray;
 import android.view.Surface;
 import android.view.TextureView;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleOwner;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -53,12 +51,11 @@ import java.util.List;
 import java.util.Locale;
 
 import vn.icheck.android.R;
-import vn.icheck.android.base.activity.BaseActivityMVVM;
 import vn.icheck.android.constant.Constant;
 import vn.icheck.android.helper.DialogHelper;
 
 @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-public class CropCamera2Activity extends BaseActivityMVVM {
+public class CropCamera2Activity extends AppCompatActivity {
     private static final String TAG = "AndroidCameraApi";
 
     private ImageView takePictureButton;
@@ -103,11 +100,9 @@ public class CropCamera2Activity extends BaseActivityMVVM {
         imgScanFocus = findViewById(R.id.img_scan_focus);
         btnClose = findViewById(R.id.btn_clear);
         btnFlash = findViewById(R.id.img_flash);
+
+
         assert takePictureButton != null;
-
-        dialogHelper = DialogHelper.INSTANCE;
-        dialogHelper.showLoading(this);
-
         takePictureButton.setOnClickListener(v -> {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 takePicture();
@@ -217,6 +212,7 @@ public class CropCamera2Activity extends BaseActivityMVVM {
         }
 
         CameraManager manager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+        dialogHelper = DialogHelper.INSTANCE;
         dialogHelper.showLoading(this);
         try {
             CameraCharacteristics characteristics = manager.getCameraCharacteristics(cameraDevice.getId());
@@ -303,7 +299,7 @@ public class CropCamera2Activity extends BaseActivityMVVM {
                 }
             }, mBackgroundHandler);
         } catch (CameraAccessException e) {
-            dialogHelper.closeLoading(CropCamera2Activity.this);
+            dialogHelper.closeLoading(this);
             e.printStackTrace();
         }
     }
@@ -420,12 +416,12 @@ public class CropCamera2Activity extends BaseActivityMVVM {
             imageDimension = map.getOutputSizes(SurfaceTexture.class)[0];
             // Add permission for camera and let user grant the permission
             // Kiểm tra permission với android sdk >= 23
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(CropCamera2Activity.this, new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(CropCamera2Activity.this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CAMERA_PERMISSION);
                 return;
             }
             manager.openCamera(cameraId, stateCallback, null);
-            dialogHelper.closeLoading(this);
+//            dialogHelper.closeLoading(this);
         } catch (CameraAccessException e) {
             e.printStackTrace();
         }
