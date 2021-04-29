@@ -415,6 +415,9 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
             }
             login -> {
                 if (!SessionManager.isUserLogged) {
+                    if (HomeActivity.isOpen != true) {
+                        ActivityUtils.startActivity<HomeActivity>(this)
+                    }
                     ActivityUtils.startActivity<IckLoginActivity>(this)
                 }
             }
