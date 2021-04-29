@@ -148,7 +148,7 @@ class StoreSellHistoryAdapter constructor(val view: StoreSellHistoryView) : Recy
             itemView.tvNameShop.text = obj.name ?: itemView.context.getString(R.string.dang_cap_nhat)
 
             if (obj.distance != null) {
-                TextHelper.convertMtoKm(obj.distance!!,itemView.tvDistance)
+                TextHelper.convertMtoKmV2(obj.distance!!,itemView.tvDistance)
             } else {
                 itemView.tvDistance.text = itemView.context.getString(R.string.dang_cap_nhat)
             }

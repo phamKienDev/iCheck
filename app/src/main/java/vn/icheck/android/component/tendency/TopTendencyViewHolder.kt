@@ -30,7 +30,7 @@ class TopTendencyViewHolder(parent: ViewGroup) : BaseViewHolder<ICTopTrend>(View
     lateinit var categoryAdapter: TopTendencyCategoryAdapter
 
     override fun bind(obj: ICTopTrend) {
-        parent = itemView as LinearLayout
+        parent = (itemView as LinearLayout).getChildAt(1) as LinearLayout
         recyclerViewHorizontal = parent.getChildAt(1) as RecyclerView
         recyclerView = parent.getChildAt(2) as RecyclerView
 
