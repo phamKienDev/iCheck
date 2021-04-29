@@ -786,7 +786,7 @@ object ViewHelper {
     fun createTitleWidthViewMore(context: Context): LinearLayout {
         val layoutParent = LinearLayout(context)
         layoutParent.layoutParams = createLayoutParams()
-        layoutParent.setPadding(SizeHelper.size12, SizeHelper.size12, SizeHelper.size12, SizeHelper.size12)
+        layoutParent.setPadding(SizeHelper.size12, SizeHelper.size10, SizeHelper.size12, SizeHelper.size10)
         layoutParent.orientation = LinearLayout.HORIZONTAL
 
         layoutParent.addView(createText(context,
@@ -855,47 +855,21 @@ object ViewHelper {
         return layoutParent
     }
 
-    fun createNewsItem(context: Context): View {
-        val layoutParent = ColorCardView(context)
-        val parentParams = LinearLayout.LayoutParams(SizeHelper.size246, LinearLayout.LayoutParams.WRAP_CONTENT)
-        parentParams.setMargins(SizeHelper.size6, SizeHelper.size12, SizeHelper.size6, SizeHelper.size20)
-        layoutParent.layoutParams = parentParams
-        layoutParent.setCardBackgroundColor(ContextCompat.getColor(context, R.color.white))
-        layoutParent.radius = SizeHelper.size4.toFloat()
-        layoutParent.useCompatPadding = false
-
-        val layoutContent = LinearLayout(context)
-        layoutContent.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-        layoutContent.orientation = LinearLayout.VERTICAL
-        layoutParent.addView(layoutContent)
-
-        val imgNews = AppCompatImageView(context)
-        imgNews.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size170)
-        imgNews.scaleType = ImageView.ScaleType.CENTER_CROP
-        layoutContent.addView(imgNews)
-
-        val tvTitle = TextBarlowMedium(context)
-        val titleParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-        titleParams.setMargins(SizeHelper.size12, SizeHelper.size8, SizeHelper.size12, SizeHelper.size12)
-        tvTitle.layoutParams = titleParams
-        tvTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
-        tvTitle.maxLines = 2
-        tvTitle.typeface = Typeface.create("sans-serif-medium", Typeface.NORMAL)
-        tvTitle.setTextColor(ContextCompat.getColor(context, R.color.black_21_v2))
-        tvTitle.includeFontPadding = false
-        layoutContent.addView(tvTitle)
-
-        return layoutParent
-    }
-
     fun createSlideBannerHolder(context: Context): View {
         val layoutParent = FrameLayout(context)
         layoutParent.layoutParams = createLayoutParams()
-        layoutParent.setPadding(SizeHelper.size12, SizeHelper.size12, SizeHelper.size12, 0)
+        layoutParent.setPadding(SizeHelper.size12, 0, SizeHelper.size12, 0)
         layoutParent.setBackgroundColor(Color.WHITE)
 
+        layoutParent.addView(View(context).also {
+            it.layoutParams = createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size10)
+            it.setBackgroundColor(ContextCompat.getColor(it.context, R.color.colorBackgroundGray))
+        })
+
         val viewPager = HeightWrappingViewPager(context)
-        viewPager.layoutParams = createLayoutParams()
+        viewPager.layoutParams = createLayoutParams().also {
+            it.topMargin = SizeHelper.size10
+        }
         layoutParent.addView(viewPager)
 
         val layoutIndicator = IndicatorLineHorizontal(context)
@@ -1287,7 +1261,7 @@ object ViewHelper {
         val layoutParent = LinearLayout(context).also {
             it.layoutParams = createLayoutParams()
             it.orientation = LinearLayout.VERTICAL
-            it.setBackgroundColor(ContextCompat.getColor(context, R.color.darkGray6))
+            it.setBackgroundColor(ContextCompat.getColor(context, R.color.colorBackgroundGray))
         }
 
         val title = TextBarlowSemiBold(context)
@@ -1368,8 +1342,13 @@ object ViewHelper {
             layoutParent.orientation = LinearLayout.VERTICAL
             layoutParent.setBackgroundColor(ContextCompat.getColor(context, R.color.white))
 
+            layoutParent.addView(View(context).also {
+                it.layoutParams = createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size10)
+                it.setBackgroundColor(ContextCompat.getColor(context, R.color.colorBackgroundGray))
+            })
+
             layoutParent.addView(LinearLayout(context).also { layoutTitle ->
-                layoutTitle.layoutParams = createLayoutParams(0, SizeHelper.size16, 0, 0)
+                layoutTitle.layoutParams = createLayoutParams(0, SizeHelper.size10, 0, 0)
                 layoutTitle.gravity = Gravity.CENTER_HORIZONTAL
                 layoutTitle.orientation = LinearLayout.HORIZONTAL
 
@@ -1546,6 +1525,7 @@ object ViewHelper {
             layoutParent.orientation = LinearLayout.VERTICAL
             layoutParent.gravity = Gravity.CENTER
             layoutParent.setPadding(SizeHelper.size40, SizeHelper.size40, SizeHelper.size40, SizeHelper.size40)
+            layoutParent.setBackgroundColor(Color.WHITE)
 
             layoutParent.addView(AppCompatImageView(context).also {
                 it.layoutParams = createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT)
@@ -1734,27 +1714,34 @@ object ViewHelper {
     }
 
     fun createTopTendency(context: Context): View {
-        return LinearLayout(context).also {
-            it.layoutParams = createLayoutParams(SizeHelper.size12, SizeHelper.size20, 0, 0)
-            it.orientation = LinearLayout.VERTICAL
-            it.gravity = Gravity.CENTER_HORIZONTAL
-            it.background = ContextCompat.getDrawable(context, R.drawable.bg_top_tendency)
-
-            it.addView(AppCompatTextView(context).also { text ->
-                text.layoutParams = createLayoutParams(SizeHelper.size12, SizeHelper.size16, 0, 0)
-                text.textSize = 18f
-                text.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
-                text.text = "Top xu hướng"
-                text.setTextColor(ContextCompat.getColor(context, R.color.black_21_v2))
-                text.includeFontPadding = false
+        return LinearLayout(context).also { parent ->
+            parent.addView(View(context).also {
+                it.layoutParams = createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size10)
+                it.setBackgroundColor(ContextCompat.getColor(context, R.color.colorBackgroundGray))
             })
 
-            it.addView(RecyclerView(context).also { rcv ->
-                rcv.layoutParams = createLayoutParams(0, SizeHelper.size12, 0, 0)
-            })
+            parent.addView(LinearLayout(context).also {
+                it.layoutParams = createLayoutParams(SizeHelper.size12, 0, 0, 0)
+                it.orientation = LinearLayout.VERTICAL
+                it.gravity = Gravity.CENTER_HORIZONTAL
+                it.background = ContextCompat.getDrawable(context, R.drawable.bg_top_tendency)
 
-            it.addView(RecyclerView(context).also { rcv ->
-                rcv.layoutParams = createLayoutParams(0, SizeHelper.size20, 0, SizeHelper.size16)
+                it.addView(AppCompatTextView(context).also { text ->
+                    text.layoutParams = createLayoutParams(SizeHelper.size12, SizeHelper.size16, 0, 0)
+                    text.textSize = 18f
+                    text.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
+                    text.text = "Top xu hướng"
+                    text.setTextColor(ContextCompat.getColor(context, R.color.black_21_v2))
+                    text.includeFontPadding = false
+                })
+
+                it.addView(RecyclerView(context).also { rcv ->
+                    rcv.layoutParams = createLayoutParams(0, SizeHelper.size12, 0, 0)
+                })
+
+                it.addView(RecyclerView(context).also { rcv ->
+                    rcv.layoutParams = createLayoutParams(0, SizeHelper.size20, 0, SizeHelper.size16)
+                })
             })
         }
     }
@@ -2005,10 +1992,16 @@ object ViewHelper {
         val layoutParent = LinearLayout(context)
         layoutParent.layoutParams = createLayoutParams()
         layoutParent.orientation = LinearLayout.VERTICAL
-        layoutParent.setPadding(SizeHelper.size12, 0, 0, 0)
+
+        layoutParent.addView(View(context).also {
+            it.layoutParams = createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size10)
+            it.setBackgroundColor(ContextCompat.getColor(context, R.color.colorBackgroundGray))
+        })
 
         layoutParent.addView(LinearLayout(context).also {
-            it.layoutParams = createLayoutParams()
+            it.layoutParams = createLayoutParams().also { layoutParams ->
+                layoutParams.marginStart = SizeHelper.size12
+            }
             it.orientation = LinearLayout.HORIZONTAL
             it.gravity = Gravity.CENTER_VERTICAL
             //img flash sale
@@ -2071,7 +2064,9 @@ object ViewHelper {
         })
 
         layoutParent.addView(RecyclerView(context).also {
-            it.layoutParams = createLayoutParams()
+            it.layoutParams = createLayoutParams().also { layoutParams ->
+                layoutParams.marginStart = SizeHelper.size12
+            }
         })
 
         return layoutParent

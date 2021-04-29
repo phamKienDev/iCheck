@@ -20,20 +20,20 @@ class FlashSaleViewHolder(parent: ViewGroup) : BaseViewHolder<ICFlashSale>(ViewH
 
     override fun bind(obj: ICFlashSale) {
         (itemView as LinearLayout).run {
-            (getChildAt(0) as LinearLayout).run {
+            (getChildAt(1) as LinearLayout).run {
                 tvHour = (getChildAt(1) as AppCompatTextView)
                 tvMinutes = (getChildAt(2) as AppCompatTextView)
                 tvSecond = (getChildAt(3) as AppCompatTextView)
             }
-            rcvFlashSale = getChildAt(1) as RecyclerView
+            rcvFlashSale = getChildAt(2) as RecyclerView
         }
+
         val adapter = obj.products?.let { ListFlashSaleItemAdapter(it.toMutableList()) }
         rcvFlashSale.layoutManager = GridLayoutManager(itemView.context, 3, RecyclerView.HORIZONTAL, false)
         rcvFlashSale.adapter = adapter
     }
 
      fun updateCountDownText(p0:Long) {
-
                 var hour = p0 / 1000 / 60 / 60
                 var minutes = (p0 / 1000 / 60) - (hour * 60)
                 var second = p0 / 1000 % 60

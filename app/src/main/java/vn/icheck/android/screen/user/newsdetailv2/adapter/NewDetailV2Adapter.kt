@@ -7,7 +7,7 @@ import vn.icheck.android.network.models.ICNews
 
 class NewDetailV2Adapter(val listData: List<ICNews>) : RecyclerView.Adapter<NewsListV2Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsListV2Holder {
-        return NewsListV2Holder.create(parent)
+        return NewsListV2Holder(parent)
     }
 
     override fun getItemCount(): Int {

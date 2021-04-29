@@ -501,6 +501,35 @@ object WidgetUtils {
                 .into(image)
     }
 
+    fun loadImageFile(image: AppCompatImageView, file: File?, error: Int, listener: LoadImageListener) {
+        if (file == null || !file.exists()) {
+            Glide.with(image.context.applicationContext)
+                    .load(error)
+                    .transform(CenterCrop())
+                    .into(image)
+            listener.onFailed()
+            return
+        }
+
+        Glide.with(image.context.applicationContext)
+                .load(file)
+                .placeholder(circularProgressDrawable)
+                .error(error)
+                .transform(CenterCrop())
+                .listener(object : RequestListener<Drawable> {
+                    override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+                        listener.onFailed()
+                        return false
+                    }
+
+                    override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                        listener.onSuccess()
+                        return false
+                    }
+                })
+                .into(image)
+    }
+
     fun loadImageFileFitCenter(image: AppCompatImageView, file: File?) {
         loadImageFileFitCenter(image, file, defaultError)
     }
