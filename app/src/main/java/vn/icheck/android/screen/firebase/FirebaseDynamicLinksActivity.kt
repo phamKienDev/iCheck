@@ -30,7 +30,6 @@ import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.reward_login.RewardLoginCallback
-import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialogV2
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.ISettingListener
@@ -64,14 +63,14 @@ import vn.icheck.android.screen.user.detail_stamp_v5.home.DetailStampV5Activity
 import vn.icheck.android.screen.user.detail_stamp_v6.home.DetailStampV6Activity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
 import vn.icheck.android.screen.user.home.HomeActivity
-import vn.icheck.android.screen.user.list_campaign.ListCampaignActivity
-import vn.icheck.android.screen.user.my_gift_warehouse.list_mission.list.ListMissionActivity
-import vn.icheck.android.screen.user.my_gift_warehouse.shake_gift.list_box_gift.ListShakeGridBoxActivity
 import vn.icheck.android.screen.user.icheckstore.list.ProductStoreiCheckActivity
+import vn.icheck.android.screen.user.list_campaign.ListCampaignActivity
 import vn.icheck.android.screen.user.list_product_question.ListProductQuestionActivity
 import vn.icheck.android.screen.user.listnotification.ListNotificationActivity
 import vn.icheck.android.screen.user.listproduct.ListProductActivity
 import vn.icheck.android.screen.user.missiondetail.MissionDetailActivity
+import vn.icheck.android.screen.user.my_gift_warehouse.list_mission.list.ListMissionActivity
+import vn.icheck.android.screen.user.my_gift_warehouse.shake_gift.list_box_gift.ListShakeGridBoxActivity
 import vn.icheck.android.screen.user.mygift.MyGiftActivity
 import vn.icheck.android.screen.user.newsdetailv2.NewDetailV2Activity
 import vn.icheck.android.screen.user.newslistv2.NewsListV2Activity
@@ -195,6 +194,13 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
 
     private var deepLink: Uri? = null
     private var targetType: String = ""
+
+    private var typeLoyalty: String? = null
+    private var campaignId: Long? = null
+    private var nameCampaign: String? = null
+    private var nameShop: String? = null
+    private var avatarShop: String? = null
+    private var currentCount: Int? = null
 
     companion object {
         @MainThread
@@ -400,8 +406,23 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                 }
             }
             scan -> {
+                typeLoyalty = deepLink?.getQueryParameter("typeLoyalty")
+                campaignId = deepLink?.getQueryParameter("campaignId").toString().toLong()
+                nameCampaign = deepLink?.getQueryParameter("nameCampaign")
+                nameShop = deepLink?.getQueryParameter("nameShop")
+                avatarShop = deepLink?.getQueryParameter("avatarShop")
+                currentCount = if (!deepLink?.getQueryParameter("currentCount").isNullOrEmpty()) {
+                    deepLink?.getQueryParameter("currentCount")?.toInt()
+                } else {
+                    null
+                }
+
                 if (PermissionHelper.checkPermission(this@FirebaseDynamicLinksActivity, Manifest.permission.CAMERA, ICK_REQUEST_CAMERA)) {
-                    V6ScanditActivity.create(this)
+                    if (typeLoyalty.isNullOrEmpty()) {
+                        V6ScanditActivity.create(this)
+                    } else {
+                        campaignId?.let { V6ScanditActivity.scanOnlyLoyalty(this, typeLoyalty!!, it, nameCampaign, nameShop, avatarShop, currentCount) }
+                    }
                 } else {
                     return
                 }
@@ -1315,7 +1336,11 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
         if (PermissionHelper.checkResult(grantResults)) {
             if (requestCode == ICK_REQUEST_CAMERA) {
                 if (requestCode == ICK_REQUEST_CAMERA) {
-                    V6ScanditActivity.create(this)
+                    if (typeLoyalty.isNullOrEmpty()) {
+                        V6ScanditActivity.create(this)
+                    } else {
+                        campaignId?.let { V6ScanditActivity.scanOnlyLoyalty(this, typeLoyalty!!, it, nameCampaign, nameShop, avatarShop, currentCount) }
+                    }
                 }
             }
         }

@@ -293,11 +293,11 @@ object CampaignLoyaltyHelper {
                                 showCustomErrorToast(activity, obj.data?.message!!)
                             }
                             else -> {
-                                ToastHelper.showLongError(activity, "Mã $code không hợp lệ!")
+                                ToastHelper.showLongError(activity, "Mã ${code ?: target} không hợp lệ!")
                             }
                         }
                     } else {
-                        ToastHelper.showLongError(activity, "Mã $code không hợp lệ!")
+                        ToastHelper.showLongError(activity, "Mã ${code ?: target} không hợp lệ!")
                     }
                 } else {
                     listener?.onRemoveHolderInput()

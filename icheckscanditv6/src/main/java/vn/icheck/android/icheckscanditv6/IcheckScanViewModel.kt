@@ -51,7 +51,6 @@ class IcheckScanViewModel : ViewModel() {
     var collectionID = -1L
     fun postAccumulatePoint(target: String) {
 
-
         redeemRepository.postAccumulatePoint(collectionID, null, target, object : ICApiListener<ICResponse<ICKAccumulatePoint>> {
             override fun onSuccess(obj: ICResponse<ICKAccumulatePoint>) {
                 if (obj.statusCode != 200.toString()) {

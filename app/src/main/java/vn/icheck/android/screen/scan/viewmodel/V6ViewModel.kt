@@ -26,6 +26,7 @@ class V6ViewModel: ViewModel() {
     val liveData = MutableLiveData<String>()
     var scanOnlyChat = false
     var scanOnly = false
+    var scanOnlyLoyalty = false
     var reviewOnly = false
     val repository = ProductInteractor()
 
