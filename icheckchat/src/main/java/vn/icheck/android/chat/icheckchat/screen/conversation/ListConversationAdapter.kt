@@ -124,6 +124,34 @@ class ListConversationAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
                 notifyItemChanged(adapterPosition)
             }
         }
+
+        fun updateConversation(obj: MCConversation){
+            checkNullOrEmpty(binding.tvMessage, obj.lastMessage)
+            binding.tvTime.text = convertDateTimeSvToCurrentDay(obj.time)
+
+            if (obj.unreadCount != null) {
+                binding.tvCountMessage.setVisible()
+                when {
+                    obj.unreadCount!! > 9 -> {
+                        binding.tvCountMessage.text = "9+"
+                        binding.layout.setBackgroundColor(Color.parseColor("#1A057DDA"))
+                    }
+                    obj.unreadCount!! > 0 -> {
+                        binding.tvCountMessage.text = "${obj.unreadCount}"
+                        binding.layout.setBackgroundColor(Color.parseColor("#1A057DDA"))
+                    }
+                    else -> {
+                        binding.tvCountMessage.setGone()
+                        binding.tvCountMessage.text = "${obj.unreadCount}"
+                        binding.layout.setBackgroundColor(Color.WHITE)
+                    }
+                }
+            } else {
+                binding.tvCountMessage.setGone()
+                binding.tvCountMessage.text = "0"
+                binding.layout.setBackgroundColor(Color.WHITE)
+            }
+        }
     }
 
     fun setListener(listener: IListener) {

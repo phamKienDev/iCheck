@@ -435,18 +435,21 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                     adapter.notifyItemInserted(0)
 
                     //xóa status tin nhắn trước đó
-                    if (adapter.getListData[1].senderId == message.senderId) {
-                        if (!chenhLechGio(adapter.getListData[1].time, message.time, 1)) {
-                            val holder = recyclerView.findViewHolderForAdapterPosition(1)
-                            adapter.getListData[1].showStatus = 0
+                    if (adapter.getListData.size > 1) {
+                        if (adapter.getListData[1].senderId == message.senderId) {
+                            if (!chenhLechGio(adapter.getListData[1].time, message.time, 1)) {
+                                val holder = recyclerView.findViewHolderForAdapterPosition(1)
+                                adapter.getListData[1].showStatus = 0
 
-                            if (holder is ChatSocialDetailAdapter.SenderHolder) {
-                                holder.setupShowStatus(adapter.getListData[1])
-                            } else {
-                                adapter.notifyItemChanged(1)
+                                if (holder is ChatSocialDetailAdapter.SenderHolder) {
+                                    holder.setupShowStatus(adapter.getListData[1])
+                                } else {
+                                    adapter.notifyItemChanged(1)
+                                }
                             }
                         }
                     }
+
                     binding.recyclerView.smoothScrollToPosition(0)
                 }
                 // đối phương gửi
