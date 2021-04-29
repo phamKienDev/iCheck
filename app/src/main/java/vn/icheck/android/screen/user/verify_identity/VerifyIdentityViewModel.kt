@@ -38,10 +38,10 @@ class VerifyIdentityViewModel : ViewModel() {
     var typeCard: String? = null
     var position = -1
     var listImage = mutableListOf<String>()
-
+    var kycStatus = 0
 
     fun getData(intent: Intent) {
-        val kycStatus = try {
+        kycStatus = try {
             intent.getIntExtra(Constant.DATA_1, 0)
         } catch (e: Exception) {
             0
