@@ -10,6 +10,7 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.RelationshipManager
 import vn.icheck.android.base.holder.BaseViewHolder
+import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
@@ -86,8 +87,8 @@ class FriendSuggestionHolder(parent: ViewGroup) : BaseViewHolder<ICUser>(LayoutI
                 getChildAt(5).visibility = View.VISIBLE
                 // Text nhan tin
                 getChildAt(4).setOnClickListener {
-//                    ChatSocialDetailActivity.createRoomChat(it.context, obj.id, "user")
-                    SocialChatActivity.createRoomChat(it.context, obj.id)
+                    ChatSocialDetailActivity.createRoomChat(it.context, obj.id, "user")
+//                    SocialChatActivity.createRoomChat(it.context, obj.id)
                 }
             } else {
                 getChildAt(3).visibility = View.VISIBLE

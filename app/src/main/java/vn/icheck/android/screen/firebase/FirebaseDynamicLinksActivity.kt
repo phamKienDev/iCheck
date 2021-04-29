@@ -18,6 +18,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Base64
 import androidx.annotation.MainThread
+import androidx.annotation.WorkerThread
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
@@ -32,6 +33,7 @@ import vn.icheck.android.base.dialog.reward_login.RewardLoginCallback
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialogV2
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.ISettingListener
+import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.constant.ICK_REQUEST_CAMERA
 import vn.icheck.android.helper.*
@@ -48,6 +50,7 @@ import vn.icheck.android.network.models.ICCampaign
 import vn.icheck.android.network.models.ICClientSetting
 import vn.icheck.android.network.models.ICLink
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
+import vn.icheck.android.screen.dialog.DialogNotificationFirebaseAds
 import vn.icheck.android.screen.scan.MyQrActivity
 import vn.icheck.android.screen.scan.V6ScanditActivity
 import vn.icheck.android.screen.user.buy_mobile_card.BuyMobileCardV2Activity
@@ -303,6 +306,19 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                 }
             }
         }
+
+        @WorkerThread
+        fun showDialogNotification(image: String? = null, htmlText: String? = null, link: String? = null, schema: String? = null) {
+            ICheckApplication.currentActivity()?.apply {
+                runOnUiThread {
+                    object : DialogNotificationFirebaseAds(this, image, htmlText, link, schema) {
+                        override fun onDismiss() {
+
+                        }
+                    }.show()
+                }
+            }
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -420,6 +436,9 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
             }
             login -> {
                 if (!SessionManager.isUserLogged) {
+                    if (HomeActivity.isOpen != true) {
+                        ActivityUtils.startActivity<HomeActivity>(this)
+                    }
                     ActivityUtils.startActivity<IckLoginActivity>(this)
                 }
             }
@@ -825,8 +844,8 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                         showLoginDialog()
                         return
                     } else {
-//                        ChatSocialDetailActivity.openRoomChatWithKey(this@FirebaseDynamicLinksActivity, id)
-                        SocialChatActivity.createRoomChat(this@FirebaseDynamicLinksActivity, null, id)
+                        ChatSocialDetailActivity.openRoomChatWithKey(this@FirebaseDynamicLinksActivity, id)
+//                        SocialChatActivity.createRoomChat(this@FirebaseDynamicLinksActivity, null, id)
                     }
                 }
             }
@@ -838,8 +857,8 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                         showLoginDialog()
                         return
                     } else if (ValidHelper.validNumber(id)) {
-//                        ChatSocialDetailActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong(), "user")
-                        SocialChatActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong())
+                        ChatSocialDetailActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong(), "user")
+//                        SocialChatActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong())
                     }
                 }
             }
@@ -851,8 +870,8 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                         showLoginDialog()
                         return
                     } else if (ValidHelper.validNumber(id)) {
-//                        ChatSocialDetailActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong(), "page")
-                        SocialChatActivity.createRoomChat(this@FirebaseDynamicLinksActivity, null, id)
+                        ChatSocialDetailActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong(), "page")
+//                        SocialChatActivity.createRoomChat(this@FirebaseDynamicLinksActivity, null, id)
                     }
                 }
             }

@@ -26,6 +26,7 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.AppCompatCheckedTextView
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
@@ -223,32 +224,32 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
         listPage.add(ICFragment(null, HomePageFragment()))
         listPage.add(ICFragment(null, ListNewsFragment.newInstance(false)))
         listPage.add(ICFragment(null, ScanHistoryFragment()))
-        listPage.add(ICFragment(null, SocialChatFragment()))
-//        listPage.add(ICFragment(null, ChatSocialFragment().apply {
-//            setDataFromHome(object : ListConversationFragment.Companion.ICountMessageListener {
-//                override fun getCountMessage(count: Long) {
-//
-//                    val tvChatCount = findViewById<AppCompatTextView>(R.id.tvChatCount)
-//                    tvChatCount.post {
-//                        tvChatCount.visibility = if (count != 0L) {
-//                            View.VISIBLE
-//                        } else {
-//                            View.GONE
-//                        }
-//
-//                        tvChatCount.text = if (count > 9) {
-//                            "+9"
-//                        } else {
-//                            "$count"
-//                        }
-//                    }
-//                }
-//
-//                override fun onClickLeftMenu() {
-//                    openSlideMenu()
-//                }
-//            }, SessionManager.isUserLogged)
-//        }))
+//        listPage.add(ICFragment(null, SocialChatFragment()))
+        listPage.add(ICFragment(null, ChatSocialFragment().apply {
+            setDataFromHome(object : ListConversationFragment.Companion.ICountMessageListener {
+                override fun getCountMessage(count: Long) {
+
+                    val tvChatCount = findViewById<AppCompatTextView>(R.id.tvChatCount)
+                    tvChatCount.post {
+                        tvChatCount.visibility = if (count != 0L) {
+                            View.VISIBLE
+                        } else {
+                            View.GONE
+                        }
+
+                        tvChatCount.text = if (count > 9) {
+                            "+9"
+                        } else {
+                            "$count"
+                        }
+                    }
+                }
+
+                override fun onClickLeftMenu() {
+                    openSlideMenu()
+                }
+            }, SessionManager.isUserLogged)
+        }))
 
         viewPager.offscreenPageLimit = 5
         viewPager.setPagingEnabled(false)
@@ -263,6 +264,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                     TrackingAllHelper.trackHomePageViewed()
                     viewPager.setCurrentItem(0, false)
                     HideWebUtils.showWeb("Home")
+                    HomePageFragment.INSTANCE?.scrollToTop()
                 }
             }
             2 -> {
@@ -562,15 +564,17 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
 
     private fun setupTheme() {
         val theme = SettingManager.themeSetting?.theme
-        val bottomBarTextColor = if (!theme?.bottomBarSelectedTextColor.isNullOrEmpty()) {
+
+        if (!theme?.bottomBarSelectedTextColor.isNullOrEmpty()) {
             ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.colorDisableText), Color.parseColor(theme!!.bottomBarSelectedTextColor))
         } else {
             ContextCompat.getColorStateList(this@HomeActivity, R.color.text_color_home_tab)
+        }.apply {
+            tvHome.setTextColor(this)
+            tvFeed.setTextColor(this)
+            tvHistory.setTextColor(this)
+            tvChat.setTextColor(this)
         }
-        tvHome.setTextColor(bottomBarTextColor)
-        tvFeed.setTextColor(bottomBarTextColor)
-        tvHistory.setTextColor(bottomBarTextColor)
-        tvChat.setTextColor(bottomBarTextColor)
 
         val path = FileHelper.getPath(this@HomeActivity)
         val homeBitmap = BitmapFactory.decodeFile(path + FileHelper.homeIcon)

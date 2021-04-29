@@ -66,7 +66,7 @@ class NewsListV2Adapter(val listener: IRecyclerViewCallback) : RecyclerView.Adap
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            itemType -> NewsListV2Holder.create(parent)
+            itemType -> NewsListV2Holder(parent)
             itemLoadMore -> LoadingHolder(parent)
             else -> MessageHolder(parent)
         }

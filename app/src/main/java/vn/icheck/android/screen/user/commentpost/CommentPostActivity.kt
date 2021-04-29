@@ -488,7 +488,7 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
 
         imgCamera.onDelayClick({
             if (PermissionHelper.checkPermission(this, arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE), requestTakePicture)) {
-                TakeMediaDialog.show(supportFragmentManager,this,takeMediaListener)
+                TakeMediaDialog.show(supportFragmentManager, this, takeMediaListener, isVideo = true)
             }
         }, 2000)
 

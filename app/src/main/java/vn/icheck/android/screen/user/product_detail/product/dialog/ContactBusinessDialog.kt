@@ -45,8 +45,8 @@ class ContactBusinessDialog(context: Context) : BaseBottomSheetDialog(context, R
         }
 
         dialog.btnChat.setOnClickListener {
-            SocialChatActivity.createPageChat(dialog.context, id)
-//            ChatSocialDetailActivity.createRoomChat(dialog.context, id ?: -1, "page")
+//            SocialChatActivity.createPageChat(dialog.context, id)
+            ChatSocialDetailActivity.createRoomChat(dialog.context, id ?: -1, "page")
         }
 
         dialog.imgCancel.setOnClickListener {

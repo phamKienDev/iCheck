@@ -80,23 +80,7 @@ class ICheckApplication : Application(), Configuration.Provider {
     lateinit var barcodeCapture: BarcodeCapture
     override fun onCreate() {
         super.onCreate()
-        val key = if (BuildConfig.FLAVOR.contentEquals("dev")) getString(R.string.scandit_v6_key_dev) else getString(R.string.scandit_v6_key_live)
-        dataCaptureContext = DataCaptureContext.forLicenseKey(key)
-        val settings = BarcodeCaptureSettings().apply {
-            Symbology.values().forEach {
-                if (it != Symbology.MICRO_PDF417 && it != Symbology.PDF417 && it != Symbology.USPS_INTELLIGENT_MAIL) {
-                    enableSymbology(it, true)
-                    getSymbologySettings(it).isColorInvertedEnabled = true
-                }
-            }
-        }
-        settings.getSymbologySettings(Symbology.EAN13_UPCA).setExtensionEnabled("remove_leading_upca_zero", true)
-        settings.getSymbologySettings(Symbology.UPCE).setExtensionEnabled("remove_leading_upca_zero", true)
-
-        barcodeCapture = BarcodeCapture.forDataCaptureContext(dataCaptureContext, settings)
-
-        DataCaptureManager.barcodeCapture = barcodeCapture
-        DataCaptureManager.dataCaptureContext = dataCaptureContext
+        initScandit()
         FirebaseApp.initializeApp(this)
         FacebookSdk.sdkInitialize(this)
         AppEventsLogger.activateApp(this)
@@ -178,6 +162,26 @@ class ICheckApplication : Application(), Configuration.Provider {
                 currentActivity()?.recreate()
             }
         }
+    }
+
+    fun initScandit() {
+        val key = if (BuildConfig.FLAVOR.contentEquals("dev")) getString(R.string.scandit_v6_key_dev) else getString(R.string.scandit_v6_key_live)
+        dataCaptureContext = DataCaptureContext.forLicenseKey(key)
+        val settings = BarcodeCaptureSettings().apply {
+            Symbology.values().forEach {
+                if (it != Symbology.MICRO_PDF417 && it != Symbology.PDF417 && it != Symbology.USPS_INTELLIGENT_MAIL) {
+                    enableSymbology(it, true)
+                    getSymbologySettings(it).isColorInvertedEnabled = true
+                }
+            }
+        }
+        settings.getSymbologySettings(Symbology.EAN13_UPCA).setExtensionEnabled("remove_leading_upca_zero", true)
+        settings.getSymbologySettings(Symbology.UPCE).setExtensionEnabled("remove_leading_upca_zero", true)
+
+        barcodeCapture = BarcodeCapture.forDataCaptureContext(dataCaptureContext, settings)
+
+        DataCaptureManager.barcodeCapture = barcodeCapture
+        DataCaptureManager.dataCaptureContext = dataCaptureContext
     }
 
     private fun initDeeplinkInsider() {

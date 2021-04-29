@@ -6,9 +6,13 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
+import android.view.ViewTreeObserver
+import android.widget.FrameLayout
+import android.widget.ScrollView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -36,6 +40,7 @@ import vn.icheck.android.R
 import vn.icheck.android.RelationshipManager
 import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.base.model.ICMessageEvent
+import vn.icheck.android.callback.LoadImageListener
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.component.view.ViewHelper.setScrollSpeed
 import vn.icheck.android.constant.Constant
@@ -43,6 +48,8 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.ExoPlayerManager
 import vn.icheck.android.helper.FileHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.beGone
+import vn.icheck.android.ichecklibs.beVisible
 import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.loyalty.helper.ToastHelper
 import vn.icheck.android.network.base.SessionManager
@@ -70,8 +77,7 @@ import vn.icheck.android.screen.user.search_home.main.SearchHomeActivity
 import vn.icheck.android.screen.user.shipping.ship.ShipActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.util.AdsUtils
-import vn.icheck.android.util.ick.beGone
-import vn.icheck.android.util.ick.beVisible
+import vn.icheck.android.util.ick.beInvisible
 import vn.icheck.android.util.ick.loadImageWithHolder
 import vn.icheck.android.util.ick.simpleText
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -113,13 +119,12 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         }
     }
 
-    companion object{
-        var INSTANCE:HomePageFragment? = null
+    companion object {
+        var INSTANCE: HomePageFragment? = null
     }
 
     override val getLayoutID: Int
         get() = R.layout.fragment_home
-
 
 
     override fun isRegisterEventBus(): Boolean {
@@ -179,13 +184,17 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         homeAdapter.notifyDataSetChanged()
 
         val backgroundImage = BitmapFactory.decodeFile(FileHelper.getPath(this@HomePageFragment.requireContext()) + FileHelper.homeBackgroundImage)
-        imgThemeBackground?.apply {
-            if (backgroundImage != null) {
+        if (backgroundImage != null) {
+            imgBackground?.apply {
                 setImageBitmap(backgroundImage)
-            } else {
-                setImageResource(0)
             }
-            requestLayout()
+            imgThemeBackground?.apply {
+                layoutParams = FrameLayout.LayoutParams(swipeLayout.width, swipeLayout.height)
+                setImageBitmap(backgroundImage)
+            }
+        } else {
+            imgBackground?.setImageResource(0)
+            imgThemeBackground?.setImageResource(0)
         }
 
         val theme = SettingManager.themeSetting?.theme
@@ -330,7 +339,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                     setToolbarBackground(visibility)
                 } else if (!swipeLayout.isRefreshing) {
                     setToolbarBackground(1f)
-                    if (layoutContainer.currentState != layoutContainer.endState && viewModel.getRemindersCount() ?: 0 > 0) {
+                    if (layoutContainer.currentState != layoutContainer.endState && viewModel.getRemindersCount() > 0) {
                         layoutContainer.transitionToEnd()
                     }
                 }
@@ -452,6 +461,10 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
 
     override fun onTransactionCombank() {
         checkPVCombank(3)
+    }
+
+    fun scrollToTop() {
+        recyclerView.scrollToPosition(0)
     }
 
     private fun checkPVCombank(type: Int) {
@@ -579,6 +592,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                     checkTheme()
                     delay(400)
                     getReminders()
+                    refreshHomeData()
                 }
             }
             ICMessageEvent.Type.ON_LOG_OUT -> {

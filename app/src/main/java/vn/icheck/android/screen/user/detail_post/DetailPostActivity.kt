@@ -539,7 +539,7 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
                 val permissions = arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 imgCamera.delayTimeoutClick(2000)
                 if (PermissionHelper.isAllowPermission(this, permissions)) {
-                    TakeMediaDialog.show(supportFragmentManager,this,takeMediaListener)
+                    TakeMediaDialog.show(supportFragmentManager, this, takeMediaListener, isVideo = true)
                 } else {
                     PermissionHelper.checkPermission(this, permissions, requestCamera)
                 }

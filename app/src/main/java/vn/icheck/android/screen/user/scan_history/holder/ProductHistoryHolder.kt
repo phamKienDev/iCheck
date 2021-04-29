@@ -114,7 +114,7 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
             binding.layoutShop.visibility = View.GONE
         }
 
-        if (obj.nearestShop != null) {
+        if (obj.nearestShop?.shop != null) {
             binding.layoutShop.visibility = View.VISIBLE
             binding.btnSearchNear.visibility = View.VISIBLE
             if (!obj.nearestShop?.shop?.avatar.isNullOrEmpty()) {
@@ -126,8 +126,8 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
             binding.tvNameShop.text = obj.nearestShop?.shop?.name
                     ?: itemView.context.getString(R.string.dang_cap_nhat)
 
-            if (obj.nearestShop?.distance != null) {
-                TextHelper.convertMtoKm(obj.nearestShop?.distance!!, binding.tvDistance)
+            if (obj.nearestShop?.distance != null && obj.nearestShop?.distance != Double.POSITIVE_INFINITY && obj.nearestShop?.distance != Double.NEGATIVE_INFINITY) {
+                TextHelper.convertMtoKm(obj.nearestShop?.distance!!.toLong(), binding.tvDistance)
             } else {
                 binding.tvDistance.text = itemView.context.getString(R.string.dang_cap_nhat)
             }

@@ -38,7 +38,7 @@ import java.io.Serializable
 abstract class BaseActivity<P : BaseActivityPresenter> : AppCompatActivity(), BaseActivityView, ICRequireLogin, ICNetworkCallback, TokenTimeoutCallback {
     val presenter = getPresenter
     var job: Job? = null
-    var confirmLogin:ConfirmDialog? = null
+    var confirmLogin: ConfirmDialog? = null
     inline fun delayAction(crossinline action: () -> Unit, timeout: Long = 200) {
         job = if (job?.isActive == true) {
             job?.cancel()
@@ -156,7 +156,7 @@ abstract class BaseActivity<P : BaseActivityPresenter> : AppCompatActivity(), Ba
                         }
 
                         override fun onDismiss() {
-//                            HomePageFragment.INSTANCE?.refreshHomeData()
+                            //                            HomePageFragment.INSTANCE?.refreshHomeData()
                         }
                     }
                     if (!it.isFinishing && !it.isDestroyed) {
@@ -178,7 +178,7 @@ abstract class BaseActivity<P : BaseActivityPresenter> : AppCompatActivity(), Ba
                             if (it is HomeActivity) {
                                 HomeActivity.INSTANCE?.logoutFromHome()
                                 lifecycleScope.launch {
-                                    delay(200)
+                                    delay(500)
                                     HomePageFragment.INSTANCE?.refreshHomeData()
                                     delay(200)
                                     HomePageFragment.INSTANCE?.refreshHomeData()

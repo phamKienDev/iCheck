@@ -161,7 +161,7 @@ class ScanHistoryViewModel @ViewModelInject constructor(@Assisted val savedState
                     val list = mutableListOf<ICScanHistory>()
                     val item = ICScanHistory(ICViewTypes.MESSAGE_SCAN_HISTORY, ICError(R.drawable.ic_error_request, null, ICheckApplication.getInstance().getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai), R.string.thu_lai))
                     list.add(item)
-                    onAddData.value = list
+                    onErrorListData.value = list
                 } else {
                     onErrorString.value = ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                 }

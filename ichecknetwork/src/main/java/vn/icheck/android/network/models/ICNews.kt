@@ -44,5 +44,8 @@ data class ICNews(
         var ctaUrl: String? = null,
 
         @Expose
-        var media: ICMedia? = null
+        var media: ICMedia? = null,
+
+        @Expose
+        val pageIds: List<Int>? = null
 ) : Serializable

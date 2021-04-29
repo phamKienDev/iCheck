@@ -6,16 +6,16 @@ import java.io.Serializable
 class MCSticker : Serializable {
 
     @Expose
-    val id: Long? = null
+    var id: Long? = null
 
     @Expose
     val key: String? = null
 
     @Expose
-    val thumbnail: String? = null
+    var thumbnail: String? = null
 
     @Expose
-    val packageId: Long? = null
+    var packageId: Long? = null
 
     @Expose
     val packages: MCSticker? = null

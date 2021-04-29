@@ -18,12 +18,15 @@ import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.work.WorkInfo
 import com.bumptech.glide.Glide
 import com.facebook.CallbackManager
 import com.facebook.login.LoginManager
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -63,7 +66,7 @@ const val TAKE_WALL = 2
 const val VERIFY_IDENTITY = 3
 
 @AndroidEntryPoint
-class EditMyInformationActivity : CoroutineFragment() {
+class EditMyInformationFragment : CoroutineFragment() {
     private var _binding: ActivityEditMyInformationBinding? = null
     private val binding get() = _binding!!
     private val ickUserWallViewModel: IckUserWallViewModel by activityViewModels()
@@ -344,11 +347,10 @@ class EditMyInformationActivity : CoroutineFragment() {
             }
         }
         binding.edtDanhtinh.setOnClickListener {
-            val i = Intent(requireActivity(), VerifyIdentityActivity::class.java)
-            requireActivity().startActivityForResult(i, VERIFY_IDENTITY)
+            startKyc()
         }
         binding.txtChangePassword.setOnClickListener {
-            val action = EditMyInformationActivityDirections.actionEditMyInformationActivityToIckNewPwFragment()
+            val action = EditMyInformationFragmentDirections.actionEditMyInformationActivityToIckNewPwFragment()
             findNavController().navigate(action)
         }
         binding.imgEditAvatar.setOnClickListener {
@@ -377,10 +379,15 @@ class EditMyInformationActivity : CoroutineFragment() {
 
         binding.imgDanhtinh.setOnClickListener {
             ickUserWallViewModel.userInfo?.data?.kycStatus?.let { kycStatus ->
-                val intent = Intent(requireContext(), VerifyIdentityActivity::class.java)
-                startActivityForResult(intent, requestUpdateKyc)
+               startKyc()
             }
         }
+    }
+
+    private fun startKyc() {
+        val i = Intent(requireActivity(), VerifyIdentityActivity::class.java)
+        i.putExtra(Constant.DATA_1,  ickUserWallViewModel.userInfo?.data?.kycStatus )
+        requireActivity().startActivityForResult(i, VERIFY_IDENTITY)
     }
 
     private fun updateInfo() {
@@ -580,6 +587,14 @@ class EditMyInformationActivity : CoroutineFragment() {
                     binding.txtConfirmedDanhtinh.setBackgroundResource(R.drawable.bg_yellow_20_corner_23)
                     binding.txtConfirmedDanhtinh.setText(R.string.cho_xac_thuc)
                     binding.txtConfirmedDanhtinh.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorAccentYellow))
+                    binding.txtConfirmedDanhtinh.setOnClickListener {
+                        lifecycleScope.launch {
+                            binding.txtConfirmedDanhtinh.isEnabled = false
+                            startKyc()
+                            delay(200)
+                            binding.txtConfirmedDanhtinh.isEnabled = true
+                        }
+                    }
                 }
                 2 -> {
                     binding.txtConfirmedDanhtinh.setBackgroundResource(R.drawable.bg_green_20_corner_23)
@@ -592,8 +607,18 @@ class EditMyInformationActivity : CoroutineFragment() {
                     binding.txtConfirmedDanhtinh.setBackgroundResource(R.drawable.bg_red_20_corner_23)
                     binding.txtConfirmedDanhtinh.setText("Lỗi xác thực")
                     binding.txtConfirmedDanhtinh.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorAccentRed))
+                    binding.txtConfirmedDanhtinh.setOnClickListener {
+                        lifecycleScope.launch {
+                            binding.txtConfirmedDanhtinh.isEnabled = false
+                            startKyc()
+                            delay(200)
+                            binding.txtConfirmedDanhtinh.isEnabled = true
+                        }
+                    }
                 }
             }
         }
     }
+
+
 }
