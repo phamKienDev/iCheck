@@ -130,13 +130,10 @@ class VerifyIdentityActivity : BaseActivityMVVM(), View.OnClickListener {
             when (it) {
                 3 -> {
                     tvErrorVerify.visibility = View.VISIBLE
-                    tvErrorAfter.visibility = View.VISIBLE
-                    tvErrorFront.visibility = View.VISIBLE
+
                 }
                 else -> {
                     tvErrorVerify.visibility = View.GONE
-                    tvErrorAfter.visibility = View.GONE
-                    tvErrorFront.visibility = View.GONE
                 }
             }
         })

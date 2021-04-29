@@ -162,7 +162,7 @@ class IckLoginActivity : BaseCoroutineActivity() {
                                                     intent.getStringExtra(FACEBOOK_USERNAME),
                                                     it
                                             )
-                                            findNavController(R.id.nav_host_fragment).navigate(action)
+                                            findNavController(R.id.nav_host_fragment_login).navigate(action)
                                         } catch (e: Exception) {
                                             logError(e)
                                         }
