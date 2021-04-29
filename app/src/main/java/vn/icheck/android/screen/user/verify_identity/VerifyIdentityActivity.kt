@@ -6,8 +6,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_verify_identity.*
 import kotlinx.android.synthetic.main.toolbar_light_blue.*
+import kotlinx.coroutines.*
+import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.model.ICMessageEvent
@@ -18,6 +22,7 @@ import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.screen.user.crop_camera.CropCameraActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
+import vn.icheck.android.util.ick.logError
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.io.File
@@ -40,6 +45,74 @@ class VerifyIdentityActivity : BaseActivityMVVM(), View.OnClickListener {
         viewModel = ViewModelProvider(this).get(VerifyIdentityViewModel::class.java)
         initView()
         listenerData()
+        viewModel.getKyc()
+        viewModel.kycResponseLiveData.observe(this, {
+            it.firstOrNull()?.let { item ->
+                tvComplete.setText("Cập nhật giấy tờ")
+                val kycDocuments = item.kycValue?.kycDocuments
+                if (kycDocuments?.firstOrNull()?.type == 1) {
+                    textView46.setText(R.string.mat_truoc_cmnd)
+                    textView47.setText(R.string.mat_sau_cmnd)
+
+                } else {
+                    textView46.setText(R.string.mat_truoc_cccd)
+                    textView47.setText(R.string.mat_sau_cccd)
+                }
+                lifecycleScope.launch {
+                    var firstJob: Job? = null
+                    var secondJob: Job? = null
+                    val listImage = arrayListOf<File>()
+                    firstJob = async(Dispatchers.IO) {
+
+                        try {
+                            val f = Glide.with(ICheckApplication.getInstance())
+                                    .asFile()
+                                    .timeout(30000)
+                                    .load(kycDocuments?.firstOrNull()?.document?.firstOrNull().toString())
+                                    .submit()
+                                    .get()
+                            listImage.add(f)
+                        } catch (e: Exception) {
+
+                        }
+                    }
+                    secondJob = async(Dispatchers.IO) {
+                        try {
+                            val b = Glide.with(ICheckApplication.getInstance())
+                                    .asFile()
+                                    .timeout(30000)
+                                    .load(kycDocuments?.get(1)?.document?.firstOrNull().toString())
+                                    .submit()
+                                    .get()
+                            listImage.add(b)
+
+                        } catch (e: Exception) {
+                            logError(e)
+                        }
+                    }
+                    awaitAll(firstJob, secondJob)
+                    if (listImage.firstOrNull() != null) {
+                        setFrontImage(listImage.first())
+                    }
+                    if (listImage.size >= 2) {
+                        setAfterImage(listImage[1])
+                    }
+                    if (viewModel.frontImage != null) {
+                        WidgetUtils.loadImageFile(imgFront, viewModel.frontImage, R.drawable.front_passport, SizeHelper.size4)
+                    } else {
+                        imgFront.setImageResource(R.drawable.front_passport)
+                    }
+
+                    if (viewModel.afterImage != null) {
+                        WidgetUtils.loadImageFile(imgAfter, viewModel.afterImage, R.drawable.after_passport, SizeHelper.size4)
+                    } else {
+                        imgAfter.setImageResource(R.drawable.after_passport)
+                    }
+
+
+                }
+            }
+        })
     }
 
     private fun initView() {
@@ -92,7 +165,7 @@ class VerifyIdentityActivity : BaseActivityMVVM(), View.OnClickListener {
                 }
                 ICMessageEvent.Type.MESSAGE_ERROR -> {
                     DialogHelper.closeLoading(this)
-                    if (it.data !=null && it.data is String) {
+                    if (it.data != null && it.data is String) {
                         showShortError(it.data)
                     }
                 }
@@ -104,7 +177,6 @@ class VerifyIdentityActivity : BaseActivityMVVM(), View.OnClickListener {
                 }
             }
         })
-
     }
 
     override fun onClick(p0: View?) {
