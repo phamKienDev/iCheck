@@ -6,7 +6,7 @@
     android:orientation="horizontal"
     android:gravity="bottom"
     android:rotation="180"
-
+    tools:rotation="0"
     android:layout_height="wrap_content"
     tools:ignore="RtlSymmetry">
 
@@ -382,7 +382,9 @@
 
         <include
             android:id="@+id/layoutImageDetail"
-            layout="@layout/item_image_chat_detail" />
+            layout="@layout/item_image_chat_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTime"
