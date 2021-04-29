@@ -104,8 +104,8 @@ internal class RedemptionHistoryAdapter(callback: IRecyclerViewCallback): Recycl
             data.export_gift_to = obj.campaign?.export_gift_to
 
             if (obj.gift?.type == "ICOIN") {
-                itemView.tvState.visibility = View.INVISIBLE
-                itemView.btnManagerPoint.visibility = View.VISIBLE
+                itemView.tvState.setInvisible()
+                itemView.btnManagerPoint.setVisible()
 
                 itemView.btnManagerPoint.setOnClickListener {
                     LoyaltySdk.openActivity("point_transitions")
@@ -116,7 +116,7 @@ internal class RedemptionHistoryAdapter(callback: IRecyclerViewCallback): Recycl
                 }
 
             } else {
-                itemView.btnManagerPoint.visibility = View.INVISIBLE
+                itemView.btnManagerPoint.setInvisible()
                 itemView.tvState.run {
                     when (obj.winner?.status) {
                         "new" -> {

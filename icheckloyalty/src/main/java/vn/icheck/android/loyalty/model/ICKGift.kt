@@ -3,7 +3,7 @@ package vn.icheck.android.loyalty.model
 import com.google.gson.annotations.Expose
 import java.io.Serializable
 
-class ICKGift: Serializable {
+class ICKGift : Serializable {
     @Expose
     val id: Long? = null
 
@@ -51,4 +51,7 @@ class ICKGift: Serializable {
 
     @Expose
     val created_at: String? = null
+
+    @Expose
+    val voucher: ICKVoucher? = null
 }

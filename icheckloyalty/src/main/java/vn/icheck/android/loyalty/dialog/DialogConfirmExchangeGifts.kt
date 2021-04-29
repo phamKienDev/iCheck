@@ -8,6 +8,7 @@ import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.dialog.base.BaseDialog
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.base.ICMessageEvent
+import vn.icheck.android.loyalty.base.showCustomErrorToast
 import vn.icheck.android.loyalty.dialog.base.DialogHelperGame
 import vn.icheck.android.loyalty.helper.NetworkHelper
 import vn.icheck.android.loyalty.helper.TextHelper
@@ -67,6 +68,9 @@ open class DialogConfirmExchangeGifts(context: Context, val obj: ICKBoxGifts, va
                     intent.putExtra(ConstantsLoyalty.DATA_3, campaignId)
                     context.startActivity(intent)
                 }
+                "VOUCHER" -> {
+                    exchangeGift()
+                }
             }
         }
     }
@@ -96,8 +100,8 @@ open class DialogConfirmExchangeGifts(context: Context, val obj: ICKBoxGifts, va
                             "ICOIN" -> {
                                 DialogHelperGame.dialogExchangeGiftsPointSuccess(context, obj.data?.gift?.icoin, campaignId, R.drawable.bg_gradient_button_orange_yellow)
                             }
-                            "PHONE_CARD" -> {
-                                ToastHelper.showLongWarning(context, "Chưa làm")
+                            "VOUCHER" -> {
+                                showCustomErrorToast(context, "Voucher")
                             }
                             else -> {
                                 ToastHelper.showLongError(context, obj.data?.message)

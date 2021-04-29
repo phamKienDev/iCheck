@@ -63,6 +63,7 @@ import vn.icheck.android.ichecklibs.getDeviceWidth
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.loyalty.helper.ActivityHelper
+import vn.icheck.android.loyalty.sdk.ScanLoyaltyHelper
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.models.ICProductDetail
 import vn.icheck.android.network.models.ICValidStampSocial
@@ -102,6 +103,24 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
             val i = Intent(context, V6ScanditActivity::class.java)
             i.putExtra("scan_only", true)
             context.startActivityForResult(i, requestCode)
+        }
+
+        fun scanOnlyLoyalty(context: FragmentActivity,
+                            type: String,
+                            campaignId: Long,
+                            nameCampaign: String?,
+                            nameShop: String?,
+                            avatarShop: String?,
+                            currentCount: Int?) {
+            val i = Intent(context, V6ScanditActivity::class.java)
+            i.putExtra("loyalty_only", true)
+            i.putExtra("type", type)
+            i.putExtra("campaignId", campaignId)
+            i.putExtra("nameCampaign", nameCampaign)
+            i.putExtra("nameShop", nameShop)
+            i.putExtra("avatarShop", avatarShop)
+            i.putExtra("currentCount", currentCount)
+            context.startActivity(i)
         }
 
         fun scanOnlyChat(context: FragmentActivity, requestCode: Int) {
@@ -240,10 +259,23 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         initCamera()
         resetCamera()
         initDataCaptureView()
+        checkIsLoyalty()
         checkIsReview()
         checkIsScan()
         initViews()
         pushUpHeight()
+    }
+
+    private fun checkIsLoyalty() {
+        if (intent.getBooleanExtra("loyalty_only", false)) {
+            viewModel.scanOnlyLoyalty = true
+            _binding?.btnMyCode.beGone()
+            _binding?.btnQm.beGone()
+            _binding?.imgNmbt.beGone()
+            _binding?.imgSdha.beGone()
+        } else {
+            viewModel.scanOnlyLoyalty = false
+        }
     }
 
     private fun checkIsScan() {
@@ -666,6 +698,54 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
             if (!code.isNullOrEmpty()) {
                 val symbology = barcode.symbology
                 viewModel.codeScan = code
+
+                if (viewModel.scanOnlyLoyalty) {
+
+                    val nc: String = when {
+                        code.contains("https://qcheck-dev.vn/") -> {
+                            code.replace("https://qcheck-dev.vn/", "")
+                        }
+                        code.contains("http://dev.qcheck.vn/") -> {
+                            code.replace("http://dev.qcheck.vn/", "")
+                        }
+                        code.contains("https://dev.qcheck.vn/") -> {
+                            code.replace("https://dev.qcheck.vn/", "")
+                        }
+                        code.contains("https://qcheck.vn/") -> {
+                            code.replace("https://qcheck.vn/", "")
+                        }
+                        code.contains("http://qcheck.vn/") -> {
+                            code.replace("http://qcheck.vn/", "")
+                        }
+                        code.contains("http://qcheck-dev.vn/") -> {
+                            code.replace("http://qcheck-dev.vn/", "")
+                        }
+                        else -> {
+                            code
+                        }
+                    }
+                    if (code == nc) {
+                        showLongError("Đây không phải là tem iCheck vui lòng quét lại!")
+                        resetCamera()
+                    } else {
+                        val type = intent.getStringExtra("type")
+                        val campaignId = intent.getLongExtra("campaignId", -1)
+                        val nameCampaign = intent.getStringExtra("nameCampaign")
+                        val nameShop = intent.getStringExtra("nameShop")
+                        val avatarShop = intent.getStringExtra("avatarShop")
+                        val currentCount = intent.getIntExtra("currentCount", -1)
+
+                        ScanLoyaltyHelper.checkCodeScanLoyalty(this@V6ScanditActivity, type
+                                ?: "", nc, campaignId, nameCampaign, nameShop, avatarShop, currentCount) { stop ->
+                            if (stop) {
+                                offCamera()
+                            } else {
+                                resetCamera()
+                            }
+                        }
+                    }
+                    return@runOnUiThread
+                }
 
                 if (viewModel.scanOnlyChat) {
                     setResult(Activity.RESULT_OK, Intent().apply {
