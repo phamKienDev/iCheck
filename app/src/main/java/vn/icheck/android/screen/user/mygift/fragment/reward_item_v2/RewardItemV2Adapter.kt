@@ -24,7 +24,6 @@ import vn.icheck.android.screen.user.page_details.fragment.page.widget.message.M
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.util.ick.*
 import vn.icheck.android.util.kotlin.ActivityUtils
-import java.net.URL
 
 class RewardItemV2Adapter(private val listenerRecyclerView: IRecyclerViewCallback) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     val listData = mutableListOf<ICItemReward>()

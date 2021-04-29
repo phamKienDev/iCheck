@@ -13,9 +13,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import okhttp3.ResponseBody
 import org.json.JSONObject
-import vn.icheck.android.model.category.CategoryAttributesResponse
-import vn.icheck.android.model.category.CategoryItem
-import vn.icheck.android.model.category.IckCategoryResponse
+import vn.icheck.android.network.model.category.CategoryAttributesResponse
+import vn.icheck.android.network.model.category.CategoryItem
+import vn.icheck.android.network.model.category.IckCategoryResponse
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.models.ICContribute
 import vn.icheck.android.screen.user.contribute_product.source.CategoryDataSource
@@ -185,7 +185,7 @@ class IckContributeProductViewModel @ViewModelInject constructor(
         postSize()
     }
 
-    private fun postSize() {
+    fun postSize() {
         listImages.postValue(arrayListImage)
     }
 
@@ -209,7 +209,7 @@ class IckContributeProductViewModel @ViewModelInject constructor(
 
     fun finalStep(): LiveData<List<WorkInfo>>? {
         for (item in categoryAttributes) {
-            if (item.categoryItem.required != null && item.categoryItem.required) {
+            if (item.categoryItem.required != null && item.categoryItem.required == true) {
                 if (item.categoryItem.type != "image-single" && item.categoryItem.type != "image" && item.values == null) {
                     mException.postValue(Exception("Không bỏ trống ${item.categoryItem.name}"))
                     return null
@@ -313,7 +313,7 @@ class IckContributeProductViewModel @ViewModelInject constructor(
                             }
                         }
                     }
-                } else if (item.categoryItem.required != null && item.categoryItem.required) {
+                } else if (item.categoryItem.required != null && item.categoryItem.required == true) {
                     mException.postValue(Exception("Không bỏ trống ${item.categoryItem.name}"))
                     return@liveData
                 }

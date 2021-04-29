@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.RecyclerView
-import vn.icheck.android.component.ICViewModel
 import vn.icheck.android.databinding.ItemTickReportBinding
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible

@@ -11,7 +11,6 @@ import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.campaign.ListCampaignInteractor
 import vn.icheck.android.network.models.ICCampaign
-import vn.icheck.android.screen.user.home_page.campaign.detail_campagin_v2.fragment.gift_campaign.CampaignModel
 import vn.icheck.android.screen.user.listdistributor.BaseModelList
 
 class WinnerCampaignViewModel : ViewModel() {

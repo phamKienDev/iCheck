@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.databinding.HolderPageHorizontalProductBinding
 import vn.icheck.android.databinding.ItemProductBinding
-import vn.icheck.android.model.page.PageProductViewModel
-import vn.icheck.android.model.page.ProductItem
+import vn.icheck.android.network.model.page.PageProductViewModel
+import vn.icheck.android.network.model.page.ProductItem
 import vn.icheck.android.util.ick.*
 
 class PageHorizontalProductHolder(

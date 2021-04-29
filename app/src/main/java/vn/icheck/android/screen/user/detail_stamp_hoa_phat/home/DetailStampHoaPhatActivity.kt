@@ -16,7 +16,6 @@ import com.google.android.gms.location.LocationServices
 import kotlinx.android.synthetic.main.activity_detail_stamp_hoa_phat.*
 import vn.icheck.android.R
 import vn.icheck.android.WrapContentLinearLayoutManager
-import vn.icheck.android.activities.image.DetailImagesActivity
 import vn.icheck.android.activities.product.product_questions_v1.ProductQuestionsV1Activity
 import vn.icheck.android.activities.product.review_product_v1.ReviewProductV1Activity
 import vn.icheck.android.activities.product.review_v1.EditReviewV1Activity
@@ -34,6 +33,7 @@ import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICCriteria
 import vn.icheck.android.screen.account.home.AccountActivity
+import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.adapter.DetailStampHoaPhatAdapter
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.call_back.SlideHeaderStampHoaPhatListener
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.view_model.DetailStampHoaPhatViewModel
@@ -95,7 +95,7 @@ class DetailStampHoaPhatActivity : BaseActivityMVVM(), SlideHeaderStampHoaPhatLi
     }
 
     private fun setupSwipeLayout() {
-        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.blue), ContextCompat.getColor(this, R.color.blue), ContextCompat.getColor(this, R.color.lightBlue))
+        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
 
         swipeLayout.setOnRefreshListener {
             swipeLayout.isRefreshing = true
@@ -107,11 +107,11 @@ class DetailStampHoaPhatActivity : BaseActivityMVVM(), SlideHeaderStampHoaPhatLi
         viewModel = ViewModelProvider(this).get(DetailStampHoaPhatViewModel::class.java)
 //        qrScanViewModel = ViewModelProvider(this).get(QrScanViewModel::class.java)
 
-        viewModel.getIdSocial.observe(this,{
+        viewModel.getIdSocial.observe(this, {
             PageDetailActivity.start(this, it, Constant.PAGE_ENTERPRISE_TYPE)
         })
 
-        viewModel.successDataMessage.observe(this,{
+        viewModel.successDataMessage.observe(this, {
             showShortSuccess(it)
         })
 
@@ -271,7 +271,7 @@ class DetailStampHoaPhatActivity : BaseActivityMVVM(), SlideHeaderStampHoaPhatLi
     }
 
     override fun itemPagerClick(list: ArrayList<String?>, position: Int) {
-        DetailImagesActivity.start(list, this)
+        DetailMediaActivity.start(this, list)
     }
 
     override fun itemPagerClickToImage(url: String, position: Int) {

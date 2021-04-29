@@ -46,9 +46,9 @@
                     android:paddingTop="@dimen/size_8"
                     android:paddingRight="@dimen/size_45"
                     android:paddingBottom="@dimen/size_8"
-                    android:textColor="@color/collection_product_name"
-                    android:textColorHint="@color/darkGray2"
-                    android:textSize="16sp"
+                    android:textColor="@color/colorNormalText"
+                    android:textColorHint="@color/colorDisableText"
+                    android:textSize="@dimen/font_16"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatImageButton
@@ -71,8 +71,8 @@
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginLeft="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_10"
-                android:textColor="@color/blue"
-                android:textSize="16sp"
+                android:textColor="@color/colorSecondary"
+                android:textSize="@dimen/font_16"
                 app:fontFamily="@font/barlow_semi_bold"
                 tools:text="2,345 Bạn bè" />
 

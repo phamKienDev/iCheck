@@ -8,7 +8,7 @@ import vn.icheck.android.network.models.ICItemReward
 import vn.icheck.android.screen.user.detail_my_reward.holder.HeaderInforRewardHolder
 import vn.icheck.android.screen.user.detail_my_reward.holder.InformationDetailRewardHolder
 import vn.icheck.android.screen.user.detail_my_reward.holder.SupplierRewardHolder
-import vn.icheck.android.screen.user.home_page.home.model.ICHomeItem
+import vn.icheck.android.screen.user.home_page.model.ICHomeItem
 
 class DetailMyRewardAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 

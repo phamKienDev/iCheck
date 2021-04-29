@@ -12,7 +12,7 @@ import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.callback.ItemClickListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.models.ICItemReward
-import vn.icheck.android.screen.user.home_page.my_gift_warehouse.shake_gift.list_box_gift.ListShakeGridBoxActivity
+import vn.icheck.android.screen.user.my_gift_warehouse.shake_gift.list_box_gift.ListShakeGridBoxActivity
 import vn.icheck.android.util.kotlin.ToastUtils
 
 /**

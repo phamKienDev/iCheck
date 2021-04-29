@@ -25,7 +25,7 @@ import retrofit2.http.POST
 import vn.icheck.android.constant.FIREBASE_REGISTER_DEVICE
 //import vn.icheck.android.network.BuildConfig
 import vn.icheck.android.network.base.ICLoginProtocol
-import vn.icheck.android.network.base.ICNetworkManager2
+import vn.icheck.android.network.base.ICNetworkManager
 import vn.icheck.android.network.base.SessionManager
 
 interface FirebaseMessage {
@@ -52,7 +52,7 @@ class FirebaseContainer: ICLoginProtocol {
         get() = auth.uid
 
     init {
-        ICNetworkManager2.registerLogin(this)
+        ICNetworkManager.registerLogin(this)
         addFCMTokenListener()
 
         val firebaseToken = SessionManager.session.firebaseToken

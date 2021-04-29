@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="@dimen/size_4"
-        app:cardElevation="4dp"
+        app:cardElevation="@dimen/size_4"
         app:cardPreventCornerOverlap="false"
         app:cardShadowColorEnd="@color/app_selector_shadow_end"
         app:cardShadowColorStart="@color/elevation_color_card"
@@ -26,7 +26,7 @@
             android:paddingStart="@dimen/size_12"
             android:paddingEnd="@dimen/size_12">
 
-            <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+            <vn.icheck.android.ui.view.TextBarlowSemiBold
                 android:id="@id/tvTitle"
                 android:layout_width="@dimen/size_0"
                 android:layout_height="wrap_content"
@@ -35,18 +35,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/imgImage" />
 
-            <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+            <vn.icheck.android.ui.view.TextBarlowSemiBold
                 android:layout_width="@dimen/size_0"
                 android:layout_height="wrap_content"
                 android:text="@string/so_du_ví"
-                android:textColor="@color/collection_product_name"
-                android:textSize="16sp"
+                android:textColor="@color/colorNormalText"
+                android:textSize="@dimen/font_16"
                 app:layout_constraintBottom_toBottomOf="@id/imgImage"
                 app:layout_constraintEnd_toStartOf="@id/imgImage"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/imgImage" />
 
-            <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+            <vn.icheck.android.ui.view.TextBarlowMedium
                 android:id="@id/imgImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -56,8 +56,8 @@
                 android:gravity="center_vertical"
                 android:text="0 đ"
                 android:textAlignment="gravity"
-                android:textColor="@color/gray_v2"
-                android:textSize="12sp"
+                android:textColor="@color/colorSecondText"
+                android:textSize="@dimen/font_12"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -69,14 +69,14 @@
                 android:background="@color/gray"
                 app:layout_constraintTop_toBottomOf="@id/imgImage" />
 
-            <vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+            <vn.icheck.android.ui.view.TextBarlowMedium
                 android:id="@id/tvMessage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_10"
                 android:text="@string/mo_the_va_kich_hoat_vi_de_thanh_toan_moi_luc_moi_noi"
-                android:textColor="@color/gray_v2"
-                android:textSize="12sp"
+                android:textColor="@color/colorSecondText"
+                android:textSize="@dimen/font_12"
                 app:layout_constraintTop_toBottomOf="@id/viewLine" />
 
             <FrameLayout
@@ -91,7 +91,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvMessage">
 
-                <vn.icheck.android.component.view.text_view.TextViewBarlowSemiBold
+                <vn.icheck.android.ui.view.TextBarlowSemiBold
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -99,7 +99,7 @@
                     android:drawablePadding="@dimen/size_10"
                     android:text="@string/mo_the_ngay"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/font_16" />
             </FrameLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </vn.icheck.android.ui.colorcardview.ColorCardView>

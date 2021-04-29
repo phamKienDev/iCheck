@@ -79,7 +79,7 @@ internal class PointHistoryAllAdapter(callback: IRecyclerViewCallback) : Recycle
             } else {
                 itemView.tvPoint.run {
                     text = TextHelper.formatMoneyPhay(obj.points)
-                    setTextColor(ContextCompat.getColor(context, R.color.red))
+                    setTextColor(ContextCompat.getColor(context, R.color.colorAccentRed))
                 }
 
                 itemView.tvHintSerial.text = "Nội dung:"

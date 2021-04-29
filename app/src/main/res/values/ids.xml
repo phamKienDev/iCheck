@@ -16,6 +16,7 @@
     <item name="txtProblem" type="id" />
     <item name="edtPhone" type="id" />
     <item name="edtEmail" type="id" />
+    <item name="btnFollowGift" type="id" />
     <item name="txtBirthday" type="id" />
     <item name="layoutInputAddress" type="id" />
     <item name="edtAddress" type="id" />
@@ -50,6 +51,7 @@
     <item name="txtContent" type="id" />
     <item name="progressBar" type="id" />
     <item name="btnConfirm" type="id" />
+    <item name="btnJoinCampaign" type="id" />
     <item name="txtLeft" type="id" />
     <item name="txtRight" type="id" />
     <item name="imgAvatar" type="id" />

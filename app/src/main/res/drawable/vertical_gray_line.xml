@@ -7,10 +7,10 @@
         <shape>
             <solid android:color="@android:color/transparent" />
             <stroke
-                android:width="7dp"
+                android:width="@dimen/size_7"
                 android:color="#D8D8D8"
-                android:dashWidth="4dp"
-                android:dashGap="4dp" />
+                android:dashWidth="@dimen/size_4"
+                android:dashGap="@dimen/size_4" />
         </shape>
     </item>
 </layer-list>

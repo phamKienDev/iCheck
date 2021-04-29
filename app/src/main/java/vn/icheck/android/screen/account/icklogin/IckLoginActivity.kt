@@ -12,15 +12,11 @@ import androidx.activity.viewModels
 import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
-import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_ick_login.*
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseCoroutineActivity
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
@@ -33,7 +29,7 @@ import vn.icheck.android.helper.CartHelper
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.tracking.insider.InsiderHelper
 import vn.icheck.android.helper.ShareSessionToModule
-import vn.icheck.android.network.base.ICNetworkManager2
+import vn.icheck.android.network.base.ICNetworkManager
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.*
 import vn.icheck.android.util.toICBaseResponse
@@ -90,7 +86,7 @@ class IckLoginActivity : BaseCoroutineActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ick_login)
-        nav_host_fragment.view?.background = ResourcesCompat.getDrawable(resources, R.drawable.ick_bg_top_corner_20, null)
+        nav_host_fragment_login.view?.background = ResourcesCompat.getDrawable(resources, R.drawable.ick_bg_top_corner_20, null)
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this)
         }
@@ -132,9 +128,9 @@ class IckLoginActivity : BaseCoroutineActivity() {
             if (intent.getIntExtra("requestCode", 0) == 1) {
                 btn_login.setTextColor(Color.parseColor("#80ffffff"))
                 btn_register.setTextColor(Color.WHITE)
-                findNavController(R.id.nav_host_fragment).popBackStack(R.id.ickLoginFragment, false)
+                findNavController(R.id.nav_host_fragment_login).popBackStack(R.id.ickLoginFragment, false)
                 val action = IckLoginFragmentDirections.actionIckLoginFragmentToIckLoginOtpFragment(REGISTER)
-                findNavController(R.id.nav_host_fragment).navigate(action)
+                findNavController(R.id.nav_host_fragment_login).navigate(action)
                 btn_login.setTextSize(16F)
                 btn_register.setTextSize(18F)
                 ickLoginViewModel.state = 2
@@ -214,7 +210,7 @@ class IckLoginActivity : BaseCoroutineActivity() {
         btn_register.setTextSize(16F)
         btn_login.setTextColor(Color.WHITE)
         btn_register.setTextColor(Color.parseColor("#80ffffff"))
-        findNavController(R.id.nav_host_fragment).popBackStack(R.id.ickLoginFragment, false)
+        findNavController(R.id.nav_host_fragment_login).popBackStack(R.id.ickLoginFragment, false)
         forceHideKeyboard()
         ickLoginViewModel.stateRegister.postValue(1)
         ickLoginViewModel.state = 1
@@ -229,9 +225,9 @@ class IckLoginActivity : BaseCoroutineActivity() {
             btn_register.setTextColor(Color.WHITE)
             btn_login.setTextSize(16F)
             btn_register.setTextSize(18F)
-            findNavController(R.id.nav_host_fragment).popBackStack(R.id.ickLoginFragment, false)
+            findNavController(R.id.nav_host_fragment_login).popBackStack(R.id.ickLoginFragment, false)
             val action = IckLoginFragmentDirections.actionIckLoginFragmentToIckLoginOtpFragment(REGISTER)
-            findNavController(R.id.nav_host_fragment).navigate(action)
+            findNavController(R.id.nav_host_fragment_login).navigate(action)
             forceHideKeyboard()
             ickLoginViewModel.onAction = false
         }
@@ -244,7 +240,7 @@ class IckLoginActivity : BaseCoroutineActivity() {
             if (event.type == ICMessageEvent.Type.ON_LOG_IN) {
                 setResult(Activity.RESULT_OK)
                 overridePendingTransition(R.anim.none, R.anim.left_to_right_pop_exit)
-                ICNetworkManager2.getLoginProtocol?.onLogin()
+                ICNetworkManager.getLoginProtocol?.onLogin()
                 finish()
             }
         } catch (e: Exception) {

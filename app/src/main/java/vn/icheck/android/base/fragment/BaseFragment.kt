@@ -1,7 +1,6 @@
 package vn.icheck.android.base.fragment
 
 import android.app.Activity
-import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -12,10 +11,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
-import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
+import vn.icheck.android.base.dialog.reward_login.RewardLoginCallback
+import vn.icheck.android.base.dialog.reward_login.RewardLoginDialogV2
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.network.base.*
-import vn.icheck.android.screen.account.home.AccountActivity
+import vn.icheck.android.network.base.ICRequireLogin
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.util.FragmentUtils
 import vn.icheck.android.util.KeyboardUtils
@@ -24,7 +23,7 @@ import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.io.Serializable
 
-abstract class BaseFragment<P : BaseFragmentPresenter> : Fragment(), BaseFragmentView, ICRequireLogin, ICNetworkCallback {
+abstract class BaseFragment<P : BaseFragmentPresenter> : Fragment(), BaseFragmentView, ICRequireLogin {
     val presenter = getPresenter
 
     private val requestLogin = 101
@@ -60,13 +59,13 @@ abstract class BaseFragment<P : BaseFragmentPresenter> : Fragment(), BaseFragmen
     override fun onResume() {
         super.onResume()
 
-        ICNetworkManager.getInstance().registerCallback(ICNetworkClient.networkCallbackManager, this)
+//        ICNetworkManager.getInstance().registerCallback(ICNetworkClient.networkCallbackManager, this)
     }
 
     override fun onPause() {
         super.onPause()
 
-        ICNetworkManager.getInstance().unregisterCallback(ICNetworkClient.networkCallbackManager)
+//        ICNetworkManager.getInstance().unregisterCallback(ICNetworkClient.networkCallbackManager)
     }
 
     override fun onDestroy() {
@@ -111,19 +110,6 @@ abstract class BaseFragment<P : BaseFragmentPresenter> : Fragment(), BaseFragmen
      * */
 
 
-    override fun forceRequiredLogin() {
-
-    }
-
-    override fun refreshToken() {
-
-    }
-
-    override fun onNetworkError(throwable: Throwable) {
-
-    }
-
-
     /**
      * ICRequireLogin
      * */
@@ -133,8 +119,8 @@ abstract class BaseFragment<P : BaseFragmentPresenter> : Fragment(), BaseFragmen
         }
         requestRequireLogin = requestCode
 
-        context?.let {
-            object : RewardLoginDialog(it) {
+        activity?.supportFragmentManager?.let {
+            RewardLoginDialogV2.show(it, object : RewardLoginCallback {
                 override fun onLogin() {
                     startActivityForResult<IckLoginActivity>(requestLogin)
                 }
@@ -146,7 +132,7 @@ abstract class BaseFragment<P : BaseFragmentPresenter> : Fragment(), BaseFragmen
                 override fun onDismiss() {
                     onRequireLoginCancel()
                 }
-            }.show()
+            })
         }
     }
 

@@ -33,7 +33,7 @@
 
             <LinearLayout
                 android:id="@id/linearLayout"
-                android:layout_width="109dp"
+                android:layout_width="@dimen/size_109"
                 android:layout_height="@dimen/size_25"
                 android:gravity="center"
                 android:orientation="vertical"
@@ -42,7 +42,7 @@
                 app:layout_constraintTop_toTopOf="@+id/imgBanner">
 
                 <View
-                    android:layout_width="80dp"
+                    android:layout_width="@dimen/size_80"
                     android:layout_height="@dimen/size_10"
                     android:background="@color/placeholder_bg" />
             </LinearLayout>
@@ -81,7 +81,7 @@
 
             <View
                 android:id="@+id/tv1"
-                android:layout_width="80dp"
+                android:layout_width="@dimen/size_80"
                 android:layout_height="@dimen/size_14"
                 android:layout_marginStart="@dimen/size_8"
                 android:layout_marginLeft="@dimen/size_8"

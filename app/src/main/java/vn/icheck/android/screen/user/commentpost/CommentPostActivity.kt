@@ -53,7 +53,7 @@ import vn.icheck.android.network.models.ICMedia
 import vn.icheck.android.network.models.ICPost
 import vn.icheck.android.network.models.chat.Stickers
 import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
-import vn.icheck.android.screen.user.editcomment.EditCommentActivity
+import vn.icheck.android.screen.user.edit_comment.EditCommentActivity
 import vn.icheck.android.util.KeyboardUtils
 import vn.icheck.android.util.ick.*
 import vn.icheck.android.util.kotlin.ActivityUtils
@@ -229,7 +229,7 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
     }
 
     private fun setUpSwipeLayout() {
-        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.blue), ContextCompat.getColor(this, R.color.lightBlue), ContextCompat.getColor(this, R.color.lightBlue))
+        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary), ContextCompat.getColor(this, R.color.colorPrimary))
         swipeLayout.isNestedScrollingEnabled = false
         swipeLayout.setOnRefreshListener {
             viewModel.getData()
@@ -488,7 +488,7 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
 
         imgCamera.onDelayClick({
             if (PermissionHelper.checkPermission(this, arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE), requestTakePicture)) {
-                TakeMediaDialog.show(supportFragmentManager,this,takeMediaListener)
+                TakeMediaDialog.show(supportFragmentManager, this, takeMediaListener, isVideo = true)
             }
         }, 2000)
 

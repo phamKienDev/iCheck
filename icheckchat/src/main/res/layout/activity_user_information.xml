@@ -36,7 +36,7 @@
                 android:background="@drawable/ic_bg_avatar_page"
                 android:layout_gravity="center"
                 android:layout_marginTop="25dp"
-                tools:src="@color/lightBlue" />
+                tools:src="@color/colorPrimary" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvNameUser"
@@ -132,7 +132,7 @@
                 android:paddingEnd="12dp"
                 android:paddingBottom="14dp"
                 android:text="@string/xoa_cuoc_tro_chuyen"
-                android:textColor="@color/red" />
+                android:textColor="@color/colorAccentRed" />
 
             <LinearLayout
                 android:id="@+id/layoutImage"
@@ -152,7 +152,7 @@
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
                     android:text="@string/thu_vien_anh"
-                    android:textColor="@color/blue" />
+                    android:textColor="@color/colorSecondary" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"

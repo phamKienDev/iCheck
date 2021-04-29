@@ -83,7 +83,7 @@ class ListProductCategoryActivity : BaseActivity<ListProductCategoryPresenter>()
     }
 
     private fun setupSwipeLayout() {
-        swipe.setColorSchemeColors(ContextCompat.getColor(this, R.color.blue), ContextCompat.getColor(this, R.color.blue), ContextCompat.getColor(this, R.color.lightBlue))
+        swipe.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
 
         swipe.setOnRefreshListener {
             adapter.disableLoadMore()

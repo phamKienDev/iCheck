@@ -99,7 +99,7 @@ class DistributorAdapter(val listData: MutableList<ICPage>, val url: String) : R
             }
 
 //            if (obj.verified == true) {
-                itemView.findViewById<View>(R.id.viewBackground).setBackgroundResource(R.color.lightBlue)
+                itemView.findViewById<View>(R.id.viewBackground).setBackgroundResource(R.color.colorPrimary)
                 itemView.findViewById<AppCompatImageView>(R.id.imgDetail).setImageResource(R.drawable.ic_arrow_right_white_bg_blue_28px)
 //            } else {
 //                itemView.findViewById<View>(R.id.viewBackground).setBackgroundResource(R.color.darkGray2)

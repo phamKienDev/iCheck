@@ -21,14 +21,14 @@
         android:id="@id/btnCancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="@dimen/size_64"
         android:background="?android:attr/selectableItemBackground"
         android:fontFamily="@font/barlow_semi_bold"
         android:includeFontPadding="false"
         android:padding="@dimen/size_12"
         android:text="@string/huy"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,14 +36,14 @@
         android:id="@id/btnDone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="@dimen/size_64"
         android:background="?android:attr/selectableItemBackground"
         android:fontFamily="@font/barlow_semi_bold"
         android:includeFontPadding="false"
         android:padding="@dimen/size_12"
         android:text="@string/xong"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -75,7 +75,7 @@
             android:includeFontPadding="false"
             android:text="@string/crop_image_message"
             android:textColor="@color/white"
-            android:textSize="14sp" />
+            android:textSize="@dimen/font_14" />
     </LinearLayout>
 
     <FrameLayout

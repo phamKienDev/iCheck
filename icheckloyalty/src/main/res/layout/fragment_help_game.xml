@@ -40,7 +40,7 @@
         android:fontFamily="@font/roboto_medium"
         android:gravity="center"
         android:text="Thông tin chương trình"
-        android:textColor="@color/blue"
+        android:textColor="@color/colorSecondary"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/imgBack"
         app:layout_constraintEnd_toStartOf="@+id/appCompatImageButton"

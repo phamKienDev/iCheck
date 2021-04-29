@@ -36,8 +36,8 @@ import vn.icheck.android.databinding.FragmentOtpBinding
 import vn.icheck.android.helper.CartHelper
 import vn.icheck.android.tracking.insider.InsiderHelper
 import vn.icheck.android.helper.ShareSessionToModule
-import vn.icheck.android.model.icklogin.ConfirmOtpResponse
-import vn.icheck.android.model.icklogin.IckUserInfoData
+import vn.icheck.android.network.model.icklogin.ConfirmOtpResponse
+import vn.icheck.android.network.model.icklogin.IckUserInfoData
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICSessionData
 import vn.icheck.android.screen.account.icklogin.FORGOT_PW
@@ -251,9 +251,9 @@ class IckOtpFragment : Fragment() {
                         it.data?.token?.let { token ->
                             ickLoginViewModel.getUserInfo().observe(viewLifecycleOwner, { res ->
                                 res?.data?.let { userInfoRes ->
-                                    setData(userInfoRes, token, it.data?.firebaseToken)
+                                    setData(userInfoRes, token, it.data?.firebaseToken.toString())
 
-                                    if (it.data.firstLogin == true) {
+                                    if (it.data?.firstLogin == true) {
                                         val action = IckOtpFragmentDirections.actionIckOtpFragmentToIckFacebookUserInfoFragment(args.phone, args.userName, args.userAvatar)
                                         findNavController().navigate(action)
                                     } else {
@@ -329,7 +329,7 @@ class IckOtpFragment : Fragment() {
                         it.data?.token?.let { token ->
                             ickLoginViewModel.getUserInfo().observe(viewLifecycleOwner) { res ->
                                 res?.data?.let { userInfoRes ->
-                                    setData(userInfoRes, token, it.data.firebaseToken)
+                                    setData(userInfoRes, token, it.data?.firebaseToken.toString())
                                     if (it.data?.responseCode == "U3046") {
                                         val action = IckOtpFragmentDirections.actionIckOtpFragmentToIckFacebookUserInfoFragment(args.phone, args.userName, args.userAvatar)
                                         findNavController().navigate(action)

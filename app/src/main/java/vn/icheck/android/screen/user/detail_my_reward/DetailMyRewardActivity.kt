@@ -7,6 +7,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.text.Html
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -149,11 +150,11 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                     binding.tvRefuse simpleText "Số serial"
                     binding.tvMathecao.beVisible()
                     binding.tvState.beVisible()
-                    binding.tvState.setTextColor(Color.parseColor("#85C440"))
+                    binding.tvState.setTextColor(ContextCompat.getColor(this, R.color.colorAccentGreen))
                     binding.tvState simpleText data.dataRps?.pin
                     binding.tvRefuseDes simpleText data.dataRps?.serial
                     binding.tvState.setTextSize(14f)
-                    binding.tvRefuseDes.setTextColor(Color.parseColor("#85C440"))
+                    binding.tvRefuseDes.setTextColor(ContextCompat.getColor(this, R.color.colorAccentGreen))
                     binding.tvTime simpleText "Hạn sử dụng"
                     binding.tvTimeDes simpleText data.dataRps?.expiredDate?.getDayTime()
                     if (data.usingState == 1) {
@@ -319,7 +320,7 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                     resetTvWidth()
                     binding.tvMathecao.beVisible()
                     binding.tvMathecao simpleText "Giao quà thành công"
-                    binding.tvMathecao.setTextColor(Color.parseColor("#85C440"))
+                    binding.tvMathecao.setTextColor(ContextCompat.getColor(this, R.color.colorAccentGreen))
                     binding.tvMathecao.typeface = Typeface.createFromAsset(assets, "font/barlow_semi_bold.ttf")
                     binding.layoutBottom.beGone()
                 }
@@ -337,7 +338,7 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                 resetTvWidth()
                 binding.tvMathecao.beVisible()
                 binding.tvMathecao simpleText "Bạn đã từ chối nhận quà này"
-                binding.tvMathecao.setTextColor(Color.parseColor("#FF0000"))
+                binding.tvMathecao.setTextColor(ContextCompat.getColor(this, R.color.colorAccentRed))
                 binding.tvMathecao.typeface = Typeface.createFromAsset(assets, "font/barlow_semi_bold.ttf")
                 binding.layoutBottom.beGone()
             }
@@ -350,7 +351,7 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                 resetTvWidth()
                 binding.tvMathecao.beVisible()
                 binding.tvMathecao simpleText "Giao quà thành công"
-                binding.tvMathecao.setTextColor(Color.parseColor("#85C440"))
+                binding.tvMathecao.setTextColor(ContextCompat.getColor(this, R.color.colorAccentGreen))
                 binding.tvMathecao.typeface = Typeface.createFromAsset(assets, "font/barlow_semi_bold.ttf")
                 binding.layoutBottom.beGone()
             }

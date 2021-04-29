@@ -17,13 +17,13 @@
             android:id="@+id/tvOrderId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_10"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:includeFontPadding="false"
-            android:textColor="@color/collection_product_name"
-            android:textSize="14sp"
+            android:textColor="@color/colorNormalText"
+            android:textSize="@dimen/font_14"
             app:drawableEndCompat="@drawable/ic_mission_gift_24dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -33,11 +33,11 @@
             android:id="@+id/tvTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="@dimen/size_3"
             android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
-            android:textColor="@color/fast_survey_gray"
-            android:textSize="12sp"
+            android:textColor="@color/colorSecondText"
+            android:textSize="@dimen/font_12"
             app:layout_constraintStart_toStartOf="@id/tvOrderId"
             app:layout_constraintTop_toBottomOf="@id/tvOrderId"
             tools:text="Ngày tạo đơn: 12:43, 14/02/2020" />
@@ -46,14 +46,14 @@
             android:id="@+id/tvCancelOrder"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="@dimen/size_3"
             android:layout_marginEnd="@dimen/size_12"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:includeFontPadding="false"
             android:text="@string/huy_don"
-            android:textColor="@color/lightBlue"
-            android:textSize="14sp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toBottomOf="@id/tvTime"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/tvOrderId" />
@@ -93,7 +93,7 @@
             android:layout_marginTop="@dimen/size_5"
             android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
-            android:textColor="@color/lightBlue"
+            android:textColor="@color/colorPrimary"
             tools:text="4 sản phẩm khác" />
     </LinearLayout>
 
@@ -106,7 +106,7 @@
 
         <TextView
             android:id="@+id/tvError"
-            android:layout_width="130dp"
+            android:layout_width="@dimen/size_130"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_12"
             android:background="@drawable/bg_corners_4_light_blue_no_solid"
@@ -116,7 +116,7 @@
             android:paddingBottom="@dimen/size_8"
             android:text="@string/bao_loi"
             android:textColor="@color/light_blue"
-            android:textSize="16sp" />
+            android:textSize="@dimen/font_16" />
 
         <TextView
             android:id="@+id/tvConfirm"
@@ -132,7 +132,7 @@
             android:paddingBottom="@dimen/size_8"
             android:text="@string/xac_nhan_da_nhan_hang"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textSize="@dimen/font_16" />
     </LinearLayout>
 
 </LinearLayout>

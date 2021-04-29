@@ -41,9 +41,9 @@
             android:gravity="center_vertical"
             android:includeFontPadding="false"
             android:singleLine="true"
-            android:textColor="@color/blue"
+            android:textColor="@color/colorSecondary"
             android:drawablePadding="@dimen/size_8"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             tools:text="Công ty Cổ phần ViviDa" />
     </LinearLayout>
 
@@ -55,8 +55,8 @@
         android:ellipsize="end"
         android:fontFamily="@font/barlow_medium"
         android:singleLine="true"
-        android:textColor="@color/gray_v2"
-        android:textSize="@dimen/font_size_4"
+        android:textColor="@color/colorSecondText"
+        android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
         app:layout_constraintEnd_toStartOf="@+id/imgDetail"
         app:layout_constraintStart_toStartOf="@id/linearLayout"
@@ -97,7 +97,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvPhone"
             style="@style/style_text_barlow_page"
-            android:textColor="@color/lightBlue"
+            android:textColor="@color/colorPrimary"
             android:layout_width="wrap_content"
             tools:text="0325.332.201" />
 
@@ -107,14 +107,14 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/barlow_regular"
             android:gravity="center_vertical"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="@dimen/size_12"
             android:drawableStart="@drawable/ic_list_blue_12px"
             android:visibility="visible"
-            android:drawablePadding="2dp"
+            android:drawablePadding="@dimen/size_2"
             android:textStyle="italic"
             android:includeFontPadding="false"
             android:textColor="#B4B4B4"
-            android:textSize="@dimen/font_size_4"
+            android:textSize="@dimen/font_14"
             android:text="Số điện thoại đang cập nhật"
             android:drawableLeft="@drawable/ic_list_blue_12px" />
 
@@ -136,11 +136,11 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_list_blue_12px"
                 android:drawableLeft="@drawable/ic_list_blue_12px"
-                android:drawablePadding="2dp"
+                android:drawablePadding="@dimen/size_2"
                 android:fontFamily="@font/barlow_medium"
                 android:includeFontPadding="false"
                 android:textColor="@color/darkGray1"
-                android:textSize="@dimen/font_size_4"
+                android:textSize="@dimen/font_14"
                 tools:text="MST: 5822948" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -153,7 +153,7 @@
                 android:textStyle="italic"
                 android:includeFontPadding="false"
                 android:textColor="#B4B4B4"
-                android:textSize="@dimen/font_size_4"
+                android:textSize="@dimen/font_14"
                 android:text="Đang cập nhật"/>
         </LinearLayout>
     </LinearLayout>

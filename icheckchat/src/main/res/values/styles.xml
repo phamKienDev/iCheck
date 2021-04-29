@@ -4,7 +4,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorPrimary</item>
     </style>
 
     <style name="BottomSheetDialogAnimation">
@@ -28,6 +28,6 @@
     <style name="AppTheme_Black" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/black_21</item>
         <item name="colorPrimaryDark">@color/black_21</item>
-        <item name="colorAccent">@color/lightBlue</item>
+        <item name="colorAccent">@color/colorPrimary</item>
     </style>
 </resources>

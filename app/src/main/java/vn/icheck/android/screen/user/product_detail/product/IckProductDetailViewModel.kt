@@ -3,14 +3,12 @@ package vn.icheck.android.screen.user.product_detail.product
 import android.content.Intent
 import android.os.Handler
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.util.Util
 import com.google.gson.JsonObject
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withTimeoutOrNull
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
@@ -43,7 +41,7 @@ import vn.icheck.android.component.product_review.submit_review.SubmitReviewMode
 import vn.icheck.android.component.shopvariant.product_detail.ShopProductModel
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
-import vn.icheck.android.model.category.CategoryAttributesItem
+import vn.icheck.android.network.model.category.CategoryAttributesItem
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.ads.AdsRepository
 import vn.icheck.android.network.feature.post.PostInteractor
@@ -56,7 +54,7 @@ import vn.icheck.android.network.models.product_detail.ICBasicInforProduct
 import vn.icheck.android.network.models.product_detail.ICDataProductDetail
 import vn.icheck.android.network.models.product_detail.ICManager
 import vn.icheck.android.network.util.JsonHelper
-import vn.icheck.android.screen.user.home_page.home.model.ICListHomeItem
+import vn.icheck.android.screen.user.home_page.model.ICListHomeItem
 import vn.icheck.android.screen.user.product_detail.product.model.IckReviewSummaryModel
 import vn.icheck.android.util.kotlin.HideWebUtils
 
@@ -662,15 +660,15 @@ class IckProductDetailViewModel : BaseViewModel() {
             layout.viewType = ICViewTypes.ENTERPRISE_TYPE
             layout.data = if (verifyProduct) {
                 if (owner!!.verified == true) {
-                    EnterpriseModelV2(owner!!, R.drawable.ic_verified_24px, R.color.lightBlue)
+                    EnterpriseModelV2(owner!!, R.drawable.ic_verified_24px, R.color.colorPrimary)
                 } else {
-                    EnterpriseModelV2(owner!!, null, R.color.lightBlue)
+                    EnterpriseModelV2(owner!!, null, R.color.colorPrimary)
                 }
             } else {
                 if (owner!!.verified == true) {
-                    EnterpriseModelV2(owner!!, null, R.color.lightBlue)
+                    EnterpriseModelV2(owner!!, null, R.color.colorPrimary)
                 } else {
-                    EnterpriseModelV2(owner!!, R.drawable.ic_not_verified_24px, R.color.darkGray2)
+                    EnterpriseModelV2(owner!!, R.drawable.ic_not_verified_24px, R.color.colorDisableText)
                 }
             }
 
@@ -684,7 +682,7 @@ class IckProductDetailViewModel : BaseViewModel() {
             if (productDetail?.unverifiedOwner != null) {
                 val newLayout = ICLayout()
                 newLayout.viewType = ICViewTypes.ENTERPRISE_TYPE
-                newLayout.data = EnterpriseModelV2(productDetail.unverifiedOwner, R.drawable.ic_not_verified_24px, R.color.darkGray2)
+                newLayout.data = EnterpriseModelV2(productDetail.unverifiedOwner, R.drawable.ic_not_verified_24px, R.color.colorDisableText)
                 onAddLayout.value = newLayout
             }
         }
@@ -845,9 +843,9 @@ class IckProductDetailViewModel : BaseViewModel() {
 
             productRepository.getListReview(layout.request.url!!, object : ICNewApiListener<ICResponse<ICListResponse<ICPost>>> {
                 override fun onSuccess(obj: ICResponse<ICListResponse<ICPost>>) {
-                    val count = reviewSummaryData?.ratingCount?.toInt() ?: obj.data?.rows!!.size
+                    val count = obj.data?.count ?: reviewSummaryData?.ratingCount?.toInt()
                     if (!obj.data?.rows.isNullOrEmpty()) {
-                        layout.data = ProductListReviewModel(obj.data?.rows!!, count, productID)
+                        layout.data = ProductListReviewModel(obj.data?.rows!!, count?:1, productID)
                         onUpdateLayout.value = layout
                     } else {
                         checkTotalError(layout)

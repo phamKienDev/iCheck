@@ -10,7 +10,7 @@
                 android:width="1.5dp"
                 android:color="#d8d8d8"
                 android:dashWidth="1.5dp"
-                android:dashGap="5dp" />
+                android:dashGap="@dimen/size_5" />
         </shape>
     </item>
 </layer-list>
@@ -21,8 +21,8 @@
     <!--    android:shape="line">-->
 
     <!--    <stroke-->
-    <!--        android:width="7dp"-->
-    <!--        android:color="#00BAF2"-->
-    <!--        android:dashWidth="4dp"-->
-    <!--        android:dashGap="4dp" />-->
+    <!--        android:width="@dimen/size_7"-->
+    <!--        android:color="@color/colorAccentBlue"-->
+    <!--        android:dashWidth="@dimen/size_4"-->
+    <!--        android:dashGap="@dimen/size_4" />-->
     <!--</shape>-->

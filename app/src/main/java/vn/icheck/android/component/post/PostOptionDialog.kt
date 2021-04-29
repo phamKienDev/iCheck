@@ -281,7 +281,7 @@ abstract class PostOptionDialog(context: Context, val post: ICPost) : BaseBottom
 
         dialog.layoutDelete.setOnClickListener {
             dialog.dismiss()
-            DialogHelper.showConfirm(dialog.context, "Bạn chắc chắn muốn xóa <br /> bài viết này?", null, "Để sau", "Đồng ý", true, null, R.color.red, object : ConfirmDialogListener {
+            DialogHelper.showConfirm(dialog.context, "Bạn chắc chắn muốn xóa <br /> bài viết này?", null, "Để sau", "Đồng ý", true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
                 override fun onDisagree() {
 
                 }

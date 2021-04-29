@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.databinding.ItemProductBinding
-import vn.icheck.android.model.page.ProductItem
+import vn.icheck.android.network.model.page.ProductItem
 
 class ProductItemHolder(val binding:ItemProductBinding):RecyclerView.ViewHolder(binding.root) {
 

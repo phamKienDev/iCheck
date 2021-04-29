@@ -82,7 +82,7 @@ class ProductNotVerifiedHolder(parent: ViewGroup) : BaseViewHolder<ProductNotVer
                         ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
                         Color.WHITE,
                         14f).also {
-                    it.setBackgroundColor(ContextCompat.getColor(context, R.color.red))
+                    it.setBackgroundColor(ContextCompat.getColor(context, R.color.colorAccentRed))
                     it.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_group_error_card, 0, 0, 0)
                 }.also {
                     it.setPadding(SizeHelper.size12, SizeHelper.size10, SizeHelper.size12, SizeHelper.size10)
@@ -109,7 +109,7 @@ class ProductNotVerifiedHolder(parent: ViewGroup) : BaseViewHolder<ProductNotVer
                                 },
                                 null,
                                 ViewHelper.createTypeface(context, R.font.barlow_medium),
-                                ContextCompat.getColor(context, R.color.lightBlue),
+                                ContextCompat.getColor(context, R.color.colorPrimary),
                                 12f).also {
                             it.compoundDrawablePadding = SizeHelper.size6
                             it.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_circle_phone_blue_18dp, 0, 0, 0)
@@ -139,7 +139,7 @@ class ProductNotVerifiedHolder(parent: ViewGroup) : BaseViewHolder<ProductNotVer
                                 },
                                 null,
                                 ViewHelper.createTypeface(context, R.font.barlow_medium),
-                                ContextCompat.getColor(context, R.color.lightBlue),
+                                ContextCompat.getColor(context, R.color.colorPrimary),
                                 12f).also {
                             it.compoundDrawablePadding = SizeHelper.size6
                             it.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_circle_help_blue_18dp, 0, 0, 0)

@@ -4,11 +4,11 @@
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="12dp"
+    android:layout_margin="@dimen/size_12"
     android:background="@drawable/bg_gray_corner_10"
-    android:elevation="2dp"
+    android:elevation="@dimen/size_2"
     android:orientation="horizontal"
-    android:padding="8dp">
+    android:padding="@dimen/size_8">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -18,7 +18,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="@dimen/size_8"
         android:layout_weight="1"
         android:drawableEnd="@drawable/ic_right_blue_24px"
         android:text="Sản phẩm chưa có đánh giá. Hãy là người đầu tiên để lại nhận xét"

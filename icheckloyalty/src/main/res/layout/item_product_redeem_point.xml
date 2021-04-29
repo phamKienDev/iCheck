@@ -56,7 +56,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_regular"
-        android:textColor="@color/red"
+        android:textColor="@color/colorAccentRed"
         android:layout_marginBottom="@dimen/size_6"
         android:textSize="10sp"
         android:background="@drawable/bg_corner_4_05_no_solid"

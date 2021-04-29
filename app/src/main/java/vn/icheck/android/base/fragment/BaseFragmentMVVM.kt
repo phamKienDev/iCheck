@@ -14,7 +14,9 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
+import vn.icheck.android.base.dialog.reward_login.RewardLoginCallback
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
+import vn.icheck.android.base.dialog.reward_login.RewardLoginDialogV2
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.base.ICRequireLogin
 import vn.icheck.android.screen.account.home.AccountActivity
@@ -32,7 +34,7 @@ abstract class BaseFragmentMVVM : Fragment(), ICRequireLogin {
 
     var job: Job? = null
 
-    inline fun delayAction(crossinline action: () -> Unit, timeout:Long = 200) {
+    inline fun delayAction(crossinline action: () -> Unit, timeout: Long = 200) {
         job = if (job?.isActive == true) {
             job?.cancel()
             lifecycleScope.launch {
@@ -121,8 +123,8 @@ abstract class BaseFragmentMVVM : Fragment(), ICRequireLogin {
         }
         requestRequireLogin = requestCode
 
-        context?.let {
-            object : RewardLoginDialog(it) {
+        activity?.supportFragmentManager?.let {
+            RewardLoginDialogV2.show(it, object : RewardLoginCallback {
                 override fun onLogin() {
                     startActivityForResult<IckLoginActivity>(requestLogin)
                 }
@@ -131,11 +133,10 @@ abstract class BaseFragmentMVVM : Fragment(), ICRequireLogin {
                     startActivityForResult<IckLoginActivity>(Constant.DATA_1, Constant.REGISTER_TYPE, requestLogin)
                 }
 
-
                 override fun onDismiss() {
                     onRequireLoginCancel()
                 }
-            }.show()
+            })
         }
     }
 

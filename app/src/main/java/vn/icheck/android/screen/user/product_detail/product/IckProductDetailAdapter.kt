@@ -65,7 +65,7 @@ import vn.icheck.android.loyalty.helper.CampaignLoyaltyHelper
 import vn.icheck.android.loyalty.holder.LoyaltyViewHolder
 import vn.icheck.android.loyalty.model.ICKLoyalty
 import vn.icheck.android.network.models.*
-import vn.icheck.android.screen.user.home_page.home.model.ICListHomeItem
+import vn.icheck.android.screen.user.home_page.model.ICListHomeItem
 import vn.icheck.android.screen.user.listproductecommerce.holder.ListProductsECommerceHolder
 import vn.icheck.android.screen.user.product_detail.product.model.IckReviewSummaryModel
 import vn.icheck.android.util.KeyboardUtils

@@ -12,7 +12,6 @@ import com.bumptech.glide.Glide
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.RelationshipManager
-import vn.icheck.android.activities.image.DetailImagesActivity
 import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
 import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.component.ICViewModel
@@ -26,14 +25,15 @@ import vn.icheck.android.constant.*
 import vn.icheck.android.databinding.FriendInWallHolderBinding
 import vn.icheck.android.databinding.ItemCreatePostBinding
 import vn.icheck.android.databinding.ItemUserProfileWallBinding
-import vn.icheck.android.model.posts.PostViewModel
-import vn.icheck.android.model.profile.IckUserFriendModel
-import vn.icheck.android.model.profile.IckUserProfileModel
 import vn.icheck.android.network.base.ICListResponse
 import vn.icheck.android.network.base.SessionManager
+import vn.icheck.android.network.model.posts.PostViewModel
+import vn.icheck.android.network.model.profile.IckUserFriendModel
+import vn.icheck.android.network.model.profile.IckUserProfileModel
 import vn.icheck.android.network.models.ICSearchUser
 import vn.icheck.android.network.models.ICUser
 import vn.icheck.android.room.database.AppDatabase
+import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
 import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 import vn.icheck.android.screen.user.wall.ICWallModel
 import vn.icheck.android.screen.user.wall.holder.friend.FriendWallHolder
@@ -159,7 +159,7 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
                 .into(binding.userAvatar)
         if (!data?.avatar.isNullOrEmpty()) {
             binding.userAvatar.setOnClickListener {
-                DetailImagesActivity.start(arrayListOf(data?.avatar), it.context)
+                DetailMediaActivity.start(it.context,arrayListOf(data?.avatar))
             }
         }
 
@@ -187,7 +187,7 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
                     .error(R.drawable.left_menu_bg)
                     .into(binding.imgWallCover)
             binding.imgWallCover.setOnClickListener {
-                DetailImagesActivity.start(arrayListOf(data?.background), it.context)
+                DetailMediaActivity.start(it.context,arrayListOf(data?.background))
             }
         }
 //        binding.imgWallCover.viewTreeObserver.addOnGlobalLayoutListener {
@@ -303,11 +303,20 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
         }
         binding.btnAddFriend.setOnClickListener {
             if (SessionManager.isUserLogged) {
-                binding.btnAddFriend.beGone()
-                binding.tvRequestSent.beVisible()
-                it.context.sendBroadcast(Intent(USER_WALL_BROADCAST).apply {
-                    putExtra(USER_WALL_BROADCAST, USER_WALL_ADD_FRIEND)
-                })
+                if (binding.tvAddFriend.text == "Đồng ý kết bạn") {
+//                    showFriend()
+                    it.context.sendBroadcast(Intent(USER_WALL_BROADCAST).apply {
+                        putExtra(USER_WALL_BROADCAST, USER_WALL_ACCEPT_FRIEND)
+                    })
+                } else {
+                    binding.btnAddFriend.beGone()
+                    binding.tvRequestSent.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,0,0)
+                    binding.tvRequestSent.beVisible()
+                    it.context.sendBroadcast(Intent(USER_WALL_BROADCAST).apply {
+                        putExtra(USER_WALL_BROADCAST, USER_WALL_ADD_FRIEND)
+                    })
+                }
+
             } else {
                 ICheckApplication.currentActivity()?.let { act ->
                     (act as FragmentActivity).showLogin()
@@ -315,10 +324,16 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
             }
         }
         if (ickUserProfileModel.profile.getInvitePrivacy() == Privacy.EVERYONE) {
-            if (RelationshipManager.checkFriendInvitation(ickUserProfileModel.id)) {
+            if (RelationshipManager.checkMyFriendInvitation(ickUserProfileModel.id)) {
                 binding.btnAddFriend.beGone()
                 binding.tvRequestSent.beVisible()
+            }else if (RelationshipManager.checkFriendInvitationMe(ickUserProfileModel.id)) {
+                binding.btnAddFriend.beVisible()
+                binding.tvAddFriend.setText("Đồng ý kết bạn")
+                binding.tvAddFriend.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,0,0)
+                binding.tvRequestSent.beGone()
             } else {
+                binding.tvAddFriend.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_add_white_12px, 0,0,0)
                 binding.btnAddFriend.beVisible()
                 binding.tvRequestSent.beGone()
             }

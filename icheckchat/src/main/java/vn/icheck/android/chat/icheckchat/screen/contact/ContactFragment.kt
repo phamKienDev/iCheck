@@ -5,6 +5,7 @@ import android.content.ContentResolver
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Bundle
 import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -22,9 +23,11 @@ import vn.icheck.android.chat.icheckchat.dialog.ConfirmContactDialog
 import vn.icheck.android.chat.icheckchat.helper.NetworkHelper.LIMIT
 import vn.icheck.android.chat.icheckchat.helper.ShareHelperChat
 import vn.icheck.android.chat.icheckchat.model.MCStatus
+import vn.icheck.android.ichecklibs.Constant
 import java.util.*
 
-class ContactFragment(val isUserLogged: Boolean) : BaseFragmentChat<FragmentContactBinding>(), IRecyclerViewCallback {
+class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerViewCallback {
+    private var isUserLogged: Boolean = false
 
     companion object {
         const val REQUEST_CONTACT = 1
@@ -33,6 +36,16 @@ class ContactFragment(val isUserLogged: Boolean) : BaseFragmentChat<FragmentCont
                 ContactsContract.Contacts.DISPLAY_NAME,
                 ContactsContract.CommonDataKinds.Phone.NUMBER
         )
+
+        fun newInstance(isUserLogged: Boolean): ContactFragment {
+            val fragment = ContactFragment()
+
+            val bundle = Bundle()
+            bundle.putBoolean(Constant.DATA_1, isUserLogged)
+            fragment.arguments = bundle
+
+            return fragment
+        }
     }
 
     private val adapter = ContactAdapter(this)
@@ -49,6 +62,7 @@ class ContactFragment(val isUserLogged: Boolean) : BaseFragmentChat<FragmentCont
 
     override fun onInitView() {
         viewModel = ViewModelProvider(this@ContactFragment)[ContactViewModel::class.java]
+        isUserLogged = arguments?.getBoolean(Constant.DATA_1, false) ?: false
 
         if (isUserLogged) {
             binding.recyclerView.setGone()

@@ -9,7 +9,7 @@ import vn.icheck.android.network.models.product_detail.ICDataProductDetail
 class ProductHeaderModelV2(
         var icBarcodeProduct: ICBasicInforProduct,
         var dataProductDetail: ICDataProductDetail?
-):ICViewModel {
+): ICViewModel {
 
     override fun getTag(): String {
         return ICViewTags.HEADER_COMPONENT

@@ -1,5 +1,6 @@
 package vn.icheck.android.chat.icheckchat.screen
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatCheckedTextView
@@ -14,8 +15,12 @@ import vn.icheck.android.chat.icheckchat.databinding.FragmentChatSocialBinding
 import vn.icheck.android.chat.icheckchat.model.MCMessageEvent
 import vn.icheck.android.chat.icheckchat.screen.contact.ContactFragment
 import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
+import vn.icheck.android.ichecklibs.Constant
 
-class ChatSocialFragment(val callback: ListConversationFragment.Companion.ICountMessageListener, val isUserLogged: Boolean) : BaseFragmentChat<FragmentChatSocialBinding>() {
+class ChatSocialFragment : BaseFragmentChat<FragmentChatSocialBinding>() {
+
+    private var callback: ListConversationFragment.Companion.ICountMessageListener? = null
+    private var isUserLogged: Boolean = false
 
     override fun setBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentChatSocialBinding {
         return FragmentChatSocialBinding.inflate(inflater, container, false)
@@ -33,7 +38,7 @@ class ChatSocialFragment(val callback: ListConversationFragment.Companion.ICount
         binding.toolbar.imgBack.setImageResource(R.drawable.ic_left_menu_blue_24dp_chat)
 
         binding.toolbar.imgBack.setOnClickListener {
-            callback.onClickLeftMenu()
+            callback?.onClickLeftMenu()
         }
 
         binding.toolbar.txtTitle.text = getString(R.string.tin_nhan)
@@ -54,11 +59,18 @@ class ChatSocialFragment(val callback: ListConversationFragment.Companion.ICount
         }
     }
 
+    fun setDataFromHome(callback: ListConversationFragment.Companion.ICountMessageListener, isUserLogged: Boolean) {
+        this.callback = callback
+        this.isUserLogged = isUserLogged
+    }
+
     private fun setupViewPager() {
         val listPage = mutableListOf<Fragment>()
 
-        listPage.add(ListConversationFragment(callback))
-        listPage.add(ContactFragment(isUserLogged))
+        listPage.add(ListConversationFragment().apply {
+            setListener(callback)
+        })
+        listPage.add(ContactFragment.newInstance(isUserLogged))
 
         binding.viewPager.offscreenPageLimit = 2
         binding.viewPager.adapter = ViewPagerAdapterChat(childFragmentManager, listPage)

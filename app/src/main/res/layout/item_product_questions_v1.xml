@@ -48,7 +48,7 @@
             android:fontFamily="sans-serif-medium"
             android:includeFontPadding="false"
             android:textColor="#000000"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal"
             tools:text="Mai Lan Nguyễn" />
 
@@ -62,7 +62,7 @@
             android:fontFamily="sans-serif"
             android:includeFontPadding="false"
             android:textColor="#434343"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal"
             tools:text="Cho em hỏi sản phẩm còn hàng không ạ? Có ship tỉnh không?" />
 
@@ -82,7 +82,7 @@
         android:fontFamily="sans-serif"
         android:includeFontPadding="false"
         android:textColor="#828282"
-        android:textSize="12sp"
+        android:textSize="@dimen/font_12"
         android:textStyle="normal"
         app:layout_constraintStart_toStartOf="@id/container"
         app:layout_constraintTop_toBottomOf="@id/container"
@@ -97,7 +97,7 @@
         android:includeFontPadding="false"
         android:text="Trả lời"
         android:textColor="#3c5a99"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="@id/tvTimeLeft"
         app:layout_constraintStart_toEndOf="@id/tvTimeLeft" />

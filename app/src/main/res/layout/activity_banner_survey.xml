@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingBottom="76dp">
+            android:paddingBottom="@dimen/size_76">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@id/imgBanner"
@@ -66,7 +66,7 @@
                             android:fontFamily="sans-serif-medium"
                             android:includeFontPadding="false"
                             android:textColor="#ffffff"
-                            android:textSize="16sp"
+                            android:textSize="@dimen/font_16"
                             android:textStyle="normal" />
 
                         <androidx.appcompat.widget.AppCompatTextView
@@ -79,7 +79,7 @@
                             android:fontFamily="sans-serif-medium"
                             android:includeFontPadding="false"
                             android:textColor="#ffffff"
-                            android:textSize="16sp"
+                            android:textSize="@dimen/font_16"
                             android:textStyle="normal" />
 
                         <ProgressBar
@@ -88,7 +88,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/size_6"
                             android:layout_marginStart="@dimen/size_12"
-                            android:layout_marginTop="13dp"
+                            android:layout_marginTop="@dimen/size_13"
                             android:layout_marginEnd="@dimen/size_12"
                             android:layout_marginBottom="@dimen/size_12"
                             android:max="100"
@@ -127,7 +127,7 @@
                     android:text="@string/cam_on_ban_da_tham_gia_khao_sat"
                     android:textAlignment="gravity"
                     android:textColor="#35384b"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/font_18"
                     android:textStyle="normal"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -145,7 +145,7 @@
                     android:padding="@dimen/size_12"
                     android:text="@string/text_banner_survey_tip"
                     android:textColor="#828282"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_14"
                     android:textStyle="italic"
                     app:layout_constraintTop_toBottomOf="@id/txtThankYou" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -173,7 +173,7 @@
             android:background="@drawable/btn_white_outline_blue_1_corners_6"
             android:text="@string/trang_chu_title"
             android:textAllCaps="false"
-            android:textColor="@color/blue"
+            android:textColor="@color/colorSecondary"
             android:visibility="gone" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -186,8 +186,8 @@
             android:background="@drawable/btn_white_outline_blue_1_corners_6"
             android:fontFamily="sans-serif-medium"
             android:textAllCaps="false"
-            android:textColor="@color/blue"
-            android:textSize="16sp"
+            android:textColor="@color/colorSecondary"
+            android:textSize="@dimen/font_16"
             android:textStyle="normal"
             tools:text="Câu 1" />
 
@@ -202,7 +202,7 @@
             android:fontFamily="sans-serif-medium"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             android:textStyle="normal"
             tools:text="Tiếp theo" />
     </LinearLayout>

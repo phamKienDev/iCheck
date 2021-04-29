@@ -10,7 +10,7 @@ import vn.icheck.android.R
 import vn.icheck.android.databinding.ItemCartBinding
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
-import vn.icheck.android.model.cart.ItemCartItem
+import vn.icheck.android.network.model.cart.ItemCartItem
 import vn.icheck.android.room.database.AppDatabase
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.util.ick.getLayoutInflater

@@ -138,7 +138,7 @@ class AdsProductVerticalHolder(parent: ViewGroup) : BaseViewHolder<ICProduct>(cr
                     tvRate.layoutParams = rateParams
                     tvRate.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
                     tvRate.typeface = ViewHelper.createTypeface(context, R.font.barlow_medium)
-                    tvRate.setTextColor(ContextCompat.getColor(context, R.color.lightBlue))
+                    tvRate.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary))
                     tvRate.includeFontPadding = false
                     tvRate.isSingleLine = true
                     tvRate.text = "0,0"
@@ -151,7 +151,7 @@ class AdsProductVerticalHolder(parent: ViewGroup) : BaseViewHolder<ICProduct>(cr
                     }
                     tvReviewCount.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
                     tvReviewCount.typeface = ViewHelper.createTypeface(context, R.font.barlow_medium)
-                    tvReviewCount.setTextColor(ContextCompat.getColor(context, R.color.fast_survey_gray))
+                    tvReviewCount.setTextColor(ContextCompat.getColor(context, R.color.colorSecondText))
                     tvReviewCount.includeFontPadding = false
                     tvReviewCount.isSingleLine = true
                 })
@@ -163,7 +163,7 @@ class AdsProductVerticalHolder(parent: ViewGroup) : BaseViewHolder<ICProduct>(cr
                 tvPrice.layoutParams = priceParams
                 tvPrice.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
                 tvPrice.typeface = ViewHelper.createTypeface(context, R.font.barlow_semi_bold)
-                tvPrice.setTextColor(ContextCompat.getColor(context, R.color.lightBlue))
+                tvPrice.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary))
                 tvPrice.includeFontPadding = false
                 tvPrice.isSingleLine = true
                 tvPrice.ellipsize = TextUtils.TruncateAt.END

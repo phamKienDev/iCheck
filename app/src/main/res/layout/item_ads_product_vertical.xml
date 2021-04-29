@@ -13,7 +13,7 @@
         android:id="@id/imgImage"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_0"
-        android:layout_margin="1dp"
+        android:layout_margin="@dimen/size_1"
         android:scaleType="centerCrop"
         app:layout_constraintDimensionRatio="H, 230:180"
         app:layout_constraintTop_toTopOf="parent" />
@@ -77,17 +77,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_8"
-            android:layout_marginTop="6dp"
-            android:layout_marginEnd="8dp"
-            android:drawablePadding="2dp"
             android:ellipsize="middle"
-            android:fontFamily="@font/barlow_semi_bold"
+            android:layout_marginTop="@dimen/size_6"
+            android:layout_marginEnd="@dimen/size_8"
+            tools:drawableEnd="@drawable/ic_verified_16px"
+            android:drawablePadding="@dimen/size_2"
             android:gravity="center|start"
             android:includeFontPadding="false"
             android:maxLines="2"
-            android:textColor="@color/collection_product_name"
-            android:textSize="14sp"
-            tools:drawableEnd="@drawable/ic_verified_16px"
+            android:textColor="@color/colorNormalText"
+            android:textSize="@dimen/font_14"
             tools:text="Adidas Store (tối 2 dòng) Adidas Store (tối 2 dòng) Adidas Store (tối 2 dòng) Adidas Store (tối 2 dòng)" />
 
     </LinearLayout>
@@ -95,15 +94,15 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@id/tvContent"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/size_40"
         android:layout_marginTop="@dimen/size_12"
         android:ellipsize="end"
         android:fontFamily="@font/barlow_medium"
         android:gravity="center|start"
         android:includeFontPadding="false"
         android:maxLines="2"
-        android:textColor="@color/collection_product_name"
-        android:textSize="14sp"
+        android:textColor="@color/colorNormalText"
+        android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="@+id/layoutName"
         app:layout_constraintStart_toStartOf="@+id/imgAvatar"
         app:layout_constraintTop_toBottomOf="@id/imgAvatar"
@@ -112,15 +111,15 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvTenSpUpdating"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/size_40"
         android:layout_marginTop="@dimen/size_12"
         android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center|start"
         android:includeFontPadding="false"
-        android:lineSpacingExtra="4sp"
+        android:lineSpacingExtra="@dimen/font_14"
         android:text="Tên đang cập nhật"
         android:textColor="#b4b4b4"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:textStyle="italic"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@+id/layoutName"
@@ -140,8 +139,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="@dimen/size_10"
+            android:layout_marginBottom="@dimen/size_8"
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -151,7 +150,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:text="Giá đang cập nhật"
                 android:textColor="#b4b4b4"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:textStyle="italic"
                 android:visibility="gone" />
 
@@ -160,7 +159,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textColor="#057dda"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_16"
                 app:fontFamily="@font/barlow_semi_bold"
                 tools:text="2.987.000đ" />
 
@@ -168,12 +167,12 @@
                 android:id="@+id/tvPriceOriginal"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginStart="6dp"
-                android:layout_marginLeft="6dp"
+                android:layout_marginStart="@dimen/size_6"
+                android:layout_marginLeft="@dimen/size_6"
                 android:gravity="bottom"
-                android:lineSpacingExtra="6sp"
+                android:lineSpacingExtra="@dimen/font_6"
                 android:textColor="#b4b4b4"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 app:fontFamily="@font/barlow_medium"
                 tools:text="2.987.000đ" />
         </LinearLayout>
@@ -182,7 +181,7 @@
             android:id="@id/layoutRating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="@dimen/size_10"
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -190,10 +189,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/barlow_medium"
-                android:lineSpacingExtra="2.7sp"
+                android:lineSpacingExtra="@dimen/font_2_7"
                 android:text="Chưa có đánh giá"
                 android:textColor="#b4b4b4"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 android:textStyle="italic"
                 android:visibility="gone" />
 
@@ -203,10 +202,10 @@
                 android:layout_height="match_parent"
                 android:drawableEnd="@drawable/ic_new_star_full_12_px"
                 android:drawableRight="@drawable/ic_new_star_full_12_px"
-                android:drawablePadding="4dp"
+                android:drawablePadding="@dimen/size_4"
                 android:gravity="center"
                 android:textColor="#057dda"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 app:fontFamily="@font/barlow_semi_bold"
                 tools:text="4.5" />
 
@@ -214,15 +213,15 @@
                 android:id="@id/tvRatingText"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
+                android:layout_marginStart="@dimen/size_5"
+                android:layout_marginLeft="@dimen/size_5"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center_vertical"
                 android:includeFontPadding="false"
                 android:paddingStart="@dimen/size_6"
                 android:paddingEnd="@dimen/size_6"
                 android:textColor="@color/light_blue"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 tools:text="4.5 Điểm đánh giá" />
 
         </LinearLayout>
@@ -231,19 +230,17 @@
             android:id="@id/btnAction"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_28"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="@dimen/size_10"
             android:background="@drawable/btn_white_outline_light_blue_1_corners_4"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:includeFontPadding="false"
-            android:lineSpacingExtra="6sp"
-            android:minWidth="80dp"
+            android:lineSpacingExtra="@dimen/font_6"
+            android:minWidth="@dimen/size_80"
             android:paddingStart="@dimen/size_8"
             android:paddingEnd="@dimen/size_8"
             android:textColor="@color/text_color_light_blue"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             tools:text="Theo dõi" />
-
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -26,8 +26,8 @@ import vn.icheck.android.R
 import vn.icheck.android.WrapContentLinearLayoutManager
 import vn.icheck.android.databinding.BottomNationDialogBinding
 import vn.icheck.android.databinding.ItemCityBinding
-import vn.icheck.android.model.location.CityItem
-import vn.icheck.android.model.location.CityResponse
+import vn.icheck.android.network.model.location.CityItem
+import vn.icheck.android.network.model.location.CityResponse
 import vn.icheck.android.util.AfterTextWatcher
 import vn.icheck.android.util.ick.logError
 

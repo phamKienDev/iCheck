@@ -10,12 +10,12 @@ import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.launch
 import vn.icheck.android.tracking.insider.InsiderHelper
 import vn.icheck.android.tracking.teko.TekoHelper
-import vn.icheck.android.model.cart.CartResponse
-import vn.icheck.android.model.cart.ItemCartItem
-import vn.icheck.android.model.cart.PurchasedOrderResponse
-import vn.icheck.android.model.detail_order.DetailOrderResponse
-import vn.icheck.android.model.location.CityItem
-import vn.icheck.android.model.loyalty.ShipAddressResponse
+import vn.icheck.android.network.model.cart.CartResponse
+import vn.icheck.android.network.model.cart.ItemCartItem
+import vn.icheck.android.network.model.cart.PurchasedOrderResponse
+import vn.icheck.android.network.model.detail_order.DetailOrderResponse
+import vn.icheck.android.network.model.location.CityItem
+import vn.icheck.android.network.model.loyalty.ShipAddressResponse
 import vn.icheck.android.network.api.ICKApi
 import vn.icheck.android.network.base.ICListResponse
 import vn.icheck.android.network.base.ICResponse
@@ -208,7 +208,7 @@ class ShipViewModel @ViewModelInject constructor(val ickApi: ICKApi, @Assisted s
         viewModelScope.launch {
             if (!order.orderItem.isNullOrEmpty()) {
                 val arrAsync = arrayListOf<Deferred<Any?>>()
-                for (item in order.orderItem) {
+                for (item in order.orderItem ?: arrayListOf()) {
                     arrAsync.add(async {
                         val requestBody = hashMapOf<String, Any?>()
 //                        val shopHash = hashMapOf<String, Any?>()

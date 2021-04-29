@@ -59,7 +59,7 @@ class HistorySearchActivity : BaseActivityMVVM(), HistoryScanSearchView {
     }
 
     private fun initSwipelayout() {
-        swipe_container.setColorSchemeColors(ContextCompat.getColor(this, R.color.lightBlue), ContextCompat.getColor(this, R.color.lightBlue), ContextCompat.getColor(this, R.color.lightBlue))
+        swipe_container.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorPrimary), ContextCompat.getColor(this, R.color.colorPrimary), ContextCompat.getColor(this, R.color.colorPrimary))
         swipe_container.setOnRefreshListener {
             if (!key.isNullOrEmpty()) {
                 viewModel.getHistoryByKey(key!!, false, true)

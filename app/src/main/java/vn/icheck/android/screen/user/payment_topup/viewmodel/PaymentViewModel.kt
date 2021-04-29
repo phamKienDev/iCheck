@@ -12,7 +12,7 @@ import vn.icheck.android.base.viewmodel.BaseViewModel
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.TextHelper
-import vn.icheck.android.model.ICNameValue
+import vn.icheck.android.network.model.ICNameValue
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.recharge_phone.RechargePhoneInteractor
 import vn.icheck.android.network.feature.setting.SettingRepository

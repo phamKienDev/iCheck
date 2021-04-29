@@ -3,7 +3,6 @@ package vn.icheck.android.component.view
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
-import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.StateListDrawable
 import android.os.Build
@@ -12,7 +11,6 @@ import android.util.TypedValue
 import android.view.Gravity
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.target.CustomTarget
@@ -75,7 +73,7 @@ abstract class BaseButton : AppCompatTextView {
         }
 
         if (typedArray.hasValue(R.styleable.BaseButton_buttonStrokeColor)) {
-            defaultStrokeColor = typedArray.getColor(R.styleable.BaseButton_buttonStrokeColor, ContextCompat.getColor(context, R.color.lightBlue))
+            defaultStrokeColor = typedArray.getColor(R.styleable.BaseButton_buttonStrokeColor, ContextCompat.getColor(context, R.color.colorPrimary))
         }
 
         if (typedArray.hasValue(R.styleable.BaseButton_buttonRadius)) {

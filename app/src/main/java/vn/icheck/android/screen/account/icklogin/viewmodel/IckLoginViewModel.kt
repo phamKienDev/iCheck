@@ -7,10 +7,10 @@ import androidx.work.WorkInfo
 import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.coroutines.launch
 import vn.icheck.android.constant.*
-import vn.icheck.android.model.country.Nation
-import vn.icheck.android.model.firebase.LoginDeviceResponse
-import vn.icheck.android.model.icklogin.*
-import vn.icheck.android.model.location.CityItem
+import vn.icheck.android.network.model.country.Nation
+import vn.icheck.android.network.model.firebase.LoginDeviceResponse
+import vn.icheck.android.network.model.icklogin.*
+import vn.icheck.android.network.model.location.CityItem
 import vn.icheck.android.screen.account.icklogin.REGISTER
 import vn.icheck.android.util.ick.logDebug
 import java.io.File

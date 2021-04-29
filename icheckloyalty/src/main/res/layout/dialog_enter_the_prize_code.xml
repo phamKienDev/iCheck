@@ -62,7 +62,7 @@
             android:fontFamily="@font/roboto_medium"
             android:gravity="center_vertical"
             android:includeFontPadding="false"
-            android:textColor="@color/red"
+            android:textColor="@color/colorAccentRed"
             android:visibility="gone"
             tools:text="Mã không tồn tại. Vui lòng thử lại asdjalskj  djalksjd" />
 

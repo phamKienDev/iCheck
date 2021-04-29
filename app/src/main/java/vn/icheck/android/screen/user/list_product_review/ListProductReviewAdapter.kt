@@ -18,8 +18,6 @@ import vn.icheck.android.component.product_review.my_review.MyReviewModel
 import vn.icheck.android.component.product_review.submit_review.ISubmitReviewListener
 import vn.icheck.android.component.product_review.submit_review.SubmitReviewHolder
 import vn.icheck.android.component.product_review.submit_review.SubmitReviewModel
-import vn.icheck.android.component.space.SpacingHolder
-import vn.icheck.android.component.space.SpacingModel
 import vn.icheck.android.network.models.ICPost
 
 class ListProductReviewAdapter(var callback: IRecyclerViewCallback, private val submitReviewListener: ISubmitReviewListener, private val myReviewListener: IMyReviewListener) : RecyclerViewCustomAdapter<ICViewModel>(callback) {

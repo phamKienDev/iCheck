@@ -21,7 +21,7 @@
             android:gravity="center"
             android:text="@string/thiet_lap"
             android:textColor="#b4b4b4"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
             android:textStyle="normal" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -33,7 +33,7 @@
             android:gravity="center"
             android:text="@string/doi_anh_dai_dien"
             android:textColor="#3fa2f7"
-            android:textSize="18sp"
+            android:textSize="@dimen/font_18"
             android:textStyle="normal" />
 
         <View style="@style/Line_Gray.Horizontal" />
@@ -47,7 +47,7 @@
             android:gravity="center"
             android:text="@string/doi_anh_bia"
             android:textColor="#3fa2f7"
-            android:textSize="18sp"
+            android:textSize="@dimen/font_18"
             android:textStyle="normal" />
 
         <View style="@style/Line_Gray.Horizontal" />
@@ -61,7 +61,7 @@
             android:gravity="center"
             android:text="@string/cap_nhat_thong_tin"
             android:textColor="#3fa2f7"
-            android:textSize="18sp"
+            android:textSize="@dimen/font_18"
             android:textStyle="normal" />
 
         <View style="@style/Line_Gray.Horizontal" />
@@ -77,6 +77,6 @@
         android:gravity="center"
         android:text="@string/dong"
         android:textColor="#3fa2f7"
-        android:textSize="18sp"
+        android:textSize="@dimen/font_18"
         android:textStyle="bold" />
 </LinearLayout>

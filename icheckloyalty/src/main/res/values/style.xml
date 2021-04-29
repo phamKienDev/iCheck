@@ -31,7 +31,7 @@
     <style name="AppTheme_White" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryDark">@color/white</item>
-        <item name="colorAccent">@color/lightBlue</item>
+        <item name="colorAccent">@color/colorPrimary</item>
     </style>
 
     <style name="TextInputLayout_Create_Qr_Code_Error">

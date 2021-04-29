@@ -30,15 +30,15 @@
             android:id="@+id/layoutfollow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="4dp">
+            android:layout_marginStart="@dimen/size_4"
+            android:layout_marginTop="@dimen/size_16"
+            android:layout_marginEnd="@dimen/size_4">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imgUnfollow"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_margin="8dp"
+                android:layout_width="@dimen/size_40"
+                android:layout_height="@dimen/size_40"
+                android:layout_margin="@dimen/size_8"
                 android:src="@drawable/ic_unfollow_40dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -47,11 +47,11 @@
                 android:id="@+id/tvUnfolow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="@dimen/size_10"
+                android:layout_marginLeft="@dimen/size_10"
                 android:fontFamily="@font/barlow_medium"
                 android:textColor="#212121"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 app:layout_constraintStart_toEndOf="@id/imgUnfollow"
                 app:layout_constraintTop_toTopOf="@id/imgUnfollow"
                 tools:text="Bỏ theo dõi Xuyến Đỗ" />
@@ -62,7 +62,7 @@
                 android:fontFamily="@font/barlow_regular"
                 android:text="Khi bỏ theo dõi, các bài viết của người này sẽ không hiển thị trên trang chủ của bạn nữa."
                 android:textColor="#757575"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:visibility="visible"
                 app:fontFamily="@font/barlow_medium"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -75,15 +75,15 @@
             android:id="@+id/layoutNotify"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="4dp">
+            android:layout_marginStart="@dimen/size_4"
+            android:layout_marginTop="@dimen/size_16"
+            android:layout_marginEnd="@dimen/size_4">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imgNotify"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_margin="8dp"
+                android:layout_width="@dimen/size_40"
+                android:layout_height="@dimen/size_40"
+                android:layout_margin="@dimen/size_8"
                 app:srcCompat="@drawable/ic_unfriend_40dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -92,11 +92,11 @@
                 android:id="@+id/tvTitleNotify"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="@dimen/size_10"
+                android:layout_marginLeft="@dimen/size_10"
                 android:fontFamily="@font/barlow_medium"
                 android:textColor="#212121"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 app:layout_constraintStart_toEndOf="@id/imgNotify"
                 app:layout_constraintTop_toTopOf="@id/imgNotify"
                 tools:text="Hủy kết bạn Tùng Thanh" />
@@ -107,7 +107,7 @@
                 android:fontFamily="@font/barlow_regular"
                 android:text="Lời mời kết bạn trước đó sẽ bị hủy bỏ. Bạn vẫn có thể gửi lại  lời mời kết bạn cho người này."
                 android:textColor="#757575"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:visibility="visible"
                 app:fontFamily="@font/barlow_medium"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -120,16 +120,16 @@
             android:id="@+id/layoutReport"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="@dimen/size_4"
             android:visibility="visible"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="4dp">
+            android:layout_marginTop="@dimen/size_16"
+            android:layout_marginEnd="@dimen/size_4">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imgReport"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_margin="8dp"
+                android:layout_width="@dimen/size_40"
+                android:layout_height="@dimen/size_40"
+                android:layout_margin="@dimen/size_8"
                 android:src="@drawable/ic_report_40px"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -138,12 +138,12 @@
                 android:id="@+id/tv_report"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="@dimen/size_10"
+                android:layout_marginLeft="@dimen/size_10"
                 android:fontFamily="@font/barlow_medium"
                 android:text="Báo cáo người dùng"
                 android:textColor="#212121"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 app:layout_constraintStart_toEndOf="@id/imgReport"
                 app:layout_constraintTop_toTopOf="@id/imgReport" />
 
@@ -153,7 +153,7 @@
                 android:fontFamily="@font/barlow_regular"
                 android:text="Bạn nhận thấy người dùng này có những hoạt động mang nội dung spam, nhạy cảm? Hãy cho chúng tôi biết."
                 android:textColor="#757575"
-                android:textSize="14sp"
+                android:textSize="@dimen/font_14"
                 android:visibility="visible"
                 app:fontFamily="@font/barlow_medium"
                 app:layout_constraintBottom_toBottomOf="parent"

@@ -18,7 +18,6 @@ import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.network.models.ICCampaign
-import vn.icheck.android.screen.user.home_page.campaign.detail_campagin_v2.fragment.gift_campaign.CampaignModel
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class WinnerCampaignAdapter(callback: IRecyclerViewCallback) : RecyclerViewCustomAdapter<CampaignModel>(callback) {
@@ -134,23 +133,23 @@ class WinnerCampaignAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
         private fun setReward(textView: AppCompatTextView, value: Long?) {
             if (value != null) {
                 textView.text = "${TextHelper.formatMoneyPhay(value)}"
-                textView.setTextColor(ContextCompat.getColor(itemView.context, R.color.yellow))
+                textView.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorAccentYellow))
                 textView.setTypeface(null, Typeface.NORMAL)
             } else {
                 textView.text = itemView.context.getString(R.string.dang_cap_nhat)
                 textView.setTypeface(null, Typeface.ITALIC)
-                textView.setTextColor(ContextCompat.getColor(itemView.context, R.color.darkGray2))
+                textView.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorDisableText))
             }
         }
 
         private fun setName(tv: AppCompatTextView, value: String?) {
             if (value.isNullOrEmpty()) {
-                tv.setTextColor(ContextCompat.getColor(itemView.context, R.color.darkGray2))
+                tv.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorDisableText))
                 tv.text = itemView.context.getString(R.string.dang_cap_nhat)
                 tv.typeface = Typeface.createFromAsset(itemView.context.assets, "font/barlow_medium.ttf")
             } else {
                 tv.text = value
-                tv.setTextColor(ContextCompat.getColor(itemView.context, R.color.collection_product_name))
+                tv.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorNormalText))
                 tv.typeface = Typeface.createFromAsset(itemView.context.assets, "font/barlow_semi_bold.ttf")
             }
         }
@@ -191,66 +190,12 @@ class WinnerCampaignAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
                 }
                 (getChildAt(4) as AppCompatImageView).run {
                     if (obj.type == 3) {
-                        setCoin(obj.icoin, this)
+                        WidgetUtils.loadImageUrlFitCenter(this, obj.icoinIcon, R.drawable.ic_icheck_xu)
                     } else {
                         WidgetUtils.loadImageUrl(this, obj.rewardImage)
                     }
                 }
             }
-        }
-
-        private fun setCoin(icoin: Long, image: AppCompatImageView) {
-            image.setImageResource(
-                    when (icoin) {
-                        10L -> {
-                            R.drawable.ic_10_icoin
-                        }
-                        20L -> {
-                            R.drawable.ic_20_icoin
-                        }
-                        50L -> {
-                            R.drawable.ic_50_icoin
-                        }
-                        100L -> {
-                            R.drawable.ic_100_icoin
-                        }
-                        200L -> {
-                            R.drawable.ic_200_icoin
-                        }
-                        500L -> {
-                            R.drawable.ic_500_icoin
-                        }
-                        1000L -> {
-                            R.drawable.ic_1000_icoin
-                        }
-                        2000L -> {
-                            R.drawable.ic_2000_icoin
-                        }
-                        5000L -> {
-                            R.drawable.ic_5000_icoin
-                        }
-                        10000L -> {
-                            R.drawable.ic_10000_icoin
-                        }
-                        20000L -> {
-                            R.drawable.ic_20000_icoin
-                        }
-                        50000L -> {
-                            R.drawable.ic_50000_icoin
-                        }
-                        100000L -> {
-                            R.drawable.ic_100000_icoin
-                        }
-                        200000L -> {
-                            R.drawable.ic_200000_icoin
-                        }
-                        500000L -> {
-                            R.drawable.ic_500000_icoin
-                        }
-                        else -> R.drawable.ic_default_square
-                    }
-            )
-
         }
     }
 }

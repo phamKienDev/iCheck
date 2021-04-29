@@ -26,7 +26,7 @@
             <View
                 android:id="@+id/viewBlue"
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
+                android:layout_height="@dimen/size_140"
                 android:background="@drawable/bg_home_detail_card"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,7 +43,7 @@
                 android:includeFontPadding="false"
                 android:text="Số dư tài khoản"
                 android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_16"
                 app:layout_constraintStart_toStartOf="@id/viewBlue"
                 app:layout_constraintTop_toTopOf="@id/viewBlue" />
 
@@ -55,8 +55,8 @@
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="bottom"
                 android:includeFontPadding="false"
-                android:textColor="@color/yellow"
-                android:textSize="24sp"
+                android:textColor="@color/colorAccentYellow"
+                android:textSize="@dimen/font_24"
                 app:layout_constraintStart_toStartOf="@id/tvTitleMoney"
                 app:layout_constraintTop_toBottomOf="@id/tvTitleMoney"
                 tools:text="*****" />
@@ -84,10 +84,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/size_12"
-                android:layout_marginTop="108dp"
+                android:layout_marginTop="@dimen/size_108"
                 android:layout_marginRight="@dimen/size_12"
                 app:cardCornerRadius="@dimen/size_10"
-                app:cardElevation="4dp"
+                app:cardElevation="@dimen/size_4"
                 app:cardPreventCornerOverlap="false"
                 app:cardShadowColorEnd="@color/app_selector_shadow_end"
                 app:cardShadowColorStart="@color/elevation_color_card"
@@ -113,8 +113,8 @@
                         android:fontFamily="@font/barlow_medium"
                         android:gravity="center_horizontal"
                         android:text="Nạp tiền"
-                        android:textColor="@color/fast_survey_gray"
-                        android:textSize="12sp" />
+                        android:textColor="@color/colorSecondText"
+                        android:textSize="@dimen/font_12" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvDanhSachThe"
@@ -127,8 +127,8 @@
                         android:fontFamily="@font/barlow_medium"
                         android:gravity="center_horizontal"
                         android:text="Danh sách thẻ"
-                        android:textColor="@color/fast_survey_gray"
-                        android:textSize="12sp" />
+                        android:textColor="@color/colorSecondText"
+                        android:textSize="@dimen/font_12" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvSuaTaiKhoan"
@@ -141,8 +141,8 @@
                         android:fontFamily="@font/barlow_medium"
                         android:gravity="center_horizontal"
                         android:text="Sửa tài khoản"
-                        android:textColor="@color/fast_survey_gray"
-                        android:textSize="12sp" />
+                        android:textColor="@color/colorSecondText"
+                        android:textSize="@dimen/font_12" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvTaoThemThe"
@@ -155,8 +155,8 @@
                         android:fontFamily="@font/barlow_medium"
                         android:gravity="center_horizontal"
                         android:text="Tạo thêm thẻ"
-                        android:textColor="@color/fast_survey_gray"
-                        android:textSize="12sp" />
+                        android:textColor="@color/colorSecondText"
+                        android:textSize="@dimen/font_12" />
                 </LinearLayout>
             </vn.icheck.android.ui.colorcardview.ColorCardView>
 
@@ -170,7 +170,7 @@
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@id/viewWhite">
 
-                <vn.icheck.android.ui.view.HeightWrappingViewPager
+                <vn.icheck.android.ui.layout.HeightWrappingViewPager
                     android:id="@+id/viewPager"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -202,7 +202,7 @@
                     android:layout_marginLeft="@dimen/size_16"
                     android:layout_marginRight="@dimen/size_16"
                     app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="4dp"
+                    app:cardCornerRadius="@dimen/size_4"
                     app:cardShadowColorEnd="#0D000000">
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -217,7 +217,7 @@
                         android:paddingTop="@dimen/size_10"
                         android:paddingBottom="@dimen/size_10"
                         android:text="Định danh tài khoản"
-                        android:textColor="@color/collection_product_name" />
+                        android:textColor="@color/colorNormalText" />
                 </androidx.cardview.widget.CardView>
 
 
@@ -228,7 +228,7 @@
                     android:layout_marginLeft="@dimen/size_16"
                     android:layout_marginRight="@dimen/size_16"
                     app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="4dp"
+                    app:cardCornerRadius="@dimen/size_4"
                     app:cardShadowColorEnd="#0D000000">
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -243,7 +243,7 @@
                         android:paddingTop="@dimen/size_10"
                         android:paddingBottom="@dimen/size_10"
                         android:text="Chương trình ưu đãi"
-                        android:textColor="@color/collection_product_name" />
+                        android:textColor="@color/colorNormalText" />
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
@@ -254,7 +254,7 @@
                     android:layout_marginTop="@dimen/size_10"
                     android:layout_marginRight="@dimen/size_16"
                     app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="4dp"
+                    app:cardCornerRadius="@dimen/size_4"
                     app:cardShadowColorEnd="#0D000000">
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -269,7 +269,7 @@
                         android:paddingTop="@dimen/size_10"
                         android:paddingBottom="@dimen/size_10"
                         android:text="Chính sách sử dụng"
-                        android:textColor="@color/collection_product_name" />
+                        android:textColor="@color/colorNormalText" />
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
@@ -280,7 +280,7 @@
                     android:layout_marginTop="@dimen/size_10"
                     android:layout_marginRight="@dimen/size_16"
                     app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="4dp"
+                    app:cardCornerRadius="@dimen/size_4"
                     app:cardShadowColorEnd="#0D000000">
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -295,7 +295,7 @@
                         android:paddingTop="@dimen/size_10"
                         android:paddingBottom="@dimen/size_10"
                         android:text="Liên hệ"
-                        android:textColor="@color/collection_product_name" />
+                        android:textColor="@color/colorNormalText" />
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
@@ -307,7 +307,7 @@
                     android:layout_marginRight="@dimen/size_16"
                     android:layout_marginBottom="@dimen/size_10"
                     app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="4dp"
+                    app:cardCornerRadius="@dimen/size_4"
                     app:cardShadowColorEnd="#0D000000">
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -322,7 +322,7 @@
                         android:paddingTop="@dimen/size_10"
                         android:paddingBottom="@dimen/size_10"
                         android:text="Lịch sử giao dịch"
-                        android:textColor="@color/collection_product_name" />
+                        android:textColor="@color/colorNormalText" />
                 </androidx.cardview.widget.CardView>
 
             </LinearLayout>

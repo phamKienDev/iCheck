@@ -30,9 +30,6 @@ class CampainsInteractor : BaseInteractor() {
         requestNewApi(ICNetworkClient.getSocialApi().getCampaignReward(id, params), listener)
     }
 
-    fun getRewardiCoinCampaign(id: String, listener: ICNewApiListener<ICResponse<ICListResponse<ICCampaign>>>) {
-        requestNewApi(ICNetworkClient.getSocialApi().getCampaignRewardiCoin(id), listener)
-    }
 
     fun getTheWinnerCampaign(id: String, offset: Int, listener: ICNewApiListener<ICResponse<ICListResponse<ICCampaign>>>) {
         val params = hashMapOf<String, Any>()

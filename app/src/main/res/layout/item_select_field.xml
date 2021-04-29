@@ -10,16 +10,16 @@
         android:id="@+id/tvTitleSelect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="@dimen/size_24"
         android:fontFamily="sans-serif"
         android:textColor="#434343"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         android:textStyle="normal" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp">
+        android:layout_marginTop="@dimen/size_8">
 
         <androidx.appcompat.widget.AppCompatSpinner
             android:id="@+id/spinner"

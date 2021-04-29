@@ -24,22 +24,20 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <TextView
+            <vn.icheck.android.ui.view.TextHeader
                 android:id="@+id/tv_count_like"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/barlow_semi_bold"
                 android:text="TextView"
-                android:textColor="@color/blue"
-                android:textSize="18sp" />
+                android:textColor="@color/colorSecondary" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/barlow_medium"
                 android:text="Lượt thích bài viết"
-                android:textColor="@color/blue"
-                android:textSize="14sp" />
+                android:textColor="@color/colorSecondary"
+                android:textSize="@dimen/font_14" />
         </LinearLayout>
 
         <View
@@ -55,22 +53,20 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <TextView
+            <vn.icheck.android.ui.view.TextHeader
                 android:id="@+id/tv_count_follow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/barlow_semi_bold"
                 android:text="TextView"
-                android:textColor="@color/blue"
-                android:textSize="18sp" />
+                android:textColor="@color/colorSecondary" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/barlow_medium"
                 android:text="Số người theo dõi"
-                android:textColor="@color/blue"
-                android:textSize="14sp" />
+                android:textColor="@color/colorSecondary"
+                android:textSize="@dimen/font_14" />
         </LinearLayout>
     </LinearLayout>
 
@@ -99,8 +95,8 @@
         android:fontFamily="@font/barlow_semi_bold"
         android:includeFontPadding="false"
         android:text="Mời bạn bè theo dõi trang này"
-        android:textColor="@color/collection_product_name"
-        android:textSize="16sp" />
+        android:textColor="@color/colorNormalText"
+        android:textSize="@dimen/font_16" />
 
     <TextView
         android:id="@+id/textView73"
@@ -113,8 +109,8 @@
         android:gravity="center"
         android:includeFontPadding="false"
         android:text="Mời thêm bạn bè để cùng cập nhập các thông tin mới nhất từ trang này"
-        android:textColor="@color/fast_survey_gray"
-        android:textSize="14sp" />
+        android:textColor="@color/colorSecondText"
+        android:textSize="@dimen/font_14" />
 
     <TextView
         android:id="@+id/tvInvite"
@@ -134,7 +130,7 @@
         android:layout_marginBottom="@dimen/size_22"
         android:text="Mời bạn bè"
         android:textColor="@color/white"
-        android:textSize="16sp" />
+        android:textSize="@dimen/font_16" />
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_10"

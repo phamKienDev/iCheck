@@ -1,14 +1,10 @@
 package vn.icheck.android.component.shopping_catalog
 
-import android.content.Context
-import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import de.hdodenhof.circleimageview.CircleImageView
-import vn.icheck.android.R
 import vn.icheck.android.component.view.ViewHelper
-import vn.icheck.android.component.view.text_view.TextViewBarlowMedium
+import vn.icheck.android.ui.view.TextBarlowMedium
 import vn.icheck.android.network.models.ICShoppingCatalog
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -32,7 +28,7 @@ class ShoppingCatalogAdapter(private val listData: MutableList<ICShoppingCatalog
                     WidgetUtils.loadImageUrl(this, item.image)
                 }
 
-                (getChildAt(1) as TextViewBarlowMedium).run {
+                (getChildAt(1) as TextBarlowMedium).run {
                     text = item.name
                 }
             }

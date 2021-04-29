@@ -45,7 +45,7 @@
                     android:id="@+id/imgAvatar"
                     android:layout_width="@dimen/size_20"
                     android:layout_height="@dimen/size_20"
-                    tools:src="@color/blue" />
+                    tools:src="@color/colorSecondary" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvNamePage"

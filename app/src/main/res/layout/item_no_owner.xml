@@ -2,20 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="12dp"
+    android:layout_marginStart="@dimen/size_12"
     android:layout_marginTop="@dimen/size_6"
-    android:layout_marginEnd="12dp"
+    android:layout_marginEnd="@dimen/size_12"
     android:layout_marginBottom="@dimen/size_6"
     android:background="@drawable/bg_gray_corner_10"
-    android:elevation="2dp"
+    android:elevation="@dimen/size_2"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="@dimen/size_8"
         android:layout_marginTop="@dimen/size_24"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="@dimen/size_8"
         android:drawableTop="@drawable/ic_contribute_page"
         android:drawablePadding="@dimen/size_12"
         android:text="Hiện tại sản phẩm này chưa có doanh nghiệp sở hữu.
@@ -26,9 +26,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="@dimen/size_8"
+        android:layout_marginTop="@dimen/size_8"
+        android:layout_marginEnd="@dimen/size_8"
         android:text="iCheck sẽ gửi tặng bạn những phần quà hấp dẫn
 khi thông tin được kiểm duyệt. Xin cảm ơn"
         android:textAlignment="center"
@@ -38,13 +38,13 @@ khi thông tin được kiểm duyệt. Xin cảm ơn"
         android:id="@+id/btn_send_owner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginStart="@dimen/size_24"
+        android:layout_marginTop="@dimen/size_20"
+        android:layout_marginEnd="@dimen/size_24"
+        android:layout_marginBottom="@dimen/size_12"
         android:background="@drawable/bg_blue_border_20"
         android:text="Đóng góp ngay"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
-        android:textSize="14sp" />
+        android:textSize="@dimen/font_14" />
 </LinearLayout>

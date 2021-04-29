@@ -54,7 +54,7 @@ import vn.icheck.android.screen.user.commentpost.CommentPermissionAdapter
 import vn.icheck.android.screen.user.createpost.CreateOrUpdatePostActivity
 import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
 import vn.icheck.android.screen.user.edit_review.EditReviewActivity
-import vn.icheck.android.screen.user.editcomment.EditCommentActivity
+import vn.icheck.android.screen.user.edit_comment.EditCommentActivity
 import vn.icheck.android.screen.user.list_product_question.adapter.ListEmojiAdapter
 import vn.icheck.android.screen.user.media_in_post.MediaInPostActivity
 import vn.icheck.android.util.KeyboardUtils
@@ -168,7 +168,7 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
             }
         })
 
-        swipeRefresh.setColorSchemeColors(ContextCompat.getColor(this, R.color.blue), ContextCompat.getColor(this, R.color.blue), ContextCompat.getColor(this, R.color.lightBlue))
+        swipeRefresh.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
         swipeRefresh.setOnRefreshListener {
             getData()
         }
@@ -492,7 +492,7 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
                         postDialog = object : PostOptionDialog(this, post) {
                             override fun onPin(isPin: Boolean) {
                                 if (post.pinned) {
-                                    DialogHelper.showConfirm(dialog.context, "Bạn chắc chắn muốn bỏ ghim bài viết này?", null, "Để sau", "Đồng ý", true, null, R.color.lightBlue, object : ConfirmDialogListener {
+                                    DialogHelper.showConfirm(dialog.context, "Bạn chắc chắn muốn bỏ ghim bài viết này?", null, "Để sau", "Đồng ý", true, null, R.color.colorPrimary, object : ConfirmDialogListener {
                                         override fun onDisagree() {
 
                                         }
@@ -539,7 +539,7 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
                 val permissions = arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 imgCamera.delayTimeoutClick(2000)
                 if (PermissionHelper.isAllowPermission(this, permissions)) {
-                    TakeMediaDialog.show(supportFragmentManager,this,takeMediaListener)
+                    TakeMediaDialog.show(supportFragmentManager, this, takeMediaListener, isVideo = true)
                 } else {
                     PermissionHelper.checkPermission(this, permissions, requestCamera)
                 }

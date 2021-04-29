@@ -40,7 +40,7 @@
                 android:gravity="center"
                 android:text="Khách hàng thân thiết"
                 android:textAlignment="center"
-                android:textColor="@color/blue"
+                android:textColor="@color/colorSecondary"
                 android:textSize="16sp" />
 
         </LinearLayout>

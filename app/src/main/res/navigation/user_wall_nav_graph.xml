@@ -42,7 +42,7 @@
     <fragment
         android:id="@+id/editMyInformationActivity"
         tools:layout="@layout/activity_edit_my_information"
-        android:name="vn.icheck.android.screen.user.wall.option_edit_my_information.EditMyInformationActivity"
+        android:name="vn.icheck.android.screen.user.wall.option_edit_my_information.EditMyInformationFragment"
         android:label="EditMyInformationActivity" >
         <action
             android:id="@+id/action_editMyInformationActivity_to_ickNewPwFragment"
@@ -90,7 +90,7 @@
     </fragment>
     <fragment
         android:id="@+id/pageManagementFragment"
-        tools:layout="@layout/fragment_page _management"
+        tools:layout="@layout/fragment_page_management"
         android:name="vn.icheck.android.screen.user.wall.manage_page.PageManagementFragment"
         android:label="PageManagementFragment" />
     <fragment

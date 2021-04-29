@@ -538,36 +538,6 @@ interface ICNetworkAPI {
     @POST(APIConstants.Campaign.CAMPAIGN_ONBOARDING)
     fun postCampaignOnboarding(@Path("id") id: String, @Body hashMap: HashMap<String, Any>): Observable<ICResponse<Any>>
 
-    @GET(APIConstants.Campaign.DETAIL_CAMPAIGN)
-    fun getDetailCampaign(@Path("id") id: String): Observable<ICDetail_Campaign>
-
-    @GET(APIConstants.Campaign.DETAIL_CAMPAIGN_V2)
-    fun getDetailCampaignV2(@Path("id") id: String): Observable<ICResponse<ICDetail_Campaign>>
-
-    @PUT(APIConstants.Campaign.ACCEPT_DA_LAY_QUA)
-    fun acceptDaLayQua(@Body body: HashMap<String, Any>): Observable<ICAcceptGift>
-
-    @GET(APIConstants.Campaign.LIST_REWARD)
-    fun getListRewardCampaign(@Path("id") id: String, @QueryMap queries: HashMap<String, Any>): Observable<ICListResponse<ICCampaign_Reward>>
-
-    @GET(APIConstants.Campaign.LIST_USER_REWARD)
-    fun getListUserRewardCampaign(@Path("id") id: String, @QueryMap queries: HashMap<String, Any>): Observable<ICListResponse<ICCampaign_User_Reward>>
-
-    @PUT(APIConstants.Campaign.JOIN_CAMPAIGN)
-    fun putJoinCampaign(@Body body: HashMap<String, Any>): Observable<ICJoinCampaign>
-
-    @GET(APIConstants.Campaign.LIST_BOX_REWARD)
-    fun getListBoxReward(@QueryMap queries: HashMap<String, Any>): Observable<ICListResponse<ICBoxReward>>
-
-    @GET(APIConstants.Campaign.LIST_ITEM_REWARD)
-    fun getListItemReward(@QueryMap queries: HashMap<String, Any>): Observable<ICListResponse<ICItemReward>>
-
-    @GET(APIConstants.Campaign.DETAIL_ITEM_GIFT)
-    fun getDetailGift(@Path("id") id: String?): Observable<ICDetailGift>
-
-    @PUT(APIConstants.Campaign.UNBOX_GIFT)
-    fun unboxGift(@Body body: HashMap<String, Any>): Observable<ICListResponse<ICUnBox_Gift>>
-
     @get:GET(APIConstants.Campaign.SUMMARY)
     val summary: Observable<ICSummary>
 
@@ -579,9 +549,6 @@ interface ICNetworkAPI {
 
     @PUT(APIConstants.Campaign.REFUSE_GIFT)
     fun refuseGift(@Body body: HashMap<String, Any>): Observable<ICResponseCode>
-
-    @POST(APIConstants.Campaign.ACCEPT_GIFT)
-    fun acceptShipGift(@Body body: HashMap<String, Any>): Observable<ICAcceptGift>
 
     /*
      * Setting
@@ -743,10 +710,6 @@ interface ICNetworkAPI {
 
     @GET(APIConstants.GiftStore.GET_LIST_PRODUCT_OF_STORE)
     fun getListStore(@QueryMap params: HashMap<String, Any>): Observable<ICResponse<ICListResponse<ICStoreiCheck>>>
-
-    //Accept Exchange Gift Store
-    @POST(APIConstants.GiftStore.ACCEPT_EXCHANGE_GIFT_STORE)
-    fun acceptExchangeGiftStore(@Body body: HashMap<String, Any>): Observable<ICAcceptGift>
 
     //List Topup Service
     @GET(APIConstants.Topup.GET_LIST_TOPUP_SERVICE)
@@ -1189,9 +1152,6 @@ interface ICNetworkAPI {
 
     @GET(APIConstants.Campaign.GET_CAMPAIGN_REWARD)
     fun getCampaignReward(@Path("id") id: String, @QueryMap params: HashMap<String, Any>): Observable<ICResponse<ICListResponse<ICGiftOfCampaign>>>
-
-    @GET(APIConstants.Campaign.GET_CAMPAIGN_REWARD_iCOIN)
-    fun getCampaignRewardiCoin(@Path("id") id: String): Observable<ICResponse<ICListResponse<ICCampaign>>>
 
     @GET(APIConstants.Campaign.GET_TOP_WINNER_CAMPAIGN)
     fun getTopWinnerCampaign(@Path("id") id: String): Observable<ICResponse<ICListResponse<ICCampaign>>>

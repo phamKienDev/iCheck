@@ -32,7 +32,7 @@ import vn.icheck.android.helper.getAdsType
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.*
 import vn.icheck.android.screen.user.campaign.holder.base.LongMessageHolder
-import vn.icheck.android.screen.user.home_page.home.model.ICListHomeItem
+import vn.icheck.android.screen.user.home_page.model.ICListHomeItem
 import vn.icheck.android.screen.user.page_details.fragment.page.widget.brand.WidgetBrandPageHolder
 import vn.icheck.android.screen.user.page_details.fragment.page.widget.campaign.WidgetCampaignHolder
 import vn.icheck.android.screen.user.page_details.fragment.page.widget.detail.WidgetPageDetailHolder
