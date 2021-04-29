@@ -8,7 +8,7 @@ assembleDevDebug:
   only:
     refs:
       - develop_chat
-  stage: build
+  stage: build_develop
   script:
     - ./gradlew clean
     - ./gradlew assembleDevDebug
@@ -21,7 +21,7 @@ assembleProdRelease:
   only:
     refs:
       - develop_chat
-  stage: build
+  stage: build_production
   script:
     - ./gradlew clean
     - ./gradlew assembleProdRelease
