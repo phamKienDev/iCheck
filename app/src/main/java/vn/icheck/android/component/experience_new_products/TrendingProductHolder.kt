@@ -1,6 +1,7 @@
 package vn.icheck.android.component.experience_new_products
 
 import android.content.Intent
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.component.experience_new_products.adapter.ExperienceNewProductsAdapter
@@ -9,7 +10,7 @@ import vn.icheck.android.constant.ACTION_PRODUCT_DETAIL
 import vn.icheck.android.databinding.HolderTrendingProductBinding
 import vn.icheck.android.util.ick.getLayoutInflater
 
-class TrendingProductHolder(val binding: HolderTrendingProductBinding):RecyclerView.ViewHolder(binding.root) {
+class TrendingProductHolder(parent: ViewGroup, val binding: HolderTrendingProductBinding = HolderTrendingProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)):RecyclerView.ViewHolder(binding.root) {
     var mData:ICExperienceNewProducts? = null
     val homeCategoryHorizontalAdapter = HomeCategoryHorizontalAdapter(object : IExperienceNewProducts{
         override fun onClickItemCategory(id: Long) {
@@ -65,13 +66,6 @@ class TrendingProductHolder(val binding: HolderTrendingProductBinding):RecyclerV
                     }?.id ?: 1L)
                 })
             }
-        }
-    }
-
-    companion object{
-        fun create(parent: ViewGroup) :TrendingProductHolder{
-            val lf = parent.getLayoutInflater()
-            return TrendingProductHolder(HolderTrendingProductBinding.inflate(lf, parent, false))
         }
     }
 }
