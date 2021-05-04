@@ -269,31 +269,45 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
 
                     for (position in adapter.getListData.size - 1 downTo 0) {
                         if (adapter.getListData[position].key == key) {
-                            adapter.getListData.removeAt(position)
-                            adapter.notifyItemRemoved(position)
-
-                            adapter.getListData.add(0, convertDataFirebase(obj))
-                            adapter.notifyItemInserted(0)
+                            Collections.swap(adapter.getListData, position, 0)
+                            adapter.getListData[0] = adapter.getListData[0].apply {
+                                this.key = obj.key.toString()
+                                enableAlert = obj.child("enable_alert").value.toString().toBoolean()
+                                keyRoom = obj.key.toString()
+                                unreadCount = obj.child("unread_count").value as Long? ?: 0L
+                                time = obj.child("last_activity").child("time").value as Long?
+                                        ?: System.currentTimeMillis()
+                                lastMessage = if (obj.child("last_activity").child("content").value != null) {
+                                    obj.child("last_activity").child("content").value.toString()
+                                } else {
+                                    ""
+                                }
+                            }
+                            adapter.notifyDataSetChanged()
                             binding.recyclerView.smoothScrollToPosition(0)
                         }
                     }
                 }, { obj ->
-            adapter.getListData[0] = adapter.getListData[0].apply {
-                key = obj.key.toString()
-                enableAlert = obj.child("enable_alert").value.toString().toBoolean()
-                keyRoom = obj.key.toString()
-                unreadCount = obj.child("unread_count").value as Long? ?: 0L
-                time = obj.child("last_activity").child("time").value as Long?
-                        ?: System.currentTimeMillis()
-                lastMessage = if (obj.child("last_activity").child("content").value != null) {
-                    obj.child("last_activity").child("content").value.toString()
-                } else {
-                    ""
+            val key = obj.key.toString()
+
+            if (adapter.getListData.first().key == key) {
+                adapter.getListData[0] = adapter.getListData[0].apply {
+                    this.key = obj.key.toString()
+                    enableAlert = obj.child("enable_alert").value.toString().toBoolean()
+                    keyRoom = obj.key.toString()
+                    unreadCount = obj.child("unread_count").value as Long? ?: 0L
+                    time = obj.child("last_activity").child("time").value as Long?
+                            ?: System.currentTimeMillis()
+                    lastMessage = if (obj.child("last_activity").child("content").value != null) {
+                        obj.child("last_activity").child("content").value.toString()
+                    } else {
+                        ""
+                    }
                 }
-            }
-            binding.recyclerView.findViewHolderForAdapterPosition(0)?.let { holder ->
-                if (holder is ListConversationAdapter.ConversationHolder) {
-                    holder.updateConversation(adapter.getListData[0])
+                binding.recyclerView.findViewHolderForAdapterPosition(0)?.let { holder ->
+                    if (holder is ListConversationAdapter.ConversationHolder) {
+                        holder.updateConversation(adapter.getListData[0])
+                    }
                 }
             }
         })
