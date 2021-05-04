@@ -45,7 +45,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:padding="@dimen/size_4"
                 android:text="Có lỗi trong việc xác thực danh tính của bạn.
-Vui lòng kiểm tra kỹ lại thông tin và ảnh chụp giấy tờ chính chủ. Cảm ơn!"
+\nVui lòng kiểm tra kỹ lại thông tin và ảnh chụp giấy tờ chính chủ. Cảm ơn!"
                 android:textColor="@color/white"
                 android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
