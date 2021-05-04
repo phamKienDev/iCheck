@@ -29,6 +29,8 @@ import java.util.*
 class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerViewCallback {
     private var isUserLogged: Boolean = false
 
+    private var clickGetData = true
+
     companion object {
         const val REQUEST_CONTACT = 1
         private val projection = arrayOf(
@@ -54,8 +56,6 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
 
     var offset = 0
 
-    var isCreated = false
-
     override fun setBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentContactBinding {
         return FragmentContactBinding.inflate(inflater, container, false)
     }
@@ -76,6 +76,7 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
         }
 
         initRecyclerView()
+        initSwipeLayout()
 
         binding.btnRequest.setOnClickListener {
             showDialog()
@@ -93,24 +94,13 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
 
     private fun initSwipeLayout() {
         binding.swipeRefresh.post {
-            if (requestContact()) {
-                getData()
-            }
+            clickGetData = false
+            getData()
         }
 
         binding.swipeRefresh.setOnRefreshListener {
-            if (requestContact()) {
-                getData()
-            }
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        if (!isCreated) {
-            isCreated = true
-            initSwipeLayout()
+            clickGetData = false
+            getData()
         }
     }
 
@@ -159,7 +149,10 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
                             binding.btnMergeRequest.setVisible()
 
                             adapter.setListData(it.data?.data?.rows ?: mutableListOf())
-                            requireContext().showToastSuccess(getString(R.string.dong_bo_danh_ba_thanh_cong))
+
+                            if (clickGetData){
+                                requireContext().showToastSuccess(getString(R.string.dong_bo_danh_ba_thanh_cong))
+                            }
                         } else {
                             binding.recyclerView.setGone()
                             binding.btnMergeRequest.setGone()
@@ -199,13 +192,22 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
     }
 
     private fun showDialog() {
-        object : ConfirmContactDialog(requireContext(), {
-            initSwipeLayout()
-        }, {
-            getSystemSetting()
-        }) {
+        if (requestContact()) {
+            object : ConfirmContactDialog(requireContext(), {
+                clickGetData = true
+                if (binding.swipeRefresh.isEnabled){
+                    getData()
+                }else{
+                    requireContext().showToastError("Bạn chưa đăng nhập! Vui lòng đăng nhập!")
+                }
+            }, {
+                getSystemSetting()
+            }) {
 
-        }.show()
+            }.show()
+        } else {
+            requireContext().showToastError("Bạn chưa cấp đủ quyền!")
+        }
     }
 
     private fun getSystemSetting() {
@@ -234,6 +236,7 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
 
     fun checkLoginOrLogOut(isLogin: Boolean) {
         if (!isLogin) {
+            binding.swipeRefresh.isEnabled = false
             if (isUserLogged) {
                 binding.recyclerView.setGone()
                 binding.btnMergeRequest.setGone()
@@ -248,8 +251,11 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
                 binding.layoutNoData.setVisible()
             }
         } else {
+            binding.swipeRefresh.isEnabled = true
             if (requestContact()) {
                 getData()
+            } else {
+                requireContext().showToastError("Bạn chưa cấp đủ quyền!")
             }
         }
     }
