@@ -9,5 +9,5 @@ class MCRoom : Serializable {
     val room_id: String? = null
 
     @Expose
-    val members: MutableList<MCMemberApi>? = null
+    val members: MCMemberApi? = null
 }

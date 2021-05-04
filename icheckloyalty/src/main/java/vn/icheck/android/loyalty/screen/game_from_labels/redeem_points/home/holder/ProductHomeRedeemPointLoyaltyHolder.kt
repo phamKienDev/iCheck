@@ -27,6 +27,7 @@ class ProductHomeRedeemPointLoyaltyHolder(parent: ViewGroup) : BaseViewHolder<IC
         CONGRATULATION: "CONGRATULATION",
         PHONE_CARD: "PHONE_CARD",
         RECEIVE_STORE: "RECEIVE_STORE",
+        VOUCHER -> "Voucher"
          */
         itemView.tvCheck.text = if (!obj.gift?.type.isNullOrEmpty()) {
             when (obj.gift?.type) {
@@ -34,6 +35,7 @@ class ProductHomeRedeemPointLoyaltyHolder(parent: ViewGroup) : BaseViewHolder<IC
                 "PHONE_CARD" -> "Thẻ cào điện thoại"
                 "RECEIVE_STORE" -> "Nhận tại cửa hàng"
                 "PRODUCT" -> "Giao tận nơi"
+                "VOUCHER" -> "Voucher"
                 else -> "Quà tinh thần"
             }
         } else {

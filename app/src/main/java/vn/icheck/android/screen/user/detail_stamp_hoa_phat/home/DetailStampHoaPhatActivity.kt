@@ -23,6 +23,7 @@ import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
+import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.fragments.ProductReviewsBottomDialog
 import vn.icheck.android.helper.DialogHelper
@@ -205,13 +206,14 @@ class DetailStampHoaPhatActivity : BaseActivityMVVM(), SlideHeaderStampHoaPhatLi
 
         btnChat.setOnClickListener {
             if (SessionManager.isUserLogged || SessionManager.isDeviceLogged) {
-//                viewModel.barcodeProduct?.let {
-//                    it.manager?.let { manager ->
+                viewModel.barcodeProduct?.let {
+                    it.manager?.let { manager ->
 //                        SocialChatActivity.createPageChat(this, manager.id)
-//                    } ?: run {
+                        ChatSocialDetailActivity.createRoomChat(this@DetailStampHoaPhatActivity, manager.id, "page")
+                    } ?: run {
 //                        SocialChatActivity.createPageChat(this,viewModel.barcodeProduct?.owner?.id, it.barcode)
-//                    }
-//                }
+                    }
+                }
             } else {
                 val account = Intent(this, AccountActivity::class.java)
                 startActivity(account)

@@ -196,6 +196,9 @@ class RewardItemV2Adapter(private val listenerRecyclerView: IRecyclerViewCallbac
                 "CODE" -> {
                     itemView.tvState simpleText "Mã dự thưởng"
                 }
+                "VOUCHER" -> {
+                    itemView.tvState simpleText "Voucher"
+                }
                 else -> {
                     itemView.tvState simpleText "Quà hiện vật"
                 }

@@ -19,6 +19,7 @@ import vn.icheck.android.loyalty.helper.WidgetHelper
 import vn.icheck.android.loyalty.model.ICKNone
 import vn.icheck.android.loyalty.model.ICKRedemptionHistory
 import vn.icheck.android.loyalty.screen.loyalty_customers.campaign_of_business.CampaignOfBusinessActivity
+import vn.icheck.android.loyalty.screen.voucher.VoucherLoyaltyActivity
 
 internal class GiftDetailAdapter(val type: Int = 0) : RecyclerViewCustomAdapter<Any>() {
 
@@ -118,13 +119,45 @@ internal class GiftDetailAdapter(val type: Int = 0) : RecyclerViewCustomAdapter<
                 "PRODUCT" -> {
                     "Quà hiện vật"
                 }
+                "VOUCHER" -> {
+                    "Voucher"
+                }
                 else -> {
                     "Quà tinh thần"
                 }
             }
+            itemView.btnDoiQua.apply {
+                if (obj.gift?.type == "VOUCHER") {
+                    setVisible()
+                    when {
+                        obj.gift?.voucher?.can_use == true -> {
+                            text = "Dùng ngay"
+
+                            setOnClickListener {
+                                itemView.context.startActivity(Intent(itemView.context, VoucherLoyaltyActivity::class.java).apply {
+                                    putExtra(ConstantsLoyalty.DATA_1, obj.gift?.voucher?.code)
+                                    putExtra(ConstantsLoyalty.DATA_2, obj.gift?.voucher?.expired_at)
+                                })
+                            }
+                        }
+                        obj.gift?.voucher?.can_mark_use == true -> {
+                            text = "Đánh dầu đã dùng"
+
+                            setOnClickListener {
+                                showCustomErrorToast(itemView.context, "Chưa có sự kiện")
+                            }
+                        }
+                        else -> {
+                            setGone()
+                        }
+                    }
+                } else {
+                    setGone()
+                }
+            }
 
             itemView.webView.settings.javaScriptEnabled = true
-            itemView.webView.loadDataWithBaseURL(null,obj.gift?.description
+            itemView.webView.loadDataWithBaseURL(null, obj.gift?.description
                     ?: "", "text/html; charset=utf-8", "UTF-8", null)
 
             WidgetHelper.loadImageUrl(itemView.imgAvatar, obj.owner?.logo?.medium)
@@ -181,6 +214,10 @@ internal class GiftDetailAdapter(val type: Int = 0) : RecyclerViewCustomAdapter<
                     setOnClickButton(obj)
                     "Quà hiện vật"
                 }
+                "VOUCHER" -> {
+                    setOnClickButton(obj)
+                    "Quà Voucher"
+                }
                 else -> {
                     itemView.btnDoiQua.setGone()
                     "Quà tinh thần"
@@ -188,7 +225,8 @@ internal class GiftDetailAdapter(val type: Int = 0) : RecyclerViewCustomAdapter<
             }
 
             itemView.webView.settings.javaScriptEnabled = true
-            itemView.webView.loadDataWithBaseURL(null, obj.loyalty_gift?.gift?.description ?: "", "text/html; charset=utf-8", "UTF-8", null)
+            itemView.webView.loadDataWithBaseURL(null, obj.loyalty_gift?.gift?.description
+                    ?: "", "text/html; charset=utf-8", "UTF-8", null)
 
             WidgetHelper.loadImageUrl(itemView.imgAvatar, obj.business?.logo?.medium)
 
@@ -217,7 +255,8 @@ internal class GiftDetailAdapter(val type: Int = 0) : RecyclerViewCustomAdapter<
                 itemView.btnDoiQua.isEnabled = false
 
                 if (obj.customer?.point ?: 0 > obj.loyalty_gift?.point_exchange ?: 0) {
-                    DialogHelperGame.dialogConfirmExchangeGifts(itemView.context, obj.loyalty_gift?.gift?.image?.original, obj.loyalty_gift?.gift?.name, obj.loyalty_gift?.point_exchange, obj.loyalty_gift?.gift?.type, (obj.loyalty_gift?.quantity_remain ?: 0).toInt(), R.drawable.bg_gradient_button_blue, obj.loyalty_gift?.id
+                    DialogHelperGame.dialogConfirmExchangeGifts(itemView.context, obj.loyalty_gift?.gift?.image?.original, obj.loyalty_gift?.gift?.name, obj.loyalty_gift?.point_exchange, obj.loyalty_gift?.gift?.type, (obj.loyalty_gift?.quantity_remain
+                            ?: 0).toInt(), R.drawable.bg_gradient_button_blue, obj.loyalty_gift?.id
                             ?: -1)
                 } else {
                     DialogHelperGame.dialogScanLoyaltyError(itemView.context,

@@ -31,6 +31,7 @@ import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_chat_social_detail.*
 import kotlinx.android.synthetic.main.item_sender.*
 import kotlinx.coroutines.launch
+import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.chat.icheckchat.R
 import vn.icheck.android.chat.icheckchat.base.BaseActivityChat
 import vn.icheck.android.chat.icheckchat.base.ConstantChat
@@ -147,6 +148,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
             conversation != null -> {
                 viewModel.loginFirebase({
                     if (!conversation?.key.isNullOrEmpty()) {
+                        key = conversation?.key
                         getChatRoom(conversation?.key!!)
                     }
                 }, {
@@ -184,8 +186,13 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 val holder = recyclerView.findViewHolderForAdapterPosition(0)
-                isAllowScroll = holder != null
-                Log.d("onScrolled", "onScrolled: $dy")
+                if (holder != null) {
+                    isAllowScroll = true
+                    binding.layoutNewMessage.beGone()
+                    binding.layoutNewMessage.clearAnimation()
+                } else {
+                    isAllowScroll = false
+                }
             }
         })
 
@@ -238,21 +245,20 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                     if (it.data?.data != null) {
                         conversation = MCConversation()
 
-                        for (i in it.data.data.members ?: mutableListOf()) {
-                            if (i.source_id.toString().contains(userId.toString())) {
-                                viewModel.getChatSender(i.id.toString(), { success ->
-                                    conversation?.targetUserName = success.child("name").value.toString()
-                                    conversation?.imageTargetUser = success.child("image").value.toString()
-                                }, {
+                        if (it.data.data.members?.source_id.toString().contains(userId.toString())) {
+                            viewModel.getChatSender(it.data.data.members?.id.toString(), { success ->
+                                conversation?.targetUserName = success.child("name").value.toString()
+                                conversation?.imageTargetUser = success.child("image").value.toString()
+                            }, {
 
-                                })
-                            }
+                            })
                         }
 
                         conversation?.key = it.data.data.room_id
                         conversation?.keyRoom = it.data.data.room_id
 
                         if (!it.data.data.room_id.isNullOrEmpty()) {
+                            key = it.data.data.room_id
                             getChatRoom(it.data.data.room_id)
                         }
                     }
@@ -297,7 +303,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                         }
 
                         getChatMessage(key)
-                        listenChangeMessage(key, System.currentTimeMillis())
+                        listenChangeMessage(key)
 
                         if (obj.child("is_block").value != null) {
                             binding.layoutToolbar.imgAction.setGone()
@@ -378,15 +384,15 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                     }
                 },
                 { error ->
-                    listenChangeMessage(key, 0)
+                    listenChangeMessage(key)
                     showToastError(error.message)
                 })
 
 
     }
 
-    private fun listenChangeMessage(key: String, timeStart: Long) {
-        viewModel.getChangeMessageChat(key, { data ->
+    private fun listenChangeMessage(key: String) {
+        viewModel.getChangeMessageChat(key) { data ->
             // mình gửi
             if (FirebaseAuth.getInstance().currentUser?.uid == data.child("sender").child("source_id").value.toString()) {
                 val index = adapter.getListData.indexOfFirst { it.messageId == data.key }
@@ -421,6 +427,30 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                     }
 
                     adapter.notifyItemChanged(index)
+                } else {
+                    val lastMessageReceive = adapter.getListData.firstOrNull { it.senderId == FirebaseAuth.getInstance().currentUser?.uid }
+                    val message = convertDataFirebase(data, lastMessageReceive ?: MCDetailMessage())
+                    message.showStatus = -1
+                    adapter.getListData.add(0, message)
+                    adapter.notifyItemInserted(0)
+
+                    //xóa status tin nhắn trước đó
+                    if (adapter.getListData.size > 1) {
+                        if (adapter.getListData[1].senderId == message.senderId) {
+                            if (!chenhLechGio(adapter.getListData[1].time, message.time, 1)) {
+                                val holder = recyclerView.findViewHolderForAdapterPosition(1)
+                                adapter.getListData[1].showStatus = 0
+
+                                if (holder is ChatSocialDetailAdapter.SenderHolder) {
+                                    holder.setupShowStatus(adapter.getListData[1])
+                                } else {
+                                    adapter.notifyItemChanged(1)
+                                }
+                            }
+                        }
+                    }
+
+                    binding.recyclerView.smoothScrollToPosition(0)
                 }
                 // đối phương gửi
             } else {
@@ -460,7 +490,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                     binding.layoutNewMessage.startAnimation(linearAnimation)
                 }
             }
-        }, timeStart)
+        }
     }
 
     private fun convertDataFirebase(message: DataSnapshot, newMessage: MCDetailMessage): MCDetailMessage {
@@ -500,8 +530,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                         image = itemProduct.child("image").value.toString()
                         name = itemProduct.child("name").value.toString()
                         state = itemProduct.child("state").value.toString()
-                        productId = if (itemProduct.child("product_id").value is Long) {
-                            itemProduct.child("product_id").value as Long?
+                        productId = if (itemProduct.child("productId").value is Long) {
+                            itemProduct.child("productId").value as Long?
                         } else {
                             -1
                         }
@@ -517,8 +547,18 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                     content = message.child("message").child("text").value.toString()
                 }
 
-                if (!message.child("message").child("sticker").value.toString().contains("null")) {
-                    sticker = message.child("message").child("sticker").value.toString()
+                if (message.child("message").child("sticker").value != null) {
+                    val stickerFirebase = message.child("message").child("sticker")
+
+                    sticker = if (message.child("message").child("sticker").child("thumbnail").value.toString().replace("null", "").isEmpty()) {
+                        message.child("message").child("sticker").value.toString()
+                    } else {
+                        MCSticker().apply {
+                            id = stickerFirebase.child("id").value.toString().toLong()
+                            thumbnail = stickerFirebase.child("thumbnail").value.toString()
+                            packageId = stickerFirebase.child("packageId").value.toString().toLong()
+                        }
+                    }
                 }
             }
         }
@@ -560,7 +600,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
     private fun formatMessage(key: String) {
         if (!adapterImage.isEmpty) {
-            if (adapter.getListData.size > 20) {
+            if (adapterImage.getListData.size > 20) {
                 showToastError(getString(R.string.chon_20_muc))
                 return
             }
@@ -605,6 +645,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 obj.status = MCStatus.LOADING
                 addMessageAdapter(obj)
             }
+
+            EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.UPDATE_DATA))
 
             if (obj.type == "media") {
                 viewModel.uploadImage(adapterImage.getListData)
@@ -795,7 +837,11 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                                 val element = MCDetailMessage().apply {
                                     senderId = FirebaseAuth.getInstance().currentUser?.uid
                                     type = "sticker"
-                                    sticker = obj.thumbnail
+                                    sticker = MCSticker().apply {
+                                        id = obj.id
+                                        this.packageId = obj.packageId
+                                        thumbnail = obj.thumbnail
+                                    }
                                 }
 
                                 if (!conversation?.key.isNullOrEmpty()) {
@@ -899,6 +945,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         when (event.type) {
             MCMessageEvent.Type.BACK -> {
                 onBackPressed()
+                EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.UPDATE_DATA))
             }
             MCMessageEvent.Type.BLOCK -> {
                 unCheckAll()
@@ -931,7 +978,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
             R.id.imgScan -> {
                 if (!binding.imgScan.isChecked) {
                     IcheckScanActivity.scanOnlyChat(this, SCAN)
-//                    startActivityForResult(Intent(this@ChatSocialDetailActivity, IcheckScanActivity::class.java), SCAN)
                 }
             }
             R.id.imgCamera -> {
@@ -994,11 +1040,13 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         checkKeyboard()
         val listener = object : TakeMediaListener {
             override fun onPickMediaSucess(file: File) {
+                binding.view.setVisible()
                 adapterImage.setImage(file)
                 chooseImage()
             }
 
             override fun onPickMuliMediaSucess(file: MutableList<File>) {
+                binding.view.setVisible()
                 adapterImage.setListImage(file)
                 chooseImage()
             }
@@ -1011,6 +1059,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
             override fun onTakeMediaSuccess(file: File?) {
                 if (file != null) {
+                    binding.view.setVisible()
                     adapterImage.setImage(file)
                     chooseImage()
                 }

@@ -69,4 +69,6 @@ dependencies {
     implementation project(path: ':ichecknetwork')
     implementation project(path: ':ScanditBarcodeCapture')
     implementation project(path: ':ScanditCaptureCore')
+
+    implementation "com.google.zxing:core:3.4.0"
 }
