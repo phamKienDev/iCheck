@@ -24,12 +24,14 @@ import vn.icheck.android.chat.icheckchat.helper.NetworkHelper.LIMIT
 import vn.icheck.android.chat.icheckchat.helper.ShareHelperChat
 import vn.icheck.android.chat.icheckchat.model.MCStatus
 import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.util.PermissionHelper
 import java.util.*
 
 class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerViewCallback {
     private var isUserLogged: Boolean = false
 
     private var clickGetData = true
+    private var isCreated = false
 
     companion object {
         const val REQUEST_CONTACT = 1
@@ -61,30 +63,7 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
     }
 
     override fun onInitView() {
-        viewModel = ViewModelProvider(this@ContactFragment)[ContactViewModel::class.java]
-        isUserLogged = arguments?.getBoolean(Constant.DATA_1, false) ?: false
 
-        if (isUserLogged) {
-            binding.recyclerView.setGone()
-            binding.btnMergeRequest.setGone()
-
-            setVisibleView(binding.layoutNoData, binding.btnRequest, binding.tvMessageContact)
-        } else {
-            setGoneView(binding.recyclerView, binding.btnMergeRequest, binding.tvMessageContact, binding.btnRequest)
-
-            binding.layoutNoData.setVisible()
-        }
-
-        initRecyclerView()
-        initSwipeLayout()
-
-        binding.btnRequest.setOnClickListener {
-            showDialog()
-        }
-
-        binding.btnMergeRequest.setOnClickListener {
-            showDialog()
-        }
     }
 
     private fun initRecyclerView() {
@@ -104,7 +83,11 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
         }
     }
 
-    private fun getData() {
+    private fun getListContacts() {
+        if (!requestContact()){
+            return
+        }
+
         binding.swipeRefresh.isRefreshing = true
 
         viewModel.getContact(getContacts()).observe(this@ContactFragment, {
@@ -118,13 +101,13 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
                     requireContext().showToastError(it.message)
                 }
                 MCStatus.SUCCESS -> {
-                    getListFriend()
+                    getData()
                 }
             }
         })
     }
 
-    private fun getListFriend(isLoadMore: Boolean = false) {
+    private fun getData(isLoadMore: Boolean = false) {
         if (!isLoadMore) {
             offset = 0
         }
@@ -150,7 +133,7 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
 
                             adapter.setListData(it.data?.data?.rows ?: mutableListOf())
 
-                            if (clickGetData){
+                            if (clickGetData) {
                                 requireContext().showToastSuccess(getString(R.string.dong_bo_danh_ba_thanh_cong))
                             }
                         } else {
@@ -180,34 +163,39 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
     }
 
     private fun requestContact(): Boolean {
-        return if (ContextCompat.checkSelfPermission(
-                        requireActivity(),
-                        Manifest.permission.READ_CONTACTS
-                ) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.READ_CONTACTS), REQUEST_CONTACT)
-            false
-        } else {
+        return if (PermissionHelper.isAllowPermission(requireContext(), Manifest.permission.READ_CONTACTS)) {
             true
+        } else {
+            requestPermissions(arrayOf(Manifest.permission.READ_CONTACTS), REQUEST_CONTACT)
+            false
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if (requestCode == REQUEST_CONTACT) {
+            if (PermissionHelper.checkResult(grantResults)) {
+                getContacts()
+            } else {
+                requireContext().showToastError("Bạn chưa cấp đủ quyền!")
+            }
         }
     }
 
     private fun showDialog() {
-        if (requestContact()) {
-            object : ConfirmContactDialog(requireContext(), {
-                clickGetData = true
-                if (binding.swipeRefresh.isEnabled){
-                    getData()
-                }else{
-                    requireContext().showToastError("Bạn chưa đăng nhập! Vui lòng đăng nhập!")
-                }
-            }, {
-                getSystemSetting()
-            }) {
+        object : ConfirmContactDialog(requireContext(), {
+            clickGetData = true
+            if (binding.swipeRefresh.isEnabled) {
+                getListContacts()
+            } else {
+                requireContext().showToastError("Bạn chưa đăng nhập! Vui lòng đăng nhập!")
+            }
+        }, {
+            getSystemSetting()
+        }) {
 
-            }.show()
-        } else {
-            requireContext().showToastError("Bạn chưa cấp đủ quyền!")
-        }
+        }.show()
     }
 
     private fun getSystemSetting() {
@@ -231,7 +219,7 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
     }
 
     override fun onLoadMore() {
-        getListFriend(true)
+        getData(true)
     }
 
     fun checkLoginOrLogOut(isLogin: Boolean) {
@@ -252,10 +240,43 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
             }
         } else {
             binding.swipeRefresh.isEnabled = true
-            if (requestContact()) {
-                getData()
+            getData()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        if (!isCreated) {
+            isCreated = true
+
+            viewModel = ViewModelProvider(this@ContactFragment)[ContactViewModel::class.java]
+            isUserLogged = arguments?.getBoolean(Constant.DATA_1, false) ?: false
+
+            if (isUserLogged) {
+                binding.swipeRefresh.isEnabled = true
+
+                binding.recyclerView.setGone()
+                binding.btnMergeRequest.setGone()
+
+                setVisibleView(binding.layoutNoData, binding.btnRequest, binding.tvMessageContact)
             } else {
-                requireContext().showToastError("Bạn chưa cấp đủ quyền!")
+                binding.swipeRefresh.isEnabled = false
+
+                setGoneView(binding.recyclerView, binding.btnMergeRequest, binding.tvMessageContact, binding.btnRequest)
+
+                binding.layoutNoData.setVisible()
+            }
+
+            initRecyclerView()
+            initSwipeLayout()
+
+            binding.btnRequest.setOnClickListener {
+                showDialog()
+            }
+
+            binding.btnMergeRequest.setOnClickListener {
+                showDialog()
             }
         }
     }

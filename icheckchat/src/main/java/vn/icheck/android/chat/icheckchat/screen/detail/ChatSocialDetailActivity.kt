@@ -93,8 +93,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
     private val requestCameraPermission = 3
 
-    private val listImageSrc = mutableListOf<MCMedia>()
-
     var inboxRoomID: String? = null
     var inboxUserID: String? = null
     private var toId = ""
@@ -108,8 +106,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
     private var isAllowScroll: Boolean = true
 
     //lưu giá trị trước khi gửi
-    private var keyConversation: String? = null
-    private var sentMessage: MCDetailMessage? = null
+//    private var keyConversation: String? = null
+//    private var sentMessage: MCDetailMessage? = null
 
     private val linearAnimation = TranslateAnimation(0f, 0f, 0f, 13f).apply {
         duration = 550
@@ -326,7 +324,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                                 }
                             } else {
                                 adapterImage.clearData()
-                                listImageSrc.clear()
                                 binding.edtMessage.setText("")
                                 checkKeyboard()
                                 setGoneView(binding.layoutChat, binding.layoutBlock)
@@ -588,7 +585,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         binding.imgSend.isChecked = false
         binding.imgSend.isEnabled = false
         product = null
-        listImageSrc.clear()
 
         binding.layoutBlock.setGone()
         binding.layoutSticker.setGone()
@@ -597,8 +593,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         binding.layoutUserBlock.setGone()
     }
 
-
-    private fun formatMessage(key: String) {
+    private fun formatMessage() {
         if (!adapterImage.isEmpty) {
             if (adapterImage.getListData.size > 20) {
                 showToastError(getString(R.string.chon_20_muc))
@@ -620,10 +615,12 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 this.product = this@ChatSocialDetailActivity.product
             }
         }
-        checkSendMessage(key, element)
+
+        checkSendMessage(element)
     }
 
-    private fun checkSendMessage(key: String, obj: MCDetailMessage) {
+    private fun checkSendMessage(obj: MCDetailMessage) {
+        sendMessageSuccess(obj)
 
         if (NetworkHelper.isNotConnected(this)) {
             obj.status = MCStatus.ERROR_NETWORK
@@ -649,29 +646,19 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
             EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.UPDATE_DATA))
 
             if (obj.type == "media") {
-                viewModel.uploadImage(adapterImage.getListData)
-                sentMessage = obj
-                keyConversation = key
+                viewModel.uploadImage(obj)
+//                sentMessage = obj
+//                keyConversation = key
             } else {
-                sendMessage(key, "user", obj)
+                sendMessage("user", obj)
             }
         }
     }
 
     private fun listenMediaData() {
-        viewModel.listMediaData.observe(this, { media ->
-            if (sentMessage != null && keyConversation != null) {
-                adapterImage.clearData()
-                val listMedia = mutableListOf<MCMedia>()
-                media.forEach {
-                    listMedia.add(MCMedia(it.src, if (it.src.endsWith(".mp4")) {
-                        "video"
-                    } else {
-                        "image"
-                    }))
-                }
-                sentMessage?.listMedia = listMedia
-                sendMessage(keyConversation!!, "user", sentMessage!!)
+        viewModel.listMediaData.observe(this, { obj ->
+            if (key != null) {
+                sendMessage("user", obj)
             }
         })
     }
@@ -699,8 +686,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         binding.recyclerView.smoothScrollToPosition(0)
     }
 
-    private fun sendMessage(key: String, memberType: String, obj: MCDetailMessage) {
-        viewModel.sendMessage(key, memberType, obj).observe(this@ChatSocialDetailActivity, {
+    private fun sendMessage(memberType: String, obj: MCDetailMessage) {
+        viewModel.sendMessage(key ?: "", memberType, obj).observe(this@ChatSocialDetailActivity, {
             when (it.status) {
                 MCStatus.ERROR_REQUEST -> {
                     val index = adapter.getListData.indexOfFirst { it == obj }
@@ -710,18 +697,24 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                     }
                 }
                 MCStatus.SUCCESS -> {
-
-                    binding.edtMessage.setText("")
-
-                    if (obj.type?.contains("sticker") == false) {
-                        unCheckAll()
-                    }
-                    binding.recyclerViewImage.setVisible()
+                    sendMessageSuccess(obj)
                 }
                 else -> {
                 }
             }
         })
+    }
+
+    private fun sendMessageSuccess(obj: MCDetailMessage) {
+        adapterImage.clearData()
+        binding.recyclerViewImage.setVisible()
+        binding.view.setGone()
+
+        binding.edtMessage.setText("")
+
+        if (obj.type?.contains("sticker") == false) {
+            unCheckAll()
+        }
     }
 
     private fun unBlockMessage(key: String, toId: String, toType: String) {
@@ -844,8 +837,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                                     }
                                 }
 
-                                if (!conversation?.key.isNullOrEmpty()) {
-                                    checkSendMessage(conversation?.key!!, element)
+                                if (!key.isNullOrEmpty()) {
+                                    checkSendMessage(element)
                                 }
                             }
                         })
@@ -883,11 +876,11 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
     }
 
     override fun onLoadMore() {
-        if (!conversation?.key.isNullOrEmpty()) {
+        if (!key.isNullOrEmpty()) {
             if (adapter.getListData.size > 2) {
                 for (i in adapter.getListData.size - 1 downTo 0) {
                     if (adapter.getListData[i].time != null) {
-                        getChatMessage(conversation?.key!!, adapter.getListData[i].time ?: 0)
+                        getChatMessage(key!!, adapter.getListData[i].time ?: 0)
                         return
                     }
                 }
@@ -953,10 +946,10 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 binding.layoutBlock.setVisible()
             }
             MCMessageEvent.Type.SEND_RETRY_CHAT -> {
-                if (!conversation?.key.isNullOrEmpty()) {
+                if (!key.isNullOrEmpty()) {
                     if (event.data != null && event.data is MCDetailMessage) {
                         if (!NetworkHelper.isNotConnected(this)) {
-                            checkSendMessage(conversation?.key!!, event.data)
+                            checkSendMessage(event.data)
                         }
                     }
                 }
@@ -998,9 +991,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 binding.viewClick.setVisible()
             }
             R.id.imgSend -> {
-                listImageSrc.clear()
-                if (!conversation?.key.isNullOrEmpty()) {
-                    formatMessage(conversation?.key!!)
+                if (!key.isNullOrEmpty()) {
+                    formatMessage()
                 }
 
                 binding.edtMessage.setText("")
@@ -1041,13 +1033,21 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         val listener = object : TakeMediaListener {
             override fun onPickMediaSucess(file: File) {
                 binding.view.setVisible()
-                adapterImage.setImage(file)
+                if ((adapterImage.getListData.size + 1) <= 20){
+                    adapterImage.setImage(file)
+                }else{
+                    showToastError(getString(R.string.chon_20_anh))
+                }
                 chooseImage()
             }
 
             override fun onPickMuliMediaSucess(file: MutableList<File>) {
                 binding.view.setVisible()
-                adapterImage.setListImage(file)
+                if ((adapterImage.getListData.size + file.size) <= 20){
+                    adapterImage.setListImage(file)
+                }else{
+                    showToastError(getString(R.string.chon_20_anh))
+                }
                 chooseImage()
             }
 
@@ -1060,7 +1060,11 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
             override fun onTakeMediaSuccess(file: File?) {
                 if (file != null) {
                     binding.view.setVisible()
-                    adapterImage.setImage(file)
+                    if ((adapterImage.getListData.size + 1) <= 20){
+                        adapterImage.setImage(file)
+                    }else{
+                        showToastError(getString(R.string.chon_20_anh))
+                    }
                     chooseImage()
                 }
             }
