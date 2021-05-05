@@ -335,6 +335,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                             setVisibleView(binding.layoutToolbar.imgAction, binding.layoutChat)
                         }
                     }
+
+                    binding.tvMessage.isEnabled = true
                 },
                 {
                     setGoneView(binding.layoutUserBlock, binding.layoutBlock)
@@ -982,7 +984,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
             }
             R.id.imgSticker -> {
                 checkKeyboard()
-                selectedTextView(binding.imgSticker, binding.layoutSticker, true)
+                selectedTextView(binding.imgSticker, binding.layoutSticker, !binding.edtMessage.text.isNullOrEmpty() || adapterImage.getListData.isNotEmpty())
                 binding.recyclerViewImage.setVisible()
             }
             R.id.edtMessage -> {
