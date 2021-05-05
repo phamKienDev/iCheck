@@ -37,11 +37,9 @@ class TakeMediaHelper(val activity: Activity?, val callback: TakeCameraListener,
     fun startTakeMedia(fragment: Fragment? = null) {
         activity?.let { activity ->
             val imageCapture = if (fragment == null) {
-//                Intent(activity, CameraActivity::class.java)
-                Intent(activity, CropCameraActivity::class.java)
+                Intent(activity, CameraActivity::class.java)
             } else {
-                Intent(fragment.requireContext(), CropCameraActivity::class.java)
-//                Intent(fragment.requireContext(), CameraActivity::class.java)
+                Intent(fragment.requireContext(), CameraActivity::class.java)
             }
 
             val videoCapture =
