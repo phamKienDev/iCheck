@@ -202,8 +202,8 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
                 if (obj.page == null) {
                     IckUserWallActivity.create(obj.user?.id, it)
                 } else {
-                    if (obj.meta?.product?.owner?.pageId != null)
-                        ActivityUtils.startActivity<PageDetailActivity, Long>(it, Constant.DATA_1, obj.meta?.product?.owner?.pageId!!)
+                    if (obj.page?.id != null)
+                        ActivityUtils.startActivity<PageDetailActivity, Long>(it, Constant.DATA_1, obj.page?.id!!)
                 }
             }
         }
@@ -213,12 +213,11 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
                 if (obj.page == null) {
                     IckUserWallActivity.create(obj.user?.id, it)
                 } else {
-                    if (obj.meta?.product?.owner?.pageId != null)
-                        ActivityUtils.startActivity<PageDetailActivity, Long>(it, Constant.DATA_1, obj.meta?.product?.owner?.pageId!!)
+                    if (obj.page?.id != null)
+                        ActivityUtils.startActivity<PageDetailActivity, Long>(it, Constant.DATA_1, obj.page?.id!!)
                 }
             }
         }
-
 
         itemView.tvLike.setOnClickListener{
             postLikeReview(obj)

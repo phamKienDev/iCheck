@@ -1107,10 +1107,10 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                     }
                 }
 
-                ChatSdk.shareIntent(SessionManager.session.firebaseToken, SessionManager.session.user?.id, SessionManager.session.token, DeviceUtils.getUniqueDeviceId())
+                ChatSdk.shareIntent(SessionManager.session.firebaseToken, SessionManager.session.user?.id, SessionManager.session.token, DeviceUtils.getUniqueDeviceId(), SessionManager.isUserLogged)
             }
             ICMessageEvent.Type.ON_LOG_OUT -> {
-                ChatSdk.shareIntent(null, null, null, null)
+                ChatSdk.shareIntent(null, null, null, null, false)
 
                 tvChatCount.visibility = View.GONE
                 RelationshipManager.removeListener()
@@ -1129,7 +1129,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                         .into(imgAvatar)
                 RelationshipManager.removeListener()
                 RelationshipManager.refreshToken(true)
-                ChatSdk.shareIntent(SessionManager.session.firebaseToken, SessionManager.session.user?.id, SessionManager.session.token, DeviceUtils.getUniqueDeviceId())
+                ChatSdk.shareIntent(SessionManager.session.firebaseToken, SessionManager.session.user?.id, SessionManager.session.token, DeviceUtils.getUniqueDeviceId(), SessionManager.isUserLogged)
                 checkkNewTheme()
                 clearFilter()
                 checkLoginOrLogoutChat(true)

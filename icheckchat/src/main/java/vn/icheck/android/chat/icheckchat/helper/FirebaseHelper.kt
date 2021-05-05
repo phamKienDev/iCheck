@@ -60,10 +60,10 @@ class FirebaseHelper {
         val myConversation = if (lastTimeStamp > 0) {
             firebaseDatabase.getReference("chat-conversations-v2/user|$userID").orderByChild("last_activity/time")
                     .startAt(0.0).endAt(lastTimeStamp.toDouble() - 1)
-                    .limitToLast(10)
+                    .limitToLast(NetworkHelper.LIMIT)
         } else {
             firebaseDatabase.getReference("chat-conversations-v2/user|$userID").orderByChild("last_activity/time")
-                    .limitToLast(10)
+                    .limitToLast(NetworkHelper.LIMIT)
         }
 
         myConversation.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -83,20 +83,20 @@ class FirebaseHelper {
         firebaseDatabase.getReference("chat-conversations-v2/user|$userID").orderByChild("last_activity/time").startAt(System.currentTimeMillis().toDouble()).addChildEventListener(object : ChildEventListener {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                 onAdd(snapshot)
-//                Log.d("TESTonChildAdded", "onChildAdded: ${snapshot.value.toString()}")
+                Log.d("TESTonChildAdded", "onChildAdded: ${snapshot.value.toString()}")
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-//                Log.d("TESTonChildChanged", "onChildChanged: ${snapshot.value.toString()}")
+                Log.d("TESTonChildChanged", "onChildChanged: ${snapshot.value.toString()}")
                 onChange(snapshot)
             }
 
             override fun onChildRemoved(snapshot: DataSnapshot) {
-//                Log.d("TESTonChildRemoved", "onChildRemoved: ${snapshot.value.toString()}")
+                    Log.d("TESTonChildRemoved", "onChildRemoved: ${snapshot.value.toString()}")
             }
 
             override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
-//                Log.d("TESTonChildMoved", "onChildMoved: ${snapshot.value.toString()}")
+                Log.d("TESTonChildMoved", "onChildMoved: ${snapshot.value.toString()}")
             }
 
             override fun onCancelled(error: DatabaseError) {
