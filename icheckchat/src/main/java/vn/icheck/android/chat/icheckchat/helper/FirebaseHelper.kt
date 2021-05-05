@@ -60,10 +60,10 @@ class FirebaseHelper {
         val myConversation = if (lastTimeStamp > 0) {
             firebaseDatabase.getReference("chat-conversations-v2/user|$userID").orderByChild("last_activity/time")
                     .startAt(0.0).endAt(lastTimeStamp.toDouble() - 1)
-                    .limitToLast(10)
+                    .limitToLast(NetworkHelper.LIMIT)
         } else {
             firebaseDatabase.getReference("chat-conversations-v2/user|$userID").orderByChild("last_activity/time")
-                    .limitToLast(10)
+                    .limitToLast(NetworkHelper.LIMIT)
         }
 
         myConversation.addListenerForSingleValueEvent(object : ValueEventListener {

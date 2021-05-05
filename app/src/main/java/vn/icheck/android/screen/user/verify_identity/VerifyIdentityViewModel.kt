@@ -109,7 +109,7 @@ class VerifyIdentityViewModel : ViewModel() {
                         } else {
                             1
                         },
-                        "documents" to listImage.firstOrNull(),
+                        "document" to arrayListOf(listImage.firstOrNull()),
                         "documentName" to typeCard
                 ))
                 documents.add(hashMapOf(
@@ -118,7 +118,7 @@ class VerifyIdentityViewModel : ViewModel() {
                         } else {
                             1
                         },
-                        "documents" to listImage.get(1),
+                        "document" to arrayListOf(listImage.get(1)),
                         "documentName" to typeCard
                 ))
                 requestBody["kycDocuments"] = documents
