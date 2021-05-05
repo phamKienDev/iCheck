@@ -489,7 +489,7 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
         }
     }
 
-    private fun setUpLink(layoutLink: View, link: AppCompatTextView, image: AppCompatImageView, title: AppCompatTextView, description: AppCompatTextView, content: String, context: Context) {
+    private fun setUpLink(layoutLink: View, link: AppCompatTextView, image: AppCompatImageView?, title: AppCompatTextView, description: AppCompatTextView, content: String, context: Context) {
         layoutLink.apply {
             setVisible()
 
@@ -511,6 +511,9 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
         }
 
         val urlTask = URLEmbeddedTask((URLEmbeddedTask.OnLoadURLListener {
+            if (image == null){
+                return@OnLoadURLListener
+            }
             image.visibleOrGone(!it.thumbnailURL.isNullOrEmpty())
             title.visibleOrGone(!it.title.isNullOrEmpty())
             description.visibleOrGone(!it.host.isNullOrEmpty())

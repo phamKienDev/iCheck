@@ -57,8 +57,10 @@ import vn.icheck.android.network.models.ICProductDetail
 import java.io.File
 import java.util.*
 import java.util.concurrent.atomic.AtomicBoolean
+
 const val CONTRIBUTE_REQUEST = 1
 const val ICK_REQUEST_CAMERA = 2
+
 class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
 
     companion object {
@@ -91,6 +93,7 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
             context.startActivity(intent)
         }
     }
+
     lateinit var dataCaptureContext: DataCaptureContext
     lateinit var barcodeCapture: BarcodeCapture
     lateinit var cameraSettings: CameraSettings
@@ -103,6 +106,7 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
     private val requestCropMedia = 3
     private var phoneNumber: String = ""
     lateinit var dataCaptureView: DataCaptureView
+
     /**
      * @param type == 0 -> Scan tích điểm đổi quà
      * @param type == 1 -> Scan tích điểm dài hạn
@@ -233,6 +237,8 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
             viewModel.scanOnlyChat = true
             _binding?.btnMyCode.beGone()
             _binding?.btnQm.beGone()
+            _binding?.imgSdha.beGone()
+            _binding?.imgHdSdha.beGone()
         } else {
             viewModel.scanOnlyChat = false
         }
@@ -412,8 +418,9 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
                     resetCamera()
                     if (viewModel.scanOnlyChat) {
                         setResult(Activity.RESULT_OK, Intent().apply {
-                            putExtra(Constant.DATA_1, false)
-                            putExtra(Constant.DATA_2, code)
+
+                            putExtra("BARCODE", code)
+
                         })
                         finish()
                         return
@@ -551,7 +558,7 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
                 }
 
                 if (model.showGuide) {
-                   offCamera()
+                    offCamera()
                     barcodeCapture.isEnabled = false
                     for (item in guideArr) {
                         if (item != null) {
