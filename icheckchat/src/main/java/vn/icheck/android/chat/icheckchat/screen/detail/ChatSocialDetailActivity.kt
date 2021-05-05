@@ -393,6 +393,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
             // mình gửi
             if (FirebaseAuth.getInstance().currentUser?.uid == data.child("sender").child("source_id").value.toString()) {
                 val index = adapter.getListData.indexOfFirst { it.messageId == data.key }
+                Log.d("Message", "index: $index")
                 if (index != -1) {
                     adapter.getListData[index].status = MCStatus.SUCCESS
                     adapter.getListData[index].time = data.child("time").value as Long?
@@ -413,6 +414,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                             if (!chenhLechGio(adapter.getListData[1].time, adapter.getListData[index].time, 1)) {
                                 val holder = recyclerView.findViewHolderForAdapterPosition(1)
                                 adapter.getListData[1].showStatus = 0
+                                Log.d("Message", "chenhLechGio: true")
 
                                 if (holder is ChatSocialDetailAdapter.SenderHolder) {
                                     holder.setupShowStatus(adapter.getListData[1])
@@ -428,6 +430,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                     val lastMessageReceive = adapter.getListData.firstOrNull { it.senderId == FirebaseAuth.getInstance().currentUser?.uid }
                     val message = convertDataFirebase(data, lastMessageReceive ?: MCDetailMessage())
                     message.showStatus = -1
+                    message.status = MCStatus.SUCCESS
                     adapter.getListData.add(0, message)
                     adapter.notifyItemInserted(0)
 
@@ -631,7 +634,10 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 //                sentMessage = obj
 //                keyConversation = key
             } else {
-                sendMessage("user", obj)
+                // Handler lại vì chưa kịp add data vào adapter nên khi getList chưa có message này
+                Handler().postDelayed({
+                    sendMessage("user", obj)
+                }, 200)
             }
         }
     }
@@ -647,11 +653,9 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
     private fun addMessageAdapter(obj: MCDetailMessage) {
         obj.showStatus = -1
         if (adapter.getListData.isNullOrEmpty()) {
-            adapter.getListData.add(obj)
-            adapter.notifyDataSetChanged()
+            adapter.addData(obj)
         } else {
-            adapter.getListData.add(0, obj)
-            adapter.notifyItemInserted(0)
+            adapter.addData(obj)
             if (adapter.getListData[1].status == obj.status) {
                 val holder = recyclerView.findViewHolderForAdapterPosition(1)
                 adapter.getListData[1].showStatus = 0

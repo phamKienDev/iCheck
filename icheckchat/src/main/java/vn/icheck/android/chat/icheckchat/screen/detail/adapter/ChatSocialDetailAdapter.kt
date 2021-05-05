@@ -67,6 +67,16 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
         notifyDataSetChanged()
     }
 
+    fun addData(obj: MCDetailMessage) {
+        if (listData.isNullOrEmpty()) {
+            listData.add(obj)
+            notifyDataSetChanged()
+        } else {
+            listData.add(0, obj)
+            notifyItemInserted(0)
+        }
+    }
+
     private fun checkLoadMoreV2(list: MutableList<MCDetailMessage>) {
         list.reverse()
         if (isLoadMoreEnable) {
@@ -242,20 +252,21 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
                     binding.tvTime.setTextColor(ContextCompat.getColor(itemView.context, R.color.gray_b4))
                     obj.timeText = convertDateTimeSvToCurrentDay(obj.time)
                     binding.tvTime.text = obj.timeText
-                    binding.tvMessage.setBackgroundDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_10_blue))
+                    binding.tvMessage.background=ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_10_blue)
                 }
                 MCStatus.LOADING -> {
                     binding.imgRetry.setGone()
                     binding.tvTime.setTextColor(ContextCompat.getColor(itemView.context, R.color.gray_b4))
                     binding.tvTime.text = itemView.context.getString(R.string.dang_gui)
                     binding.tvMessage.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.blue_opactity))
-                    binding.tvMessage.setBackgroundDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_10_blue_opacity))
+//                    binding.tvMessage.setBackgroundDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_10_blue_opacity))
+                    binding.tvMessage.background=ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_10_blue)
                 }
                 else -> {
                     binding.imgRetry.setVisible()
                     binding.tvTime.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorAccentRed))
                     binding.tvTime.text = itemView.context.getString(R.string.loi_gui_tin_nhan)
-                    binding.tvMessage.setBackgroundDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_10_blue_opacity))
+                    binding.tvMessage.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_10_blue_opacity)
                 }
             }
         }
@@ -511,7 +522,7 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
         }
 
         val urlTask = URLEmbeddedTask((URLEmbeddedTask.OnLoadURLListener {
-            if (image == null){
+            if (image == null) {
                 return@OnLoadURLListener
             }
             image.visibleOrGone(!it.thumbnailURL.isNullOrEmpty())
@@ -544,9 +555,9 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
                 val positionStart = obj.content!!.indexOf("icheck://")
                 val positionEnd = obj.content!!.indexOf(" ", positionStart)
 
-                val schema = if (positionEnd != -1){
+                val schema = if (positionEnd != -1) {
                     obj.content!!.substring(positionStart, positionEnd)
-                }else{
+                } else {
                     obj.content!!
                 }
 
