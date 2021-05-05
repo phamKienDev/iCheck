@@ -565,7 +565,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
             binding.imgSend.isChecked = false
             binding.imgSend.isEnabled = false
         } else {
-            unCheckAll()
+            unCheckAll(view.id == imgSticker.id)
             view.isChecked = true
             layout.setVisible()
             binding.viewClick.setVisible()
@@ -696,18 +696,21 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         }
     }
 
-    private fun unCheckAll() {
+    private fun unCheckAll(clickSticker: Boolean = false) {
         binding.imgScan.isChecked = false
         binding.imgCamera.isChecked = false
         binding.imgSticker.isChecked = false
         binding.imgSend.isChecked = false
         binding.imgSend.isEnabled = false
-        product = null
 
         binding.layoutBlock.setGone()
         binding.layoutSticker.setGone()
-        binding.layoutProduct.setGone()
         binding.layoutUserBlock.setGone()
+
+        if (!clickSticker) {
+            product = null
+            binding.layoutProduct.setGone()
+        }
     }
 
 
