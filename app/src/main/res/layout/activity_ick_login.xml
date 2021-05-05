@@ -57,16 +57,16 @@
         app:layout_constraintStart_toEndOf="@id/btn_login"
         app:layout_constraintTop_toBottomOf="@id/ic" />
 
-<!--    <View-->
-<!--        android:id="@id/viewBackground"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="@dimen/size_0"-->
-<!--        app:layout_constraintBottom_toBottomOf="@id/nav_host_fragment_login"-->
-<!--        app:layout_constraintTop_toTopOf="@id/nav_host_fragment_login" />-->
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/nav_host_fragment_login"
+    <View
+        android:id="@id/viewBackground"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0"
         android:background="@drawable/ick_bg_top_corner_20"
+        app:layout_constraintBottom_toBottomOf="@id/nav_host_fragment_login"
+        app:layout_constraintTop_toTopOf="@id/nav_host_fragment_login" />
+
+    <fragment
+        android:id="@+id/nav_host_fragment_login"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"

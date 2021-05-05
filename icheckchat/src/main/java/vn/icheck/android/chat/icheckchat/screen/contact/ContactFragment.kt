@@ -3,18 +3,16 @@ package vn.icheck.android.chat.icheckchat.screen.contact
 import android.Manifest
 import android.content.ContentResolver
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import vn.icheck.android.chat.icheckchat.R
 import vn.icheck.android.chat.icheckchat.base.BaseFragmentChat
+import vn.icheck.android.chat.icheckchat.base.ConstantChat
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.USER_ID
 import vn.icheck.android.chat.icheckchat.base.recyclerview.IRecyclerViewCallback
 import vn.icheck.android.chat.icheckchat.base.view.*
@@ -28,9 +26,7 @@ import vn.icheck.android.ichecklibs.util.PermissionHelper
 import java.util.*
 
 class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerViewCallback {
-    private var isUserLogged: Boolean = false
-
-    private var clickGetData = true
+    private var clickGetData = false
     private var isCreated = false
 
     companion object {
@@ -73,7 +69,6 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
 
     private fun initSwipeLayout() {
         binding.swipeRefresh.post {
-            clickGetData = false
             getData()
         }
 
@@ -83,8 +78,37 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
         }
     }
 
-    private fun getListContacts() {
+    private fun requestContact(): Boolean {
+        return if (PermissionHelper.isAllowPermission(requireContext(), Manifest.permission.READ_CONTACTS)) {
+            true
+        } else {
+            requestPermissions(arrayOf(Manifest.permission.READ_CONTACTS), REQUEST_CONTACT)
+            false
+        }
+    }
+
+    private fun checkSyncContact() {
+        if (requestContact()) {
+            showDialog()
+        }
+    }
+
+    private fun showDialog() {
+        object : ConfirmContactDialog(requireContext(), {
+            clickGetData = true
+            if (ShareHelperChat.getBoolean(ConstantChat.USER_LOGIN)) {
+                syncContact()
+            } else {
+                requireContext().showToastError("Bạn chưa đăng nhập! Vui lòng đăng nhập!")
+            }
+        }, {
+            getSystemSetting()
+        }) {}.show()
+    }
+
+    private fun syncContact() {
         if (!requestContact()){
+            clickGetData = false
             return
         }
 
@@ -95,16 +119,31 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
                 MCStatus.ERROR_NETWORK -> {
                     binding.swipeRefresh.isRefreshing = false
                     requireContext().showToastError(it.message)
+                    clickGetData = false
                 }
                 MCStatus.ERROR_REQUEST -> {
                     binding.swipeRefresh.isRefreshing = false
                     requireContext().showToastError(it.message)
+                    clickGetData = false
                 }
                 MCStatus.SUCCESS -> {
                     getData()
                 }
             }
         })
+    }
+
+    private fun getContacts(): ArrayList<String> {
+        val contentResolver: ContentResolver = requireActivity().contentResolver
+        val allContacts = ArrayList<String>()
+        contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, projection, null, null, null)?.use { cursor ->
+            val numberIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)
+            while (cursor.moveToNext()) {
+                val number = cursor.getString(numberIndex)
+                allContacts.add(number)
+            }
+        }
+        return allContacts
     }
 
     private fun getData(isLoadMore: Boolean = false) {
@@ -149,53 +188,16 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
         })
     }
 
-    private fun getContacts(): ArrayList<String> {
-        val contentResolver: ContentResolver = requireActivity().contentResolver
-        val allContacts = ArrayList<String>()
-        contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, projection, null, null, null)?.use { cursor ->
-            val numberIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)
-            while (cursor.moveToNext()) {
-                val number = cursor.getString(numberIndex)
-                allContacts.add(number)
-            }
-        }
-        return allContacts
-    }
-
-    private fun requestContact(): Boolean {
-        return if (PermissionHelper.isAllowPermission(requireContext(), Manifest.permission.READ_CONTACTS)) {
-            true
-        } else {
-            requestPermissions(arrayOf(Manifest.permission.READ_CONTACTS), REQUEST_CONTACT)
-            false
-        }
-    }
-
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
         if (requestCode == REQUEST_CONTACT) {
             if (PermissionHelper.checkResult(grantResults)) {
-                getContacts()
+                showDialog()
             } else {
                 requireContext().showToastError("Bạn chưa cấp đủ quyền!")
             }
         }
-    }
-
-    private fun showDialog() {
-        object : ConfirmContactDialog(requireContext(), {
-            clickGetData = true
-            if (binding.swipeRefresh.isEnabled) {
-                getListContacts()
-            } else {
-                requireContext().showToastError("Bạn chưa đăng nhập! Vui lòng đăng nhập!")
-            }
-        }, {
-            getSystemSetting()
-        }) {
-
-        }.show()
     }
 
     private fun getSystemSetting() {
@@ -225,17 +227,13 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
     fun checkLoginOrLogOut(isLogin: Boolean) {
         if (!isLogin) {
             binding.swipeRefresh.isEnabled = false
-            if (isUserLogged) {
+
+            if (ShareHelperChat.getBoolean(ConstantChat.USER_LOGIN)) {
                 binding.recyclerView.setGone()
                 binding.btnMergeRequest.setGone()
-                binding.tvMessageContact.setVisible()
-                binding.btnRequest.setVisible()
-                binding.layoutNoData.setVisible()
+                setVisibleView(binding.layoutNoData, binding.btnRequest, binding.tvMessageContact)
             } else {
-                binding.recyclerView.setGone()
-                binding.btnMergeRequest.setGone()
-                binding.tvMessageContact.setGone()
-                binding.btnRequest.setGone()
+                setGoneView(binding.recyclerView, binding.btnMergeRequest, binding.tvMessageContact, binding.btnRequest)
                 binding.layoutNoData.setVisible()
             }
         } else {
@@ -251,9 +249,8 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
             isCreated = true
 
             viewModel = ViewModelProvider(this@ContactFragment)[ContactViewModel::class.java]
-            isUserLogged = arguments?.getBoolean(Constant.DATA_1, false) ?: false
 
-            if (isUserLogged) {
+            if (ShareHelperChat.getBoolean(ConstantChat.USER_LOGIN)) {
                 binding.swipeRefresh.isEnabled = true
 
                 binding.recyclerView.setGone()
@@ -272,11 +269,11 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
             initSwipeLayout()
 
             binding.btnRequest.setOnClickListener {
-                showDialog()
+                checkSyncContact()
             }
 
             binding.btnMergeRequest.setOnClickListener {
-                showDialog()
+                checkSyncContact()
             }
         }
     }

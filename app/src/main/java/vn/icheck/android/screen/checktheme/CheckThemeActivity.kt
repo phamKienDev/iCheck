@@ -106,7 +106,7 @@ class CheckThemeActivity : BaseActivityMVVM() {
     }
 
     private fun getThemeSetting() {
-        ChatSdk.shareIntent(SessionManager.session.firebaseToken, SessionManager.session.user?.id, SessionManager.session.token, DeviceUtils.getUniqueDeviceId())
+        ChatSdk.shareIntent(SessionManager.session.firebaseToken, SessionManager.session.user?.id, SessionManager.session.token, DeviceUtils.getUniqueDeviceId(),SessionManager.isUserLogged)
 
         lifecycleScope.launch {
             var themeSettingRes: ICResponse<ICThemeSetting>? = null
