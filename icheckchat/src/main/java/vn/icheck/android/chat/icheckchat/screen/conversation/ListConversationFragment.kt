@@ -290,7 +290,7 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
                 }, { obj ->
             val key = obj.key.toString()
 
-            if (adapter.getListData.first().key == key) {
+            if (adapter.getListData.firstOrNull()?.key == key) {
                 adapter.getListData[0] = adapter.getListData[0].apply {
                     this.key = obj.key.toString()
                     enableAlert = obj.child("enable_alert").value.toString().toBoolean()

@@ -480,10 +480,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                     binding.layoutNewMessage.clearAnimation()
                 } else {
                     binding.layoutNewMessage.beVisible()
-                    Handler().postDelayed({
-                        binding.layoutNewMessage.beGone()
-                        binding.layoutNewMessage.clearAnimation()
-                    }, 5000)
                     binding.layoutNewMessage.startAnimation(linearAnimation)
                 }
             }
@@ -578,20 +574,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         }
     }
 
-    private fun unCheckAll() {
-        binding.imgScan.isChecked = false
-        binding.imgCamera.isChecked = false
-        binding.imgSticker.isChecked = false
-        binding.imgSend.isChecked = false
-        binding.imgSend.isEnabled = false
-        product = null
-
-        binding.layoutBlock.setGone()
-        binding.layoutSticker.setGone()
-        binding.recyclerViewImage.setGone()
-        binding.layoutProduct.setGone()
-        binding.layoutUserBlock.setGone()
-    }
 
     private fun formatMessage() {
         if (!adapterImage.isEmpty) {
@@ -607,7 +589,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 listMediaFile = mutableListOf()
                 listMediaFile!!.addAll(adapterImage.getListData)
 
-                binding.recyclerViewImage.setGone()
                 type = "media"
             }
             if (binding.layoutProduct.isVisible && this@ChatSocialDetailActivity.product != null) {
@@ -706,16 +687,29 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
     }
 
     private fun sendMessageSuccess(obj: MCDetailMessage) {
-        adapterImage.clearData()
-        binding.recyclerViewImage.setVisible()
-        binding.view.setGone()
-
-        binding.edtMessage.setText("")
-
         if (obj.type?.contains("sticker") == false) {
+            adapterImage.clearData()
+            binding.view.setGone()
+            binding.edtMessage.setText("")
+
             unCheckAll()
         }
     }
+
+    private fun unCheckAll() {
+        binding.imgScan.isChecked = false
+        binding.imgCamera.isChecked = false
+        binding.imgSticker.isChecked = false
+        binding.imgSend.isChecked = false
+        binding.imgSend.isEnabled = false
+        product = null
+
+        binding.layoutBlock.setGone()
+        binding.layoutSticker.setGone()
+        binding.layoutProduct.setGone()
+        binding.layoutUserBlock.setGone()
+    }
+
 
     private fun unBlockMessage(key: String, toId: String, toType: String) {
         viewModel.unBlockMessage(key, toId, toType).observe(this@ChatSocialDetailActivity, {
@@ -1033,9 +1027,9 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         val listener = object : TakeMediaListener {
             override fun onPickMediaSucess(file: File) {
                 binding.view.setVisible()
-                if ((adapterImage.getListData.size + 1) <= 20){
+                if ((adapterImage.getListData.size + 1) <= 20) {
                     adapterImage.setImage(file)
-                }else{
+                } else {
                     showToastError(getString(R.string.chon_20_anh))
                 }
                 chooseImage()
@@ -1043,9 +1037,9 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
             override fun onPickMuliMediaSucess(file: MutableList<File>) {
                 binding.view.setVisible()
-                if ((adapterImage.getListData.size + file.size) <= 20){
+                if ((adapterImage.getListData.size + file.size) <= 20) {
                     adapterImage.setListImage(file)
-                }else{
+                } else {
                     showToastError(getString(R.string.chon_20_anh))
                 }
                 chooseImage()
@@ -1060,9 +1054,9 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
             override fun onTakeMediaSuccess(file: File?) {
                 if (file != null) {
                     binding.view.setVisible()
-                    if ((adapterImage.getListData.size + 1) <= 20){
+                    if ((adapterImage.getListData.size + 1) <= 20) {
                         adapterImage.setImage(file)
-                    }else{
+                    } else {
                         showToastError(getString(R.string.chon_20_anh))
                     }
                     chooseImage()
