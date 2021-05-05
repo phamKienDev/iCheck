@@ -79,106 +79,91 @@ class IcFcmService : FirebaseMessagingService() {
                     showDialogNotification(link = targetID)
                 }
                 else -> {
-                    ICheckApplication.currentActivity()?.let { act ->
-                        act.runOnUiThread {
-                            if (Alerter.isShowing) {
-                                Alerter.hide()
-                            }
-
-                            Handler().postDelayed({
-                                Alerter.create(act)
-                                        .setBackgroundColorRes(R.color.green_popup_notifi)
-                                        .setDuration(3000)
-                                        .setText(body ?: "")
-                                        .setOnClickListener {
-                                            FirebaseDynamicLinksActivity.startTargetPath(act, path)
-                                        }
-                                        .show()
-                            }, 1000)
-                        }
-
-                    }
+                    checkPath(body, path, targetID, schema)
                 }
             }
         } else {
-            if (body.isNullOrEmpty()) {
+            checkPath(body, path, targetID, schema)
+        }
+    }
+
+    private fun checkPath(body: String?, path: String, targetID: String?, schema: String) {
+        if (body.isNullOrEmpty()) {
+            return
+        }
+
+        if (path.contains("inbox") || path.contains("inbox_user")) {
+            if (ListConversationFragment.isOpenConversation) {
                 return
             }
 
-            if (path.contains("inbox") || path.contains("inbox_user")) {
-                if (ListConversationFragment.isOpenConversation) {
-                    return
-                }
+            val activity = ICheckApplication.currentActivity()
+            if (activity != null && activity is ChatSocialDetailActivity) {
+                // ID của user gửi tin nhắn đến
+                val inboxFromID = Uri.parse(path).getQueryParameter("id")
 
-                val activity = ICheckApplication.currentActivity()
-                if (activity != null && activity is ChatSocialDetailActivity) {
-                    // ID của user gửi tin nhắn đến
-                    val inboxFromID = Uri.parse(path).getQueryParameter("id")
-
-                    // Trường hợp fcm là tin nhắn đến
-                    if (path.contains("inbox")) {
-                        if (activity.inboxRoomID == inboxFromID) {
-                            return
-                        }
-                    } else if (path.contains("inbox_user")) {
-                        if (activity.inboxUserID == inboxFromID) {
-                            return
-                        }
+                // Trường hợp fcm là tin nhắn đến
+                if (path.contains("inbox")) {
+                    if (activity.inboxRoomID == inboxFromID) {
+                        return
+                    }
+                } else if (path.contains("inbox_user")) {
+                    if (activity.inboxUserID == inboxFromID) {
+                        return
                     }
                 }
             }
+        }
 
-            when {
-                path.contains("completed_mission") -> {
-                    val pathUri = Uri.parse(path).getQueryParameter("id")
-                    getMissionDetail(pathUri)
+        when {
+            path.contains("completed_mission") -> {
+                val pathUri = Uri.parse(path).getQueryParameter("id")
+                getMissionDetail(pathUri)
+            }
+            path.contains("level_up") -> {
+                ICheckApplication.currentActivity()?.let { act ->
+    //                    Alerter.create(act)
+    //                            .setBackgroundColorRes(R.color.green_popup_notifi)
+    //                            .setDuration(3000)
+    //                            .setText(body)
+    //                            .setOnClickListener {
+    //                                FirebaseDynamicLinksActivity.startTargetPath(act, path)
+    //                            }
+    //                            .show()
+                    startActivity(Intent(act, RankUpActivity::class.java).apply {
+                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    })
                 }
-                path.contains("level_up") -> {
-                    ICheckApplication.currentActivity()?.let { act ->
-//                    Alerter.create(act)
-//                            .setBackgroundColorRes(R.color.green_popup_notifi)
-//                            .setDuration(3000)
-//                            .setText(body)
-//                            .setOnClickListener {
-//                                FirebaseDynamicLinksActivity.startTargetPath(act, path)
-//                            }
-//                            .show()
-                        startActivity(Intent(act, RankUpActivity::class.java).apply {
-                            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                        })
-                    }
-                }
-                path.contains("popup_image") -> {
-                    showDialogNotification(image = targetID, schema = schema)
-                }
-                path.contains("popup_html") -> {
-                    showDialogNotification(htmlText = targetID)
-                }
-                path.contains("popup_link") -> {
-                    showDialogNotification(link = targetID)
-                }
-                else -> {
-                    ICheckApplication.currentActivity()?.let { act ->
-                        act.runOnUiThread {
-                            if (Alerter.isShowing) {
-                                Alerter.hide()
-                            }
-
-                            Handler().postDelayed({
-                                Alerter.create(act)
-                                        .setBackgroundColorRes(R.color.green_popup_notifi)
-                                        .setDuration(3000)
-                                        .setText(body)
-                                        .setOnClickListener {
-                                            FirebaseDynamicLinksActivity.startTargetPath(act, path)
-                                        }
-                                        .show()
-                            }, 1000)
+            }
+            path.contains("popup_image") -> {
+                showDialogNotification(image = targetID, schema = schema)
+            }
+            path.contains("popup_html") -> {
+                showDialogNotification(htmlText = targetID)
+            }
+            path.contains("popup_link") -> {
+                showDialogNotification(link = targetID)
+            }
+            else -> {
+                ICheckApplication.currentActivity()?.let { act ->
+                    act.runOnUiThread {
+                        if (Alerter.isShowing) {
+                            Alerter.hide()
                         }
+
+                        Handler().postDelayed({
+                            Alerter.create(act)
+                                    .setBackgroundColorRes(R.color.green_popup_notifi)
+                                    .setDuration(3000)
+                                    .setText(body)
+                                    .setOnClickListener {
+                                        FirebaseDynamicLinksActivity.startTargetPath(act, path)
+                                    }
+                                    .show()
+                        }, 1000)
                     }
                 }
             }
-
         }
     }
 
