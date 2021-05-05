@@ -13,6 +13,7 @@ import com.google.firebase.database.DataSnapshot
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import vn.icheck.android.chat.icheckchat.R
 import vn.icheck.android.chat.icheckchat.base.BaseFragmentChat
 import vn.icheck.android.chat.icheckchat.base.ConstantChat
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.KEY
@@ -27,6 +28,8 @@ import vn.icheck.android.chat.icheckchat.helper.ShareHelperChat
 import vn.icheck.android.chat.icheckchat.model.MCConversation
 import vn.icheck.android.chat.icheckchat.model.MCMessageEvent
 import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
+import vn.icheck.android.ichecklibs.beGone
+import vn.icheck.android.ichecklibs.beVisible
 import java.util.*
 
 class ListConversationFragment : BaseFragmentChat<FragmentListConversationBinding>(), IRecyclerViewCallback {
@@ -80,6 +83,8 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
     }
 
     private fun initSwipeLayout() {
+        binding.swipeRefresh.isEnabled = ShareHelperChat.getBoolean(ConstantChat.USER_LOGIN)
+
         binding.swipeRefresh.setOnRefreshListener {
             getData()
         }
@@ -174,6 +179,8 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
     }
 
     private fun initEditText() {
+        binding.layoutSearch.visibleOrGone(ShareHelperChat.getBoolean(ConstantChat.USER_LOGIN))
+
         binding.edtSearch.addTextChangedListener(textChangeListener)
 
         binding.imgDelete.setOnClickListener {
@@ -317,11 +324,16 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
     }
 
     fun checkLoginOrLogOut(isLogin: Boolean) {
+        adapter.resetData(false)
+        listData.clear()
         if (!isLogin) {
-            binding.swipeRefresh.isRefreshing = false
+            binding.layoutSearch.beGone()
+            binding.swipeRefresh.isEnabled = false
             binding.recyclerView.setGone()
             binding.layoutNoData.setVisible()
         } else {
+            binding.layoutSearch.beVisible()
+            binding.swipeRefresh.isEnabled = true
             getData()
         }
     }
