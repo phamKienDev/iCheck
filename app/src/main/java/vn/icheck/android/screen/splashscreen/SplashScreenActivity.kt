@@ -33,10 +33,13 @@ class SplashScreenActivity : Activity() {
         SettingManager.setDeviceID(DeviceUtils.getUDID(this))
         SettingManager.appVersion = BuildConfig.VERSION_NAME
 
-
-        val targetFull = intent?.getStringExtra(Constant.DATA_3)
+        val targetFull = intent?.getStringExtra(Constant.DATA_3) ?: intent?.extras?.getString("path")
         if (!targetFull.isNullOrEmpty()) {
-            FirebaseDynamicLinksActivity.startDestinationUrl(this, targetFull)
+            if (HomeActivity.isOpen != true) {
+                ActivityHelper.startActivity<HomeActivity>(this, Constant.DATA_3, targetFull)
+            } else {
+                FirebaseDynamicLinksActivity.startDestinationUrl(this, targetFull)
+            }
             finish()
         } else {
             var targetType = intent?.getStringExtra(Constant.DATA_1)
