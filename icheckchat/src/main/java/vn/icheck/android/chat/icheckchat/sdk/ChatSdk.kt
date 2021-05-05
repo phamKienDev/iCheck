@@ -7,13 +7,14 @@ object ChatSdk {
 
     private var listener: SdkChatListener? = null
 
-    fun shareIntent(firebaseToken: String?, id: Long?, token: String?, deviceId: String?) {
+    fun shareIntent(firebaseToken: String?, id: Long?, token: String?, deviceId: String?, userLogin: Boolean) {
         ShareHelperChat.clearData()
 
         ShareHelperChat.putString(ConstantChat.TOKEN_FIREBASE, firebaseToken)
         ShareHelperChat.putString(ConstantChat.TOKEN, token)
         ShareHelperChat.putString(ConstantChat.DEVICE_ID, deviceId)
         ShareHelperChat.putLong(ConstantChat.USER_ID, id ?: -1)
+        ShareHelperChat.putBoolean(ConstantChat.USER_LOGIN, userLogin)
     }
 
     fun openActivity(schema: String) {

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/size_20"
+    android:padding="@dimen/size_20"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -12,6 +12,7 @@
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:maxHeight="450dp"
         android:adjustViewBounds="true" />
 
 

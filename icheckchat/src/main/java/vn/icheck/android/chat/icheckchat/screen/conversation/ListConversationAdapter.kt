@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.DataSnapshot
 import vn.icheck.android.chat.icheckchat.R
 import vn.icheck.android.chat.icheckchat.base.recyclerview.BaseRecyclerView
 import vn.icheck.android.chat.icheckchat.base.recyclerview.IRecyclerViewCallback
@@ -14,15 +15,48 @@ import vn.icheck.android.chat.icheckchat.base.view.*
 import vn.icheck.android.chat.icheckchat.base.view.MCViewType.TYPE_CONVERSATION
 import vn.icheck.android.chat.icheckchat.databinding.ItemConversationBinding
 import vn.icheck.android.chat.icheckchat.model.MCConversation
+import java.util.*
 
 class ListConversationAdapter(callback: IRecyclerViewCallback) : BaseRecyclerView<MCConversation>(callback) {
     private var listenerHolder: IListener? = null
 
-    fun setData(obj: MutableList<MCConversation>) {
-        listData.clear()
+//    fun setData(obj: MutableList<MCConversation>) {
+//        listData.clear()
+//
+//        listData.addAll(obj)
+//        notifyDataSetChanged()
+//    }
 
-        listData.addAll(obj)
-        notifyDataSetChanged()
+    fun changeConversation(obj: DataSnapshot) {
+        val key = obj.key.toString()
+
+        for (position in listData.size - 1 downTo 0) {
+            if (listData[position].key == key) {
+                val mObj = listData[position].apply {
+                    this.key = obj.key.toString()
+                    enableAlert = obj.child("enable_alert").value.toString().toBoolean()
+                    keyRoom = obj.key.toString()
+                    unreadCount = obj.child("unread_count").value as Long? ?: 0L
+                    time = obj.child("last_activity").child("time").value as Long?
+                            ?: System.currentTimeMillis()
+                    lastMessage = if (obj.child("last_activity").child("content").value != null) {
+                        obj.child("last_activity").child("content").value.toString()
+                    } else {
+                        ""
+                    }
+                }
+
+                // xóa tin nhắn mới ở vị trí hiện tại
+                listData.removeAt(position)
+                notifyItemRemoved(position)
+
+                // chuyển tin nhắn mới lên vị trí trên đầu
+                listData.add(0, mObj)
+                notifyItemInserted(0)
+
+                return
+            }
+        }
     }
 
     fun refreshItem(obj: MCConversation) {

@@ -53,10 +53,11 @@ class VerifyIdentityActivity : BaseActivityMVVM(), View.OnClickListener {
                 if (kycDocuments?.firstOrNull()?.type == 1) {
                     textView46.setText(R.string.mat_truoc_cmnd)
                     textView47.setText(R.string.mat_sau_cmnd)
-
+                    tvSelectPassport.text = getString(R.string.chung_minh_nhan_dan)
                 } else {
                     textView46.setText(R.string.mat_truoc_cccd)
                     textView47.setText(R.string.mat_sau_cccd)
+                    tvSelectPassport.text = getString(R.string.can_cuoc_cong_dan)
                 }
                 if (viewModel.kycStatus != 3) {
                     lifecycleScope.launch {
