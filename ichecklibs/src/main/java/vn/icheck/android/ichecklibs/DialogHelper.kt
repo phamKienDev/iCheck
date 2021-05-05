@@ -1,6 +1,12 @@
 package vn.icheck.android.ichecklibs
 
+import android.app.Activity
+import android.app.Dialog
 import android.content.Context
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import vn.icheck.android.ichecklibs.base_dialog.NotificationDialog
 
 object DialogHelper {
@@ -76,6 +82,51 @@ object DialogHelper {
             context?.getString(res)
         }
     }
+
+    fun showLoading(fragment: Fragment) {
+        if (fragment.isVisible) {
+            showLoading(fragment.requireActivity())
+        }
+    }
+
+    fun showLoading(activity: Activity) {
+        (activity.findViewById<View>(android.R.id.content).rootView as ViewGroup).apply {
+            val dialog = findViewById<View?>(R.id.dialogLoading)
+            if (dialog == null) {
+                addView(LayoutInflater.from(context).inflate(R.layout.dialog_loading, this, false).apply {
+                    id = R.id.dialogLoading
+                    layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+                    isClickable = true
+                    isFocusable = true
+                })
+            }
+        }
+    }
+
+    fun closeLoading(activity: Activity) {
+        (activity.findViewById<View>(android.R.id.content).rootView as ViewGroup).apply {
+            val dialog = findViewById<View?>(R.id.dialogLoading)
+            if (dialog != null) {
+                removeView(dialog)
+            }
+        }
+    }
+
+    fun closeLoading(fragment: Fragment) {
+        if (fragment.isVisible) {
+            closeLoading(fragment.requireActivity())
+        }
+    }
+
+    fun closeLoading(dialog: Dialog) {
+        (dialog.window?.decorView as ViewGroup?)?.apply {
+            val layout = findViewById<View?>(R.id.dialogLoading)
+            if (layout != null) {
+                removeView(layout)
+            }
+        }
+    }
+
 }
 
 /**
