@@ -60,17 +60,37 @@ class IcFcmService : FirebaseMessagingService() {
             targetID = remoteMessage.data["id"]
         }
 
-        val action = remoteMessage.data["type"]
         val path = remoteMessage.data["path"] ?: ""
-        if (body.isNullOrEmpty()) {
-            return
-        }
+
 
         val schema = remoteMessage.data["action"] ?: ""
 
-        logDebug("$title - $body - $targetType - $targetID - $action - $path")
-
         playNotificationSound()
+
+        if (targetType.isNotEmpty()) {
+            when {
+                targetType.contains("popup_image") -> {
+                    showDialogNotification(image = targetID, schema = schema)
+                }
+                targetType.contains("popup_html") -> {
+                    showDialogNotification(htmlText = targetID)
+                }
+                targetType.contains("popup_link") -> {
+                    showDialogNotification(link = targetID)
+                }
+                else -> {
+                    checkPath(body, path, targetID, schema)
+                }
+            }
+        } else {
+            checkPath(body, path, targetID, schema)
+        }
+    }
+
+    private fun checkPath(body: String?, path: String, targetID: String?, schema: String) {
+        if (body.isNullOrEmpty()) {
+            return
+        }
 
         if (path.contains("inbox") || path.contains("inbox_user")) {
             if (ListConversationFragment.isOpenConversation) {
@@ -102,14 +122,14 @@ class IcFcmService : FirebaseMessagingService() {
             }
             path.contains("level_up") -> {
                 ICheckApplication.currentActivity()?.let { act ->
-//                    Alerter.create(act)
-//                            .setBackgroundColorRes(R.color.green_popup_notifi)
-//                            .setDuration(3000)
-//                            .setText(body)
-//                            .setOnClickListener {
-//                                FirebaseDynamicLinksActivity.startTargetPath(act, path)
-//                            }
-//                            .show()
+    //                    Alerter.create(act)
+    //                            .setBackgroundColorRes(R.color.green_popup_notifi)
+    //                            .setDuration(3000)
+    //                            .setText(body)
+    //                            .setOnClickListener {
+    //                                FirebaseDynamicLinksActivity.startTargetPath(act, path)
+    //                            }
+    //                            .show()
                     startActivity(Intent(act, RankUpActivity::class.java).apply {
                         addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     })
