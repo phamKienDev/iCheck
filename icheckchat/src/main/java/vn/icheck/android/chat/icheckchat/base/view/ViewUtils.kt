@@ -366,6 +366,20 @@ fun convertDateTimeSvToTimeDateVn(millisecond: Long?): String? {
     }
 }
 
+fun convertDateTimeSvToTimeVn(millisecond: Long?): String? {
+    if (millisecond == null || millisecond == -1L)
+        return null
+
+    val sdfVn = SimpleDateFormat("HH:mm")
+    sdfVn.timeZone = TimeZone.getTimeZone("GMT+07")
+
+    return try {
+        sdfVn.format(Date(millisecond))
+    } catch (e: Exception) {
+        null
+    }
+}
+
 fun convertDateTimeSvToCurrentDay(millisecond: Long?): String {
     val time = System.currentTimeMillis().minus(millisecond ?: 0)
 
@@ -378,7 +392,7 @@ fun convertDateTimeSvToCurrentDay(millisecond: Long?): String {
         }
         time < AlarmManager.INTERVAL_DAY -> {
             if (soSanhCungNgay(millisecond)) {
-                (time / intervalHour).toString() + " giờ trước"
+                convertDateTimeSvToTimeVn(millisecond) ?: ""
             } else {
                 convertDateTimeSvToTimeDateVn(millisecond) ?: ""
             }
