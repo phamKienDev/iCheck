@@ -229,7 +229,6 @@
                 android:layout_width="@dimen/size_170"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_12"
-                android:background="@drawable/bg_corners_4_light_blue_solid"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:paddingTop="@dimen/size_10"
@@ -238,7 +237,5 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_16" />
         </LinearLayout>
-
     </LinearLayout>
-
 </LinearLayout>

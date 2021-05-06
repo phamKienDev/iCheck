@@ -276,7 +276,7 @@ class ConfirmShipFragment : Fragment() {
                         binding.imgStatus.setImageResource(R.drawable.img_pending)
                         binding.btnConfirm simpleText "Hủy đơn"
                         binding.btnConfirm.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(requireContext()))
-                        binding.btnConfirm.setBackgroundResource(R.drawable.bg_stroke_blue_corner_4)
+                        binding.btnConfirm.background = ViewHelper.bgOutlinePrimary1Corners4(requireContext())
                         binding.tvReport.beVisible()
                         binding.btnConfirm.setOnClickListener {
                             DialogHelper.showConfirm(requireContext(),"Bạn chắc chắn muốn hủy \n đơn hàng này?",null ,getString(R.string.de_sau), getString(R.string.dong_y),true, object : ConfirmDialogListener{
@@ -323,7 +323,7 @@ class ConfirmShipFragment : Fragment() {
                         binding.imgStatus.setImageResource(R.drawable.img_cancelled)
                         binding.btnConfirm simpleText "Mua lại đơn này"
                         binding.btnConfirm.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(requireContext()))
-                        binding.btnConfirm.setBackgroundResource(R.drawable.bg_stroke_blue_corner_4)
+                        binding.btnConfirm.background = ViewHelper.bgOutlinePrimary1Corners4(requireContext())
                         binding.textView91 simpleText "Thời gian hủy đơn"
                         binding.tvShipTime simpleText detailOrderResponse.cancelledAt?.getHourMinutesTime()
                         binding.btnConfirm.setOnClickListener {

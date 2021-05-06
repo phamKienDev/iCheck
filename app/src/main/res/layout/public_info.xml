@@ -166,8 +166,7 @@
                         android:paddingLeft="@dimen/size_8"
                         android:paddingEnd="@dimen/size_12"
                         android:paddingRight="@dimen/size_12"
-                        android:text="@string/nam"
-                        android:textColor="@color/text_color_update_profile_gender" />
+                        android:text="@string/nam" />
 
                     <RadioButton
                         android:id="@id/rbFemale"

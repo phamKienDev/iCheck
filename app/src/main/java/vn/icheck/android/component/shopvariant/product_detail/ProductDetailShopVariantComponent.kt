@@ -166,28 +166,31 @@ class ProductDetailShopVariantComponent : LinearLayout {
             showMap(productRow)
         }
 
-        layoutAddToCart.setOnClickListener {
-            if (SessionManager.isUserLogged) {
-                if (NetworkHelper.isNotConnected(context)) {
-                    ToastUtils.showShortError(context, context.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
-                    return@setOnClickListener
+        layoutAddToCart.apply {
+            background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(context)
+            setOnClickListener {
+                if (SessionManager.isUserLogged) {
+                    if (NetworkHelper.isNotConnected(context)) {
+                        ToastUtils.showShortError(context, context.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+                        return@setOnClickListener
+                    }
+
+                    cartInteraction.addCart(productRow.id!!, 1, object : ICApiListener<ICRespCart> {
+                        override fun onSuccess(obj: ICRespCart) {
+                            cartHelper.saveCart(obj)
+                            EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.UPDATE_COUNT_CART))
+                            ToastUtils.showShortSuccess(context, context.getString(R.string.them_vao_gio_hang_thanh_cong))
+                        }
+
+                        override fun onError(error: ICBaseResponse?) {
+                            val message = error?.message
+                                    ?: context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                            ToastUtils.showShortError(context, message)
+                        }
+                    })
+                } else {
+                    AccountActivity.start(context)
                 }
-
-                cartInteraction.addCart(productRow.id!!, 1, object : ICApiListener<ICRespCart> {
-                    override fun onSuccess(obj: ICRespCart) {
-                        cartHelper.saveCart(obj)
-                        EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.UPDATE_COUNT_CART))
-                        ToastUtils.showShortSuccess(context, context.getString(R.string.them_vao_gio_hang_thanh_cong))
-                    }
-
-                    override fun onError(error: ICBaseResponse?) {
-                        val message = error?.message
-                                ?: context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
-                        ToastUtils.showShortError(context, message)
-                    }
-                })
-            } else {
-                AccountActivity.start(context)
             }
         }
     }

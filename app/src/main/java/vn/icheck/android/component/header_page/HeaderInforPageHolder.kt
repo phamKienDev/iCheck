@@ -89,6 +89,8 @@ class HeaderInforPageHolder(parent: ViewGroup, val listener: IListReportView) : 
             itemView.viewbg.beGone()
         }
 
+        itemView.btnChinh.background = ViewHelper.bgPrimaryCorners4(itemView.context)
+
         WidgetUtils.loadImageUrl(itemView.imgAvaPage, data.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
         WidgetUtils.loadImageUrl(itemView.user_avatar, data.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
         if (data.isVerify) {

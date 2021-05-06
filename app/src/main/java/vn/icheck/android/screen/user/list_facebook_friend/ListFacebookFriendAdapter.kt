@@ -29,8 +29,11 @@ class ListFacebookFriendAdapter(val callback: IRecyclerViewCallback) : RecyclerV
             itemView.imgRank.setRankUser(obj.rank?.level)
             itemView.tvName.text = obj.getName
 
-            itemView.tvChat.setOnClickListener {
+            itemView.tvChat.apply {
+                background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context)
+                setOnClickListener {
 
+                }
             }
         }
     }

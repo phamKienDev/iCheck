@@ -17,6 +17,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICFriendNofollowPage
 import vn.icheck.android.network.models.ICUser
 import vn.icheck.android.util.ick.beGone
@@ -176,7 +177,7 @@ class InviteFriendFollowPageActivity : BaseActivityMVVM(), InviteFriendFollowPag
     override fun getListSeleted(selected: MutableList<ICUser>) {
         if (isInvite) {
             if (!selected.isNullOrEmpty()) {
-                tvInvite.background = ContextCompat.getDrawable(this, R.drawable.bg_corners_4_light_blue_solid)
+                tvInvite.background = ViewHelper.bgPrimaryCorners4(this@InviteFriendFollowPageActivity)
                 tvInvite.isEnabled = true
             } else {
                 tvInvite.background = ContextCompat.getDrawable(this, R.drawable.bg_gray_b4_corners_4)

@@ -57,9 +57,13 @@ class ShopSearchHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflat
             ToastUtils.showLongError(itemView.context, "Shop Detail")
         }
 
-        itemView.tv_follow_shop.setOnClickListener {
-            followShop(obj)
+        itemView.tv_follow_shop.apply {
+            background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(context)
+            setOnClickListener {
+                followShop(obj)
+            }
         }
+
         itemView.tv_following.setOnClickListener {
             unFollow(obj)
         }

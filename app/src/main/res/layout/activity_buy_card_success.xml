@@ -259,7 +259,6 @@
             android:layout_height="@dimen/size_36"
             android:layout_marginStart="@dimen/size_5"
             android:layout_marginEnd="@dimen/size_12"
-            android:background="@drawable/bg_corners_4_light_blue_solid"
             android:gravity="center"
             android:text="Nạp ngay"
             android:textColor="@color/white"

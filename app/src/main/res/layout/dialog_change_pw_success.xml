@@ -67,7 +67,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/size_10"
                     android:layout_weight="1"
-                    android:background="@drawable/bg_stroke_blue_corner_4"
                     android:gravity="center"
                     android:padding="@dimen/size_12"
                     android:text="Về trang chủ"

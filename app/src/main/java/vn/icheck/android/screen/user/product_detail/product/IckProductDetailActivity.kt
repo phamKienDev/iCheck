@@ -19,11 +19,6 @@ import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_ick_product_detail.*
-import kotlinx.android.synthetic.main.activity_ick_product_detail.imgBack
-import kotlinx.android.synthetic.main.activity_ick_product_detail.layoutBottom
-import kotlinx.android.synthetic.main.activity_ick_product_detail.recyclerView
-import kotlinx.android.synthetic.main.activity_ick_product_detail.txtTitle
-import kotlinx.android.synthetic.main.activity_ick_product_detail.view
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
@@ -221,6 +216,11 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
             btn_contact_not_found.background = this
             btn_lien_he.background = this
             btn_contact_icheck.background = this
+        }
+
+        ViewHelper.bgPrimaryCorners4(this).apply {
+            btn_contribute.background = this
+            btn_contact_dn.background = this
         }
     }
 

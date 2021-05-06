@@ -139,12 +139,15 @@ class SuggestPageAdapter(val callback: IRecyclerViewCallback) : RecyclerViewCust
 
             }
 
-            itemView.tv_follow.setOnClickListener {
-                if (!obj.selected) {
-                    itemView.tv_follow.setTextColor(Constant.getSecondTextColor(itemView.context))
-                    itemView.tv_follow.text = itemView.context.getString(R.string.dang_theo_doi)
-                    itemView.tv_follow.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_gray_f0_corners_4)
-                    listSelected.add(obj)
+            itemView.tv_follow.apply {
+                background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(context)
+                setOnClickListener {
+                    if (!obj.selected) {
+                        itemView.tv_follow.setTextColor(Constant.getSecondTextColor(itemView.context))
+                        itemView.tv_follow.text = itemView.context.getString(R.string.dang_theo_doi)
+                        itemView.tv_follow.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_gray_f0_corners_4)
+                        listSelected.add(obj)
+                    }
                 }
             }
         }

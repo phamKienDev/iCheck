@@ -64,7 +64,6 @@
                 android:gravity="center"
                 android:text="Hộp quà"
                 android:textAlignment="center"
-                android:textColor="@color/text_color_my_gift_title"
                 android:textSize="@dimen/font_16" />
 
             <androidx.appcompat.widget.AppCompatCheckedTextView
@@ -93,7 +92,6 @@
                 android:gravity="center"
                 android:text="Quà hiện vật"
                 android:textAlignment="center"
-                android:textColor="@color/text_color_my_gift_title"
                 android:textSize="@dimen/font_16" />
 
             <androidx.appcompat.widget.AppCompatCheckedTextView

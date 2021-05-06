@@ -83,7 +83,6 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/size_40"
             android:layout_weight="1"
-            android:background="@drawable/bg_corners_4_light_blue_solid"
             android:gravity="center">
 
             <vn.icheck.android.ichecklibs.view.TextBarlowSemiBold

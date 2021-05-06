@@ -34,15 +34,16 @@
         android:id="@id/webView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="@dimen/size_8"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:elevation="@dimen/size_8">
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/btnAction"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_36"
             android:layout_marginStart="@dimen/size_12"
@@ -51,7 +52,6 @@
             android:layout_marginEnd="@dimen/size_12"
             android:layout_marginRight="@dimen/size_12"
             android:layout_marginBottom="@dimen/size_20"
-            android:background="@drawable/bg_corners_4_light_blue_solid"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:textColor="@color/white"

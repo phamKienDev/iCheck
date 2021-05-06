@@ -20,8 +20,6 @@
         android:layout_width="@dimen/size_100"
         android:layout_height="@dimen/size_28"
         android:layout_marginEnd="@dimen/size_8"
-        android:layout_marginRight="@dimen/size_8"
-        android:background="@drawable/bg_corners_4_light_blue_solid"
         android:gravity="center"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@id/imgAvatar"

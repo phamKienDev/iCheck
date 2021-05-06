@@ -5,9 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.activity_mission_detail.*
 import kotlinx.android.synthetic.main.item_order_manager.view.*
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
@@ -22,18 +20,18 @@ import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.ichecklibs.ViewHelper
-import vn.icheck.android.network.base.*
+import vn.icheck.android.network.base.ICNewApiListener
+import vn.icheck.android.network.base.ICResponse
+import vn.icheck.android.network.base.ICResponseCode
 import vn.icheck.android.network.feature.order.OrderInteractor
 import vn.icheck.android.network.models.ICOrderHistoryV2
 import vn.icheck.android.network.models.ICRespID
-import vn.icheck.android.network.models.OrderItemItem
 import vn.icheck.android.screen.user.orderhistory.OrderHistoryActivity
 import vn.icheck.android.screen.user.report.ReportActivity
 import vn.icheck.android.screen.user.shipping.ship.ShipActivity
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.util.ick.showSimpleErrorToast
-import vn.icheck.android.util.kotlin.WidgetUtils
 
 class OrderHistoryAdapter(val status: Int, callback: IRecyclerViewCallback) : RecyclerViewAdapter<ICOrderHistoryV2>(callback) {
 
@@ -126,18 +124,21 @@ class OrderHistoryAdapter(val status: Int, callback: IRecyclerViewCallback) : Re
                 }
             }
 
-            itemView.tvConfirm.setOnClickListener {
-                DialogHelper.showConfirm(itemView.context, "Bạn đã nhận được đơn hàng này từ nhà vận chuyển?", null, "Chưa", "Đã nhận hàng", true, object : ConfirmDialogListener {
-                    override fun onDisagree() {
+            itemView.tvConfirm.apply {
+                background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context)
+                setOnClickListener {
+                    DialogHelper.showConfirm(itemView.context, "Bạn đã nhận được đơn hàng này từ nhà vận chuyển?", null, "Chưa", "Đã nhận hàng", true, object : ConfirmDialogListener {
+                        override fun onDisagree() {
 
-                    }
-
-                    override fun onAgree() {
-                        obj.id?.let { id ->
-                            updateStatusOrder(id, OrderHistoryActivity.delivered)
                         }
-                    }
-                })
+
+                        override fun onAgree() {
+                            obj.id?.let { id ->
+                                updateStatusOrder(id, OrderHistoryActivity.delivered)
+                            }
+                        }
+                    })
+                }
             }
 
             itemView.tvCancelOrder.setOnClickListener {

@@ -9,6 +9,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.loyalty.base.activity.BaseActivityGame
 import vn.icheck.android.screen.user.my_gift_warehouse.list_mission.list.ListMissionActivity
 import vn.icheck.android.util.ick.beGone
@@ -33,8 +34,11 @@ class GiftHistoryV2Activity : BaseActivityGame(), IRecyclerViewCallback {
         initSwipeLayout()
         initListener()
 
-        btnAction.setOnClickListener {
-            ListMissionActivity.show(this@GiftHistoryV2Activity, viewModel.campaignId)
+        btnAction.apply {
+            background = ViewHelper.bgPrimaryCorners4(context)
+            setOnClickListener {
+                ListMissionActivity.show(this@GiftHistoryV2Activity, viewModel.campaignId)
+            }
         }
     }
 

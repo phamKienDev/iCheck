@@ -1,13 +1,11 @@
 package vn.icheck.android.screen.user.listcontribute
 
 import android.annotation.SuppressLint
-import android.graphics.Color
 import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatCheckedTextView
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_contribute.view.*
@@ -238,7 +236,7 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
 
             itemView.tvYes.run {
                 visibility = View.VISIBLE
-                setTextColor(ViewHelper.textColorHomeTab(context))
+                setTextColor(ViewHelper.textColorDisableTextUncheckPrimaryChecked(context))
 
                 text = if (obj.upVotes > 0) {
                     "Đúng (${obj.upVotes})"
