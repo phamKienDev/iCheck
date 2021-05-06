@@ -239,7 +239,7 @@
         android:id="@+id/viewbg"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_10"
-        android:background="@color/darkGray6" />
+        android:background="@color/colorBackgroundGray" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/containerCreate"

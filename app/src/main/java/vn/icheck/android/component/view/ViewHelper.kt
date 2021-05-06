@@ -724,7 +724,7 @@ object ViewHelper {
 
         layoutParent.addView(View(context).also {
             it.layoutParams = createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size1)
-            it.setBackgroundColor(ContextCompat.getColor(context, R.color.darkGray6))
+            it.setBackgroundColor(ContextCompat.getColor(context, R.color.colorBackgroundGray))
         })
 
         layoutParent.addView(LinearLayout(context).also {
@@ -1230,7 +1230,7 @@ object ViewHelper {
         val layoutParent = LinearLayout(context).also {
             it.layoutParams = createLayoutParams()
             it.orientation = LinearLayout.VERTICAL
-            it.setBackgroundColor(ContextCompat.getColor(context, R.color.darkGray6))
+            it.setBackgroundColor(ContextCompat.getColor(context, R.color.colorBackgroundGray))
         }
 
         val title = TextBarlowSemiBold(context)
@@ -2132,7 +2132,7 @@ object ViewHelper {
             it.layoutParams = ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, SizeHelper.size0_5).also {
                 it.topMargin = SizeHelper.size10
             }
-            it.setBackgroundColor(ContextCompat.getColor(context, R.color.darkGray6))
+            it.setBackgroundColor(ContextCompat.getColor(context, R.color.colorBackgroundGray))
             it.id = R.id.view
         }
         layoutParent.addView(viewLine)
@@ -2386,7 +2386,7 @@ object ViewHelper {
             it.layoutParams = createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.dpToPx(3)).also {
                 it.setMargins(SizeHelper.size12, SizeHelper.size8, SizeHelper.size12, 0)
             }
-            it.setBackgroundColor(ContextCompat.getColor(context, R.color.darkGray6))
+            it.setBackgroundColor(ContextCompat.getColor(context, R.color.colorBackgroundGray))
         })
 
         //rcv rating
@@ -2697,7 +2697,7 @@ object ViewHelper {
         val layoutParent = LinearLayout(context)
         layoutParent.layoutParams = createLayoutParams(0, SizeHelper.size10, 0, 0)
         layoutParent.orientation = LinearLayout.VERTICAL
-        layoutParent.setBackgroundColor(ContextCompat.getColor(context, R.color.darkGray6))
+        layoutParent.setBackgroundColor(ContextCompat.getColor(context, R.color.colorBackgroundGray))
 
         layoutParent.addView(LinearLayout(context).also {
             it.layoutParams = createLayoutParams().also {
@@ -2876,7 +2876,7 @@ object ViewHelper {
                 it.setMargins(0, 0, 0, SizeHelper.size10)
 
             }
-            it.setBackgroundColor(ContextCompat.getColor(parent.context, R.color.darkGray6))
+            it.setBackgroundColor(ContextCompat.getColor(parent.context, R.color.colorBackgroundGray))
         })
 
         //tv review
@@ -3311,7 +3311,7 @@ object ViewHelper {
 
                 params.addView(View(context).also { view ->
                     view.layoutParams = createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size10)
-                    view.setBackgroundColor(ContextCompat.getColor(context, R.color.darkGray6))
+                    view.setBackgroundColor(ContextCompat.getColor(context, R.color.colorBackgroundGray))
                 })
 
                 params.addView(AppCompatTextView(context).also { text ->

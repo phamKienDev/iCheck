@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.BitmapFactory
-import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
@@ -186,13 +185,13 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         if (theme != null) {
             txtSearch.background = ViewHelper.createDrawableStateList(
                     ViewHelper.createShapeDrawable(ContextCompat.getColor(requireContext(), R.color.white_opacity_unknow), SizeHelper.size4.toFloat()),
-                    ViewHelper.createShapeDrawable(ContextCompat.getColor(requireContext(), R.color.darkGray6), SizeHelper.size4.toFloat())
+                    ViewHelper.createShapeDrawable(ContextCompat.getColor(requireContext(), R.color.colorBackgroundGray), SizeHelper.size4.toFloat())
             )
             txtSearch.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(requireContext(), R.drawable.ic_icheck_70dp_17dp), null, null, null)
         } else {
             txtSearch.background = ViewHelper.createDrawableStateList(
                     ViewHelper.createShapeDrawable(ContextCompat.getColor(requireContext(), R.color.white_opacity_unknow), SizeHelper.size4.toFloat()),
-                    ViewHelper.createShapeDrawable(ContextCompat.getColor(requireContext(), R.color.darkGray6), SizeHelper.size4.toFloat())
+                    ViewHelper.createShapeDrawable(ContextCompat.getColor(requireContext(), R.color.colorBackgroundGray), SizeHelper.size4.toFloat())
             )
             txtSearch.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(requireContext(), R.drawable.ic_icheck_70dp_17dp), null, null, null)
         }

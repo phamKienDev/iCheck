@@ -13,7 +13,6 @@
     <color name="colorSecondViewGroup">#757575</color>
     <color name="colorDisableText">#B4B4B4</color>
 
-
     <color name="colorNormalText">#212121</color> <!-- textview, editText, radioButton, checkBox -->
     <color name="colorNormalView">#212121</color>
 
@@ -41,7 +40,6 @@
     <color name="darkGray3">#828282</color>
     <color name="darkGray4">#E0E0E0</color>
     <color name="darkGray7">#f4f4f4</color>
-    <color name="darkGray6">#F0F0F0</color>
     <color name="gray">#D8D8D8</color>
     <color name="red_05">#0Dff0000</color>
     <color name="gray_60">#99D8D8D8</color>

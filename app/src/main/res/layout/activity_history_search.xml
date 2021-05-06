@@ -83,6 +83,6 @@
             android:id="@+id/rcvContent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/darkGray6" />
+            android:background="@color/colorBackgroundGray" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </LinearLayout>

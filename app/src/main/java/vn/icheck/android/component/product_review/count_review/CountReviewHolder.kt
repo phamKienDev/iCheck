@@ -50,7 +50,7 @@ class CountReviewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(creatView(p
             }
             layoutParent.orientation = LinearLayout.HORIZONTAL
             layoutParent.gravity = Gravity.CENTER_VERTICAL
-            layoutParent.setBackgroundColor(ContextCompat.getColor(context, R.color.darkGray6))
+            layoutParent.setBackgroundColor(ContextCompat.getColor(context, R.color.colorBackgroundGray))
 
             val secondaryColor = vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context)
 

@@ -1,6 +1,5 @@
 package vn.icheck.android.screen.user.listnotification.friendrequest
 
-import android.graphics.Color
 import android.graphics.drawable.ShapeDrawable
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -75,7 +74,7 @@ class ListFriendRequestActivity : BaseActivityMVVM(), IRecyclerViewCallback {
 
         val horizontalDecoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
         horizontalDecoration.setDrawable(ShapeDrawable().apply {
-            paint.color = ContextCompat.getColor(this@ListFriendRequestActivity, R.color.darkGray6)
+            paint.color = ContextCompat.getColor(this@ListFriendRequestActivity, R.color.colorBackgroundGray)
             intrinsicHeight = SizeHelper.size1
         })
         recyclerView.addItemDecoration(horizontalDecoration)

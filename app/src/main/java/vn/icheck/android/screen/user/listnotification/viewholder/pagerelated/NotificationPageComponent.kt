@@ -29,7 +29,7 @@ class NotificationPageComponent(parent: ViewGroup) : BaseViewHolder<MutableList<
 
                 val horizontalDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
                 horizontalDecoration.setDrawable(ShapeDrawable().apply {
-                    paint.setColor(ContextCompat.getColor(context, R.color.darkGray6))
+                    paint.setColor(ContextCompat.getColor(context, R.color.colorBackgroundGray))
                     intrinsicHeight = SizeHelper.size1
                 })
                 addItemDecoration(horizontalDecoration)

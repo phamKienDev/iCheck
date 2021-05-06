@@ -43,7 +43,7 @@ class LayoutInputPhone : LinearLayout {
 
         addView(View(context).also {
             it.layoutParams = ViewHelper.createLayoutParams(LayoutParams.MATCH_PARENT, SizeHelper.size1)
-            it.setBackgroundColor(ContextCompat.getColor(context, R.color.darkGray6))
+            it.setBackgroundColor(ContextCompat.getColor(context, R.color.colorBackgroundGray))
         })
 
         val layoutPhone = LinearLayout(context)
