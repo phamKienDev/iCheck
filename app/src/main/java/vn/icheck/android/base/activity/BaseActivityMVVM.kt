@@ -317,6 +317,10 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
         ActivityUtils.startActivityForResult<T, O>(this, key, value, requestCode)
     }
 
+    inline fun FragmentActivity.startActivityAndFinish(intent: Intent) {
+        ActivityUtils.startActivityAndFinish(this, intent)
+    }
+
     inline fun <reified T : FragmentActivity> FragmentActivity.startActivityAndFinish() {
         ActivityUtils.startActivityAndFinish<T>(this)
     }
