@@ -146,7 +146,6 @@
                 android:layout_marginTop="@dimen/size_20"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_product_scan_buy"
                 app:layout_constraintTop_toBottomOf="@id/imgGift" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>

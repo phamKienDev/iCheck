@@ -6,24 +6,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.activity_search_result.*
 import org.greenrobot.eventbus.EventBus
-import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.base.model.ICError
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.network.models.*
+import vn.icheck.android.network.models.ICProductTrend
+import vn.icheck.android.network.models.ICSearchUser
 import vn.icheck.android.screen.user.campaign.holder.base.LongMessageHolder
-import vn.icheck.android.screen.user.search_home.page.SearchPageActivity
-import vn.icheck.android.screen.user.search_home.result.holder.*
+import vn.icheck.android.screen.user.search_home.result.holder.NotResultHolder
+import vn.icheck.android.screen.user.search_home.result.holder.ProductSearchHolder
+import vn.icheck.android.screen.user.search_home.result.holder.SetTypeSearchHolder
+import vn.icheck.android.screen.user.search_home.result.holder.UserSearchHolder
 import vn.icheck.android.screen.user.search_home.result.model.ICSearchResult
-import vn.icheck.android.screen.user.search_home.review.SearchReviewActivity
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
-import vn.icheck.android.util.kotlin.ActivityUtils
 
 class SearchResultAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     val listData = mutableListOf<ICSearchResult>()

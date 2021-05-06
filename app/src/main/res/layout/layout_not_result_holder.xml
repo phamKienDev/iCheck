@@ -22,12 +22,11 @@
         android:textSize="@dimen/font_14"
         android:text="Xin lỗi chúng tôi không thể tìm được kết quả phù hợp với tìm kiếm của bạn" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvCreate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_20"
-        android:background="@drawable/bg_corners_4_light_blue_solid"
         android:fontFamily="@font/barlow_semi_bold"
         android:paddingLeft="@dimen/size_66"
         android:paddingTop="@dimen/size_10"

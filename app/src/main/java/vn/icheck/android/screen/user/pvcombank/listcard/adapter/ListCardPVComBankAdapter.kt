@@ -206,8 +206,11 @@ class ListCardPVComBankAdapter(private val listener: CardPVComBankListener) : Re
                 }
             }
 
-            binding.btnUseDefault.setOnClickListener {
-                listener.onClickUseDefaulCard(item, absoluteAdapterPosition)
+            binding.btnUseDefault.apply {
+                background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context)
+                setOnClickListener {
+                    listener.onClickUseDefaulCard(item, absoluteAdapterPosition)
+                }
             }
 
             binding.tvLockCard.setOnClickListener {

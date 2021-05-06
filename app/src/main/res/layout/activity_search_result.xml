@@ -39,7 +39,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/size_8"
-                    android:background="@drawable/bg_corners_4_light_blue_solid"
                     android:paddingLeft="@dimen/size_10"
                     android:paddingTop="@dimen/size_6"
                     android:paddingRight="@dimen/size_10"

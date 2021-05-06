@@ -38,9 +38,12 @@ class IckChangePasswordSuccessDialog(val login:() -> Unit):DialogFragment() {
 //        binding.btnClear.setOnClickListener {
 //            dismiss()
 //        }
-        binding.btnHomePage.setOnClickListener {
-            dismiss()
-            requireActivity().startClearTopActivity(HomeActivity::class.java)
+        binding.btnHomePage.apply {
+            background = vn.icheck.android.ichecklibs.ViewHelper.bgOutlinePrimary1Corners4(context)
+            setOnClickListener {
+                dismiss()
+                requireActivity().startClearTopActivity(HomeActivity::class.java)
+            }
         }
         binding.btnLogin.apply {
             background = ViewHelper.bgPrimaryCorners4(context)

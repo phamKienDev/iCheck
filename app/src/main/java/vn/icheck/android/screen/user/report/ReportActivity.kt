@@ -55,6 +55,7 @@ class ReportActivity : BaseActivityMVVM() {
 
         viewModel = ViewModelProvider(this).get(ReportViewModel::class.java)
         initToolbar()
+        setupView()
         initData()
     }
 
@@ -66,6 +67,10 @@ class ReportActivity : BaseActivityMVVM() {
             selectReason()
         }
         tvTitle.text = intent.getStringExtra(Constant.DATA_2) ?: "Báo cáo"
+    }
+
+    private fun setupView() {
+        btnDone.background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(this)
     }
 
     private fun initData() {

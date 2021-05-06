@@ -18,10 +18,13 @@ abstract class RewardLoginDialog(context: Context) : BaseDialog(context, R.style
         get() = true
 
     override fun onInitView() {
-        findViewById<AppCompatTextView>(R.id.btnLogin)?.setOnClickListener {
-            isStartLogin = true
-            dismiss()
-            onLogin()
+        findViewById<AppCompatTextView>(R.id.btnLogin)?.apply {
+            background = ViewHelper.bgPrimaryCorners4(context)
+            setOnClickListener {
+                isStartLogin = true
+                dismiss()
+                onLogin()
+            }
         }
 
         findViewById<AppCompatTextView>(R.id.btnRegister)?.apply {

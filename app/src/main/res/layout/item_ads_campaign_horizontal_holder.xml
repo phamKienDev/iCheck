@@ -32,12 +32,11 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@color/colorNormalView" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTimeStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_8"
-            android:layout_marginLeft="@dimen/size_8"
             android:layout_marginTop="@dimen/size_8"
             android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
@@ -54,7 +53,6 @@
             android:layout_marginStart="@dimen/size_8"
             android:layout_marginTop="@dimen/size_4"
             android:layout_marginEnd="@dimen/size_8"
-            android:layout_marginRight="@dimen/size_8"
             android:ellipsize="end"
             android:includeFontPadding="false"
             android:lineSpacingExtra="@dimen/font_6"
@@ -84,7 +82,6 @@
             android:layout_marginLeft="@dimen/size_55"
             android:layout_marginTop="@dimen/size_8"
             android:layout_marginRight="@dimen/size_55"
-            android:background="@drawable/bg_corners_4_light_blue_solid"
             android:gravity="center_horizontal"
             android:paddingTop="@dimen/size_4"
             android:paddingBottom="@dimen/size_4"
@@ -101,7 +98,6 @@
             android:layout_marginTop="@dimen/size_8"
             android:layout_marginRight="@dimen/size_6"
             android:drawableEnd="@drawable/ic_star_white_14"
-            android:drawableRight="@drawable/ic_star_white_14"
             android:drawablePadding="@dimen/size_4"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"

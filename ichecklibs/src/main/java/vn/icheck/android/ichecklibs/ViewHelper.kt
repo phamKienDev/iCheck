@@ -58,7 +58,7 @@ object ViewHelper {
     /*
     * Primary Color
     * */
-    fun textColorHomeTab(context: Context): ColorStateList {
+    fun textColorDisableTextUncheckPrimaryChecked(context: Context): ColorStateList {
         return createColorStateList(
                 ContextCompat.getColor(context, R.color.colorDisableText),
                 Constant.getPrimaryColor(context)

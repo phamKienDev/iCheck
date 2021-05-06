@@ -76,7 +76,6 @@
         android:layout_marginBottom="@dimen/size_12"
         android:gravity="center"
         android:fontFamily="@font/barlow_semi_bold"
-        android:background="@drawable/bg_corners_4_light_blue_solid"
         android:text="Gửi báo cáo"/>
 
 </LinearLayout>

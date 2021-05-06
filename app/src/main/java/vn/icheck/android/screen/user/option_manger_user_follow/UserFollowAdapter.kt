@@ -165,6 +165,8 @@ class UserFollowAdapter constructor(val view: IUserFollowWallView) : RecyclerVie
 
     private class ViewHolder constructor(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(item: ICUserFollowWall) {
+            itemView.layoutAddFriend.background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context)
+
             itemView.imgAvatar.setData(item.avatar, item.rank?.level, R.drawable.ic_square_avatar_default)
             itemView.tvName.apply {
                 text = item.getUserName()

@@ -142,14 +142,14 @@ class CampaignOnboardingActivity : BaseActivityMVVM() {
                 btnActionBack.beGone()
 
                 btnActionContinue.text = getString(R.string.tiep_tuc)
-                btnActionContinue.setBackgroundResource(R.drawable.bg_corners_4_light_blue_solid)
+                btnActionContinue.background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(this@CampaignOnboardingActivity)
                 recyclerview.scrollToPosition(0)
             }
             btnPosition < it?.onboardCTA?.size?.minus(1) ?: 0 -> {
                 btnActionBack.beVisible()
 
                 btnActionContinue.text = getString(R.string.tiep_tuc)
-                btnActionContinue.setBackgroundResource(R.drawable.bg_corners_4_light_blue_solid)
+                btnActionContinue.background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(this@CampaignOnboardingActivity)
                 recyclerview.scrollToPosition(btnPosition)
             }
             btnPosition == it?.onboardCTA?.size?.minus(1) ?: 0 -> {

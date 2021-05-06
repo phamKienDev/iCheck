@@ -146,7 +146,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_marginBottom="@dimen/size_20"
-            android:background="@drawable/bg_corners_4_light_blue_solid"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:paddingTop="@dimen/size_8"
@@ -154,6 +153,5 @@
             android:text="Xác nhận thanh toán"
             android:textColor="#ffffff"
             android:textSize="@dimen/font_16" />
-
     </LinearLayout>
 </LinearLayout>
