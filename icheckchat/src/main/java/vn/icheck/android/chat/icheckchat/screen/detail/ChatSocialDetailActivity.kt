@@ -67,6 +67,8 @@ import java.io.File
 
 class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBinding>(), IRecyclerViewCallback, View.OnClickListener {
     companion object {
+        var userId: Long? = null
+
         fun createRoomChat(context: Context, userId: Long, type: String) {
             context.startActivity(Intent(context, ChatSocialDetailActivity::class.java).apply {
                 putExtra(DATA_2, userId)
@@ -98,7 +100,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
     private var toId = ""
     private var keyRoom = ""
 
-    private var userId: Long? = null
     private var userType = "user"
     private var key: String? = null
     private var isLoadData: Boolean = true
@@ -335,6 +336,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                             setVisibleView(binding.layoutToolbar.imgAction, binding.layoutChat)
                         }
                     }
+
+                    binding.tvMessage.isEnabled = true
                 },
                 {
                     setGoneView(binding.layoutUserBlock, binding.layoutBlock)
@@ -393,6 +396,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
             // mình gửi
             if (FirebaseAuth.getInstance().currentUser?.uid == data.child("sender").child("source_id").value.toString()) {
                 val index = adapter.getListData.indexOfFirst { it.messageId == data.key }
+                Log.d("Message", "index: $index")
                 if (index != -1) {
                     adapter.getListData[index].status = MCStatus.SUCCESS
                     adapter.getListData[index].time = data.child("time").value as Long?
@@ -413,6 +417,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                             if (!chenhLechGio(adapter.getListData[1].time, adapter.getListData[index].time, 1)) {
                                 val holder = recyclerView.findViewHolderForAdapterPosition(1)
                                 adapter.getListData[1].showStatus = 0
+                                Log.d("Message", "chenhLechGio: true")
 
                                 if (holder is ChatSocialDetailAdapter.SenderHolder) {
                                     holder.setupShowStatus(adapter.getListData[1])
@@ -428,6 +433,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                     val lastMessageReceive = adapter.getListData.firstOrNull { it.senderId == FirebaseAuth.getInstance().currentUser?.uid }
                     val message = convertDataFirebase(data, lastMessageReceive ?: MCDetailMessage())
                     message.showStatus = -1
+                    message.status = MCStatus.SUCCESS
                     adapter.getListData.add(0, message)
                     adapter.notifyItemInserted(0)
 
@@ -480,10 +486,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                     binding.layoutNewMessage.clearAnimation()
                 } else {
                     binding.layoutNewMessage.beVisible()
-                    Handler().postDelayed({
-                        binding.layoutNewMessage.beGone()
-                        binding.layoutNewMessage.clearAnimation()
-                    }, 5000)
                     binding.layoutNewMessage.startAnimation(linearAnimation)
                 }
             }
@@ -569,7 +571,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
             binding.imgSend.isChecked = false
             binding.imgSend.isEnabled = false
         } else {
-            unCheckAll()
+            unCheckAll(view.id == imgSticker.id)
             view.isChecked = true
             layout.setVisible()
             binding.viewClick.setVisible()
@@ -578,20 +580,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         }
     }
 
-    private fun unCheckAll() {
-        binding.imgScan.isChecked = false
-        binding.imgCamera.isChecked = false
-        binding.imgSticker.isChecked = false
-        binding.imgSend.isChecked = false
-        binding.imgSend.isEnabled = false
-        product = null
-
-        binding.layoutBlock.setGone()
-        binding.layoutSticker.setGone()
-        binding.recyclerViewImage.setGone()
-        binding.layoutProduct.setGone()
-        binding.layoutUserBlock.setGone()
-    }
 
     private fun formatMessage() {
         if (!adapterImage.isEmpty) {
@@ -607,7 +595,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 listMediaFile = mutableListOf()
                 listMediaFile!!.addAll(adapterImage.getListData)
 
-                binding.recyclerViewImage.setGone()
                 type = "media"
             }
             if (binding.layoutProduct.isVisible && this@ChatSocialDetailActivity.product != null) {
@@ -650,7 +637,10 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 //                sentMessage = obj
 //                keyConversation = key
             } else {
-                sendMessage("user", obj)
+                // Handler lại vì chưa kịp add data vào adapter nên khi getList chưa có message này
+                Handler().postDelayed({
+                    sendMessage("user", obj)
+                }, 200)
             }
         }
     }
@@ -666,11 +656,9 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
     private fun addMessageAdapter(obj: MCDetailMessage) {
         obj.showStatus = -1
         if (adapter.getListData.isNullOrEmpty()) {
-            adapter.getListData.add(obj)
-            adapter.notifyDataSetChanged()
+            adapter.addData(obj)
         } else {
-            adapter.getListData.add(0, obj)
-            adapter.notifyItemInserted(0)
+            adapter.addData(obj)
             if (adapter.getListData[1].status == obj.status) {
                 val holder = recyclerView.findViewHolderForAdapterPosition(1)
                 adapter.getListData[1].showStatus = 0
@@ -706,16 +694,32 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
     }
 
     private fun sendMessageSuccess(obj: MCDetailMessage) {
-        adapterImage.clearData()
-        binding.recyclerViewImage.setVisible()
-        binding.view.setGone()
-
-        binding.edtMessage.setText("")
-
         if (obj.type?.contains("sticker") == false) {
+            adapterImage.clearData()
+            binding.view.setGone()
+            binding.edtMessage.setText("")
+
             unCheckAll()
         }
     }
+
+    private fun unCheckAll(clickSticker: Boolean = false) {
+        binding.imgScan.isChecked = false
+        binding.imgCamera.isChecked = false
+        binding.imgSticker.isChecked = false
+        binding.imgSend.isChecked = false
+        binding.imgSend.isEnabled = false
+
+        binding.layoutBlock.setGone()
+        binding.layoutSticker.setGone()
+        binding.layoutUserBlock.setGone()
+
+        if (!clickSticker) {
+            product = null
+            binding.layoutProduct.setGone()
+        }
+    }
+
 
     private fun unBlockMessage(key: String, toId: String, toType: String) {
         viewModel.unBlockMessage(key, toId, toType).observe(this@ChatSocialDetailActivity, {
@@ -981,7 +985,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
             }
             R.id.imgSticker -> {
                 checkKeyboard()
-                selectedTextView(binding.imgSticker, binding.layoutSticker, true)
+                selectedTextView(binding.imgSticker, binding.layoutSticker, !binding.edtMessage.text.isNullOrEmpty() || adapterImage.getListData.isNotEmpty())
                 binding.recyclerViewImage.setVisible()
             }
             R.id.edtMessage -> {
@@ -1033,9 +1037,9 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         val listener = object : TakeMediaListener {
             override fun onPickMediaSucess(file: File) {
                 binding.view.setVisible()
-                if ((adapterImage.getListData.size + 1) <= 20){
+                if ((adapterImage.getListData.size + 1) <= 20) {
                     adapterImage.setImage(file)
-                }else{
+                } else {
                     showToastError(getString(R.string.chon_20_anh))
                 }
                 chooseImage()
@@ -1043,9 +1047,9 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
             override fun onPickMuliMediaSucess(file: MutableList<File>) {
                 binding.view.setVisible()
-                if ((adapterImage.getListData.size + file.size) <= 20){
+                if ((adapterImage.getListData.size + file.size) <= 20) {
                     adapterImage.setListImage(file)
-                }else{
+                } else {
                     showToastError(getString(R.string.chon_20_anh))
                 }
                 chooseImage()
@@ -1060,9 +1064,9 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
             override fun onTakeMediaSuccess(file: File?) {
                 if (file != null) {
                     binding.view.setVisible()
-                    if ((adapterImage.getListData.size + 1) <= 20){
+                    if ((adapterImage.getListData.size + 1) <= 20) {
                         adapterImage.setImage(file)
-                    }else{
+                    } else {
                         showToastError(getString(R.string.chon_20_anh))
                     }
                     chooseImage()
@@ -1116,6 +1120,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
     override fun onStop() {
         super.onStop()
+        userId = null
         inboxRoomID = null
         inboxUserID = null
     }
@@ -1124,5 +1129,10 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         super.onResume()
         inboxRoomID = keyRoom
         inboxUserID = toId
+
+        if (userId == null) {
+            finish()
+            overridePendingTransition(R.anim.none_no_time, R.anim.none_no_time)
+        }
     }
 }

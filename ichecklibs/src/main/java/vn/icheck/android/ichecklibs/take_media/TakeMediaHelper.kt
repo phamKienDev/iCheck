@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment
 import vn.icheck.android.ichecklibs.BuildConfig
 import vn.icheck.android.ichecklibs.TimeHelper
 import vn.icheck.android.ichecklibs.camera.CameraActivity
+import vn.icheck.android.ichecklibs.camera.CropCameraActivity
 import java.io.*
 import kotlin.jvm.Throws
 

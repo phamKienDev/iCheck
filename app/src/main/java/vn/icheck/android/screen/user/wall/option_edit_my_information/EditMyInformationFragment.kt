@@ -387,7 +387,7 @@ class EditMyInformationFragment : CoroutineFragment() {
     private fun startKyc() {
         val i = Intent(requireActivity(), VerifyIdentityActivity::class.java)
         i.putExtra(Constant.DATA_1,  ickUserWallViewModel.userInfo?.data?.kycStatus )
-        requireActivity().startActivityForResult(i, VERIFY_IDENTITY)
+        startActivityForResult(i, requestUpdateKyc)
     }
 
     private fun updateInfo() {
@@ -485,10 +485,15 @@ class EditMyInformationFragment : CoroutineFragment() {
 
         if (requestCode == requestUpdateKyc) {
             if (resultCode == Activity.RESULT_OK) {
-                ickUserWallViewModel.userInfo?.data?.kycStatus = 1
-                ickUserWallViewModel.userInfo?.let { user ->
-                    checkKyc(user)
-                }
+                ickUserWallViewModel.getUserInfo().observe(viewLifecycleOwner, {
+                    if (it != null) {
+                        checkKyc(it)
+                    }
+                })
+//                ickUserWallViewModel.userInfo?.data?.kycStatus = 1
+//                ickUserWallViewModel.userInfo?.let { user ->
+//                    checkKyc(user)
+//                }
             }
         }
 

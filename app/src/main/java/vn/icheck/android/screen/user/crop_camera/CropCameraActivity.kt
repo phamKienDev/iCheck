@@ -36,7 +36,7 @@ class CropCameraActivity : BaseActivityMVVM() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_crop_camera)
+        setContentView(R.layout.activity_crop_camera3)
         viewModel = ViewModelProvider(this).get(CropCameraViewModel::class.java)
 
         initView()

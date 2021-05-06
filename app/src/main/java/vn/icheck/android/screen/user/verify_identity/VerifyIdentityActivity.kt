@@ -20,8 +20,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.screen.user.crop_camera.CropCamera2Activity
-import vn.icheck.android.screen.user.crop_camera.CropCameraActivity
+import vn.icheck.android.ichecklibs.camera.CropCameraActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.util.ick.logError
 import vn.icheck.android.util.kotlin.ActivityUtils
@@ -54,10 +53,11 @@ class VerifyIdentityActivity : BaseActivityMVVM(), View.OnClickListener {
                 if (kycDocuments?.firstOrNull()?.type == 1) {
                     textView46.setText(R.string.mat_truoc_cmnd)
                     textView47.setText(R.string.mat_sau_cmnd)
-
+                    tvSelectPassport.text = getString(R.string.chung_minh_nhan_dan)
                 } else {
                     textView46.setText(R.string.mat_truoc_cccd)
                     textView47.setText(R.string.mat_sau_cccd)
+                    tvSelectPassport.text = getString(R.string.can_cuoc_cong_dan)
                 }
                 if (viewModel.kycStatus != 3) {
                     lifecycleScope.launch {

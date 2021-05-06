@@ -13,6 +13,7 @@ import com.google.firebase.database.DataSnapshot
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import vn.icheck.android.chat.icheckchat.R
 import vn.icheck.android.chat.icheckchat.base.BaseFragmentChat
 import vn.icheck.android.chat.icheckchat.base.ConstantChat
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.KEY
@@ -27,6 +28,8 @@ import vn.icheck.android.chat.icheckchat.helper.ShareHelperChat
 import vn.icheck.android.chat.icheckchat.model.MCConversation
 import vn.icheck.android.chat.icheckchat.model.MCMessageEvent
 import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
+import vn.icheck.android.ichecklibs.beGone
+import vn.icheck.android.ichecklibs.beVisible
 import java.util.*
 
 class ListConversationFragment : BaseFragmentChat<FragmentListConversationBinding>(), IRecyclerViewCallback {
@@ -80,6 +83,8 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
     }
 
     private fun initSwipeLayout() {
+        binding.swipeRefresh.isEnabled = ShareHelperChat.getBoolean(ConstantChat.USER_LOGIN)
+
         binding.swipeRefresh.setOnRefreshListener {
             getData()
         }
@@ -112,7 +117,9 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
         binding.swipeRefresh.isRefreshing = true
 
         listData.clear()
+        binding.edtSearch.removeTextChangedListener(textChangeListener)
         binding.edtSearch.setText("")
+        binding.edtSearch.addTextChangedListener(textChangeListener)
 
         viewModel.loginFirebase({
             getConversation(0)
@@ -125,52 +132,56 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
         })
     }
 
-    private fun initEditText() {
-        binding.edtSearch.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+    private val textChangeListener = object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
-            }
+        }
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                binding.recyclerView.setGone()
-                binding.layoutNoData.setGone()
-                binding.layoutNoDataSearch.setGone()
-                binding.imgDelete.setGone()
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            binding.recyclerView.setGone()
+            binding.layoutNoData.setGone()
+            binding.layoutNoDataSearch.setGone()
+            binding.imgDelete.setGone()
 
-                if (!s.isNullOrEmpty()) {
-                    listData.clear()
-                    binding.imgDelete.setVisible()
+            if (!s.isNullOrEmpty()) {
+                listData.clear()
+                binding.imgDelete.setVisible()
 
-                    for (item in adapter.getListData) {
-                        if (item.targetUserName?.toLowerCase(Locale.ROOT)?.contains(s.toString().trim().toLowerCase(Locale.ROOT)) == true) {
-                            listData.add(item)
-                        }
-                    }
-
-                    if (listData.isNullOrEmpty()) {
-                        binding.layoutNoDataSearch.setVisible()
-                    } else {
-                        binding.recyclerView.setVisible()
-
-                        adapter.setData(listData)
-                    }
-                } else {
-                    binding.imgDelete.setGone()
-
-                    if (!adapter.getListData.isNullOrEmpty()) {
-                        binding.recyclerView.setVisible()
-
-                        getConversation(0)
-                    } else {
-                        binding.layoutNoData.setVisible()
+                for (item in adapter.getListData) {
+                    if (item.targetUserName?.toLowerCase(Locale.ROOT)?.contains(s.toString().trim().toLowerCase(Locale.ROOT)) == true) {
+                        listData.add(item)
                     }
                 }
-            }
 
-            override fun afterTextChanged(s: Editable?) {
+                if (listData.isNullOrEmpty()) {
+                    binding.layoutNoDataSearch.setVisible()
+                } else {
+                    binding.recyclerView.setVisible()
 
+                    adapter.setListData(listData)
+                }
+            } else {
+                binding.imgDelete.setGone()
+
+                if (!adapter.getListData.isNullOrEmpty()) {
+                    binding.recyclerView.setVisible()
+
+                    getConversation(0)
+                } else {
+                    binding.layoutNoData.setVisible()
+                }
             }
-        })
+        }
+
+        override fun afterTextChanged(s: Editable?) {
+
+        }
+    }
+
+    private fun initEditText() {
+        binding.layoutSearch.visibleOrGone(ShareHelperChat.getBoolean(ConstantChat.USER_LOGIN))
+
+        binding.edtSearch.addTextChangedListener(textChangeListener)
 
         binding.imgDelete.setOnClickListener {
             binding.edtSearch.setText("")
@@ -232,7 +243,6 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
         val conversationList = mutableListOf<MCConversation>()
 
         if (snapshot.hasChildren()) {
-
             for (item in snapshot.children.reversed()) {
                 conversationList.add(convertDataFirebase(item))
             }
@@ -265,32 +275,12 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
     private fun getChangeConversation() {
         viewModel.getChangeConversation(
                 { obj ->
-                    val key = obj.key.toString()
-
-                    for (position in adapter.getListData.size - 1 downTo 0) {
-                        if (adapter.getListData[position].key == key) {
-                            Collections.swap(adapter.getListData, position, 0)
-                            adapter.getListData[0] = adapter.getListData[0].apply {
-                                this.key = obj.key.toString()
-                                enableAlert = obj.child("enable_alert").value.toString().toBoolean()
-                                keyRoom = obj.key.toString()
-                                unreadCount = obj.child("unread_count").value as Long? ?: 0L
-                                time = obj.child("last_activity").child("time").value as Long?
-                                        ?: System.currentTimeMillis()
-                                lastMessage = if (obj.child("last_activity").child("content").value != null) {
-                                    obj.child("last_activity").child("content").value.toString()
-                                } else {
-                                    ""
-                                }
-                            }
-                            adapter.notifyDataSetChanged()
-                            binding.recyclerView.smoothScrollToPosition(0)
-                        }
-                    }
+                    adapter.changeConversation(obj)
+                    binding.recyclerView.smoothScrollToPosition(0)
                 }, { obj ->
             val key = obj.key.toString()
 
-            if (adapter.getListData.first().key == key) {
+            if (adapter.getListData.firstOrNull()?.key == key) {
                 adapter.getListData[0] = adapter.getListData[0].apply {
                     this.key = obj.key.toString()
                     enableAlert = obj.child("enable_alert").value.toString().toBoolean()
@@ -334,11 +324,16 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
     }
 
     fun checkLoginOrLogOut(isLogin: Boolean) {
+        adapter.resetData(false)
+        listData.clear()
         if (!isLogin) {
-            binding.swipeRefresh.isRefreshing = false
+            binding.layoutSearch.beGone()
+            binding.swipeRefresh.isEnabled = false
             binding.recyclerView.setGone()
             binding.layoutNoData.setVisible()
         } else {
+            binding.layoutSearch.beVisible()
+            binding.swipeRefresh.isEnabled = true
             getData()
         }
     }
@@ -347,9 +342,24 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
 
     }
 
+    private val getLastTime: Long?
+        get() {
+            var smallTime: Long? = null
+
+            for (item in adapter.getListData) {
+                if (smallTime == null) {
+                    smallTime = item.time ?: 0
+                } else if (smallTime > item.time ?: 0) {
+                    smallTime = item.time ?: 0
+                }
+            }
+
+            return smallTime
+        }
+
     override fun onLoadMore() {
-        adapter.getListData.lastOrNull()?.let { obj ->
-            getConversation(obj.time ?: 0)
+        getLastTime?.let {
+            getConversation(it)
         }
     }
 

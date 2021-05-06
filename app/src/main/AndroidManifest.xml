@@ -54,7 +54,9 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <uses-permission-sdk-23 android:name="android.permission.READ_CALENDAR" />
+
     <uses-feature android:name="android.hardware.camera2.full" />
+
     <uses-permission-sdk-23 android:name="android.permission.WRITE_CALENDAR" /> <!-- Insider Required -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission
@@ -64,7 +66,7 @@
     <application
         android:name=".ICheckApplication"
         android:allowBackup="false"
-        android:debuggable="true"
+        android:debuggable="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
@@ -77,9 +79,6 @@
         tools:ignore="GoogleAppIndexingWarning,HardcodedDebugMode"
         tools:replace="android:allowBackup"
         tools:targetApi="m">
-        <activity android:name=".screen.user.crop_camera.CropCamera2Activity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppFullScreenTheme"/>
         <activity android:name=".screen.scan.MyQrActivity" />
         <activity
             android:name=".screen.scan.V6ScanditActivity"
@@ -526,11 +525,10 @@
             android:name=".screen.user.newslistv2.NewsListV2Activity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme_White" />
-<!--        <activity-->
-<!--            android:name=".screen.user.my_gift_warehouse.open_reward_box_tet.OpenRewardBoxTetActivity"-->
-<!--            android:screenOrientation="portrait"-->
-<!--            android:theme="@style/TranslucentStatusBarDapQua" />-->
+            android:theme="@style/AppTheme_White" /> <!-- <activity -->
+        <!-- android:name=".screen.user.my_gift_warehouse.open_reward_box_tet.OpenRewardBoxTetActivity" -->
+        <!-- android:screenOrientation="portrait" -->
+        <!-- android:theme="@style/TranslucentStatusBarDapQua" /> -->
         <activity
             android:name=".screen.user.qr_code_marketing.QrCodeMarketingActivity"
             android:screenOrientation="portrait" />
@@ -835,10 +833,9 @@
         <activity
             android:name=".screen.user.missiondetail.MissionDetailActivity"
             android:exported="true"
-            android:screenOrientation="portrait" />
-<!--        <activity-->
-<!--            android:name=".activities.InviteFriendActivity"-->
-<!--            android:screenOrientation="portrait" />-->
+            android:screenOrientation="portrait" /> <!-- <activity -->
+        <!-- android:name=".activities.InviteFriendActivity" -->
+        <!-- android:screenOrientation="portrait" /> -->
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -933,7 +930,6 @@
  Set custom default icon. This is used when no icon is set for incoming notification messages.
      See README(https://goo.gl/l4GJaQ) for more.
         -->
-
         <meta-data
             android:name="com.facebook.accountkit.ApplicationName"
             android:value="@string/app_name" />

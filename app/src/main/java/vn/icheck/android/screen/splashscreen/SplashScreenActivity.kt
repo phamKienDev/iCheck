@@ -33,59 +33,52 @@ class SplashScreenActivity : Activity() {
         SettingManager.setDeviceID(DeviceUtils.getUDID(this))
         SettingManager.appVersion = BuildConfig.VERSION_NAME
 
-
-        val targetFull = intent?.getStringExtra(Constant.DATA_3)
+        val targetFull = intent?.getStringExtra(Constant.DATA_3) ?: intent?.extras?.getString("path")
         if (!targetFull.isNullOrEmpty()) {
-            FirebaseDynamicLinksActivity.startDestinationUrl(this, targetFull)
+            if (HomeActivity.isOpen != true) {
+                ActivityHelper.startActivity<HomeActivity>(this, Constant.DATA_3, targetFull)
+            } else {
+                FirebaseDynamicLinksActivity.startDestinationUrl(this, targetFull)
+            }
             finish()
         } else {
-            val path = intent.getStringExtra("path")
+            var targetType = intent?.getStringExtra(Constant.DATA_1)
+            if (targetType.isNullOrEmpty()) {
+                targetType = intent?.extras?.getString("target_type")
+            }
+            if (targetType.isNullOrEmpty()) {
+                targetType = intent?.extras?.getString("type")
+            }
 
-            val id = intent?.extras?.getString("target_id") ?: intent?.extras?.getString("id") ?: ""
+            var targetID = intent?.getStringExtra(Constant.DATA_2)
+            if (targetID.isNullOrEmpty()) {
+                targetID = intent?.extras?.getString("target_id")
+            }
+            if (targetID.isNullOrEmpty()) {
+                targetID = intent?.extras?.getString("id")
+            }
 
-            if (!path.isNullOrEmpty()) {
-                when {
-                    path.contains("popup_image") -> {
-                        showDialogNotification(image = id, schema = intent?.extras?.getString("action") ?: "")
-                    }
-                    path.contains("popup_html") -> {
-                        showDialogNotification(htmlText = id)
-                    }
-                    path.contains("popup_link") -> {
-                        showDialogNotification(link = id)
-                    }
-                    else -> {
-                        FirebaseDynamicLinksActivity.startTargetPath(this, path)
-                        finish()
-                    }
+            when {
+                (targetType ?: "").contains("popup_image") -> {
+                    showDialogNotification(image = targetID, schema = intent?.extras?.getString("action") ?: "")
                 }
-
-            } else {
-                var targetType = intent?.getStringExtra(Constant.DATA_1)
-                if (targetType.isNullOrEmpty()) {
-                    targetType = intent?.extras?.getString("target_type")
+                (targetType ?: "").contains("popup_html") -> {
+                    showDialogNotification(htmlText = targetID)
                 }
-                if (targetType.isNullOrEmpty()) {
-                    targetType = intent?.extras?.getString("type")
+                (targetType ?: "").contains("popup_link") -> {
+                    showDialogNotification(link = targetID)
                 }
-
-                var targetID = intent?.getStringExtra(Constant.DATA_2)
-                if (targetID.isNullOrEmpty()) {
-                    targetID = intent?.extras?.getString("target_id")
-                }
-                if (targetID.isNullOrEmpty()) {
-                    targetID = intent?.extras?.getString("id")
-                }
-
-                if (targetType.isNullOrEmpty()) {
-                    if (HomeActivity.isOpen == true) {
-                        finish()
+                else -> {
+                    if (targetType.isNullOrEmpty()) {
+                        if (HomeActivity.isOpen == true) {
+                            finish()
+                        } else {
+                            ActivityHelper.startActivityAndFinish<CheckThemeActivity>(this@SplashScreenActivity)
+                        }
                     } else {
-                        ActivityHelper.startActivityAndFinish<CheckThemeActivity>(this@SplashScreenActivity)
+                        FirebaseDynamicLinksActivity.startTarget(this, targetType, targetID)
+                        finish()
                     }
-                } else {
-                    FirebaseDynamicLinksActivity.startTarget(this, targetType, targetID)
-                    finish()
                 }
             }
 
