@@ -5,6 +5,7 @@ package vn.icheck.android.util.kotlin
 import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ValueAnimator
+import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.media.MediaMetadataRetriever
 import android.text.method.PasswordTransformationMethod
@@ -1029,6 +1030,41 @@ object WidgetUtils {
                 .error(error)
                 .transform(FitCenter(), RoundedCorners(SizeHelper.size10))
                 .into(image)
+    }
+
+    fun loadImageUrlRounded10FitCenter(image: AppCompatImageView, url: String?, listener: RequestListener<Bitmap>) {
+        if (url.isNullOrEmpty()) {
+            Glide.with(image.context.applicationContext)
+                    .load(defaultError)
+                    .transform(FitCenter(), RoundedCorners(SizeHelper.size10))
+                    .into(image)
+            return
+        }
+
+        Glide.with(ICheckApplication.getInstance())
+                .load(url)
+                .placeholder(circularProgressDrawable)
+                .error(defaultError)
+                .transform(CenterCrop(), RoundedCorners(SizeHelper.size10))
+                .into(image)
+
+//        Glide.with(image.context.applicationContext)
+//                .load(url)
+//                .
+//                .placeholder(circularProgressDrawable)
+//                .error(error)
+//                .transform(FitCenter(), RoundedCorners(SizeHelper.size10))
+//                .listener(object : RequestListener<Bitmap> {
+//                    override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Bitmap>?, isFirstResource: Boolean): Boolean {
+//                        TODO("Not yet implemented")
+//                    }
+//
+//                    override fun onResourceReady(resource: Bitmap?, model: Any?, target: Target<Bitmap>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+//                        TODO("Not yet implemented")
+//                    }
+//
+//                })
+//                .into(image)
     }
 
     fun loadImageUrlRounded10FitCenter(image: AppCompatImageView, url: String?, placeHolder: Int, error: Int) {

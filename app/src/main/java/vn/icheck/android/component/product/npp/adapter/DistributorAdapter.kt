@@ -57,7 +57,7 @@ class DistributorAdapter(val listData: MutableList<ICPage>, val url: String) : R
                 it.setMargins(SizeHelper.size10, 0, SizeHelper.size10, 0)
             }
         } else {
-            holder.itemView.findViewById<ConstraintLayout>(R.id.constraintLayout1).layoutParams = ConstraintLayout.LayoutParams(SizeHelper.size331, ConstraintLayout.LayoutParams.WRAP_CONTENT).also {
+            holder.itemView.findViewById<ConstraintLayout>(R.id.constraintLayout1).layoutParams = ConstraintLayout.LayoutParams(SizeHelper.size320, ConstraintLayout.LayoutParams.WRAP_CONTENT).also {
                 it.setMargins(SizeHelper.size10, 0, 0, 0)
             }
         }
