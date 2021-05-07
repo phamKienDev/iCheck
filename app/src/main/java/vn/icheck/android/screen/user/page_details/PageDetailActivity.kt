@@ -268,7 +268,7 @@ class PageDetailActivity : BaseActivityMVVM(), View.OnClickListener {
 
     fun openPageImage(item: ICMediaPage) {
         if (item.postId != null) {
-            MediaInPostActivity.start(item.postId!!, this, null, requestPageImage)
+            MediaInPostActivity.start(item.postId!!, this, item.content, requestPageImage)
         }
     }
 

@@ -94,7 +94,7 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
             }
         }
 
-        fun start(postId: Long, activity: Activity, image:String?, requestCode: Int = -1) {
+        fun start(postId: Long, activity: Activity, image: String?, requestCode: Int = -1) {
             val intent = Intent(activity, MediaInPostActivity::class.java)
             intent.putExtra(Constant.DATA_2, postId)
             intent.putExtra(Constant.DATA_5, image)
@@ -205,15 +205,20 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
                 tvSlide.text = "${positionIntent + 1}/${it.size}"
                 it[positionIntent].exoPlayer?.playWhenReady = true
                 positionView = positionIntent
-
             } else {
-                if(image.isNullOrEmpty()){
-                    it.indexOfFirst { it.src==image }
-                    rcvMedia.scrollToPosition(positionIntent)
-                    tvSlide.text = "${positionIntent + 1}/${it.size}"
-                    it[positionIntent].exoPlayer?.playWhenReady = true
-                    positionView = positionIntent
-                }else{
+                if (!image.isNullOrEmpty()) {
+                    val index = it.indexOfFirst { it.src == image }
+                    if (index != -1) {
+                        rcvMedia.scrollToPosition(positionIntent)
+                        tvSlide.text = "${positionIntent + 1}/${it.size}"
+                        it[positionIntent].exoPlayer?.playWhenReady = true
+                        positionView = positionIntent
+                    } else {
+                        tvSlide.text = "1/${it.size}"
+                        it[0].exoPlayer?.playWhenReady = true
+                        positionView = 0
+                    }
+                } else {
                     tvSlide.text = "1/${it.size}"
                     it[0].exoPlayer?.playWhenReady = true
                     positionView = 0
