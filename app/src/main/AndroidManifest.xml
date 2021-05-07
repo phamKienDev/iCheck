@@ -54,9 +54,6 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <uses-permission-sdk-23 android:name="android.permission.READ_CALENDAR" />
-
-    <uses-feature android:name="android.hardware.camera2.full" />
-
     <uses-permission-sdk-23 android:name="android.permission.WRITE_CALENDAR" /> <!-- Insider Required -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission
