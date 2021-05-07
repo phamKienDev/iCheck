@@ -119,14 +119,13 @@
             android:layout_marginEnd="@dimen/size_12"
             android:orientation="horizontal">
 
-            <LinearLayout
-                android:id="@+id/btn_review"
+            <vn.icheck.android.ichecklibs.view.primary.LinearLayoutPrimary
+                android:id="@id/btnReview"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/size_10"
                 android:layout_marginRight="@dimen/size_10"
                 android:layout_weight="1"
-                android:background="@drawable/btn_light_blue_corners_4"
                 android:gravity="center"
                 android:padding="@dimen/size_8">
 
@@ -146,7 +145,7 @@
                     android:text="Đánh giá sản phẩm"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/font_16" />
-            </LinearLayout>
+            </vn.icheck.android.ichecklibs.view.primary.LinearLayoutPrimary>
 
 
             <ImageView
