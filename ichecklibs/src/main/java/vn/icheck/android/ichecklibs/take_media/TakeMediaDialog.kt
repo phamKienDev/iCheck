@@ -51,6 +51,7 @@ class TakeMediaDialog(val activity: Activity,
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupView()
 
         imgClose.setOnClickListener {
             dismiss()

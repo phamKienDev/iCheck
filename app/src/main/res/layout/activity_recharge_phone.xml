@@ -261,7 +261,6 @@
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginEnd="@dimen/size_12"
             android:layout_marginBottom="@dimen/size_20"
-            android:background="@drawable/state_click_payment"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center_horizontal"
             android:paddingTop="@dimen/size_8"

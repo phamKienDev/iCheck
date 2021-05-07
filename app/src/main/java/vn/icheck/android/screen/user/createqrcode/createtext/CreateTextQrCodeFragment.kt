@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.fragment_create_text_qr_code.*
 import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.util.KeyboardUtils
 import vn.icheck.android.screen.user.createqrcode.base.fragment.BaseCreateQrCodeFragment
 import vn.icheck.android.screen.user.createqrcode.base.presenter.BaseCreateQrCodePresenter
@@ -30,6 +31,7 @@ class CreateTextQrCodeFragment : BaseCreateQrCodeFragment<BaseCreateQrCodePresen
 
     override fun onInitView() {
         initToolbar()
+        setupView()
         initListener()
         focusView(edtContent)
     }
@@ -40,6 +42,10 @@ class CreateTextQrCodeFragment : BaseCreateQrCodeFragment<BaseCreateQrCodePresen
         imgBack.setOnClickListener {
             activity?.onBackPressed()
         }
+    }
+
+    private fun setupView() {
+        btnCreate.background = ViewHelper.btnPrimaryCorners4(requireContext())
     }
 
     private fun initListener() {

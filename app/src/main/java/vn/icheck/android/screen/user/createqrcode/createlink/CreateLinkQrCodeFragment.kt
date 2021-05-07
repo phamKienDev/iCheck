@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.fragment_create_link_qr_code.txtTitle
 import kotlinx.android.synthetic.main.fragment_create_text_qr_code.*
 import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.util.KeyboardUtils
 import vn.icheck.android.screen.user.createqrcode.base.fragment.BaseCreateQrCodeFragment
 import vn.icheck.android.screen.user.createqrcode.base.presenter.BaseCreateQrCodePresenter
@@ -36,6 +37,7 @@ class CreateLinkQrCodeFragment : BaseCreateQrCodeFragment<BaseCreateQrCodePresen
 
     override fun onInitView() {
         initToolbar()
+        setupView()
         initListener()
         focusView(edtContent)
     }
@@ -46,6 +48,10 @@ class CreateLinkQrCodeFragment : BaseCreateQrCodeFragment<BaseCreateQrCodePresen
         imgBack.setOnClickListener {
             activity?.onBackPressed()
         }
+    }
+
+    private fun setupView() {
+        btnCreate.background = ViewHelper.btnPrimaryCorners4(requireContext())
     }
 
     private fun initListener() {

@@ -24,6 +24,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.PermissionHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICPointDetail
 import vn.icheck.android.network.models.ICPoints
 import vn.icheck.android.screen.dialog.PermissionDialog
@@ -59,6 +60,7 @@ class CreateLocationQrCodeFragment : BaseCreateQrCodeFragment<CreateLocationQrCo
     override fun onInitView() {
         activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
         initToolbar()
+        setupView()
         setupGoogleMap()
         checkPermission()
 
@@ -73,6 +75,10 @@ class CreateLocationQrCodeFragment : BaseCreateQrCodeFragment<CreateLocationQrCo
         imgBack.setOnClickListener {
             activity?.onBackPressed()
         }
+    }
+
+    private fun setupView() {
+        btnCreate.background = ViewHelper.btnPrimaryCorners4(requireContext())
     }
 
     private fun setupGoogleMap() {

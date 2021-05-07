@@ -28,6 +28,7 @@ import vn.icheck.android.callback.OnItemClickListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.recharge_phone.ICMenhGia
 import vn.icheck.android.network.models.recharge_phone.ICRechargePhone
@@ -65,12 +66,17 @@ class BuyMobileCardV2Activity : BaseActivityMVVM() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_buy_mobile_card_v2)
         viewModel = ViewModelProvider(this).get(RechargePhoneVIewModel::class.java)
+        setupView()
         listenerGetData()
         initListNetworkOperator()
         initListMenhGia()
         displayData()
         listener()
         TrackingAllHelper.trackIcheckPhoneTopupStart()
+    }
+
+    private fun setupView() {
+        btnPayment.background = ViewHelper.bgPaymentState(this)
     }
 
     private fun listenerGetData() {

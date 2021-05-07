@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.fragment_create_email_qr_code.txtTitle
 import kotlinx.android.synthetic.main.fragment_create_text_qr_code.*
 import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.util.KeyboardUtils
 import vn.icheck.android.screen.user.createqrcode.base.fragment.BaseCreateQrCodeFragment
 import vn.icheck.android.screen.user.createqrcode.createemail.presenter.CreateEmailQrCodePresenter
@@ -35,6 +36,7 @@ class CreateEmailQrCodeFragment : BaseCreateQrCodeFragment<CreateEmailQrCodePres
 
     override fun onInitView() {
         initToolbar()
+        setupView()
         initListener()
         focusView(edtEmail)
     }
@@ -45,6 +47,10 @@ class CreateEmailQrCodeFragment : BaseCreateQrCodeFragment<CreateEmailQrCodePres
         imgBack.setOnClickListener {
             activity?.onBackPressed()
         }
+    }
+
+    private fun setupView() {
+        btnCreate.background = ViewHelper.btnPrimaryCorners4(requireContext())
     }
 
     private fun initListener() {

@@ -66,6 +66,11 @@ object ViewHelper {
     }
 
     @SuppressLint("NewApi")
+    fun createRippleDrawable(context: Context, color: Int, radius: Float): RippleDrawable {
+        return RippleDrawable(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.black_10)), createShapeDrawable(color, radius), null)
+    }
+
+    @SuppressLint("NewApi")
     fun createRippleDrawable(context: Context, color: Int, strokeWidth: Int, strokeColor: Int, radius: Float): RippleDrawable {
         return RippleDrawable(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.black_10)),
                 createShapeDrawable(color, strokeWidth, strokeColor, radius), null)
@@ -104,6 +109,21 @@ object ViewHelper {
     /*
     * StateListDrawable
     * */
+    fun createButtonStateListDrawable(context: Context, enableColor: Int, pressedColor: Int, disableColor: Int, radius: Float): StateListDrawable {
+        val statesListDrawable = StateListDrawable()
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            statesListDrawable.addState(intArrayOf(android.R.attr.state_enabled), createRippleDrawable(context, enableColor, radius))
+            statesListDrawable.addState(intArrayOf(-android.R.attr.state_enabled), createShapeDrawable(disableColor, radius))
+        } else {
+            statesListDrawable.addState(intArrayOf(android.R.attr.state_enabled), createShapeDrawable(enableColor, radius))
+            statesListDrawable.addState(intArrayOf(android.R.attr.state_pressed), createShapeDrawable(pressedColor, radius))
+            statesListDrawable.addState(intArrayOf(-android.R.attr.state_enabled), createShapeDrawable(disableColor, radius))
+        }
+
+        return statesListDrawable
+    }
+
     fun createButtonStateListDrawable(context: Context,
                                       enableColor: Int, pressedColor: Int, disableColor: Int,
                                       enableStrokeColor: Int, pressedStrokeColor: Int, disableStrokeColor: Int,
@@ -125,9 +145,9 @@ object ViewHelper {
     fun createProgressStateListDrawable(backgroundDrawable: Drawable, secondaryDrawable: Drawable, progressDrawable: Drawable): LayerDrawable {
         val layerDrawable = LayerDrawable(arrayOf(backgroundDrawable, secondaryDrawable, progressDrawable))
 
-        layerDrawable.setId(0,android.R.id.background)
-        layerDrawable.setId(1,android.R.id.secondaryProgress)
-        layerDrawable.setId(2,android.R.id.progress)
+        layerDrawable.setId(0, android.R.id.background)
+        layerDrawable.setId(1, android.R.id.secondaryProgress)
+        layerDrawable.setId(2, android.R.id.progress)
 
         return layerDrawable
     }
@@ -148,25 +168,17 @@ object ViewHelper {
 
     fun bgPrimaryCorners18(context: Context) = createShapeDrawable(Constant.getPrimaryColor(context), 18f)
 
-    fun bgPrimaryCorners47(context: Context) = createShapeDrawable(Constant.getPrimaryColor(context), 47f)
-
     fun bgPrimaryOutline3Corners20(context: Context): Drawable {
         val primaryColor = Constant.getPrimaryColor(context)
         return createShapeDrawable(primaryColor, SizeHelper.size3, alphaColor(primaryColor, 0.4f), 20f)
     }
 
-    fun btnPrimaryCorners4(context: Context): Drawable {
-        return createButtonStateListDrawable(context = context,
-                enableColor = Constant.getPrimaryColor(context),
-                pressedColor = Constant.getSecondaryColor(context),
-                disableColor = ContextCompat.getColor(context, R.color.gray),
-                enableStrokeColor = Color.TRANSPARENT,
-                pressedStrokeColor = Color.TRANSPARENT,
-                disableStrokeColor = Color.TRANSPARENT,
-                strokeWidth = Color.TRANSPARENT,
-                4f.dpToPx()
-        )
-    }
+    fun btnPrimaryCorners4(context: Context) = createButtonStateListDrawable(context = context,
+            enableColor = Constant.getPrimaryColor(context),
+            pressedColor = Constant.getSecondaryColor(context),
+            disableColor = ContextCompat.getColor(context, R.color.gray),
+            radius = 4f.dpToPx()
+    )
 
     fun progressPrimaryBackgroundTransparentCorners8(context: Context): LayerDrawable {
         val radius = 8f.dpToPx()
@@ -198,4 +210,20 @@ object ViewHelper {
     * Disable Text Color
     * */
     fun bgDisableTextCorners4(context: Context) = createShapeDrawable(ContextCompat.getColor(context, R.color.colorDisableText), 4f)
+
+    /*
+    * View
+    * */
+    fun bgPaymentState(context: Context) = createButtonStateListDrawable(context = context,
+            enableColor = Constant.getPrimaryColor(context),
+            pressedColor = Constant.getSecondaryColor(context),
+            disableColor = ContextCompat.getColor(context, R.color.colorDisableText),
+            radius = 4f.dpToPx()
+    )
+
+    // bg_my_gift_title
+    fun bgGiftTitle(context: Context) = StateListDrawable().apply {
+        addState(intArrayOf(android.R.attr.state_checked), createShapeDrawable(Constant.getPrimaryColor(context), 0f))
+        addState(intArrayOf(-android.R.attr.state_checked), null)
+    }
 }
