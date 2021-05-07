@@ -10,7 +10,6 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.google.gson.internal.LinkedTreeMap
 import org.json.JSONObject
-import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.activities.image.DetailImagesActivity
 import vn.icheck.android.databinding.ItemMyContributeBinding
@@ -77,7 +76,7 @@ class MyContributionAdapter(val listCategory: List<CategoryAttributesModel>, val
                             holder.binding.image2.loadRoundedImage((data.values as ArrayList<String>).get(1), R.drawable.error_load_image, corner = 4, width = 100.toPx())
                             holder.binding.imgBlur.beVisible()
                             Glide.with(holder.binding.root.context)
-                                    .load(ColorDrawable(ResourcesCompat.getColor(holder.binding.root.context.resources, R.color.black_50, null)))
+                                    .load(ColorDrawable(ResourcesCompat.getColor(holder.binding.root.context.resources, R.color.colorBackgroundPopup, null)))
                                     .transform(CenterCrop(), RoundedCorners(4.toPx()))
                                     .into(holder.binding.imgBlur)
 

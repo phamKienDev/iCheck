@@ -113,7 +113,7 @@
         android:id="@id/bgCategoryVertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#80000000"
+        android:background="@color/colorBackgroundPopup"
         android:clickable="true"
         android:focusable="true"
         android:visibility="invisible"
