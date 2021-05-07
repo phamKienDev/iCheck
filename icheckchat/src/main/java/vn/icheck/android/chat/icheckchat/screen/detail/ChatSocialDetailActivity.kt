@@ -67,7 +67,7 @@ import java.io.File
 
 class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBinding>(), IRecyclerViewCallback, View.OnClickListener {
     companion object {
-        var userId: Long? = null
+        var isOpened = false
 
         fun createRoomChat(context: Context, userId: Long, type: String) {
             context.startActivity(Intent(context, ChatSocialDetailActivity::class.java).apply {
@@ -100,6 +100,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
     private var toId = ""
     private var keyRoom = ""
 
+    private var userId: Long? = null
     private var userType = "user"
     private var key: String? = null
     private var isLoadData: Boolean = true
@@ -124,6 +125,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         get() = ActivityChatSocialDetailBinding::inflate
 
     override fun onInitView() {
+        isOpened = false
         ListConversationFragment.isOpenChat = true
 
         viewModel = ViewModelProvider(this@ChatSocialDetailActivity)[ChatSocialDetailViewModel::class.java]
@@ -1120,7 +1122,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
     override fun onStop() {
         super.onStop()
-        userId = null
         inboxRoomID = null
         inboxUserID = null
     }
@@ -1130,9 +1131,14 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         inboxRoomID = keyRoom
         inboxUserID = toId
 
-        if (userId == null) {
+        if (isOpened) {
             finish()
             overridePendingTransition(R.anim.none_no_time, R.anim.none_no_time)
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        isOpened = true
     }
 }
