@@ -177,7 +177,7 @@ class EditMyInformationActivity : CoroutineFragment() {
 
     private fun initView() {
         binding.rbMale.setTextColor(ViewHelper.textColorDisableTextUncheckPrimaryChecked(requireContext()))
-        binding.btnUpdate.background = ViewHelper.bgPrimaryCorners4(this)
+        binding.btnUpdate.background = ViewHelper.bgPrimaryCorners4(requireContext())
 
 //        ickUserWallViewModel.getFacebook().observe(viewLifecycleOwner, {
 //            if (!it?.trim().isNullOrEmpty()) {
