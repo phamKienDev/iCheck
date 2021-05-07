@@ -94,6 +94,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
     private var product: MCProductFirebase? = null
 
     private val requestCameraPermission = 3
+    private val requestScanBarcodePermission = 4
 
     var inboxRoomID: String? = null
     var inboxUserID: String? = null
@@ -935,6 +936,13 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                     showToastError(getString(R.string.khong_the_thuc_hien_tac_vu_vi_ban_chua_cap_quyen))
                 }
             }
+            requestScanBarcodePermission -> {
+                if (PermissionChatHelper.checkResult(grantResults)) {
+                    scanBarcode()
+                } else {
+                    showToastError(getString(R.string.khong_the_thuc_hien_tac_vu_vi_ban_chua_cap_quyen))
+                }
+            }
         }
     }
 
@@ -975,9 +983,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 selectedTextView(binding.imgScan, binding.layoutProduct, false)
             }
             R.id.imgScan -> {
-                if (!binding.imgScan.isChecked) {
-                    IcheckScanActivity.scanOnlyChat(this, SCAN)
-                }
+                scanBarcode()
             }
             R.id.imgCamera -> {
                 val permission = arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -1030,6 +1036,15 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 recyclerView.smoothScrollToPosition(0)
                 binding.layoutNewMessage.beGone()
                 binding.layoutNewMessage.clearAnimation()
+            }
+        }
+    }
+
+    private fun scanBarcode() {
+        val permission = arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
+        if (PermissionChatHelper.checkPermission(this, permission, requestScanBarcodePermission)) {
+            if (!binding.imgScan.isChecked) {
+                IcheckScanActivity.scanOnlyChat(this, SCAN)
             }
         }
     }
