@@ -401,26 +401,6 @@
 
     <!-- Profile -->
 
-    <style name="ViewProfile_Layout_Info_Top">
-        <item name="android:layout_width">@dimen/size_0</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@drawable/bg_profile_top</item>
-        <item name="android:paddingTop">@dimen/size_6</item>
-        <item name="android:paddingBottom">@dimen/size_6</item>
-        <item name="android:paddingStart">@dimen/size_8</item>
-        <item name="android:paddingEnd">@dimen/size_8</item>
-    </style>
-
-    <style name="ViewProfile_Layout_Info_Bottom">
-        <item name="android:layout_width">@dimen/size_0</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@drawable/bg_profile_bottom</item>
-        <item name="android:paddingTop">@dimen/size_6</item>
-        <item name="android:paddingBottom">@dimen/size_6</item>
-        <item name="android:paddingStart">@dimen/size_8</item>
-        <item name="android:paddingEnd">@dimen/size_8</item>
-    </style>
-
     <style name="ViewProfile_Info_Title">
         <item name="android:layout_width">@dimen/size_0</item>
         <item name="android:layout_height">wrap_content</item>
