@@ -60,6 +60,7 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
         Constant.DATA_2: postId
         Constant.DATA_3: postion media trong list
         Constant.DATA_4: check có vào từ màn PostDetaik?
+        Constant.DATA_5: truyền ảnh vào đề tìm vị trí trong list media
          */
 
         fun start(post: ICPost, activity: Activity, position: Int? = null, requestCode: Int = -1) {
@@ -85,6 +86,18 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
             val intent = Intent(activity, MediaInPostActivity::class.java)
             intent.putExtra(Constant.DATA_2, postId)
             intent.putExtra(Constant.DATA_3, position)
+
+            if (requestCode == -1) {
+                ActivityUtils.startActivity(activity, intent)
+            } else {
+                ActivityUtils.startActivityForResult(activity, intent, requestCode)
+            }
+        }
+
+        fun start(postId: Long, activity: Activity, image: String?, requestCode: Int = -1) {
+            val intent = Intent(activity, MediaInPostActivity::class.java)
+            intent.putExtra(Constant.DATA_2, postId)
+            intent.putExtra(Constant.DATA_5, image)
 
             if (requestCode == -1) {
                 ActivityUtils.startActivity(activity, intent)
@@ -186,16 +199,30 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
             adapter.setData(it)
 
             val positionIntent = intent.getIntExtra(Constant.DATA_3, -1)
+            val image = intent.getStringExtra(Constant.DATA_5)
             if (positionIntent != -1) {
                 rcvMedia.scrollToPosition(positionIntent)
                 tvSlide.text = "${positionIntent + 1}/${it.size}"
                 it[positionIntent].exoPlayer?.playWhenReady = true
                 positionView = positionIntent
-
             } else {
-                tvSlide.text = "1/${it.size}"
-                it[0].exoPlayer?.playWhenReady = true
-                positionView = 0
+                if (!image.isNullOrEmpty()) {
+                    val index = it.indexOfFirst { it.src == image }
+                    if (index != -1) {
+                        rcvMedia.scrollToPosition(positionIntent)
+                        tvSlide.text = "${positionIntent + 1}/${it.size}"
+                        it[positionIntent].exoPlayer?.playWhenReady = true
+                        positionView = positionIntent
+                    } else {
+                        tvSlide.text = "1/${it.size}"
+                        it[0].exoPlayer?.playWhenReady = true
+                        positionView = 0
+                    }
+                } else {
+                    tvSlide.text = "1/${it.size}"
+                    it[0].exoPlayer?.playWhenReady = true
+                    positionView = 0
+                }
             }
 
             rcvMedia.addScrollStateChangeListener(object : DiscreteScrollView.ScrollStateChangeListener<RecyclerView.ViewHolder> {

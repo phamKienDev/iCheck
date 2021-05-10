@@ -260,7 +260,6 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
                     binding.imgRetry.setGone()
                     binding.tvTime.setTextColor(ContextCompat.getColor(itemView.context, R.color.gray_b4))
                     binding.tvTime.text = itemView.context.getString(R.string.dang_gui)
-                    binding.tvMessage.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.blue_opactity))
 //                    binding.tvMessage.setBackgroundDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_10_blue_opacity))
                     binding.tvMessage.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_10_blue)
                 }

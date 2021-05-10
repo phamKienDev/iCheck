@@ -65,7 +65,7 @@ class VendorAdapter(val listData: MutableList<ICPage>, val icon: Int?) : Recycle
                     it.setMargins(SizeHelper.size10, 0, SizeHelper.size10, 0)
                 }
             } else {
-                itemView.constraintLayout1.layoutParams = ConstraintLayout.LayoutParams(SizeHelper.size331, ConstraintLayout.LayoutParams.WRAP_CONTENT).also {
+                itemView.constraintLayout1.layoutParams = ConstraintLayout.LayoutParams(SizeHelper.size320, ConstraintLayout.LayoutParams.WRAP_CONTENT).also {
                     it.setMargins(SizeHelper.size10, 0, 0, 0)
                 }
             }

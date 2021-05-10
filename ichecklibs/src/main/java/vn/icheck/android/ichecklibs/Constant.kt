@@ -208,4 +208,16 @@ object Constant {
             phone
         }
     }
+
+    fun getPath(type: String?, id: String?): String? {
+        return if (!type.isNullOrEmpty()) {
+            if (!id.isNullOrEmpty()) {
+                "icheck://$type?id=$id"
+            } else {
+                "icheck://$type"
+            }
+        } else {
+            null
+        }
+    }
 }

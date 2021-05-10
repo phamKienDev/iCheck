@@ -52,12 +52,12 @@ class DistributorAdapter(val listData: MutableList<ICPage>, val url: String) : R
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        if (listData.size < 4) {
+        if (listData.size < 2) {
             holder.itemView.findViewById<ConstraintLayout>(R.id.constraintLayout1).layoutParams = ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, ConstraintLayout.LayoutParams.WRAP_CONTENT).also {
                 it.setMargins(SizeHelper.size10, 0, SizeHelper.size10, 0)
             }
         } else {
-            holder.itemView.findViewById<ConstraintLayout>(R.id.constraintLayout1).layoutParams = ConstraintLayout.LayoutParams(SizeHelper.size331, ConstraintLayout.LayoutParams.WRAP_CONTENT).also {
+            holder.itemView.findViewById<ConstraintLayout>(R.id.constraintLayout1).layoutParams = ConstraintLayout.LayoutParams(SizeHelper.size320, ConstraintLayout.LayoutParams.WRAP_CONTENT).also {
                 it.setMargins(SizeHelper.size10, 0, 0, 0)
             }
         }
@@ -90,6 +90,7 @@ class DistributorAdapter(val listData: MutableList<ICPage>, val url: String) : R
 
             initListener(obj)
 
+
             WidgetUtils.loadImageUrlRounded4(itemView.findViewById<AppCompatImageView>(R.id.imgAvatar), obj.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
 
             itemView.findViewById<AppCompatTextView>(R.id.tvNamePage).text = if (obj.name.isNullOrEmpty()) {
@@ -99,8 +100,8 @@ class DistributorAdapter(val listData: MutableList<ICPage>, val url: String) : R
             }
 
 //            if (obj.verified == true) {
-                itemView.findViewById<View>(R.id.viewBackground).setBackgroundResource(R.color.colorPrimary)
-                itemView.findViewById<AppCompatImageView>(R.id.imgDetail).setImageResource(R.drawable.ic_arrow_right_white_bg_blue_28px)
+            itemView.findViewById<View>(R.id.viewBackground).setBackgroundResource(R.color.colorPrimary)
+            itemView.findViewById<AppCompatImageView>(R.id.imgDetail).setImageResource(R.drawable.ic_arrow_right_white_bg_blue_28px)
 //            } else {
 //                itemView.findViewById<View>(R.id.viewBackground).setBackgroundResource(R.color.darkGray2)
 //                itemView.findViewById<AppCompatImageView>(R.id.imgDetail).setImageResource(R.drawable.ic_arrow_right_white_bg_gray_28px)

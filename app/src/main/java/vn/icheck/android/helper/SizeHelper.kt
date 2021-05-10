@@ -72,6 +72,7 @@ internal object SizeHelper {
     val size120 = dpToPx(120)
     val size246 = dpToPx(246)
     val size280 = dpToPx(280)
+    val size320 = dpToPx(320)
     val size331 = dpToPx(331)
     val size400 = dpToPx(400)
 
