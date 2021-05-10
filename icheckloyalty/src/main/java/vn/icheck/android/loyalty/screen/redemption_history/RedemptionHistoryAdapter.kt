@@ -154,8 +154,9 @@ internal class RedemptionHistoryAdapter(callback: IRecyclerViewCallback): Recycl
                 }
 
                 itemView.setOnClickListener {
+                    DetailGiftLoyaltyActivity.obj = data
                     itemView.context.startActivity(Intent(itemView.context, DetailGiftLoyaltyActivity::class.java).apply {
-                        putExtra(ConstantsLoyalty.DATA_1, data)
+//                        putExtra(ConstantsLoyalty.DATA_1, data)
                         putExtra(ConstantsLoyalty.DATA_2, HomeRedeemPointActivity.banner)
                         putExtra(ConstantsLoyalty.DATA_3, HomeRedeemPointActivity.campaignID)
                         putExtra(ConstantsLoyalty.DATA_7, 2)
@@ -183,24 +184,27 @@ internal class RedemptionHistoryAdapter(callback: IRecyclerViewCallback): Recycl
                 itemView.btnManagerPoint.setInvisible()
                 itemView.tvState.run {
                     setVisible()
+
+                    text = obj.status_title
+
                     when (obj.status) {
                         "new" -> {
-                            text = "Chờ xác nhận"
+//                            text = "Chờ xác nhận"
                             setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
                             setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
                         }
                         "waiting_receive_gift" -> {
-                            text = "Chờ giao"
+//                            text = "Chờ giao"
                             setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
                             setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
                         }
                         "received_gift" -> {
-                            text = "Đã nhận quà"
+//                            text = "Đã nhận quà"
                             setTextColor(ContextCompat.getColor(itemView.context, R.color.green2))
                             setBackgroundResource(R.drawable.bg_corner_30_green_opacity_02)
                         }
                         "refused_gift" -> {
-                            text = "Từ chối"
+//                            text = "Từ chối"
                             setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
                             setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
                         }

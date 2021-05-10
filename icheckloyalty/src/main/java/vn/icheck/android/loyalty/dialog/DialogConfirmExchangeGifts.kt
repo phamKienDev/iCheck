@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import kotlinx.android.synthetic.main.dialog_confirm_exchange_gifts.*
 import org.greenrobot.eventbus.EventBus
+import vn.icheck.android.ichecklibs.showSimpleSuccessToast
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.dialog.base.BaseDialog
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
@@ -101,7 +102,7 @@ open class DialogConfirmExchangeGifts(context: Context, val obj: ICKBoxGifts, va
                                 DialogHelperGame.dialogExchangeGiftsPointSuccess(context, obj.data?.gift?.icoin, campaignId, R.drawable.bg_gradient_button_orange_yellow)
                             }
                             "VOUCHER" -> {
-                                showCustomErrorToast(context, "Voucher")
+                                context.showSimpleSuccessToast("Chúc mừng bạn đã đổi quà voucher thành công!")
                             }
                             else -> {
                                 ToastHelper.showLongError(context, obj.data?.message)

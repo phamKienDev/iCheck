@@ -131,52 +131,61 @@ class AcceptShipGiftActivity : BaseActivityGame(), View.OnClickListener {
     }
 
     private fun initListener() {
-        viewModel.onError.observe(this, Observer {
+        viewModel.onError.observe(this, {
             showLongError(it.title)
         })
 
-        viewModel.onErrorName.observe(this, Observer {
+        viewModel.onErrorName.observe(this, {
             layoutInputName.error = it
         })
 
-        viewModel.onErrorPhone.observe(this, Observer {
+        viewModel.onErrorPhone.observe(this, {
             layoutInputPhone.error = it
         })
 
-        viewModel.onErrorEmail.observe(this, Observer {
+        viewModel.onErrorEmail.observe(this, {
             layoutInputEmail.error = it
         })
 
-        viewModel.onErrorAddress.observe(this, Observer {
+        viewModel.onErrorAddress.observe(this, {
             layoutInputAddress.error = it
         })
 
-        viewModel.onErrorProvince.observe(this, Observer {
+        viewModel.onErrorProvince.observe(this, {
             layoutInputProvince.error = it
         })
 
-        viewModel.onErrorDistrict.observe(this, Observer {
+        viewModel.onErrorDistrict.observe(this, {
             layoutInputDistrict.error = it
         })
 
-        viewModel.onErrorWard.observe(this, Observer {
+        viewModel.onErrorWard.observe(this, {
             layoutInputWard.error = it
         })
 
-        viewModel.onSetProvince.observe(this, Observer {
+        viewModel.onSetProvince.observe(this, {
             spProvince.text = it
         })
 
-        viewModel.onSetDistrict.observe(this, Observer {
+        viewModel.onSetDistrict.observe(this, {
             spDistrict.text = it
         })
 
-        viewModel.onSetWard.observe(this, Observer {
+        viewModel.onSetWard.observe(this, {
             spWard.text = it
         })
 
-        viewModel.onSuccessRedemption.observe(this, Observer {
+        viewModel.onSuccessRedemption.observe(this, {
             showDialog(it)
+        })
+
+        viewModel.onSuccessVoucher.observe(this, {
+            object : DialogNotification(this@AcceptShipGiftActivity, "Thông báo", "Đổi quà thành công!", null, false) {
+                override fun onDone() {
+                    this@AcceptShipGiftActivity.onBackPressed()
+                    EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.BACK))
+                }
+            }.show()
         })
 
         viewModel.onSuccessReceiveGift.observe(this@AcceptShipGiftActivity, {
@@ -188,7 +197,7 @@ class AcceptShipGiftActivity : BaseActivityGame(), View.OnClickListener {
             }.show()
         })
 
-        viewModel.showError.observe(this, Observer {
+        viewModel.showError.observe(this, {
             showLongError(it)
         })
     }

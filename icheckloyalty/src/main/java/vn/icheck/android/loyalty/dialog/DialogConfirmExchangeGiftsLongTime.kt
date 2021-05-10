@@ -5,6 +5,7 @@ import android.content.Intent
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.dialog_confirm_exchange_gifts.*
 import org.greenrobot.eventbus.EventBus
+import vn.icheck.android.ichecklibs.showSimpleSuccessToast
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.dialog.base.BaseDialog
@@ -70,6 +71,9 @@ open class DialogConfirmExchangeGiftsLongTime(
                     "ICOIN" -> {
                         exchangeGift()
                     }
+                    "VOUCHER" -> {
+                        exchangeGift(true)
+                    }
                     "PHONE_CARD" -> {
                         EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.EXCHANGE_PHONE_CARD, idGift))
                     }
@@ -86,7 +90,7 @@ open class DialogConfirmExchangeGiftsLongTime(
         }
     }
 
-    private fun exchangeGift() {
+    private fun exchangeGift(isVoucher: Boolean = false) {
         if (NetworkHelper.isNotConnected(context)) {
             ToastHelper.showLongError(context, context.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
             return
@@ -99,7 +103,11 @@ open class DialogConfirmExchangeGiftsLongTime(
                 if (obj.status == "FAIL") {
                     ToastHelper.showLongError(context, obj.data?.message ?: context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 } else {
-                    DialogHelperGame.dialogExchangeGiftsPointSuccess(context, obj.data?.gift?.icoin, null, R.drawable.bg_gradient_button_blue)
+                    if (isVoucher){
+                        context.showSimpleSuccessToast("Chúc mừng bạn đã đổi quà voucher thành công!")
+                    }else{
+                        DialogHelperGame.dialogExchangeGiftsPointSuccess(context, obj.data?.gift?.icoin, null, R.drawable.bg_gradient_button_blue)
+                    }
                 }
             }
 

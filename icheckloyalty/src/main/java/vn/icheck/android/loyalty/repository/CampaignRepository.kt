@@ -9,12 +9,32 @@ import vn.icheck.android.loyalty.network.SessionManager
 
 internal class CampaignRepository : BaseRepository() {
 
+    /**
+     * Api Scan Voucher
+     */
+    fun scanVoucher(voucher: String, listener: ICApiListener<ICKResponse<ICKScanVoucher>>) {
+        val body = hashMapOf<String, Any>()
+        body["voucher"] = voucher
+
+        val url = APIConstants.LOYALTY_HOST + "loyalty/voucher/scan"
+        requestApi(ICNetworkClient.getApiClientLoyalty().scanVoucher(url, body), listener)
+    }
+
+    fun usedVoucher(voucher: String, note: String, listener: ICApiListener<ICKResponse<Boolean>>) {
+        val body = hashMapOf<String, Any>()
+        body["voucher"] = voucher
+        body["note"] = note
+
+        val url = APIConstants.LOYALTY_HOST + "loyalty/voucher/use"
+        requestApi(ICNetworkClient.getApiClientLoyalty().usedVoucher(url, body), listener)
+    }
+
     fun getCampaign(barcode: String, listener: ICApiListener<ICKResponse<ICKLoyalty>>) {
         val url = APIConstants.LOYALTY_HOST + "loyalty/campaign/get-campaign"
         requestApi(ICNetworkClient.getApiClientLoyalty().getCampaign(url, barcode), listener)
     }
 
-    fun postCancelShipGift(gift_id: Long, listener: ICApiListener<ICKResponse<ICKWinner>>){
+    fun postCancelShipGift(gift_id: Long, listener: ICApiListener<ICKResponse<ICKWinner>>) {
         val body = hashMapOf<String, Any>()
         body["status"] = "refused_gift"
 
@@ -22,7 +42,7 @@ internal class CampaignRepository : BaseRepository() {
         requestApi(ICNetworkClient.getApiClientLoyalty().postRefuseGift(url, body), listener)
     }
 
-    fun getDetailGiftWinner(winnerId: Long, listener: ICApiListener<ICKResponse<ICKGift>>){
+    fun getDetailGiftWinner(winnerId: Long, listener: ICApiListener<ICKResponse<ICKGift>>) {
         val url = APIConstants.LOYALTY_HOST + "loyalty/winner/gift/$winnerId"
 
         requestApi(ICNetworkClient.getApiClientLoyalty().getDetailGiftWinner(url), listener)
@@ -142,10 +162,10 @@ internal class CampaignRepository : BaseRepository() {
 
         params["campaign_id"] = campaignId
 
-        if (!barcode.isNullOrEmpty()){
+        if (!barcode.isNullOrEmpty()) {
             params["target"] = barcode
         }
-        if (!code.isNullOrEmpty()){
+        if (!code.isNullOrEmpty()) {
             params["code"] = code
         }
 

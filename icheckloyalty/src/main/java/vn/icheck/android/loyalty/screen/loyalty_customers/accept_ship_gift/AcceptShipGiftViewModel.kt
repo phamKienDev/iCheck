@@ -17,8 +17,9 @@ import vn.icheck.android.loyalty.repository.LoyaltyCustomersRepository
 class AcceptShipGiftViewModel : BaseViewModel<Any>() {
     private val repository = LoyaltyCustomersRepository()
 
-    val onSuccessRedemption = MutableLiveData<ICKRedemptionHistory>()
-    val onSuccessReceiveGift = MutableLiveData<ICKWinner>()
+    val onSuccessRedemption = MutableLiveData<ICKRedemptionHistory?>()
+    val onSuccessVoucher = MutableLiveData<String>()
+    val onSuccessReceiveGift = MutableLiveData<ICKWinner?>()
 
     val showError = MutableLiveData<String>()
 
@@ -165,42 +166,61 @@ class AcceptShipGiftViewModel : BaseViewModel<Any>() {
         }
 
         if (isSuccess) {
-            if (type == 1) {
-                repository.exchangeGift(collectionID, name, phone, email, province?.id
-                        ?: -1, district?.id ?: -1, address, province?.name ?: "", district?.name
-                        ?: "", ward?.id ?: -1, ward?.name ?: "",
-                        object : ICApiListener<ICKResponse<ICKRedemptionHistory>> {
-                            override fun onSuccess(obj: ICKResponse<ICKRedemptionHistory>) {
-                                if (obj.status == "FAIL") {
-                                    showError.postValue(obj.data?.message
-                                            ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
-                                } else {
-                                    onSuccessRedemption.postValue(obj.data)
+            when (type) {
+                1 -> {
+                    repository.exchangeGift(collectionID, name, phone, email, province?.id
+                            ?: -1, district?.id ?: -1, address, province?.name ?: "", district?.name
+                            ?: "", ward?.id ?: -1, ward?.name ?: "",
+                            object : ICApiListener<ICKResponse<ICKRedemptionHistory>> {
+                                override fun onSuccess(obj: ICKResponse<ICKRedemptionHistory>) {
+                                    if (obj.status == "FAIL") {
+                                        showError.postValue(obj.data?.message
+                                                ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                                    } else {
+                                        onSuccessRedemption.postValue(obj.data)
+                                    }
                                 }
-                            }
 
-                            override fun onError(error: ICKBaseResponse?) {
-                                checkError(true, error?.message)
-                            }
-                        })
-            } else {
-                AddressRepository().confirmGiftLoyalty(collectionID, name, phone, email, province?.id
-                        ?: -1, district?.id ?: -1, address, province?.name ?: "", district?.name
-                        ?: "", ward?.id ?: -1, ward?.name ?: "",
-                        object : ICApiListener<ICKResponse<ICKWinner>> {
-                            override fun onSuccess(obj: ICKResponse<ICKWinner>) {
-                                if (obj.status == "FAIL") {
-                                    showError.postValue(obj.data?.message
-                                            ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
-                                } else {
-                                    onSuccessReceiveGift.postValue(obj.data)
+                                override fun onError(error: ICKBaseResponse?) {
+                                    checkError(true, error?.message)
                                 }
+                            })
+                }
+                3 -> {
+                    repository.exchangeCardGiftVQMM(null, collectionID, phone, object : ICApiListener<ICKResponse<ICKRedemptionHistory>> {
+                        override fun onSuccess(obj: ICKResponse<ICKRedemptionHistory>) {
+                            if (obj.statusCode == 200) {
+                                onSuccessVoucher.postValue("SUCCESS")
+                            } else {
+                                showError.postValue(obj.data?.message
+                                        ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                             }
+                        }
 
-                            override fun onError(error: ICKBaseResponse?) {
-                                checkError(true, error?.message)
-                            }
-                        })
+                        override fun onError(error: ICKBaseResponse?) {
+                            checkError(true, error?.message)
+                        }
+                    })
+                }
+                else -> {
+                    AddressRepository().confirmGiftLoyalty(collectionID, name, phone, email, province?.id
+                            ?: -1, district?.id ?: -1, address, province?.name ?: "", district?.name
+                            ?: "", ward?.id ?: -1, ward?.name ?: "",
+                            object : ICApiListener<ICKResponse<ICKWinner>> {
+                                override fun onSuccess(obj: ICKResponse<ICKWinner>) {
+                                    if (obj.status == "FAIL") {
+                                        showError.postValue(obj.data?.message
+                                                ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                                    } else {
+                                        onSuccessReceiveGift.postValue(obj.data)
+                                    }
+                                }
+
+                                override fun onError(error: ICKBaseResponse?) {
+                                    checkError(true, error?.message)
+                                }
+                            })
+                }
             }
         }
     }

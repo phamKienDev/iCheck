@@ -32,6 +32,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/appCompatTextView2"
         android:layout_width="@dimen/size_0"
         android:layout_height="wrap_content"
         android:fontFamily="@font/barlow_semi_bold"
@@ -46,8 +47,10 @@
         app:layout_constraintTop_toTopOf="@id/tvClose" />
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView3"
         android:layout_width="@dimen/size_0"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_30"
         app:cardBackgroundColor="@color/transparent"
         app:cardCornerRadius="@dimen/size_10"
         app:cardElevation="@dimen/size_0"
@@ -75,20 +78,6 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imgBanner"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/size_0"
-                    android:adjustViewBounds="true"
-                    android:background="@drawable/bg_white_corners_top_10"
-                    android:cropToPadding="true"
-                    android:scaleType="centerCrop"
-                    app:layout_constraintBottom_toTopOf="@id/imgQrCode"
-                    app:layout_constraintDimensionRatio="H, 750:150"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@id/imgQrCode"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/size_0"
@@ -97,9 +86,8 @@
                     android:scaleType="fitCenter"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintDimensionRatio="H, 343:285"
-                    app:layout_constraintEnd_toEndOf="@id/imgBanner"
-                    app:layout_constraintStart_toStartOf="@id/imgBanner"
-                    app:layout_constraintTop_toBottomOf="@id/imgBanner" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
                 <View
                     android:id="@+id/view"
@@ -121,12 +109,10 @@
                     app:layout_constraintStart_toStartOf="@id/view"
                     app:layout_constraintTop_toTopOf="@id/view">
 
-                    <!--                    <androidx.appcompat.widget.AppCompatImageView-->
-                    <!--                        android:id="@+id/imgLogo"-->
-                    <!--                        android:layout_width="match_parent"-->
-                    <!--                        android:layout_height="match_parent"-->
-                    <!--                        android:background="@drawable/bg_corners_blue_10"-->
-                    <!--                        android:src="@drawable/ic_logo_icheck_marketing" />-->
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imgLogo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
                 </androidx.cardview.widget.CardView>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -164,12 +150,13 @@
                         android:layout_width="@dimen/size_0"
                         android:layout_height="wrap_content"
                         android:layout_weight="5"
+                        android:checked="false"
                         android:drawableEnd="@drawable/ic_drawable_eyes_checked"
                         android:drawableRight="@drawable/ic_drawable_eyes_checked"
                         android:fontFamily="@font/barlow_semi_bold"
+                        android:gravity="center_vertical"
                         android:text="FBSHBDIA3NCDJS"
                         android:textColor="#85C440"
-                        android:checked="false"
                         android:textSize="14sp" />
                 </LinearLayout>
 
@@ -201,4 +188,19 @@
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_30"
+        android:fontFamily="@font/barlow_semi_bold"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:lineHeight="@dimen/size_20"
+        android:text="Đưa mã QR này cho nhân viên cửa hàng\nđể sử dụng ưu đãi"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/cardView3"
+        app:layout_constraintStart_toStartOf="@+id/cardView3"
+        app:layout_constraintTop_toBottomOf="@+id/cardView3" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package vn.icheck.android.loyalty.screen.gift_voucher
+package vn.icheck.android.loyalty.screen.gift_detail_from_app
 
 import android.annotation.SuppressLint
 import android.view.ViewGroup
@@ -76,47 +76,64 @@ internal class GiftDetailFromAppAdapter : RecyclerViewCustomAdapter<ICKGift>() {
                 }
             }
 
-            when (obj.state) {
-                1 -> {
-                    itemView.layoutStatusGift.setGone()
-                    itemView.tvStatus.text = if (obj.rewardType?.contains("VOUCHER") == true) {
-                        "Có thể sử dụng"
-                    } else {
-                        "Chưa nhận"
+            if (obj.rewardType?.contains("VOUCHER") == true) {
+                itemView.layoutStatusGift.setGone()
+
+                if (obj.voucher != null) {
+
+                    // TODO check nếu voucher còn hạn thì hiển thị Có thể sử dụng, nếu hết hạn hiển thị Đã hết hạn
+
+                    if (!obj.voucher.expired_at.isNullOrEmpty()){
+                        itemView.tvStatus.text = "Có thể sử dụng"
+                    }else{
+                        itemView.tvStatus.text = "Hết hạn sử dụng"
+                    }
+                } else {
+
+                    when(obj.state){
+                        1 -> {
+                            itemView.tvStatus.text = "Chờ xác nhận"
+                        }
+                        3 -> {
+                            itemView.tvStatus.text = "Từ chối"
+                        }
                     }
                 }
-                2 -> {
-                    itemView.tvStatus.text = if (obj.rewardType?.contains("VOUCHER") == true) {
+            } else {
+                when (obj.state) {
+                    1 -> {
                         itemView.layoutStatusGift.setGone()
-                        "Hết lượt sử dụng"
-                    } else {
+                        itemView.tvStatus.text = "Chưa nhận"
+                    }
+                    2 -> {
+                        itemView.tvStatus.text = "Đã nhận quà"
+
                         itemView.layoutStatusGift.setVisible()
                         itemView.tvStatusGift.run {
                             setTextColor(getColor(R.color.green2))
                             text = "Đã nhận quà"
                         }
-                        "Đã nhận quà"
                     }
-                }
-                3 -> {
-                    itemView.layoutStatusGift.setVisible()
-                    itemView.tvStatusGift.run {
-                        setTextColor(getColor(R.color.errorColor))
-                        text = "Bạn đã từ chối nhận quà này"
+                    3 -> {
+                        itemView.layoutStatusGift.setVisible()
+                        itemView.tvStatusGift.run {
+                            setTextColor(getColor(R.color.errorColor))
+                            text = "Bạn đã từ chối nhận quà này"
+                        }
+                        itemView.tvStatus.text = "Bạn đã từ chối nhận quà này"
                     }
-                    itemView.tvStatus.text = "Bạn đã từ chối nhận quà này"
-                }
-                4 -> {
-                    itemView.layoutStatusGift.setVisible()
-                    itemView.tvStatusGift.run {
-                        setTextColor(getColor(R.color.green2))
-                        text = "Bạn đã xác nhận ship quà này"
+                    4 -> {
+                        itemView.layoutStatusGift.setVisible()
+                        itemView.tvStatusGift.run {
+                            setTextColor(getColor(R.color.green2))
+                            text = "Bạn đã xác nhận ship quà này"
+                        }
+                        itemView.tvStatus.text = "Chờ giao"
                     }
-                    itemView.tvStatus.text = "Chờ giao"
-                }
-                else -> {
-                    itemView.layoutStatusGift.setGone()
-                    itemView.tvStatus.text = default
+                    else -> {
+                        itemView.layoutStatusGift.setGone()
+                        itemView.tvStatus.text = default
+                    }
                 }
             }
 

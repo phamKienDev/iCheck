@@ -128,19 +128,21 @@ internal class GiftDetailAdapter(val type: Int = 0) : RecyclerViewCustomAdapter<
             }
             itemView.btnDoiQua.apply {
                 if (obj.gift?.type == "VOUCHER") {
+                    itemView.layoutCodeGift.setGone()
                     setVisible()
                     when {
-                        obj.gift?.voucher?.can_use == true -> {
+                        obj.voucher?.can_use == true -> {
                             text = "Dùng ngay"
 
                             setOnClickListener {
                                 itemView.context.startActivity(Intent(itemView.context, VoucherLoyaltyActivity::class.java).apply {
-                                    putExtra(ConstantsLoyalty.DATA_1, obj.gift?.voucher?.code)
-                                    putExtra(ConstantsLoyalty.DATA_2, obj.gift?.voucher?.expired_at)
+                                    putExtra(ConstantsLoyalty.DATA_1, obj.voucher?.code)
+                                    putExtra(ConstantsLoyalty.DATA_2, obj.voucher?.expired_at)
+                                    putExtra(ConstantsLoyalty.DATA_3, obj.owner?.logo?.thumbnail)
                                 })
                             }
                         }
-                        obj.gift?.voucher?.can_mark_use == true -> {
+                        obj.voucher?.can_mark_use == true -> {
                             text = "Đánh dầu đã dùng"
 
                             setOnClickListener {

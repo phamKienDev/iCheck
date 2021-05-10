@@ -81,6 +81,9 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 putExtra(KEY, key)
             })
         }
+
+        var toId = ""
+        var toType = ""
     }
 
     private lateinit var viewModel: ChatSocialDetailViewModel
@@ -97,7 +100,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
     var inboxRoomID: String? = null
     var inboxUserID: String? = null
-    private var toId = ""
     private var keyRoom = ""
 
     private var userType = "user"
@@ -277,7 +279,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         viewModel.getChatRoom(key,
                 { obj ->
                     if (obj.value != null) {
-                        var toType = ""
 
                         if (obj.child("members").hasChildren()) {
                             for (item in obj.child("members").children) {

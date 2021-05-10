@@ -103,6 +103,7 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
                                     startActivity(Intent(this@DetailGiftLoyaltyActivity, VoucherLoyaltyActivity::class.java).apply {
                                         putExtra(ConstantsLoyalty.DATA_1, obj?.voucher?.code)
                                         putExtra(ConstantsLoyalty.DATA_2, obj?.voucher?.expired_at)
+                                        putExtra(ConstantsLoyalty.DATA_3, obj?.gift?.owner?.logo?.thumbnail)
                                     })
                                 }
                             }
@@ -332,6 +333,7 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK) {
