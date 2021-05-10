@@ -62,6 +62,7 @@ object RelationshipManager {
     /**
      * My Friend invitation database actions
      */
+
     fun checkMyFriendInvitation(userId: Long): Boolean {
         return AppDatabase.getDatabase().myFriendInvitationUserIdDao().getUserByID(userId) != null
     }

@@ -2,6 +2,7 @@ package vn.icheck.android.screen.user.wall.mainuser
 
 import android.content.Intent
 import android.graphics.Color
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,9 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.RelationshipManager
@@ -39,9 +43,11 @@ import vn.icheck.android.screen.user.wall.ICWallModel
 import vn.icheck.android.screen.user.wall.holder.friend.FriendWallHolder
 import vn.icheck.android.util.ick.*
 
-class IckUserWallAdapter(val listener: IPostListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class IckUserWallAdapter(val listener: IPostListener) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val listData = arrayListOf<ICViewModel>()
     var friendListPos = -1
+
     fun updateList(list: List<ICViewModel>) {
         listData.clear()
         listData.addAll(list)
@@ -90,11 +96,29 @@ class IckUserWallAdapter(val listener: IPostListener) : RecyclerView.Adapter<Rec
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            ICViewTypes.PROFILE_USER -> ProfileUserHolder(ItemUserProfileWallBinding.inflate(LayoutInflater.from(parent.context), parent, false))
-            ICViewTypes.FRIEND_WALL -> FriendWallHolder(FriendInWallHolderBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+            ICViewTypes.PROFILE_USER -> ProfileUserHolder(
+                ItemUserProfileWallBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+            )
+            ICViewTypes.FRIEND_WALL -> FriendWallHolder(
+                FriendInWallHolderBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+            )
             ICViewTypes.FRIEND_INVITATION_TYPE -> FriendRequestWallHolder(parent)
             ICViewTypes.FRIEND_SUGGESTION_TYPE -> FriendSuggestionComponent(parent)
-            ICViewTypes.ITEM_CREATE_POST -> CreatePostHolder(ItemCreatePostBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+            ICViewTypes.ITEM_CREATE_POST -> CreatePostHolder(
+                ItemCreatePostBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+            )
             ICViewTypes.ITEM_USER_POST -> PostHolder(parent, listener)
             else -> NullHolder.create(parent)
         }
@@ -118,7 +142,7 @@ class IckUserWallAdapter(val listener: IPostListener) : RecyclerView.Adapter<Rec
                     (holder as FriendRequestWallHolder).apply {
                         bind((listData[position] as ICWallModel).data as ICListResponse<ICSearchUser>)
 
-                        setOnRemoveListener(View.OnClickListener {
+                        setOnRemoveListener({
                             listData.removeAt(position)
                             notifyItemRemoved(position)
                         })
@@ -128,7 +152,7 @@ class IckUserWallAdapter(val listener: IPostListener) : RecyclerView.Adapter<Rec
                     (holder as FriendSuggestionComponent).apply {
                         bind(((listData[position] as ICWallModel).data as ICListResponse<ICUser>).rows)
 
-                        setOnRemoveListener(View.OnClickListener {
+                        setOnRemoveListener({
                             listData.removeAt(position)
                             notifyItemRemoved(position)
                         })
@@ -149,29 +173,36 @@ class IckUserWallAdapter(val listener: IPostListener) : RecyclerView.Adapter<Rec
     }
 }
 
-class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.ViewHolder(binding.root) {
+class ProfileUserHolder(val binding: ItemUserProfileWallBinding) :
+    RecyclerView.ViewHolder(binding.root) {
+
+    private var isMyFriendInvitationUser: Boolean? = null // mình gửi kết bạn cho người khác
+    private var isMyFriend: Boolean? = null // bạn bè của mình
+    private var isFriendInvitationMeUser: Boolean? = null // người khác gửi kết bạn cho mình
+
     fun bind(ickUserProfileModel: IckUserProfileModel) {
+
+        isMyFriendInvitationUser = null
+        isMyFriend = null
+        isFriendInvitationMeUser = null
+
         val data = ickUserProfileModel.profile.data
         Glide.with(binding.root.context.applicationContext)
-                .load(data?.avatar)
-                .error(R.drawable.ic_avatar_default_84px)
-                .placeholder(R.drawable.ic_avatar_default_84px)
-                .into(binding.userAvatar)
+            .load(data?.avatar)
+            .error(R.drawable.ic_avatar_default_84px)
+            .placeholder(R.drawable.ic_avatar_default_84px)
+            .into(binding.userAvatar)
         if (!data?.avatar.isNullOrEmpty()) {
             binding.userAvatar.setOnClickListener {
-                DetailMediaActivity.start(it.context,arrayListOf(data?.avatar))
+                DetailMediaActivity.start(it.context, arrayListOf(data?.avatar))
             }
         }
-
 
         binding.tvName.apply {
             text = if (data?.lastName.isNullOrEmpty() && data?.firstName.isNullOrEmpty()) {
                 data?.getPhoneOnly()
             } else {
                 Constant.getName(data?.lastName, data?.firstName)
-//                val spannableString = SpannableString(Constant.getName(data?.lastName, data?.firstName) + "  ")
-//                spannableString.setSpan(ImageSpan(itemView.context, R.drawable.ic_verified_user_24dp, ImageSpan.ALIGN_BASELINE), spannableString.length - 1, spannableString.length, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
-//                setText(spannableString, TextView.BufferType.SPANNABLE)
             }
 
             if (data?.kycStatus == 2) {
@@ -183,58 +214,27 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
 
         if (!data?.background.isNullOrEmpty()) {
             Glide.with(binding.root.context)
-                    .load(data?.background)
-                    .error(R.drawable.left_menu_bg)
-                    .into(binding.imgWallCover)
+                .load(data?.background)
+                .error(R.drawable.left_menu_bg)
+                .into(binding.imgWallCover)
             binding.imgWallCover.setOnClickListener {
-                DetailMediaActivity.start(it.context,arrayListOf(data?.background))
+                DetailMediaActivity.start(it.context, arrayListOf(data?.background))
             }
         }
-//        binding.imgWallCover.viewTreeObserver.addOnGlobalLayoutListener {
-//            Glide.with(binding.root.context)
-//                    .load(data?.background)
-//                    .error(R.drawable.left_menu_bg)
-//                    .into(binding.imgWallCover)
-//            if (!data?.background.isNullOrEmpty()) {
-//                binding.imgWallCover.setOnClickListener {
-//                    DetailImagesActivity.start(arrayListOf(data?.background), it.context)
-//                }
-//            }
-//        }
+
         binding.btnSendMsg.setOnClickListener {
-//            val arrMember = arrayListOf<ChatMember>()
-//            arrMember.add(ChatMember(SessionManager.session.user?.id, role = ADMIN))
-//            arrMember.add(ChatMember(data?.id))
-//            SocialChatActivity.createRoomChat(it.context, arrMember.toTypedArray())
             if (SessionManager.isUserLogged) {
-//                SocialChatActivity.createRoomChat(it.context, data?.id)
                 ListConversationFragment.finishAllChat()
                 ChatSocialDetailActivity.createRoomChat(it.context, data?.id ?: -1, "user")
             } else {
                 ICheckApplication.currentActivity()?.let { act ->
                     (act as FragmentActivity).showLogin()
                 }
+            }
+        }
 
-            }
-        }
-//        binding.imgWallCover.loadImageWithHolder(data?.background, R.drawable.bg_image_cover_in_wall)
-        when (data?.rank?.level) {
-            Constant.USER_LEVEL_GOLD -> {
-                binding.icCrow.setImageResource(R.drawable.ic_leftmenu_avatar_gold_36dp)
-            }
-            Constant.USER_LEVEL_DIAMOND -> {
-                binding.icCrow.setImageResource(R.drawable.ic_leftmenu_avatar_diamond_36dp)
-            }
-            Constant.USER_LEVEL_STANDARD -> {
-                binding.icCrow.setImageResource(R.drawable.ic_leftmenu_avatar_standard_36dp)
-            }
-            Constant.USER_LEVEL_SILVER -> {
-                binding.icCrow.setImageResource(R.drawable.ic_leftmenu_avatar_silver_36dp)
-            }
-            else -> {
-                binding.icCrow.setImageResource(R.drawable.ic_leftmenu_avatar_standard_36dp)
-            }
-        }
+        binding.icCrow.setRankUser36dp(data?.rank?.level)
+
         if (ickUserProfileModel.profile.getInfoPrivacy() == Privacy.ONLY_ME) {
             binding.groupAddress.beGone()
             binding.groupAcc.beGone()
@@ -260,31 +260,112 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
             }
             binding.moreInfo.beVisible()
         }
-//        Glide.with(binding.root)
-//                .load(data?.background)
-//                .error(R.drawable.bg_image_cover_in_wall)
-//                .placeholder(R.drawable.bg_image_cover_in_wall)
-//                .into(binding.imgWallCover)
-        when {
-            ickUserProfileModel.id == SessionManager.session.user?.id -> showMainUser()
-            AppDatabase.getDatabase().myFriendIdDao().getUserByID(ickUserProfileModel.id) != null -> showFriend()
-            else -> showStranger(ickUserProfileModel)
+
+        when (ickUserProfileModel.id) {
+            SessionManager.session.user?.id -> showMainUser()
+            else -> checkStatusFirebase(ickUserProfileModel)
         }
     }
 
-    private fun showStranger(ickUserProfileModel: IckUserProfileModel) {
-        if (ickUserProfileModel.profile.getInfoPrivacy() == Privacy.FRIEND) {
-            binding.groupAddress.beGone()
-            binding.groupAcc.beGone()
-            binding.groupFollowing.beGone()
-            binding.groupFollowed.beGone()
-            binding.moreInfo.beGone()
+    private fun checkStatusFirebase(model: IckUserProfileModel) {
+        if (ICheckApplication.getInstance().mFirebase.auth.currentUser != null) {
+            //người khác gửi kết bạn cho mình
+            ICheckApplication.getInstance().mFirebase.registerRelationship(
+                Constant.friendInvitationMeUserIdList,
+                model.id.toString(),
+                object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        isFriendInvitationMeUser = snapshot.value != null && snapshot.value is Long
+                        checkStatusElseUser(model)
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        isFriendInvitationMeUser = false
+                        checkStatusElseUser(model)
+                    }
+                })
+
+            //mình gửi kết bạn đến người khác
+            ICheckApplication.getInstance().mFirebase.registerRelationship(Constant.myFriendInvitationUserIdList,
+                model.id.toString(),
+                object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        isMyFriendInvitationUser = snapshot.value != null && snapshot.value is Long
+                        checkStatusElseUser(model)
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        isMyFriendInvitationUser = false
+                        checkStatusElseUser(model)
+
+                    }
+                })
+
+            //friend của mình
+            ICheckApplication.getInstance().mFirebase.registerRelationship(
+                Constant.myFriendIdList,
+                model.id.toString(),
+                object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        isMyFriend = snapshot.value != null && snapshot.value is Long
+                        checkStatusElseUser(model)
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        isMyFriend = false
+                        checkStatusElseUser(model)
+                    }
+                })
         }
-        binding.groupMainUser.beGone()
-        binding.groupFriend.beVisible()
-        binding.btnSendMsg.setTextColor(Color.parseColor("#057DDA"))
-        binding.btnSendMsg.background = ResourcesCompat.getDrawable(binding.root.context.resources, R.drawable.bg_corners_4_light_blue_no_solid, null)
-        binding.btnAddFriend.beVisible()
+    }
+
+    private fun checkStatusElseUser(model: IckUserProfileModel) {
+        if (isFriendInvitationMeUser != null && isMyFriend != null && isMyFriendInvitationUser != null) {
+            when {
+                isMyFriend!! -> {
+                    binding.groupMainUser.beGone()
+                    binding.groupFriend.beVisible()
+                    Handler().postDelayed({
+                        binding.tvRequestSent.beGone()
+                        binding.btnAddFriend.beGone()
+                    }, 100)
+                    binding.btnSendMsg.background = ResourcesCompat.getDrawable(
+                        binding.root.context.resources,
+                        R.drawable.background_button_enable,
+                        null
+                    )
+                    initClickElseUser()
+                    binding.btnSendMsg.setTextColor(Color.WHITE)
+                }
+                else -> {
+                    when {
+                        isFriendInvitationMeUser!! -> {
+                            checkPrivacyElseUser(model, isFriendInvitationMeUser)
+                        }
+                        isMyFriendInvitationUser!! -> {
+                            checkPrivacyElseUser(model, isMyFriendInvitationUser)
+                        }
+                        else -> {
+                            checkPrivacyElseUser(model, null)
+                        }
+                    }
+                    initClickElseUser()
+
+                    binding.groupMainUser.beGone()
+                    binding.groupFriend.beVisible()
+                    binding.btnSendMsg.setTextColor(Color.parseColor("#057DDA"))
+                    binding.btnSendMsg.background = ResourcesCompat.getDrawable(
+                        binding.root.context.resources,
+                        R.drawable.bg_corners_4_light_blue_no_solid,
+                        null
+                    )
+                    binding.btnAddFriend.beVisible()
+                }
+            }
+        }
+    }
+
+    private fun initClickElseUser() {
         binding.imgSettings.setOnClickListener {
             if (SessionManager.isUserLogged) {
                 it.context.sendBroadcast(Intent(USER_WALL_BROADCAST).apply {
@@ -304,13 +385,17 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
         binding.btnAddFriend.setOnClickListener {
             if (SessionManager.isUserLogged) {
                 if (binding.tvAddFriend.text == "Đồng ý kết bạn") {
-//                    showFriend()
                     it.context.sendBroadcast(Intent(USER_WALL_BROADCAST).apply {
                         putExtra(USER_WALL_BROADCAST, USER_WALL_ACCEPT_FRIEND)
                     })
                 } else {
                     binding.btnAddFriend.beGone()
-                    binding.tvRequestSent.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,0,0)
+                    binding.tvRequestSent.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                        0,
+                        0,
+                        0,
+                        0
+                    )
                     binding.tvRequestSent.beVisible()
                     it.context.sendBroadcast(Intent(USER_WALL_BROADCAST).apply {
                         putExtra(USER_WALL_BROADCAST, USER_WALL_ADD_FRIEND)
@@ -323,47 +408,48 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
                 }
             }
         }
-        if (ickUserProfileModel.profile.getInvitePrivacy() == Privacy.EVERYONE) {
-            if (RelationshipManager.checkMyFriendInvitation(ickUserProfileModel.id)) {
-                binding.btnAddFriend.beGone()
-                binding.tvRequestSent.beVisible()
-            }else if (RelationshipManager.checkFriendInvitationMe(ickUserProfileModel.id)) {
-                binding.btnAddFriend.beVisible()
-                binding.tvAddFriend.setText("Đồng ý kết bạn")
-                binding.tvAddFriend.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,0,0)
-                binding.tvRequestSent.beGone()
-            } else {
-                binding.tvAddFriend.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_add_white_12px, 0,0,0)
-                binding.btnAddFriend.beVisible()
-                binding.tvRequestSent.beGone()
+    }
+
+    private fun checkPrivacyElseUser(model: IckUserProfileModel, status: Boolean?) {
+        if (model.profile.getInvitePrivacy() == Privacy.EVERYONE) {
+            when (status) {
+                isMyFriendInvitationUser -> {
+                    Handler().postDelayed({
+                        binding.btnAddFriend.beGone()
+                    }, 100)
+                    binding.tvRequestSent.beVisible()
+                }
+                isFriendInvitationMeUser -> {
+                    binding.btnAddFriend.beVisible()
+                    binding.tvAddFriend.setText("Đồng ý kết bạn")
+                    binding.tvAddFriend.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0)
+                    binding.tvRequestSent.beGone()
+                }
+                else -> {
+                    binding.tvAddFriend.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                        R.drawable.ic_add_white_12px,
+                        0,
+                        0,
+                        0
+                    )
+                    binding.tvAddFriend.setText("Kết bạn")
+                    binding.btnAddFriend.beVisible()
+                    binding.tvRequestSent.beGone()
+                }
             }
         } else {
             binding.btnAddFriend.beGone()
         }
-    }
 
-    private fun showFriend() {
-        binding.groupMainUser.beGone()
-        binding.groupFriend.beVisible()
-        binding.btnAddFriend.beGone()
-        binding.btnSendMsg.background = ResourcesCompat.getDrawable(binding.root.context.resources, R.drawable.background_button_enable, null)
-        binding.imgSettings.setOnClickListener {
-            if (SessionManager.isUserLogged) {
-                it.context.sendBroadcast(Intent(USER_WALL_BROADCAST).apply {
-                    putExtra(USER_WALL_BROADCAST, USER_WALL_FRIEND_SETTINGS)
-                })
-            } else {
-                ICheckApplication.currentActivity()?.let { act ->
-                    (act as FragmentActivity).showLogin()
-                }
-            }
+
+        // ẩn thông tin nếu người đó chỉ cho phép bạn bè xem
+        if (model.profile.getInfoPrivacy() == Privacy.FRIEND) {
+            binding.groupAddress.beGone()
+            binding.groupAcc.beGone()
+            binding.groupFollowing.beGone()
+            binding.groupFollowed.beGone()
+            binding.moreInfo.beGone()
         }
-        binding.moreInfo.setOnClickListener {
-            it.context.sendBroadcast(Intent(USER_WALL_BROADCAST).apply {
-                putExtra(USER_WALL_BROADCAST, USER_WALL_SHOW_PUBLIC_INFO)
-            })
-        }
-        binding.btnSendMsg.setTextColor(Color.WHITE)
     }
 
     private fun showMainUser() {
@@ -386,7 +472,10 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
 
 class CreatePostHolder(val binding: ItemCreatePostBinding) : RecyclerView.ViewHolder(binding.root) {
     init {
-        binding.userAvatar.loadImageWithHolder(SessionManager.session.user?.avatar, R.drawable.ic_user_svg)
+        binding.userAvatar.loadImageWithHolder(
+            SessionManager.session.user?.avatar,
+            R.drawable.ic_user_svg
+        )
         binding.textView45.setOnClickListener {
             it.context.sendBroadcast(Intent(USER_WALL_BROADCAST).apply {
                 putExtra(USER_WALL_BROADCAST, USER_WALL_CREATE_POST)
