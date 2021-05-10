@@ -1,23 +1,28 @@
 package vn.icheck.android.screen.dialog
 
 import android.app.Activity
-import android.content.Context
+import android.graphics.Bitmap
 import android.os.Build
-import android.os.Handler
-import android.text.Html
+import android.util.Log
 import android.webkit.WebSettings
+import android.widget.LinearLayout
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import kotlinx.android.synthetic.main.dialog_notification_firebase.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseDialog
 import vn.icheck.android.chat.icheckchat.base.view.setGoneView
 import vn.icheck.android.chat.icheckchat.base.view.setVisible
-import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.Constant.getHtmlData
-import vn.icheck.android.ichecklibs.WidgetHelper
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
-import vn.icheck.android.util.text.HtmlImageGetter
 
 abstract class DialogNotificationFirebaseAds(context: Activity, private val image: String?, private val htmlText: String?, private val link: String?, private val schema: String?) : BaseDialog(context, R.style.DialogTheme) {
 
@@ -32,7 +37,127 @@ abstract class DialogNotificationFirebaseAds(context: Activity, private val imag
         when {
             image != null -> {
                 imageView.setVisible()
-                WidgetHelper.loadImageUrlRounded10FitCenter(imageView, image)
+
+                CoroutineScope(Dispatchers.IO).launch {
+                    Glide.with(ICheckApplication.getInstance())
+                            .asBitmap()
+                            .timeout(30000)
+                            .load(image)
+                            .listener(object : RequestListener<Bitmap> {
+                                override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Bitmap>?, isFirstResource: Boolean): Boolean {
+                                    Log.d("onLoad", "onLoadFailed: false")
+                                    dismiss()
+                                    return false
+                                }
+
+                                override fun onResourceReady(resource: Bitmap?, model: Any?, target: Target<Bitmap>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                                    if (resource != null) {
+                                        CoroutineScope(Dispatchers.Main).launch {
+                                            val maxHeight = container.height - SizeHelper.size52
+                                            when {
+                                                resource.width > container.width && resource.height <= container.height -> {
+                                                    // ảnh rộng quá màn hình -> max with, wrap height
+                                                    imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                                                }
+                                                resource.height > container.height && resource.width <= container.width -> {
+                                                    //  ảnh dài quá màn hình ->  max height, wrap with
+                                                    imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, maxHeight)
+                                                }
+                                                resource.width > resource.height && resource.width > container.width -> {
+                                                    //  ảnh rộng quá màn hình && ảnh có chiều rộng lớn hơn-> max with, wrap height
+                                                    imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                                                }
+                                                resource.height > resource.width && resource.height > container.height -> {
+                                                    val ratioHeight = resource.height / container.height
+                                                    val ratioWidth = resource.width / container.width
+                                                    if (ratioWidth > ratioHeight) {
+                                                        // max with
+                                                        imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                                                    } else {
+                                                        // max height
+                                                        imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, maxHeight)
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        imageView.setImageBitmap(resource)
+                                    }
+                                    return false
+                                }
+                            })
+                            .submit()
+                            .get()
+                }
+
+//                WidgetHelper.loadImageUrlRounded10FitCenter(imageView, image)
+//                WidgetUtils.loadImageUrlRounded10FitCenter(imageView, image, object : RequestListener<Bitmap> {
+//                    override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Bitmap>?, isFirstResource: Boolean): Boolean {
+//                        return false
+//                    }
+//
+//                    override fun onResourceReady(resource: Bitmap?, model: Any?, target: Target<Bitmap>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+//                        if (resource != null) {
+//                            val maxHeight = container.height - SizeHelper.size52
+//                            when {
+//                                resource.width > container.width && resource.height <= container.height -> {
+//                                    // max with, wrap height
+//                                    imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+//                                }
+//                                resource.height > container.height && resource.width <= container.width -> {
+//                                    // max height, wrap with
+//                                    imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, maxHeight)
+//                                }
+//                                resource.width > resource.height && resource.width > container.width -> {
+//                                    // max with, wrap height
+//                                    imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+//                                }
+//                                resource.height > resource.width && resource.height > container.height -> {
+//                                    val ratio = resource.height / container.height
+//                                    if (resource.width / ratio > container.width) {
+//                                        // max with
+//                                        imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+//                                    } else {
+//                                        // max height
+//                                        imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, maxHeight)
+//                                    }
+//                                }
+//                            }
+//                        }
+//                        return false
+//                    }
+//                })
+//
+//                val viewTreeObserver = imageView.viewTreeObserver
+//                viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+//
+//
+//                    override fun onGlobalLayout() {
+////                        val height = imageView.measuredHeight
+////                        val width = imageView.measuredWidth
+////                        val widthImage = imageView.drawable.intrinsicWidth
+////                        val heightImage = imageView.drawable.intrinsicHeight
+////                        logDebug("$width,$height,$widthImage, $heightImage ")
+////                        imageView.layoutParams = LinearLayout.LayoutParams(SizeHelper.dpToPx(widthImage), SizeHelper.dpToPx(heightImage))
+//
+//                        var ih=imageView.measuredHeight;//height of imageView
+//                        var iw=imageView.measuredWidth;//width of imageView
+//                        val iH=imageView.drawable.intrinsicHeight;//original height of underlying image
+//                        val iW=imageView.drawable.intrinsicWidth;//original width of underlying image
+//
+//                        if (ih/iH<=iw/iW) {
+//                            iw=iW*ih/iH
+//                        }else{
+//                            ih= iH*iw/iW
+//                        };//rescaled width of image within ImageView
+//                        ;//rescaled height of image within ImageView
+//                        logDebug("$iw,$ih ")
+//                        Handler().postDelayed({
+//                            imageView.layoutParams = LinearLayout.LayoutParams(iw, ih)
+//                        },200)
+//                        }
+//
+//                })
+
 
                 imageView.setOnClickListener {
                     dismiss()
