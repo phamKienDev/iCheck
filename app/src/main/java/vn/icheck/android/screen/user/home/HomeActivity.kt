@@ -341,6 +341,12 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                 FirebaseDynamicLinksActivity.startDestinationUrl(this@HomeActivity, appInitScheme)
             }
         }
+
+        intent?.getStringExtra(Constant.DATA_4)?.let { notificationPath ->
+            if (notificationPath.isNotEmpty()) {
+                FirebaseDynamicLinksActivity.startDestinationUrl(this@HomeActivity, notificationPath)
+            }
+        }
     }
 
     private fun updateUserStatus(user: ICUser?) {
