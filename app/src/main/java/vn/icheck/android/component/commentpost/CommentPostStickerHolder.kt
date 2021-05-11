@@ -60,7 +60,7 @@ class CommentPostStickerHolder(parent: ViewGroup, val listener: ICommentPostView
         itemView.tvLike.setTextColor(if (isLike != null) {
             ContextCompat.getColor(itemView.context, R.color.red_like_question)
         } else {
-            ContextCompat.getColor(itemView.context, R.color.black_50)
+            ContextCompat.getColor(itemView.context, R.color.colorBackgroundPopup)
         })
     }
 

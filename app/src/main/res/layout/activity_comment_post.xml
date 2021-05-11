@@ -280,7 +280,7 @@
                     android:id="@+id/rcvChildEmoji"
                     android:layout_width="match_parent"
                     android:layout_height="260dp"
-                    android:background="@color/darkGray6"
+                    android:background="@color/colorBackgroundGray"
                     android:clipToPadding="false"
                     android:orientation="vertical"
                     android:paddingStart="@dimen/size_2"

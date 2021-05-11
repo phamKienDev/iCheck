@@ -42,10 +42,13 @@ class PrivacyPostDialog(val postId: Long?) : BaseBottomSheetDialogFragment() {
             dismiss()
         }
 
-        tvFinish.setOnClickListener {
-            for (item in adapter.getListData) {
-                if (item.selected) {
-                    editPrivacy(item)
+        tvFinish.apply {
+            background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(context)
+            setOnClickListener {
+                for (item in adapter.getListData) {
+                    if (item.selected) {
+                        editPrivacy(item)
+                    }
                 }
             }
         }

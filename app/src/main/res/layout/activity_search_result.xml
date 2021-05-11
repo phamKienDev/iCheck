@@ -39,7 +39,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/size_8"
-                    android:background="@drawable/bg_corners_4_light_blue_solid"
                     android:paddingLeft="@dimen/size_10"
                     android:paddingTop="@dimen/size_6"
                     android:paddingRight="@dimen/size_10"
@@ -138,6 +137,6 @@
             android:id="@+id/rcv_search_result"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/darkGray6" />
+            android:background="@color/colorBackgroundGray" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </LinearLayout>

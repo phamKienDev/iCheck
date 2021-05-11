@@ -323,11 +323,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/size_32"
                 android:layout_below="@id/viewLine"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_marginTop="@dimen/size_12"
                 android:layout_marginEnd="@dimen/size_10"
-                android:layout_marginRight="@dimen/size_10"
-                android:background="@drawable/bg_corners_4_light_blue_solid"
+                android:layout_marginStart="@dimen/size_10"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:paddingLeft="@dimen/size_20"
@@ -336,14 +335,14 @@
                 android:text="@string/mua"
                 android:textColor="@color/white" />
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imgAddCart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/viewLine"
                 android:layout_marginTop="@dimen/size_12"
-                android:layout_marginRight="@dimen/size_8"
-                android:layout_toLeftOf="@id/tvBuyNow"
+                android:layout_marginEnd="@dimen/size_8"
+                android:layout_toStartOf="@id/tvBuyNow"
                 app:srcCompat="@drawable/ic_add_cart_32dp" />
 
             <vn.icheck.android.ichecklibs.view.normal_text.TextNormal

@@ -55,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
                 android:layout_marginTop="20dp"
-                android:background="@color/gray_f0" />
+                android:background="@color/colorBackgroundGray" />
 
             <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                 android:id="@+id/btnViewProfile"
@@ -74,7 +74,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/gray_f0" />
+                android:background="@color/colorBackgroundGray" />
 
             <vn.icheck.android.ichecklibs.view.normal_text.CheckedNormalText
                 android:id="@+id/btnCheckedNotification"
@@ -95,7 +95,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/gray_f0" />
+                android:background="@color/colorBackgroundGray" />
 
             <vn.icheck.android.ichecklibs.view.normal_text.CheckedNormalText
                 android:id="@+id/btnBlock"
@@ -113,7 +113,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/gray_f0" />
+                android:background="@color/colorBackgroundGray" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/btnDeleteMessage"
@@ -133,7 +133,7 @@
                 android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/gray_f0"
+                android:background="@color/colorBackgroundGray"
                 android:orientation="vertical">
 
                 <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary

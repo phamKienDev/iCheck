@@ -45,7 +45,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_12"
-            android:background="@color/darkGray6" />
+            android:background="@color/colorBackgroundGray" />
     </LinearLayout>
 
     <LinearLayout
@@ -88,7 +88,7 @@ Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận t
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_12"
-            android:background="@color/darkGray6" />
+            android:background="@color/colorBackgroundGray" />
     </LinearLayout>
 
 </LinearLayout>

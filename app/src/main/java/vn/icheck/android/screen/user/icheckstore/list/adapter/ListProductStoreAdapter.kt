@@ -175,7 +175,7 @@ class ListProductStoreAdapter constructor(val view: IGiftStoreView, val listener
                     btnAction.isEnabled = true
                     btnAction.setTextColor(ContextCompat.getColor(context, R.color.white))
                     btnAction.text = "Thêm vào giỏ hàng"
-                    btnAction.background = ContextCompat.getDrawable(context, R.drawable.bg_corners_4_light_blue_solid)
+                    btnAction.background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(context)
                 }
 
                 tvICoin.text = "${TextHelper.formatMoneyPhay(obj.price)} Xu"
@@ -289,7 +289,7 @@ class ListProductStoreAdapter constructor(val view: IGiftStoreView, val listener
                 btn.isSingleLine = true
                 btn.gravity = Gravity.CENTER
                 btn.ellipsize = TextUtils.TruncateAt.END
-                btn.background = ContextCompat.getDrawable(context, R.drawable.bg_corners_4_light_blue_solid)
+                btn.background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(btn.context)
                 btn.typeface = ViewHelper.createTypeface(context, R.font.barlow_semi_bold)
                 btn.textSize = 14f
             })

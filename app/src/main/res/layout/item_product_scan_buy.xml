@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="322dp"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="@dimen/size_12"
+    android:layout_marginStart="@dimen/size_12"
     android:background="@drawable/bg_white_corners_4">
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -12,7 +12,6 @@
         android:layout_width="@dimen/size_60"
         android:layout_height="@dimen/size_60"
         android:layout_marginStart="@dimen/size_10"
-        android:layout_marginLeft="@dimen/size_10"
         android:layout_marginTop="@dimen/size_12"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,9 +21,7 @@
         android:layout_width="@dimen/size_0"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_8"
-        android:layout_marginLeft="@dimen/size_8"
         android:layout_marginEnd="@dimen/size_10"
-        android:layout_marginRight="@dimen/size_10"
         android:ellipsize="end"
         android:includeFontPadding="false"
         android:maxLines="2"
@@ -40,7 +37,6 @@
         android:layout_width="@dimen/size_24"
         android:layout_height="@dimen/size_24"
         android:layout_marginEnd="@dimen/size_10"
-        android:layout_marginRight="@dimen/size_10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tvNameProduct"
         app:srcCompat="@drawable/ic_close_outline_24" />
@@ -67,8 +63,8 @@
         android:singleLine="true"
         android:ellipsize="end"
         android:textSize="@dimen/font_14"
-        android:paddingRight="@dimen/size_8"
         android:paddingEnd="@dimen/size_8"
+        android:paddingStart="@dimen/size_0"
         app:layout_constraintBottom_toBottomOf="@+id/tvPrice"
         app:layout_constraintEnd_toStartOf="@id/tvPrice"
         app:layout_constraintStart_toStartOf="@+id/tvVariant"
@@ -122,7 +118,7 @@
         android:id="@+id/btnAdd"
         android:layout_width="@dimen/size_40"
         android:layout_height="@dimen/size_40"
-        android:layout_marginLeft="@dimen/size_6"
+        android:layout_marginStart="@dimen/size_6"
         android:src="@drawable/ic_add_cart_40"
         app:layout_constraintBottom_toBottomOf="@id/btnUnAdd"
         app:layout_constraintStart_toEndOf="@+id/tvCount"
@@ -135,7 +131,6 @@
         android:layout_marginTop="@dimen/size_12"
         android:background="@drawable/bg_corners_4_light_blue_solid"
         android:drawableStart="@drawable/ic_add_to_cart"
-        android:drawableLeft="@drawable/ic_add_to_cart"
         android:drawablePadding="@dimen/size_10"
         android:fontFamily="@font/barlow_medium"
         android:gravity="center"

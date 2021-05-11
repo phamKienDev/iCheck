@@ -23,6 +23,7 @@ import vn.icheck.android.callback.ItemClickListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.base.Status
 import vn.icheck.android.network.models.recharge_phone.ICRechargePhone
@@ -175,28 +176,31 @@ class PaymentTopupActivity : BaseActivityMVVM(), ItemClickListener<ICRechargePho
     }
 
     private fun listener() {
-        btnAcceptPayment.setOnClickListener {
-            if (!adapterPaymentType.selectedItem?.agent?.code.isNullOrEmpty()) {
-                when (adapterPaymentType.selectedItem?.agent?.code) {
-                    "ICHECK-XU" -> {
-                        if (sodutaikhoan != null && mValue != null) {
-                            if (sodutaikhoan!! >= mValue!!) {
+        btnAcceptPayment.apply {
+            background = ViewHelper.bgPrimaryCorners4(context)
+            setOnClickListener {
+                if (!adapterPaymentType.selectedItem?.agent?.code.isNullOrEmpty()) {
+                    when (adapterPaymentType.selectedItem?.agent?.code) {
+                        "ICHECK-XU" -> {
+                            if (sodutaikhoan != null && mValue != null) {
+                                if (sodutaikhoan!! >= mValue!!) {
 
-                                if (mType == 1) {
-                                    mPhone?.let { phone -> viewModel.rechargeCard(mType, serviceId!!, mValue!!, adapterPaymentType.selectedItem?.agent?.code!!, phone) }
+                                    if (mType == 1) {
+                                        mPhone?.let { phone -> viewModel.rechargeCard(mType, serviceId!!, mValue!!, adapterPaymentType.selectedItem?.agent?.code!!, phone) }
+                                    } else {
+                                        viewModel.buyTopup(mType, serviceId!!, mValue!!, adapterPaymentType.selectedItem?.agent?.code!!)
+                                    }
                                 } else {
-                                    viewModel.buyTopup(mType, serviceId!!, mValue!!, adapterPaymentType.selectedItem?.agent?.code!!)
+                                    onItemClick(1, null)
                                 }
-                            } else {
-                                onItemClick(1, null)
                             }
                         }
-                    }
-                    else -> {
-                        if (mType == 1) {
-                            viewModel.vnpayCard(adapterPaymentType.selectedItem?.agent?.code!!, mType, mValue!!, "icheck://recharge_card_success", mPhone, serviceId!!, "rechargecard")
-                        } else {
-                            viewModel.vnpayCard(adapterPaymentType.selectedItem?.agent?.code!!, mType, mValue!!, "icheck://buy_card_success", null, serviceId!!, "buycard")
+                        else -> {
+                            if (mType == 1) {
+                                viewModel.vnpayCard(adapterPaymentType.selectedItem?.agent?.code!!, mType, mValue!!, "icheck://recharge_card_success", mPhone, serviceId!!, "rechargecard")
+                            } else {
+                                viewModel.vnpayCard(adapterPaymentType.selectedItem?.agent?.code!!, mType, mValue!!, "icheck://buy_card_success", null, serviceId!!, "buycard")
+                            }
                         }
                     }
                 }
@@ -229,7 +233,7 @@ class PaymentTopupActivity : BaseActivityMVVM(), ItemClickListener<ICRechargePho
                     if (sodutaikhoan!! >= mValue!!) {
                         imgErrorCoin.visibility = View.INVISIBLE
 
-                        btnAcceptPayment.background = ContextCompat.getDrawable(this, R.drawable.bg_corners_4_light_blue_solid)
+                        btnAcceptPayment.background = ViewHelper.bgPrimaryCorners4(this@PaymentTopupActivity)
                         btnAcceptPayment.isEnabled = true
                     } else {
                         imgErrorCoin.visibility = View.VISIBLE
@@ -249,7 +253,7 @@ class PaymentTopupActivity : BaseActivityMVVM(), ItemClickListener<ICRechargePho
             }
             else -> {
                 imgErrorCoin.visibility = View.INVISIBLE
-                btnAcceptPayment.background = ContextCompat.getDrawable(this, R.drawable.bg_corners_4_light_blue_solid)
+                btnAcceptPayment.background = ViewHelper.bgPrimaryCorners4(this@PaymentTopupActivity)
                 btnAcceptPayment.isEnabled = true
                 tvTotalMoney.text = TextHelper.formatMoneyPhay(mValue) + " đ"
             }

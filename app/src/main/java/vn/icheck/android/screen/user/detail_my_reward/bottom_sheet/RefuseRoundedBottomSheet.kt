@@ -56,8 +56,14 @@ class RefuseRoundedBottomSheet(val mId: String?) : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        setupView()
         initView()
         listener()
+    }
+
+    private fun setupView() {
+        btnSendRefuse.background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(btnSendRefuse.context)
     }
 
     private fun initView() {

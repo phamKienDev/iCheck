@@ -10,16 +10,6 @@ import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
 import kotlinx.android.synthetic.main.holder_list_shop_variant.view.*
-import kotlinx.android.synthetic.main.holder_list_shop_variant.view.layoutAddToCart
-import kotlinx.android.synthetic.main.holder_list_shop_variant.view.layoutLocation
-import kotlinx.android.synthetic.main.holder_list_shop_variant.view.layoutLocation2
-import kotlinx.android.synthetic.main.holder_list_shop_variant.view.recyclerView
-import kotlinx.android.synthetic.main.holder_list_shop_variant.view.tvSubAddToCart
-import kotlinx.android.synthetic.main.holder_list_shop_variant.view.tv_distance
-import kotlinx.android.synthetic.main.holder_list_shop_variant.view.tv_price
-import kotlinx.android.synthetic.main.holder_list_shop_variant.view.tv_sale_price
-import kotlinx.android.synthetic.main.holder_list_shop_variant.view.tv_score
-import kotlinx.android.synthetic.main.holder_list_shop_variant.view.tv_shop_name
 import vn.icheck.android.R
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
@@ -73,9 +63,12 @@ class ListShopVariantAdapter constructor(val view: IListShopVariantView) : Recyc
                     view.onClickShowMap(item)
                 }
 
-                holder.itemView.layoutAddToCart.setOnClickListener {
-                    if (item.id != null) {
-                        view.onClickAddToCart(item.id!!)
+                holder.itemView.layoutAddToCart.apply {
+                    background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(context)
+                    setOnClickListener {
+                        if (item.id != null) {
+                            this@ListShopVariantAdapter.view.onClickAddToCart(item.id!!)
+                        }
                     }
                 }
             }

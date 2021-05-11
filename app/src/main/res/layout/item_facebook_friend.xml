@@ -46,7 +46,6 @@
         android:id="@+id/tvChat"
         android:layout_width="@dimen/size_100"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_corners_4_light_blue_solid"
         android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center"
         android:paddingTop="@dimen/size_4"
@@ -63,6 +62,6 @@
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
-        android:background="@color/darkGray6"
+        android:background="@color/colorBackgroundGray"
         app:layout_constraintTop_toBottomOf="@id/avatar" />
 </androidx.constraintlayout.widget.ConstraintLayout>

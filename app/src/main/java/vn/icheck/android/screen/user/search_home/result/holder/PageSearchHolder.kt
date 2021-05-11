@@ -53,8 +53,11 @@ class PageSearchHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflat
             EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.OPEN_DETAIL_PAGE, obj.id))
         }
 
-        itemView.tv_follow_shop.setOnClickListener {
-            followPage(obj)
+        itemView.tv_follow_shop.apply {
+            background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(context)
+            setOnClickListener {
+                followPage(obj)
+            }
         }
 
         itemView.tv_following.setOnClickListener {

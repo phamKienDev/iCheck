@@ -190,7 +190,7 @@ class VerifyIdentityActivity : BaseActivityMVVM(), View.OnClickListener {
 
     private fun checkImageCmnd() {
         if (viewModel.afterImage != null && viewModel.frontImage != null) {
-            tvComplete.setBackgroundResource(R.drawable.bg_corners_4_light_blue_solid)
+            tvComplete.background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(this@VerifyIdentityActivity)
             tvComplete.isEnabled = true
         } else {
             tvComplete.setBackgroundResource(R.drawable.bg_gray_b4_corners_4)

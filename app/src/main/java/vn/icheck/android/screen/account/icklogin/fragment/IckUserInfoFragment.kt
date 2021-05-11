@@ -102,6 +102,8 @@ class IckUserInfoFragment : CoroutineFragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.root.requestFocus()
 
+        binding.btnGenderMale.setTextColor(ViewHelper.textColorDisableTextUncheckPrimaryChecked(requireContext()))
+
         takeImageListener.avatar = binding.userAva
         ickLoginViewModel.setGender(1)
         binding.radioGroupGender.setOnCheckedChangeListener { group, checkedId ->

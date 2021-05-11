@@ -8,7 +8,6 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
-import android.graphics.Typeface
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Build
@@ -19,8 +18,6 @@ import android.text.SpannableString
 import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
-import android.text.style.ForegroundColorSpan
-import android.text.style.StyleSpan
 import android.view.Gravity
 import android.view.View
 import androidx.activity.viewModels
@@ -68,13 +65,11 @@ import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.models.ICClientSetting
-import vn.icheck.android.network.models.ICUser
 import vn.icheck.android.network.models.history.ICBigCorp
 import vn.icheck.android.network.models.history.ICTypeHistory
 import vn.icheck.android.network.util.DeviceUtils
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.account.icklogin.viewmodel.IckLoginViewModel
-import vn.icheck.android.screen.account.registeruser.register.RegisterUserActivity
 import vn.icheck.android.screen.checktheme.CheckThemeViewModel
 import vn.icheck.android.screen.dialog.PermissionDialog
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
@@ -202,7 +197,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
     }
 
     private fun setupView() {
-        vn.icheck.android.ichecklibs.ViewHelper.textColorHomeTab(this).apply {
+        vn.icheck.android.ichecklibs.ViewHelper.textColorDisableTextUncheckPrimaryChecked(this).apply {
             tvHome.setTextColor(this)
             tvFeed.setTextColor(this)
             tvHistory.setTextColor(this)
@@ -569,7 +564,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
         if (!theme?.bottomBarSelectedTextColor.isNullOrEmpty()) {
             ViewHelper.createColorStateList(ContextCompat.getColor(this, R.color.colorDisableText), Color.parseColor(theme!!.bottomBarSelectedTextColor))
         } else {
-            vn.icheck.android.ichecklibs.ViewHelper.textColorHomeTab(this)
+            vn.icheck.android.ichecklibs.ViewHelper.textColorDisableTextUncheckPrimaryChecked(this)
         }.apply {
             tvHome.setTextColor(this)
             tvFeed.setTextColor(this)

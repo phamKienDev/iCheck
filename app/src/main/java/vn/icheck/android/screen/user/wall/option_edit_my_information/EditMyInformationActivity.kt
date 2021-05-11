@@ -34,6 +34,7 @@ import vn.icheck.android.constant.*
 import vn.icheck.android.databinding.ActivityEditMyInformationBinding
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
@@ -176,6 +177,9 @@ class EditMyInformationActivity : CoroutineFragment() {
     }
 
     private fun initView() {
+        binding.rbMale.setTextColor(ViewHelper.textColorDisableTextUncheckPrimaryChecked(requireContext()))
+        binding.btnUpdate.background = ViewHelper.bgPrimaryCorners4(requireContext())
+
 //        ickUserWallViewModel.getFacebook().observe(viewLifecycleOwner, {
 //            if (!it?.trim().isNullOrEmpty()) {
 //                binding.edtConnectFb.setText("Đã xác thực")

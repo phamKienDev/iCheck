@@ -106,7 +106,7 @@ class TopTendencyBusinessHolder(parent: ViewGroup) : BaseViewHolder<ICPageTrend>
                 setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondTextColor(itemView.context))
             } else {
                 text = "Theo dõi"
-                background = ContextCompat.getDrawable(context, R.drawable.bg_corners_4_light_blue_solid)
+                background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(context)
                 setTextColor(ContextCompat.getColor(itemView.context, R.color.white))
             }
         }

@@ -59,7 +59,7 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
             }
         }
         viewModel = ViewModelProvider(this).get(DetailMyRewardViewModel::class.java)
-        viewModel.error.observe(this, Observer{
+        viewModel.error.observe(this, Observer {
             showSimpleErrorToast("Có lỗi xảy ra vui lòng thử lại sau")
             dismissLoadingScreen()
         })
@@ -81,8 +81,12 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
     }
 
     private fun setupView() {
-        binding.btnShare.background = ViewHelper.bgPrimaryCorners4(this)
         binding.btnRefuse.background = ViewHelper.bgOutlinePrimary1Corners4(this)
+        ViewHelper.bgPrimaryCorners4(this).apply {
+            binding.btnShare.background = this
+            binding.btnAcceptDaLay.background = this
+            binding.btnFollowGift.background = this
+        }
     }
 
     override fun onResume() {
@@ -176,14 +180,14 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                                     dismissLoadingScreen()
                                     showSimpleSuccessToast(getString(R.string.ban_da_danh_dau_nap_the_nay))
                                     getData()
-    //                                binding.layoutBottom.beGone()
-    //                                binding.imgLogo.alpha = 0.5f
-    //                                binding.imgUsed.beVisible()
-    //                                binding.tvState.setTextColor(Color.parseColor("#757575"))
-    //                                binding.tvRefuseDes.setTextColor(Color.parseColor("#757575"))
-    //                                binding.tvTime simpleText "Ngày dùng"
-    //                                binding.tvTimeDes.setTextColor(Color.parseColor("#757575"))
-    //                                binding.tvTimeDes.setText(data.confirmTime?.getDayTime())
+                                    //                                binding.layoutBottom.beGone()
+                                    //                                binding.imgLogo.alpha = 0.5f
+                                    //                                binding.imgUsed.beVisible()
+                                    //                                binding.tvState.setTextColor(Color.parseColor("#757575"))
+                                    //                                binding.tvRefuseDes.setTextColor(Color.parseColor("#757575"))
+                                    //                                binding.tvTime simpleText "Ngày dùng"
+                                    //                                binding.tvTimeDes.setTextColor(Color.parseColor("#757575"))
+                                    //                                binding.tvTimeDes.setText(data.confirmTime?.getDayTime())
                                 })
                             } catch (e: Exception) {
                                 dismissLoadingScreen()

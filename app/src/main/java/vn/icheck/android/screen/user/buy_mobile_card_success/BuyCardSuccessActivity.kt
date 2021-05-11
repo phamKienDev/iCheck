@@ -112,10 +112,13 @@ class BuyCardSuccessActivity : AppCompatActivity() {
             }
         }
 
-        btn_charge.setOnClickListener {
-            val chargePhone = Intent(Intent.ACTION_DIAL)
-            chargePhone.data = Uri.parse("tel:" + Uri.encode("*100*$code#"))
-            startActivity(chargePhone)
+        btn_charge.apply {
+            background = ViewHelper.bgPrimaryCorners4(context)
+            setOnClickListener {
+                val chargePhone = Intent(Intent.ACTION_DIAL)
+                chargePhone.data = Uri.parse("tel:" + Uri.encode("*100*$code#"))
+                startActivity(chargePhone)
+            }
         }
 
         tv_serial.setOnTouchListener(OnTouchListener { v, event ->

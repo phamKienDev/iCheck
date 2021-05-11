@@ -27,7 +27,6 @@
         android:layout_height="@dimen/size_28"
         android:layout_marginTop="@dimen/size_10"
         android:includeFontPadding="false"
-        android:background="@drawable/bg_corners_4_light_blue_solid"
         android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center"
         android:lineSpacingExtra="@dimen/font_6"
