@@ -13,6 +13,7 @@ import vn.icheck.android.chat.icheckchat.databinding.FragmentChatSocialBinding
 import vn.icheck.android.chat.icheckchat.screen.contact.ContactFragment
 import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
 import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 
 class ChatSocialFragment : BaseFragmentChat<FragmentChatSocialBinding>() {
 
@@ -46,6 +47,9 @@ class ChatSocialFragment : BaseFragmentChat<FragmentChatSocialBinding>() {
 
         binding.toolbar.imgAction.setOnClickListener {
         }
+
+        binding.tvMessage.setTextColor(ViewHelper.textColorDisableTextUncheckPrimaryChecked(requireContext()))
+        binding.tvContact.setTextColor(ViewHelper.textColorDisableTextUncheckPrimaryChecked(requireContext()))
 
         binding.tvMessage.setOnClickListener {
             selectTab(1)

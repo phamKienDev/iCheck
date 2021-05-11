@@ -8,7 +8,7 @@ import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.FocusableEditText
 import vn.icheck.android.ichecklibs.R
 
-class FocusableEdittextNormal:FocusableEditText {
+open class FocusableEdittextNormal:FocusableEditText {
 
     constructor(context: Context) : super(context) {
         setup()

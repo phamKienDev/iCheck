@@ -103,7 +103,7 @@
             android:layout_width="wrap_content"
             tools:text="0325.332.201" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
             android:id="@+id/tvDangCapNhatSDT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -115,7 +115,6 @@
             android:drawablePadding="@dimen/size_2"
             android:textStyle="italic"
             android:includeFontPadding="false"
-            android:textColor="#B4B4B4"
             android:textSize="@dimen/font_14"
             android:text="Số điện thoại đang cập nhật" />
 
@@ -143,7 +142,7 @@
                 android:textSize="@dimen/font_14"
                 tools:text="MST: 5822948" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
                 android:id="@+id/tvDangCapNhatMST"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -152,7 +151,6 @@
                 android:visibility="visible"
                 android:textStyle="italic"
                 android:includeFontPadding="false"
-                android:textColor="#B4B4B4"
                 android:textSize="@dimen/font_14"
                 android:text="Đang cập nhật"/>
 

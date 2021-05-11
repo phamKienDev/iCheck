@@ -203,7 +203,7 @@
                 android:text="Tên sản phẩm (*)"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormal
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
                 android:id="@+id/edt_name_product"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -215,7 +215,6 @@
                 android:fontFamily="@font/barlow_medium"
                 android:hint="Nhập tên sản phẩm"
                 android:padding="@dimen/size_8"
-                android:textColorHint="#B4B4B4"
                 android:textSize="@dimen/font_14" />
 
             <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
@@ -227,7 +226,7 @@
                 android:text="Giá sản phẩm"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormal
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
                 android:id="@+id/edt_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -241,7 +240,6 @@
                 android:maxLength="11"
                 android:maxLines="1"
                 android:padding="@dimen/size_8"
-                android:textColorHint="#B4B4B4"
                 android:textSize="@dimen/font_14" />
 
             <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
@@ -308,7 +306,7 @@
                 android:text="Tên doanh nghiệp"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormal
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
                 android:id="@+id/edt_name_page"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -320,7 +318,6 @@
                 android:fontFamily="@font/barlow_medium"
                 android:hint="Nhập tên doanh nghiệp"
                 android:padding="@dimen/size_8"
-                android:textColorHint="#B4B4B4"
                 android:textSize="@dimen/font_14" />
 
             <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
@@ -332,7 +329,7 @@
                 android:text="Địa chỉ "
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormal
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
                 android:id="@+id/edt_address_page"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -344,7 +341,6 @@
                 android:fontFamily="@font/barlow_medium"
                 android:hint="Nhập địa chỉ"
                 android:padding="@dimen/size_8"
-                android:textColorHint="#B4B4B4"
                 android:textSize="@dimen/font_14" />
 
             <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
@@ -356,7 +352,7 @@
                 android:text="Số điện thoại"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormal
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
                 android:id="@+id/edt_phone_page"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -370,7 +366,6 @@
                 android:hint="Nhập số điện thoại"
                 android:inputType="phone"
                 android:padding="@dimen/size_8"
-                android:textColorHint="#B4B4B4"
                 android:textSize="@dimen/font_14" />
 
             <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
@@ -382,7 +377,7 @@
                 android:text="Email"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormal
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
                 android:id="@+id/edt_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -395,7 +390,6 @@
                 android:hint="Nhập email"
                 android:inputType="textEmailAddress"
                 android:padding="@dimen/size_8"
-                android:textColorHint="#B4B4B4"
                 android:textSize="@dimen/font_14" />
 
             <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
@@ -407,7 +401,7 @@
                 android:text="Mã số thuế"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormal
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
                 android:id="@+id/edt_tax"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -421,7 +415,6 @@
                 android:hint="Nhập mã số thuế"
                 android:inputType="number"
                 android:padding="@dimen/size_8"
-                android:textColorHint="#B4B4B4"
                 android:textSize="@dimen/font_14" />
 
             <vn.icheck.android.ichecklibs.view.secondary.TextBarlowMediumSecondary

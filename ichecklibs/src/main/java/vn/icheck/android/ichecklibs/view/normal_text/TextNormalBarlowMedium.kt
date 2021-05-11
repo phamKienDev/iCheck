@@ -12,7 +12,7 @@ import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
 import vn.icheck.android.ichecklibs.view.TextBarlowMedium
 
-class TextNormalBarlowMedium : TextBarlowMedium {
+open class TextNormalBarlowMedium : TextBarlowMedium {
     constructor(context: Context) : super(context) {
         setup()
     }

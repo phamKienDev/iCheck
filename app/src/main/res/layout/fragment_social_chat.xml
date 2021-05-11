@@ -40,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_1"
         android:layout_marginTop="@dimen/size_40"
-        android:background="#b4b4b4"
+        android:background="@color/colorDisableView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_menu" />

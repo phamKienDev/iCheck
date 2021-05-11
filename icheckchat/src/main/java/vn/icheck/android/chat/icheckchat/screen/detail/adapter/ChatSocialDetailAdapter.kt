@@ -34,6 +34,7 @@ import vn.icheck.android.chat.icheckchat.model.MCDetailMessage
 import vn.icheck.android.chat.icheckchat.model.MCMessageEvent
 import vn.icheck.android.chat.icheckchat.model.MCStatus
 import vn.icheck.android.chat.icheckchat.screen.detail_image.ImageDetailActivity
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.util.beGone
 
 class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -212,14 +213,14 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
             when (obj.status) {
                 MCStatus.SUCCESS -> {
                     binding.imgRetry.setGone()
-                    binding.tvTime.setTextColor(ContextCompat.getColor(itemView.context, R.color.gray_b4))
+                    binding.tvTime.setTextColor(Constant.getDisableTextColor(itemView.context))
                     obj.timeText = convertDateTimeSvToCurrentDay(obj.time)
                     binding.tvTime.text = obj.timeText
                     binding.tvMessage.setBackgroundDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_10_blue))
                 }
                 MCStatus.LOADING -> {
                     binding.imgRetry.setGone()
-                    binding.tvTime.setTextColor(ContextCompat.getColor(itemView.context, R.color.gray_b4))
+                    binding.tvTime.setTextColor(Constant.getDisableTextColor(itemView.context))
                     binding.tvTime.text = itemView.context.getString(R.string.dang_gui)
                     binding.tvMessage.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.blue_opactity))
                     binding.tvMessage.setBackgroundDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_10_blue_opacity))

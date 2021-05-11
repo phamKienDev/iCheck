@@ -51,7 +51,7 @@
         android:layout_marginTop="@dimen/size_10"
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
-        android:background="#b4b4b4"
+        android:background="@color/colorDisableView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView65" />

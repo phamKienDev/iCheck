@@ -23,7 +23,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <vn.icheck.android.ichecklibs.view.TextHeader
+            <vn.icheck.android.ichecklibs.view.disable_text.TextDisableHeader
                 android:id="@+id/tv_nation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -31,7 +31,6 @@
                 android:layout_marginLeft="@dimen/size_34"
                 android:layout_marginTop="@dimen/size_16"
                 android:text="Việt Nam"
-                android:textColor="#b4b4b4"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_username" />
 

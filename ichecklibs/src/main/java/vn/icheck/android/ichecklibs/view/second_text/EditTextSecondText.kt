@@ -9,7 +9,7 @@ import androidx.core.content.ContextCompat
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
 
-class EditTextSecondText : EditText {
+open class EditTextSecondText : EditText {
     constructor(context: Context) : super(context) {
         setup()
     }
@@ -24,5 +24,6 @@ class EditTextSecondText : EditText {
 
     private fun setup() {
         setTextColor(Constant.getNormalTextColor(context))
+        includeFontPadding=false
     }
 }

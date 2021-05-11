@@ -27,8 +27,7 @@
             android:drawablePadding="8dp"
             android:fontFamily="@font/barlow_medium"
             android:gravity="center"
-            android:text="@string/tin_nhan"
-            android:textColor="@color/color_checked_text_view" />
+            android:text="@string/tin_nhan"/>
 
         <androidx.appcompat.widget.AppCompatCheckedTextView
             android:id="@+id/tvContact"
@@ -42,8 +41,7 @@
             android:drawablePadding="8dp"
             android:fontFamily="@font/barlow_medium"
             android:gravity="center"
-            android:text="@string/danh_ba"
-            android:textColor="@color/color_checked_text_view" />
+            android:text="@string/danh_ba"/>
     </LinearLayout>
 
     <View

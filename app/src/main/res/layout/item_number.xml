@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Giá sản phẩm" />
 
-    <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormal
+    <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
         android:id="@+id/edt_price"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -40,7 +40,6 @@
         android:maxLength="10"
         android:maxLines="1"
         android:padding="@dimen/size_8"
-        android:textColorHint="#B4B4B4"
         android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

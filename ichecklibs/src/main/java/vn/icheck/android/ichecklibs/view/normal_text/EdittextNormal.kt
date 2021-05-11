@@ -3,9 +3,10 @@ package vn.icheck.android.ichecklibs.view.normal_text
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.EditText
+import androidx.appcompat.widget.AppCompatEditText
 import vn.icheck.android.ichecklibs.Constant
 
-class EdittextNormal : EditText {
+open class EdittextNormal : AppCompatEditText {
     constructor(context: Context) : super(context) {
         setup()
     }

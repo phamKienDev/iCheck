@@ -26,7 +26,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="normal"
-            android:textColor="#B4B4B4"
             android:spinnerMode="dropdown"
             android:fontFamily="sans-serif"
             android:layout_marginStart="@dimen/size_12"

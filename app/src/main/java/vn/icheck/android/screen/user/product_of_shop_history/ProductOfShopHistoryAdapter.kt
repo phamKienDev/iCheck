@@ -152,7 +152,7 @@ class ProductOfShopHistoryAdapter constructor(val view: ProductOfShopHistoryView
                 } else {
                     itemView.tvNameShop.text = itemView.context.getString(R.string.ten_dang_cap_nhat)
                     itemView.tvNameShop.typeface = ResourcesCompat.getFont(itemView.context, R.font.barlow_semi_bold_italic)
-                    itemView.tvNameShop.setTextColor(Color.parseColor("#B4B4B4"))
+                    itemView.tvNameShop.setTextColor(vn.icheck.android.ichecklibs.Constant.getDisableTextColor(itemView.context))
                     itemView.tvNameShop.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_home_verify_16dp, 0, 0, 0)
                     itemView.tvNameShop.compoundDrawablePadding = SizeHelper.size5
                 }
@@ -165,7 +165,7 @@ class ProductOfShopHistoryAdapter constructor(val view: ProductOfShopHistoryView
                 } else {
                     itemView.tvNameShop.text = itemView.context.getString(R.string.ten_dang_cap_nhat)
                     itemView.tvNameShop.typeface = ResourcesCompat.getFont(itemView.context, R.font.barlow_semi_bold_italic)
-                    itemView.tvNameShop.setTextColor(Color.parseColor("#B4B4B4"))
+                    itemView.tvNameShop.setTextColor(vn.icheck.android.ichecklibs.Constant.getNormalTextColor(itemView.context))
                     itemView.tvNameShop.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                 }
             }

@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Đăng nội dung người lớn" />
 
-    <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormal
+    <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
         android:id="@+id/edt_report"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -39,7 +39,6 @@
         android:inputType="textMultiLine"
         android:lines="3"
         android:padding="@dimen/size_8"
-        android:textColorHint="#b4b4b4"
         android:textSize="@dimen/font_14"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"

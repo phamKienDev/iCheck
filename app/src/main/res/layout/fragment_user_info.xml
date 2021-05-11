@@ -25,7 +25,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormal
+        <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
             android:id="@+id/tv_firstname"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -41,13 +41,12 @@
             android:fontFamily="@font/barlow_medium"
             android:hint="Tên đệm và tên"
             android:inputType="textPersonName"
-            android:textColorHint="#B4B4B4"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_last_name" />
 
-        <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormal
+        <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
             android:id="@+id/edt_birthday"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -68,7 +67,6 @@
             android:fontFamily="@font/barlow_medium"
             android:hint="Ngày tháng năm sinh"
             android:inputType="textPersonName"
-            android:textColorHint="#B4B4B4"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -88,7 +86,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_birthday" >
-            <vn.icheck.android.ichecklibs.view.normal_text.FocusableEdittextNormal
+            <vn.icheck.android.ichecklibs.view.disable_text.FocusableEdittextNormalHintDisable
                 android:id="@+id/edt_email_input"
                 android:drawableStart="@drawable/ic_register_mail_gray_24px"
                 android:drawableLeft="@drawable/ic_register_mail_gray_24px"
@@ -98,7 +96,6 @@
                 android:fontFamily="@font/barlow_medium"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
-                android:textColorHint="#B4B4B4"
                 android:textSize="@dimen/font_14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -117,7 +114,7 @@
                 tools:visibility="visible" />
         </LinearLayout>
 
-        <vn.icheck.android.ichecklibs.view.normal_text.FocusableEdittextNormal
+        <vn.icheck.android.ichecklibs.view.disable_text.FocusableEdittextNormalHintDisable
             android:id="@+id/edt_tinh"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -138,13 +135,12 @@
             android:fontFamily="@font/barlow_medium"
             android:hint="Tỉnh/thành phố"
             android:inputType="textPersonName"
-            android:textColorHint="#B4B4B4"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_email" />
 
-        <vn.icheck.android.ichecklibs.view.normal_text.FocusableEdittextNormal
+        <vn.icheck.android.ichecklibs.view.disable_text.FocusableEdittextNormalHintDisable
             android:id="@+id/edt_quan"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -165,13 +161,12 @@
             android:fontFamily="@font/barlow_medium"
             android:hint="Quận/huyện"
             android:inputType="textPersonName"
-            android:textColorHint="#B4B4B4"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_tinh" />
 
-        <vn.icheck.android.ichecklibs.view.normal_text.FocusableEdittextNormal
+        <vn.icheck.android.ichecklibs.view.disable_text.FocusableEdittextNormalHintDisable
             android:id="@+id/edt_phuong_xa"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -192,13 +187,12 @@
             android:fontFamily="@font/barlow_medium"
             android:hint="Phường/xã"
             android:inputType="textPersonName"
-            android:textColorHint="#B4B4B4"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_quan" />
 
-        <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormal
+        <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
             android:id="@+id/edt_dia_chi"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -215,7 +209,6 @@
             android:background="@drawable/edt_bg_selector"
             android:hint="Địa chỉ"
             android:inputType="textPersonName"
-            android:textColorHint="#B4B4B4"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -284,7 +277,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_dia_chi" />
 
-        <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormal
+        <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
             android:id="@+id/edt_last_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -303,7 +296,6 @@
             android:fontFamily="@font/barlow_medium"
             android:hint="Họ"
             android:inputType="textPersonName"
-            android:textColorHint="#B4B4B4"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -6,7 +6,7 @@ import android.widget.EditText
 import androidx.appcompat.widget.AppCompatEditText
 import vn.icheck.android.ichecklibs.Constant
 
-class EdittextNormalHintDisable : AppCompatEditText {
+class EdittextNormalHintDisable : EdittextNormal {
     constructor(context: Context) : super(context) {
         setup()
     }
@@ -20,7 +20,6 @@ class EdittextNormalHintDisable : AppCompatEditText {
     }
 
     private fun setup() {
-        setTextColor(Constant.getNormalTextColor(context))
         setHintTextColor(Constant.getDisableTextColor(context))
     }
 }
