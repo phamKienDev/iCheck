@@ -11,7 +11,9 @@
 
     <color name="colorSecondText">#757575</color> <!-- textview, editText, radioButton, checkBox -->
     <color name="colorSecondViewGroup">#757575</color>
+
     <color name="colorDisableText">#B4B4B4</color>
+    <color name="colorDisableView">#B4B4B4</color>
 
     <color name="colorNormalText">#212121</color> <!-- textview, editText, radioButton, checkBox -->
     <color name="colorNormalView">#212121</color>
@@ -74,6 +76,7 @@
     <color name="orange_v2">#FC9603</color>
     <color name="green_text_verified_product">#85C440</color>
     <color name="violet">#8488DA</color>
+    <color name="violet_4">#bb6bd9</color>
     <color name="placeholder_bg1">#ECEBEB</color>
     <color name="point_review">#dd6800</color>
     <color name="orange_1">#ff6422</color>

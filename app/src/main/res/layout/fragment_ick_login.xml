@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <vn.icheck.android.ichecklibs.view.normal_text.FocusableEditTextNormalText
+        <vn.icheck.android.ichecklibs.view.normal_text.FocusableEdittextNormal
             android:id="@+id/edt_phone"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <vn.icheck.android.ichecklibs.view.normal_text.FocusableEditTextNormalText
+        <vn.icheck.android.ichecklibs.view.normal_text.FocusableEdittextNormal
             android:id="@+id/edt_password"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

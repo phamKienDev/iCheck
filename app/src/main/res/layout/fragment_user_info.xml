@@ -25,7 +25,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalText
+        <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormal
             android:id="@+id/tv_firstname"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_last_name" />
 
-        <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalText
+        <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormal
             android:id="@+id/edt_birthday"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -88,7 +88,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_birthday" >
-            <vn.icheck.android.ichecklibs.view.normal_text.FocusableEditTextNormalText
+            <vn.icheck.android.ichecklibs.view.normal_text.FocusableEdittextNormal
                 android:id="@+id/edt_email_input"
                 android:drawableStart="@drawable/ic_register_mail_gray_24px"
                 android:drawableLeft="@drawable/ic_register_mail_gray_24px"
@@ -117,7 +117,7 @@
                 tools:visibility="visible" />
         </LinearLayout>
 
-        <vn.icheck.android.ichecklibs.view.normal_text.FocusableEditTextNormalText
+        <vn.icheck.android.ichecklibs.view.normal_text.FocusableEdittextNormal
             android:id="@+id/edt_tinh"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -144,7 +144,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_email" />
 
-        <vn.icheck.android.ichecklibs.view.normal_text.FocusableEditTextNormalText
+        <vn.icheck.android.ichecklibs.view.normal_text.FocusableEdittextNormal
             android:id="@+id/edt_quan"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -171,7 +171,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_tinh" />
 
-        <vn.icheck.android.ichecklibs.view.normal_text.FocusableEditTextNormalText
+        <vn.icheck.android.ichecklibs.view.normal_text.FocusableEdittextNormal
             android:id="@+id/edt_phuong_xa"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -198,7 +198,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_quan" />
 
-        <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalText
+        <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormal
             android:id="@+id/edt_dia_chi"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -284,7 +284,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_dia_chi" />
 
-        <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalText
+        <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormal
             android:id="@+id/edt_last_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -340,7 +340,7 @@
                 android:paddingRight="@dimen/size_12"
                 android:text="@string/nam" />
 
-            <RadioButton
+            <vn.icheck.android.ichecklibs.view.disable_text.RadiobuttonDisableUncheckYellowChecked
                 android:id="@+id/btn_gender_female"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/size_30"
@@ -359,10 +359,9 @@
                 android:paddingLeft="@dimen/size_8"
                 android:paddingEnd="@dimen/size_12"
                 android:paddingRight="@dimen/size_12"
-                android:text="@string/nu"
-                android:textColor="@color/text_color_update_gender_female" />
+                android:text="@string/nu" />
 
-            <RadioButton
+            <vn.icheck.android.ichecklibs.view.disable_text.RadiobuttonDisableUncheckVioletChecked
                 android:id="@+id/btb_gender_other"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/size_30"
@@ -381,8 +380,7 @@
                 android:paddingLeft="@dimen/size_8"
                 android:paddingEnd="@dimen/size_12"
                 android:paddingRight="@dimen/size_12"
-                android:text="@string/khac"
-                android:textColor="@color/text_color_update_gender_gay" />
+                android:text="@string/khac"/>
         </RadioGroup>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

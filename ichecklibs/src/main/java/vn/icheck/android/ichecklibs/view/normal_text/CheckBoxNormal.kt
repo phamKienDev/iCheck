@@ -7,7 +7,7 @@ import androidx.core.content.ContextCompat
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
 
-class CheckedNormalText : androidx.appcompat.widget.AppCompatCheckedTextView {
+class CheckBoxNormal : androidx.appcompat.widget.AppCompatCheckBox {
     constructor(context: Context) : super(context) {
         setup()
     }

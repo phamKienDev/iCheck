@@ -1,15 +1,12 @@
 package vn.icheck.android.ichecklibs.view.normal_text
 
 import android.content.Context
-import android.graphics.Color
 import android.util.AttributeSet
-import androidx.core.content.ContextCompat
+import android.widget.EditText
+import androidx.appcompat.widget.AppCompatEditText
 import vn.icheck.android.ichecklibs.Constant
-import vn.icheck.android.ichecklibs.R
-import vn.icheck.android.ichecklibs.view.edit_text.CornerErrorEditText
 
-class CornerErrorEditTextNormalText:CornerErrorEditText {
-
+class EdittextNormalHintDisable : AppCompatEditText {
     constructor(context: Context) : super(context) {
         setup()
     }
@@ -24,6 +21,6 @@ class CornerErrorEditTextNormalText:CornerErrorEditText {
 
     private fun setup() {
         setTextColor(Constant.getNormalTextColor(context))
-        includeFontPadding = false
+        setHintTextColor(Constant.getDisableTextColor(context))
     }
 }

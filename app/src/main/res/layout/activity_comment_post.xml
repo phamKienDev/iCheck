@@ -214,7 +214,7 @@
                             tools:text="Trả lời  Đặng Trung Đ  Đặng Trung Đức ặng Trung Đức ặng Trung Đức" />
                     </LinearLayout>
 
-                    <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalText
+                    <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
                         android:id="@id/edtContent"
                         android:layout_width="@dimen/size_0"
                         android:layout_height="wrap_content"
@@ -230,7 +230,6 @@
                         android:paddingEnd="@dimen/size_10"
                         android:paddingBottom="@dimen/size_6"
                         android:textAlignment="gravity"
-                        android:textColorHint="@color/colorDisableText"
                         android:textSize="@dimen/font_14"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"

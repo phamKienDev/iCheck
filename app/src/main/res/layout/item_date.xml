@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Tên sản phẩm (*)" />
 
-    <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalText
+    <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormal
         android:id="@+id/edt_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

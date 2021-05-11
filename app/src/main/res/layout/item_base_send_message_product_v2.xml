@@ -133,7 +133,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Trả lời  Đặng Trung Đức" />
 
-            <androidx.appcompat.widget.AppCompatEditText
+            <vn.icheck.android.ichecklibs.view.disable_text.EdittextDisableHint
                 android:id="@id/edtContent"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/size_30"
@@ -146,7 +146,6 @@
                 android:paddingEnd="@dimen/size_8"
                 android:singleLine="true"
                 android:textColor="@color/darkGray1"
-                android:textColorHint="@color/colorDisableText"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/imgCamera"

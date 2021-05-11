@@ -8,7 +8,7 @@ import androidx.core.content.ContextCompat
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
 
-class RadioButtonCheckedNormalText: RadioButton {
+class RadioButtonCheckedNormal: RadioButton {
     constructor(context: Context) : super(context) {
         setup()
     }

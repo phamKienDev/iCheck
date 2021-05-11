@@ -8,7 +8,7 @@ import androidx.core.content.ContextCompat
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
 
-class RadioButtonNormalText : androidx.appcompat.widget.AppCompatRadioButton {
+class RadioButtonNormal : androidx.appcompat.widget.AppCompatRadioButton {
     constructor(context: Context) : super(context) {
         setup()
     }

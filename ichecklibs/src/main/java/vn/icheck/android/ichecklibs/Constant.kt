@@ -312,6 +312,15 @@ object Constant {
         }
     }
 
+    val getDisableTextCode: String
+        get() {
+            return if (disableTextColor.isNotEmpty()) {
+                disableTextColor
+            } else {
+                "#B4B4B4"
+            }
+        }
+
     /*
     *Color accent blue
     * * */

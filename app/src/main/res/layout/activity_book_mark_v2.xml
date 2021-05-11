@@ -54,7 +54,7 @@
             app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.appcompat.widget.AppCompatEditText
+    <vn.icheck.android.ichecklibs.view.disable_text.EdittextDisableHint
         android:id="@+id/edtSearch"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_40"
@@ -71,7 +71,6 @@
         android:paddingRight="@dimen/size_10"
         android:singleLine="true"
         android:imeOptions="actionSearch"
-        android:textColorHint="@color/colorDisableText"
         android:textSize="@dimen/font_14"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
 

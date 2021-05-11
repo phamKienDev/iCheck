@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import android.widget.EditText
 import vn.icheck.android.ichecklibs.Constant
 
-class EditTextNormalText : EditText {
+class EdittextNormal : EditText {
     constructor(context: Context) : super(context) {
         setup()
     }
@@ -20,7 +20,5 @@ class EditTextNormalText : EditText {
 
     private fun setup() {
         setTextColor(Constant.getNormalTextColor(context))
-        setHintTextColor(Constant.getSecondTextColor(context))
-        setLinkTextColor(Constant.getSecondTextColor(context))
     }
 }

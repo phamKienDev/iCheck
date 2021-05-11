@@ -6,8 +6,10 @@ import android.util.AttributeSet
 import androidx.core.content.ContextCompat
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
+import vn.icheck.android.ichecklibs.view.edit_text.CornerErrorEditText
 
-class CheckBoxNormalText : androidx.appcompat.widget.AppCompatCheckBox {
+class CornerErrorEdittextNormal:CornerErrorEditText {
+
     constructor(context: Context) : super(context) {
         setup()
     }

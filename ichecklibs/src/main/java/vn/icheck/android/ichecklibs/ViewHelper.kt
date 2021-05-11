@@ -5,6 +5,7 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
+import android.graphics.drawable.StateListDrawable
 import android.widget.LinearLayout
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
@@ -31,6 +32,8 @@ object ViewHelper {
                 intArrayOf(android.R.attr.state_enabled), intArrayOf(android.R.attr.state_pressed)),
                 intArrayOf(disableColor, enableColor, pressedColor))
     }
+
+
 
     @ColorInt
     fun alphaColor(@ColorInt color: Int, factor: Float): Int {
@@ -61,7 +64,7 @@ object ViewHelper {
     * */
     fun textColorDisableTextUncheckPrimaryChecked(context: Context): ColorStateList {
         return createColorStateList(
-                ContextCompat.getColor(context, R.color.colorDisableText),
+                Constant.getDisableTextColor(context),
                 Constant.getPrimaryColor(context)
         )
     }
@@ -115,4 +118,6 @@ object ViewHelper {
             gradientDrawable.cornerRadii = floatArrayOf(radiusTopLeft, radiusTopLeft, radiusTopLRight, radiusTopLRight, radiusBottomRight, radiusBottomRight, radiusBottomLeft, radiusBottomLeft)
         }
     }
+
+
 }

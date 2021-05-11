@@ -199,7 +199,7 @@
                     tools:text="Trả lời  Đặng Trung Đ  Đặng Trung Đức ặng Trung Đức ặng Trung Đức" />
             </LinearLayout>
 
-            <androidx.appcompat.widget.AppCompatEditText
+            <vn.icheck.android.ichecklibs.view.disable_text.EdittextDisableHint
                 android:id="@+id/edtEnter"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -214,7 +214,6 @@
                 android:hint="@string/viet_binh_luan"
                 android:maxLines="4"
                 android:textColor="@color/darkGray1"
-                android:textColorHint="@color/colorDisableText"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/imgCamera"

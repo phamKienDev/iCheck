@@ -139,13 +139,13 @@ class WinnerCampaignAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
             } else {
                 textView.text = itemView.context.getString(R.string.dang_cap_nhat)
                 textView.setTypeface(null, Typeface.ITALIC)
-                textView.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorDisableText))
+                textView.setTextColor(Constant.getDisableTextColor(itemView.context))
             }
         }
 
         private fun setName(tv: AppCompatTextView, value: String?) {
             if (value.isNullOrEmpty()) {
-                tv.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorDisableText))
+                tv.setTextColor(Constant.getDisableTextColor(itemView.context))
                 tv.text = itemView.context.getString(R.string.dang_cap_nhat)
                 tv.typeface = Typeface.createFromAsset(itemView.context.assets, "font/barlow_medium.ttf")
             } else {

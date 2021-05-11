@@ -62,7 +62,7 @@
             android:orientation="vertical"
             android:visibility="visible" />
 
-        <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalText
+        <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
             android:id="@id/edtContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -81,7 +81,6 @@
             android:paddingEnd="@dimen/size_10"
             android:paddingBottom="@dimen/size_6"
             android:textAlignment="gravity"
-            android:textColorHint="@color/colorDisableText"
             android:textSize="@dimen/font_14"
             android:visibility="gone" />
 

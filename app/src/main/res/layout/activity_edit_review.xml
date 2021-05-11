@@ -89,7 +89,7 @@
         android:paddingRight="@dimen/size_10"
         app:layout_constraintTop_toBottomOf="@id/rcvRating">
 
-        <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalText
+        <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormal
             android:id="@+id/edtContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

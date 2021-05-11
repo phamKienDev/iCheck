@@ -5,11 +5,9 @@ import android.graphics.Color
 import android.util.AttributeSet
 import androidx.core.content.ContextCompat
 import vn.icheck.android.ichecklibs.Constant
-import vn.icheck.android.ichecklibs.FocusableEditText
 import vn.icheck.android.ichecklibs.R
 
-class FocusableEditTextNormalText:FocusableEditText {
-
+class CheckedNormal : androidx.appcompat.widget.AppCompatCheckedTextView {
     constructor(context: Context) : super(context) {
         setup()
     }
@@ -24,5 +22,6 @@ class FocusableEditTextNormalText:FocusableEditText {
 
     private fun setup() {
         setTextColor(Constant.getNormalTextColor(context))
+        includeFontPadding = false
     }
 }

@@ -64,7 +64,7 @@
             android:text="Đường link bạn muốn chia sẻ"
             android:textSize="@dimen/font_12" />
 
-        <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalText
+        <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormal
             android:id="@id/edtContent"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_36"

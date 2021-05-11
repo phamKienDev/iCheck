@@ -19,6 +19,7 @@ import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.product.ProductInteractor
@@ -210,11 +211,11 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
 
             itemView.tvPrice.run {
                 if (obj.data?.price != null && obj.data?.price != 0L) {
-                    setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context))
+                    setTextColor(Constant.getPrimaryColor(context))
                     typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
                     text = itemView.context.getString(R.string.xxx__d, TextHelper.formatMoney(obj.data?.price))
                 } else {
-                    setTextColor(getColor(R.color.colorDisableText))
+                    setTextColor(Constant.getDisableTextColor(context))
                     setTypeface(null, Typeface.ITALIC)
                     text = getString(R.string.gia_dang_cap_nhat)
                 }

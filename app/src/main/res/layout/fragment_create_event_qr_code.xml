@@ -69,7 +69,7 @@
                 android:text="Tên sự kiện"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalText
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormal
                 android:id="@id/edtEvent"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_36"
@@ -112,7 +112,7 @@
                 android:text="Địa chỉ"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalText
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormal
                 android:id="@id/edtAddress"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_36"
@@ -155,7 +155,7 @@
                 android:text="Đường dẫn sự kiện"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalText
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormal
                 android:id="@id/edtEventLink"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_36"
