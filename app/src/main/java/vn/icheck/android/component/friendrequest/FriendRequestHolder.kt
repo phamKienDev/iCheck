@@ -11,6 +11,7 @@ import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -58,8 +59,12 @@ class FriendRequestHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInf
         }
 
         // Text agree
-        itemView.btnAgree.setOnClickListener {
-            updateFriendInvitation(2, obj)
+        itemView.btnAgree.apply {
+            background = ViewHelper.btnPrimaryCorners4(context)
+
+            setOnClickListener {
+                updateFriendInvitation(2, obj)
+            }
         }
 
         // Text disagree

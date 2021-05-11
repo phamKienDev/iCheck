@@ -16,6 +16,7 @@ import vn.icheck.android.screen.user.createqrcode.createcontact.presenter.Create
 import vn.icheck.android.screen.user.createqrcode.createcontact.view.ICreateContactQrCodeView
 import vn.icheck.android.screen.user.createqrcode.success.CreateQrCodeSuccessActivity
 import vn.icheck.android.helper.ContactHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.dialog.PermissionDialog
 
 /**
@@ -36,6 +37,7 @@ class CreateContactQrCodeFragment : BaseCreateQrCodeFragment<CreateContactQrCode
 
     override fun onInitView() {
         initToolbar()
+        setupView()
         initListener()
         focusView(edtPhone)
     }
@@ -46,6 +48,10 @@ class CreateContactQrCodeFragment : BaseCreateQrCodeFragment<CreateContactQrCode
         imgBack.setOnClickListener {
             activity?.onBackPressed()
         }
+    }
+
+    private fun setupView() {
+        btnCreate.background = ViewHelper.btnPrimaryCorners4(requireContext())
     }
 
     private fun initListener() {

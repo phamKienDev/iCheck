@@ -7,22 +7,18 @@ import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
+import vn.icheck.android.databinding.ItemNotificationPageBinding
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.feature.page.PageRepository
-import vn.icheck.android.network.feature.relationship.RelationshipInteractor
-import vn.icheck.android.network.models.ICFriendSuggestion
-import vn.icheck.android.network.models.ICNotification
 import vn.icheck.android.network.models.ICNotificationPage
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
-import vn.icheck.android.ui.view.SquareImageView
-import vn.icheck.android.util.ick.showSimpleSuccessToast
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -44,15 +40,19 @@ class NotificationPageAdapter : RecyclerView.Adapter<NotificationPageAdapter.Pag
         holder.bind(listData[position])
     }
 
-    class PageRelatedHolder(parent: ViewGroup) : BaseViewHolder<ICNotificationPage>(LayoutInflater.from(parent.context).inflate(R.layout.item_notification_page, parent, false)) {
+    class PageRelatedHolder(parent: ViewGroup, val binding: ItemNotificationPageBinding = ItemNotificationPageBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : BaseViewHolder<ICNotificationPage>(binding.root) {
 
         override fun bind(obj: ICNotificationPage) {
             (itemView as ViewGroup).apply {
-                WidgetUtils.loadImageUrlRounded(getChildAt(0) as SquareImageView, obj.avatar, R.drawable.ic_business_v2, SizeHelper.size4)
-                getChildAt(0).setOnClickListener {
-                    PageDetailActivity.start(itemView.context, obj.id)
+                binding.imgAvatar.apply {
+                    WidgetUtils.loadImageUrlRounded(this, obj.avatar, R.drawable.ic_business_v2, SizeHelper.size4)
+
+                    setOnClickListener {
+                        PageDetailActivity.start(itemView.context, obj.id)
+                    }
                 }
-                (getChildAt(1) as AppCompatTextView).also {
+
+                binding.tvName.also {
                     it.text = obj.name
 
                     if (obj.isVerify) {
@@ -62,8 +62,12 @@ class NotificationPageAdapter : RecyclerView.Adapter<NotificationPageAdapter.Pag
                     }
                 }
 
-                getChildAt(2).setOnClickListener {
-                    followPage(obj)
+                binding.btnFollow.apply {
+                    background = ViewHelper.btnPrimaryCorners4(context)
+
+                    setOnClickListener {
+                        followPage(obj)
+                    }
                 }
 
                 checkFollow(obj.userFollowIdList?.contains(SessionManager.session.user?.id))

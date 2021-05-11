@@ -19,6 +19,7 @@ import vn.icheck.android.databinding.ItemHomeFunctionInfoBinding
 import vn.icheck.android.helper.FileHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.loyalty.base.setGone
 import vn.icheck.android.loyalty.base.setVisible
 import vn.icheck.android.network.base.SessionManager
@@ -284,8 +285,12 @@ class HomeFunctionHolder(parent: ViewGroup, isExistTheme: Boolean, listener: IHo
                     listener.onCreatePVCombank()
                 }
 
-                binding.btnCreate.setOnClickListener {
-                    listener.onCreatePVCombank()
+                binding.btnCreate.apply {
+                    background = ViewHelper.btnPrimaryCorners4(context)
+
+                    setOnClickListener {
+                        listener.onCreatePVCombank()
+                    }
                 }
             }
         }

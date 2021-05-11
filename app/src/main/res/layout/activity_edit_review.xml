@@ -137,7 +137,6 @@
         android:layout_marginStart="@dimen/size_8"
         android:layout_marginEnd="@dimen/size_8"
         android:layout_marginBottom="@dimen/size_20"
-        android:background="@drawable/btn_light_blue_corners_4"
         android:gravity="center"
         android:text="@string/hoan_tat"
         android:textAllCaps="false"

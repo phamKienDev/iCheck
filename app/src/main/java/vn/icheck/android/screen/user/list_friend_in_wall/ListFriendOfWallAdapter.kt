@@ -170,6 +170,10 @@ class ListFriendOfWallAdapter(val view: ListFriendListener) : RecyclerView.Adapt
 
     private class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: ICUserFollowWall) {
+            itemView.btnRefuseFriend.apply {
+                background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteOutlinePrimary1Corners4(context)
+            }
+
             vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context).apply {
                 itemView.tvChat.background = this
                 itemView.tvAddFriend.background = this

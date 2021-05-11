@@ -89,7 +89,6 @@
         android:layout_height="@dimen/size_16"
         android:max="100"
         android:progress="50"
-        android:progressDrawable="@drawable/progress_light_blue_background_transparent_corners_8"
         app:layout_constraintEnd_toEndOf="@id/tvPercentNo"
         app:layout_constraintStart_toStartOf="@id/tvPercentYes"
         app:layout_constraintBottom_toBottomOf="@+id/bgProgress"

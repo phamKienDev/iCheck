@@ -213,7 +213,6 @@
             android:id="@+id/btnPayment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/state_click_payment"
             android:text="Thanh toán"
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginBottom="@dimen/size_20"

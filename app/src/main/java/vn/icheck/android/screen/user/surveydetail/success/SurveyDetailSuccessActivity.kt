@@ -5,6 +5,7 @@ import kotlinx.android.synthetic.main.fragment_answer_survey_success.*
 import kotlinx.android.synthetic.main.toolbar_black.*
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.surveydetail.success.presenter.SurveyDetailSuccessPresenter
 import vn.icheck.android.screen.user.surveydetail.success.view.ISurveyDetailSuccessView
 
@@ -23,6 +24,7 @@ class SurveyDetailSuccessActivity : BaseActivity<SurveyDetailSuccessPresenter>()
 
     override fun onInitView() {
         initToolbar()
+        setupView()
         initListener()
     }
 
@@ -32,6 +34,10 @@ class SurveyDetailSuccessActivity : BaseActivity<SurveyDetailSuccessPresenter>()
     private fun initToolbar() {
         txtTitle.setText(R.string.khao_sat_nhan_qua_title)
         imgBack.visibility = View.GONE
+    }
+
+    private fun setupView() {
+        btnShare.background = ViewHelper.btnPrimaryCorners4(this)
     }
 
     /**

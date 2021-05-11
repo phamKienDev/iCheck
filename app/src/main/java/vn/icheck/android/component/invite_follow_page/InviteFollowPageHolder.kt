@@ -39,9 +39,13 @@ class InviteFollowPageHolder(parent: ViewGroup) : BaseViewHolder<ICPageOverview>
             WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
             itemView.tvName.text = "Bạn đã theo dõi ${obj.name}"
 
-            itemView.tvInvite.setOnClickListener {
-                ICheckApplication.currentActivity()?.let {
-                    ActivityUtils.startActivity<InviteFriendFollowPageActivity, Long>(it, Constant.DATA_1, obj.id!!)
+            itemView.tvInvite.apply {
+                background = vn.icheck.android.ichecklibs.ViewHelper.btnPrimaryCorners4(context)
+
+                setOnClickListener {
+                    ICheckApplication.currentActivity()?.let {
+                        ActivityUtils.startActivity<InviteFriendFollowPageActivity, Long>(it, Constant.DATA_1, obj.id!!)
+                    }
                 }
             }
 

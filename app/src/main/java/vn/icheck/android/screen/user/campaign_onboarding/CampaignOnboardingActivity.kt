@@ -45,6 +45,7 @@ class CampaignOnboardingActivity : BaseActivityMVVM() {
 
         viewModel = ViewModelProvider(this).get(CampaignOnboardingViewModel::class.java)
         initToolbar()
+        setupView()
         initRecyclerview()
         initData()
     }
@@ -53,6 +54,10 @@ class CampaignOnboardingActivity : BaseActivityMVVM() {
         imgBack.setOnClickListener {
             onBackPressed()
         }
+    }
+
+    private fun setupView() {
+        btnActionBack.background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteOutlinePrimary1Corners4(this)
     }
 
     private fun initRecyclerview() {
