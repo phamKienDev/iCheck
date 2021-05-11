@@ -79,6 +79,13 @@ class OtherNotificationHolder(parent: ViewGroup) : BaseViewHolder<ICNotification
                         R.drawable.ic_notification_gift_20dp,
                         0
                     )
+                } else if (obj.action == "SYSTEM") {
+                    itemView.tvStatus.setCompoundDrawablesWithIntrinsicBounds(
+                        0,
+                        0,
+                        R.drawable.ic_notification_admin_20dp,
+                        0
+                    )
                 }
             }
             else -> {

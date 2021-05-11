@@ -30,10 +30,12 @@ abstract class OtherNotificationOptionDialog(context: Context) : BaseBottomSheet
             "USER" -> {
                 if (obj.action == "MISSION_FINISH") {
                     dialog.tvStatus.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_notification_gift_20dp, 0)
+                }else if(obj.action=="SYSTEM"){
+                    dialog.tvStatus.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_notification_admin_20dp, 0)
                 }
             }
             else -> {
-                dialog.tvStatus.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                dialog.tvStatus.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_notification_admin_20dp, 0)
             }
         }
 
