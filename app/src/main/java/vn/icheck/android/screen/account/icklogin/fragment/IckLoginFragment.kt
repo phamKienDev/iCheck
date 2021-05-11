@@ -182,7 +182,7 @@ class IckLoginFragment : CoroutineFragment() {
                     InputType.TYPE_TEXT_VARIATION_PASSWORD
                 } else {
                     binding.btnKeyboard.setText(R.string.ban_phim_chu)
-                    InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
+                    InputType.TYPE_CLASS_NUMBER
                 }
                 transformationMethod = PasswordTransformationMethod()
                 setSelection(length())

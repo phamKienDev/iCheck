@@ -65,7 +65,7 @@
                 android:focusableInTouchMode="true"
                 android:gravity="center"
                 android:hint="Nhập mật khẩu"
-                android:inputType="textPassword"
+                android:inputType="numberPassword"
                 android:paddingBottom="@dimen/size_20"
                 android:textSize="@dimen/font_18" />
 
@@ -80,7 +80,7 @@
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:hint="Nhập lại mật khẩu"
-                android:inputType="textPassword"
+                android:inputType="numberPassword"
                 android:paddingBottom="@dimen/size_20"
                 android:textSize="@dimen/font_18" />
 
@@ -98,8 +98,29 @@
         android:text="Tạo mật khẩu mới"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/layoutKeyboard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <FrameLayout
+        android:id="@id/layoutKeyboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorBackgroundGray"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/btnKeyboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="@dimen/size_12"
+            android:drawableStart="@drawable/ic_keyboard_black_18dp"
+            android:drawablePadding="@dimen/size_8"
+            android:paddingTop="@dimen/size_4"
+            android:paddingBottom="@dimen/size_4"
+            android:text="Bàn phím chữ"
+            android:visibility="gone" />
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

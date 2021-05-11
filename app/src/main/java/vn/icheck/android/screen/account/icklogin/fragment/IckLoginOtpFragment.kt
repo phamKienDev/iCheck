@@ -312,29 +312,18 @@ class IckLoginOtpFragment : CoroutineFragment() {
 
     private fun setupListener() {
         binding.btnKeyboard.setOnClickListener {
-            binding.groupPw.apply {
-                if (isFocused) {
-                    changeKeyboard(this)
-                }
-            }
-
-            binding.groupRePw.apply {
-                if (isFocused) {
-                    changeKeyboard(this)
-                }
-            }
+            changeKeyboard(binding.groupPw)
+            changeKeyboard(binding.groupRePw)
         }
 
         binding.groupPw.setOnFocusChangeListener { v, hasFocus ->
             checkButtonChangeKeyboard()
-            if (hasFocus)
-                checkKeyboard(binding.groupPw)
+            checkKeyboard(binding.groupPw)
         }
 
         binding.groupRePw.setOnFocusChangeListener { v, hasFocus ->
             checkButtonChangeKeyboard()
-            if (hasFocus)
-                checkKeyboard(binding.groupRePw)
+            checkKeyboard(binding.groupRePw)
         }
     }
 
@@ -344,24 +333,28 @@ class IckLoginOtpFragment : CoroutineFragment() {
 
     private fun changeKeyboard(view: AppCompatEditText) {
         view.apply {
-            inputType = if (inputType != InputType.TYPE_TEXT_VARIATION_PASSWORD) {
-                binding.btnKeyboard.setText(R.string.ban_phim_so)
-                InputType.TYPE_TEXT_VARIATION_PASSWORD
-            } else {
-                binding.btnKeyboard.setText(R.string.ban_phim_chu)
-                InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
+            if (isFocused) {
+                inputType = if (inputType != InputType.TYPE_TEXT_VARIATION_PASSWORD) {
+                    binding.btnKeyboard.setText(R.string.ban_phim_so)
+                    InputType.TYPE_TEXT_VARIATION_PASSWORD
+                } else {
+                    binding.btnKeyboard.setText(R.string.ban_phim_chu)
+                    InputType.TYPE_CLASS_NUMBER
+                }
+                transformationMethod = PasswordTransformationMethod()
+                setSelection(length())
             }
-            transformationMethod = PasswordTransformationMethod()
-            setSelection(length())
         }
     }
 
     private fun checkKeyboard(view: AppCompatEditText) {
         view.apply {
-            if (inputType == InputType.TYPE_TEXT_VARIATION_PASSWORD) {
-                binding.btnKeyboard.setText(R.string.ban_phim_so)
-            } else {
-                binding.btnKeyboard.setText(R.string.ban_phim_chu)
+            if (isFocused) {
+                if (inputType == InputType.TYPE_TEXT_VARIATION_PASSWORD) {
+                    binding.btnKeyboard.setText(R.string.ban_phim_so)
+                } else {
+                    binding.btnKeyboard.setText(R.string.ban_phim_chu)
+                }
             }
         }
     }
