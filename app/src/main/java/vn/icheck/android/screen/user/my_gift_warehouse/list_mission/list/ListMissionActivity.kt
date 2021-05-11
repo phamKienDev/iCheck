@@ -22,6 +22,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.tracking.teko.TekoHelper
 import vn.icheck.android.network.base.ICListResponse
 import vn.icheck.android.network.base.ICNewApiListener
@@ -96,6 +97,9 @@ class ListMissionActivity : BaseActivityMVVM() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gift_list_mission)
+
+        setupView()
+
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
         }
@@ -119,6 +123,10 @@ class ListMissionActivity : BaseActivityMVVM() {
             showBottomSuccess()
         }
         setupListener()
+    }
+
+    private fun setupView() {
+        btnAction.background = ViewHelper.btnPrimaryCorners4(this)
     }
 
     private fun showBottomSuccess() {

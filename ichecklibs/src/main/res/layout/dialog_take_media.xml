@@ -63,7 +63,6 @@
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
         android:layout_marginBottom="@dimen/size_20"
-        android:background="@drawable/bg_corners_4_light_blue_solid"
         android:gravity="center"
         android:paddingTop="@dimen/size_8"
         android:paddingBottom="@dimen/size_8"

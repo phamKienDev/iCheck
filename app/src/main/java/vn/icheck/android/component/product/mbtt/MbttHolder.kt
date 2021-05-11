@@ -18,6 +18,8 @@ class MbttHolder(view: View) : BaseHolder(view) {
 
     @SuppressLint("SetTextI18n")
     fun bind(obj: MbttModel) {
+        itemView.progressbar.progressDrawable = ViewHelper.progressPrimaryBackgroundTransparentCorners8(itemView.context)
+
         showVoteLayout()
         hideLayoutProgress()
 

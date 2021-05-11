@@ -148,7 +148,6 @@
             android:id="@+id/btnChat"
             android:layout_width="@dimen/size_100"
             android:layout_height="@dimen/size_28"
-            android:background="@drawable/bg_corner_4_light_blue_white"
             android:gravity="center"
             android:lineSpacingExtra="@dimen/font_6"
             android:text="Nhắn tin"

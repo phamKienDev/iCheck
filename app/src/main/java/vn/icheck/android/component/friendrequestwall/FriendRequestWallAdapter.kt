@@ -16,6 +16,7 @@ import vn.icheck.android.constant.USER_WALL_EVENT_SETTING
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -83,8 +84,12 @@ class FriendRequestWallAdapter : RecyclerView.Adapter<FriendRequestWallAdapter.V
                 }
             }
 
-            itemView.btnAgree.setOnClickListener {
-                acceptFriendRequest(obj)
+            itemView.btnAgree.apply {
+                background = ViewHelper.btnPrimaryCorners4(context)
+
+                setOnClickListener {
+                    acceptFriendRequest(obj)
+                }
             }
 
             itemView.setOnClickListener {

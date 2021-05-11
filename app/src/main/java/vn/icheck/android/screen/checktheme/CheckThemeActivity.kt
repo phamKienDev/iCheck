@@ -8,7 +8,10 @@ import android.media.AudioAttributes
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.animation.AnimationUtils
+import android.widget.ProgressBar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -28,6 +31,8 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.FileHelper
 import vn.icheck.android.helper.RelationshipHelper
 import vn.icheck.android.helper.ShareSessionToModule
+import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.loyalty.helper.StatusBarHelper
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.models.*
@@ -45,7 +50,21 @@ class CheckThemeActivity : BaseActivityMVVM() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_check_theme)
 
+//        setupView()
         onInitView()
+    }
+
+    private fun setupView() {
+//        progressbar.apply {
+//            progressDrawable = ViewHelper.progressPrimaryBackgroundTransparentCorners8(context)
+//        }
+//
+//        Handler(Looper.getMainLooper()).postDelayed({
+//            progressbar.progress = 70
+//            progressbar.max = 100
+//        }, 3000)
+
+        layoutContent.beVisible()
     }
 
     private fun onInitView() {

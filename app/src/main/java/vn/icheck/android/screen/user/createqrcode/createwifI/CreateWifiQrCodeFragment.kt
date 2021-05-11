@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.fragment_create_wifi_qr_code.*
 import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.util.KeyboardUtils
 import vn.icheck.android.screen.user.createqrcode.base.fragment.BaseCreateQrCodeFragment
 import vn.icheck.android.screen.user.createqrcode.success.CreateQrCodeSuccessActivity
@@ -32,6 +33,7 @@ class CreateWifiQrCodeFragment : BaseCreateQrCodeFragment<CreateWifiQrCodePresen
 
     override fun onInitView() {
         initToolbar()
+        setupView()
         initSecurityView()
         initListener()
         focusView(edtName)
@@ -43,6 +45,10 @@ class CreateWifiQrCodeFragment : BaseCreateQrCodeFragment<CreateWifiQrCodePresen
         imgBack.setOnClickListener {
             activity?.onBackPressed()
         }
+    }
+
+    private fun setupView() {
+        btnCreate.background = ViewHelper.btnPrimaryCorners4(requireContext())
     }
 
     private fun initSecurityView() {

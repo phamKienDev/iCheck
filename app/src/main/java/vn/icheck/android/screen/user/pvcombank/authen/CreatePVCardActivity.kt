@@ -38,8 +38,13 @@ class CreatePVCardActivity : BaseActivityMVVM(), View.OnClickListener {
         setContentView(R.layout.activity_pvcombank)
 
         viewModel = ViewModelProvider(this).get(CreatePVCardViewModel::class.java)
+        setupView()
         initView()
         initData()
+    }
+
+    private fun setupView() {
+        tvSkip.background = ViewHelper.bgWhiteOutlinePrimary1Corners4(this)
     }
 
     private fun initView() {

@@ -10,6 +10,7 @@ import vn.icheck.android.util.KeyboardUtils
 import vn.icheck.android.base.dialog.date_time.callback.DateTimePickerListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.createqrcode.base.fragment.BaseCreateQrCodeFragment
 import vn.icheck.android.screen.user.createqrcode.createevent.presenter.CreateEventQrCodePresenter
 import vn.icheck.android.screen.user.createqrcode.createevent.view.ICreateEventQrCodeView
@@ -32,6 +33,7 @@ class CreateEventQrCodeFragment : BaseCreateQrCodeFragment<CreateEventQrCodePres
 
     override fun onInitView() {
         initToolbar()
+        setupView()
         initListener()
         focusView(edtEvent)
     }
@@ -42,6 +44,10 @@ class CreateEventQrCodeFragment : BaseCreateQrCodeFragment<CreateEventQrCodePres
         imgBack.setOnClickListener {
             activity?.onBackPressed()
         }
+    }
+
+    private fun setupView() {
+        btnCreate.background = ViewHelper.btnPrimaryCorners4(requireContext())
     }
 
     private fun initListener() {

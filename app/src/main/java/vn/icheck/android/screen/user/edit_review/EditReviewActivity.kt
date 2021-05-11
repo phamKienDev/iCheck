@@ -21,6 +21,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.network.models.ICCriteriaReview
@@ -48,9 +49,15 @@ class EditReviewActivity : BaseActivityMVVM() {
         setContentView(R.layout.activity_edit_review)
 
         viewModel = ViewModelProvider(this).get(EditReviewViewModel::class.java)
+
+        setupView()
         initView()
         initRcvImage()
         listenerData()
+    }
+
+    private fun setupView() {
+        btnSend.background = ViewHelper.btnPrimaryCorners4(this)
     }
 
     private fun initView() {

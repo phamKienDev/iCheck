@@ -34,6 +34,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.OnItemClickListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.recharge_phone.ICMenhGia
 import vn.icheck.android.network.models.recharge_phone.ICRechargePhone
@@ -83,6 +84,8 @@ class RechargePhoneActivity : BaseActivityMVVM() {
     }
 
     private fun initView() {
+        btnPayment.background = ViewHelper.bgPaymentState(this)
+
         if (SessionManager.isUserLogged) {
             tv1.visibility = View.VISIBLE
         } else {
