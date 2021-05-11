@@ -120,7 +120,7 @@
             android:drawablePadding="@dimen/size_8"
             android:paddingTop="@dimen/size_4"
             android:paddingBottom="@dimen/size_4"
-            android:text="Bàn phím chữ"
+            android:text="@string/doi_ban_phiim"
             android:textColor="@color/colorNormalText"
             android:visibility="gone" />
     </FrameLayout>

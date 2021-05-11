@@ -178,10 +178,10 @@ class IckLoginFragment : CoroutineFragment() {
         binding.btnKeyboard.setOnClickListener {
             binding.edtPassword.apply {
                 inputType = if (inputType != InputType.TYPE_TEXT_VARIATION_PASSWORD) {
-                    binding.btnKeyboard.setText(R.string.ban_phim_so)
+//                    binding.btnKeyboard.setText(R.string.ban_phim_so)
                     InputType.TYPE_TEXT_VARIATION_PASSWORD
                 } else {
-                    binding.btnKeyboard.setText(R.string.ban_phim_chu)
+//                    binding.btnKeyboard.setText(R.string.ban_phim_chu)
                     InputType.TYPE_CLASS_NUMBER
                 }
                 transformationMethod = PasswordTransformationMethod()
