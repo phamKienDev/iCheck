@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import de.hdodenhof.circleimageview.CircleImageView
@@ -28,6 +29,7 @@ import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.screen.user.contribute_product.IckContributeProductActivity
 import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionDialog
 import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionSuccessDialog
+import vn.icheck.android.util.ick.setRankUser
 import vn.icheck.android.util.ick.showSimpleErrorToast
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -36,6 +38,7 @@ class ContributionHolder(parent: ViewGroup) : BaseViewHolder<ContributrionModel>
     lateinit var layoutAvatarUser: RelativeLayout
     lateinit var imgAvatarUser: CircleImageView
     lateinit var imgVerified: AppCompatTextView
+    lateinit var imgRank: AppCompatImageView
     lateinit var tvNameUser: AppCompatTextView
     lateinit var tvUpVote: AppCompatTextView
     lateinit var tvDownVote: AppCompatTextView
@@ -57,6 +60,7 @@ class ContributionHolder(parent: ViewGroup) : BaseViewHolder<ContributrionModel>
                 layoutAvatarUser = getChildAt(0) as RelativeLayout
                 imgAvatarUser = layoutAvatarUser.getChildAt(0) as CircleImageView
                 imgVerified = layoutAvatarUser.getChildAt(1) as AppCompatTextView
+                imgRank = layoutAvatarUser.getChildAt(2) as AppCompatImageView
 
                 tvNameUser = getChildAt(1) as AppCompatTextView
                 tvUpVote = getChildAt(2) as AppCompatTextView
@@ -71,8 +75,8 @@ class ContributionHolder(parent: ViewGroup) : BaseViewHolder<ContributrionModel>
         }
 
         imgVerified.visibility = View.GONE
-
         checkProductVerify(obj)
+
         if (obj.productVerify) {
             if (obj.manager != null) {
                 WidgetUtils.loadImageUrl(imgAvatarUser, obj.manager.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
@@ -95,11 +99,14 @@ class ContributionHolder(parent: ViewGroup) : BaseViewHolder<ContributrionModel>
             } else {
                 WidgetUtils.loadImageUrl(imgAvatarUser, obj.data!!.contribution?.user?.avatar, R.drawable.ic_avatar_default_84px, R.drawable.ic_avatar_default_84px)
                 tvNameUser.text = obj.data!!.contribution?.user?.getName
+                imgRank.setRankUser(obj.data!!.contribution?.user?.rank?.level)
                 checkVote(obj.data!!)
                 checkListUserContribute(obj)
                 initListener(obj)
             }
         }
+
+
     }
 
     private fun checkProductVerify(contribution: ContributrionModel) {

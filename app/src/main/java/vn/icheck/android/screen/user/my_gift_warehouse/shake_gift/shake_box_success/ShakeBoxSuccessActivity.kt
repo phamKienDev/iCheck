@@ -104,9 +104,11 @@ class ShakeBoxSuccessActivity : BaseActivityMVVM() {
         }
 
         btnShare.setOnClickListener {
-            tvThankNhaTaiTro.visibility = View.VISIBLE
-            tvThankNhaTaiTro.text =
-                Html.fromHtml("<font color=#828282>Nhà tài trợ</font>" + "<br>" + "${viewModel.campaign?.businessName}" + "</br>")
+            if (!viewModel.campaign?.businessName.isNullOrEmpty()) {
+                tvThankNhaTaiTro.visibility = View.VISIBLE
+                tvThankNhaTaiTro.text =
+                    Html.fromHtml("<font color=#828282>Nhà tài trợ</font>" + "<br>" + "${viewModel.campaign?.businessName}" + "</br>")
+            }
             layoutTaiApp.visibility = View.VISIBLE
             btnShare.visibility = View.INVISIBLE
             btnMyGift.visibility = View.INVISIBLE

@@ -215,11 +215,11 @@ class CheckThemeActivity : BaseActivityMVVM() {
 
     private fun showUpdateDialog() {
         isShowUpdate = true
-        DialogHelper.showNotification(this@CheckThemeActivity, R.string.force_update_title, R.string.force_update_content, R.string.cap_nhat, false, object : NotificationDialogListener {
-            override fun onDone() {
-                this@CheckThemeActivity.openAppInGooglePlay()
-            }
-        })
+//        DialogHelper.showNotification(this@CheckThemeActivity, R.string.force_update_title, R.string.force_update_content, R.string.cap_nhat, false, object : NotificationDialogListener {
+//            override fun onDone() {
+//                this@CheckThemeActivity.openAppInGooglePlay()
+//            }
+//        })
     }
 
     private fun onGoToHome() {

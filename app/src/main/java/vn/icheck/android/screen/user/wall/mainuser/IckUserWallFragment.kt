@@ -316,9 +316,11 @@ class IckUserWallFragment : Fragment(), IPostListener {
                             binding.notify.setImageResource(R.drawable.ic_homenoti_empty_blue_24px)
                         }
                         binding.titleDiv.beVisible()
-                        binding.tvNewImage.beVisible()
-                        binding.verticalDiv.beVisible()
-                        binding.tvNewPost.beVisible()
+                        if (ickUserWallViewModel.userInfo?.data?.id ==SessionManager.session.user?.id) {
+                            binding.tvNewImage.beVisible()
+                            binding.verticalDiv.beVisible()
+                            binding.tvNewPost.beVisible()
+                        }
                         showToolbar = true
                     }
                 } else {

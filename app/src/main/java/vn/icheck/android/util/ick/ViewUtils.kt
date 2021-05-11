@@ -370,6 +370,25 @@ fun AppCompatImageView.setRankUserBig(rank: Int?) {
     }
 }
 
+fun AppCompatImageView.setRankUser36dp(rank: Int?) {
+    when (rank) {
+        Constant.USER_LEVEL_SILVER -> {
+            this.setImageResource(R.drawable.ic_leftmenu_avatar_silver_36dp)
+        }
+        Constant.USER_LEVEL_GOLD -> {
+            this.setImageResource(R.drawable.ic_leftmenu_avatar_gold_36dp)
+        }
+        Constant.USER_LEVEL_DIAMOND -> {
+            this.setImageResource(R.drawable.ic_leftmenu_avatar_diamond_36dp)
+        }
+        Constant.USER_LEVEL_STANDARD -> {
+            this.setImageResource(R.drawable.ic_leftmenu_avatar_standard_36dp)
+        }
+        else -> {
+            this.setImageResource(R.drawable.ic_leftmenu_avatar_standard_36dp)
+        }
+    }
+}
 
 fun setRankUser(rank: Int): Int {
     return when (rank) {
