@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:fitsSystemWindows="true"
     android:layout_height="match_parent"
     android:background="@android:color/transparent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:fitsSystemWindows="true">
 
     <ImageView
         android:id="@+id/btn_back"
@@ -61,8 +61,8 @@
                 android:layout_marginStart="@dimen/size_32"
                 android:layout_marginTop="@dimen/size_32"
                 android:layout_marginEnd="@dimen/size_32"
-                android:fontFamily="@font/barlow_semi_bold"
                 android:focusableInTouchMode="true"
+                android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:hint="Nhập mật khẩu"
                 android:inputType="numberPassword"
@@ -74,9 +74,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_32"
-                android:focusableInTouchMode="true"
                 android:layout_marginTop="@dimen/size_32"
                 android:layout_marginEnd="@dimen/size_32"
+                android:focusableInTouchMode="true"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:hint="Nhập lại mật khẩu"
@@ -121,6 +121,7 @@
             android:paddingTop="@dimen/size_4"
             android:paddingBottom="@dimen/size_4"
             android:text="Bàn phím chữ"
+            android:textColor="@color/colorNormalText"
             android:visibility="gone" />
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

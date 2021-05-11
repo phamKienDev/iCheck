@@ -207,11 +207,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginEnd="@dimen/size_12"
-            android:visibility="gone"
             android:drawableStart="@drawable/ic_keyboard_black_18dp"
             android:drawablePadding="@dimen/size_8"
             android:paddingTop="@dimen/size_4"
             android:paddingBottom="@dimen/size_4"
-            android:text="Bàn phím chữ" />
+            android:text="Bàn phím chữ"
+            android:textColor="@color/colorNormalText"
+            android:visibility="gone" />
     </FrameLayout>
 </RelativeLayout>

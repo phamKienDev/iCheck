@@ -216,6 +216,7 @@
             android:paddingTop="@dimen/size_4"
             android:paddingBottom="@dimen/size_4"
             android:text="Bàn phím chữ"
+            android:textColor="@color/colorNormalText"
             android:visibility="gone" />
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
