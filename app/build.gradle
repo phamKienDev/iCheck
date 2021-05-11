@@ -79,7 +79,7 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
 //        freeCompilerArgs += ["-Xopt-in=kotlin.RequiresOptIn"]-
     }
-    buildToolsVersion = '29.0.3'
+//    buildToolsVersion = '29.0.3'
     flavorDimensions 'default'
 
     productFlavors {

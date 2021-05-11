@@ -2,14 +2,22 @@ package vn.icheck.android.screen.account.icklogin.fragment
 
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputType
+import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatEditText
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import vn.icheck.android.R
 import vn.icheck.android.base.fragment.CoroutineFragment
 import vn.icheck.android.databinding.FragmentIckOtpLoginBinding
+import vn.icheck.android.ichecklibs.visibleOrGone
+import vn.icheck.android.lib.keyboard.KeyboardVisibilityEvent
+import vn.icheck.android.lib.keyboard.KeyboardVisibilityEventListener
+import vn.icheck.android.lib.keyboard.Unregistrar
 import vn.icheck.android.tracking.insider.InsiderHelper
 import vn.icheck.android.tracking.teko.TekoHelper
 import vn.icheck.android.screen.account.icklogin.FORGOT_PW
@@ -24,17 +32,28 @@ import vn.icheck.android.util.ick.*
 class IckLoginOtpFragment : CoroutineFragment() {
     private val ickLoginViewModel: IckLoginViewModel by activityViewModels()
     private val args: IckLoginOtpFragmentArgs by navArgs()
-    var _binding: FragmentIckOtpLoginBinding? = null
-    val binding get() = _binding!!
+    lateinit var binding: FragmentIckOtpLoginBinding
+
+    private var unregistrar: Unregistrar? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        _binding = FragmentIckOtpLoginBinding.inflate(inflater, container, false)
+        binding = FragmentIckOtpLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
+    override fun onResume() {
+        super.onResume()
+        unregistrar = KeyboardVisibilityEvent.registerEventListener(requireActivity(), object : KeyboardVisibilityEventListener {
+            override fun onVisibilityChanged(isOpen: Boolean) {
+                binding.btnKeyboard.visibleOrGone(isOpen && (binding.groupPw.isFocused || binding.groupRePw.isFocused))
+            }
+        })
+    }
+
+    override fun onPause() {
+        super.onPause()
+        unregistrar?.unregister()
+        unregistrar = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -286,6 +305,64 @@ class IckLoginOtpFragment : CoroutineFragment() {
         ickLoginViewModel.nationLiveData.observe(viewLifecycleOwner) {
             binding.tvPhoneHead simpleText it.dialCode
             binding.tvNation simpleText it.name
+        }
+
+        setupListener()
+    }
+
+    private fun setupListener() {
+        binding.btnKeyboard.setOnClickListener {
+            binding.groupPw.apply {
+                if (isFocused) {
+                    changeKeyboard(this)
+                }
+            }
+
+            binding.groupRePw.apply {
+                if (isFocused) {
+                    changeKeyboard(this)
+                }
+            }
+        }
+
+        binding.groupPw.setOnFocusChangeListener { v, hasFocus ->
+            checkButtonChangeKeyboard()
+            if (hasFocus)
+                checkKeyboard(binding.groupPw)
+        }
+
+        binding.groupRePw.setOnFocusChangeListener { v, hasFocus ->
+            checkButtonChangeKeyboard()
+            if (hasFocus)
+                checkKeyboard(binding.groupRePw)
+        }
+    }
+
+    private fun checkButtonChangeKeyboard() {
+        binding.btnKeyboard.visibleOrGone(binding.groupPw.isFocused || binding.groupRePw.isFocused)
+    }
+
+    private fun changeKeyboard(view: AppCompatEditText) {
+        view.apply {
+            inputType = if (inputType != InputType.TYPE_TEXT_VARIATION_PASSWORD) {
+                binding.btnKeyboard.setText(R.string.ban_phim_so)
+                InputType.TYPE_TEXT_VARIATION_PASSWORD
+            } else {
+                binding.btnKeyboard.setText(R.string.ban_phim_chu)
+                InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
+            }
+            transformationMethod = PasswordTransformationMethod()
+            setSelection(length())
+        }
+    }
+
+    private fun checkKeyboard(view: AppCompatEditText) {
+        view.apply {
+            if (inputType == InputType.TYPE_TEXT_VARIATION_PASSWORD) {
+                binding.btnKeyboard.setText(R.string.ban_phim_so)
+            } else {
+                binding.btnKeyboard.setText(R.string.ban_phim_chu)
+            }
         }
     }
 
