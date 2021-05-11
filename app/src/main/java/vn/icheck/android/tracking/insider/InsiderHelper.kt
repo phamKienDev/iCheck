@@ -190,7 +190,7 @@ object InsiderHelper {
             .addParameterWithDouble("scan_product_rating", obj.basicInfo?.rating ?: 0.0)
             .addParameterWithBoolean("verified_status", obj.verified ?: false)
             .addParameterWithString("country_of_origin", obj.owner?.city?.name ?: "Việt Nam")
-            .addParameterWithString("scan_company_name", obj.owner?.name)
+            .addParameterWithString("scan_company_name", obj.manager?.name ?: obj.owner?.name)
             .addParameterWithString("scan_product_category", category)
             .build()
     }
