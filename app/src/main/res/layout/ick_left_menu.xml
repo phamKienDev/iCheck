@@ -145,6 +145,7 @@
                         android:layout_marginEnd="@dimen/size_12"
                         android:layout_marginBottom="@dimen/size_12"
                         android:fontFamily="@font/barlow_medium"
+                        android:text="iCheck Xu"
                         android:textColor="@color/black" />
                 </LinearLayout>
 
@@ -208,6 +209,7 @@
                         android:layout_marginEnd="@dimen/size_12"
                         android:layout_marginBottom="@dimen/size_12"
                         android:fontFamily="@font/barlow_medium"
+                        android:text="Quản lý trang"
                         android:textColor="@color/black" />
                 </LinearLayout>
 
@@ -235,6 +237,7 @@
                         android:layout_marginEnd="@dimen/size_12"
                         android:layout_marginBottom="@dimen/size_12"
                         android:fontFamily="@font/barlow_medium"
+                        android:text="Tạo QR Code"
                         android:textColor="@color/black" />
                 </LinearLayout>
             </LinearLayout>
@@ -299,6 +302,7 @@
                         android:layout_marginEnd="@dimen/size_12"
                         android:layout_marginBottom="@dimen/size_12"
                         android:fontFamily="@font/barlow_medium"
+                        android:text="Cấu hình"
                         android:textColor="@color/black" />
                 </LinearLayout>
             </LinearLayout>
@@ -406,6 +410,7 @@
                     android:drawablePadding="@dimen/size_10"
                     android:gravity="center_vertical"
                     android:padding="@dimen/size_16"
+                    android:text="Liên hệ và hỗ trợ"
                     android:visibility="gone"
                     tools:visibility="visible" />
 

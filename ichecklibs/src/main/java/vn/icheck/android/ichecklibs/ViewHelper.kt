@@ -7,9 +7,6 @@ import android.graphics.Color
 import android.graphics.drawable.*
 import android.os.Build
 import android.view.Gravity
-import android.graphics.drawable.Drawable
-import android.graphics.drawable.GradientDrawable
-import android.graphics.drawable.StateListDrawable
 import android.widget.LinearLayout
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
@@ -154,6 +151,13 @@ object ViewHelper {
         layerDrawable.setId(2, android.R.id.progress)
 
         return layerDrawable
+    }
+
+
+    fun getDrawableFillColor(context: Context,resource: Int, color: String): Drawable? {
+        return ContextCompat.getDrawable(context, resource)?.apply {
+            DrawableCompat.setTint(this, Color.parseColor(color))
+        }
     }
 
     /*
