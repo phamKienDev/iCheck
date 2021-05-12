@@ -1043,7 +1043,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                 Constant.isMarketingStamps(it) -> {
                     WebViewActivity.start(this, it, 1, null, true)
                 }
-                it.contains("qcheck-dev.vn") || it.contains("qcheck.vn") || it.contains("qrcode.icheck.com.vn") -> {
+                it.contains("dev-qcheck.icheck.vn") || it.contains("qcheck-dev.vn") || it.contains("qcheck.vn") || it.contains("qrcode.icheck.com.vn") -> {
                     ActivityUtils.startActivity<DetailStampActivity, String>(this, Constant.DATA, it)
                 }
                 it.contains("ktra.vn") -> {

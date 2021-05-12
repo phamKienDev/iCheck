@@ -43,7 +43,7 @@ class DetailStampPresenter(val view: IDetailStampView) : BaseActivityPresenter(v
         if (!data.isNullOrEmpty()) {
             code = if (data!!.contains("http")) {
                 val separated: List<String> = data!!.split("/")
-                separated[3]
+                separated.lastOrNull() ?: ""
             } else {
                 data
             }
