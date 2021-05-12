@@ -149,7 +149,7 @@ class DialogReceiveGiftSuccess(
                         dismiss()
                         startActivity(Intent(requireContext(), AcceptShipGiftActivity::class.java).apply {
                             putExtra(ConstantsLoyalty.DATA_2, winnerId)
-                            putExtra(ConstantsLoyalty.TYPE, 2)
+                            putExtra(ConstantsLoyalty.TYPE, 3)
                         })
                     }
                 }

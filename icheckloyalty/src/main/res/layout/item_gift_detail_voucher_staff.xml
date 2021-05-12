@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgBanner"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0"
+        app:layout_constraintDimensionRatio="H, 375:150"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/appCompatImageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="115dp"
+        app:layout_constraintEnd_toEndOf="@+id/imgBanner"
+        app:layout_constraintStart_toStartOf="@+id/imgBanner"
+        app:layout_constraintTop_toTopOf="@id/imgBanner"
+        app:srcCompat="@drawable/bg_loyalty_detail_gift" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgProduct"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="@dimen/size_36"
+        android:layout_marginTop="35dp"
+        app:layout_constraintStart_toStartOf="@+id/appCompatImageView5"
+        app:layout_constraintTop_toTopOf="@+id/appCompatImageView5"
+        tools:src="@color/colorPrimary" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvProduct"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_10"
+        android:layout_marginRight="@dimen/size_30"
+        android:ellipsize="end"
+        android:fontFamily="@font/roboto_medium"
+        android:includeFontPadding="false"
+        android:maxLines="2"
+        android:minLines="1"
+        android:textColor="@color/blueVip"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/appCompatImageView5"
+        app:layout_constraintStart_toEndOf="@+id/imgProduct"
+        app:layout_constraintTop_toTopOf="@+id/imgProduct"
+        tools:text="Son kem lì Innissfree (tên quà dài không giới hạn...) tiếp tiếp tiếp tiếp" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_8"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="@id/tvProduct"
+        app:layout_constraintStart_toStartOf="@id/tvProduct"
+        app:layout_constraintTop_toBottomOf="@id/tvProduct">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/size_8"
+            android:background="@drawable/bg_corner_30_orange_opacity_02"
+            android:fontFamily="@font/roboto_medium"
+            android:paddingLeft="@dimen/size_12"
+            android:paddingTop="@dimen/size_4"
+            android:paddingRight="@dimen/size_12"
+            android:paddingBottom="@dimen/size_4"
+            android:textColor="#FBBB00"
+            android:visibility="visible"
+            tools:text="Chờ xác nhận" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTitleDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_40"
+        android:layout_marginBottom="@dimen/size_64"
+        android:fontFamily="@font/roboto_medium"
+        android:includeFontPadding="false"
+        android:text="Hạn sử dụng"
+        android:textColor="#757575"
+        app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView5"
+        app:layout_constraintStart_toStartOf="@+id/imgProduct"
+        app:layout_constraintTop_toBottomOf="@+id/imgProduct" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDateTime"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:fontFamily="@font/roboto_medium"
+        android:includeFontPadding="false"
+        android:singleLine="true"
+        android:textColor="#434343"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTitleDate"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="@+id/tvTitleDate"
+        tools:text="Quà giao tận nơi" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/appCompatTextView39"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_20"
+        android:fontFamily="@font/roboto_medium"
+        android:includeFontPadding="false"
+        android:text="Loại quà"
+        android:textColor="#757575"
+        app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView5"
+        app:layout_constraintStart_toStartOf="@+id/imgProduct"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitleDate" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvVanChuyen"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:fontFamily="@font/roboto_medium"
+        android:includeFontPadding="false"
+        android:singleLine="true"
+        android:textColor="#434343"
+        app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView39"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="@+id/appCompatTextView39"
+        tools:text="Quà giao tận nơi" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/appCompatImageView5">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_12"
+            android:fontFamily="@font/roboto_medium"
+            android:paddingLeft="@dimen/size_12"
+            android:text="Thông tin quà"
+            android:textColor="@color/blueVip" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_0_5"
+            android:layout_marginLeft="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_12"
+            android:background="#D8D8D8" />
+
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_10"
+            android:layout_marginRight="@dimen/size_12"
+            android:layout_marginBottom="@dimen/size_26"
+            android:fontFamily="@font/roboto_regular"
+            android:paddingLeft="@dimen/size_12"
+            android:textColor="#212121"
+            android:visibility="visible"
+            tools:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/layoutPhiVanChuyen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_10"
+                android:background="#F0F0F0" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_12"
+                android:fontFamily="@font/roboto_medium"
+                android:paddingLeft="@dimen/size_12"
+                android:text="Phí vận chuyển"
+                android:textColor="@color/blueVip" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_0_5"
+                android:layout_marginLeft="@dimen/size_12"
+                android:layout_marginTop="@dimen/size_12"
+                android:background="#D8D8D8" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_10"
+                android:layout_marginRight="@dimen/size_12"
+                android:layout_marginBottom="@dimen/size_10"
+                android:fontFamily="@font/roboto_regular"
+                android:paddingLeft="@dimen/size_12"
+                android:text="Người nhận tự thanh toán phí vận chuyển quà."
+                android:textColor="#212121" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_10"
+            android:background="#F0F0F0" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgAvatar"
+                android:layout_width="@dimen/size_40"
+                android:layout_height="@dimen/size_40"
+                android:layout_marginLeft="@dimen/size_12"
+                android:layout_marginTop="@dimen/size_10"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@color/colorPrimary" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextView40"
+                android:layout_width="@dimen/size_0"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_8"
+                android:layout_marginRight="@dimen/size_12"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Được cung cấp bởi"
+                android:textColor="#828282"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/imgAvatar"
+                app:layout_constraintTop_toTopOf="@id/imgAvatar" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvNameShop"
+                android:layout_width="@dimen/size_0"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/size_18"
+                android:fontFamily="@font/roboto_medium"
+                android:textColor="#434343"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/appCompatTextView40"
+                app:layout_constraintStart_toStartOf="@+id/appCompatTextView40"
+                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView40"
+                tools:text="Công ty Cổ phần Điện Máy Xanh (không giới hạn dòng)" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/btnDoiQua"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_16"
+        android:layout_marginTop="@dimen/size_40"
+        android:layout_marginRight="@dimen/size_16"
+        android:background="@drawable/bg_blue_border_20"
+        android:fontFamily="@font/roboto_medium"
+        android:gravity="center"
+        android:paddingTop="@dimen/size_10"
+        android:paddingBottom="@dimen/size_10"
+        android:text="Đổi quà"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout7" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

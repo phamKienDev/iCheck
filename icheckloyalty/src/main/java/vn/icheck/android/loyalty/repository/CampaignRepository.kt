@@ -16,16 +16,53 @@ internal class CampaignRepository : BaseRepository() {
         val body = hashMapOf<String, Any>()
         body["voucher"] = voucher
 
-        val url = APIConstants.LOYALTY_HOST + "loyalty/voucher/scan"
+        val url = APIConstants.LOYALTY_HOST + "loyalty/cms/voucher/scan"
         requestApi(ICNetworkClient.getApiClientLoyalty().scanVoucher(url, body), listener)
     }
 
-    fun usedVoucher(voucher: String, note: String, listener: ICApiListener<ICKResponse<Boolean>>) {
+    fun usedVoucher(voucher: String,
+                    note: String?,
+                    phone: String,
+                    name: String?,
+                    email: String?,
+                    address: String?,
+                    city_id: Int?,
+                    district_id: Int?,
+                    ward_id: Int?,
+                    listener: ICApiListener<ICKResponse<ICKNone>>) {
         val body = hashMapOf<String, Any>()
-        body["voucher"] = voucher
-        body["note"] = note
+        body["voucher_code"] = voucher
+        body["phone"] = phone
 
-        val url = APIConstants.LOYALTY_HOST + "loyalty/voucher/use"
+        if (!name.isNullOrEmpty()) {
+            body["name"] = name
+        }
+
+        if (!email.isNullOrEmpty()) {
+            body["email"] = email
+        }
+
+        if (!address.isNullOrEmpty()) {
+            body["address"] = address
+        }
+
+        if (city_id != null) {
+            body["city_id"] = city_id
+        }
+
+        if (district_id != null) {
+            body["city_id"] = district_id
+        }
+
+        if (ward_id != null) {
+            body["city_id"] = ward_id
+        }
+
+        if (!note.isNullOrEmpty()) {
+            body["note"] = note
+        }
+
+        val url = APIConstants.LOYALTY_HOST + "loyalty/cms/voucher/mark-use"
         requestApi(ICNetworkClient.getApiClientLoyalty().usedVoucher(url, body), listener)
     }
 

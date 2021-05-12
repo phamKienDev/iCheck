@@ -12,17 +12,23 @@ class ICKScanVoucher : Serializable {
     val voucher: ICKVoucher? = null
 
     @Expose
-    var businessLoyalty: ICKPointLoyalty? = null
+    var rewardType: String? = null
 
     @Expose
-    var gift: ICKGift? = null
+    var shop_image: String? = null
 
     @Expose
-    var status: String? = null
+    var shop_name: String? = null
 
     @Expose
-    var owner: ICKOwner? = null
+    var image: ICThumbnail? = null
 
     @Expose
-    var status_title: String? = null
+    var campaign_image: ICThumbnail? = null
+
+    @Expose
+    var name: String? = null
+
+    @Expose
+    var desc: String? = null
 }

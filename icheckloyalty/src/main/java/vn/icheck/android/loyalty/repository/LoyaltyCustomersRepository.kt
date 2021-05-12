@@ -156,7 +156,6 @@ internal class LoyaltyCustomersRepository : BaseRepository() {
             params["avatar"] = user?.avatar!!
         }
 
-
         val url = APIConstants.LOYALTY_HOST + "loyalty/customer/campaign/receive-gift "
         requestApi(ICNetworkClient.getApiClientLoyalty().exchangeGift(url, params), listener)
     }

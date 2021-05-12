@@ -81,16 +81,14 @@ internal class GiftDetailFromAppAdapter : RecyclerViewCustomAdapter<ICKGift>() {
 
                 if (obj.voucher != null) {
 
-                    // TODO check nếu voucher còn hạn thì hiển thị Có thể sử dụng, nếu hết hạn hiển thị Đã hết hạn
-
-                    if (!obj.voucher.expired_at.isNullOrEmpty()){
-                        itemView.tvStatus.text = "Có thể sử dụng"
-                    }else{
+                    if (obj.voucher.checked_condition?.status == false) {
                         itemView.tvStatus.text = "Hết hạn sử dụng"
+                    } else {
+                        itemView.tvStatus.text = "Có thể sử dụng"
                     }
                 } else {
 
-                    when(obj.state){
+                    when (obj.state) {
                         1 -> {
                             itemView.tvStatus.text = "Chờ xác nhận"
                         }

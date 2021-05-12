@@ -10,6 +10,10 @@ import vn.icheck.android.loyalty.R
 import java.io.Serializable
 
 object ActivityHelper {
+    fun startActivityWithoutAnimation(activity: Activity, intent: Intent) {
+        activity.startActivity(intent)
+        activity.overridePendingTransition(R.anim.none_no_time, R.anim.none_no_time)
+    }
 
     inline fun <reified T : FragmentActivity> startActivity(fragment: Fragment) {
         fragment.startActivity(Intent(fragment.context, T::class.java))

@@ -167,5 +167,5 @@ interface ICNetworkAPI {
     fun scanVoucher(@Url url: String, @Body body: HashMap<String, Any>): Observable<ICKResponse<ICKScanVoucher>>
 
     @POST
-    fun usedVoucher(@Url url: String, @Body body: HashMap<String, Any>): Observable<ICKResponse<Boolean>>
+    fun usedVoucher(@Url url: String, @Body body: HashMap<String, Any>): Observable<ICKResponse<ICKNone>>
 }

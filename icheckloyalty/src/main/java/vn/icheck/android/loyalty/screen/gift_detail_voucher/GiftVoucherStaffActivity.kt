@@ -1,12 +1,17 @@
 package vn.icheck.android.loyalty.screen.gift_detail_voucher
 
+import android.content.Intent
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_gift_detail.*
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
+import vn.icheck.android.loyalty.base.ICMessageEvent
 import vn.icheck.android.loyalty.base.activity.BaseActivityGame
+import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.loyalty.helper.StatusBarHelper
+import vn.icheck.android.loyalty.model.ICKScanVoucher
+import vn.icheck.android.loyalty.screen.loyalty_customers.accept_ship_gift.AcceptShipGiftActivity
 
 class GiftVoucherStaffActivity : BaseActivityGame() {
     private val viewModel by viewModels<GiftVoucherStaffViewModel>()
@@ -27,6 +32,19 @@ class GiftVoucherStaffActivity : BaseActivityGame() {
         initRecyclerView()
         initSwipeLayout()
         initListener()
+
+        adapter.setListener(object : GiftVoucherStaffAdapter.IClickListener {
+            override fun onClickUsedButton(obj: ICKScanVoucher) {
+                ActivityHelper.startActivityWithoutAnimation(this@GiftVoucherStaffActivity, Intent(this@GiftVoucherStaffActivity, AcceptShipGiftActivity::class.java).apply {
+                    putExtra(ConstantsLoyalty.TYPE, 4)
+                    putExtra(ConstantsLoyalty.VOUCHER, obj.voucher?.code)
+                })
+            }
+
+            override fun onClickScanButton(obj: ICKScanVoucher) {
+                onBackPressed()
+            }
+        })
     }
 
     private fun initToolbar() {
@@ -88,5 +106,19 @@ class GiftVoucherStaffActivity : BaseActivityGame() {
                 adapter.setData(it)
             }
         })
+    }
+
+    override fun onMessageEvent(event: ICMessageEvent) {
+        when (event.type) {
+            ICMessageEvent.Type.BACK -> {
+                getData()
+            }
+            ICMessageEvent.Type.ON_BACK_PRESSED -> {
+                onBackPressed()
+            }
+            else -> {
+                super.onMessageEvent(event)
+            }
+        }
     }
 }

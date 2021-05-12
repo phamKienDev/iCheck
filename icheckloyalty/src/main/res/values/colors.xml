@@ -25,6 +25,8 @@
     <color name="blueVip10">#1A0064B1</color>
     <color name="green_opactity_20">#3349AA2D</color>
     <color name="orange_opactity">#33FBBB00</color>
+    <color name="red_opactity">#33EB5757</color>
+    <color name="gray_opactity">#33828282</color>
     <color name="green2">#49aa2d</color>
     <color name="orange_red">#FE4E1B</color>
     <color name="darkGray1">#434343</color>
