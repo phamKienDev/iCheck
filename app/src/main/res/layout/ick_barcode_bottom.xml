@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root"
-    android:paddingBottom="@dimen/size_16"
-    android:background="@drawable/rounded_dialog"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_dialog">
 
     <ImageButton
         android:id="@+id/btn_clear"
@@ -21,8 +19,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_12"
-        android:text="Nhập mã bằng tay"
         android:fontFamily="@font/barlow_semi_bold"
+        android:text="Nhập mã bằng tay"
         android:textColor="#057DDA"
         android:textSize="@dimen/font_18"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +37,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_clear" />
 
     <vn.icheck.android.ichecklibs.FocusableEditText
-        android:id="@+id/edt_barcode"
+        android:id="@+id/edtBarcode"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_16"
@@ -49,10 +47,11 @@
         android:layout_marginRight="@dimen/size_16"
         android:fontFamily="@font/barlow_medium"
         android:gravity="center"
+        android:inputType="number"
         android:hint="Nhập mã sản phẩm"
+        android:paddingBottom="@dimen/size_20"
         android:textColor="#212121"
         android:textColorHint="#B4B4B4"
-        android:paddingBottom="@dimen/size_20"
         android:textSize="@dimen/font_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +66,7 @@
         android:text="Nhập mã được in trên sản phẩm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_barcode" />
+        app:layout_constraintTop_toBottomOf="@+id/edtBarcode" />
 
     <vn.icheck.android.ichecklibs.EnableButton
         android:id="@+id/submit_barcode"
@@ -76,14 +75,38 @@
         android:layout_marginStart="@dimen/size_16"
         android:layout_marginTop="@dimen/size_8"
         android:layout_marginEnd="@dimen/size_16"
+        android:layout_marginBottom="@dimen/size_16"
         android:background="@drawable/background_button_disable"
         android:fontFamily="@font/barlow_medium"
         android:text="Check mã"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:textSize="@dimen/font_16"
+        app:layout_constraintBottom_toTopOf="@id/layoutKeyboard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView29" />
 
+    <FrameLayout
+        android:id="@id/layoutKeyboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorBackgroundGray"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/btnKeyboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="@dimen/size_12"
+            android:drawableStart="@drawable/ic_keyboard_black_18dp"
+            android:drawablePadding="@dimen/size_8"
+            android:paddingTop="@dimen/size_4"
+            android:paddingBottom="@dimen/size_4"
+            android:text="@string/doi_ban_phiim"
+            android:textColor="@color/colorNormalText"
+            android:visibility="gone" />
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
