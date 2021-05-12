@@ -281,7 +281,7 @@ object TextHelper {
         if (name.isNullOrEmpty()) {
             text = ICheckApplication.getInstance().getString(R.string.ten_dang_cap_nhat)
             typeface = ViewHelper.createTypeface(ICheckApplication.getInstance(), R.font.barlow_semi_bold_italic)
-            setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorDisableText))
+            setTextColor(Constant.getDisableTextColor(ICheckApplication.getInstance()))
         } else {
             setText(name)
             typeface = ViewHelper.createTypeface(ICheckApplication.getInstance(), R.font.barlow_medium)
@@ -294,7 +294,7 @@ object TextHelper {
             setText(Html.fromHtml(ICheckApplication.getInstance().getString(R.string.ten_dang_cap_nhat_i)))
             textSize = 14f
             typeface = ViewHelper.createTypeface(ICheckApplication.getInstance(), R.font.barlow_semi_bold_italic)
-            setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorDisableText))
+            setTextColor(Constant.getDisableTextColor(ICheckApplication.getInstance()))
         } else {
             setText(name)
             textSize = 16f
@@ -307,7 +307,7 @@ object TextHelper {
         if (price == null) {
             typeface = ViewHelper.createTypeface(ICheckApplication.getInstance(), R.font.barlow_semi_bold_italic)
             text = ICheckApplication.getInstance().getString(R.string.gia_dang_cap_nhat)
-            setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorDisableText))
+            setTextColor(Constant.getDisableTextColor(ICheckApplication.getInstance()))
         } else {
             typeface = ViewHelper.createTypeface(ICheckApplication.getInstance(), R.font.barlow_semi_bold)
             setText(ICheckApplication.getInstance().getString(R.string.xxx__d, formatMoneyPhay(price)))

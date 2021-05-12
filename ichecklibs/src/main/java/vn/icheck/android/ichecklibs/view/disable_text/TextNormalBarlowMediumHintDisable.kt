@@ -1,13 +1,19 @@
-package vn.icheck.android.ichecklibs.view.normal_text
+package vn.icheck.android.ichecklibs.view.disable_text
 
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
+import android.view.MotionEvent
+import android.view.View
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
+import vn.icheck.android.ichecklibs.view.TextBarlowMedium
+import vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
 
-class CheckBoxNormalText : androidx.appcompat.widget.AppCompatCheckBox {
+class TextNormalBarlowMediumHintDisable : TextNormalBarlowMedium {
     constructor(context: Context) : super(context) {
         setup()
     }
@@ -21,7 +27,6 @@ class CheckBoxNormalText : androidx.appcompat.widget.AppCompatCheckBox {
     }
 
     private fun setup() {
-        setTextColor(Constant.getNormalTextColor(context))
-        includeFontPadding = false
+        setHintTextColor(Constant.getDisableTextColor(context))
     }
 }

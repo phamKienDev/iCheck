@@ -110,7 +110,7 @@
         app:layout_constraintTop_toBottomOf="@id/imgAvatar"
         tools:text="Học cách sáng tạo trên TikTok để nhãn hàng của bạn nổi bật và thu hút khách hàng- Tối đa 2 dòng..." />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
         android:id="@+id/tvTenSpUpdating"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_40"
@@ -120,7 +120,6 @@
         android:includeFontPadding="false"
         android:lineSpacingExtra="@dimen/font_14"
         android:text="Tên đang cập nhật"
-        android:textColor="#b4b4b4"
         android:textSize="@dimen/font_14"
         android:textStyle="italic"
         android:visibility="invisible"
@@ -145,13 +144,12 @@
             android:layout_marginBottom="@dimen/size_8"
             android:orientation="horizontal">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
                 android:id="@+id/tvPriceUpdating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/barlow_medium"
                 android:text="Giá đang cập nhật"
-                android:textColor="#b4b4b4"
                 android:textSize="@dimen/font_14"
                 android:textStyle="italic"
                 android:visibility="gone" />
@@ -163,7 +161,7 @@
                 android:textSize="@dimen/font_16"
                 tools:text="2.987.000đ" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
                 android:id="@+id/tvPriceOriginal"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -171,7 +169,6 @@
                 android:layout_marginLeft="@dimen/size_6"
                 android:gravity="bottom"
                 android:lineSpacingExtra="@dimen/font_6"
-                android:textColor="#b4b4b4"
                 android:textSize="@dimen/font_14"
                 app:fontFamily="@font/barlow_medium"
                 tools:text="2.987.000đ" />
@@ -184,14 +181,13 @@
             android:layout_marginBottom="@dimen/size_10"
             android:orientation="horizontal">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
                 android:id="@+id/tvRatingUpdating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/barlow_medium"
                 android:lineSpacingExtra="@dimen/font_2_7"
                 android:text="Chưa có đánh giá"
-                android:textColor="#b4b4b4"
                 android:textSize="@dimen/font_12"
                 android:textStyle="italic"
                 android:visibility="gone" />

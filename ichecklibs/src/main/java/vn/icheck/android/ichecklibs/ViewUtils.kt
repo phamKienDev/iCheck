@@ -32,6 +32,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import vn.icheck.android.ichecklibs.databinding.CustomLayoutToastBinding
+import vn.icheck.android.ichecklibs.util.AfterTextWatcher
 import java.io.File
 
 var toast: Toast? = null
@@ -63,4 +64,37 @@ fun Float.toPx(): Float {
 
 fun Int.toPx(): Int {
     return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this.toFloat(), Resources.getSystem().displayMetrics).toInt()
+}
+
+fun EditText.addPriceTextWatcher() {
+    this.addTextChangedListener(object : AfterTextWatcher() {
+        var current = ""
+
+        override fun afterTextChanged(s: Editable?) {
+            if (s.toString() != current) {
+                if (current.length <= s.toString().length) {
+                    this@addPriceTextWatcher.removeTextChangedListener(this)
+                    val cleanString = s.toString().replace("[,.đ]".toRegex(), "")
+                    val formatted = String.format("%dđ", cleanString.toLong())
+                    current = formatted
+                    this@addPriceTextWatcher.setText(formatted)
+                    this@addPriceTextWatcher.setSelection(formatted.length)
+                    this@addPriceTextWatcher.addTextChangedListener(this)
+                } else {
+                    this@addPriceTextWatcher.removeTextChangedListener(this)
+                    val cleanString = s.toString().replace("[,.đ]".toRegex(), "")
+                    if (cleanString.length > 1) {
+                        val formatted = String.format("%dđ", cleanString.substring(0, cleanString.length - 1).toLong())
+                        current = formatted
+                        this@addPriceTextWatcher.setText(formatted)
+                        this@addPriceTextWatcher.setSelection(formatted.length)
+                    } else {
+                        this@addPriceTextWatcher.setText("")
+                        current = ""
+                    }
+                    this@addPriceTextWatcher.addTextChangedListener(this)
+                }
+            }
+        }
+    })
 }

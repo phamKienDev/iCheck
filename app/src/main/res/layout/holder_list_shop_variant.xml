@@ -110,12 +110,11 @@
                         android:textSize="@dimen/font_16"
                         tools:text="23,004,000đ" />
 
-                    <vn.icheck.android.ichecklibs.view.TextBarlowMedium
+                    <vn.icheck.android.ichecklibs.view.disable_text.TextDisableBarlowMedium
                         android:id="@+id/tv_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/barlow_medium"
-                        android:textColor="#b4b4b4"
                         android:textSize="@dimen/font_12"
                         tools:text="23,504,000đ" />
 

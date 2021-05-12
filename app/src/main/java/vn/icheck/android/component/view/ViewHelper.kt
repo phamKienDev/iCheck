@@ -671,7 +671,7 @@ object ViewHelper {
         tvVerified.compoundDrawablePadding = SizeHelper.size2
         tvVerified.includeFontPadding = false
         tvVerified.setText(R.string.verified)
-        tvVerified.setTextColor(ContextCompat.getColor(context, R.color.colorAccentGreen))
+        tvVerified.setTextColor(Constant.getAccentGreenColor(context))
         tvVerified.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
         tvVerified.gravity = Gravity.CENTER_VERTICAL
         layoutParent.addView(tvVerified)
@@ -918,7 +918,7 @@ object ViewHelper {
         btnLeft.setTextColor(Color.WHITE)
         btnLeft.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
         btnLeft.background = createStateListDrawable(
-                ContextCompat.getColor(context, R.color.colorDisableText), ContextCompat.getColor(context, R.color.darkGray3),
+                ContextCompat.getColor(context, R.color.colorDisableView), ContextCompat.getColor(context, R.color.darkGray3),
                 Color.TRANSPARENT, Color.TRANSPARENT, 0, (SizeHelper.size16 + SizeHelper.size2).toFloat()
         )
         layoutButton.addView(btnLeft)
@@ -1150,7 +1150,7 @@ object ViewHelper {
                         createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT),
                         null,
                         createTypeface(context, R.font.barlow_medium),
-                        ContextCompat.getColor(context, R.color.colorDisableText),
+                        Constant.getDisableTextColor(context),
                         14f))
             })
         }
@@ -1166,7 +1166,7 @@ object ViewHelper {
                         ContextCompat.getColor(context, R.color.gray), ContextCompat.getColor(context, R.color.gray),
                         SizeHelper.size1, SizeHelper.size36.toFloat()),
                 createTypeface(sansSerifMedium),
-                ContextCompat.getColor(context, R.color.colorDisableText),
+                Constant.getDisableTextColor(context),
                 14f,
                 1
         ).also {

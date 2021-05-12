@@ -149,7 +149,7 @@ class AdsProductVerticalHolderV2(parent: ViewGroup) : BaseViewHolder<ICProductTr
                     ViewHelper.createLayoutParams(SizeHelper.size6, SizeHelper.size2, SizeHelper.size6, 0),
                     null,
                     ViewHelper.createTypeface(context, R.font.barlow_semi_bold_italic),
-                    ContextCompat.getColor(context, R.color.colorDisableText),
+                    Constant.getDisableTextColor(context),
                     12f,
                     1).also {
                 it.text = Html.fromHtml(context.getString(R.string.chua_co_danh_gia_i))

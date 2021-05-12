@@ -123,7 +123,7 @@
             <View
                 android:layout_width="0.5dp"
                 android:layout_height="0dp"
-                android:background="#b4b4b4"
+                android:background="@color/colorDisableView"
                 app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView34"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

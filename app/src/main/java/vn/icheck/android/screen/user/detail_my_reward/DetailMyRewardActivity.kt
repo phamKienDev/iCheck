@@ -161,11 +161,11 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                     binding.tvRefuse simpleText "Số serial"
                     binding.tvMathecao.beVisible()
                     binding.tvState.beVisible()
-                    binding.tvState.setTextColor(ContextCompat.getColor(this, R.color.colorAccentGreen))
+                    binding.tvState.setTextColor(vn.icheck.android.ichecklibs.Constant.getAccentGreenColor(this))
                     binding.tvState simpleText data.dataRps?.pin
                     binding.tvRefuseDes simpleText data.dataRps?.serial
                     binding.tvState.setTextSize(14f)
-                    binding.tvRefuseDes.setTextColor(ContextCompat.getColor(this, R.color.colorAccentGreen))
+                    binding.tvRefuseDes.setTextColor(vn.icheck.android.ichecklibs.Constant.getAccentGreenColor(this))
                     binding.tvTime simpleText "Hạn sử dụng"
                     binding.tvTimeDes simpleText data.dataRps?.expiredDate?.getDayTime()
                     if (data.usingState == 1) {
@@ -331,7 +331,7 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                     resetTvWidth()
                     binding.tvMathecao.beVisible()
                     binding.tvMathecao simpleText "Giao quà thành công"
-                    binding.tvMathecao.setTextColor(ContextCompat.getColor(this, R.color.colorAccentGreen))
+                    binding.tvMathecao.setTextColor(vn.icheck.android.ichecklibs.Constant.getAccentGreenColor(this))
                     binding.tvMathecao.typeface = Typeface.createFromAsset(assets, "font/barlow_semi_bold.ttf")
                     binding.layoutBottom.beGone()
                 }
@@ -362,7 +362,7 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                 resetTvWidth()
                 binding.tvMathecao.beVisible()
                 binding.tvMathecao simpleText "Giao quà thành công"
-                binding.tvMathecao.setTextColor(ContextCompat.getColor(this, R.color.colorAccentGreen))
+                binding.tvMathecao.setTextColor(vn.icheck.android.ichecklibs.Constant.getAccentGreenColor(this))
                 binding.tvMathecao.typeface = Typeface.createFromAsset(assets, "font/barlow_semi_bold.ttf")
                 binding.layoutBottom.beGone()
             }

@@ -171,8 +171,7 @@
                     android:id="@+id/imgThumbnailLink"
                     android:layout_width="match_parent"
                     android:layout_height="141dp"
-                    android:visibility="gone"
-                    tools:src="@color/colorAccentBlue" />
+                    android:visibility="gone"/>
 
                 <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
                     android:id="@+id/tvTitle"
@@ -207,7 +206,7 @@
     </LinearLayout>
 
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
         android:id="@+id/tvTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -217,7 +216,6 @@
         android:gravity="end"
         android:includeFontPadding="false"
         android:singleLine="true"
-        android:textColor="@color/gray_b4"
         android:textSize="12sp"
         tools:text="12:34, 13/09/2020" />
 </LinearLayout>

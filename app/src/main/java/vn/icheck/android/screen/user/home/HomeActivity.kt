@@ -562,7 +562,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
     private fun setupTheme() {
         val theme = SettingManager.themeSetting?.theme
         if (!theme?.bottomBarSelectedTextColor.isNullOrEmpty()) {
-            ViewHelper.createColorStateList(ContextCompat.getColor(this, R.color.colorDisableText), Color.parseColor(theme!!.bottomBarSelectedTextColor))
+            ViewHelper.createColorStateList(ContextCompat.getColor(this, R.color.colorDisableView), Color.parseColor(theme!!.bottomBarSelectedTextColor))
         } else {
             vn.icheck.android.ichecklibs.ViewHelper.textColorDisableTextUncheckPrimaryChecked(this)
         }.apply {

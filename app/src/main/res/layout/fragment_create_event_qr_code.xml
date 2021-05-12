@@ -69,7 +69,7 @@
                 android:text="Tên sự kiện"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalText
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
                 android:id="@id/edtEvent"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_36"
@@ -82,7 +82,6 @@
                 android:hint="Bắt buộc"
                 android:paddingStart="@dimen/size_10"
                 android:paddingEnd="@dimen/size_10"
-                android:textColorHint="#b4b4b4"
                 android:textSize="@dimen/font_14" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -112,7 +111,7 @@
                 android:text="Địa chỉ"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalText
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
                 android:id="@id/edtAddress"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_36"
@@ -125,7 +124,6 @@
                 android:hint="Bắt buộc"
                 android:paddingStart="@dimen/size_10"
                 android:paddingEnd="@dimen/size_10"
-                android:textColorHint="#b4b4b4"
                 android:textSize="@dimen/font_14" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -155,7 +153,7 @@
                 android:text="Đường dẫn sự kiện"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.normal_text.EditTextNormalText
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
                 android:id="@id/edtEventLink"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_36"
@@ -168,7 +166,6 @@
                 android:hint="Bắt buộc"
                 android:paddingStart="@dimen/size_10"
                 android:paddingEnd="@dimen/size_10"
-                android:textColorHint="#b4b4b4"
                 android:textSize="@dimen/font_14" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -198,7 +195,7 @@
                 android:text="Ngày bắt đầu"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
+            <vn.icheck.android.ichecklibs.view.disable_text.TextNormalBarlowMediumHintDisable
                 android:id="@id/edtStartDate"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_36"
@@ -212,7 +209,6 @@
                 android:hint="Bắt buộc"
                 android:paddingStart="@dimen/size_10"
                 android:paddingEnd="@dimen/size_10"
-                android:textColorHint="#b4b4b4"
                 android:textSize="@dimen/font_14" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -242,7 +238,7 @@
                 android:text="Ngày kết thúc"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
+            <vn.icheck.android.ichecklibs.view.disable_text.TextNormalBarlowMediumHintDisable
                 android:id="@id/edtEndDate"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_36"
@@ -256,7 +252,6 @@
                 android:hint="Bắt buộc"
                 android:paddingStart="@dimen/size_10"
                 android:paddingEnd="@dimen/size_10"
-                android:textColorHint="#b4b4b4"
                 android:textSize="@dimen/font_14" />
 
             <androidx.appcompat.widget.AppCompatTextView

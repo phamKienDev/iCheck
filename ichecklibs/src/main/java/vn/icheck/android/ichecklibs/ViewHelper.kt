@@ -10,6 +10,7 @@ import android.view.Gravity
 import android.widget.LinearLayout
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import vn.icheck.android.ichecklibs.util.dpToPx
 import kotlin.math.roundToInt
 
@@ -152,12 +153,19 @@ object ViewHelper {
         return layerDrawable
     }
 
+
+    fun getDrawableFillColor(context: Context,resource: Int, color: String): Drawable? {
+        return ContextCompat.getDrawable(context, resource)?.apply {
+            DrawableCompat.setTint(this, Color.parseColor(color))
+        }
+    }
+
     /*
     * Primary Color
     * */
     fun textColorDisableTextUncheckPrimaryChecked(context: Context): ColorStateList {
         return createColorStateList(
-                ContextCompat.getColor(context, R.color.colorDisableText),
+                Constant.getDisableTextColor(context),
                 Constant.getPrimaryColor(context)
         )
     }

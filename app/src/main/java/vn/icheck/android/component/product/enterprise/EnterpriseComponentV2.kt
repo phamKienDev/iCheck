@@ -52,7 +52,7 @@ class EnterpriseComponentV2(parent: ViewGroup, val recycledViewPool: RecyclerVie
             obj.business.name
         }
 
-        itemView.imgDetail.setImageResource(if (obj.background == R.color.colorDisableText) {
+        itemView.imgDetail.setImageResource(if (obj.background == R.color.colorDisableView) {
             R.drawable.ic_arrow_right_gray_28px
         } else {
             R.drawable.ic_arrow_right_white_bg_blue_28px

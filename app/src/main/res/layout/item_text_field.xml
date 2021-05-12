@@ -15,7 +15,7 @@
         android:textSize="@dimen/font_14"
         android:textStyle="normal" />
 
-    <androidx.appcompat.widget.AppCompatEditText
+    <vn.icheck.android.ichecklibs.view.disable_text.EdittextDisableHint
         android:id="@+id/edtTextArea"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_98"
@@ -30,7 +30,6 @@
         android:paddingTop="@dimen/size_10"
         android:paddingBottom="@dimen/size_10"
         android:textColor="#000000"
-        android:textColorHint="#b4b4b4"
         android:textSize="@dimen/font_14"
         android:textStyle="normal" />
 

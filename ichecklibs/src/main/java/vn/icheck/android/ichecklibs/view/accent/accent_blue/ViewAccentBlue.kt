@@ -1,14 +1,11 @@
-package vn.icheck.android.ichecklibs.view.normal_text
+package vn.icheck.android.ichecklibs.view.accent.accent_blue
 
 import android.content.Context
-import android.graphics.Color
 import android.util.AttributeSet
-import android.widget.RadioButton
-import androidx.core.content.ContextCompat
+import android.view.View
 import vn.icheck.android.ichecklibs.Constant
-import vn.icheck.android.ichecklibs.R
 
-class RadioButtonNormalText : androidx.appcompat.widget.AppCompatRadioButton {
+class ViewAccentBlue : View {
     constructor(context: Context) : super(context) {
         setup()
     }
@@ -22,7 +19,6 @@ class RadioButtonNormalText : androidx.appcompat.widget.AppCompatRadioButton {
     }
 
     private fun setup() {
-        setTextColor(Constant.getNormalTextColor(context))
-        includeFontPadding = false
+        setBackgroundColor(Constant.getAccentBlueColor(context))
     }
 }

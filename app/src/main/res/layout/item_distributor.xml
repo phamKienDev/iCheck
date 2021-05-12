@@ -125,7 +125,7 @@
                 android:layout_width="wrap_content"
                 tools:text="0325.332.201" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
                 android:id="@+id/tvDangCapNhatSDT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -137,7 +137,6 @@
                 android:drawablePadding="@dimen/size_2"
                 android:textStyle="italic"
                 android:includeFontPadding="false"
-                android:textColor="#B4B4B4"
                 android:textSize="@dimen/font_14"
                 android:text="Số điện thoại đang cập nhật"
                 android:drawableLeft="@drawable/ic_list_blue_12px" />
@@ -169,7 +168,7 @@
                     android:textSize="@dimen/font_14"
                     tools:text="MST: 5822948" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
                     android:id="@+id/tvDangCapNhatMST"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -178,7 +177,6 @@
                     android:visibility="visible"
                     android:textStyle="italic"
                     android:includeFontPadding="false"
-                    android:textColor="#B4B4B4"
                     android:textSize="@dimen/font_14"
                     android:text="Đang cập nhật"/>
             </LinearLayout>
@@ -211,14 +209,13 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_seemore_right_36px" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.accent.accent_blue.TextAccentBlue
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_8"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center_horizontal"
             android:text="Xem tất cả"
-            android:textColor="@color/colorAccentBlue"
             android:textSize="@dimen/font_14" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

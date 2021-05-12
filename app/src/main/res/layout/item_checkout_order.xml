@@ -236,7 +236,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvMoney" />
 
-        <androidx.appcompat.widget.AppCompatEditText
+        <vn.icheck.android.ichecklibs.view.disable_text.EdittextDisableHint
             android:id="@id/edtNote"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_30"
@@ -250,7 +250,6 @@
             android:inputType="textMultiLine"
             android:maxLines="2"
             android:textColor="#434343"
-            android:textColorHint="#b4b4b4"
             android:textSize="@dimen/font_14"
             android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="parent"

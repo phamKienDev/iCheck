@@ -1,11 +1,11 @@
-package vn.icheck.android.ichecklibs.view.normal_text
+package vn.icheck.android.ichecklibs.view.accent.accent_blue
 
 import android.content.Context
 import android.util.AttributeSet
-import android.widget.EditText
+import com.rd.PageIndicatorView
 import vn.icheck.android.ichecklibs.Constant
 
-class EditTextNormalText : EditText {
+class PageIndicatorSelectAccentBlue : PageIndicatorView {
     constructor(context: Context) : super(context) {
         setup()
     }
@@ -19,8 +19,7 @@ class EditTextNormalText : EditText {
     }
 
     private fun setup() {
-        setTextColor(Constant.getNormalTextColor(context))
-        setHintTextColor(Constant.getSecondTextColor(context))
-        setLinkTextColor(Constant.getSecondTextColor(context))
+        selectedColor = Constant.getAccentBlueColor(context)
+        unselectedColor = Constant.getAccentBlueColor(context)
     }
 }

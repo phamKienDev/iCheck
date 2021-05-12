@@ -80,7 +80,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent">
 
-                    <androidx.appcompat.widget.AppCompatEditText
+                    <vn.icheck.android.ichecklibs.view.disable_text.EdittextDisableHint
                         android:id="@id/edtPhone"
                         style="@style/Account_Input"
                         android:drawableStart="@drawable/ic_account_blue_18"
@@ -99,7 +99,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent">
 
-                    <androidx.appcompat.widget.AppCompatEditText
+                    <vn.icheck.android.ichecklibs.view.disable_text.EdittextDisableHint
                         android:id="@id/edtPassword"
                         style="@style/Account_Input"
                         android:drawableStart="@drawable/ic_password_unlock_blue_18"
@@ -194,7 +194,7 @@
                         android:layout_height="@dimen/size_1"
                         android:layout_marginEnd="@dimen/size_8"
                         android:layout_marginRight="@dimen/size_8"
-                        android:background="@color/colorDisableText"
+                        android:background="@color/colorDisableView"
                         app:layout_constraintBottom_toBottomOf="@id/txtContent"
                         app:layout_constraintEnd_toStartOf="@id/txtContent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -220,7 +220,7 @@
                         android:layout_height="@dimen/size_1"
                         android:layout_marginStart="@dimen/size_8"
                         android:layout_marginLeft="@dimen/size_8"
-                        android:background="@color/colorDisableText"
+                        android:background="@color/colorDisableView"
                         app:layout_constraintBottom_toBottomOf="@id/txtContent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/txtContent"

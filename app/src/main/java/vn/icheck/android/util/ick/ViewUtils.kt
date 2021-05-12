@@ -23,6 +23,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.DrawableRes
 import androidx.annotation.IdRes
+import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.children
@@ -283,6 +284,39 @@ fun Float.toDp(): Float {
 }
 
 fun EditText.addPriceTextWatcher() {
+    this.addTextChangedListener(object : AfterTextWatcher() {
+        var current = ""
+
+        override fun afterTextChanged(s: Editable?) {
+            if (s.toString() != current) {
+                if (current.length <= s.toString().length) {
+                    this@addPriceTextWatcher.removeTextChangedListener(this)
+                    val cleanString = s.toString().replace("[,.đ]".toRegex(), "")
+                    val formatted = String.format("%dđ", cleanString.toLong())
+                    current = formatted
+                    this@addPriceTextWatcher.setText(formatted)
+                    this@addPriceTextWatcher.setSelection(formatted.length)
+                    this@addPriceTextWatcher.addTextChangedListener(this)
+                } else {
+                    this@addPriceTextWatcher.removeTextChangedListener(this)
+                    val cleanString = s.toString().replace("[,.đ]".toRegex(), "")
+                    if (cleanString.length > 1) {
+                        val formatted = String.format("%dđ", cleanString.substring(0, cleanString.length - 1).toLong())
+                        current = formatted
+                        this@addPriceTextWatcher.setText(formatted)
+                        this@addPriceTextWatcher.setSelection(formatted.length)
+                    } else {
+                        this@addPriceTextWatcher.setText("")
+                        current = ""
+                    }
+                    this@addPriceTextWatcher.addTextChangedListener(this)
+                }
+            }
+        }
+    })
+}
+
+fun AppCompatEditText.addPriceTextWatcher() {
     this.addTextChangedListener(object : AfterTextWatcher() {
         var current = ""
 

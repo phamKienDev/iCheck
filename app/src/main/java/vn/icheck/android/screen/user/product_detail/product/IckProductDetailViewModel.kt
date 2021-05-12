@@ -668,7 +668,7 @@ class IckProductDetailViewModel : BaseViewModel() {
                 if (owner!!.verified == true) {
                     EnterpriseModelV2(owner!!, null, R.color.colorPrimary)
                 } else {
-                    EnterpriseModelV2(owner!!, R.drawable.ic_not_verified_24px, R.color.colorDisableText)
+                    EnterpriseModelV2(owner!!, R.drawable.ic_not_verified_24px, R.color.colorDisableView)
                 }
             }
 
@@ -682,7 +682,7 @@ class IckProductDetailViewModel : BaseViewModel() {
             if (productDetail?.unverifiedOwner != null) {
                 val newLayout = ICLayout()
                 newLayout.viewType = ICViewTypes.ENTERPRISE_TYPE
-                newLayout.data = EnterpriseModelV2(productDetail.unverifiedOwner, R.drawable.ic_not_verified_24px, R.color.colorDisableText)
+                newLayout.data = EnterpriseModelV2(productDetail.unverifiedOwner, R.drawable.ic_not_verified_24px, R.color.colorDisableView)
                 onAddLayout.value = newLayout
             }
         }

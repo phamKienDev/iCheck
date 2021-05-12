@@ -53,7 +53,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/imgIcon">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <vn.icheck.android.ichecklibs.view.disable_text.TextInputEdittextDisableHint
                         android:id="@id/edtPhone"
                         style="@style/Account_Input"
                         android:drawableStart="@drawable/ic_baseline_phone_24"
@@ -71,7 +71,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/layoutInputPhone">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <vn.icheck.android.ichecklibs.view.disable_text.TextInputEdittextDisableHint
                         android:id="@id/edtLastName"
                         style="@style/Account_Input"
                         android:drawableStart="@drawable/ic_account_blue_18"
@@ -89,7 +89,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/layoutInputLastName">
 
-                    <androidx.appcompat.widget.AppCompatEditText
+                    <vn.icheck.android.ichecklibs.view.disable_text.EdittextDisableHint
                         android:id="@id/edtFirstName"
                         style="@style/Account_Input"
                         android:drawableStart="@drawable/ic_account_blue_18"
@@ -107,7 +107,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/layoutInputFirstName">
 
-                    <androidx.appcompat.widget.AppCompatEditText
+                    <vn.icheck.android.ichecklibs.view.disable_text.EdittextDisableHint
                         android:id="@id/edtPassword"
                         style="@style/Account_Input"
                         android:drawableStart="@drawable/ic_password_unlock_blue_18"
@@ -149,7 +149,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/layoutInputPassword">
 
-                    <androidx.appcompat.widget.AppCompatEditText
+                    <vn.icheck.android.ichecklibs.view.disable_text.EdittextDisableHint
                         android:id="@id/edtRePassword"
                         style="@style/Account_Input"
                         android:drawableStart="@drawable/ic_password_unlock_blue_18"

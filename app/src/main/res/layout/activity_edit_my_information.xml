@@ -181,7 +181,7 @@
                         android:paddingRight="@dimen/size_12"
                         android:text="@string/nam" />
 
-                    <RadioButton
+                    <vn.icheck.android.ichecklibs.view.disable_text.RadiobuttonDisableUncheckYellowChecked
                         android:id="@id/rbFemale"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/size_30"
@@ -200,10 +200,9 @@
                         android:paddingLeft="@dimen/size_8"
                         android:paddingEnd="@dimen/size_12"
                         android:paddingRight="@dimen/size_12"
-                        android:text="@string/nu"
-                        android:textColor="@color/text_color_update_gender_female" />
+                        android:text="@string/nu" />
 
-                    <RadioButton
+                    <vn.icheck.android.ichecklibs.view.disable_text.RadiobuttonDisableUncheckVioletChecked
                         android:id="@+id/rbGay"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/size_30"
@@ -222,8 +221,7 @@
                         android:paddingLeft="@dimen/size_8"
                         android:paddingEnd="@dimen/size_12"
                         android:paddingRight="@dimen/size_12"
-                        android:text="@string/khac"
-                        android:textColor="@color/text_color_update_gender_gay" />
+                        android:text="@string/khac" />
                 </RadioGroup>
             </TableRow>
 
@@ -233,7 +231,7 @@
                     style="@style/UpdateProfile_Title_Seccond"
                     android:text="Họ" />
 
-                <vn.icheck.android.ui.edittext.OldFocusableEditText
+                <vn.icheck.android.ichecklibs.view.disable_text.OldFocusableEdittextDisableHint
                     android:id="@+id/edt_lastname"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -245,7 +243,6 @@
                     android:hint="Nhập họ"
                     android:inputType="textCapWords"
                     android:maxLength="30"
-                    android:textColorHint="#b4b4b4"
                     android:textSize="@dimen/font_14" />
 
             </TableRow>
@@ -264,7 +261,7 @@
                     style="@style/UpdateProfile_Title_Seccond"
                     android:text="Tên" />
 
-                <vn.icheck.android.ui.edittext.OldFocusableEditText
+                <vn.icheck.android.ichecklibs.view.disable_text.OldFocusableEdittextDisableHint
                     android:id="@+id/edt_firstname"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -275,7 +272,6 @@
                     android:hint="Nhập tên đệm và tên"
                     android:inputType="textCapWords"
                     android:maxLength="30"
-                    android:textColorHint="#b4b4b4"
                     android:textSize="@dimen/font_14" />
 
             </TableRow>
@@ -294,7 +290,7 @@
                     style="@style/UpdateProfile_Title"
                     android:text="@string/ngay_sinh" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.disable_text.TextDisableHint
                     android:id="@id/txtBirthday"
                     style="@style/UpdateProfile_Input"
                     android:drawableEnd="@drawable/ic_calendar_off_24px"
@@ -316,7 +312,7 @@
                     style="@style/UpdateProfile_Title"
                     android:text="@string/so_dien_thoai" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.disable_text.TextDisableHint
                     android:id="@id/edtPhone"
                     style="@style/UpdateProfile_Input"
                     android:layout_width="match_parent"
@@ -370,7 +366,7 @@
                     style="@style/UpdateProfile_Title"
                     android:text="@string/email" />
 
-                <vn.icheck.android.ui.edittext.OldFocusableEditText
+                <vn.icheck.android.ichecklibs.view.disable_text.OldFocusableEdittextDisableHint
                     android:id="@id/edtEmail"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -380,7 +376,6 @@
                     android:hint="@string/nhap_email"
                     android:maxLength="255"
                     android:inputType="textEmailAddress"
-                    android:textColorHint="#b4b4b4"
                     android:textSize="@dimen/font_14" />
             </TableRow>
 
@@ -398,7 +393,7 @@
                     style="@style/UpdateProfile_Title"
                     android:text="@string/tinh_thanh" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.disable_text.TextDisableHint
                     android:id="@id/txtProvince"
                     style="@style/UpdateProfile_Input"
                     android:layout_height="match_parent"
@@ -426,7 +421,7 @@
                     android:paddingRight="@dimen/size_32"
                     android:text="@string/quan_huyen" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.disable_text.TextDisableHint
                     android:id="@id/txtDistrict"
                     style="@style/UpdateProfile_Input"
                     android:drawableEnd="@drawable/ic_arrow_down_blue_24px"
@@ -449,7 +444,7 @@
                     style="@style/UpdateProfile_Title"
                     android:text="@string/phuong_xa" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.disable_text.TextDisableHint
                     android:id="@id/tvWard"
                     style="@style/UpdateProfile_Input"
                     android:drawableEnd="@drawable/ic_arrow_down_blue_24px"
@@ -472,7 +467,7 @@
                     style="@style/UpdateProfile_Title"
                     android:text="@string/dia_chi" />
 
-                <vn.icheck.android.ui.edittext.OldFocusableEditText
+                <vn.icheck.android.ichecklibs.view.disable_text.OldFocusableEdittextDisableHint
                     android:id="@id/edtAddress"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -485,7 +480,6 @@
                     android:hint="@string/nhap_dia_chi"
                     android:inputType="text"
                     android:maxLength="512"
-                    android:textColorHint="#b4b4b4"
                     android:textSize="@dimen/font_14" />
             </TableRow>
 
@@ -519,7 +513,7 @@
                         android:text="@string/update_profile_gift_facebook"
                         android:visibility="gone" />
 
-                    <androidx.appcompat.widget.AppCompatEditText
+                    <vn.icheck.android.ichecklibs.view.disable_text.EdittextDisableHint
                         android:id="@+id/edtConnectFb"
                         style="@style/UpdateProfile_Input"
                         android:layout_width="match_parent"
@@ -530,7 +524,7 @@
                         android:inputType="text"
                         android:textColor="@color/light_blue" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.disable_text.TextDisableHint
                         android:id="@id/txtConfirmedFacebook"
                         style="@style/UpdateProfile_Input"
                         android:inputType="textCapWords"
@@ -560,7 +554,7 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.disable_text.TextDisableHint
                         android:id="@+id/edtDanhtinh"
                         style="@style/UpdateProfile_Input"
                         android:hint="@string/chua_xac_thuc"
@@ -620,7 +614,7 @@
 
             <TableRow>
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.disable_text.TextDisableHint
                     android:id="@id/txtChangePassword"
                     style="@style/UpdateProfile_Input"
                     android:layout_width="match_parent"

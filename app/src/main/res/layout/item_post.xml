@@ -416,7 +416,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/edtComment" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
                     android:id="@id/edtComment"
                     android:layout_width="@dimen/size_0"
                     android:layout_height="@dimen/size_36"
@@ -426,7 +426,6 @@
                     android:paddingEnd="@dimen/size_10"
                     android:text="@string/viet_binh_luan"
                     android:textAlignment="gravity"
-                    android:textColor="@color/colorDisableText"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/imgCommentAvatar"
                     app:layout_constraintTop_toTopOf="parent" />

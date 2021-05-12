@@ -51,7 +51,7 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
                     } else {
                         binding.tvNameProduct.text = itemView.context.getString(R.string.ten_dang_cap_nhat)
                         binding.tvNameProduct.typeface = ResourcesCompat.getFont(itemView.context, R.font.barlow_semi_bold_italic)
-                        binding.tvNameProduct.setTextColor(Color.parseColor("#B4B4B4"))
+                        binding.tvNameProduct.setTextColor(vn.icheck.android.ichecklibs.Constant.getDisableTextColor(itemView.context))
                         binding.tvNameProduct.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_home_verify_16dp, 0, 0, 0)
                         binding.tvNameProduct.compoundDrawablePadding = SizeHelper.size5
                     }
@@ -64,7 +64,7 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
                     } else {
                         binding.tvNameProduct.text = itemView.context.getString(R.string.ten_dang_cap_nhat)
                         binding.tvNameProduct.typeface = ResourcesCompat.getFont(itemView.context, R.font.barlow_semi_bold_italic)
-                        binding.tvNameProduct.setTextColor(Color.parseColor("#B4B4B4"))
+                        binding.tvNameProduct.setTextColor(vn.icheck.android.ichecklibs.Constant.getDisableTextColor(itemView.context))
                         binding.tvNameProduct.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                     }
                 }

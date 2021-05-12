@@ -312,6 +312,15 @@ object Constant {
         }
     }
 
+    val getDisableTextCode: String
+        get() {
+            return if (disableTextColor.isNotEmpty()) {
+                disableTextColor
+            } else {
+                "#B4B4B4"
+            }
+        }
+
     /*
     *Color accent blue
     * * */
@@ -328,6 +337,28 @@ object Constant {
         get() {
             return if (accentBlueColor.isNotEmpty()) {
                 accentBlueColor
+            } else {
+                "#00BAF2"
+            }
+        }
+
+
+    /*
+    *Color accent green
+    * * */
+
+    fun getAccentGreenColor(context: Context): Int {
+        return if (accentGreenColor.isNotEmpty()) {
+            Color.parseColor(accentGreenColor)
+        } else {
+            ContextCompat.getColor(context, R.color.colorAccentGreen)
+        }
+    }
+
+    val getAccentGreenCode: String
+        get() {
+            return if (accentGreenColor.isNotEmpty()) {
+                accentGreenColor
             } else {
                 "#00BAF2"
             }

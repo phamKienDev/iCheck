@@ -168,7 +168,7 @@
                         android:paddingRight="@dimen/size_12"
                         android:text="@string/nam" />
 
-                    <RadioButton
+                    <vn.icheck.android.ichecklibs.view.disable_text.RadiobuttonDisableUncheckYellowChecked
                         android:id="@id/rbFemale"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/size_30"
@@ -187,10 +187,9 @@
                         android:paddingLeft="@dimen/size_8"
                         android:paddingEnd="@dimen/size_12"
                         android:paddingRight="@dimen/size_12"
-                        android:text="@string/nu"
-                        android:textColor="@color/text_color_update_gender_female" />
+                        android:text="@string/nu" />
 
-                    <RadioButton
+                    <vn.icheck.android.ichecklibs.view.disable_text.RadiobuttonDisableUncheckVioletChecked
                         android:id="@+id/rbGay"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/size_30"
@@ -209,8 +208,7 @@
                         android:paddingLeft="@dimen/size_8"
                         android:paddingEnd="@dimen/size_12"
                         android:paddingRight="@dimen/size_12"
-                        android:text="@string/khac"
-                        android:textColor="@color/text_color_update_gender_gay" />
+                        android:text="@string/khac" />
                 </RadioGroup>
             </TableRow>
 
@@ -447,7 +445,7 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.disable_text.TextDisableHint
                         android:id="@+id/edtDanhtinh"
                         style="@style/UpdateProfile_Input"
                         android:hint="@string/chua_xac_thuc"

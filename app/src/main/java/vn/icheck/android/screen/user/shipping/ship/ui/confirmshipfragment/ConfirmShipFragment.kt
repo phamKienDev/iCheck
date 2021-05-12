@@ -263,7 +263,7 @@ class ConfirmShipFragment : Fragment() {
                     binding.groupNote.beGone()
                 } else {
                     val ss = SpannableString("Ghi chú: ${detailOrderResponse.note}")
-                    ss.setSpan(ForegroundColorSpan(Color.parseColor("#b4b4b4")), 0, 8, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    ss.setSpan(ForegroundColorSpan(vn.icheck.android.ichecklibs.Constant.getDisableTextColor(requireContext())), 0, 8, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
                     binding.groupNote.beVisible()
                     binding.edtNotes.isFocusable = false
                     binding.edtNotes.isFocusableInTouchMode = false
@@ -300,7 +300,7 @@ class ConfirmShipFragment : Fragment() {
                     3, 4 -> {
                         binding.imgStatus.setImageResource(R.drawable.img_shipping)
                         binding.btnConfirm simpleText "Hủy đơn"
-                        binding.btnConfirm.setTextColor(Color.parseColor("#B4B4B4"))
+                        binding.btnConfirm.setTextColor(vn.icheck.android.ichecklibs.Constant.getDisableTextColor(requireContext()))
                         binding.btnConfirm.setBackgroundResource(R.drawable.bg_stroke_gray_corner_4)
                         binding.btnConfirm.alpha = 0.7f
                         binding.tvReport.beVisible()
@@ -314,7 +314,7 @@ class ConfirmShipFragment : Fragment() {
                     5 -> {
                         binding.imgStatus.setImageResource(R.drawable.img_shipped)
                         binding.btnConfirm simpleText "Đánh giá đơn hàng"
-                        binding.btnConfirm.setTextColor(Color.parseColor("#B4B4B4"))
+                        binding.btnConfirm.setTextColor(vn.icheck.android.ichecklibs.Constant.getDisableTextColor(requireContext()))
                         binding.btnConfirm.setBackgroundResource(R.drawable.bg_stroke_gray_corner_4)
                         binding.textView91 simpleText "Thời gian nhận hàng"
                         binding.tvShipTime simpleText detailOrderResponse.completedAt?.getHourMinutesTime()

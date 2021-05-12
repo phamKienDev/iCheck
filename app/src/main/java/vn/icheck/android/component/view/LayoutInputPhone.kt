@@ -70,7 +70,7 @@ class LayoutInputPhone : LinearLayout {
                 24f).also {
             it.setPadding(SizeHelper.size4, 0, SizeHelper.size4, 0)
             it.gravity = Gravity.CENTER
-            it.setHintTextColor(ContextCompat.getColor(context, R.color.colorDisableText))
+            it.setHintTextColor(Constant.getDisableTextColor(context))
             it.setHint(R.string.nhap_so_dien_thoai)
         })
     }

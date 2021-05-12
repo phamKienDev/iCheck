@@ -10,7 +10,7 @@
         layout="@layout/toolbar_light_blue"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.tabs.TabLayout
+    <vn.icheck.android.ichecklibs.view.disable_text.TabLayoutDisableAndBlueColor
         android:id="@id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_40"
@@ -21,8 +21,7 @@
         app:tabIndicatorHeight="@dimen/size_3"
         app:tabMode="scrollable"
         app:tabSelectedTextColor="@color/light_blue"
-        app:tabTextAppearance="@style/TabLayout_16sp_Barlow"
-        app:tabTextColor="@color/colorDisableText" />
+        app:tabTextAppearance="@style/TabLayout_16sp_Barlow" />
 
     <View
         android:id="@+id/viewShadow"

@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.msp_holder.view.*
 import vn.icheck.android.R
 import vn.icheck.android.fragments.ecard.PurchaseCardFragment
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.topup.TopupServices
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -101,7 +102,7 @@ class McardAdapter : RecyclerView.Adapter<McardAdapter.NetworkHolder>() {
                 itemView.tvPrice.setTextColor(Color.parseColor("#434343"))
             } else {
                 itemView.layoutContent.setBackgroundResource(R.drawable.bg_default_card_loyalty)
-                itemView.tvPrice.setTextColor(Color.parseColor("#b4b4b4"))
+                itemView.tvPrice.setTextColor(Constant.getDisableTextColor(itemView.context))
             }
         }
 

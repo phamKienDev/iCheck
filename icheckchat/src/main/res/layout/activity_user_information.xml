@@ -76,7 +76,7 @@
                 android:layout_height="1dp"
                 android:background="@color/colorBackgroundGray" />
 
-            <vn.icheck.android.ichecklibs.view.normal_text.CheckedNormalText
+            <vn.icheck.android.ichecklibs.view.normal_text.CheckedNormal
                 android:id="@+id/btnCheckedNotification"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -97,7 +97,7 @@
                 android:layout_height="1dp"
                 android:background="@color/colorBackgroundGray" />
 
-            <vn.icheck.android.ichecklibs.view.normal_text.CheckedNormalText
+            <vn.icheck.android.ichecklibs.view.normal_text.CheckedNormal
                 android:id="@+id/btnBlock"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
