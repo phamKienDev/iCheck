@@ -317,7 +317,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ic_crow"
         android:layout_width="@dimen/size_36"
         android:layout_height="@dimen/size_36"

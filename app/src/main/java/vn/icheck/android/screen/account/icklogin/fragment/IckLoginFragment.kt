@@ -3,6 +3,8 @@ package vn.icheck.android.screen.account.icklogin.fragment
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputType
+import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,12 +16,23 @@ import com.facebook.CallbackManager
 import com.facebook.login.LoginManager
 import dagger.hilt.android.AndroidEntryPoint
 import org.greenrobot.eventbus.EventBus
+import vn.icheck.android.R
 import vn.icheck.android.base.fragment.CoroutineFragment
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.ISettingListener
 import vn.icheck.android.databinding.FragmentIckLoginBinding
-import vn.icheck.android.helper.*
-import vn.icheck.android.network.base.*
+import vn.icheck.android.helper.CartHelper
+import vn.icheck.android.helper.RelationshipHelper
+import vn.icheck.android.helper.SettingHelper
+import vn.icheck.android.helper.ShareSessionToModule
+import vn.icheck.android.ichecklibs.visibleOrGone
+import vn.icheck.android.lib.keyboard.KeyboardVisibilityEvent
+import vn.icheck.android.lib.keyboard.KeyboardVisibilityEventListener
+import vn.icheck.android.lib.keyboard.Unregistrar
+import vn.icheck.android.network.base.ICNewApiListener
+import vn.icheck.android.network.base.ICResponse
+import vn.icheck.android.network.base.ICResponseCode
+import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.feature.page.PageRepository
 import vn.icheck.android.network.models.ICClientSetting
 import vn.icheck.android.network.models.ICRelationshipsInformation
@@ -44,17 +57,28 @@ class IckLoginFragment : CoroutineFragment() {
     @Inject
     lateinit var loginManager: LoginManager
 
-    var _binding:FragmentIckLoginBinding? = null
-    val binding get() = _binding!!
+    lateinit var binding: FragmentIckLoginBinding
+
+    private var unregistrar: Unregistrar? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        _binding = FragmentIckLoginBinding.inflate(inflater, container, false)
+        binding = FragmentIckLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
+    override fun onResume() {
+        super.onResume()
+        unregistrar = KeyboardVisibilityEvent.registerEventListener(requireActivity(), object : KeyboardVisibilityEventListener {
+            override fun onVisibilityChanged(isOpen: Boolean) {
+                binding.btnKeyboard.visibleOrGone(isOpen && binding.edtPassword.isFocused)
+            }
+        })
+    }
+
+    override fun onPause() {
+        super.onPause()
+        unregistrar?.unregister()
+        unregistrar = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -68,9 +92,9 @@ class IckLoginFragment : CoroutineFragment() {
 //                    binding.edtPhone.setSelection(1)
 //                }
                 if (s.toString().isNotEmpty()) {
-                    binding.edtPhone.setPadding(24.toPx(),0,0,20.toPx())
+                    binding.edtPhone.setPadding(24.toPx(), 0, 0, 20.toPx())
                 } else {
-                    binding.edtPhone.setPadding(0,0,0,20.toPx())
+                    binding.edtPhone.setPadding(0, 0, 0, 20.toPx())
                 }
                 checkForm()
             }
@@ -86,7 +110,7 @@ class IckLoginFragment : CoroutineFragment() {
         binding.btnLogin.setOnSingleClickListener {
             when {
                 binding.edtPhone.text?.trim().toString().isPhoneNumber() -> {
-                    when{
+                    when {
                         binding.edtPassword.text.isNullOrEmpty() -> {
                             binding.edtPassword.requestFocus()
                             binding.edtPassword.setSelection(binding.edtPassword.text?.toString()?.length
@@ -142,6 +166,28 @@ class IckLoginFragment : CoroutineFragment() {
                 binding.edtPassword.setText("")
             }
         })
+
+        setupListener()
+    }
+
+    private fun setupListener() {
+        binding.edtPassword.setOnFocusChangeListener { v, hasFocus ->
+            binding.btnKeyboard.visibleOrGone(hasFocus)
+        }
+
+        binding.btnKeyboard.setOnClickListener {
+            binding.edtPassword.apply {
+                inputType = if (inputType != InputType.TYPE_TEXT_VARIATION_PASSWORD) {
+//                    binding.btnKeyboard.setText(R.string.ban_phim_so)
+                    InputType.TYPE_TEXT_VARIATION_PASSWORD
+                } else {
+//                    binding.btnKeyboard.setText(R.string.ban_phim_chu)
+                    InputType.TYPE_CLASS_NUMBER
+                }
+                transformationMethod = PasswordTransformationMethod()
+                setSelection(length())
+            }
+        }
     }
 
     private fun login() {
@@ -196,7 +242,7 @@ class IckLoginFragment : CoroutineFragment() {
 
     private fun checkForm() {
         //&& binding.edtPassword.text?.length?:0 >= 6
-        if (binding.edtPhone.text?.length?:0 >= 1) {
+        if (binding.edtPhone.text?.length ?: 0 >= 1) {
             binding.btnLogin.enable()
         } else {
             binding.btnLogin.disable()

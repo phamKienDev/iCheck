@@ -10,6 +10,7 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
+import vn.icheck.android.component.view.ViewHelper.onDelayClick
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.network.base.ICNewApiListener
@@ -23,7 +24,9 @@ import vn.icheck.android.screen.user.rank_of_user.RankOfUserActivity
 import vn.icheck.android.util.ick.*
 import vn.icheck.android.util.kotlin.ToastUtils
 
-class OtherNotificationHolder(parent: ViewGroup) : BaseViewHolder<ICNotification>(LayoutInflater.from(parent.context).inflate(R.layout.item_other_notification, parent, false)) {
+class OtherNotificationHolder(parent: ViewGroup) : BaseViewHolder<ICNotification>(
+    LayoutInflater.from(parent.context).inflate(R.layout.item_other_notification, parent, false)
+) {
     private var listener: View.OnClickListener? = null
 
     override fun bind(obj: ICNotification) {
@@ -37,24 +40,61 @@ class OtherNotificationHolder(parent: ViewGroup) : BaseViewHolder<ICNotification
         itemView.imgAvatar.setImageResource(R.drawable.ic_icheck_logo)
         when (obj.targetEntity) {
             "system_score_changed" -> {
-                itemView.tvStatus.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_notification_icoin_20dp, 0)
+                itemView.tvStatus.setCompoundDrawablesWithIntrinsicBounds(
+                    0,
+                    0,
+                    R.drawable.ic_notification_icoin_20dp,
+                    0
+                )
             }
             "system_gift_changed" -> {
-                itemView.tvStatus.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_notification_gift_20dp, 0)
+                itemView.tvStatus.setCompoundDrawablesWithIntrinsicBounds(
+                    0,
+                    0,
+                    R.drawable.ic_notification_gift_20dp,
+                    0
+                )
             }
-            "RANK","LEVEL_UP","POST" -> {
-                itemView.tvStatus.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_notification_admin_20dp, 0)
+            "RANK", "LEVEL_UP", "POST" -> {
+                itemView.tvStatus.setCompoundDrawablesWithIntrinsicBounds(
+                    0,
+                    0,
+                    R.drawable.ic_notification_admin_20dp,
+                    0
+                )
             }
             "system_voucher_changed" -> {
-                itemView.tvStatus.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_notification_voucher_20dp, 0)
+                itemView.tvStatus.setCompoundDrawablesWithIntrinsicBounds(
+                    0,
+                    0,
+                    R.drawable.ic_notification_voucher_20dp,
+                    0
+                )
             }
             "USER" -> {
                 if (obj.action == "MISSION_FINISH") {
-                    itemView.tvStatus.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_notification_gift_20dp, 0)
+                    itemView.tvStatus.setCompoundDrawablesWithIntrinsicBounds(
+                        0,
+                        0,
+                        R.drawable.ic_notification_gift_20dp,
+                        0
+                    )
+                } else if (obj.action == "SYSTEM") {
+                    itemView.tvStatus.setCompoundDrawablesWithIntrinsicBounds(
+                        0,
+                        0,
+                        R.drawable.ic_notification_admin_20dp,
+                        0
+                    )
                 }
             }
             else -> {
-                itemView.tvStatus.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_notification_admin_20dp, 0)
+                itemView.tvStatus.setCompoundDrawablesWithIntrinsicBounds(
+                    0,
+                    0,
+                    R.drawable.ic_notification_admin_20dp,
+                    0
+                )
             }
         }
 
@@ -71,9 +111,9 @@ class OtherNotificationHolder(parent: ViewGroup) : BaseViewHolder<ICNotification
             readNotification(obj, false)
         }
 
-        itemView.imgOption.setOnClickListener {
+        itemView.imgOption.onDelayClick({
             showOption(obj)
-        }
+        }, 1500)
     }
 
     private fun checkRead(isRead: Boolean) {
@@ -81,12 +121,12 @@ class OtherNotificationHolder(parent: ViewGroup) : BaseViewHolder<ICNotification
             itemView.root.setBackgroundResource(ViewHelper.outValue.resourceId)
         } else {
             itemView.root.background = ViewHelper.createStateListDrawable(
-                    ContextCompat.getColor(itemView.context, R.color.unread_notification_color),
-                    ContextCompat.getColor(itemView.context, R.color.unread_notification_color),
-                    Color.TRANSPARENT,
-                    Color.TRANSPARENT,
-                    Color.TRANSPARENT,
-                    0f
+                ContextCompat.getColor(itemView.context, R.color.unread_notification_color),
+                ContextCompat.getColor(itemView.context, R.color.unread_notification_color),
+                Color.TRANSPARENT,
+                Color.TRANSPARENT,
+                Color.TRANSPARENT,
+                0f
             )
         }
     }
@@ -109,11 +149,18 @@ class OtherNotificationHolder(parent: ViewGroup) : BaseViewHolder<ICNotification
         }
     }
 
-    private fun readNotification(objNotification: ICNotification, isShowLoading: Boolean, targetAction:Boolean = true) {
+    private fun readNotification(
+        objNotification: ICNotification,
+        isShowLoading: Boolean,
+        targetAction: Boolean = true
+    ) {
         ICheckApplication.currentActivity()?.let { activity ->
             if (NetworkHelper.isNotConnected(activity)) {
                 if (isShowLoading) {
-                    ToastUtils.showLongError(activity, R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
+                    ToastUtils.showLongError(
+                        activity,
+                        R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai
+                    )
                 }
 
                 return
@@ -123,31 +170,39 @@ class OtherNotificationHolder(parent: ViewGroup) : BaseViewHolder<ICNotification
                 DialogHelper.showLoading(activity)
             }
 
-            NotificationInteractor().markReadNotification(ICReqMarkRead(idList = arrayListOf(objNotification.id), isAll = false), object : ICNewApiListener<ICResponse<Boolean>> {
-                override fun onSuccess(obj: ICResponse<Boolean>) {
-                    if (isShowLoading) {
-                        DialogHelper.closeLoading(activity)
+            NotificationInteractor().markReadNotification(
+                ICReqMarkRead(
+                    idList = arrayListOf(
+                        objNotification.id
+                    ), isAll = false
+                ), object : ICNewApiListener<ICResponse<Boolean>> {
+                    override fun onSuccess(obj: ICResponse<Boolean>) {
+                        if (isShowLoading) {
+                            DialogHelper.closeLoading(activity)
+                        }
+                        if (objNotification.isReaded == false && isShowLoading) {
+                            itemView.context.showSimpleSuccessToast("Bạn đã đọc thông báo này")
+                        }
+                        objNotification.isReaded = true
+                        checkRead(objNotification.isReaded == true)
+                        if (targetAction) {
+                            targetAction(objNotification)
+                        }
                     }
-                    if (objNotification.isReaded == false && isShowLoading) {
-                        itemView.context.showSimpleSuccessToast("Bạn đã đọc thông báo này")
-                    }
-                    objNotification.isReaded = true
-                    checkRead(objNotification.isReaded == true)
-                    if (targetAction) {
-                        targetAction(objNotification)
-                    }
-                }
 
-                override fun onError(error: ICResponseCode?) {
-                    if (isShowLoading) {
-                        DialogHelper.closeLoading(activity)
-                        ToastUtils.showLongError(activity, R.string.co_loi_xay_ra_vui_long_thu_lai)
+                    override fun onError(error: ICResponseCode?) {
+                        if (isShowLoading) {
+                            DialogHelper.closeLoading(activity)
+                            ToastUtils.showLongError(
+                                activity,
+                                R.string.co_loi_xay_ra_vui_long_thu_lai
+                            )
+                        }
+                        if (targetAction) {
+                            targetAction(objNotification)
+                        }
                     }
-                    if (targetAction) {
-                        targetAction(objNotification)
-                    }
-                }
-            })
+                })
         }
     }
 
@@ -159,7 +214,7 @@ class OtherNotificationHolder(parent: ViewGroup) : BaseViewHolder<ICNotification
             "system_gift_changed" -> {
                 FirebaseDynamicLinksActivity.startTargetPath(itemView.context, obj.path)
             }
-            "RANK","LEVEL_UP" -> {
+            "RANK", "LEVEL_UP" -> {
                 itemView.context.simpleStartActivity(RankOfUserActivity::class.java)
             }
             "system_voucher_changed" -> {
@@ -172,7 +227,10 @@ class OtherNotificationHolder(parent: ViewGroup) : BaseViewHolder<ICNotification
                 }
 
                 ICheckApplication.currentActivity()?.let { activity ->
-                    FirebaseDynamicLinksActivity.startDestinationUrl(activity, obj.path ?: obj.redirectPath)
+                    FirebaseDynamicLinksActivity.startDestinationUrl(
+                        activity,
+                        obj.path ?: obj.redirectPath
+                    )
                 }
             }
             else -> {
@@ -184,25 +242,30 @@ class OtherNotificationHolder(parent: ViewGroup) : BaseViewHolder<ICNotification
     private fun removeNotification(obj: ICNotification) {
         ICheckApplication.currentActivity()?.let { activity ->
             if (NetworkHelper.isNotConnected(activity)) {
-                ToastUtils.showLongError(activity, R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
+                ToastUtils.showLongError(
+                    activity,
+                    R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai
+                )
                 return
             }
 
             DialogHelper.showLoading(activity)
 
-            NotificationInteractor().deleteNotification(obj.id, object : ICNewApiListener<ICResponse<Any>> {
-                override fun onSuccess(obj: ICResponse<Any>) {
-                    DialogHelper.closeLoading(activity)
+            NotificationInteractor().deleteNotification(
+                obj.id,
+                object : ICNewApiListener<ICResponse<Any>> {
+                    override fun onSuccess(obj: ICResponse<Any>) {
+                        DialogHelper.closeLoading(activity)
 
-                    listener?.onClick(null)
-                    itemView.context.showSimpleSuccessToast("Xóa thông báo thành công")
-                }
+                        listener?.onClick(null)
+                        itemView.context.showSimpleSuccessToast("Xóa thông báo thành công")
+                    }
 
-                override fun onError(error: ICResponseCode?) {
-                    DialogHelper.closeLoading(activity)
-                    ToastUtils.showLongError(activity, R.string.co_loi_xay_ra_vui_long_thu_lai)
-                }
-            })
+                    override fun onError(error: ICResponseCode?) {
+                        DialogHelper.closeLoading(activity)
+                        ToastUtils.showLongError(activity, R.string.co_loi_xay_ra_vui_long_thu_lai)
+                    }
+                })
         }
     }
 }

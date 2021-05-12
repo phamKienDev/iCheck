@@ -11,6 +11,7 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
+import vn.icheck.android.component.view.ViewHelper.onDelayClick
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
@@ -78,9 +79,9 @@ class InteractiveHolder(parent: ViewGroup) : BaseViewHolder<ICNotification>(Layo
 
 //        itemView.tvTime.text = TimeHelper.convertDateTimeSvToCurrentDate(obj.createdAt)
         itemView.tvTime simpleText obj.createdAt?.getNotifyTime()
-        itemView.imgOption.setOnClickListener {
+        itemView.imgOption.onDelayClick({
             showOption(obj)
-        }
+        },1500)
 
         itemView.setOnClickListener {
             readNotification(obj, false)

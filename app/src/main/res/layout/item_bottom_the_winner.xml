@@ -90,7 +90,6 @@
             android:id="@+id/imgReward"
             android:layout_width="@dimen/size_76"
             android:layout_height="@dimen/size_76"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

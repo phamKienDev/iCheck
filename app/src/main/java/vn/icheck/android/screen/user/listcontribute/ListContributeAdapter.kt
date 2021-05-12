@@ -35,6 +35,7 @@ import vn.icheck.android.screen.user.page_details.fragment.page.widget.message.M
 import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionDialog
 import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionSuccessDialog
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
+import vn.icheck.android.util.ick.setRankUser
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -176,6 +177,8 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
                     IckUserWallActivity.create(obj.user?.id, itemView.context)
                 }
             }
+
+            itemView.imgRank.setRankUser(obj.user?.rank?.level)
 
             itemView.tvName.run {
                 if (obj.user?.kycStatus == 2) {

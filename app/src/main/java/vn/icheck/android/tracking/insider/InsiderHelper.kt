@@ -29,20 +29,20 @@ object InsiderHelper {
                     SessionManager.setCoin(obj.data?.availableBalance ?: 0)
 
                     setCustomAttribute(Insider.Instance.currentUser, user)
-                            .login(InsiderIdentifiers().apply {
-                                addEmail(user.email)
-                                addPhoneNumber(user.phone)
-                                addUserID(user.id.toString())
-                            })
+                        .login(InsiderIdentifiers().apply {
+                            addEmail(user.email)
+                            addPhoneNumber(user.phone)
+                            addUserID(user.id.toString())
+                        })
                 }
 
                 override fun onError(error: ICResponseCode?) {
                     setCustomAttribute(Insider.Instance.currentUser, user)
-                            .login(InsiderIdentifiers().apply {
-                                addEmail(user.email)
-                                addPhoneNumber(user.phone)
-                                addUserID(user.id.toString())
-                            })
+                        .login(InsiderIdentifiers().apply {
+                            addEmail(user.email)
+                            addPhoneNumber(user.phone)
+                            addUserID(user.id.toString())
+                        })
                 }
             })
         }
@@ -57,11 +57,12 @@ object InsiderHelper {
     }
 
     private fun setCustomAttribute(insiderUser: InsiderUser, user: ICUser?): InsiderUser {
-        val deviceCategory = if (ICheckApplication.getInstance().resources.getBoolean(R.bool.isTablet)) {
-            "tablet"
-        } else {
-            "mobile"
-        }
+        val deviceCategory =
+            if (ICheckApplication.getInstance().resources.getBoolean(R.bool.isTablet)) {
+                "tablet"
+            } else {
+                "mobile"
+            }
 
         val userName: String
         val userCoin: Int
@@ -71,36 +72,43 @@ object InsiderHelper {
         val userEmail: String
 
         if (!SessionManager.isUserLogged) {
-            userName = "null"
+            userName = " "
             userCoin = 0
-            userLevel = "null"
-            userGender = "null"
+            userLevel = " "
+            userGender = " "
             userAge = -1
-            userEmail = "null"
+            userEmail = " "
         } else {
-            userName = user?.name ?: "null"
+            userName = user?.name ?: " "
             userCoin = SettingManager.getUserCoin.toInt()
-            userLevel = ICheckApplication.getInstance().getString(R.string.hang_xxx, Constant.getUserLevelName(ICheckApplication.getInstance(), user?.level
-                    ?: 1))
-            userGender = user?.gender ?: "null"
+            userLevel = ICheckApplication.getInstance().getString(
+                R.string.hang_xxx, Constant.getUserLevelName(
+                    ICheckApplication.getInstance(), user?.level
+                        ?: 1
+                )
+            )
+            userGender = user?.gender ?: " "
             userAge = if (user?.birth_year != null) {
                 Calendar.getInstance().get(Calendar.YEAR) - user.birth_year!!
             } else {
                 -1
             }
-            userEmail = user?.email ?: "null"
+            userEmail = user?.email ?: " "
         }
 
-        return insiderUser.setCustomAttributeWithBoolean("login_status", SessionManager.isUserLogged)
-                .setCustomAttributeWithDouble("user_id", (user?.id ?: -1).toDouble())
-                .setCustomAttributeWithString("user_name", userName)
-                .setCustomAttributeWithInt("icheck_point", userCoin)
-                .setCustomAttributeWithString("icheck_level", userLevel)
-                .setCustomAttributeWithString("device_category", deviceCategory)
-                .setCustomAttributeWithString("user_gender", userGender)
-                .setCustomAttributeWithString("user_email", userEmail)
-                .setCustomAttributeWithInt("user_age", userAge)
-                .setEmailOptin(true)
+        return insiderUser.setCustomAttributeWithBoolean(
+            "login_status",
+            SessionManager.isUserLogged
+        )
+            .setCustomAttributeWithDouble("user_id", (user?.id ?: -1).toDouble())
+            .setCustomAttributeWithString("user_name", userName)
+            .setCustomAttributeWithInt("icheck_point", userCoin)
+            .setCustomAttributeWithString("icheck_level", userLevel)
+            .setCustomAttributeWithString("device_category", deviceCategory)
+            .setCustomAttributeWithString("user_gender", userGender)
+            .setCustomAttributeWithString("user_email", userEmail)
+            .setCustomAttributeWithInt("user_age", userAge)
+            .setEmailOptin(true)
     }
 
     fun tagSignupStart() {
@@ -173,42 +181,44 @@ object InsiderHelper {
             obj.categories!![0].name
 
         Insider.Instance.tagEvent("scan_successful")
-                .addParameterWithString("scan_id", obj.barcode)
-                .addParameterWithString("scan_product_name", obj.basicInfo?.name)
-                .addParameterWithDouble("scan_product_price", obj.basicInfo?.price?.toDouble()
-                        ?: 0.0)
-                .addParameterWithDouble("scan_product_rating", obj.basicInfo?.rating ?: 0.0)
-                .addParameterWithBoolean("verified_status", obj.verified ?: false)
-                .addParameterWithString("country_of_origin", obj.owner?.city?.name ?: "Việt Nam")
-                .addParameterWithString("scan_company_name", obj.owner?.name)
-                .addParameterWithString("scan_product_category", category)
-                .build()
+            .addParameterWithString("scan_id", obj.barcode)
+            .addParameterWithString("scan_product_name", obj.basicInfo?.name)
+            .addParameterWithDouble(
+                "scan_product_price", obj.basicInfo?.price?.toDouble()
+                    ?: 0.0
+            )
+            .addParameterWithDouble("scan_product_rating", obj.basicInfo?.rating ?: 0.0)
+            .addParameterWithBoolean("verified_status", obj.verified ?: false)
+            .addParameterWithString("country_of_origin", obj.owner?.city?.name ?: "Việt Nam")
+            .addParameterWithString("scan_company_name", obj.owner?.name)
+            .addParameterWithString("scan_product_category", category)
+            .build()
     }
 
     fun tagScanStart(scan_type: String) {
         Insider.Instance.tagEvent("scan_start")
-                .addParameterWithString("scan_type", scan_type)
-                .build()
+            .addParameterWithString("scan_type", scan_type)
+            .build()
     }
 
     fun tagScanFailed(scan_type: String) {
         Insider.Instance.tagEvent("scan_failed")
-                .addParameterWithString("scan_failed_type", scan_type)
-                .build()
+            .addParameterWithString("scan_failed_type", scan_type)
+            .build()
     }
 
     fun tagCompanyView(obj: ICPageOverview) {
         Insider.Instance.tagEvent("company_view")
-                .addParameterWithString("company_name", obj.name)
-                .addParameterWithBoolean("verified_status", obj.isVerify)
-                .build()
+            .addParameterWithString("company_name", obj.name)
+            .addParameterWithBoolean("verified_status", obj.isVerify)
+            .build()
     }
 
     fun tagCategoryViewed(name: String?, fromViewName: String) {
         Insider.Instance.tagEvent("category_viewed")
-                .addParameterWithString("category_name", name)
-                .addParameterWithString("input_source", fromViewName)
-                .build()
+            .addParameterWithString("category_name", name)
+            .addParameterWithString("input_source", fromViewName)
+            .build()
     }
 
     fun tagProductViewed(obj: ICDataProductDetail) {
@@ -225,13 +235,13 @@ object InsiderHelper {
         }
 
         Insider.Instance.tagEvent("product_viewed")
-                .addParameterWithDouble("product_id", obj.id?.toDouble() ?: 0.0)
-                .addParameterWithString("product_name", obj.basicInfo?.name)
-                .addParameterWithString("company_owner", obj.owner?.name)
-                .addParameterWithDouble("product_rating", obj.basicInfo?.rating ?: 0.0)
-                .addParameterWithBoolean("verified_status", obj.verified ?: false)
-                .addParameterWithString("product_category", category)
-                .build()
+            .addParameterWithDouble("product_id", obj.id?.toDouble() ?: 0.0)
+            .addParameterWithString("product_name", obj.basicInfo?.name)
+            .addParameterWithString("company_owner", obj.owner?.name)
+            .addParameterWithDouble("product_rating", obj.basicInfo?.rating ?: 0.0)
+            .addParameterWithBoolean("verified_status", obj.verified ?: false)
+            .addParameterWithString("product_category", category)
+            .build()
     }
 
     fun tagProductReviewStart(obj: ICDataProductDetail) {
@@ -248,11 +258,11 @@ object InsiderHelper {
         }
 
         Insider.Instance.tagEvent("product_review_start")
-                .addParameterWithDouble("product_id", obj.id?.toDouble() ?: 0.0)
-                .addParameterWithString("product_name", obj.basicInfo?.name)
-                .addParameterWithString("product_category", category)
-                .addParameterWithString("company_owner", obj.owner?.name)
-                .build()
+            .addParameterWithDouble("product_id", obj.id?.toDouble() ?: 0.0)
+            .addParameterWithString("product_name", obj.basicInfo?.name)
+            .addParameterWithString("product_category", category)
+            .addParameterWithString("company_owner", obj.owner?.name)
+            .build()
     }
 
     fun tagProductReviewStart(obj: ICBarcodeProductV1) {
@@ -269,11 +279,11 @@ object InsiderHelper {
         }
 
         Insider.Instance.tagEvent("product_review_start")
-                .addParameterWithDouble("product_id", obj.id.toDouble())
-                .addParameterWithString("product_name", obj.name)
-                .addParameterWithString("product_category", category)
-                .addParameterWithString("company_owner", obj.owner?.title?.title)
-                .build()
+            .addParameterWithDouble("product_id", obj.id.toDouble())
+            .addParameterWithString("product_name", obj.name)
+            .addParameterWithString("product_category", category)
+            .addParameterWithString("company_owner", obj.owner?.title?.title)
+            .build()
     }
 
 
@@ -291,11 +301,11 @@ object InsiderHelper {
         }
 
         Insider.Instance.tagEvent("product_review_success")
-                .addParameterWithDouble("product_id", obj.id?.toDouble() ?: 0.0)
-                .addParameterWithString("product_name", obj.basicInfo?.name)
-                .addParameterWithString("product_category", category)
-                .addParameterWithString("company_owner", obj.owner?.name)
-                .build()
+            .addParameterWithDouble("product_id", obj.id?.toDouble() ?: 0.0)
+            .addParameterWithString("product_name", obj.basicInfo?.name)
+            .addParameterWithString("product_category", category)
+            .addParameterWithString("company_owner", obj.owner?.name)
+            .build()
     }
 
     fun tagProductReviewSuccess(obj: ICBarcodeProductV1) {
@@ -312,11 +322,11 @@ object InsiderHelper {
         }
 
         Insider.Instance.tagEvent("product_review_success")
-                .addParameterWithDouble("product_id", obj.id.toDouble())
-                .addParameterWithString("product_name", obj.name)
-                .addParameterWithString("product_category", category)
-                .addParameterWithString("company_owner", obj.owner?.title?.title)
-                .build()
+            .addParameterWithDouble("product_id", obj.id.toDouble())
+            .addParameterWithString("product_name", obj.name)
+            .addParameterWithString("product_category", category)
+            .addParameterWithString("company_owner", obj.owner?.title?.title)
+            .build()
     }
 
     fun tagPhoneTopupStart() {
@@ -341,9 +351,9 @@ object InsiderHelper {
 
     fun tagIcheckItemView(obj: ICStoreiCheck) {
         Insider.Instance.tagEvent("icheck_item_view")
-                .addParameterWithString("item_name", obj.name)
-                .addParameterWithInt("icheck_point", obj.price?.toInt() ?: 0)
-                .build()
+            .addParameterWithString("item_name", obj.name)
+            .addParameterWithInt("icheck_point", obj.price?.toInt() ?: 0)
+            .build()
     }
 
     fun tagIcheckItemBuyStart(carts: MutableList<ItemCartItem>) {
@@ -362,9 +372,9 @@ object InsiderHelper {
         }
 
         Insider.Instance.tagEvent("icheck_item_buy_start")
-                .addParameterWithString("item_name", name)
-                .addParameterWithString("icheck_point", priceTotal.toString())
-                .build()
+            .addParameterWithString("item_name", name)
+            .addParameterWithString("icheck_point", priceTotal.toString())
+            .build()
     }
 
     fun tagIcheckItemBuySuccess(carts: MutableList<ItemCartItem>) {
@@ -383,18 +393,18 @@ object InsiderHelper {
         }
 
         Insider.Instance.tagEvent("icheck_item_buy_success")
-                .addParameterWithString("item_name", name)
-                .addParameterWithString("icheck_point", priceTotal.toString())
-                .build()
+            .addParameterWithString("item_name", name)
+            .addParameterWithString("icheck_point", priceTotal.toString())
+            .build()
     }
 
 
     fun tagAddToCartSuccessStoreIcheck(product: ICStoreiCheck) {
         Insider.Instance.tagEvent("add_to_cart_success")
-                .addParameterWithString("product_id", product.id.toString())
-                .addParameterWithString("product_name", product.name)
-                .addParameterWithInt("number_of_products", 1)
-                .build()
+            .addParameterWithString("product_id", product.id.toString())
+            .addParameterWithString("product_name", product.name)
+            .addParameterWithInt("number_of_products", 1)
+            .build()
     }
 
     /*
@@ -403,16 +413,20 @@ object InsiderHelper {
 
     fun tagPaymentStartAndSuccess(grandTotal: Long) {
         Insider.Instance.tagEvent("payment_start")
-                .addParameterWithDouble("order_value", grandTotal.toDouble())
-                .build()
+            .addParameterWithDouble("order_value", grandTotal.toDouble())
+            .build()
 
         Insider.Instance.tagEvent("payment_success")
-                .addParameterWithDouble("order_value", grandTotal.toDouble())
-                .addParameterWithString("payment_method", iCheckCoin)
-                .build()
+            .addParameterWithDouble("order_value", grandTotal.toDouble())
+            .addParameterWithString("payment_method", iCheckCoin)
+            .build()
     }
 
-    fun tagCheckoutSuccess(obj: PurchasedOrderResponse?, carts: ArrayList<ItemCartItem>, address: ShipAddressResponse) {
+    fun tagCheckoutSuccess(
+        obj: PurchasedOrderResponse?,
+        carts: ArrayList<ItemCartItem>,
+        address: ShipAddressResponse
+    ) {
         if (obj?.id == null) {
             return
         }
@@ -424,17 +438,21 @@ object InsiderHelper {
         }
 
         Insider.Instance.tagEvent("checkout_success")
-                .addParameterWithDouble("order_id", obj.id?.toDouble() ?: 0.0)
-                .addParameterWithInt("order_value", totalValue)
-                .addParameterWithInt("number_of_products", totalProduct) // số lượng sản phẩm
-                .addParameterWithString("phone number", obj.customer?.phone)
-                .addParameterWithString("address", "${address.address}, ${address.ward?.name}, ${address.district?.name}, ${address.city?.name}")
-                .addParameterWithString("payment_method", iCheckCoin)
-                .build()
+            .addParameterWithDouble("order_id", obj.id?.toDouble() ?: 0.0)
+            .addParameterWithInt("order_value", totalValue)
+            .addParameterWithInt("number_of_products", totalProduct) // số lượng sản phẩm
+            .addParameterWithString("phone number", obj.customer?.phone)
+            .addParameterWithString(
+                "address",
+                "${address.address}, ${address.ward?.name}, ${address.district?.name}, ${address.city?.name}"
+            )
+            .addParameterWithString("payment_method", iCheckCoin)
+            .build()
     }
 
     fun tagCampaignHomescreenButtonClicked(campaign_id: String?) {
-        Insider.Instance.tagEvent("campaign_homescreen_button_clicked").addParameterWithString("campaign_id", campaign_id).build()
+        Insider.Instance.tagEvent("campaign_homescreen_button_clicked")
+            .addParameterWithString("campaign_id", campaign_id).build()
     }
 
     fun tagCampaignListClicked() {
@@ -442,65 +460,74 @@ object InsiderHelper {
     }
 
     fun tagCampaignClicked(campaign_id: String?) {
-        Insider.Instance.tagEvent("campaign_clicked").addParameterWithString("campaign_id", campaign_id).build()
+        Insider.Instance.tagEvent("campaign_clicked")
+            .addParameterWithString("campaign_id", campaign_id).build()
     }
 
     fun tagCampaignCTAClicked(campaign_id: String?) {
-        Insider.Instance.tagEvent("campaign_cta_clicked").addParameterWithString("campaign_id", campaign_id).build()
+        Insider.Instance.tagEvent("campaign_cta_clicked")
+            .addParameterWithString("campaign_id", campaign_id).build()
     }
 
     fun tagCampaignHomescreenViewed(campaign_id: String?) {
-        Insider.Instance.tagEvent("campaign_homescreen_viewed").addParameterWithString("campaign_id", campaign_id).build()
+        Insider.Instance.tagEvent("campaign_homescreen_viewed")
+            .addParameterWithString("campaign_id", campaign_id).build()
     }
 
     fun tagOpenGiftboxStarted(campaign_id: String?) {
         Insider.Instance.tagEvent("opengiftbox_started")
-                .addParameterWithString("campaign_id", campaign_id)
-                .build()
+            .addParameterWithString("campaign_id", campaign_id)
+            .build()
     }
 
     fun tagMisssionListViewed(campaign_id: String?) {
         Insider.Instance.tagEvent("mission_list_viewed")
-                .addParameterWithString("campaign_id", campaign_id)
-                .build()
+            .addParameterWithString("campaign_id", campaign_id)
+            .build()
     }
 
     fun tagMisssionDetailViewed(campaign_id: String?, mission_id: String?) {
         Insider.Instance.tagEvent("mission_detail_viewed")
-                .addParameterWithString("campaign_id", campaign_id)
-                .addParameterWithString("mission_id", mission_id)
-                .build()
+            .addParameterWithString("campaign_id", campaign_id)
+            .addParameterWithString("mission_id", mission_id)
+            .build()
     }
 
     fun tagMisssionDetailCtaClicked(campaign_id: String?, mission_id: String?) {
         Insider.Instance.tagEvent("mission_detail_cta_clicked")
-                .addParameterWithString("campaign_id", campaign_id)
-                .addParameterWithString("mission_id", mission_id)
-                .build()
+            .addParameterWithString("campaign_id", campaign_id)
+            .addParameterWithString("mission_id", mission_id)
+            .build()
     }
 
-    fun tagOpenGiftBoxSuccessful(campaign_id: String?, gift_type: String?, gift_name: String?, coin: Long?, code: String?) {
+    fun tagOpenGiftBoxSuccessful(
+        campaign_id: String?,
+        gift_type: String?,
+        gift_name: String?,
+        coin: Long?,
+        code: String?
+    ) {
         Insider.Instance.tagEvent("opengiftbox_successful")
-                .addParameterWithString("campaign_id", campaign_id)
-                .addParameterWithString("giftbox_gift_type", gift_type)
-                .addParameterWithString("giftbox_product_name", gift_name)
-                .addParameterWithString("giftbox_icheck_point", (coin ?: 0).toString())
-                .addParameterWithString("giftbox_code", code ?: "null")
-                .build()
+            .addParameterWithString("campaign_id", campaign_id)
+            .addParameterWithString("giftbox_gift_type", gift_type)
+            .addParameterWithString("giftbox_product_name", gift_name)
+            .addParameterWithString("giftbox_icheck_point", (coin ?: 0).toString())
+            .addParameterWithString("giftbox_code", code ?: "null")
+            .build()
     }
 
     fun tagOpenGiftBoxDismissClicked(campaign_id: String?, gift_type: String?) {
         Insider.Instance.tagEvent("opengiftbox_dismiss_clicked")
-                .addParameterWithString("campaign_id", campaign_id)
-                .addParameterWithString("giftbox_gift_type", gift_type)
-                .build()
+            .addParameterWithString("campaign_id", campaign_id)
+            .addParameterWithString("giftbox_gift_type", gift_type)
+            .build()
     }
 
     fun tagOpenGiftBoxProceedCtaClicked(campaign_id: String?, gift_type: String?) {
         Insider.Instance.tagEvent("opengiftbox_proceedcta_clicked")
-                .addParameterWithString("campaign_id", campaign_id)
-                .addParameterWithString("giftbox_gift_type", gift_type)
-                .build()
+            .addParameterWithString("campaign_id", campaign_id)
+            .addParameterWithString("giftbox_gift_type", gift_type)
+            .build()
     }
 
     fun tagMyGiftBoxClick() {
@@ -509,15 +536,15 @@ object InsiderHelper {
 
     fun tagGiftDeliveryStarted(campaign_id: String?, giftbox_product_name: String?) {
         Insider.Instance.tagEvent("gift_delivery_started")
-                .addParameterWithString("campaign_id", campaign_id)
-                .addParameterWithString("giftbox_product_name", giftbox_product_name)
-                .build()
+            .addParameterWithString("campaign_id", campaign_id)
+            .addParameterWithString("giftbox_product_name", giftbox_product_name)
+            .build()
     }
 
     fun tagGiftDeliverySuccess(campaign_id: String?, giftbox_product_name: String?) {
         Insider.Instance.tagEvent("gift_delivery_success")
-                .addParameterWithString("campaign_id", campaign_id)
-                .addParameterWithString("giftbox_product_name", giftbox_product_name)
-                .build()
+            .addParameterWithString("campaign_id", campaign_id)
+            .addParameterWithString("giftbox_product_name", giftbox_product_name)
+            .build()
     }
 }
