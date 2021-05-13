@@ -1,17 +1,25 @@
 package vn.icheck.android.screen.user.wall.updatepassword
 
 import android.os.Bundle
+import android.text.InputType
+import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import vn.icheck.android.R
 import vn.icheck.android.base.fragment.CoroutineFragment
 import vn.icheck.android.databinding.FragmentNewPwBinding
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.visibleOrGone
+import vn.icheck.android.lib.keyboard.KeyboardVisibilityEvent
+import vn.icheck.android.lib.keyboard.KeyboardVisibilityEventListener
+import vn.icheck.android.lib.keyboard.Unregistrar
 import vn.icheck.android.network.model.ApiErrorResponse
 import vn.icheck.android.network.model.ApiSuccessResponse
 import vn.icheck.android.network.base.SessionManager
@@ -22,19 +30,14 @@ import vn.icheck.android.util.ick.showSimpleSuccessToast
 import vn.icheck.android.util.ick.simpleText
 
 class IckNewPwFragment : CoroutineFragment() {
-    private var _binding: FragmentNewPwBinding? = null
-    private val binding get() = _binding!!
-    private val args: IckNewPwFragmentArgs by navArgs()
+    private lateinit var binding: FragmentNewPwBinding
     private val ickUserWallViewModel: IckUserWallViewModel by activityViewModels()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        _binding = FragmentNewPwBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    private var unregistrar: Unregistrar? = null
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        binding = FragmentNewPwBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -151,6 +154,56 @@ class IckNewPwFragment : CoroutineFragment() {
 
 
         }
+
+        setupListener()
+    }
+
+    private fun setupListener() {
+        binding.btnKeyboard.setOnClickListener {
+            changeKeyboard(binding.groupOldPw)
+            changeKeyboard(binding.groupPw)
+            changeKeyboard(binding.groupRePw)
+        }
+
+        binding.groupOldPw.setOnFocusChangeListener { v, hasFocus ->
+            checkKeyboard(binding.groupOldPw)
+        }
+
+        binding.groupPw.setOnFocusChangeListener { v, hasFocus ->
+            checkKeyboard(binding.groupPw)
+        }
+
+        binding.groupRePw.setOnFocusChangeListener { v, hasFocus ->
+            checkKeyboard(binding.groupRePw)
+        }
+    }
+
+    private fun changeKeyboard(view: AppCompatEditText) {
+        view.apply {
+            if (isFocused) {
+                inputType = if (inputType != InputType.TYPE_TEXT_VARIATION_PASSWORD) {
+//                    binding.btnKeyboard.setText(R.string.ban_phim_so)
+                    InputType.TYPE_TEXT_VARIATION_PASSWORD
+                } else {
+//                    binding.btnKeyboard.setText(R.string.ban_phim_chu)
+                    InputType.TYPE_CLASS_NUMBER
+                }
+                transformationMethod = PasswordTransformationMethod()
+                setSelection(length())
+            }
+        }
+    }
+
+    private fun checkKeyboard(view: AppCompatEditText) {
+//        view.apply {
+//            if (isFocused) {
+//                if (inputType == InputType.TYPE_TEXT_VARIATION_PASSWORD) {
+//                    binding.btnKeyboard.setText(R.string.ban_phim_so)
+//                } else {
+//                    binding.btnKeyboard.setText(R.string.ban_phim_chu)
+//                }
+//            }
+//        }
     }
 
     private fun validate() {
@@ -163,5 +216,20 @@ class IckNewPwFragment : CoroutineFragment() {
 
     private fun enableContinue() {
         binding.btnContinue.enable()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        unregistrar = KeyboardVisibilityEvent.registerEventListener(requireActivity(), object : KeyboardVisibilityEventListener {
+            override fun onVisibilityChanged(isOpen: Boolean) {
+                binding.btnKeyboard.visibleOrGone(isOpen)
+            }
+        })
+    }
+
+    override fun onPause() {
+        super.onPause()
+        unregistrar?.unregister()
+        unregistrar = null
     }
 }

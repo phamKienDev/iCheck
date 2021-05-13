@@ -9,7 +9,7 @@
         android:id="@+id/ickLoginFragment"
         tools:layout="@layout/fragment_ick_login"
         android:name="vn.icheck.android.screen.account.icklogin.fragment.IckLoginFragment"
-        android:label="IckLoginFragment" >
+        android:label=" IckLoginFragment" >
         <action
             android:id="@+id/action_ickLoginFragment_to_ickLoginOtpFragment"
             app:destination="@id/ickLoginOtpFragment"

@@ -912,4 +912,7 @@
     <string name="chua_dinh_danh">Chưa định danh</string>
     <string name="dinh_danh_ngay">Định danh ngay</string>
     <string name="thuong_mai_dien_tu">Thương mại điện tử</string>
+    <string name="doi_ban_phiim">Đổi bàn phím</string>
+    <string name="ban_phim_chu">Bàn phím chữ</string>
+    <string name="ban_phim_so">Bàn phím số</string>
 </resources>

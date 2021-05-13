@@ -38,8 +38,8 @@ android {
         applicationId "vn.icheck.android"
         minSdkVersion 19
         targetSdkVersion 30
-            versionCode 21050501
-            versionName "6.19.1"
+            versionCode 21050701
+            versionName "6.20.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled = true
         signingConfig signingConfigs.release
@@ -79,7 +79,7 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
 //        freeCompilerArgs += ["-Xopt-in=kotlin.RequiresOptIn"]-
     }
-    buildToolsVersion = '29.0.3'
+//    buildToolsVersion = '29.0.3'
     flavorDimensions 'default'
 
     productFlavors {
