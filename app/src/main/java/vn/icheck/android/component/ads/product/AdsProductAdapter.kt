@@ -7,6 +7,7 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
@@ -121,20 +122,25 @@ class AdsProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 if (obj.media!![0].type == Constant.VIDEO) {
                     binding.imgPlay.visibility = View.VISIBLE
                     if (!obj.media!![0].content.isNullOrEmpty()) {
-                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, obj.media!![0].content, R.drawable.bg_error_campaign, R.drawable.bg_error_campaign, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                        binding.imgImage.scaleType=ImageView.ScaleType.FIT_CENTER
+                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, obj.media!![0].content, R.drawable.img_error_ads_product, R.drawable.img_error_ads_product, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
                     } else {
-                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, R.drawable.bg_error_campaign, R.drawable.bg_error_campaign, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                        binding.imgImage.scaleType=ImageView.ScaleType.FIT_XY
+                        binding.imgImage.setImageResource(R.drawable.img_error_ads_product)
                     }
                 } else {
                     binding.imgPlay.visibility = View.INVISIBLE
                     if (!obj.media!![0].content.isNullOrEmpty()) {
-                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, obj.media!![0].content, R.drawable.bg_error_campaign, R.drawable.bg_error_campaign, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                        binding.imgImage.scaleType=ImageView.ScaleType.FIT_CENTER
+                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, obj.media!![0].content, R.drawable.img_error_ads_product, R.drawable.img_error_ads_product, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
                     } else {
-                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, R.drawable.bg_error_campaign, R.drawable.bg_error_campaign, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                        binding.imgImage.scaleType=ImageView.ScaleType.FIT_XY
+                        binding.imgImage.setImageResource(R.drawable.img_error_ads_product)
                     }
                 }
             } else {
-                WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, R.drawable.bg_error_campaign, R.drawable.bg_error_campaign, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                binding.imgImage.scaleType=ImageView.ScaleType.CENTER_CROP
+                binding.imgImage.setImageResource(R.drawable.img_error_ads_product)
             }
 
             if (!obj.name.isNullOrEmpty()) {
@@ -143,7 +149,7 @@ class AdsProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 binding.tvTenSpUpdating.beGone()
             } else {
                 binding.tvTenSpUpdating.beVisible()
-                binding.tvName.beGone()
+                binding.tvName.beInvisible()
             }
 
             binding.surfaceView.addOnLayoutChangeListener { view, i, i2, i3, i4, i5, i6, i7, i8 ->
@@ -161,6 +167,7 @@ class AdsProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
 
             if (obj.price != null || obj.sellPrice != null) {
+                binding.tvPriceUpdating.beGone()
                 if (obj.price != null) {
                     binding.tvPriceSpecial.beVisible()
                     binding.tvPriceSpecial.text = TextHelper.formatMoney(obj.price) + "đ"
@@ -185,7 +192,7 @@ class AdsProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             if (obj.rating != null) {
                 binding.tvPoint.beVisible()
                 binding.tvRatingText.beVisible()
-                binding.tvPoint.text = obj.rating.toString()
+                binding.tvPoint.text = (obj.rating!!*2).toString()
                 ReviewPointText.setText(binding.tvRatingText, obj.rating!!)
             } else {
                 binding.tvRatingUpdating.beVisible()
@@ -304,7 +311,7 @@ class AdsProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             if (obj.rating != null) {
                 binding.tvPoint.beVisible()
                 binding.tvRatingText.beVisible()
-                binding.tvPoint.text = obj.rating.toString()
+                binding.tvPoint.text = (obj.rating!!*2).toString()
                 ReviewPointText.setText(binding.tvRatingText, obj.rating!!)
             } else {
                 binding.tvRatingUpdating.beVisible()
