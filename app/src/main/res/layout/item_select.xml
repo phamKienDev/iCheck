@@ -38,14 +38,13 @@
         tools:visibility="visible" />
 
 
-    <LinearLayout
+    <vn.icheck.android.ichecklibs.view.line_color.LinearLayoutBgWhiteRadius4StrokeGray1
         android:id="@+id/group_spinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_8"
         android:layout_marginEnd="@dimen/size_12"
-        android:background="@drawable/bg_edt_ick_contribute_product"
         android:orientation="horizontal"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,7 +59,7 @@
             android:layout_weight="1"
             android:spinnerMode="dialog" />
 
-    </LinearLayout>
+    </vn.icheck.android.ichecklibs.view.line_color.LinearLayoutBgWhiteRadius4StrokeGray1>
 
     <RadioGroup
         android:id="@+id/group_select"

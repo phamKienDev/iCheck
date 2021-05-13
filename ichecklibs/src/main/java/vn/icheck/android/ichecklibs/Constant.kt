@@ -321,6 +321,48 @@ object Constant {
             }
         }
 
+
+    /*
+   * Color line
+   */
+    fun getLineColor(context: Context): Int {
+        return if (lineColor.isNotEmpty()) {
+            Color.parseColor(lineColor)
+        } else {
+            ContextCompat.getColor(context, R.color.colorLine)
+        }
+    }
+
+    val getLineColorCode: String
+        get() {
+            return if (lineColor.isNotEmpty()) {
+                lineColor
+            } else {
+                "#D8D8D8"
+            }
+        }
+
+
+    /*
+    * Color background White
+    */
+    fun getAppBackgroundColor(context: Context): Int {
+        return if (appBackgroundColor.isNotEmpty()) {
+            Color.parseColor(appBackgroundColor)
+        } else {
+            ContextCompat.getColor(context, R.color.white)
+        }
+    }
+
+    val getAppBackgroundColorCode: String
+        get() {
+            return if (appBackgroundColor.isNotEmpty()) {
+                appBackgroundColor
+            } else {
+                "#FFFFFF"
+            }
+        }
+
     /*
     *Color accent blue
     * * */

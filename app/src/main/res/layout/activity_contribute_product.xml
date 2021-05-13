@@ -85,7 +85,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_8"
-                android:background="@drawable/bg_edt_no_edit"
                 android:ems="10"
                 android:enabled="false"
                 android:inputType="textPersonName"
@@ -127,15 +126,14 @@
                 android:text="Chọn danh mục"
                 android:textColor="#434343" />
 
-            <LinearLayout
+            <vn.icheck.android.ichecklibs.view.line_color.LinearLayoutBgBorderDotted10Gray
                 android:id="@+id/btn_add_description"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_60"
                 android:orientation="vertical"
                 android:visibility="gone"
                 android:gravity="center"
-                tools:visibility="visible"
-                android:background="@drawable/bg_border_dotted_10_gray">
+                tools:visibility="visible">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
@@ -146,7 +144,7 @@
                     android:drawableStart="@drawable/ic_add_gray_24px"
                     android:drawablePadding="@dimen/size_13"
                     android:textColor="@color/darkGray3" />
-            </LinearLayout>
+            </vn.icheck.android.ichecklibs.view.line_color.LinearLayoutBgBorderDotted10Gray>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcv_add_description"

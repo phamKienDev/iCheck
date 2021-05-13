@@ -60,6 +60,7 @@ class IckLoginFragment : CoroutineFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.btnLogin.disable()
+        binding.btnLoginFacebook.background=ViewHelper.bgBtnFacebook(requireContext())
         TrackingAllHelper.trackLoginStart()
         binding.edtPhone.addTextChangedListener(object : AfterTextWatcher() {
             override fun afterTextChanged(s: Editable?) {

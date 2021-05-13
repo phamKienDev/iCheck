@@ -54,7 +54,6 @@
             android:layout_marginLeft="@dimen/size_20"
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginRight="@dimen/size_20"
-            android:background="@drawable/bg_border_gray_dotted_10_radius_10"
             android:orientation="vertical"
             android:paddingBottom="@dimen/size_12"/>
 

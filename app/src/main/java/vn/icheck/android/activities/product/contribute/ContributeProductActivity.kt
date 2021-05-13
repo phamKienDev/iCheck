@@ -49,9 +49,9 @@ import vn.icheck.android.adapters.base.BaseHolder
 import vn.icheck.android.base.dialog.notify.loading.LoadingDialog
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.TakePhotoHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.ICNetworkClient
 import vn.icheck.android.network.base.SessionManager
-import vn.icheck.android.network.models.ICBarcodeProductV2
 import vn.icheck.android.network.models.ICInformationTitles
 import vn.icheck.android.network.models.upload.UploadResponse
 import vn.icheck.android.network.models.v1.ICBarcodeProductV1
@@ -151,6 +151,7 @@ class ContributeProductActivity : BaseICActivity(), TakePhotoHelper.TakePhotoLis
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contribute_product)
         btn_submit.isEnabled = false
+
         validateForm.observe(this, Observer {
             if (it == 2) {
                 btn_submit.isEnabled = true
@@ -441,7 +442,7 @@ class ContributeProductActivity : BaseICActivity(), TakePhotoHelper.TakePhotoLis
                 val bottom = TitleBottomDialog(listTitles)
                 bottom.show(supportFragmentManager, null)
             } else {
-                btn_add_description.visibility = View.GONE
+                btn_add_description.visibility = View.VISIBLE
             }
         }
     }
@@ -475,6 +476,7 @@ class ContributeProductActivity : BaseICActivity(), TakePhotoHelper.TakePhotoLis
 
     private fun initActivity() {
         instance = this
+        edt_no_edit_barcode.background=ViewHelper.bgGrayNoEditRadius4StrokeGray1(this)
         intent.getStringExtra("barcode")?.let { barcode ->
             edt_no_edit_barcode.setText(barcode)
             btn_search_google.setOnClickListener {
