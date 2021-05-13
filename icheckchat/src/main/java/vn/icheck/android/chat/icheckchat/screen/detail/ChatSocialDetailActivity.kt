@@ -81,6 +81,9 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 putExtra(KEY, key)
             })
         }
+
+        var toId = ""
+        var toType = ""
     }
 
     private lateinit var viewModel: ChatSocialDetailViewModel
@@ -98,7 +101,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
     var inboxRoomID: String? = null
     var inboxUserID: String? = null
-    private var toId = ""
     private var keyRoom = ""
 
     private var userId: Long? = null
@@ -280,7 +282,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         viewModel.getChatRoom(key,
                 { obj ->
                     if (obj.value != null) {
-                        var toType = ""
 
                         if (obj.child("members").hasChildren()) {
                             for (item in obj.child("members").children) {
@@ -396,6 +397,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
     private fun listenChangeMessage(key: String) {
         viewModel.getChangeMessageChat(key) { data ->
+            markReadMessage(key)
             // mình gửi
             if (FirebaseAuth.getInstance().currentUser?.uid == data.child("sender").child("source_id").value.toString()) {
                 val index = adapter.getListData.indexOfFirst { it.messageId == data.key }
@@ -460,7 +462,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 }
                 // đối phương gửi
             } else {
-                markReadMessage(key)
+//                markReadMessage(key)
                 val lastMessageReceive = adapter.getListData.firstOrNull { it.senderId != FirebaseAuth.getInstance().currentUser?.uid }
                 val message = convertDataFirebase(data, lastMessageReceive ?: MCDetailMessage())
                 message.showStatus = -1

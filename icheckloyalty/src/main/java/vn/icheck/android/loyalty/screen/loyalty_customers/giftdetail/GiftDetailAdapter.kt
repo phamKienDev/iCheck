@@ -15,6 +15,7 @@ import vn.icheck.android.loyalty.dialog.base.DialogHelperGame
 import vn.icheck.android.loyalty.dialog.listener.IClickButtonDialog
 import vn.icheck.android.loyalty.dialog.listener.IDismissDialog
 import vn.icheck.android.loyalty.helper.TextHelper
+import vn.icheck.android.loyalty.helper.TimeHelper
 import vn.icheck.android.loyalty.helper.WidgetHelper
 import vn.icheck.android.loyalty.model.ICKNone
 import vn.icheck.android.loyalty.model.ICKRedemptionHistory
@@ -67,44 +68,149 @@ internal class GiftDetailAdapter(val type: Int = 0) : RecyclerViewCustomAdapter<
                 default
             }
 
-            itemView.tvStatus.apply {
-                setVisible()
-                when (obj.status) {
-                    "new" -> {
-                        text = "Chờ xác nhận"
-                        setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
-                        setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
+            if (obj.gift?.type == "VOUCHER") {
+                itemView.tvStatus.setVisible()
+                itemView.layoutDate.setVisible()
+
+                if (obj.voucher?.checked_condition?.status == false) {
+                    itemView.tvTitleDate.text = "Hạn sử dụng"
+
+                    if (obj.voucher?.checked_condition?.code == "START_TIME_CAN_USE") {
+
+                        itemView.tvTitleDate.text = "Có hiệu lực từ"
+
+                        itemView.tvDateTime.text = TimeHelper.convertDateTimeSvToDateVn(obj.voucher?.start_at)
+
+                        itemView.tvStatus.apply {
+                            text = "Chưa có hiệu lực"
+                            setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
+                            setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
+                        }
+
+                    } else if (obj.voucher?.checked_condition?.code == "MAX_NUM_OF_USED_VOUCHER" || obj.voucher?.checked_condition?.code == "MAX_NUM_OF_USED_CUSTOMER") {
+
+                        itemView.layoutDate.setGone()
+
+                        itemView.tvStatus.apply {
+                            text = "Đã sử dụng"
+                            setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
+                            setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
+                        }
+
+                    } else {
+
+                        itemView.tvDateTime.text = TimeHelper.convertDateTimeSvToDateVn(obj.voucher?.end_at)
+
+                        itemView.tvStatus.apply {
+                            text = "Hết hạn sử dụng"
+                            setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
+                            setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
+                        }
                     }
-                    "waiting_receive_gift" -> {
-                        text = "Chờ giao"
-                        setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
-                        setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
+
+                } else {
+                    itemView.tvTitleDate.text = "Hạn sử dụng"
+
+                    /**
+                     * Nếu startAt và endAt khác null thì hiển thị dd/mm/yy
+                     * Nếu startAt, endAt, releaseAt và effectiveTime khác null nhưng thời gian tổng của startAt và endAt nhỏ hơn thời gian của effectiveTime thì hiển thị: ${Còn xx ngày, xx giờ} theo thời gian hiện tại đến endAt
+                     * Nếu startAt, endAt, releaseAt và effectiveTime khác null nhưng thời gian tổng của startAt và endAt lớn hơn thời gian của effectiveTime thì hiển thị: ${Còn xx ngày, xx giờ} theo releaseAt và effectiveTime
+                     */
+                    itemView.tvDateTime.text = when {
+                        !obj.voucher?.start_at.isNullOrEmpty()
+                                && !obj.voucher?.end_at.isNullOrEmpty()
+                                && (obj.voucher?.effective_time.isNullOrEmpty()
+                                || obj.voucher?.effective_type.isNullOrEmpty()) -> {
+
+                            "Còn ${TimeHelper.convertDateTimeSvToCurrentDate(TimeHelper.convertDateTimeSvToMillisecond(obj.voucher?.end_at))}"
+
+                        }
+                        !obj.voucher?.released_at.isNullOrEmpty()
+                                && !obj.voucher?.effective_time.isNullOrEmpty()
+                                && !obj.voucher?.effective_type.isNullOrEmpty()
+                                && (obj.voucher?.start_at.isNullOrEmpty()
+                                || obj.voucher?.end_at.isNullOrEmpty()) -> {
+
+
+                            "Còn ${TimeHelper.convertDateTimeSvToCurrentDate(TimeHelper.millisecondEffectiveTime(obj.voucher?.effective_type!!, obj.voucher?.effective_time!!, obj.voucher?.released_at!!))}"
+                        }
+                        !obj.voucher?.released_at.isNullOrEmpty()
+                                && !obj.voucher?.effective_time.isNullOrEmpty()
+                                && !obj.voucher?.effective_type.isNullOrEmpty()
+                                && !obj.voucher?.start_at.isNullOrEmpty()
+                                && !obj.voucher?.end_at.isNullOrEmpty() -> {
+
+                            val millisecondWithEffectiveTime = TimeHelper.millisecondEffectiveTime(obj.voucher?.effective_type!!, obj.voucher?.effective_time!!, obj.voucher?.released_at!!)
+
+                            val currentMillisecondWithEndAt = (TimeHelper.convertDateTimeSvToMillisecond(obj.voucher?.end_at)
+                                    ?: 0) - System.currentTimeMillis()
+
+                            if (millisecondWithEffectiveTime > currentMillisecondWithEndAt) {
+                                "Còn ${TimeHelper.convertDateTimeSvToCurrentDate(TimeHelper.convertDateTimeSvToMillisecond(obj.voucher?.end_at))}"
+                            } else {
+                                "Còn ${TimeHelper.convertDateTimeSvToCurrentDate(millisecondWithEffectiveTime)}"
+                            }
+                        }
+                        else -> {
+                            ""
+                        }
                     }
-                    "received_gift" -> {
-                        text = "Đã nhận quà"
-                        setTextColor(ContextCompat.getColor(itemView.context, R.color.green2))
-                        setBackgroundResource(R.drawable.bg_corner_30_green_opacity_02)
+                    itemView.tvStatus.apply {
+
+                        if (itemView.tvDateTime.text.toString() == "Còn ") {
+
+                            itemView.tvDateTime.text = ""
+                            text = "Hết hạn sử dụng"
+                            setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
+                            setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
+                        } else {
+
+                            text = "Có thể sử dụng"
+                            setTextColor(ContextCompat.getColor(itemView.context, R.color.green2))
+                            setBackgroundResource(R.drawable.bg_corner_30_green_opacity_02)
+                        }
                     }
-                    "refused_gift" -> {
-                        text = "Từ chối"
-                        setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
-                        setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
+                }
+            } else {
+                itemView.tvStatus.apply {
+                    setVisible()
+                    when (obj.status) {
+                        "new" -> {
+                            text = "Chờ xác nhận"
+                            setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
+                            setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
+                        }
+                        "waiting_receive_gift" -> {
+                            text = "Chờ giao"
+                            setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
+                            setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
+                        }
+                        "received_gift" -> {
+                            text = "Đã nhận quà"
+                            setTextColor(ContextCompat.getColor(itemView.context, R.color.green2))
+                            setBackgroundResource(R.drawable.bg_corner_30_green_opacity_02)
+                        }
+                        "refused_gift" -> {
+                            text = "Từ chối"
+                            setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
+                            setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
+                        }
+                        else -> {
+                            setGone()
+                        }
                     }
-                    else -> {
-                        setGone()
-                    }
+                }
+
+                if (obj.id != null) {
+                    itemView.layoutCodeGift.setVisible()
+
+                    itemView.tvCodeGift.text = obj.id.toString()
+                } else {
+                    itemView.layoutCodeGift.setGone()
                 }
             }
 
             itemView.tvRedemptionPoints.text = TextHelper.formatMoneyPhay(obj.businessLoyalty?.point_exchange)
-
-            if (obj.id != null) {
-                itemView.layoutCodeGift.setVisible()
-
-                itemView.tvCodeGift.text = obj.id.toString()
-            } else {
-                itemView.layoutCodeGift.setGone()
-            }
 
             itemView.tvVanChuyen.text = when (obj.gift?.type) {
                 "ICOIN" -> {
@@ -128,19 +234,21 @@ internal class GiftDetailAdapter(val type: Int = 0) : RecyclerViewCustomAdapter<
             }
             itemView.btnDoiQua.apply {
                 if (obj.gift?.type == "VOUCHER") {
+                    itemView.layoutCodeGift.setGone()
                     setVisible()
                     when {
-                        obj.gift?.voucher?.can_use == true -> {
+                        obj.voucher?.can_use == true -> {
                             text = "Dùng ngay"
 
                             setOnClickListener {
                                 itemView.context.startActivity(Intent(itemView.context, VoucherLoyaltyActivity::class.java).apply {
-                                    putExtra(ConstantsLoyalty.DATA_1, obj.gift?.voucher?.code)
-                                    putExtra(ConstantsLoyalty.DATA_2, obj.gift?.voucher?.expired_at)
+                                    putExtra(ConstantsLoyalty.DATA_1, obj.voucher?.code)
+                                    putExtra(ConstantsLoyalty.DATA_2, obj.voucher?.expired_at)
+                                    putExtra(ConstantsLoyalty.DATA_3, obj.owner?.logo?.thumbnail)
                                 })
                             }
                         }
-                        obj.gift?.voucher?.can_mark_use == true -> {
+                        obj.voucher?.can_mark_use == true -> {
                             text = "Đánh dầu đã dùng"
 
                             setOnClickListener {

@@ -40,7 +40,7 @@ import vn.icheck.android.loyalty.helper.WidgetHelper
 import vn.icheck.android.loyalty.network.SessionManager
 import vn.icheck.android.loyalty.screen.game_from_labels.vqmm.animations.scaleAnimation
 import vn.icheck.android.loyalty.screen.game_from_labels.vqmm.viewmodel.LuckyGameViewModel
-import vn.icheck.android.loyalty.screen.gift_voucher.GiftDetailFromAppActivity
+import vn.icheck.android.loyalty.screen.gift_detail_from_app.GiftDetailFromAppActivity
 import vn.icheck.android.loyalty.sdk.LoyaltySdk
 
 class FragmentGiftGame : Fragment() {

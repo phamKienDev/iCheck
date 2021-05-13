@@ -56,6 +56,9 @@ class GiftShopAdapter(val listData:List<LoyaltyGiftItem>): PagingDataAdapter<Loy
                 "PRODUCT".toLowerCase(Locale.ROOT) -> {
                     "Quà hiện vật"
                 }
+                "VOUCHER".toLowerCase(Locale.ROOT) -> {
+                    "Voucher"
+                }
                 else -> "Quà tinh thần"
             }
             holder.view.tv_business_name.text = data.pointName

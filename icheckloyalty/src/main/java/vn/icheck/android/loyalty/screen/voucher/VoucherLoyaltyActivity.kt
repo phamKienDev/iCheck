@@ -12,6 +12,7 @@ import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.base.activity.BaseActivityGame
 import vn.icheck.android.loyalty.helper.TimeHelper
+import vn.icheck.android.loyalty.helper.WidgetHelper
 
 class VoucherLoyaltyActivity : BaseActivityGame() {
 
@@ -21,6 +22,7 @@ class VoucherLoyaltyActivity : BaseActivityGame() {
     override fun onInitView() {
         val code = intent.getStringExtra(ConstantsLoyalty.DATA_1)
         val date = intent.getStringExtra(ConstantsLoyalty.DATA_2)
+        val avatar = intent.getStringExtra(ConstantsLoyalty.DATA_3)
 
         val qrCode = try {
             val writer = QRCodeWriter()
@@ -29,7 +31,7 @@ class VoucherLoyaltyActivity : BaseActivityGame() {
             hints[EncodeHintType.CHARACTER_SET] = "UTF-8"
             hints[EncodeHintType.MARGIN] = 2
 
-            val bitMatrix = writer.encode(code, BarcodeFormat.QR_CODE, 512, 512, hints)
+            val bitMatrix = writer.encode("icv$code", BarcodeFormat.QR_CODE, 512, 512, hints)
             val width = bitMatrix.width
             val height = bitMatrix.height
             val bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
@@ -45,11 +47,27 @@ class VoucherLoyaltyActivity : BaseActivityGame() {
 
         imgQrCode.setImageBitmap(qrCode)
 
+        tvClose.setOnClickListener {
+            onBackPressed()
+        }
+
+        WidgetHelper.loadImageUrl(imgLogo, avatar, R.drawable.logo_icheck, R.drawable.logo_icheck)
+
         tvCode.apply {
-            text = code
+            text = if (isChecked) {
+                code
+            } else {
+                "****************"
+            }
 
             setOnClickListener {
-                isChecked = !isChecked
+                text = if (isChecked) {
+                    isChecked = false
+                    "****************"
+                } else {
+                    isChecked = true
+                    code
+                }
             }
         }
 
