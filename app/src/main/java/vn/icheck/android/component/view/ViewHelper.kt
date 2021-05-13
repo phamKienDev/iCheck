@@ -1223,7 +1223,7 @@ object ViewHelper {
         val layoutParent = FrameLayout(context)
         layoutParent.layoutParams = createLayoutParams()
         layoutParent.setPadding(SizeHelper.size12, 0, SizeHelper.size12, 0)
-        layoutParent.setBackgroundColor(Color.WHITE)
+        layoutParent.setBackgroundColor(ContextCompat.getColor(context,R.color.colorBackgroundGray))
 
         layoutParent.addView(View(context).also {
             it.layoutParams =

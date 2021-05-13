@@ -101,6 +101,7 @@
         android:fontFamily="@font/barlow_regular"
         android:lineSpacingExtra="@dimen/font_7_6"
         android:maxLines="2"
+        android:minLines="2"
         android:textColor="#212121"
         android:textSize="@dimen/font_12"
         app:layout_constraintStart_toEndOf="@id/imgPin"
