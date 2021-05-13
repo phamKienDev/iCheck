@@ -71,8 +71,7 @@
         android:id="@+id/containerImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:visibility="visible"
+        android:background="@color/transparent"
         app:layout_constraintBottom_toTopOf="@id/containerSent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -82,33 +81,51 @@
             android:layout_height="@dimen/size_1"
             android:layout_marginBottom="@dimen/size_8"
             android:background="@color/gray"
-            android:visibility="gone"
+            android:visibility="invisible"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/imgCommentSend"
-            android:layout_width="@dimen/size_80"
-            android:layout_height="@dimen/size_80"
-            android:layout_marginStart="@dimen/size_12"
-            android:layout_marginTop="@dimen/size_12"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:layout_marginTop="@dimen/size_10"
             android:layout_marginBottom="@dimen/size_10"
-            android:scaleType="centerCrop"
-            android:visibility="gone"
+            android:layout_marginStart="@dimen/font_12"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/btnPlay"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@drawable/bg_black_20_corners_4"
-            android:src="@drawable/ic_play_40dp"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="@id/imgCommentSend"
-            app:layout_constraintEnd_toEndOf="@id/imgCommentSend"
-            app:layout_constraintStart_toStartOf="@id/imgCommentSend"
-            app:layout_constraintTop_toTopOf="@id/imgCommentSend" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardViewImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:cardCornerRadius="@dimen/size_4"
+                app:cardElevation="-1dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <FrameLayout
+                    android:id="@+id/frameImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imgCommentSend"
+                        android:layout_width="@dimen/size_80"
+                        android:layout_height="@dimen/size_80"
+                        android:scaleType="centerCrop"
+                        android:src="@color/color_egg"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </FrameLayout>
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imgClearImage"
@@ -117,7 +134,7 @@
             android:layout_marginStart="@dimen/size_68"
             android:background="@drawable/ic_delete_red_24px"
             android:visibility="gone"
-            app:layout_constraintStart_toStartOf="@id/imgCommentSend"
+            app:layout_constraintStart_toStartOf="@id/layoutImage"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
