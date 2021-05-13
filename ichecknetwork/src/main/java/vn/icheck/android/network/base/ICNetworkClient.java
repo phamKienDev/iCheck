@@ -34,8 +34,7 @@ import vn.icheck.android.network.util.DeviceUtils;
 public class ICNetworkClient {
     public static ICNetworkCallbackManager networkCallbackManager = ICNetworkCallbackManager.Factory.create();
 
-
-    private static final Gson gson = new GsonBuilder()
+    public static final Gson gson = new GsonBuilder()
             .setLenient()
             .serializeNulls()
             .create();
@@ -98,7 +97,7 @@ public class ICNetworkClient {
             .addInterceptor(loggingInterceptor)
             .addInterceptor(ICNetworkClient::requireLoginCallback3).build();
 
-    private static final OkHttpClient client4 = new OkHttpClient.Builder()
+    public static final OkHttpClient client4 = new OkHttpClient.Builder()
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)

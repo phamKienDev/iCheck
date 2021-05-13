@@ -545,6 +545,7 @@ object APIConstants {
     external fun trackingAppIdDev(): String
     external fun themeSetting(): String
     external fun productsECommerce(): String
+    external fun stampDetailV61(): String
 
     fun checkErrorString(code: String, default: String?): String {
         return when (code) {

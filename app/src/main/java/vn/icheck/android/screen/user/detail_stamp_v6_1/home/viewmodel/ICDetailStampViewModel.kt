@@ -5,7 +5,7 @@ import vn.icheck.android.base.viewmodel.BaseViewModel
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.feature.detail_stamp_v6_1.DetailStampRepository
 
-class DetailStampViewModel: BaseViewModel() {
+class ICDetailStampViewModel : BaseViewModel() {
     private val repository = DetailStampRepository()
 
     var data = ""

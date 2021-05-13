@@ -13,7 +13,7 @@
     <color name="colorSecondary">#3C5A99</color>
     <color name="colorAccentYellow">#FFB800</color>
     <color name="colorDisableText">#B4B4B4</color>
-    <color name="colorSecondText">#757575</color>
+<!--    <color name="colorSecondText">#757575</color>-->
     <color name="gray">#D8D8D8</color>
     <color name="black_60">#99000000</color>
     <color name="colorPrimary">#057DDA</color>
@@ -30,5 +30,5 @@
     <color name="darkGray1">#434343</color>
     <color name="lightGray">#F1F1F1</color>
     <color name="gray_item_search">#F5F5F5</color>
-    <color name="colorNormalText">#212121</color>
+<!--    <color name="colorNormalText">#212121</color>-->
 </resources>

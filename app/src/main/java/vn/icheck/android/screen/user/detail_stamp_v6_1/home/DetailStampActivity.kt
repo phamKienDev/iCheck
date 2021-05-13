@@ -31,18 +31,16 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager
 import com.google.android.gms.location.*
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.activity_detail_stamp.*
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.model.ICMessageEvent
+import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.component.banner.ListBannerAdapter
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.databinding.ActivityDetailStampBinding
 import vn.icheck.android.helper.*
 import vn.icheck.android.ichecklibs.DialogHelper
 import vn.icheck.android.ichecklibs.beGone
@@ -65,7 +63,7 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.history_guarantee.History
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.adapter.*
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.presenter.DetailStampPresenter
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.view.IDetailStampView
-import vn.icheck.android.screen.user.detail_stamp_v6_1.home.viewmodel.DetailStampViewModel
+import vn.icheck.android.screen.user.detail_stamp_v6_1.home.viewmodel.ICDetailStampViewModel
 import vn.icheck.android.screen.user.detail_stamp_v6_1.more_business.MoreBusinessActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.more_information_product.MoreInformationProductActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.more_product_verified_by_distributor.MoreProductVerifiedByDistributorActivity
@@ -80,17 +78,14 @@ import vn.icheck.android.util.kotlin.ContactUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.concurrent.TimeUnit
 import java.util.regex.Pattern
 import kotlin.math.hypot
 
 class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyaltyHelper.ILoginListener, IClickListener, CampaignLoyaltyHelper.IRemoveHolderInputLoyaltyListener {
-    private lateinit var binding: ActivityDetailStampBinding
-
-    private lateinit var viewModel: DetailStampViewModel
+    private lateinit var viewModel: ICDetailStampViewModel
     private val presenter = DetailStampPresenter(this)
 
-    private val adapter = DetailStampAdapter()
+    private val adapter = ICDetailStampAdapter()
 
     companion object {
         val listActivities = mutableListOf<AppCompatActivity>()
@@ -141,11 +136,11 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
     var description = ""
     var targetType = ""
 
-    private var nameProduct: String? = null
+//    private var nameProduct: String? = null
     private var url: String? = null
     private var km: String? = null
 
-    private var bannerAdapter: BannerAdapter? = null
+//    private var bannerAdapter: BannerAdapter? = null
     private lateinit var adapterSuggestion: MoreProductVerifiedAdapter
     private lateinit var adapterService: ServiceShopVariantAdapter
     private lateinit var adapterConfigError: ConfigErrorAdapter
@@ -164,8 +159,7 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityDetailStampBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_detail_stamp)
 
         setupCountry()
         setupRecyclerView()
@@ -181,25 +175,25 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
 
         runOnUiThread {
             if (isVietNamLanguage == false) {
-                binding.txtTitle.text = "Verified product"
-                binding.tvChatWithAdmin.text = "Contact to Admin Icheck"
-                binding.btnAgainError.text = "Try Again"
-                binding.btnRequestPermission.text = "Turn on GPS"
+                txtTitle.text = "Verified product"
+                tvChatWithAdmin.text = "Contact to Admin Icheck"
+                btnAgainError.text = "Try Again"
+                btnRequestPermission.text = "Turn on GPS"
             } else {
-                binding.txtTitle.text = "Xác thực sản phẩm"
-                binding.tvChatWithAdmin.text = "Liên hệ Admin iCheck"
-                binding.btnAgainError.text = "Thử Lại"
-                binding.btnRequestPermission.text = "Bật GPS"
+                txtTitle.text = "Xác thực sản phẩm"
+                tvChatWithAdmin.text = "Liên hệ Admin iCheck"
+                btnAgainError.text = "Thử Lại"
+                btnRequestPermission.text = "Bật GPS"
             }
         }
     }
 
     private fun setupRecyclerView() {
-        binding.recyclerView.adapter = adapter
+        recyclerView.adapter = adapter
     }
 
     private fun setupViewModel() {
-        viewModel = ViewModelProviders.of(this).get(DetailStampViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(ICDetailStampViewModel::class.java)
 
         viewModel.getData(intent)
     }
@@ -221,7 +215,7 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                 val lastLocation = locationResult?.lastLocation
 
                 if (lastLocation != null && !isGetLocationSuccess) {
-                    binding.llAcceptPermission.beGone()
+                    llAcceptPermission.beGone()
                     isGetLocationSuccess = true
                     lat = lastLocation.latitude.toString()
                     lng = lastLocation.longitude.toString()
@@ -242,106 +236,106 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
     }
 
     private fun setupListener() {
-        binding.imgBack.setOnClickListener {
+        imgBack.setOnClickListener {
             onBackPressed()
         }
 
-        binding.imgMore.setOnClickListener {
-            binding.imgMore.isClickable = false
-            val cx: Int = binding.layoutChatAdmin.measuredWidth * 2
-            val cy: Int = binding.layoutChatAdmin.measuredHeight / 2
-            val finalRadius = hypot(binding.layoutChatAdmin.width * 2.toDouble(), binding.layoutChatAdmin.height.toDouble()).toFloat()
+        imgMore.setOnClickListener {
+            imgMore.isClickable = false
+            val cx: Int = layoutChatAdmin.measuredWidth * 2
+            val cy: Int = layoutChatAdmin.measuredHeight / 2
+            val finalRadius = hypot(layoutChatAdmin.width * 2.toDouble(), layoutChatAdmin.height.toDouble()).toFloat()
 
-            if (binding.layoutChatAdmin.visibility == View.VISIBLE) {
+            if (layoutChatAdmin.visibility == View.VISIBLE) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    val anim = ViewAnimationUtils.createCircularReveal(binding.layoutChatAdmin, cx, cy, finalRadius, 0f)
+                    val anim = ViewAnimationUtils.createCircularReveal(layoutChatAdmin, cx, cy, finalRadius, 0f)
                     anim.addListener(object : AnimatorListenerAdapter() {
                         override fun onAnimationEnd(animation: Animator) {
                             super.onAnimationEnd(animation)
-                            binding.layoutChatAdmin.visibility = View.INVISIBLE
-                            binding.imgMore.isClickable = true
+                            layoutChatAdmin.visibility = View.INVISIBLE
+                            imgMore.isClickable = true
                         }
                     })
                     anim.duration = 1000
                     anim.start()
                 } else {
-                    binding.layoutChatAdmin.visibility = View.INVISIBLE
-                    binding.imgMore.isClickable = true
+                    layoutChatAdmin.visibility = View.INVISIBLE
+                    imgMore.isClickable = true
                 }
             } else {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    val anim = ViewAnimationUtils.createCircularReveal(binding.layoutChatAdmin, cx, cy, 0f, finalRadius)
-                    binding.layoutChatAdmin.visibility = View.VISIBLE
+                    val anim = ViewAnimationUtils.createCircularReveal(layoutChatAdmin, cx, cy, 0f, finalRadius)
+                    layoutChatAdmin.visibility = View.VISIBLE
                     anim.addListener(object : AnimatorListenerAdapter() {
                         override fun onAnimationEnd(animation: Animator) {
                             super.onAnimationEnd(animation)
-                            binding.imgMore.isClickable = true
+                            imgMore.isClickable = true
                         }
                     })
                     anim.duration = 1000
                     anim.start()
                 } else {
-                    binding.layoutChatAdmin.visibility = View.VISIBLE
-                    binding.imgMore.isClickable = true
+                    layoutChatAdmin.visibility = View.VISIBLE
+                    imgMore.isClickable = true
                 }
             }
         }
 
-        binding.layoutChatAdmin.setOnClickListener {
+        layoutChatAdmin.setOnClickListener {
             startActivity<ContactSupportActivity>()
-            binding.layoutChatAdmin.visibility = View.INVISIBLE
+            layoutChatAdmin.visibility = View.INVISIBLE
         }
 
-        binding.tvMoreHistoryGuarantee.setOnClickListener {
+        tvMoreHistoryGuarantee.setOnClickListener {
             val intent = Intent(this, HistoryGuaranteeActivity::class.java)
             when {
-                binding.tvSerialFake.text.toString().isNotEmpty() -> {
-                    intent.putExtra(Constant.DATA_1, binding.tvSerialFake.text.toString())
+                tvSerialFake.text.toString().isNotEmpty() -> {
+                    intent.putExtra(Constant.DATA_1, tvSerialFake.text.toString())
                 }
-                binding.tvSerialVerified.text.toString().isNotEmpty() -> {
-                    intent.putExtra(Constant.DATA_1, binding.tvSerialVerified.text.toString())
+                tvSerialVerified.text.toString().isNotEmpty() -> {
+                    intent.putExtra(Constant.DATA_1, tvSerialVerified.text.toString())
                 }
-                binding.tvSerialVerifiedChongGia.text.toString().isNotEmpty() -> {
-                    intent.putExtra(Constant.DATA_1, binding.tvSerialVerifiedChongGia.text.toString())
+                tvSerialVerifiedChongGia.text.toString().isNotEmpty() -> {
+                    intent.putExtra(Constant.DATA_1, tvSerialVerifiedChongGia.text.toString())
                 }
                 else -> {
-                    intent.putExtra(Constant.DATA_1, binding.tvSerialVerifiedBaoHanh.text.toString())
+                    intent.putExtra(Constant.DATA_1, tvSerialVerifiedBaoHanh.text.toString())
                 }
             }
             startActivity(intent)
         }
 
-        binding.layoutMoreVendor.setOnClickListener {
+        layoutMoreVendor.setOnClickListener {
             val intent = Intent(this, MoreBusinessActivity::class.java)
             intent.putExtra(Constant.DATA_1, 1)
             intent.putExtra(Constant.DATA_2, objVendor)
             startActivity(intent)
         }
 
-        binding.layoutMoreDistributor.setOnClickListener {
+        layoutMoreDistributor.setOnClickListener {
             val intent = Intent(this, MoreBusinessActivity::class.java)
             intent.putExtra(Constant.DATA_1, 2)
             intent.putExtra(Constant.DATA_2, itemDistributor)
             startActivity(intent)
         }
 
-        binding.textFab.setOnClickListener {
+        textFab.setOnClickListener {
             // 0 - la chong gia , 1 - tran hang , 2 - bao hanh
             if (objGuarantee != null) {
                 if (objCustomerLastGuarantee != null) {
                     val intent = Intent(this, VerifiedPhoneActivity::class.java)
                     when {
-                        binding.tvSerialFake.text.toString().isNotEmpty() -> {
-                            intent.putExtra(Constant.DATA_1, binding.tvSerialFake.text.toString())
+                        tvSerialFake.text.toString().isNotEmpty() -> {
+                            intent.putExtra(Constant.DATA_1, tvSerialFake.text.toString())
                         }
-                        binding.tvSerialVerified.text.toString().isNotEmpty() -> {
-                            intent.putExtra(Constant.DATA_1, binding.tvSerialVerified.text.toString())
+                        tvSerialVerified.text.toString().isNotEmpty() -> {
+                            intent.putExtra(Constant.DATA_1, tvSerialVerified.text.toString())
                         }
-                        binding.tvSerialVerifiedChongGia.text.toString().isNotEmpty() -> {
-                            intent.putExtra(Constant.DATA_1, binding.tvSerialVerifiedChongGia.text.toString())
+                        tvSerialVerifiedChongGia.text.toString().isNotEmpty() -> {
+                            intent.putExtra(Constant.DATA_1, tvSerialVerifiedChongGia.text.toString())
                         }
                         else -> {
-                            intent.putExtra(Constant.DATA_1, binding.tvSerialVerifiedBaoHanh.text.toString())
+                            intent.putExtra(Constant.DATA_1, tvSerialVerifiedBaoHanh.text.toString())
                         }
                     }
                     intent.putExtra(Constant.DATA_2, idDistributor)
@@ -367,17 +361,17 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                 intent.putExtra(Constant.DATA_2, idDistributor)
                 intent.putExtra(Constant.DATA_4, productCode)
                 when {
-                    binding.tvSerialFake.text.toString().isNotEmpty() -> {
-                        intent.putExtra(Constant.DATA_5, binding.tvSerialFake.text.toString())
+                    tvSerialFake.text.toString().isNotEmpty() -> {
+                        intent.putExtra(Constant.DATA_5, tvSerialFake.text.toString())
                     }
-                    binding.tvSerialVerified.text.toString().isNotEmpty() -> {
-                        intent.putExtra(Constant.DATA_5, binding.tvSerialVerified.text.toString())
+                    tvSerialVerified.text.toString().isNotEmpty() -> {
+                        intent.putExtra(Constant.DATA_5, tvSerialVerified.text.toString())
                     }
-                    binding.tvSerialVerifiedChongGia.text.toString().isNotEmpty() -> {
-                        intent.putExtra(Constant.DATA_5, binding.tvSerialVerifiedChongGia.text.toString())
+                    tvSerialVerifiedChongGia.text.toString().isNotEmpty() -> {
+                        intent.putExtra(Constant.DATA_5, tvSerialVerifiedChongGia.text.toString())
                     }
                     else -> {
-                        intent.putExtra(Constant.DATA_5, binding.tvSerialVerifiedBaoHanh.text.toString())
+                        intent.putExtra(Constant.DATA_5, tvSerialVerifiedBaoHanh.text.toString())
                     }
                 }
                 intent.putExtra(Constant.DATA_6, productId)
@@ -386,11 +380,11 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
             }
         }
 
-        binding.tvWebsiteVendor.setOnClickListener {
-            var webpage = Uri.parse(binding.tvWebsiteVendor.text.toString())
+        tvWebsiteVendor.setOnClickListener {
+            var webpage = Uri.parse(tvWebsiteVendor.text.toString())
 
-            if (!binding.tvWebsiteVendor.text.toString().startsWith("http://") && !binding.tvWebsiteVendor.text.toString().startsWith("https://")) {
-                webpage = Uri.parse("http://${binding.tvWebsiteVendor.text}")
+            if (!tvWebsiteVendor.text.toString().startsWith("http://") && !tvWebsiteVendor.text.toString().startsWith("https://")) {
+                webpage = Uri.parse("http://${tvWebsiteVendor.text}")
             }
 
             val intent = Intent(Intent.ACTION_VIEW, webpage)
@@ -399,27 +393,27 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
             }
         }
 
-        binding.tvPhoneVendor.setOnClickListener {
-            if (binding.tvPhoneVendor.text.toString() != getString(R.string.dang_cap_nhat)) {
+        tvPhoneVendor.setOnClickListener {
+            if (tvPhoneVendor.text.toString() != getString(R.string.dang_cap_nhat)) {
                 if (PermissionHelper.checkPermission(this, Manifest.permission.CALL_PHONE, requestPhone)) {
-                    ContactUtils.callFast(this@DetailStampActivity, binding.tvPhoneVendor.text.toString())
+                    ContactUtils.callFast(this@DetailStampActivity, tvPhoneVendor.text.toString())
                 }
             }
         }
 
-        binding.tvMailVendor.setOnClickListener {
-            if (binding.tvMailVendor.text.toString() != getString(R.string.dang_cap_nhat)) {
+        tvMailVendor.setOnClickListener {
+            if (tvMailVendor.text.toString() != getString(R.string.dang_cap_nhat)) {
                 val intent = Intent(Intent.ACTION_SENDTO)
-                intent.data = Uri.parse("mailto:" + binding.tvMailVendor.text.toString())
+                intent.data = Uri.parse("mailto:" + tvMailVendor.text.toString())
                 startActivity(Intent.createChooser(intent, "Send To"))
             }
         }
 
-        binding.tvWebsiteDistributor.setOnClickListener {
-            var webpage = Uri.parse(binding.tvWebsiteDistributor.text.toString())
+        tvWebsiteDistributor.setOnClickListener {
+            var webpage = Uri.parse(tvWebsiteDistributor.text.toString())
 
-            if (!binding.tvWebsiteDistributor.text.toString().startsWith("http://") && !binding.tvWebsiteDistributor.text.toString().startsWith("https://")) {
-                webpage = Uri.parse("http://${binding.tvWebsiteVendor.text}")
+            if (!tvWebsiteDistributor.text.toString().startsWith("http://") && !tvWebsiteDistributor.text.toString().startsWith("https://")) {
+                webpage = Uri.parse("http://${tvWebsiteVendor.text}")
             }
 
             val intent = Intent(Intent.ACTION_VIEW, webpage)
@@ -428,7 +422,7 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
             }
         }
 
-        binding.tvHotlineBussiness.setOnClickListener {
+        tvHotlineBussiness.setOnClickListener {
             if (!itemDistributor?.phone.isNullOrEmpty()) {
                 if (PermissionHelper.checkPermission(this, Manifest.permission.CALL_PHONE, requestPhone)) {
                     ContactUtils.callFast(this@DetailStampActivity, itemDistributor?.phone!!)
@@ -436,15 +430,15 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
             }
         }
 
-        binding.tvPhoneDistributor.setOnClickListener {
-            if (binding.tvPhoneDistributor.text.toString() != getString(R.string.dang_cap_nhat)) {
+        tvPhoneDistributor.setOnClickListener {
+            if (tvPhoneDistributor.text.toString() != getString(R.string.dang_cap_nhat)) {
                 if (PermissionHelper.checkPermission(this, Manifest.permission.CALL_PHONE, requestPhone)) {
-                    ContactUtils.callFast(this@DetailStampActivity, binding.tvPhoneDistributor.text.toString())
+                    ContactUtils.callFast(this@DetailStampActivity, tvPhoneDistributor.text.toString())
                 }
             }
         }
 
-        binding.tvEmailBussiness.setOnClickListener {
+        tvEmailBussiness.setOnClickListener {
             if (!itemDistributor?.email.isNullOrEmpty()) {
                 val intent = Intent(Intent.ACTION_SENDTO)
                 intent.data = Uri.parse("mailto:" + itemDistributor?.email)
@@ -452,19 +446,19 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
             }
         }
 
-        binding.tvMailDistributor.setOnClickListener {
-            if (binding.tvMailDistributor.text.toString() != getString(R.string.dang_cap_nhat)) {
+        tvMailDistributor.setOnClickListener {
+            if (tvMailDistributor.text.toString() != getString(R.string.dang_cap_nhat)) {
                 val intent = Intent(Intent.ACTION_SENDTO)
-                intent.data = Uri.parse("mailto:" + binding.tvMailDistributor.text.toString())
+                intent.data = Uri.parse("mailto:" + tvMailDistributor.text.toString())
                 startActivity(Intent.createChooser(intent, "Send To"))
             }
         }
 
-        binding.btnAgainError.setOnClickListener {
+        btnAgainError.setOnClickListener {
             getData()
         }
 
-        binding.btnChat.setOnClickListener {
+        btnChat.setOnClickListener {
             if (SessionManager.isUserLogged || SessionManager.isUserLogged) {
 //                val intent = Intent(this, ChatV2Activity::class.java)
 //                intent.putExtra(Constant.DATA_1, idShopVariant)
@@ -483,7 +477,7 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
 //            }
 //        }
 
-        binding.imgGotoCart.setOnClickListener {
+        imgGotoCart.setOnClickListener {
             if (SessionManager.isUserLogged || SessionManager.isUserLogged) {
                 onRequireLoginSuccess(requestGoToCart)
             } else {
@@ -491,7 +485,7 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
             }
         }
 
-        binding.layoutBuyNow.setOnClickListener {
+        layoutBuyNow.setOnClickListener {
 //            if (SessionManager.isUserLogged || SessionManager.isUserLogged) {
 //                onRequireLoginSuccess(requestAddToCartShortToast)
 //            } else {
@@ -500,7 +494,7 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
             showShortSuccess("Tính năng đang phát triển")
         }
 
-        binding.tvAddToCartInDiemBan.setOnClickListener {
+        tvAddToCartInDiemBan.setOnClickListener {
 //            if (SessionManager.isUserLogged || SessionManager.isUserLogged) {
 //                onRequireLoginSuccess(requestAddToCart)
 //            } else {
@@ -508,13 +502,13 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
 //            }
         }
 
-        binding.tvMoreProductVerified.setOnClickListener {
+        tvMoreProductVerified.setOnClickListener {
             idDistributor?.let { id ->
                 startActivity<MoreProductVerifiedByDistributorActivity, Long>(Constant.DATA_1, id)
             }
         }
 
-        binding.btnRequestPermission.setOnClickListener {
+        btnRequestPermission.setOnClickListener {
             if (checkGpsPermission) {
                 getData()
             }
@@ -525,12 +519,12 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
         get() {
             val permission = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
             if (!PermissionHelper.checkPermission(this, permission, requestGpsPermission)) {
-                binding.llAcceptPermission.beVisible()
+                llAcceptPermission.beVisible()
                 return false
             }
 
             if (!NetworkHelper.checkGPS(this@DetailStampActivity, getString(R.string.vui_long_bat_gpa_de_ung_dung_tim_duoc_vi_tri_cua_ban), requestGps)) {
-                binding.llAcceptPermission.beVisible()
+                llAcceptPermission.beVisible()
                 return false
             }
 
@@ -564,14 +558,23 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                                 "IMAGE_PRODUCT" -> {
                                     if (!widget.data?.atts.isNullOrEmpty()) {
                                         listData.add(ICLayout().apply {
-                                            data = widget.data!!.atts
+                                            viewType = ICViewTypes.PRODUCT_IMAGE
+                                            data = widget.data!!.atts!!
+                                        })
+                                    }
+                                }
+                                "PRODUCT" -> {
+                                    if (widget.data != null) {
+                                        listData.add(ICLayout().apply {
+                                            viewType = ICViewTypes.PRODUCT_INFO
+                                            data = widget.data!!
                                         })
                                     }
                                 }
                             }
                         }
 
-                        adapter.addListData(listData)
+                        adapter.setListData(listData)
                     }
                 }
             }
@@ -595,47 +598,6 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
         }
     }
 
-    private fun initBanner() {
-        bannerAdapter = BannerAdapter()
-        binding.viewPagerImgProduct.adapter = bannerAdapter
-
-        binding.viewPagerImgProduct.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrollStateChanged(p0: Int) {
-
-            }
-
-            override fun onPageScrolled(p0: Int, p1: Float, p2: Int) {
-
-            }
-
-            override fun onPageSelected(p0: Int) {
-                countDownToNext()
-            }
-        })
-
-        countDownToNext()
-    }
-
-    private fun countDownToNext() {
-        disposable?.dispose()
-        disposable = null
-
-        disposable = Observable.timer(3, TimeUnit.SECONDS)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    binding.viewPagerImgProduct?.let { viewPager ->
-                        val totalCount = viewPager.adapter?.count ?: 0
-
-                        viewPager.currentItem = if (viewPager.currentItem < totalCount - 1) {
-                            viewPager.currentItem + 1
-                        } else {
-                            0
-                        }
-                    }
-                }
-    }
-
     override fun itemPagerClick(list: String, position: Int) {
         val intent = Intent(this, ViewImageActivity::class.java)
         intent.putExtra(Constant.DATA_1, list)
@@ -650,8 +612,8 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
 
     private fun initRecyclerViewMoreProduct() {
         adapterSuggestion = MoreProductVerifiedAdapter(this)
-        binding.rcvMoreProductVerified.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        binding.rcvMoreProductVerified.adapter = adapterSuggestion
+        rcvMoreProductVerified.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        rcvMoreProductVerified.adapter = adapterSuggestion
     }
 
     override fun onItemClick(item: ICObjectListMoreProductVerified) {
@@ -662,22 +624,22 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
 
     private fun initAdapterService() {
         adapterService = ServiceShopVariantAdapter(this)
-        binding.rcvServiceShopVariant.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        binding.rcvServiceShopVariant.adapter = adapterService
+        rcvServiceShopVariant.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        rcvServiceShopVariant.adapter = adapterService
     }
 
     private fun initAdapterConfigError() {
         adapterConfigError = ConfigErrorAdapter(this)
-        binding.rcvConfigError.layoutManager = LinearLayoutManager(this)
-        binding.rcvConfigError.adapter = adapterConfigError
+        rcvConfigError.layoutManager = LinearLayoutManager(this)
+        rcvConfigError.adapter = adapterConfigError
     }
 
     private fun initAdapterInformationProduct() {
         adapterInformationProduct = InformationProductStampAdapter(this)
-        binding.rcvInformation.layoutManager = object : LinearLayoutManager(this) {
+        rcvInformation.layoutManager = object : LinearLayoutManager(this) {
             override fun canScrollVertically(): Boolean = false
         }
-        binding.rcvInformation.adapter = adapterInformationProduct
+        rcvInformation.adapter = adapterInformationProduct
     }
 
     override fun onClickInforProduct(item: ICObjectInfo) {
@@ -731,24 +693,24 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
         }
         //Check Error Client
         if (obj == null) {
-            binding.layoutErrorClient.visibility = View.VISIBLE
-            binding.scrollViewError.visibility = View.GONE
-            binding.scrollView.visibility = View.GONE
-            binding.bottomLayout.visibility = View.GONE
+            layoutErrorClient.visibility = View.VISIBLE
+            scrollViewError.visibility = View.GONE
+            scrollView.visibility = View.GONE
+            bottomLayout.visibility = View.GONE
             return
         } else {
-            binding.layoutErrorClient.visibility = View.GONE
+            layoutErrorClient.visibility = View.GONE
 
             //check Error detail Stamp
             if (obj.data?.scan_message?.redirect_warning == true) {
                 itemDistributor = obj.data?.distributor
-                binding.scrollView.visibility = View.GONE
-                binding.layoutExceededScan.visibility = View.VISIBLE
-                binding.tvMessageApollo.text = obj.data?.scan_message?.text
-                binding.tvBussinessName.text = obj.data?.distributor?.name
-                binding.tvAddressBussiness.text = "Địa chỉ: " + obj.data?.distributor?.address + ", " + obj.data?.distributor?.district + ", " + obj.data?.distributor?.city
-                binding.tvHotlineBussiness.text = "Tổng đài: " + obj.data?.distributor?.phone
-                binding.tvEmailBussiness.text = " - Email: " + obj.data?.distributor?.email
+                scrollView.visibility = View.GONE
+                layoutExceededScan.visibility = View.VISIBLE
+                tvMessageApollo.text = obj.data?.scan_message?.text
+                tvBussinessName.text = obj.data?.distributor?.name
+                tvAddressBussiness.text = "Địa chỉ: " + obj.data?.distributor?.address + ", " + obj.data?.distributor?.district + ", " + obj.data?.distributor?.city
+                tvHotlineBussiness.text = "Tổng đài: " + obj.data?.distributor?.phone
+                tvEmailBussiness.text = " - Email: " + obj.data?.distributor?.email
                 return
             }
 
@@ -760,17 +722,16 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
             }
 
             if (obj.data?.error_code == "REQUIRE_LOCATION") {
-                binding.llAcceptPermission.visibility = View.VISIBLE
-                binding.tvMessageLocation.text = obj.data?.message?.message
+                llAcceptPermission.visibility = View.VISIBLE
+                tvMessageLocation.text = obj.data?.message?.message
                 return
             }
 
             if (!obj.data?.message?.message.isNullOrEmpty()) {
                 presenter.getConfigError()
-                binding.tvMessageStampError.text = "CẢNH BÁO!" + "\n" + obj.data?.message?.message
+                tvMessageStampError.text = "CẢNH BÁO!" + "\n" + obj.data?.message?.message
             } else {
-                binding.scrollView.visibility = View.VISIBLE
-                initBanner()
+                scrollView.visibility = View.VISIBLE
             }
 
             idDistributor = obj.data?.distributor?.id
@@ -795,30 +756,30 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                     //fake
                     0 -> {
                         if (isVietNamLanguage == false) {
-                            binding.appCompatTextView12.text = "Number of scan"
-                            binding.appCompatTextView13.text = "Number of scaner"
+                            appCompatTextView12.text = "Number of scan"
+                            appCompatTextView13.text = "Number of scaner"
                         } else {
-                            binding.appCompatTextView12.text = "Số lần quét"
-                            binding.appCompatTextView13.text = "Số người quét"
+                            appCompatTextView12.text = "Số lần quét"
+                            appCompatTextView13.text = "Số người quét"
                         }
 
-                        binding.layoutFake.visibility = View.VISIBLE
-                        binding.tvMessageVerifiedFake.text = obj.data?.scan_message?.text
+                        layoutFake.visibility = View.VISIBLE
+                        tvMessageVerifiedFake.text = obj.data?.scan_message?.text
                         obj.data?.count?.let {
 //                            var textNumberSerial = "000000"
 //                            textNumberSerial = textNumberSerial!!.removeRange(6 - it.number.toString().length, 6)
 //                            val mNumber = textNumberSerial + it.number
                             mSerial = getSerialNumber(it.prefix, it.number)
                             verfiedSerial = getSerialNumber(it.prefix, it.number)
-                            binding.tvSerialFake.text = "Serial: $verfiedSerial"
+                            tvSerialFake.text = "Serial: $verfiedSerial"
 
-                            binding.tvCountScanFake.text = if (it.scan_count.toString().isNotEmpty()) {
+                            tvCountScanFake.text = if (it.scan_count.toString().isNotEmpty()) {
                                 it.scan_count.toString()
                             } else {
                                 getString(R.string.dang_cap_nhat)
                             }
 
-                            binding.tvCountUserScanFake.text = if (it.people_count.toString().isNotEmpty()) {
+                            tvCountUserScanFake.text = if (it.people_count.toString().isNotEmpty()) {
                                 it.people_count.toString()
                             } else {
                                 getString(R.string.dang_cap_nhat)
@@ -829,27 +790,27 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                     //verified
                     1 -> {
                         if (isVietNamLanguage == false) {
-                            binding.appCompatTextView15.text = "Number of scan"
-                            binding.appCompatTextView16.text = "Number of scaner"
+                            appCompatTextView15.text = "Number of scan"
+                            appCompatTextView16.text = "Number of scaner"
                         } else {
-                            binding.appCompatTextView15.text = "Số lần quét"
-                            binding.appCompatTextView16.text = "Số người quét"
+                            appCompatTextView15.text = "Số lần quét"
+                            appCompatTextView16.text = "Số người quét"
                         }
 
-                        binding.layoutVerified.visibility = View.VISIBLE
-                        binding.tvMessageVerified.text = obj.data?.scan_message?.text
+                        layoutVerified.visibility = View.VISIBLE
+                        tvMessageVerified.text = obj.data?.scan_message?.text
                         obj.data?.count?.let {
                             mSerial = getSerialNumber(it.prefix, it.number)
                             verfiedSerial = getSerialNumber(it.prefix, it.number)
-                            binding.tvSerialVerified.text = "Serial: $verfiedSerial"
+                            tvSerialVerified.text = "Serial: $verfiedSerial"
 
-                            binding.tvCountScanVerified.text = if (it.scan_count.toString().isNotEmpty()) {
+                            tvCountScanVerified.text = if (it.scan_count.toString().isNotEmpty()) {
                                 it.scan_count.toString()
                             } else {
                                 getString(R.string.dang_cap_nhat)
                             }
 
-                            binding.tvCountUserScanVerified.text = if (it.people_count.toString().isNotEmpty()) {
+                            tvCountUserScanVerified.text = if (it.people_count.toString().isNotEmpty()) {
                                 it.people_count.toString()
                             } else {
                                 getString(R.string.dang_cap_nhat)
@@ -859,26 +820,26 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                     //Guarantee
                     2 -> {
                         if (isVietNamLanguage == false) {
-                            binding.appCompatTextView19.text = "Number of scan"
-                            binding.appCompatTextView20.text = "Number of scaner"
+                            appCompatTextView19.text = "Number of scan"
+                            appCompatTextView20.text = "Number of scaner"
                         } else {
-                            binding.appCompatTextView19.text = "Số lần quét"
-                            binding.appCompatTextView20.text = "Số người quét"
+                            appCompatTextView19.text = "Số lần quét"
+                            appCompatTextView20.text = "Số người quét"
                         }
-                        binding.layoutVerifiedBaoHanh.visibility = View.VISIBLE
-                        binding.tvMessageVerifiedBaoHanh.text = obj.data?.scan_message?.text
+                        layoutVerifiedBaoHanh.visibility = View.VISIBLE
+                        tvMessageVerifiedBaoHanh.text = obj.data?.scan_message?.text
                         obj.data?.count?.let {
                             mSerial = getSerialNumber(it.prefix, it.number)
                             verfiedSerial = getSerialNumber(it.prefix, it.number)
-                            binding.tvSerialVerifiedBaoHanh.text = "Serial: $verfiedSerial"
+                            tvSerialVerifiedBaoHanh.text = "Serial: $verfiedSerial"
 
-                            binding.tvCountScanVerifiedBaoHanh.text = if (it.scan_count.toString().isNotEmpty()) {
+                            tvCountScanVerifiedBaoHanh.text = if (it.scan_count.toString().isNotEmpty()) {
                                 it.scan_count.toString()
                             } else {
                                 getString(R.string.dang_cap_nhat)
                             }
 
-                            binding.tvCountUserScanVerifiedBaoHanh.text = if (it.people_count.toString().isNotEmpty()) {
+                            tvCountUserScanVerifiedBaoHanh.text = if (it.people_count.toString().isNotEmpty()) {
                                 it.people_count.toString()
                             } else {
                                 getString(R.string.dang_cap_nhat)
@@ -887,12 +848,12 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                     }
                 }
             } else {
-                binding.layoutVerifiedChongGia.visibility = View.VISIBLE
-                binding.layoutheaderChongGia.visibility = View.GONE
+                layoutVerifiedChongGia.visibility = View.VISIBLE
+                layoutheaderChongGia.visibility = View.GONE
                 obj.data?.count?.let {
                     mSerial = getSerialNumber(it.prefix, it.number)
                     verfiedSerial = getSerialNumber(it.prefix, it.number)
-                    binding.tvSerialVerifiedChongGia.text = "Serial: $verfiedSerial"
+                    tvSerialVerifiedChongGia.text = "Serial: $verfiedSerial"
                 }
             }
 
@@ -927,12 +888,12 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
             if (obj.data?.can_update == true) {
 
                 if (isVietNamLanguage == false) {
-                    binding.textFab.text = "Update customer information"
+                    textFab.text = "Update customer information"
                 } else {
-                    binding.textFab.text = "Cập nhật thông tin khách hàng"
+                    textFab.text = "Cập nhật thông tin khách hàng"
                 }
 
-                binding.textFab.visibility = View.VISIBLE
+                textFab.visibility = View.VISIBLE
                 initScrollFab()
             }
 
@@ -959,15 +920,6 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                     intent.putExtra(Constant.DATA_8, presenter.code)
                     startActivity(intent)
                 }
-            }
-
-// check hien thị product
-            if (!obj.data?.product?.images.isNullOrEmpty() && obj.data?.product?.name != null && obj.data?.product?.price != null && !obj.data?.product?.sku.isNullOrEmpty()) {
-                binding.layoutHeader.visibility = View.VISIBLE
-                binding.horizontalScroll.visibility = View.VISIBLE
-            } else {
-                binding.layoutHeader.visibility = View.GONE
-                binding.horizontalScroll.visibility = View.GONE
             }
 
 //      setdata slide image product
@@ -1006,50 +958,21 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
 //                bannerAdapter?.setListData(obj.data?.product?.images ?: mutableListOf(), null, null)
             }
 
-//      price
-            if (obj.data?.product?.price == null || obj.data?.product?.price!! <= 0L) {
-                binding.tvPriceProduct.text = getString(R.string.dang_cap_nhat_gia)
-                binding.tvPriceProduct.setTextColor(Color.parseColor("#828282"))
-                binding.tvPriceProduct.textSize = 16F
-                binding.tvPriceProduct.setTypeface(null, Typeface.ITALIC)
-            } else {
-                binding.tvPriceProduct.text = TextHelper.formatMoneyComma(obj.data?.product?.price!!) + "đ"
-            }
-
-//      namePrice
-            if (!obj.data?.product?.name.isNullOrEmpty()) {
-                nameProduct = obj.data!!.product!!.name
-                binding.tvNameProduct.text = obj.data!!.product!!.name
-            }
-
-//      barcode
-            if (!obj.data?.product?.sku.isNullOrEmpty()) {
-                binding.tvBarcodeProduct.text = obj.data!!.product!!.sku
-            } else {
-                binding.tvBarcodeProduct.text = getString(R.string.dang_cap_nhat)
-            }
-
-//      region
-            if (!obj.data?.product?.vendor?.country_name.isNullOrEmpty() && !obj.data?.product?.vendor?.ensign.isNullOrEmpty()) {
-                binding.tvRegion.text = obj.data!!.product!!.vendor!!.country_name
-                WidgetUtils.loadImageUrl(binding.imgRegion, obj.data!!.product!!.vendor!!.ensign)
-            }
-
 //      Thong tin bao hanh
             objGuarantee = obj.data?.guarantee
             if (obj.data?.guarantee?.time != null) {
                 if (isVietNamLanguage == false) {
-                    binding.tvWarrantyInformation.text = "Warranty information"
-                    binding.tvDetailsWarranty.text = "Details of Warranty information"
+                    tvWarrantyInformation.text = "Warranty information"
+                    tvDetailsWarranty.text = "Details of Warranty information"
                 } else {
-                    binding.tvWarrantyInformation.text = "Thông tin bảo hành"
-                    binding.tvDetailsWarranty.text = "Chi tiết bảo hành"
+                    tvWarrantyInformation.text = "Thông tin bảo hành"
+                    tvDetailsWarranty.text = "Chi tiết bảo hành"
                 }
 
-                binding.layoutGurantee.visibility = View.VISIBLE
+                layoutGurantee.visibility = View.VISIBLE
                 obj.data?.guarantee?.time?.let {
                     if (isVietNamLanguage == false) {
-                        binding.tvGuaranteeDay.text = if (it.guarantee_days_update != null && !it.type_guarantee_day.isNullOrEmpty()) {
+                        tvGuaranteeDay.text = if (it.guarantee_days_update != null && !it.type_guarantee_day.isNullOrEmpty()) {
                             if (it.type_guarantee_day!!.trim() == "years") {
                                 Html.fromHtml("<font color=#434343>Warranty period: </font>" + "<b>" + it.guarantee_days_update + " " + "year" + "</b>")
                             } else if (it.type_guarantee_day!!.trim() == "months") {
@@ -1061,25 +984,25 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                             Html.fromHtml("<font color=#434343>Warranty period: </font>" + "<b>" + "updating" + "</b>")
                         }
 
-                        binding.tvExpiredDay.text = if (!it.expired_date.isNullOrEmpty()) {
+                        tvExpiredDay.text = if (!it.expired_date.isNullOrEmpty()) {
                             Html.fromHtml("<font color=#434343>Expire date: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(it.expired_date) + "</b>")
                         } else {
                             Html.fromHtml("<font color=#434343>Expire date: </font>" + "<b>" + "updating" + "</b>")
                         }
 
-                        binding.tvRemainingDay.text = if (it.days_remaining_str != null) {
+                        tvRemainingDay.text = if (it.days_remaining_str != null) {
                             Html.fromHtml("<font color=#434343>Expiry date of warranty: </font>" + "<b>" + it.days_remaining_str + "</b>")
                         } else {
                             Html.fromHtml("<font color=#434343>Expiry date of warranty: </font>" + "<b>" + "updating" + "</b>")
                         }
 
-                        binding.tvActiveDay.text = if (!it.active.isNullOrEmpty()) {
+                        tvActiveDay.text = if (!it.active.isNullOrEmpty()) {
                             Html.fromHtml("<font color=#434343>Warranty activation date: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(it.active) + "</b>")
                         } else {
                             Html.fromHtml("<font color=#434343>Warranty activation date: </font>" + "<b>" + "updating" + "</b>")
                         }
                     } else {
-                        binding.tvGuaranteeDay.text = if (it.guarantee_days_update != null && !it.type_guarantee_day.isNullOrEmpty()) {
+                        tvGuaranteeDay.text = if (it.guarantee_days_update != null && !it.type_guarantee_day.isNullOrEmpty()) {
                             if (it.type_guarantee_day!!.trim() == "years") {
                                 Html.fromHtml("<font color=#434343>Thời gian bảo hành: </font>" + "<b>" + it.guarantee_days_update + " " + "năm" + "</b>")
                             } else if (it.type_guarantee_day!!.trim() == "months") {
@@ -1091,19 +1014,19 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                             Html.fromHtml("<font color=#434343>Thời gian bảo hành: </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
                         }
 
-                        binding.tvExpiredDay.text = if (!it.expired_date.isNullOrEmpty()) {
+                        tvExpiredDay.text = if (!it.expired_date.isNullOrEmpty()) {
                             Html.fromHtml("<font color=#434343>Hạn bảo hành: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(it.expired_date) + "</b>")
                         } else {
                             Html.fromHtml("<font color=#434343>Hạn bảo hành: </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
                         }
 
-                        binding.tvRemainingDay.text = if (it.days_remaining_str != null) {
+                        tvRemainingDay.text = if (it.days_remaining_str != null) {
                             Html.fromHtml("<font color=#434343>Số ngày bảo hành còn lại: </font>" + "<b>" + it.days_remaining_str + "</b>")
                         } else {
                             Html.fromHtml("<font color=#434343>Số ngày bảo hành còn lại: </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
                         }
 
-                        binding.tvActiveDay.text = if (!it.active.isNullOrEmpty()) {
+                        tvActiveDay.text = if (!it.active.isNullOrEmpty()) {
                             Html.fromHtml("<font color=#434343>Ngày kích hoạt bảo hành: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(it.active) + "</b>")
                         } else {
                             Html.fromHtml("<font color=#434343>Ngày kích hoạt bảo hành: </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
@@ -1111,27 +1034,27 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                     }
                 }
             } else {
-                binding.layoutGurantee.visibility = View.GONE
+                layoutGurantee.visibility = View.GONE
             }
 
 //          Lich su bao hanh gan nhat
             if (obj.data?.guarantee?.last_guarantee != null) {
-                binding.layoutContentHistory.removeAllViews()
+                layoutContentHistory.removeAllViews()
                 if (isVietNamLanguage == false) {
-                    binding.appCompatTextView6.text = "Lastest Warranty log"
-                    binding.tvMoreHistoryGuarantee.text = "View all"
+                    appCompatTextView6.text = "Lastest Warranty log"
+                    tvMoreHistoryGuarantee.text = "View all"
                 } else {
-                    binding.appCompatTextView6.text = "Lịch sử bảo hành gần nhất"
-                    binding.tvMoreHistoryGuarantee.text = "Xem tất cả"
+                    appCompatTextView6.text = "Lịch sử bảo hành gần nhất"
+                    tvMoreHistoryGuarantee.text = "Xem tất cả"
                 }
-                binding.layoutHistoryGuarantee.visibility = View.VISIBLE
+                layoutHistoryGuarantee.visibility = View.VISIBLE
                 obj.data?.guarantee?.last_guarantee?.let {
                     productCode = it.product_code
                     objCustomerLastGuarantee = it.customer
                     phoneGuarantee = it.customer?.phone
 
                     if (!it.images.isNullOrEmpty()) {
-                        binding.layoutContentHistory.addView(LinearLayout(this).also { layoutImage ->
+                        layoutContentHistory.addView(LinearLayout(this).also { layoutImage ->
                             val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
                             params.setMargins(SizeHelper.size8, SizeHelper.size8, SizeHelper.size8, 0)
                             layoutImage.layoutParams = params
@@ -1156,7 +1079,7 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                     }
 
                     if (!it.created_time.isNullOrEmpty()) {
-                        binding.layoutContentHistory.addView(AppCompatTextView(this).also { tvCreatedTime ->
+                        layoutContentHistory.addView(AppCompatTextView(this).also { tvCreatedTime ->
                             val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
                             layoutParams.setMargins(SizeHelper.size8, SizeHelper.size8, SizeHelper.size8, 0)
                             tvCreatedTime.layoutParams = layoutParams
@@ -1175,7 +1098,7 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                     }
 
                     if (!it.store?.name.isNullOrEmpty()) {
-                        binding.layoutContentHistory.addView(AppCompatTextView(this).also { tvNameStoreGuarantee ->
+                        layoutContentHistory.addView(AppCompatTextView(this).also { tvNameStoreGuarantee ->
                             val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
                             layoutParams.setMargins(SizeHelper.size8, SizeHelper.size8, SizeHelper.size8, 0)
                             tvNameStoreGuarantee.layoutParams = layoutParams
@@ -1194,7 +1117,7 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                     }
 
                     if (!it.status?.name.isNullOrEmpty()) {
-                        binding.layoutContentHistory.addView(AppCompatTextView(this).also { tvStatusLastGuarantee ->
+                        layoutContentHistory.addView(AppCompatTextView(this).also { tvStatusLastGuarantee ->
                             val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
                             layoutParams.setMargins(SizeHelper.size8, SizeHelper.size8, SizeHelper.size8, 0)
                             tvStatusLastGuarantee.layoutParams = layoutParams
@@ -1213,7 +1136,7 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                     }
 
                     if (!it.state?.name.isNullOrEmpty()) {
-                        binding.layoutContentHistory.addView(AppCompatTextView(this).also { tvStateLastGuarantee ->
+                        layoutContentHistory.addView(AppCompatTextView(this).also { tvStateLastGuarantee ->
                             val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
                             layoutParams.setMargins(SizeHelper.size8, SizeHelper.size8, SizeHelper.size8, 0)
                             tvStateLastGuarantee.layoutParams = layoutParams
@@ -1232,7 +1155,7 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                     }
 
                     if (!it.return_time.isNullOrEmpty()) {
-                        binding.layoutContentHistory.addView(AppCompatTextView(this).also { tvReturnTime ->
+                        layoutContentHistory.addView(AppCompatTextView(this).also { tvReturnTime ->
                             val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
                             layoutParams.setMargins(SizeHelper.size8, SizeHelper.size8, SizeHelper.size8, 0)
                             tvReturnTime.layoutParams = layoutParams
@@ -1251,7 +1174,7 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                     }
 
                     if (!it.note.isNullOrEmpty()) {
-                        binding.layoutContentHistory.addView(AppCompatTextView(this).also { textNote ->
+                        layoutContentHistory.addView(AppCompatTextView(this).also { textNote ->
                             val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
                             layoutParams.setMargins(SizeHelper.size8, SizeHelper.size8, SizeHelper.size8, 0)
                             textNote.layoutParams = layoutParams
@@ -1271,7 +1194,7 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
 
                     for (i in it.fields ?: mutableListOf()) {
                         if (!i.value.isNullOrEmpty() && !i.name.isNullOrEmpty()) {
-                            binding.layoutContentHistory.addView(AppCompatTextView(this).also { text ->
+                            layoutContentHistory.addView(AppCompatTextView(this).also { text ->
                                 val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
                                 layoutParams.setMargins(SizeHelper.size8, SizeHelper.size8, SizeHelper.size8, 0)
                                 text.layoutParams = layoutParams
@@ -1298,7 +1221,7 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                     }
 
                     if (!it.variant?.extra.isNullOrEmpty()) {
-                        binding.layoutContentHistory.addView(AppCompatTextView(this).also { textNote ->
+                        layoutContentHistory.addView(AppCompatTextView(this).also { textNote ->
                             val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
                             layoutParams.setMargins(SizeHelper.size8, SizeHelper.size8, SizeHelper.size8, 0)
                             textNote.layoutParams = layoutParams
@@ -1317,30 +1240,30 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                     }
                 }
             } else {
-                binding.layoutHistoryGuarantee.visibility = View.GONE
+                layoutHistoryGuarantee.visibility = View.GONE
             }
 
 //      check nha san xuat
             if (obj.data?.show_vendor == 1) {
                 if (obj.data?.product?.vendor != null) {
                     if (isVietNamLanguage == false) {
-                        binding.tvSubVendor.text = "Manufacturer"
+                        tvSubVendor.text = "Manufacturer"
                     } else {
-                        binding.tvSubVendor.text = "Nhà sản xuất"
+                        tvSubVendor.text = "Nhà sản xuất"
                     }
 
-                    binding.tvSubVendor.visibility = View.VISIBLE
-                    binding.layoutVendor.visibility = View.VISIBLE
+                    tvSubVendor.visibility = View.VISIBLE
+                    layoutVendor.visibility = View.VISIBLE
 
                     objVendor = obj.data?.product?.vendor
 
-                    binding.tvNameVendor.text = if (!obj.data?.product?.vendor?.name.isNullOrEmpty()) {
+                    tvNameVendor.text = if (!obj.data?.product?.vendor?.name.isNullOrEmpty()) {
                         obj.data?.product?.vendor?.name
                     } else {
                         getString(R.string.dang_cap_nhat)
                     }
 
-                    binding.tvAddressVendor.text = if (!obj.data?.product?.vendor?.address.isNullOrEmpty()) {
+                    tvAddressVendor.text = if (!obj.data?.product?.vendor?.address.isNullOrEmpty()) {
                         if (!obj.data?.product?.vendor?.city.isNullOrEmpty()) {
                             if (!obj.data?.product?.vendor?.district.isNullOrEmpty()) {
                                 obj.data?.product?.vendor?.address + ", " + obj.data?.product?.vendor?.city + ", " + obj.data?.product?.vendor?.district
@@ -1354,54 +1277,54 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                         getString(R.string.dang_cap_nhat)
                     }
 
-                    binding.tvWebsiteVendor.text = if (!obj.data?.product?.vendor?.website.isNullOrEmpty()) {
+                    tvWebsiteVendor.text = if (!obj.data?.product?.vendor?.website.isNullOrEmpty()) {
                         obj.data?.product?.vendor?.website
                     } else {
                         getString(R.string.dang_cap_nhat)
                     }
 
-                    binding.tvPhoneVendor.text = if (!obj.data?.product?.vendor?.phone.isNullOrEmpty()) {
+                    tvPhoneVendor.text = if (!obj.data?.product?.vendor?.phone.isNullOrEmpty()) {
                         obj.data?.product?.vendor?.phone
                     } else {
                         getString(R.string.dang_cap_nhat)
                     }
 
-                    binding.tvMailVendor.text = if (!obj.data?.product?.vendor?.email.isNullOrEmpty()) {
+                    tvMailVendor.text = if (!obj.data?.product?.vendor?.email.isNullOrEmpty()) {
                         obj.data?.product?.vendor?.email
                     } else {
                         getString(R.string.dang_cap_nhat)
                     }
                 } else {
-                    binding.tvSubVendor.visibility = View.GONE
-                    binding.layoutVendor.visibility = View.GONE
+                    tvSubVendor.visibility = View.GONE
+                    layoutVendor.visibility = View.GONE
                 }
             } else {
-                binding.tvSubVendor.visibility = View.GONE
-                binding.layoutVendor.visibility = View.GONE
+                tvSubVendor.visibility = View.GONE
+                layoutVendor.visibility = View.GONE
             }
 
 //      check nha phan phoi
             if (obj.data?.show_distributor == 1) {
                 if (obj.data?.show_distributor != null) {
                     if (isVietNamLanguage == false) {
-                        binding.tvSubDistributor.text = "Distributor"
+                        tvSubDistributor.text = "Distributor"
                     } else {
-                        binding.tvSubDistributor.text = "Nhà phân phối"
+                        tvSubDistributor.text = "Nhà phân phối"
                     }
 
-                    binding.tvSubDistributor.visibility = View.VISIBLE
-                    binding.layoutDistributor.visibility = View.VISIBLE
+                    tvSubDistributor.visibility = View.VISIBLE
+                    layoutDistributor.visibility = View.VISIBLE
 
                     itemDistributor = obj.data?.distributor
                     idDistributor = obj.data?.distributor?.id
 
-                    binding.tvNameDistributor.text = if (!obj.data?.distributor?.name.isNullOrEmpty()) {
+                    tvNameDistributor.text = if (!obj.data?.distributor?.name.isNullOrEmpty()) {
                         obj.data?.distributor?.name
                     } else {
                         getString(R.string.dang_cap_nhat)
                     }
 
-                    binding.tvAddressDistributor.text = if (!obj.data?.distributor?.address.isNullOrEmpty()) {
+                    tvAddressDistributor.text = if (!obj.data?.distributor?.address.isNullOrEmpty()) {
                         if (!obj.data?.distributor?.district.isNullOrEmpty()) {
                             if (!obj.data?.distributor?.city.isNullOrEmpty()) {
                                 obj.data?.distributor?.address + ", " + obj.data?.distributor?.district + ", " + obj.data?.distributor?.city
@@ -1415,39 +1338,39 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                         getString(R.string.dang_cap_nhat)
                     }
 
-                    binding.tvWebsiteDistributor.text = if (!obj.data?.distributor?.website.isNullOrEmpty()) {
+                    tvWebsiteDistributor.text = if (!obj.data?.distributor?.website.isNullOrEmpty()) {
                         obj.data?.distributor?.website
                     } else {
                         getString(R.string.dang_cap_nhat)
                     }
 
-                    binding.tvPhoneDistributor.text = if (!obj.data?.distributor?.phone.isNullOrEmpty()) {
+                    tvPhoneDistributor.text = if (!obj.data?.distributor?.phone.isNullOrEmpty()) {
                         obj.data?.distributor?.phone
                     } else {
                         getString(R.string.dang_cap_nhat)
                     }
 
-                    binding.tvMailDistributor.text = if (!obj.data?.distributor?.email.isNullOrEmpty()) {
+                    tvMailDistributor.text = if (!obj.data?.distributor?.email.isNullOrEmpty()) {
                         obj.data?.distributor?.email
                     } else {
                         getString(R.string.dang_cap_nhat)
                     }
                 } else {
-                    binding.tvSubDistributor.visibility = View.GONE
-                    binding.layoutDistributor.visibility = View.GONE
+                    tvSubDistributor.visibility = View.GONE
+                    layoutDistributor.visibility = View.GONE
                 }
             } else {
-                binding.tvSubDistributor.visibility = View.GONE
-                binding.layoutDistributor.visibility = View.GONE
+                tvSubDistributor.visibility = View.GONE
+                layoutDistributor.visibility = View.GONE
             }
 
 //      Mo ta san pham
             if (!obj.data?.product?.infos.isNullOrEmpty()) {
-                binding.rcvInformation.visibility = View.VISIBLE
+                rcvInformation.visibility = View.VISIBLE
                 initAdapterInformationProduct()
                 adapterInformationProduct.setListData(obj.data?.product?.infos)
             } else {
-                binding.rcvInformation.visibility = View.GONE
+                rcvInformation.visibility = View.GONE
             }
 
 //      check MoreProductVerified
@@ -1456,21 +1379,21 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                 initRecyclerViewMoreProduct()
 
                 if (isVietNamLanguage == false) {
-                    binding.appCompatTextView9.text = "Related Product"
-                    binding.tvMoreProductVerified.text = "View all"
+                    appCompatTextView9.text = "Related Product"
+                    tvMoreProductVerified.text = "View all"
                 } else {
-                    binding.appCompatTextView9.text = "Sản phẩm liên quan"
-                    binding.tvMoreProductVerified.text = "Xem tất cả"
+                    appCompatTextView9.text = "Sản phẩm liên quan"
+                    tvMoreProductVerified.text = "Xem tất cả"
                 }
 
-                binding.layoutSubProductVerified.visibility = View.VISIBLE
-                binding.rcvMoreProductVerified.visibility = View.VISIBLE
+                layoutSubProductVerified.visibility = View.VISIBLE
+                rcvMoreProductVerified.visibility = View.VISIBLE
             } else {
-                binding.layoutSubProductVerified.visibility = View.GONE
-                binding.rcvMoreProductVerified.visibility = View.GONE
+                layoutSubProductVerified.visibility = View.GONE
+                rcvMoreProductVerified.visibility = View.GONE
             }
 
-//            qrScanViewModel.update(ICQrScan(presenter.code!!, null, null, 1, productId, "http://icheckcdn.net/images/480x480/$url.jpg", nameProduct, null, binding.tvPriceProduct.text.toString(), tvPriceNoSale.text.toString(), seller_id, barcode, false, null, "6.1"))
+//            qrScanViewModel.update(ICQrScan(presenter.code!!, null, null, 1, productId, "http://icheckcdn.net/images/480x480/$url.jpg", nameProduct, null, tvPriceProduct.text.toString(), tvPriceNoSale.text.toString(), seller_id, barcode, false, null, "6.1"))
 
 //            qrScanViewModel.search(presenter.code!!).observe(this,
 //                    androidx.lifecycle.Observer {
@@ -1498,7 +1421,7 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
     @SuppressLint("SetTextI18n")
     override fun onGetShopVariantSuccess(obj: ICListResponse<ICShopVariantStamp>) {
         if (!obj.rows.isNullOrEmpty()) {
-            binding.layoutShopVariant.visibility = View.VISIBLE
+            layoutShopVariant.visibility = View.VISIBLE
 
             idShopVariant = obj.rows[0].shop_id
             idVariant = obj.rows[0].id
@@ -1509,22 +1432,22 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
             if (obj.rows[0].shop?.is_online == true) {
                 if (obj.rows[0].is_active == true) {
                     if (isVietNamLanguage == false) {
-                        binding.btnChat.text = "Chat now"
+                        btnChat.text = "Chat now"
 //                        btnAddToCart.text = "+ Cart"
-                        binding.tvBuyNow.text = "Buy now"
+                        tvBuyNow.text = "Buy now"
                     } else {
-                        binding.btnChat.text = "Chat ngay"
+                        btnChat.text = "Chat ngay"
 //                        btnAddToCart.text = "+ Giỏ hàng"
-                        binding.tvBuyNow.text = "Mua ngay"
+                        tvBuyNow.text = "Mua ngay"
                     }
 
-                    binding.layoutShopVariant.visibility = View.VISIBLE
-                    binding.bottomLayout.visibility = View.VISIBLE
-                    binding.tvAddToCartInDiemBan.visibility = View.GONE
+                    layoutShopVariant.visibility = View.VISIBLE
+                    bottomLayout.visibility = View.VISIBLE
+                    tvAddToCartInDiemBan.visibility = View.GONE
                 } else {
-                    binding.layoutShopVariant.visibility = View.GONE
-                    binding.bottomLayout.visibility = View.GONE
-                    binding.tvAddToCartInDiemBan.visibility = View.GONE
+                    layoutShopVariant.visibility = View.GONE
+                    bottomLayout.visibility = View.GONE
+                    tvAddToCartInDiemBan.visibility = View.GONE
                 }
             }
 
@@ -1546,7 +1469,7 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                 adapterService.setListData(listService)
             }
 
-            binding.tvNameShopVariant.text = if (!obj.rows[0].shop?.name.isNullOrEmpty()) {
+            tvNameShopVariant.text = if (!obj.rows[0].shop?.name.isNullOrEmpty()) {
                 obj.rows[0].shop?.name
             } else {
                 getString(R.string.dang_cap_nhat)
@@ -1558,19 +1481,19 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                 }
             }
 
-            binding.tvKmShopVariant.text = if (obj.rows[0].shop?.distance != null) {
+            tvKmShopVariant.text = if (obj.rows[0].shop?.distance != null) {
                 km + " " + obj.rows[0].shop?.distance?.unit
             } else {
                 getString(R.string.dang_cap_nhat)
             }
             0
-            binding.tvRatingShopVariant.text = if (obj.rows[0].shop?.rating != null) {
+            tvRatingShopVariant.text = if (obj.rows[0].shop?.rating != null) {
                 obj.rows[0].shop?.rating.toString() + "/" + "5.0"
             } else {
                 getString(R.string.dang_cap_nhat)
             }
 
-            binding.tvAddressShopVariant.text = if (!obj.rows[0].shop?.address.isNullOrEmpty()) {
+            tvAddressShopVariant.text = if (!obj.rows[0].shop?.address.isNullOrEmpty()) {
                 obj.rows[0].shop?.address + ", " + obj.rows[0].shop?.ward?.name + ", " + obj.rows[0].shop?.district?.name + ", " + obj.rows[0].shop?.city?.name
             } else {
                 getString(R.string.dang_cap_nhat)
@@ -1579,33 +1502,33 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
             if (obj.rows[0].sale_off == true) {
                 if (obj.rows[0].special_price != null) {
                     if (obj.rows[0].special_price!! > 0L) {
-                        binding.tvPriceNoSale.text = TextHelper.formatMoneyPhay(obj.rows[0].price)
-                        binding.tvPriceNoSale.paintFlags = binding.tvPriceNoSale.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                        tvPriceNoSale.text = TextHelper.formatMoneyPhay(obj.rows[0].price)
+                        tvPriceNoSale.paintFlags = tvPriceNoSale.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
                     } else {
-                        binding.tvPriceNoSale.visibility = View.INVISIBLE
+                        tvPriceNoSale.visibility = View.INVISIBLE
                     }
                 } else {
-                    binding.tvPriceNoSale.visibility = View.INVISIBLE
+                    tvPriceNoSale.visibility = View.INVISIBLE
                 }
             } else {
-                binding.tvPriceNoSale.visibility = View.INVISIBLE
+                tvPriceNoSale.visibility = View.INVISIBLE
             }
 
-            binding.tvPriceSale.text = TextHelper.formatMoneyPhay(obj.rows[0].special_price) + "đ"
+            tvPriceSale.text = TextHelper.formatMoneyPhay(obj.rows[0].special_price) + "đ"
 
-            if (binding.tvPriceNoSale.text.toString().isNotEmpty()) {
-//                qrScanViewModel.update(ICQrScan(presenter.code!!, null, null, 1, productId, "http://icheckcdn.net/images/480x480/$url.jpg", nameProduct, presenter.data, binding.tvPriceProduct.text.toString(), tvPriceNoSale.text.toString(), seller_id, barcode, false, null, "v6.1"))
+            if (tvPriceNoSale.text.toString().isNotEmpty()) {
+//                qrScanViewModel.update(ICQrScan(presenter.code!!, null, null, 1, productId, "http://icheckcdn.net/images/480x480/$url.jpg", nameProduct, presenter.data, tvPriceProduct.text.toString(), tvPriceNoSale.text.toString(), seller_id, barcode, false, null, "v6.1"))
 //                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REFRESH_DATA_HISTORY_QR))
             }
         } else {
-            binding.layoutShopVariant.visibility = View.GONE
+            layoutShopVariant.visibility = View.GONE
         }
     }
 
     override fun onGetBannerSuccess(list: MutableList<ICAds>) {
-//        val itemView = ViewHelper.createListBannerHolder(binding.layoutContent.context)
+//        val itemView = ViewHelper.createListBannerHolder(layoutContent.context)
 //        itemView.id = R.id.layoutContainer
-//        binding.layoutContent.addView(itemView, 2)
+//        layoutContent.addView(itemView, 2)
 //
 //        bannerViewPager = (itemView as ViewGroup).getChildAt(0) as HeightWrappingViewPager
 //        bannerViewPager?.adapter = ListBannerAdapter(list, object : IBannerListener {
@@ -1626,12 +1549,12 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
     }
 
     override fun onGetShopVariantFail() {
-        binding.layoutShopVariant.visibility = View.GONE
+        layoutShopVariant.visibility = View.GONE
     }
 
     override fun onGetConfigSuccess(obj: IC_Config_Error) {
-        binding.scrollViewError.visibility = View.VISIBLE
-        binding.bottomLayout.visibility = View.GONE
+        scrollViewError.visibility = View.VISIBLE
+        bottomLayout.visibility = View.GONE
         if (!obj.data?.contacts.isNullOrEmpty()) {
             initAdapterConfigError()
             adapterConfigError.setListData(obj.data?.contacts)
@@ -1643,20 +1566,20 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
     }
 
     private fun initScrollFab() {
-        binding.scrollView.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+        scrollView.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
             when {
                 scrollY < oldScrollY -> {
                     if (isShow) {
                         return@OnScrollChangeListener
                     }
                     isShow = true
-                    binding.textFab.animate()
+                    textFab.animate()
                             .translationY(0f)
                             .setDuration(300)
                             .setListener(object : AnimatorListenerAdapter() {
                                 override fun onAnimationEnd(animation: Animator?) {
                                     super.onAnimationEnd(animation)
-                                    binding.textFab.visibility = View.VISIBLE
+                                    textFab.visibility = View.VISIBLE
                                 }
                             })
                 }
@@ -1665,15 +1588,15 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                         return@OnScrollChangeListener
                     }
                     isShow = false
-                    binding.textFab.animate().translationY(500f).duration = 300
+                    textFab.animate().translationY(500f).duration = 300
                 }
             }
         })
     }
 
     override fun onGetDataMoreProductVerifiedError(errorType: Int) {
-        binding.layoutSubProductVerified.visibility = View.GONE
-        binding.rcvMoreProductVerified.visibility = View.GONE
+        layoutSubProductVerified.visibility = View.GONE
+        rcvMoreProductVerified.visibility = View.GONE
     }
 
     override fun onTryAgain() {
@@ -1681,21 +1604,21 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
     }
 
     override fun onGetDataIntentError(errorType: Int) {
-        binding.layoutErrorClient.visibility = View.VISIBLE
-        binding.scrollViewError.visibility = View.GONE
-        binding.scrollView.visibility = View.GONE
+        layoutErrorClient.visibility = View.VISIBLE
+        scrollViewError.visibility = View.GONE
+        scrollView.visibility = View.GONE
         when (errorType) {
             Constant.ERROR_INTERNET -> {
-                binding.imgError.setImageResource(R.drawable.ic_error_network)
-                binding.tvMessageError.text = "Kết nối mạng của bạn có vấn đề. Vui lòng thử lại"
+                imgError.setImageResource(R.drawable.ic_error_network)
+                tvMessageError.text = "Kết nối mạng của bạn có vấn đề. Vui lòng thử lại"
             }
             Constant.ERROR_UNKNOW -> {
-                binding.imgError.setImageResource(R.drawable.ic_error_request)
-                binding.tvMessageError.text = "Không thể truy cập. Vui lòng thử lại sau"
+                imgError.setImageResource(R.drawable.ic_error_request)
+                tvMessageError.text = "Không thể truy cập. Vui lòng thử lại sau"
             }
             Constant.ERROR_EMPTY -> {
-                binding.imgError.setImageResource(R.drawable.ic_error_request)
-                binding.tvMessageError.text = "Không thể truy cập. Vui lòng thử lại sau"
+                imgError.setImageResource(R.drawable.ic_error_request)
+                tvMessageError.text = "Không thể truy cập. Vui lòng thử lại sau"
             }
         }
     }
@@ -1765,7 +1688,7 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
         if (requestCode == requestGpsPermission) {
             if (PermissionHelper.checkResult(grantResults)) {
                 if (NetworkHelper.isOpenedGPS(this)) {
-                    binding.llAcceptPermission.visibility = View.GONE
+                    llAcceptPermission.visibility = View.GONE
                     getData()
                 } else {
                     if (NetworkHelper.checkGPS(this@DetailStampActivity, getString(R.string.vui_long_bat_gpa_de_ung_dung_tim_duoc_vi_tri_cua_ban), requestGps)) {
@@ -1774,13 +1697,13 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                     }
                 }
             } else {
-                binding.llAcceptPermission.visibility = View.VISIBLE
+                llAcceptPermission.visibility = View.VISIBLE
             }
         }
 
         if (requestCode == requestPhone) {
             if (PermissionHelper.checkResult(grantResults)) {
-                ContactUtils.callFast(this@DetailStampActivity, binding.tvPhoneDistributor.text.toString())
+                ContactUtils.callFast(this@DetailStampActivity, tvPhoneDistributor.text.toString())
             } else {
                 showShortError(R.string.khong_the_thuc_hien_tac_vu_vi_ban_chua_cap_quyen)
             }
@@ -1831,8 +1754,8 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                             adapter.removeBannerSurvey(surveyID)
 
                             if (adapter.getListData.isEmpty()) {
-                                binding.layoutContent.findViewById<View>(R.id.layoutContainer)?.let {
-                                    binding.layoutContent.removeView(it)
+                                layoutContent.findViewById<View>(R.id.layoutContainer)?.let {
+                                    layoutContent.removeView(it)
                                 }
                             }
                         }
@@ -1863,18 +1786,18 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
     }
 
     override fun onClick(obj: Any) {
-        this@DetailStampActivity.binding.layoutLoyalty.beVisible()
+        this@DetailStampActivity.layoutLoyalty.beVisible()
         if (obj is ICKLoyalty) {
-            binding.loyaltyDescription.text = obj.name
-            WidgetUtils.loadImageUrl(binding.bannerLoyalty, obj.image?.original)
-            binding.btnCheckCode.setOnClickListener {
-                binding.btnCheckCode.isEnabled = false
-                CampaignLoyaltyHelper.checkCodeLoyalty(this@DetailStampActivity, obj, binding.edittextCode.text?.trim().toString(), viewModel.code, this@DetailStampActivity, this@DetailStampActivity)
+            loyaltyDescription.text = obj.name
+            WidgetUtils.loadImageUrl(bannerLoyalty, obj.image?.original)
+            btnCheckCode.setOnClickListener {
+                btnCheckCode.isEnabled = false
+                CampaignLoyaltyHelper.checkCodeLoyalty(this@DetailStampActivity, obj, edittextCode.text?.trim().toString(), viewModel.code, this@DetailStampActivity, this@DetailStampActivity)
                 Handler().postDelayed({
-                    binding.btnCheckCode.isEnabled = true
+                    btnCheckCode.isEnabled = true
                 }, 3000)
             }
-            binding.bannerLoyalty.setOnClickListener {
+            bannerLoyalty.setOnClickListener {
                 startActivity(Intent(this@DetailStampActivity, UrlGiftDetailActivity::class.java).apply {
                     putExtra(ConstantsLoyalty.DATA_1, obj.id)
                     putExtra(ConstantsLoyalty.DATA_2, viewModel.code)
@@ -1885,7 +1808,7 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
     }
 
     override fun onRemoveHolderInput() {
-        this@DetailStampActivity.binding.layoutLoyalty.beGone()
+        this@DetailStampActivity.layoutLoyalty.beGone()
     }
 
 

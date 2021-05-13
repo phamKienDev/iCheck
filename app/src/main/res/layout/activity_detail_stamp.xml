@@ -396,7 +396,7 @@
                             android:paddingHorizontal="@dimen/size_8">
 
                             <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/loyalty_description"
+                                android:id="@+id/loyaltyDescription"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/size_4"
@@ -438,129 +438,6 @@
                         </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
-
-                <!--TopViewPager-->
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/layoutHeader"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    tools:visibility="visible">
-
-                    <androidx.viewpager.widget.ViewPager
-                        android:id="@+id/viewPagerImgProduct"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintDimensionRatio="H,1:1"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <com.rd.PageIndicatorView
-                        android:id="@+id/indicatorProduct"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="@dimen/size_8"
-                        android:layout_marginEnd="@dimen/size_12"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/viewPagerImgProduct"
-                        app:piv_animationType="fill"
-                        app:piv_dynamicCount="true"
-                        app:piv_interactiveAnimation="true"
-                        app:piv_padding="@dimen/size_6"
-                        app:piv_radius="@dimen/size_3"
-                        app:piv_selectedColor="#d8d8d8"
-                        app:piv_unselectedColor="#d8d8d8"
-                        app:piv_viewPager="@id/viewPagerImgProduct" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvPriceProduct"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/size_12"
-                        android:layout_marginTop="@dimen/size_8"
-                        android:fontFamily="sans-serif"
-                        android:textColor="#f7923b"
-                        android:textSize="@dimen/font_24"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/indicatorProduct"
-                        tools:text="90,000đ" />
-
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/imgRegion"
-                        android:layout_width="@dimen/size_24"
-                        android:layout_height="@dimen/size_24"
-                        android:layout_marginEnd="@dimen/size_4"
-                        app:layout_constraintBottom_toBottomOf="@+id/tvRegion"
-                        app:layout_constraintEnd_toStartOf="@+id/tvRegion"
-                        app:layout_constraintTop_toTopOf="@+id/tvRegion" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvRegion"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/size_12"
-                        android:fontFamily="sans-serif"
-                        android:gravity="end|center"
-                        android:textColor="#434343"
-                        android:textSize="@dimen/font_14"
-                        android:textStyle="normal"
-                        app:layout_constraintBottom_toBottomOf="@+id/tvPriceProduct"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/tvPriceProduct"
-                        tools:text="Hàn Quốc" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvNameProduct"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/size_13"
-                        android:fontFamily="sans-serif-medium"
-                        android:gravity="start|center"
-                        android:textColor="#434343"
-                        android:textSize="@dimen/font_16"
-                        android:textStyle="normal"
-                        app:layout_constraintEnd_toEndOf="@+id/tvRegion"
-                        app:layout_constraintStart_toStartOf="@+id/tvPriceProduct"
-                        app:layout_constraintTop_toBottomOf="@+id/tvPriceProduct"
-                        tools:text="Điện thoại IPHONE 7 PLUS hàng nguyên hộp chưa active - 100% NEW (không giới hạn dòng)" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/appCompatTextView8"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/size_1"
-                        android:background="@drawable/ic_barcode_dark_gray_3_18px"
-                        app:layout_constraintBottom_toBottomOf="@+id/tvBarcodeProduct"
-                        app:layout_constraintStart_toStartOf="@+id/tvNameProduct"
-                        app:layout_constraintTop_toTopOf="@+id/tvBarcodeProduct" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvBarcodeProduct"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/size_8"
-                        android:layout_marginTop="@dimen/size_8"
-                        android:fontFamily="sans-serif"
-                        android:textColor="#828282"
-                        android:textSize="@dimen/font_14"
-                        android:textStyle="normal"
-                        app:layout_constraintEnd_toEndOf="@+id/tvNameProduct"
-                        app:layout_constraintStart_toEndOf="@+id/appCompatTextView8"
-                        app:layout_constraintTop_toBottomOf="@+id/tvNameProduct"
-                        tools:text="09293938383" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <!--LayoutWave-->
-                <RelativeLayout
-                    android:id="@+id/horizontalScroll"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/size_8"
-                    android:background="@drawable/background_wave_stamp"
-                    android:visibility="gone" />
 
                 <!--Diem Ban-->
                 <androidx.cardview.widget.CardView

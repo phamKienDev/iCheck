@@ -23,9 +23,6 @@ object ICViewTypes {
     //att-1
     const val HEADER_TYPE = 16
 
-    //att-2
-    const val OLD_HEADER = 116
-
     // Viewtype module thong tin dong gop user
     const val CONTRIBUTE_USER = 17
 
@@ -185,6 +182,7 @@ object ICViewTypes {
     const val PRODUCT_ECCOMMERCE_TYPE = 108
 
     const val PRODUCT_IMAGE = 109
+    const val PRODUCT_INFO = 110
 
 
     /*

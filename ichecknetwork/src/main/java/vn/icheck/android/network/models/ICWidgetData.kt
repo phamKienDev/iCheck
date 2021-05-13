@@ -10,7 +10,7 @@ data class ICWidgetData(
         @Expose val price: Long?,
         @Expose val country: String?,
         @Expose val ensign: String?,
-        @Expose val atts: List<ICImage>?,
+        @Expose val atts: MutableList<ICMedia>?,
         @Expose val success: Int?,
         @Expose val text: String?,
         @Expose val serial: String?,
@@ -36,8 +36,8 @@ data class ICWidgetData(
         @Expose val description: String?,
         @Expose val city: String?,
         @Expose val district: String?,
-        @Expose val infors: List<ICInfo>?,
-        @Expose val productLinks: List<ICProductLink>?
+        @Expose val infors: MutableList<ICInfo>?,
+        @Expose val productLinks: MutableList<ICProductLink>?
 
 
 

@@ -397,4 +397,7 @@
     <item name="layoutPrice" type="id" />
     <item name="layoutKeyboard" type="id" />
     <item name="btnKeyboard" type="id" />
+    <item name="tvBarcode" type="id" />
+    <item name="imgCountry" type="id" />
+    <item name="tvCountry" type="id" />
 </resources>

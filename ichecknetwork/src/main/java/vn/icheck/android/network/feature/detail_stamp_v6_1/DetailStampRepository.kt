@@ -73,7 +73,7 @@ class DetailStampRepository : BaseRepository() {
             body["lon"] = lon
         }
 
-        val url = APIConstants.DETAIL_STAMP_HOST + APIConstants.STAMPDETAIL()
+        val url = APIConstants.DETAIL_STAMP_HOST + APIConstants.stampDetailV61()
         return ICNetworkClient.getSimpleStampClient().getStampDetail(url, body)
     }
 
