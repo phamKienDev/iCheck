@@ -11,6 +11,7 @@ import vn.icheck.android.loyalty.base.commons.RecyclerViewCustomAdapter
 import vn.icheck.android.loyalty.base.setGone
 import vn.icheck.android.loyalty.base.setVisible
 import vn.icheck.android.loyalty.helper.TimeHelper
+import vn.icheck.android.loyalty.helper.TimeHelper.millisecondEffectiveTime
 import vn.icheck.android.loyalty.helper.WidgetHelper
 import vn.icheck.android.loyalty.model.ICKGift
 
@@ -80,11 +81,89 @@ internal class GiftDetailFromAppAdapter : RecyclerViewCustomAdapter<ICKGift>() {
                 itemView.layoutStatusGift.setGone()
 
                 if (obj.voucher != null) {
+                    itemView.tvTitleDate.text = "Hạn sử dụng"
 
                     if (obj.voucher.checked_condition?.status == false) {
-                        itemView.tvStatus.text = "Hết hạn sử dụng"
+
+                        if (obj.voucher.checked_condition?.code == "START_TIME_CAN_USE") {
+
+                            itemView.tvTitleDate.text = "Có hiệu lực từ"
+
+                            itemView.tvTimeGift.text = TimeHelper.convertDateTimeSvToDateVn(obj.voucher.start_at)
+
+                            itemView.tvStatus.text = "Chưa có hiệu lực"
+
+                        } else if (obj.voucher.checked_condition?.code == "MAX_NUM_OF_USED_VOUCHER" || obj.voucher.checked_condition?.code == "MAX_NUM_OF_USED_CUSTOMER") {
+
+                            itemView.layoutDate.setGone()
+
+                            itemView.tvStatus.text = "Đã sử dụng"
+
+                        } else {
+
+                            itemView.tvTimeGift.text = TimeHelper.convertDateTimeSvToDateVn(obj.voucher.end_at)
+
+                            itemView.tvStatus.text = "Hết hạn sử dụng"
+                        }
+
                     } else {
-                        itemView.tvStatus.text = "Có thể sử dụng"
+
+                        /**
+                         * Nếu startAt và endAt khác null thì hiển thị dd/mm/yy
+                         * Nếu startAt, endAt, releaseAt và effectiveTime khác null nhưng thời gian tổng của startAt và endAt nhỏ hơn thời gian của effectiveTime thì hiển thị: ${Còn xx ngày, xx giờ} theo thời gian hiện tại đến endAt
+                         * Nếu startAt, endAt, releaseAt và effectiveTime khác null nhưng thời gian tổng của startAt và endAt lớn hơn thời gian của effectiveTime thì hiển thị: ${Còn xx ngày, xx giờ} theo releaseAt và effectiveTime
+                         */
+                        itemView.tvTimeGift.text = when {
+                            !obj.voucher.start_at.isNullOrEmpty()
+                                    && !obj.voucher.end_at.isNullOrEmpty()
+                                    && (obj.voucher.effective_time.isNullOrEmpty()
+                                    || obj.voucher.effective_type.isNullOrEmpty()) -> {
+
+                                "Còn ${TimeHelper.convertDateTimeSvToCurrentDate(TimeHelper.convertDateTimeSvToMillisecond(obj.voucher.end_at))}"
+
+                            }
+                            !obj.voucher.released_at.isNullOrEmpty()
+                                    && !obj.voucher.effective_time.isNullOrEmpty()
+                                    && !obj.voucher.effective_type.isNullOrEmpty()
+                                    && (obj.voucher.start_at.isNullOrEmpty()
+                                    || obj.voucher.end_at.isNullOrEmpty()) -> {
+
+
+                                "Còn ${TimeHelper.convertDateTimeSvToCurrentDate(millisecondEffectiveTime(obj.voucher.effective_type, obj.voucher.effective_time!!, obj.voucher.released_at!!))}"
+                            }
+                            !obj.voucher.released_at.isNullOrEmpty()
+                                    && !obj.voucher.effective_time.isNullOrEmpty()
+                                    && !obj.voucher.effective_type.isNullOrEmpty()
+                                    && !obj.voucher.start_at.isNullOrEmpty()
+                                    && !obj.voucher.end_at.isNullOrEmpty() -> {
+
+                                val millisecondWithEffectiveTime = millisecondEffectiveTime(obj.voucher.effective_type, obj.voucher.effective_time, obj.voucher.released_at)
+
+                                val currentMillisecondWithEndAt = (TimeHelper.convertDateTimeSvToMillisecond(obj.voucher.end_at)
+                                        ?: 0) - System.currentTimeMillis()
+
+                                if (millisecondWithEffectiveTime > currentMillisecondWithEndAt) {
+                                    "Còn ${TimeHelper.convertDateTimeSvToCurrentDate(TimeHelper.convertDateTimeSvToMillisecond(obj.voucher.end_at))}"
+                                } else {
+                                    "Còn ${TimeHelper.convertDateTimeSvToCurrentDate(millisecondWithEffectiveTime)}"
+                                }
+                            }
+                            else -> {
+                                ""
+                            }
+                        }
+
+                        itemView.tvStatus.apply {
+
+                            text = if (itemView.tvTimeGift.text.toString() == "Còn ") {
+
+                                itemView.tvTimeGift.text = ""
+                                "Hết hạn sử dụng"
+                            } else {
+
+                                "Có thể sử dụng"
+                            }
+                        }
                     }
                 } else {
 
@@ -96,6 +175,8 @@ internal class GiftDetailFromAppAdapter : RecyclerViewCustomAdapter<ICKGift>() {
                             itemView.tvStatus.text = "Từ chối"
                         }
                     }
+
+                    itemView.tvTimeGift.text = TimeHelper.convertDateTimeSvToDateVn(obj.expired_at)
                 }
             } else {
                 when (obj.state) {
@@ -133,9 +214,9 @@ internal class GiftDetailFromAppAdapter : RecyclerViewCustomAdapter<ICKGift>() {
                         itemView.tvStatus.text = default
                     }
                 }
-            }
 
-            itemView.tvTimeGift.text = TimeHelper.convertDateTimeSvToTimeDateVn(obj.expired_at)
+                itemView.tvTimeGift.text = TimeHelper.convertDateTimeSvToTimeDateVn(obj.expired_at)
+            }
 
             if (!obj.desc.isNullOrEmpty()) {
                 itemView.webView.settings.javaScriptEnabled = true

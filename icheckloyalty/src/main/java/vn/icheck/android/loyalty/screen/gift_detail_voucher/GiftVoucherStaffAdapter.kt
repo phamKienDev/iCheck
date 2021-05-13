@@ -1,6 +1,7 @@
 package vn.icheck.android.loyalty.screen.gift_detail_voucher
 
 import android.annotation.SuppressLint
+import android.app.AlarmManager
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +13,7 @@ import vn.icheck.android.loyalty.base.commons.RecyclerViewCustomAdapter
 import vn.icheck.android.loyalty.base.setGone
 import vn.icheck.android.loyalty.base.setVisible
 import vn.icheck.android.loyalty.helper.TimeHelper
+import vn.icheck.android.loyalty.helper.TimeHelper.millisecondEffectiveTime
 import vn.icheck.android.loyalty.helper.WidgetHelper
 import vn.icheck.android.loyalty.model.ICKScanVoucher
 
@@ -59,6 +61,7 @@ internal class GiftVoucherStaffAdapter : RecyclerViewCustomAdapter<ICKScanVouche
              * @param code = EFFECTIVE_TIME => voucher quá hạn sử dụng
              * @param code = MAX_NUM_OF_USED_CUSTOMER => quá lượt sử dụng của mỗi khách hàng
              */
+
             if (obj.voucher?.checked_condition?.status == false) {
                 itemView.tvTitleDate.text = "Hạn sử dụng"
 
@@ -76,7 +79,7 @@ internal class GiftVoucherStaffAdapter : RecyclerViewCustomAdapter<ICKScanVouche
 
                 } else if (obj.voucher.checked_condition?.code == "MAX_NUM_OF_USED_VOUCHER" || obj.voucher.checked_condition?.code == "MAX_NUM_OF_USED_CUSTOMER") {
 
-                    itemView.tvDateTime.text = TimeHelper.convertDateTimeSvToDateVn(obj.voucher.end_at)
+                    itemView.layoutDate.setGone()
 
                     itemView.tvStatus.apply {
                         text = "Đã sử dụng"
@@ -98,12 +101,64 @@ internal class GiftVoucherStaffAdapter : RecyclerViewCustomAdapter<ICKScanVouche
             } else {
                 itemView.tvTitleDate.text = "Hạn sử dụng"
 
-                itemView.tvDateTime.text = "Còn ${TimeHelper.convertDateTimeSvToCurrentDate(obj.voucher?.end_at)}"
+                /**
+                 * Nếu startAt và endAt khác null thì hiển thị dd/mm/yy
+                 * Nếu startAt, endAt, releaseAt và effectiveTime khác null nhưng thời gian tổng của startAt và endAt nhỏ hơn thời gian của effectiveTime thì hiển thị: ${Còn xx ngày, xx giờ} theo thời gian hiện tại đến endAt
+                 * Nếu startAt, endAt, releaseAt và effectiveTime khác null nhưng thời gian tổng của startAt và endAt lớn hơn thời gian của effectiveTime thì hiển thị: ${Còn xx ngày, xx giờ} theo releaseAt và effectiveTime
+                 */
+                itemView.tvDateTime.text = when {
+                    !obj.voucher?.start_at.isNullOrEmpty()
+                            && !obj.voucher?.end_at.isNullOrEmpty()
+                            && (obj.voucher?.effective_time.isNullOrEmpty()
+                            || obj.voucher?.effective_type.isNullOrEmpty()) -> {
 
+                        "Còn ${TimeHelper.convertDateTimeSvToCurrentDate(TimeHelper.convertDateTimeSvToMillisecond(obj.voucher?.end_at))}"
+
+                    }
+                    !obj.voucher?.released_at.isNullOrEmpty()
+                            && !obj.voucher?.effective_time.isNullOrEmpty()
+                            && !obj.voucher?.effective_type.isNullOrEmpty()
+                            && (obj.voucher?.start_at.isNullOrEmpty()
+                            || obj.voucher?.end_at.isNullOrEmpty()) -> {
+
+
+                        "Còn ${TimeHelper.convertDateTimeSvToCurrentDate(millisecondEffectiveTime(obj.voucher?.effective_type!!, obj.voucher.effective_time!!, obj.voucher.released_at!!))}"
+                    }
+                    !obj.voucher?.released_at.isNullOrEmpty()
+                            && !obj.voucher?.effective_time.isNullOrEmpty()
+                            && !obj.voucher?.effective_type.isNullOrEmpty()
+                            && !obj.voucher?.start_at.isNullOrEmpty()
+                            && !obj.voucher?.end_at.isNullOrEmpty() -> {
+
+                        val millisecondWithEffectiveTime = millisecondEffectiveTime(obj.voucher?.effective_type!!, obj.voucher.effective_time!!, obj.voucher.released_at!!)
+
+                        val currentMillisecondWithEndAt = (TimeHelper.convertDateTimeSvToMillisecond(obj.voucher.end_at)
+                                ?: 0) - System.currentTimeMillis()
+
+                        if (millisecondWithEffectiveTime > currentMillisecondWithEndAt) {
+                            "Còn ${TimeHelper.convertDateTimeSvToCurrentDate(TimeHelper.convertDateTimeSvToMillisecond(obj.voucher.end_at))}"
+                        } else {
+                            "Còn ${TimeHelper.convertDateTimeSvToCurrentDate(millisecondWithEffectiveTime)}"
+                        }
+                    }
+                    else -> {
+                        ""
+                    }
+                }
                 itemView.tvStatus.apply {
-                    text = "Đã nhận quà"
-                    setTextColor(ContextCompat.getColor(itemView.context, R.color.green2))
-                    setBackgroundResource(R.drawable.bg_corner_30_green_opacity_02)
+
+                    if (itemView.tvDateTime.text.toString() == "Còn ") {
+
+                        itemView.tvDateTime.text = ""
+                        text = "Hết hạn sử dụng"
+                        setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
+                        setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
+                    } else {
+
+                        text = "Có thể sử dụng"
+                        setTextColor(ContextCompat.getColor(itemView.context, R.color.green2))
+                        setBackgroundResource(R.drawable.bg_corner_30_green_opacity_02)
+                    }
                 }
             }
 
@@ -119,7 +174,7 @@ internal class GiftVoucherStaffAdapter : RecyclerViewCustomAdapter<ICKScanVouche
                 if (obj.rewardType == "VOUCHER") {
                     setVisible()
                     if (obj.voucher?.checked_condition?.status == true) {
-                        when (obj.voucher?.can_mark_use) {
+                        when (obj.voucher.can_mark_use) {
                             true -> {
                                 text = "Đánh dấu đã dùng"
 

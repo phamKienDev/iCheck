@@ -21,6 +21,15 @@ class ICKVoucher : Serializable {
     val end_at: String? = null
 
     @Expose
+    val released_at: String? = null
+
+    @Expose
+    val effective_time: String? = null
+
+    @Expose
+    val effective_type: String? = null
+
+    @Expose
     val can_mark_use: Boolean? = null
 
     @Expose

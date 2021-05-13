@@ -117,6 +117,8 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
         binding.swipeRefresh.isRefreshing = true
 
         listData.clear()
+        binding.layoutNoData.setGone()
+        binding.layoutNoDataSearch.setGone()
         binding.edtSearch.removeTextChangedListener(textChangeListener)
         binding.edtSearch.setText("")
         binding.edtSearch.addTextChangedListener(textChangeListener)

@@ -9,9 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_redemption_history.view.*
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.*
-import vn.icheck.android.loyalty.base.listener.IRecyclerViewCallback
 import vn.icheck.android.loyalty.base.commons.RecyclerViewCustomAdapter
+import vn.icheck.android.loyalty.base.listener.IRecyclerViewCallback
 import vn.icheck.android.loyalty.helper.TimeHelper
+import vn.icheck.android.loyalty.helper.TimeHelper.millisecondEffectiveTime
 import vn.icheck.android.loyalty.helper.WidgetHelper
 import vn.icheck.android.loyalty.model.ICKBoxGifts
 import vn.icheck.android.loyalty.model.ICKRedemptionHistory
@@ -21,7 +22,7 @@ import vn.icheck.android.loyalty.screen.game_from_labels.redeem_points.home.Home
 import vn.icheck.android.loyalty.screen.loyalty_customers.giftdetail.GiftDetailActivity
 import vn.icheck.android.loyalty.sdk.LoyaltySdk
 
-internal class RedemptionHistoryAdapter(callback: IRecyclerViewCallback): RecyclerViewCustomAdapter<Any>(callback) {
+internal class RedemptionHistoryAdapter(callback: IRecyclerViewCallback) : RecyclerViewCustomAdapter<Any>(callback) {
 
     fun setDataICKRedemptionHistory(obj: MutableList<ICKRedemptionHistory>) {
         checkLoadMore(obj.size)
@@ -117,38 +118,149 @@ internal class RedemptionHistoryAdapter(callback: IRecyclerViewCallback): Recycl
 
             } else {
                 itemView.btnManagerPoint.setInvisible()
-                itemView.tvState.run {
-                    when (obj.winner?.status) {
-                        "new" -> {
-                            data.state = 1
-                            text = "Chờ xác nhận"
-                            setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
-                            setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
+                itemView.tvState.setVisible()
+
+                if (obj.gift?.type == "VOUCHER") {
+                    itemView.tvState.run {
+                        if (obj.voucher != null) {
+
+                            data.voucher = obj.voucher
+
+                            data.titleDate = "Hạn sử dụng"
+
+                            if (obj.voucher?.checked_condition?.status == false) {
+                                if (obj.voucher?.checked_condition?.code == "START_TIME_CAN_USE") {
+
+                                    data.titleDate = "Có hiệu lực từ"
+
+                                    data.dateChange = TimeHelper.convertDateTimeSvToDateVn(obj.voucher?.start_at)
+
+                                    data.statusChange = "Chưa có hiệu lực"
+
+                                    data.colorText = ContextCompat.getColor(itemView.context, R.color.orange)
+
+                                    data.colorBackground = R.drawable.bg_corner_30_orange_opacity_02
+                                } else if (obj.voucher?.checked_condition?.code == "MAX_NUM_OF_USED_VOUCHER" || obj.voucher?.checked_condition?.code == "MAX_NUM_OF_USED_CUSTOMER") {
+
+                                    data.statusChange = "Đã sử dụng"
+
+                                    data.colorText = ContextCompat.getColor(itemView.context, R.color.errorColor)
+
+                                    data.colorBackground = R.drawable.bg_corner_30_red_opacity_02
+                                } else {
+
+                                    data.dateChange = TimeHelper.convertDateTimeSvToDateVn(obj.voucher?.end_at)
+
+                                    data.statusChange = "Hết hạn sử dụng"
+
+                                    data.colorText = ContextCompat.getColor(itemView.context, R.color.errorColor)
+
+                                    data.colorBackground = R.drawable.bg_corner_30_red_opacity_02
+                                }
+                            } else {
+
+                                /**
+                                 * Nếu startAt và endAt khác null thì hiển thị dd/mm/yy
+                                 * Nếu startAt, endAt, releaseAt và effectiveTime khác null nhưng thời gian tổng của startAt và endAt nhỏ hơn thời gian của effectiveTime thì hiển thị: ${Còn xx ngày, xx giờ} theo thời gian hiện tại đến endAt
+                                 * Nếu startAt, endAt, releaseAt và effectiveTime khác null nhưng thời gian tổng của startAt và endAt lớn hơn thời gian của effectiveTime thì hiển thị: ${Còn xx ngày, xx giờ} theo releaseAt và effectiveTime
+                                 */
+                                data.dateChange = when {
+                                    !obj.voucher?.start_at.isNullOrEmpty()
+                                            && !obj.voucher?.end_at.isNullOrEmpty()
+                                            && (obj.voucher?.effective_time.isNullOrEmpty()
+                                            || obj.voucher?.effective_type.isNullOrEmpty()) -> {
+
+                                        "Còn ${TimeHelper.convertDateTimeSvToCurrentDate(TimeHelper.convertDateTimeSvToMillisecond(obj.voucher?.end_at))}"
+
+                                    }
+                                    !obj.voucher?.released_at.isNullOrEmpty()
+                                            && !obj.voucher?.effective_time.isNullOrEmpty()
+                                            && !obj.voucher?.effective_type.isNullOrEmpty()
+                                            && (obj.voucher?.start_at.isNullOrEmpty()
+                                            || obj.voucher?.end_at.isNullOrEmpty()) -> {
+
+
+                                        "Còn ${TimeHelper.convertDateTimeSvToCurrentDate(millisecondEffectiveTime(obj.voucher?.effective_type!!, obj.voucher?.effective_time!!, obj.voucher?.released_at!!))}"
+                                    }
+                                    !obj.voucher?.released_at.isNullOrEmpty()
+                                            && !obj.voucher?.effective_time.isNullOrEmpty()
+                                            && !obj.voucher?.effective_type.isNullOrEmpty()
+                                            && !obj.voucher?.start_at.isNullOrEmpty()
+                                            && !obj.voucher?.end_at.isNullOrEmpty() -> {
+
+                                        val millisecondWithEffectiveTime = millisecondEffectiveTime(obj.voucher?.effective_type!!, obj.voucher?.effective_time!!, obj.voucher?.released_at!!)
+
+                                        val currentMillisecondWithEndAt = (TimeHelper.convertDateTimeSvToMillisecond(obj.voucher?.end_at)
+                                                ?: 0) - System.currentTimeMillis()
+
+                                        if (millisecondWithEffectiveTime > currentMillisecondWithEndAt) {
+                                            "Còn ${TimeHelper.convertDateTimeSvToCurrentDate(TimeHelper.convertDateTimeSvToMillisecond(obj.voucher?.end_at))}"
+                                        } else {
+                                            "Còn ${TimeHelper.convertDateTimeSvToCurrentDate(millisecondWithEffectiveTime)}"
+                                        }
+                                    }
+                                    else -> {
+                                        ""
+                                    }
+                                }
+
+                                if (data.dateChange == "Còn ") {
+
+                                    data.dateChange = ""
+
+                                    data.statusChange = "Hết hạn sử dụng"
+
+                                    data.colorText = ContextCompat.getColor(itemView.context, R.color.errorColor)
+
+                                    data.colorBackground = R.drawable.bg_corner_30_red_opacity_02
+                                } else {
+                                    data.statusChange = "Có thể sử dụng"
+
+                                    data.colorText = ContextCompat.getColor(itemView.context, R.color.green2)
+
+                                    data.colorBackground = R.drawable.bg_corner_30_green_opacity_02
+                                }
+                            }
                         }
-                        "waiting_receive_gift" -> {
-                            data.state = 2
-                            visibility = View.VISIBLE
-                            text = "Chờ giao"
-                            setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
-                            setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
-                        }
-                        "received_gift" -> {
-                            data.state = 3
-                            visibility = View.VISIBLE
-                            text = "Đã nhận quà"
-                            setTextColor(ContextCompat.getColor(itemView.context, R.color.green2))
-                            setBackgroundResource(R.drawable.bg_corner_30_green_opacity_02)
-                        }
-                        "refused_gift" -> {
-                            data.state = 4
-                            visibility = View.VISIBLE
-                            text = "Từ chối"
-                            setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
-                            setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
-                        }
-                        else -> {
-                            data.state = 5
-                            visibility = View.GONE
+
+                        text = data.statusChange
+                        setTextColor(data.colorText)
+                        setBackgroundResource(data.colorBackground)
+                    }
+                } else {
+                    itemView.tvState.run {
+                        when (obj.winner?.status) {
+                            "new" -> {
+                                data.state = 1
+                                text = "Chờ xác nhận"
+                                setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
+                                setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
+                            }
+                            "waiting_receive_gift" -> {
+                                data.state = 2
+                                visibility = View.VISIBLE
+                                text = "Chờ giao"
+                                setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
+                                setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
+                            }
+                            "received_gift" -> {
+                                data.state = 3
+                                visibility = View.VISIBLE
+                                text = "Đã nhận quà"
+                                setTextColor(ContextCompat.getColor(itemView.context, R.color.green2))
+                                setBackgroundResource(R.drawable.bg_corner_30_green_opacity_02)
+                            }
+                            "refused_gift" -> {
+                                data.state = 4
+                                visibility = View.VISIBLE
+                                text = "Từ chối"
+                                setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
+                                setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
+                            }
+                            else -> {
+                                data.state = 5
+                                visibility = View.GONE
+                            }
                         }
                     }
                 }
@@ -182,34 +294,65 @@ internal class RedemptionHistoryAdapter(callback: IRecyclerViewCallback): Recycl
 
             if (obj.gift?.type != "ICOIN") {
                 itemView.btnManagerPoint.setInvisible()
-                itemView.tvState.run {
-                    setVisible()
 
-                    text = obj.status_title
+                itemView.tvState.setVisible()
 
-                    when (obj.status) {
-                        "new" -> {
-//                            text = "Chờ xác nhận"
-                            setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
-                            setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
+                if (obj.gift?.type == "VOUCHER") {
+                    if (obj.voucher != null) {
+                        itemView.tvState.run {
+                            if (obj.voucher?.checked_condition?.status == false) {
+
+                                if (obj.voucher?.checked_condition?.code == "START_TIME_CAN_USE") {
+
+                                    text = "Chưa có hiệu lực"
+                                    setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
+                                    setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
+                                } else if (obj.voucher?.checked_condition?.code == "MAX_NUM_OF_USED_VOUCHER" || obj.voucher?.checked_condition?.code == "MAX_NUM_OF_USED_CUSTOMER") {
+
+                                    text = "Đã sử dụng"
+                                    setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
+                                    setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
+                                } else {
+
+                                    text = "Hết hạn sử dụng"
+                                    setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
+                                    setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
+                                }
+                            } else {
+                                text = "Có thể sử dụng"
+                                setTextColor(ContextCompat.getColor(itemView.context, R.color.green2))
+                                setBackgroundResource(R.drawable.bg_corner_30_green_opacity_02)
+                            }
                         }
-                        "waiting_receive_gift" -> {
-//                            text = "Chờ giao"
-                            setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
-                            setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
-                        }
-                        "received_gift" -> {
-//                            text = "Đã nhận quà"
-                            setTextColor(ContextCompat.getColor(itemView.context, R.color.green2))
-                            setBackgroundResource(R.drawable.bg_corner_30_green_opacity_02)
-                        }
-                        "refused_gift" -> {
-//                            text = "Từ chối"
-                            setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
-                            setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
-                        }
-                        else -> {
-                            setGone()
+                    } else {
+                        itemView.tvState.setGone()
+                    }
+                } else {
+                    itemView.tvState.run {
+                        when (obj.status) {
+                            "new" -> {
+                                text = "Chờ xác nhận"
+                                setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
+                                setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
+                            }
+                            "waiting_receive_gift" -> {
+                                text = "Chờ giao"
+                                setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
+                                setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
+                            }
+                            "received_gift" -> {
+                                text = "Đã nhận quà"
+                                setTextColor(ContextCompat.getColor(itemView.context, R.color.green2))
+                                setBackgroundResource(R.drawable.bg_corner_30_green_opacity_02)
+                            }
+                            "refused_gift" -> {
+                                text = "Từ chối"
+                                setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
+                                setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
+                            }
+                            else -> {
+                                setGone()
+                            }
                         }
                     }
                 }

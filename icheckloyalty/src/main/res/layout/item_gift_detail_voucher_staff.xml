@@ -76,62 +76,75 @@
             tools:text="Chờ xác nhận" />
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvTitleDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_40"
-        android:layout_marginBottom="@dimen/size_64"
-        android:fontFamily="@font/roboto_medium"
-        android:includeFontPadding="false"
-        android:text="Hạn sử dụng"
-        android:textColor="#757575"
-        app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView5"
-        app:layout_constraintStart_toStartOf="@+id/imgProduct"
-        app:layout_constraintTop_toBottomOf="@+id/imgProduct" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvDateTime"
+    <LinearLayout
         android:layout_width="@dimen/size_0"
         android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:fontFamily="@font/roboto_medium"
-        android:includeFontPadding="false"
-        android:singleLine="true"
-        android:textColor="#434343"
-        app:layout_constraintBottom_toBottomOf="@+id/tvTitleDate"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout"
-        app:layout_constraintTop_toTopOf="@+id/tvTitleDate"
-        tools:text="Quà giao tận nơi" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/appCompatTextView39"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/size_20"
-        android:fontFamily="@font/roboto_medium"
-        android:includeFontPadding="false"
-        android:text="Loại quà"
-        android:textColor="#757575"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView5"
+        app:layout_constraintEnd_toEndOf="@+id/tvProduct"
         app:layout_constraintStart_toStartOf="@+id/imgProduct"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitleDate" />
+        app:layout_constraintTop_toBottomOf="@+id/imgProduct">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvVanChuyen"
-        android:layout_width="@dimen/size_0"
-        android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:fontFamily="@font/roboto_medium"
-        android:includeFontPadding="false"
-        android:singleLine="true"
-        android:textColor="#434343"
-        app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView39"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout"
-        app:layout_constraintTop_toTopOf="@+id/appCompatTextView39"
-        tools:text="Quà giao tận nơi" />
+        <LinearLayout
+            android:id="@+id/layoutDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:visibility="visible"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTitleDate"
+                android:layout_width="@dimen/size_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_medium"
+                android:includeFontPadding="false"
+                android:text="Hạn sử dụng"
+                android:textColor="#757575" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvDateTime"
+                android:layout_width="@dimen/size_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:ellipsize="end"
+                android:fontFamily="@font/roboto_medium"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:textColor="#434343"
+                tools:text="Quà giao tận nơi" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/size_10"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="@dimen/size_0"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:includeFontPadding="false"
+                android:text="Loại quà"
+                android:textColor="#757575" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvVanChuyen"
+                android:layout_width="@dimen/size_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:ellipsize="end"
+                android:fontFamily="@font/roboto_medium"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:textColor="#434343"
+                tools:text="Quà giao tận nơi" />
+        </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout7"

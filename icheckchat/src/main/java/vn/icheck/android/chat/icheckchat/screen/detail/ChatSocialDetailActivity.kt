@@ -397,6 +397,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
     private fun listenChangeMessage(key: String) {
         viewModel.getChangeMessageChat(key) { data ->
+            markReadMessage(key)
             // mình gửi
             if (FirebaseAuth.getInstance().currentUser?.uid == data.child("sender").child("source_id").value.toString()) {
                 val index = adapter.getListData.indexOfFirst { it.messageId == data.key }
@@ -461,7 +462,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 }
                 // đối phương gửi
             } else {
-                markReadMessage(key)
+//                markReadMessage(key)
                 val lastMessageReceive = adapter.getListData.firstOrNull { it.senderId != FirebaseAuth.getInstance().currentUser?.uid }
                 val message = convertDataFirebase(data, lastMessageReceive ?: MCDetailMessage())
                 message.showStatus = -1

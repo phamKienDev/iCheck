@@ -12,6 +12,8 @@ import vn.icheck.android.loyalty.dialog.base.BaseDialog
 import vn.icheck.android.loyalty.base.ICMessageEvent
 import vn.icheck.android.loyalty.base.setGone
 import vn.icheck.android.loyalty.dialog.base.DialogHelperGame
+import vn.icheck.android.loyalty.dialog.listener.IClickButtonDialog
+import vn.icheck.android.loyalty.dialog.listener.IDismissDialog
 import vn.icheck.android.loyalty.helper.*
 import vn.icheck.android.loyalty.model.ICKBaseResponse
 import vn.icheck.android.loyalty.model.ICKRedemptionHistory
@@ -19,6 +21,8 @@ import vn.icheck.android.loyalty.model.ICKResponse
 import vn.icheck.android.loyalty.network.ICApiListener
 import vn.icheck.android.loyalty.repository.LoyaltyCustomersRepository
 import vn.icheck.android.loyalty.screen.loyalty_customers.accept_ship_gift.AcceptShipGiftActivity
+import vn.icheck.android.loyalty.screen.redemption_history.RedemptionHistoryActivity
+import vn.icheck.android.loyalty.sdk.LoyaltySdk
 
 open class DialogConfirmExchangeGiftsLongTime(
         context: Context,
@@ -101,11 +105,27 @@ open class DialogConfirmExchangeGiftsLongTime(
         repository.exchangeGift(idGift, null, null, object : ICApiListener<ICKResponse<ICKRedemptionHistory>> {
             override fun onSuccess(obj: ICKResponse<ICKRedemptionHistory>) {
                 if (obj.status == "FAIL") {
-                    ToastHelper.showLongError(context, obj.data?.message ?: context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                    ToastHelper.showLongError(context, obj.data?.message
+                            ?: context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 } else {
-                    if (isVoucher){
-                        context.showSimpleSuccessToast("Chúc mừng bạn đã đổi quà voucher thành công!")
-                    }else{
+                    if (isVoucher) {
+                        DialogHelperGame.dialogAcceptShipGiftSuccess(context, obj.data?.gift?.image?.thumbnail
+                                ?: "", obj.data?.owner?.id
+                                ?: -1, R.drawable.bg_gradient_button_blue,
+                                object : IDismissDialog {
+                                    override fun onDismiss() {
+                                        onBackPressed()
+                                    }
+                                },
+                                object : IClickButtonDialog<Long> {
+                                    override fun onClickButtonData(data: Long?) {
+                                        context.startActivity(Intent(context, RedemptionHistoryActivity::class.java).apply {
+                                            putExtra(ConstantsLoyalty.DATA_1, obj.data?.owner?.id)
+                                            putExtra(ConstantsLoyalty.DATA_2, 1)
+                                        })
+                                    }
+                                })
+                    } else {
                         DialogHelperGame.dialogExchangeGiftsPointSuccess(context, obj.data?.gift?.icoin, null, R.drawable.bg_gradient_button_blue)
                     }
                 }
