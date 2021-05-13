@@ -86,7 +86,7 @@ public class ICNetworkClient {
             .writeTimeout(30, TimeUnit.SECONDS)
             .authenticator(authenticator)
 //            .authenticator(new TokenAuthenticator())
-//            .addInterceptor(loggingInterceptor)
+            .addInterceptor(loggingInterceptor)
             .addInterceptor(ICNetworkClient::requireLoginCallback2).build();
 
     private static final OkHttpClient client3 = new OkHttpClient.Builder()
@@ -95,7 +95,7 @@ public class ICNetworkClient {
             .writeTimeout(30, TimeUnit.SECONDS)
             .authenticator(authenticator)
 //            .authenticator(new TokenAuthenticator())
-//            .addInterceptor(loggingInterceptor)
+            .addInterceptor(loggingInterceptor)
             .addInterceptor(ICNetworkClient::requireLoginCallback3).build();
 
     private static final OkHttpClient client4 = new OkHttpClient.Builder()
@@ -104,7 +104,7 @@ public class ICNetworkClient {
             .writeTimeout(30, TimeUnit.SECONDS)
             .authenticator(authenticator)
 //            .authenticator(new TokenAuthenticator())
-//            .addInterceptor(loggingInterceptor)
+            .addInterceptor(loggingInterceptor)
             .addInterceptor(ICNetworkClient::requireLoginCallback4).build();
 
     private static final OkHttpClient clientStamp = new OkHttpClient.Builder()
@@ -113,7 +113,7 @@ public class ICNetworkClient {
             .writeTimeout(30, TimeUnit.SECONDS)
             .authenticator(authenticator)
 //            .authenticator(new TokenAuthenticator())
-//            .addInterceptor(loggingInterceptor)
+            .addInterceptor(loggingInterceptor)
             .addInterceptor(ICNetworkClient::requireLoginCallbackStamp).build();
 
     private static final OkHttpClient uploadClient = new OkHttpClient.Builder()
@@ -121,7 +121,7 @@ public class ICNetworkClient {
             .readTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)
             .authenticator(authenticator)
-//            .addInterceptor(loggingInterceptor)
+            .addInterceptor(loggingInterceptor)
             .addInterceptor(ICNetworkClient::requireLoginCallback).build();
 
 
@@ -166,7 +166,7 @@ public class ICNetworkClient {
                                 .connectTimeout(30, TimeUnit.SECONDS)
                                 .readTimeout(30, TimeUnit.SECONDS)
                                 .writeTimeout(30, TimeUnit.SECONDS)
-//                                .addInterceptor(loggingInterceptor)
+                                .addInterceptor(loggingInterceptor)
                                 .addInterceptor(ICNetworkClient::requireLoginCallback).build())
                         .addConverterFactory(GsonConverterFactory.create(gson))
                         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -326,7 +326,7 @@ public class ICNetworkClient {
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .writeTimeout(30, TimeUnit.SECONDS)
                 .authenticator(new TokenAuthenticator())
-//                .addInterceptor(loggingInterceptor)
+                .addInterceptor(loggingInterceptor)
                 .addInterceptor(ICNetworkClient::requireLoginCallback)
                 .build();
     }
@@ -540,7 +540,7 @@ public class ICNetworkClient {
                     .connectTimeout(60, TimeUnit.SECONDS)
                     .readTimeout(60, TimeUnit.SECONDS)
                     .writeTimeout(60, TimeUnit.SECONDS)
-//                    .addInterceptor(loggingInterceptor)
+                    .addInterceptor(loggingInterceptor)
                     .build();
         } else {
             chatClient = client;
@@ -568,7 +568,7 @@ public class ICNetworkClient {
                             .connectTimeout(60, TimeUnit.SECONDS)
                             .readTimeout(60, TimeUnit.SECONDS)
                             .writeTimeout(60, TimeUnit.SECONDS)
-//                            .addInterceptor(loggingInterceptor)
+                            .addInterceptor(loggingInterceptor)
                             .build();
                 } else {
                     throw new NullPointerException("Firebase token not found");

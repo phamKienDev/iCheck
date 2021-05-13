@@ -184,6 +184,8 @@ object ICViewTypes {
     const val PVCOMBANK_TYPE = 107
     const val PRODUCT_ECCOMMERCE_TYPE = 108
 
+    const val PRODUCT_IMAGE = 109
+
 
     /*
     * Scan History

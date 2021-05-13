@@ -3,11 +3,10 @@ package vn.icheck.android.screen.user.detail_stamp_v6_1.history_guarantee.presen
 import android.content.Intent
 import vn.icheck.android.base.activity.BaseActivityPresenter
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.network.base.ICApiListener
 import vn.icheck.android.network.base.ICBaseResponse
-import vn.icheck.android.network.feature.detail_stamp_v6_1.DetailStampInteractor
+import vn.icheck.android.network.feature.detail_stamp_v6_1.DetailStampRepository
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICHistoryGuarantee
 import vn.icheck.android.screen.user.detail_stamp_v6_1.history_guarantee.view.IHistoryGuaranteeView
 
@@ -18,7 +17,7 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.history_guarantee.view.IH
  */
 class HistoryGuaranteePresenter(val view: IHistoryGuaranteeView) : BaseActivityPresenter(view) {
 
-    private val interactor = DetailStampInteractor()
+    private val interactor = DetailStampRepository()
 
     fun getDataIntent(intent: Intent){
         var serial = try {

@@ -920,7 +920,7 @@ class DescriptionAdapter(val listChild: List<DescriptionChild>) : RecyclerView.A
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             BUTTON -> DescriptionButton.create(parent)
-            NULL -> NullHolder.create(parent)
+            NULL -> NullHolder(parent)
             INFO -> InfoHolder.create(parent)
             else -> DescriptionButton.create(parent)
         }

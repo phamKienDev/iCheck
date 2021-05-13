@@ -20,9 +20,11 @@
     <color name="colorBackgroundPopup">#80000000</color>
 
 
+    <color name="white">#FFFFFF</color>
+    <color name="whiteOpacity30">#4DFFFFFF</color>
+    <color name="white_alpha_50">#80ffffff</color>
 
     <color name="colorNormalTextOpacity25">#40212121</color>
-    <color name="white_alpha_50">#80ffffff</color>
     <color name="colorPrimaryDark">#0580dc</color>
     <color name="darkBlue">#20336B</color>
     <color name="titleToolbar">#CC1E1E</color>
@@ -43,7 +45,6 @@
     <color name="red_05">#0Dff0000</color>
     <color name="gray_60">#99D8D8D8</color>
     <color name="lightGray">#F1F1F1</color>
-    <color name="white">#FFFFFF</color>
     <color name="green">#62AF58</color>
     <color name="green_v2">#49CA4E</color>
     <color name="errorColor">#EB5757</color>

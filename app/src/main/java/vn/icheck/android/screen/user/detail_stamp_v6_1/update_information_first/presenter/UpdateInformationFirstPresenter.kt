@@ -4,11 +4,10 @@ import android.content.Intent
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityPresenter
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.ValidHelper
 import vn.icheck.android.network.base.*
-import vn.icheck.android.network.feature.detail_stamp_v6_1.DetailStampInteractor
+import vn.icheck.android.network.feature.detail_stamp_v6_1.DetailStampRepository
 import vn.icheck.android.network.feature.user.UserInteractor
 import vn.icheck.android.network.models.ICStatus
 import vn.icheck.android.network.models.detail_stamp_v6_1.*
@@ -23,7 +22,7 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.
  */
 class UpdateInformationFirstPresenter(val view: IUpdateInformationFirstView) : BaseActivityPresenter(view) {
 
-    private val interactor = DetailStampInteractor()
+    private val interactor = DetailStampRepository()
 
     private var city: CitiesItem? = null
     private var district: DistrictsItem? = null

@@ -626,10 +626,10 @@ interface ICNetworkAPI {
     /*
      * End Cart
      * */
-/*
+
+    /*
      * Stamp V6.1
      * */
-//Stamp
     @GET
     fun scanBarcodeByStamp(@Url url: String): Observable<ICBarcodeProductV1>
 
@@ -638,6 +638,9 @@ interface ICNetworkAPI {
 
     @POST
     fun getDetailStamp(@Url url: String, @Body body: HashMap<String, Any>): Observable<ICDetailStampV6_1>
+
+    @POST
+    suspend fun getStampDetail(@Url url: String, @Body body: HashMap<String, Any>): ICResponse<ICStampV61>
 
     @GET
     fun getListNoteHistoryGuarantee(@Url url: String, @QueryMap queries: HashMap<String, Any>): Observable<ICResp_Note_Guarantee>

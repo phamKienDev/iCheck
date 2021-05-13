@@ -17,5 +17,4 @@
         android:visibility="gone"
         android:layout_gravity="center"
         android:src="@mipmap/ic_play"/>
-
 </FrameLayout>

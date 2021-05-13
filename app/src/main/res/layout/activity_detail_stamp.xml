@@ -185,8 +185,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fillViewport="true"
-            android:visibility="gone"
-            >
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -327,6 +326,12 @@
             </LinearLayout>
         </LinearLayout>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
         <!--Data-->
         <androidx.core.widget.NestedScrollView
             android:id="@+id/scrollView"
@@ -439,7 +444,8 @@
                     android:id="@+id/layoutHeader"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone">
+                    android:visibility="gone"
+                    tools:visibility="visible">
 
                     <androidx.viewpager.widget.ViewPager
                         android:id="@+id/viewPagerImgProduct"
@@ -1061,7 +1067,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <!--Layout Verified Chong gia-->
-                <androidx.cardview.widget.CardView
+                    <androidx.cardview.widget.CardView
                     android:id="@+id/layoutVerifiedChongGia"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -1322,15 +1328,15 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@id/tvTitle" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@id/recyclerView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/size_2"
-                        android:orientation="vertical"
-                        android:paddingBottom="@dimen/size_10"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+<!--                    <androidx.recyclerview.widget.RecyclerView-->
+<!--                        android:id="@id/recyclerView"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="@dimen/size_2"-->
+<!--                        android:orientation="vertical"-->
+<!--                        android:paddingBottom="@dimen/size_10"-->
+<!--                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--                        app:layout_constraintTop_toBottomOf="@id/tvTitle" />-->
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <!--Layout Gurantee-->

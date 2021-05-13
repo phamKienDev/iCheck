@@ -7,22 +7,111 @@ import retrofit2.Callback
 import retrofit2.HttpException
 import retrofit2.Response
 import vn.icheck.android.network.base.*
-import vn.icheck.android.network.feature.base.BaseInteractor
+import vn.icheck.android.network.models.ICStampV61
 import vn.icheck.android.network.models.detail_stamp_v6_1.*
 import vn.icheck.android.network.util.DeviceUtils
 import vn.icheck.android.network.util.JsonHelper
-import kotlin.collections.HashMap
 
-class DetailStampInteractor : BaseInteractor() {
+class DetailStampRepository : BaseRepository() {
 
-    fun getDetailStamp(phone: String?, name: String?, email: String?, address: String?, mId: String?, code: String, lat: String?, lon: String?, listener: ICApiListener<ICDetailStampV6_1>) {
+    suspend fun getDetailStampV61(code: String, lat: String?, lon: String?): ICResponse<ICStampV61> {
         val body = hashMapOf<String, Any>()
-        if (!phone.isNullOrEmpty()) {
-            body["phone"] = phone
+
+        SessionManager.session.user?.let { user ->
+            val name = if (user.last_name.isNullOrEmpty()) {
+                user.first_name
+            } else {
+                if (!user.first_name.isNullOrEmpty()) {
+                    user.last_name + " " + user.first_name
+                } else {
+                    user.last_name
+                }
+            }
+
+            if (user.id != 0L) {
+                body["icheck_id"] = "i-${user.id}"
+            }
+
+            if (!name.isNullOrEmpty()) {
+                body["name"] = name
+            }
+
+            if (!user.phone.isNullOrEmpty()) {
+                body["phone"] = user.phone!!
+            }
+
+            if (!user.email.isNullOrEmpty()) {
+                body["email"] = user.email!!
+            }
+
+            if (!user.address.isNullOrEmpty()) {
+                body["address"] = user.address!!
+            }
+        }
+
+        body["code"] = code
+        body["device_id"] = DeviceUtils.getUniqueDeviceId()
+
+        val agent = DeviceUtils.getModel()
+        if (!agent.isNullOrEmpty()) {
+            body["agent"] = agent
+            body["os"] = agent
+        }
+
+        val userid = SessionManager.session.user?.id
+        if (userid != null) {
+            body["user_id"] = userid
+        }
+
+        val rank = SettingManager.getRankLevel
+        body["rank_level"] = rank
+
+        if (lat != null) {
+            body["lat"] = lat
+        }
+        if (lon != null) {
+            body["lon"] = lon
+        }
+
+        val url = APIConstants.DETAIL_STAMP_HOST + APIConstants.STAMPDETAIL()
+        return ICNetworkClient.getSimpleStampClient().getStampDetail(url, body)
+    }
+
+    fun getDetailStamp(code: String, lat: String?, lon: String?, listener: ICApiListener<ICDetailStampV6_1>) {
+        val body = hashMapOf<String, Any>()
+
+        val user = SessionManager.session.user
+
+        val userID = if (user?.id != null) {
+            "i-${user.id}"
+        } else {
+            null
+        }
+
+        val name = if (user?.last_name.isNullOrEmpty()) {
+            user?.first_name
+        } else {
+            if (!user?.first_name.isNullOrEmpty()) {
+                user?.last_name + " " + user?.first_name
+            } else {
+                user?.last_name
+            }
+        }
+
+        val phone = user?.phone
+        val email = user?.email
+        val address = user?.address
+
+        if (!userID.isNullOrEmpty()) {
+            body["icheck_id"] = userID
         }
 
         if (!name.isNullOrEmpty()) {
             body["name"] = name
+        }
+
+        if (!phone.isNullOrEmpty()) {
+            body["phone"] = phone
         }
 
         if (!email.isNullOrEmpty()) {
@@ -33,12 +122,7 @@ class DetailStampInteractor : BaseInteractor() {
             body["address"] = address
         }
 
-        if (!mId.isNullOrEmpty()) {
-            body["icheck_id"] = mId
-        }
-
         body["code"] = code
-
         body["device_id"] = DeviceUtils.getUniqueDeviceId()
 
         val agent = DeviceUtils.getModel()
@@ -86,7 +170,7 @@ class DetailStampInteractor : BaseInteractor() {
                                     }
                                 }
                                 is HttpException -> {
-                                    val error = JsonHelper.parseJson(it.response()?.errorBody()?.string(), ICBaseResponse::class.java)
+                                    val error = parseJson(it.response()?.errorBody()?.string(), ICBaseResponse::class.java)
 
                                     if (error != null) {
                                         if (!error.message.isNullOrEmpty()) {
@@ -100,6 +184,7 @@ class DetailStampInteractor : BaseInteractor() {
                             listener.onError(errorBody)
                         }
                 )
+
         composite.add(disposable)
     }
 

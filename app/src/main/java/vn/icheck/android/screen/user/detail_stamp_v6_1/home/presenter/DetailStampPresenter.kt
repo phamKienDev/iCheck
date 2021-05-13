@@ -6,14 +6,13 @@ import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityPresenter
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.CartHelper
-import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.network.base.ICApiListener
 import vn.icheck.android.network.base.ICBaseResponse
 import vn.icheck.android.network.base.ICListResponse
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.feature.cart.CartInteractor
-import vn.icheck.android.network.feature.detail_stamp_v6_1.DetailStampInteractor
+import vn.icheck.android.network.feature.detail_stamp_v6_1.DetailStampRepository
 import vn.icheck.android.network.models.ICRespCart
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICDetailStampV6_1
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICMoreProductVerified
@@ -22,9 +21,7 @@ import vn.icheck.android.network.models.detail_stamp_v6_1.IC_Config_Error
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.view.IDetailStampView
 
 class DetailStampPresenter(val view: IDetailStampView) : BaseActivityPresenter(view) {
-//    private var bannerInteractor: AdsInteractor? = AdsInteractor()
-//    private var popupInteractor: AdsInteractor? = AdsInteractor()
-    private val interactor = DetailStampInteractor()
+    private val interactor = DetailStampRepository()
     private val cartInteraction = CartInteractor()
     private val cartHelper = CartHelper()
 
@@ -62,36 +59,19 @@ class DetailStampPresenter(val view: IDetailStampView) : BaseActivityPresenter(v
         }
     }
 
-    private var mId: String? = null
-
     private fun onGetDataDetailStamp(code: String, lat: String?, lon: String?) {
         if (NetworkHelper.isNotConnected(view.mContext)) {
             view.onGetDataIntentError(Constant.ERROR_INTERNET)
             return
         }
 
-        val phone = SessionManager.session.user?.phone
-        val name = SessionManager.session.user?.last_name + " " + SessionManager.session.user?.first_name
-        val email = SessionManager.session.user?.email
-        val address = SessionManager.session.user?.address
-        val id = SessionManager.session.user?.id
-        if (id != null) {
-            mId = "i-$id"
-        }
-
         view.onShowLoading(true)
 
-        interactor.getDetailStamp(phone,name,email,address, mId, code, lat, lon, object : ICApiListener<ICDetailStampV6_1> {
+        interactor.getDetailStamp(code, lat, lon, object : ICApiListener<ICDetailStampV6_1> {
             override fun onSuccess(obj: ICDetailStampV6_1) {
                 Handler().postDelayed({
                     view.onShowLoading(false)
                 }, 100)
-
-//                750x300
-//                Handler().postDelayed({
-//                    getBusinessBanner(obj.data?.distributor?.id, obj.data?.product?.id)
-//                    getBusinessPopup(obj.data?.distributor?.id, obj.data?.product?.id)
-//                }, 100)
 
                 view.onGetDetailStampSuccess(obj)
             }
@@ -204,24 +184,9 @@ class DetailStampPresenter(val view: IDetailStampView) : BaseActivityPresenter(v
             return
         }
 
-        val phone = SessionManager.session.user?.phone
-        val name = SessionManager.session.user?.last_name + " " + SessionManager.session.user?.first_name
-        val email = SessionManager.session.user?.email
-        val address = SessionManager.session.user?.address
-        val id = SessionManager.session.user?.id
-        if (id != null) {
-            mId = "i-$id"
-        }
-
-        interactor.getDetailStamp(phone,name,email,address, mId, code!!, mLat, mLon, object : ICApiListener<ICDetailStampV6_1> {
+        interactor.getDetailStamp(code!!, mLat, mLon, object : ICApiListener<ICDetailStampV6_1> {
             override fun onSuccess(obj: ICDetailStampV6_1) {
                 view.onGetDetailStampSuccess(obj)
-
-//                750x300
-//                Handler().postDelayed({
-//                    getBusinessBanner(obj.data?.distributor?.id, obj.data?.product?.id)
-//                    getBusinessPopup(obj.data?.distributor?.id, obj.data?.product?.id)
-//                }, 100)
             }
 
             override fun onError(error: ICBaseResponse?) {
