@@ -551,7 +551,7 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
             enableCamera(true)
         } else {
             view2.beGone()
-            imgImage.beGone()
+            imgImage.beInvisible()
             imgImage.tag = null
             imgCloseImage.beGone()
             imgPlay.beInvisible()

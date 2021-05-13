@@ -209,7 +209,7 @@ class AdsMoreAdapter : RecyclerViewCustomAdapter<ICAdsData>() {
                 if (obj.rating != null) {
                     itemView.tvPoint.beVisible()
                     itemView.tvRatingText.beVisible()
-                    itemView.tvPoint.text = obj.rating.toString()
+                    itemView.tvPoint.text = (obj.rating!! * 2).toString()
                     ReviewPointText.setText(itemView.tvRatingText, obj.rating!!)
                 } else {
                     itemView.tvRatingUpdating.beVisible()

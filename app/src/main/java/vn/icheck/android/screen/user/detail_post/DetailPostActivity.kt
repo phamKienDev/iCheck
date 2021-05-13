@@ -3,6 +3,7 @@ package vn.icheck.android.screen.user.detail_post
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
@@ -10,8 +11,11 @@ import android.text.Editable
 import android.text.Html
 import android.text.TextWatcher
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatImageButton
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.database.DataSnapshot
@@ -59,14 +63,14 @@ import vn.icheck.android.screen.user.list_product_question.adapter.ListEmojiAdap
 import vn.icheck.android.screen.user.media_in_post.MediaInPostActivity
 import vn.icheck.android.util.KeyboardUtils
 import vn.icheck.android.util.ick.beGone
-import vn.icheck.android.util.ick.beInvisible
 import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.util.ick.logError
 import vn.icheck.android.util.kotlin.WidgetUtils
 import vn.icheck.android.util.kotlin.WidgetUtils.loadImageFromVideoFile
 import java.io.File
 
-class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPostView, IDetailPostListener {
+class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPostView,
+    IDetailPostListener {
     lateinit var viewModel: DetailPostViewModel
 
     lateinit var adapter: DetailPostAdapter
@@ -112,7 +116,12 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
     }
 
     companion object {
-        fun start(activity: Activity, postId: Long, showKeyboard: Boolean = false, requestCode: Int = -1) {
+        fun start(
+            activity: Activity,
+            postId: Long,
+            showKeyboard: Boolean = false,
+            requestCode: Int = -1
+        ) {
             val intent = Intent(activity, DetailPostActivity::class.java)
             intent.putExtra(Constant.DATA_1, postId)
             intent.putExtra(Constant.DATA_2, showKeyboard)
@@ -168,15 +177,25 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
             }
         })
 
-        swipeRefresh.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
+        swipeRefresh.setColorSchemeColors(
+            ContextCompat.getColor(this, R.color.colorSecondary),
+            ContextCompat.getColor(this, R.color.colorSecondary),
+            ContextCompat.getColor(this, R.color.colorPrimary)
+        )
         swipeRefresh.setOnRefreshListener {
             getData()
         }
 
-        WidgetUtils.loadImageUrl(imgAvatar, SessionManager.session.user?.avatar, R.drawable.ic_avatar_default_84px)
+        WidgetUtils.loadImageUrl(
+            imgAvatar,
+            SessionManager.session.user?.avatar,
+            R.drawable.ic_avatar_default_84px
+        )
 
-        WidgetUtils.setClickListener(this, imgBack, imgAction, imgEmoji, imgCamera, imgSelectPermission, imgAvatar,
-                imgSend, tvActor, layoutPermission, imgClearImage)
+        WidgetUtils.setClickListener(
+            this, imgBack, imgAction, imgEmoji, imgCamera, imgSelectPermission, imgAvatar,
+            imgSend, tvActor, layoutPermission, imgClearImage
+        )
     }
 
     private fun initRecyclerView() {
@@ -207,19 +226,28 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
     }
 
     private fun setUpPermission() {
-        permissionAdapter = CommentPermissionAdapter(object : ItemClickListener<ICCommentPermission> {
-            override fun onItemClick(position: Int, item: ICCommentPermission?) {
-                if (item != null) {
-                    if (item.type == Constant.PAGE) {
-                        WidgetUtils.loadImageUrl(imgAvatar, item.avatar, R.drawable.ic_business_v2)
-                    } else {
-                        WidgetUtils.loadImageUrl(imgAvatar, item.avatar, R.drawable.ic_user_orange_circle)
+        permissionAdapter =
+            CommentPermissionAdapter(object : ItemClickListener<ICCommentPermission> {
+                override fun onItemClick(position: Int, item: ICCommentPermission?) {
+                    if (item != null) {
+                        if (item.type == Constant.PAGE) {
+                            WidgetUtils.loadImageUrl(
+                                imgAvatar,
+                                item.avatar,
+                                R.drawable.ic_business_v2
+                            )
+                        } else {
+                            WidgetUtils.loadImageUrl(
+                                imgAvatar,
+                                item.avatar,
+                                R.drawable.ic_user_orange_circle
+                            )
+                        }
+                        viewModel.setPermission(item)
                     }
-                    viewModel.setPermission(item)
+                    showLayoutPermission()
                 }
-                showLayoutPermission()
-            }
-        })
+            })
         rcvPermission.adapter = permissionAdapter
     }
 
@@ -290,13 +318,22 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
             }
             when {
                 it.size >= 3 -> {
-                    rcvPermission.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.dpToPx(126))
+                    rcvPermission.layoutParams = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        SizeHelper.dpToPx(126)
+                    )
                 }
                 it.size == 3 -> {
-                    rcvPermission.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.dpToPx(106))
+                    rcvPermission.layoutParams = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        SizeHelper.dpToPx(106)
+                    )
                 }
                 else -> {
-                    rcvPermission.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                    rcvPermission.layoutParams = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                    )
                 }
             }
             permissionAdapter.setData(it)
@@ -322,15 +359,26 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
         })
         viewModel.onDeleteComment.observe(this, {
             adapter.deleteComment(it)
-            DialogHelper.showDialogSuccessBlack(this, getString(R.string.xoa_binh_luan_thanh_cong), null, 800)
+            DialogHelper.showDialogSuccessBlack(
+                this,
+                getString(R.string.xoa_binh_luan_thanh_cong),
+                null,
+                800
+            )
             if (adapter.getListData.firstOrNull() is ICPost) {
                 adapter.notifyItemChanged(0)
             }
         })
         viewModel.onDeletePost.observe(this, {
-            DialogHelper.showDialogSuccessBlack(this, getString(R.string.ban_da_xoa_bai_viet_thanh_cong), null, 1000)
+            DialogHelper.showDialogSuccessBlack(
+                this,
+                getString(R.string.ban_da_xoa_bai_viet_thanh_cong),
+                null,
+                1000
+            )
             Handler().postDelayed({
-                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.DELETE_DETAIL_POST, it.id))
+                EventBus.getDefault()
+                    .post(ICMessageEvent(ICMessageEvent.Type.DELETE_DETAIL_POST, it.id))
                 finish()
             }, 1200)
         })
@@ -351,22 +399,25 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
                     }
                     Constant.FRIEND -> {
                         if (ICheckApplication.getInstance().mFirebase.auth.currentUser != null && SessionManager.session.user?.id != null) {
-                            ICheckApplication.getInstance().mFirebase.registerRelationship(Constant.myFriendIdList, viewModel.post?.user?.id.toString(), object : ValueEventListener {
-                                override fun onDataChange(snapshot: DataSnapshot) {
-                                    if (snapshot.value != null && snapshot.value is Long) {
-                                        view3.beVisible()
-                                        containerSent.beVisible()
-                                    } else {
-                                        notAllowReply()
-                                        view3.beGone()
-                                        containerSent.beGone()
+                            ICheckApplication.getInstance().mFirebase.registerRelationship(
+                                Constant.myFriendIdList,
+                                viewModel.post?.user?.id.toString(),
+                                object : ValueEventListener {
+                                    override fun onDataChange(snapshot: DataSnapshot) {
+                                        if (snapshot.value != null && snapshot.value is Long) {
+                                            view3.beVisible()
+                                            containerSent.beVisible()
+                                        } else {
+                                            notAllowReply()
+                                            view3.beGone()
+                                            containerSent.beGone()
+                                        }
                                     }
-                                }
 
-                                override fun onCancelled(error: DatabaseError) {
-                                    logError(error.toException())
-                                }
-                            })
+                                    override fun onCancelled(error: DatabaseError) {
+                                        logError(error.toException())
+                                    }
+                                })
                         }
                     }
                     else -> {
@@ -411,30 +462,46 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
 
 
     fun showLayoutImage(show: Boolean, file: File? = null) {
+        val btnPlay = AppCompatImageButton(this).also {
+            it.id = R.id.btnPlay
+            it.layoutParams = FrameLayout.LayoutParams(SizeHelper.size80, SizeHelper.size80)
+            it.setImageResource(R.drawable.ic_play_40dp)
+            it.background = ContextCompat.getDrawable(this, R.drawable.bg_black_20_corners_4)
+        }
+
         if (show) {
             imgCamera.setImageResource(R.drawable.ic_camera_on_24px)
             view2.beVisible()
+            layoutImage.beVisible()
+            cardViewImage.beVisible()
+            frameImage.beVisible()
             imgCommentSend.beVisible()
             imgClearImage.beVisible()
             imgCommentSend.tag = file
 
             imgCommentSend.loadImageFromVideoFile(file, null, SizeHelper.dpToPx(4))
 
-            if (file != null) {
-                if (file.absolutePath.contains(".mp4")) {
-                    btnPlay.beVisible()
-                } else {
-                    btnPlay.beInvisible()
+            if (file?.absolutePath?.contains(".mp4") == true) {
+                if (frameImage.childCount == 1) {
+                    frameImage.addView(btnPlay)
                 }
             } else {
-                btnPlay.beInvisible()
+                if (frameImage.childCount > 1) {
+                    frameImage.removeViewAt(2)
+                }
             }
+
         } else {
             imgCamera.setImageResource(R.drawable.ic_camera_off_24px)
             view2.beGone()
+            layoutImage.beGone()
+            cardViewImage.beGone()
+            frameImage.beGone()
             imgCommentSend.beGone()
             imgClearImage.beGone()
-            btnPlay.beInvisible()
+            if (frameImage.childCount > 1) {
+                frameImage.removeViewAt(2)
+            }
         }
     }
 
@@ -492,15 +559,24 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
                         postDialog = object : PostOptionDialog(this, post) {
                             override fun onPin(isPin: Boolean) {
                                 if (post.pinned) {
-                                    DialogHelper.showConfirm(dialog.context, "Bạn chắc chắn muốn bỏ ghim bài viết này?", null, "Để sau", "Đồng ý", true, null, R.color.colorPrimary, object : ConfirmDialogListener {
-                                        override fun onDisagree() {
+                                    DialogHelper.showConfirm(
+                                        dialog.context,
+                                        "Bạn chắc chắn muốn bỏ ghim bài viết này?",
+                                        null,
+                                        "Để sau",
+                                        "Đồng ý",
+                                        true,
+                                        null,
+                                        R.color.colorPrimary,
+                                        object : ConfirmDialogListener {
+                                            override fun onDisagree() {
 
-                                        }
+                                            }
 
-                                        override fun onAgree() {
-                                            viewModel.pinPost(post, isPin)
-                                        }
-                                    })
+                                            override fun onAgree() {
+                                                viewModel.pinPost(post, isPin)
+                                            }
+                                        })
                                 } else {
                                     viewModel.pinPost(post, isPin)
                                 }
@@ -508,7 +584,10 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
 
                             override fun onEdit() {
                                 if (post.involveType != Constant.REVIEW) {
-                                    val intent = Intent(this@DetailPostActivity, CreateOrUpdatePostActivity::class.java)
+                                    val intent = Intent(
+                                        this@DetailPostActivity,
+                                        CreateOrUpdatePostActivity::class.java
+                                    )
                                     intent.putExtra(Constant.DATA_1, post.id)
                                     intent.putExtra(Constant.DATA_2, post.page?.id)
                                     intent.putExtra(Constant.DATA_3, post.page?.name)
@@ -517,9 +596,15 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
                                     this@DetailPostActivity.startActivity(intent)
                                 } else {
                                     if (post.targetId != null) {
-                                        startActivity<EditReviewActivity, Long>(Constant.DATA_1, post.targetId!!)
+                                        startActivity<EditReviewActivity, Long>(
+                                            Constant.DATA_1,
+                                            post.targetId!!
+                                        )
                                     } else if (post.meta?.product?.id != null) {
-                                        startActivity<EditReviewActivity, Long>(Constant.DATA_1, post.meta?.product?.id!!)
+                                        startActivity<EditReviewActivity, Long>(
+                                            Constant.DATA_1,
+                                            post.meta?.product?.id!!
+                                        )
                                     }
                                 }
                             }
@@ -536,10 +621,16 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
                 }, 200)
             }
             R.id.imgCamera -> {
-                val permissions = arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                val permissions =
+                    arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 imgCamera.delayTimeoutClick(2000)
                 if (PermissionHelper.isAllowPermission(this, permissions)) {
-                    TakeMediaDialog.show(supportFragmentManager, this, takeMediaListener, isVideo = true)
+                    TakeMediaDialog.show(
+                        supportFragmentManager,
+                        this,
+                        takeMediaListener,
+                        isVideo = true
+                    )
                 } else {
                     PermissionHelper.checkPermission(this, permissions, requestCamera)
                 }
@@ -555,7 +646,12 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
                 imgSend.isEnabled = false
                 if (SessionManager.isUserLogged) {
                     if (imgCommentSend.tag != null || edtEnter.text.toString().isNotEmpty()) {
-                        viewModel.uploadImage(imgCommentSend.tag, permissionAdapter.getSelectedPermission, edtEnter.text.toString(), edtEnter.tag)
+                        viewModel.uploadImage(
+                            imgCommentSend.tag,
+                            permissionAdapter.getSelectedPermission,
+                            edtEnter.text.toString(),
+                            edtEnter.tag
+                        )
                     }
                 } else {
                     imgSend.isEnabled = true
@@ -604,7 +700,12 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
     }
 
     override fun onEditComment(obj: ICCommentPost) {
-        EditCommentActivity.start(this, obj, viewModel.post?.meta?.product?.barcode, requestUpdateComment)
+        EditCommentActivity.start(
+            this,
+            obj,
+            viewModel.post?.meta?.product?.barcode,
+            requestUpdateComment
+        )
     }
 
     override fun onDelete(obj: ICCommentPost) {
@@ -623,7 +724,11 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
         super.onMessageEvent(event)
         when (event.type) {
             ICMessageEvent.Type.ON_EDIT_POST -> {
-                startActivityForResult<CreateOrUpdatePostActivity, Long>(Constant.DATA_1, event.data!! as Long, requestEditPost)
+                startActivityForResult<CreateOrUpdatePostActivity, Long>(
+                    Constant.DATA_1,
+                    event.data!! as Long,
+                    requestEditPost
+                )
             }
             ICMessageEvent.Type.ON_REQUIRE_LOGIN -> {
                 if (isActivityVisible) {
@@ -640,16 +745,28 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
                 }
             }
             ICMessageEvent.Type.FOLLOW_PAGE -> {
-                DialogHelper.showDialogSuccessBlack(this, this.getString(R.string.ban_da_theo_doi_trang_nay))
+                DialogHelper.showDialogSuccessBlack(
+                    this,
+                    this.getString(R.string.ban_da_theo_doi_trang_nay)
+                )
             }
-            ICMessageEvent.Type.UNFOLLOW_PAGE->{
-                DialogHelper.showDialogSuccessBlack(this, this.getString(R.string.ban_da_huy_theo_doi_trang_nay))
+            ICMessageEvent.Type.UNFOLLOW_PAGE -> {
+                DialogHelper.showDialogSuccessBlack(
+                    this,
+                    this.getString(R.string.ban_da_huy_theo_doi_trang_nay)
+                )
             }
             ICMessageEvent.Type.PIN_POST -> {
-                DialogHelper.showDialogSuccessBlack(this, this.getString(R.string.ghim_bai_viet_thanh_cong))
+                DialogHelper.showDialogSuccessBlack(
+                    this,
+                    this.getString(R.string.ghim_bai_viet_thanh_cong)
+                )
             }
             ICMessageEvent.Type.UN_PIN_POST -> {
-                DialogHelper.showDialogSuccessBlack(this, this.getString(R.string.bo_ghim_bai_viet_thanh_cong))
+                DialogHelper.showDialogSuccessBlack(
+                    this,
+                    this.getString(R.string.bo_ghim_bai_viet_thanh_cong)
+                )
             }
             ICMessageEvent.Type.RESULT_EDIT_POST -> {
                 (event.data as ICPost?)?.let {
@@ -720,7 +837,8 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
     }
 
     override fun onBackPressed() {
-        EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.RESULT_DETAIL_POST_ACTIVITY, viewModel.post))
+        EventBus.getDefault()
+            .post(ICMessageEvent(ICMessageEvent.Type.RESULT_DETAIL_POST_ACTIVITY, viewModel.post))
         Intent().apply {
             putExtra(Constant.DATA_1, viewModel.post)
             setResult(RESULT_OK, this)
