@@ -1178,6 +1178,11 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
     override fun onResume() {
         super.onResume()
 
+        FirebaseMessaging.getInstance().token.addOnCompleteListener {
+            if (it.isSuccessful) {
+            }
+        }
+
         try {
             presenter.checkVersionApp()
             onUpdateUserInfo()
