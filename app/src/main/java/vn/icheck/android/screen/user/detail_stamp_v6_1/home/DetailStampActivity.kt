@@ -589,6 +589,14 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                                         })
                                     }
                                 }
+                                "SCAN_INFO" -> {
+                                    if (widget.data != null) {
+                                        listData.add(ICLayout().apply {
+                                            viewType = ICViewTypes.SCAN_INFO
+                                            data = widget.data
+                                        })
+                                    }
+                                }
                             }
                         }
 
@@ -1422,19 +1430,19 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
         }
     }
 
-    private fun getSerialNumber(prefix: String?, number: Long? = 0): String {
-        val length = number.toString().length // 2
-
-        var numberSerial = ""
-
-        if (length <= 6) {
-            for (i in 0 until (6 - length)) {
-                numberSerial += "0"
-            }
-        }
-
-        return "$prefix-$numberSerial$number"
-    }
+//    private fun getSerialNumber(prefix: String?, number: Long? = 0): String {
+//        val length = number.toString().length // 2
+//
+//        var numberSerial = ""
+//
+//        if (length <= 6) {
+//            for (i in 0 until (6 - length)) {
+//                numberSerial += "0"
+//            }
+//        }
+//
+//        return "$prefix-$numberSerial$number"
+//    }
 
     @SuppressLint("SetTextI18n")
     override fun onGetShopVariantSuccess(obj: ICListResponse<ICShopVariantStamp>) {

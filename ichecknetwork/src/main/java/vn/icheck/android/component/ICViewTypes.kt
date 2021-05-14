@@ -184,6 +184,7 @@ object ICViewTypes {
     const val PRODUCT_IMAGE = 109
     const val PRODUCT_INFO = 110
     const val STAMP_INFO = 111
+    const val SCAN_INFO = 112
 
 
     /*

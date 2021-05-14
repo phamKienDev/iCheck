@@ -917,4 +917,6 @@
     <string name="ban_phim_so">Bàn phím số</string>
     <string name="san_pham_chinh_hang_uppercase">SẢN PHẨM CHÍNH HÃNG</string>
     <string name="canh_bao_uppercase">CẢNH BÁO!</string>
+    <string name="so_lan_quet">Số lần quét</string>
+    <string name="so_nguoi_quet">Số người quét</string>
 </resources>

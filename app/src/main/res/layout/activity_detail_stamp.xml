@@ -329,7 +329,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:background="@color/colorBackgroundGray"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
@@ -337,7 +338,8 @@
         <androidx.core.widget.NestedScrollView
             android:id="@+id/scrollView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:fillViewport="true"
             android:visibility="gone"
             tools:visibility="visible">
