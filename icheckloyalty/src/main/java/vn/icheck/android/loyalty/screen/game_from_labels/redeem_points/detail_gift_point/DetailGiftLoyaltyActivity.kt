@@ -75,6 +75,101 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
                     btnDoiQua.setGone()
                 }
             }
+
+            btnDoiQua.setOnClickListener {
+                if (obj?.points != null) {
+                    when (obj?.gift?.type) {
+                        "RECEIVE_STORE" -> {
+                            DialogHelperGame.dialogTutorialLoyalty(this, R.drawable.bg_gradient_button_orange_yellow)
+                        }
+                        "PHONE_CARD" -> {
+                            if (obj?.points!! <= SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.POINT_USER_LOYALTY)) {
+                                obj?.let { data ->
+                                    DialogHelperGame.dialogConfirmExchangeGifts(this@DetailGiftLoyaltyActivity, data, campaignID)
+                                }
+                            } else {
+                                DialogHelperGame.dialogScanLoyaltyError(this@DetailGiftLoyaltyActivity,
+                                        R.drawable.ic_error_scan_game, "Bạn không đủ điểm đổi quà!",
+                                        "Tích cực tham gia các chương trình của\nnhãn hàng để nhận điểm Thành viên nhé",
+                                        null, "Tích điểm ngay", false, R.drawable.bg_button_not_enough_point, R.color.orange_red,
+                                        object : IClickButtonDialog<ICKNone> {
+                                            override fun onClickButtonData(data: ICKNone?) {
+                                                startActivity(Intent(this@DetailGiftLoyaltyActivity, CampaignOfBusinessActivity::class.java).apply {
+                                                    putExtra(ConstantsLoyalty.DATA_1, campaignID)
+                                                })
+                                            }
+                                        }, object : IDismissDialog {
+                                    override fun onDismiss() {
+
+                                    }
+                                })
+                            }
+//                        viewModel.postExchangeCardGift()
+                        }
+                        else -> {
+                            if (obj?.points!! <= SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.POINT_USER_LOYALTY)) {
+                                obj?.let { data ->
+                                    DialogHelperGame.dialogConfirmExchangeGifts(this@DetailGiftLoyaltyActivity, data, campaignID)
+                                }
+                            } else {
+                                if (SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getBoolean(ConstantsLoyalty.HAS_CHANGE_CODE_REDEEM_POINTS)) {
+                                    DialogHelperGame.dialogNotEnoughPoints(this, "Bạn không đủ điểm rồi!",
+                                            "Nhập mã được dán trên bao bì\nsản phẩm để nhận điểm tích lũy đổi quà nhé!", R.drawable.ic_onboarding_nhap, "Nhập mã ngay", true, R.drawable.bg_button_not_enough_point, R.color.orange_red,
+                                            object : IClickButtonDialog<ICKNone> {
+                                                override fun onClickButtonData(obj: ICKNone?) {
+
+                                                    Handler().postDelayed({
+                                                        DialogHelperGame.dialogEnterThePrizeCode(this@DetailGiftLoyaltyActivity,
+                                                                R.drawable.ic_nhap_ma_cong_diem,
+                                                                "Nhập mã được dán trên sản phẩm\nđể nhận điểm tích lũy đổi quà!",
+                                                                getString(R.string.nhap_ma_vao_day),
+                                                                "Vui lòng nhập mã code", campaignID, R.drawable.bg_gradient_button_orange_yellow,
+                                                                object : IClickButtonDialog<ICKAccumulatePoint> {
+                                                                    override fun onClickButtonData(obj: ICKAccumulatePoint?) {
+
+                                                                        /**
+                                                                         * Dialog Nhập mã thành công
+                                                                         */
+
+                                                                        Handler().postDelayed({
+                                                                            DialogHelperGame.dialogAccumulatePointSuccess(this@DetailGiftLoyaltyActivity,
+                                                                                    obj?.point, obj?.statistic?.owner?.logo?.medium,
+                                                                                    obj?.statistic?.owner?.name,
+                                                                                    obj?.statistic?.campaign_id,
+                                                                                    GameFromLabelsListActivity.name,
+                                                                                    R.drawable.bg_gradient_button_orange_yellow, null,
+                                                                                    object : IClickButtonDialog<Long> {
+                                                                                        override fun onClickButtonData(obj: Long?) {
+
+                                                                                        }
+
+                                                                                    }, object : IDismissDialog {
+                                                                                override fun onDismiss() {
+
+                                                                                }
+                                                                            })
+                                                                        }, 300)
+                                                                    }
+                                                                })
+                                                    }, 300)
+                                                }
+                                            })
+                                } else {
+                                    DialogHelperGame.dialogNotEnoughPoints(this, "Bạn không đủ điểm rồi!",
+                                            "Quét tem QRcode được dán trên bao bì\nsản phẩm để nhận điểm tích lũy đổi quà nhé!", R.drawable.ic_onboarding_scan, "Quét tem ngay", true, R.drawable.bg_button_not_enough_point, R.color.orange_red,
+                                            object : IClickButtonDialog<ICKNone> {
+                                                override fun onClickButtonData(obj: ICKNone?) {
+                                                    LoyaltySdk.openActivity("scan?typeLoyalty=accumulate_point&campaignId=$campaignID")
+                                                }
+                                            })
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    showLongError(getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                }
+            }
         } else {
             layoutPhiVanChuyen.setGone()
             btnDoiQua.setGone()
@@ -103,6 +198,7 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
                                     startActivity(Intent(this@DetailGiftLoyaltyActivity, VoucherLoyaltyActivity::class.java).apply {
                                         putExtra(ConstantsLoyalty.DATA_1, obj?.voucher?.code)
                                         putExtra(ConstantsLoyalty.DATA_2, obj?.voucher?.expired_at)
+                                        putExtra(ConstantsLoyalty.DATA_3, obj?.gift?.owner?.logo?.thumbnail)
                                     })
                                 }
                             }
@@ -124,16 +220,9 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
                 }
             }
         }
-
         WidgetHelper.loadImageUrl(imgBanner, intent.getStringExtra(ConstantsLoyalty.DATA_2))
 
         WidgetHelper.loadImageUrl(imgProduct, obj?.gift?.image?.medium)
-
-        tvDateTime.text = if (!obj?.export_gift_from.isNullOrEmpty() && !obj?.export_gift_to.isNullOrEmpty()) {
-            TimeHelper.convertDateTimeSvToDateVn(obj?.export_gift_to)
-        } else {
-            getString(R.string.dang_cap_nhat)
-        }
 
         tvVanChuyen.text = when (obj?.gift?.type) {
             "ICOIN" -> {
@@ -156,7 +245,26 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
             }
         }
 
-        setStatusGift(obj?.state)
+        if (obj?.gift?.type != "VOUCHER") {
+
+            tvDateTime.text = if (!obj?.export_gift_from.isNullOrEmpty() && !obj?.export_gift_to.isNullOrEmpty()) {
+                TimeHelper.convertDateTimeSvToDateVn(obj?.export_gift_to)
+            } else {
+                getString(R.string.dang_cap_nhat)
+            }
+
+            setStatusGift(obj?.state)
+        } else {
+            tvTitleDate.text = obj?.titleDate
+
+            tvDateTime.text = obj?.dateChange
+
+            tvStatus.apply {
+                text = obj?.statusChange
+                setTextColor(obj?.colorText ?: 0)
+                setBackgroundResource(obj?.colorBackground ?: 0)
+            }
+        }
 
         tvProduct.text = if (!obj?.gift?.name.isNullOrEmpty()) {
             obj?.gift?.name
@@ -191,100 +299,7 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
             ContextCompat.getDrawable(this, R.drawable.bg_gray_corner_20dp)
         }
 
-        btnDoiQua.setOnClickListener {
-            if (obj?.points != null) {
-                when (obj?.gift?.type) {
-                    "RECEIVE_STORE" -> {
-                        DialogHelperGame.dialogTutorialLoyalty(this, R.drawable.bg_gradient_button_orange_yellow)
-                    }
-                    "PHONE_CARD" -> {
-                        if (obj?.points!! <= SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.POINT_USER_LOYALTY)) {
-                            obj?.let { data ->
-                                DialogHelperGame.dialogConfirmExchangeGifts(this@DetailGiftLoyaltyActivity, data, campaignID)
-                            }
-                        } else {
-                            DialogHelperGame.dialogScanLoyaltyError(this@DetailGiftLoyaltyActivity,
-                                    R.drawable.ic_error_scan_game, "Bạn không đủ điểm đổi quà!",
-                                    "Tích cực tham gia các chương trình của\nnhãn hàng để nhận điểm Thành viên nhé",
-                                    null, "Tích điểm ngay", false, R.drawable.bg_button_not_enough_point, R.color.orange_red,
-                                    object : IClickButtonDialog<ICKNone> {
-                                        override fun onClickButtonData(data: ICKNone?) {
-                                            startActivity(Intent(this@DetailGiftLoyaltyActivity, CampaignOfBusinessActivity::class.java).apply {
-                                                putExtra(ConstantsLoyalty.DATA_1, campaignID)
-                                            })
-                                        }
-                                    }, object : IDismissDialog {
-                                override fun onDismiss() {
 
-                                }
-                            })
-                        }
-//                        viewModel.postExchangeCardGift()
-                    }
-                    else -> {
-                        if (obj?.points!! <= SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.POINT_USER_LOYALTY)) {
-                            obj?.let { data ->
-                                DialogHelperGame.dialogConfirmExchangeGifts(this@DetailGiftLoyaltyActivity, data, campaignID)
-                            }
-                        } else {
-                            if (SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getBoolean(ConstantsLoyalty.HAS_CHANGE_CODE_REDEEM_POINTS)) {
-                                DialogHelperGame.dialogNotEnoughPoints(this, "Bạn không đủ điểm rồi!",
-                                        "Nhập mã được dán trên bao bì\nsản phẩm để nhận điểm tích lũy đổi quà nhé!", R.drawable.ic_onboarding_nhap, "Nhập mã ngay", true, R.drawable.bg_button_not_enough_point, R.color.orange_red,
-                                        object : IClickButtonDialog<ICKNone> {
-                                            override fun onClickButtonData(obj: ICKNone?) {
-
-                                                Handler().postDelayed({
-                                                    DialogHelperGame.dialogEnterThePrizeCode(this@DetailGiftLoyaltyActivity,
-                                                            R.drawable.ic_nhap_ma_cong_diem,
-                                                            "Nhập mã được dán trên sản phẩm\nđể nhận điểm tích lũy đổi quà!",
-                                                            getString(R.string.nhap_ma_vao_day),
-                                                            "Vui lòng nhập mã code", campaignID, R.drawable.bg_gradient_button_orange_yellow,
-                                                            object : IClickButtonDialog<ICKAccumulatePoint> {
-                                                                override fun onClickButtonData(obj: ICKAccumulatePoint?) {
-
-                                                                    /**
-                                                                     * Dialog Nhập mã thành công
-                                                                     */
-
-                                                                    Handler().postDelayed({
-                                                                        DialogHelperGame.dialogAccumulatePointSuccess(this@DetailGiftLoyaltyActivity,
-                                                                                obj?.point, obj?.statistic?.owner?.logo?.medium,
-                                                                                obj?.statistic?.owner?.name,
-                                                                                obj?.statistic?.campaign_id,
-                                                                                GameFromLabelsListActivity.name,
-                                                                                R.drawable.bg_gradient_button_orange_yellow, null,
-                                                                                object : IClickButtonDialog<Long> {
-                                                                                    override fun onClickButtonData(obj: Long?) {
-
-                                                                                    }
-
-                                                                                }, object : IDismissDialog {
-                                                                            override fun onDismiss() {
-
-                                                                            }
-                                                                        })
-                                                                    }, 300)
-                                                                }
-                                                            })
-                                                }, 300)
-                                            }
-                                        })
-                            } else {
-                                DialogHelperGame.dialogNotEnoughPoints(this, "Bạn không đủ điểm rồi!",
-                                        "Quét tem QRcode được dán trên bao bì\nsản phẩm để nhận điểm tích lũy đổi quà nhé!", R.drawable.ic_onboarding_scan, "Quét tem ngay", true, R.drawable.bg_button_not_enough_point, R.color.orange_red,
-                                        object : IClickButtonDialog<ICKNone> {
-                                            override fun onClickButtonData(obj: ICKNone?) {
-                                                LoyaltySdk.openActivity("scan?typeLoyalty=accumulate_point&campaignId=$campaignID")
-                                            }
-                                        })
-                            }
-                        }
-                    }
-                }
-            } else {
-                showLongError(getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
-            }
-        }
     }
 
     private fun setStatusGift(state: Int?) {
@@ -332,6 +347,7 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK) {

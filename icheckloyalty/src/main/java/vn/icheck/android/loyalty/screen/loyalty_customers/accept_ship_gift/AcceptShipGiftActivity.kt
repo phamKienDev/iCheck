@@ -13,10 +13,14 @@ import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.activity_accept_ship_gift_loyalty.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import org.greenrobot.eventbus.EventBus
+import vn.icheck.android.ichecklibs.showSimpleSuccessToast
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.base.ICMessageEvent
 import vn.icheck.android.loyalty.base.activity.BaseActivityGame
+import vn.icheck.android.loyalty.base.setGone
+import vn.icheck.android.loyalty.base.setVisible
+import vn.icheck.android.loyalty.dialog.ConfirmLoyaltyDialog
 import vn.icheck.android.loyalty.dialog.DialogNotification
 import vn.icheck.android.loyalty.dialog.base.DialogHelperGame
 import vn.icheck.android.loyalty.dialog.listener.IClickButtonDialog
@@ -58,12 +62,21 @@ class AcceptShipGiftActivity : BaseActivityGame(), View.OnClickListener {
         WidgetHelper.setClickListener(this, spProvince, spDistrict, spWard)
         viewModel.collectionID = intent.getLongExtra(ConstantsLoyalty.DATA_2, -1)
         viewModel.type = intent.getIntExtra(ConstantsLoyalty.TYPE, 0)
+        val voucher = intent.getStringExtra(ConstantsLoyalty.VOUCHER)
 
         if (viewModel.type != 0) {
-            if (viewModel.type == 1) {
-                btnDone.setBackgroundResource(R.drawable.bg_gradient_button_blue)
-            } else {
-                btnDone.setBackgroundResource(R.drawable.bg_blue_border_20)
+            when (viewModel.type) {
+                1 -> {
+                    btnDone.setBackgroundResource(R.drawable.bg_gradient_button_blue)
+                }
+                4 -> {
+                    btnDone.setGone()
+                    layoutEdtVoucher.setVisible()
+                    layoutButtonVoucher.setVisible()
+                }
+                else -> {
+                    btnDone.setBackgroundResource(R.drawable.bg_blue_border_20)
+                }
             }
         } else {
             object : DialogNotification(this@AcceptShipGiftActivity, null, getString(R.string.co_loi_xay_ra_vui_long_thu_lai), null, false) {
@@ -74,29 +87,32 @@ class AcceptShipGiftActivity : BaseActivityGame(), View.OnClickListener {
         }
 
         val user = SessionManager.session.user
-        edtName.setText(user?.name)
-        edtPhone.setText(user?.phone)
-        edtEmail.setText(user?.email)
-        edtAddress.setText(user?.address)
 
-        spProvince.text = if (!user?.city?.name.isNullOrEmpty()) {
-            user?.city?.name
-        } else {
-            "Tùy chọn"
+        if (viewModel.type != 4) {
+            edtName.setText(user?.name)
+            edtPhone.setText(user?.phone)
+            edtEmail.setText(user?.email)
+            edtAddress.setText(user?.address)
+
+            spProvince.text = if (!user?.city?.name.isNullOrEmpty()) {
+                user?.city?.name
+            } else {
+                "Tùy chọn"
+            }
+            spDistrict.text = if (!user?.district?.name.isNullOrEmpty()) {
+                user?.district?.name
+            } else {
+                "Tùy chọn"
+            }
+            spWard.text = if (!user?.ward?.name.isNullOrEmpty()) {
+                user?.ward?.name
+            } else {
+                "Tùy chọn"
+            }
+            viewModel.province = user?.city
+            viewModel.district = user?.district
+            viewModel.ward = user?.ward
         }
-        spDistrict.text = if (!user?.district?.name.isNullOrEmpty()) {
-            user?.district?.name
-        } else {
-            "Tùy chọn"
-        }
-        spWard.text = if (!user?.ward?.name.isNullOrEmpty()) {
-            user?.ward?.name
-        } else {
-            "Tùy chọn"
-        }
-        viewModel.province = user?.city
-        viewModel.district = user?.district
-        viewModel.ward = user?.ward
 
         setupInput(edtName, layoutInputName)
         setupInput(edtPhone, layoutInputPhone)
@@ -111,6 +127,35 @@ class AcceptShipGiftActivity : BaseActivityGame(), View.OnClickListener {
             Handler().postDelayed({
                 btnDone.isEnabled = true
             }, 2000)
+        }
+
+        btnBoQua.setOnClickListener {
+            onBackPressed()
+            EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_BACK_PRESSED))
+        }
+
+        btnXacNhan.setOnClickListener {
+            object : ConfirmLoyaltyDialog(this@AcceptShipGiftActivity, "", "Bạn chắc chắn muốn đánh dấu sử dụng\nvoucher mã: $voucher", "Để sau", "Chắc chắn", false) {
+                override fun onDisagree() {
+
+                }
+
+                override fun onAgree() {
+                    this@AcceptShipGiftActivity.apply {
+                        viewModel.usedVoucher(
+                                voucher ?: "",
+                                edtNote.text.toString().trim(),
+                                edtName.text.toString().trim(),
+                                edtPhone.text.toString().trim(),
+                                edtEmail.text.toString().trim(),
+                                edtAddress.text.toString().trim())
+                    }
+                }
+
+                override fun onDismiss() {
+
+                }
+            }.show()
         }
     }
 
@@ -131,52 +176,61 @@ class AcceptShipGiftActivity : BaseActivityGame(), View.OnClickListener {
     }
 
     private fun initListener() {
-        viewModel.onError.observe(this, Observer {
+        viewModel.onError.observe(this, {
             showLongError(it.title)
         })
 
-        viewModel.onErrorName.observe(this, Observer {
+        viewModel.onErrorName.observe(this, {
             layoutInputName.error = it
         })
 
-        viewModel.onErrorPhone.observe(this, Observer {
+        viewModel.onErrorPhone.observe(this, {
             layoutInputPhone.error = it
         })
 
-        viewModel.onErrorEmail.observe(this, Observer {
+        viewModel.onErrorEmail.observe(this, {
             layoutInputEmail.error = it
         })
 
-        viewModel.onErrorAddress.observe(this, Observer {
+        viewModel.onErrorAddress.observe(this, {
             layoutInputAddress.error = it
         })
 
-        viewModel.onErrorProvince.observe(this, Observer {
+        viewModel.onErrorProvince.observe(this, {
             layoutInputProvince.error = it
         })
 
-        viewModel.onErrorDistrict.observe(this, Observer {
+        viewModel.onErrorDistrict.observe(this, {
             layoutInputDistrict.error = it
         })
 
-        viewModel.onErrorWard.observe(this, Observer {
+        viewModel.onErrorWard.observe(this, {
             layoutInputWard.error = it
         })
 
-        viewModel.onSetProvince.observe(this, Observer {
+        viewModel.onSetProvince.observe(this, {
             spProvince.text = it
         })
 
-        viewModel.onSetDistrict.observe(this, Observer {
+        viewModel.onSetDistrict.observe(this, {
             spDistrict.text = it
         })
 
-        viewModel.onSetWard.observe(this, Observer {
+        viewModel.onSetWard.observe(this, {
             spWard.text = it
         })
 
-        viewModel.onSuccessRedemption.observe(this, Observer {
+        viewModel.onSuccessRedemption.observe(this, {
             showDialog(it)
+        })
+
+        viewModel.onSuccessVoucher.observe(this, {
+            object : DialogNotification(this@AcceptShipGiftActivity, "Thông báo", "Đổi quà thành công!", null, false) {
+                override fun onDone() {
+                    this@AcceptShipGiftActivity.onBackPressed()
+                    EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.BACK))
+                }
+            }.show()
         })
 
         viewModel.onSuccessReceiveGift.observe(this@AcceptShipGiftActivity, {
@@ -188,8 +242,14 @@ class AcceptShipGiftActivity : BaseActivityGame(), View.OnClickListener {
             }.show()
         })
 
-        viewModel.showError.observe(this, Observer {
+        viewModel.showError.observe(this, {
             showLongError(it)
+        })
+
+        viewModel.onSuccessUsedVoucher.observe(this, {
+            showSimpleSuccessToast("Đánh dấu sử dụng voucher\nthành công")
+            onBackPressed()
+            EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.BACK))
         })
     }
 

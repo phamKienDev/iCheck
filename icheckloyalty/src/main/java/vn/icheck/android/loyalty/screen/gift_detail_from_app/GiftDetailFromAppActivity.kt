@@ -1,9 +1,8 @@
-package vn.icheck.android.loyalty.screen.gift_voucher
+package vn.icheck.android.loyalty.screen.gift_detail_from_app
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.activity.viewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_gift_detail_from_app.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
@@ -124,33 +123,43 @@ class GiftDetailFromAppActivity : BaseActivityGame() {
                 }
             }
             "VOUCHER" -> {
-                layoutButton.setVisible()
-                layoutButtonNotVoucher.setGone()
-                btnUsed.setVisible()
+                if (obj.voucher != null) {
+                    layoutButton.setVisible()
+                    layoutButtonNotVoucher.setGone()
+                    btnUsed.setVisible()
 
-                when {
-                    obj.voucher?.can_use == true -> {
-                        btnUsed.apply {
-                            text = "Dùng ngay"
+                    when {
+                        obj.voucher.can_use == true -> {
+                            btnUsed.apply {
+                                text = "Dùng ngay"
 
-                            setOnClickListener {
-                                startActivity(Intent(this@GiftDetailFromAppActivity, VoucherLoyaltyActivity::class.java).apply {
-                                    putExtra(ConstantsLoyalty.DATA_1, obj.voucher.code)
-                                    putExtra(ConstantsLoyalty.DATA_2, obj.voucher.expired_at)
-                                })
+                                setOnClickListener {
+                                    startActivity(Intent(this@GiftDetailFromAppActivity, VoucherLoyaltyActivity::class.java).apply {
+                                        putExtra(ConstantsLoyalty.DATA_1, obj.voucher.code)
+                                        putExtra(ConstantsLoyalty.DATA_2, obj.voucher.expired_at)
+                                        putExtra(ConstantsLoyalty.DATA_3, obj.owner?.logo?.thumbnail)
+                                    })
+                                }
                             }
                         }
-                    }
-                    obj.voucher?.can_mark_use == true -> {
-                        btnUsed.apply {
-                            text = "Đánh dấu sử dụng"
+                        obj.voucher.can_mark_use == true -> {
+                            btnUsed.apply {
+                                text = "Đánh dấu sử dụng"
 
-                            setOnClickListener {
-                                showCustomErrorToast(this@GiftDetailFromAppActivity, "Chưa có sự kiện")
+                                setOnClickListener {
+                                    showCustomErrorToast(this@GiftDetailFromAppActivity, "Chưa có sự kiện")
+                                }
                             }
                         }
+                        else -> {
+                            layoutButton.setGone()
+                        }
                     }
-                    else -> {
+                } else {
+                    if (obj.state == 1) {
+                        layoutButton.setVisible()
+                        layoutButtonNotVoucher.setVisible()
+                    } else {
                         layoutButton.setGone()
                     }
                 }
@@ -178,16 +187,24 @@ class GiftDetailFromAppActivity : BaseActivityGame() {
         }
 
         btnAccept.setOnClickListener {
-            if (obj.rewardType == "CARD") {
-                if (obj.id != null)
-                    ChangePhoneCardsActivity.start(this, obj.id, ConstantsLoyalty.VQMM, requestCard)
-            } else {
-                startActivity(Intent(this@GiftDetailFromAppActivity, AcceptShipGiftActivity::class.java).apply {
-                    putExtra(ConstantsLoyalty.DATA_2, obj.id)
-                    putExtra(ConstantsLoyalty.TYPE, 2)
-                })
+            when (obj.rewardType) {
+                "CARD" -> {
+                    if (obj.id != null)
+                        ChangePhoneCardsActivity.start(this, obj.id, ConstantsLoyalty.VQMM, requestCard)
+                }
+                "VOUCHER" -> {
+                    startActivity(Intent(this@GiftDetailFromAppActivity, AcceptShipGiftActivity::class.java).apply {
+                        putExtra(ConstantsLoyalty.DATA_2, obj.id)
+                        putExtra(ConstantsLoyalty.TYPE, 3)
+                    })
+                }
+                else -> {
+                    startActivity(Intent(this@GiftDetailFromAppActivity, AcceptShipGiftActivity::class.java).apply {
+                        putExtra(ConstantsLoyalty.DATA_2, obj.id)
+                        putExtra(ConstantsLoyalty.TYPE, 2)
+                    })
+                }
             }
-
         }
     }
 

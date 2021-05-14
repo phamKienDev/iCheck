@@ -15,7 +15,7 @@ import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.helper.ActivityHelper
-import vn.icheck.android.loyalty.screen.gift_voucher.GiftDetailFromAppActivity
+import vn.icheck.android.loyalty.screen.gift_detail_from_app.GiftDetailFromAppActivity
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.models.ICItemReward
 import vn.icheck.android.screen.user.campaign.holder.base.LoadingHolder
