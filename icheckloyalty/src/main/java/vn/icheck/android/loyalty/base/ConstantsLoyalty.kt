@@ -7,6 +7,7 @@ object ConstantsLoyalty {
     const val DATA_4 = "DATA_4"
     const val DATA_7 = "DATA_7"
     const val TYPE = "TYPE"
+    const val VOUCHER = "VOUCHER"
     const val ID = "id"
     const val ROOM_NAME = "loyalty_database"
 

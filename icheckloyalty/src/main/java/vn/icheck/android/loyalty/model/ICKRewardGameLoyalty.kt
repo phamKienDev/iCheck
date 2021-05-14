@@ -1,5 +1,7 @@
 package vn.icheck.android.loyalty.model
 
+import android.content.res.ColorStateList
+import android.graphics.drawable.Drawable
 import com.google.gson.annotations.Expose
 import java.io.Serializable
 
@@ -37,4 +39,7 @@ class ICKRewardGameLoyalty : Serializable {
 
     @Expose
     var gift: ICKGift? = null
+
+    @Expose
+    var voucher: ICKVoucher? = null
 }

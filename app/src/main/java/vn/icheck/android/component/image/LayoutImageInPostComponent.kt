@@ -54,7 +54,11 @@ class LayoutImageInPostComponent : ConstraintLayout {
 
     }
 
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
+        context,
+        attrs,
+        defStyleAttr
+    ) {
 
     }
 
@@ -64,7 +68,6 @@ class LayoutImageInPostComponent : ConstraintLayout {
      */
     fun setImageInPost(list: MutableList<ICImageInPost>) {
         id = R.id.constraintLayout
-
         removeAllViews()
 
         imgOne = AppCompatImageView(context)
@@ -111,8 +114,14 @@ class LayoutImageInPostComponent : ConstraintLayout {
                 imgOne.layoutParams = LayoutParams(0, 0).also {
                     it.setMargins(0, SizeHelper.size5, 0, 0)
                 }
-                imgOne.scaleType=ImageView.ScaleType.FIT_XY
-                WidgetUtils.loadImageUrlRounded(imgOne, list[0].src, R.drawable.img_default_loading_icheck,R.drawable.img_default_loading_icheck, SizeHelper.size4)
+                imgOne.scaleType = ImageView.ScaleType.FIT_XY
+                WidgetUtils.loadImageUrlRounded(
+                    imgOne,
+                    list[0].src,
+                    R.drawable.img_default_loading_icheck,
+                    R.drawable.img_default_loading_icheck,
+                    SizeHelper.size4
+                )
                 addView(imgOne)
 
 
@@ -130,12 +139,27 @@ class LayoutImageInPostComponent : ConstraintLayout {
                     imageSet.connect(imgBG.id, ConstraintSet.START, imgOne.id, ConstraintSet.START)
                     imageSet.connect(imgBG.id, ConstraintSet.TOP, imgOne.id, ConstraintSet.TOP)
                     imageSet.connect(imgBG.id, ConstraintSet.END, imgOne.id, ConstraintSet.END)
-                    imageSet.connect(imgBG.id, ConstraintSet.BOTTOM, imgOne.id, ConstraintSet.BOTTOM)
+                    imageSet.connect(
+                        imgBG.id,
+                        ConstraintSet.BOTTOM,
+                        imgOne.id,
+                        ConstraintSet.BOTTOM
+                    )
 
-                    imageSet.connect(imagePlay.id, ConstraintSet.START, imgBG.id, ConstraintSet.START)
+                    imageSet.connect(
+                        imagePlay.id,
+                        ConstraintSet.START,
+                        imgBG.id,
+                        ConstraintSet.START
+                    )
                     imageSet.connect(imagePlay.id, ConstraintSet.TOP, imgBG.id, ConstraintSet.TOP)
                     imageSet.connect(imagePlay.id, ConstraintSet.END, imgBG.id, ConstraintSet.END)
-                    imageSet.connect(imagePlay.id, ConstraintSet.BOTTOM, imgBG.id, ConstraintSet.BOTTOM)
+                    imageSet.connect(
+                        imagePlay.id,
+                        ConstraintSet.BOTTOM,
+                        imgBG.id,
+                        ConstraintSet.BOTTOM
+                    )
 
                     imageSet.setDimensionRatio(imgOne.id, "H, 1:1")
                     imageSet.applyTo(this)
@@ -157,15 +181,27 @@ class LayoutImageInPostComponent : ConstraintLayout {
                 imgOne.layoutParams = LayoutParams(0, 0).also {
                     it.setMargins(0, SizeHelper.size5, 0, 0)
                 }
-                imgOne.scaleType=ImageView.ScaleType.FIT_XY
-                WidgetUtils.loadImageUrlRounded(imgOne, list[0].src, R.drawable.img_default_loading_icheck,R.drawable.img_default_loading_icheck, SizeHelper.size4)
+                imgOne.scaleType = ImageView.ScaleType.FIT_XY
+                WidgetUtils.loadImageUrlRounded(
+                    imgOne,
+                    list[0].src,
+                    R.drawable.img_default_loading_icheck,
+                    R.drawable.img_default_loading_icheck,
+                    SizeHelper.size4
+                )
 
                 imgTwo.id = R.id.imgTwo
                 imgTwo.layoutParams = LayoutParams(0, 0).also {
                     it.setMargins(SizeHelper.size5, 0, 0, 0)
                 }
-                imgTwo.scaleType=ImageView.ScaleType.FIT_XY
-                WidgetUtils.loadImageUrlRounded(imgTwo, list[1].src, R.drawable.img_default_loading_icheck,R.drawable.img_default_loading_icheck, SizeHelper.size4)
+                imgTwo.scaleType = ImageView.ScaleType.FIT_XY
+                WidgetUtils.loadImageUrlRounded(
+                    imgTwo,
+                    list[1].src,
+                    R.drawable.img_default_loading_icheck,
+                    R.drawable.img_default_loading_icheck,
+                    SizeHelper.size4
+                )
 
                 addView(imgOne)
                 addView(imgTwo)
@@ -201,7 +237,12 @@ class LayoutImageInPostComponent : ConstraintLayout {
                 imageSet.connect(imagePlay1.id, ConstraintSet.START, imgOne.id, ConstraintSet.END)
                 imageSet.connect(imagePlay1.id, ConstraintSet.TOP, imgOne.id, ConstraintSet.TOP)
                 imageSet.connect(imagePlay1.id, ConstraintSet.END, id, ConstraintSet.END)
-                imageSet.connect(imagePlay1.id, ConstraintSet.BOTTOM, imgOne.id, ConstraintSet.BOTTOM)
+                imageSet.connect(
+                    imagePlay1.id,
+                    ConstraintSet.BOTTOM,
+                    imgOne.id,
+                    ConstraintSet.BOTTOM
+                )
 
                 imageSet.setDimensionRatio(imgOne.id, "H, 1:1")
                 imageSet.setDimensionRatio(imgTwo.id, "H, 1:1")
@@ -222,22 +263,40 @@ class LayoutImageInPostComponent : ConstraintLayout {
                 imgOne.layoutParams = LayoutParams(0, SizeHelper.dpToPx(230)).also {
                     it.setMargins(0, SizeHelper.size5, 0, 0)
                 }
-                imgOne.scaleType=ImageView.ScaleType.FIT_XY
-                WidgetUtils.loadImageUrlRounded(imgOne, list[0].src, R.drawable.img_default_loading_icheck,R.drawable.img_default_loading_icheck, SizeHelper.size4)
+                imgOne.scaleType = ImageView.ScaleType.FIT_XY
+                WidgetUtils.loadImageUrlRounded(
+                    imgOne,
+                    list[0].src,
+                    R.drawable.img_default_loading_icheck,
+                    R.drawable.img_default_loading_icheck,
+                    SizeHelper.size4
+                )
 
                 imgTwo.id = R.id.imgTwo
                 imgTwo.layoutParams = LayoutParams(0, 0).also {
                     it.setMargins(SizeHelper.size5, 0, 0, 0)
                 }
-                imgTwo.scaleType=ImageView.ScaleType.FIT_XY
-                WidgetUtils.loadImageUrlRounded(imgTwo, list[1].src, R.drawable.img_default_loading_icheck,R.drawable.img_default_loading_icheck, SizeHelper.size4)
+                imgTwo.scaleType = ImageView.ScaleType.FIT_XY
+                WidgetUtils.loadImageUrlRounded(
+                    imgTwo,
+                    list[1].src,
+                    R.drawable.img_default_loading_icheck,
+                    R.drawable.img_default_loading_icheck,
+                    SizeHelper.size4
+                )
 
                 imgThree.id = R.id.imgThree
                 imgThree.layoutParams = LayoutParams(0, 0).also {
                     it.setMargins(0, SizeHelper.size5, 0, 0)
                 }
-                imgThree.scaleType=ImageView.ScaleType.FIT_XY
-                WidgetUtils.loadImageUrlRounded(imgThree, list[2].src, R.drawable.img_default_loading_icheck,R.drawable.img_default_loading_icheck, SizeHelper.size4)
+                imgThree.scaleType = ImageView.ScaleType.FIT_XY
+                WidgetUtils.loadImageUrlRounded(
+                    imgThree,
+                    list[2].src,
+                    R.drawable.img_default_loading_icheck,
+                    R.drawable.img_default_loading_icheck,
+                    SizeHelper.size4
+                )
 
                 addView(imgOne)
                 addView(imgTwo)
@@ -281,13 +340,23 @@ class LayoutImageInPostComponent : ConstraintLayout {
 
                 imageSet.connect(imagePlay1.id, ConstraintSet.START, imgOne.id, ConstraintSet.END)
                 imageSet.connect(imagePlay1.id, ConstraintSet.TOP, imgOne.id, ConstraintSet.TOP)
-                imageSet.connect(imagePlay1.id, ConstraintSet.BOTTOM, imgTwo.id, ConstraintSet.BOTTOM)
+                imageSet.connect(
+                    imagePlay1.id,
+                    ConstraintSet.BOTTOM,
+                    imgTwo.id,
+                    ConstraintSet.BOTTOM
+                )
                 imageSet.connect(imagePlay1.id, ConstraintSet.END, id, ConstraintSet.END)
 
                 imageSet.connect(imagePlay2.id, ConstraintSet.TOP, imgTwo.id, ConstraintSet.BOTTOM)
                 imageSet.connect(imagePlay2.id, ConstraintSet.START, imgTwo.id, ConstraintSet.START)
                 imageSet.connect(imagePlay2.id, ConstraintSet.END, imgTwo.id, ConstraintSet.END)
-                imageSet.connect(imagePlay2.id, ConstraintSet.BOTTOM, imgOne.id, ConstraintSet.BOTTOM)
+                imageSet.connect(
+                    imagePlay2.id,
+                    ConstraintSet.BOTTOM,
+                    imgOne.id,
+                    ConstraintSet.BOTTOM
+                )
 
                 imageSet.constrainPercentWidth(imgOne.id, 0.65F)
                 imageSet.setDimensionRatio(imgTwo.id, "H, 1:1")
@@ -315,22 +384,34 @@ class LayoutImageInPostComponent : ConstraintLayout {
                 imgOne.layoutParams = LayoutParams(0, SizeHelper.dpToPx(230)).also {
                     it.setMargins(0, SizeHelper.size5, 0, 0)
                 }
-                imgOne.scaleType=ImageView.ScaleType.FIT_XY
-                WidgetUtils.loadImageUrlRounded(imgOne, list[0].src, R.drawable.img_default_loading_icheck,R.drawable.img_default_loading_icheck,SizeHelper.size4)
+                imgOne.scaleType = ImageView.ScaleType.FIT_XY
+                WidgetUtils.loadImageUrlRounded(
+                    imgOne,
+                    list[0].src,
+                    R.drawable.img_default_loading_icheck,
+                    R.drawable.img_default_loading_icheck,
+                    SizeHelper.size4
+                )
 
                 imgTwo.id = R.id.imgTwo
                 imgTwo.layoutParams = LayoutParams(0, 0).also {
                     it.setMargins(SizeHelper.size5, 0, 0, 0)
                 }
-                imgTwo.scaleType=ImageView.ScaleType.FIT_XY
-                WidgetUtils.loadImageUrlRounded(imgTwo, list[1].src,R.drawable.img_default_loading_icheck,R.drawable.img_default_loading_icheck, SizeHelper.size4)
+                imgTwo.scaleType = ImageView.ScaleType.FIT_XY
+                WidgetUtils.loadImageUrlRounded(
+                    imgTwo,
+                    list[1].src,
+                    R.drawable.img_default_loading_icheck,
+                    R.drawable.img_default_loading_icheck,
+                    SizeHelper.size4
+                )
 
                 imgThree.id = R.id.imgThree
                 imgThree.layoutParams = LayoutParams(0, 0).also {
                     it.setMargins(0, SizeHelper.size5, 0, 0)
                 }
-                imgThree.scaleType=ImageView.ScaleType.FIT_XY
-                WidgetUtils.loadImageUrlRounded(imgThree, list[2].src,R.drawable.img_default_loading_icheck,R.drawable.img_default_loading_icheck, SizeHelper.size4)
+                imgThree.scaleType = ImageView.ScaleType.FIT_XY
+                WidgetUtils.loadImageUrlRounded(imgThree, list[2].src, R.drawable.img_default_loading_icheck, R.drawable.img_default_loading_icheck, SizeHelper.size4)
 
                 createViewAndTextVertical(list)
 
@@ -371,25 +452,46 @@ class LayoutImageInPostComponent : ConstraintLayout {
                 imageSet.connect(imgThree.id, ConstraintSet.END, imgTwo.id, ConstraintSet.END)
                 imageSet.connect(imgThree.id, ConstraintSet.BOTTOM, imgOne.id, ConstraintSet.BOTTOM)
 
+
                 imageSet.connect(imagePlay.id, ConstraintSet.START, id, ConstraintSet.START)
                 imageSet.connect(imagePlay.id, ConstraintSet.TOP, id, ConstraintSet.TOP)
                 imageSet.connect(imagePlay.id, ConstraintSet.END, imgTwo.id, ConstraintSet.START)
-                imageSet.connect(imagePlay.id, ConstraintSet.BOTTOM, imgThree.id, ConstraintSet.BOTTOM)
+                imageSet.connect(
+                    imagePlay.id,
+                    ConstraintSet.BOTTOM,
+                    imgThree.id,
+                    ConstraintSet.BOTTOM
+                )
 
                 imageSet.connect(imagePlay1.id, ConstraintSet.START, imgOne.id, ConstraintSet.END)
                 imageSet.connect(imagePlay1.id, ConstraintSet.TOP, imgOne.id, ConstraintSet.TOP)
-                imageSet.connect(imagePlay1.id, ConstraintSet.BOTTOM, imgTwo.id, ConstraintSet.BOTTOM)
+                imageSet.connect(
+                    imagePlay1.id,
+                    ConstraintSet.BOTTOM,
+                    imgTwo.id,
+                    ConstraintSet.BOTTOM
+                )
                 imageSet.connect(imagePlay1.id, ConstraintSet.END, id, ConstraintSet.END)
 
                 imageSet.connect(imagePlay2.id, ConstraintSet.TOP, imgTwo.id, ConstraintSet.BOTTOM)
                 imageSet.connect(imagePlay2.id, ConstraintSet.START, imgTwo.id, ConstraintSet.START)
                 imageSet.connect(imagePlay2.id, ConstraintSet.END, imgTwo.id, ConstraintSet.END)
-                imageSet.connect(imagePlay2.id, ConstraintSet.BOTTOM, imgOne.id, ConstraintSet.BOTTOM)
+                imageSet.connect(
+                    imagePlay2.id,
+                    ConstraintSet.BOTTOM,
+                    imgOne.id,
+                    ConstraintSet.BOTTOM
+                )
 
                 imageSet.connect(viewImage.id, ConstraintSet.TOP, imgTwo.id, ConstraintSet.BOTTOM)
                 imageSet.connect(viewImage.id, ConstraintSet.START, imgTwo.id, ConstraintSet.START)
                 imageSet.connect(viewImage.id, ConstraintSet.END, imgTwo.id, ConstraintSet.END)
-                imageSet.connect(viewImage.id, ConstraintSet.BOTTOM, imgOne.id, ConstraintSet.BOTTOM)
+                imageSet.connect(
+                    viewImage.id,
+                    ConstraintSet.BOTTOM,
+                    imgOne.id,
+                    ConstraintSet.BOTTOM
+                )
 
                 imageSet.connect(text.id, ConstraintSet.TOP, imgTwo.id, ConstraintSet.BOTTOM)
                 imageSet.connect(text.id, ConstraintSet.START, imgTwo.id, ConstraintSet.START)
@@ -398,9 +500,9 @@ class LayoutImageInPostComponent : ConstraintLayout {
 
                 imageSet.constrainPercentWidth(imgOne.id, 0.65F)
                 imageSet.setDimensionRatio(imgTwo.id, "H, 1:1")
-                imageSet.setDimensionRatio(imgThree.id, "H, 1:1")
-                imageSet.setDimensionRatio(viewImage.id, "H, 1:1")
-                imageSet.setDimensionRatio(text.id, "H, 1:1")
+//                imageSet.setDimensionRatio(imgThree.id, "H, 1:1")
+//                imageSet.setDimensionRatio(viewImage.id, "H, 1:1")
+//                imageSet.setDimensionRatio(text.id, "H, 1:1")
 
                 imageSet.connect(imgBG.id, ConstraintSet.START, imgOne.id, ConstraintSet.START)
                 imageSet.connect(imgBG.id, ConstraintSet.TOP, imgOne.id, ConstraintSet.TOP)

@@ -150,8 +150,7 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
         rcvMedia.adapter = adapter
 
         WidgetUtils.setClickListener(
-            this,
-            imgBack,
+            this, imgBack,
             imgDownload,
             layoutHeader,
             tvViewComment,

@@ -65,8 +65,6 @@ class IcFcmService : FirebaseMessagingService() {
 
         val schema = remoteMessage.data["action"] ?: ""
 
-        playNotificationSound()
-
         if (targetType.isNotEmpty()) {
             when {
                 targetType.contains("popup_image") -> {
@@ -114,6 +112,8 @@ class IcFcmService : FirebaseMessagingService() {
                 }
             }
         }
+
+        playNotificationSound()
 
         when {
             path.contains("completed_mission") -> {

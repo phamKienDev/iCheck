@@ -6,8 +6,7 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
+import android.graphics.Paint
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -39,7 +38,9 @@ import vn.icheck.android.loyalty.helper.ToastHelper
 import vn.icheck.android.loyalty.helper.WidgetHelper
 import vn.icheck.android.loyalty.model.ICKGift
 import vn.icheck.android.loyalty.network.SessionManager
-import vn.icheck.android.loyalty.screen.gift_voucher.GiftDetailFromAppActivity
+import vn.icheck.android.loyalty.screen.gift_detail_from_app.GiftDetailFromAppActivity
+import vn.icheck.android.loyalty.screen.loyalty_customers.accept_ship_gift.AcceptShipGiftActivity
+import vn.icheck.android.loyalty.screen.web.WebViewActivity
 import vn.icheck.android.loyalty.sdk.LoyaltySdk
 
 
@@ -52,8 +53,10 @@ class DialogReceiveGiftSuccess(
         private val image: String?,
         private val listGift: MutableList<ICKGift>?,
         private val winnerId: Long,
-        private val isCoin: Boolean = true
+        private val isCoin: Boolean = true,
+        private val isVoucher: Boolean = true
 ) : DialogFragment() {
+
 
     companion object {
         fun showDialogReceiveGiftSuccess(activity: FragmentActivity,
@@ -64,8 +67,9 @@ class DialogReceiveGiftSuccess(
                                          image: String?,
                                          listGift: MutableList<ICKGift>?,
                                          winnerId: Long,
-                                         isCoin: Boolean = true) {
-            DialogReceiveGiftSuccess(activity, title, nameGift, message, nameCampaign, image, listGift, winnerId, isCoin).show(activity.supportFragmentManager, null)
+                                         isCoin: Boolean = true,
+                                         isVoucher: Boolean = true) {
+            DialogReceiveGiftSuccess(activity, title, nameGift, message, nameCampaign, image, listGift, winnerId, isCoin, isVoucher).show(activity.supportFragmentManager, null)
         }
     }
 
@@ -117,39 +121,63 @@ class DialogReceiveGiftSuccess(
 
         recyclerView.layoutManager = LinearLayoutManager(context)
 
+        btnCTCC.apply {
+            paintFlags = paintFlags or Paint.UNDERLINE_TEXT_FLAG
+
+            setOnClickListener {
+                startActivity(Intent(activity, WebViewActivity::class.java).apply {
+                    putExtra(ConstantsLoyalty.DATA_1, message)
+                    putExtra(ConstantsLoyalty.DATA_3, "Thông tin chương trình")
+                })
+            }
+        }
 
         btnViewGift.run {
-            if (isCoin) {
-                text = "Quản lý Xu"
-
-                setOnClickListener {
-                    dismiss()
-                    LoyaltySdk.openActivity("point_transitions")
-                }
-            } else {
-                if (listGift.isNullOrEmpty()) {
-                    text = "Xem quà"
+            when {
+                isCoin -> {
+                    text = "Quản lý Xu"
 
                     setOnClickListener {
                         dismiss()
-                        ActivityHelper.startActivity<GiftDetailFromAppActivity, Long>(requireActivity(), ConstantsLoyalty.DATA_1, winnerId)
+                        LoyaltySdk.openActivity("point_transitions")
                     }
-                } else {
-                    if (listGift.size > 1) {
-                        recyclerView.adapter = DialogReceiveGiftAdapter(listGift)
+                }
+                isVoucher -> {
+                    text = "Nhận quà"
 
-                        text = "Xem kho quà"
-
-                        setOnClickListener {
-                            dismiss()
-                            LoyaltySdk.openActivity("my_rewards")
-                        }
-                    } else {
+                    setOnClickListener {
+                        dismiss()
+                        startActivity(Intent(requireContext(), AcceptShipGiftActivity::class.java).apply {
+                            putExtra(ConstantsLoyalty.DATA_2, winnerId)
+                            putExtra(ConstantsLoyalty.TYPE, 3)
+                        })
+                    }
+                }
+                else -> {
+                    if (listGift.isNullOrEmpty()) {
                         text = "Xem quà"
 
                         setOnClickListener {
                             dismiss()
                             ActivityHelper.startActivity<GiftDetailFromAppActivity, Long>(requireActivity(), ConstantsLoyalty.DATA_1, winnerId)
+                        }
+                    } else {
+                        if (listGift.size > 1) {
+                            recyclerView.adapter = DialogReceiveGiftAdapter(listGift)
+
+                            text = "Xem kho quà"
+
+                            setOnClickListener {
+                                dismiss()
+                                LoyaltySdk.openActivity("my_rewards")
+                            }
+                        } else {
+                            text = "Xem quà"
+
+                            setOnClickListener {
+                                dismiss()
+                                ActivityHelper.startActivity<GiftDetailFromAppActivity, Long>(requireActivity(), ConstantsLoyalty.DATA_1, winnerId)
+                            }
                         }
                     }
                 }

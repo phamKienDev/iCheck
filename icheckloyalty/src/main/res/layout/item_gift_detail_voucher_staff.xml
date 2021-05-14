@@ -72,47 +72,8 @@
             android:paddingRight="@dimen/size_12"
             android:paddingBottom="@dimen/size_4"
             android:textColor="#FBBB00"
-            android:visibility="gone"
-            tools:text="Chờ xác nhận"
-            tools:visibility="gone" />
-
-        <LinearLayout
-            android:id="@+id/layoutCountGift"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/size_8"
-            android:orientation="horizontal"
-            android:visibility="gone"
-            tools:visibility="visible">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Còn lại: " />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvCountGift"
-                android:layout_width="@dimen/size_0"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ellipsize="end"
-                android:fontFamily="@font/roboto_medium"
-                android:singleLine="true"
-                android:textColor="#757575"
-                tools:text="12 Quà" />
-        </LinearLayout>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvRedemptionPoints"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:fontFamily="@font/roboto_bold"
-            android:gravity="left|center_vertical"
-            android:singleLine="true"
-            android:textColor="#FE4E1B"
-            android:textSize="16sp"
-            tools:text="450,000" />
+            android:visibility="visible"
+            tools:text="Chờ xác nhận" />
     </LinearLayout>
 
     <LinearLayout
@@ -129,7 +90,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:visibility="gone"
+            android:visibility="visible"
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -265,71 +226,6 @@
                 android:textColor="#212121" />
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/layoutPointMe"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:orientation="vertical"
-            android:visibility="gone"
-            tools:visibility="visible">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/size_10"
-                android:background="#F0F0F0" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_12"
-                android:fontFamily="@font/roboto_medium"
-                android:paddingLeft="@dimen/size_12"
-                android:text="Điểm khả dụng của bạn"
-                android:textColor="@color/blueVip" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/size_0_5"
-                android:layout_marginLeft="@dimen/size_12"
-                android:layout_marginTop="@dimen/size_12"
-                android:background="#D8D8D8" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/size_12"
-                android:layout_marginTop="@dimen/size_10"
-                android:layout_marginEnd="@dimen/size_12"
-                android:layout_marginBottom="@dimen/size_10"
-                android:orientation="horizontal">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvPointMe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/roboto_bold"
-                    android:singleLine="true"
-                    android:text="112,000,010"
-                    android:textColor="#49AA2D"
-                    android:textSize="14sp" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvCategoryPoint"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/size_5"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/roboto_bold"
-                    android:singleLine="true"
-                    android:text="HoàPhát88"
-                    android:textColor="#828282"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-        </LinearLayout>
-
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_10"
@@ -378,45 +274,6 @@
                 tools:text="Công ty Cổ phần Điện Máy Xanh (không giới hạn dòng)" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
-            android:id="@+id/layoutCodeGift"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/size_10"
-                android:background="#F0F0F0" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_12"
-                android:fontFamily="@font/roboto_regular"
-                android:gravity="center"
-                android:includeFontPadding="false"
-                android:text="Mã nhận quà"
-                android:textColor="#434343"
-                android:textSize="14sp" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvCodeGift"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/size_12"
-                android:background="#1A00BAF2"
-                android:ellipsize="end"
-                android:fontFamily="@font/roboto_medium"
-                android:gravity="center"
-                android:letterSpacing="0.2"
-                android:padding="@dimen/size_36"
-                android:singleLine="true"
-                android:textColor="@color/colorPrimary"
-                tools:text="FNSJ51DAS" />
-        </LinearLayout>
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -426,7 +283,7 @@
         android:layout_marginLeft="@dimen/size_16"
         android:layout_marginTop="@dimen/size_40"
         android:layout_marginRight="@dimen/size_16"
-        android:background="@drawable/bg_gradient_button_blue"
+        android:background="@drawable/bg_blue_border_20"
         android:fontFamily="@font/roboto_medium"
         android:gravity="center"
         android:paddingTop="@dimen/size_10"

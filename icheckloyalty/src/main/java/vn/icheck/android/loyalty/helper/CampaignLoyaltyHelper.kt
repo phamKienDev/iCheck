@@ -273,13 +273,6 @@ object CampaignLoyaltyHelper {
         })
     }
 
-    private fun screenShot(view: View): Bitmap? {
-        val bitmap = Bitmap.createBitmap(view.width, view.height, Bitmap.Config.ARGB_8888)
-        val canvas = Canvas(bitmap)
-        view.draw(canvas)
-        return bitmap
-    }
-
     private fun getMiniGame(activity: FragmentActivity, data: ICKLoyalty, code: String?, target: String?, listener: IRemoveHolderInputLoyaltyListener?) {
         CampaignRepository().postGameGift(data.id
                 ?: -1, target, code, object : ICApiListener<ICKResponse<DataReceiveGameResp>> {
