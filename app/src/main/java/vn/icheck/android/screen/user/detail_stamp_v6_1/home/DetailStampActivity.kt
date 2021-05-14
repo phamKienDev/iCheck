@@ -581,12 +581,11 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                                         })
                                     }
                                 }
-                                "MESSAGE_RESULT" -> {
-                                    if (widget.data != null) {
-                                        isVerified = widget.data!!.success ?: 0
+                                "STAMP_INFO" -> {
+                                    if (!widget.data?.serial.isNullOrEmpty()) {
                                         listData.add(ICLayout().apply {
-                                            viewType = ICViewTypes.MESSAGE_TYPE
-                                            data = widget.data!!
+                                            viewType = ICViewTypes.STAMP_INFO
+                                            data = widget.data!!.serial
                                         })
                                     }
                                 }
