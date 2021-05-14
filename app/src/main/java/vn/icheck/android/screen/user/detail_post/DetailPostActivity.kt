@@ -393,44 +393,49 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
     private fun checkPrivacyConfig() {
         if (viewModel.post?.page == null) {
             if (viewModel.post?.user?.id != SessionManager.session.user?.id) {
-                when (viewModel.post?.user?.userPrivacyConfig?.whoCommentYourPost) {
-                    Constant.EVERYONE -> {
-                        view3.beVisible()
-                        containerSent.beVisible()
-                    }
-                    Constant.FRIEND -> {
-                        if (ICheckApplication.getInstance().mFirebase.auth.currentUser != null && SessionManager.session.user?.id != null) {
-                            ICheckApplication.getInstance().mFirebase.registerRelationship(
-                                Constant.myFriendIdList,
-                                viewModel.post?.user?.id.toString(),
-                                object : ValueEventListener {
-                                    override fun onDataChange(snapshot: DataSnapshot) {
-                                        if (snapshot.value != null && snapshot.value is Long) {
-                                            view3.beVisible()
-                                            containerSent.beVisible()
-                                        } else {
-                                            notAllowReply()
-                                            view3.beGone()
-                                            containerSent.beGone()
-                                        }
-                                    }
-
-                                    override fun onCancelled(error: DatabaseError) {
-                                        logError(error.toException())
-                                    }
-                                })
-                        }
-                    }
-                    else -> {
-                        if (viewModel.post?.user?.id == SessionManager.session.user?.id) {
+                if (viewModel.post?.user?.userPrivacyConfig?.whoCommentYourPost!=null) {
+                    when (viewModel.post?.user?.userPrivacyConfig?.whoCommentYourPost) {
+                        Constant.EVERYONE -> {
                             view3.beVisible()
                             containerSent.beVisible()
-                        } else {
-                            notAllowReply()
-                            view3.beGone()
-                            containerSent.beGone()
+                        }
+                        Constant.FRIEND -> {
+                            if (ICheckApplication.getInstance().mFirebase.auth.currentUser != null && SessionManager.session.user?.id != null) {
+                                ICheckApplication.getInstance().mFirebase.registerRelationship(
+                                    Constant.myFriendIdList,
+                                    viewModel.post?.user?.id.toString(),
+                                    object : ValueEventListener {
+                                        override fun onDataChange(snapshot: DataSnapshot) {
+                                            if (snapshot.value != null && snapshot.value is Long) {
+                                                view3.beVisible()
+                                                containerSent.beVisible()
+                                            } else {
+                                                notAllowReply()
+                                                view3.beGone()
+                                                containerSent.beGone()
+                                            }
+                                        }
+
+                                        override fun onCancelled(error: DatabaseError) {
+                                            logError(error.toException())
+                                        }
+                                    })
+                            }
+                        }
+                        else -> {
+                            if (viewModel.post?.user?.id == SessionManager.session.user?.id) {
+                                view3.beVisible()
+                                containerSent.beVisible()
+                            } else {
+                                notAllowReply()
+                                view3.beGone()
+                                containerSent.beGone()
+                            }
                         }
                     }
+                }else{
+                    view3.beVisible()
+                    containerSent.beVisible()
                 }
             } else {
                 view3.beVisible()

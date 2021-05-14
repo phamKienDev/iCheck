@@ -268,6 +268,8 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
     private fun hideLayoutStatus() {
         layoutStatus.visibility = View.GONE
         layoutToolbarAlpha.alpha = 0f
+        imgLike.beVisible()
+        imgAction.setImageResource(R.drawable.ic_more_light_blue_24dp)
     }
 
     private fun setupViewModel() {
