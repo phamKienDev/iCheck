@@ -400,4 +400,5 @@
     <item name="tvBarcode" type="id" />
     <item name="imgCountry" type="id" />
     <item name="tvCountry" type="id" />
+    <item name="container" type="id" />
 </resources>

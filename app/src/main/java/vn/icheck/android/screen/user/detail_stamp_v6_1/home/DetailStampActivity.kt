@@ -287,22 +287,23 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
         }
 
         tvMoreHistoryGuarantee.setOnClickListener {
-            val intent = Intent(this, HistoryGuaranteeActivity::class.java)
-            when {
-                tvSerialFake.text.toString().isNotEmpty() -> {
-                    intent.putExtra(Constant.DATA_1, tvSerialFake.text.toString())
-                }
-                tvSerialVerified.text.toString().isNotEmpty() -> {
-                    intent.putExtra(Constant.DATA_1, tvSerialVerified.text.toString())
-                }
-                tvSerialVerifiedChongGia.text.toString().isNotEmpty() -> {
-                    intent.putExtra(Constant.DATA_1, tvSerialVerifiedChongGia.text.toString())
-                }
-                else -> {
-                    intent.putExtra(Constant.DATA_1, tvSerialVerifiedBaoHanh.text.toString())
-                }
-            }
-            startActivity(intent)
+            // todo
+//            val intent = Intent(this, HistoryGuaranteeActivity::class.java)
+//            when {
+//                tvSerialFake.text.toString().isNotEmpty() -> {
+//                    intent.putExtra(Constant.DATA_1, tvSerialFake.text.toString())
+//                }
+//                tvSerialVerified.text.toString().isNotEmpty() -> {
+//                    intent.putExtra(Constant.DATA_1, tvSerialVerified.text.toString())
+//                }
+//                tvSerialVerifiedChongGia.text.toString().isNotEmpty() -> {
+//                    intent.putExtra(Constant.DATA_1, tvSerialVerifiedChongGia.text.toString())
+//                }
+//                else -> {
+//                    intent.putExtra(Constant.DATA_1, tvSerialVerifiedBaoHanh.text.toString())
+//                }
+//            }
+//            startActivity(intent)
         }
 
         layoutMoreVendor.setOnClickListener {
@@ -320,64 +321,65 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
         }
 
         textFab.setOnClickListener {
-            // 0 - la chong gia , 1 - tran hang , 2 - bao hanh
-            if (objGuarantee != null) {
-                if (objCustomerLastGuarantee != null) {
-                    val intent = Intent(this, VerifiedPhoneActivity::class.java)
-                    when {
-                        tvSerialFake.text.toString().isNotEmpty() -> {
-                            intent.putExtra(Constant.DATA_1, tvSerialFake.text.toString())
-                        }
-                        tvSerialVerified.text.toString().isNotEmpty() -> {
-                            intent.putExtra(Constant.DATA_1, tvSerialVerified.text.toString())
-                        }
-                        tvSerialVerifiedChongGia.text.toString().isNotEmpty() -> {
-                            intent.putExtra(Constant.DATA_1, tvSerialVerifiedChongGia.text.toString())
-                        }
-                        else -> {
-                            intent.putExtra(Constant.DATA_1, tvSerialVerifiedBaoHanh.text.toString())
-                        }
-                    }
-                    intent.putExtra(Constant.DATA_2, idDistributor)
-                    intent.putExtra(Constant.DATA_3, productCode)
-                    intent.putExtra(Constant.DATA_4, productId)
-                    intent.putExtra(Constant.DATA_5, objVariant)
-                    intent.putExtra(Constant.DATA_8, presenter.code)
-                    startActivity(intent)
-                } else {
-                    val intent = Intent(this, UpdateInformationFirstActivity::class.java)
-                    intent.putExtra(Constant.DATA_1, 2)
-                    intent.putExtra(Constant.DATA_2, idDistributor)
-                    intent.putExtra(Constant.DATA_4, productCode)
-                    intent.putExtra(Constant.DATA_5, verfiedSerial)
-                    intent.putExtra(Constant.DATA_6, productId)
-                    intent.putExtra(Constant.DATA_7, objVariant)
-                    intent.putExtra(Constant.DATA_8, presenter.code)
-                    startActivity(intent)
-                }
-            } else {
-                val intent = Intent(this, UpdateInformationFirstActivity::class.java)
-                intent.putExtra(Constant.DATA_1, 2)
-                intent.putExtra(Constant.DATA_2, idDistributor)
-                intent.putExtra(Constant.DATA_4, productCode)
-                when {
-                    tvSerialFake.text.toString().isNotEmpty() -> {
-                        intent.putExtra(Constant.DATA_5, tvSerialFake.text.toString())
-                    }
-                    tvSerialVerified.text.toString().isNotEmpty() -> {
-                        intent.putExtra(Constant.DATA_5, tvSerialVerified.text.toString())
-                    }
-                    tvSerialVerifiedChongGia.text.toString().isNotEmpty() -> {
-                        intent.putExtra(Constant.DATA_5, tvSerialVerifiedChongGia.text.toString())
-                    }
-                    else -> {
-                        intent.putExtra(Constant.DATA_5, tvSerialVerifiedBaoHanh.text.toString())
-                    }
-                }
-                intent.putExtra(Constant.DATA_6, productId)
-                intent.putExtra(Constant.DATA_7, objVariant)
-                startActivity(intent)
-            }
+            // todo
+//            // 0 - la chong gia , 1 - tran hang , 2 - bao hanh
+//            if (objGuarantee != null) {
+//                if (objCustomerLastGuarantee != null) {
+//                    val intent = Intent(this, VerifiedPhoneActivity::class.java)
+//                    when {
+//                        tvSerialFake.text.toString().isNotEmpty() -> {
+//                            intent.putExtra(Constant.DATA_1, tvSerialFake.text.toString())
+//                        }
+//                        tvSerialVerified.text.toString().isNotEmpty() -> {
+//                            intent.putExtra(Constant.DATA_1, tvSerialVerified.text.toString())
+//                        }
+//                        tvSerialVerifiedChongGia.text.toString().isNotEmpty() -> {
+//                            intent.putExtra(Constant.DATA_1, tvSerialVerifiedChongGia.text.toString())
+//                        }
+//                        else -> {
+//                            intent.putExtra(Constant.DATA_1, tvSerialVerifiedBaoHanh.text.toString())
+//                        }
+//                    }
+//                    intent.putExtra(Constant.DATA_2, idDistributor)
+//                    intent.putExtra(Constant.DATA_3, productCode)
+//                    intent.putExtra(Constant.DATA_4, productId)
+//                    intent.putExtra(Constant.DATA_5, objVariant)
+//                    intent.putExtra(Constant.DATA_8, presenter.code)
+//                    startActivity(intent)
+//                } else {
+//                    val intent = Intent(this, UpdateInformationFirstActivity::class.java)
+//                    intent.putExtra(Constant.DATA_1, 2)
+//                    intent.putExtra(Constant.DATA_2, idDistributor)
+//                    intent.putExtra(Constant.DATA_4, productCode)
+//                    intent.putExtra(Constant.DATA_5, verfiedSerial)
+//                    intent.putExtra(Constant.DATA_6, productId)
+//                    intent.putExtra(Constant.DATA_7, objVariant)
+//                    intent.putExtra(Constant.DATA_8, presenter.code)
+//                    startActivity(intent)
+//                }
+//            } else {
+//                val intent = Intent(this, UpdateInformationFirstActivity::class.java)
+//                intent.putExtra(Constant.DATA_1, 2)
+//                intent.putExtra(Constant.DATA_2, idDistributor)
+//                intent.putExtra(Constant.DATA_4, productCode)
+//                when {
+//                    tvSerialFake.text.toString().isNotEmpty() -> {
+//                        intent.putExtra(Constant.DATA_5, tvSerialFake.text.toString())
+//                    }
+//                    tvSerialVerified.text.toString().isNotEmpty() -> {
+//                        intent.putExtra(Constant.DATA_5, tvSerialVerified.text.toString())
+//                    }
+//                    tvSerialVerifiedChongGia.text.toString().isNotEmpty() -> {
+//                        intent.putExtra(Constant.DATA_5, tvSerialVerifiedChongGia.text.toString())
+//                    }
+//                    else -> {
+//                        intent.putExtra(Constant.DATA_5, tvSerialVerifiedBaoHanh.text.toString())
+//                    }
+//                }
+//                intent.putExtra(Constant.DATA_6, productId)
+//                intent.putExtra(Constant.DATA_7, objVariant)
+//                startActivity(intent)
+//            }
         }
 
         tvWebsiteVendor.setOnClickListener {
@@ -571,6 +573,23 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                                         })
                                     }
                                 }
+                                "MESSAGE_RESULT" -> {
+                                    if (widget.data != null) {
+                                        listData.add(ICLayout().apply {
+                                            viewType = ICViewTypes.MESSAGE_TYPE
+                                            data = widget.data!!
+                                        })
+                                    }
+                                }
+                                "MESSAGE_RESULT" -> {
+                                    if (widget.data != null) {
+                                        isVerified = widget.data!!.success ?: 0
+                                        listData.add(ICLayout().apply {
+                                            viewType = ICViewTypes.MESSAGE_TYPE
+                                            data = widget.data!!
+                                        })
+                                    }
+                                }
                             }
                         }
 
@@ -748,116 +767,116 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
             }
 
 //      check verified stamp
-            if (obj.data?.scan_message != null) {
-                obj.data?.scan_message?.is_success?.let {
-                    isVerified = it
-                }
-                when (obj.data?.scan_message?.is_success) {
-                    //fake
-                    0 -> {
-                        if (isVietNamLanguage == false) {
-                            appCompatTextView12.text = "Number of scan"
-                            appCompatTextView13.text = "Number of scaner"
-                        } else {
-                            appCompatTextView12.text = "Số lần quét"
-                            appCompatTextView13.text = "Số người quét"
-                        }
+//            if (obj.data?.scan_message != null) {
+//                obj.data?.scan_message?.is_success?.let {
+//                    isVerified = it
+//                }
+//                when (obj.data?.scan_message?.is_success) {
+//                    //fake
+//                    0 -> {
+//                        if (isVietNamLanguage == false) {
+//                            appCompatTextView12.text = "Number of scan"
+//                            appCompatTextView13.text = "Number of scaner"
+//                        } else {
+//                            appCompatTextView12.text = "Số lần quét"
+//                            appCompatTextView13.text = "Số người quét"
+//                        }
+//
+//                        layoutFake.visibility = View.VISIBLE
+//                        tvMessageVerifiedFake.text = obj.data?.scan_message?.text
+//                        obj.data?.count?.let {
+////                            var textNumberSerial = "000000"
+////                            textNumberSerial = textNumberSerial!!.removeRange(6 - it.number.toString().length, 6)
+////                            val mNumber = textNumberSerial + it.number
+//                            mSerial = getSerialNumber(it.prefix, it.number)
+//                            verfiedSerial = getSerialNumber(it.prefix, it.number)
+//                            tvSerialFake.text = "Serial: $verfiedSerial"
+//
+//                            tvCountScanFake.text = if (it.scan_count.toString().isNotEmpty()) {
+//                                it.scan_count.toString()
+//                            } else {
+//                                getString(R.string.dang_cap_nhat)
+//                            }
+//
+//                            tvCountUserScanFake.text = if (it.people_count.toString().isNotEmpty()) {
+//                                it.people_count.toString()
+//                            } else {
+//                                getString(R.string.dang_cap_nhat)
+//                            }
+//
+//                        }
+//                    }
+//                    //verified
+//                    1 -> {
+//                        if (isVietNamLanguage == false) {
+//                            appCompatTextView15.text = "Number of scan"
+//                            appCompatTextView16.text = "Number of scaner"
+//                        } else {
+//                            appCompatTextView15.text = "Số lần quét"
+//                            appCompatTextView16.text = "Số người quét"
+//                        }
+//
+//                        layoutVerified.visibility = View.VISIBLE
+//                        tvMessageVerified.text = obj.data?.scan_message?.text
+//                        obj.data?.count?.let {
+//                            mSerial = getSerialNumber(it.prefix, it.number)
+//                            verfiedSerial = getSerialNumber(it.prefix, it.number)
+//                            tvSerialVerified.text = "Serial: $verfiedSerial"
+//
+//                            tvCountScanVerified.text = if (it.scan_count.toString().isNotEmpty()) {
+//                                it.scan_count.toString()
+//                            } else {
+//                                getString(R.string.dang_cap_nhat)
+//                            }
+//
+//                            tvCountUserScanVerified.text = if (it.people_count.toString().isNotEmpty()) {
+//                                it.people_count.toString()
+//                            } else {
+//                                getString(R.string.dang_cap_nhat)
+//                            }
+//                        }
+//                    }
+//                    //Guarantee
+//                    2 -> {
+//                        if (isVietNamLanguage == false) {
+//                            appCompatTextView19.text = "Number of scan"
+//                            appCompatTextView20.text = "Number of scaner"
+//                        } else {
+//                            appCompatTextView19.text = "Số lần quét"
+//                            appCompatTextView20.text = "Số người quét"
+//                        }
+//                        layoutVerifiedBaoHanh.visibility = View.VISIBLE
+//                        tvMessageVerifiedBaoHanh.text = obj.data?.scan_message?.text
+//                        obj.data?.count?.let {
+//                            mSerial = getSerialNumber(it.prefix, it.number)
+//                            verfiedSerial = getSerialNumber(it.prefix, it.number)
+//                            tvSerialVerifiedBaoHanh.text = "Serial: $verfiedSerial"
+//
+//                            tvCountScanVerifiedBaoHanh.text = if (it.scan_count.toString().isNotEmpty()) {
+//                                it.scan_count.toString()
+//                            } else {
+//                                getString(R.string.dang_cap_nhat)
+//                            }
+//
+//                            tvCountUserScanVerifiedBaoHanh.text = if (it.people_count.toString().isNotEmpty()) {
+//                                it.people_count.toString()
+//                            } else {
+//                                getString(R.string.dang_cap_nhat)
+//                            }
+//                        }
+//                    }
+//                }
+//            } else {
+//                layoutVerifiedChongGia.visibility = View.VISIBLE
+//                layoutheaderChongGia.visibility = View.GONE
+//                obj.data?.count?.let {
+//                    mSerial = getSerialNumber(it.prefix, it.number)
+//                    verfiedSerial = getSerialNumber(it.prefix, it.number)
+//                    tvSerialVerifiedChongGia.text = "Serial: $verfiedSerial"
+//                }
+//            }
 
-                        layoutFake.visibility = View.VISIBLE
-                        tvMessageVerifiedFake.text = obj.data?.scan_message?.text
-                        obj.data?.count?.let {
-//                            var textNumberSerial = "000000"
-//                            textNumberSerial = textNumberSerial!!.removeRange(6 - it.number.toString().length, 6)
-//                            val mNumber = textNumberSerial + it.number
-                            mSerial = getSerialNumber(it.prefix, it.number)
-                            verfiedSerial = getSerialNumber(it.prefix, it.number)
-                            tvSerialFake.text = "Serial: $verfiedSerial"
-
-                            tvCountScanFake.text = if (it.scan_count.toString().isNotEmpty()) {
-                                it.scan_count.toString()
-                            } else {
-                                getString(R.string.dang_cap_nhat)
-                            }
-
-                            tvCountUserScanFake.text = if (it.people_count.toString().isNotEmpty()) {
-                                it.people_count.toString()
-                            } else {
-                                getString(R.string.dang_cap_nhat)
-                            }
-
-                        }
-                    }
-                    //verified
-                    1 -> {
-                        if (isVietNamLanguage == false) {
-                            appCompatTextView15.text = "Number of scan"
-                            appCompatTextView16.text = "Number of scaner"
-                        } else {
-                            appCompatTextView15.text = "Số lần quét"
-                            appCompatTextView16.text = "Số người quét"
-                        }
-
-                        layoutVerified.visibility = View.VISIBLE
-                        tvMessageVerified.text = obj.data?.scan_message?.text
-                        obj.data?.count?.let {
-                            mSerial = getSerialNumber(it.prefix, it.number)
-                            verfiedSerial = getSerialNumber(it.prefix, it.number)
-                            tvSerialVerified.text = "Serial: $verfiedSerial"
-
-                            tvCountScanVerified.text = if (it.scan_count.toString().isNotEmpty()) {
-                                it.scan_count.toString()
-                            } else {
-                                getString(R.string.dang_cap_nhat)
-                            }
-
-                            tvCountUserScanVerified.text = if (it.people_count.toString().isNotEmpty()) {
-                                it.people_count.toString()
-                            } else {
-                                getString(R.string.dang_cap_nhat)
-                            }
-                        }
-                    }
-                    //Guarantee
-                    2 -> {
-                        if (isVietNamLanguage == false) {
-                            appCompatTextView19.text = "Number of scan"
-                            appCompatTextView20.text = "Number of scaner"
-                        } else {
-                            appCompatTextView19.text = "Số lần quét"
-                            appCompatTextView20.text = "Số người quét"
-                        }
-                        layoutVerifiedBaoHanh.visibility = View.VISIBLE
-                        tvMessageVerifiedBaoHanh.text = obj.data?.scan_message?.text
-                        obj.data?.count?.let {
-                            mSerial = getSerialNumber(it.prefix, it.number)
-                            verfiedSerial = getSerialNumber(it.prefix, it.number)
-                            tvSerialVerifiedBaoHanh.text = "Serial: $verfiedSerial"
-
-                            tvCountScanVerifiedBaoHanh.text = if (it.scan_count.toString().isNotEmpty()) {
-                                it.scan_count.toString()
-                            } else {
-                                getString(R.string.dang_cap_nhat)
-                            }
-
-                            tvCountUserScanVerifiedBaoHanh.text = if (it.people_count.toString().isNotEmpty()) {
-                                it.people_count.toString()
-                            } else {
-                                getString(R.string.dang_cap_nhat)
-                            }
-                        }
-                    }
-                }
-            } else {
-                layoutVerifiedChongGia.visibility = View.VISIBLE
-                layoutheaderChongGia.visibility = View.GONE
-                obj.data?.count?.let {
-                    mSerial = getSerialNumber(it.prefix, it.number)
-                    verfiedSerial = getSerialNumber(it.prefix, it.number)
-                    tvSerialVerifiedChongGia.text = "Serial: $verfiedSerial"
-                }
-            }
-
-            if (!obj.data?.product_link.isNullOrEmpty()) {
+//            if (!obj.data?.product_link.isNullOrEmpty()) {
 //                layoutProductLink.beVisible()
 //                val adapter = object : RecyclerViewAdapter<ICProductLink>() {
 //                    override fun getItemCount() = if (listData.size > 3) 3 else listData.size
@@ -882,7 +901,7 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
 //                    ActivityHelper.startActivity<ListProductsECommerceActivity>(this@DetailStampActivity, Constant.DATA_1, JsonHelper.toJson(obj.data?.product_link
 //                            ?: mutableListOf()))
 //                }
-            }
+//            }
 
 //      check show hide floating action button
             if (obj.data?.can_update == true) {

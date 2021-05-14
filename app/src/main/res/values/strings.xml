@@ -915,4 +915,6 @@
     <string name="doi_ban_phiim">Đổi bàn phím</string>
     <string name="ban_phim_chu">Bàn phím chữ</string>
     <string name="ban_phim_so">Bàn phím số</string>
+    <string name="san_pham_chinh_hang_uppercase">SẢN PHẨM CHÍNH HÃNG</string>
+    <string name="canh_bao_uppercase">CẢNH BÁO!</string>
 </resources>

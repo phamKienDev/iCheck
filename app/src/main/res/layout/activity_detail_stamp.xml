@@ -631,545 +631,544 @@
                 </androidx.cardview.widget.CardView>
 
                 <!--Layout Verified Fake-->
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/layoutFake"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/size_13"
-                    android:layout_marginTop="@dimen/size_8"
-                    android:layout_marginEnd="@dimen/size_13"
-                    android:layout_marginBottom="@dimen/size_8"
-                    android:visibility="gone"
-                    app:cardCornerRadius="@dimen/size_10">
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:id="@+id/layoutFake"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="@dimen/size_13"-->
+<!--                    android:layout_marginTop="@dimen/size_8"-->
+<!--                    android:layout_marginEnd="@dimen/size_13"-->
+<!--                    android:layout_marginBottom="@dimen/size_8"-->
+<!--                    app:cardCornerRadius="@dimen/size_10">-->
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="vertical">-->
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/bg_corner_top_red_10">
+<!--                        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:background="@drawable/bg_corner_top_red_10">-->
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvMessageVerifiedFake"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/size_12"
-                                android:layout_marginTop="@dimen/size_14"
-                                android:layout_marginEnd="@dimen/size_12"
-                                android:layout_marginBottom="@dimen/size_10"
-                                android:drawableTop="@drawable/ic_stamp_fake"
-                                android:drawablePadding="@dimen/size_10"
-                                android:fontFamily="sans-serif-medium"
-                                android:textAlignment="center"
-                                android:textColor="#ffffff"
-                                android:textSize="@dimen/font_16"
-                                android:textStyle="normal"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                tools:text="Cảnh báo! Mã tem có nguy cơ bị làm giả\n Vui lòng liên hệ NSX để kiểm tra" />
+<!--                            <androidx.appcompat.widget.AppCompatTextView-->
+<!--                                android:id="@+id/tvMessageVerifiedFake"-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginStart="@dimen/size_12"-->
+<!--                                android:layout_marginTop="@dimen/size_14"-->
+<!--                                android:layout_marginEnd="@dimen/size_12"-->
+<!--                                android:layout_marginBottom="@dimen/size_10"-->
+<!--                                android:drawableTop="@drawable/ic_stamp_fake"-->
+<!--                                android:drawablePadding="@dimen/size_10"-->
+<!--                                android:fontFamily="sans-serif-medium"-->
+<!--                                android:textAlignment="center"-->
+<!--                                android:textColor="#ffffff"-->
+<!--                                android:textSize="@dimen/font_16"-->
+<!--                                android:textStyle="normal"-->
+<!--                                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                                app:layout_constraintStart_toStartOf="parent"-->
+<!--                                app:layout_constraintTop_toTopOf="parent"-->
+<!--                                tools:text="Cảnh báo! Mã tem có nguy cơ bị làm giả\n Vui lòng liên hệ NSX để kiểm tra" />-->
 
-                        </androidx.constraintlayout.widget.ConstraintLayout>
+<!--                        </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/bg_corner_bottom_gray_10">
+<!--                        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:background="@drawable/bg_corner_bottom_gray_10">-->
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvSerialFake"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/size_8"
-                                android:fontFamily="sans-serif"
-                                android:textColor="#3c5a99"
-                                android:textSize="@dimen/font_14"
-                                android:textStyle="bold"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                tools:text="Serial: L - 00123" />
+<!--                            <androidx.appcompat.widget.AppCompatTextView-->
+<!--                                android:id="@+id/tvSerialFake"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginTop="@dimen/size_8"-->
+<!--                                android:fontFamily="sans-serif"-->
+<!--                                android:textColor="#3c5a99"-->
+<!--                                android:textSize="@dimen/font_14"-->
+<!--                                android:textStyle="bold"-->
+<!--                                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                                app:layout_constraintStart_toStartOf="parent"-->
+<!--                                app:layout_constraintTop_toTopOf="parent"-->
+<!--                                tools:text="Serial: L - 00123" />-->
 
-                            <View
-                                android:id="@+id/view1"
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/size_1"
-                                android:layout_marginTop="@dimen/size_8"
-                                android:background="@color/gray"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/tvSerialFake" />
+<!--                            <View-->
+<!--                                android:id="@+id/view1"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="@dimen/size_1"-->
+<!--                                android:layout_marginTop="@dimen/size_8"-->
+<!--                                android:background="@color/gray"-->
+<!--                                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                                app:layout_constraintStart_toStartOf="parent"-->
+<!--                                app:layout_constraintTop_toBottomOf="@+id/tvSerialFake" />-->
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/appCompatTextView12"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/size_31"
-                                android:layout_marginTop="15.5dp"
-                                android:layout_marginEnd="@dimen/size_31"
-                                android:drawableStart="@drawable/ic_qrcode_blue_24px"
-                                android:drawablePadding="@dimen/size_6"
-                                android:fontFamily="sans-serif-medium"
-                                android:gravity="center"
-                                android:textColor="#434343"
-                                android:textSize="@dimen/font_14"
-                                android:textStyle="normal"
-                                app:layout_constraintEnd_toStartOf="@id/viewNotVerify"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/view1" />
+<!--                            <androidx.appcompat.widget.AppCompatTextView-->
+<!--                                android:id="@+id/appCompatTextView12"-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginStart="@dimen/size_31"-->
+<!--                                android:layout_marginTop="15.5dp"-->
+<!--                                android:layout_marginEnd="@dimen/size_31"-->
+<!--                                android:drawableStart="@drawable/ic_qrcode_blue_24px"-->
+<!--                                android:drawablePadding="@dimen/size_6"-->
+<!--                                android:fontFamily="sans-serif-medium"-->
+<!--                                android:gravity="center"-->
+<!--                                android:textColor="#434343"-->
+<!--                                android:textSize="@dimen/font_14"-->
+<!--                                android:textStyle="normal"-->
+<!--                                app:layout_constraintEnd_toStartOf="@id/viewNotVerify"-->
+<!--                                app:layout_constraintStart_toStartOf="parent"-->
+<!--                                app:layout_constraintTop_toBottomOf="@+id/view1" />-->
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvCountScanFake"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/size_9"
-                                android:layout_marginBottom="@dimen/size_19"
-                                android:fontFamily="sans-serif-medium"
-                                android:textColor="#3c5a99"
-                                android:textSize="@dimen/font_18"
-                                android:textStyle="normal"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="@+id/appCompatTextView12"
-                                app:layout_constraintStart_toStartOf="@+id/appCompatTextView12"
-                                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView12"
-                                tools:text="17.842" />
+<!--                            <androidx.appcompat.widget.AppCompatTextView-->
+<!--                                android:id="@+id/tvCountScanFake"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginTop="@dimen/size_9"-->
+<!--                                android:layout_marginBottom="@dimen/size_19"-->
+<!--                                android:fontFamily="sans-serif-medium"-->
+<!--                                android:textColor="#3c5a99"-->
+<!--                                android:textSize="@dimen/font_18"-->
+<!--                                android:textStyle="normal"-->
+<!--                                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                app:layout_constraintEnd_toEndOf="@+id/appCompatTextView12"-->
+<!--                                app:layout_constraintStart_toStartOf="@+id/appCompatTextView12"-->
+<!--                                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView12"-->
+<!--                                tools:text="17.842" />-->
 
-                            <View
-                                android:id="@+id/viewNotVerify"
-                                android:layout_width="@dimen/size_1"
-                                android:layout_height="0dp"
-                                android:background="@color/gray"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toStartOf="@+id/appCompatTextView13"
-                                app:layout_constraintStart_toEndOf="@+id/appCompatTextView12"
-                                app:layout_constraintTop_toBottomOf="@+id/view1" />
+<!--                            <View-->
+<!--                                android:id="@+id/viewNotVerify"-->
+<!--                                android:layout_width="@dimen/size_1"-->
+<!--                                android:layout_height="0dp"-->
+<!--                                android:background="@color/gray"-->
+<!--                                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                app:layout_constraintEnd_toStartOf="@+id/appCompatTextView13"-->
+<!--                                app:layout_constraintStart_toEndOf="@+id/appCompatTextView12"-->
+<!--                                app:layout_constraintTop_toBottomOf="@+id/view1" />-->
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/appCompatTextView13"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/size_31"
-                                android:layout_marginTop="@dimen/size_16"
-                                android:layout_marginEnd="@dimen/size_31"
-                                android:drawableStart="@drawable/ic_group_friend_blue_24_px"
-                                android:drawablePadding="@dimen/size_6"
-                                android:fontFamily="sans-serif-medium"
-                                android:gravity="center"
-                                android:textColor="#434343"
-                                android:textSize="@dimen/font_14"
-                                android:textStyle="normal"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toEndOf="@id/viewNotVerify"
-                                app:layout_constraintTop_toBottomOf="@+id/view1" />
+<!--                            <androidx.appcompat.widget.AppCompatTextView-->
+<!--                                android:id="@+id/appCompatTextView13"-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginStart="@dimen/size_31"-->
+<!--                                android:layout_marginTop="@dimen/size_16"-->
+<!--                                android:layout_marginEnd="@dimen/size_31"-->
+<!--                                android:drawableStart="@drawable/ic_group_friend_blue_24_px"-->
+<!--                                android:drawablePadding="@dimen/size_6"-->
+<!--                                android:fontFamily="sans-serif-medium"-->
+<!--                                android:gravity="center"-->
+<!--                                android:textColor="#434343"-->
+<!--                                android:textSize="@dimen/font_14"-->
+<!--                                android:textStyle="normal"-->
+<!--                                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                                app:layout_constraintStart_toEndOf="@id/viewNotVerify"-->
+<!--                                app:layout_constraintTop_toBottomOf="@+id/view1" />-->
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvCountUserScanFake"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/size_9"
-                                android:layout_marginBottom="@dimen/size_19"
-                                android:fontFamily="sans-serif-medium"
-                                android:textColor="#3c5a99"
-                                android:textSize="@dimen/font_18"
-                                android:textStyle="normal"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="@+id/appCompatTextView13"
-                                app:layout_constraintStart_toStartOf="@+id/appCompatTextView13"
-                                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView13"
-                                tools:text="1.547" />
+<!--                            <androidx.appcompat.widget.AppCompatTextView-->
+<!--                                android:id="@+id/tvCountUserScanFake"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginTop="@dimen/size_9"-->
+<!--                                android:layout_marginBottom="@dimen/size_19"-->
+<!--                                android:fontFamily="sans-serif-medium"-->
+<!--                                android:textColor="#3c5a99"-->
+<!--                                android:textSize="@dimen/font_18"-->
+<!--                                android:textStyle="normal"-->
+<!--                                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                app:layout_constraintEnd_toEndOf="@+id/appCompatTextView13"-->
+<!--                                app:layout_constraintStart_toStartOf="@+id/appCompatTextView13"-->
+<!--                                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView13"-->
+<!--                                tools:text="1.547" />-->
 
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
+<!--                        </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--                    </LinearLayout>-->
+<!--                </androidx.cardview.widget.CardView>-->
 
                 <!--Layout Verified Success-->
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/layoutVerified"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/size_13"
-                    android:layout_marginTop="@dimen/size_8"
-                    android:layout_marginEnd="@dimen/size_13"
-                    android:layout_marginBottom="@dimen/size_8"
-                    android:visibility="gone"
-                    app:cardCornerRadius="@dimen/size_10"
-                    tools:visibility="visible">
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:id="@+id/layoutVerified"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="@dimen/size_13"-->
+<!--                    android:layout_marginTop="@dimen/size_8"-->
+<!--                    android:layout_marginEnd="@dimen/size_13"-->
+<!--                    android:layout_marginBottom="@dimen/size_8"-->
+<!--                    android:visibility="gone"-->
+<!--                    app:cardCornerRadius="@dimen/size_10"-->
+<!--                    tools:visibility="visible">-->
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="vertical">-->
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/bg_corner_top_green_10">
+<!--                        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:background="@drawable/bg_corner_top_green_10">-->
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvMessageVerified"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/size_12"
-                                android:layout_marginTop="@dimen/size_14"
-                                android:layout_marginEnd="@dimen/size_12"
-                                android:layout_marginBottom="@dimen/size_10"
-                                android:drawableTop="@drawable/ic_evs_verified"
-                                android:drawablePadding="@dimen/size_10"
-                                android:fontFamily="sans-serif-medium"
-                                android:textAlignment="center"
-                                android:textColor="#ffffff"
-                                android:textSize="@dimen/font_16"
-                                android:textStyle="normal"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                tools:text="Sản phẩm chính hãng \n Thời gian xác thực 12h21 ngày 09/10/2017" />
+<!--                            <androidx.appcompat.widget.AppCompatTextView-->
+<!--                                android:id="@+id/tvMessageVerified"-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginStart="@dimen/size_12"-->
+<!--                                android:layout_marginTop="@dimen/size_14"-->
+<!--                                android:layout_marginEnd="@dimen/size_12"-->
+<!--                                android:layout_marginBottom="@dimen/size_10"-->
+<!--                                android:drawableTop="@drawable/ic_evs_verified"-->
+<!--                                android:drawablePadding="@dimen/size_10"-->
+<!--                                android:fontFamily="sans-serif-medium"-->
+<!--                                android:textAlignment="center"-->
+<!--                                android:textColor="#ffffff"-->
+<!--                                android:textSize="@dimen/font_16"-->
+<!--                                android:textStyle="normal"-->
+<!--                                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                                app:layout_constraintStart_toStartOf="parent"-->
+<!--                                app:layout_constraintTop_toTopOf="parent"-->
+<!--                                tools:text="Sản phẩm chính hãng \n Thời gian xác thực 12h21 ngày 09/10/2017" />-->
 
-                        </androidx.constraintlayout.widget.ConstraintLayout>
+<!--                        </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/bg_corner_bottom_gray_10">
+<!--                        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:background="@drawable/bg_corner_bottom_gray_10">-->
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvSerialVerified"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/size_8"
-                                android:fontFamily="sans-serif"
-                                android:textColor="#3c5a99"
-                                android:textSize="@dimen/font_14"
-                                android:textStyle="bold"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                tools:text="Serial: L - 00123" />
+<!--                            <androidx.appcompat.widget.AppCompatTextView-->
+<!--                                android:id="@+id/tvSerialVerified"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginTop="@dimen/size_8"-->
+<!--                                android:fontFamily="sans-serif"-->
+<!--                                android:textColor="#3c5a99"-->
+<!--                                android:textSize="@dimen/font_14"-->
+<!--                                android:textStyle="bold"-->
+<!--                                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                                app:layout_constraintStart_toStartOf="parent"-->
+<!--                                app:layout_constraintTop_toTopOf="parent"-->
+<!--                                tools:text="Serial: L - 00123" />-->
 
-                            <View
-                                android:id="@+id/view2"
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/size_1"
-                                android:layout_marginTop="@dimen/size_8"
-                                android:background="@color/gray"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/tvSerialVerified" />
+<!--                            <View-->
+<!--                                android:id="@+id/view2"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="@dimen/size_1"-->
+<!--                                android:layout_marginTop="@dimen/size_8"-->
+<!--                                android:background="@color/gray"-->
+<!--                                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                                app:layout_constraintStart_toStartOf="parent"-->
+<!--                                app:layout_constraintTop_toBottomOf="@+id/tvSerialVerified" />-->
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/appCompatTextView15"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/size_31"
-                                android:layout_marginTop="15.5dp"
-                                android:layout_marginEnd="@dimen/size_31"
-                                android:drawableStart="@drawable/ic_qrcode_blue_24px"
-                                android:drawablePadding="@dimen/size_6"
-                                android:fontFamily="sans-serif-medium"
-                                android:gravity="center"
-                                android:textColor="#434343"
-                                android:textSize="@dimen/font_14"
-                                android:textStyle="normal"
-                                app:layout_constraintEnd_toStartOf="@id/viewVerify"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/view2" />
+<!--                            <androidx.appcompat.widget.AppCompatTextView-->
+<!--                                android:id="@+id/appCompatTextView15"-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginStart="@dimen/size_31"-->
+<!--                                android:layout_marginTop="15.5dp"-->
+<!--                                android:layout_marginEnd="@dimen/size_31"-->
+<!--                                android:drawableStart="@drawable/ic_qrcode_blue_24px"-->
+<!--                                android:drawablePadding="@dimen/size_6"-->
+<!--                                android:fontFamily="sans-serif-medium"-->
+<!--                                android:gravity="center"-->
+<!--                                android:textColor="#434343"-->
+<!--                                android:textSize="@dimen/font_14"-->
+<!--                                android:textStyle="normal"-->
+<!--                                app:layout_constraintEnd_toStartOf="@id/viewVerify"-->
+<!--                                app:layout_constraintStart_toStartOf="parent"-->
+<!--                                app:layout_constraintTop_toBottomOf="@+id/view2" />-->
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvCountScanVerified"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/size_9"
-                                android:layout_marginBottom="@dimen/size_19"
-                                android:fontFamily="sans-serif-medium"
-                                android:textColor="#3c5a99"
-                                android:textSize="@dimen/font_18"
-                                android:textStyle="normal"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="@+id/appCompatTextView15"
-                                app:layout_constraintStart_toStartOf="@+id/appCompatTextView15"
-                                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView15"
-                                tools:text="17.842" />
+<!--                            <androidx.appcompat.widget.AppCompatTextView-->
+<!--                                android:id="@+id/tvCountScanVerified"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginTop="@dimen/size_9"-->
+<!--                                android:layout_marginBottom="@dimen/size_19"-->
+<!--                                android:fontFamily="sans-serif-medium"-->
+<!--                                android:textColor="#3c5a99"-->
+<!--                                android:textSize="@dimen/font_18"-->
+<!--                                android:textStyle="normal"-->
+<!--                                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                app:layout_constraintEnd_toEndOf="@+id/appCompatTextView15"-->
+<!--                                app:layout_constraintStart_toStartOf="@+id/appCompatTextView15"-->
+<!--                                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView15"-->
+<!--                                tools:text="17.842" />-->
 
-                            <View
-                                android:id="@+id/viewVerify"
-                                android:layout_width="@dimen/size_1"
-                                android:layout_height="0dp"
-                                android:background="@color/gray"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toStartOf="@+id/appCompatTextView16"
-                                app:layout_constraintStart_toEndOf="@+id/appCompatTextView15"
-                                app:layout_constraintTop_toBottomOf="@+id/view2" />
+<!--                            <View-->
+<!--                                android:id="@+id/viewVerify"-->
+<!--                                android:layout_width="@dimen/size_1"-->
+<!--                                android:layout_height="0dp"-->
+<!--                                android:background="@color/gray"-->
+<!--                                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                app:layout_constraintEnd_toStartOf="@+id/appCompatTextView16"-->
+<!--                                app:layout_constraintStart_toEndOf="@+id/appCompatTextView15"-->
+<!--                                app:layout_constraintTop_toBottomOf="@+id/view2" />-->
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/appCompatTextView16"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/size_31"
-                                android:layout_marginTop="@dimen/size_16"
-                                android:layout_marginEnd="@dimen/size_31"
-                                android:drawableStart="@drawable/ic_group_friend_blue_24_px"
-                                android:drawablePadding="@dimen/size_6"
-                                android:fontFamily="sans-serif-medium"
-                                android:gravity="center"
-                                android:textColor="#434343"
-                                android:textSize="@dimen/font_14"
-                                android:textStyle="normal"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toEndOf="@id/viewVerify"
-                                app:layout_constraintTop_toBottomOf="@+id/view2" />
+<!--                            <androidx.appcompat.widget.AppCompatTextView-->
+<!--                                android:id="@+id/appCompatTextView16"-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginStart="@dimen/size_31"-->
+<!--                                android:layout_marginTop="@dimen/size_16"-->
+<!--                                android:layout_marginEnd="@dimen/size_31"-->
+<!--                                android:drawableStart="@drawable/ic_group_friend_blue_24_px"-->
+<!--                                android:drawablePadding="@dimen/size_6"-->
+<!--                                android:fontFamily="sans-serif-medium"-->
+<!--                                android:gravity="center"-->
+<!--                                android:textColor="#434343"-->
+<!--                                android:textSize="@dimen/font_14"-->
+<!--                                android:textStyle="normal"-->
+<!--                                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                                app:layout_constraintStart_toEndOf="@id/viewVerify"-->
+<!--                                app:layout_constraintTop_toBottomOf="@+id/view2" />-->
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvCountUserScanVerified"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/size_9"
-                                android:layout_marginBottom="@dimen/size_19"
-                                android:fontFamily="sans-serif-medium"
-                                android:textColor="#3c5a99"
-                                android:textSize="@dimen/font_18"
-                                android:textStyle="normal"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="@+id/appCompatTextView16"
-                                app:layout_constraintStart_toStartOf="@+id/appCompatTextView16"
-                                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView16"
-                                tools:text="1.547" />
+<!--                            <androidx.appcompat.widget.AppCompatTextView-->
+<!--                                android:id="@+id/tvCountUserScanVerified"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginTop="@dimen/size_9"-->
+<!--                                android:layout_marginBottom="@dimen/size_19"-->
+<!--                                android:fontFamily="sans-serif-medium"-->
+<!--                                android:textColor="#3c5a99"-->
+<!--                                android:textSize="@dimen/font_18"-->
+<!--                                android:textStyle="normal"-->
+<!--                                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                app:layout_constraintEnd_toEndOf="@+id/appCompatTextView16"-->
+<!--                                app:layout_constraintStart_toStartOf="@+id/appCompatTextView16"-->
+<!--                                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView16"-->
+<!--                                tools:text="1.547" />-->
 
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
+<!--                        </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--                    </LinearLayout>-->
+<!--                </androidx.cardview.widget.CardView>-->
 
                 <!--Layout Verified Chong gia-->
-                    <androidx.cardview.widget.CardView
-                    android:id="@+id/layoutVerifiedChongGia"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/size_13"
-                    android:layout_marginTop="@dimen/size_8"
-                    android:layout_marginEnd="@dimen/size_13"
-                    android:layout_marginBottom="@dimen/size_8"
-                    android:visibility="gone"
-                    app:cardCornerRadius="@dimen/size_10"
-                    tools:visibility="visible">
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:id="@+id/layoutVerifiedChongGia"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="@dimen/size_13"-->
+<!--                    android:layout_marginTop="@dimen/size_8"-->
+<!--                    android:layout_marginEnd="@dimen/size_13"-->
+<!--                    android:layout_marginBottom="@dimen/size_8"-->
+<!--                    android:visibility="gone"-->
+<!--                    app:cardCornerRadius="@dimen/size_10"-->
+<!--                    tools:visibility="visible">-->
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="vertical">-->
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/layoutheaderChongGia"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/bg_corner_top_yellow_10_v6_1">
+<!--                        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                            android:id="@+id/layoutheaderChongGia"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:background="@drawable/bg_corner_top_yellow_10_v6_1">-->
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvMessageVerifiedChongGia"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/size_12"
-                                android:layout_marginTop="@dimen/size_14"
-                                android:layout_marginEnd="@dimen/size_12"
-                                android:layout_marginBottom="@dimen/size_10"
-                                android:drawableTop="@drawable/ic_evs_verified"
-                                android:drawablePadding="@dimen/size_10"
-                                android:fontFamily="sans-serif-medium"
-                                android:textAlignment="center"
-                                android:textColor="#ffffff"
-                                android:textSize="@dimen/font_16"
-                                android:textStyle="normal"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                tools:text="Sản phẩm chính hãng \n Thời gian xác thực 12h21 ngày 09/10/2017" />
+<!--                            <androidx.appcompat.widget.AppCompatTextView-->
+<!--                                android:id="@+id/tvMessageVerifiedChongGia"-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginStart="@dimen/size_12"-->
+<!--                                android:layout_marginTop="@dimen/size_14"-->
+<!--                                android:layout_marginEnd="@dimen/size_12"-->
+<!--                                android:layout_marginBottom="@dimen/size_10"-->
+<!--                                android:drawableTop="@drawable/ic_evs_verified"-->
+<!--                                android:drawablePadding="@dimen/size_10"-->
+<!--                                android:fontFamily="sans-serif-medium"-->
+<!--                                android:textAlignment="center"-->
+<!--                                android:textColor="#ffffff"-->
+<!--                                android:textSize="@dimen/font_16"-->
+<!--                                android:textStyle="normal"-->
+<!--                                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                                app:layout_constraintStart_toStartOf="parent"-->
+<!--                                app:layout_constraintTop_toTopOf="parent"-->
+<!--                                tools:text="Sản phẩm chính hãng \n Thời gian xác thực 12h21 ngày 09/10/2017" />-->
 
-                        </androidx.constraintlayout.widget.ConstraintLayout>
+<!--                        </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/bg_corner_bottom_gray_10">
+<!--                        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:background="@drawable/bg_corner_bottom_gray_10">-->
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvSerialVerifiedChongGia"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/size_8"
-                                android:layout_marginBottom="@dimen/size_8"
-                                android:fontFamily="sans-serif"
-                                android:textColor="#3c5a99"
-                                android:textSize="@dimen/font_14"
-                                android:textStyle="bold"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                tools:text="Serial: L - 00123" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
+<!--                            <androidx.appcompat.widget.AppCompatTextView-->
+<!--                                android:id="@+id/tvSerialVerifiedChongGia"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginTop="@dimen/size_8"-->
+<!--                                android:layout_marginBottom="@dimen/size_8"-->
+<!--                                android:fontFamily="sans-serif"-->
+<!--                                android:textColor="#3c5a99"-->
+<!--                                android:textSize="@dimen/font_14"-->
+<!--                                android:textStyle="bold"-->
+<!--                                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                                app:layout_constraintStart_toStartOf="parent"-->
+<!--                                app:layout_constraintTop_toTopOf="parent"-->
+<!--                                tools:text="Serial: L - 00123" />-->
+<!--                        </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--                    </LinearLayout>-->
+<!--                </androidx.cardview.widget.CardView>-->
 
                 <!--Layout Verified Bao Hanh-->
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/layoutVerifiedBaoHanh"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/size_13"
-                    android:layout_marginTop="@dimen/size_8"
-                    android:layout_marginEnd="@dimen/size_13"
-                    android:layout_marginBottom="@dimen/size_8"
-                    android:visibility="gone"
-                    app:cardCornerRadius="@dimen/size_10"
-                    tools:visibility="visible">
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:id="@+id/layoutVerifiedBaoHanh"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="@dimen/size_13"-->
+<!--                    android:layout_marginTop="@dimen/size_8"-->
+<!--                    android:layout_marginEnd="@dimen/size_13"-->
+<!--                    android:layout_marginBottom="@dimen/size_8"-->
+<!--                    android:visibility="gone"-->
+<!--                    app:cardCornerRadius="@dimen/size_10"-->
+<!--                    tools:visibility="visible">-->
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="vertical">-->
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/layoutheaderBaoHanh"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/bg_corner_top_white_10">
+<!--                        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                            android:id="@+id/layoutheaderBaoHanh"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:background="@drawable/bg_corner_top_white_10">-->
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvMessageVerifiedBaoHanh"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/size_12"
-                                android:layout_marginTop="@dimen/size_14"
-                                android:layout_marginEnd="@dimen/size_12"
-                                android:layout_marginBottom="@dimen/size_10"
-                                android:fontFamily="sans-serif-medium"
-                                android:gravity="center_horizontal"
-                                android:textAlignment="center"
-                                android:textColor="#434343"
-                                android:textSize="@dimen/font_16"
-                                android:textStyle="normal"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                tools:text="Sản phẩm chính hãng \n Thời gian xác thực 12h21 ngày 09/10/2017" />
+<!--                            <androidx.appcompat.widget.AppCompatTextView-->
+<!--                                android:id="@+id/tvMessageVerifiedBaoHanh"-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginStart="@dimen/size_12"-->
+<!--                                android:layout_marginTop="@dimen/size_14"-->
+<!--                                android:layout_marginEnd="@dimen/size_12"-->
+<!--                                android:layout_marginBottom="@dimen/size_10"-->
+<!--                                android:fontFamily="sans-serif-medium"-->
+<!--                                android:gravity="center_horizontal"-->
+<!--                                android:textAlignment="center"-->
+<!--                                android:textColor="#434343"-->
+<!--                                android:textSize="@dimen/font_16"-->
+<!--                                android:textStyle="normal"-->
+<!--                                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                                app:layout_constraintStart_toStartOf="parent"-->
+<!--                                app:layout_constraintTop_toTopOf="parent"-->
+<!--                                tools:text="Sản phẩm chính hãng \n Thời gian xác thực 12h21 ngày 09/10/2017" />-->
 
-                        </androidx.constraintlayout.widget.ConstraintLayout>
+<!--                        </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/bg_corner_bottom_gray_10">
+<!--                        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:background="@drawable/bg_corner_bottom_gray_10">-->
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvSerialVerifiedBaoHanh"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/size_8"
-                                android:fontFamily="sans-serif"
-                                android:textColor="#3c5a99"
-                                android:textSize="@dimen/font_14"
-                                android:textStyle="bold"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                tools:text="Serial: L - 00123" />
+<!--                            <androidx.appcompat.widget.AppCompatTextView-->
+<!--                                android:id="@+id/tvSerialVerifiedBaoHanh"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginTop="@dimen/size_8"-->
+<!--                                android:fontFamily="sans-serif"-->
+<!--                                android:textColor="#3c5a99"-->
+<!--                                android:textSize="@dimen/font_14"-->
+<!--                                android:textStyle="bold"-->
+<!--                                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                                app:layout_constraintStart_toStartOf="parent"-->
+<!--                                app:layout_constraintTop_toTopOf="parent"-->
+<!--                                tools:text="Serial: L - 00123" />-->
 
-                            <View
-                                android:id="@+id/view3"
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/size_1"
-                                android:layout_marginTop="@dimen/size_8"
-                                android:background="@color/gray"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/tvSerialVerifiedBaoHanh" />
+<!--                            <View-->
+<!--                                android:id="@+id/view3"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="@dimen/size_1"-->
+<!--                                android:layout_marginTop="@dimen/size_8"-->
+<!--                                android:background="@color/gray"-->
+<!--                                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                                app:layout_constraintStart_toStartOf="parent"-->
+<!--                                app:layout_constraintTop_toBottomOf="@+id/tvSerialVerifiedBaoHanh" />-->
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/appCompatTextView19"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/size_31"
-                                android:layout_marginTop="15.5dp"
-                                android:layout_marginEnd="@dimen/size_31"
-                                android:drawableStart="@drawable/ic_qrcode_blue_24px"
-                                android:drawablePadding="@dimen/size_6"
-                                android:fontFamily="sans-serif-medium"
-                                android:gravity="center"
-                                android:textColor="#434343"
-                                android:textSize="@dimen/font_14"
-                                android:textStyle="normal"
-                                app:layout_constraintEnd_toStartOf="@id/viewBaoHanh"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/view3" />
+<!--                            <androidx.appcompat.widget.AppCompatTextView-->
+<!--                                android:id="@+id/appCompatTextView19"-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginStart="@dimen/size_31"-->
+<!--                                android:layout_marginTop="15.5dp"-->
+<!--                                android:layout_marginEnd="@dimen/size_31"-->
+<!--                                android:drawableStart="@drawable/ic_qrcode_blue_24px"-->
+<!--                                android:drawablePadding="@dimen/size_6"-->
+<!--                                android:fontFamily="sans-serif-medium"-->
+<!--                                android:gravity="center"-->
+<!--                                android:textColor="#434343"-->
+<!--                                android:textSize="@dimen/font_14"-->
+<!--                                android:textStyle="normal"-->
+<!--                                app:layout_constraintEnd_toStartOf="@id/viewBaoHanh"-->
+<!--                                app:layout_constraintStart_toStartOf="parent"-->
+<!--                                app:layout_constraintTop_toBottomOf="@+id/view3" />-->
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvCountScanVerifiedBaoHanh"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/size_9"
-                                android:layout_marginBottom="@dimen/size_19"
-                                android:fontFamily="sans-serif-medium"
-                                android:textColor="#3c5a99"
-                                android:textSize="@dimen/font_18"
-                                android:textStyle="normal"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="@+id/appCompatTextView19"
-                                app:layout_constraintStart_toStartOf="@+id/appCompatTextView19"
-                                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView19"
-                                tools:text="17.842" />
+<!--                            <androidx.appcompat.widget.AppCompatTextView-->
+<!--                                android:id="@+id/tvCountScanVerifiedBaoHanh"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginTop="@dimen/size_9"-->
+<!--                                android:layout_marginBottom="@dimen/size_19"-->
+<!--                                android:fontFamily="sans-serif-medium"-->
+<!--                                android:textColor="#3c5a99"-->
+<!--                                android:textSize="@dimen/font_18"-->
+<!--                                android:textStyle="normal"-->
+<!--                                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                app:layout_constraintEnd_toEndOf="@+id/appCompatTextView19"-->
+<!--                                app:layout_constraintStart_toStartOf="@+id/appCompatTextView19"-->
+<!--                                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView19"-->
+<!--                                tools:text="17.842" />-->
 
-                            <View
-                                android:id="@+id/viewBaoHanh"
-                                android:layout_width="@dimen/size_1"
-                                android:layout_height="0dp"
-                                android:background="@color/gray"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toStartOf="@+id/appCompatTextView20"
-                                app:layout_constraintStart_toEndOf="@+id/appCompatTextView19"
-                                app:layout_constraintTop_toBottomOf="@+id/view3" />
+<!--                            <View-->
+<!--                                android:id="@+id/viewBaoHanh"-->
+<!--                                android:layout_width="@dimen/size_1"-->
+<!--                                android:layout_height="0dp"-->
+<!--                                android:background="@color/gray"-->
+<!--                                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                app:layout_constraintEnd_toStartOf="@+id/appCompatTextView20"-->
+<!--                                app:layout_constraintStart_toEndOf="@+id/appCompatTextView19"-->
+<!--                                app:layout_constraintTop_toBottomOf="@+id/view3" />-->
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/appCompatTextView20"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/size_31"
-                                android:layout_marginTop="@dimen/size_16"
-                                android:layout_marginEnd="@dimen/size_31"
-                                android:drawableStart="@drawable/ic_group_friend_blue_24_px"
-                                android:drawablePadding="@dimen/size_6"
-                                android:fontFamily="sans-serif-medium"
-                                android:gravity="center"
-                                android:textColor="#434343"
-                                android:textSize="@dimen/font_14"
-                                android:textStyle="normal"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toEndOf="@id/viewBaoHanh"
-                                app:layout_constraintTop_toBottomOf="@+id/view3" />
+<!--                            <androidx.appcompat.widget.AppCompatTextView-->
+<!--                                android:id="@+id/appCompatTextView20"-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginStart="@dimen/size_31"-->
+<!--                                android:layout_marginTop="@dimen/size_16"-->
+<!--                                android:layout_marginEnd="@dimen/size_31"-->
+<!--                                android:drawableStart="@drawable/ic_group_friend_blue_24_px"-->
+<!--                                android:drawablePadding="@dimen/size_6"-->
+<!--                                android:fontFamily="sans-serif-medium"-->
+<!--                                android:gravity="center"-->
+<!--                                android:textColor="#434343"-->
+<!--                                android:textSize="@dimen/font_14"-->
+<!--                                android:textStyle="normal"-->
+<!--                                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                                app:layout_constraintStart_toEndOf="@id/viewBaoHanh"-->
+<!--                                app:layout_constraintTop_toBottomOf="@+id/view3" />-->
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvCountUserScanVerifiedBaoHanh"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/size_9"
-                                android:layout_marginBottom="@dimen/size_19"
-                                android:fontFamily="sans-serif-medium"
-                                android:textColor="#3c5a99"
-                                android:textSize="@dimen/font_18"
-                                android:textStyle="normal"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="@+id/appCompatTextView20"
-                                app:layout_constraintStart_toStartOf="@+id/appCompatTextView20"
-                                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView20"
-                                tools:text="1.547" />
+<!--                            <androidx.appcompat.widget.AppCompatTextView-->
+<!--                                android:id="@+id/tvCountUserScanVerifiedBaoHanh"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginTop="@dimen/size_9"-->
+<!--                                android:layout_marginBottom="@dimen/size_19"-->
+<!--                                android:fontFamily="sans-serif-medium"-->
+<!--                                android:textColor="#3c5a99"-->
+<!--                                android:textSize="@dimen/font_18"-->
+<!--                                android:textStyle="normal"-->
+<!--                                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                app:layout_constraintEnd_toEndOf="@+id/appCompatTextView20"-->
+<!--                                app:layout_constraintStart_toStartOf="@+id/appCompatTextView20"-->
+<!--                                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView20"-->
+<!--                                tools:text="1.547" />-->
 
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
+<!--                        </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--                    </LinearLayout>-->
+<!--                </androidx.cardview.widget.CardView>-->
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/layoutProductLink"

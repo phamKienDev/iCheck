@@ -8,6 +8,7 @@ import vn.icheck.android.component.`null`.NullHolder
 import vn.icheck.android.network.models.ICLayout
 import vn.icheck.android.network.models.ICMedia
 import vn.icheck.android.network.models.ICWidgetData
+import vn.icheck.android.screen.user.detail_stamp_v6_1.home.holder.ICMessageResultHolder
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.holder.ICProductImageHolder
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.holder.ICProductInfoHolder
 
@@ -25,6 +26,7 @@ class ICDetailStampAdapter: RecyclerViewCustomAdapter<ICLayout>() {
         return when (viewType) {
             ICViewTypes.PRODUCT_IMAGE -> ICProductImageHolder(parent)
             ICViewTypes.PRODUCT_INFO -> ICProductInfoHolder(parent)
+            ICViewTypes.MESSAGE_TYPE -> ICMessageResultHolder(parent)
             else -> NullHolder(parent)
         }
     }
@@ -35,6 +37,9 @@ class ICDetailStampAdapter: RecyclerViewCustomAdapter<ICLayout>() {
                 holder.bind(listData[position].data as List<ICMedia>)
             }
             is ICProductInfoHolder -> {
+                holder.bind(listData[position].data as ICWidgetData)
+            }
+            is ICMessageResultHolder -> {
                 holder.bind(listData[position].data as ICWidgetData)
             }
             else -> super.onBindViewHolder(holder, position)
