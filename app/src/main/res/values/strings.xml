@@ -562,6 +562,7 @@
     <string name="x_tot">%s Tốt</string>
     <string name="x_hai_long">%s Hài lòng</string>
     <string name="x_diem_danh_gia">%s Điểm đánh giá</string>
+    <string name="diem_danh_gia">Điểm đánh giá</string>
     <string name="x_ban_be_dang_su_dung_icheck">%d Bạn bè Facebook đang sử dụng iCheck</string>
     <string name="feed_option_off_follow_title">Bỏ theo dõi %s</string>
     <string name="feed_option_off_follow_user_message">Khi bỏ theo dõi, các bài viết của người này sẽ không hiển thị trên trang chủ của bạn nữa.</string>
