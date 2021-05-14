@@ -4,14 +4,21 @@ import android.app.Activity
 import android.graphics.Bitmap
 import android.os.Build
 import android.util.Log
+import android.view.View
+import android.webkit.WebResourceRequest
 import android.webkit.WebSettings
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.LinearLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import kotlinx.android.synthetic.main.activity_web_view.*
 import kotlinx.android.synthetic.main.dialog_notification_firebase.*
+import kotlinx.android.synthetic.main.dialog_notification_firebase.imgClose
+import kotlinx.android.synthetic.main.dialog_notification_firebase.webView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -23,6 +30,8 @@ import vn.icheck.android.chat.icheckchat.base.view.setVisible
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.Constant.getHtmlData
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
+import vn.icheck.android.screen.user.webview.WebViewActivity
+import vn.icheck.android.util.ick.spToPx
 
 abstract class DialogNotificationFirebaseAds(context: Activity, private val image: String?, private val htmlText: String?, private val link: String?, private val schema: String?) : BaseDialog(context, R.style.DialogTheme) {
 
@@ -179,6 +188,8 @@ abstract class DialogNotificationFirebaseAds(context: Activity, private val imag
                 }
             }
             htmlText != null -> {
+                setupWebView()
+                webView.settings.defaultFontSize = 14f.spToPx().toInt()
                 textView.setVisible()
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                     webViewHtml.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING;
@@ -188,6 +199,7 @@ abstract class DialogNotificationFirebaseAds(context: Activity, private val imag
                 webViewHtml.loadDataWithBaseURL(null, getHtmlData(htmlText), "text/html", "utf-8", "")
             }
             link != null -> {
+                setupWebView()
                 layoutWeb.setVisible()
                 webView.loadUrl(link)
             }
@@ -199,6 +211,45 @@ abstract class DialogNotificationFirebaseAds(context: Activity, private val imag
 
         setOnDismissListener {
             onDismiss()
+        }
+    }
+
+    private fun setupWebView() {
+        webView.apply {
+            settings.apply {
+                javaScriptEnabled = true
+                domStorageEnabled = true
+                allowFileAccessFromFileURLs = true
+                allowUniversalAccessFromFileURLs = true
+                setAppCacheEnabled(true)
+                loadsImagesAutomatically = true
+                javaScriptCanOpenWindowsAutomatically = true
+                allowFileAccess = true
+                mediaPlaybackRequiresUserGesture = false
+                // Full with
+                loadWithOverviewMode = true
+                useWideViewPort = true
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
+                }
+                layoutAlgorithm = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                    WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
+                } else {
+                    WebSettings.LayoutAlgorithm.SINGLE_COLUMN
+                }
+                setGeolocationEnabled(true)
+            }
+
+            webViewClient = object : WebViewClient() {
+                override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
+                    if (!url.isNullOrEmpty()) {
+                        ICheckApplication.currentActivity()?.let { activity ->
+                            WebViewActivity.start(activity, url)
+                        }
+                    }
+                    return true
+                }
+            }
         }
     }
 
