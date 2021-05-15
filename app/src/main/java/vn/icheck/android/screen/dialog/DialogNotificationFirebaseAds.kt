@@ -63,6 +63,8 @@ abstract class DialogNotificationFirebaseAds(context: Activity, private val imag
                                     if (resource != null) {
                                         CoroutineScope(Dispatchers.Main).launch {
                                             val maxHeight = container.height - SizeHelper.size52
+                                            val ratioHeight = container.height.toDouble() /resource.height.toDouble()
+                                            val ratioWidth =  container.width.toDouble() /resource.width.toDouble()
                                             when {
                                                 resource.width > container.width && resource.height <= container.height -> {
                                                     // ảnh rộng quá màn hình -> max with, wrap height
@@ -77,19 +79,29 @@ abstract class DialogNotificationFirebaseAds(context: Activity, private val imag
                                                     imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
                                                 }
                                                 resource.height > resource.width && resource.height > container.height -> {
-                                                    val ratioHeight = resource.height / container.height
-                                                    val ratioWidth = resource.width / container.width
                                                     if (ratioWidth > ratioHeight) {
                                                         // max with
-                                                        imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                                                        imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT)
                                                     } else {
                                                         // max height
-                                                        imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, maxHeight)
+                                                        imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                                                    }
+                                                }
+                                                resource.height < container.height && resource.width < container.width->{
+                                                    /* ảnh có chiều rộng & chiều dài đều bé hơn màn hình
+                                                    -> tính tỉ lệ chiều nào gần full màn hình sẽ lấy chiều đó là MATCH_PARENT
+                                                     */
+                                                    if (ratioWidth > ratioHeight) {
+                                                        // max with
+                                                        imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT)
+                                                    } else {
+                                                        // max height
+                                                        imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT )
                                                     }
                                                 }
                                             }
+                                            imageView.setImageBitmap(resource)
                                         }
-                                        imageView.setImageBitmap(resource)
                                     }
                                     return false
                                 }

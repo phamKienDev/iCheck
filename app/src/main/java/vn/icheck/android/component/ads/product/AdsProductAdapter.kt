@@ -125,8 +125,8 @@ class AdsProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                         binding.imgImage.scaleType=ImageView.ScaleType.FIT_CENTER
                         WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, obj.media!![0].content, R.drawable.img_error_ads_product, R.drawable.img_error_ads_product, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
                     } else {
-                        binding.imgImage.scaleType=ImageView.ScaleType.FIT_XY
-                        binding.imgImage.setImageResource(R.drawable.img_error_ads_product)
+                        binding.imgImage.scaleType=ImageView.ScaleType.CENTER_CROP
+                        binding.imgImage.setImageResource(R.drawable.img_default_product_big)
                     }
                 } else {
                     binding.imgPlay.visibility = View.INVISIBLE
@@ -134,13 +134,13 @@ class AdsProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                         binding.imgImage.scaleType=ImageView.ScaleType.FIT_CENTER
                         WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, obj.media!![0].content, R.drawable.img_error_ads_product, R.drawable.img_error_ads_product, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
                     } else {
-                        binding.imgImage.scaleType=ImageView.ScaleType.FIT_XY
-                        binding.imgImage.setImageResource(R.drawable.img_error_ads_product)
+                        binding.imgImage.scaleType=ImageView.ScaleType.CENTER_CROP
+                        binding.imgImage.setImageResource(R.drawable.img_default_product_big)
                     }
                 }
             } else {
                 binding.imgImage.scaleType=ImageView.ScaleType.CENTER_CROP
-                binding.imgImage.setImageResource(R.drawable.img_error_ads_product)
+                binding.imgImage.setImageResource(R.drawable.img_default_product_big)
             }
 
             if (!obj.name.isNullOrEmpty()) {
@@ -191,8 +191,9 @@ class AdsProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
             if (obj.rating != null) {
                 binding.tvPoint.beVisible()
+                binding.tvRatingUpdating.beGone()
                 binding.tvRatingText.beVisible()
-                binding.tvPoint.text = (obj.rating!!*2).toString()
+                binding.tvPoint.text = Math.round((obj.rating!!*2)*10).div(10.0).toString()
                 ReviewPointText.setText(binding.tvRatingText, obj.rating!!)
             } else {
                 binding.tvRatingUpdating.beVisible()
