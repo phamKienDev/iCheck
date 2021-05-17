@@ -1,6 +1,5 @@
 package vn.icheck.android.screen.user.detail_stamp_v6_1.detail_history_guarantee
 
-import android.text.Html
 import android.view.Gravity
 import android.view.View
 import android.widget.ImageView
@@ -39,7 +38,7 @@ class DetailHistoryGuaranteeActivity : BaseActivity<DetailHistoryGuaranteePresen
     private val adapter = ListNoteHistoryAdapter()
 
     override fun onInitView() {
-        if (DetailStampActivity.isVietNamLanguage == false){
+        if (DetailStampActivity.isVietNamLanguage == false) {
             txtTitle.text = "Details of warranty information"
             tvCustomerInfor.text = "Customer Information"
             tvWarrantyInfor.text = "Warranty Information"
@@ -56,7 +55,7 @@ class DetailHistoryGuaranteeActivity : BaseActivity<DetailHistoryGuaranteePresen
     }
 
     private fun initRecyclerview() {
-        val manager = object :LinearLayoutManager(this){
+        val manager = object : LinearLayoutManager(this) {
             override fun canScrollVertically(): Boolean {
                 return false
             }
@@ -260,7 +259,7 @@ class DetailHistoryGuaranteeActivity : BaseActivity<DetailHistoryGuaranteePresen
             }
         }
 
-        if (!list.isNullOrEmpty()){
+        if (!list.isNullOrEmpty()) {
             adapter.setListData(list)
         }
     }

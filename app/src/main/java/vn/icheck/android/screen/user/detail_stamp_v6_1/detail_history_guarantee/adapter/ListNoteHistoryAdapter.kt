@@ -1,6 +1,5 @@
 package vn.icheck.android.screen.user.detail_stamp_v6_1.detail_history_guarantee.adapter
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
