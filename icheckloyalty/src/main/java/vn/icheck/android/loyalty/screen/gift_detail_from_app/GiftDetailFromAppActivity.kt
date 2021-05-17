@@ -197,6 +197,7 @@ class GiftDetailFromAppActivity : BaseActivityGame() {
                     startActivity(Intent(this@GiftDetailFromAppActivity, AcceptShipGiftActivity::class.java).apply {
                         putExtra(ConstantsLoyalty.DATA_2, obj.id)
                         putExtra(ConstantsLoyalty.TYPE, 3)
+                        putExtra(ConstantsLoyalty.BACK_TO_DETAIL, "BACK_TO_DETAIL")
                     })
                 }
                 else -> {

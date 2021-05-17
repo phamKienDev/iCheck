@@ -28,6 +28,7 @@ import vn.icheck.android.loyalty.dialog.listener.IDismissDialog
 import vn.icheck.android.loyalty.helper.WidgetHelper
 import vn.icheck.android.loyalty.model.ICKRedemptionHistory
 import vn.icheck.android.loyalty.network.SessionManager
+import vn.icheck.android.loyalty.screen.gift_detail_from_app.GiftDetailFromAppActivity
 import vn.icheck.android.loyalty.screen.select_address.district.SelectDistrictActivity
 import vn.icheck.android.loyalty.screen.select_address.province.SelectProvinceActivity
 import vn.icheck.android.loyalty.screen.select_address.ward.SelectWardActivity
@@ -177,7 +178,11 @@ class AcceptShipGiftActivity : BaseActivityGame(), View.OnClickListener {
 
     private fun initListener() {
         viewModel.onError.observe(this, {
-            showLongError(it.title)
+            if (it.title.contains("Phần thưởng không hợp lệ") && viewModel.type == 3) {
+                showLongError("Không tìm thấy thông tin phát hành voucher")
+            } else {
+                showLongError(it.title)
+            }
         })
 
         viewModel.onErrorName.observe(this, {
@@ -227,8 +232,12 @@ class AcceptShipGiftActivity : BaseActivityGame(), View.OnClickListener {
         viewModel.onSuccessVoucher.observe(this, {
             object : DialogNotification(this@AcceptShipGiftActivity, "Thông báo", "Đổi quà thành công!", null, false) {
                 override fun onDone() {
-                    this@AcceptShipGiftActivity.onBackPressed()
-                    EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.BACK))
+                    if (intent.getStringExtra(ConstantsLoyalty.BACK_TO_DETAIL)?.contains("BACK_TO_DETAIL") == true) {
+                        this@AcceptShipGiftActivity.onBackPressed()
+                        EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.BACK))
+                    } else {
+                        startActivityAndFinish<GiftDetailFromAppActivity, Long>(ConstantsLoyalty.DATA_1, it)
+                    }
                 }
             }.show()
         })
@@ -243,7 +252,11 @@ class AcceptShipGiftActivity : BaseActivityGame(), View.OnClickListener {
         })
 
         viewModel.showError.observe(this, {
-            showLongError(it)
+            if (it.contains("Phần thưởng không hợp lệ") && viewModel.type == 3) {
+                showLongError("Không tìm thấy thông tin phát hành voucher")
+            } else {
+                showLongError(it)
+            }
         })
 
         viewModel.onSuccessUsedVoucher.observe(this, {
