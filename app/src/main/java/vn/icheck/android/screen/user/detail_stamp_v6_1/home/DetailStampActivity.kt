@@ -90,7 +90,7 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
         var mSerial: String? = null
     }
 
-    private var disposable: Disposable? = nul
+    private var disposable: Disposable? = null
     var id = -1L
 
     private var isShow = true

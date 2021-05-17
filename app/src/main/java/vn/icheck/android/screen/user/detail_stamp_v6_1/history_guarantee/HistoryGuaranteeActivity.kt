@@ -1,71 +1,108 @@
 package vn.icheck.android.screen.user.detail_stamp_v6_1.history_guarantee
 
-import android.content.Intent
+import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_history_guarantee.*
-import kotlinx.android.synthetic.main.toolbar_blue.*
+import kotlinx.android.synthetic.main.toolbar_blue.view.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
+import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.network.models.detail_stamp_v6_1.ICListHistoryGuarantee
-import vn.icheck.android.screen.user.detail_stamp_v6_1.detail_history_guarantee.DetaiHistoryGuaranteeActivity
+import vn.icheck.android.databinding.ActivityHistoryGuaranteeBinding
+import vn.icheck.android.ichecklibs.DialogHelper
+import vn.icheck.android.ichecklibs.NotificationDialogListener
+import vn.icheck.android.network.base.Status
 import vn.icheck.android.screen.user.detail_stamp_v6_1.history_guarantee.adapter.HistoryGuaranteeAdapter
-import vn.icheck.android.screen.user.detail_stamp_v6_1.history_guarantee.presenter.HistoryGuaranteePresenter
-import vn.icheck.android.screen.user.detail_stamp_v6_1.history_guarantee.view.IHistoryGuaranteeView
+import vn.icheck.android.screen.user.detail_stamp_v6_1.history_guarantee.viewmodel.WarrantyHistoryViewModel
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
+import vn.icheck.android.util.kotlin.ActivityUtils
 
-class HistoryGuaranteeActivity : BaseActivity<HistoryGuaranteePresenter>(), IHistoryGuaranteeView {
+class HistoryGuaranteeActivity : BaseActivityMVVM(), IRecyclerViewCallback {
+    private val adapter = HistoryGuaranteeAdapter(this)
 
-    private lateinit var adapter: HistoryGuaranteeAdapter
+    private val viewModel by viewModels<WarrantyHistoryViewModel>()
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_history_guarantee
+    private lateinit var binding: ActivityHistoryGuaranteeBinding
 
-    override val getPresenter: HistoryGuaranteePresenter
-        get() = HistoryGuaranteePresenter(this)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityHistoryGuaranteeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-    override fun onInitView() {
-        presenter.getDataIntent(intent)
-        listener()
-        initRecyclerView()
-        if (DetailStampActivity.isVietNamLanguage == false) {
-            txtTitle.text = "Warranty log"
+        binding.layoutToolbar.txtTitle.text =  if (DetailStampActivity.isVietNamLanguage == false) {
+            "Warranty log"
         } else {
-            txtTitle.text = "Lịch sử bảo hành"
+            "Lịch sử bảo hành"
         }
+
+        setupRecyclerView()
+        setupListener()
+        setupViewModel()
     }
 
-    private fun listener() {
-        imgBack.setOnClickListener {
+    private fun setupListener() {
+        binding.layoutToolbar.imgBack.setOnClickListener {
             onBackPressed()
         }
     }
 
-    private fun initRecyclerView() {
-        adapter = HistoryGuaranteeAdapter(this,DetailStampActivity.isVietNamLanguage)
-        rcvHistoryGuarantee.layoutManager = LinearLayoutManager(this)
-        rcvHistoryGuarantee.adapter = adapter
-    }
-
-    override fun getDataIntentError(errorType: Int) {
-
-    }
-
-    override fun onGetDataHistoryGuaranteeSuccess(data: MutableList<ICListHistoryGuarantee>) {
-        if (data.isNullOrEmpty()) {
-            adapter.setError(Constant.ERROR_EMPTY)
-        } else {
-            adapter.setListData(data)
+    private fun setupRecyclerView() {
+        binding.rcvHistoryGuarantee.apply {
+            layoutManager = LinearLayoutManager(this@HistoryGuaranteeActivity)
+            adapter = this@HistoryGuaranteeActivity.adapter
         }
     }
 
-    override fun onGetDataHistoryGuaranteeFail() {
-        adapter.setError(Constant.ERROR_UNKNOW)
+    private fun setupViewModel() {
+        viewModel.onGetDataResult.observe(this, {
+            this@HistoryGuaranteeActivity.apply {
+                if (it) {
+                    getHistoryGuarantee()
+                } else {
+                    DialogHelper.showNotification(this@HistoryGuaranteeActivity, R.string.co_loi_xay_ra_vui_long_thu_lai, false, object : NotificationDialogListener {
+                        override fun onDone() {
+                            ActivityUtils.finishActivity(this@HistoryGuaranteeActivity)
+                        }
+                    })
+                }
+            }
+        })
+
+        viewModel.getData(intent)
     }
 
-    override fun setOnItemClick(item: ICListHistoryGuarantee) {
-        val intent = Intent(this, DetaiHistoryGuaranteeActivity::class.java)
-        intent.putExtra(Constant.DATA_1, item)
-        startActivity(intent)
+    private fun getHistoryGuarantee() {
+        viewModel.getHistoryGuarantee().observe(this, {
+            when (it.status) {
+                Status.LOADING -> {
+                    if (it.message.isNullOrEmpty()) {
+                        DialogHelper.showLoading(this@HistoryGuaranteeActivity)
+                    } else {
+                        DialogHelper.closeLoading(this@HistoryGuaranteeActivity)
+                    }
+                }
+                Status.ERROR_NETWORK -> {
+                    adapter.setError(Constant.ERROR_INTERNET)
+                }
+                Status.ERROR_REQUEST -> {
+                    adapter.setError(Constant.ERROR_UNKNOW)
+                }
+                Status.SUCCESS -> {
+                    if (it.data?.data.isNullOrEmpty()) {
+                        adapter.setError(Constant.ERROR_EMPTY)
+                    } else {
+                        adapter.setListData(it.data!!.data!!)
+                    }
+                }
+            }
+        })
+    }
+
+    override fun onLoadMore() {
+
+    }
+
+    override fun onMessageClicked() {
+        getHistoryGuarantee()
     }
 }

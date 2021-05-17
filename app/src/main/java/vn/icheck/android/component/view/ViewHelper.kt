@@ -4770,7 +4770,7 @@ object ViewHelper {
                     params.topMargin = SizeHelper.size20
                 },
                 null,
-                Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf"),
+                createTypeface(context, R.font.barlow_medium),
                 ContextCompat.getColor(context, R.color.colorNormalText),
                 16f
             ).also {

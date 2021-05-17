@@ -333,6 +333,7 @@
     <string name="xong">Xong</string>
     <string name="thoi_gian">Thời gian</string>
     <string name="thoi_gian_v2">Thời gian:</string>
+    <string name="thoi_gian_v2_xxx">Thời gian: %s</string>
     <string name="thoi_gian_dien_ra">Thời gian diễn ra</string>
     <string name="tu_ngay">Từ ngày</string>
     <string name="den_ngay">Đến ngày</string>
@@ -930,4 +931,13 @@
     <string name="dia_diem_bao_hanh">Địa điểm bảo hành</string>
     <string name="trang_thai_v2">Trạng thái:</string>
     <string name="tinh_trang_v2">Tình trạng:</string>
+    <string name="tinh_trang_v2_xxx">Tình trạng: %s</string>
+    <string name="thong_tin_khach_hang">Thông tin khách hàng</string>
+    <string name="tien_do_bao_hanh">Tiến độ bảo hành</string>
+    <string name="ho_va_ten_v2">Họ và tên:</string>
+    <string name="so_dien_thoai_v2">Số điện thoại:</string>
+    <string name="email_v2">Email:</string>
+    <string name="dia_chi_v2">Địa chỉ:</string>
+    <string name="diem_bao_hanh_v2">Điểm bảo hành:</string>
+    <string name="ngay_hen_tra_v2">Ngày hẹn trả:</string>
 </resources>

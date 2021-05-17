@@ -29,6 +29,7 @@ class ICDetailStampAdapter: RecyclerViewCustomAdapter<ICLayout>() {
             ICViewTypes.SCAN_INFO_TYPE -> ICScanInfoHolder(parent)
             ICViewTypes.GUARANTEE_INFO_TYPE -> ICGuaranteeHolder(parent)
             ICViewTypes.LAST_GUARANTEE_INFO_TYPE -> ICLastGuaranteeHolder(parent)
+            ICViewTypes.VENDOR_TYPE -> ICVendorV61Holder(parent)
             else -> NullHolder(parent)
         }
     }
@@ -54,6 +55,9 @@ class ICDetailStampAdapter: RecyclerViewCustomAdapter<ICLayout>() {
                 holder.bind(listData[position].data as ICWidgetData)
             }
             is ICLastGuaranteeHolder -> {
+                holder.bind(listData[position].data as ICWidgetData)
+            }
+            is ICVendorV61Holder -> {
                 holder.bind(listData[position].data as ICWidgetData)
             }
             else -> super.onBindViewHolder(holder, position)

@@ -808,7 +808,7 @@
             android:name=".screen.user.detail_stamp_v6_1.contact_support.ContactSupportActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".screen.user.detail_stamp_v6_1.detail_history_guarantee.DetaiHistoryGuaranteeActivity"
+            android:name=".screen.user.detail_stamp_v6_1.detail_history_guarantee.DetailHistoryGuaranteeActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".screen.user.detail_stamp_v6_1.update_information_first.UpdateInformationFirstActivity"

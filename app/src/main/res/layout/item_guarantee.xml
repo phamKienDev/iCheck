@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/size_10"
     android:background="@color/white"
     android:paddingStart="@dimen/size_12"
     android:paddingTop="@dimen/size_16"
@@ -40,6 +41,7 @@
             android:drawablePadding="@dimen/size_12"
             android:text="@string/thoi_gian_bao_hanh_v2"
             android:textColor="@color/darkGray3"
+            android:textSize="@dimen/font_14"
             app:layout_constraintTop_toTopOf="parent" />
 
         <vn.icheck.android.ui.view.TextBody1
@@ -49,8 +51,9 @@
             android:gravity="end"
             android:hint="@string/dang_cap_nhat"
             android:textAlignment="gravity"
-            android:textColor="@color/colorNormalText"
-            android:textColorHint="@color/colorNormalText"
+            android:textColor="@color/black2"
+            android:textColorHint="@color/black2"
+            android:textSize="@dimen/font_14"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="3 năm" />
     </TableRow>
@@ -69,6 +72,7 @@
             android:drawablePadding="@dimen/size_12"
             android:text="@string/han_bao_hanh_v2"
             android:textColor="@color/darkGray3"
+            android:textSize="@dimen/font_14"
             app:layout_constraintTop_toTopOf="parent" />
 
         <vn.icheck.android.ui.view.TextBody1
@@ -79,8 +83,9 @@
             android:hint="@string/dang_cap_nhat"
             android:text="29/04/2020"
             android:textAlignment="gravity"
-            android:textColor="@color/colorNormalText"
-            android:textColorHint="@color/colorNormalText"
+            android:textColor="@color/black2"
+            android:textColorHint="@color/black2"
+            android:textSize="@dimen/font_14"
             app:layout_constraintTop_toTopOf="parent" />
     </TableRow>
 
@@ -98,6 +103,7 @@
             android:drawablePadding="@dimen/size_12"
             android:text="@string/so_ngay_bao_hanh_con_lai_v2"
             android:textColor="@color/darkGray3"
+            android:textSize="@dimen/font_14"
             app:layout_constraintTop_toTopOf="parent" />
 
         <vn.icheck.android.ui.view.TextBody1
@@ -110,6 +116,7 @@
             android:textAlignment="gravity"
             android:textColor="@color/colorAccentRed"
             android:textColorHint="@color/colorAccentRed"
+            android:textSize="@dimen/font_14"
             app:layout_constraintTop_toTopOf="parent" />
     </TableRow>
 
@@ -127,6 +134,7 @@
             android:drawablePadding="@dimen/size_12"
             android:text="@string/ngay_kich_hoat_bao_hanh_v2"
             android:textColor="@color/darkGray3"
+            android:textSize="@dimen/font_14"
             app:layout_constraintTop_toTopOf="parent" />
 
         <vn.icheck.android.ui.view.TextBody1
@@ -137,8 +145,9 @@
             android:hint="@string/dang_cap_nhat"
             android:text="20/11/2018"
             android:textAlignment="gravity"
-            android:textColor="@color/colorNormalText"
-            android:textColorHint="@color/colorNormalText"
+            android:textColor="@color/black2"
+            android:textColorHint="@color/black2"
+            android:textSize="@dimen/font_14"
             app:layout_constraintTop_toTopOf="parent" />
     </TableRow>
 </TableLayout>

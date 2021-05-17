@@ -666,6 +666,9 @@ interface ICNetworkAPI {
     @GET
     fun getListHistoryGuarantee(@Url url: String): Observable<ICHistoryGuarantee>
 
+    @GET
+    suspend fun getWarrantyHistory(@Url url: String): ICResponse<MutableList<ICListHistoryGuarantee>>
+
     //Verified Number Guarantee
     @GET
     fun getVerifiedNumberPhone(@Url url: String): Observable<ICVerifiedPhone>

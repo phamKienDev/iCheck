@@ -409,4 +409,5 @@
     <item name="tvRemaining" type="id" />
     <item name="tvActivate" type="id" />
     <item name="tvState" type="id" />
+    <item name="tvDateTime" type="id" />
 </resources>

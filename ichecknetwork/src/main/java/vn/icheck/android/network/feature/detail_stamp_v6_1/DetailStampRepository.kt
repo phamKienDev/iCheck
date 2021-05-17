@@ -297,34 +297,9 @@ class DetailStampRepository : BaseRepository() {
         composite.add(disposable)
     }
 
-    fun getListHistoryGuarantee(serial: String, listener: ICApiListener<ICHistoryGuarantee>) {
+    suspend fun getWarrantyHistory(serial: String): ICResponse<MutableList<ICListHistoryGuarantee>> {
         val host = APIConstants.DETAIL_STAMP_HOST + APIConstants.STAMPHISTORYGUARANTEE().replace("{serial}", serial)
-        val disposable = ICNetworkClient.getStampClient().getListHistoryGuarantee(host)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        {
-                            dispose()
-                            listener.onSuccess(it)
-                        },
-                        {
-                            dispose()
-                            val errorBody = ICBaseResponse()
-                            errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
-
-                            if (it is HttpException) {
-                                val error = parseJson(it.response()?.errorBody()?.string(), ICResponseErrorStamp::class.java)
-
-                                if (error != null) {
-                                    if (!error.data?.message?.message.isNullOrEmpty()) {
-                                        errorBody.message = error.data?.message?.message
-                                    }
-                                }
-                            }
-                            listener.onError(errorBody)
-                        }
-                )
-        composite.add(disposable)
+        return ICNetworkClient.getStampClient().getWarrantyHistory(host)
     }
 
     fun getListNoteHistoryGuarantee(id: String, listener: ICApiListener<ICResp_Note_Guarantee>) {
