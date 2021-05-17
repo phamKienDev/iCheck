@@ -134,7 +134,7 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
 
                 val list = mutableListOf<ICImageInPost>()
                 for (item in obj.media!!) {
-                    list.add(ICImageInPost(item.content ?: "", Constant.IMAGE, null, null))
+                    list.add(ICImageInPost(item.content ?: "", item.type?:Constant.IMAGE, null, null))
                 }
                 imgMulti.setImageInPost(list)
 
