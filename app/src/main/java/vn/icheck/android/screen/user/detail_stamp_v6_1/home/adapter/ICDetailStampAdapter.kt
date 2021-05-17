@@ -22,11 +22,13 @@ class ICDetailStampAdapter: RecyclerViewCustomAdapter<ICLayout>() {
 
     override fun getViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            ICViewTypes.PRODUCT_IMAGE -> ICProductImageHolder(parent)
-            ICViewTypes.PRODUCT_INFO -> ICProductInfoHolder(parent)
+            ICViewTypes.PRODUCT_IMAGE_TYPE -> ICProductImageHolder(parent)
+            ICViewTypes.PRODUCT_INFO_TYPE -> ICProductInfoHolder(parent)
             ICViewTypes.MESSAGE_TYPE -> ICMessageResultHolder(parent)
-            ICViewTypes.STAMP_INFO -> ICStampInfoHolder(parent)
-            ICViewTypes.SCAN_INFO -> ICScanInfoHolder(parent)
+            ICViewTypes.STAMP_INFO_TYPE -> ICStampInfoHolder(parent)
+            ICViewTypes.SCAN_INFO_TYPE -> ICScanInfoHolder(parent)
+            ICViewTypes.GUARANTEE_INFO_TYPE -> ICGuaranteeHolder(parent)
+            ICViewTypes.LAST_GUARANTEE_INFO_TYPE -> ICLastGuaranteeHolder(parent)
             else -> NullHolder(parent)
         }
     }
@@ -46,6 +48,12 @@ class ICDetailStampAdapter: RecyclerViewCustomAdapter<ICLayout>() {
                 holder.bind(listData[position].data as String)
             }
             is ICScanInfoHolder -> {
+                holder.bind(listData[position].data as ICWidgetData)
+            }
+            is ICGuaranteeHolder -> {
+                holder.bind(listData[position].data as ICWidgetData)
+            }
+            is ICLastGuaranteeHolder -> {
                 holder.bind(listData[position].data as ICWidgetData)
             }
             else -> super.onBindViewHolder(holder, position)

@@ -181,10 +181,12 @@ object ICViewTypes {
     const val PVCOMBANK_TYPE = 107
     const val PRODUCT_ECCOMMERCE_TYPE = 108
 
-    const val PRODUCT_IMAGE = 109
-    const val PRODUCT_INFO = 110
-    const val STAMP_INFO = 111
-    const val SCAN_INFO = 112
+    const val PRODUCT_IMAGE_TYPE = 109
+    const val PRODUCT_INFO_TYPE = 110
+    const val STAMP_INFO_TYPE = 111
+    const val SCAN_INFO_TYPE = 112
+    const val GUARANTEE_INFO_TYPE = 113
+    const val LAST_GUARANTEE_INFO_TYPE = 114
 
 
     /*

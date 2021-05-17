@@ -243,6 +243,7 @@
     <string name="nguoi_theo_doi">Người theo dõi</string>
     <string name="xxx_nguoi_theo_doi">%s Người theo dõi</string>
     <string name="xxx_nguoi">%s người</string>
+    <string name="xxx_ngay">%s ngày</string>
     <string name="vui_long_dang_nhap_tai_khoan_cua_ban">Vui lòng đăng nhập tài khoản của bạn</string>
     <string name="thu_lai">Thử Lại</string>
     <string name="bat_gps">Bật GPS</string>
@@ -331,6 +332,7 @@
     <string name="bo_loc">Bộ lọc</string>
     <string name="xong">Xong</string>
     <string name="thoi_gian">Thời gian</string>
+    <string name="thoi_gian_v2">Thời gian:</string>
     <string name="thoi_gian_dien_ra">Thời gian diễn ra</string>
     <string name="tu_ngay">Từ ngày</string>
     <string name="den_ngay">Đến ngày</string>
@@ -920,4 +922,12 @@
     <string name="so_lan_quet">Số lần quét</string>
     <string name="so_nguoi_quet">Số người quét</string>
     <string name="thong_tin_bao_hanh">Thông tin bảo hành</string>
+    <string name="thoi_gian_bao_hanh_v2">Thời gian bảo hành:</string>
+    <string name="han_bao_hanh_v2">Hạn bảo hành:</string>
+    <string name="so_ngay_bao_hanh_con_lai_v2">Số ngày bảo hành còn lại:</string>
+    <string name="ngay_kich_hoat_bao_hanh_v2">Ngày kích hoạt bảo hành:</string>
+    <string name="lich_su_bao_hanh_gan_nhat">Lịch sử bảo hành gần nhất</string>
+    <string name="dia_diem_bao_hanh">Địa điểm bảo hành</string>
+    <string name="trang_thai_v2">Trạng thái:</string>
+    <string name="tinh_trang_v2">Tình trạng:</string>
 </resources>

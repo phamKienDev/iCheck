@@ -13,7 +13,7 @@
     <color name="colorSecondText">#757575</color>
     <color name="colorDisableText">#B4B4B4</color>
 
-    <color name="colorLine">#8D8D8D</color>
+    <color name="colorLine">#D8D8D8</color>
 
     <color name="colorBackgroundGray">#F0F0F0</color>
     <color name="colorBackgroundWhite">#FFFFFF</color>
@@ -36,6 +36,7 @@
     <color name="black_35">#66000000</color>
     <color name="black_50">#80000000</color>
     <color name="black_60">#99000000</color>
+    <color name="black2">#333333</color>
     <color name="darkGray1">#434343</color>
     <color name="darkGray3">#828282</color>
     <color name="darkGray4">#E0E0E0</color>

@@ -406,4 +406,7 @@
     <item name="imgPeople" type="id" />
     <item name="tvPeopleCount" type="id" />
     <item name="tvPeopleCountTitle" type="id" />
+    <item name="tvRemaining" type="id" />
+    <item name="tvActivate" type="id" />
+    <item name="tvState" type="id" />
 </resources>

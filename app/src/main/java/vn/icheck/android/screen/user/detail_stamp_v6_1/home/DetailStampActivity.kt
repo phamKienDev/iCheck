@@ -7,7 +7,6 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Typeface
 import android.net.Uri
@@ -59,7 +58,6 @@ import vn.icheck.android.screen.account.home.AccountActivity
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.user.cart.CartActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.contact_support.ContactSupportActivity
-import vn.icheck.android.screen.user.detail_stamp_v6_1.history_guarantee.HistoryGuaranteeActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.adapter.*
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.presenter.DetailStampPresenter
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.view.IDetailStampView
@@ -68,7 +66,6 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.more_business.MoreBusines
 import vn.icheck.android.screen.user.detail_stamp_v6_1.more_information_product.MoreInformationProductActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.more_product_verified_by_distributor.MoreProductVerifiedByDistributorActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.UpdateInformationFirstActivity
-import vn.icheck.android.screen.user.detail_stamp_v6_1.verified_phone.VerifiedPhoneActivity
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.screen.user.shipping.ship.ShipActivity
 import vn.icheck.android.screen.user.view_item_image_stamp.ViewItemImageActivity
@@ -93,8 +90,7 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
         var mSerial: String? = null
     }
 
-    private var disposable: Disposable? = null
-
+    private var disposable: Disposable? = nul
     var id = -1L
 
     private var isShow = true
@@ -560,7 +556,7 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                                 "IMAGE_PRODUCT" -> {
                                     if (!widget.data?.atts.isNullOrEmpty()) {
                                         listData.add(ICLayout().apply {
-                                            viewType = ICViewTypes.PRODUCT_IMAGE
+                                            viewType = ICViewTypes.PRODUCT_IMAGE_TYPE
                                             data = widget.data!!.atts!!
                                         })
                                     }
@@ -568,7 +564,7 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                                 "PRODUCT" -> {
                                     if (widget.data != null) {
                                         listData.add(ICLayout().apply {
-                                            viewType = ICViewTypes.PRODUCT_INFO
+                                            viewType = ICViewTypes.PRODUCT_INFO_TYPE
                                             data = widget.data!!
                                         })
                                     }
@@ -584,7 +580,7 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                                 "STAMP_INFO" -> {
                                     if (!widget.data?.serial.isNullOrEmpty()) {
                                         listData.add(ICLayout().apply {
-                                            viewType = ICViewTypes.STAMP_INFO
+                                            viewType = ICViewTypes.STAMP_INFO_TYPE
                                             data = widget.data!!.serial
                                         })
                                     }
@@ -592,8 +588,40 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                                 "SCAN_INFO" -> {
                                     if (widget.data != null) {
                                         listData.add(ICLayout().apply {
-                                            viewType = ICViewTypes.SCAN_INFO
+                                            viewType = ICViewTypes.SCAN_INFO_TYPE
                                             data = widget.data
+                                        })
+                                    }
+                                }
+                                "GUARANTEE" -> {
+                                    if (widget.data != null) {
+                                        listData.add(ICLayout().apply {
+                                            viewType = ICViewTypes.GUARANTEE_INFO_TYPE
+                                            data = widget.data
+                                        })
+                                    }
+                                }
+                                "LAST_GUARANTEE" -> {
+                                    if (widget.data != null) {
+                                        listData.add(ICLayout().apply {
+                                            viewType = ICViewTypes.LAST_GUARANTEE_INFO_TYPE
+                                            data = widget.data!!.apply {
+                                                if (serial.isNullOrEmpty()) {
+                                                    serial = it.data!!.data!!.serial
+                                                }
+                                            }
+                                        })
+                                    }
+                                }
+                                "VENDOR" -> {
+                                    if (widget.data != null) {
+                                        listData.add(ICLayout().apply {
+                                            viewType = ICViewTypes.LAST_GUARANTEE_INFO_TYPE
+                                            data = widget.data!!.apply {
+                                                if (serial.isNullOrEmpty()) {
+                                                    serial = it.data!!.data!!.serial
+                                                }
+                                            }
                                         })
                                     }
                                 }
@@ -986,82 +1014,82 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
 
 //      Thong tin bao hanh
             objGuarantee = obj.data?.guarantee
-            if (obj.data?.guarantee?.time != null) {
-                if (isVietNamLanguage == false) {
-                    tvWarrantyInformation.text = "Warranty information"
-                    tvDetailsWarranty.text = "Details of Warranty information"
-                } else {
-                    tvWarrantyInformation.text = "Thông tin bảo hành"
-                    tvDetailsWarranty.text = "Chi tiết bảo hành"
-                }
+//            if (obj.data?.guarantee?.time != null) {
+//                if (isVietNamLanguage == false) {
+//                    tvWarrantyInformation.text = "Warranty information"
+//                    tvDetailsWarranty.text = "Details of Warranty information"
+//                } else {
+//                    tvWarrantyInformation.text = "Thông tin bảo hành"
+//                    tvDetailsWarranty.text = "Chi tiết bảo hành"
+//                }
 
-                layoutGurantee.visibility = View.VISIBLE
-                obj.data?.guarantee?.time?.let {
-                    if (isVietNamLanguage == false) {
-                        tvGuaranteeDay.text = if (it.guarantee_days_update != null && !it.type_guarantee_day.isNullOrEmpty()) {
-                            if (it.type_guarantee_day!!.trim() == "years") {
-                                Html.fromHtml("<font color=#434343>Warranty period: </font>" + "<b>" + it.guarantee_days_update + " " + "year" + "</b>")
-                            } else if (it.type_guarantee_day!!.trim() == "months") {
-                                Html.fromHtml("<font color=#434343>Warranty period: </font>" + "<b>" + it.guarantee_days_update + " " + "month" + "</b>")
-                            } else {
-                                Html.fromHtml("<font color=#434343>Warranty period: </font>" + "<b>" + it.guarantee_days_update + " " + "day" + "</b>")
-                            }
-                        } else {
-                            Html.fromHtml("<font color=#434343>Warranty period: </font>" + "<b>" + "updating" + "</b>")
-                        }
-
-                        tvExpiredDay.text = if (!it.expired_date.isNullOrEmpty()) {
-                            Html.fromHtml("<font color=#434343>Expire date: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(it.expired_date) + "</b>")
-                        } else {
-                            Html.fromHtml("<font color=#434343>Expire date: </font>" + "<b>" + "updating" + "</b>")
-                        }
-
-                        tvRemainingDay.text = if (it.days_remaining_str != null) {
-                            Html.fromHtml("<font color=#434343>Expiry date of warranty: </font>" + "<b>" + it.days_remaining_str + "</b>")
-                        } else {
-                            Html.fromHtml("<font color=#434343>Expiry date of warranty: </font>" + "<b>" + "updating" + "</b>")
-                        }
-
-                        tvActiveDay.text = if (!it.active.isNullOrEmpty()) {
-                            Html.fromHtml("<font color=#434343>Warranty activation date: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(it.active) + "</b>")
-                        } else {
-                            Html.fromHtml("<font color=#434343>Warranty activation date: </font>" + "<b>" + "updating" + "</b>")
-                        }
-                    } else {
-                        tvGuaranteeDay.text = if (it.guarantee_days_update != null && !it.type_guarantee_day.isNullOrEmpty()) {
-                            if (it.type_guarantee_day!!.trim() == "years") {
-                                Html.fromHtml("<font color=#434343>Thời gian bảo hành: </font>" + "<b>" + it.guarantee_days_update + " " + "năm" + "</b>")
-                            } else if (it.type_guarantee_day!!.trim() == "months") {
-                                Html.fromHtml("<font color=#434343>Thời gian bảo hành: </font>" + "<b>" + it.guarantee_days_update + " " + "tháng" + "</b>")
-                            } else {
-                                Html.fromHtml("<font color=#434343>Thời gian bảo hành: </font>" + "<b>" + it.guarantee_days_update + " " + "ngày" + "</b>")
-                            }
-                        } else {
-                            Html.fromHtml("<font color=#434343>Thời gian bảo hành: </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
-                        }
-
-                        tvExpiredDay.text = if (!it.expired_date.isNullOrEmpty()) {
-                            Html.fromHtml("<font color=#434343>Hạn bảo hành: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(it.expired_date) + "</b>")
-                        } else {
-                            Html.fromHtml("<font color=#434343>Hạn bảo hành: </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
-                        }
-
-                        tvRemainingDay.text = if (it.days_remaining_str != null) {
-                            Html.fromHtml("<font color=#434343>Số ngày bảo hành còn lại: </font>" + "<b>" + it.days_remaining_str + "</b>")
-                        } else {
-                            Html.fromHtml("<font color=#434343>Số ngày bảo hành còn lại: </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
-                        }
-
-                        tvActiveDay.text = if (!it.active.isNullOrEmpty()) {
-                            Html.fromHtml("<font color=#434343>Ngày kích hoạt bảo hành: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(it.active) + "</b>")
-                        } else {
-                            Html.fromHtml("<font color=#434343>Ngày kích hoạt bảo hành: </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
-                        }
-                    }
-                }
-            } else {
-                layoutGurantee.visibility = View.GONE
-            }
+//                layoutGurantee.visibility = View.VISIBLE
+//                obj.data?.guarantee?.time?.let {
+//                    if (isVietNamLanguage == false) {
+//                        tvGuaranteeDay.text = if (it.guarantee_days_update != null && !it.type_guarantee_day.isNullOrEmpty()) {
+//                            if (it.type_guarantee_day!!.trim() == "years") {
+//                                Html.fromHtml("<font color=#434343>Warranty period: </font>" + "<b>" + it.guarantee_days_update + " " + "year" + "</b>")
+//                            } else if (it.type_guarantee_day!!.trim() == "months") {
+//                                Html.fromHtml("<font color=#434343>Warranty period: </font>" + "<b>" + it.guarantee_days_update + " " + "month" + "</b>")
+//                            } else {
+//                                Html.fromHtml("<font color=#434343>Warranty period: </font>" + "<b>" + it.guarantee_days_update + " " + "day" + "</b>")
+//                            }
+//                        } else {
+//                            Html.fromHtml("<font color=#434343>Warranty period: </font>" + "<b>" + "updating" + "</b>")
+//                        }
+//
+//                        tvExpiredDay.text = if (!it.expired_date.isNullOrEmpty()) {
+//                            Html.fromHtml("<font color=#434343>Expire date: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(it.expired_date) + "</b>")
+//                        } else {
+//                            Html.fromHtml("<font color=#434343>Expire date: </font>" + "<b>" + "updating" + "</b>")
+//                        }
+//
+//                        tvRemainingDay.text = if (it.days_remaining_str != null) {
+//                            Html.fromHtml("<font color=#434343>Expiry date of warranty: </font>" + "<b>" + it.days_remaining_str + "</b>")
+//                        } else {
+//                            Html.fromHtml("<font color=#434343>Expiry date of warranty: </font>" + "<b>" + "updating" + "</b>")
+//                        }
+//
+//                        tvActiveDay.text = if (!it.active.isNullOrEmpty()) {
+//                            Html.fromHtml("<font color=#434343>Warranty activation date: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(it.active) + "</b>")
+//                        } else {
+//                            Html.fromHtml("<font color=#434343>Warranty activation date: </font>" + "<b>" + "updating" + "</b>")
+//                        }
+//                    } else {
+//                        tvGuaranteeDay.text = if (it.guarantee_days_update != null && !it.type_guarantee_day.isNullOrEmpty()) {
+//                            if (it.type_guarantee_day!!.trim() == "years") {
+//                                Html.fromHtml("<font color=#434343>Thời gian bảo hành: </font>" + "<b>" + it.guarantee_days_update + " " + "năm" + "</b>")
+//                            } else if (it.type_guarantee_day!!.trim() == "months") {
+//                                Html.fromHtml("<font color=#434343>Thời gian bảo hành: </font>" + "<b>" + it.guarantee_days_update + " " + "tháng" + "</b>")
+//                            } else {
+//                                Html.fromHtml("<font color=#434343>Thời gian bảo hành: </font>" + "<b>" + it.guarantee_days_update + " " + "ngày" + "</b>")
+//                            }
+//                        } else {
+//                            Html.fromHtml("<font color=#434343>Thời gian bảo hành: </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
+//                        }
+//
+//                        tvExpiredDay.text = if (!it.expired_date.isNullOrEmpty()) {
+//                            Html.fromHtml("<font color=#434343>Hạn bảo hành: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(it.expired_date) + "</b>")
+//                        } else {
+//                            Html.fromHtml("<font color=#434343>Hạn bảo hành: </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
+//                        }
+//
+//                        tvRemainingDay.text = if (it.days_remaining_str != null) {
+//                            Html.fromHtml("<font color=#434343>Số ngày bảo hành còn lại: </font>" + "<b>" + it.days_remaining_str + "</b>")
+//                        } else {
+//                            Html.fromHtml("<font color=#434343>Số ngày bảo hành còn lại: </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
+//                        }
+//
+//                        tvActiveDay.text = if (!it.active.isNullOrEmpty()) {
+//                            Html.fromHtml("<font color=#434343>Ngày kích hoạt bảo hành: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(it.active) + "</b>")
+//                        } else {
+//                            Html.fromHtml("<font color=#434343>Ngày kích hoạt bảo hành: </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
+//                        }
+//                    }
+//                }
+//            } else {
+//                layoutGurantee.visibility = View.GONE
+//            }
 
 //          Lich su bao hanh gan nhat
             if (obj.data?.guarantee?.last_guarantee != null) {

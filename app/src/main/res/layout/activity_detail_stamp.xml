@@ -1219,128 +1219,128 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <!--Layout Gurantee-->
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/layoutGurantee"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/size_13"
-                    android:layout_marginTop="@dimen/size_8"
-                    android:layout_marginEnd="@dimen/size_13"
-                    android:layout_marginBottom="@dimen/size_8"
-                    android:visibility="gone"
-                    app:cardCornerRadius="@dimen/size_10"
-                    tools:visibility="visible">
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:id="@+id/layoutGurantee"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="@dimen/size_13"-->
+<!--                    android:layout_marginTop="@dimen/size_8"-->
+<!--                    android:layout_marginEnd="@dimen/size_13"-->
+<!--                    android:layout_marginBottom="@dimen/size_8"-->
+<!--                    android:visibility="gone"-->
+<!--                    app:cardCornerRadius="@dimen/size_10"-->
+<!--                    tools:visibility="visible">-->
 
-                    <LinearLayout
-                        android:id="@+id/layoutContenGuarantee"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/bg_corner_gray_10"
-                        android:orientation="vertical"
-                        android:paddingBottom="@dimen/size_12">
+<!--                    <LinearLayout-->
+<!--                        android:id="@+id/layoutContenGuarantee"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:background="@drawable/bg_corner_gray_10"-->
+<!--                        android:orientation="vertical"-->
+<!--                        android:paddingBottom="@dimen/size_12">-->
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/bg_corner_top_dark_blue_10">
+<!--                        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:background="@drawable/bg_corner_top_dark_blue_10">-->
 
-                            <LinearLayout
-                                android:id="@+id/root"
-                                android:layout_width="@dimen/size_30"
-                                android:layout_height="@dimen/size_30"
-                                android:layout_marginStart="@dimen/size_12"
-                                android:background="@drawable/bg_corner_white_10"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent">
+<!--                            <LinearLayout-->
+<!--                                android:id="@+id/root"-->
+<!--                                android:layout_width="@dimen/size_30"-->
+<!--                                android:layout_height="@dimen/size_30"-->
+<!--                                android:layout_marginStart="@dimen/size_12"-->
+<!--                                android:background="@drawable/bg_corner_white_10"-->
+<!--                                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                app:layout_constraintStart_toStartOf="parent"-->
+<!--                                app:layout_constraintTop_toTopOf="parent">-->
 
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="@dimen/size_4"
-                                    android:src="@drawable/ic_warranty_blue_36px" />
+<!--                                <androidx.appcompat.widget.AppCompatImageView-->
+<!--                                    android:layout_width="wrap_content"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:layout_margin="@dimen/size_4"-->
+<!--                                    android:src="@drawable/ic_warranty_blue_36px" />-->
 
-                            </LinearLayout>
+<!--                            </LinearLayout>-->
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvWarrantyInformation"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/size_8"
-                                android:layout_marginTop="@dimen/size_13"
-                                android:layout_marginBottom="@dimen/size_13"
-                                android:fontFamily="sans-serif-medium"
-                                android:textColor="#ffffff"
-                                android:textSize="@dimen/font_16"
-                                android:textStyle="normal"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toEndOf="@+id/root"
-                                app:layout_constraintTop_toTopOf="parent" />
+<!--                            <androidx.appcompat.widget.AppCompatTextView-->
+<!--                                android:id="@+id/tvWarrantyInformation"-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginStart="@dimen/size_8"-->
+<!--                                android:layout_marginTop="@dimen/size_13"-->
+<!--                                android:layout_marginBottom="@dimen/size_13"-->
+<!--                                android:fontFamily="sans-serif-medium"-->
+<!--                                android:textColor="#ffffff"-->
+<!--                                android:textSize="@dimen/font_16"-->
+<!--                                android:textStyle="normal"-->
+<!--                                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                                app:layout_constraintStart_toEndOf="@+id/root"-->
+<!--                                app:layout_constraintTop_toTopOf="parent" />-->
 
-                        </androidx.constraintlayout.widget.ConstraintLayout>
+<!--                        </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/tvDetailsWarranty"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/size_12"
-                            android:layout_marginTop="@dimen/size_12"
-                            android:layout_marginBottom="@dimen/size_8"
-                            android:fontFamily="sans-serif-medium"
-                            android:textColor="#3c5a99"
-                            android:textSize="@dimen/font_16"
-                            android:textStyle="normal" />
+<!--                        <androidx.appcompat.widget.AppCompatTextView-->
+<!--                            android:id="@+id/tvDetailsWarranty"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginStart="@dimen/size_12"-->
+<!--                            android:layout_marginTop="@dimen/size_12"-->
+<!--                            android:layout_marginBottom="@dimen/size_8"-->
+<!--                            android:fontFamily="sans-serif-medium"-->
+<!--                            android:textColor="#3c5a99"-->
+<!--                            android:textSize="@dimen/font_16"-->
+<!--                            android:textStyle="normal" />-->
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/tvGuaranteeDay"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/size_12"
-                            android:layout_marginBottom="@dimen/size_4"
-                            android:fontFamily="sans-serif"
-                            android:textColor="#000000"
-                            android:textSize="@dimen/font_14"
-                            android:textStyle="normal"
-                            tools:text="Thời gian bảo hành: 3 năm" />
+<!--                        <androidx.appcompat.widget.AppCompatTextView-->
+<!--                            android:id="@+id/tvGuaranteeDay"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginStart="@dimen/size_12"-->
+<!--                            android:layout_marginBottom="@dimen/size_4"-->
+<!--                            android:fontFamily="sans-serif"-->
+<!--                            android:textColor="#000000"-->
+<!--                            android:textSize="@dimen/font_14"-->
+<!--                            android:textStyle="normal"-->
+<!--                            tools:text="Thời gian bảo hành: 3 năm" />-->
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/tvExpiredDay"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/size_12"
-                            android:layout_marginBottom="@dimen/size_4"
-                            android:fontFamily="sans-serif"
-                            android:textColor="#000000"
-                            android:textSize="@dimen/font_14"
-                            android:textStyle="normal"
-                            tools:text="Hạn bảo hành: 29/04/2018" />
+<!--                        <androidx.appcompat.widget.AppCompatTextView-->
+<!--                            android:id="@+id/tvExpiredDay"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginStart="@dimen/size_12"-->
+<!--                            android:layout_marginBottom="@dimen/size_4"-->
+<!--                            android:fontFamily="sans-serif"-->
+<!--                            android:textColor="#000000"-->
+<!--                            android:textSize="@dimen/font_14"-->
+<!--                            android:textStyle="normal"-->
+<!--                            tools:text="Hạn bảo hành: 29/04/2018" />-->
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/tvRemainingDay"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/size_12"
-                            android:layout_marginBottom="@dimen/size_4"
-                            android:fontFamily="sans-serif"
-                            android:textColor="#000000"
-                            android:textSize="@dimen/font_14"
-                            android:textStyle="normal"
-                            tools:text="Số ngày bảo hành còn lại: 15 ngày" />
+<!--                        <androidx.appcompat.widget.AppCompatTextView-->
+<!--                            android:id="@+id/tvRemainingDay"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginStart="@dimen/size_12"-->
+<!--                            android:layout_marginBottom="@dimen/size_4"-->
+<!--                            android:fontFamily="sans-serif"-->
+<!--                            android:textColor="#000000"-->
+<!--                            android:textSize="@dimen/font_14"-->
+<!--                            android:textStyle="normal"-->
+<!--                            tools:text="Số ngày bảo hành còn lại: 15 ngày" />-->
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/tvActiveDay"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/size_12"
-                            android:fontFamily="sans-serif"
-                            android:textColor="#000000"
-                            android:textSize="@dimen/font_14"
-                            android:textStyle="normal"
-                            tools:text="Ngày kích hoạt bảo hành: 20/11/2017" />
+<!--                        <androidx.appcompat.widget.AppCompatTextView-->
+<!--                            android:id="@+id/tvActiveDay"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginStart="@dimen/size_12"-->
+<!--                            android:fontFamily="sans-serif"-->
+<!--                            android:textColor="#000000"-->
+<!--                            android:textSize="@dimen/font_14"-->
+<!--                            android:textStyle="normal"-->
+<!--                            tools:text="Ngày kích hoạt bảo hành: 20/11/2017" />-->
 
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
+<!--                    </LinearLayout>-->
+<!--                </androidx.cardview.widget.CardView>-->
 
                 <!--History Gurantee-->
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -1350,8 +1350,7 @@
                     android:layout_marginStart="@dimen/size_12"
                     android:layout_marginTop="@dimen/size_8"
                     android:layout_marginEnd="@dimen/size_12"
-                    android:layout_marginBottom="@dimen/size_8"
-                    android:visibility="gone">
+                    android:layout_marginBottom="@dimen/size_8">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/appCompatTextView6"
@@ -1373,6 +1372,7 @@
                         android:textColor="#434343"
                         android:textSize="@dimen/font_14"
                         android:textStyle="normal"
+                        android:text="fsdfsd"
                         app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView6"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/appCompatTextView6"

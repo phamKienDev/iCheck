@@ -13,7 +13,7 @@ data class ICWidgetData(
         @Expose val atts: MutableList<ICMedia>?,
         @Expose val success: Int?,
         @Expose val text: String?,
-        @Expose val serial: String?,
+        @Expose var serial: String?,
         @Expose val scanCount: Long?,
         @Expose val peopleCount: Long?,
         @Expose val guaranteeDay: Long?,
