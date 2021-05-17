@@ -20,9 +20,10 @@ import vn.map4d.types.MFLocationCoordinate
 class MapScanHistoryViewModel : ViewModel() {
     private val interactor = HistoryInteractor()
 
-    val listData = MutableLiveData<MutableList<ICStoreNear>>()
+    val setListData = MutableLiveData<MutableList<ICStoreNear>>()
+    val addListData = MutableLiveData<MutableList<ICStoreNear>>()
     val listRoute = MutableLiveData<MutableList<MFLocationCoordinate>>()
-    var idShopSelect = 0L
+    var idProduct = 0L
 
     var latShop = 0.0
     var lonShop = 0.0
@@ -30,13 +31,15 @@ class MapScanHistoryViewModel : ViewModel() {
     var isPage = false
     var avatarShop = ""
 
+    var offset = 0
+
     val statusCode = MutableLiveData<ICMessageEvent.Type>()
     val onError = MutableLiveData<Int>()
     val onShowErrorMessage = MutableLiveData<String>()
 
     fun getData(intent: Intent?) {
         val json = intent?.getStringExtra(Constant.DATA_1)
-        idShopSelect = intent?.getLongExtra(Constant.DATA_2, 0L) ?: 0L
+        idProduct = intent?.getLongExtra(Constant.DATA_2, 0L) ?: 0L
         latShop = intent?.getDoubleExtra(Constant.DATA_3, 0.0) ?: 0.0
         lonShop = intent?.getDoubleExtra(Constant.DATA_4, 0.0) ?: 0.0
         isPage = intent?.getBooleanExtra("isPage", false) ?: false
@@ -44,12 +47,11 @@ class MapScanHistoryViewModel : ViewModel() {
 
         val data = parseListStoreSellHistory(json)
         if (!data.isNullOrEmpty()) {
-            listData.postValue(data!!)
+            setListData.postValue(data!!)
+            offset = data.size
             for (i in data) {
-                if (i.id == idShopSelect) {
+                if (i.id == idProduct) {
                     if (i.id != null && i.location != null) {
-//                        lat = i.location?.lat!!
-//                        lon = i.location?.lon!!
                         latShop = i.location?.lat ?: 0.0
                         lonShop = i.location?.lon ?: 0.0
                         getLocationShop(latShop, lonShop)
@@ -59,7 +61,7 @@ class MapScanHistoryViewModel : ViewModel() {
         } else {
             // request api
             getLocationShop(latShop, lonShop)
-            getStoreNear(idShopSelect)
+            getStoreNear()
         }
     }
 
@@ -88,35 +90,43 @@ class MapScanHistoryViewModel : ViewModel() {
             interactor.dispose()
 
             if (latShop != 0.0 && lonShop != 0.0) {
-                interactor.getRouteShop(latShop, lonShop, object : ICNewApiListener<ICResponse<MutableList<ICRoutesShop>>> {
-                    override fun onSuccess(obj: ICResponse<MutableList<ICRoutesShop>>) {
-                        statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
+                interactor.getRouteShop(
+                    latShop,
+                    lonShop,
+                    object : ICNewApiListener<ICResponse<MutableList<ICRoutesShop>>> {
+                        override fun onSuccess(obj: ICResponse<MutableList<ICRoutesShop>>) {
+                            statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
 
-                        val list = mutableListOf<MFLocationCoordinate>()
-                        if (!obj.data.isNullOrEmpty()) {
-                            if (!obj.data!![0].legs.isNullOrEmpty()) {
-                                for (step in obj.data!![0].legs!![0].steps ?: mutableListOf()) {
-                                    for (location in step.locations ?: mutableListOf()) {
-                                        list.add(MFLocationCoordinate(location.lat ?: 0.0, location.lon ?: 0.0))
+                            val list = mutableListOf<MFLocationCoordinate>()
+                            if (!obj.data.isNullOrEmpty()) {
+                                if (!obj.data!![0].legs.isNullOrEmpty()) {
+                                    for (step in obj.data!![0].legs!![0].steps ?: mutableListOf()) {
+                                        for (location in step.locations ?: mutableListOf()) {
+                                            list.add(
+                                                MFLocationCoordinate(
+                                                    location.lat ?: 0.0,
+                                                    location.lon ?: 0.0
+                                                )
+                                            )
+                                        }
                                     }
                                 }
+                                listRoute.postValue(list)
+                            } else {
+                                onError.postValue(Constant.ERROR_SERVER)
                             }
-                            listRoute.postValue(list)
-                        } else {
+                        }
+
+                        override fun onError(error: ICResponseCode?) {
+                            statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                             onError.postValue(Constant.ERROR_SERVER)
                         }
-                    }
-
-                    override fun onError(error: ICResponseCode?) {
-                        statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                        onError.postValue(Constant.ERROR_SERVER)
-                    }
-                })
+                    })
             }
         }
     }
 
-    private fun getStoreNear(idShopSelect: Long) {
+    fun getStoreNear(isLoadmore: Boolean = false) {
         viewModelScope.launch {
             if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
                 statusCode.postValue(ICMessageEvent.Type.ON_NO_INTERNET)
@@ -124,22 +134,33 @@ class MapScanHistoryViewModel : ViewModel() {
             }
 
             statusCode.postValue(ICMessageEvent.Type.ON_SHOW_LOADING)
+            if (!isLoadmore)
+                offset = 0
 
-            interactor.getStoreNear(idShopSelect, object : ICNewApiListener<ICResponse<ICListResponse<ICStoreNear>>> {
-                override fun onSuccess(obj: ICResponse<ICListResponse<ICStoreNear>>) {
-                    statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                    if (!obj.data?.rows.isNullOrEmpty()) {
-                        listData.postValue(obj.data?.rows)
-                    } else {
+            interactor.getStoreNear(
+                idProduct,
+                offset,
+                object : ICNewApiListener<ICResponse<ICListResponse<ICStoreNear>>> {
+                    override fun onSuccess(obj: ICResponse<ICListResponse<ICStoreNear>>) {
+                        statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
+                        if (!isLoadmore) {
+                            if (!obj.data?.rows.isNullOrEmpty()) {
+                                setListData.postValue(obj.data?.rows)
+                            } else {
+                                onError.postValue(Constant.ERROR_EMPTY)
+                            }
+
+                        } else {
+                            addListData.postValue(obj.data?.rows)
+                        }
+                        offset += APIConstants.LIMIT
+                    }
+
+                    override fun onError(error: ICResponseCode?) {
+                        statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                         onError.postValue(Constant.ERROR_EMPTY)
                     }
-                }
-
-                override fun onError(error: ICResponseCode?) {
-                    statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                    onError.postValue(Constant.ERROR_EMPTY)
-                }
-            })
+                })
         }
     }
 }

@@ -50,7 +50,7 @@ class FocusableEditText : AppCompatEditText {
 
     private fun initFont() {
         typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
-        if (inputType == TYPE_CLASS_TEXT or TYPE_TEXT_VARIATION_PASSWORD || inputType == TYPE_CLASS_TEXT or TYPE_TEXT_VARIATION_VISIBLE_PASSWORD) {
+        if (inputType == TYPE_CLASS_TEXT or TYPE_TEXT_VARIATION_PASSWORD || inputType == TYPE_CLASS_TEXT or TYPE_TEXT_VARIATION_VISIBLE_PASSWORD || inputType == TYPE_CLASS_NUMBER or TYPE_NUMBER_VARIATION_PASSWORD) {
             if (transformationMethod == null) {
                 setCompoundDrawablesWithIntrinsicBounds(leftDrawable, null, drawableEyeOff, null)
             } else {
@@ -105,7 +105,7 @@ class FocusableEditText : AppCompatEditText {
     private fun setDrawableFocusable() {
         if (rightDrawable == null) {
             if (currentText.isNotEmpty() && isFocused) {
-                if (inputType != TYPE_CLASS_TEXT or TYPE_TEXT_VARIATION_PASSWORD && inputType != TYPE_CLASS_TEXT or TYPE_TEXT_VARIATION_VISIBLE_PASSWORD) {
+                if (inputType != TYPE_CLASS_TEXT or TYPE_TEXT_VARIATION_PASSWORD && inputType != TYPE_CLASS_TEXT or TYPE_TEXT_VARIATION_VISIBLE_PASSWORD || inputType == TYPE_CLASS_NUMBER or TYPE_NUMBER_VARIATION_PASSWORD) {
                     setCompoundDrawablesWithIntrinsicBounds(leftDrawable, null, rightDrawable
                             ?: drawableClear, null)
                 } else {
@@ -124,7 +124,7 @@ class FocusableEditText : AppCompatEditText {
                 }
             }
         } else {
-            if (inputType == TYPE_CLASS_TEXT or TYPE_TEXT_VARIATION_PASSWORD || inputType == TYPE_CLASS_TEXT or TYPE_TEXT_VARIATION_VISIBLE_PASSWORD) {
+            if (inputType == TYPE_CLASS_TEXT or TYPE_TEXT_VARIATION_PASSWORD || inputType == TYPE_CLASS_TEXT or TYPE_TEXT_VARIATION_VISIBLE_PASSWORD || inputType == TYPE_CLASS_NUMBER or TYPE_NUMBER_VARIATION_PASSWORD) {
                 if (transformationMethod == null) {
                     setCompoundDrawablesWithIntrinsicBounds(leftDrawable, null, drawableEyeOff, null)
                 } else {
@@ -140,7 +140,7 @@ class FocusableEditText : AppCompatEditText {
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         if (event?.action == MotionEvent.ACTION_UP && enableRightClick) {
             if (event.rawX > right - totalPaddingRight) {
-                if (inputType == TYPE_CLASS_TEXT or TYPE_TEXT_VARIATION_VISIBLE_PASSWORD || inputType == TYPE_CLASS_TEXT or TYPE_TEXT_VARIATION_PASSWORD) {
+                if (inputType == TYPE_CLASS_TEXT or TYPE_TEXT_VARIATION_VISIBLE_PASSWORD || inputType == TYPE_CLASS_TEXT or TYPE_TEXT_VARIATION_PASSWORD || inputType == TYPE_CLASS_NUMBER or TYPE_NUMBER_VARIATION_PASSWORD) {
                     transformationMethod = if (transformationMethod == null) {
                         setCompoundDrawablesWithIntrinsicBounds(leftDrawable, null, drawableEye, null)
                         PasswordTransformationMethod()

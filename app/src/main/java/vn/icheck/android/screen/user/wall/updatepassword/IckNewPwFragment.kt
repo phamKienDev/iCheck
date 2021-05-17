@@ -181,12 +181,12 @@ class IckNewPwFragment : CoroutineFragment() {
     private fun changeKeyboard(view: AppCompatEditText) {
         view.apply {
             if (isFocused) {
-                inputType = if (inputType != InputType.TYPE_TEXT_VARIATION_PASSWORD) {
+                inputType = if (inputType != InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD) {
 //                    binding.btnKeyboard.setText(R.string.ban_phim_so)
-                    InputType.TYPE_TEXT_VARIATION_PASSWORD
+                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
                 } else {
 //                    binding.btnKeyboard.setText(R.string.ban_phim_chu)
-                    InputType.TYPE_CLASS_NUMBER
+                    InputType.TYPE_CLASS_NUMBER or InputType.TYPE_TEXT_VARIATION_PASSWORD
                 }
                 transformationMethod = PasswordTransformationMethod()
                 setSelection(length())

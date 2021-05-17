@@ -31,7 +31,7 @@
                 android:ems="10"
                 android:focusableInTouchMode="true"
                 android:hint="@string/nhap_so_dien_thoai"
-                android:inputType="phone"
+                android:inputType="number"
                 android:paddingBottom="@dimen/size_20"
                 android:textAlignment="center"
                 android:textColor="#212121"

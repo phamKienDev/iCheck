@@ -82,7 +82,7 @@
                 android:gravity="center"
                 android:hint="Nhập số điện thoại"
                 android:imeOptions="actionSend"
-                android:inputType="phone"
+                android:inputType="number"
                 android:paddingBottom="@dimen/size_20"
                 android:textColor="#212121"
                 android:textSize="@dimen/font_20"

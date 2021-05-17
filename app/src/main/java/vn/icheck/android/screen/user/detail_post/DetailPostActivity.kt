@@ -63,6 +63,7 @@ import vn.icheck.android.screen.user.list_product_question.adapter.ListEmojiAdap
 import vn.icheck.android.screen.user.media_in_post.MediaInPostActivity
 import vn.icheck.android.util.KeyboardUtils
 import vn.icheck.android.util.ick.beGone
+import vn.icheck.android.util.ick.beInvisible
 import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.util.ick.logError
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -392,44 +393,49 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
     private fun checkPrivacyConfig() {
         if (viewModel.post?.page == null) {
             if (viewModel.post?.user?.id != SessionManager.session.user?.id) {
-                when (viewModel.post?.user?.userPrivacyConfig?.whoCommentYourPost) {
-                    Constant.EVERYONE -> {
-                        view3.beVisible()
-                        containerSent.beVisible()
-                    }
-                    Constant.FRIEND -> {
-                        if (ICheckApplication.getInstance().mFirebase.auth.currentUser != null && SessionManager.session.user?.id != null) {
-                            ICheckApplication.getInstance().mFirebase.registerRelationship(
-                                Constant.myFriendIdList,
-                                viewModel.post?.user?.id.toString(),
-                                object : ValueEventListener {
-                                    override fun onDataChange(snapshot: DataSnapshot) {
-                                        if (snapshot.value != null && snapshot.value is Long) {
-                                            view3.beVisible()
-                                            containerSent.beVisible()
-                                        } else {
-                                            notAllowReply()
-                                            view3.beGone()
-                                            containerSent.beGone()
-                                        }
-                                    }
-
-                                    override fun onCancelled(error: DatabaseError) {
-                                        logError(error.toException())
-                                    }
-                                })
-                        }
-                    }
-                    else -> {
-                        if (viewModel.post?.user?.id == SessionManager.session.user?.id) {
+                if (viewModel.post?.user?.userPrivacyConfig?.whoCommentYourPost!=null) {
+                    when (viewModel.post?.user?.userPrivacyConfig?.whoCommentYourPost) {
+                        Constant.EVERYONE -> {
                             view3.beVisible()
                             containerSent.beVisible()
-                        } else {
-                            notAllowReply()
-                            view3.beGone()
-                            containerSent.beGone()
+                        }
+                        Constant.FRIEND -> {
+                            if (ICheckApplication.getInstance().mFirebase.auth.currentUser != null && SessionManager.session.user?.id != null) {
+                                ICheckApplication.getInstance().mFirebase.registerRelationship(
+                                    Constant.myFriendIdList,
+                                    viewModel.post?.user?.id.toString(),
+                                    object : ValueEventListener {
+                                        override fun onDataChange(snapshot: DataSnapshot) {
+                                            if (snapshot.value != null && snapshot.value is Long) {
+                                                view3.beVisible()
+                                                containerSent.beVisible()
+                                            } else {
+                                                notAllowReply()
+                                                view3.beGone()
+                                                containerSent.beGone()
+                                            }
+                                        }
+
+                                        override fun onCancelled(error: DatabaseError) {
+                                            logError(error.toException())
+                                        }
+                                    })
+                            }
+                        }
+                        else -> {
+                            if (viewModel.post?.user?.id == SessionManager.session.user?.id) {
+                                view3.beVisible()
+                                containerSent.beVisible()
+                            } else {
+                                notAllowReply()
+                                view3.beGone()
+                                containerSent.beGone()
+                            }
                         }
                     }
+                }else{
+                    view3.beVisible()
+                    containerSent.beVisible()
                 }
             } else {
                 view3.beVisible()
@@ -462,46 +468,26 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
 
 
     fun showLayoutImage(show: Boolean, file: File? = null) {
-        val btnPlay = AppCompatImageButton(this).also {
-            it.id = R.id.btnPlay
-            it.layoutParams = FrameLayout.LayoutParams(SizeHelper.size80, SizeHelper.size80)
-            it.setImageResource(R.drawable.ic_play_40dp)
-            it.background = ContextCompat.getDrawable(this, R.drawable.bg_black_20_corners_4)
-        }
-
         if (show) {
             imgCamera.setImageResource(R.drawable.ic_camera_on_24px)
             view2.beVisible()
-            layoutImage.beVisible()
-            cardViewImage.beVisible()
-            frameImage.beVisible()
-            imgCommentSend.beVisible()
             imgClearImage.beVisible()
+            cardViewImage.beVisible()
             imgCommentSend.tag = file
 
             imgCommentSend.loadImageFromVideoFile(file, null, SizeHelper.dpToPx(4))
 
             if (file?.absolutePath?.contains(".mp4") == true) {
-                if (frameImage.childCount == 1) {
-                    frameImage.addView(btnPlay)
-                }
+                btnPlay.beVisible()
             } else {
-                if (frameImage.childCount > 1) {
-                    frameImage.removeViewAt(2)
-                }
+                btnPlay.beInvisible()
             }
 
         } else {
             imgCamera.setImageResource(R.drawable.ic_camera_off_24px)
             view2.beGone()
-            layoutImage.beGone()
-            cardViewImage.beGone()
-            frameImage.beGone()
-            imgCommentSend.beGone()
             imgClearImage.beGone()
-            if (frameImage.childCount > 1) {
-                frameImage.removeViewAt(2)
-            }
+            cardViewImage.beGone()
         }
     }
 
@@ -837,8 +823,7 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
     }
 
     override fun onBackPressed() {
-        EventBus.getDefault()
-            .post(ICMessageEvent(ICMessageEvent.Type.RESULT_DETAIL_POST_ACTIVITY, viewModel.post))
+        EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.RESULT_DETAIL_POST_ACTIVITY, adapter.getListData.firstOrNull { it is ICPost }))
         Intent().apply {
             putExtra(Constant.DATA_1, viewModel.post)
             setResult(RESULT_OK, this)

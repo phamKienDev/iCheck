@@ -28,10 +28,7 @@ abstract class RecyclerViewAdapter<T>(open val listener: IRecyclerViewCallback? 
     protected abstract fun viewHolder(parent: ViewGroup): RecyclerView.ViewHolder
 
     fun setListData(list: MutableList<T>) {
-        if (isLoadMoreEnable) {
-            isLoadMore = list.size >= APIConstants.LIMIT
-            isLoading = false
-        }
+        checkLoadmore(list)
 
         listData.clear()
         listData.addAll(list)
@@ -39,13 +36,17 @@ abstract class RecyclerViewAdapter<T>(open val listener: IRecyclerViewCallback? 
     }
 
     fun addListData(list: MutableList<T>) {
+        checkLoadmore(list)
+
+        listData.addAll(list)
+        notifyDataSetChanged()
+    }
+
+     fun checkLoadmore(list: MutableList<T>) {
         if (isLoadMoreEnable) {
             isLoadMore = list.size >= APIConstants.LIMIT
             isLoading = false
         }
-
-        listData.addAll(list)
-        notifyDataSetChanged()
     }
 
     /**
