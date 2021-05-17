@@ -122,7 +122,7 @@ internal class GiftDetailAdapter(val type: Int = 0) : RecyclerViewCustomAdapter<
                                 && (obj.voucher?.effective_time.isNullOrEmpty()
                                 || obj.voucher?.effective_type.isNullOrEmpty()) -> {
 
-                            "Còn ${TimeHelper.convertDateTimeSvToCurrentDate(TimeHelper.convertDateTimeSvToMillisecond(obj.voucher?.end_at))}"
+                            "Còn lại ${TimeHelper.convertDateTimeSvToCurrentDate(TimeHelper.convertDateTimeSvToMillisecond(obj.voucher?.end_at))}"
 
                         }
                         !obj.voucher?.released_at.isNullOrEmpty()
@@ -132,7 +132,7 @@ internal class GiftDetailAdapter(val type: Int = 0) : RecyclerViewCustomAdapter<
                                 || obj.voucher?.end_at.isNullOrEmpty()) -> {
 
 
-                            "Còn ${TimeHelper.convertDateTimeSvToCurrentDate(TimeHelper.millisecondEffectiveTime(obj.voucher?.effective_type!!, obj.voucher?.effective_time!!, obj.voucher?.released_at!!))}"
+                            "Còn lại ${TimeHelper.convertDateTimeSvToCurrentDate(TimeHelper.millisecondEffectiveTime(obj.voucher?.effective_type!!, obj.voucher?.effective_time!!, obj.voucher?.released_at!!))}"
                         }
                         !obj.voucher?.released_at.isNullOrEmpty()
                                 && !obj.voucher?.effective_time.isNullOrEmpty()
@@ -146,9 +146,9 @@ internal class GiftDetailAdapter(val type: Int = 0) : RecyclerViewCustomAdapter<
                                     ?: 0) - System.currentTimeMillis()
 
                             if (millisecondWithEffectiveTime > currentMillisecondWithEndAt) {
-                                "Còn ${TimeHelper.convertDateTimeSvToCurrentDate(TimeHelper.convertDateTimeSvToMillisecond(obj.voucher?.end_at))}"
+                                "Còn lại ${TimeHelper.convertDateTimeSvToCurrentDate(TimeHelper.convertDateTimeSvToMillisecond(obj.voucher?.end_at))}"
                             } else {
-                                "Còn ${TimeHelper.convertDateTimeSvToCurrentDate(millisecondWithEffectiveTime)}"
+                                "Còn lại ${TimeHelper.convertDateTimeSvToCurrentDate(millisecondWithEffectiveTime)}"
                             }
                         }
                         else -> {
@@ -157,7 +157,7 @@ internal class GiftDetailAdapter(val type: Int = 0) : RecyclerViewCustomAdapter<
                     }
                     itemView.tvStatus.apply {
 
-                        if (itemView.tvDateTime.text.toString() == "Còn ") {
+                        if (itemView.tvDateTime.text.toString() == "Còn lại ") {
 
                             itemView.tvDateTime.text = ""
                             text = "Hết hạn sử dụng"
@@ -243,7 +243,7 @@ internal class GiftDetailAdapter(val type: Int = 0) : RecyclerViewCustomAdapter<
                             setOnClickListener {
                                 itemView.context.startActivity(Intent(itemView.context, VoucherLoyaltyActivity::class.java).apply {
                                     putExtra(ConstantsLoyalty.DATA_1, obj.voucher?.code)
-                                    putExtra(ConstantsLoyalty.DATA_2, obj.voucher?.expired_at)
+                                    putExtra(ConstantsLoyalty.DATA_2, itemView.tvDateTime.text.toString().trim())
                                     putExtra(ConstantsLoyalty.DATA_3, obj.owner?.logo?.thumbnail)
                                 })
                             }

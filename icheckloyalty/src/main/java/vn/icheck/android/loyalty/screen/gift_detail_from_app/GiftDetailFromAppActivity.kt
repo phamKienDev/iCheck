@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_gift_detail_from_app.*
+import kotlinx.android.synthetic.main.item_gift_detail_from_app.view.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.*
@@ -136,7 +137,7 @@ class GiftDetailFromAppActivity : BaseActivityGame() {
                                 setOnClickListener {
                                     startActivity(Intent(this@GiftDetailFromAppActivity, VoucherLoyaltyActivity::class.java).apply {
                                         putExtra(ConstantsLoyalty.DATA_1, obj.voucher.code)
-                                        putExtra(ConstantsLoyalty.DATA_2, obj.voucher.expired_at)
+                                        putExtra(ConstantsLoyalty.DATA_2, recyclerView.findViewHolderForAdapterPosition(0)?.itemView?.tvTimeGift?.text.toString().trim())
                                         putExtra(ConstantsLoyalty.DATA_3, obj.owner?.logo?.thumbnail)
                                     })
                                 }

@@ -71,6 +71,6 @@ class VoucherLoyaltyActivity : BaseActivityGame() {
             }
         }
 
-        tvDate.text = TimeHelper.convertDateTimeSvToDateVn(date)
+        tvDate.text = date
     }
 }

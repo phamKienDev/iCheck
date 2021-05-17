@@ -124,11 +124,18 @@ class AcceptShipGiftViewModel : BaseViewModel<Any>() {
 
         var isSuccess = true
 
-        if (name.isNullOrEmpty()) {
-            isSuccess = false
-            onErrorName.postValue("Vui lòng nhập tên")
-        } else {
-            onErrorName.postValue("")
+        when {
+            name.isNullOrEmpty() -> {
+                isSuccess = false
+                onErrorName.postValue("Vui lòng nhập tên")
+            }
+            name.length > 100 -> {
+                isSuccess = false
+                onErrorName.postValue("Tên bạn nhập quá dài!")
+            }
+            else -> {
+                onErrorName.postValue("")
+            }
         }
 
         val validPhone = ValidHelper.validPhoneNumber(ApplicationHelper.getApplicationByReflect(), phone)
@@ -234,9 +241,14 @@ class AcceptShipGiftViewModel : BaseViewModel<Any>() {
         }
     }
 
-    fun usedVoucher(voucher: String, note: String?, name: String, phone: String, email: String?, address: String){
+    fun usedVoucher(voucher: String, note: String?, name: String, phone: String, email: String?, address: String) {
         if (NetworkHelper.isNotConnected(ApplicationHelper.getApplicationByReflect())) {
             checkError(false)
+            return
+        }
+
+        if (name.length > 100) {
+            onErrorName.postValue("Tên bạn nhập quá dài!")
             return
         }
 
