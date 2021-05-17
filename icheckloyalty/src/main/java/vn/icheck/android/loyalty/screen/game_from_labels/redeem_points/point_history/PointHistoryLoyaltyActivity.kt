@@ -1,5 +1,9 @@
 package vn.icheck.android.loyalty.screen.game_from_labels.redeem_points.point_history
 
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_point_history_loyalty.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
@@ -51,6 +55,24 @@ class PointHistoryLoyaltyActivity : BaseActivityGame() {
         viewPager.offscreenPageLimit = 3
 
         viewPager.post {
+            for (i in 0 until tabLayout.tabCount) {
+                val tab = tabLayout.getTabAt(i)
+                if (tab != null) {
+                    val tabTextView = TextView(this@PointHistoryLoyaltyActivity)
+                    tab.customView = tabTextView
+                    tabTextView.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
+                    tabTextView.layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
+                    tabTextView.text = tab.text
+                    tabTextView.textSize = 14f
+                    tabTextView.isAllCaps = false
+
+                    if (i == 0) {
+                        tabTextView.setTextColor(ContextCompat.getColor(this@PointHistoryLoyaltyActivity, R.color.white))
+                    } else {
+                        tabTextView.setTextColor(ContextCompat.getColor(this@PointHistoryLoyaltyActivity, R.color.colorSecondary))
+                    }
+                }
+            }
             indicator?.let {
                 tabLayoutIndicator.calculateIndicator(indicator, tabLayout)
             }

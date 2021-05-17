@@ -170,7 +170,7 @@ internal class RedemptionHistoryAdapter(callback: IRecyclerViewCallback) : Recyc
                                             && (obj.voucher?.effective_time.isNullOrEmpty()
                                             || obj.voucher?.effective_type.isNullOrEmpty()) -> {
 
-                                        "Còn ${TimeHelper.convertDateTimeSvToCurrentDate(TimeHelper.convertDateTimeSvToMillisecond(obj.voucher?.end_at))}"
+                                        "Còn lại ${TimeHelper.convertDateTimeSvToCurrentDate(TimeHelper.convertDateTimeSvToMillisecond(obj.voucher?.end_at))}"
 
                                     }
                                     !obj.voucher?.released_at.isNullOrEmpty()
@@ -180,7 +180,7 @@ internal class RedemptionHistoryAdapter(callback: IRecyclerViewCallback) : Recyc
                                             || obj.voucher?.end_at.isNullOrEmpty()) -> {
 
 
-                                        "Còn ${TimeHelper.convertDateTimeSvToCurrentDate(millisecondEffectiveTime(obj.voucher?.effective_type!!, obj.voucher?.effective_time!!, obj.voucher?.released_at!!))}"
+                                        "Còn lại ${TimeHelper.convertDateTimeSvToCurrentDate(millisecondEffectiveTime(obj.voucher?.effective_type!!, obj.voucher?.effective_time!!, obj.voucher?.released_at!!))}"
                                     }
                                     !obj.voucher?.released_at.isNullOrEmpty()
                                             && !obj.voucher?.effective_time.isNullOrEmpty()
@@ -194,9 +194,9 @@ internal class RedemptionHistoryAdapter(callback: IRecyclerViewCallback) : Recyc
                                                 ?: 0) - System.currentTimeMillis()
 
                                         if (millisecondWithEffectiveTime > currentMillisecondWithEndAt) {
-                                            "Còn ${TimeHelper.convertDateTimeSvToCurrentDate(TimeHelper.convertDateTimeSvToMillisecond(obj.voucher?.end_at))}"
+                                            "Còn lại ${TimeHelper.convertDateTimeSvToCurrentDate(TimeHelper.convertDateTimeSvToMillisecond(obj.voucher?.end_at))}"
                                         } else {
-                                            "Còn ${TimeHelper.convertDateTimeSvToCurrentDate(millisecondWithEffectiveTime)}"
+                                            "Còn lại ${TimeHelper.convertDateTimeSvToCurrentDate(millisecondWithEffectiveTime)}"
                                         }
                                     }
                                     else -> {
@@ -204,7 +204,7 @@ internal class RedemptionHistoryAdapter(callback: IRecyclerViewCallback) : Recyc
                                     }
                                 }
 
-                                if (data.dateChange == "Còn ") {
+                                if (data.dateChange == "Còn lại ") {
 
                                     data.dateChange = ""
 
