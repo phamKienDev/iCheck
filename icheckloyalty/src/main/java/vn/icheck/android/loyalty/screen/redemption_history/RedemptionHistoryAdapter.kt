@@ -159,50 +159,7 @@ internal class RedemptionHistoryAdapter(callback: IRecyclerViewCallback) : Recyc
                                 }
                             } else {
 
-                                /**
-                                 * Nếu startAt và endAt khác null thì hiển thị dd/mm/yy
-                                 * Nếu startAt, endAt, releaseAt và effectiveTime khác null nhưng thời gian tổng của startAt và endAt nhỏ hơn thời gian của effectiveTime thì hiển thị: ${Còn xx ngày, xx giờ} theo thời gian hiện tại đến endAt
-                                 * Nếu startAt, endAt, releaseAt và effectiveTime khác null nhưng thời gian tổng của startAt và endAt lớn hơn thời gian của effectiveTime thì hiển thị: ${Còn xx ngày, xx giờ} theo releaseAt và effectiveTime
-                                 */
-                                data.dateChange = when {
-                                    !obj.voucher?.start_at.isNullOrEmpty()
-                                            && !obj.voucher?.end_at.isNullOrEmpty()
-                                            && (obj.voucher?.effective_time.isNullOrEmpty()
-                                            || obj.voucher?.effective_type.isNullOrEmpty()) -> {
-
-                                        "Còn lại ${TimeHelper.convertDateTimeSvToCurrentDate(TimeHelper.convertDateTimeSvToMillisecond(obj.voucher?.end_at))}"
-
-                                    }
-                                    !obj.voucher?.released_at.isNullOrEmpty()
-                                            && !obj.voucher?.effective_time.isNullOrEmpty()
-                                            && !obj.voucher?.effective_type.isNullOrEmpty()
-                                            && (obj.voucher?.start_at.isNullOrEmpty()
-                                            || obj.voucher?.end_at.isNullOrEmpty()) -> {
-
-
-                                        "Còn lại ${TimeHelper.convertDateTimeSvToCurrentDate(millisecondEffectiveTime(obj.voucher?.effective_type!!, obj.voucher?.effective_time!!, obj.voucher?.released_at!!))}"
-                                    }
-                                    !obj.voucher?.released_at.isNullOrEmpty()
-                                            && !obj.voucher?.effective_time.isNullOrEmpty()
-                                            && !obj.voucher?.effective_type.isNullOrEmpty()
-                                            && !obj.voucher?.start_at.isNullOrEmpty()
-                                            && !obj.voucher?.end_at.isNullOrEmpty() -> {
-
-                                        val millisecondWithEffectiveTime = millisecondEffectiveTime(obj.voucher?.effective_type!!, obj.voucher?.effective_time!!, obj.voucher?.released_at!!)
-
-                                        val currentMillisecondWithEndAt = (TimeHelper.convertDateTimeSvToMillisecond(obj.voucher?.end_at)
-                                                ?: 0) - System.currentTimeMillis()
-
-                                        if (millisecondWithEffectiveTime > currentMillisecondWithEndAt) {
-                                            "Còn lại ${TimeHelper.convertDateTimeSvToCurrentDate(TimeHelper.convertDateTimeSvToMillisecond(obj.voucher?.end_at))}"
-                                        } else {
-                                            "Còn lại ${TimeHelper.convertDateTimeSvToCurrentDate(millisecondWithEffectiveTime)}"
-                                        }
-                                    }
-                                    else -> {
-                                        ""
-                                    }
-                                }
+                                data.dateChange = TimeHelper.timeGiftVoucher(obj.voucher!!)
 
                                 if (data.dateChange == "Còn lại ") {
 

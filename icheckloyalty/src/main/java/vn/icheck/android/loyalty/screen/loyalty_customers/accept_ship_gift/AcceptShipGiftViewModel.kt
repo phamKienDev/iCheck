@@ -19,7 +19,7 @@ class AcceptShipGiftViewModel : BaseViewModel<Any>() {
     private val repository = LoyaltyCustomersRepository()
 
     val onSuccessRedemption = MutableLiveData<ICKRedemptionHistory?>()
-    val onSuccessVoucher = MutableLiveData<String>()
+    val onSuccessVoucher = MutableLiveData<Long>()
     val onSuccessReceiveGift = MutableLiveData<ICKWinner?>()
     val onSuccessUsedVoucher = MutableLiveData<String>()
 
@@ -206,7 +206,7 @@ class AcceptShipGiftViewModel : BaseViewModel<Any>() {
                     repository.exchangeCardGiftVQMM(null, collectionID, phone, object : ICApiListener<ICKResponse<ICKRedemptionHistory>> {
                         override fun onSuccess(obj: ICKResponse<ICKRedemptionHistory>) {
                             if (obj.statusCode == 200) {
-                                onSuccessVoucher.postValue("SUCCESS")
+                                onSuccessVoucher.postValue(obj.data?.id)
                             } else {
                                 showError.postValue(obj.data?.message
                                         ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
