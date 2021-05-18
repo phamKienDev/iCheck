@@ -940,4 +940,6 @@
     <string name="dia_chi_v2">Địa chỉ:</string>
     <string name="diem_bao_hanh_v2">Điểm bảo hành:</string>
     <string name="ngay_hen_tra_v2">Ngày hẹn trả:</string>
+    <string name="nha_san_xuat">"Nhà sản xuất"</string>
+    <string name="nha_phan_phoi">Nhà phân phối</string>
 </resources>

@@ -13,6 +13,7 @@ data class ICWidgetData(
         @Expose val ensign: String?,
         @Expose val atts: MutableList<ICMedia>?,
         @Expose val success: Int?,
+        @Expose val tax: String?,
         @Expose val text: String?,
         @Expose var serial: String?,
         @Expose val scanCount: Long?,
@@ -26,6 +27,8 @@ data class ICWidgetData(
         @Expose val storeName: String?,
         @Expose val status: String?,
         @Expose val state: String?,
+        @Expose val facebook: String?,
+        @Expose val youtube: String?,
 //        @Expose val returnTime: null
         @Expose val code: String?,
         @Expose val website: String?,
@@ -39,8 +42,8 @@ data class ICWidgetData(
         @Expose val district: String?,
         @Expose val infors: MutableList<ICInfo>?,
         @Expose val productLinks: MutableList<ICProductLink>?,
-        val icon: Int = 0
-        val background: Int = 0
+        var icon: Int = 0,
+        var background: Int = 0
 
 //"attachments": []
 )

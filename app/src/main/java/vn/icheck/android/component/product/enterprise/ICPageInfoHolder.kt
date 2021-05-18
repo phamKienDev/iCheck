@@ -2,27 +2,19 @@ package vn.icheck.android.component.product.enterprise
 
 import android.content.Intent
 import android.net.Uri
-import android.text.SpannableString
-import android.text.Spanned
-import android.text.TextPaint
-import android.text.method.LinkMovementMethod
-import android.text.style.ClickableSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
-import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
+import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ItemPageInfoBinding
-import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.ichecklibs.beGone
 import vn.icheck.android.ichecklibs.beVisible
 import vn.icheck.android.network.models.ICOwner
-import vn.icheck.android.network.models.ICPage
 import vn.icheck.android.network.models.ICWidgetData
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -143,9 +135,7 @@ class ICPageInfoHolder(parent: ViewGroup, val binding: ItemPageInfoBinding = Ite
 
             binding.tvPhone.text = obj.phone
             binding.tvPhone.setOnClickListener {
-                ICheckApplication.currentActivity()?.startActivity(Intent(Intent.ACTION_DIAL).apply {
-                    data = Uri.parse("tel:${obj.phone}")
-                })
+                Constant.callPhone(obj.phone!!)
             }
         } else {
             binding.tvPhone.visibility = View.GONE

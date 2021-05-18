@@ -3,12 +3,12 @@ package vn.icheck.android.screen.user.detail_stamp_v6_1.home.adapter
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.base.adapter.RecyclerViewCustomAdapter
+import vn.icheck.android.base.holder.ListStampECommerceHolder
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.component.`null`.NullHolder
 import vn.icheck.android.component.product.enterprise.ICPageInfoHolder
-import vn.icheck.android.network.models.ICLayout
-import vn.icheck.android.network.models.ICMedia
-import vn.icheck.android.network.models.ICWidgetData
+import vn.icheck.android.component.product.infor.ProductInformationHolder
+import vn.icheck.android.network.models.*
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.holder.*
 
 class ICDetailStampAdapter : RecyclerViewCustomAdapter<ICLayout>() {
@@ -24,13 +24,15 @@ class ICDetailStampAdapter : RecyclerViewCustomAdapter<ICLayout>() {
     override fun getViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             ICViewTypes.PRODUCT_IMAGE_TYPE -> ICProductImageHolder(parent)
-            ICViewTypes.PRODUCT_INFO_TYPE -> ICProductInfoHolder(parent)
+            ICViewTypes.PRODUCT_TYPE -> ICProductHolder(parent)
             ICViewTypes.MESSAGE_TYPE -> ICMessageResultHolder(parent)
             ICViewTypes.STAMP_INFO_TYPE -> ICStampInfoHolder(parent)
             ICViewTypes.SCAN_INFO_TYPE -> ICScanInfoHolder(parent)
             ICViewTypes.GUARANTEE_INFO_TYPE -> ICGuaranteeHolder(parent)
             ICViewTypes.LAST_GUARANTEE_INFO_TYPE -> ICLastGuaranteeHolder(parent)
             ICViewTypes.VENDOR_TYPE -> ICPageInfoHolder(parent)
+            ICViewTypes.PRODUCT_INFO_TYPE -> ProductInformationHolder(parent)
+            ICViewTypes.PRODUCT_ECCOMMERCE_TYPE -> ListStampECommerceHolder(parent)
             else -> NullHolder(parent)
         }
     }
@@ -40,7 +42,7 @@ class ICDetailStampAdapter : RecyclerViewCustomAdapter<ICLayout>() {
             is ICProductImageHolder -> {
                 holder.bind(listData[position].data as List<ICMedia>)
             }
-            is ICProductInfoHolder -> {
+            is ICProductHolder -> {
                 holder.bind(listData[position].data as ICWidgetData)
             }
             is ICMessageResultHolder -> {
@@ -60,6 +62,12 @@ class ICDetailStampAdapter : RecyclerViewCustomAdapter<ICLayout>() {
             }
             is ICPageInfoHolder -> {
                 holder.bind(listData[position].data as ICWidgetData)
+            }
+            is ProductInformationHolder -> {
+                holder.bind(listData[position].data as ICInfo)
+            }
+            is ListStampECommerceHolder -> {
+                holder.bind(listData[position].data as MutableList<ICProductLink>)
             }
             else -> super.onBindViewHolder(holder, position)
         }

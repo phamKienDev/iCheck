@@ -22,6 +22,5 @@ interface IDetailStampView : BaseActivityView {
     fun onAddToCartSuccess(type: Int)
     fun onTryAgain()
     fun itemPagerClickToVideo(urlVideo: String?)
-    fun onClickInforProduct(item: ICObjectInfo)
     fun onGetDataRequireLogin()
 }

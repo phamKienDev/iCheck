@@ -12,7 +12,7 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.component.product.enterprise.ICSocialNetworkModel
 import vn.icheck.android.component.product.enterprise.SocialNetworkAdapter
-import vn.icheck.android.databinding.ItemEnterpriseComponentV2Binding
+import vn.icheck.android.databinding.ItemPageInfoBinding
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.beGone
 import vn.icheck.android.ichecklibs.beVisible
@@ -34,7 +34,7 @@ class VendorAdapter(val listData: List<ICPage>) : RecyclerView.Adapter<VendorAda
         holder.bind(listData[position])
     }
 
-    inner class ViewHolder(parent: ViewGroup, val binding: ItemEnterpriseComponentV2Binding = ItemEnterpriseComponentV2Binding.inflate(LayoutInflater.from(parent.context), parent, false)) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(parent: ViewGroup, val binding: ItemPageInfoBinding = ItemPageInfoBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(obj: ICPage) {
             if (listData.size < 2) {

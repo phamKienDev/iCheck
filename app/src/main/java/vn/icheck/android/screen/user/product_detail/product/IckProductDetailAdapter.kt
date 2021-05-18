@@ -296,7 +296,7 @@ class IckProductDetailAdapter(listener: IRecyclerViewCallback, private val produ
             ICViewTypes.REVIEW_SUMMARY_TYPE -> (holder as ReviewSummaryHolder).bind(listData[position].data as IckReviewSummaryModel)
             ICViewTypes.SHOP_VARIANT_TYPE -> (holder as ProductDetailShopHolder).bind(listData[position].data as ShopProductModel)
             ICViewTypes.TRANSPARENCY_TYPE -> (holder as MbttHolder).bind(listData[position].data as MbttModel)
-            ICViewTypes.ENTERPRISE_TYPE -> (holder as ICPageInfoHolder).bind(listData[position].data as EnterpriseModelV2)
+            ICViewTypes.ENTERPRISE_TYPE -> (holder as ICPageInfoHolder).bind(listData[position].data as ICOwner)
             ICViewTypes.EMPTY_CONTRIBUTION_INTERPRISE_TYPE -> (holder as EmptyContributionEnterpriseHolder).bind(listData[position].data as InformationContributionModel)
             ICViewTypes.VERIFIED_TYPE -> (holder as ProductVerifiedHolder).bind(listData[position].data as ICClientSetting)
             ICViewTypes.NOT_VERIFIED_TYPE -> (holder as ProductNotVerifiedHolder).bind(listData[position].data as ProductNotVerifiedModel)

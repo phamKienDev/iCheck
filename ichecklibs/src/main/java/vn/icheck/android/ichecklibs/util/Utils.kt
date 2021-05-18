@@ -46,7 +46,6 @@ fun View.visibleOrInvisible(logic: Boolean) {
 }
 
 fun Int.toPx(res: Resources): Int {
-//    return this * (res.displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT)
     return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this.toFloat(), res.displayMetrics).toInt()
 }
 
@@ -58,12 +57,17 @@ fun Float.dpToPx(): Int {
     return (this * Resources.getSystem().displayMetrics.density).toInt()
 }
 
-
 fun Float.toPx(res: Resources): Float {
-//    return this * (res.displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT)
-    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this.toFloat(), res.displayMetrics)
+    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this, res.displayMetrics)
 }
 
+fun Int.spToPx(): Int {
+    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, this.toFloat(), Resources.getSystem().displayMetrics).toInt()
+}
+
+fun Float.spToPx(): Float {
+    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, this, Resources.getSystem().displayMetrics)
+}
 
 infix fun Context.showSimpleSuccessToast(msg: String?) {
     val binding = ToastSimpleSuccessBinding.inflate(LayoutInflater.from(this))

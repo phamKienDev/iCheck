@@ -272,19 +272,19 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
             layoutChatAdmin.visibility = View.INVISIBLE
         }
 
-        layoutMoreVendor.setOnClickListener {
-            val intent = Intent(this, MoreBusinessActivity::class.java)
-            intent.putExtra(Constant.DATA_1, 1)
-            intent.putExtra(Constant.DATA_2, objVendor)
-            startActivity(intent)
-        }
+//        layoutMoreVendor.setOnClickListener {
+//            val intent = Intent(this, MoreBusinessActivity::class.java)
+//            intent.putExtra(Constant.DATA_1, 1)
+//            intent.putExtra(Constant.DATA_2, objVendor)
+//            startActivity(intent)
+//        }
 
-        layoutMoreDistributor.setOnClickListener {
-            val intent = Intent(this, MoreBusinessActivity::class.java)
-            intent.putExtra(Constant.DATA_1, 2)
-            intent.putExtra(Constant.DATA_2, itemDistributor)
-            startActivity(intent)
-        }
+//        layoutMoreDistributor.setOnClickListener {
+//            val intent = Intent(this, MoreBusinessActivity::class.java)
+//            intent.putExtra(Constant.DATA_1, 2)
+//            intent.putExtra(Constant.DATA_2, itemDistributor)
+//            startActivity(intent)
+//        }
 
         textFab.setOnClickListener {
             // todo
@@ -348,47 +348,47 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
 //            }
         }
 
-        tvWebsiteVendor.setOnClickListener {
-            var webpage = Uri.parse(tvWebsiteVendor.text.toString())
+//        tvWebsiteVendor.setOnClickListener {
+//            var webpage = Uri.parse(tvWebsiteVendor.text.toString())
+//
+//            if (!tvWebsiteVendor.text.toString().startsWith("http://") && !tvWebsiteVendor.text.toString().startsWith("https://")) {
+//                webpage = Uri.parse("http://${tvWebsiteVendor.text}")
+//            }
+//
+//            val intent = Intent(Intent.ACTION_VIEW, webpage)
+//            if (intent.resolveActivity(packageManager) != null) {
+//                startActivity(intent)
+//            }
+//        }
 
-            if (!tvWebsiteVendor.text.toString().startsWith("http://") && !tvWebsiteVendor.text.toString().startsWith("https://")) {
-                webpage = Uri.parse("http://${tvWebsiteVendor.text}")
-            }
+//        tvPhoneVendor.setOnClickListener {
+//            if (tvPhoneVendor.text.toString() != getString(R.string.dang_cap_nhat)) {
+//                if (PermissionHelper.checkPermission(this, Manifest.permission.CALL_PHONE, requestPhone)) {
+//                    ContactUtils.callFast(this@DetailStampActivity, tvPhoneVendor.text.toString())
+//                }
+//            }
+//        }
 
-            val intent = Intent(Intent.ACTION_VIEW, webpage)
-            if (intent.resolveActivity(packageManager) != null) {
-                startActivity(intent)
-            }
-        }
+//        tvMailVendor.setOnClickListener {
+//            if (tvMailVendor.text.toString() != getString(R.string.dang_cap_nhat)) {
+//                val intent = Intent(Intent.ACTION_SENDTO)
+//                intent.data = Uri.parse("mailto:" + tvMailVendor.text.toString())
+//                startActivity(Intent.createChooser(intent, "Send To"))
+//            }
+//        }
 
-        tvPhoneVendor.setOnClickListener {
-            if (tvPhoneVendor.text.toString() != getString(R.string.dang_cap_nhat)) {
-                if (PermissionHelper.checkPermission(this, Manifest.permission.CALL_PHONE, requestPhone)) {
-                    ContactUtils.callFast(this@DetailStampActivity, tvPhoneVendor.text.toString())
-                }
-            }
-        }
-
-        tvMailVendor.setOnClickListener {
-            if (tvMailVendor.text.toString() != getString(R.string.dang_cap_nhat)) {
-                val intent = Intent(Intent.ACTION_SENDTO)
-                intent.data = Uri.parse("mailto:" + tvMailVendor.text.toString())
-                startActivity(Intent.createChooser(intent, "Send To"))
-            }
-        }
-
-        tvWebsiteDistributor.setOnClickListener {
-            var webpage = Uri.parse(tvWebsiteDistributor.text.toString())
-
-            if (!tvWebsiteDistributor.text.toString().startsWith("http://") && !tvWebsiteDistributor.text.toString().startsWith("https://")) {
-                webpage = Uri.parse("http://${tvWebsiteVendor.text}")
-            }
-
-            val intent = Intent(Intent.ACTION_VIEW, webpage)
-            if (intent.resolveActivity(packageManager) != null) {
-                startActivity(intent)
-            }
-        }
+//        tvWebsiteDistributor.setOnClickListener {
+//            var webpage = Uri.parse(tvWebsiteDistributor.text.toString())
+//
+//            if (!tvWebsiteDistributor.text.toString().startsWith("http://") && !tvWebsiteDistributor.text.toString().startsWith("https://")) {
+//                webpage = Uri.parse("http://${tvWebsiteVendor.text}")
+//            }
+//
+//            val intent = Intent(Intent.ACTION_VIEW, webpage)
+//            if (intent.resolveActivity(packageManager) != null) {
+//                startActivity(intent)
+//            }
+//        }
 
         tvHotlineBussiness.setOnClickListener {
             if (!itemDistributor?.phone.isNullOrEmpty()) {
@@ -398,13 +398,13 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
             }
         }
 
-        tvPhoneDistributor.setOnClickListener {
-            if (tvPhoneDistributor.text.toString() != getString(R.string.dang_cap_nhat)) {
-                if (PermissionHelper.checkPermission(this, Manifest.permission.CALL_PHONE, requestPhone)) {
-                    ContactUtils.callFast(this@DetailStampActivity, tvPhoneDistributor.text.toString())
-                }
-            }
-        }
+//        tvPhoneDistributor.setOnClickListener {
+//            if (tvPhoneDistributor.text.toString() != getString(R.string.dang_cap_nhat)) {
+//                if (PermissionHelper.checkPermission(this, Manifest.permission.CALL_PHONE, requestPhone)) {
+//                    ContactUtils.callFast(this@DetailStampActivity, tvPhoneDistributor.text.toString())
+//                }
+//            }
+//        }
 
         tvEmailBussiness.setOnClickListener {
             if (!itemDistributor?.email.isNullOrEmpty()) {
@@ -414,13 +414,13 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
             }
         }
 
-        tvMailDistributor.setOnClickListener {
-            if (tvMailDistributor.text.toString() != getString(R.string.dang_cap_nhat)) {
-                val intent = Intent(Intent.ACTION_SENDTO)
-                intent.data = Uri.parse("mailto:" + tvMailDistributor.text.toString())
-                startActivity(Intent.createChooser(intent, "Send To"))
-            }
-        }
+//        tvMailDistributor.setOnClickListener {
+//            if (tvMailDistributor.text.toString() != getString(R.string.dang_cap_nhat)) {
+//                val intent = Intent(Intent.ACTION_SENDTO)
+//                intent.data = Uri.parse("mailto:" + tvMailDistributor.text.toString())
+//                startActivity(Intent.createChooser(intent, "Send To"))
+//            }
+//        }
 
         btnAgainError.setOnClickListener {
             getData()
@@ -534,7 +534,7 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                                 "PRODUCT" -> {
                                     if (widget.data != null) {
                                         listData.add(ICLayout().apply {
-                                            viewType = ICViewTypes.PRODUCT_INFO_TYPE
+                                            viewType = ICViewTypes.PRODUCT_TYPE
                                             data = widget.data!!
                                         })
                                     }
@@ -587,10 +587,41 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                                     if (widget.data != null) {
                                         listData.add(ICLayout().apply {
                                             viewType = ICViewTypes.VENDOR_TYPE
-                                            data = listOf(widget.data!!.apply {
+                                            data = widget.data!!.apply {
+                                                title = getString(R.string.nha_san_xuat)
                                                 icon = R.drawable.ic_verified_24px
                                                 background = R.color.colorPrimary
+                                            }
+                                        })
+                                    }
+                                }
+                                "DISTRIBUTOR" -> {
+                                    if (widget.data != null) {
+                                        listData.add(ICLayout().apply {
+                                            viewType = ICViewTypes.VENDOR_TYPE
+                                            data = widget.data!!.apply {
+                                                title = getString(R.string.nha_phan_phoi)
+                                                icon = R.drawable.ic_verified_24px
+                                                background = R.color.colorPrimary
+                                            }
+                                        })
+                                    }
+                                }
+                                "PRODUCT_INFO" -> {
+                                    if (!widget.data?.infors.isNullOrEmpty()) {
+                                        for (info in widget.data!!.infors!!) {
+                                            listData.add(ICLayout().apply {
+                                                viewType = ICViewTypes.PRODUCT_INFO_TYPE
+                                                data = info
                                             })
+                                        }
+                                    }
+                                }
+                                "PRODUCT_LINK" -> {
+                                    if (!widget.data?.productLinks.isNullOrEmpty()) {
+                                        listData.add(ICLayout().apply {
+                                            viewType = ICViewTypes.PRODUCT_ECCOMMERCE_TYPE
+                                            data = widget.data!!.productLinks
                                         })
                                     }
                                 }
@@ -663,12 +694,6 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
             override fun canScrollVertically(): Boolean = false
         }
         rcvInformation.adapter = adapterInformationProduct
-    }
-
-    override fun onClickInforProduct(item: ICObjectInfo) {
-        val intent = Intent(this@DetailStampActivity, MoreInformationProductActivity::class.java)
-        intent.putExtra(Constant.DATA_1, item.id)
-        startActivity(intent)
     }
 
     override fun onItemHotlineClick(hotline: String?) {
@@ -1267,125 +1292,125 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
 //            }
 
 //      check nha san xuat
-            if (obj.data?.show_vendor == 1) {
-                if (obj.data?.product?.vendor != null) {
-                    if (isVietNamLanguage == false) {
-                        tvSubVendor.text = "Manufacturer"
-                    } else {
-                        tvSubVendor.text = "Nhà sản xuất"
-                    }
-
-                    tvSubVendor.visibility = View.VISIBLE
-                    layoutVendor.visibility = View.VISIBLE
-
-                    objVendor = obj.data?.product?.vendor
-
-                    tvNameVendor.text = if (!obj.data?.product?.vendor?.name.isNullOrEmpty()) {
-                        obj.data?.product?.vendor?.name
-                    } else {
-                        getString(R.string.dang_cap_nhat)
-                    }
-
-                    tvAddressVendor.text = if (!obj.data?.product?.vendor?.address.isNullOrEmpty()) {
-                        if (!obj.data?.product?.vendor?.city.isNullOrEmpty()) {
-                            if (!obj.data?.product?.vendor?.district.isNullOrEmpty()) {
-                                obj.data?.product?.vendor?.address + ", " + obj.data?.product?.vendor?.city + ", " + obj.data?.product?.vendor?.district
-                            } else {
-                                obj.data?.product?.vendor?.address + ", " + obj.data?.product?.vendor?.city
-                            }
-                        } else {
-                            obj.data?.product?.vendor?.address
-                        }
-                    } else {
-                        getString(R.string.dang_cap_nhat)
-                    }
-
-                    tvWebsiteVendor.text = if (!obj.data?.product?.vendor?.website.isNullOrEmpty()) {
-                        obj.data?.product?.vendor?.website
-                    } else {
-                        getString(R.string.dang_cap_nhat)
-                    }
-
-                    tvPhoneVendor.text = if (!obj.data?.product?.vendor?.phone.isNullOrEmpty()) {
-                        obj.data?.product?.vendor?.phone
-                    } else {
-                        getString(R.string.dang_cap_nhat)
-                    }
-
-                    tvMailVendor.text = if (!obj.data?.product?.vendor?.email.isNullOrEmpty()) {
-                        obj.data?.product?.vendor?.email
-                    } else {
-                        getString(R.string.dang_cap_nhat)
-                    }
-                } else {
-                    tvSubVendor.visibility = View.GONE
-                    layoutVendor.visibility = View.GONE
-                }
-            } else {
-                tvSubVendor.visibility = View.GONE
-                layoutVendor.visibility = View.GONE
-            }
+//            if (obj.data?.show_vendor == 1) {
+//                if (obj.data?.product?.vendor != null) {
+//                    if (isVietNamLanguage == false) {
+//                        tvSubVendor.text = "Manufacturer"
+//                    } else {
+//                        tvSubVendor.text = "Nhà sản xuất"
+//                    }
+//
+//                    tvSubVendor.visibility = View.VISIBLE
+//                    layoutVendor.visibility = View.VISIBLE
+//
+//                    objVendor = obj.data?.product?.vendor
+//
+//                    tvNameVendor.text = if (!obj.data?.product?.vendor?.name.isNullOrEmpty()) {
+//                        obj.data?.product?.vendor?.name
+//                    } else {
+//                        getString(R.string.dang_cap_nhat)
+//                    }
+//
+//                    tvAddressVendor.text = if (!obj.data?.product?.vendor?.address.isNullOrEmpty()) {
+//                        if (!obj.data?.product?.vendor?.city.isNullOrEmpty()) {
+//                            if (!obj.data?.product?.vendor?.district.isNullOrEmpty()) {
+//                                obj.data?.product?.vendor?.address + ", " + obj.data?.product?.vendor?.city + ", " + obj.data?.product?.vendor?.district
+//                            } else {
+//                                obj.data?.product?.vendor?.address + ", " + obj.data?.product?.vendor?.city
+//                            }
+//                        } else {
+//                            obj.data?.product?.vendor?.address
+//                        }
+//                    } else {
+//                        getString(R.string.dang_cap_nhat)
+//                    }
+//
+//                    tvWebsiteVendor.text = if (!obj.data?.product?.vendor?.website.isNullOrEmpty()) {
+//                        obj.data?.product?.vendor?.website
+//                    } else {
+//                        getString(R.string.dang_cap_nhat)
+//                    }
+//
+//                    tvPhoneVendor.text = if (!obj.data?.product?.vendor?.phone.isNullOrEmpty()) {
+//                        obj.data?.product?.vendor?.phone
+//                    } else {
+//                        getString(R.string.dang_cap_nhat)
+//                    }
+//
+//                    tvMailVendor.text = if (!obj.data?.product?.vendor?.email.isNullOrEmpty()) {
+//                        obj.data?.product?.vendor?.email
+//                    } else {
+//                        getString(R.string.dang_cap_nhat)
+//                    }
+//                } else {
+//                    tvSubVendor.visibility = View.GONE
+//                    layoutVendor.visibility = View.GONE
+//                }
+//            } else {
+//                tvSubVendor.visibility = View.GONE
+//                layoutVendor.visibility = View.GONE
+//            }
 
 //      check nha phan phoi
-            if (obj.data?.show_distributor == 1) {
-                if (obj.data?.show_distributor != null) {
-                    if (isVietNamLanguage == false) {
-                        tvSubDistributor.text = "Distributor"
-                    } else {
-                        tvSubDistributor.text = "Nhà phân phối"
-                    }
-
-                    tvSubDistributor.visibility = View.VISIBLE
-                    layoutDistributor.visibility = View.VISIBLE
-
-                    itemDistributor = obj.data?.distributor
-                    idDistributor = obj.data?.distributor?.id
-
-                    tvNameDistributor.text = if (!obj.data?.distributor?.name.isNullOrEmpty()) {
-                        obj.data?.distributor?.name
-                    } else {
-                        getString(R.string.dang_cap_nhat)
-                    }
-
-                    tvAddressDistributor.text = if (!obj.data?.distributor?.address.isNullOrEmpty()) {
-                        if (!obj.data?.distributor?.district.isNullOrEmpty()) {
-                            if (!obj.data?.distributor?.city.isNullOrEmpty()) {
-                                obj.data?.distributor?.address + ", " + obj.data?.distributor?.district + ", " + obj.data?.distributor?.city
-                            } else {
-                                obj.data?.distributor?.address + ", " + obj.data?.distributor?.district
-                            }
-                        } else {
-                            obj.data?.distributor?.address
-                        }
-                    } else {
-                        getString(R.string.dang_cap_nhat)
-                    }
-
-                    tvWebsiteDistributor.text = if (!obj.data?.distributor?.website.isNullOrEmpty()) {
-                        obj.data?.distributor?.website
-                    } else {
-                        getString(R.string.dang_cap_nhat)
-                    }
-
-                    tvPhoneDistributor.text = if (!obj.data?.distributor?.phone.isNullOrEmpty()) {
-                        obj.data?.distributor?.phone
-                    } else {
-                        getString(R.string.dang_cap_nhat)
-                    }
-
-                    tvMailDistributor.text = if (!obj.data?.distributor?.email.isNullOrEmpty()) {
-                        obj.data?.distributor?.email
-                    } else {
-                        getString(R.string.dang_cap_nhat)
-                    }
-                } else {
-                    tvSubDistributor.visibility = View.GONE
-                    layoutDistributor.visibility = View.GONE
-                }
-            } else {
-                tvSubDistributor.visibility = View.GONE
-                layoutDistributor.visibility = View.GONE
-            }
+//            if (obj.data?.show_distributor == 1) {
+//                if (obj.data?.show_distributor != null) {
+//                    if (isVietNamLanguage == false) {
+//                        tvSubDistributor.text = "Distributor"
+//                    } else {
+//                        tvSubDistributor.text = "Nhà phân phối"
+//                    }
+//
+//                    tvSubDistributor.visibility = View.VISIBLE
+//                    layoutDistributor.visibility = View.VISIBLE
+//
+//                    itemDistributor = obj.data?.distributor
+//                    idDistributor = obj.data?.distributor?.id
+//
+//                    tvNameDistributor.text = if (!obj.data?.distributor?.name.isNullOrEmpty()) {
+//                        obj.data?.distributor?.name
+//                    } else {
+//                        getString(R.string.dang_cap_nhat)
+//                    }
+//
+//                    tvAddressDistributor.text = if (!obj.data?.distributor?.address.isNullOrEmpty()) {
+//                        if (!obj.data?.distributor?.district.isNullOrEmpty()) {
+//                            if (!obj.data?.distributor?.city.isNullOrEmpty()) {
+//                                obj.data?.distributor?.address + ", " + obj.data?.distributor?.district + ", " + obj.data?.distributor?.city
+//                            } else {
+//                                obj.data?.distributor?.address + ", " + obj.data?.distributor?.district
+//                            }
+//                        } else {
+//                            obj.data?.distributor?.address
+//                        }
+//                    } else {
+//                        getString(R.string.dang_cap_nhat)
+//                    }
+//
+//                    tvWebsiteDistributor.text = if (!obj.data?.distributor?.website.isNullOrEmpty()) {
+//                        obj.data?.distributor?.website
+//                    } else {
+//                        getString(R.string.dang_cap_nhat)
+//                    }
+//
+//                    tvPhoneDistributor.text = if (!obj.data?.distributor?.phone.isNullOrEmpty()) {
+//                        obj.data?.distributor?.phone
+//                    } else {
+//                        getString(R.string.dang_cap_nhat)
+//                    }
+//
+//                    tvMailDistributor.text = if (!obj.data?.distributor?.email.isNullOrEmpty()) {
+//                        obj.data?.distributor?.email
+//                    } else {
+//                        getString(R.string.dang_cap_nhat)
+//                    }
+//                } else {
+//                    tvSubDistributor.visibility = View.GONE
+//                    layoutDistributor.visibility = View.GONE
+//                }
+//            } else {
+//                tvSubDistributor.visibility = View.GONE
+//                layoutDistributor.visibility = View.GONE
+//            }
 
 //      Mo ta san pham
             if (!obj.data?.product?.infos.isNullOrEmpty()) {
@@ -1726,7 +1751,7 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
 
         if (requestCode == requestPhone) {
             if (PermissionHelper.checkResult(grantResults)) {
-                ContactUtils.callFast(this@DetailStampActivity, tvPhoneDistributor.text.toString())
+//                ContactUtils.callFast(this@DetailStampActivity, tvPhoneDistributor.text.toString())
             } else {
                 showShortError(R.string.khong_the_thuc_hien_tac_vu_vi_ban_chua_cap_quyen)
             }
