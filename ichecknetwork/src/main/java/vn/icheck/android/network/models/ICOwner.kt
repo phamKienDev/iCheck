@@ -23,5 +23,7 @@ open class ICOwner(
         @Expose val glnCode: String? = null,
         @Expose val ward: ICWard? = null,
         @Expose val district: ICDistrict? = null,
-        @Expose val city: ICProvince? = null
+        @Expose val city: ICProvince? = null,
+        var icon: Int = 0,
+        var background: Int = 0
 ) : Serializable

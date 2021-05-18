@@ -5,16 +5,13 @@ import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.base.adapter.RecyclerViewCustomAdapter
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.component.`null`.NullHolder
-import vn.icheck.android.component.product.enterprise.EnterpriseComponentV2
-import vn.icheck.android.component.product.enterprise.EnterpriseModelV2
-import vn.icheck.android.component.product.vendor.VendorHolder
+import vn.icheck.android.component.product.enterprise.ICPageInfoHolder
 import vn.icheck.android.network.models.ICLayout
 import vn.icheck.android.network.models.ICMedia
-import vn.icheck.android.network.models.ICPage
 import vn.icheck.android.network.models.ICWidgetData
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.holder.*
 
-class ICDetailStampAdapter: RecyclerViewCustomAdapter<ICLayout>() {
+class ICDetailStampAdapter : RecyclerViewCustomAdapter<ICLayout>() {
 
     override fun getItemType(position: Int): Int {
         return if (listData[position].data != null) {
@@ -33,7 +30,7 @@ class ICDetailStampAdapter: RecyclerViewCustomAdapter<ICLayout>() {
             ICViewTypes.SCAN_INFO_TYPE -> ICScanInfoHolder(parent)
             ICViewTypes.GUARANTEE_INFO_TYPE -> ICGuaranteeHolder(parent)
             ICViewTypes.LAST_GUARANTEE_INFO_TYPE -> ICLastGuaranteeHolder(parent)
-            ICViewTypes.VENDOR_TYPE -> VendorHolder(parent)
+            ICViewTypes.VENDOR_TYPE -> ICPageInfoHolder(parent)
             else -> NullHolder(parent)
         }
     }
@@ -61,8 +58,8 @@ class ICDetailStampAdapter: RecyclerViewCustomAdapter<ICLayout>() {
             is ICLastGuaranteeHolder -> {
                 holder.bind(listData[position].data as ICWidgetData)
             }
-            is VendorHolder -> {
-                holder.bind(listData[position].data as List<ICPage>)
+            is ICPageInfoHolder -> {
+                holder.bind(listData[position].data as ICWidgetData)
             }
             else -> super.onBindViewHolder(holder, position)
         }

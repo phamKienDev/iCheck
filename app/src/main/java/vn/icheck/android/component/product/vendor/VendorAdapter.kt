@@ -1,12 +1,10 @@
 package vn.icheck.android.component.product.vendor
 
 import android.content.Intent
-import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -119,27 +117,13 @@ class VendorAdapter(val listData: List<ICPage>) : RecyclerView.Adapter<VendorAda
                 }
             }
 
-            initListener(obj)
-        }
-
-        private fun initListener(obj: ICPage) {
-            itemView.findViewById<AppCompatImageView>(R.id.imgDetail).setOnClickListener {
-                startPageDetail(obj)
-            }
-
-            itemView.setOnClickListener {
-                startPageDetail(obj)
-            }
-        }
-    }
-
-    private fun startPageDetail(obj: ICPage) {
-        ICheckApplication.currentActivity()?.let { activity ->
-            val pageID = obj.pageId ?: obj.owner?.pageId
-            if (pageID != null && pageID != 0L) {
-                PageDetailActivity.start(activity, pageID)
-            } else {
-
+            binding.root.setOnClickListener {
+                val pageID = obj.pageId ?: obj.owner?.pageId
+                if (pageID != null && pageID != 0L) {
+                    ICheckApplication.currentActivity()?.let { activity ->
+                        PageDetailActivity.start(activity, pageID)
+                    }
+                }
             }
         }
     }

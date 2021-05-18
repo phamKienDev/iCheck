@@ -28,7 +28,7 @@ import vn.icheck.android.component.product.certifications.CertificationsHolder
 import vn.icheck.android.component.product.certifications.CertificationsModel
 import vn.icheck.android.component.product.emty_qa.EmptyQAModel
 import vn.icheck.android.component.product.emty_qa.ProductEmptyQaHolder
-import vn.icheck.android.component.product.enterprise.EnterpriseComponentV2
+import vn.icheck.android.component.product.enterprise.ICPageInfoHolder
 import vn.icheck.android.component.product.enterprise.EnterpriseModelV2
 import vn.icheck.android.component.product.header.HeaderInforProductComponent
 import vn.icheck.android.component.product.header.ProductHeaderModelV2
@@ -259,7 +259,7 @@ class IckProductDetailAdapter(listener: IRecyclerViewCallback, private val produ
             ICViewTypes.REVIEW_SUMMARY_TYPE -> ReviewSummaryHolder(parent)
             ICViewTypes.SHOP_VARIANT_TYPE -> ProductDetailShopHolder(parent)
             ICViewTypes.TRANSPARENCY_TYPE -> MbttHolder.create(parent)
-            ICViewTypes.ENTERPRISE_TYPE -> EnterpriseComponentV2(parent)
+            ICViewTypes.ENTERPRISE_TYPE -> ICPageInfoHolder(parent)
             ICViewTypes.EMPTY_CONTRIBUTION_INTERPRISE_TYPE -> EmptyContributionEnterpriseHolder(parent, productListener)
             ICViewTypes.NOT_VERIFIED_TYPE -> ProductNotVerifiedHolder(parent)
             ICViewTypes.VENDOR_TYPE -> VendorHolder(parent)
@@ -296,7 +296,7 @@ class IckProductDetailAdapter(listener: IRecyclerViewCallback, private val produ
             ICViewTypes.REVIEW_SUMMARY_TYPE -> (holder as ReviewSummaryHolder).bind(listData[position].data as IckReviewSummaryModel)
             ICViewTypes.SHOP_VARIANT_TYPE -> (holder as ProductDetailShopHolder).bind(listData[position].data as ShopProductModel)
             ICViewTypes.TRANSPARENCY_TYPE -> (holder as MbttHolder).bind(listData[position].data as MbttModel)
-            ICViewTypes.ENTERPRISE_TYPE -> (holder as EnterpriseComponentV2).bind(listData[position].data as EnterpriseModelV2)
+            ICViewTypes.ENTERPRISE_TYPE -> (holder as ICPageInfoHolder).bind(listData[position].data as EnterpriseModelV2)
             ICViewTypes.EMPTY_CONTRIBUTION_INTERPRISE_TYPE -> (holder as EmptyContributionEnterpriseHolder).bind(listData[position].data as InformationContributionModel)
             ICViewTypes.VERIFIED_TYPE -> (holder as ProductVerifiedHolder).bind(listData[position].data as ICClientSetting)
             ICViewTypes.NOT_VERIFIED_TYPE -> (holder as ProductNotVerifiedHolder).bind(listData[position].data as ProductNotVerifiedModel)

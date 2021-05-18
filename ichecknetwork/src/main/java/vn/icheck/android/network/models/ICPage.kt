@@ -99,5 +99,5 @@ open class ICPage : Serializable {
         get() = name ?: "Chưa cập nhật"
 
     var icon: Int = 0
-    var background: Int = R.color.colorDisableText
+    var background: Int = 0
 }

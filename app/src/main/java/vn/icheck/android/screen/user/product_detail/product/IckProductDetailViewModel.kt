@@ -606,20 +606,16 @@ class IckProductDetailViewModel : BaseViewModel() {
             layout.data = VendorModel(listData.apply {
                 for (item in listData) {
                     if (verifyProduct) {
-                        if (item.verified == true) {
-                            item.icon = R.drawable.ic_verified_24px
-                            item.background = R.color.colorPrimary
+                        if (owner!!.verified == true) {
+                            EnterpriseModelV2(owner!!, R.drawable.ic_verified_24px, R.color.colorPrimary)
                         } else {
-                            item.icon = 0
-                            item.background = R.color.colorPrimary
+                            EnterpriseModelV2(owner!!, null, R.color.colorPrimary)
                         }
                     } else {
-                        if (item.verified == true) {
-                            item.icon = 0
-                            item.background = R.color.colorPrimary
+                        if (owner!!.verified == true) {
+                            EnterpriseModelV2(owner!!, null, R.color.colorPrimary)
                         } else {
-                            item.icon = R.drawable.ic_not_verified_24px
-                            item.background = R.color.colorDisableText
+                            EnterpriseModelV2(owner!!, R.drawable.ic_not_verified_24px, R.color.colorDisableText)
                         }
                     }
                 }
@@ -631,27 +627,7 @@ class IckProductDetailViewModel : BaseViewModel() {
             productRepository.getListPage(layout.request.url!!, object : ICNewApiListener<ICResponse<ICListResponse<ICPage>>> {
                 override fun onSuccess(obj: ICResponse<ICListResponse<ICPage>>) {
                     if (!obj.data?.rows.isNullOrEmpty()) {
-                        layout.data = VendorModel(obj.data!!.rows).apply {
-                            for (item in listVendor) {
-                                if (verifyProduct) {
-                                    if (item.verified == true) {
-                                        item.icon = R.drawable.ic_verified_24px
-                                        item.background = R.color.colorPrimary
-                                    } else {
-                                        item.icon = 0
-                                        item.background = R.color.colorPrimary
-                                    }
-                                } else {
-                                    if (item.verified == true) {
-                                        item.icon = 0
-                                        item.background = R.color.colorPrimary
-                                    } else {
-                                        item.icon = R.drawable.ic_not_verified_24px
-                                        item.background = R.color.colorDisableText
-                                    }
-                                }
-                            }
-                        }
+                        layout.data = VendorModel(obj.data!!.rows)
                         onUpdateLayout.value = layout
                     } else {
                         checkTotalError(layout)
