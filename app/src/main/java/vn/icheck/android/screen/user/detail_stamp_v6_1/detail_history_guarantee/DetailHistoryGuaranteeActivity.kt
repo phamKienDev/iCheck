@@ -210,9 +210,9 @@ class DetailHistoryGuaranteeActivity : BaseActivity<DetailHistoryGuaranteePresen
 
         if (!item.note.isNullOrEmpty()) {
             if (DetailStampActivity.isVietNamLanguage == false) {
-                layoutContentHistory.addView(createTableRow("Notes of Warranty return:", item.note))
+                layoutContent.addView(createTableRow("Notes of Warranty return:", item.note))
             } else {
-                layoutContentHistory.addView(createTableRow("Ghi chú trả BH:", item.note))
+                layoutContent.addView(createTableRow("Ghi chú trả BH:", item.note))
             }
         }
 
@@ -222,21 +222,21 @@ class DetailHistoryGuaranteeActivity : BaseActivity<DetailHistoryGuaranteePresen
                 try {
                     val value = sdf.parse(i.value!!)
                     if (value != null) {
-                        layoutContentHistory.addView(createTableRow(i.name, TimeHelper.convertDateTimeSvToDateVn(i.value)))
+                        layoutContent.addView(createTableRow(i.name, TimeHelper.convertDateTimeSvToDateVn(i.value)))
                     } else {
-                        layoutContentHistory.addView(createTableRow(i.name, i.value))
+                        layoutContent.addView(createTableRow(i.name, i.value))
                     }
                 } catch (e: Exception) {
-                    layoutContentHistory.addView(createTableRow(i.name, i.value))
+                    layoutContent.addView(createTableRow(i.name, i.value))
                 }
             }
         }
 
         if (item.extra != null) {
             if (DetailStampActivity.isVietNamLanguage == false) {
-                layoutContentHistory.addView(createTableRow("Variation:", item.extra?.extra))
+                layoutContent.addView(createTableRow("Variation:", item.extra?.extra))
             } else {
-                layoutContentHistory.addView(createTableRow("Biến thể:", item.extra?.extra))
+                layoutContent.addView(createTableRow("Biến thể:", item.extra?.extra))
             }
         }
 

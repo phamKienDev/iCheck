@@ -11,7 +11,7 @@ import vn.icheck.android.network.models.ICPage
 import vn.icheck.android.ui.StartSnapHelper
 import vn.icheck.android.ui.layout.CustomGridLayoutManager
 
-class DistributorHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.RecycledViewPool?) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_list_distributor, parent, false)) {
+class DistributorHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_list_distributor, parent, false)) {
 
     init {
         val snap = LinearSnapHelper()
@@ -20,7 +20,6 @@ class DistributorHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.Re
 
     fun bind(obj: DistributorModel, url: String) {
         itemView.recyclerView.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
-        itemView.recyclerView.setRecycledViewPool(recycledViewPool)
 
         val list = mutableListOf<ICPage>()
         for (i in 0 until obj.listBusiness.size) {
@@ -31,9 +30,8 @@ class DistributorHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.Re
 
         if (obj.listBusiness.size > 3) {
             list.add(ICPage())
-            itemView.recyclerView.adapter = DistributorAdapter(list, url)
-        } else {
-            itemView.recyclerView.adapter = DistributorAdapter(list, url)
         }
+
+        itemView.recyclerView.adapter = DistributorAdapter(list, url)
     }
 }

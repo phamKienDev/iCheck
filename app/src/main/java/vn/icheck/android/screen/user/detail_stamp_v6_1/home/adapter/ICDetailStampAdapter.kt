@@ -5,8 +5,12 @@ import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.base.adapter.RecyclerViewCustomAdapter
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.component.`null`.NullHolder
+import vn.icheck.android.component.product.enterprise.EnterpriseComponentV2
+import vn.icheck.android.component.product.enterprise.EnterpriseModelV2
+import vn.icheck.android.component.product.vendor.VendorHolder
 import vn.icheck.android.network.models.ICLayout
 import vn.icheck.android.network.models.ICMedia
+import vn.icheck.android.network.models.ICPage
 import vn.icheck.android.network.models.ICWidgetData
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.holder.*
 
@@ -29,7 +33,7 @@ class ICDetailStampAdapter: RecyclerViewCustomAdapter<ICLayout>() {
             ICViewTypes.SCAN_INFO_TYPE -> ICScanInfoHolder(parent)
             ICViewTypes.GUARANTEE_INFO_TYPE -> ICGuaranteeHolder(parent)
             ICViewTypes.LAST_GUARANTEE_INFO_TYPE -> ICLastGuaranteeHolder(parent)
-            ICViewTypes.VENDOR_TYPE -> ICVendorV61Holder(parent)
+            ICViewTypes.VENDOR_TYPE -> VendorHolder(parent)
             else -> NullHolder(parent)
         }
     }
@@ -57,8 +61,8 @@ class ICDetailStampAdapter: RecyclerViewCustomAdapter<ICLayout>() {
             is ICLastGuaranteeHolder -> {
                 holder.bind(listData[position].data as ICWidgetData)
             }
-            is ICVendorV61Holder -> {
-                holder.bind(listData[position].data as ICWidgetData)
+            is VendorHolder -> {
+                holder.bind(listData[position].data as List<ICPage>)
             }
             else -> super.onBindViewHolder(holder, position)
         }

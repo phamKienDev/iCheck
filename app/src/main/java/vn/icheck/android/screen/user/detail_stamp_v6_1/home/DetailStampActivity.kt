@@ -8,23 +8,14 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Paint
-import android.graphics.Typeface
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.text.Html
-import android.util.TypedValue
-import android.view.Gravity
 import android.view.View
 import android.view.ViewAnimationUtils
-import android.widget.ImageView
-import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatImageView
-import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.content.ContextCompat
 import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -68,12 +59,10 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.more_product_verified_by_
 import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.UpdateInformationFirstActivity
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.screen.user.shipping.ship.ShipActivity
-import vn.icheck.android.screen.user.view_item_image_stamp.ViewItemImageActivity
 import vn.icheck.android.screen.user.viewimage.ViewImageActivity
 import vn.icheck.android.util.AdsUtils
 import vn.icheck.android.util.kotlin.ContactUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
-import java.text.SimpleDateFormat
 import java.util.*
 import java.util.regex.Pattern
 import kotlin.math.hypot
@@ -132,11 +121,11 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
     var description = ""
     var targetType = ""
 
-//    private var nameProduct: String? = null
+    //    private var nameProduct: String? = null
     private var url: String? = null
     private var km: String? = null
 
-//    private var bannerAdapter: BannerAdapter? = null
+    //    private var bannerAdapter: BannerAdapter? = null
     private lateinit var adapterSuggestion: MoreProductVerifiedAdapter
     private lateinit var adapterService: ServiceShopVariantAdapter
     private lateinit var adapterConfigError: ConfigErrorAdapter
@@ -186,6 +175,7 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
 
     private fun setupRecyclerView() {
         recyclerView.adapter = adapter
+        adapter.enableLoadMore(false)
     }
 
     private fun setupViewModel() {
@@ -280,26 +270,6 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
         layoutChatAdmin.setOnClickListener {
             startActivity<ContactSupportActivity>()
             layoutChatAdmin.visibility = View.INVISIBLE
-        }
-
-        tvMoreHistoryGuarantee.setOnClickListener {
-            // todo
-//            val intent = Intent(this, HistoryGuaranteeActivity::class.java)
-//            when {
-//                tvSerialFake.text.toString().isNotEmpty() -> {
-//                    intent.putExtra(Constant.DATA_1, tvSerialFake.text.toString())
-//                }
-//                tvSerialVerified.text.toString().isNotEmpty() -> {
-//                    intent.putExtra(Constant.DATA_1, tvSerialVerified.text.toString())
-//                }
-//                tvSerialVerifiedChongGia.text.toString().isNotEmpty() -> {
-//                    intent.putExtra(Constant.DATA_1, tvSerialVerifiedChongGia.text.toString())
-//                }
-//                else -> {
-//                    intent.putExtra(Constant.DATA_1, tvSerialVerifiedBaoHanh.text.toString())
-//                }
-//            }
-//            startActivity(intent)
         }
 
         layoutMoreVendor.setOnClickListener {
@@ -616,12 +586,11 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                                 "VENDOR" -> {
                                     if (widget.data != null) {
                                         listData.add(ICLayout().apply {
-                                            viewType = ICViewTypes.LAST_GUARANTEE_INFO_TYPE
-                                            data = widget.data!!.apply {
-                                                if (serial.isNullOrEmpty()) {
-                                                    serial = it.data!!.data!!.serial
-                                                }
-                                            }
+                                            viewType = ICViewTypes.VENDOR_TYPE
+                                            data = listOf(widget.data!!.apply {
+                                                icon = R.drawable.ic_verified_24px
+                                                background = R.color.colorPrimary
+                                            })
                                         })
                                     }
                                 }
@@ -1092,210 +1061,210 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
 //            }
 
 //          Lich su bao hanh gan nhat
-            if (obj.data?.guarantee?.last_guarantee != null) {
-                layoutContentHistory.removeAllViews()
-                if (isVietNamLanguage == false) {
-                    appCompatTextView6.text = "Lastest Warranty log"
-                    tvMoreHistoryGuarantee.text = "View all"
-                } else {
-                    appCompatTextView6.text = "Lịch sử bảo hành gần nhất"
-                    tvMoreHistoryGuarantee.text = "Xem tất cả"
-                }
-                layoutHistoryGuarantee.visibility = View.VISIBLE
-                obj.data?.guarantee?.last_guarantee?.let {
-                    productCode = it.product_code
-                    objCustomerLastGuarantee = it.customer
-                    phoneGuarantee = it.customer?.phone
-
-                    if (!it.images.isNullOrEmpty()) {
-                        layoutContentHistory.addView(LinearLayout(this).also { layoutImage ->
-                            val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-                            params.setMargins(SizeHelper.size8, SizeHelper.size8, SizeHelper.size8, 0)
-                            layoutImage.layoutParams = params
-                            layoutImage.orientation = LinearLayout.HORIZONTAL
-
-                            if (it.images!!.size <= 5) {
-                                for (i in it.images ?: mutableListOf()) {
-                                    layoutImage.addView(AppCompatImageView(this).also { itemImage ->
-                                        val paramsImage = LinearLayout.LayoutParams(SizeHelper.size40, SizeHelper.size40)
-                                        paramsImage.setMargins(0, 0, SizeHelper.size8, 0)
-                                        itemImage.layoutParams = paramsImage
-                                        itemImage.scaleType = ImageView.ScaleType.FIT_CENTER
-                                        WidgetUtils.loadImageUrlRounded(itemImage, i, SizeHelper.size4)
-
-                                        itemImage.setOnClickListener {
-                                            startActivity<ViewItemImageActivity, String>(Constant.DATA_1, i)
-                                        }
-                                    })
-                                }
-                            }
-                        })
-                    }
-
-                    if (!it.created_time.isNullOrEmpty()) {
-                        layoutContentHistory.addView(AppCompatTextView(this).also { tvCreatedTime ->
-                            val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-                            layoutParams.setMargins(SizeHelper.size8, SizeHelper.size8, SizeHelper.size8, 0)
-                            tvCreatedTime.layoutParams = layoutParams
-                            tvCreatedTime.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
-                            tvCreatedTime.typeface = Typeface.create("sans-serif", Typeface.NORMAL)
-                            tvCreatedTime.gravity = Gravity.CENTER or Gravity.START
-                            tvCreatedTime.setTextColor(ContextCompat.getColor(this, R.color.black))
-                            tvCreatedTime.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_time_start_blue_18_px, 0, 0, 0)
-                            tvCreatedTime.compoundDrawablePadding = SizeHelper.size8
-                            if (isVietNamLanguage == false) {
-                                tvCreatedTime.text = Html.fromHtml("<font color=#434343>Time: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(it.created_time!!) + "</b>")
-                            } else {
-                                tvCreatedTime.text = Html.fromHtml("<font color=#434343>Thời gian: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(it.created_time!!) + "</b>")
-                            }
-                        })
-                    }
-
-                    if (!it.store?.name.isNullOrEmpty()) {
-                        layoutContentHistory.addView(AppCompatTextView(this).also { tvNameStoreGuarantee ->
-                            val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-                            layoutParams.setMargins(SizeHelper.size8, SizeHelper.size8, SizeHelper.size8, 0)
-                            tvNameStoreGuarantee.layoutParams = layoutParams
-                            tvNameStoreGuarantee.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
-                            tvNameStoreGuarantee.typeface = Typeface.create("sans-serif", Typeface.NORMAL)
-                            tvNameStoreGuarantee.gravity = Gravity.CENTER or Gravity.START
-                            tvNameStoreGuarantee.setTextColor(ContextCompat.getColor(this, R.color.black))
-                            tvNameStoreGuarantee.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_store_blue_18px, 0, 0, 0)
-                            tvNameStoreGuarantee.compoundDrawablePadding = SizeHelper.size8
-                            if (isVietNamLanguage == false) {
-                                tvNameStoreGuarantee.text = Html.fromHtml("<font color=#434343>Warranty Center: </font>" + "<b>" + it.store?.name + "</b>")
-                            } else {
-                                tvNameStoreGuarantee.text = Html.fromHtml("<font color=#434343>Điểm bảo hành: </font>" + "<b>" + it.store?.name + "</b>")
-                            }
-                        })
-                    }
-
-                    if (!it.status?.name.isNullOrEmpty()) {
-                        layoutContentHistory.addView(AppCompatTextView(this).also { tvStatusLastGuarantee ->
-                            val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-                            layoutParams.setMargins(SizeHelper.size8, SizeHelper.size8, SizeHelper.size8, 0)
-                            tvStatusLastGuarantee.layoutParams = layoutParams
-                            tvStatusLastGuarantee.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
-                            tvStatusLastGuarantee.typeface = Typeface.create("sans-serif", Typeface.NORMAL)
-                            tvStatusLastGuarantee.gravity = Gravity.CENTER or Gravity.START
-                            tvStatusLastGuarantee.setTextColor(ContextCompat.getColor(this, R.color.black))
-                            tvStatusLastGuarantee.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_check_blue_18px, 0, 0, 0)
-                            tvStatusLastGuarantee.compoundDrawablePadding = SizeHelper.size8
-                            if (isVietNamLanguage == false) {
-                                tvStatusLastGuarantee.text = Html.fromHtml("<font color=#434343>State: </font>" + "<b>" + it.status?.name + "</b>")
-                            } else {
-                                tvStatusLastGuarantee.text = Html.fromHtml("<font color=#434343>Trạng thái: </font>" + "<b>" + it.status?.name + "</b>")
-                            }
-                        })
-                    }
-
-                    if (!it.state?.name.isNullOrEmpty()) {
-                        layoutContentHistory.addView(AppCompatTextView(this).also { tvStateLastGuarantee ->
-                            val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-                            layoutParams.setMargins(SizeHelper.size8, SizeHelper.size8, SizeHelper.size8, 0)
-                            tvStateLastGuarantee.layoutParams = layoutParams
-                            tvStateLastGuarantee.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
-                            tvStateLastGuarantee.typeface = Typeface.create("sans-serif", Typeface.NORMAL)
-                            tvStateLastGuarantee.gravity = Gravity.CENTER or Gravity.START
-                            tvStateLastGuarantee.setTextColor(ContextCompat.getColor(this, R.color.black))
-                            tvStateLastGuarantee.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_warranty_blue_18px, 0, 0, 0)
-                            tvStateLastGuarantee.compoundDrawablePadding = SizeHelper.size8
-                            if (isVietNamLanguage == false) {
-                                tvStateLastGuarantee.text = Html.fromHtml("<font color=#434343>Warranty Status: </font>" + "<b>" + it.state?.name + "</b>")
-                            } else {
-                                tvStateLastGuarantee.text = Html.fromHtml("<font color=#434343>Tình trạng: </font>" + "<b>" + it.state?.name + "</b>")
-                            }
-                        })
-                    }
-
-                    if (!it.return_time.isNullOrEmpty()) {
-                        layoutContentHistory.addView(AppCompatTextView(this).also { tvReturnTime ->
-                            val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-                            layoutParams.setMargins(SizeHelper.size8, SizeHelper.size8, SizeHelper.size8, 0)
-                            tvReturnTime.layoutParams = layoutParams
-                            tvReturnTime.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
-                            tvReturnTime.typeface = Typeface.create("sans-serif", Typeface.NORMAL)
-                            tvReturnTime.gravity = Gravity.CENTER or Gravity.START
-                            tvReturnTime.setTextColor(ContextCompat.getColor(this, R.color.black))
-                            tvReturnTime.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_time_start_blue_18_px, 0, 0, 0)
-                            tvReturnTime.compoundDrawablePadding = SizeHelper.size8
-                            if (isVietNamLanguage == false) {
-                                tvReturnTime.text = Html.fromHtml("<font color=#434343>Date of return: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(it.return_time) + "</b>")
-                            } else {
-                                tvReturnTime.text = Html.fromHtml("<font color=#434343>Ngày hẹn trả: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(it.return_time) + "</b>")
-                            }
-                        })
-                    }
-
-                    if (!it.note.isNullOrEmpty()) {
-                        layoutContentHistory.addView(AppCompatTextView(this).also { textNote ->
-                            val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-                            layoutParams.setMargins(SizeHelper.size8, SizeHelper.size8, SizeHelper.size8, 0)
-                            textNote.layoutParams = layoutParams
-                            textNote.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
-                            textNote.typeface = Typeface.create("sans-serif", Typeface.NORMAL)
-                            textNote.gravity = Gravity.CENTER or Gravity.START
-                            textNote.setTextColor(ContextCompat.getColor(this, R.color.black))
-                            textNote.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_check_blue_18px, 0, 0, 0)
-                            textNote.compoundDrawablePadding = SizeHelper.size8
-                            if (isVietNamLanguage == false) {
-                                textNote.text = Html.fromHtml("<font color=#434343>Notes of Warranty reuturn: </font>" + "<b>" + it.note + "</b>")
-                            } else {
-                                textNote.text = Html.fromHtml("<font color=#434343>Ghi chú trả BH: </font>" + "<b>" + it.note + "</b>")
-                            }
-                        })
-                    }
-
-                    for (i in it.fields ?: mutableListOf()) {
-                        if (!i.value.isNullOrEmpty() && !i.name.isNullOrEmpty()) {
-                            layoutContentHistory.addView(AppCompatTextView(this).also { text ->
-                                val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-                                layoutParams.setMargins(SizeHelper.size8, SizeHelper.size8, SizeHelper.size8, 0)
-                                text.layoutParams = layoutParams
-                                text.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
-                                text.typeface = Typeface.create("sans-serif", Typeface.NORMAL)
-                                text.gravity = Gravity.CENTER or Gravity.START
-                                text.setTextColor(ContextCompat.getColor(this, R.color.black))
-                                text.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_check_blue_18px, 0, 0, 0)
-                                text.compoundDrawablePadding = SizeHelper.size8
-
-                                val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
-                                try {
-                                    val value = sdf.parse(i.value!!)
-                                    if (value != null) {
-                                        text.text = Html.fromHtml("<font color=#434343>${i.name}: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(i.value) + "</b>")
-                                    } else {
-                                        text.text = Html.fromHtml("<font color=#434343>${i.name}: </font>" + "<b>" + i.value + "</b>")
-                                    }
-                                } catch (e: Exception) {
-                                    text.text = Html.fromHtml("<font color=#434343>${i.name}: </font>" + "<b>" + i.value + "</b>")
-                                }
-                            })
-                        }
-                    }
-
-                    if (!it.variant?.extra.isNullOrEmpty()) {
-                        layoutContentHistory.addView(AppCompatTextView(this).also { textNote ->
-                            val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-                            layoutParams.setMargins(SizeHelper.size8, SizeHelper.size8, SizeHelper.size8, 0)
-                            textNote.layoutParams = layoutParams
-                            textNote.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
-                            textNote.typeface = Typeface.create("sans-serif", Typeface.NORMAL)
-                            textNote.gravity = Gravity.CENTER or Gravity.START
-                            textNote.setTextColor(ContextCompat.getColor(this, R.color.black))
-                            textNote.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_check_blue_18px, 0, 0, 0)
-                            textNote.compoundDrawablePadding = SizeHelper.size8
-                            if (isVietNamLanguage == false) {
-                                textNote.text = Html.fromHtml("<font color=#434343>Variation: </font>" + "<b>" + it.variant?.extra + "</b>")
-                            } else {
-                                textNote.text = Html.fromHtml("<font color=#434343>Biến thể: </font>" + "<b>" + it.variant?.extra + "</b>")
-                            }
-                        })
-                    }
-                }
-            } else {
-                layoutHistoryGuarantee.visibility = View.GONE
-            }
+//            if (obj.data?.guarantee?.last_guarantee != null) {
+//                layoutContentHistory.removeAllViews()
+//                if (isVietNamLanguage == false) {
+//                    appCompatTextView6.text = "Lastest Warranty log"
+//                    tvMoreHistoryGuarantee.text = "View all"
+//                } else {
+//                    appCompatTextView6.text = "Lịch sử bảo hành gần nhất"
+//                    tvMoreHistoryGuarantee.text = "Xem tất cả"
+//                }
+//
+//                obj.data?.guarantee?.last_guarantee?.let {
+//                    productCode = it.product_code
+//                    objCustomerLastGuarantee = it.customer
+//                    phoneGuarantee = it.customer?.phone
+//
+//                    if (!it.images.isNullOrEmpty()) {
+//                        layoutContentHistory.addView(LinearLayout(this).also { layoutImage ->
+//                            val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+//                            params.setMargins(SizeHelper.size8, SizeHelper.size8, SizeHelper.size8, 0)
+//                            layoutImage.layoutParams = params
+//                            layoutImage.orientation = LinearLayout.HORIZONTAL
+//
+//                            if (it.images!!.size <= 5) {
+//                                for (i in it.images ?: mutableListOf()) {
+//                                    layoutImage.addView(AppCompatImageView(this).also { itemImage ->
+//                                        val paramsImage = LinearLayout.LayoutParams(SizeHelper.size40, SizeHelper.size40)
+//                                        paramsImage.setMargins(0, 0, SizeHelper.size8, 0)
+//                                        itemImage.layoutParams = paramsImage
+//                                        itemImage.scaleType = ImageView.ScaleType.FIT_CENTER
+//                                        WidgetUtils.loadImageUrlRounded(itemImage, i, SizeHelper.size4)
+//
+//                                        itemImage.setOnClickListener {
+//                                            startActivity<ViewItemImageActivity, String>(Constant.DATA_1, i)
+//                                        }
+//                                    })
+//                                }
+//                            }
+//                        })
+//                    }
+//
+//                    if (!it.created_time.isNullOrEmpty()) {
+//                        layoutContentHistory.addView(AppCompatTextView(this).also { tvCreatedTime ->
+//                            val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+//                            layoutParams.setMargins(SizeHelper.size8, SizeHelper.size8, SizeHelper.size8, 0)
+//                            tvCreatedTime.layoutParams = layoutParams
+//                            tvCreatedTime.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
+//                            tvCreatedTime.typeface = Typeface.create("sans-serif", Typeface.NORMAL)
+//                            tvCreatedTime.gravity = Gravity.CENTER or Gravity.START
+//                            tvCreatedTime.setTextColor(ContextCompat.getColor(this, R.color.black))
+//                            tvCreatedTime.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_time_start_blue_18_px, 0, 0, 0)
+//                            tvCreatedTime.compoundDrawablePadding = SizeHelper.size8
+//                            if (isVietNamLanguage == false) {
+//                                tvCreatedTime.text = Html.fromHtml("<font color=#434343>Time: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(it.created_time!!) + "</b>")
+//                            } else {
+//                                tvCreatedTime.text = Html.fromHtml("<font color=#434343>Thời gian: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(it.created_time!!) + "</b>")
+//                            }
+//                        })
+//                    }
+//
+//                    if (!it.store?.name.isNullOrEmpty()) {
+//                        layoutContentHistory.addView(AppCompatTextView(this).also { tvNameStoreGuarantee ->
+//                            val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+//                            layoutParams.setMargins(SizeHelper.size8, SizeHelper.size8, SizeHelper.size8, 0)
+//                            tvNameStoreGuarantee.layoutParams = layoutParams
+//                            tvNameStoreGuarantee.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
+//                            tvNameStoreGuarantee.typeface = Typeface.create("sans-serif", Typeface.NORMAL)
+//                            tvNameStoreGuarantee.gravity = Gravity.CENTER or Gravity.START
+//                            tvNameStoreGuarantee.setTextColor(ContextCompat.getColor(this, R.color.black))
+//                            tvNameStoreGuarantee.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_store_blue_18px, 0, 0, 0)
+//                            tvNameStoreGuarantee.compoundDrawablePadding = SizeHelper.size8
+//                            if (isVietNamLanguage == false) {
+//                                tvNameStoreGuarantee.text = Html.fromHtml("<font color=#434343>Warranty Center: </font>" + "<b>" + it.store?.name + "</b>")
+//                            } else {
+//                                tvNameStoreGuarantee.text = Html.fromHtml("<font color=#434343>Điểm bảo hành: </font>" + "<b>" + it.store?.name + "</b>")
+//                            }
+//                        })
+//                    }
+//
+//                    if (!it.status?.name.isNullOrEmpty()) {
+//                        layoutContentHistory.addView(AppCompatTextView(this).also { tvStatusLastGuarantee ->
+//                            val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+//                            layoutParams.setMargins(SizeHelper.size8, SizeHelper.size8, SizeHelper.size8, 0)
+//                            tvStatusLastGuarantee.layoutParams = layoutParams
+//                            tvStatusLastGuarantee.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
+//                            tvStatusLastGuarantee.typeface = Typeface.create("sans-serif", Typeface.NORMAL)
+//                            tvStatusLastGuarantee.gravity = Gravity.CENTER or Gravity.START
+//                            tvStatusLastGuarantee.setTextColor(ContextCompat.getColor(this, R.color.black))
+//                            tvStatusLastGuarantee.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_check_blue_18px, 0, 0, 0)
+//                            tvStatusLastGuarantee.compoundDrawablePadding = SizeHelper.size8
+//                            if (isVietNamLanguage == false) {
+//                                tvStatusLastGuarantee.text = Html.fromHtml("<font color=#434343>State: </font>" + "<b>" + it.status?.name + "</b>")
+//                            } else {
+//                                tvStatusLastGuarantee.text = Html.fromHtml("<font color=#434343>Trạng thái: </font>" + "<b>" + it.status?.name + "</b>")
+//                            }
+//                        })
+//                    }
+//
+//                    if (!it.state?.name.isNullOrEmpty()) {
+//                        layoutContentHistory.addView(AppCompatTextView(this).also { tvStateLastGuarantee ->
+//                            val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+//                            layoutParams.setMargins(SizeHelper.size8, SizeHelper.size8, SizeHelper.size8, 0)
+//                            tvStateLastGuarantee.layoutParams = layoutParams
+//                            tvStateLastGuarantee.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
+//                            tvStateLastGuarantee.typeface = Typeface.create("sans-serif", Typeface.NORMAL)
+//                            tvStateLastGuarantee.gravity = Gravity.CENTER or Gravity.START
+//                            tvStateLastGuarantee.setTextColor(ContextCompat.getColor(this, R.color.black))
+//                            tvStateLastGuarantee.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_warranty_blue_18px, 0, 0, 0)
+//                            tvStateLastGuarantee.compoundDrawablePadding = SizeHelper.size8
+//                            if (isVietNamLanguage == false) {
+//                                tvStateLastGuarantee.text = Html.fromHtml("<font color=#434343>Warranty Status: </font>" + "<b>" + it.state?.name + "</b>")
+//                            } else {
+//                                tvStateLastGuarantee.text = Html.fromHtml("<font color=#434343>Tình trạng: </font>" + "<b>" + it.state?.name + "</b>")
+//                            }
+//                        })
+//                    }
+//
+//                    if (!it.return_time.isNullOrEmpty()) {
+//                        layoutContentHistory.addView(AppCompatTextView(this).also { tvReturnTime ->
+//                            val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+//                            layoutParams.setMargins(SizeHelper.size8, SizeHelper.size8, SizeHelper.size8, 0)
+//                            tvReturnTime.layoutParams = layoutParams
+//                            tvReturnTime.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
+//                            tvReturnTime.typeface = Typeface.create("sans-serif", Typeface.NORMAL)
+//                            tvReturnTime.gravity = Gravity.CENTER or Gravity.START
+//                            tvReturnTime.setTextColor(ContextCompat.getColor(this, R.color.black))
+//                            tvReturnTime.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_time_start_blue_18_px, 0, 0, 0)
+//                            tvReturnTime.compoundDrawablePadding = SizeHelper.size8
+//                            if (isVietNamLanguage == false) {
+//                                tvReturnTime.text = Html.fromHtml("<font color=#434343>Date of return: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(it.return_time) + "</b>")
+//                            } else {
+//                                tvReturnTime.text = Html.fromHtml("<font color=#434343>Ngày hẹn trả: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(it.return_time) + "</b>")
+//                            }
+//                        })
+//                    }
+//
+//                    if (!it.note.isNullOrEmpty()) {
+//                        layoutContentHistory.addView(AppCompatTextView(this).also { textNote ->
+//                            val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+//                            layoutParams.setMargins(SizeHelper.size8, SizeHelper.size8, SizeHelper.size8, 0)
+//                            textNote.layoutParams = layoutParams
+//                            textNote.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
+//                            textNote.typeface = Typeface.create("sans-serif", Typeface.NORMAL)
+//                            textNote.gravity = Gravity.CENTER or Gravity.START
+//                            textNote.setTextColor(ContextCompat.getColor(this, R.color.black))
+//                            textNote.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_check_blue_18px, 0, 0, 0)
+//                            textNote.compoundDrawablePadding = SizeHelper.size8
+//                            if (isVietNamLanguage == false) {
+//                                textNote.text = Html.fromHtml("<font color=#434343>Notes of Warranty reuturn: </font>" + "<b>" + it.note + "</b>")
+//                            } else {
+//                                textNote.text = Html.fromHtml("<font color=#434343>Ghi chú trả BH: </font>" + "<b>" + it.note + "</b>")
+//                            }
+//                        })
+//                    }
+//
+//                    for (i in it.fields ?: mutableListOf()) {
+//                        if (!i.value.isNullOrEmpty() && !i.name.isNullOrEmpty()) {
+//                            layoutContentHistory.addView(AppCompatTextView(this).also { text ->
+//                                val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+//                                layoutParams.setMargins(SizeHelper.size8, SizeHelper.size8, SizeHelper.size8, 0)
+//                                text.layoutParams = layoutParams
+//                                text.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
+//                                text.typeface = Typeface.create("sans-serif", Typeface.NORMAL)
+//                                text.gravity = Gravity.CENTER or Gravity.START
+//                                text.setTextColor(ContextCompat.getColor(this, R.color.black))
+//                                text.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_check_blue_18px, 0, 0, 0)
+//                                text.compoundDrawablePadding = SizeHelper.size8
+//
+//                                val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+//                                try {
+//                                    val value = sdf.parse(i.value!!)
+//                                    if (value != null) {
+//                                        text.text = Html.fromHtml("<font color=#434343>${i.name}: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(i.value) + "</b>")
+//                                    } else {
+//                                        text.text = Html.fromHtml("<font color=#434343>${i.name}: </font>" + "<b>" + i.value + "</b>")
+//                                    }
+//                                } catch (e: Exception) {
+//                                    text.text = Html.fromHtml("<font color=#434343>${i.name}: </font>" + "<b>" + i.value + "</b>")
+//                                }
+//                            })
+//                        }
+//                    }
+//
+//                    if (!it.variant?.extra.isNullOrEmpty()) {
+//                        layoutContentHistory.addView(AppCompatTextView(this).also { textNote ->
+//                            val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+//                            layoutParams.setMargins(SizeHelper.size8, SizeHelper.size8, SizeHelper.size8, 0)
+//                            textNote.layoutParams = layoutParams
+//                            textNote.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
+//                            textNote.typeface = Typeface.create("sans-serif", Typeface.NORMAL)
+//                            textNote.gravity = Gravity.CENTER or Gravity.START
+//                            textNote.setTextColor(ContextCompat.getColor(this, R.color.black))
+//                            textNote.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_check_blue_18px, 0, 0, 0)
+//                            textNote.compoundDrawablePadding = SizeHelper.size8
+//                            if (isVietNamLanguage == false) {
+//                                textNote.text = Html.fromHtml("<font color=#434343>Variation: </font>" + "<b>" + it.variant?.extra + "</b>")
+//                            } else {
+//                                textNote.text = Html.fromHtml("<font color=#434343>Biến thể: </font>" + "<b>" + it.variant?.extra + "</b>")
+//                            }
+//                        })
+//                    }
+//                }
+//            } else {
+//                layoutHistoryGuarantee.visibility = View.GONE
+//            }
 
 //      check nha san xuat
             if (obj.data?.show_vendor == 1) {

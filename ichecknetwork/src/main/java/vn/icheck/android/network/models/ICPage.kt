@@ -1,9 +1,10 @@
 package vn.icheck.android.network.models
 
 import com.google.gson.annotations.Expose
+import vn.icheck.android.ichecklibs.R
 import java.io.Serializable
 
-class ICPage : Serializable {
+open class ICPage : Serializable {
     @Expose
     var id: Long? = null
 
@@ -96,4 +97,7 @@ class ICPage : Serializable {
 
     val getName: String
         get() = name ?: "Chưa cập nhật"
+
+    var icon: Int = 0
+    var background: Int = R.color.colorDisableText
 }

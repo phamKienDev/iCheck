@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/size_10"
@@ -12,9 +13,9 @@
         android:id="@+id/backgroundVerified"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_0"
-        tools:background="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@id/view"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/view"/>
+        tools:background="@color/colorPrimary" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@id/imgAvatar"
@@ -46,9 +47,11 @@
             android:ellipsize="end"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center_vertical"
+            android:hint="@string/dang_cap_nhat"
             android:includeFontPadding="false"
             android:singleLine="true"
             android:textColor="@color/white"
+            android:textColorHint="@color/white"
             android:textSize="@dimen/font_16"
             tools:text="Công ty Cổ phần ViviDa" />
     </LinearLayout>
@@ -60,8 +63,10 @@
         android:layout_marginTop="@dimen/size_3"
         android:ellipsize="end"
         android:fontFamily="@font/barlow_medium"
+        android:hint="@string/dang_cap_nhat"
         android:singleLine="true"
         android:textColor="@color/white"
+        android:textColorHint="@color/white"
         android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
         app:layout_constraintStart_toStartOf="@id/linearLayout"
@@ -101,36 +106,36 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvPhone"
             style="@style/style_text_barlow_page"
-            android:textColor="@color/colorPrimary"
             android:layout_width="wrap_content"
+            android:textColor="@color/colorPrimary"
             tools:text="0325.332.201" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvDangCapNhatSDT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/barlow_regular"
-            android:gravity="center_vertical"
             android:layout_marginTop="@dimen/size_12"
             android:drawableStart="@drawable/ic_list_blue_12px"
-            android:visibility="visible"
             android:drawablePadding="@dimen/size_2"
-            android:textStyle="italic"
+            android:fontFamily="@font/barlow_regular"
+            android:gravity="center_vertical"
             android:includeFontPadding="false"
+            android:text="Số điện thoại đang cập nhật"
             android:textColor="#B4B4B4"
             android:textSize="@dimen/font_14"
-            android:text="Số điện thoại đang cập nhật" />
+            android:textStyle="italic"
+            android:visibility="visible" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvAddress"
             style="@style/style_text_barlow_page"
-            tools:text="Tầng 12, Diamond Flower Tower, 48 Lê Văn Lương, Nhân Chính, Thanh Xuân, Hà Nội" />
+            android:hint="@string/dia_chi_dang_cap_nhat" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
             android:layout_marginTop="@dimen/size_12"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -151,12 +156,12 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/barlow_regular"
                 android:gravity="center_vertical"
-                android:visibility="visible"
-                android:textStyle="italic"
                 android:includeFontPadding="false"
+                android:text="Đang cập nhật"
                 android:textColor="#B4B4B4"
                 android:textSize="@dimen/font_14"
-                android:text="Đang cập nhật"/>
+                android:textStyle="italic"
+                android:visibility="visible" />
 
         </LinearLayout>
     </LinearLayout>

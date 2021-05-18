@@ -410,4 +410,6 @@
     <item name="tvActivate" type="id" />
     <item name="tvState" type="id" />
     <item name="tvDateTime" type="id" />
+    <item name="tvArrow" type="id" />
+    <item name="layoutName" type="id" />
 </resources>

@@ -603,7 +603,27 @@ class IckProductDetailViewModel : BaseViewModel() {
         val listData = layoutHelper.getListVendor(data, layout.key)
 
         if (!listData.isNullOrEmpty()) {
-            layout.data = VendorModel(listData, null)
+            layout.data = VendorModel(listData.apply {
+                for (item in listData) {
+                    if (verifyProduct) {
+                        if (item.verified == true) {
+                            item.icon = R.drawable.ic_verified_24px
+                            item.background = R.color.colorPrimary
+                        } else {
+                            item.icon = 0
+                            item.background = R.color.colorPrimary
+                        }
+                    } else {
+                        if (item.verified == true) {
+                            item.icon = 0
+                            item.background = R.color.colorPrimary
+                        } else {
+                            item.icon = R.drawable.ic_not_verified_24px
+                            item.background = R.color.colorDisableText
+                        }
+                    }
+                }
+            })
             onAddLayout.value = layout
         } else if (!layout.request.url.isNullOrEmpty()) {
             onAddLayout.value = layout
@@ -611,7 +631,27 @@ class IckProductDetailViewModel : BaseViewModel() {
             productRepository.getListPage(layout.request.url!!, object : ICNewApiListener<ICResponse<ICListResponse<ICPage>>> {
                 override fun onSuccess(obj: ICResponse<ICListResponse<ICPage>>) {
                     if (!obj.data?.rows.isNullOrEmpty()) {
-                        layout.data = VendorModel(obj.data!!.rows, null)
+                        layout.data = VendorModel(obj.data!!.rows).apply {
+                            for (item in listVendor) {
+                                if (verifyProduct) {
+                                    if (item.verified == true) {
+                                        item.icon = R.drawable.ic_verified_24px
+                                        item.background = R.color.colorPrimary
+                                    } else {
+                                        item.icon = 0
+                                        item.background = R.color.colorPrimary
+                                    }
+                                } else {
+                                    if (item.verified == true) {
+                                        item.icon = 0
+                                        item.background = R.color.colorPrimary
+                                    } else {
+                                        item.icon = R.drawable.ic_not_verified_24px
+                                        item.background = R.color.colorDisableText
+                                    }
+                                }
+                            }
+                        }
                         onUpdateLayout.value = layout
                     } else {
                         checkTotalError(layout)
