@@ -126,10 +126,28 @@ object CampaignLoyaltyHelper {
                 ?: -1, code, target, object : ICApiListener<ICKResponse<ICKAccumulatePoint>> {
             override fun onSuccess(obj: ICKResponse<ICKAccumulatePoint>) {
                 if (obj.statusCode != 200) {
-                    showCustomErrorToast(activity, obj.data?.message
-                            ?: "Mã $code không hợp lệ")
-                    if (obj.status == "USED_CODE" || obj.status == "INVALID_CUSTOMER") {
-                        listener?.onRemoveHolderInput()
+
+                    when (obj.status) {
+                        "INVALID_CUSTOMER" -> {
+                            listener?.onRemoveHolderInput()
+                            DialogHelperGame.dialogCustomerError(activity,
+                                    R.drawable.ic_error_scan_game,
+                                    "Bạn không thuộc danh sách\ntham gia chương trình",
+                                    "Liên hệ với Doanh nghiệp để biết thêm chi tiết", object : IClickButtonDialog<ICKNone> {
+                                override fun onClickButtonData(obj: ICKNone?) {
+
+                                }
+                            })
+                        }
+                        "USED_CODE" -> {
+                            listener?.onRemoveHolderInput()
+                            showCustomErrorToast(activity, obj.data?.message
+                                    ?: "Mã $code không hợp lệ")
+                        }
+                        else -> {
+                            showCustomErrorToast(activity, obj.data?.message
+                                    ?: "Mã $code không hợp lệ")
+                        }
                     }
                 } else {
                     listener?.onRemoveHolderInput()
@@ -175,10 +193,28 @@ object CampaignLoyaltyHelper {
                 ?: -1, code, target, object : ICApiListener<ICKResponse<ICKAccumulatePoint>> {
             override fun onSuccess(obj: ICKResponse<ICKAccumulatePoint>) {
                 if (obj.statusCode != 200) {
-                    showCustomErrorToast(activity, obj.data?.message
-                            ?: "Mã $code không hợp lệ")
-                    if (obj.status == "USED_CODE" || obj.status == "INVALID_CUSTOMER") {
-                        listener?.onRemoveHolderInput()
+
+                    when (obj.status) {
+                        "INVALID_CUSTOMER" -> {
+                            listener?.onRemoveHolderInput()
+                            DialogHelperGame.dialogCustomerError(activity,
+                                    R.drawable.ic_error_scan_game,
+                                    "Bạn không thuộc danh sách\ntham gia chương trình",
+                                    "Liên hệ với Doanh nghiệp để biết thêm chi tiết", object : IClickButtonDialog<ICKNone> {
+                                override fun onClickButtonData(obj: ICKNone?) {
+
+                                }
+                            })
+                        }
+                        "USED_CODE" -> {
+                            listener?.onRemoveHolderInput()
+                            showCustomErrorToast(activity, obj.data?.message
+                                    ?: "Mã $code không hợp lệ")
+                        }
+                        else -> {
+                            showCustomErrorToast(activity, obj.data?.message
+                                    ?: "Mã $code không hợp lệ")
+                        }
                     }
                 } else {
                     listener?.onRemoveHolderInput()
@@ -220,50 +256,70 @@ object CampaignLoyaltyHelper {
 
     fun getReceiveGift(activity: FragmentActivity, barcode: String, code: String?, nameCampaign: String, listener: IRemoveHolderInputLoyaltyListener?) {
         CampaignRepository().postReceiveGift(barcode, code, object : ICApiListener<ICKResponse<ICKReceiveGift>> {
-            override fun onSuccess(obj: ICKResponse<ICKReceiveGift>) {
+            override fun onSuccess(obj: ICKResponse<ICKReceiveGift>) = if (obj.data != null) {
+                if (obj.statusCode != 200) {
+                    when (obj.status) {
+                        "OUT_OF_GIFT" -> {
+                            object : DialogChucBanMayMan(activity) {
 
-                if (obj.data != null) {
-                    if (obj.statusCode != 200) {
-                        when (obj.status) {
-                            "OUT_OF_GIFT" -> {
-                                object : DialogChucBanMayMan(activity) {
-
-                                }.show()
-                            }
-                            "USED_CODE", "INVALID_CUSTOMER" -> {
-                                listener?.onRemoveHolderInput()
-                                showCustomErrorToast(activity, obj.data?.message
-                                        ?: "Mã $code không hợp lệ")
-                            }
-                            else -> {
-                                showCustomErrorToast(activity, obj.data?.message
-                                        ?: "Mã $code không hợp lệ")
-                            }
+                            }.show()
                         }
-                    } else {
-                        when {
-                            obj.data?.message.isNullOrEmpty() && obj.data?.gift != null -> {
-                                listener?.onRemoveHolderInput()
+                        "USED_CODE" -> {
+                            listener?.onRemoveHolderInput()
+                            showCustomErrorToast(activity, obj.data?.message
+                                    ?: "Mã $code không hợp lệ")
+                        }
+                        "INVALID_CUSTOMER" -> {
+                            listener?.onRemoveHolderInput()
+                            DialogHelperGame.dialogCustomerError(activity,
+                                    R.drawable.ic_error_scan_game,
+                                    "Bạn không thuộc danh sách\ntham gia chương trình",
+                                    "Liên hệ với Doanh nghiệp để biết thêm chi tiết", object : IClickButtonDialog<ICKNone> {
+                                override fun onClickButtonData(obj: ICKNone?) {
 
-                                if (obj.data?.gift?.type == "ICOIN") {
-                                    DialogReceiveGiftSuccess.showDialogReceiveGiftSuccess(activity, null, obj.data?.gift?.name, null, nameCampaign, obj.data?.gift?.image?.original, obj.data?.gifts, obj.data?.winner?.id?.toLong()
-                                            ?: -1)
-                                } else {
-                                    DialogReceiveGiftSuccess.showDialogReceiveGiftSuccess(activity, null, obj.data?.gift?.name, null, nameCampaign, obj.data?.gift?.image?.original, obj.data?.gifts, obj.data?.winner?.id?.toLong()
-                                            ?: -1, false)
                                 }
-                            }
-                            else -> {
-                                object : DialogChucBanMayMan(activity) {
-
-                                }.show()
-                            }
+                            })
+                        }
+                        else -> {
+                            showCustomErrorToast(activity, obj.data?.message
+                                    ?: "Mã $code không hợp lệ")
                         }
                     }
                 } else {
-                    showCustomErrorToast(activity, obj.data?.message
-                            ?: "Mã $code không hợp lệ")
+                    when {
+                        obj.data?.message.isNullOrEmpty() && obj.data?.gift != null -> {
+                            listener?.onRemoveHolderInput()
+
+                            if (obj.data?.gifts?.size!! > 1) {
+                                DialogReceiveGiftSuccess.showDialogReceiveGiftSuccess(activity, null, obj.data?.gift?.name, null, nameCampaign, obj.data?.gift?.image?.original, obj.data?.gifts, obj.data?.winner?.id?.toLong()
+                                        ?: -1, false, isVoucher = false)
+                            } else {
+                                when (obj.data?.gift?.type) {
+                                    "ICOIN" -> {
+                                        DialogReceiveGiftSuccess.showDialogReceiveGiftSuccess(activity, null, obj.data?.gift?.name, null, nameCampaign, obj.data?.gift?.image?.original, obj.data?.gifts, obj.data?.winner?.id?.toLong()
+                                                ?: -1, true, isVoucher = false)
+                                    }
+                                    "VOUCHER" -> {
+                                        DialogReceiveGiftSuccess.showDialogReceiveGiftSuccess(activity, null, obj.data?.gift?.name, null, nameCampaign, obj.data?.gift?.image?.original, obj.data?.gifts, obj.data?.winner?.id?.toLong()
+                                                ?: -1, isCoin = false, isVoucher = true)
+                                    }
+                                    else -> {
+                                        DialogReceiveGiftSuccess.showDialogReceiveGiftSuccess(activity, null, obj.data?.gift?.name, null, nameCampaign, obj.data?.gift?.image?.original, obj.data?.gifts, obj.data?.winner?.id?.toLong()
+                                                ?: -1, isCoin = false, isVoucher = false)
+                                    }
+                                }
+                            }
+                        }
+                        else -> {
+                            object : DialogChucBanMayMan(activity) {
+
+                            }.show()
+                        }
+                    }
                 }
+            } else {
+                showCustomErrorToast(activity, obj.data?.message
+                        ?: "Mã $code không hợp lệ")
             }
 
             override fun onError(error: ICKBaseResponse?) {
@@ -280,17 +336,29 @@ object CampaignLoyaltyHelper {
                 if (obj.statusCode != 200) {
                     if (!obj.data?.message.isNullOrEmpty()) {
                         when (obj.status) {
-                            "OUT_OF_TURN", "INVALID_CUSTOMER", "INVALID_PARAM" -> {
+                            "OUT_OF_TURN", "INVALID_PARAM", "USED_TARGET" -> {
                                 listener?.onRemoveHolderInput()
 
                                 showCustomErrorToast(activity, obj.data?.message!!)
                             }
+                            "INVALID_CUSTOMER" -> {
+                                listener?.onRemoveHolderInput()
+
+                                DialogHelperGame.dialogCustomerError(activity,
+                                        R.drawable.ic_error_scan_game,
+                                        "Bạn không thuộc danh sách\ntham gia chương trình",
+                                        "Liên hệ với Doanh nghiệp để biết thêm chi tiết", object : IClickButtonDialog<ICKNone> {
+                                    override fun onClickButtonData(obj: ICKNone?) {
+
+                                    }
+                                })
+                            }
                             else -> {
-                                ToastHelper.showLongError(activity, "Mã ${code ?: target} không hợp lệ!")
+                                showCustomErrorToast(activity, obj.data?.message ?: "Mã ${code ?: target} không hợp lệ!")
                             }
                         }
                     } else {
-                        ToastHelper.showLongError(activity, "Mã ${code ?: target} không hợp lệ!")
+                        showCustomErrorToast(activity, obj.data?.message ?: "Mã ${code ?: target} không hợp lệ!")
                     }
                 } else {
                     listener?.onRemoveHolderInput()
