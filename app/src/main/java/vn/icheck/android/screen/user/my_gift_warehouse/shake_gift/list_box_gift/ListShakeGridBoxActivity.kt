@@ -310,6 +310,15 @@ class ListShakeGridBoxActivity : BaseActivityMVVM() {
         super.onResume()
     }
 
+    override fun onMessageEvent(event: ICMessageEvent) {
+        super.onMessageEvent(event)
+        if(event.type==ICMessageEvent.Type.REQUEST_MISSION_SUCCESS){
+            if(event.data is String && event.data.isNotEmpty()){
+                viewModel.getInfoCampaign(event.data)
+            }
+        }
+    }
+
     override fun onRequireLoginSuccess(requestCode: Int) {
         super.onRequireLoginSuccess(requestCode)
         when (requestCode) {
