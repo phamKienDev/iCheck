@@ -4,14 +4,12 @@ import android.content.Context
 import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.util.AttributeSet
+import android.widget.LinearLayout
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.SizeHelper
 import vn.icheck.android.ichecklibs.ViewHelper
-import vn.icheck.android.ichecklibs.view.disable_text.EdittextSecondDisableHint
-import vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
 
-class EdittextNormalDisableHintLineColorBg : EdittextNormalHintDisable {
-
+class LinearLayoutBgBorderDotted10 : LinearLayout {
     constructor(context: Context) : super(context) {
         setup()
     }
@@ -29,6 +27,12 @@ class EdittextNormalDisableHintLineColorBg : EdittextNormalHintDisable {
     }
 
     private fun setup() {
-        background = ViewHelper.bgWhiteRadius4StrokeGray1(context)
+        background = GradientDrawable().also {
+            it.setStroke(SizeHelper.size1,Constant.getLineColor(context), SizeHelper.size10.toFloat(), SizeHelper.size6.toFloat())
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                it.setPadding(SizeHelper.size7, SizeHelper.size7, SizeHelper.size7, SizeHelper.size7)
+            }
+            it.cornerRadius= SizeHelper.size10.toFloat()
+        }
     }
 }

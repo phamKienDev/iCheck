@@ -10,6 +10,7 @@ import vn.icheck.android.network.models.ICCriteria
 import vn.icheck.android.screen.account.home.AccountActivity
 import vn.icheck.android.activities.product.review_product_v1.adapter.PostImageCriteriaAdapter
 import vn.icheck.android.activities.product.review_product_v1.view.IReviewProductView
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.adapter.criteria.CriteriaAdapter
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.adapter.criteria.CriteriaChild
 import vn.icheck.android.util.kotlin.ToastUtils
@@ -20,6 +21,7 @@ class PostReviewProductHolder(view: View, val listener: IReviewProductView) : Ba
     val imgAdapter = PostImageCriteriaAdapter(listener)
 
     override fun bind(obj: ICCriteria) {
+        itemView.edt_comment_review.background=ViewHelper.bgTransparentRadius10StrokeLineColor1(itemView.context)
         val listCriteriaChild = mutableListOf<CriteriaChild>()
         for (item in obj.productCriteriaSet!!) {
             listCriteriaChild.add(CriteriaChild(

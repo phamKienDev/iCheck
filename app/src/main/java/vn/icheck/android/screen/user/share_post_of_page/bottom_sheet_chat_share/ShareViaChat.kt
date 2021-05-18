@@ -8,6 +8,7 @@ import kotlinx.android.synthetic.main.dialog_via_chat_share.*
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialogFragment
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICPost
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -25,6 +26,7 @@ class ShareViaChat(val obj: ICPost) : BaseBottomSheetDialogFragment() {
     }
 
     private fun initView(){
+        constraintLayout.background=ViewHelper.bgTransparentStrokeLineColor1(requireContext())
         avatarUserPost.setData(obj.page?.avatar, -1, R.drawable.ic_business_v2)
         tvName.text = obj.page?.name
         tvDesc.text = obj.content

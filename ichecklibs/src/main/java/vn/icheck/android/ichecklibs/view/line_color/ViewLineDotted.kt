@@ -1,15 +1,19 @@
 package vn.icheck.android.ichecklibs.view.line_color
 
 import android.content.Context
+import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
-import android.os.Build
 import android.util.AttributeSet
-import android.widget.LinearLayout
+import android.view.View
+import android.widget.ImageView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.SizeHelper
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.view.disable_text.EdittextDisableHint
 
-class LinearLayoutBgBorderDotted10Gray : LinearLayout {
+class ViewLineDotted : View {
     constructor(context: Context) : super(context) {
         setup()
     }
@@ -27,12 +31,9 @@ class LinearLayoutBgBorderDotted10Gray : LinearLayout {
     }
 
     private fun setup() {
-        background = GradientDrawable().also {
-            it.setStroke(SizeHelper.size1,Constant.getLineColor(context), SizeHelper.size10.toFloat(), SizeHelper.size6.toFloat())
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                it.setPadding(SizeHelper.size7, SizeHelper.size7, SizeHelper.size7, SizeHelper.size7)
-            }
-            it.cornerRadius= SizeHelper.size10.toFloat()
+         background = GradientDrawable().apply {
+            shape = GradientDrawable.LINE
+            setStroke(SizeHelper.size1, Constant.getLineColor(context), 10f, 10f)
         }
     }
 }

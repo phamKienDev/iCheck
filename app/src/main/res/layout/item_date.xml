@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Tên sản phẩm (*)" />
 
-    <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalDisableHintLineColorBg
+    <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalDisableHintBgWhiteRadius4
         android:id="@+id/edt_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

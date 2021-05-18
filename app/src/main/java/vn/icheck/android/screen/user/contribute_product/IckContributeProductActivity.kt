@@ -653,7 +653,7 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
         binding.btnContinue.background = ViewHelper.bgPrimaryCorners4(this)
 
         val barcode = intent.getStringExtra(ICK_BARCODE)
-        binding.edtBarcode.background=ViewHelper.bgGrayRadius4StrokeGray1(this)
+        binding.edtBarcode.background=ViewHelper.bgGrayRadius4StrokeLineColor1(this)
         binding.edtBarcode.setText(barcode)
 
         binding.imgFirst.setOnClickListener {

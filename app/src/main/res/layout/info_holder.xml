@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/size_12"
-    android:background="@drawable/bg_gray_stroke_corner_10"
+    android:id="@+id/linearLayout"
     android:orientation="vertical">
 
     <TextView

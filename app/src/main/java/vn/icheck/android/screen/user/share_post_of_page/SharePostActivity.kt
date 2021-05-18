@@ -8,6 +8,7 @@ import kotlinx.android.synthetic.main.activity_share_post_with_wall.*
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class SharePostActivity : BaseActivityMVVM() {
@@ -19,6 +20,9 @@ class SharePostActivity : BaseActivityMVVM() {
         setContentView(R.layout.activity_share_post_with_wall)
         viewmodel = ViewModelProvider(this).get(SharePostViewModel::class.java)
         viewmodel.getDataIntent(intent)
+
+        linearLayout.background=ViewHelper.bgTransparentStrokeLineColor1(this)
+
         initView()
         listenerGetData()
         listener()

@@ -1,15 +1,11 @@
 package vn.icheck.android.ichecklibs.view.line_color
 
 import android.content.Context
-import android.graphics.drawable.GradientDrawable
-import android.os.Build
 import android.util.AttributeSet
 import android.widget.LinearLayout
-import vn.icheck.android.ichecklibs.Constant
-import vn.icheck.android.ichecklibs.SizeHelper
 import vn.icheck.android.ichecklibs.ViewHelper
 
-class LinearLayoutBgWhiteRadius4StrokeGray1 : LinearLayout {
+class LinearLayoutBgWhiteRadius4 : LinearLayout {
     constructor(context: Context) : super(context) {
         setup()
     }
@@ -27,6 +23,6 @@ class LinearLayoutBgWhiteRadius4StrokeGray1 : LinearLayout {
     }
 
     private fun setup() {
-        background = ViewHelper.bgWhiteRadius4StrokeGray1(context)
+        background = ViewHelper.bgWhiteRadius4StrokeLineColor1(context)
     }
 }

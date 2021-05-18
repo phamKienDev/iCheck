@@ -79,7 +79,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_8"
             android:layout_marginEnd="@dimen/size_8"
-            android:background="@drawable/bg_gray_stroke_corner_10"
             android:ems="10"
             android:fontFamily="sans-serif"
             android:gravity="start|top"

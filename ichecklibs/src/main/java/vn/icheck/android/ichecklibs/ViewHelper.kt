@@ -3,6 +3,7 @@ package vn.icheck.android.ichecklibs
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.ColorStateList
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.*
 import android.os.Build
@@ -285,10 +286,10 @@ object ViewHelper {
     fun bgPrimaryOutline3Corners20(context: Context): Drawable {
         val primaryColor = Constant.getPrimaryColor(context)
         return createShapeDrawable(
-            primaryColor,
-            SizeHelper.size3,
-            alphaColor(primaryColor, 0.4f),
-            20f
+            color = primaryColor,
+            strokeWidth = SizeHelper.size3,
+            strokeColor = alphaColor(primaryColor, 0.4f),
+            radius = 20f
         )
     }
 
@@ -304,9 +305,9 @@ object ViewHelper {
         val radius = 8f.dpToPx()
         val primaryColor = Constant.getPrimaryColor(context)
         return createProgressStateListDrawable(
-            createShapeDrawable(Color.TRANSPARENT, radius),
-            createScaleDrawable(createShapeDrawable(primaryColor, radius)),
-            createScaleDrawable(createShapeDrawable(primaryColor, radius))
+            backgroundDrawable = createShapeDrawable(Color.TRANSPARENT, radius),
+            secondaryDrawable = createScaleDrawable(createShapeDrawable(primaryColor, radius)),
+            progressDrawable = createScaleDrawable(createShapeDrawable(primaryColor, radius))
         )
     }
 
@@ -323,24 +324,24 @@ object ViewHelper {
     * Transparent
     * */
     fun bgOutlinePrimary1Corners4(context: Context) = createShapeDrawable(
-        Color.TRANSPARENT,
-        SizeHelper.size1,
-        Constant.getPrimaryColor(context),
-        4f
+        color = Color.TRANSPARENT,
+        strokeWidth = SizeHelper.size1,
+        strokeColor = Constant.getPrimaryColor(context),
+        radius = 4f
     )
 
     fun bgOutlinePrimary1Corners6(context: Context) = createShapeDrawable(
-        Color.TRANSPARENT,
-        SizeHelper.size1,
-        Constant.getPrimaryColor(context),
-        6f
+        color = Color.TRANSPARENT,
+        strokeWidth = SizeHelper.size1,
+        strokeColor = Constant.getPrimaryColor(context),
+        radius = 6f
     )
 
     fun bgOutlinePrimary05Corners14(context: Context) = createShapeDrawable(
-        Color.TRANSPARENT,
-        SizeHelper.size0_5,
-        Constant.getPrimaryColor(context),
-        14f
+        color = Color.TRANSPARENT,
+        strokeWidth = SizeHelper.size0_5,
+        strokeColor = Constant.getPrimaryColor(context),
+        radius = 14f
     )
 
     /*
@@ -380,33 +381,64 @@ object ViewHelper {
         }
     }
 
-    fun bgBtnFacebook(context: Context)= createShapeDrawable(
-        Constant.getAppBackgroundColor(context),
-        SizeHelper.size1,
-        Constant.getLineColor(context),
-        SizeHelper.size26.toFloat()
+    fun bgBtnFacebook(context: Context) = createShapeDrawable(
+        color = Constant.getAppBackgroundColor(context),
+        strokeWidth =SizeHelper.size1,
+        strokeColor =Constant.getLineColor(context),
+        radius = SizeHelper.size26.toFloat()
     )
 
-    fun bgWhiteRadius4StrokeGray1(context: Context)= createShapeDrawable(
-        Constant.getAppBackgroundColor(context),
-        SizeHelper.size1,
-        Constant.getLineColor(context),
-        SizeHelper.size4.toFloat()
+    fun bgWhiteRadius4StrokeLineColor1(context: Context) = createShapeDrawable(
+        color = Constant.getAppBackgroundColor(context),
+        strokeWidth = SizeHelper.size1,
+        strokeColor = Constant.getLineColor(context),
+        radius=SizeHelper.size4.toFloat()
     )
 
-    fun bgGrayRadius4StrokeGray1(context: Context)= createShapeDrawable(
-        Color.parseColor("#F0F0F0"),
-        SizeHelper.size1,
-        Constant.getLineColor(context),
-        SizeHelper.size4.toFloat()
+    fun bgGrayRadius4StrokeLineColor1(context: Context) = createShapeDrawable(
+        color = Color.parseColor("#F0F0F0"),
+        strokeWidth = SizeHelper.size1,
+        strokeColor = Constant.getLineColor(context),
+        radius = SizeHelper.size4.toFloat()
     )
 
-    fun bgGrayNoEditRadius4StrokeGray1(context: Context) = createShapeDrawable(
-        Color.parseColor("#F5F5F5"),
-        SizeHelper.size1,
-        Constant.getLineColor(context),
-        SizeHelper.size4.toFloat()
+    fun bgGrayNoEditRadius4StrokeLineColor1(context: Context) = createShapeDrawable(
+        color = Color.parseColor("#F5F5F5"),
+        strokeWidth = SizeHelper.size1,
+        strokeColor = Constant.getLineColor(context),
+        radius = SizeHelper.size4.toFloat()
     )
+
+    fun bgWhiteRadius40StrokeLineColor1(context: Context) = createShapeDrawable(
+        color = Color.parseColor("#FFFFFF"),
+        strokeWidth = SizeHelper.size1,
+        strokeColor = Constant.getLineColor(context),
+        radius = SizeHelper.size40.toFloat()
+    )
+
+
+    fun bgTransparentRadius10StrokeLineColor1(context: Context) = createShapeDrawable(
+        color = Color.TRANSPARENT,
+        strokeWidth = SizeHelper.size1,
+        strokeColor = Constant.getLineColor(context),
+        radius = SizeHelper.size10.toFloat()
+    )
+
+
+    fun bgTransparentRadius4StrokeLineColor1(context: Context) = createShapeDrawable(
+        color = Color.TRANSPARENT,
+        strokeWidth = SizeHelper.size1,
+        strokeColor = Constant.getLineColor(context),
+        radius = SizeHelper.size4.toFloat()
+    )
+
+    fun bgTransparentStrokeLineColor1(context: Context) = createShapeDrawable(
+        color = Color.TRANSPARENT,
+        strokeWidth = SizeHelper.size1,
+        strokeColor = Constant.getLineColor(context),
+        radius = 0f,
+    )
+
 
 
     /*

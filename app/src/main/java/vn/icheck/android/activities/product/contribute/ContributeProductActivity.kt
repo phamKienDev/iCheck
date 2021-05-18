@@ -476,7 +476,7 @@ class ContributeProductActivity : BaseICActivity(), TakePhotoHelper.TakePhotoLis
 
     private fun initActivity() {
         instance = this
-        edt_no_edit_barcode.background=ViewHelper.bgGrayNoEditRadius4StrokeGray1(this)
+        edt_no_edit_barcode.background=ViewHelper.bgGrayNoEditRadius4StrokeLineColor1(this)
         intent.getStringExtra("barcode")?.let { barcode ->
             edt_no_edit_barcode.setText(barcode)
             btn_search_google.setOnClickListener {
@@ -957,6 +957,7 @@ class DescriptionAdapter(val listChild: List<DescriptionChild>) : RecyclerView.A
 
     class InfoHolder(view: View) : BaseHolder(view) {
         fun bind(infoChild: ContributeProductActivity.InfoChild) {
+            getVg(R.id.linearLayout).background=ViewHelper.bgTransparentRadius10StrokeLineColor1(itemView.context)
             getTv(R.id.info_title).text = infoChild.infoTitle.title
             if (infoChild.editable) {
                 setOnClick(R.id.info_title, View.OnClickListener {

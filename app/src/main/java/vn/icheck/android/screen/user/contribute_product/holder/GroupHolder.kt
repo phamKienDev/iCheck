@@ -22,6 +22,7 @@ import vn.icheck.android.constant.ATTRIBUTES_POSITION
 import vn.icheck.android.constant.CONTRIBUTIONS_ACTION
 import vn.icheck.android.constant.PUT_ATTRIBUTES
 import vn.icheck.android.databinding.ItemGroupBinding
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.beGone
 import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.screen.user.contribute_product.viewmodel.CategoryAttributesModel
@@ -33,6 +34,7 @@ class GroupHolder(private val itemGroupBinding: ItemGroupBinding) : CoroutineVie
     var balloon: Balloon? = null
     var pasteBalloon: Balloon? = null
     fun bind(categoryAttributesModel: CategoryAttributesModel) {
+        itemGroupBinding.edtInfo.background=ViewHelper.bgTransparentRadius10StrokeLineColor1(itemGroupBinding.edtInfo.context)
         if (pasteBalloon == null) {
             pasteBalloon = createBalloon(itemView.context) {
                 setLayout(R.layout.popup_tooltip)

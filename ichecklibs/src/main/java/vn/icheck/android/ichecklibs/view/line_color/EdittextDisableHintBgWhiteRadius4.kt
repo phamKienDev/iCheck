@@ -1,13 +1,11 @@
-package vn.icheck.android.ichecklibs.view.disable_text
+package vn.icheck.android.ichecklibs.view.line_color
 
 import android.content.Context
 import android.util.AttributeSet
-import androidx.appcompat.widget.AppCompatEditText
-import androidx.appcompat.widget.AppCompatTextView
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.view.disable_text.EdittextDisableHint
 
-open class EdittextDisableHint : AppCompatEditText {
-
+class EdittextDisableHintBgWhiteRadius4:EdittextDisableHint {
     constructor(context: Context) : super(context) {
         setup()
     }
@@ -25,7 +23,6 @@ open class EdittextDisableHint : AppCompatEditText {
     }
 
     private fun setup() {
-        setHintTextColor(Constant.getDisableTextColor(context))
-        includeFontPadding = false
+        background=ViewHelper.bgWhiteRadius4StrokeLineColor1(context)
     }
 }

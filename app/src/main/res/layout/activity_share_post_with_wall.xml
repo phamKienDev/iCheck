@@ -117,12 +117,12 @@
 
             <!--Post-->
             <LinearLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_10"
                 android:layout_marginEnd="@dimen/size_12"
-                android:background="@drawable/bg_rectange_gray"
                 android:orientation="vertical">
 
                 <!--Header Post-->

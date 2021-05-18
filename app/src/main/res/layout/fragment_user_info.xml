@@ -32,6 +32,7 @@
             android:layout_marginStart="@dimen/size_40"
             android:layout_marginLeft="@dimen/size_40"
             android:layout_marginTop="@dimen/size_24"
+            android:paddingLeft="@dimen/size_50"
             android:background="@drawable/edt_bg_selector"
             android:layout_marginEnd="@dimen/size_40"
             android:layout_marginRight="@dimen/size_40"

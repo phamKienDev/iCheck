@@ -41,11 +41,10 @@
         android:textStyle="normal"
         android:textColor="#434343" />
 
-    <vn.icheck.android.ichecklibs.view.disable_text.EdittextDisableHint
+    <vn.icheck.android.ichecklibs.view.line_color.EdittextDisableHintBgWhiteRadius40
         android:id="@+id/edtPhoneNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_gray_corners_40_solid_white"
         android:fontFamily="sans-serif"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginEnd="@dimen/size_12"

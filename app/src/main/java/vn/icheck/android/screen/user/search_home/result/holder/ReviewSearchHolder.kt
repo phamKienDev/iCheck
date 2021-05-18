@@ -25,6 +25,7 @@ import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.helper.TextHelper.setTextNameProductInPost
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -98,6 +99,7 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
         itemView.tvTime.text = TimeHelper.convertDateTimeSvToCurrentDay2(obj.createdAt)
 
         checkLikeReview(obj)
+        itemView.tvComment.background=ViewHelper.bgTransparentRadius4StrokeLineColor1(itemView.context)
         itemView.tvComment.text = if (obj.commentCount > 100) {
             "100+"
         } else {
@@ -228,6 +230,7 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
     }
 
     private fun checkLikeReview(objReview: ICPost) {
+        itemView.tvLike.background=ViewHelper.bgTransparentRadius4StrokeLineColor1(itemView.context)
         itemView.tvLike.setCompoundDrawablesWithIntrinsicBounds(if (objReview.expressive != null) {
             R.drawable.ic_like_12px
         } else {

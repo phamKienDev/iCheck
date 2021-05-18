@@ -38,7 +38,7 @@
         tools:visibility="visible" />
 
 
-    <vn.icheck.android.ichecklibs.view.line_color.LinearLayoutBgWhiteRadius4StrokeGray1
+    <vn.icheck.android.ichecklibs.view.line_color.LinearLayoutBgWhiteRadius4
         android:id="@+id/group_spinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
             android:layout_weight="1"
             android:spinnerMode="dialog" />
 
-    </vn.icheck.android.ichecklibs.view.line_color.LinearLayoutBgWhiteRadius4StrokeGray1>
+    </vn.icheck.android.ichecklibs.view.line_color.LinearLayoutBgWhiteRadius4>
 
     <RadioGroup
         android:id="@+id/group_select"

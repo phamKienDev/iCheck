@@ -47,7 +47,6 @@
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_8"
                 android:layout_marginEnd="@dimen/size_12"
-                android:background="@drawable/bg_gray_stroke_corner_10"
                 android:ems="10"
                 android:fontFamily="sans-serif"
                 android:gravity="start|top"

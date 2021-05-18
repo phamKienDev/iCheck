@@ -3388,7 +3388,7 @@ object ViewHelper {
                 it.setMargins(SizeHelper.size12, 0, 0, 0)
             }
             layoutParams.orientation = LinearLayout.HORIZONTAL
-            layoutParams.setBackgroundResource(R.drawable.bg_stroke_gray_corner_4)
+            layoutParams.background=vn.icheck.android.ichecklibs.ViewHelper.bgTransparentRadius4StrokeLineColor1(layoutParams.context)
 
             layoutParams.addView(AppCompatImageView(context).also { params ->
                 params.layoutParams = createLayoutParams(SizeHelper.size40, SizeHelper.size40).also {
