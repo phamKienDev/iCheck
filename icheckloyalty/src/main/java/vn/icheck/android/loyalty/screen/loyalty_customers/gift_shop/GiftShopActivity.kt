@@ -157,12 +157,17 @@ class GiftShopActivity : BaseActivityGame() {
 
     override fun onMessageEvent(event: ICMessageEvent) {
         super.onMessageEvent(event)
-        if (event.type == ICMessageEvent.Type.ON_COUNT_GIFT) {
-            getShopProducts()
-        }
-        if (event.type == ICMessageEvent.Type.OPEN_DETAIL_GIFT) {
-            GiftDetailActivity.startActivityGiftDetail(this, (event.data as LoyaltyGiftItem).id
-                    ?: -1, 1, 1)
+        when (event.type) {
+            ICMessageEvent.Type.ON_COUNT_GIFT -> {
+                for (item in arrCheckBox) {
+                    item.isChecked = false
+                }
+                getShopProducts()
+            }
+            ICMessageEvent.Type.OPEN_DETAIL_GIFT -> {
+                GiftDetailActivity.startActivityGiftDetail(this, (event.data as LoyaltyGiftItem).id
+                        ?: -1, 1, 1)
+            }
         }
     }
 

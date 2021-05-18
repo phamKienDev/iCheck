@@ -62,7 +62,13 @@ class AcceptShipGiftLoyaltyActivity : BaseActivityGame(), View.OnClickListener {
         viewModel.collectionID = intent.getLongExtra(ConstantsLoyalty.DATA_3, -1)
 
         val user = SessionManager.session.user
-        edtName.setText(user?.name)
+
+        if (user?.name?.contains("null") == true) {
+            edtName.setText("")
+        } else {
+            edtName.setText(user?.name)
+        }
+
         edtPhone.setText(user?.phone)
         edtEmail.setText(user?.email)
         edtAddress.setText(user?.address)
