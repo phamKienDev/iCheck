@@ -17,6 +17,10 @@ public class MiddleMultilineTextView extends androidx.appcompat.widget.AppCompat
     private String SYMBOL = " ... ";
     private final int SYMBOL_LENGTH = SYMBOL.length();
 
+    public MiddleMultilineTextView(Context context) {
+        super(context);
+    }
+
     public MiddleMultilineTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }

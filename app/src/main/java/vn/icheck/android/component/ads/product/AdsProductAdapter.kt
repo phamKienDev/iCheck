@@ -123,7 +123,7 @@ class AdsProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     binding.imgPlay.visibility = View.VISIBLE
                     if (!obj.media!![0].content.isNullOrEmpty()) {
                         binding.imgImage.scaleType=ImageView.ScaleType.FIT_CENTER
-                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, obj.media!![0].content, R.drawable.img_error_ads_product, R.drawable.img_error_ads_product, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, obj.media!![0].content, R.drawable.img_default_product_big, R.drawable.img_default_product_big, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
                     } else {
                         binding.imgImage.scaleType=ImageView.ScaleType.CENTER_CROP
                         binding.imgImage.setImageResource(R.drawable.img_default_product_big)
@@ -132,7 +132,7 @@ class AdsProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     binding.imgPlay.visibility = View.INVISIBLE
                     if (!obj.media!![0].content.isNullOrEmpty()) {
                         binding.imgImage.scaleType=ImageView.ScaleType.FIT_CENTER
-                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, obj.media!![0].content, R.drawable.img_error_ads_product, R.drawable.img_error_ads_product, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, obj.media!![0].content, R.drawable.img_default_product_big, R.drawable.img_default_product_big, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
                     } else {
                         binding.imgImage.scaleType=ImageView.ScaleType.CENTER_CROP
                         binding.imgImage.setImageResource(R.drawable.img_default_product_big)
@@ -246,27 +246,31 @@ class AdsProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 if (obj.media!![0].type == Constant.VIDEO) {
                     binding.imgPlay.visibility = View.VISIBLE
                     if (!obj.media!![0].content.isNullOrEmpty()) {
-                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, obj.media!![0].content, R.drawable.img_error_ads_product, R.drawable.img_error_ads_product, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, obj.media!![0].content, R.drawable.img_default_product_big, R.drawable.img_default_product_big, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
                     } else {
-                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, R.drawable.img_error_ads_product, R.drawable.img_error_ads_product, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                        binding.imgImage.scaleType=ImageView.ScaleType.CENTER_CROP
+                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, R.drawable.img_default_product_big, R.drawable.img_default_product_big, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
                     }
                 } else {
                     binding.imgPlay.visibility = View.INVISIBLE
                     if (!obj.media!![0].content.isNullOrEmpty()) {
-                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, obj.media!![0].content, R.drawable.img_error_ads_product, R.drawable.img_error_ads_product, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, obj.media!![0].content, R.drawable.img_default_product_big, R.drawable.img_default_product_big, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
                     } else {
-                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, R.drawable.img_error_ads_product, R.drawable.img_error_ads_product, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                        binding.imgImage.scaleType=ImageView.ScaleType.CENTER_CROP
+                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, R.drawable.img_default_product_big, R.drawable.img_default_product_big, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
                     }
                 }
             } else {
-                WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, R.drawable.img_error_ads_product, R.drawable.img_error_ads_product, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                binding.imgImage.scaleType=ImageView.ScaleType.CENTER_CROP
+                WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, R.drawable.img_default_product_big, R.drawable.img_default_product_big, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
             }
 
             if (!obj.owner?.avatar?.content.isNullOrEmpty()) {
                 WidgetUtils.loadImageUrl(binding.imgAvatar, obj.owner?.avatar?.content, R.drawable.ic_business_v2)
             } else {
-                WidgetUtils.loadImageUrl(binding.imgAvatar, obj.owner?.avatar?.content, R.drawable.ic_business_v2)
+                WidgetUtils.loadImageUrl(binding.imgAvatar, null, R.drawable.ic_business_v2)
             }
+
 
 
             if (obj.owner?.verified == true) {
@@ -275,7 +279,11 @@ class AdsProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     itemView.tvName.setDrawbleNextEndText(obj.owner?.name, R.drawable.ic_verified_16px)
                 }, 100)
             } else {
-                binding.tvName.text = obj.owner?.name ?: ""
+                binding.tvName.text = if(obj.owner?.name.isNullOrEmpty()){
+                    itemView.context.getString(R.string.dang_cap_nhat)
+                }else{
+                    obj.owner?.name
+                }
             }
 
             if (!obj.name.isNullOrEmpty()) {
@@ -292,6 +300,7 @@ class AdsProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 binding.tvPriceOriginal.beGone()
                 binding.tvPriceUpdating.beVisible()
             } else {
+                binding.tvPriceUpdating.beGone()
                 if (obj.price != null) {
                     binding.tvPriceSpecial.beVisible()
                     binding.tvPriceSpecial.text = TextHelper.formatMoney(obj.price) + "đ"
@@ -310,9 +319,10 @@ class AdsProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 setButtonText(binding.btnAction, obj.isFollow, 0)
             }
             if (obj.rating != null) {
+                binding.tvRatingUpdating.beGone()
                 binding.tvPoint.beVisible()
                 binding.tvRatingText.beVisible()
-                binding.tvPoint.text = (obj.rating!!*2).toString()
+                binding.tvPoint.text = Math.round((obj.rating!!*2)*10).div(10.0).toString()
                 ReviewPointText.setText(binding.tvRatingText, obj.rating!!)
             } else {
                 binding.tvRatingUpdating.beVisible()
@@ -375,12 +385,12 @@ class AdsProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
             if (!obj.media.isNullOrEmpty()) {
                 if (!obj.media!![0].content.isNullOrEmpty()) {
-                    WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, obj.media!![0].content, R.drawable.img_error_ads_product, R.drawable.img_error_ads_product, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                    WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, obj.media!![0].content, R.drawable.img_default_product_big, R.drawable.img_default_product_big, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
                 } else {
-                    WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, R.drawable.img_error_ads_product, R.drawable.img_error_ads_product, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                    WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, R.drawable.img_default_product_big, R.drawable.img_default_product_big, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
                 }
             } else {
-                WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, R.drawable.img_error_ads_product, R.drawable.img_error_ads_product, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, R.drawable.img_default_product_big, R.drawable.img_default_product_big, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
             }
 
             if (!obj.name.isNullOrEmpty()) {
