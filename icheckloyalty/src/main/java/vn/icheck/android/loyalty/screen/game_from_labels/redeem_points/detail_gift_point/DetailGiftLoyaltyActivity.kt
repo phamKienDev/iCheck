@@ -52,12 +52,19 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
         campaignID = intent.getLongExtra(ConstantsLoyalty.DATA_3, -1)
         val type = intent.getIntExtra(ConstantsLoyalty.DATA_7, 1) // phân biệt vào từ màn lịch sử hay không?
 
+        tvDateTime.text = if (!obj?.export_gift_from.isNullOrEmpty() && !obj?.export_gift_to.isNullOrEmpty()) {
+            TimeHelper.convertDateTimeSvToDateVn(obj?.export_gift_to)
+        } else {
+            getString(R.string.dang_cap_nhat)
+        }
+
+        setStatusGift(obj?.state)
+
         if (type == 1) {
-            tvStatus.setInvisible()
+            tvStatus.setGone()
             layoutCountGift.setVisible()
             btnDoiQua.setVisible()
             layoutPhiVanChuyen.setGone()
-
             when (obj?.gift?.type) {
                 "ICOIN" -> {
                 }
@@ -187,6 +194,16 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
                 "PRODUCT" -> {
                 }
                 "VOUCHER" -> {
+                    tvTitleDate.text = obj?.titleDate
+
+                    tvDateTime.text = obj?.dateChange
+
+                    tvStatus.apply {
+                        text = obj?.statusChange
+                        setTextColor(obj?.colorText ?: 0)
+                        setBackgroundResource(obj?.colorBackground ?: 0)
+                    }
+
                     btnDoiQua.setVisible()
 
                     btnDoiQua.apply {
@@ -197,7 +214,7 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
                                 setOnClickListener {
                                     startActivity(Intent(this@DetailGiftLoyaltyActivity, VoucherLoyaltyActivity::class.java).apply {
                                         putExtra(ConstantsLoyalty.DATA_1, obj?.voucher?.code)
-                                        putExtra(ConstantsLoyalty.DATA_2, obj?.voucher?.expired_at)
+                                        putExtra(ConstantsLoyalty.DATA_2, obj?.dateChange)
                                         putExtra(ConstantsLoyalty.DATA_3, obj?.gift?.owner?.logo?.thumbnail)
                                     })
                                 }
@@ -242,27 +259,6 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
             }
             else -> {
                 "Quà tinh thần"
-            }
-        }
-
-        if (obj?.gift?.type != "VOUCHER") {
-
-            tvDateTime.text = if (!obj?.export_gift_from.isNullOrEmpty() && !obj?.export_gift_to.isNullOrEmpty()) {
-                TimeHelper.convertDateTimeSvToDateVn(obj?.export_gift_to)
-            } else {
-                getString(R.string.dang_cap_nhat)
-            }
-
-            setStatusGift(obj?.state)
-        } else {
-            tvTitleDate.text = obj?.titleDate
-
-            tvDateTime.text = obj?.dateChange
-
-            tvStatus.apply {
-                text = obj?.statusChange
-                setTextColor(obj?.colorText ?: 0)
-                setBackgroundResource(obj?.colorBackground ?: 0)
             }
         }
 
