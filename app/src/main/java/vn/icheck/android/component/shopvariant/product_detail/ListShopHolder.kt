@@ -10,41 +10,42 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.adapters.base.BaseHolder
 import vn.icheck.android.component.view.ViewHelper
-import vn.icheck.android.ui.view.TextBarlowSemiBold
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.loyalty.base.setGone
+import vn.icheck.android.network.models.ICShopVariantV2
 import vn.icheck.android.network.util.JsonHelper
 import vn.icheck.android.screen.user.list_shop_variant.ListShopVariantActivity
+import vn.icheck.android.ui.view.TextBarlowSemiBold
 import vn.icheck.android.util.kotlin.ActivityUtils
 
-class ProductDetailShopHolder(parent: View) : BaseHolder(ViewHelper.createProductShopVariant(parent.context)) {
+class ListShopHolder(parent: View) : BaseHolder(ViewHelper.createProductShopVariant(parent.context)) {
 
-    fun bind(obj: ShopProductModel) {
+    fun bind(obj: MutableList<ICShopVariantV2>) {
         (itemView as ViewGroup).run {
             for (i in (childCount - 1) downTo 1) {
                 removeViewAt(i)
             }
 
             (getChildAt(0) as TextBarlowSemiBold).apply {
-                text = if (obj.listShop.size > 0) {
-                    context.getString(R.string.diem_ban_gan_day_xxx, obj.listShop.size)
+                text = if (obj.size > 0) {
+                    context.getString(R.string.diem_ban_gan_day_xxx, obj.size)
                 } else {
                     context.getString(R.string.diem_ban_gan_day)
                 }
             }
 
             addView(ProductDetailShopVariantComponent(context).also {
-                it.bind(obj.listShop[0])
+                it.bind(obj[0])
             })
 
-            if (obj.listShop.size > 1) {
+            if (obj.size > 1) {
                 addView(ProductDetailShopVariantComponent(context).also {
-                    it.bind(obj.listShop[1])
+                    it.bind(obj[1])
                 })
             }
 
-            if (obj.listShop.size > 2)
+            if (obj.size > 2)
                 addView(LinearLayout(context).also { layoutMoreShop ->
                     layoutMoreShop.layoutParams = ViewHelper.createLayoutParams32Dp(SizeHelper.size28, SizeHelper.size12, SizeHelper.size10, SizeHelper.size12, SizeHelper.size10)
                     layoutMoreShop.orientation = LinearLayout.VERTICAL
@@ -61,15 +62,15 @@ class ProductDetailShopHolder(parent: View) : BaseHolder(ViewHelper.createProduc
                     })
 
                     layoutMoreShop.setOnClickListener {
-                        if (obj.listShop.size >= 10) {
+                        if (obj.size >= 10) {
                             ICheckApplication.currentActivity()?.let { activity ->
-                                ActivityUtils.startActivity<ListShopVariantActivity>(activity, Constant.DATA_1, JsonHelper.toJson(obj.listShop))
+                                ActivityUtils.startActivity<ListShopVariantActivity>(activity, Constant.DATA_1, JsonHelper.toJson(obj))
                             }
                         } else {
-                            if (obj.listShop.size > 2) {
-                                for (i in 2 until obj.listShop.size) {
+                            if (obj.size > 2) {
+                                for (i in 2 until obj.size) {
                                     addView(ProductDetailShopVariantComponent(context).also {
-                                        it.bind(obj.listShop[i])
+                                        it.bind(obj[i])
                                     })
                                 }
                             }

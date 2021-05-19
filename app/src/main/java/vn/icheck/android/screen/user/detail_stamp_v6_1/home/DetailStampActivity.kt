@@ -625,6 +625,14 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyalt
                                         })
                                     }
                                 }
+                                "shop" -> {
+//                                    if (!widget.data?.productLinks.isNullOrEmpty()) {
+//                                        listData.add(ICLayout().apply {
+//                                            viewType = ICViewTypes.SHOP_VARIANT_TYPE
+//                                            data = widget.data!!.productLinks
+//                                        })
+//                                    }
+                                }
                             }
                         }
 

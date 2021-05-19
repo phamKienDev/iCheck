@@ -8,6 +8,7 @@ import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.component.`null`.NullHolder
 import vn.icheck.android.component.product.enterprise.ICPageInfoHolder
 import vn.icheck.android.component.product.infor.ProductInformationHolder
+import vn.icheck.android.component.shopvariant.product_detail.ListShopHolder
 import vn.icheck.android.network.models.*
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.holder.*
 
@@ -33,42 +34,24 @@ class ICDetailStampAdapter : RecyclerViewCustomAdapter<ICLayout>() {
             ICViewTypes.VENDOR_TYPE -> ICPageInfoHolder(parent)
             ICViewTypes.PRODUCT_INFO_TYPE -> ProductInformationHolder(parent)
             ICViewTypes.PRODUCT_ECCOMMERCE_TYPE -> ListStampECommerceHolder(parent)
+//            ICViewTypes.SHOP_VARIANT_TYPE -> ListShopHolder(parent)
             else -> NullHolder(parent)
         }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is ICProductImageHolder -> {
-                holder.bind(listData[position].data as List<ICMedia>)
-            }
-            is ICProductHolder -> {
-                holder.bind(listData[position].data as ICWidgetData)
-            }
-            is ICMessageResultHolder -> {
-                holder.bind(listData[position].data as ICWidgetData)
-            }
-            is ICStampInfoHolder -> {
-                holder.bind(listData[position].data as String)
-            }
-            is ICScanInfoHolder -> {
-                holder.bind(listData[position].data as ICWidgetData)
-            }
-            is ICGuaranteeHolder -> {
-                holder.bind(listData[position].data as ICWidgetData)
-            }
-            is ICLastGuaranteeHolder -> {
-                holder.bind(listData[position].data as ICWidgetData)
-            }
-            is ICPageInfoHolder -> {
-                holder.bind(listData[position].data as ICWidgetData)
-            }
-            is ProductInformationHolder -> {
-                holder.bind(listData[position].data as ICInfo)
-            }
-            is ListStampECommerceHolder -> {
-                holder.bind(listData[position].data as MutableList<ICProductLink>)
-            }
+            is ICProductImageHolder -> holder.bind(listData[position].data as List<ICMedia>)
+            is ICProductHolder -> holder.bind(listData[position].data as ICWidgetData)
+            is ICMessageResultHolder -> holder.bind(listData[position].data as ICWidgetData)
+            is ICStampInfoHolder -> holder.bind(listData[position].data as String)
+            is ICScanInfoHolder -> holder.bind(listData[position].data as ICWidgetData)
+            is ICGuaranteeHolder -> holder.bind(listData[position].data as ICWidgetData)
+            is ICLastGuaranteeHolder -> holder.bind(listData[position].data as ICWidgetData)
+            is ICPageInfoHolder -> holder.bind(listData[position].data as ICWidgetData)
+            is ProductInformationHolder -> holder.bind(listData[position].data as ICInfo)
+            is ListStampECommerceHolder -> holder.bind(listData[position].data as MutableList<ICProductLink>)
+//            is ListShopHolder -> holder.bind(listData[position].data as MutableList<ICShopVariantV2>)
             else -> super.onBindViewHolder(holder, position)
         }
     }
