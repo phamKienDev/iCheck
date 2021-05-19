@@ -9,7 +9,7 @@ import vn.icheck.android.ichecklibs.FocusableEditText
 import vn.icheck.android.ichecklibs.R
 import vn.icheck.android.ichecklibs.view.normal_text.FocusableEdittextNormal
 
-class FocusableEdittextNormalHintDisable:FocusableEdittextNormal {
+open class FocusableEdittextNormalHintDisable:FocusableEdittextNormal {
 
     constructor(context: Context) : super(context) {
         setup()

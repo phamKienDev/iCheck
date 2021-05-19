@@ -36,7 +36,6 @@ class VerifyIdentityActivity : BaseActivityMVVM(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_verify_identity)
-
         viewModel = ViewModelProvider(this).get(VerifyIdentityViewModel::class.java)
         initView()
         listenerData()

@@ -440,6 +440,47 @@ object ViewHelper {
     )
 
 
+    fun bgEdtSelectorFocusLineColor1(context: Context) :StateListDrawable{
+        //android:state_focused="true"
+        val focused = GradientDrawable().also {
+            it.setStroke(SizeHelper.size1, Constant.getPrimaryColor(context))
+        }
+
+        val layersFocused = arrayOf(focused)
+        val layerDrawbleFocused = LayerDrawable(layersFocused)
+        layerDrawbleFocused.setId(0, android.R.id.background)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            layerDrawbleFocused.setLayerInsetStart(0, -SizeHelper.dpToPx(2))
+            layerDrawbleFocused.setLayerInsetTop(0, -SizeHelper.dpToPx(2))
+            layerDrawbleFocused.setLayerInsetEnd(0, -SizeHelper.dpToPx(2))
+            layerDrawbleFocused.setLayerInsetBottom(0, SizeHelper.dpToPx(1))
+        }
+
+        //android:state_focused="false"
+        val notFocus = GradientDrawable().also {
+            it.setStroke(SizeHelper.size1, Constant.getLineColor(context))
+        }
+
+        val layersNotFocus = arrayOf(notFocus)
+        val layerDrawbleNotFocus = LayerDrawable(layersNotFocus)
+        layerDrawbleNotFocus.setId(0, android.R.id.background)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            layerDrawbleNotFocus.setLayerInsetStart(0, -SizeHelper.dpToPx(2))
+            layerDrawbleNotFocus.setLayerInsetTop(0, -SizeHelper.dpToPx(2))
+            layerDrawbleNotFocus.setLayerInsetEnd(0, -SizeHelper.dpToPx(2))
+            layerDrawbleNotFocus.setLayerInsetBottom(0, SizeHelper.dpToPx(1))
+        }
+
+        val statesListDrawable = StateListDrawable()
+        statesListDrawable.addState(intArrayOf(android.R.attr.state_focused), layerDrawbleFocused)
+        statesListDrawable.addState(intArrayOf(-android.R.attr.state_focused), layerDrawbleNotFocus)
+
+        return statesListDrawable
+    }
+
+
 
     /*
     * End lineColor
