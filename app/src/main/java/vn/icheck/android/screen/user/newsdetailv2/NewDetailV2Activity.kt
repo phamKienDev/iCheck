@@ -20,7 +20,7 @@ import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
-import vn.icheck.android.ichecklibs.visibleOrGone
+import vn.icheck.android.ichecklibs.util.visibleOrGone
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.user.newsdetailv2.adapter.NewDetailV2Adapter
 import vn.icheck.android.screen.user.newsdetailv2.viewmodel.NewDetailViewModel

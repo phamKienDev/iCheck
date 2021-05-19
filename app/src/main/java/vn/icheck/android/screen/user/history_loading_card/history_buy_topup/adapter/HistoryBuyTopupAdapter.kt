@@ -12,7 +12,6 @@ import kotlinx.android.synthetic.main.item_load_more.view.*
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TimeHelper
@@ -226,7 +225,7 @@ class HistoryBuyTopupAdapter constructor(val view: IHistoryBuyTopupView) : Recyc
                 }
 
                 override fun onError(error: ICResponseCode?) {
-                    itemView.context.showSimpleSuccessToast(R.drawable.ic_waring_white_40_px, "Bạn đã đánh dấu đã nạp thẻ này!")
+                    itemView.context.showSimpleSuccessToast(R.drawable.ic_circle_warning_white_40dp, "Bạn đã đánh dấu đã nạp thẻ này!")
                 }
             })
         }

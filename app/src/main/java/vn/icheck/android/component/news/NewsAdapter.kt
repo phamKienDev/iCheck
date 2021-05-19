@@ -9,7 +9,7 @@ import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ItemNewBinding
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.ichecklibs.visibleOrGone
+import vn.icheck.android.ichecklibs.util.visibleOrGone
 import vn.icheck.android.network.models.ICNews
 import vn.icheck.android.screen.user.newsdetailv2.NewDetailV2Activity
 import vn.icheck.android.ui.RoundedCornersTransformation

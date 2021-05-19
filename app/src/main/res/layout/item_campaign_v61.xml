@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_106">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/bannerLoyalty"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="centerCrop" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/ic_view_detail_gift" />
+
+    </RelativeLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDescp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/size_8"
+        android:layout_marginTop="@dimen/size_10"
+        android:text="Mã dự thưởng chương trình:"
+        android:textColor="@color/darkGray1"
+        android:textSize="@dimen/font_14" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/loyaltyDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/size_8"
+        android:layout_marginTop="@dimen/size_4"
+        android:textColor="@color/colorSecondary"
+        android:textSize="@dimen/font_16"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_36"
+        android:layout_marginHorizontal="@dimen/size_8"
+        android:layout_marginTop="@dimen/size_12"
+        android:layout_marginBottom="@dimen/size_12"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edittextCode"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/bg_edit_code"
+            android:gravity="center"
+            android:hint="Nhập mã dự thưởng"
+            android:inputType="textCapCharacters"
+            android:singleLine="true"
+            android:textAllCaps="true"
+            android:textSize="@dimen/font_14" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnCheckCode"
+            android:layout_width="@dimen/size_83"
+            android:layout_height="match_parent"
+            android:background="@drawable/btn_check_code"
+            android:text="Check mã"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary" />
+
+    </LinearLayout>
+</LinearLayout>

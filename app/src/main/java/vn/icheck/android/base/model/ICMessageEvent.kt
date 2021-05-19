@@ -20,7 +20,6 @@ data class ICMessageEvent(val type: Type, val data: Any? = null) {
         GO_TO_HOME,
         UPDATE_COIN_AND_RANK,
         ON_LOG_IN_FIREBASE,
-        REFRESH_DATA_HISTORY_QR,
         REFRESH_DATA_HISTORY_BARCODE,
         REFRESH_DATA_GIFT_STORE,
         NEW_MESSAGE,

@@ -14,7 +14,7 @@ import vn.icheck.android.network.util.JsonHelper
 
 class DetailStampRepository : BaseRepository() {
 
-    suspend fun getDetailStampV61(code: String, lat: String?, lon: String?): ICResponse<ICStampV61> {
+    suspend fun getDetailStampV61(barcode: String, lat: String?, lon: String?): ICResponse<ICStampV61> {
         val body = hashMapOf<String, Any>()
 
         SessionManager.session.user?.let { user ->
@@ -49,7 +49,7 @@ class DetailStampRepository : BaseRepository() {
             }
         }
 
-        body["code"] = code
+        body["code"] = barcode
         body["device_id"] = DeviceUtils.getUniqueDeviceId()
 
         val agent = DeviceUtils.getModel()
@@ -786,6 +786,11 @@ class DetailStampRepository : BaseRepository() {
                 listener.onError(errorBody)
             }
         })
+    }
+
+    suspend fun getStampConfig(): ICResponse<ICStampConfig> {
+        val host = APIConstants.DETAIL_STAMP_HOST + APIConstants.STAMPGETCONFIGERROR()
+        return ICNetworkClient.getStampClient2().getStampConfig(host)
     }
 
     fun getInforProductById(id: Long, listener: ICApiListener<IC_RESP_InformationProduct>) {

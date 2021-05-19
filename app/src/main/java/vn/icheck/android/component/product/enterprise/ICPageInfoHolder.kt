@@ -12,8 +12,8 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ItemPageInfoBinding
-import vn.icheck.android.ichecklibs.beGone
-import vn.icheck.android.ichecklibs.beVisible
+import vn.icheck.android.ichecklibs.util.beGone
+import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.network.models.ICOwner
 import vn.icheck.android.network.models.ICWidgetData
 import vn.icheck.android.screen.user.page_details.PageDetailActivity

@@ -12,8 +12,8 @@ import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ItemHistoryGuaranteeV61Binding
 import vn.icheck.android.helper.TimeHelper
-import vn.icheck.android.ichecklibs.beGone
-import vn.icheck.android.ichecklibs.beVisible
+import vn.icheck.android.ichecklibs.util.beGone
+import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICListHistoryGuarantee
 import vn.icheck.android.screen.user.detail_stamp_v6_1.detail_history_guarantee.DetailHistoryGuaranteeActivity

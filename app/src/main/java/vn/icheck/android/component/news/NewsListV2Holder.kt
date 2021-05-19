@@ -9,8 +9,7 @@ import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ItemNewsListV2Binding
 import vn.icheck.android.helper.TimeHelper
-import vn.icheck.android.ichecklibs.beVisible
-import vn.icheck.android.ichecklibs.visibleOrGone
+import vn.icheck.android.ichecklibs.util.visibleOrGone
 import vn.icheck.android.network.models.ICNews
 import vn.icheck.android.screen.user.newsdetailv2.NewDetailV2Activity
 import vn.icheck.android.util.kotlin.ActivityUtils

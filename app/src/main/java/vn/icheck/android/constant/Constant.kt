@@ -436,22 +436,26 @@ object Constant {
         return Pattern.compile(regex).matcher(Uri.parse(http).host ?: "").matches()
     }
 
-    fun callPhone(phone: String) {
-        ICheckApplication.currentActivity()?.let { activity ->
-            val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:${phone.replace(" ".toRegex(), "")}"))
-            ActivityUtils.startActivity(activity, intent)
+    fun callPhone(phone: String?) {
+        if (!phone.isNullOrEmpty()) {
+            ICheckApplication.currentActivity()?.let { activity ->
+                val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:${phone.replace(" ".toRegex(), "")}"))
+                ActivityUtils.startActivity(activity, intent)
+            }
         }
     }
 
-    fun sendEmail(email: String) {
-        ICheckApplication.currentActivity()?.let { activity ->
-            val mailIntent = Intent(Intent.ACTION_VIEW)
-            val data = Uri.parse("mailto:?to=${email}")
-            mailIntent.data = data
-            try {
-                ActivityUtils.startActivity(activity, Intent.createChooser(mailIntent, "Send mail..."))
-            } catch (e: Exception) {
-                e.printStackTrace()
+    fun sendEmail(email: String?) {
+        if (!email.isNullOrEmpty()) {
+            ICheckApplication.currentActivity()?.let { activity ->
+                val mailIntent = Intent(Intent.ACTION_VIEW)
+                val data = Uri.parse("mailto:?to=${email}")
+                mailIntent.data = data
+                try {
+                    ActivityUtils.startActivity(activity, Intent.createChooser(mailIntent, "Send mail..."))
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
             }
         }
     }

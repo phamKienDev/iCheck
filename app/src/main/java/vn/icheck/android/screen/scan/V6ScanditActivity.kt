@@ -41,9 +41,6 @@ import com.scandit.datacapture.core.common.feedback.Vibration
 import com.scandit.datacapture.core.data.FrameData
 import com.scandit.datacapture.core.source.*
 import com.scandit.datacapture.core.ui.DataCaptureView
-import com.scandit.datacapture.core.ui.DataCaptureViewListener
-import com.scandit.datacapture.core.ui.orientation.DeviceOrientation
-import com.scandit.datacapture.core.ui.orientation.DeviceOrientationMapper
 import com.yalantis.ucrop.UCrop
 import kotlinx.android.synthetic.main.item_ads_product_grid.view.*
 import kotlinx.coroutines.delay
@@ -59,7 +56,7 @@ import vn.icheck.android.constant.SCAN_REVIEW
 import vn.icheck.android.databinding.IckScanCustomViewBinding
 import vn.icheck.android.fragments.BarcodeBottomDialog
 import vn.icheck.android.helper.*
-import vn.icheck.android.ichecklibs.getDeviceWidth
+import vn.icheck.android.ichecklibs.util.getDeviceWidth
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
@@ -72,7 +69,6 @@ import vn.icheck.android.network.models.ICValidStampSocial
 import vn.icheck.android.network.util.DeviceUtils
 import vn.icheck.android.screen.scan.viewmodel.V6ViewModel
 import vn.icheck.android.screen.user.contribute_product.CONTRIBUTE_REQUEST
-import vn.icheck.android.screen.user.cropimage.CropImageActivity
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.DetailStampHoaPhatActivity
 import vn.icheck.android.screen.user.detail_stamp_thinh_long.home.DetailStampThinhLongActivity
 import vn.icheck.android.screen.user.detail_stamp_v5.home.DetailStampV5Activity

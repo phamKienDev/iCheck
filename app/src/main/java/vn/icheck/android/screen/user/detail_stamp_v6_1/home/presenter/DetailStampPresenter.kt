@@ -20,7 +20,7 @@ import vn.icheck.android.network.models.detail_stamp_v6_1.ICShopVariantStamp
 import vn.icheck.android.network.models.detail_stamp_v6_1.IC_Config_Error
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.view.IDetailStampView
 
-class DetailStampPresenter(val view: IDetailStampView) : BaseActivityPresenter(view) {
+class DetailStampPresenter(val view: IDetailStampView) {
     private val interactor = DetailStampRepository()
     private val cartInteraction = CartInteractor()
     private val cartHelper = CartHelper()
@@ -30,170 +30,131 @@ class DetailStampPresenter(val view: IDetailStampView) : BaseActivityPresenter(v
     private var mLat: String? = null
     private var mLon: String? = null
 
-    fun onGetDataIntent(intent: Intent?, lat: String?, lon: String?) {
-        data = try {
-            intent?.getStringExtra("data")
-        } catch (e: Exception) {
-            ""
-        }
+//    fun onGetDataIntent(intent: Intent?, lat: String?, lon: String?) {
+//        data = try {
+//            intent?.getStringExtra("data")
+//        } catch (e: Exception) {
+//            ""
+//        }
+//
+//        if (!data.isNullOrEmpty()) {
+//            code = if (data!!.contains("http")) {
+//                val separated: List<String> = data!!.split("/")
+//                separated.lastOrNull() ?: ""
+//            } else {
+//                data
+//            }
+//            mLat = lat
+//            mLon = lon
+//
+//            onGetDataDetailStamp(code!!, lat, lon)
+//        } else {
+//            code = intent?.getStringExtra(Constant.DATA_1)
+//
+//            if (code.isNullOrEmpty()) {
+//                view.onGetDataIntentError(Constant.ERROR_UNKNOW)
+//            } else {
+//                onGetDataDetailStamp(code!!, lat, lon)
+//            }
+//        }
+//    }
 
-        if (!data.isNullOrEmpty()) {
-            code = if (data!!.contains("http")) {
-                val separated: List<String> = data!!.split("/")
-                separated.lastOrNull() ?: ""
-            } else {
-                data
-            }
-            mLat = lat
-            mLon = lon
-
-            onGetDataDetailStamp(code!!, lat, lon)
-        } else {
-            code = intent?.getStringExtra(Constant.DATA_1)
-
-            if (code.isNullOrEmpty()) {
-                view.onGetDataIntentError(Constant.ERROR_UNKNOW)
-            } else {
-                onGetDataDetailStamp(code!!, lat, lon)
-            }
-        }
-    }
-
-    private fun onGetDataDetailStamp(code: String, lat: String?, lon: String?) {
-        if (NetworkHelper.isNotConnected(view.mContext)) {
-            view.onGetDataIntentError(Constant.ERROR_INTERNET)
-            return
-        }
-
-        view.onShowLoading(true)
-
-        interactor.getDetailStamp(code, lat, lon, object : ICApiListener<ICDetailStampV6_1> {
-            override fun onSuccess(obj: ICDetailStampV6_1) {
-                Handler().postDelayed({
-                    view.onShowLoading(false)
-                }, 100)
-
-                view.onGetDetailStampSuccess(obj)
-            }
-
-            override fun onError(error: ICBaseResponse?) {
-                view.onShowLoading(false)
-                if (error?.statusCode == 401) {
-                    view.onGetDataRequireLogin()
-                } else {
-                    error?.message?.let {
-                        showError(it)
-                    }
-                }
-            }
-        })
-    }
-
-    fun onGetDataMoreProductVerified(distributorId: Long?) {
-        if (NetworkHelper.isNotConnected(view.mContext)) {
-            view.onGetDataIntentError(Constant.ERROR_INTERNET)
-            return
-        }
-
-        interactor.getListMoreProductVerifiedDistributor(distributorId, object : ICApiListener<ICMoreProductVerified> {
-            override fun onSuccess(obj: ICMoreProductVerified) {
-                if (!obj.data?.products.isNullOrEmpty()) {
-                    view.onGetDataMoreProductVerifiedSuccess(obj.data?.products!!)
-                } else {
-                    view.onGetDataMoreProductVerifiedError(Constant.ERROR_EMPTY)
-                }
-            }
-
-            override fun onError(error: ICBaseResponse?) {
-                error?.message?.let {
-                    showError(it)
-                }
-            }
-        })
-    }
-
-    fun getShopVariant(lat: String?, lon: String?, sellerId: Long, barcode: String?) {
-        interactor.getShopVariant(lat, lon, sellerId, barcode, object : ICApiListener<ICListResponse<ICShopVariantStamp>> {
-            override fun onSuccess(obj: ICListResponse<ICShopVariantStamp>) {
-                if (!obj.rows.isNullOrEmpty()) {
-                    view.onGetShopVariantSuccess(obj)
-                } else {
-                    view.onGetShopVariantFail()
-                }
-            }
-
-            override fun onError(error: ICBaseResponse?) {
-                view.onGetShopVariantFail()
-            }
-        })
-    }
+//    private fun onGetDataDetailStamp(code: String, lat: String?, lon: String?) {
+//        if (NetworkHelper.isNotConnected(view.mContext)) {
+//            view.onGetDataIntentError(Constant.ERROR_INTERNET)
+//            return
+//        }
+//
+//        view.onShowLoading(true)
+//
+//        interactor.getDetailStamp(code!!, lat, lon, object : ICApiListener<ICDetailStampV6_1> {
+//            override fun onSuccess(obj: ICDetailStampV6_1) {
+//                Handler().postDelayed({
+//                    view.onShowLoading(false)
+//                }, 100)
+//
+//                view.onGetDetailStampSuccess(obj)
+//            }
+//
+//            override fun onError(error: ICBaseResponse?) {
+//                view.onShowLoading(false)
+//                if (error?.statusCode == 401) {
+//                    view.onGetDataRequireLogin()
+//                } else {
+//                    error?.message?.let {
+//                        showError(it)
+//                    }
+//                }
+//            }
+//        })
+//    }
 
     fun getConfigError() {
-        if (NetworkHelper.isNotConnected(view.mContext)) {
-            view.onGetDataIntentError(Constant.ERROR_INTERNET)
-            return
-        }
+//        if (NetworkHelper.isNotConnected(view.mContext)) {
+//            view.onGetDataIntentError(Constant.ERROR_INTERNET)
+//            return
+//        }
 
         interactor.getConfigError(object : ICApiListener<IC_Config_Error> {
             override fun onSuccess(obj: IC_Config_Error) {
                 if (obj.data != null) {
-                    view.onGetConfigSuccess(obj)
+//                    view.onGetConfigSuccess(obj)
                 } else {
-                    view.onGetDataIntentError(Constant.ERROR_UNKNOW)
+//                    view.onGetDataIntentError(Constant.ERROR_UNKNOW)
                 }
             }
 
             override fun onError(error: ICBaseResponse?) {
                 error?.message?.let {
-                    showError(it)
+//                    showError(it)
                 }
             }
         })
     }
 
-    fun addToCart(id: Long, prouduct: ICShopVariantStamp, count: Int, type: Int) {
-        if (NetworkHelper.isNotConnected(view.mContext)) {
-            view.onGetDataIntentError(Constant.ERROR_INTERNET)
-            return
-        }
+//    fun addToCart(id: Long, prouduct: ICShopVariantStamp, count: Int, type: Int) {
+//        if (NetworkHelper.isNotConnected(view.mContext)) {
+//            view.onGetDataIntentError(Constant.ERROR_INTERNET)
+//            return
+//        }
+//
+//        view.onShowLoading(true)
+//
+//        cartInteraction.addCart(id, count, object : ICApiListener<ICRespCart> {
+//            override fun onSuccess(obj: ICRespCart) {
+//                view.onShowLoading(false)
+//                cartHelper.saveCart(obj)
+////                InsiderHelper.tagAddToCartSuccessShopVariantStamp(prouduct, count)
+//                if (type == 2) {
+////                    InsiderHelper.tagBuyNowSuccess()
+//                }
+//                view.onAddToCartSuccess(type)
+//            }
+//
+//            override fun onError(error: ICBaseResponse?) {
+//                view.onShowLoading(false)
+//                val message = error?.message ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+//                showError(message)
+//            }
+//        })
+//    }
 
-        view.onShowLoading(true)
-
-        cartInteraction.addCart(id, count, object : ICApiListener<ICRespCart> {
-            override fun onSuccess(obj: ICRespCart) {
-                view.onShowLoading(false)
-                cartHelper.saveCart(obj)
-//                InsiderHelper.tagAddToCartSuccessShopVariantStamp(prouduct, count)
-                if (type == 2) {
-//                    InsiderHelper.tagBuyNowSuccess()
-                }
-                view.onAddToCartSuccess(type)
-            }
-
-            override fun onError(error: ICBaseResponse?) {
-                view.onShowLoading(false)
-                val message = error?.message ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
-                showError(message)
-            }
-        })
-    }
-
-    fun onGetDataDetailStampSecond() {
-        if (NetworkHelper.isNotConnected(view.mContext)) {
-            view.onGetDataIntentError(Constant.ERROR_INTERNET)
-            return
-        }
-
-        interactor.getDetailStamp(code!!, mLat, mLon, object : ICApiListener<ICDetailStampV6_1> {
-            override fun onSuccess(obj: ICDetailStampV6_1) {
-                view.onGetDetailStampSuccess(obj)
-            }
-
-            override fun onError(error: ICBaseResponse?) {
-                error?.message?.let {
-                    showError(it)
-                }
-            }
-        })
-    }
+//    fun onGetDataDetailStampSecond() {
+//        if (NetworkHelper.isNotConnected(view.mContext)) {
+//            view.onGetDataIntentError(Constant.ERROR_INTERNET)
+//            return
+//        }
+//
+//        interactor.getDetailStamp(code!!, mLat, mLon, object : ICApiListener<ICDetailStampV6_1> {
+//            override fun onSuccess(obj: ICDetailStampV6_1) {
+//                view.onGetDetailStampSuccess(obj)
+//            }
+//
+//            override fun onError(error: ICBaseResponse?) {
+//                error?.message?.let {
+//                    showError(it)
+//                }
+//            }
+//        })
+//    }
 }

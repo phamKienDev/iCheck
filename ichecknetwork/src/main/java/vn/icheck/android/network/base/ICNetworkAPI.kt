@@ -696,6 +696,9 @@ interface ICNetworkAPI {
     @GET
     fun configErrorStamp(@Url url: String): Call<IC_Config_Error>
 
+    @GET
+    suspend fun getStampConfig(@Url url: String): ICResponse<ICStampConfig>
+
     /*
      * End Stamp V6.1
      * */

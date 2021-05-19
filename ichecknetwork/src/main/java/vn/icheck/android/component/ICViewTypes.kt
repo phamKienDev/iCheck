@@ -188,6 +188,7 @@ object ICViewTypes {
     const val GUARANTEE_INFO_TYPE = 113
     const val LAST_GUARANTEE_INFO_TYPE = 114
     const val PRODUCT_TYPE = 115
+    const val ERROR_STAMP_TYPE = 116
 
 
     /*

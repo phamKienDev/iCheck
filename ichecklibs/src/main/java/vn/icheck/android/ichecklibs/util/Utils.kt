@@ -1,4 +1,4 @@
-package vn.icheck.android.ichecklibs
+package vn.icheck.android.ichecklibs.util
 
 import android.content.Context
 import android.content.res.Resources
@@ -11,7 +11,6 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.children
 import vn.icheck.android.ichecklibs.databinding.ToastSimpleErrorBinding
 import vn.icheck.android.ichecklibs.databinding.ToastSimpleSuccessBinding
-
 
 fun Context.getDeviceWidth() = this.resources.displayMetrics.widthPixels
 
@@ -45,20 +44,12 @@ fun View.visibleOrInvisible(logic: Boolean) {
     }
 }
 
-fun Int.toPx(res: Resources): Int {
-    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this.toFloat(), res.displayMetrics).toInt()
-}
-
 fun Int.dpToPx(): Int {
-    return (this * Resources.getSystem().displayMetrics.density).toInt()
+    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this.toFloat(), Resources.getSystem().displayMetrics).toInt()
 }
 
-fun Float.dpToPx(): Int {
-    return (this * Resources.getSystem().displayMetrics.density).toInt()
-}
-
-fun Float.toPx(res: Resources): Float {
-    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this, res.displayMetrics)
+fun Float.dpToPx(): Float {
+    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this, Resources.getSystem().displayMetrics)
 }
 
 fun Int.spToPx(): Int {

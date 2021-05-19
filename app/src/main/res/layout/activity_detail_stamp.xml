@@ -12,63 +12,12 @@
         android:id="@+id/layoutScroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottomLayout"
         android:orientation="vertical"
         tools:visibility="visible">
 
-        <!--Toolbar-->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/size_44">
-
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@id/imgBack"
-                android:layout_width="@dimen/size_44"
-                android:layout_height="match_parent"
-                android:background="?android:attr/selectableItemBackground"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_categories_menu_blue_24" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@id/txtTitle"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:ellipsize="end"
-                android:fontFamily="sans-serif-medium"
-                android:gravity="center"
-                android:singleLine="true"
-                android:text="Xác thực sản phẩm"
-                android:textColor="@color/colorSecondary"
-                android:textSize="@dimen/font_18"
-                android:textStyle="normal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/imgGotoCart"
-                android:layout_width="@dimen/size_44"
-                android:layout_height="match_parent"
-                android:background="?android:attr/selectableItemBackground"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imgMore"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_shop_blue_24px" />
-
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/imgMore"
-                android:layout_width="@dimen/size_44"
-                android:layout_height="match_parent"
-                android:background="?android:attr/selectableItemBackground"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_more_horiz_24px" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <include
+            android:id="@id/layoutToolbar"
+            layout="@layout/toolbar_blue" />
 
         <View
             android:id="@id/viewShadow"
@@ -77,158 +26,95 @@
             android:background="@drawable/shadow_bottom" />
 
         <!--Error Client-->
-        <LinearLayout
-            android:id="@+id/layoutErrorClient"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:visibility="gone">
+        <!--        <LinearLayout-->
+        <!--            android:id="@+id/layoutErrorClient"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:gravity="center"-->
+        <!--            android:orientation="vertical"-->
+        <!--            android:visibility="gone">-->
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imgError"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+        <!--            <androidx.appcompat.widget.AppCompatImageView-->
+        <!--                android:id="@+id/imgError"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content" />-->
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvMessageError"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:textColor="#828282"
-                android:textSize="@dimen/font_14"
-                android:textStyle="normal" />
+        <!--            <androidx.appcompat.widget.AppCompatTextView-->
+        <!--                android:id="@+id/tvMessageError"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:fontFamily="sans-serif"-->
+        <!--                android:textColor="#828282"-->
+        <!--                android:textSize="@dimen/font_14"-->
+        <!--                android:textStyle="normal" />-->
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnAgainError"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/size_40"
-                android:layout_marginTop="@dimen/size_16"
-                android:layout_marginEnd="@dimen/size_40"
-                android:background="@drawable/bg_corner_solid_white_strokke_blue"
-                android:fontFamily="sans-serif-medium"
-                android:text="Thử Lại"
-                android:textColor="#3c5a99"
-                android:textSize="@dimen/font_16"
-                android:textStyle="normal" />
-
-        </LinearLayout>
-
-        <!--Require Location-->
-        <LinearLayout
-            android:id="@+id/llAcceptPermission"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_location_permission_history" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvMessageLocation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_8"
-                android:fontFamily="sans-serif"
-                android:gravity="center"
-                android:textAlignment="center"
-                android:textColor="#828282"
-                android:textSize="@dimen/font_14"
-                android:textStyle="normal"
-                tools:text="Để hiển thị dữ liệu Cửa hàng, vui lòng bật GPS" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/btnRequestPermission"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/size_38"
-                android:layout_marginTop="@dimen/size_13"
-                android:layout_marginEnd="@dimen/size_38"
-                android:background="@drawable/bg_blue_corners_40_solid_white"
-                android:fontFamily="sans-serif-medium"
-                android:gravity="center"
-                android:paddingTop="@dimen/size_11"
-                android:paddingBottom="@dimen/size_11"
-                android:text="@string/bat_gps"
-                android:textColor="#3c5a99"
-                android:textSize="@dimen/font_16"
-                android:textStyle="normal" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/btnEnableLocation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/size_38"
-                android:layout_marginTop="@dimen/size_13"
-                android:layout_marginEnd="@dimen/size_38"
-                android:background="@drawable/bg_blue_corners_40_solid_white"
-                android:fontFamily="sans-serif-medium"
-                android:gravity="center"
-                android:paddingTop="@dimen/size_11"
-                android:paddingBottom="@dimen/size_11"
-                android:text="@string/bat_vi_tri"
-                android:textColor="#3c5a99"
-                android:textSize="@dimen/font_16"
-                android:textStyle="normal"
-                android:visibility="gone" />
-
-        </LinearLayout>
+        <!--            <androidx.appcompat.widget.AppCompatButton-->
+        <!--                android:id="@+id/btnAgainError"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginStart="@dimen/size_40"-->
+        <!--                android:layout_marginTop="@dimen/size_16"-->
+        <!--                android:layout_marginEnd="@dimen/size_40"-->
+        <!--                android:background="@drawable/bg_corner_solid_white_strokke_blue"-->
+        <!--                android:fontFamily="sans-serif-medium"-->
+        <!--                android:text="Thử Lại"-->
+        <!--                android:textColor="#3c5a99"-->
+        <!--                android:textSize="@dimen/font_16"-->
+        <!--                android:textStyle="normal" />-->
+        <!--        </LinearLayout>-->
 
         <!--Error Stamp-->
-        <androidx.core.widget.NestedScrollView
-            android:id="@+id/scrollViewError"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fillViewport="true"
-            android:visibility="gone">
+<!--        <androidx.core.widget.NestedScrollView-->
+<!--            android:id="@+id/scrollViewError"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fillViewport="true"-->
+<!--            android:visibility="gone"-->
+<!--            tools:visibility="visible">-->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical">
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:gravity="center"-->
+<!--                android:orientation="vertical">-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/size_17"
-                    android:layout_marginTop="@dimen/size_20"
-                    android:layout_marginEnd="@dimen/size_17"
-                    android:background="@drawable/bg_corner_red_10"
-                    android:gravity="center">
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="@dimen/size_17"-->
+<!--                    android:layout_marginTop="@dimen/size_20"-->
+<!--                    android:layout_marginEnd="@dimen/size_17"-->
+<!--                    android:background="@drawable/bg_corner_red_10"-->
+<!--                    android:gravity="center">-->
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvMessageStampError"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/size_12"
-                        android:layout_marginTop="@dimen/size_15"
-                        android:layout_marginEnd="@dimen/size_12"
-                        android:layout_marginBottom="@dimen/size_17"
-                        android:drawableTop="@drawable/ic_stamp_fake_50_dp"
-                        android:drawablePadding="@dimen/size_9"
-                        android:fontFamily="sans-serif-medium"
-                        android:gravity="center"
-                        android:textColor="#ffffff"
-                        android:textSize="@dimen/font_14"
-                        android:textStyle="normal"
-                        tools:text="CẢNH BÁO! \n MÃ TEM KHÔNG HỢP LỆ (TEXT KHÔNG CỐ ĐỊNH)" />
+<!--                    <androidx.appcompat.widget.AppCompatTextView-->
+<!--                        android:id="@+id/tvMessageStampError"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="@dimen/size_12"-->
+<!--                        android:layout_marginTop="@dimen/size_15"-->
+<!--                        android:layout_marginEnd="@dimen/size_12"-->
+<!--                        android:layout_marginBottom="@dimen/size_17"-->
+<!--                        android:drawableTop="@drawable/ic_stamp_fake_50_dp"-->
+<!--                        android:drawablePadding="@dimen/size_9"-->
+<!--                        android:fontFamily="sans-serif-medium"-->
+<!--                        android:gravity="center"-->
+<!--                        android:textColor="#ffffff"-->
+<!--                        android:textSize="@dimen/font_14"-->
+<!--                        android:textStyle="normal"-->
+<!--                        tools:text="CẢNH BÁO! \n MÃ TEM KHÔNG HỢP LỆ (TEXT KHÔNG CỐ ĐỊNH)" />-->
 
-                </LinearLayout>
+<!--                </LinearLayout>-->
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rcvConfigError"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:id="@+id/rcvConfigError"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content" />-->
+<!--            </LinearLayout>-->
 
-        </androidx.core.widget.NestedScrollView>
+<!--        </androidx.core.widget.NestedScrollView>-->
 
+        <!--        scans exceeded-->
         <!--Exceeded number of scans-->
         <LinearLayout
             android:id="@+id/layoutExceededScan"
@@ -329,828 +215,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@color/colorBackgroundGray"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-        <!--Data-->
-        <androidx.core.widget.NestedScrollView
-            android:id="@+id/scrollView"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:fillViewport="true"
-            android:visibility="gone"
-            tools:visibility="visible">
-
-            <LinearLayout
-                android:id="@id/layoutContent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/layoutLoyalty"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/size_12"
-                    android:layout_marginBottom="@dimen/size_12"
-                    android:visibility="gone"
-                    app:cardCornerRadius="@dimen/size_10">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/size_106">
-
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:id="@+id/bannerLoyalty"
-                                android:layout_width="fill_parent"
-                                android:layout_height="fill_parent"
-                                android:scaleType="centerCrop" />
-
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentRight="true"
-                                android:layout_alignParentBottom="true"
-                                android:src="@drawable/ic_view_detail_gift" />
-
-                        </RelativeLayout>
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/tvDescp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/size_8"
-                            android:layout_marginTop="@dimen/size_10"
-                            android:text="Mã dự thưởng chương trình:"
-                            android:textColor="@color/darkGray1"
-                            android:textSize="@dimen/font_14" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingHorizontal="@dimen/size_8">
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/loyaltyDescription"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/size_4"
-                                android:textColor="@color/colorSecondary"
-                                android:textSize="@dimen/font_16"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/size_36"
-                            android:layout_marginTop="@dimen/size_12"
-                            android:layout_marginBottom="@dimen/size_12"
-                            android:orientation="horizontal"
-                            android:paddingHorizontal="@dimen/size_8">
-
-                            <androidx.appcompat.widget.AppCompatEditText
-                                android:id="@+id/edittextCode"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@drawable/bg_edit_code"
-                                android:gravity="center"
-                                android:hint="Nhập mã dự thưởng"
-                                android:inputType="textCapCharacters"
-                                android:singleLine="true"
-                                android:textAllCaps="true"
-                                android:textSize="@dimen/font_14" />
-
-                            <androidx.appcompat.widget.AppCompatButton
-                                android:id="@+id/btnCheckCode"
-                                android:layout_width="@dimen/size_83"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/btn_check_code"
-                                android:text="Check mã"
-                                android:textAllCaps="false"
-                                android:textColor="@color/colorPrimary" />
-
-                        </LinearLayout>
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <!--Diem Ban-->
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/layoutShopVariant"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/size_13"
-                    android:layout_marginTop="@dimen/size_13"
-                    android:layout_marginEnd="@dimen/size_13"
-                    android:layout_marginBottom="@dimen/size_8"
-                    android:visibility="gone"
-                    app:cardCornerRadius="@dimen/size_10">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/bg_corner_top_dark_blue_10">
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvNameShopVariant"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/size_8"
-                                android:layout_marginTop="@dimen/size_8"
-                                android:fontFamily="sans-serif-medium"
-                                android:textColor="#ffffff"
-                                android:textSize="@dimen/font_16"
-                                android:textStyle="normal"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                tools:text="Công ty TNHH Kính Mắt Quang Hưng" />
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvKmShopVariant"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/size_8"
-                                android:layout_marginBottom="@dimen/size_6"
-                                android:fontFamily="sans-serif-medium"
-                                android:textColor="#ffffff"
-                                android:textSize="@dimen/font_14"
-                                android:textStyle="normal"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toStartOf="@+id/view"
-                                app:layout_constraintStart_toStartOf="@+id/tvNameShopVariant"
-                                app:layout_constraintTop_toBottomOf="@+id/tvNameShopVariant"
-                                tools:text="5km" />
-
-                            <View
-                                android:id="@+id/view"
-                                android:layout_width="@dimen/size_2"
-                                android:layout_height="0dp"
-                                android:layout_marginStart="@dimen/size_18"
-                                android:background="@color/white"
-                                app:layout_constraintBottom_toBottomOf="@+id/tvKmShopVariant"
-                                app:layout_constraintEnd_toStartOf="@+id/tvRatingShopVariant"
-                                app:layout_constraintStart_toEndOf="@+id/tvKmShopVariant"
-                                app:layout_constraintTop_toTopOf="@+id/tvKmShopVariant" />
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvRatingShopVariant"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/size_18"
-                                android:drawableStart="@drawable/ic_start_stamp_12"
-                                android:drawablePadding="@dimen/size_8"
-                                android:fontFamily="sans-serif-medium"
-                                android:textColor="#ffffff"
-                                android:textSize="@dimen/font_14"
-                                android:textStyle="normal"
-                                app:layout_constraintBottom_toBottomOf="@+id/view"
-                                app:layout_constraintStart_toEndOf="@+id/view"
-                                app:layout_constraintTop_toTopOf="@+id/view"
-                                tools:text="4.5/5.0" />
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@color/gray_item_search"
-                                android:orientation="vertical">
-
-                                <androidx.appcompat.widget.AppCompatTextView
-                                    android:id="@+id/tvAddressShopVariant"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="@dimen/size_8"
-                                    android:layout_marginTop="@dimen/size_12"
-                                    android:layout_marginEnd="@dimen/size_8"
-                                    android:layout_marginBottom="@dimen/size_10"
-                                    android:fontFamily="sans-serif"
-                                    android:textColor="#434343"
-                                    android:textSize="@dimen/font_12"
-                                    android:textStyle="normal"
-                                    tools:text="Số 50, Ngõ 125 Nguyễn Ngọc Vũ, Trung Hòa, Cầu Giấy, Hà Nội (tên dài không giới hạn)" />
-
-                                <androidx.recyclerview.widget.RecyclerView
-                                    android:id="@+id/rcvServiceShopVariant"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="@dimen/size_8"
-                                    android:layout_marginBottom="@dimen/size_14" />
-
-                            </LinearLayout>
-
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/bg_corner_bottom_white_10">
-
-                                <androidx.appcompat.widget.AppCompatTextView
-                                    android:id="@+id/tvAddToCartInDiemBan"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="@dimen/size_8"
-                                    android:layout_marginTop="@dimen/size_6"
-                                    android:layout_marginBottom="@dimen/size_6"
-                                    android:drawableEnd="@drawable/ic_add_cart_light_blue_24px"
-                                    android:drawablePadding="@dimen/size_5"
-                                    android:fontFamily="sans-serif-medium"
-                                    android:gravity="center"
-                                    android:text="Giỏ hàng"
-                                    android:textColor="#4f4f4f"
-                                    android:textSize="@dimen/font_14"
-                                    android:textStyle="normal"
-                                    android:visibility="invisible"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
-
-                                <LinearLayout
-                                    android:id="@+id/linearLayout"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="0dp"
-                                    android:background="@drawable/bg_corner_sub_price_green_stamp"
-                                    android:gravity="center|end"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent">
-
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="match_parent"
-                                        android:layout_marginStart="@dimen/size_30"
-                                        android:background="@drawable/bg_corner_sub_price_green_stamp_2"
-                                        android:gravity="center"
-                                        android:orientation="horizontal">
-
-                                        <androidx.appcompat.widget.AppCompatTextView
-                                            android:id="@+id/tvPriceNoSale"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginStart="@dimen/size_12"
-                                            android:layout_marginEnd="@dimen/size_14"
-                                            android:drawableStart="@drawable/ic_price_white_18px"
-                                            android:drawablePadding="@dimen/size_7"
-                                            android:fontFamily="sans-serif"
-                                            android:gravity="center"
-                                            android:textColor="#d8d8d8"
-                                            android:textSize="@dimen/font_14"
-                                            android:textStyle="normal"
-                                            tools:text="130,000" />
-
-                                        <androidx.appcompat.widget.AppCompatTextView
-                                            android:id="@+id/tvPriceSale"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginEnd="@dimen/size_8"
-                                            android:fontFamily="sans-serif"
-                                            android:textColor="#ffffff"
-                                            android:textSize="@dimen/font_16"
-                                            android:textStyle="bold"
-                                            tools:text="90,000đ" />
-
-                                    </LinearLayout>
-                                </LinearLayout>
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-                        </LinearLayout>
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <!--Layout Gurantee-->
-<!--                <androidx.cardview.widget.CardView-->
-<!--                    android:id="@+id/layoutGurantee"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="@dimen/size_13"-->
-<!--                    android:layout_marginTop="@dimen/size_8"-->
-<!--                    android:layout_marginEnd="@dimen/size_13"-->
-<!--                    android:layout_marginBottom="@dimen/size_8"-->
-<!--                    android:visibility="gone"-->
-<!--                    app:cardCornerRadius="@dimen/size_10"-->
-<!--                    tools:visibility="visible">-->
-
-<!--                    <LinearLayout-->
-<!--                        android:id="@+id/layoutContenGuarantee"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:background="@drawable/bg_corner_gray_10"-->
-<!--                        android:orientation="vertical"-->
-<!--                        android:paddingBottom="@dimen/size_12">-->
-
-<!--                        <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:background="@drawable/bg_corner_top_dark_blue_10">-->
-
-<!--                            <LinearLayout-->
-<!--                                android:id="@+id/root"-->
-<!--                                android:layout_width="@dimen/size_30"-->
-<!--                                android:layout_height="@dimen/size_30"-->
-<!--                                android:layout_marginStart="@dimen/size_12"-->
-<!--                                android:background="@drawable/bg_corner_white_10"-->
-<!--                                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                                app:layout_constraintStart_toStartOf="parent"-->
-<!--                                app:layout_constraintTop_toTopOf="parent">-->
-
-<!--                                <androidx.appcompat.widget.AppCompatImageView-->
-<!--                                    android:layout_width="wrap_content"-->
-<!--                                    android:layout_height="wrap_content"-->
-<!--                                    android:layout_margin="@dimen/size_4"-->
-<!--                                    android:src="@drawable/ic_warranty_blue_36px" />-->
-
-<!--                            </LinearLayout>-->
-
-<!--                            <androidx.appcompat.widget.AppCompatTextView-->
-<!--                                android:id="@+id/tvWarrantyInformation"-->
-<!--                                android:layout_width="0dp"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:layout_marginStart="@dimen/size_8"-->
-<!--                                android:layout_marginTop="@dimen/size_13"-->
-<!--                                android:layout_marginBottom="@dimen/size_13"-->
-<!--                                android:fontFamily="sans-serif-medium"-->
-<!--                                android:textColor="#ffffff"-->
-<!--                                android:textSize="@dimen/font_16"-->
-<!--                                android:textStyle="normal"-->
-<!--                                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                                app:layout_constraintStart_toEndOf="@+id/root"-->
-<!--                                app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--                        </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-<!--                        <androidx.appcompat.widget.AppCompatTextView-->
-<!--                            android:id="@+id/tvDetailsWarranty"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginStart="@dimen/size_12"-->
-<!--                            android:layout_marginTop="@dimen/size_12"-->
-<!--                            android:layout_marginBottom="@dimen/size_8"-->
-<!--                            android:fontFamily="sans-serif-medium"-->
-<!--                            android:textColor="#3c5a99"-->
-<!--                            android:textSize="@dimen/font_16"-->
-<!--                            android:textStyle="normal" />-->
-
-<!--                        <androidx.appcompat.widget.AppCompatTextView-->
-<!--                            android:id="@+id/tvGuaranteeDay"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginStart="@dimen/size_12"-->
-<!--                            android:layout_marginBottom="@dimen/size_4"-->
-<!--                            android:fontFamily="sans-serif"-->
-<!--                            android:textColor="#000000"-->
-<!--                            android:textSize="@dimen/font_14"-->
-<!--                            android:textStyle="normal"-->
-<!--                            tools:text="Thời gian bảo hành: 3 năm" />-->
-
-<!--                        <androidx.appcompat.widget.AppCompatTextView-->
-<!--                            android:id="@+id/tvExpiredDay"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginStart="@dimen/size_12"-->
-<!--                            android:layout_marginBottom="@dimen/size_4"-->
-<!--                            android:fontFamily="sans-serif"-->
-<!--                            android:textColor="#000000"-->
-<!--                            android:textSize="@dimen/font_14"-->
-<!--                            android:textStyle="normal"-->
-<!--                            tools:text="Hạn bảo hành: 29/04/2018" />-->
-
-<!--                        <androidx.appcompat.widget.AppCompatTextView-->
-<!--                            android:id="@+id/tvRemainingDay"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginStart="@dimen/size_12"-->
-<!--                            android:layout_marginBottom="@dimen/size_4"-->
-<!--                            android:fontFamily="sans-serif"-->
-<!--                            android:textColor="#000000"-->
-<!--                            android:textSize="@dimen/font_14"-->
-<!--                            android:textStyle="normal"-->
-<!--                            tools:text="Số ngày bảo hành còn lại: 15 ngày" />-->
-
-<!--                        <androidx.appcompat.widget.AppCompatTextView-->
-<!--                            android:id="@+id/tvActiveDay"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginStart="@dimen/size_12"-->
-<!--                            android:fontFamily="sans-serif"-->
-<!--                            android:textColor="#000000"-->
-<!--                            android:textSize="@dimen/font_14"-->
-<!--                            android:textStyle="normal"-->
-<!--                            tools:text="Ngày kích hoạt bảo hành: 20/11/2017" />-->
-
-<!--                    </LinearLayout>-->
-<!--                </androidx.cardview.widget.CardView>-->
-
-                <!--History Gurantee-->
-<!--                <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--                    android:id="@+id/layoutHistoryGuarantee"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="@dimen/size_12"-->
-<!--                    android:layout_marginTop="@dimen/size_8"-->
-<!--                    android:layout_marginEnd="@dimen/size_12"-->
-<!--                    android:layout_marginBottom="@dimen/size_8">-->
-
-<!--                    <androidx.appcompat.widget.AppCompatTextView-->
-<!--                        android:id="@+id/appCompatTextView6"-->
-<!--                        android:layout_width="0dp"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:fontFamily="sans-serif"-->
-<!--                        android:textColor="#3c5a99"-->
-<!--                        android:textSize="@dimen/font_18"-->
-<!--                        android:textStyle="normal"-->
-<!--                        app:layout_constraintStart_toStartOf="parent"-->
-<!--                        app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--                    <androidx.appcompat.widget.AppCompatTextView-->
-<!--                        android:id="@+id/tvMoreHistoryGuarantee"-->
-<!--                        android:layout_width="0dp"-->
-<!--                        android:layout_height="match_parent"-->
-<!--                        android:fontFamily="sans-serif"-->
-<!--                        android:gravity="end"-->
-<!--                        android:textColor="#434343"-->
-<!--                        android:textSize="@dimen/font_14"-->
-<!--                        android:textStyle="normal"-->
-<!--                        android:text="fsdfsd"-->
-<!--                        app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView6"-->
-<!--                        app:layout_constraintEnd_toEndOf="parent"-->
-<!--                        app:layout_constraintStart_toEndOf="@+id/appCompatTextView6"-->
-<!--                        app:layout_constraintTop_toTopOf="@+id/appCompatTextView6" />-->
-
-<!--                    <LinearLayout-->
-<!--                        android:id="@+id/layoutContentHistory"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginTop="@dimen/size_8"-->
-<!--                        android:background="@drawable/bg_corner_gray_10"-->
-<!--                        android:orientation="vertical"-->
-<!--                        android:paddingBottom="@dimen/size_8"-->
-<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                        app:layout_constraintEnd_toEndOf="parent"-->
-<!--                        app:layout_constraintStart_toStartOf="parent"-->
-<!--                        app:layout_constraintTop_toBottomOf="@+id/appCompatTextView6" />-->
-
-<!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-                <!--Vendor-->
-<!--                <androidx.appcompat.widget.AppCompatTextView-->
-<!--                    android:id="@+id/tvSubVendor"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="@dimen/size_12"-->
-<!--                    android:layout_marginTop="@dimen/size_8"-->
-<!--                    android:layout_marginEnd="@dimen/size_12"-->
-<!--                    android:fontFamily="sans-serif"-->
-<!--                    android:textColor="#3c5a99"-->
-<!--                    android:textSize="@dimen/font_18"-->
-<!--                    android:textStyle="normal"-->
-<!--                    android:visibility="gone" />-->
-
-<!--                <androidx.cardview.widget.CardView-->
-<!--                    android:id="@+id/layoutVendor"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="@dimen/size_12"-->
-<!--                    android:layout_marginTop="@dimen/size_8"-->
-<!--                    android:layout_marginEnd="@dimen/size_12"-->
-<!--                    android:layout_marginBottom="@dimen/size_8"-->
-<!--                    android:visibility="gone"-->
-<!--                    app:cardCornerRadius="@dimen/size_10"-->
-<!--                    tools:visibility="visible">-->
-
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:background="@drawable/bg_corner_gray_10"-->
-<!--                        android:orientation="vertical">-->
-
-<!--                        <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--                            android:id="@+id/layoutMoreVendor"-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:background="@drawable/bg_corner_top_dark_blue_10">-->
-
-<!--                            <androidx.appcompat.widget.AppCompatTextView-->
-<!--                                android:id="@+id/tvNameVendor"-->
-<!--                                android:layout_width="0dp"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:layout_marginStart="@dimen/size_12"-->
-<!--                                android:layout_marginTop="@dimen/size_7"-->
-<!--                                android:layout_marginBottom="@dimen/size_7"-->
-<!--                                android:ellipsize="end"-->
-<!--                                android:fontFamily="sans-serif-medium"-->
-<!--                                android:maxLines="1"-->
-<!--                                android:singleLine="true"-->
-<!--                                android:textColor="#ffffff"-->
-<!--                                android:textSize="@dimen/font_16"-->
-<!--                                android:textStyle="normal"-->
-<!--                                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                                app:layout_constraintEnd_toStartOf="@+id/appCompatImageView8"-->
-<!--                                app:layout_constraintStart_toStartOf="parent"-->
-<!--                                app:layout_constraintTop_toTopOf="parent"-->
-<!--                                tools:text="Công ty Cổ phần" />-->
-
-<!--                            <androidx.appcompat.widget.AppCompatImageView-->
-<!--                                android:id="@+id/appCompatImageView8"-->
-<!--                                android:layout_width="wrap_content"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:layout_marginEnd="@dimen/size_12"-->
-<!--                                android:padding="@dimen/size_4"-->
-<!--                                android:src="@drawable/ic_next_white_18px"-->
-<!--                                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                                app:layout_constraintTop_toTopOf="@+id/tvNameVendor" />-->
-
-<!--                        </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-<!--                        <androidx.appcompat.widget.AppCompatTextView-->
-<!--                            android:id="@+id/tvMST"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginStart="@dimen/size_12"-->
-<!--                            android:layout_marginTop="@dimen/size_9"-->
-<!--                            android:fontFamily="sans-serif-medium"-->
-<!--                            android:textColor="#000000"-->
-<!--                            android:textSize="@dimen/font_14"-->
-<!--                            android:textStyle="normal"-->
-<!--                            android:visibility="gone"-->
-<!--                            tools:text="MST: 0106875900" />-->
-
-<!--                        <androidx.appcompat.widget.AppCompatTextView-->
-<!--                            android:id="@+id/tvAddressVendor"-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginStart="@dimen/size_12"-->
-<!--                            android:layout_marginTop="@dimen/size_4"-->
-<!--                            android:layout_marginEnd="@dimen/size_12"-->
-<!--                            android:fontFamily="sans-serif"-->
-<!--                            android:textColor="#000000"-->
-<!--                            android:textSize="@dimen/font_14"-->
-<!--                            android:textStyle="normal"-->
-<!--                            tools:text="Số 50, Ngõ 125 Nguyễn Ngọc Vũ, Trung Hòa,Cầu Giấy, Hà Nội" />-->
-
-<!--                        <androidx.appcompat.widget.AppCompatTextView-->
-<!--                            android:id="@+id/tvWebsiteVendor"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginStart="@dimen/size_12"-->
-<!--                            android:layout_marginTop="@dimen/size_4"-->
-<!--                            android:fontFamily="sans-serif"-->
-<!--                            android:textColor="#3c5a99"-->
-<!--                            android:textSize="@dimen/font_14"-->
-<!--                            android:textStyle="normal"-->
-<!--                            tools:text="www.icheck.com.vn" />-->
-
-<!--                        <LinearLayout-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginStart="@dimen/size_12"-->
-<!--                            android:layout_marginTop="@dimen/size_4"-->
-<!--                            android:layout_marginEnd="@dimen/size_12"-->
-<!--                            android:layout_marginBottom="@dimen/size_12"-->
-<!--                            android:orientation="horizontal">-->
-
-<!--                            <androidx.appcompat.widget.AppCompatTextView-->
-<!--                                android:id="@+id/tvPhoneVendor"-->
-<!--                                android:layout_width="0dp"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:layout_weight="1"-->
-<!--                                android:fontFamily="sans-serif"-->
-<!--                                android:textColor="#3c5a99"-->
-<!--                                android:textSize="@dimen/font_14"-->
-<!--                                android:textStyle="normal"-->
-<!--                                tools:text="0902195488" />-->
-
-<!--                            <androidx.appcompat.widget.AppCompatTextView-->
-<!--                                android:id="@+id/tvMailVendor"-->
-<!--                                android:layout_width="0dp"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:layout_weight="1"-->
-<!--                                android:ellipsize="end"-->
-<!--                                android:fontFamily="sans-serif"-->
-<!--                                android:gravity="end"-->
-<!--                                android:maxLines="1"-->
-<!--                                android:singleLine="true"-->
-<!--                                android:textColor="#3c5a99"-->
-<!--                                android:textSize="@dimen/font_14"-->
-<!--                                android:textStyle="normal"-->
-<!--                                tools:text="cskh@icheck.vn" />-->
-
-<!--                        </LinearLayout>-->
-<!--                    </LinearLayout>-->
-<!--                </androidx.cardview.widget.CardView>-->
-
-                <!--Distributor-->
-<!--                <androidx.appcompat.widget.AppCompatTextView-->
-<!--                    android:id="@+id/tvSubDistributor"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="@dimen/size_12"-->
-<!--                    android:layout_marginTop="@dimen/size_8"-->
-<!--                    android:layout_marginEnd="@dimen/size_12"-->
-<!--                    android:fontFamily="sans-serif"-->
-<!--                    android:textColor="#3c5a99"-->
-<!--                    android:textSize="@dimen/font_18"-->
-<!--                    android:textStyle="normal" />-->
-
-<!--                <androidx.cardview.widget.CardView-->
-<!--                    android:id="@+id/layoutDistributor"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="@dimen/size_12"-->
-<!--                    android:layout_marginTop="@dimen/size_8"-->
-<!--                    android:layout_marginEnd="@dimen/size_12"-->
-<!--                    android:layout_marginBottom="@dimen/size_8"-->
-<!--                    android:visibility="gone"-->
-<!--                    app:cardCornerRadius="@dimen/size_10">-->
-
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:background="@drawable/bg_corner_gray_10"-->
-<!--                        android:orientation="vertical">-->
-
-<!--                        <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--                            android:id="@+id/layoutMoreDistributor"-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:background="@drawable/bg_corner_top_dark_blue_10">-->
-
-<!--                            <androidx.appcompat.widget.AppCompatTextView-->
-<!--                                android:id="@+id/tvNameDistributor"-->
-<!--                                android:layout_width="wrap_content"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:layout_marginStart="@dimen/size_12"-->
-<!--                                android:layout_marginTop="@dimen/size_7"-->
-<!--                                android:layout_marginBottom="@dimen/size_7"-->
-<!--                                android:fontFamily="sans-serif-medium"-->
-<!--                                android:textColor="#ffffff"-->
-<!--                                android:textSize="@dimen/font_16"-->
-<!--                                android:textStyle="normal"-->
-<!--                                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                                app:layout_constraintStart_toStartOf="parent"-->
-<!--                                app:layout_constraintTop_toTopOf="parent"-->
-<!--                                tools:text="Công ty Cổ phần iCheck" />-->
-
-<!--                            <androidx.appcompat.widget.AppCompatImageView-->
-<!--                                android:id="@+id/btnMoreDistributor"-->
-<!--                                android:layout_width="wrap_content"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:layout_marginEnd="@dimen/size_12"-->
-<!--                                android:padding="@dimen/size_4"-->
-<!--                                android:src="@drawable/ic_next_white_18px"-->
-<!--                                app:layout_constraintBottom_toBottomOf="@+id/tvNameDistributor"-->
-<!--                                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                                app:layout_constraintTop_toTopOf="@+id/tvNameDistributor" />-->
-
-<!--                        </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-<!--                        <androidx.appcompat.widget.AppCompatTextView-->
-<!--                            android:id="@+id/tvMSTDistributor"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginStart="@dimen/size_12"-->
-<!--                            android:layout_marginTop="@dimen/size_9"-->
-<!--                            android:fontFamily="sans-serif-medium"-->
-<!--                            android:textColor="#000000"-->
-<!--                            android:textSize="@dimen/font_14"-->
-<!--                            android:textStyle="normal"-->
-<!--                            android:visibility="gone"-->
-<!--                            tools:text="MST: 0106875900" />-->
-
-<!--                        <androidx.appcompat.widget.AppCompatTextView-->
-<!--                            android:id="@+id/tvAddressDistributor"-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginStart="@dimen/size_12"-->
-<!--                            android:layout_marginTop="@dimen/size_4"-->
-<!--                            android:layout_marginEnd="@dimen/size_12"-->
-<!--                            android:fontFamily="sans-serif"-->
-<!--                            android:textColor="#000000"-->
-<!--                            android:textSize="@dimen/font_14"-->
-<!--                            android:textStyle="normal"-->
-<!--                            tools:text="Số 50, Ngõ 125 Nguyễn Ngọc Vũ, Trung Hòa,Cầu Giấy, Hà Nội" />-->
-
-<!--                        <androidx.appcompat.widget.AppCompatTextView-->
-<!--                            android:id="@+id/tvWebsiteDistributor"-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginStart="@dimen/size_12"-->
-<!--                            android:layout_marginTop="@dimen/size_4"-->
-<!--                            android:fontFamily="sans-serif"-->
-<!--                            android:textColor="#3c5a99"-->
-<!--                            android:textSize="@dimen/font_14"-->
-<!--                            android:textStyle="normal"-->
-<!--                            tools:text="www.icheck.com.vn" />-->
-
-<!--                        <LinearLayout-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginStart="@dimen/size_12"-->
-<!--                            android:layout_marginTop="@dimen/size_4"-->
-<!--                            android:layout_marginEnd="@dimen/size_12"-->
-<!--                            android:layout_marginBottom="@dimen/size_12"-->
-<!--                            android:orientation="horizontal">-->
-
-<!--                            <androidx.appcompat.widget.AppCompatTextView-->
-<!--                                android:id="@+id/tvPhoneDistributor"-->
-<!--                                android:layout_width="0dp"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:layout_weight="1"-->
-<!--                                android:fontFamily="sans-serif"-->
-<!--                                android:textColor="#3c5a99"-->
-<!--                                android:textSize="@dimen/font_14"-->
-<!--                                android:textStyle="normal"-->
-<!--                                tools:text="0902195488" />-->
-
-<!--                            <androidx.appcompat.widget.AppCompatTextView-->
-<!--                                android:id="@+id/tvMailDistributor"-->
-<!--                                android:layout_width="0dp"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:layout_weight="1"-->
-<!--                                android:ellipsize="end"-->
-<!--                                android:fontFamily="sans-serif"-->
-<!--                                android:gravity="end"-->
-<!--                                android:maxLines="1"-->
-<!--                                android:singleLine="true"-->
-<!--                                android:textColor="#3c5a99"-->
-<!--                                android:textSize="@dimen/font_14"-->
-<!--                                android:textStyle="normal"-->
-<!--                                tools:text="cskh@icheck.vn" />-->
-
-<!--                        </LinearLayout>-->
-<!--                    </LinearLayout>-->
-<!--                </androidx.cardview.widget.CardView>-->
-
-                <!--Information-->
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rcvInformation"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone" />
-
-                <!--MoreVerifiedProduct-->
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/layoutSubProductVerified"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/size_12"
-                    android:layout_marginTop="@dimen/size_8"
-                    android:layout_marginEnd="@dimen/size_12"
-                    android:visibility="gone">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/appCompatTextView9"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-medium"
-                        android:textColor="#3c5a99"
-                        android:textSize="@dimen/font_18"
-                        android:textStyle="normal"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvMoreProductVerified"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif"
-                        android:textColor="#434343"
-                        android:textSize="@dimen/font_14"
-                        android:textStyle="normal"
-                        app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView9"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/appCompatTextView9" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rcvMoreProductVerified"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/size_12"
-                    android:orientation="horizontal"
-                    android:visibility="gone"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/item_suggest_product_verified" />
-            </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
+            android:layout_height="match_parent"
+            android:background="@color/colorBackgroundGray" />
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -1206,93 +272,4 @@
             android:textSize="@dimen/font_12"
             android:textStyle="normal" />
     </LinearLayout>
-
-    <!--BottomView-->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/bottomLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:visibility="gone">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout7"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="#fbbb00"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/layoutBuyNow"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/btnChat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/size_12"
-                android:layout_marginTop="@dimen/size_6"
-                android:layout_marginEnd="@dimen/size_12"
-                android:layout_marginBottom="@dimen/size_3"
-                android:drawableTop="@drawable/ic_chat_temp_white_24_px"
-                android:drawablePadding="@dimen/size_3"
-                android:fontFamily="sans-serif-medium"
-                android:textColor="#ffffff"
-                android:textSize="@dimen/font_12"
-                android:textStyle="normal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <!--            <View-->
-            <!--                android:layout_width="@dimen/size_1"-->
-            <!--                android:layout_height="0dp"-->
-            <!--                android:layout_marginStart="@dimen/size_24"-->
-            <!--                android:layout_marginEnd="@dimen/size_24"-->
-            <!--                android:background="@color/white"-->
-            <!--                app:layout_constraintBottom_toBottomOf="@+id/btnChat"-->
-            <!--                app:layout_constraintEnd_toStartOf="@+id/btnAddToCart"-->
-            <!--                app:layout_constraintStart_toEndOf="@+id/btnChat"-->
-            <!--                app:layout_constraintTop_toTopOf="@+id/btnChat" />-->
-
-            <!--            <androidx.appcompat.widget.AppCompatTextView-->
-            <!--                android:id="@+id/btnAddToCart"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginTop="@dimen/size_6"-->
-            <!--                android:layout_marginEnd="@dimen/size_24"-->
-            <!--                android:layout_marginBottom="@dimen/size_3"-->
-            <!--                android:drawableTop="@drawable/ic_shop_white_24px"-->
-            <!--                android:drawablePadding="@dimen/size_3"-->
-            <!--                android:fontFamily="sans-serif-medium"-->
-            <!--                android:textColor="#ffffff"-->
-            <!--                android:textSize="@dimen/font_12"-->
-            <!--                android:textStyle="normal"-->
-            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--                app:layout_constraintEnd_toEndOf="parent"-->
-            <!--                app:layout_constraintTop_toTopOf="parent" />-->
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <LinearLayout
-            android:id="@+id/layoutBuyNow"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="#3c5a99"
-            android:gravity="center"
-            app:layout_constraintBottom_toBottomOf="@+id/constraintLayout7"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/constraintLayout7"
-            app:layout_constraintTop_toTopOf="@+id/constraintLayout7">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvBuyNow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
-                android:textColor="#ffffff"
-                android:textSize="@dimen/font_16"
-                android:textStyle="normal" />
-        </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>

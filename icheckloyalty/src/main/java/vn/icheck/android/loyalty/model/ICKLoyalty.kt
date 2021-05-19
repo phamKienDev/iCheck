@@ -82,4 +82,6 @@ class ICKLoyalty : Serializable {
 
     @Expose
     val campaign_package_code: MutableList<CampaignPackageCodeItem>? = null
+
+    var content: String? = null
 }

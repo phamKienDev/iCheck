@@ -5,7 +5,6 @@ import android.content.Intent
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.dialog_confirm_exchange_gifts.*
 import org.greenrobot.eventbus.EventBus
-import vn.icheck.android.ichecklibs.showSimpleSuccessToast
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.dialog.base.BaseDialog
@@ -22,7 +21,6 @@ import vn.icheck.android.loyalty.network.ICApiListener
 import vn.icheck.android.loyalty.repository.LoyaltyCustomersRepository
 import vn.icheck.android.loyalty.screen.loyalty_customers.accept_ship_gift.AcceptShipGiftActivity
 import vn.icheck.android.loyalty.screen.redemption_history.RedemptionHistoryActivity
-import vn.icheck.android.loyalty.sdk.LoyaltySdk
 
 open class DialogConfirmExchangeGiftsLongTime(
         context: Context,

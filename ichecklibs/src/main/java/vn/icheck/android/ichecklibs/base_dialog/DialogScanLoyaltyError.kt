@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.dialog_scan_loyalty_error.*
 import vn.icheck.android.ichecklibs.R
-import vn.icheck.android.ichecklibs.beGone
-import vn.icheck.android.ichecklibs.beVisible
+import vn.icheck.android.ichecklibs.util.beGone
+import vn.icheck.android.ichecklibs.util.beVisible
 
 abstract class DialogScanLoyaltyError(
         context: Context,
