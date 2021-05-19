@@ -140,8 +140,8 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
     private fun initListener(obj: ICItemHistory) {
         itemView.onDelayClick({
             if (obj.product?.id != null) {
-                ICheckApplication.currentActivity()?.let {
-                    IckProductDetailActivity.start(it, obj.product?.barcode ?: "")
+                ICheckApplication.currentActivity()?.let { activity ->
+                    IckProductDetailActivity.start(activity, obj.product!!.id)
                 }
             }
         }, 1500)
