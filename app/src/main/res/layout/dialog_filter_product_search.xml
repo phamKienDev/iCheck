@@ -11,11 +11,10 @@
         android:id="@+id/layoutHeader"
         layout="@layout/layout_title_filter_search" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
         android:id="@+id/divider27"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_1"
-        android:background="#D8D8D8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layoutHeader" />
@@ -46,14 +45,13 @@
         app:layout_constraintTop_toTopOf="@id/tv_select_location"
         app:track="@drawable/ic_filer_switch_track_selector" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
         android:id="@+id/divider28"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_0_5"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_13"
-        android:background="#D8D8D8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_select_location" />
@@ -105,13 +103,12 @@
             app:layout_constraintTop_toTopOf="@+id/tv_price" />
     </LinearLayout>
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
         android:id="@+id/divider29"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_0_5"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginLeft="@dimen/size_12"
-        android:background="#D8D8D8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/containerPrice" />
@@ -165,13 +162,12 @@
             app:layout_constraintTop_toTopOf="@+id/tv_all_review" />
     </LinearLayout>
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
         android:id="@+id/divider30"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_0_5"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginLeft="@dimen/size_12"
-        android:background="#D8D8D8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/containerReview" />

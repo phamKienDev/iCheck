@@ -8,7 +8,7 @@ import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
 import vn.icheck.android.ichecklibs.view.edit_text.CornerErrorEditText
 
-class CornerErrorEdittextNormal:CornerErrorEditText {
+open class CornerErrorEdittextNormal:CornerErrorEditText {
 
     constructor(context: Context) : super(context) {
         setup()

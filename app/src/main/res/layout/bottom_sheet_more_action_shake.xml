@@ -42,14 +42,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/imgCancel" />
 
-        <View
+        <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
             android:id="@id/view"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginEnd="@dimen/size_12"
-            android:background="#d8d8d8"
             app:layout_constraintTop_toBottomOf="@id/imgCancel" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

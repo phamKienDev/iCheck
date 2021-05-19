@@ -16,7 +16,7 @@ import vn.icheck.android.room.entity.*
 
 @Database(entities = [ICProvince::class, ICDistrict::class, ICWard::class, ICCart::class,
     StickerView::class, StickerPackages::class, ICMyFollowingPage::class,ChatConversation::class,
-    ICOwnerPage::class, ICMeFollowUser::class, ICMyFriendIdUser::class, ICMyFriendInvitationUserId::class, ICFriendInvitationMeUserId::class, ICProductIdInCart::class], version = 28)
+    ICOwnerPage::class, ICMeFollowUser::class, ICMyFriendIdUser::class, ICMyFriendInvitationUserId::class, ICFriendInvitationMeUserId::class, ICProductIdInCart::class], version = 27)
 @TypeConverters(ShopCartConverter::class, ItemsConverter::class)
 abstract class AppDatabase : RoomDatabase() {
 

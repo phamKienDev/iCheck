@@ -19,7 +19,8 @@
     <color name="colorNormalView">#212121</color>
 
     <color name="colorLine">#D8D8D8</color>
-    <color name="colorLineBackground">#D8D8D8</color>
+    <color name="colorLineIc">#D8D8D8</color>
+    <color name="colorLineView">#D8D8D8</color> <!-- textcolor, editText, background -->
 
     <color name="colorBackgroundGray">#F0F0F0</color>
     <color name="colorBackgroundWhite">#FFFFFF</color>

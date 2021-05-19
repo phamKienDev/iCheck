@@ -424,7 +424,6 @@ object ViewHelper {
         radius = SizeHelper.size10.toFloat()
     )
 
-
     fun bgTransparentRadius4StrokeLineColor1(context: Context) = createShapeDrawable(
         color = Color.TRANSPARENT,
         strokeWidth = SizeHelper.size1,
@@ -438,6 +437,14 @@ object ViewHelper {
         strokeColor = Constant.getLineColor(context),
         radius = 0f,
     )
+
+    fun lineDottedVerticalLineColor(context: Context) = GradientDrawable().apply {
+        setStroke(SizeHelper.size1_5,Constant.getLineColor(context),SizeHelper.size1_5.toFloat(),SizeHelper.size5.toFloat())
+    }
+
+    fun lineDottedVertical7LineColor(context: Context) = GradientDrawable().apply {
+        setStroke(SizeHelper.size7,Constant.getLineColor(context),SizeHelper.size4.toFloat(),SizeHelper.size4.toFloat())
+    }
 
 
     fun bgEdtSelectorFocusLineColor1(context: Context) :StateListDrawable{

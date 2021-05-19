@@ -2569,7 +2569,7 @@ object ViewHelper {
                 it.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
                 it.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_like_12px, 0, 0, 0)
                 it.compoundDrawablePadding = SizeHelper.size4
-                it.background = ContextCompat.getDrawable(context, R.drawable.gray_stroke_corner_4)
+                it.background = vn.icheck.android.ichecklibs.ViewHelper.bgTransparentRadius4StrokeLineColor1(it.context)
                 it.includeFontPadding = false
             })
             layoutHeader.addView(TextSecondBarlowMedium(context).also {
@@ -2586,7 +2586,7 @@ object ViewHelper {
                 it.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
                 it.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_comment_12px, 0, 0, 0)
                 it.compoundDrawablePadding = SizeHelper.size4
-                it.background = ContextCompat.getDrawable(context, R.drawable.gray_stroke_corner_4)
+                it.background = vn.icheck.android.ichecklibs.ViewHelper.bgTransparentRadius4StrokeLineColor1(context)
                 it.includeFontPadding = false
             })
         })

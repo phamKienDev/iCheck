@@ -50,13 +50,12 @@
             android:layout_marginRight="@dimen/size_12"
             app:srcCompat="@drawable/ic_switch_off_24px" />
 
-        <View
+        <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
             android:id="@+id/view"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_below="@+id/tv"
-            android:layout_marginLeft="@dimen/size_12"
-            android:background="#D8D8D8" />
+            android:layout_marginLeft="@dimen/size_12"/>
 
         <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:id="@+id/textView1"
@@ -80,13 +79,12 @@
             android:layout_marginRight="@dimen/size_12"
             app:srcCompat="@drawable/ic_switch_off_24px" />
 
-        <View
+        <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
             android:id="@+id/view1"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_below="@+id/textView1"
-            android:layout_marginLeft="@dimen/size_12"
-            android:background="#D8D8D8" />
+            android:layout_marginLeft="@dimen/size_12" />
 
         <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:id="@+id/textView11"
@@ -144,13 +142,12 @@
             android:layout_marginRight="@dimen/size_12"
             app:srcCompat="@drawable/ic_switch_off_24px" />
 
-        <View
+        <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
             android:id="@+id/view12"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_below="@+id/tvv"
-            android:layout_marginLeft="@dimen/size_12"
-            android:background="#D8D8D8" />
+            android:layout_marginLeft="@dimen/size_12" />
 
         <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:id="@+id/textView111"
@@ -264,13 +261,12 @@
             android:layout_marginRight="@dimen/size_12"
             android:src="@drawable/ic_arrow_down_light_blue_24px" />
 
-        <View
+        <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
             android:id="@+id/line"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_0_5"
             android:layout_below="@+id/textView"
-            android:layout_marginLeft="@dimen/size_12"
-            android:background="#D8D8D8" />
+            android:layout_marginLeft="@dimen/size_12" />
 
         <RelativeLayout
             android:id="@+id/layoutEN"

@@ -27,11 +27,10 @@
         app:layout_constraintStart_toEndOf="@+id/btn_cancel"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
         android:id="@+id/divider22"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_1"
-        android:background="#d8d8d8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_cancel" />

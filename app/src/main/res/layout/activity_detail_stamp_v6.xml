@@ -238,8 +238,8 @@
                         app:piv_interactiveAnimation="true"
                         app:piv_padding="@dimen/size_6"
                         app:piv_radius="@dimen/size_3"
-                        app:piv_selectedColor="#d8d8d8"
-                        app:piv_unselectedColor="#d8d8d8"
+                        app:piv_selectedColor="@color/colorLineView"
+                        app:piv_unselectedColor="@color/colorLineView"
                         app:piv_viewPager="@id/viewPagerImgProduct" />
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -515,7 +515,7 @@
                                             android:drawablePadding="@dimen/size_7"
                                             android:fontFamily="sans-serif"
                                             android:gravity="center"
-                                            android:textColor="#d8d8d8"
+                                            android:textColor="@color/colorLineView"
                                             android:textSize="@dimen/font_14"
                                             android:textStyle="normal"
                                             tools:text="130,000" />

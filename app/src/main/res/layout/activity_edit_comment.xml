@@ -47,7 +47,7 @@
                 android:id="@id/layoutAvatar"
                 android:layout_width="@dimen/size_30"
                 android:layout_height="@dimen/size_30"
-                app:civ_border_color="#D8D8D8"
+                app:civ_border_color="@color/colorLineView"
                 app:civ_border_width="@dimen/size_1"
                 android:layout_marginStart="@dimen/size_14"
                 android:layout_marginLeft="@dimen/size_14"

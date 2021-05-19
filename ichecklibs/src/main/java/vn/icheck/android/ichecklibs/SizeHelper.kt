@@ -9,6 +9,7 @@ object SizeHelper {
 
     val size0_5 = dpToPx(0.5)
     val size1 = dpToPx(1)
+    val size1_5 = dpToPx(1.5)
     val size2 = dpToPx(2)
     val size3 = dpToPx(3)
     val size4 = dpToPx(4)

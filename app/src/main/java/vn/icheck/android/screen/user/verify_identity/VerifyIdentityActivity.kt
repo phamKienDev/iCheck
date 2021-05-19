@@ -47,6 +47,8 @@ class VerifyIdentityActivity : BaseActivityMVVM(), View.OnClickListener {
 
         viewModel.typeCard = tvSelectPassport.text.toString()
 
+        tvSelectPassport.background=vn.icheck.android.ichecklibs.ViewHelper.bgTransparentRadius4StrokeLineColor1(this)
+
         WidgetUtils.setClickListener(this, imgBack, tvSelectPassport, imgCameraFront, imgCameraAfter, tvComplete, tvGuide)
     }
 

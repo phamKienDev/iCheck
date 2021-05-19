@@ -35,10 +35,9 @@
             app:layout_constraintTop_toTopOf="@id/imgCancel" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_1"
-        android:background="#d8d8d8" />
+        android:layout_height="@dimen/size_1" />
 
     <LinearLayout
         android:id="@+id/layoutPhone"
@@ -74,12 +73,11 @@
 
     </LinearLayout>
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
         android:id="@+id/viewPhone"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:layout_marginStart="@dimen/size_12"
-        android:background="#d8d8d8" />
+        android:layout_marginStart="@dimen/size_12" />
 
     <LinearLayout
         android:id="@+id/layoutEmail"
@@ -115,12 +113,11 @@
 
     </LinearLayout>
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
         android:id="@+id/viewEmail"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:layout_marginStart="@dimen/size_12"
-        android:background="#d8d8d8" />
+        android:layout_marginStart="@dimen/size_12"/>
 
     <LinearLayout
         android:id="@+id/layoutChat"

@@ -29,7 +29,7 @@
         app:piv_radius="@dimen/size_3"
         app:piv_selectedColor="@color/colorPrimary"
         app:piv_strokeWidth="@dimen/size_1"
-        app:piv_unselectedColor="#D8D8D8" />
+        app:piv_unselectedColor="@color/colorLineView" />
 
     <TextView
         android:id="@+id/tv_product_name"

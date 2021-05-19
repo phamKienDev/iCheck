@@ -12,7 +12,6 @@
         android:id="@id/imgAvatar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/gray_stroke_corner_4"
         android:padding="@dimen/size_1"
         tools:src="@drawable/ic_square_avatar_default" />
 
