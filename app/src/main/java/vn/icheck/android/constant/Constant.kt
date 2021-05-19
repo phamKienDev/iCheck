@@ -460,9 +460,11 @@ object Constant {
         }
     }
 
-    fun openUrl(url: String) {
-        ICheckApplication.currentActivity()?.let { activity ->
-            WebViewActivity.start(activity, url)
+    fun openUrl(url: String?) {
+        if (!url.isNullOrEmpty()) {
+            ICheckApplication.currentActivity()?.let { activity ->
+                WebViewActivity.start(activity, url)
+            }
         }
     }
 

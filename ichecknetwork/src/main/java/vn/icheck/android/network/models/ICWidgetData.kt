@@ -32,6 +32,7 @@ data class ICWidgetData(
 //        @Expose val returnTime: null
         @Expose val code: String?,
         @Expose val website: String?,
+        @Expose val gln: String?,
 //        @Expose val city: null,
 //        @Expose val district: null,
         @Expose val address: String?,

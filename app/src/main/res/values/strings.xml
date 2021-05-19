@@ -782,7 +782,6 @@
     <string name="cac_ban_da_tro_thanh_ban_be">Các bạn đã trở thành bạn bè</string>
     <string name="vui_long_nhap_noi_dung">Vui lòng nhập nội dung</string>
     <string name="tong_quan">Tổng quan</string>
-    <string name="gioi_thieu">Giới thiệu</string>
     <string name="bai_viet">Bài viết</string>
     <string name="ban_chua_co_ban_be_nao">Bạn chưa có bạn bè nào!</string>
     <string name="ban_chua_co_thong_bao_nao">Bạn chưa có thông báo nào</string>
@@ -946,4 +945,10 @@
     <string name="nha_san_xuat">"Nhà sản xuất"</string>
     <string name="nha_phan_phoi">Nhà phân phối</string>
     <string name="de_hien_thi_du_lieu_cua_hang_vui_long_bat_gps">Để hiển thị dữ liệu Cửa hàng, vui lòng bật GPS</string>
+    <string name="dia_chi_xxx_stamp_v61"><![CDATA[<b><font color="#212121">Địa chỉ:</font></b> %s]]></string>
+    <string name="gioi_thieu_xxx_stamp_v61"><![CDATA[<b><font color="#212121">Giới thiệu:</font></b> %s]]></string>
+    <string name="ma_gln_xxx_stamp_v61"><![CDATA[<b><font color="#212121">Mã GLN:</font></b> %s]]></string>
+    <string name="dien_thoai_xxx_stamp_v61"><![CDATA[<b><font color="#212121">Điện thoại:</font></b> <font color="#057DDA">%s</font><]]></string>
+    <string name="email_xxx_stamp_v61"><![CDATA[<b><font color="#212121">Email:</font></b> <font color="#057DDA">%s</font><]]></string>
+    <string name="website_xxx_stamp_v61"><![CDATA[<b><font color="#212121">Website:</font></b> <font color="#057DDA">%s</font><]]></string>
 </resources>

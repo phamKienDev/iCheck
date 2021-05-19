@@ -412,4 +412,7 @@
     <item name="tvDateTime" type="id" />
     <item name="tvArrow" type="id" />
     <item name="layoutName" type="id" />
+    <item name="tvWebsite" type="id" />
+    <item name="tvGln" type="id" />
+    <item name="tvDescription" type="id" />
 </resources>

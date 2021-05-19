@@ -188,7 +188,7 @@ class ICPageInfoHolder(parent: ViewGroup, val binding: ItemPageInfoBinding = Ite
 
         binding.root.setOnClickListener {
             ICheckApplication.currentActivity()?.let { activity ->
-
+                ICPageInfoDialog(activity).show(obj)
             }
         }
     }

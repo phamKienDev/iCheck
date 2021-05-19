@@ -25,44 +25,6 @@
             android:layout_height="@dimen/size_4"
             android:background="@drawable/shadow_bottom" />
 
-        <!--Error Client-->
-        <!--        <LinearLayout-->
-        <!--            android:id="@+id/layoutErrorClient"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="match_parent"-->
-        <!--            android:gravity="center"-->
-        <!--            android:orientation="vertical"-->
-        <!--            android:visibility="gone">-->
-
-        <!--            <androidx.appcompat.widget.AppCompatImageView-->
-        <!--                android:id="@+id/imgError"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="wrap_content" />-->
-
-        <!--            <androidx.appcompat.widget.AppCompatTextView-->
-        <!--                android:id="@+id/tvMessageError"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:fontFamily="sans-serif"-->
-        <!--                android:textColor="#828282"-->
-        <!--                android:textSize="@dimen/font_14"-->
-        <!--                android:textStyle="normal" />-->
-
-        <!--            <androidx.appcompat.widget.AppCompatButton-->
-        <!--                android:id="@+id/btnAgainError"-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:layout_marginStart="@dimen/size_40"-->
-        <!--                android:layout_marginTop="@dimen/size_16"-->
-        <!--                android:layout_marginEnd="@dimen/size_40"-->
-        <!--                android:background="@drawable/bg_corner_solid_white_strokke_blue"-->
-        <!--                android:fontFamily="sans-serif-medium"-->
-        <!--                android:text="Thử Lại"-->
-        <!--                android:textColor="#3c5a99"-->
-        <!--                android:textSize="@dimen/font_16"-->
-        <!--                android:textStyle="normal" />-->
-        <!--        </LinearLayout>-->
-
         <!--Error Stamp-->
 <!--        <androidx.core.widget.NestedScrollView-->
 <!--            android:id="@+id/scrollViewError"-->
