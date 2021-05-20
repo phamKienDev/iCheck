@@ -49,6 +49,7 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.home.presenter.DetailStam
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.view.IDetailStampView
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.viewmodel.ICDetailStampViewModel
 import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.UpdateInformationFirstActivity
+import vn.icheck.android.screen.user.detail_stamp_v6_1.verified_phone.VerifiedPhoneActivity
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.screen.user.shipping.ship.ShipActivity
 import java.util.*
@@ -85,8 +86,6 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
     private var objGuarantee: ICObjectGuarantee? = null
 
     private var mFusedLocationClient: FusedLocationProviderClient? = null
-    private var lat: String? = null
-    private var lng: String? = null
 
     private val requestGpsPermission = 39
     private val requestGps = 2
@@ -94,10 +93,13 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
     private val requestRefreshData = 5
     private var requestRequireLogin = 0
 
-    var type = ""
-    var banner = ""
-    var description = ""
-    var targetType = ""
+    private var guarantee: ICWidgetData? = null
+    private var isExistLastGuarantee = false
+
+//    var type = ""
+//    var banner = ""
+//    var description = ""
+//    var targetType = ""
 
     //    private var nameProduct: String? = null
     private var url: String? = null
@@ -197,9 +199,8 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
     }
 
     private fun setupRecyclerView() {
-        val mLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recyclerView.apply {
-            layoutManager = mLayoutManager
+            layoutManager = LinearLayoutManager(this@DetailStampActivity, LinearLayoutManager.VERTICAL, false)
 
             adapter = this@DetailStampActivity.adapter.apply {
                 enableLoadMore(false)
@@ -225,7 +226,7 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
                     super.onScrolled(recyclerView, dx, dy)
 
                     if (textFab.isVisible) {
-                        val currentFirstVisible = mLayoutManager.findFirstVisibleItemPosition()
+                        val currentFirstVisible = computeVerticalScrollOffset()
 
                         if (currentFirstVisible > firstVisibleInListview) { // scroll up
                             if (!isShow) {
@@ -262,30 +263,43 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
 
         textFab.setOnClickListener {
             // todo
-//            // 0 - la chong gia , 1 - tran hang , 2 - bao hanh
-//            if (objGuarantee != null) {
-//                if (objCustomerLastGuarantee != null) {
+
+            idDistributor
+            verfiedSerial
+            productId
+            viewModel.barcode // presenter.code
+
+//          productCode // res cũ éo có
+
+            if (guarantee != null) {
+                if (guarantee?.customerId != null) {
 //                    val intent = Intent(this, VerifiedPhoneActivity::class.java)
-//                    when {
-//                        tvSerialFake.text.toString().isNotEmpty() -> {
-//                            intent.putExtra(Constant.DATA_1, tvSerialFake.text.toString())
-//                        }
-//                        tvSerialVerified.text.toString().isNotEmpty() -> {
-//                            intent.putExtra(Constant.DATA_1, tvSerialVerified.text.toString())
-//                        }
-//                        tvSerialVerifiedChongGia.text.toString().isNotEmpty() -> {
-//                            intent.putExtra(Constant.DATA_1, tvSerialVerifiedChongGia.text.toString())
-//                        }
-//                        else -> {
-//                            intent.putExtra(Constant.DATA_1, tvSerialVerifiedBaoHanh.text.toString())
-//                        }
-//                    }
+//                    intent.putExtra(Constant.DATA_1, verfiedSerial)
 //                    intent.putExtra(Constant.DATA_2, idDistributor)
 //                    intent.putExtra(Constant.DATA_3, productCode)
 //                    intent.putExtra(Constant.DATA_4, productId)
 //                    intent.putExtra(Constant.DATA_5, objVariant)
 //                    intent.putExtra(Constant.DATA_8, presenter.code)
 //                    startActivity(intent)
+                } else {
+                    val intent = Intent(this, UpdateInformationFirstActivity::class.java)
+                    intent.putExtra(Constant.DATA_1, 2)
+                    intent.putExtra(Constant.DATA_2, idDistributor)
+//                intent.putExtra(Constant.DATA_4, productCode)
+                    intent.putExtra(Constant.DATA_5, verfiedSerial)
+                    intent.putExtra(Constant.DATA_6, productId)
+                    intent.putExtra(Constant.DATA_7, objVariant)
+                    intent.putExtra(Constant.DATA_8, presenter.code)
+                    startActivity(intent)
+                }
+            } else {
+
+            }
+
+//            // 0 - la chong gia , 1 - tran hang , 2 - bao hanh
+//            if (objGuarantee != null) {
+//                if (objCustomerLastGuarantee != null) {
+//
 //                } else {
 //                    val intent = Intent(this, UpdateInformationFirstActivity::class.java)
 //                    intent.putExtra(Constant.DATA_1, 2)
@@ -371,12 +385,13 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
 
                 if (lastLocation != null && !isGetLocationSuccess) {
                     isGetLocationSuccess = true
-                    lat = lastLocation.latitude.toString()
-                    lng = lastLocation.longitude.toString()
+                    viewModel.lat = lastLocation.latitude
+                    viewModel.lng = lastLocation.longitude
                 }
 
                 mFusedLocationClient?.removeLocationUpdates(this)
                 getStampDetailV61()
+                presenter.onGetDataDetailStamp(viewModel.barcode, viewModel.lat, viewModel.lng)
             }
 
             override fun onLocationAvailability(locationAvailability: LocationAvailability?) {
@@ -405,7 +420,7 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
         }
 
     private fun getStampDetailV61() {
-        viewModel.getStampDetailV61(lat, lng).observe(this, {
+        viewModel.getStampDetailV61().observe(this, {
             when (it.status) {
                 Status.LOADING -> {
                     if (it.message.isNullOrEmpty()) {
@@ -426,6 +441,9 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
                         val listData = mutableListOf<ICLayout>()
 
                         for (widget in it.data!!.data!!.widgets!!) {
+                            idDistributor = mData.distributorId
+                            verfiedSerial = mData.serial
+
                             when (widget.name) {
                                 "IMAGE_PRODUCT" -> {
                                     if (!widget.data?.atts.isNullOrEmpty()) {
@@ -437,6 +455,7 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
                                 }
                                 "PRODUCT" -> {
                                     if (widget.data != null) {
+                                        productId = widget.data?.id
                                         listData.add(ICLayout().apply {
                                             viewType = ICViewTypes.PRODUCT_TYPE
                                             data = widget.data!!
@@ -469,6 +488,7 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
                                 }
                                 "GUARANTEE" -> {
                                     if (widget.data != null) {
+                                        guarantee = widget.data
                                         listData.add(ICLayout().apply {
                                             viewType = ICViewTypes.GUARANTEE_INFO_TYPE
                                             data = widget.data
@@ -477,6 +497,7 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
                                 }
                                 "LAST_GUARANTEE" -> {
                                     if (widget.data != null) {
+                                        isExistLastGuarantee = true
                                         listData.add(ICLayout().apply {
                                             viewType = ICViewTypes.LAST_GUARANTEE_INFO_TYPE
                                             data = widget.data!!.apply {
@@ -492,9 +513,9 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
                                         listData.add(ICLayout().apply {
                                             viewType = ICViewTypes.VENDOR_TYPE
                                             data = widget.data!!.apply {
-                                                title = getString(R.string.nha_san_xuat)
-                                                icon = R.drawable.ic_verified_24px
-                                                background = R.color.colorPrimary
+                                                this.category = getString(R.string.nha_san_xuat)
+                                                this.icon = R.drawable.ic_verified_24px
+                                                this.background = R.color.colorPrimary
                                             }
                                         })
                                     }
@@ -504,9 +525,9 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
                                         listData.add(ICLayout().apply {
                                             viewType = ICViewTypes.VENDOR_TYPE
                                             data = widget.data!!.apply {
-                                                title = getString(R.string.nha_phan_phoi)
-                                                icon = R.drawable.ic_verified_24px
-                                                background = R.color.colorPrimary
+                                                this.category = getString(R.string.nha_phan_phoi)
+                                                this.icon = R.drawable.ic_verified_24px
+                                                this.background = R.color.colorPrimary
                                             }
                                         })
                                     }
@@ -660,11 +681,11 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
 ////                scrollView.visibility = View.VISIBLE
 //            }
 
-        idDistributor = obj.data?.distributor?.id
+//        idDistributor = obj.data?.distributor?.id
 
 //      set image local cho tab history qrCode
         url = obj.data?.product?.image
-        productId = obj.data?.product?.id
+//        productId = obj.data?.product?.id
         objVariant = obj.data?.guarantee?.last_guarantee?.variant
 
         if (!obj.data?.barcode.isNullOrEmpty() && obj.data?.seller_id != null) {

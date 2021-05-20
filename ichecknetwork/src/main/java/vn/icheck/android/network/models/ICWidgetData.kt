@@ -32,7 +32,6 @@ data class ICWidgetData(
 //        @Expose val returnTime: null
         @Expose val code: String?,
         @Expose val website: String?,
-        @Expose val gln: String?,
 //        @Expose val city: null,
 //        @Expose val district: null,
         @Expose val address: String?,
@@ -41,6 +40,7 @@ data class ICWidgetData(
         @Expose val description: String?,
         @Expose val city: String?,
         @Expose val district: String?,
+        @Expose var category: String?,
         @Expose val infors: MutableList<ICInfo>?,
         @Expose val productLinks: MutableList<ICProductLink>?,
         var icon: Int = 0,

@@ -947,10 +947,10 @@
     <string name="nha_san_xuat">"Nhà sản xuất"</string>
     <string name="nha_phan_phoi">Nhà phân phối</string>
     <string name="de_hien_thi_du_lieu_cua_hang_vui_long_bat_gps">Để hiển thị dữ liệu Cửa hàng, vui lòng bật GPS</string>
-    <string name="dia_chi_xxx_stamp_v61"><![CDATA[<b><font color="#212121">Địa chỉ:</font></b> %s]]></string>
-    <string name="gioi_thieu_xxx_stamp_v61"><![CDATA[<b><font color="#212121">Giới thiệu:</font></b> %s]]></string>
-    <string name="ma_gln_xxx_stamp_v61"><![CDATA[<b><font color="#212121">Mã GLN:</font></b> %s]]></string>
-    <string name="dien_thoai_xxx_stamp_v61"><![CDATA[<b><font color="#212121">Điện thoại:</font></b> <font color="#057DDA">%s</font><]]></string>
-    <string name="email_xxx_stamp_v61"><![CDATA[<b><font color="#212121">Email:</font></b> <font color="#057DDA">%s</font><]]></string>
-    <string name="website_xxx_stamp_v61"><![CDATA[<b><font color="#212121">Website:</font></b> <font color="#057DDA">%s</font><]]></string>
+    <string name="dia_chi_xxx_stamp_v61">Địa chỉ: %s</string>
+    <string name="gioi_thieu_xxx_stamp_v61">Giới thiệu: %s</string>
+    <string name="ma_gln_xxx_stamp_v61">Mã GLN: %s</string>
+    <string name="dien_thoai_xxx_stamp_v61">Điện thoại: %s</string>
+    <string name="email_xxx_stamp_v61">Email: %s</string>
+    <string name="website_xxx_stamp_v61">Website: %s</string>
 </resources>

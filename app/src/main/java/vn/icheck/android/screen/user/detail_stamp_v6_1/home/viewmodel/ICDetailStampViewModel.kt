@@ -11,6 +11,8 @@ class ICDetailStampViewModel @Inject constructor(): BaseViewModel() {
     private val repository = DetailStampRepository()
 
     var barcode = ""
+    var lat: Double? = null
+    var lng: Double? = null
 
     var codeInput = ""
     var loyaltyObj: ICKLoyalty? = null
@@ -34,7 +36,7 @@ class ICDetailStampViewModel @Inject constructor(): BaseViewModel() {
         }
     }
 
-    fun getStampDetailV61(lat: String?, lng: String?) = request { repository.getDetailStampV61(barcode, lat, lng) }
+    fun getStampDetailV61() = request { repository.getDetailStampV61(barcode, lat, lng) }
 
     fun getStampConfig() = request { repository.getStampConfig() }
 }

@@ -1,7 +1,12 @@
 package vn.icheck.android.component.product.enterprise
 
 import android.content.Context
-import android.text.Html
+import android.graphics.Typeface
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
+import android.text.style.StyleSpan
+import androidx.core.content.ContextCompat
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialog
 import vn.icheck.android.constant.Constant
@@ -15,13 +20,12 @@ class ICPageInfoDialog(context: Context) : BaseBottomSheetDialog(context, true) 
         dialog.setContentView(binding.root)
 
         binding.tvName.text = obj.name
-        binding.tvAddress.text = Html.fromHtml(binding.root.context.getString(R.string.dia_chi_xxx_stamp_v61, getContent(obj.address)))
-        binding.tvPhone.text = Html.fromHtml(binding.root.context.getString(R.string.dien_thoai_xxx_stamp_v61, getContent(obj.phone)))
-        binding.tvEmail.text = Html.fromHtml(binding.root.context.getString(R.string.email_xxx_stamp_v61, getContent(obj.email)))
-        binding.tvWebsite.text = Html.fromHtml(binding.root.context.getString(R.string.website_xxx_stamp_v61, getContent(obj.website)))
-        binding.tvGln.text = Html.fromHtml(binding.root.context.getString(R.string.ma_gln_xxx_stamp_v61, getContent(obj.gln)))
-        binding.tvDescription.text = Html.fromHtml(binding.root.context.getString(R.string.gioi_thieu_xxx_stamp_v61, getContent(obj.description)))
-        binding.tvContent.text = Html.fromHtml(getContent(obj.description))
+        binding.tvAddress.text = getSpannable(R.string.dia_chi_xxx_stamp_v61, getContent(obj.address), getColor(R.color.colorNormalText), getColor(R.color.darkGray3))
+        binding.tvPhone.text = getSpannable(R.string.dien_thoai_xxx_stamp_v61, getContent(obj.phone), getColor(R.color.colorNormalText), getColor(R.color.colorPrimary))
+        binding.tvEmail.text = getSpannable(R.string.email_xxx_stamp_v61, getContent(obj.email), getColor(R.color.colorNormalText), getColor(R.color.colorPrimary))
+        binding.tvWebsite.text = getSpannable(R.string.website_xxx_stamp_v61, getContent(obj.website), getColor(R.color.colorNormalText), getColor(R.color.colorPrimary))
+        binding.tvGln.text = getSpannable(R.string.ma_gln_xxx_stamp_v61, getContent(obj.code), getColor(R.color.colorNormalText), getColor(R.color.darkGray3))
+        binding.tvDescription.text = getSpannable(R.string.gioi_thieu_xxx_stamp_v61, getContent(obj.description), getColor(R.color.colorNormalText), getColor(R.color.darkGray3))
 
         binding.tvPhone.setOnClickListener {
             Constant.callPhone(obj.phone)
@@ -36,11 +40,26 @@ class ICPageInfoDialog(context: Context) : BaseBottomSheetDialog(context, true) 
         dialog.show()
     }
 
-    private fun getContent(text: String?) : String {
+    private fun getSpannable(title: Int, value: String?, firstColor: Int, secondColor: Int): SpannableString {
+        val mValue = getContent(value)
+
+        val spannable = SpannableString(dialog.context.getString(title, mValue))
+        spannable.setSpan(ForegroundColorSpan(firstColor), 0, spannable.length - mValue.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannable.setSpan(StyleSpan(Typeface.BOLD), 0, spannable.length - mValue.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannable.setSpan(ForegroundColorSpan(secondColor), spannable.length - mValue.length, spannable.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+        return spannable
+    }
+
+    private fun getContent(text: String?): String {
         return if (text.isNullOrEmpty()) {
             dialog.context.getString(R.string.dang_cap_nhat)
         } else {
             text
         }
+    }
+
+    private fun getColor(colorID: Int): Int {
+        return ContextCompat.getColor(dialog.context, colorID)
     }
 }

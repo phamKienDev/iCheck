@@ -59,7 +59,7 @@ class DetailStampPresenter(val view: IDetailStampView) {
 //        }
 //    }
 
-//    private fun onGetDataDetailStamp(code: String, lat: String?, lon: String?) {
+    fun onGetDataDetailStamp(code: String, lat: Double?, lon: Double?) {
 //        if (NetworkHelper.isNotConnected(view.mContext)) {
 //            view.onGetDataIntentError(Constant.ERROR_INTERNET)
 //            return
@@ -67,16 +67,16 @@ class DetailStampPresenter(val view: IDetailStampView) {
 //
 //        view.onShowLoading(true)
 //
-//        interactor.getDetailStamp(code!!, lat, lon, object : ICApiListener<ICDetailStampV6_1> {
-//            override fun onSuccess(obj: ICDetailStampV6_1) {
+        interactor.getDetailStamp(code, lat, lon, object : ICApiListener<ICDetailStampV6_1> {
+            override fun onSuccess(obj: ICDetailStampV6_1) {
 //                Handler().postDelayed({
 //                    view.onShowLoading(false)
 //                }, 100)
-//
+
 //                view.onGetDetailStampSuccess(obj)
-//            }
-//
-//            override fun onError(error: ICBaseResponse?) {
+            }
+
+            override fun onError(error: ICBaseResponse?) {
 //                view.onShowLoading(false)
 //                if (error?.statusCode == 401) {
 //                    view.onGetDataRequireLogin()
@@ -85,9 +85,9 @@ class DetailStampPresenter(val view: IDetailStampView) {
 //                        showError(it)
 //                    }
 //                }
-//            }
-//        })
-//    }
+            }
+        })
+    }
 
     fun getConfigError() {
 //        if (NetworkHelper.isNotConnected(view.mContext)) {

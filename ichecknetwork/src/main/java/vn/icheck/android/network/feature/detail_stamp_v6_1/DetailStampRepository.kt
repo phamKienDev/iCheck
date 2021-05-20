@@ -14,7 +14,7 @@ import vn.icheck.android.network.util.JsonHelper
 
 class DetailStampRepository : BaseRepository() {
 
-    suspend fun getDetailStampV61(barcode: String, lat: String?, lon: String?): ICResponse<ICStampV61> {
+    suspend fun getDetailStampV61(barcode: String, lat: Double?, lon: Double?): ICResponse<ICStampV61> {
         val body = hashMapOf<String, Any>()
 
         SessionManager.session.user?.let { user ->
@@ -77,7 +77,7 @@ class DetailStampRepository : BaseRepository() {
         return ICNetworkClient.getSimpleStampClient().getStampDetail(url, body)
     }
 
-    fun getDetailStamp(code: String, lat: String?, lon: String?, listener: ICApiListener<ICDetailStampV6_1>) {
+    fun getDetailStamp(code: String, lat: Double?, lon: Double?, listener: ICApiListener<ICDetailStampV6_1>) {
         val body = hashMapOf<String, Any>()
 
         val user = SessionManager.session.user
@@ -140,10 +140,10 @@ class DetailStampRepository : BaseRepository() {
         body["rank_level"] = rank
 
         if (lat != null) {
-            body["lat"] = lat
+            body["lat"] = lat.toString()
         }
         if (lon != null) {
-            body["lon"] = lon
+            body["lon"] = lon.toString()
         }
 
         val host = APIConstants.DETAIL_STAMP_HOST + APIConstants.STAMPDETAIL()

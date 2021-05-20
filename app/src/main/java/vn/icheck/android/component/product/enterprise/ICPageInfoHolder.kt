@@ -127,7 +127,7 @@ class ICPageInfoHolder(parent: ViewGroup, val binding: ItemPageInfoBinding = Ite
 
         binding.backgroundVerified.setBackgroundColor(ContextCompat.getColor(binding.root.context, obj.background))
 
-        binding.tvPageCategory.text = "Doanh nghiệp sở hữu"
+        binding.tvPageCategory.text = obj.category
 
         if (!obj.phone.isNullOrEmpty()) {
             binding.tvPhone.visibility = View.VISIBLE
