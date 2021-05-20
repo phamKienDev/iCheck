@@ -12,6 +12,7 @@ import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_new_detail_v2.*
 import org.greenrobot.eventbus.EventBus
@@ -19,6 +20,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
+import vn.icheck.android.component.news.NewsAdapter
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.TimeHelper
@@ -215,12 +217,14 @@ class NewDetailV2Activity : BaseActivityMVVM() {
             if (!it.listData.isNullOrEmpty()) {
                 constraintLayout.visibility = View.VISIBLE
 
+                tvTitleNew.text = it.obj?.articleCategory?.name
+
                 txtViewAll.setOnClickListener {
                     ActivityUtils.startActivity<NewsListV2Activity>(this)
                 }
 
-                val adapter = NewDetailV2Adapter(it.listData)
-                recyclerView.layoutManager = CustomLinearLayoutManager(this, RecyclerView.VERTICAL, false)
+                val adapter = NewsAdapter(it.listData)
+                recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
                 recyclerView.adapter = adapter
             } else {
                 constraintLayout.visibility = View.GONE

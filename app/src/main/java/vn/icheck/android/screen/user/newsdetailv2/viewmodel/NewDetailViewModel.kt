@@ -55,7 +55,7 @@ class NewDetailViewModel : ViewModel() {
                 override fun onSuccess(obj: ICResponse<ICNews>) {
                     if (obj.data != null) {
 
-                        listener.getListNewsV2Social(object : ICNewApiListener<ICResponse<ICListResponse<ICNews>>> {
+                        listener.getListNews(0, 5, obj.data?.articleCategory?.id, object : ICNewApiListener<ICResponse<ICListResponse<ICNews>>> {
 
                             override fun onSuccess(list: ICResponse<ICListResponse<ICNews>>) {
                                 if (!list.data?.rows.isNullOrEmpty()) {
@@ -69,7 +69,8 @@ class NewDetailViewModel : ViewModel() {
                                         list.data?.rows!!.removeAt(3)
                                     }
 
-                                    liveData.postValue(BaseModelList(false, list.data?.rows ?: mutableListOf(), null, obj.data))
+                                    liveData.postValue(BaseModelList(false, list.data?.rows
+                                            ?: mutableListOf(), null, obj.data))
                                 }
                             }
 

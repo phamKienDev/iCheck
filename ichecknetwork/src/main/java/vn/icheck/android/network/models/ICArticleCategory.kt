@@ -12,11 +12,13 @@ class ICArticleCategory : Serializable {
     val code: String? = null
 
     @Expose
-    val name: String? = null
+    var name: String? = null
 
     @Expose
     val description: String? = null
 
     @Expose
     val createdById: String? = null
+
+    var isChecked = false
 }

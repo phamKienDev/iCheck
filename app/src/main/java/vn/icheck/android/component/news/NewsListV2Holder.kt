@@ -20,26 +20,26 @@ import vn.icheck.android.util.text.TestTimeUtil
 class NewsListV2Holder(parent: ViewGroup, val binding: ItemNewsListV2Binding = ItemNewsListV2Binding.inflate(LayoutInflater.from(parent.context), parent, false)) : BaseViewHolder<ICNews>(binding.root) {
 
     override fun bind(obj: ICNews) {
+        val millisecond = TimeHelper.convertDateTimeSvToMillisecond(obj.createdAt) ?: 0
+
         WidgetUtils.loadImageUrlRounded4(binding.imgNews, obj.thumbnail?.trim(), R.drawable.img_default_loading_icheck)
+
+        if (System.currentTimeMillis() - millisecond < 86400000) {
+            binding.tvTitle.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(itemView.context, R.drawable.ic_new_36dp), null, null, null)
+        } else {
+            binding.tvTitle.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
+        }
 
         binding.tvTitle.text = if (!obj.title.isNullOrEmpty()) {
             obj.title
         } else {
             itemView.context.getString(R.string.dang_cap_nhat)
         }
-
-        val millisecond = TimeHelper.convertDateTimeSvToMillisecond(obj.createdAt) ?: 0
         binding.tvTime.apply {
             text = if (!obj.createdAt.isNullOrEmpty()) {
                 TestTimeUtil(obj.createdAt!!).getTimeDateNews()
             } else {
                 itemView.context.getString(R.string.dang_cap_nhat)
-            }
-
-            if (System.currentTimeMillis() - millisecond < 86400000) {
-                setCompoundDrawablesWithIntrinsicBounds(null, null, ContextCompat.getDrawable(itemView.context, R.drawable.ic_tag_new_news_32px), null)
-            } else {
-                setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
             }
         }
 
