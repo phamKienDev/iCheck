@@ -640,6 +640,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
 
         swipeLayout.setOnRefreshListener {
             getLayoutData()
+            adapter.setRefeshTextReview(true)
         }
     }
 

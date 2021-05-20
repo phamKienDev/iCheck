@@ -22,6 +22,11 @@ import vn.icheck.android.network.models.ICPost
 
 class ListProductReviewAdapter(var callback: IRecyclerViewCallback, private val submitReviewListener: ISubmitReviewListener, private val myReviewListener: IMyReviewListener) : RecyclerViewCustomAdapter<ICViewModel>(callback) {
     var isReviewSummary = 0
+    private var refeshTextReview=true
+
+    fun setRefeshTextReview(refesh:Boolean){
+        refeshTextReview=refesh
+    }
 
     fun updateItemReview(post: ICPost) {
         for (i in 0 until listData.size) {
@@ -79,7 +84,7 @@ class ListProductReviewAdapter(var callback: IRecyclerViewCallback, private val 
             }
 
             is SubmitReviewHolder -> {
-                holder.bind(listData[position] as SubmitReviewModel)
+                holder.bind(listData[position] as SubmitReviewModel,refeshTextReview).apply { refeshTextReview=false }
             }
 
             is MyReviewHolder -> {
