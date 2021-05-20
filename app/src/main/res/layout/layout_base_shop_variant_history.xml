@@ -24,9 +24,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_13"
+        android:id="@+id/linearLayoutContainer"
         android:layout_marginEnd="@dimen/size_13"
         android:layout_marginBottom="@dimen/size_8"
-        android:background="@drawable/bg_border_gray_4dp_item_shop_variant"
         android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout

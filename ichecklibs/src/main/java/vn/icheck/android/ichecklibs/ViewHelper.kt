@@ -416,6 +416,13 @@ object ViewHelper {
         radius = SizeHelper.size40.toFloat()
     )
 
+    fun bgWhiteRadius4StrokeLineColor0_5(context: Context) = createShapeDrawable(
+        color = Color.parseColor("#FFFFFF"),
+        strokeWidth = SizeHelper.size0_5,
+        strokeColor = Constant.getLineColor(context),
+        radius = SizeHelper.size4.toFloat()
+    )
+
 
     fun bgTransparentRadius10StrokeLineColor1(context: Context) = createShapeDrawable(
         color = Color.TRANSPARENT,
@@ -427,6 +434,20 @@ object ViewHelper {
     fun bgTransparentRadius4StrokeLineColor1(context: Context) = createShapeDrawable(
         color = Color.TRANSPARENT,
         strokeWidth = SizeHelper.size1,
+        strokeColor = Constant.getLineColor(context),
+        radius = SizeHelper.size4.toFloat()
+    )
+
+    fun bgTransparentRadius12StrokeLineColor1(context: Context) = createShapeDrawable(
+        color = Color.TRANSPARENT,
+        strokeWidth = SizeHelper.size1,
+        strokeColor = Constant.getLineColor(context),
+        radius = SizeHelper.size12.toFloat()
+    )
+
+    fun bgTransparentRadius4StrokeLineColor0_5(context: Context) = createShapeDrawable(
+        color = Color.TRANSPARENT,
+        strokeWidth = SizeHelper.size0_5,
         strokeColor = Constant.getLineColor(context),
         radius = SizeHelper.size4.toFloat()
     )

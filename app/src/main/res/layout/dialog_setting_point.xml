@@ -186,7 +186,6 @@
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
         android:layout_marginBottom="@dimen/size_20"
-        android:background="@drawable/bg_border_gray_4dp_shop"
         android:enabled="false"
         android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center"

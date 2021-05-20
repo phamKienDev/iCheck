@@ -60,6 +60,7 @@ class StoreSellMapHistoryAdapter(val view: StoreSellMapHistoryView) : RecyclerVi
 
     inner class ViewHolder(parent: ViewGroup, val binding: ItemStoreSellInMapBinding = ItemStoreSellInMapBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : RecyclerView.ViewHolder(binding.root) {
         fun bindData(item: ICStoreNear) {
+            binding.layoutImage.background=ViewHelper.bgTransparentRadius12StrokeLineColor1(binding.layoutImage.context)
             binding.layoutParent.layoutParams = if (listData.size > 1) {
                 RecyclerView.LayoutParams(sizeWidth, RecyclerView.LayoutParams.WRAP_CONTENT).apply {
                     setMargins(sizeMargin, 0, sizeMargin, 0)

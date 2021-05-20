@@ -162,7 +162,6 @@
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginBottom="@dimen/size_10"
             android:layout_weight="1"
-            android:background="@drawable/bg_border_gray_4dp_shop"
             android:orientation="vertical">
 
             <LinearLayout

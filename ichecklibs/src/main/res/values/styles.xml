@@ -75,9 +75,6 @@
     </style>
 
     <style name="FocusableEditTextTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorControlNormal">#D8D8D8</item>
-        <item name="colorControlActivated">#057DDA</item>
-        <item name="colorControlHighlight">#057DDA</item>
         <item name="android:textColor">@color/colorNormalText</item>
         <item name="android:fontFamily">@font/barlow_medium</item>
     </style>

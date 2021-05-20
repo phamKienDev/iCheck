@@ -43,6 +43,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.network.base.SessionManager
@@ -151,6 +152,8 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
 
 
     private fun initView() {
+        containerEnter.background=ViewHelper.bgTransparentRadius4StrokeLineColor1(this)
+
         edtEnter.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 if (s.toString().trim().isNotEmpty()) {

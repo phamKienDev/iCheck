@@ -1,4 +1,4 @@
-package vn.icheck.android.ichecklibs.view.disable_text
+package vn.icheck.android.ichecklibs.view.line_color
 
 import android.content.Context
 import android.graphics.Color
@@ -10,10 +10,12 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.view.TextBarlowMedium
+import vn.icheck.android.ichecklibs.view.disable_text.TextNormalBarlowMediumHintDisable
 import vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
 
-open class TextNormalBarlowMediumHintDisable : TextNormalBarlowMedium {
+class TextNormalBarlowMediumHintDisableBgWhiteRadius4Stroke05 : TextNormalBarlowMediumHintDisable {
     constructor(context: Context) : super(context) {
         setup()
     }
@@ -27,6 +29,7 @@ open class TextNormalBarlowMediumHintDisable : TextNormalBarlowMedium {
     }
 
     private fun setup() {
-        setHintTextColor(Constant.getDisableTextColor(context))
+        background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(context)
+
     }
 }

@@ -252,7 +252,6 @@
             android:layout_marginEnd="@dimen/size_12"
             android:layout_marginRight="@dimen/size_12"
             android:layout_weight="1"
-            android:background="@drawable/bg_border_gray_4dp_shop"
             android:orientation="horizontal"
             android:paddingTop="@dimen/size_8"
             android:paddingBottom="@dimen/size_8"

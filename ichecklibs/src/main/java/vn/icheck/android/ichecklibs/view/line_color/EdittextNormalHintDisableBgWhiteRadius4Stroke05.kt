@@ -5,8 +5,7 @@ import android.util.AttributeSet
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
 
-class EdittextNormalDisableHintBgWhiteRadius4 : EdittextNormalHintDisable {
-
+class EdittextNormalHintDisableBgWhiteRadius4Stroke05 : EdittextNormalHintDisable {
     constructor(context: Context) : super(context) {
         setup()
     }
@@ -24,6 +23,6 @@ class EdittextNormalDisableHintBgWhiteRadius4 : EdittextNormalHintDisable {
     }
 
     private fun setup() {
-        background = ViewHelper.bgWhiteRadius4StrokeLineColor1(context)
+        background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(context)
     }
 }

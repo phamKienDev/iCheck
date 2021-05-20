@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
 import vn.icheck.android.R
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.util.ick.toPx
 
 open class CustomErrorEditText : AppCompatEditText {
@@ -75,7 +76,7 @@ open class CustomErrorEditText : AppCompatEditText {
                 if (hasFocus()) {
                     mLinePaint.color = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context)
                 } else {
-                    mLinePaint.setColor(Color.parseColor("#D8D8D8"))
+                    mLinePaint.setColor(Constant.getLineColor(context))
                 }
                 drawLine(0f + paddingStart, bottom.toFloat(), (width - paddingStart - paddingEnd).toFloat(), bottom.toFloat(), mLinePaint)
             }

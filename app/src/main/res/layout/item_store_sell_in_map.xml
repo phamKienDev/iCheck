@@ -15,7 +15,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_9"
         android:layout_marginTop="@dimen/size_11"
-        android:background="@drawable/bg_corner_12_stroke_gray"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 

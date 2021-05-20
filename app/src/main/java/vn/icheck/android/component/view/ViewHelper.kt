@@ -2401,7 +2401,7 @@ object ViewHelper {
                 it.setMargins(SizeHelper.size12, 0, SizeHelper.size12, 0)
             }
             it.orientation = LinearLayout.VERTICAL
-            it.background = ContextCompat.getDrawable(context, R.drawable.bg_border_gray_4dp_shop)
+            it.background = vn.icheck.android.ichecklibs.ViewHelper.bgTransparentRadius4StrokeLineColor1(it.context)
             it.setPadding(SizeHelper.size10, 0, SizeHelper.size10, SizeHelper.size4)
 
             //edit text

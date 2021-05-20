@@ -53,7 +53,6 @@
         android:layout_marginTop="@dimen/size_4"
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginBottom="@dimen/size_4"
-        android:background="@drawable/bg_border_gray_4dp_shop"
         android:drawableStart="@drawable/ic_search_gray_17"
         android:drawablePadding="@dimen/size_6"
         android:ellipsize="end"

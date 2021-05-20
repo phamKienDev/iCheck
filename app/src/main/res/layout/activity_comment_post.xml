@@ -174,7 +174,6 @@
                     android:layout_marginStart="@dimen/size_12"
                     android:layout_marginEnd="@dimen/size_8"
                     android:layout_weight="1"
-                    android:background="@drawable/bg_border_gray_4dp_shop"
                     app:layout_constraintBottom_toTopOf="@id/layoutEmoji"
                     app:layout_constraintEnd_toStartOf="@id/imgSend"
                     app:layout_constraintStart_toStartOf="parent">

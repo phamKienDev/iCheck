@@ -42,6 +42,7 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.lib.keyboard.KeyboardVisibilityEvent
@@ -144,6 +145,9 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
         }
+
+        layoutInputContent.background=ViewHelper.bgTransparentRadius4StrokeLineColor1(this)
+
         setupBottomSheet()
         setupRecyclerView()
 //        setupEmoji()

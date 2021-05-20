@@ -62,7 +62,7 @@ class CreateLinkQrCodeFragment : BaseCreateQrCodeFragment<BaseCreateQrCodePresen
 
     override fun onValidSuccess(text: String) {
         tvMessage.visibility = View.GONE
-        edtContent.background = ContextCompat.getDrawable(requireContext(),R.drawable.bg_corner_gray_solid_white)
+        edtContent.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtContent.context)
         KeyboardUtils.hideSoftInput(edtContent)
         val intent = Intent(requireContext(),CreateQrCodeSuccessActivity::class.java)
         intent.putExtra(Constant.DATA_1,text)

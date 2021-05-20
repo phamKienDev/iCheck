@@ -20,6 +20,7 @@ import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.ICApiListener
 import vn.icheck.android.network.base.ICBaseResponse
 import vn.icheck.android.network.base.SessionManager
@@ -48,9 +49,10 @@ class ShopVariantHistoryHolder(view: View, val listData: MutableList<ICHistory_P
         initListener(obj)
         initRemove(obj)
 
+        itemView.linearLayoutContainer.background=ViewHelper.bgTransparentRadius4StrokeLineColor0_5(itemView.context)
+
         itemView.imgDelete.visibility = View.INVISIBLE
         itemView.progressHistory.visibility = View.INVISIBLE
-
         val image = obj.product?.thumbnails?.thumbnail
         if (!image.isNullOrEmpty()) {
             WidgetUtils.loadImageUrlRounded10FitCenter(itemView.imgAvaProduct, image)

@@ -94,7 +94,7 @@ class CreatePhoneQrCodeFragment : BaseCreateQrCodeFragment<BaseCreateQrCodePrese
 
     override fun onValidSuccess(text: String) {
         tvMessage.visibility = View.GONE
-        edtContent.background = ContextCompat.getDrawable(requireContext(),R.drawable.bg_corner_gray_solid_white)
+        edtContent.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(requireContext())
         KeyboardUtils.hideSoftInput(edtContent)
 
         val intent = Intent(requireContext(),CreateQrCodeSuccessActivity::class.java)

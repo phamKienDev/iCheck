@@ -106,6 +106,9 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
         SessionManager.session.user?.let {
             WidgetUtils.loadImageUrl(imgAvatarSend, it.avatar)
         }
+
+        layoutComment.background=vn.icheck.android.ichecklibs.ViewHelper.bgTransparentRadius4StrokeLineColor1(this)
+
         postScreen = intent.getStringExtra(Constant.DATA_4)
         downloadManager = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
 

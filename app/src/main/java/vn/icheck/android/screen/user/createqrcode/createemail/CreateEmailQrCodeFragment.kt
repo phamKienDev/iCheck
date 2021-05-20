@@ -85,9 +85,9 @@ class CreateEmailQrCodeFragment : BaseCreateQrCodeFragment<CreateEmailQrCodePres
         tvMessageEmail.visibility = View.GONE
         tvMessageTitle.visibility = View.GONE
         tvMessageContent.visibility = View.GONE
-        edtEmail.background = ContextCompat.getDrawable(requireContext(),R.drawable.bg_corner_gray_solid_white)
-        edtTitle.background = ContextCompat.getDrawable(requireContext(),R.drawable.bg_corner_gray_solid_white)
-        edtTitle.background = ContextCompat.getDrawable(requireContext(),R.drawable.bg_corner_gray_solid_white)
+        edtEmail.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtEmail.context)
+        edtTitle.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtEmail.context)
+        edtTitle.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtEmail.context)
         KeyboardUtils.hideSoftInput(edtContent)
 
         val intent = Intent(requireContext(),CreateQrCodeSuccessActivity::class.java)

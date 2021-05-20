@@ -76,7 +76,7 @@ class CreateEventQrCodeFragment : BaseCreateQrCodeFragment<CreateEventQrCodePres
 
     override fun onInvalidEventNameSuccess() {
         tvMessageEvent.visibility = View.GONE
-        edtEvent.background = ContextCompat.getDrawable(requireContext(),R.drawable.bg_corner_gray_solid_white)
+        edtEvent.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtEvent.context)
     }
 
     override fun onInvalidEventName(error: String) {
@@ -88,7 +88,7 @@ class CreateEventQrCodeFragment : BaseCreateQrCodeFragment<CreateEventQrCodePres
 
     override fun onInvalidEventAddressSuccess() {
         tvMessageAddress.visibility = View.GONE
-        edtAddress.background = ContextCompat.getDrawable(requireContext(),R.drawable.bg_corner_gray_solid_white)
+        edtAddress.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtAddress.context)
     }
 
     override fun onInvalidEventAddress(error: String) {
@@ -100,7 +100,7 @@ class CreateEventQrCodeFragment : BaseCreateQrCodeFragment<CreateEventQrCodePres
 
     override fun onInvalidEventLinkSuccess() {
         tvMessageEventLink.visibility = View.GONE
-        edtEventLink.background = ContextCompat.getDrawable(requireContext(),R.drawable.bg_corner_gray_solid_white)
+        edtEventLink.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtEventLink.context)
     }
 
     override fun onInvalidEventLink(error: String) {
@@ -112,7 +112,7 @@ class CreateEventQrCodeFragment : BaseCreateQrCodeFragment<CreateEventQrCodePres
 
     override fun onInvalidStartDateSuccess() {
         tvMessageStartDate.visibility = View.GONE
-        edtStartDate.background = ContextCompat.getDrawable(requireContext(),R.drawable.bg_corner_gray_solid_white)
+        edtStartDate.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtStartDate.context)
     }
 
     override fun onInvalidStartDate(error: String) {
@@ -123,7 +123,7 @@ class CreateEventQrCodeFragment : BaseCreateQrCodeFragment<CreateEventQrCodePres
 
     override fun onInvalidEndDateSuccess() {
         tvMessageEndDate.visibility = View.GONE
-        edtEndDate.background = ContextCompat.getDrawable(requireContext(),R.drawable.bg_corner_gray_solid_white)
+        edtEndDate.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtEndDate.context)
     }
 
     override fun onInvalidEndDate(error: String) {
@@ -139,11 +139,11 @@ class CreateEventQrCodeFragment : BaseCreateQrCodeFragment<CreateEventQrCodePres
         tvMessageStartDate.visibility = View.GONE
         tvMessageEndDate.visibility = View.GONE
 
-        edtEvent.background = ContextCompat.getDrawable(requireContext(),R.drawable.bg_corner_gray_solid_white)
-        edtAddress.background = ContextCompat.getDrawable(requireContext(),R.drawable.bg_corner_gray_solid_white)
-        edtEventLink.background = ContextCompat.getDrawable(requireContext(),R.drawable.bg_corner_gray_solid_white)
-        edtStartDate.background = ContextCompat.getDrawable(requireContext(),R.drawable.bg_corner_gray_solid_white)
-        edtEndDate.background = ContextCompat.getDrawable(requireContext(),R.drawable.bg_corner_gray_solid_white)
+        edtEvent.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtEvent.context)
+        edtAddress.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtEvent.context)
+        edtEventLink.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtEvent.context)
+        edtStartDate.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtEvent.context)
+        edtEndDate.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtEvent.context)
 
         KeyboardUtils.hideSoftInput(edtEvent)
 

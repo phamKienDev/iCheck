@@ -202,7 +202,7 @@
                 android:text="Tên sản phẩm (*)"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalDisableHintBgWhiteRadius4
+            <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalHintDisableBgWhiteRadius4Stroke1
                 android:id="@+id/edt_name_product"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -224,7 +224,7 @@
                 android:text="Giá sản phẩm"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalDisableHintBgWhiteRadius4
+            <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalHintDisableBgWhiteRadius4Stroke1
                 android:id="@+id/edt_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -302,7 +302,7 @@
                 android:text="Tên doanh nghiệp"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalDisableHintBgWhiteRadius4
+            <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalHintDisableBgWhiteRadius4Stroke1
                 android:id="@+id/edt_name_page"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -324,7 +324,7 @@
                 android:text="Địa chỉ "
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalDisableHintBgWhiteRadius4
+            <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalHintDisableBgWhiteRadius4Stroke1
                 android:id="@+id/edt_address_page"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -346,7 +346,7 @@
                 android:text="Số điện thoại"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalDisableHintBgWhiteRadius4
+            <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalHintDisableBgWhiteRadius4Stroke1
                 android:id="@+id/edt_phone_page"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -370,7 +370,7 @@
                 android:text="Email"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalDisableHintBgWhiteRadius4
+            <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalHintDisableBgWhiteRadius4Stroke1
                 android:id="@+id/edt_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -393,7 +393,7 @@
                 android:text="Mã số thuế"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalDisableHintBgWhiteRadius4
+            <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalHintDisableBgWhiteRadius4Stroke1
                 android:id="@+id/edt_tax"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

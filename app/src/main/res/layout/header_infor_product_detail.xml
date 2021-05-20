@@ -39,7 +39,6 @@
             android:layout_height="@dimen/size_32"
             android:layout_marginEnd="@dimen/size_10"
             android:layout_marginRight="@dimen/size_10"
-            android:background="@drawable/bg_corner_gray_4_no_solid"
             android:padding="@dimen/size_6"
             app:layout_constraintBottom_toBottomOf="@+id/img_share"
             app:layout_constraintEnd_toStartOf="@+id/img_share"
