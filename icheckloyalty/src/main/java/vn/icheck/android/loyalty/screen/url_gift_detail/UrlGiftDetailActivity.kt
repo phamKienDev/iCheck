@@ -8,6 +8,8 @@ import kotlinx.android.synthetic.main.activity_url_gift_detail.*
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.base.activity.BaseActivityGame
+import vn.icheck.android.loyalty.base.setGone
+import vn.icheck.android.loyalty.base.setVisible
 import vn.icheck.android.loyalty.helper.CampaignLoyaltyHelper
 import vn.icheck.android.loyalty.helper.SharedLoyaltyHelper
 import vn.icheck.android.loyalty.helper.WidgetHelper
@@ -23,6 +25,8 @@ class UrlGiftDetailActivity : BaseActivityGame(), CampaignLoyaltyHelper.ILoginLi
 
     override fun onInitView() {
         viewModel.getDataIntent(intent)
+
+        layoutInput.setVisible()
 
         initListener()
 
@@ -43,7 +47,7 @@ class UrlGiftDetailActivity : BaseActivityGame(), CampaignLoyaltyHelper.ILoginLi
                 CampaignLoyaltyHelper.checkCodeLoyalty(this@UrlGiftDetailActivity, obj, edittext.text.toString().trim(), viewModel.barcode,
                         object : CampaignLoyaltyHelper.IRemoveHolderInputLoyaltyListener {
                             override fun onRemoveHolderInput() {
-
+                                layoutInput.setGone()
                             }
                         }, this@UrlGiftDetailActivity)
                 edittext.setText("")
@@ -71,7 +75,7 @@ class UrlGiftDetailActivity : BaseActivityGame(), CampaignLoyaltyHelper.ILoginLi
                     CampaignLoyaltyHelper.checkCodeLoyalty(this@UrlGiftDetailActivity, viewModel.obj!!, viewModel.code, viewModel.barcode,
                             object : CampaignLoyaltyHelper.IRemoveHolderInputLoyaltyListener {
                                 override fun onRemoveHolderInput() {
-
+                                    layoutInput.setGone()
                                 }
                             }, this@UrlGiftDetailActivity)
                 }

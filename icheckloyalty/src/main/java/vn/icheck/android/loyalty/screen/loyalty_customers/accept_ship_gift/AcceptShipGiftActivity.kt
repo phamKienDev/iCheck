@@ -74,9 +74,15 @@ class AcceptShipGiftActivity : BaseActivityGame(), View.OnClickListener {
                     btnDone.setGone()
                     layoutEdtVoucher.setVisible()
                     layoutButtonVoucher.setVisible()
+                    tvTitleName.text = "Họ và tên"
+                    tvTitleCity.text = "Tỉnh thành"
+                    tvTitleDistrict.text = "Huyện"
+                    tvTitleWard.text = "Phường xã"
+                    tvTitleAddress.text = "Địa chỉ nhận quà"
                 }
                 else -> {
                     btnDone.setBackgroundResource(R.drawable.bg_blue_border_20)
+                    btnDone.text = "Xác nhận đổi quà"
                 }
             }
         } else {
@@ -90,7 +96,12 @@ class AcceptShipGiftActivity : BaseActivityGame(), View.OnClickListener {
         val user = SessionManager.session.user
 
         if (viewModel.type != 4) {
-            edtName.setText(user?.name)
+            if (user?.name?.contains("null") == true) {
+                edtName.setText("")
+            } else {
+                edtName.setText(user?.name)
+            }
+
             edtPhone.setText(user?.phone)
             edtEmail.setText(user?.email)
             edtAddress.setText(user?.address)
