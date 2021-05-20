@@ -47,5 +47,11 @@ data class ICNews(
         var media: ICMedia? = null,
 
         @Expose
-        val pageIds: List<Int>? = null
+        val pageIds: List<Int>? = null,
+
+        @Expose
+        val pages: MutableList<ICPage>? = null,
+
+        @Expose
+        val articleCategory: ICArticleCategory? = null
 ) : Serializable

@@ -97,11 +97,11 @@ internal class GiftDetailFromAppAdapter : RecyclerViewCustomAdapter<ICKGift>() {
 
                             itemView.layoutDate.setGone()
 
-                            itemView.tvStatus.text = "Đã sử dụng"
+                            itemView.tvStatus.text = "Hết lượt sử dụng"
 
                         } else {
 
-                            itemView.tvTimeGift.text = TimeHelper.convertDateTimeSvToDateVn(obj.voucher.end_at)
+                            itemView.tvTimeGift.text = ""
 
                             itemView.tvStatus.text = "Hết hạn sử dụng"
                         }

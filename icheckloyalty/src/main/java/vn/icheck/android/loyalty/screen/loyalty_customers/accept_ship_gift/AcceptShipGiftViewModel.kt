@@ -129,9 +129,9 @@ class AcceptShipGiftViewModel : BaseViewModel<Any>() {
                 isSuccess = false
                 onErrorName.postValue("Vui lòng nhập tên")
             }
-            name.length > 100 -> {
+            name.length > 255 -> {
                 isSuccess = false
-                onErrorName.postValue("Tên bạn nhập quá dài!")
+                onErrorName.postValue("Họ và tên không nhập quá 255 kí tự")
             }
             else -> {
                 onErrorName.postValue("")

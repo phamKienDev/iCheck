@@ -1,6 +1,7 @@
 package vn.icheck.android.screen.user.newslistv2
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -11,7 +12,10 @@ import vn.icheck.android.R
 import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.loyalty.base.listener.IClickListener
+import vn.icheck.android.network.models.ICArticleCategory
 import vn.icheck.android.screen.user.home.HomeActivity
+import vn.icheck.android.screen.user.newslistv2.adapter.NewCategoryAdapter
 import vn.icheck.android.screen.user.newslistv2.adapter.NewsListV2Adapter
 import vn.icheck.android.screen.user.newslistv2.viewmodel.NewsListViewModel
 import vn.icheck.android.util.kotlin.ActivityUtils
@@ -20,6 +24,8 @@ import vn.icheck.android.util.kotlin.ToastUtils
 class ListNewsFragment : BaseFragmentMVVM(), IRecyclerViewCallback {
     private lateinit var viewModel: NewsListViewModel
     private val adapter = NewsListV2Adapter(this)
+
+    private var categoryId: Long? = null
 
     override val getLayoutID: Int
         get() = R.layout.fragment_list_news
@@ -69,6 +75,8 @@ class ListNewsFragment : BaseFragmentMVVM(), IRecyclerViewCallback {
         }
 
         txtTitle.setText(R.string.icheck_thoi_bao)
+
+        viewModel.getCategoryNewsList()
     }
 
     private fun initRecyclerView() {
@@ -91,7 +99,7 @@ class ListNewsFragment : BaseFragmentMVVM(), IRecyclerViewCallback {
         if (swipeLayout != null) {
             swipeLayout.isRefreshing = true
         }
-        viewModel.getNewsList(false)
+        viewModel.getNewsList(false, categoryId)
     }
 
     private fun getDataSuccess() {
@@ -103,6 +111,21 @@ class ListNewsFragment : BaseFragmentMVVM(), IRecyclerViewCallback {
             } else {
                 adapter.addData(it.listData)
             }
+        })
+
+        viewModel.getCategorySuccess.observe(viewLifecycleOwner, {
+            val adapterCategory = NewCategoryAdapter(it)
+            recyclerViewCategory.adapter = adapterCategory
+
+            adapterCategory.setListener(object : IClickListener {
+                override fun onClick(obj: Any) {
+                    if (obj is ICArticleCategory) {
+                        categoryId = obj.id
+
+                        getData()
+                    }
+                }
+            })
         })
     }
 
@@ -123,6 +146,6 @@ class ListNewsFragment : BaseFragmentMVVM(), IRecyclerViewCallback {
     }
 
     override fun onLoadMore() {
-        viewModel.getNewsList(true)
+        viewModel.getNewsList(true, categoryId)
     }
 }

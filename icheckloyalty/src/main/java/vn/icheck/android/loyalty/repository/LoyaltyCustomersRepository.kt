@@ -114,10 +114,12 @@ internal class LoyaltyCustomersRepository : BaseRepository() {
         if (!user?.name.isNullOrEmpty()) {
             params["name"] = user?.name!!
         }
+        if (!user?.phone.isNullOrEmpty()) {
+            params["phone"] = user?.phone!!
+        }
 
         if (phone.isNotEmpty()) {
             params["receiver_phone"] = phone
-            params["phone"] = phone
         }
 
         if (!user?.email.isNullOrEmpty()) {
