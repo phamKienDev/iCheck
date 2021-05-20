@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
-            app:tabTextAppearance="@style/TabLayoutStyle"
+            app:tabTextAppearance="@style/MyTabLayoutTextAppearance"
             app:layout_constraintTop_toBottomOf="@id/txtTitle"
             app:tabGravity="fill"
             app:tabIndicatorHeight="@dimen/size_0"

@@ -56,7 +56,7 @@ class AcceptShipGiftActivity : BaseActivityGame(), View.OnClickListener {
             onBackPressed()
         }
 
-        txtTitle.text = "Xác nhận đổi quà"
+        txtTitle.text = "Xác nhận nhận quà"
     }
 
     private fun initDataTheFirst() {
@@ -71,6 +71,7 @@ class AcceptShipGiftActivity : BaseActivityGame(), View.OnClickListener {
                     btnDone.setBackgroundResource(R.drawable.bg_gradient_button_blue)
                 }
                 4 -> {
+                    txtTitle.text = "Xác nhận thông tin"
                     btnDone.setGone()
                     layoutEdtVoucher.setVisible()
                     layoutButtonVoucher.setVisible()
@@ -82,7 +83,6 @@ class AcceptShipGiftActivity : BaseActivityGame(), View.OnClickListener {
                 }
                 else -> {
                     btnDone.setBackgroundResource(R.drawable.bg_blue_border_20)
-                    btnDone.text = "Xác nhận đổi quà"
                 }
             }
         } else {

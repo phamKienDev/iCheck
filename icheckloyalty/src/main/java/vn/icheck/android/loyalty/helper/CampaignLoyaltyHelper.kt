@@ -1,4 +1,4 @@
-package vn.icheck.android.loyalty.helper
+ package vn.icheck.android.loyalty.helper
 
 import android.content.Intent
 import android.graphics.Bitmap
@@ -133,7 +133,8 @@ object CampaignLoyaltyHelper {
                             DialogHelperGame.dialogCustomerError(activity,
                                     R.drawable.ic_error_scan_game,
                                     "Bạn không thuộc danh sách\ntham gia chương trình",
-                                    "Liên hệ với Doanh nghiệp để biết thêm chi tiết", object : IClickButtonDialog<ICKNone> {
+                                    "Liên hệ với Doanh nghiệp để biết thêm " +
+                                            "chi tiết", object : IClickButtonDialog<ICKNone> {
                                 override fun onClickButtonData(obj: ICKNone?) {
 
                                 }
@@ -336,11 +337,14 @@ object CampaignLoyaltyHelper {
                 if (obj.statusCode != 200) {
                     if (!obj.data?.message.isNullOrEmpty()) {
                         when (obj.status) {
-                            "OUT_OF_TURN", "INVALID_PARAM", "USED_TARGET" -> {
+                            "OUT_OF_TURN", "USED_TARGET" -> {
                                 listener?.onRemoveHolderInput()
 
                                 showCustomErrorToast(activity, obj.data?.message!!)
                             }
+//                            "INVALID_PARAM" -> {
+//
+//                            }
                             "INVALID_CUSTOMER" -> {
                                 listener?.onRemoveHolderInput()
 

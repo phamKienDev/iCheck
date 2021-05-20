@@ -11,6 +11,7 @@ import android.webkit.WebViewClient
 import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_new_detail_v2.*
 import org.greenrobot.eventbus.EventBus
@@ -20,8 +21,12 @@ import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.ichecklibs.visibleOrGone
+import vn.icheck.android.loyalty.base.setGone
+import vn.icheck.android.loyalty.base.setVisible
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
+import vn.icheck.android.screen.user.newsdetailv2.adapter.NewDetailBusinessAdapter
 import vn.icheck.android.screen.user.newsdetailv2.adapter.NewDetailV2Adapter
 import vn.icheck.android.screen.user.newsdetailv2.viewmodel.NewDetailViewModel
 import vn.icheck.android.screen.user.newslistv2.NewsListV2Activity
@@ -29,6 +34,7 @@ import vn.icheck.android.ui.layout.CustomLinearLayoutManager
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.StatusBarUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
+import vn.icheck.android.util.text.TestTimeUtil
 
 /**
  * Phạm Hoàng Phi Hùng
@@ -126,12 +132,10 @@ class NewDetailV2Activity : BaseActivityMVVM() {
         }
     }
 
-    @SuppressLint("SetJavaScriptEnabled")
+    @SuppressLint("SetJavaScriptEnabled", "SetTextI18n")
     private fun getDataSuccess() {
-        viewModel.liveData.observe(this, Observer {
+        viewModel.liveData.observe(this, {
             WidgetUtils.loadImageUrl(imgBanner, it.obj?.thumbnail?.trim())
-
-            tvStatus.visibleOrGone(!it.obj?.pageIds.isNullOrEmpty())
 
             if (!it.obj?.title.isNullOrEmpty()) {
                 txtTitle.text = it.obj?.title
@@ -176,6 +180,36 @@ class NewDetailV2Activity : BaseActivityMVVM() {
                     }
                     return false
                 }
+            }
+
+            if (!it.obj?.articleCategory?.code.isNullOrEmpty()){
+                layoutType.setVisible()
+
+                tvType.text = "#${it.obj?.articleCategory?.code}"
+            }else{
+                layoutType.setGone()
+            }
+
+            if (!it.obj?.createdAt.isNullOrEmpty()) {
+
+                val millisecond = TimeHelper.convertDateTimeSvToMillisecond(it.obj?.createdAt) ?: 0
+
+                tvDate.text = TestTimeUtil(it.obj?.createdAt!!).getTimeDateNews()
+
+                if (System.currentTimeMillis() - millisecond < 86400000) {
+                    layoutDate.setVisible()
+                } else {
+                    layoutDate.setGone()
+                }
+            }
+
+            if (!it.obj?.pages.isNullOrEmpty()){
+                layoutBusiness.setVisible()
+
+                recyclerView.layoutManager = GridLayoutManager(this@NewDetailV2Activity, 6)
+                recyclerViewBusiness.adapter = NewDetailBusinessAdapter(it.obj?.pages!!)
+            }else{
+                layoutBusiness.setGone()
             }
 
             if (!it.listData.isNullOrEmpty()) {
