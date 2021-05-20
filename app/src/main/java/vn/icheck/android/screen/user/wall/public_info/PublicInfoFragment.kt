@@ -73,7 +73,7 @@ class PublicInfoFragment : Fragment() {
                 binding.rowDistrict.beGone()
                 binding.viewDistrict.beGone()
             }
-            if (!user.city?.name.isNullOrEmpty()) {
+            if (!user.ward?.name.isNullOrEmpty()) {
                 binding.tvWard simpleText user.ward?.name
             } else {
                 binding.rowWard.beGone()

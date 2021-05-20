@@ -49,7 +49,7 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
     private val listImageFile = mutableListOf<File>()
     private var listImageString = hashMapOf<String, String>()
 
-    fun bind(obj: SubmitReviewModel) {
+    fun bind(obj: SubmitReviewModel, refeshTextReview:Boolean) {
         (itemView as ViewGroup).run {
             rcvRating = getChildAt(2) as RecyclerView
             (getChildAt(3) as LinearLayout).run {
@@ -62,6 +62,10 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
                 btnPermission = getChildAt(1) as AppCompatImageView
                 btnSubmit = getChildAt(2) as AppCompatTextView
             }
+        }
+
+        if(refeshTextReview){
+            edtEnter.setText("")
         }
 
         setUpRcvImage()
@@ -87,6 +91,10 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
             })
         }
 
+        initClick(obj)
+    }
+
+    private fun initClick(obj: SubmitReviewModel) {
         imgCamera.setOnClickListener {
             listener.onTakeImage(adapterPosition)
         }
@@ -134,11 +142,19 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
                     }
                 } else {
                     btnSubmit.isClickable = true
-                    EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REQUEST_POST_REVIEW, adapterPosition))
+                    EventBus.getDefault().post(
+                        ICMessageEvent(
+                            ICMessageEvent.Type.REQUEST_POST_REVIEW,
+                            adapterPosition
+                        )
+                    )
                 }
             } else {
                 btnSubmit.isClickable = true
-                ToastUtils.showShortError(itemView.context, itemView.context.getString(R.string.vui_long_dien_day_du_tieu_chi))
+                ToastUtils.showShortError(
+                    itemView.context,
+                    itemView.context.getString(R.string.vui_long_dien_day_du_tieu_chi)
+                )
             }
         }
     }
