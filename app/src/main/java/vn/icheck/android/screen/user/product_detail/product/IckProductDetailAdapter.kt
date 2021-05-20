@@ -76,7 +76,7 @@ import vn.icheck.android.util.KeyboardUtils
 
 class IckProductDetailAdapter(listener: IRecyclerViewCallback, private val productListener: ProductDetailListener, private val submitReviewListener: ISubmitReviewListener, private val listenerLoyalty: CampaignLoyaltyHelper.IRemoveHolderInputLoyaltyListener, private val listenerLogin: CampaignLoyaltyHelper.ILoginListener, private val listenerMyReview: IMyReviewListener) : RecyclerViewCustomAdapter<ICLayout>(listener) {
     private var sharedPool: RecyclerView.RecycledViewPool? = null
-
+    private var refeshTextReview=true
 //    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
 //        super.onAttachedToRecyclerView(recyclerView)
 //        sharedPool = recyclerView.recycledViewPool
@@ -94,6 +94,10 @@ class IckProductDetailAdapter(listener: IRecyclerViewCallback, private val produ
     fun removeHolderInput() {
         listData.removeAt(0)
         notifyItemRemoved(0)
+    }
+
+    fun setRefeshTextReview(refesh:Boolean){
+        refeshTextReview=refesh
     }
 
     fun removeContributionEnterprise() {
@@ -307,7 +311,7 @@ class IckProductDetailAdapter(listener: IRecyclerViewCallback, private val produ
             ICViewTypes.VENDOR_TYPE -> (holder as VendorHolder).bind(listData[position].data as VendorModel)
             ICViewTypes.DISTRIBUTOR -> (holder as DistributorHolder).bind(listData[position].data as DistributorModel, IckProductDetailActivity.urlDistributor)
             ICViewTypes.LIST_REVIEWS_TYPE -> (holder as ProductListReviewHolder).bind(listData[position].data as ProductListReviewModel)
-            ICViewTypes.SUBMIT_REVIEW_TYPE -> (holder as SubmitReviewHolder).bind(listData[position].data as SubmitReviewModel)
+            ICViewTypes.SUBMIT_REVIEW_TYPE -> (holder as SubmitReviewHolder).bind(listData[position].data as SubmitReviewModel,refeshTextReview).apply { refeshTextReview=false }
             ICViewTypes.MY_REVIEW_TYPE -> (holder as MyReviewHolder).bind(listData[position].data as MyReviewModel)
             ICViewTypes.QUESTIONS_ANSWER_TYPE -> (holder as ProductQuestionHolder).bind(listData[position].data as ProductQuestionModel)
             ICViewTypes.EMPTY_QA_TYPE -> (holder as ProductEmptyQaHolder).bind(listData[position].data as EmptyQAModel)
