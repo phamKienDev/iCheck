@@ -88,7 +88,7 @@ class AdsMoreActivity : BaseActivityGame() {
     }
 
     private fun setAdsProduct(it: ICAdsNew) {
-        val adapter = AdsProductAdapter()
+        val adapter = AdsProductAdapter(true)
         recyclerView.adapter = adapter
 
         if (it.type == Constant.GRID) {
@@ -110,7 +110,7 @@ class AdsMoreActivity : BaseActivityGame() {
     }
 
     private fun setAdsPage(obj: ICAdsNew) {
-        val adapter = AdsPageAdapter()
+        val adapter = AdsPageAdapter(true)
         recyclerView.adapter = adapter
 
         if (obj.type == Constant.GRID) {
