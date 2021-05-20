@@ -71,5 +71,5 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_1"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@color/gray_e5" />
+        android:background="@color/g1ray_e5" />
 </androidx.constraintlayout.widget.ConstraintLayout>

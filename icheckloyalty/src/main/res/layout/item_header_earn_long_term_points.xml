@@ -75,7 +75,7 @@
                             android:includeFontPadding="false"
                             android:singleLine="true"
                             android:text="Điểm thành viên của bạn:"
-                            android:textColor="@color/darkGray1"
+                            android:textColor="@color/darkG1ray1"
                             android:textSize="12sp" />
                     </LinearLayout>
 

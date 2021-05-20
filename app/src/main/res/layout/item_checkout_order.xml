@@ -106,7 +106,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_1"
-            android:background="@color/gray" />
+            android:background="@color/grayLoyalty" />
 
         <LinearLayout
             android:id="@id/layoutContent"
@@ -194,7 +194,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_1"
             android:layout_marginTop="@dimen/size_12"
-            android:background="@color/gray"
+            android:background="@color/grayLoyalty"
             app:layout_constraintTop_toBottomOf="@id/tvShippingTime" />
 
         <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
@@ -258,7 +258,7 @@
         <View
             android:layout_width="@dimen/size_0"
             android:layout_height="@dimen/size_1"
-            android:background="@color/gray"
+            android:background="@color/grayLoyalty"
             app:layout_constraintEnd_toEndOf="@id/edtNote"
             app:layout_constraintStart_toStartOf="@id/edtNote"
             app:layout_constraintTop_toBottomOf="@id/edtNote" />

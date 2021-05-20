@@ -30,7 +30,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_1"
-        android:background="@color/gray" />
+        android:background="@color/grayLoyalty" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -51,7 +51,7 @@
         <View
             android:layout_width="@dimen/size_1"
             android:layout_height="match_parent"
-            android:background="@color/gray" />
+            android:background="@color/grayLoyalty" />
 
         <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
             android:id="@+id/btn_yes"

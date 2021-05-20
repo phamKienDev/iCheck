@@ -32,7 +32,7 @@
                 android:fontFamily="@font/roboto_medium"
                 android:gravity="center"
                 android:includeFontPadding="false"
-                android:textColor="@color/darkGray1"
+                android:textColor="@color/darkG1ray1"
                 android:textSize="14sp"
                 tools:text="Chương trình chưa diễn ra" />
 
@@ -44,7 +44,7 @@
                 android:fontFamily="@font/roboto_regular"
                 android:gravity="center"
                 android:includeFontPadding="false"
-                android:textColor="@color/darkGray1"
+                android:textColor="@color/darkG1ray1"
                 android:textSize="14sp"
                 tools:text="Mời bạn qua lại sau để\ntham gia chương trình nhé!" />
         </LinearLayout>

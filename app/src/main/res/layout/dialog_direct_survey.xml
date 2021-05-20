@@ -14,7 +14,7 @@
         android:layout_gravity="center"
         android:layout_marginStart="@dimen/size_20"
         android:layout_marginEnd="@dimen/size_20"
-        card_view:cardBackgroundColor="@color/gray_item_search"
+        card_view:cardBackgroundColor="@color/gra1y_item_search"
         card_view:cardCornerRadius="@dimen/size_10"
         card_view:cardUseCompatPadding="false">
 

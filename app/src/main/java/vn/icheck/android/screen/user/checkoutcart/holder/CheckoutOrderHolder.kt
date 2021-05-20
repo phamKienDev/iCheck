@@ -96,7 +96,7 @@ class CheckoutOrderHolder(view: View, val listener: ICheckoutCartView) : BaseVie
             if (parent.childCount > 0) {
                 val view = View(parent.context)
                 view.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size1)
-                view.setBackgroundColor(ContextCompat.getColor(parent.context, R.color.gray))
+                view.setBackgroundColor(ContextCompat.getColor(parent.context, R.color.grayLoyalty))
                 parent.addView(view)
             }
 

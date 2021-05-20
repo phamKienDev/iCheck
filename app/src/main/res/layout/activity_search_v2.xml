@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_e5"
+    android:background="@color/g1ray_e5"
     tools:context="vn.icheck.android.screen.user.search_home.main.SearchHomeActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -124,7 +124,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_0_5"
             android:layout_marginTop="@dimen/size_12"
-            android:background="@color/gray"
+            android:background="@color/grayLoyalty"
             app:layout_constraintTop_toBottomOf="@id/tv_title_recent" />
 
         <vn.icheck.android.component.tag_view.TagView
@@ -183,7 +183,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_0_5"
             android:layout_marginTop="@dimen/size_12"
-            android:background="@color/gray"
+            android:background="@color/grayLoyalty"
             app:layout_constraintTop_toBottomOf="@id/tv_title_popular" />
 
         <vn.icheck.android.component.tag_view.TagView

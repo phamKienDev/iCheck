@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_1"
             android:layout_marginBottom="@dimen/size_8"
-            android:background="@color/gray"
+            android:background="@color/grayLoyalty"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -39,7 +39,7 @@
         android:id="@+id/view1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_1"
-        android:background="@color/gray"
+        android:background="@color/grayLoyalty"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/container_comment"
         app:layout_constraintEnd_toEndOf="parent"

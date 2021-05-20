@@ -28,7 +28,7 @@
             android:layout_width="@dimen/size_40"
             android:layout_height="@dimen/size_40"
             android:layout_marginTop="@dimen/size_8"
-            app:civ_border_color="@color/gray"
+            app:civ_border_color="@color/grayLoyalty"
             app:civ_border_width="@dimen/size_0_5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/imgRank"
@@ -175,7 +175,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
             android:maxLines="2"
-            android:textColor="@color/darkGray1"
+            android:textColor="@color/darkG1ray1"
             android:textSize="@dimen/font_16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/imgProduct"
@@ -267,5 +267,5 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_10"
-        android:background="@color/colorBackgroundGray" />
+        android:background="@color/colorBackgroundGra1y" />
 </LinearLayout>

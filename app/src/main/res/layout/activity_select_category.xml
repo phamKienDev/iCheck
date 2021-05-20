@@ -66,14 +66,14 @@
         android:paddingStart="@dimen/size_10"
         android:paddingEnd="@dimen/size_10"
         android:singleLine="true"
-        android:textColorHint="@color/gray"
+        android:textColorHint="@color/grayLoyalty"
         android:textSize="@dimen/font_14"
         android:textStyle="normal" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_1"
-        android:background="@color/gray"
+        android:background="@color/grayLoyalty"
         android:layout_marginTop="@dimen/size_2"
         android:layout_marginBottom="@dimen/size_4"/>
 

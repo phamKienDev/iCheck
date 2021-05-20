@@ -49,5 +49,5 @@
         android:layout_height="@dimen/size_1"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginEnd="@dimen/size_12"
-        android:background="@color/gray" />
+        android:background="@color/grayLoyalty" />
 </LinearLayout>

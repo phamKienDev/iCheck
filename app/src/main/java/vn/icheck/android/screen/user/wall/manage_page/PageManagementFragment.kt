@@ -180,7 +180,7 @@ class PageManagementFragment : Fragment() {
 
     private fun setError(data: ICError) {
         binding.layoutMessage.containerMessage.beVisible()
-        binding.layoutMessage.containerMessage.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.gray_e5))
+        binding.layoutMessage.containerMessage.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.g1ray_e5))
         binding.layoutMessage.imgIcon.setImageResource(data.icon)
         binding.layoutMessage.txtMessage.text = data.message
 

@@ -63,7 +63,7 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
                 it.setMargins(SizeHelper.size12, SizeHelper.size12, SizeHelper.size12, 0)
             }
             itemView.setPadding(0, 0, 0, SizeHelper.size16)
-            itemView.setBackgroundResource(R.drawable.bg_corners_white_4_border_05)
+            itemView.background=ViewHelper.bgWhiteRadius4StrokeLineColor0_5(itemView.context)
         } else {
             (itemView as ConstraintLayout).layoutParams = ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, ConstraintLayout.LayoutParams.WRAP_CONTENT).also {
                 it.setMargins(0, SizeHelper.size1, 0, 0)

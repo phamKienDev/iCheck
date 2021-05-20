@@ -1,4 +1,4 @@
-package vn.icheck.android.ichecklibs.view.disable_text
+package vn.icheck.android.ichecklibs.view.line_color
 
 import android.content.Context
 import android.util.AttributeSet
@@ -7,8 +7,9 @@ import com.google.android.material.textfield.TextInputEditText
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.view.disable_text.TextInputEdittextDisableHint
 
-open class TextInputEdittextDisableHint :TextInputEditText{
+class TextInputEdittextDisableHintBgTransparentRadius18Stroke1 : TextInputEdittextDisableHint {
     constructor(context: Context) : super(context) {
         setup()
     }
@@ -26,7 +27,6 @@ open class TextInputEdittextDisableHint :TextInputEditText{
     }
 
     private fun setup() {
-        setHintTextColor(Constant.getDisableTextColor(context))
-        includeFontPadding = false
+       background=ViewHelper.bgTransparentRadius18StrokeLineColor1(context)
     }
 }

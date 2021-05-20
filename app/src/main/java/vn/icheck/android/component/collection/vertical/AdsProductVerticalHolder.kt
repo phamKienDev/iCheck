@@ -21,7 +21,6 @@ import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
-import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
 import vn.icheck.android.network.models.ICProduct
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
@@ -101,7 +100,7 @@ class AdsProductVerticalHolder(parent: ViewGroup) : BaseViewHolder<ICProduct>(cr
             layoutParent.layoutParams = ViewHelper.createLayoutParams(SizeHelper.size0_5, SizeHelper.size0_5, SizeHelper.size0_5, SizeHelper.size0_5)
             layoutParent.orientation = LinearLayout.VERTICAL
             layoutParent.background = ViewHelper.createStateListDrawable(
-                    Color.WHITE, ContextCompat.getColor(context, R.color.lightGray),
+                    Color.WHITE, ContextCompat.getColor(context, R.color.lightGr1ay),
                     Color.TRANSPARENT, Color.TRANSPARENT, 0, 0f)
             layoutParent.setPadding(SizeHelper.size6, SizeHelper.size6, SizeHelper.size6, SizeHelper.size6)
 
@@ -117,7 +116,7 @@ class AdsProductVerticalHolder(parent: ViewGroup) : BaseViewHolder<ICProduct>(cr
                     ViewHelper.createLayoutParams(SizeHelper.size6, SizeHelper.size8, SizeHelper.size6, 0),
                     null,
                     ViewHelper.createTypeface(context, R.font.barlow_medium),
-                    ContextCompat.getColor(context, R.color.darkGray1),
+                    ContextCompat.getColor(context, R.color.darkG1ray1),
                     14f,
                     2).also {
                 it.minLines = 2

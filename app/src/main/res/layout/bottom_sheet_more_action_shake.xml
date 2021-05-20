@@ -67,7 +67,7 @@
             android:layout_width="@dimen/size_40"
             android:layout_height="@dimen/size_40"
             android:src="@drawable/ic_box_shake_40"
-            app:civ_circle_background_color="@color/colorBackgroundGray" />
+            app:civ_circle_background_color="@color/colorBackgroundGra1y" />
 
         <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:layout_width="match_parent"

@@ -50,5 +50,5 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_1"
         android:layout_marginStart="@dimen/size_64"
-        android:background="@color/gray" />
+        android:background="@color/grayLoyalty" />
 </LinearLayout>

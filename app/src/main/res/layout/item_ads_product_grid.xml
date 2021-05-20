@@ -41,7 +41,7 @@
         android:maxHeight="@dimen/size_40"
         android:maxLines="2"
         android:minLines="2"
-        android:textColor="@color/darkGray1"
+        android:textColor="@color/darkG1ray1"
         android:textSize="@dimen/font_14"
         tools:text="Adidas Store (tối 2 dòng)..." />
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_item_search">
+    android:background="@color/gra1y_item_search">
 
 
     <androidx.core.widget.NestedScrollView
@@ -113,7 +113,7 @@
                             <View
                                 android:layout_width="@dimen/size_0_5"
                                 android:layout_height="match_parent"
-                                android:background="@color/gray" />
+                                android:background="@color/grayLoyalty" />
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvGift"
@@ -266,7 +266,7 @@
                     android:layout_marginTop="@dimen/size_10"
                     android:fontFamily="@font/barlow_medium"
                     android:includeFontPadding="false"
-                    android:textColor="@color/darkGray1"
+                    android:textColor="@color/darkG1ray1"
                     android:textSize="@dimen/font_14" />
             </LinearLayout>
 

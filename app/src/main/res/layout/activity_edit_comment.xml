@@ -63,7 +63,6 @@
                 android:layout_marginLeft="@dimen/size_5"
                 android:layout_marginEnd="@dimen/size_12"
                 android:layout_marginRight="@dimen/size_12"
-                android:background="@drawable/bg_outline_gray_1_corners_4"
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="top"
                 android:hint="@string/viet_binh_luan"

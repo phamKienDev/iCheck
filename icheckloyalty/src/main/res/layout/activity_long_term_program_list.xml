@@ -15,7 +15,7 @@
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeLayout"
         android:layout_width="match_parent"
-        android:background="@color/gray_item_search"
+        android:background="@color/gra1y_item_search"
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView

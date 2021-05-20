@@ -38,6 +38,6 @@
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:layout_marginStart="@dimen/size_12"
-        android:background="@color/gray"/>
+        android:background="@color/grayLoyalty"/>
 
 </LinearLayout>

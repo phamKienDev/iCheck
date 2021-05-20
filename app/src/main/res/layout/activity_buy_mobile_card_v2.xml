@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackgroundGray"
+    android:background="@color/colorBackgroundGra1y"
     tools:context="vn.icheck.android.screen.user.recharge_phone.RechargePhoneActivity">
 
     <!--Toolbar-->
@@ -89,7 +89,7 @@
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/colorBackgroundGray"
+        android:background="@color/colorBackgroundGra1y"
         android:fillViewport="true"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@id/constraintLayout10"

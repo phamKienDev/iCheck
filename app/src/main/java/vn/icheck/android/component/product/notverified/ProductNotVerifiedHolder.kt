@@ -126,7 +126,7 @@ class ProductNotVerifiedHolder(parent: ViewGroup) : BaseViewHolder<ProductNotVer
                         it.layoutParams = ViewHelper.createLayoutParams(SizeHelper.size1, LinearLayout.LayoutParams.MATCH_PARENT).also { params ->
                             params.setMargins(0, SizeHelper.size14, 0, SizeHelper.size14)
                         }
-                        it.setBackgroundColor(ContextCompat.getColor(context, R.color.gray))
+                        it.setBackgroundColor(ContextCompat.getColor(context, R.color.grayLoyalty))
                     })
 
                     // Layout end

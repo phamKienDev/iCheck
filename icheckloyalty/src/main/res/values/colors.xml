@@ -13,7 +13,7 @@
 <!--    <color name="colorSecondary">#3C5A99</color>-->
     <color name="colorAccentYellow">#FFB800</color>
 <!--    <color name="colorDisableText">#B4B4B4</color>-->
-    <color name="gray">#D8D8D8</color>
+    <color name="grayLoyalty">#D8D8D8</color>
     <color name="black_60">#99000000</color>
 <!--    <color name="colorPrimary">#057DDA</color>-->
     <color name="colorAccentBlue">#00BAF2</color>
@@ -26,7 +26,7 @@
     <color name="orange_opactity">#33FBBB00</color>
     <color name="green2">#49aa2d</color>
     <color name="orange_red">#FE4E1B</color>
-    <color name="darkGray1">#434343</color>
-    <color name="lightGray">#F1F1F1</color>
-    <color name="gray_item_search">#F5F5F5</color>
+    <color name="darkG1ray1">#434343</color>
+    <color name="lightGr1ay">#F1F1F1</color>
+    <color name="gra1y_item_search">#F5F5F5</color>
 </resources>

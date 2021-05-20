@@ -55,7 +55,7 @@ class InforPageBottomSheet(val data: String, val context: Context) : BaseBottomS
         // Line gray - 1
         layoutParent.addView(View(context).also {
             it.layoutParams = ViewHelper.createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size0_5)
-            it.setBackgroundColor(ContextCompat.getColor(context, R.color.gray))
+            it.setBackgroundColor(ContextCompat.getColor(context, R.color.grayLoyalty))
         })
 
         // text information

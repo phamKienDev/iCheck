@@ -74,7 +74,7 @@ class ListFriendRequestActivity : BaseActivityMVVM(), IRecyclerViewCallback {
 
         val horizontalDecoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
         horizontalDecoration.setDrawable(ShapeDrawable().apply {
-            paint.color = ContextCompat.getColor(this@ListFriendRequestActivity, R.color.colorBackgroundGray)
+            paint.color = ContextCompat.getColor(this@ListFriendRequestActivity, R.color.colorBackgroundGra1y)
             intrinsicHeight = SizeHelper.size1
         })
         recyclerView.addItemDecoration(horizontalDecoration)

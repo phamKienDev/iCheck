@@ -51,7 +51,7 @@
             android:fontFamily="@font/roboto_medium"
             android:maxLines="2"
             android:minLines="1"
-            android:textColor="@color/darkGray1"
+            android:textColor="@color/darkG1ray1"
             android:textSize="16sp"
             tools:text="Mã Ưu đãi giảm 10% khi đặt mâm cúng giỗ tổ ngành sân khấu (tên quà dài không giới hạn...)" />
 
@@ -74,7 +74,7 @@
                 android:fontFamily="@font/roboto_bold"
                 android:includeFontPadding="false"
                 android:text="Loại quà"
-                android:textColor="@color/darkGray1" />
+                android:textColor="@color/darkG1ray1" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvCategoryGift"
@@ -85,7 +85,7 @@
                 android:fontFamily="@font/roboto_regular"
                 android:includeFontPadding="false"
                 android:singleLine="true"
-                android:textColor="@color/darkGray1" />
+                android:textColor="@color/darkG1ray1" />
         </LinearLayout>
 
         <LinearLayout
@@ -101,7 +101,7 @@
                 android:fontFamily="@font/roboto_bold"
                 android:includeFontPadding="false"
                 android:text="Trạng thái"
-                android:textColor="@color/darkGray1" />
+                android:textColor="@color/darkG1ray1" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvStatus"
@@ -112,7 +112,7 @@
                 android:fontFamily="@font/roboto_regular"
                 android:includeFontPadding="false"
                 android:singleLine="true"
-                android:textColor="@color/darkGray1" />
+                android:textColor="@color/darkG1ray1" />
         </LinearLayout>
 
         <LinearLayout
@@ -128,7 +128,7 @@
                 android:fontFamily="@font/roboto_bold"
                 android:includeFontPadding="false"
                 android:text="Hạn nhận quà"
-                android:textColor="@color/darkGray1" />
+                android:textColor="@color/darkG1ray1" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvTimeGift"
@@ -139,7 +139,7 @@
                 android:fontFamily="@font/roboto_regular"
                 android:includeFontPadding="false"
                 android:singleLine="true"
-                android:textColor="@color/darkGray1" />
+                android:textColor="@color/darkG1ray1" />
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -148,7 +148,7 @@
             android:layout_marginTop="@dimen/size_20"
             android:fontFamily="@font/roboto_bold"
             android:text="Thông tin quà"
-            android:textColor="@color/darkGray1" />
+            android:textColor="@color/darkG1ray1" />
 
         <WebView
             android:id="@+id/webView"
@@ -171,7 +171,7 @@
                 android:fontFamily="@font/roboto_regular"
                 android:gravity="center"
                 android:text="Mã nhận thưởng của bạn"
-                android:textColor="@color/darkGray1" />
+                android:textColor="@color/darkG1ray1" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvCode"

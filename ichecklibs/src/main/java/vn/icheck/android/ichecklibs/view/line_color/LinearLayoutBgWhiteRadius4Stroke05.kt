@@ -16,7 +16,7 @@ import vn.icheck.android.ichecklibs.view.TextBarlowMedium
 import vn.icheck.android.ichecklibs.view.disable_text.TextNormalBarlowMediumHintDisable
 import vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
 
-class LinerLayoutBgWhiteRadius4Stroke05 : LinearLayout {
+class LinearLayoutBgWhiteRadius4Stroke05 : LinearLayout {
     constructor(context: Context) : super(context) {
         setup()
     }

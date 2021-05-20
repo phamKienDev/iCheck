@@ -19,7 +19,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_1"
-        android:background="@color/gray" />
+        android:background="@color/grayLoyalty" />
 
     <EditText
         android:id="@+id/edt_info"

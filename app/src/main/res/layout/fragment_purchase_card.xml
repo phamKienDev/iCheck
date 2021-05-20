@@ -119,7 +119,7 @@
                 android:layout_marginBottom="@dimen/size_8"
                 android:fontFamily="sans-serif"
                 android:text="THÀNH TIỀN"
-                android:textColor="@color/darkGray1"
+                android:textColor="@color/darkG1ray1"
                 android:textSize="@dimen/font_13"
                 app:layout_constraintBottom_toTopOf="@+id/btn_checkout"
                 app:layout_constraintStart_toStartOf="@+id/btn_checkout" />

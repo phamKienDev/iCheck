@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_1"
         android:layout_marginBottom="@dimen/size_12"
-        android:background="@color/gray" />
+        android:background="@color/grayLoyalty" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_titles"

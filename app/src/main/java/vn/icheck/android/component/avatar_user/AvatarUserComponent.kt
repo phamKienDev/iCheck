@@ -12,8 +12,6 @@ import vn.icheck.android.R
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.util.ick.beGone
-import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class AvatarUserComponent : LinearLayout {
@@ -57,7 +55,7 @@ class AvatarUserComponent : LinearLayout {
                 val size = typedArray.getDimensionPixelSize(R.styleable.AvatarUserComponent_avatarSize, 0)
                 imgAvatar.layoutParams = ViewHelper.createLayoutParams(size, size, 0, -(rankSize / 2), 0, 0)
                 imgAvatar.setBorderWidth(SizeHelper.size0_5)
-                imgAvatar.borderColor=ContextCompat.getColor(context,R.color.gray)
+                imgAvatar.borderColor=ContextCompat.getColor(context,R.color.grayLoyalty)
             } else {
                 imgAvatar.layoutParams = ViewHelper.createLayoutParams(avatarSize, avatarSize, 0, -(rankSize / 2), 0, 0)
             }

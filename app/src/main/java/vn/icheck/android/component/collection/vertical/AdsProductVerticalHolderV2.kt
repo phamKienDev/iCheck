@@ -120,7 +120,7 @@ class AdsProductVerticalHolderV2(parent: ViewGroup) : BaseViewHolder<ICProductTr
             layoutParent.layoutParams = ViewHelper.createLayoutParams()
             layoutParent.orientation = LinearLayout.VERTICAL
             layoutParent.background = ViewHelper.createStateListDrawable(
-                    Color.WHITE, ContextCompat.getColor(context, R.color.lightGray),
+                    Color.WHITE, ContextCompat.getColor(context, R.color.lightGr1ay),
                     Color.TRANSPARENT, Color.TRANSPARENT, 0, 0f)
             layoutParent.setPadding(SizeHelper.size6, SizeHelper.size6, SizeHelper.size6, SizeHelper.size6)
 
@@ -137,7 +137,7 @@ class AdsProductVerticalHolderV2(parent: ViewGroup) : BaseViewHolder<ICProductTr
                     ViewHelper.createLayoutParams(SizeHelper.size6, SizeHelper.size8, SizeHelper.size6, 0),
                     null,
                     ViewHelper.createTypeface(context, R.font.barlow_medium),
-                    ContextCompat.getColor(context, R.color.darkGray1),
+                    ContextCompat.getColor(context, R.color.darkG1ray1),
                     14f,
                     2).also {
                 it.minLines = 2

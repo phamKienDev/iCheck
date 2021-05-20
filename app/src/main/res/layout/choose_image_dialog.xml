@@ -16,7 +16,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_1"
-        android:background="@color/gray" />
+        android:background="@color/grayLoyalty" />
 
     <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:textAlignment="center"
@@ -29,7 +29,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_1"
-        android:background="@color/gray" />
+        android:background="@color/grayLoyalty" />
 
     <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:textAlignment="center"

@@ -77,13 +77,13 @@ class ApplyMisssionAdapter : RecyclerViewAdapter<Any>() {
 
             addView(AppCompatImageView(context).apply {
                 layoutParams = LinearLayout.LayoutParams(SizeHelper.size50, SizeHelper.size50)
-                background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size1, ContextCompat.getColor(context, R.color.gray), SizeHelper.size4.toFloat())
+                background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size1, ContextCompat.getColor(context, R.color.grayLoyalty), SizeHelper.size4.toFloat())
                 setPadding(SizeHelper.size1, SizeHelper.size1, SizeHelper.size1, SizeHelper.size1)
             })
 
             addView(CircleImageView(context).apply {
                 layoutParams = LinearLayout.LayoutParams(SizeHelper.size50, SizeHelper.size50)
-                circleBackgroundColor = ContextCompat.getColor(context, R.color.gray)
+                circleBackgroundColor = ContextCompat.getColor(context, R.color.grayLoyalty)
                 setPadding(SizeHelper.size1, SizeHelper.size1, SizeHelper.size1, SizeHelper.size1)
             })
 

@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_0_5"
         android:layout_marginTop="@dimen/size_10"
-        android:background="@color/gray"
+        android:background="@color/grayLoyalty"
         app:layout_constraintTop_toBottomOf="@+id/appCompatTextView18"
         tools:layout_editor_absoluteX="@dimen/size_12" />
 

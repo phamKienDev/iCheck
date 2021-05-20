@@ -381,7 +381,7 @@ object ViewHelper {
         tvViewMore.typeface = Typeface.create(sansSerif, Typeface.NORMAL)
         tvViewMore.setTextColor(ContextCompat.getColor(context, R.color.darkGray3))
         tvViewMore.background = createStateListDrawable(
-                Color.WHITE, ContextCompat.getColor(context, R.color.lightGray),
+                Color.WHITE, ContextCompat.getColor(context, R.color.lightGr1ay),
                 Color.TRANSPARENT, Color.TRANSPARENT,
                 0, 0f)
         tvViewMore.includeFontPadding = false
@@ -510,7 +510,7 @@ object ViewHelper {
         layoutParent.layoutParams = createLayoutParams(SizeHelper.size152, LinearLayout.LayoutParams.WRAP_CONTENT, SizeHelper.size6, 0, SizeHelper.size6, 0)
         layoutParent.orientation = LinearLayout.VERTICAL
         layoutParent.background = createStateListDrawable(
-                Color.WHITE, ContextCompat.getColor(context, R.color.lightGray),
+                Color.WHITE, ContextCompat.getColor(context, R.color.lightGr1ay),
                 Color.TRANSPARENT, Color.TRANSPARENT,
                 0, SizeHelper.size8.toFloat())
         layoutParent.setPadding(SizeHelper.size6, SizeHelper.size6, SizeHelper.size6, SizeHelper.size6)
@@ -606,7 +606,7 @@ object ViewHelper {
         }
         tvName.layoutParams = productNameParams
         tvName.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
-        tvName.setTextColor(ContextCompat.getColor(context, R.color.darkGray1))
+        tvName.setTextColor(ContextCompat.getColor(context, R.color.darkG1ray1))
         tvName.includeFontPadding = false
         tvName.minLines = 2
         tvName.maxLines = 2
@@ -724,7 +724,7 @@ object ViewHelper {
 
         layoutParent.addView(View(context).also {
             it.layoutParams = createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size1)
-            it.setBackgroundColor(ContextCompat.getColor(context, R.color.colorBackgroundGray))
+            it.setBackgroundColor(ContextCompat.getColor(context, R.color.colorBackgroundGra1y))
         })
 
         layoutParent.addView(LinearLayout(context).also {
@@ -847,7 +847,7 @@ object ViewHelper {
     fun createSurvey(context: Context): CardView {
         val layoutParent = CardView(context)
         layoutParent.layoutParams = createLayoutParams(SizeHelper.size12, SizeHelper.size6, SizeHelper.size12, SizeHelper.size6)
-        layoutParent.setCardBackgroundColor(ContextCompat.getColor(context, R.color.gray_item_search))
+        layoutParent.setCardBackgroundColor(ContextCompat.getColor(context, R.color.gra1y_item_search))
         layoutParent.radius = SizeHelper.size10.toFloat()
 
         val layoutContent = LinearLayout(context)
@@ -941,7 +941,7 @@ object ViewHelper {
         btnRight.setTextColor(Color.WHITE)
         btnRight.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
         btnRight.background = createStateListDrawable(
-                ContextCompat.getColor(context, R.color.gray),
+                ContextCompat.getColor(context, R.color.grayLoyalty),
                 ContextCompat.getColor(context, R.color.colorSecondary),
                 ContextCompat.getColor(context, R.color.darkBlue),
                 Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT, 0, (SizeHelper.size16 + SizeHelper.size2).toFloat()
@@ -1078,7 +1078,7 @@ object ViewHelper {
             layoutParent.addView(createText(context,
                     createLayoutParams(0, SizeHelper.size36, 1f, 0, 0, SizeHelper.size5, 0),
                     createStateListDrawable(
-                            Color.WHITE, ContextCompat.getColor(context, R.color.lightGray),
+                            Color.WHITE, ContextCompat.getColor(context, R.color.lightGr1ay),
                             secondaryColor,
                             secondaryColor,
                             SizeHelper.size1, SizeHelper.size36.toFloat()),
@@ -1089,7 +1089,7 @@ object ViewHelper {
             layoutParent.addView(createText(context,
                     createLayoutParams(0, SizeHelper.size36, 1f, SizeHelper.size5, 0, 0, 0),
                     createStateListDrawable(
-                            Color.WHITE, ContextCompat.getColor(context, R.color.lightGray),
+                            Color.WHITE, ContextCompat.getColor(context, R.color.lightGr1ay),
                             secondaryColor,
                             secondaryColor,
                             SizeHelper.size1, SizeHelper.size36.toFloat()),
@@ -1162,8 +1162,8 @@ object ViewHelper {
                     params.gravity = Gravity.CENTER_VERTICAL
                 },
                 createStateListDrawable(
-                        Color.WHITE, ContextCompat.getColor(context, R.color.lightGray),
-                        ContextCompat.getColor(context, R.color.gray), ContextCompat.getColor(context, R.color.gray),
+                        Color.WHITE, ContextCompat.getColor(context, R.color.lightGr1ay),
+                        ContextCompat.getColor(context, R.color.grayLoyalty), ContextCompat.getColor(context, R.color.grayLoyalty),
                         SizeHelper.size1, SizeHelper.size36.toFloat()),
                 createTypeface(sansSerifMedium),
                 Constant.getDisableTextColor(context),
@@ -1230,7 +1230,7 @@ object ViewHelper {
         val layoutParent = LinearLayout(context).also {
             it.layoutParams = createLayoutParams()
             it.orientation = LinearLayout.VERTICAL
-            it.setBackgroundColor(ContextCompat.getColor(context, R.color.colorBackgroundGray))
+            it.setBackgroundColor(ContextCompat.getColor(context, R.color.colorBackgroundGra1y))
         }
 
         val title = TextBarlowSemiBold(context)
@@ -1515,7 +1515,7 @@ object ViewHelper {
                         params.topMargin = SizeHelper.size16
                     },
                     createStateListDrawable(
-                            Color.WHITE, ContextCompat.getColor(context, R.color.lightGray),
+                            Color.WHITE, ContextCompat.getColor(context, R.color.lightGr1ay),
                             secondaryColor,
                             secondaryColor,
                             SizeHelper.size1, SizeHelper.size6.toFloat()),
@@ -2068,7 +2068,7 @@ object ViewHelper {
             it.ellipsize = TextUtils.TruncateAt.END
             it.isSingleLine = true
             it.includeFontPadding = false
-            it.setTextColor(ContextCompat.getColor(context, R.color.darkGray1))
+            it.setTextColor(ContextCompat.getColor(context, R.color.darkG1ray1))
             it.textSize = 14f
             it.id = R.id.tvName
 
@@ -2132,7 +2132,7 @@ object ViewHelper {
             it.layoutParams = ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, SizeHelper.size0_5).also {
                 it.topMargin = SizeHelper.size10
             }
-            it.setBackgroundColor(ContextCompat.getColor(context, R.color.colorBackgroundGray))
+            it.setBackgroundColor(ContextCompat.getColor(context, R.color.colorBackgroundGra1y))
             it.id = R.id.view
         }
         layoutParent.addView(viewLine)
@@ -2240,7 +2240,7 @@ object ViewHelper {
                 imgLogo.layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
                 imgLogo.scaleType = ImageView.ScaleType.CENTER_CROP
                 imgLogo.id = R.id.img_logo
-                imgLogo.borderColor = ContextCompat.getColor(context, R.color.gray)
+                imgLogo.borderColor = ContextCompat.getColor(context, R.color.grayLoyalty)
                 imgLogo.borderWidth = SizeHelper.size0_5
                 layoutImage.addView(imgLogo)
 
@@ -2317,7 +2317,7 @@ object ViewHelper {
             it.layoutParams = createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.dpToPx(1)).also {
                 it.topMargin = SizeHelper.size10
             }
-            it.setBackgroundColor(ContextCompat.getColor(context, R.color.gray))
+            it.setBackgroundColor(ContextCompat.getColor(context, R.color.grayLoyalty))
         })
 
         // list avatar
@@ -2386,7 +2386,7 @@ object ViewHelper {
             it.layoutParams = createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.dpToPx(3)).also {
                 it.setMargins(SizeHelper.size12, SizeHelper.size8, SizeHelper.size12, 0)
             }
-            it.setBackgroundColor(ContextCompat.getColor(context, R.color.colorBackgroundGray))
+            it.setBackgroundColor(ContextCompat.getColor(context, R.color.colorBackgroundGra1y))
         })
 
         //rcv rating
@@ -2422,7 +2422,7 @@ object ViewHelper {
                 line.layoutParams = createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.dpToPx(1)).also {
                     it.topMargin = SizeHelper.size8
                 }
-                line.setBackgroundColor(ContextCompat.getColor(context, R.color.gray))
+                line.setBackgroundColor(ContextCompat.getColor(context, R.color.grayLoyalty))
             })
 
             //camera
@@ -2455,7 +2455,7 @@ object ViewHelper {
             it.addView(CircleImageView(context).also {
                 it.layoutParams = createLayoutParams(SizeHelper.dpToPx(30), SizeHelper.dpToPx(30))
                 it.borderWidth = SizeHelper.size0_5
-                it.borderColor = ContextCompat.getColor(context, R.color.gray)
+                it.borderColor = ContextCompat.getColor(context, R.color.grayLoyalty)
             })
             it.addView(AppCompatImageView(context).also { imgCamera ->
                 imgCamera.layoutParams = createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
@@ -2628,7 +2628,7 @@ object ViewHelper {
             line.setBackgroundColor(
                     ContextCompat.getColor(
                             context,
-                            R.color.gray
+                            R.color.grayLoyalty
                     )
             )
         })
@@ -2697,7 +2697,7 @@ object ViewHelper {
         val layoutParent = LinearLayout(context)
         layoutParent.layoutParams = createLayoutParams(0, SizeHelper.size10, 0, 0)
         layoutParent.orientation = LinearLayout.VERTICAL
-        layoutParent.setBackgroundColor(ContextCompat.getColor(context, R.color.colorBackgroundGray))
+        layoutParent.setBackgroundColor(ContextCompat.getColor(context, R.color.colorBackgroundGra1y))
 
         layoutParent.addView(LinearLayout(context).also {
             it.layoutParams = createLayoutParams().also {
@@ -2876,7 +2876,7 @@ object ViewHelper {
                 it.setMargins(0, 0, 0, SizeHelper.size10)
 
             }
-            it.setBackgroundColor(ContextCompat.getColor(parent.context, R.color.colorBackgroundGray))
+            it.setBackgroundColor(ContextCompat.getColor(parent.context, R.color.colorBackgroundGra1y))
         })
 
         //tv review
@@ -2914,7 +2914,7 @@ object ViewHelper {
         layoutPermission.addView(CircleImageView(parent.context).also {
             it.layoutParams = createLayoutParams(SizeHelper.dpToPx(30), SizeHelper.dpToPx(30))
             it.borderWidth = SizeHelper.size0_5
-            it.borderColor = ContextCompat.getColor(parent.context, R.color.gray)
+            it.borderColor = ContextCompat.getColor(parent.context, R.color.grayLoyalty)
         })
 
         layoutPermission.addView(AppCompatTextView(parent.context).also {
@@ -2943,7 +2943,7 @@ object ViewHelper {
             }
             layoutParams.gravity = Gravity.CENTER_VERTICAL
             layoutParams.orientation = LinearLayout.HORIZONTAL
-            layoutParams.background = ContextCompat.getDrawable(context, R.drawable.bg_corners_white_4_border_05)
+            layoutParams.background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteRadius4StrokeLineColor0_5(context)
 
             layoutParams.addView(AppCompatImageView(context).also { img ->
                 img.layoutParams = createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
@@ -3311,7 +3311,7 @@ object ViewHelper {
 
                 params.addView(View(context).also { view ->
                     view.layoutParams = createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size10)
-                    view.setBackgroundColor(ContextCompat.getColor(context, R.color.colorBackgroundGray))
+                    view.setBackgroundColor(ContextCompat.getColor(context, R.color.colorBackgroundGra1y))
                 })
 
                 params.addView(AppCompatTextView(context).also { text ->
@@ -3471,7 +3471,7 @@ object ViewHelper {
                         params.topMargin = SizeHelper.size16
                     },
                     createStateListDrawable(
-                            Color.WHITE, ContextCompat.getColor(context, R.color.lightGray),
+                            Color.WHITE, ContextCompat.getColor(context, R.color.lightGr1ay),
                             primaryColor,
                             primaryColor,
                             SizeHelper.size1, SizeHelper.size6.toFloat()),
@@ -3529,7 +3529,7 @@ object ViewHelper {
                     view.layoutParams = createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size1).also {
                         it.setMargins(0, SizeHelper.size14, 0, 0)
                     }
-                    view.setBackgroundColor(ContextCompat.getColor(context, R.color.gray))
+                    view.setBackgroundColor(ContextCompat.getColor(context, R.color.grayLoyalty))
                 })
             })
         }

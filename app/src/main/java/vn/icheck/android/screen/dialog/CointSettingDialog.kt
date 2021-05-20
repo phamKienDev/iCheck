@@ -23,6 +23,9 @@ abstract class CointSettingDialog(context: Context, var type: Int, val begin: St
         dialog.txtBegin.text = begin
         dialog.txtEnd.text = end
 
+        dialog.txtBegin.background=ViewHelper.bgTransparentRadius4StrokeLineColor1(dialog.context)
+        dialog.txtEnd.background=ViewHelper.bgTransparentRadius4StrokeLineColor1(dialog.context)
+
         when (type) {
             1 -> {
                 dialog.radioXuVao.isChecked = true

@@ -80,7 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_1"
             android:layout_marginBottom="@dimen/size_8"
-            android:background="@color/gray"
+            android:background="@color/grayLoyalty"
             android:visibility="gone"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -145,7 +145,7 @@
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginLeft="@dimen/size_12"
             android:src="@color/colorPrimary"
-            app:civ_border_color="@color/gray"
+            app:civ_border_color="@color/grayLoyalty"
             app:civ_border_width="@dimen/size_0_5" />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -192,7 +192,7 @@
                     android:paddingEnd="@dimen/size_8"
                     android:paddingBottom="@dimen/size_2"
                     android:singleLine="true"
-                    android:textColor="@color/darkGray1"
+                    android:textColor="@color/darkG1ray1"
                     android:textSize="@dimen/font_12"
                     android:visibility="gone"
                     tools:text="Trả lời  Đặng Trung Đ  Đặng Trung Đức ặng Trung Đức ặng Trung Đức" />
@@ -212,7 +212,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:hint="@string/viet_binh_luan"
                 android:maxLines="4"
-                android:textColor="@color/darkGray1"
+                android:textColor="@color/darkG1ray1"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/imgCamera"

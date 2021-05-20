@@ -45,7 +45,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_1"
-        android:background="@color/gray" />
+        android:background="@color/grayLoyalty" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -104,7 +104,7 @@
                 android:layout_marginTop="@dimen/size_16"
                 android:hint="Nhập tên sản phẩm (bắt buộc) "
                 android:inputType="textPersonName"
-                android:textColor="@color/darkGray1" />
+                android:textColor="@color/darkG1ray1" />
 
             <vn.icheck.android.ichecklibs.view.line_color.EdittextBgWhiteRadius40
                 android:id="@+id/edt_product_price"
@@ -112,7 +112,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:digits="0123456789"
-                android:textColor="@color/darkGray1"
+                android:textColor="@color/darkG1ray1"
                 android:hint="Nhập giá sản phẩm"
                 android:inputType="number" />
 
@@ -173,7 +173,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:textColor="@color/darkGray1"
+                android:textColor="@color/darkG1ray1"
                 android:hint="Tên doanh nghiệp"
                 android:inputType="textPersonName" />
 
@@ -183,7 +183,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:textColor="@color/darkGray1"
+                android:textColor="@color/darkG1ray1"
                 android:hint="Địa chỉ doanh nghiệp"
                 android:inputType="textPersonName" />
 
@@ -194,7 +194,7 @@
                 android:layout_height="wrap_content"
                 android:digits="0123456789"
                 android:ems="10"
-                android:textColor="@color/darkGray1"
+                android:textColor="@color/darkG1ray1"
                 android:hint="Số điện thoại"
                 android:inputType="number" />
 
@@ -204,7 +204,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:textColor="@color/darkGray1"
+                android:textColor="@color/darkG1ray1"
                 android:hint="Email"
                 android:inputType="textEmailAddress" />
 
@@ -215,7 +215,7 @@
                 android:layout_height="wrap_content"
                 android:digits="0123456789"
                 android:ems="10"
-                android:textColor="@color/darkGray1"
+                android:textColor="@color/darkG1ray1"
                 android:hint="Mã số thuế"
                 android:inputType="number" />
 

@@ -10,11 +10,10 @@
     android:layout_marginTop="@dimen/size_10"
     android:layout_marginBottom="@dimen/size_6">
 
-    <LinearLayout
+    <vn.icheck.android.ichecklibs.view.line_color.LinearLayoutBgWhiteRadius4Stroke05
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_corners_white_4_border_05"
         android:orientation="vertical"
         android:paddingBottom="@dimen/size_10"
         android:layout_marginLeft="@dimen/size_4"
@@ -79,14 +78,14 @@
                 android:layout_width="@dimen/size_32"
                 android:layout_height="@dimen/size_32"
                 android:padding="@dimen/size_1"
-                app:civ_circle_background_color="@color/darkGray1"
+                app:civ_circle_background_color="@color/darkG1ray1"
                 android:src="@drawable/img_default_shop_logo"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
+    </vn.icheck.android.ichecklibs.view.line_color.LinearLayoutBgWhiteRadius4Stroke05>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutCount"

@@ -279,6 +279,7 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
     }
 
     private fun setupComment(commentCount: Int, comments: ICCommentPost?) {
+        itemView.edtComment.background=vn.icheck.android.ichecklibs.ViewHelper.bgTransparentRadius4StrokeLineColor1(itemView.context)
         if (comments != null) {
             itemView.layoutComment.beVisible()
             itemView.divider39.beVisible()

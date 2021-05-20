@@ -44,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_1"
             android:layout_marginTop="@dimen/size_9"
-            android:background="@color/gray"
+            android:background="@color/grayLoyalty"
             app:layout_constraintTop_toBottomOf="@id/tvTitleSuccess" />
 
         <LinearLayout
@@ -149,7 +149,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_1"
                 android:layout_marginTop="@dimen/size_10"
-                android:background="@color/gray"
+                android:background="@color/grayLoyalty"
                 app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
             <androidx.recyclerview.widget.RecyclerView

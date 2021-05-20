@@ -38,7 +38,7 @@
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_15"
                 android:layout_marginEnd="@dimen/size_12"
-                android:background="@color/gray" />
+                android:background="@color/grayLoyalty" />
 
             <vn.icheck.android.ichecklibs.view.disable_text.EdittextDisableHint
                 android:id="@id/edtNote"

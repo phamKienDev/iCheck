@@ -132,6 +132,8 @@ class ShopVariantHistoryHolder(view: View, val listData: MutableList<ICHistory_P
             itemView.tvTime.visibility = View.GONE
         }
 
+        itemView.layoutShop.background=ViewHelper.bgGrayRadiusBottom4StrokeLineColor05(itemView.context)
+
         if (obj.shop?.id == null || obj.shop?.id == 0L) {
             itemView.layoutShop.visibility = View.GONE
         } else {

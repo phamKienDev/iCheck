@@ -14,7 +14,7 @@
         android:layout_marginTop="@dimen/size_12"
         android:layout_marginEnd="@dimen/size_12"
         card_view:cardCornerRadius="@dimen/size_10"
-        app:cardBackgroundColor="@color/gray_item_search"
+        app:cardBackgroundColor="@color/gra1y_item_search"
         app:cardElevation="0dp">
 
         <LinearLayout
@@ -101,7 +101,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/size_1"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:background="@color/gray" />
+                    android:background="@color/grayLoyalty" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@id/imgScanQr"
@@ -147,7 +147,7 @@
                     android:id="@id/view2"
                     android:layout_width="@dimen/size_1"
                     android:layout_height="0dp"
-                    android:background="@color/gray"
+                    android:background="@color/grayLoyalty"
                     app:layout_constraintBottom_toBottomOf="@id/appCompatTextView12"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

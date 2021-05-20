@@ -97,7 +97,7 @@
                 android:layout_height="@dimen/size_20"
                 android:layout_marginStart="@dimen/size_24"
                 android:layout_marginLeft="@dimen/size_24"
-                android:background="@color/colorBackgroundGray"
+                android:background="@color/colorBackgroundGra1y"
                 app:layout_constraintBottom_toBottomOf="@id/containerTime"
                 app:layout_constraintStart_toEndOf="@+id/containerTime"
                 app:layout_constraintTop_toTopOf="@id/containerTime" />

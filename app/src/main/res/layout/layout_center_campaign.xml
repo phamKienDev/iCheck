@@ -71,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_4"
                     android:fontFamily="sans-serif-medium"
-                    android:textColor="@color/darkGray1"
+                    android:textColor="@color/darkG1ray1"
                     android:textSize="@dimen/font_14"
                     android:textStyle="normal"
                     tools:text="00h00, 14/05/2019" />
@@ -80,7 +80,7 @@
             <View
                 android:layout_width="@dimen/size_1"
                 android:layout_height="@dimen/size_30"
-                android:background="@color/darkGray4" />
+                android:background="@color/darkG1ray4" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -103,7 +103,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_4"
                     android:fontFamily="sans-serif-medium"
-                    android:textColor="@color/darkGray1"
+                    android:textColor="@color/darkG1ray1"
                     android:textSize="@dimen/font_14"
                     android:textStyle="normal"
                     tools:text="00h00, 14/05/2019" />
