@@ -422,125 +422,121 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
                 }
                 Status.SUCCESS -> {
                     val mData = it.data?.data
-                    if (mData != null) {
-                        if (!it.data?.data?.widgets.isNullOrEmpty()) {
-                            val listData = mutableListOf<ICLayout>()
+                    if (mData != null && !mData.widgets.isNullOrEmpty()) {
+                        val listData = mutableListOf<ICLayout>()
 
-                            for (widget in it.data!!.data!!.widgets!!) {
-                                when (widget.name) {
-                                    "IMAGE_PRODUCT" -> {
-                                        if (!widget.data?.atts.isNullOrEmpty()) {
-                                            listData.add(ICLayout().apply {
-                                                viewType = ICViewTypes.PRODUCT_IMAGE_TYPE
-                                                data = widget.data!!.atts!!
-                                            })
-                                        }
+                        for (widget in it.data!!.data!!.widgets!!) {
+                            when (widget.name) {
+                                "IMAGE_PRODUCT" -> {
+                                    if (!widget.data?.atts.isNullOrEmpty()) {
+                                        listData.add(ICLayout().apply {
+                                            viewType = ICViewTypes.PRODUCT_IMAGE_TYPE
+                                            data = widget.data!!.atts!!
+                                        })
                                     }
-                                    "PRODUCT" -> {
-                                        if (widget.data != null) {
-                                            listData.add(ICLayout().apply {
-                                                viewType = ICViewTypes.PRODUCT_TYPE
-                                                data = widget.data!!
-                                            })
-                                        }
+                                }
+                                "PRODUCT" -> {
+                                    if (widget.data != null) {
+                                        listData.add(ICLayout().apply {
+                                            viewType = ICViewTypes.PRODUCT_TYPE
+                                            data = widget.data!!
+                                        })
                                     }
-                                    "MESSAGE_RESULT" -> {
-                                        if (widget.data != null) {
-                                            listData.add(ICLayout().apply {
-                                                viewType = ICViewTypes.MESSAGE_TYPE
-                                                data = widget.data!!
-                                            })
-                                        }
+                                }
+                                "MESSAGE_RESULT" -> {
+                                    if (widget.data != null) {
+                                        listData.add(ICLayout().apply {
+                                            viewType = ICViewTypes.MESSAGE_TYPE
+                                            data = widget.data!!
+                                        })
                                     }
-                                    "STAMP_INFO" -> {
-                                        if (!widget.data?.serial.isNullOrEmpty()) {
-                                            listData.add(ICLayout().apply {
-                                                viewType = ICViewTypes.STAMP_INFO_TYPE
-                                                data = widget.data!!.serial
-                                            })
-                                        }
+                                }
+                                "STAMP_INFO" -> {
+                                    if (!widget.data?.serial.isNullOrEmpty()) {
+                                        listData.add(ICLayout().apply {
+                                            viewType = ICViewTypes.STAMP_INFO_TYPE
+                                            data = widget.data!!.serial
+                                        })
                                     }
-                                    "SCAN_INFO" -> {
-                                        if (widget.data != null) {
-                                            listData.add(ICLayout().apply {
-                                                viewType = ICViewTypes.SCAN_INFO_TYPE
-                                                data = widget.data
-                                            })
-                                        }
+                                }
+                                "SCAN_INFO" -> {
+                                    if (widget.data != null) {
+                                        listData.add(ICLayout().apply {
+                                            viewType = ICViewTypes.SCAN_INFO_TYPE
+                                            data = widget.data
+                                        })
                                     }
-                                    "GUARANTEE" -> {
-                                        if (widget.data != null) {
-                                            listData.add(ICLayout().apply {
-                                                viewType = ICViewTypes.GUARANTEE_INFO_TYPE
-                                                data = widget.data
-                                            })
-                                        }
+                                }
+                                "GUARANTEE" -> {
+                                    if (widget.data != null) {
+                                        listData.add(ICLayout().apply {
+                                            viewType = ICViewTypes.GUARANTEE_INFO_TYPE
+                                            data = widget.data
+                                        })
                                     }
-                                    "LAST_GUARANTEE" -> {
-                                        if (widget.data != null) {
-                                            listData.add(ICLayout().apply {
-                                                viewType = ICViewTypes.LAST_GUARANTEE_INFO_TYPE
-                                                data = widget.data!!.apply {
-                                                    if (serial.isNullOrEmpty()) {
-                                                        serial = it.data!!.data!!.serial
-                                                    }
+                                }
+                                "LAST_GUARANTEE" -> {
+                                    if (widget.data != null) {
+                                        listData.add(ICLayout().apply {
+                                            viewType = ICViewTypes.LAST_GUARANTEE_INFO_TYPE
+                                            data = widget.data!!.apply {
+                                                if (serial.isNullOrEmpty()) {
+                                                    serial = it.data!!.data!!.serial
                                                 }
-                                            })
-                                        }
-                                    }
-                                    "VENDOR" -> {
-                                        if (widget.data != null) {
-                                            listData.add(ICLayout().apply {
-                                                viewType = ICViewTypes.VENDOR_TYPE
-                                                data = widget.data!!.apply {
-                                                    title = getString(R.string.nha_san_xuat)
-                                                    icon = R.drawable.ic_verified_24px
-                                                    background = R.color.colorPrimary
-                                                }
-                                            })
-                                        }
-                                    }
-                                    "DISTRIBUTOR" -> {
-                                        if (widget.data != null) {
-                                            listData.add(ICLayout().apply {
-                                                viewType = ICViewTypes.VENDOR_TYPE
-                                                data = widget.data!!.apply {
-                                                    title = getString(R.string.nha_phan_phoi)
-                                                    icon = R.drawable.ic_verified_24px
-                                                    background = R.color.colorPrimary
-                                                }
-                                            })
-                                        }
-                                    }
-                                    "PRODUCT_INFO" -> {
-                                        if (!widget.data?.infors.isNullOrEmpty()) {
-                                            for (info in widget.data!!.infors!!) {
-                                                listData.add(ICLayout().apply {
-                                                    viewType = ICViewTypes.PRODUCT_INFO_TYPE
-                                                    data = info
-                                                })
                                             }
-                                        }
+                                        })
                                     }
-                                    "PRODUCT_LINK" -> {
-                                        if (!widget.data?.productLinks.isNullOrEmpty()) {
+                                }
+                                "VENDOR" -> {
+                                    if (widget.data != null) {
+                                        listData.add(ICLayout().apply {
+                                            viewType = ICViewTypes.VENDOR_TYPE
+                                            data = widget.data!!.apply {
+                                                title = getString(R.string.nha_san_xuat)
+                                                icon = R.drawable.ic_verified_24px
+                                                background = R.color.colorPrimary
+                                            }
+                                        })
+                                    }
+                                }
+                                "DISTRIBUTOR" -> {
+                                    if (widget.data != null) {
+                                        listData.add(ICLayout().apply {
+                                            viewType = ICViewTypes.VENDOR_TYPE
+                                            data = widget.data!!.apply {
+                                                title = getString(R.string.nha_phan_phoi)
+                                                icon = R.drawable.ic_verified_24px
+                                                background = R.color.colorPrimary
+                                            }
+                                        })
+                                    }
+                                }
+                                "PRODUCT_INFO" -> {
+                                    if (!widget.data?.infors.isNullOrEmpty()) {
+                                        for (info in widget.data!!.infors!!) {
                                             listData.add(ICLayout().apply {
-                                                viewType = ICViewTypes.PRODUCT_ECCOMMERCE_TYPE
-                                                data = widget.data!!.productLinks
+                                                viewType = ICViewTypes.PRODUCT_INFO_TYPE
+                                                data = info
                                             })
                                         }
                                     }
                                 }
+                                "PRODUCT_LINK" -> {
+                                    if (!widget.data?.productLinks.isNullOrEmpty()) {
+                                        listData.add(ICLayout().apply {
+                                            viewType = ICViewTypes.PRODUCT_ECCOMMERCE_TYPE
+                                            data = widget.data!!.productLinks
+                                        })
+                                    }
+                                }
                             }
-
-                            adapter.setListData(listData)
-                        } else {
-                            adapter.setError(R.drawable.ic_empty_product_110dp, ICheckApplication.getError(it.message), null)
                         }
 
-                        textFab.visibleOrInvisible(mData.canUpdate == true)
+                        adapter.setListData(listData)
+
                         getCampaign()
 
+                        textFab.visibleOrInvisible(mData.canUpdate == true)
                         if (mData.forceUpdate == true) {
                             // Todo
                         }
@@ -637,25 +633,25 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
     override fun onGetDetailStampSuccess(obj: ICDetailStampV6_1) {
 //            layoutErrorClient.visibility = View.GONE
 
-            //check Error detail Stamp
-            if (obj.data?.scan_message?.redirect_warning == true) {
-                itemDistributor = obj.data?.distributor
+        //check Error detail Stamp
+        if (obj.data?.scan_message?.redirect_warning == true) {
+            itemDistributor = obj.data?.distributor
 //                scrollView.visibility = View.GONE
-                layoutExceededScan.visibility = View.VISIBLE
-                tvMessageApollo.text = obj.data?.scan_message?.text
-                tvBussinessName.text = obj.data?.distributor?.name
-                tvAddressBussiness.text = "Địa chỉ: " + obj.data?.distributor?.address + ", " + obj.data?.distributor?.district + ", " + obj.data?.distributor?.city
-                tvHotlineBussiness.text = "Tổng đài: " + obj.data?.distributor?.phone
-                tvEmailBussiness.text = " - Email: " + obj.data?.distributor?.email
-                return
-            }
+            layoutExceededScan.visibility = View.VISIBLE
+            tvMessageApollo.text = obj.data?.scan_message?.text
+            tvBussinessName.text = obj.data?.distributor?.name
+            tvAddressBussiness.text = "Địa chỉ: " + obj.data?.distributor?.address + ", " + obj.data?.distributor?.district + ", " + obj.data?.distributor?.city
+            tvHotlineBussiness.text = "Tổng đài: " + obj.data?.distributor?.phone
+            tvEmailBussiness.text = " - Email: " + obj.data?.distributor?.email
+            return
+        }
 
-            if (obj.data?.active_require_profile == 1) {
-                val intent = Intent(this, UpdateInformationFirstActivity::class.java)
-                intent.putExtra(Constant.DATA_1, 3)
-                intent.putExtra(Constant.DATA_8, presenter.code)
-                startActivity(intent)
-            }
+        if (obj.data?.active_require_profile == 1) {
+            val intent = Intent(this, UpdateInformationFirstActivity::class.java)
+            intent.putExtra(Constant.DATA_1, 3)
+            intent.putExtra(Constant.DATA_8, presenter.code)
+            startActivity(intent)
+        }
 
 //            if (!obj.data?.message?.message.isNullOrEmpty()) {
 //                presenter.getConfigError()
@@ -664,81 +660,81 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
 ////                scrollView.visibility = View.VISIBLE
 //            }
 
-            idDistributor = obj.data?.distributor?.id
+        idDistributor = obj.data?.distributor?.id
 
 //      set image local cho tab history qrCode
-            url = obj.data?.product?.image
-            productId = obj.data?.product?.id
-            objVariant = obj.data?.guarantee?.last_guarantee?.variant
+        url = obj.data?.product?.image
+        productId = obj.data?.product?.id
+        objVariant = obj.data?.guarantee?.last_guarantee?.variant
 
-            if (!obj.data?.barcode.isNullOrEmpty() && obj.data?.seller_id != null) {
-                seller_id = obj.data?.seller_id!!
-                barcode = obj.data?.barcode
-            }
+        if (!obj.data?.barcode.isNullOrEmpty() && obj.data?.seller_id != null) {
+            seller_id = obj.data?.seller_id!!
+            barcode = obj.data?.barcode
+        }
 
 //      check force update thong tin ca nhan
-            if (obj.data?.force_update == true) {
-                if (obj.data?.guarantee != null) {
-                    val intent = Intent(this, UpdateInformationFirstActivity::class.java)
-                    intent.putExtra(Constant.DATA_1, 1)
-                    intent.putExtra(Constant.DATA_2, idDistributor)
-                    intent.putExtra(Constant.DATA_4, obj.data?.guarantee?.last_guarantee?.product_code)
-                    intent.putExtra(Constant.DATA_5, verfiedSerial)
-                    intent.putExtra(Constant.DATA_6, obj.data?.product?.id)
-                    intent.putExtra(Constant.DATA_7, obj.data?.guarantee?.last_guarantee?.variant)
-                    intent.putExtra(Constant.DATA_8, presenter.code)
-                    startActivity(intent)
-                } else {
-                    val intent = Intent(this, UpdateInformationFirstActivity::class.java)
-                    intent.putExtra(Constant.DATA_1, 2)
-                    intent.putExtra(Constant.DATA_2, idDistributor)
-                    intent.putExtra(Constant.DATA_4, obj.data?.guarantee?.last_guarantee?.product_code)
-                    intent.putExtra(Constant.DATA_5, verfiedSerial)
-                    intent.putExtra(Constant.DATA_6, obj.data?.product?.id)
-                    intent.putExtra(Constant.DATA_7, obj.data?.guarantee?.last_guarantee?.variant)
-                    intent.putExtra(Constant.DATA_8, presenter.code)
-                    startActivity(intent)
-                }
+        if (obj.data?.force_update == true) {
+            if (obj.data?.guarantee != null) {
+                val intent = Intent(this, UpdateInformationFirstActivity::class.java)
+                intent.putExtra(Constant.DATA_1, 1)
+                intent.putExtra(Constant.DATA_2, idDistributor)
+                intent.putExtra(Constant.DATA_4, obj.data?.guarantee?.last_guarantee?.product_code)
+                intent.putExtra(Constant.DATA_5, verfiedSerial)
+                intent.putExtra(Constant.DATA_6, obj.data?.product?.id)
+                intent.putExtra(Constant.DATA_7, obj.data?.guarantee?.last_guarantee?.variant)
+                intent.putExtra(Constant.DATA_8, presenter.code)
+                startActivity(intent)
+            } else {
+                val intent = Intent(this, UpdateInformationFirstActivity::class.java)
+                intent.putExtra(Constant.DATA_1, 2)
+                intent.putExtra(Constant.DATA_2, idDistributor)
+                intent.putExtra(Constant.DATA_4, obj.data?.guarantee?.last_guarantee?.product_code)
+                intent.putExtra(Constant.DATA_5, verfiedSerial)
+                intent.putExtra(Constant.DATA_6, obj.data?.product?.id)
+                intent.putExtra(Constant.DATA_7, obj.data?.guarantee?.last_guarantee?.variant)
+                intent.putExtra(Constant.DATA_8, presenter.code)
+                startActivity(intent)
             }
+        }
 
 //      setdata slide image product
-            if (obj.data?.product?.images != null) {
-                val param = if (!obj.data?.product?.video.isNullOrEmpty()) {
-                    getYoutubeVideoId(obj.data?.product?.video)
-                } else {
-                    null
-                }
-
-                if (obj.data?.product?.images == null) {
-                    obj.data?.product?.images = mutableListOf()
-                }
-
-                if (!param.isNullOrEmpty()) {
-                    val videoImage = "https://img.youtube.com/vi/$param/hqdefault.jpg"
-                    if (obj.data?.product?.images!!.isNotEmpty())
-                        obj.data?.product?.images!!.add(0, videoImage)
-                    else
-                        obj.data?.product?.images!!.add(videoImage)
-//                    bannerAdapter?.setListData(obj.data?.product?.images!!, obj.data?.product?.video, videoImage)
-                } else {
-//                    bannerAdapter?.setListData(obj.data?.product?.images!!, null, null)
-                }
-
-                if (obj.data?.product?.images!!.size > 0) {
-                    numberPage = obj.data?.product?.images!!.size - 1
-                }
+        if (obj.data?.product?.images != null) {
+            val param = if (!obj.data?.product?.video.isNullOrEmpty()) {
+                getYoutubeVideoId(obj.data?.product?.video)
             } else {
-                if (obj.data?.product == null) {
-                    obj.data?.product = ICObjectProduct()
-                }
-                obj.data?.product?.images = mutableListOf()
-                obj.data?.product?.images?.add("")
-
-//                bannerAdapter?.setListData(obj.data?.product?.images ?: mutableListOf(), null, null)
+                null
             }
 
+            if (obj.data?.product?.images == null) {
+                obj.data?.product?.images = mutableListOf()
+            }
+
+            if (!param.isNullOrEmpty()) {
+                val videoImage = "https://img.youtube.com/vi/$param/hqdefault.jpg"
+                if (obj.data?.product?.images!!.isNotEmpty())
+                    obj.data?.product?.images!!.add(0, videoImage)
+                else
+                    obj.data?.product?.images!!.add(videoImage)
+//                    bannerAdapter?.setListData(obj.data?.product?.images!!, obj.data?.product?.video, videoImage)
+            } else {
+//                    bannerAdapter?.setListData(obj.data?.product?.images!!, null, null)
+            }
+
+            if (obj.data?.product?.images!!.size > 0) {
+                numberPage = obj.data?.product?.images!!.size - 1
+            }
+        } else {
+            if (obj.data?.product == null) {
+                obj.data?.product = ICObjectProduct()
+            }
+            obj.data?.product?.images = mutableListOf()
+            obj.data?.product?.images?.add("")
+
+//                bannerAdapter?.setListData(obj.data?.product?.images ?: mutableListOf(), null, null)
+        }
+
 //      Thong tin bao hanh
-            objGuarantee = obj.data?.guarantee
+        objGuarantee = obj.data?.guarantee
     }
 
 //    override fun onGetConfigSuccess(obj: IC_Config_Error) {

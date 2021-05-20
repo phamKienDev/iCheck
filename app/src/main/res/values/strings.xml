@@ -833,6 +833,7 @@
     <string name="toi_dong_y_voi_dieu_khoan_nay">Tôi đồng ý với điều khoản này</string>
     <string name="tao_the_moi">Tạo thẻ mới</string>
     <string name="quay_lai">Quay lại</string>
+    <string name="gioi_thieu">Giới thiệu</string>
     <string name="uy_quyen_ung_dung">Ủy quyền ứng dụng</string>
     <string name="tat_ca_tien_ich">Tất cả tiện ích</string>
     <string name="ban_muon_khoa_the_nay">Bạn muốn khóa thẻ này?</string>
@@ -922,6 +923,7 @@
     <string name="ban_phim_so">Bàn phím số</string>
     <string name="san_pham_chinh_hang_uppercase">SẢN PHẨM CHÍNH HÃNG</string>
     <string name="canh_bao_uppercase">CẢNH BÁO!</string>
+    <string name="canh_bao_uppercase_down_xxx">CẢNH BÁO!\n%s</string>
     <string name="so_lan_quet">Số lần quét</string>
     <string name="so_nguoi_quet">Số người quét</string>
     <string name="thong_tin_bao_hanh">Thông tin bảo hành</string>

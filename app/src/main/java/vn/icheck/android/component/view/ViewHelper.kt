@@ -401,9 +401,12 @@ object ViewHelper {
     }
 
     fun createStateListDrawable(
-        enableColor: Int, pressedColor: Int,
-        enableStrokeColor: Int, pressedStrokeColor: Int,
-        strokeWidth: Int, radius: Float
+        enableColor: Int,
+        pressedColor: Int,
+        enableStrokeColor: Int,
+        pressedStrokeColor: Int,
+        strokeWidth: Int,
+        radius: Float
     ): StateListDrawable {
         val statesListDrawable = StateListDrawable()
 

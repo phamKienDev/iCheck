@@ -21,7 +21,7 @@ class ICPageInfoDialog(context: Context) : BaseBottomSheetDialog(context, true) 
         binding.tvWebsite.text = Html.fromHtml(binding.root.context.getString(R.string.website_xxx_stamp_v61, getContent(obj.website)))
         binding.tvGln.text = Html.fromHtml(binding.root.context.getString(R.string.ma_gln_xxx_stamp_v61, getContent(obj.gln)))
         binding.tvDescription.text = Html.fromHtml(binding.root.context.getString(R.string.gioi_thieu_xxx_stamp_v61, getContent(obj.description)))
-        binding.tvContent.text = Html.fromHtml(obj.description)
+        binding.tvContent.text = Html.fromHtml(getContent(obj.description))
 
         binding.tvPhone.setOnClickListener {
             Constant.callPhone(obj.phone)

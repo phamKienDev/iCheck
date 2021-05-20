@@ -28,7 +28,7 @@
         android:textColor="@color/colorPrimary"
         tools:text="Hotline: 1900xxxx" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ui.view.TextBody2
         android:id="@id/tvEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
