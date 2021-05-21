@@ -53,11 +53,11 @@ class NewsInteractor : BaseInteractor() {
         requestApi(ICNetworkClient.getApiClient().getListNews(params), listener)
     }
 
-    fun getListNews(offset: Int, limit: Int, articleCategoryId: Long?, listener: ICNewApiListener<ICResponse<ICListResponse<ICNews>>>) {
+    fun getListNews(offset: Int, limit: Int, articleCategoryId: Long, listener: ICNewApiListener<ICResponse<ICListResponse<ICNews>>>) {
         val params = hashMapOf<String, Any>()
         params["offset"] = offset
         params["limit"] = limit
-        if (articleCategoryId != null) {
+        if (articleCategoryId != -1L) {
             params["articleCategoryId"] = articleCategoryId
         }
 

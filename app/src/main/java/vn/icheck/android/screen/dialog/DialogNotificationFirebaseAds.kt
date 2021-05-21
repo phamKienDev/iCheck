@@ -2,6 +2,7 @@ package vn.icheck.android.screen.dialog
 
 import android.app.Activity
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Build
 import android.util.Log
 import android.view.View
@@ -27,8 +28,11 @@ import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseDialog
 import vn.icheck.android.chat.icheckchat.base.view.setGoneView
 import vn.icheck.android.chat.icheckchat.base.view.setVisible
+import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.Constant.getHtmlData
+import vn.icheck.android.network.base.APIConstants
+import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.util.ick.spToPx
@@ -201,7 +205,47 @@ abstract class DialogNotificationFirebaseAds(context: Activity, private val imag
             link != null -> {
                 setupWebView()
                 layoutWeb.setVisible()
-                webView.loadUrl(link)
+
+                if (Constant.isMarketingStamps(link)){
+                    val header = hashMapOf<String, String>()
+                    val urlBuilder = Uri.parse(link).buildUpon()
+
+                    header["source"] = "icheck"
+                    urlBuilder.appendQueryParameter("source", "icheck")
+
+                    SessionManager.session.user?.let { user ->
+                        header["userId"] = user.id.toString()
+                        urlBuilder.appendQueryParameter("userId", user.id.toString())
+
+                        header["icheckId"] = "i-${user.id}"
+                        urlBuilder.appendQueryParameter("icheckId", "i-${user.id}")
+
+                        if (!user.name.isNullOrEmpty()) {
+                            header["name"] = user.name.toString()
+                            urlBuilder.appendQueryParameter("name", user.name.toString())
+                        }
+
+                        if (!user.phone.isNullOrEmpty()) {
+                            header["phone"] = user.phone.toString()
+                            urlBuilder.appendQueryParameter("phone", user.phone.toString())
+                        }
+
+                        if (!user.email.isNullOrEmpty()) {
+                            header["email"] = user.email.toString()
+                            urlBuilder.appendQueryParameter("email", user.email.toString())
+                        }
+                    }
+                    if (APIConstants.LATITUDE != 0.0 && APIConstants.LONGITUDE != 0.0) {
+                        header["lat"] = APIConstants.LATITUDE.toString()
+                        urlBuilder.appendQueryParameter("lat", APIConstants.LATITUDE.toString())
+                        header["lon"] = APIConstants.LONGITUDE.toString()
+                        urlBuilder.appendQueryParameter("lon", APIConstants.LONGITUDE.toString())
+                    }
+
+                    webView.loadUrl(urlBuilder.build().toString(), header)
+                }else{
+                    webView.loadUrl(link)
+                }
             }
         }
 

@@ -65,7 +65,7 @@ class WebViewActivity : BaseActivityMVVM() {
             if (title != null)
                 intent.putExtra(Constant.DATA_3, title)
 
-            if (isMarketing != null) {
+            if (Constant.isMarketingStamps(url)) {
                 intent.putExtra(Constant.DATA_4, isMarketing)
             }
 
@@ -85,6 +85,10 @@ class WebViewActivity : BaseActivityMVVM() {
 
             if (title != null)
                 intent.putExtra(Constant.DATA_3, title)
+
+            if (Constant.isMarketingStamps(url)) {
+                intent.putExtra(Constant.DATA_4, true)
+            }
 
             ActivityUtils.startActivity(activity, intent)
         }
