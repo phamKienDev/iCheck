@@ -2,13 +2,11 @@ package vn.icheck.android.screen.dialog
 
 import android.app.Activity
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Build
 import android.util.Log
 import android.view.View
-import android.webkit.WebResourceRequest
-import android.webkit.WebSettings
-import android.webkit.WebView
-import android.webkit.WebViewClient
+import android.webkit.*
 import android.widget.LinearLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -27,8 +25,11 @@ import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseDialog
 import vn.icheck.android.chat.icheckchat.base.view.setGoneView
 import vn.icheck.android.chat.icheckchat.base.view.setVisible
+import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.Constant.getHtmlData
+import vn.icheck.android.network.base.APIConstants
+import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.util.ick.spToPx
@@ -201,7 +202,47 @@ abstract class DialogNotificationFirebaseAds(context: Activity, private val imag
             link != null -> {
                 setupWebView()
                 layoutWeb.setVisible()
-                webView.loadUrl(link)
+
+                if (Constant.isMarketingStamps(link)){
+                    val header = hashMapOf<String, String>()
+                    val urlBuilder = Uri.parse(link).buildUpon()
+
+                    header["source"] = "icheck"
+                    urlBuilder.appendQueryParameter("source", "icheck")
+
+                    SessionManager.session.user?.let { user ->
+                        header["userId"] = user.id.toString()
+                        urlBuilder.appendQueryParameter("userId", user.id.toString())
+
+                        header["icheckId"] = "i-${user.id}"
+                        urlBuilder.appendQueryParameter("icheckId", "i-${user.id}")
+
+                        if (!user.name.isNullOrEmpty()) {
+                            header["name"] = user.name.toString()
+                            urlBuilder.appendQueryParameter("name", user.name.toString())
+                        }
+
+                        if (!user.phone.isNullOrEmpty()) {
+                            header["phone"] = user.phone.toString()
+                            urlBuilder.appendQueryParameter("phone", user.phone.toString())
+                        }
+
+                        if (!user.email.isNullOrEmpty()) {
+                            header["email"] = user.email.toString()
+                            urlBuilder.appendQueryParameter("email", user.email.toString())
+                        }
+                    }
+                    if (APIConstants.LATITUDE != 0.0 && APIConstants.LONGITUDE != 0.0) {
+                        header["lat"] = APIConstants.LATITUDE.toString()
+                        urlBuilder.appendQueryParameter("lat", APIConstants.LATITUDE.toString())
+                        header["lon"] = APIConstants.LONGITUDE.toString()
+                        urlBuilder.appendQueryParameter("lon", APIConstants.LONGITUDE.toString())
+                    }
+
+                    webView.loadUrl(urlBuilder.build().toString(), header)
+                }else{
+                    webView.loadUrl(link)
+                }
             }
         }
 
@@ -240,14 +281,31 @@ abstract class DialogNotificationFirebaseAds(context: Activity, private val imag
                 setGeolocationEnabled(true)
             }
 
+            var isPageLoaded = false
+
             webViewClient = object : WebViewClient() {
+                override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+                    super.onPageStarted(view, url, favicon)
+                    isPageLoaded = false
+                }
+
                 override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
-                    if (!url.isNullOrEmpty()) {
-                        ICheckApplication.currentActivity()?.let { activity ->
-                            WebViewActivity.start(activity, url)
+                    if (isPageLoaded) {
+                        if (url?.startsWith("http") == true) {
+                            ICheckApplication.currentActivity()?.let { activity ->
+                                WebViewActivity.start(activity, url)
+                            }
+                            return true
                         }
                     }
-                    return true
+                    return super.shouldOverrideUrlLoading(view, url)
+                }
+            }
+
+            webChromeClient = object : WebChromeClient() {
+                override fun onProgressChanged(view: WebView?, newProgress: Int) {
+                    super.onProgressChanged(view, newProgress)
+                    isPageLoaded = newProgress == 100
                 }
             }
         }

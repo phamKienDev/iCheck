@@ -178,8 +178,12 @@ class FragmentLuckyWheelGame : Fragment() {
                 }
                 ICMessageEvent.Type.UPDATE_COUNT_GAME -> {
                     update = true
-                    val count = event.data as Long
-                    luckyGameViewModel.updatePlay(count.toInt())
+
+                    if (event.data != null){
+                        val count = event.data as Long?
+                        luckyGameViewModel.updatePlay(count?.toInt())
+                    }
+
                 }
                 ICMessageEvent.Type.SCAN_GAME -> {
                     Handler().postDelayed({
@@ -465,6 +469,7 @@ class FragmentLuckyWheelGame : Fragment() {
                         if (response != null) {
                             luckyGameViewModel.updatePlay(response.data?.play)
                             if (response.data?.gift != null) {
+                                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.UPDATE_COUNT_GAME))
                                 spinToGift(response)
                             } else {
                                 spinToNoGift()
@@ -475,6 +480,7 @@ class FragmentLuckyWheelGame : Fragment() {
                     luckyGameViewModel.playGame(args.campaignId).observe(viewLifecycleOwner, Observer { response ->
                         try {
                             if (response?.data?.gift != null) {
+                                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.UPDATE_COUNT_GAME))
                                 spinning = true
                                 playClickSound()
                                 luckyGameViewModel.updatePlay(response.data.play)

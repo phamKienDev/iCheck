@@ -1,12 +1,14 @@
 package vn.icheck.android.loyalty.screen.game_from_labels.redeem_points.point_history
 
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_point_history_loyalty.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.activity.BaseActivityGame
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
@@ -56,23 +58,10 @@ class PointHistoryLoyaltyActivity : BaseActivityGame() {
 
         viewPager.post {
             for (i in 0 until tabLayout.tabCount) {
-                val tab = tabLayout.getTabAt(i)
-                if (tab != null) {
-                    val tabTextView = TextView(this@PointHistoryLoyaltyActivity)
-                    tab.customView = tabTextView
-                    tabTextView.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
-                    tabTextView.layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
-                    tabTextView.text = tab.text
-                    tabTextView.textSize = 14f
-                    tabTextView.isAllCaps = false
-
-                    if (i == 0) {
-                        tabTextView.setTextColor(ContextCompat.getColor(this@PointHistoryLoyaltyActivity, R.color.white))
-                    } else {
-                        tabTextView.setTextColor(ContextCompat.getColor(this@PointHistoryLoyaltyActivity, R.color.colorSecondary))
-                    }
-                }
+                val tabTextView = ((tabLayout.getChildAt(0) as LinearLayout).getChildAt(i) as LinearLayout).getChildAt(1) as TextView
+                tabTextView.isAllCaps = false
             }
+
             indicator?.let {
                 tabLayoutIndicator.calculateIndicator(indicator, tabLayout)
             }
@@ -85,7 +74,8 @@ class PointHistoryLoyaltyActivity : BaseActivityGame() {
                         tabLayoutIndicator.slideIndicator(indicator, position, positionOffset)
                     }
 
-                    override fun onPageSelected(position: Int) {}
+                    override fun onPageSelected(position: Int) {
+                    }
                 })
             }
 

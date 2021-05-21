@@ -198,6 +198,14 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
 
                     tvDateTime.text = obj?.dateChange
 
+                    if (obj?.statusChange?.contains("Hết lượt sử dụng") == true){
+                        tvTitleDate.setInvisible()
+                        tvDateTime.setInvisible()
+                    }else{
+                        tvTitleDate.setVisible()
+                        tvDateTime.setVisible()
+                    }
+
                     tvStatus.apply {
                         text = obj?.statusChange
                         setTextColor(obj?.colorText ?: 0)
@@ -294,8 +302,6 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
         } else {
             ContextCompat.getDrawable(this, R.drawable.bg_gray_corner_20dp)
         }
-
-
     }
 
     private fun setStatusGift(state: Int?) {
@@ -335,10 +341,18 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
     @SuppressLint("SetTextI18n")
     override fun onMessageEvent(event: ICMessageEvent) {
         super.onMessageEvent(event)
-        if (event.type == ICMessageEvent.Type.ON_COUNT_GIFT) tvCountGift.text = "${SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.COUNT_GIFT)} Quà"
-        else if (event.type == ICMessageEvent.Type.EXCHANGE_PHONE_CARD) {
-            if (event.data is Long) {
-                ChangePhoneCardsActivity.start(this, event.data, ConstantsLoyalty.TDNH, campaignID, requestCard)
+        when(event.type){
+            ICMessageEvent.Type.ON_COUNT_GIFT -> {
+                tvCountGift.text = "${SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.COUNT_GIFT)} Quà"
+                if (SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.COUNT_GIFT) <= 0){
+                    btnDoiQua.isEnabled = false
+                    btnDoiQua.background = ContextCompat.getDrawable(this, R.drawable.bg_gray_corner_20dp)
+                }
+            }
+            ICMessageEvent.Type.EXCHANGE_PHONE_CARD -> {
+                if (event.data is Long) {
+                    ChangePhoneCardsActivity.start(this, event.data, ConstantsLoyalty.TDNH, campaignID, requestCard)
+                }
             }
         }
     }

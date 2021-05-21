@@ -142,14 +142,14 @@ internal class RedemptionHistoryAdapter(callback: IRecyclerViewCallback) : Recyc
                                     data.colorBackground = R.drawable.bg_corner_30_orange_opacity_02
                                 } else if (obj.voucher?.checked_condition?.code == "MAX_NUM_OF_USED_VOUCHER" || obj.voucher?.checked_condition?.code == "MAX_NUM_OF_USED_CUSTOMER") {
 
-                                    data.statusChange = "Đã sử dụng"
+                                    data.statusChange = "Hết lượt sử dụng"
 
                                     data.colorText = ContextCompat.getColor(itemView.context, R.color.errorColor)
 
                                     data.colorBackground = R.drawable.bg_corner_30_red_opacity_02
                                 } else {
 
-                                    data.dateChange = TimeHelper.convertDateTimeSvToDateVn(obj.voucher?.end_at)
+                                    data.dateChange = ""
 
                                     data.statusChange = "Hết hạn sử dụng"
 
@@ -266,7 +266,7 @@ internal class RedemptionHistoryAdapter(callback: IRecyclerViewCallback) : Recyc
                                     setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
                                 } else if (obj.voucher?.checked_condition?.code == "MAX_NUM_OF_USED_VOUCHER" || obj.voucher?.checked_condition?.code == "MAX_NUM_OF_USED_CUSTOMER") {
 
-                                    text = "Đã sử dụng"
+                                    text = "Hết lượt sử dụng"
                                     setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
                                     setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
                                 } else {

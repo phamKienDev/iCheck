@@ -92,14 +92,14 @@ internal class GiftDetailAdapter(val type: Int = 0) : RecyclerViewCustomAdapter<
                         itemView.layoutDate.setGone()
 
                         itemView.tvStatus.apply {
-                            text = "Đã sử dụng"
+                            text = "Hết lượt sử dụng"
                             setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
                             setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
                         }
 
                     } else {
 
-                        itemView.tvDateTime.text = TimeHelper.convertDateTimeSvToDateVn(obj.voucher?.end_at)
+                        itemView.tvDateTime.text = ""
 
                         itemView.tvStatus.apply {
                             text = "Hết hạn sử dụng"
