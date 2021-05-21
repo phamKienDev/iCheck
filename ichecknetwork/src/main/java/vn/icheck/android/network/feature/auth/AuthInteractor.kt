@@ -12,33 +12,6 @@ import java.util.*
  */
 class AuthInteractor : BaseInteractor() {
 
-    fun loginUser(username: String, password: String, listener: ICApiListener<ICSessionData>) {
-        val fields = hashMapOf<String, String>()
-        fields["username"] = username
-        fields["password"] = password
-
-        requestApi(ICNetworkClient.getApiClient().loginUser(fields), listener)
-    }
-
-    fun loginFacebook(facebookToken: String?, phone: String?, otp: String?, password: String?, listener: ICApiListener<ICSessionData>) {
-        val body = hashMapOf<String, String>()
-
-        if (facebookToken != null) {
-            body["facebook_token"] = facebookToken
-        }
-        if (phone != null) {
-            body["phone"] = phone
-        }
-        if (otp != null) {
-            body["otp"] = otp
-        }
-        if (password != null) {
-            body["password"] = password
-        }
-
-        requestApi(ICNetworkClient.getApiClient().loginFacebook(body), listener)
-    }
-
     fun loginAnonymous(listener: ICApiListener<ICResponse<ICSessionData>>) {
         val url = APIConstants.socialHost + APIConstants.Auth.LOGIN_DEVICE
 
@@ -59,11 +32,4 @@ class AuthInteractor : BaseInteractor() {
         return ICNetworkClient.getApiClient().loginAnonymous(url, body)
     }
 
-    fun changePassword(oldPassword: String, password: String, listener: ICApiListener<ICUser>) {
-        val hashMap = hashMapOf<String, String>()
-        hashMap["old_password"] = oldPassword
-        hashMap["password"] = password
-
-        requestApi(ICNetworkClient.getApiClient().changePassword(hashMap), listener)
-    }
 }

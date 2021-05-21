@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_base_sponsor_feed.view.*
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class SponsorFeedHolder(view: View) : BaseViewHolder<ICSponsorFeed>(view) {
@@ -19,6 +20,7 @@ class SponsorFeedHolder(view: View) : BaseViewHolder<ICSponsorFeed>(view) {
 
 
     override fun bind(obj: ICSponsorFeed) {
+        itemView.container_comment.background=ViewHelper.bgTransparentRadius4StrokeLineColor1(itemView.context)
         itemView.tvNameEnterprise.text = if (obj.name != null) {
             obj.name
         } else {

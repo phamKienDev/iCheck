@@ -1,7 +1,6 @@
 package vn.icheck.android.base.fragment
 
 import android.app.Activity
-import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -14,8 +13,7 @@ import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.network.base.*
-import vn.icheck.android.screen.account.home.AccountActivity
+import vn.icheck.android.network.base.ICRequireLogin
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.util.FragmentUtils
 import vn.icheck.android.util.KeyboardUtils

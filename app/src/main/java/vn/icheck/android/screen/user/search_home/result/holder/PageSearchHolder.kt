@@ -17,6 +17,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -33,6 +34,8 @@ class PageSearchHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflat
     private var isFollow: Boolean? = null
 
     fun bind(obj: ICPageQuery) {
+        itemView.rootView.background=ViewHelper.bgWhiteRadius4StrokeLineColor0_5(itemView.context)
+
         WidgetUtils.loadImageUrl(itemView.img_avatar, obj.avatar, R.drawable.ic_business_v2)
         itemView.tv_name.text = if (!obj.name.isNullOrEmpty()) {
             obj.name

@@ -550,32 +550,6 @@
             android:name=".screen.user.detail_stamp_v6_1.more_information_product.MoreInformationProductActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".screen.user.profile.changepassword.ChangePasswordActivity"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme_White"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".screen.user.profile.confirmphone.ConfirmNewPhoneActivity"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme_White"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".screen.account.resetpassword.ResetPasswordActivity"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.OverStatusBar"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".screen.account.registerfacebookphone.RegisterFacebookPhoneActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme_White" />
-        <activity
-            android:name=".screen.account.verifyfacebookphone.VerifyFacebookPhoneActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme_White" />
-        <activity
             android:name=".screen.user.shopreview.OrderReviewActivity"
             android:exported="true"
             android:screenOrientation="portrait"
@@ -695,9 +669,6 @@
             android:name=".activities.product.contribute.SelectCategoryActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.product.contribute.ContributeProductActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".screen.user.orderhistory.OrderHistoryActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme_White"
@@ -790,11 +761,6 @@
             android:theme="@style/AppTheme_White"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".screen.account.verifyforgetpasswordphone.VerifyForgetPasswordPhoneActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.OverStatusBar"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
             android:name=".screen.user.detail_stamp_v6_1.otp_information_guarantee.VerifyOTPGuaranteeActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -857,18 +823,6 @@
             android:exported="true"
             android:theme="@style/AppTheme_White" />
         <activity
-            android:name=".screen.account.registeruser.inputotp.RegisterUserOtpActivity"
-            android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|orientation|screenLayout|touchscreen|uiMode"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.OverStatusBar"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".screen.account.registeruser.register.RegisterUserActivity"
-            android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|orientation|screenLayout|touchscreen|uiMode"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.OverStatusBar"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
             android:name=".screen.user.listproduct.ListProductActivity"
             android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|orientation|screenLayout|touchscreen|uiMode"
             android:screenOrientation="portrait"
@@ -890,12 +844,6 @@
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme_Blue"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".screen.account.home.AccountActivity"
-            android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|orientation|screenLayout|touchscreen|uiMode"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.OverStatusBar"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".screen.user.bannersurvey.BannerSurveyActivity"

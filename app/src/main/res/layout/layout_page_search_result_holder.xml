@@ -7,7 +7,6 @@
     android:layout_marginLeft="@dimen/size_12"
     android:layout_marginTop="@dimen/size_12"
     android:layout_marginRight="@dimen/size_12"
-    android:background="@drawable/bg_white_stroke_gray_corners_4"
     android:paddingBottom="@dimen/size_12">
 
     <de.hdodenhof.circleimageview.CircleImageView

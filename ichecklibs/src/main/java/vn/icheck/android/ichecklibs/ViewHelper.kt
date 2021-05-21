@@ -3,7 +3,6 @@ package vn.icheck.android.ichecklibs
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.ColorStateList
-import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.*
 import android.os.Build
@@ -430,6 +429,13 @@ object ViewHelper {
         radius = 0f
     )
 
+    fun bgWhiteStrokeLineColor1(context: Context) = createShapeDrawable(
+        color = Color.parseColor("#FFFFFF"),
+        strokeWidth = SizeHelper.size1,
+        strokeColor = Constant.getLineColor(context),
+        radius = 0f
+    )
+
 
     fun bgGrayRadiusBottom4StrokeLineColor05(context: Context)=GradientDrawable().apply {
         setColor(Color.parseColor("#f5f5f5"))
@@ -483,6 +489,13 @@ object ViewHelper {
         strokeWidth = SizeHelper.size0_5,
         strokeColor = Constant.getLineColor(context),
         radius = SizeHelper.size4.toFloat()
+    )
+
+    fun bgTransparentStrokeLineColor0_5(context: Context) = createShapeDrawable(
+        color = Color.TRANSPARENT,
+        strokeWidth = SizeHelper.size0_5,
+        strokeColor = Constant.getLineColor(context),
+        radius = 0f
     )
 
     fun bgTransparentStrokeLineColor1(context: Context) = createShapeDrawable(
@@ -540,6 +553,88 @@ object ViewHelper {
 
         return statesListDrawable
     }
+
+    fun lineUnderColorLine1(context: Context) :LayerDrawable{
+        //android:state_focused="true"
+        val line = GradientDrawable().also {
+            it.setStroke(SizeHelper.size1, Constant.getLineColor(context))
+            it.setColor(Color.TRANSPARENT)
+        }
+
+        val layersFocused = arrayOf(line)
+        val layerDrawbleFocused = LayerDrawable(layersFocused)
+        layerDrawbleFocused.setId(0, android.R.id.background)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            layerDrawbleFocused.setLayerInsetStart(0, -SizeHelper.dpToPx(10))
+            layerDrawbleFocused.setLayerInsetTop(0, -SizeHelper.dpToPx(10))
+            layerDrawbleFocused.setLayerInsetEnd(0, -SizeHelper.dpToPx(10))
+        }
+
+        return layerDrawbleFocused
+    }
+
+    fun bgWhiteRadius4StrokeLineColor0_5Pressed(context: Context) :StateListDrawable{
+        // android:state_pressed="true"
+        val bgPressed = GradientDrawable().also {
+            it.setStroke(SizeHelper.size1, Constant.getLineColor(context))
+            it.setColor(ContextCompat.getColor(context,R.color.black_20))
+            it.cornerRadius=SizeHelper.size4.toFloat()
+        }
+
+        //  android:state_enabled="false"
+        val bgNotEnabled = GradientDrawable().also {
+            it.setColor(ContextCompat.getColor(context,R.color.colorBackgroundGra1y))
+            it.cornerRadius=SizeHelper.size4.toFloat()
+        }
+
+        //  background
+        val background = GradientDrawable().also {
+            it.setStroke(SizeHelper.size1, Constant.getLineColor(context))
+            it.setColor(ContextCompat.getColor(context,R.color.white))
+            it.cornerRadius=SizeHelper.size4.toFloat()
+        }
+
+        val statesListDrawable = StateListDrawable()
+        statesListDrawable.addState(intArrayOf(-android.R.attr.state_enabled), bgNotEnabled)
+        statesListDrawable.addState(intArrayOf(android.R.attr.state_pressed), bgPressed)
+        statesListDrawable.addState(intArrayOf(-android.R.attr.state_pressed), background)
+
+        return statesListDrawable
+    }
+
+
+    fun bgProductItem(context: Context,left:Int,top:Int,right:Int,bottom:Int) :LayerDrawable{
+        val backgroundGray = GradientDrawable().also {
+            it.setColor(Constant.getLineColor(context))
+        }
+
+        val layersFocused = arrayOf(backgroundGray)
+        val layerDrawbleFocused = LayerDrawable(layersFocused)
+        layerDrawbleFocused.setId(0, android.R.id.background)
+
+
+        val bgWhite = ContextCompat.getDrawable(context,R.drawable.btn_white)
+
+        val layerList = arrayOf(backgroundGray,bgWhite)
+        val layerDrawble = LayerDrawable(layerList)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            layerDrawble.setLayerInsetStart(1, left)
+            layerDrawble.setLayerInsetTop(1, top)
+            layerDrawble.setLayerInsetEnd(1, right)
+            layerDrawble.setLayerInsetBottom(1, bottom)
+        }
+
+        return layerDrawble
+    }
+
+
+    fun bgProductItemBottemLeft(context: Context) = bgProductItem(context,left = 0,top = SizeHelper.size1, right= SizeHelper.size0_5,bottom = 0)
+    fun bgProductItemBottemRight(context: Context) = bgProductItem(context,left = SizeHelper.size0_5,top = SizeHelper.size1, right = 0,bottom = 0)
+    fun bgProductItemTopLeft(context: Context) = bgProductItem(context,left = 0,top = 0, right = SizeHelper.size0_5,bottom = 0)
+    fun bgProductItemTopRight(context: Context) = bgProductItem(context,left = SizeHelper.size0_5,top = 0, 0,bottom = 0)
+
 
 
 

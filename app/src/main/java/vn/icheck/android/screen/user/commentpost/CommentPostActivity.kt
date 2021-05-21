@@ -147,6 +147,7 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
         }
 
         layoutInputContent.background=ViewHelper.bgTransparentRadius4StrokeLineColor1(this)
+        tvActor.background=ViewHelper.bgTransparentRadius10StrokeLineColor1(this)
 
         setupBottomSheet()
         setupRecyclerView()

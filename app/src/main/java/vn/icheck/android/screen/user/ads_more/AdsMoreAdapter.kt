@@ -26,6 +26,7 @@ import vn.icheck.android.helper.ExoPlayerManager
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.loyalty.base.BaseViewHolder
 import vn.icheck.android.loyalty.base.ICKViewType
 import vn.icheck.android.network.models.ICAdsData
@@ -77,7 +78,7 @@ class AdsMoreAdapter : RecyclerViewCustomAdapter<ICAdsData>() {
 
         when (holder) {
             is ViewHolder -> {
-                holder.itemView.setBackgroundResource(R.drawable.bg_transparent_outline_gray_0_5)
+                holder.itemView.background=ViewHelper.bgTransparentStrokeLineColor0_5(holder.itemView.context)
                 holder.bind(listData[position])
             }
             is AdsVertical -> {

@@ -68,12 +68,12 @@
             app:srcCompat="@drawable/ic_chat_image_18px" />
 
         <LinearLayout
+            android:id="@+id/linearLayoutActor"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_8"
             android:layout_marginBottom="@dimen/size_8"
             android:layout_weight="1"
-            android:background="@drawable/bg_solid_gray_stroke_1_5_radius_10"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/img_send"
@@ -88,7 +88,6 @@
                 android:layout_marginTop="@dimen/size_8"
                 android:singleLine="true"
                 android:ellipsize="end"
-                android:background="@drawable/bg_solid_gray_stroke_1_radius_10"
                 android:drawableStart="@drawable/ic_close_gray_18_dp"
                 android:drawablePadding="@dimen/size_6"
                 android:elevation="@dimen/size_4"

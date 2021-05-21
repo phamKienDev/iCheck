@@ -8,6 +8,7 @@ import vn.icheck.android.R
 import vn.icheck.android.databinding.ItemProductEcommerceBinding
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICProductLink
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.util.ick.beGone
@@ -18,6 +19,8 @@ class StampECommerceHolder(parent: ViewGroup, val binding: ItemProductEcommerceB
 
     override fun bind(obj: ICProductLink) {
         WidgetUtils.loadImageUrlRounded(binding.imgAvatar, obj.images, R.drawable.ic_business_v2, SizeHelper.size4)
+
+        binding.root.background=ViewHelper.bgWhiteRadius4StrokeLineColor0_5Pressed(binding.root.context)
 
         binding.tvName.text = obj.name
 

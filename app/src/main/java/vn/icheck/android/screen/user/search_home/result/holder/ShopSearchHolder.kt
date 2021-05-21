@@ -23,6 +23,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -35,13 +36,15 @@ import vn.icheck.android.util.kotlin.WidgetUtils
 class ShopSearchHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.layout_shop_search_result_holder, parent, false)) {
 
     fun bind(obj: ICShopQuery) {
+        itemView.rootView.background=ViewHelper.bgWhiteRadius4StrokeLineColor0_5(itemView.context)
+
+
         WidgetUtils.loadImageUrl(itemView.img_avatar, obj.avatar)
 //        checkStatusOwner(obj.id)
         checkStatusFollow(obj.id)
         itemView.tv_name.text = obj.name
         itemView.tv_info_shop.text = Html.fromHtml(itemView.context.getString(R.string.info_shop_x, obj.productCount.toString(),
                 (obj.rating ?: 0 * 2).toString()))
-
 
         if (obj.isOffline) {
             itemView.img_avatar.setPadding(SizeHelper.size3, SizeHelper.size3, SizeHelper.size3, SizeHelper.size3)

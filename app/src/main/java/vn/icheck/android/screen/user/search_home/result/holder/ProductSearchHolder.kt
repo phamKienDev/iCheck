@@ -15,6 +15,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper.setTextNameProduct
 import vn.icheck.android.helper.TextHelper.setTextPriceProduct
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICProductTrend
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.util.ick.beGone
@@ -34,6 +35,7 @@ class ProductSearchHolder(parent: ViewGroup, val recyclerViewPool: RecyclerView.
                 itemView.tv_xem_them.beVisible()
             }
         }
+        itemView.rootView.background=ViewHelper.bgWhiteRadius4StrokeLineColor0_5(itemView.context)
 
         val adapter = ItemProductSearchAdapter(list)
         itemView.rcv_product_search.adapter = adapter

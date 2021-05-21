@@ -31,66 +31,6 @@ public class UserInteractor : BaseInteractor() {
         requestApi(ICNetworkClient.getApiClient().confirmPhone(host, body), listener)
     }
 
-    fun sendOtpResetPassword(phone: String, listener: ICApiListener<ICStatus>) {
-        val body = hashMapOf<String, String>()
-        body["phone"] = phone
-
-        requestApi(ICNetworkClient.getApiClient().sendOtpResetPassword(body), listener)
-    }
-
-    fun resetPassword(phone: String, otp: String, oldPassword: String? = null, password: String, listener: ICApiListener<ICID>) {
-        val json = hashMapOf<String, String>()
-        json["phone"] = phone
-        json["otp"] = otp
-
-        if (oldPassword != null) {
-            json["old_password"] = oldPassword
-        }
-
-        json["password"] = password
-        json["confirmed_password"] = password
-
-        requestApi(ICNetworkClient.getApiClient().resetPassword(json), listener)
-    }
-
-    fun checkCredentials(phone: String, listener: ICApiListener<ICStatus>) {
-        val body = hashMapOf<String, String>()
-        body["phone"] = phone
-
-        requestApi(ICNetworkClient.getApiClient().checkCredentials(body), listener)
-    }
-
-    fun sendOtpConfirmPhone(phone: String, listener: ICApiListener<ICStatus>) {
-        val body = hashMapOf<String, String>()
-        body["phone"] = phone
-
-//        requestApi(ICNetworkClient.getApiClient().sendOtpConfirmPhone(body), listener)
-    }
-
-    fun confirmNewPhone(phone: String, otp: String, listener: ICApiListener<ICUser>) {
-        val body = hashMapOf<String, String>()
-        body["phone"] = phone
-        body["otp"] = otp
-
-        requestApi(ICNetworkClient.getApiClient().confirmNewPhone(body), listener)
-    }
-
-    fun confirmOtp(phone: String, otp: String, listener: ICApiListener<ICStatus>) {
-        val body = hashMapOf<String, String>()
-        body["phone"] = phone
-        body["otp"] = otp
-
-//        requestApi(ICNetworkClient.getApiClient().confirmPhone(body), listener)
-    }
-
-    fun registerUser(body: ICReqRegisterUser, listener: ICApiListener<ICNone>) {
-        requestApi(ICNetworkClient.getApiClient().registerUser(body), listener)
-    }
-
-    fun updateUser(userID: Long, body: ICReqUpdateUser, listener: ICApiListener<ICUser>) {
-        requestApi(ICNetworkClient.getApiClient().updateUser(userID, body), listener)
-    }
-
     fun getUserMe(listener: ICApiListener<ICUser>) {
         requestApi(ICNetworkClient.getApiClient().userMe, listener)
     }

@@ -153,6 +153,7 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
 
     private fun initView() {
         containerEnter.background=ViewHelper.bgTransparentRadius4StrokeLineColor1(this)
+        tvActor.background=ViewHelper.bgTransparentRadius10StrokeLineColor1(this)
 
         edtEnter.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {

@@ -60,7 +60,6 @@ import vn.icheck.android.network.feature.user.UserInteractor
 import vn.icheck.android.network.models.*
 import vn.icheck.android.network.models.detail_stamp_v6_1.*
 import vn.icheck.android.network.util.JsonHelper
-import vn.icheck.android.screen.account.home.AccountActivity
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.user.cart.CartActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.contact_support.ContactSupportActivity
@@ -631,7 +630,7 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
 //                intent.putExtra(Constant.DATA_2, objProductShopVariant)
 //                startActivity(intent)
             } else {
-                startActivity<AccountActivity>()
+                startActivity<IckLoginActivity>()
             }
         }
 

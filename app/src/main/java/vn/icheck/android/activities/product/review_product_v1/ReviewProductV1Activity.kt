@@ -38,6 +38,7 @@ import vn.icheck.android.activities.product.review_product_v1.presenter.ReviewPr
 import vn.icheck.android.activities.product.review_product_v1.view.IReviewProductView
 import vn.icheck.android.activities.product.review_v1.EditReviewV1Activity
 import vn.icheck.android.activities.product.review_v1.ReviewTributeV1Dialog
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.v1.ICBarcodeProductV1
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
@@ -95,6 +96,9 @@ class ReviewProductV1Activity : BaseActivity<ReviewProductPresenter>(), IReviewP
         initRecyclerViewImageComment()
         presenter.getBarcodeProduct(intent)
         WidgetUtils.setClickListener(this, img_choose_image, tv_answer_actor, img_send, tv_answer_actor, imgBack, container_comment)
+
+        linearLayoutActor.background=ViewHelper.bgTransparentRadius10StrokeLineColor1(this)
+        tv_answer_actor.background=ViewHelper.bgTransparentRadius10StrokeLineColor1(this)
     }
 
     private fun initSwipeLayout() {

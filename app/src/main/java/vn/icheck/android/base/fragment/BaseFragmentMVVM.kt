@@ -17,7 +17,6 @@ import vn.icheck.android.R
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.base.ICRequireLogin
-import vn.icheck.android.screen.account.home.AccountActivity
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.util.FragmentUtils
 import vn.icheck.android.util.KeyboardUtils

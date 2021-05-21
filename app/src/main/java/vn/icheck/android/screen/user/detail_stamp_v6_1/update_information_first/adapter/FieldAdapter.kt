@@ -16,9 +16,9 @@ import kotlinx.android.synthetic.main.item_select_field.view.*
 import kotlinx.android.synthetic.main.item_text_field.view.*
 import kotlinx.android.synthetic.main.item_radio_box_field.view.*
 import vn.icheck.android.R
-import vn.icheck.android.activities.product.contribute.NullHolder
 import vn.icheck.android.base.dialog.date_time.callback.DateTimePickerListener
 import vn.icheck.android.base.holder.BaseViewHolder
+import vn.icheck.android.component.`null`.NullHolder
 import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICFieldGuarantee

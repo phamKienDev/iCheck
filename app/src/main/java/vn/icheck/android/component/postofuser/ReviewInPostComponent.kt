@@ -34,7 +34,7 @@ class ReviewInPostComponent : LinearLayout {
 
     fun setUpView() {
         orientation = VERTICAL
-        background = ContextCompat.getDrawable(context, R.drawable.bg_white_stroke_gray_1)
+        background =vn.icheck.android.ichecklibs.ViewHelper.bgWhiteStrokeLineColor1(context)
         setPadding(SizeHelper.size4, SizeHelper.size4, SizeHelper.size4, SizeHelper.size4)
 
         addView(LinearLayout(context).also { headerLayout ->

@@ -35,7 +35,7 @@ import vn.icheck.android.network.models.ICShopVariantV2
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICServiceShopVariant
 import vn.icheck.android.network.models.history.ICStoreNear
 import vn.icheck.android.network.util.JsonHelper
-import vn.icheck.android.screen.account.home.AccountActivity
+import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.adapter.ServiceShopVariantAdapter
 import vn.icheck.android.screen.user.map_scan_history.MapScanHistoryActivity
 import vn.icheck.android.util.kotlin.ToastUtils
@@ -190,7 +190,8 @@ class ProductDetailShopVariantComponent : LinearLayout {
                         }
                     })
                 } else {
-                    AccountActivity.start(context)
+                    val intent=Intent(context,IckLoginActivity::class.java)
+                    context.startActivity(intent)
                 }
             }
         }

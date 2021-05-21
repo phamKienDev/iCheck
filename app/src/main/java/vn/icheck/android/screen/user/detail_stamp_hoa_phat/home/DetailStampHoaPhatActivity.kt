@@ -4,12 +4,10 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Color
 import android.location.Location
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -33,7 +31,7 @@ import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICCriteria
-import vn.icheck.android.screen.account.home.AccountActivity
+import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.adapter.DetailStampHoaPhatAdapter
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.call_back.SlideHeaderStampHoaPhatListener
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.view_model.DetailStampHoaPhatViewModel
@@ -215,7 +213,7 @@ class DetailStampHoaPhatActivity : BaseActivityMVVM(), SlideHeaderStampHoaPhatLi
 //                    }
 //                }
             } else {
-                val account = Intent(this, AccountActivity::class.java)
+                val account = Intent(this, IckLoginActivity::class.java)
                 startActivity(account)
             }
         }

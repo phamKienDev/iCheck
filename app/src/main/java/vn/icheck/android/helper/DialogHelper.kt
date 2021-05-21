@@ -12,7 +12,6 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
 import com.facebook.shimmer.ShimmerFrameLayout
-import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.accecp_ship_gift.DialogAcceptShipGift
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
@@ -27,7 +26,7 @@ import vn.icheck.android.base.dialog.notify.shaking.DialogEmtyBoxGift
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.models.ICMission
-import vn.icheck.android.screen.account.home.AccountActivity
+import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.dialog.ScanBuyPopUp
 import vn.icheck.android.util.ick.showSimpleErrorToast
 import vn.icheck.android.util.ick.showSimpleSuccessToast
@@ -425,11 +424,11 @@ object DialogHelper {
     fun showLoginPopup(activity: Activity) {
         object : RewardLoginDialog(activity) {
             override fun onLogin() {
-                ActivityUtils.startActivity<AccountActivity>(activity)
+                ActivityUtils.startActivity<IckLoginActivity>(activity)
             }
 
             override fun onRegister() {
-                ActivityUtils.startActivity<AccountActivity>(activity, Constant.DATA_1, Constant.REGISTER_TYPE)
+                ActivityUtils.startActivity<IckLoginActivity>(activity, Constant.DATA_1, Constant.REGISTER_TYPE)
             }
 
             override fun onDismiss() {

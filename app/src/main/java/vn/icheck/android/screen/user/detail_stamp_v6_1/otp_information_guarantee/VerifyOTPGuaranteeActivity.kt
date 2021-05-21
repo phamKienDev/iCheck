@@ -15,6 +15,7 @@ import vn.icheck.android.base.activity.BaseActivity
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICUpdateCustomerGuarantee
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.otp_information_guarantee.presenter.VerifyOTPGuaranteePresenter
@@ -34,6 +35,7 @@ class VerifyOTPGuaranteeActivity : BaseActivity<VerifyOTPGuaranteePresenter>(),I
     @SuppressLint("SetTextI18n")
     override fun onInitView() {
         presenter.getDataByIntent(intent)
+        edtOtp.background=ViewHelper.lineUnderColorLine1(this)
         if (DetailStampActivity.isVietNamLanguage == false) {
             txtTitle.text = "Enter verified code"
             txtOtp.text = "Verified code"
