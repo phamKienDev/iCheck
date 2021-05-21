@@ -25,17 +25,16 @@ class ListNewsFragment : BaseFragmentMVVM(), IRecyclerViewCallback {
     private lateinit var viewModel: NewsListViewModel
     private val adapter = NewsListV2Adapter(this)
 
-    private var categoryId: Long? = null
-
     override val getLayoutID: Int
         get() = R.layout.fragment_list_news
 
     companion object {
-        fun newInstance(isShowBack: Boolean): ListNewsFragment {
+        fun newInstance(isShowBack: Boolean, idCategory: Long? = -1): ListNewsFragment {
             val fragment = ListNewsFragment()
 
             val bundle = Bundle()
             bundle.putBoolean(Constant.DATA_1, isShowBack)
+            bundle.putLong(Constant.ID, idCategory ?: -1)
             fragment.arguments = bundle
 
             return fragment
@@ -54,6 +53,8 @@ class ListNewsFragment : BaseFragmentMVVM(), IRecyclerViewCallback {
 
     private fun initView() {
         viewModel = ViewModelProvider(this)[NewsListViewModel::class.java]
+
+        viewModel.idCategory = arguments?.getLong(Constant.ID) ?: -1
 
         if (arguments?.getBoolean(Constant.DATA_1) == false) {
             imgBack.setImageResource(R.drawable.ic_leftmenu_24_px)
@@ -99,7 +100,7 @@ class ListNewsFragment : BaseFragmentMVVM(), IRecyclerViewCallback {
         if (swipeLayout != null) {
             swipeLayout.isRefreshing = true
         }
-        viewModel.getNewsList(false, categoryId)
+        viewModel.getNewsList(false, viewModel.idCategory)
     }
 
     private fun getDataSuccess() {
@@ -120,7 +121,7 @@ class ListNewsFragment : BaseFragmentMVVM(), IRecyclerViewCallback {
             adapterCategory.setListener(object : IClickListener {
                 override fun onClick(obj: Any) {
                     if (obj is ICArticleCategory) {
-                        categoryId = obj.id
+                        viewModel.idCategory = obj.id ?: -1
 
                         getData()
                     }
@@ -146,6 +147,6 @@ class ListNewsFragment : BaseFragmentMVVM(), IRecyclerViewCallback {
     }
 
     override fun onLoadMore() {
-        viewModel.getNewsList(true, categoryId)
+        viewModel.getNewsList(true, viewModel.idCategory)
     }
 }
