@@ -6,10 +6,7 @@ import android.net.Uri
 import android.os.Build
 import android.util.Log
 import android.view.View
-import android.webkit.WebResourceRequest
-import android.webkit.WebSettings
-import android.webkit.WebView
-import android.webkit.WebViewClient
+import android.webkit.*
 import android.widget.LinearLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -284,14 +281,31 @@ abstract class DialogNotificationFirebaseAds(context: Activity, private val imag
                 setGeolocationEnabled(true)
             }
 
+            var isPageLoaded = false
+
             webViewClient = object : WebViewClient() {
+                override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+                    super.onPageStarted(view, url, favicon)
+                    isPageLoaded = false
+                }
+
                 override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
-                    if (!url.isNullOrEmpty()) {
-                        ICheckApplication.currentActivity()?.let { activity ->
-                            WebViewActivity.start(activity, url)
+                    if (isPageLoaded) {
+                        if (url?.startsWith("http") == true) {
+                            ICheckApplication.currentActivity()?.let { activity ->
+                                WebViewActivity.start(activity, url)
+                            }
+                            return true
                         }
                     }
-                    return true
+                    return super.shouldOverrideUrlLoading(view, url)
+                }
+            }
+
+            webChromeClient = object : WebChromeClient() {
+                override fun onProgressChanged(view: WebView?, newProgress: Int) {
+                    super.onProgressChanged(view, newProgress)
+                    isPageLoaded = newProgress == 100
                 }
             }
         }
