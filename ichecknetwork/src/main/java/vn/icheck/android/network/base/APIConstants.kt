@@ -16,6 +16,8 @@ object APIConstants {
     @JvmField
     var LONGITUDE = 0.0
 
+    val REQUEST_TIME = 3000L
+
     const val PATH = "social/api"
     const val PATH_CDN = "icheck-social-cdn/"
 

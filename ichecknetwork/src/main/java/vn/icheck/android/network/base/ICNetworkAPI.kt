@@ -659,6 +659,9 @@ interface ICNetworkAPI {
     suspend fun getProductVariant(@Url url: String, @QueryMap params: HashMap<String, Any>): ICResponse<ICVariantProductStampV6_1>
 
     @GET
+    suspend fun getGuaranteeVariant(@Url url: String): ICResponse<MutableList<ICFieldGuarantee>>
+
+    @GET
     fun getFieldListGuarantee(@Url url: String): Observable<ICResponse<MutableList<ICFieldGuarantee>>>
 
     //More product verified vendor

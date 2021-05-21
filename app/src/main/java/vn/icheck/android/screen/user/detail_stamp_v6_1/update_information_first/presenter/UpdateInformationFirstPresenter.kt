@@ -30,7 +30,6 @@ class UpdateInformationFirstPresenter(val view: IUpdateInformationFirstView) : B
     private var mId: String? = null
     var cityId: Int? = null
     var districtId: Int? = null
-    var codeStamp = ""
 
     private var totalRequest = 0
 
@@ -78,7 +77,7 @@ class UpdateInformationFirstPresenter(val view: IUpdateInformationFirstView) : B
         } catch (e: Exception) {
             null
         }
-        codeStamp = intent.getStringExtra(Constant.DATA_8) ?: ""
+        val barcode = intent.getStringExtra(Constant.DATA_8) ?: ""
 
         if (typeShow == 1 || typeShow == 2) {
             if (!serial.isNullOrEmpty())
@@ -91,14 +90,14 @@ class UpdateInformationFirstPresenter(val view: IUpdateInformationFirstView) : B
             view.onShowLoading(false)
 
             totalRequest = 1
-            getFieldListGuarantee()
+            getFieldListGuarantee(barcode)
         }
 
         view.onGetDataIntentSuccess(typeShow, distributorID, phoneNumber, productCode, objVariant)
     }
 
-    private fun getFieldListGuarantee() {
-        interactor.getFieldListGuarantee(codeStamp, object : ICApiListener<ICResponse<MutableList<ICFieldGuarantee>>> {
+    private fun getFieldListGuarantee(barcode: String) {
+        interactor.getFieldListGuarantee(barcode, object : ICApiListener<ICResponse<MutableList<ICFieldGuarantee>>> {
             override fun onSuccess(obj: ICResponse<MutableList<ICFieldGuarantee>>) {
                 finishRequest()
                 if (!obj.data.isNullOrEmpty()) {
@@ -214,7 +213,9 @@ class UpdateInformationFirstPresenter(val view: IUpdateInformationFirstView) : B
         })
     }
 
-    fun validUpdateInformationGuarantee(name: String, phone: String, email: String, address: String, productCode: String, variant: Long?, typeUpdateCustomer: Int?, body: HashMap<String, Any>) {
+    fun validUpdateInformationGuarantee(name: String, phone: String, email: String, address: String,
+                                        productCode: String, variant: Long?, typeUpdateCustomer: Int?,
+                                        body: HashMap<String, Any>, barcode: String) {
         var isValidSuccess = true
 
         val validPhone = ValidHelper.validPhoneNumber(view.mContext, phone)
@@ -257,13 +258,13 @@ class UpdateInformationFirstPresenter(val view: IUpdateInformationFirstView) : B
                     obj.address = address
                     obj.city = cityId
                     obj.district = districtId
-                    scanQrStamp(obj, codeStamp)
+                    scanQrStamp(obj, barcode)
                 }
             }
         }
     }
 
-    private fun scanQrStamp(obj: ICUpdateCustomerGuarantee, codeStamp: String) {
+    private fun scanQrStamp(obj: ICUpdateCustomerGuarantee, barcode: String) {
         if (NetworkHelper.isNotConnected(view.mContext)) {
             showError(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
             return
@@ -276,7 +277,7 @@ class UpdateInformationFirstPresenter(val view: IUpdateInformationFirstView) : B
 
         view.onShowLoading(true)
 
-        interactor.getDetailStampWhenUpdate(obj, null, mId, codeStamp, APIConstants.LATITUDE.toString(), APIConstants.LONGITUDE.toString(), object : ICApiListener<ICDetailStampV6_1> {
+        interactor.getDetailStampWhenUpdate(obj, null, mId, barcode, APIConstants.LATITUDE.toString(), APIConstants.LONGITUDE.toString(), object : ICApiListener<ICDetailStampV6_1> {
             override fun onSuccess(obj: ICDetailStampV6_1) {
                 view.onShowLoading(false)
                 view.onGetDetailStampSuccess(obj)

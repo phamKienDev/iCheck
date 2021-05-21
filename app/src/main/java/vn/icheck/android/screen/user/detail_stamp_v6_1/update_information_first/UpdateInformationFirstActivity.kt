@@ -5,7 +5,6 @@ import android.app.Activity
 import android.content.Intent
 import android.view.View
 import androidx.activity.viewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jakewharton.rxbinding2.widget.RxTextView
@@ -13,20 +12,18 @@ import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_update_information_first.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import org.greenrobot.eventbus.EventBus
-import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivity
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
+import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.chat.icheckchat.helper.NetworkHelper
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.SessionManager
-import vn.icheck.android.network.base.Status
 import vn.icheck.android.network.models.detail_stamp_v6_1.*
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.otp_information_guarantee.VerifyOTPGuaranteeActivity
@@ -37,6 +34,7 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.
 import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.presenter.UpdateInformationFirstPresenter
 import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.view.IUpdateInformationFirstView
 import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.viewmodel.UpdateInformationFirstViewModel
+import vn.icheck.android.ui.layout.CustomLinearLayoutManager
 import vn.icheck.android.util.ick.logError
 import java.util.concurrent.TimeUnit
 
@@ -76,7 +74,7 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
         setupView()
         setupListener()
         setupSearchCustomer()
-        getData()
+        checkData()
     }
 
     private fun setupView() {
@@ -147,7 +145,7 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
                 return@setOnClickListener
             }
 
-            presenter.validUpdateInformationGuarantee(edtName.text.toString(), edtPhone.text.toString(), edtEmail.text.toString(), edtAddress.text.toString(), edtProductCode.text.toString(), mIdVariantSelected, typeUpdateCustomer, body)
+            presenter.validUpdateInformationGuarantee(edtName.text.toString(), edtPhone.text.toString(), edtEmail.text.toString(), edtAddress.text.toString(), edtProductCode.text.toString(), mIdVariantSelected, typeUpdateCustomer, body, viewModel.barcode)
         }
 
         layoutSelectCity.setOnClickListener {
@@ -182,24 +180,30 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
                 })
     }
 
-    private fun getData() {
+    private fun checkData() {
         viewModel.productID = intent.getLongExtra(Constant.DATA_6, 0)
-        val typeShow = intent.getIntExtra(Constant.DATA_1, 0)
-        val distributorID = intent.getLongExtra(Constant.DATA_2, 0)
-        val phoneNumber = intent.getStringExtra(Constant.DATA_3)
-        val productCode = intent.getStringExtra(Constant.DATA_4)
-        val serial: String? = intent.getStringExtra(Constant.DATA_5)
-        val objVariant = try {
+        viewModel.typeShow = intent.getIntExtra(Constant.DATA_1, 0)
+        viewModel.distributorID = intent.getLongExtra(Constant.DATA_2, 0)
+        viewModel.phoneNumber = intent.getStringExtra(Constant.DATA_3)
+        viewModel.productCode = intent.getStringExtra(Constant.DATA_4)
+        viewModel.serial = intent.getStringExtra(Constant.DATA_5)
+        viewModel.objVariant = try {
             intent.getSerializableExtra(Constant.DATA_7) as ICVariantProductStampV6_1.ICVariant.ICObjectVariant?
         } catch (e: Exception) {
             null
         }
-        presenter.codeStamp = intent.getStringExtra(Constant.DATA_8) ?: ""
+        viewModel.barcode = intent.getStringExtra(Constant.DATA_8) ?: ""
 
-        if (viewModel.productID != 0L) {
+        if (viewModel.productID != 0L && viewModel.barcode.isNotEmpty()) {
             getProductVariant()
         } else {
-            // todo
+            DialogHelper.showNotification(this@UpdateInformationFirstActivity,
+                    R.string.co_loi_xay_ra_vui_long_thu_lai, false,
+                    object : NotificationDialogListener {
+                        override fun onDone() {
+                            onBackPressed()
+                        }
+                    })
         }
     }
 
@@ -214,11 +218,50 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
         }
 
         lifecycleScope.launch {
-
+            var productVariant: ICVariantProductStampV6_1? = null
+            var guaranteeVariant: MutableList<ICFieldGuarantee>? = null
 
             withContext(Dispatchers.IO) {
-                viewModel.getVariantProduct()
+                val listSync = mutableListOf<Deferred<Any>>()
+
+                listSync.add(async {
+                    productVariant = withTimeoutOrNull(APIConstants.REQUEST_TIME) { viewModel.getProductVariant() }
+                })
+                if (viewModel.typeShow == 1 || viewModel.typeShow == 2) {
+                    listSync.add(async {
+                        guaranteeVariant = withTimeoutOrNull(APIConstants.REQUEST_TIME) { viewModel.getGuaranteeVariant() }
+                    })
+                }
+
+                listSync.awaitAll()
             }
+
+            withContext(Dispatchers.Main) {
+                if (!productVariant?.data?.products.isNullOrEmpty()) {
+                    tvSubProductCode.visibility = View.GONE
+                    edtProductCode.visibility = View.GONE
+                    tvSubProductVariant.visibility = View.VISIBLE
+                    edtVariant.visibility = View.VISIBLE
+                } else {
+                    tvSubProductCode.visibility = View.VISIBLE
+                    edtProductCode.visibility = View.VISIBLE
+                    tvSubProductVariant.visibility = View.GONE
+                    edtVariant.visibility = View.GONE
+                }
+
+                if (!guaranteeVariant.isNullOrEmpty()) {
+                    tvTitleField.visibility = View.VISIBLE
+                    rcvField.visibility = View.VISIBLE
+                    rcvField.layoutManager = CustomLinearLayoutManager(this@UpdateInformationFirstActivity, LinearLayoutManager.VERTICAL, false).also { rcvField.layoutManager = it }
+                    rcvField.adapter = adapter
+                    adapter.addData(guaranteeVariant!!)
+                } else {
+                    tvTitleField.visibility = View.GONE
+                    rcvField.visibility = View.GONE
+                }
+            }
+
+            onGetDataIntentSuccess(viewModel.typeShow, viewModel.distributorID, viewModel.phoneNumber, viewModel.productCode, viewModel.objVariant)
         }
     }
 
@@ -249,7 +292,6 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
         edtVariant.visibility = View.GONE
         presenter.getDataByIntentSecond(intent)
     }
-
 
 
     private fun getBody(): HashMap<String, Any>? {
@@ -409,7 +451,7 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
     }
 
     private fun initRecyclerView() {
-        rcvField.layoutManager = LinearLayoutManager(this)
+        rcvField.layoutManager = CustomLinearLayoutManager(this, LinearLayoutManager.VERTICAL, false).also { rcvField.layoutManager = it }
         rcvField.adapter = adapter
     }
 

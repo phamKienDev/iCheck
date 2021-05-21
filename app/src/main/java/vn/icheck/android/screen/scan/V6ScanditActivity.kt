@@ -899,6 +899,12 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                         }
                     }
                 }
+            } else {
+                DialogHelper.showNotification(this@V6ScanditActivity, code, false, object : NotificationDialogListener {
+                    override fun onDone() {
+                        enableCapture()
+                    }
+                })
             }
         }
     }

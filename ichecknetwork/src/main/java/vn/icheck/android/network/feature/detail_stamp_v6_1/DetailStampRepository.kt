@@ -872,6 +872,11 @@ class DetailStampRepository : BaseRepository() {
         return ICNetworkClient.getStampClient().getProductVariant(host, fields)
     }
 
+    suspend fun getGuaranteeVariant(barcode: String): ICResponse<MutableList<ICFieldGuarantee>> {
+        val host = APIConstants.DETAIL_STAMP_HOST + APIConstants.GETFIELDLISTGUARANTEE().replace("{code}", barcode)
+        return ICNetworkClient.getStampClient().getGuaranteeVariant(host)
+    }
+
     fun getFieldListGuarantee(codeStamp: String, listener: ICApiListener<ICResponse<MutableList<ICFieldGuarantee>>>) {
         val host = APIConstants.DETAIL_STAMP_HOST + APIConstants.GETFIELDLISTGUARANTEE().replace("{code}", codeStamp)
         val disposable = ICNetworkClient.getStampClient().getFieldListGuarantee(host)

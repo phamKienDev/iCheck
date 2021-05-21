@@ -1,15 +1,36 @@
 package vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.viewmodel
 
 import vn.icheck.android.base.viewmodel.BaseViewModel
+import vn.icheck.android.constant.Constant
+import vn.icheck.android.network.base.ICApiListener
+import vn.icheck.android.network.base.ICBaseResponse
+import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.feature.detail_stamp_v6_1.DetailStampRepository
+import vn.icheck.android.network.models.detail_stamp_v6_1.ICFieldGuarantee
+import vn.icheck.android.network.models.detail_stamp_v6_1.ICVariantProductStampV6_1
 import javax.inject.Inject
 
 class UpdateInformationFirstViewModel @Inject constructor() : BaseViewModel() {
     private val repository = DetailStampRepository()
 
-    var productID: Long = 0
+    var productID = 0L
+    var typeShow = 0
+    var distributorID = 0L
+    var phoneNumber: String? = null
+    var productCode: String? = null
+    var serial: String? = null
+    var objVariant: ICVariantProductStampV6_1.ICVariant.ICObjectVariant? = null
+    var barcode = ""
 
-    suspend fun getVariantProduct(productId: Long) = repository.getProductVariant(productID = productId)
+    suspend fun getProductVariant() =  try {
+        repository.getProductVariant(productID = productID).data
+    } catch (e: Exception) {
+        null
+    }
 
-
+    suspend fun getGuaranteeVariant() = try {
+        repository.getGuaranteeVariant(barcode).data
+    } catch (e: Exception) {
+        null
+    }
 }

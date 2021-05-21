@@ -258,7 +258,6 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
             idDistributor
             verfiedSerial
             productId
-            viewModel.barcode // presenter.code
 
 //          productCode // res cũ éo có
 
@@ -270,7 +269,7 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
 //                    intent.putExtra(Constant.DATA_3, productCode)
                     intent.putExtra(Constant.DATA_4, productId)
                     intent.putExtra(Constant.DATA_5, viewModel.barcode)
-//                    intent.putExtra(Constant.DATA_8, presenter.code)
+                    intent.putExtra(Constant.DATA_8, viewModel.barcode)
                     ActivityUtils.startActivity(this, intent)
                 } else {
                     val intent = Intent(this, UpdateInformationFirstActivity::class.java)
@@ -316,7 +315,7 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
 //                    intent.putExtra(Constant.DATA_3, productCode)
 //                    intent.putExtra(Constant.DATA_4, productId)
 //                    intent.putExtra(Constant.DATA_5, objVariant)
-//                    intent.putExtra(Constant.DATA_8, presenter.code)
+//                    intent.putExtra(Constant.DATA_8, viewModel.barcode)
 //                    startActivity(intent)
 //                } else {
 //                    val intent = Intent(this, UpdateInformationFirstActivity::class.java)
@@ -326,7 +325,7 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
 //                    intent.putExtra(Constant.DATA_5, verfiedSerial)
 //                    intent.putExtra(Constant.DATA_6, productId)
 //                    intent.putExtra(Constant.DATA_7, objVariant)
-//                    intent.putExtra(Constant.DATA_8, presenter.code)
+//                    intent.putExtra(Constant.DATA_8, viewModel.barcode)
 //                    startActivity(intent)
 //                }
 //            } else {
@@ -682,7 +681,7 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
         if (obj.data?.active_require_profile == 1) {
             val intent = Intent(this, UpdateInformationFirstActivity::class.java)
             intent.putExtra(Constant.DATA_1, 3)
-            intent.putExtra(Constant.DATA_8, presenter.code)
+            intent.putExtra(Constant.DATA_8, viewModel.barcode)
             startActivity(intent)
         }
 
@@ -715,7 +714,7 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
                 intent.putExtra(Constant.DATA_5, verfiedSerial)
                 intent.putExtra(Constant.DATA_6, obj.data?.product?.id)
                 intent.putExtra(Constant.DATA_7, obj.data?.guarantee?.last_guarantee?.variant)
-                intent.putExtra(Constant.DATA_8, presenter.code)
+                intent.putExtra(Constant.DATA_8, viewModel.barcode)
                 startActivity(intent)
             } else {
                 val intent = Intent(this, UpdateInformationFirstActivity::class.java)
@@ -725,7 +724,7 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
                 intent.putExtra(Constant.DATA_5, verfiedSerial)
                 intent.putExtra(Constant.DATA_6, obj.data?.product?.id)
                 intent.putExtra(Constant.DATA_7, obj.data?.guarantee?.last_guarantee?.variant)
-                intent.putExtra(Constant.DATA_8, presenter.code)
+                intent.putExtra(Constant.DATA_8, viewModel.barcode)
                 startActivity(intent)
             }
         }
