@@ -185,7 +185,8 @@ class NewDetailV2Activity : BaseActivityMVVM() {
             }
 
             if (!it.obj?.articleCategory?.name.isNullOrEmpty()){
-                layoutType.setVisible()
+                tvType.setVisible()
+                view.setVisible()
 
                 tvType.apply {
                     text = "#${it.obj?.articleCategory?.name}"
@@ -196,7 +197,8 @@ class NewDetailV2Activity : BaseActivityMVVM() {
                 }
 
             }else{
-                layoutType.setGone()
+                tvType.setGone()
+                view.setGone()
             }
 
             if (!it.obj?.createdAt.isNullOrEmpty()) {

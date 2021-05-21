@@ -46,11 +46,11 @@
 
                 <LinearLayout
                     android:id="@+id/layoutDate"
-                    android:gravity="center_vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    android:orientation="horizontal">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="@dimen/size_36"
@@ -66,12 +66,30 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/layoutType"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:visibility="gone"
-                    android:orientation="horizontal">
+                    android:gravity="center_vertical|end"
+                    android:orientation="horizontal"
+                    android:layoutDirection="rtl">
+
+                    <vn.icheck.android.ui.view.TextBarlowMedium
+                        android:id="@+id/tvDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:textColor="@color/gray_75"
+                        android:textSize="12sp"
+                        tools:text="13:58, 17/4/2021" />
+
+                    <View
+                        android:id="@+id/view"
+                        android:layout_width="@dimen/size_1"
+                        android:layout_height="@dimen/size_12"
+                        android:visibility="gone"
+                        android:layout_marginStart="@dimen/size_10"
+                        android:layout_marginEnd="@dimen/size_10"
+                        android:background="@color/gray_D8" />
 
                     <vn.icheck.android.ui.view.TextBarlowSemiBold
                         android:id="@+id/tvType"
@@ -79,27 +97,12 @@
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:singleLine="true"
+                        android:visibility="gone"
+                        android:textAllCaps="true"
                         android:textColor="@color/colorPrimary"
                         android:textSize="14sp"
                         tools:text="# LOYALTY" />
-
-                    <View
-                        android:layout_width="@dimen/size_1"
-                        android:layout_height="@dimen/size_12"
-                        android:layout_marginStart="@dimen/size_10"
-                        android:layout_marginEnd="@dimen/size_10"
-                        android:background="@color/gray_D8" />
                 </LinearLayout>
-
-                <vn.icheck.android.ui.view.TextBarlowMedium
-                    android:id="@+id/tvDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:singleLine="true"
-                    android:textColor="@color/gray_75"
-                    android:textSize="12sp"
-                    tools:text="13:58, 17/4/2021" />
             </LinearLayout>
 
             <vn.icheck.android.ui.view.TextHeader
@@ -163,21 +166,25 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_10"
                 android:background="@color/white"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvTitleNew"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/size_0"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/barlow_semi_bold"
                     android:includeFontPadding="false"
                     android:paddingStart="@dimen/size_12"
                     android:paddingLeft="@dimen/size_12"
                     android:paddingTop="@dimen/size_12"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:paddingEnd="12dp"
                     android:text="Tin tức liên quan"
                     android:textColor="@color/colorSecondary"
                     android:textSize="@dimen/font_16"
                     android:textStyle="normal"
+                    app:layout_constraintEnd_toStartOf="@+id/txtViewAll"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 

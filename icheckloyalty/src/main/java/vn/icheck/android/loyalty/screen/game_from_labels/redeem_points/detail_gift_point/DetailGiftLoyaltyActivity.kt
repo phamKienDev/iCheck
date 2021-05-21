@@ -198,6 +198,14 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
 
                     tvDateTime.text = obj?.dateChange
 
+                    if (obj?.statusChange?.contains("Hết lượt sử dụng") == true){
+                        tvTitleDate.setInvisible()
+                        tvDateTime.setInvisible()
+                    }else{
+                        tvTitleDate.setVisible()
+                        tvDateTime.setVisible()
+                    }
+
                     tvStatus.apply {
                         text = obj?.statusChange
                         setTextColor(obj?.colorText ?: 0)
