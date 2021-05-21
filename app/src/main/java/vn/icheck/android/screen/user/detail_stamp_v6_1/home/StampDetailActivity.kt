@@ -52,13 +52,14 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.
 import vn.icheck.android.screen.user.detail_stamp_v6_1.verified_phone.VerifiedPhoneActivity
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.screen.user.shipping.ship.ShipActivity
+import vn.icheck.android.util.kotlin.ActivityUtils
 import java.util.*
 import java.util.regex.Pattern
 import kotlin.math.hypot
 
 @AndroidEntryPoint
-class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewCallback, IClickListener, CampaignLoyaltyHelper.ILoginListener, CampaignLoyaltyHelper.IRemoveHolderInputLoyaltyListener {
-    private val viewModel: ICDetailStampViewModel by viewModels()
+class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewCallback, IClickListener, CampaignLoyaltyHelper.ILoginListener, CampaignLoyaltyHelper.IRemoveHolderInputLoyaltyListener {
+    private val viewModel by viewModels<ICDetailStampViewModel>()
     private val presenter = DetailStampPresenter(this)
 
     private val adapter = ICDetailStampAdapter(this)
@@ -83,7 +84,6 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
     private var barcode: String? = null
 
     private var itemDistributor: ICObjectDistributor? = null
-    private var objGuarantee: ICObjectGuarantee? = null
 
     private var mFusedLocationClient: FusedLocationProviderClient? = null
 
@@ -96,16 +96,8 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
     private var guarantee: ICWidgetData? = null
     private var isExistLastGuarantee = false
 
-//    var type = ""
-//    var banner = ""
-//    var description = ""
-//    var targetType = ""
-
     //    private var nameProduct: String? = null
     private var url: String? = null
-
-    //    private var bannerAdapter: BannerAdapter? = null
-//    private lateinit var adapterConfigError: ICStampContactAdapter
 
     override fun isRegisterEventBus(): Boolean {
         return true
@@ -115,12 +107,33 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_stamp)
 
-        setupToolbar()
         setupView()
+        setupToolbar()
         setupRecyclerView()
         setupListener()
-//        setupViewModel()
         getIntentData()
+    }
+
+    private fun setupView() {
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
+        isVietNamLanguage = Locale.getDefault().displayLanguage.toLowerCase(Locale.getDefault()) == "vi"
+
+        runOnUiThread {
+            if (isVietNamLanguage == false) {
+                txtTitle.text = "Verified product"
+                tvChatWithAdmin.text = "Contact to Admin Icheck"
+//                btnAgainError.text = "Try Again"
+//                btnRequestPermission.text = "Turn on GPS"
+                textFab.text = "Update customer information"
+            } else {
+                txtTitle.text = "Xác thực sản phẩm"
+                tvChatWithAdmin.text = "Liên hệ Admin iCheck"
+//                btnAgainError.text = "Thử Lại"
+//                btnRequestPermission.text = "Bật GPS"
+                textFab.setText(R.string.cap_nhat_thong_tin_khach_hang)
+            }
+        }
     }
 
     private fun setupToolbar() {
@@ -176,36 +189,14 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
         txtTitle.setText(R.string.xac_thuc_san_pham)
     }
 
-    private fun setupView() {
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-
-        isVietNamLanguage = Locale.getDefault().displayLanguage.toLowerCase(Locale.getDefault()) == "vi"
-
-        runOnUiThread {
-            if (isVietNamLanguage == false) {
-                txtTitle.text = "Verified product"
-                tvChatWithAdmin.text = "Contact to Admin Icheck"
-//                btnAgainError.text = "Try Again"
-//                btnRequestPermission.text = "Turn on GPS"
-                textFab.text = "Update customer information"
-            } else {
-                txtTitle.text = "Xác thực sản phẩm"
-                tvChatWithAdmin.text = "Liên hệ Admin iCheck"
-//                btnAgainError.text = "Thử Lại"
-//                btnRequestPermission.text = "Bật GPS"
-                textFab.setText(R.string.cap_nhat_thong_tin_khach_hang)
-            }
-        }
-    }
-
     private fun setupRecyclerView() {
         recyclerView.apply {
-            layoutManager = LinearLayoutManager(this@DetailStampActivity, LinearLayoutManager.VERTICAL, false)
+            layoutManager = LinearLayoutManager(this@StampDetailActivity, LinearLayoutManager.VERTICAL, false)
 
-            adapter = this@DetailStampActivity.adapter.apply {
+            adapter = this@StampDetailActivity.adapter.apply {
                 enableLoadMore(false)
                 setCampaignListener({
-                    this@DetailStampActivity.apply {
+                    this@StampDetailActivity.apply {
                         startActivity(Intent(this, UrlGiftDetailActivity::class.java).apply {
                             putExtra(ConstantsLoyalty.DATA_1, it.id)
                             putExtra(ConstantsLoyalty.DATA_2, viewModel.barcode)
@@ -213,9 +204,9 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
                         })
                     }
                 }, {
-                    this@DetailStampActivity.apply {
+                    this@StampDetailActivity.apply {
                         CampaignLoyaltyHelper.checkCodeLoyalty(this, it, it.content
-                                ?: "", viewModel.barcode, this@DetailStampActivity, this@DetailStampActivity)
+                                ?: "", viewModel.barcode, this@StampDetailActivity, this@StampDetailActivity)
                     }
                 })
             }
@@ -273,14 +264,14 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
 
             if (guarantee != null) {
                 if (guarantee?.customerId != null) {
-//                    val intent = Intent(this, VerifiedPhoneActivity::class.java)
-//                    intent.putExtra(Constant.DATA_1, verfiedSerial)
-//                    intent.putExtra(Constant.DATA_2, idDistributor)
+                    val intent = Intent(this, VerifiedPhoneActivity::class.java)
+                    intent.putExtra(Constant.DATA_1, verfiedSerial)
+                    intent.putExtra(Constant.DATA_2, idDistributor)
 //                    intent.putExtra(Constant.DATA_3, productCode)
-//                    intent.putExtra(Constant.DATA_4, productId)
-//                    intent.putExtra(Constant.DATA_5, objVariant)
+                    intent.putExtra(Constant.DATA_4, productId)
+                    intent.putExtra(Constant.DATA_5, viewModel.barcode)
 //                    intent.putExtra(Constant.DATA_8, presenter.code)
-//                    startActivity(intent)
+                    ActivityUtils.startActivity(this, intent)
                 } else {
                     val intent = Intent(this, UpdateInformationFirstActivity::class.java)
                     intent.putExtra(Constant.DATA_1, 2)
@@ -289,17 +280,44 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
                     intent.putExtra(Constant.DATA_5, verfiedSerial)
                     intent.putExtra(Constant.DATA_6, productId)
                     intent.putExtra(Constant.DATA_7, objVariant)
-                    intent.putExtra(Constant.DATA_8, presenter.code)
-                    startActivity(intent)
+                    intent.putExtra(Constant.DATA_8, viewModel.barcode)
+                    ActivityUtils.startActivity(this, intent)
                 }
             } else {
-
+                val intent = Intent(this, UpdateInformationFirstActivity::class.java)
+                intent.putExtra(Constant.DATA_1, 2)
+                intent.putExtra(Constant.DATA_2, idDistributor)
+//                intent.putExtra(Constant.DATA_4, productCode)
+                intent.putExtra(Constant.DATA_5, verfiedSerial)
+                intent.putExtra(Constant.DATA_6, productId)
+                intent.putExtra(Constant.DATA_7, objVariant)
+                ActivityUtils.startActivity(this, intent)
             }
 
 //            // 0 - la chong gia , 1 - tran hang , 2 - bao hanh
 //            if (objGuarantee != null) {
 //                if (objCustomerLastGuarantee != null) {
-//
+//                    val intent = Intent(this, VerifiedPhoneActivity::class.java)
+//                    when {
+//                        tvSerialFake.text.toString().isNotEmpty() -> {
+//                            intent.putExtra(Constant.DATA_1, tvSerialFake.text.toString())
+//                        }
+//                        tvSerialVerified.text.toString().isNotEmpty() -> {
+//                            intent.putExtra(Constant.DATA_1, tvSerialVerified.text.toString())
+//                        }
+//                        tvSerialVerifiedChongGia.text.toString().isNotEmpty() -> {
+//                            intent.putExtra(Constant.DATA_1, tvSerialVerifiedChongGia.text.toString())
+//                        }
+//                        else -> {
+//                            intent.putExtra(Constant.DATA_1, tvSerialVerifiedBaoHanh.text.toString())
+//                        }
+//                    }
+//                    intent.putExtra(Constant.DATA_2, idDistributor)
+//                    intent.putExtra(Constant.DATA_3, productCode)
+//                    intent.putExtra(Constant.DATA_4, productId)
+//                    intent.putExtra(Constant.DATA_5, objVariant)
+//                    intent.putExtra(Constant.DATA_8, presenter.code)
+//                    startActivity(intent)
 //                } else {
 //                    val intent = Intent(this, UpdateInformationFirstActivity::class.java)
 //                    intent.putExtra(Constant.DATA_1, 2)
@@ -357,7 +375,7 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
         viewModel.getData(intent)
 
         if (viewModel.barcode.isEmpty()) {
-            DialogHelper.showNotification(this@DetailStampActivity, R.string.co_loi_xay_ra_vui_long_thu_lai, false, object : NotificationDialogListener {
+            DialogHelper.showNotification(this@StampDetailActivity, R.string.co_loi_xay_ra_vui_long_thu_lai, false, object : NotificationDialogListener {
                 override fun onDone() {
                     onBackPressed()
                 }
@@ -411,7 +429,7 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
                 return false
             }
 
-            if (!NetworkHelper.checkGPS(this@DetailStampActivity, getString(R.string.vui_long_bat_gpa_de_ung_dung_tim_duoc_vi_tri_cua_ban), requestGps)) {
+            if (!NetworkHelper.checkGPS(this@StampDetailActivity, getString(R.string.vui_long_bat_gpa_de_ung_dung_tim_duoc_vi_tri_cua_ban), requestGps)) {
                 adapter.setError(R.drawable.ic_location_permission_history, getString(R.string.de_hien_thi_du_lieu_cua_hang_vui_long_bat_gps), R.string.bat_vi_tri)
                 return false
             }
@@ -424,9 +442,9 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
             when (it.status) {
                 Status.LOADING -> {
                     if (it.message.isNullOrEmpty()) {
-                        DialogHelper.showLoading(this@DetailStampActivity)
+                        DialogHelper.showLoading(this@StampDetailActivity)
                     } else {
-                        DialogHelper.closeLoading(this@DetailStampActivity)
+                        DialogHelper.closeLoading(this@StampDetailActivity)
                     }
                 }
                 Status.ERROR_NETWORK -> {
@@ -584,9 +602,9 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
             when (it.status) {
                 Status.LOADING -> {
                     if (it.message.isNullOrEmpty()) {
-                        DialogHelper.showLoading(this@DetailStampActivity)
+                        DialogHelper.showLoading(this@StampDetailActivity)
                     } else {
-                        DialogHelper.closeLoading(this@DetailStampActivity)
+                        DialogHelper.closeLoading(this@StampDetailActivity)
                     }
                 }
                 Status.ERROR_NETWORK -> {
@@ -620,12 +638,6 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
         if (!item.sku.isNullOrEmpty()) {
             IckProductDetailActivity.start(this, item.sku!!)
         }
-    }
-
-    private fun initAdapterConfigError() {
-//        adapterConfigError = ICStampContactAdapter()
-//        rcvConfigError.layoutManager = LinearLayoutManager(this)
-//        rcvConfigError.adapter = adapterConfigError
     }
 
     override fun onGetDataRequireLogin() {
@@ -753,38 +765,7 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
 
 //                bannerAdapter?.setListData(obj.data?.product?.images ?: mutableListOf(), null, null)
         }
-
-//      Thong tin bao hanh
-        objGuarantee = obj.data?.guarantee
     }
-
-//    override fun onGetConfigSuccess(obj: IC_Config_Error) {
-//        scrollViewError.visibility = View.VISIBLE
-//        if (!obj.data?.contacts.isNullOrEmpty()) {
-//            initAdapterConfigError()
-//            adapterConfigError.setListData(obj.data?.contacts!!)
-//        }
-//    }
-
-//    override fun onGetDataIntentError(errorType: Int) {
-//        layoutErrorClient.visibility = View.VISIBLE
-//        scrollViewError.visibility = View.GONE
-////        scrollView.visibility = View.GONE
-//        when (errorType) {
-//            Constant.ERROR_INTERNET -> {
-//                imgError.setImageResource(R.drawable.ic_error_network)
-//                tvMessageError.text = "Kết nối mạng của bạn có vấn đề. Vui lòng thử lại"
-//            }
-//            Constant.ERROR_UNKNOW -> {
-//                imgError.setImageResource(R.drawable.ic_error_request)
-//                tvMessageError.text = "Không thể truy cập. Vui lòng thử lại sau"
-//            }
-//            Constant.ERROR_EMPTY -> {
-//                imgError.setImageResource(R.drawable.ic_error_request)
-//                tvMessageError.text = "Không thể truy cập. Vui lòng thử lại sau"
-//            }
-//        }
-//    }
 
     override fun onAddToCartSuccess(type: Int) {
         if (type == 1) showShortSuccess(getString(R.string.them_vao_gio_hang_thanh_cong)) else startActivity<CartActivity>()
@@ -808,13 +789,13 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
     }
 
     override fun showDialogLogin(data: ICKLoyalty, code: String?) {
-        this@DetailStampActivity.viewModel.loyaltyObj = data
+        this@StampDetailActivity.viewModel.loyaltyObj = data
 
         if (code.isNullOrEmpty()) {
-            LoyaltySdk.showDialogLogin<IckLoginActivity, Int>(this@DetailStampActivity, "requestCode", 1, CampaignLoyaltyHelper.REQUEST_GET_GIFT, data)
+            LoyaltySdk.showDialogLogin<IckLoginActivity, Int>(this@StampDetailActivity, "requestCode", 1, CampaignLoyaltyHelper.REQUEST_GET_GIFT, data)
         } else {
             viewModel.codeInput = code
-            LoyaltySdk.showDialogLogin<IckLoginActivity, Int>(this@DetailStampActivity, "requestCode", 1, CampaignLoyaltyHelper.REQUEST_CHECK_CODE, data, viewModel.codeInput)
+            LoyaltySdk.showDialogLogin<IckLoginActivity, Int>(this@StampDetailActivity, "requestCode", 1, CampaignLoyaltyHelper.REQUEST_CHECK_CODE, data, viewModel.codeInput)
         }
     }
 
@@ -856,7 +837,7 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
                 if (NetworkHelper.isOpenedGPS(this)) {
                     getLocation()
                 } else {
-                    if (NetworkHelper.checkGPS(this@DetailStampActivity, getString(R.string.vui_long_bat_gpa_de_ung_dung_tim_duoc_vi_tri_cua_ban), requestGps)) {
+                    if (NetworkHelper.checkGPS(this@StampDetailActivity, getString(R.string.vui_long_bat_gpa_de_ung_dung_tim_duoc_vi_tri_cua_ban), requestGps)) {
                         getLocation()
                         return
                     }
@@ -890,7 +871,7 @@ class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
             }
             CampaignLoyaltyHelper.REQUEST_CHECK_CODE -> {
                 viewModel.loyaltyObj?.let {
-                    CampaignLoyaltyHelper.checkCodeLoyalty(this@DetailStampActivity, it, viewModel.codeInput, viewModel.barcode, this@DetailStampActivity, this@DetailStampActivity)
+                    CampaignLoyaltyHelper.checkCodeLoyalty(this@StampDetailActivity, it, viewModel.codeInput, viewModel.barcode, this@StampDetailActivity, this@StampDetailActivity)
                 }
             }
         }

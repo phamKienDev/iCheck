@@ -4,21 +4,31 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.view.View
+import androidx.activity.viewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jakewharton.rxbinding2.widget.RxTextView
+import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_update_information_first.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.greenrobot.eventbus.EventBus
+import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivity
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
+import vn.icheck.android.chat.icheckchat.helper.NetworkHelper
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.network.base.SessionManager
+import vn.icheck.android.network.base.Status
 import vn.icheck.android.network.models.detail_stamp_v6_1.*
-import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
+import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.otp_information_guarantee.VerifyOTPGuaranteeActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.select_variant.SelectVariantActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.selectdistrictstamp.SelectDistrictStampActivity
@@ -26,11 +36,13 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.selectprovincestamp.Selec
 import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.adapter.FieldAdapter
 import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.presenter.UpdateInformationFirstPresenter
 import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.view.IUpdateInformationFirstView
-import vn.icheck.android.screen.user.selectprovince.SelectProvinceActivity
+import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.viewmodel.UpdateInformationFirstViewModel
 import vn.icheck.android.util.ick.logError
 import java.util.concurrent.TimeUnit
 
+@AndroidEntryPoint
 class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresenter>(), IUpdateInformationFirstView {
+    private val viewModel by viewModels<UpdateInformationFirstViewModel>()
 
     override val getLayoutID: Int
         get() = R.layout.activity_update_information_first
@@ -40,8 +52,7 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
 
     private var mProductCode: String? = null
     private var mVariantName: String? = null
-    private var mId: Long? = null
-    private var mProductId: Long? = null
+    private var distributorID: Long? = null
     private var mIdVariantSelected: Long? = null
     private var cityId: Int? = null
     private var districtId: Int? = null
@@ -60,74 +71,75 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
 
     @SuppressLint("SetTextI18n")
     override fun onInitView() {
-        DetailStampActivity.listActivities.add(this)
+        StampDetailActivity.listActivities.add(this)
 
-        runOnUiThread {
-            if (DetailStampActivity.isVietNamLanguage == false) {
-                txtTitle.text = "Customer Information"
-                tvLabelInforCustomer.text = "Customer Information"
-                tvViewVerifiedPhoneNumber.text = "Update customer information to receive the hot deals and service."
-                tvViewForceUpdate.text = "You have to update personal information to active warranty.Manufacturer may refuse warranty if the information is incorrect"
-                tvSubPhone.text = "Phone Number (*)"
-                tvSubName.text = "Name"
-                tvSubTinhThanh.text = "City"
-                tvSubHuyen.text = "District"
-                tvCities.text = "Option"
-                tvDistricts.text = "Option"
-                tvSubAddress.text = "Address"
-                btnUpdate.text = "Update"
-                edtPhone.hint = "Enter Phone Number"
-                edtName.hint = "Enter Name"
-                edtEmail.hint = "Enter Email"
-                edtAddress.hint = "Enter Address"
-                tvSubProductCode.text = "Product Code"
-                edtProductCode.hint = "Enter Product Code"
-                tvSubProductVariant.text = "Varitation code"
-                edtVariant.hint = "Enter Variation Code"
-                tvTitleField.text = "Received information"
-            } else {
-                txtTitle.text = "Thông tin khách hàng"
-                tvLabelInforCustomer.text = "Thông tin khách hàng"
-                tvViewVerifiedPhoneNumber.text = "Cập nhật thông tin khách hàng để nhận các ưu đãi\nvà chăm sóc tốt nhất."
-                tvViewForceUpdate.text = "Bạn phải nhập thông tin cá nhân để kích hoạt bảo hành.\nNhà sản xuất có quyền từ chối bảo hành nếu thông tin\nkhông chính xác."
-                tvSubPhone.text = "Số điện thoại (*)"
-                tvSubName.text = "Họ và tên"
-                tvSubTinhThanh.text = "Tỉnh thành"
-                tvSubHuyen.text = "Huyện"
-                tvCities.text = "Tùy chọn"
-                tvDistricts.text = "Tùy chọn"
-                tvSubAddress.text = "Địa chỉ"
-                btnUpdate.text = "Cập nhật"
-                edtPhone.hint = "Nhập số điện thoại"
-                edtName.hint = "Nhập họ tên"
-                edtEmail.hint = "Nhập email"
-                edtAddress.hint = "Nhập địa chỉ"
-                tvSubProductCode.text = "Mã hiệu sản phẩm"
-                edtProductCode.hint = "Nhập mã hiệu sản phẩm"
-                tvSubProductVariant.text = "Mã biến thể"
-                edtVariant.hint = "Nhập biến thể sản phẩm"
-                tvTitleField.text = "Thông tin tiếp nhận"
-            }
-        }
-
-        listener()
-        presenter.getDataByIntent(intent)
+        setupView()
+        setupListener()
+        setupSearchCustomer()
+        getData()
     }
 
-    private fun listener() {
+    private fun setupView() {
+        if (StampDetailActivity.isVietNamLanguage == false) {
+            txtTitle.text = "Customer Information"
+            tvLabelInforCustomer.text = "Customer Information"
+            tvViewVerifiedPhoneNumber.text = "Update customer information to receive the hot deals and service."
+            tvViewForceUpdate.text = "You have to update personal information to active warranty.Manufacturer may refuse warranty if the information is incorrect"
+            tvSubPhone.text = "Phone Number (*)"
+            tvSubName.text = "Name"
+            tvSubTinhThanh.text = "City"
+            tvSubHuyen.text = "District"
+            tvCities.text = "Option"
+            tvDistricts.text = "Option"
+            tvSubAddress.text = "Address"
+            btnUpdate.text = "Update"
+            edtPhone.hint = "Enter Phone Number"
+            edtName.hint = "Enter Name"
+            edtEmail.hint = "Enter Email"
+            edtAddress.hint = "Enter Address"
+            tvSubProductCode.text = "Product Code"
+            edtProductCode.hint = "Enter Product Code"
+            tvSubProductVariant.text = "Varitation code"
+            edtVariant.hint = "Enter Variation Code"
+            tvTitleField.text = "Received information"
+        } else {
+            txtTitle.text = "Thông tin khách hàng"
+            tvLabelInforCustomer.text = "Thông tin khách hàng"
+            tvViewVerifiedPhoneNumber.text = "Cập nhật thông tin khách hàng để nhận các ưu đãi\nvà chăm sóc tốt nhất."
+            tvViewForceUpdate.text = "Bạn phải nhập thông tin cá nhân để kích hoạt bảo hành.\nNhà sản xuất có quyền từ chối bảo hành nếu thông tin\nkhông chính xác."
+            tvSubPhone.text = "Số điện thoại (*)"
+            tvSubName.text = "Họ và tên"
+            tvSubTinhThanh.text = "Tỉnh thành"
+            tvSubHuyen.text = "Huyện"
+            tvCities.text = "Tùy chọn"
+            tvDistricts.text = "Tùy chọn"
+            tvSubAddress.text = "Địa chỉ"
+            btnUpdate.text = "Cập nhật"
+            edtPhone.hint = "Nhập số điện thoại"
+            edtName.hint = "Nhập họ tên"
+            edtEmail.hint = "Nhập email"
+            edtAddress.hint = "Nhập địa chỉ"
+            tvSubProductCode.text = "Mã hiệu sản phẩm"
+            edtProductCode.hint = "Nhập mã hiệu sản phẩm"
+            tvSubProductVariant.text = "Mã biến thể"
+            edtVariant.hint = "Nhập biến thể sản phẩm"
+            tvTitleField.text = "Thông tin tiếp nhận"
+        }
+    }
+
+    private fun setupListener() {
         imgBack.setOnClickListener {
             if (isChangeData == true) {
                 EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REFRESH_DATA))
             }
             onBackPressed()
-
         }
 
         btnUpdate.setOnClickListener {
             val body = getBody()
 
             if (body == null) {
-                if (DetailStampActivity.isVietNamLanguage == false) {
+                if (StampDetailActivity.isVietNamLanguage == false) {
                     showShortError("Please fill in the required fields")
                 } else {
                     showShortError("Bạn cần nhập các trường yêu cầu")
@@ -151,12 +163,94 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
 
         edtVariant.setOnClickListener {
             val intent = Intent(this, SelectVariantActivity::class.java)
-            intent.putExtra(Constant.DATA_1, mProductId)
+            intent.putExtra(Constant.DATA_1, viewModel.productID)
             startActivityForResult(intent, requestSelectVariant)
         }
-
-        searchCustomer()
     }
+
+    private fun setupSearchCustomer() {
+        disposable = RxTextView.afterTextChangeEvents(edtPhone)
+                .skipInitialValue()
+                .debounce(1000, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    if (distributorID != null) {
+                        presenter.searchInforCustomer(distributorID!!, edtPhone.text.toString())
+                    }
+                }, {
+                    logError(it)
+                })
+    }
+
+    private fun getData() {
+        viewModel.productID = intent.getLongExtra(Constant.DATA_6, 0)
+        val typeShow = intent.getIntExtra(Constant.DATA_1, 0)
+        val distributorID = intent.getLongExtra(Constant.DATA_2, 0)
+        val phoneNumber = intent.getStringExtra(Constant.DATA_3)
+        val productCode = intent.getStringExtra(Constant.DATA_4)
+        val serial: String? = intent.getStringExtra(Constant.DATA_5)
+        val objVariant = try {
+            intent.getSerializableExtra(Constant.DATA_7) as ICVariantProductStampV6_1.ICVariant.ICObjectVariant?
+        } catch (e: Exception) {
+            null
+        }
+        presenter.codeStamp = intent.getStringExtra(Constant.DATA_8) ?: ""
+
+        if (viewModel.productID != 0L) {
+            getProductVariant()
+        } else {
+            // todo
+        }
+    }
+
+    private fun getProductVariant() {
+        if (NetworkHelper.isNotConnected(this)) {
+            getProductVariantError(if (StampDetailActivity.isVietNamLanguage == false) {
+                "Checking network. Please try again"
+            } else {
+                getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
+            })
+            return
+        }
+
+        lifecycleScope.launch {
+
+
+            withContext(Dispatchers.IO) {
+                viewModel.getVariantProduct()
+            }
+        }
+    }
+
+    private fun getProductVariantError(message: String) {
+        DialogHelper.showConfirm(this@UpdateInformationFirstActivity, message, false, object : ConfirmDialogListener {
+            override fun onDisagree() {
+                onBackPressed()
+            }
+
+            override fun onAgree() {
+                getProductVariant()
+            }
+        })
+    }
+
+    override fun onGetProductVariantSuccess(products: MutableList<ICVariantProductStampV6_1.ICVariant.ICObjectVariant>, productId: Long) {
+        tvSubProductCode.visibility = View.GONE
+        edtProductCode.visibility = View.GONE
+        tvSubProductVariant.visibility = View.VISIBLE
+        edtVariant.visibility = View.VISIBLE
+        presenter.getDataByIntentSecond(intent)
+    }
+
+    override fun onGetProductVariantError() {
+        tvSubProductCode.visibility = View.VISIBLE
+        edtProductCode.visibility = View.VISIBLE
+        tvSubProductVariant.visibility = View.GONE
+        edtVariant.visibility = View.GONE
+        presenter.getDataByIntentSecond(intent)
+    }
+
+
 
     private fun getBody(): HashMap<String, Any>? {
         val body = hashMapOf<String, Any>()
@@ -232,27 +326,13 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
         return body
     }
 
-    private fun searchCustomer() {
-        disposable = RxTextView.afterTextChangeEvents(edtPhone)
-                .skipInitialValue()
-                .debounce(1000, TimeUnit.MILLISECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    if (mId != null) {
-                        presenter.searchInforCustomer(mId!!, edtPhone.text.toString())
-                    }
-                }, {
-                    logError(it)
-                })
-    }
-
     @SuppressLint("SetTextI18n")
     override fun onSearchCustomerFail() {
         runOnUiThread {
             edtName.setText("")
             edtEmail.setText("")
             edtAddress.setText("")
-            if (DetailStampActivity.isVietNamLanguage == false) {
+            if (StampDetailActivity.isVietNamLanguage == false) {
                 edtPhone.hint = "Enter Phone Number"
                 edtName.hint = "Enter Name"
                 edtEmail.hint = "Enter Email"
@@ -270,23 +350,6 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
         }
     }
 
-    override fun onGetDataVariantSuccess(products: MutableList<ICVariantProductStampV6_1.ICVariant.ICObjectVariant>, productId: Long) {
-        mProductId = productId
-        edtVariant.visibility = View.VISIBLE
-        tvSubProductVariant.visibility = View.VISIBLE
-        tvSubProductCode.visibility = View.GONE
-        edtProductCode.visibility = View.GONE
-        presenter.getDataByIntentSecond(intent)
-    }
-
-    override fun onGetDataVariantFail() {
-        tvSubProductCode.visibility = View.VISIBLE
-        edtProductCode.visibility = View.VISIBLE
-        edtVariant.visibility = View.GONE
-        tvSubProductVariant.visibility = View.GONE
-        presenter.getDataByIntentSecond(intent)
-    }
-
     @SuppressLint("SetTextI18n")
     override fun onGetDataIntentSuccess(type: Int, id: Long, phoneNumber: String?, productCode: String?, objVariant: ICVariantProductStampV6_1.ICVariant.ICObjectVariant?) {
         typeUpdateCustomer = type
@@ -296,9 +359,7 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
 
         when (type) {
             1 -> {
-                if (id != null) {
-                    mId = id
-                }
+                distributorID = id
                 //show layout ForceUpdate
                 tvViewForceUpdate.visibility = View.VISIBLE
                 edtProductCode.setText(productCode)
@@ -309,9 +370,7 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
 
             }
             2 -> {
-                if (id != null) {
-                    mId = id
-                }
+                distributorID = id
                 //getData customer ve va show len view
                 tvViewVerifiedPhoneNumber.visibility = View.VISIBLE
                 edtProductCode.setText(productCode)
@@ -367,7 +426,7 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
     override fun onGetDataError(errorType: Int) {
         when (errorType) {
             Constant.ERROR_INTERNET -> {
-                if (DetailStampActivity.isVietNamLanguage == false) {
+                if (StampDetailActivity.isVietNamLanguage == false) {
                     DialogHelper.showConfirm(this@UpdateInformationFirstActivity, "Checking network. Please try again", false, object : ConfirmDialogListener {
                         override fun onDisagree() {
                             onBackPressed()
@@ -400,7 +459,7 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
             edtName.setText("")
             edtEmail.setText("")
             edtAddress.setText("")
-            if (DetailStampActivity.isVietNamLanguage == false) {
+            if (StampDetailActivity.isVietNamLanguage == false) {
                 edtName.hint = "Enter Name"
                 edtEmail.hint = "Enter Email"
                 tvCities.text = "Option"
@@ -435,7 +494,7 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
             if (!customer.name.isNullOrEmpty()) {
                 edtName.setText(customer.name)
             } else {
-                if (DetailStampActivity.isVietNamLanguage == false) {
+                if (StampDetailActivity.isVietNamLanguage == false) {
                     edtName.hint = "Enter Name"
                 } else {
                     edtName.hint = "Nhập họ tên"
@@ -455,18 +514,18 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
                 }
 
             } else {
-                if (DetailStampActivity.isVietNamLanguage == false) {
+                if (StampDetailActivity.isVietNamLanguage == false) {
                     edtPhone.hint = "Enter Phone Number"
                 } else {
                     edtPhone.hint = "Nhập số điện thoại"
                 }
             }
-            searchCustomer()
+            setupSearchCustomer()
 
             if (!customer.email.isNullOrEmpty()) {
                 edtEmail.setText(customer.email)
             } else {
-                if (DetailStampActivity.isVietNamLanguage == false) {
+                if (StampDetailActivity.isVietNamLanguage == false) {
                     edtEmail.hint = "Enter Email"
                 } else {
                     edtEmail.hint = "Nhập email"
@@ -476,7 +535,7 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
             if (!customer.address.isNullOrEmpty()) {
                 edtAddress.setText(customer.address)
             } else {
-                if (DetailStampActivity.isVietNamLanguage == false) {
+                if (StampDetailActivity.isVietNamLanguage == false) {
                     edtAddress.hint = "Enter Address"
                 } else {
                     edtAddress.hint = "Nhập địa chỉ"
@@ -486,7 +545,7 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
             if (!mProductCode.isNullOrEmpty()) {
                 edtProductCode.setText(mProductCode)
             } else {
-                if (DetailStampActivity.isVietNamLanguage == false) {
+                if (StampDetailActivity.isVietNamLanguage == false) {
                     edtProductCode.hint = "Enter Product Code"
                 } else {
                     edtProductCode.hint = "Nhập mã hiệu sản phẩm"
@@ -496,7 +555,7 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
             if (!mVariantName.isNullOrEmpty()) {
                 edtVariant.setText(mVariantName)
             } else {
-                if (DetailStampActivity.isVietNamLanguage == false) {
+                if (StampDetailActivity.isVietNamLanguage == false) {
                     edtVariant.hint = "Enter Variation Code"
                 } else {
                     edtVariant.hint = "Nhập biến thể sản phẩm"
@@ -511,7 +570,7 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
 
     @SuppressLint("SetTextI18n")
     override fun onGetNameCityFail() {
-        if (DetailStampActivity.isVietNamLanguage == false) {
+        if (StampDetailActivity.isVietNamLanguage == false) {
             tvCities.text = "Option"
         } else {
             tvCities.text = "Tùy chọn"
@@ -524,7 +583,7 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
 
     @SuppressLint("SetTextI18n")
     override fun onGetNameDistrictFail() {
-        if (DetailStampActivity.isVietNamLanguage == false) {
+        if (StampDetailActivity.isVietNamLanguage == false) {
             tvDistricts.text = "Option"
         } else {
             tvDistricts.text = "Tùy chọn"
@@ -557,7 +616,7 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
         presenter.cityId = id
         cityId = id
 
-        if (DetailStampActivity.isVietNamLanguage == false) {
+        if (StampDetailActivity.isVietNamLanguage == false) {
             tvDistricts.text = "Option"
         } else {
             tvDistricts.text = "Tùy chọn"
@@ -599,10 +658,10 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
     }
 
     override fun updateInformationCusomterGuaranteeSuccess() {
-        for (act in DetailStampActivity.listActivities) {
+        for (act in StampDetailActivity.listActivities) {
             act.finish()
             EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REFRESH_DATA))
-            if (DetailStampActivity.isVietNamLanguage == false) {
+            if (StampDetailActivity.isVietNamLanguage == false) {
                 showShortSuccess("Successfully updated")
             } else {
                 showShortSuccess("Cập nhật thông tin thành công")
@@ -611,7 +670,7 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
     }
 
     override fun updateInformationCusomterGuaranteeFail() {
-        if (DetailStampActivity.isVietNamLanguage == false) {
+        if (StampDetailActivity.isVietNamLanguage == false) {
             showShortError("Occurred. Please try again")
         } else {
             showShortError(getString(R.string.co_loi_xay_ra_vui_long_thu_lai))

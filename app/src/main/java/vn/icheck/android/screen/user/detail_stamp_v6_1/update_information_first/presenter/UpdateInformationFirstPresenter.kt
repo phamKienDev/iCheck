@@ -12,7 +12,7 @@ import vn.icheck.android.network.feature.user.UserInteractor
 import vn.icheck.android.network.models.ICStatus
 import vn.icheck.android.network.models.detail_stamp_v6_1.*
 import vn.icheck.android.network.util.DeviceUtils
-import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
+import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.view.IUpdateInformationFirstView
 
 /**
@@ -39,9 +39,37 @@ class UpdateInformationFirstPresenter(val view: IUpdateInformationFirstView) : B
         getVariantProduct(productId)
     }
 
+    private fun getVariantProduct(productId: Long) {
+        if (NetworkHelper.isNotConnected(view.mContext)) {
+            view.onGetDataError(Constant.ERROR_INTERNET)
+            return
+        }
+
+        interactor.getVariantProduct(productId, null, object : ICApiListener<ICVariantProductStampV6_1> {
+            override fun onSuccess(obj: ICVariantProductStampV6_1) {
+                if (obj.data != null) {
+                    if (!obj.data?.products.isNullOrEmpty()) {
+                        view.onGetProductVariantSuccess(obj.data?.products!!, productId)
+                    } else {
+                        view.onGetProductVariantError()
+                    }
+                } else {
+                    view.onGetProductVariantError()
+                }
+            }
+
+            override fun onError(error: ICBaseResponse?) {
+                error?.message?.let {
+                    showError(it)
+                    view.onGetProductVariantError()
+                }
+            }
+        })
+    }
+
     fun getDataByIntentSecond(intent: Intent) {
         val typeShow = intent.getIntExtra(Constant.DATA_1, 0)
-        val idDistributor = intent.getLongExtra(Constant.DATA_2, 0)
+        val distributorID = intent.getLongExtra(Constant.DATA_2, 0)
         val phoneNumber = intent.getStringExtra(Constant.DATA_3)
         val productCode = intent.getStringExtra(Constant.DATA_4)
         val serial:String? = intent.getStringExtra(Constant.DATA_5)
@@ -50,7 +78,6 @@ class UpdateInformationFirstPresenter(val view: IUpdateInformationFirstView) : B
         } catch (e: Exception) {
             null
         }
-
         codeStamp = intent.getStringExtra(Constant.DATA_8) ?: ""
 
         if (typeShow == 1 || typeShow == 2) {
@@ -66,35 +93,8 @@ class UpdateInformationFirstPresenter(val view: IUpdateInformationFirstView) : B
             totalRequest = 1
             getFieldListGuarantee()
         }
-        view.onGetDataIntentSuccess(typeShow, idDistributor, phoneNumber, productCode, objVariant)
-    }
 
-    private fun getVariantProduct(productId: Long) {
-        if (NetworkHelper.isNotConnected(view.mContext)) {
-            view.onGetDataError(Constant.ERROR_INTERNET)
-            return
-        }
-
-        interactor.getVariantProduct(productId, null, object : ICApiListener<ICVariantProductStampV6_1> {
-            override fun onSuccess(obj: ICVariantProductStampV6_1) {
-                if (obj.data != null) {
-                    if (!obj.data?.products.isNullOrEmpty()) {
-                        view.onGetDataVariantSuccess(obj.data?.products!!, productId)
-                    } else {
-                        view.onGetDataVariantFail()
-                    }
-                } else {
-                    view.onGetDataVariantFail()
-                }
-            }
-
-            override fun onError(error: ICBaseResponse?) {
-                error?.message?.let {
-                    showError(it)
-                    view.onGetDataVariantFail()
-                }
-            }
-        })
+        view.onGetDataIntentSuccess(typeShow, distributorID, phoneNumber, productCode, objVariant)
     }
 
     private fun getFieldListGuarantee() {
@@ -306,7 +306,7 @@ class UpdateInformationFirstPresenter(val view: IUpdateInformationFirstView) : B
 
         val deviceId = DeviceUtils.getUniqueDeviceId()
 
-        interactor.updateInfomationGuarantee(obj, deviceId, mId, productCode, DetailStampActivity.mSerial, variant, body, object : ICApiListener<IC_RESP_UpdateCustomerGuarantee> {
+        interactor.updateInfomationGuarantee(obj, deviceId, mId, productCode, StampDetailActivity.mSerial, variant, body, object : ICApiListener<IC_RESP_UpdateCustomerGuarantee> {
             override fun onSuccess(obj: IC_RESP_UpdateCustomerGuarantee) {
                 if (obj.status == 200) {
                     view.updateInformationCusomterGuaranteeSuccess()

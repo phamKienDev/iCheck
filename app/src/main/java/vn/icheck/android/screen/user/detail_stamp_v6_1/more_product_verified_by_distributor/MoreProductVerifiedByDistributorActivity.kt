@@ -10,7 +10,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivity
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICObjectListMoreProductVerified
-import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
+import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.more_product_verified_by_distributor.adapter.MoreProductVerifiedByDistributorAdapter
 import vn.icheck.android.screen.user.detail_stamp_v6_1.more_product_verified_by_distributor.presenter.MoreProductVerifiedByDistributorPresenter
 import vn.icheck.android.screen.user.detail_stamp_v6_1.more_product_verified_by_distributor.view.IMoreProductVerifiedByDistributorView
@@ -28,7 +28,7 @@ class MoreProductVerifiedByDistributorActivity : BaseActivity<MoreProductVerifie
 
     override fun onInitView() {
         initRecyclerView()
-        if (DetailStampActivity.isVietNamLanguage == false){
+        if (StampDetailActivity.isVietNamLanguage == false){
             txtTitle.text = "Related Product"
         } else {
             txtTitle.text = "Sản phẩm liên quan"
@@ -39,7 +39,7 @@ class MoreProductVerifiedByDistributorActivity : BaseActivity<MoreProductVerifie
     }
 
     private fun initRecyclerView() {
-        adapter = MoreProductVerifiedByDistributorAdapter(this,DetailStampActivity.isVietNamLanguage)
+        adapter = MoreProductVerifiedByDistributorAdapter(this,StampDetailActivity.isVietNamLanguage)
         val layoutManager = GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false)
         rcvMoreProductVerifiedByDistributor.layoutManager = layoutManager
 
@@ -73,7 +73,7 @@ class MoreProductVerifiedByDistributorActivity : BaseActivity<MoreProductVerifie
     override fun onGetDataError(errorType: Int) {
         when (errorType) {
             Constant.ERROR_UNKNOW -> {
-                if (DetailStampActivity.isVietNamLanguage == false){
+                if (StampDetailActivity.isVietNamLanguage == false){
                     adapter.setErrorCode("Occurred. Please try again")
                 } else {
                     adapter.setErrorCode(getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
@@ -81,7 +81,7 @@ class MoreProductVerifiedByDistributorActivity : BaseActivity<MoreProductVerifie
             }
 
             Constant.ERROR_EMPTY -> {
-                if (DetailStampActivity.isVietNamLanguage == false){
+                if (StampDetailActivity.isVietNamLanguage == false){
                     adapter.setErrorCode("No Data")
                 } else {
                     adapter.setErrorCode(getString(R.string.khong_co_du_lieu))
@@ -89,7 +89,7 @@ class MoreProductVerifiedByDistributorActivity : BaseActivity<MoreProductVerifie
             }
 
             Constant.ERROR_INTERNET -> {
-                if (DetailStampActivity.isVietNamLanguage == false){
+                if (StampDetailActivity.isVietNamLanguage == false){
                     adapter.setErrorCode("Checking network. Please try again")
                 } else {
                     adapter.setErrorCode(getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))

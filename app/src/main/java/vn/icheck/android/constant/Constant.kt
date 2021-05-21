@@ -60,9 +60,9 @@ object Constant {
     const val DATA_3 = "data_3"
     const val DATA_4 = "data_4"
     const val DATA_5 = "data_5"
-    const val DATA_6 = "data_5"
-    const val DATA_7 = "data_5"
-    const val DATA_8 = "data_5"
+    const val DATA_6 = "data_6"
+    const val DATA_7 = "data_7"
+    const val DATA_8 = "data_8"
 
     const val ID = "id"
     const val CODE = "code"

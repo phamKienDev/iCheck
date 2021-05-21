@@ -14,7 +14,7 @@ import vn.icheck.android.network.models.ICStatus
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICUpdateCustomerGuarantee
 import vn.icheck.android.network.models.detail_stamp_v6_1.IC_RESP_UpdateCustomerGuarantee
 import vn.icheck.android.network.util.DeviceUtils
-import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
+import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.otp_information_guarantee.view.IVerifyOTPGuaranteeView
 
 /**
@@ -153,7 +153,7 @@ class VerifyOTPGuaranteePresenter(val view: IVerifyOTPGuaranteeView) : BaseActiv
 
         val deviceId = DeviceUtils.getUniqueDeviceId()
 
-        interactor.updateInfomationGuarantee(obj!!, deviceId, mId, mProductCode, DetailStampActivity.mSerial, mProductVariant, body, object : ICApiListener<IC_RESP_UpdateCustomerGuarantee> {
+        interactor.updateInfomationGuarantee(obj!!, deviceId, mId, mProductCode, StampDetailActivity.mSerial, mProductVariant, body, object : ICApiListener<IC_RESP_UpdateCustomerGuarantee> {
             override fun onSuccess(obj: IC_RESP_UpdateCustomerGuarantee) {
                 if (obj.status == 200) {
                     view.updateInformationCusomterGuaranteeSuccess()

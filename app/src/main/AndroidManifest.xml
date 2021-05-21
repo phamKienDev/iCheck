@@ -821,7 +821,7 @@
             android:theme="@style/AppTheme_White"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".screen.user.detail_stamp_v6_1.home.DetailStampActivity"
+            android:name=".screen.user.detail_stamp_v6_1.home.StampDetailActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity

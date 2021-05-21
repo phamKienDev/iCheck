@@ -73,7 +73,7 @@ import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.DetailStampHoaPh
 import vn.icheck.android.screen.user.detail_stamp_thinh_long.home.DetailStampThinhLongActivity
 import vn.icheck.android.screen.user.detail_stamp_v5.home.DetailStampV5Activity
 import vn.icheck.android.screen.user.detail_stamp_v6.home.DetailStampV6Activity
-import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
+import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.screen.user.edit_review.EditReviewActivity
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
@@ -1009,7 +1009,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                     checkStampQr(viewModel.codeScan)
                 }
                 else -> {
-                    ActivityUtils.startActivity<DetailStampActivity, String>(this, Constant.DATA, it.code!!)
+                    ActivityUtils.startActivity<StampDetailActivity, String>(this, Constant.DATA, it.code!!)
                 }
             }
         })
@@ -1045,7 +1045,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                     WebViewActivity.start(this, it, 1, null, true)
                 }
                 it.contains("dev-qcheck.icheck.vn") || it.contains("qcheck-dev.vn") || it.contains("qcheck.vn") || it.contains("qrcode.icheck.com.vn") -> {
-                    ActivityUtils.startActivity<DetailStampActivity, String>(this, Constant.DATA, it)
+                    ActivityUtils.startActivity<StampDetailActivity, String>(this, Constant.DATA, it)
                 }
                 it.contains("ktra.vn") -> {
                     var path = URL(it).path
@@ -1302,7 +1302,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
             }
 
             override fun onGoToDetail(code: String?) {
-                ActivityUtils.startActivity<DetailStampActivity, String>(this@V6ScanditActivity, Constant.DATA, codeStamp)
+                ActivityUtils.startActivity<StampDetailActivity, String>(this@V6ScanditActivity, Constant.DATA, codeStamp)
             }
 
             override fun onGoToSms(target: String?, content: String?) {

@@ -46,7 +46,7 @@ import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.DetailStampHoaPh
 import vn.icheck.android.screen.user.detail_stamp_thinh_long.home.DetailStampThinhLongActivity
 import vn.icheck.android.screen.user.detail_stamp_v5.home.DetailStampV5Activity
 import vn.icheck.android.screen.user.detail_stamp_v6.home.DetailStampV6Activity
-import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
+import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.screen.user.history_search.HistorySearchActivity
 import vn.icheck.android.screen.user.home.HomeActivity
 import vn.icheck.android.screen.user.scan_history.adapter.ScanHistoryAdapter
@@ -203,7 +203,7 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
             if (it.code.isNullOrEmpty()) {
                 checkStampQr(codeQr)
             } else {
-                ActivityUtils.startActivity<DetailStampActivity, String>(requireActivity(), Constant.DATA, it.code!!)
+                ActivityUtils.startActivity<StampDetailActivity, String>(requireActivity(), Constant.DATA, it.code!!)
             }
         })
 
@@ -231,7 +231,7 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
             }
 
             override fun onGoToDetail(code: String?) {
-                ActivityUtils.startActivity<DetailStampActivity, String>(requireActivity(), Constant.DATA, codeStamp)
+                ActivityUtils.startActivity<StampDetailActivity, String>(requireActivity(), Constant.DATA, codeStamp)
             }
 
             override fun onGoToSms(target: String?, content: String?) {
@@ -283,7 +283,7 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
                 WebViewActivity.start(requireActivity(), it, 1, null, true)
             }
             it.contains("dev-qcheck.icheck.vn") || it.contains("qcheck-dev.vn") || it.contains("qcheck.vn") || it.contains("qrcode.icheck.com.vn") -> {
-                ActivityUtils.startActivity<DetailStampActivity, String>(requireActivity(), Constant.DATA, it)
+                ActivityUtils.startActivity<StampDetailActivity, String>(requireActivity(), Constant.DATA, it)
             }
             it.contains("ktra.vn") -> {
                 var path = URL(it).path

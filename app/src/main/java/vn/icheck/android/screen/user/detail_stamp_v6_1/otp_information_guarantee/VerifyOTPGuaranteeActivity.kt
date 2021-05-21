@@ -2,7 +2,6 @@ package vn.icheck.android.screen.user.detail_stamp_v6_1.otp_information_guarante
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.Intent
 import android.os.CountDownTimer
 import android.text.Editable
 import android.text.Html
@@ -13,10 +12,9 @@ import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivity
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
-import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICUpdateCustomerGuarantee
-import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
+import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.otp_information_guarantee.presenter.VerifyOTPGuaranteePresenter
 import vn.icheck.android.screen.user.detail_stamp_v6_1.otp_information_guarantee.view.IVerifyOTPGuaranteeView
 import vn.icheck.android.util.KeyboardUtils
@@ -34,7 +32,7 @@ class VerifyOTPGuaranteeActivity : BaseActivity<VerifyOTPGuaranteePresenter>(),I
     @SuppressLint("SetTextI18n")
     override fun onInitView() {
         presenter.getDataByIntent(intent)
-        if (DetailStampActivity.isVietNamLanguage == false) {
+        if (StampDetailActivity.isVietNamLanguage == false) {
             txtTitle.text = "Enter verified code"
             txtOtp.text = "Verified code"
             txtStatus.text = "Resend code"
@@ -68,7 +66,7 @@ class VerifyOTPGuaranteeActivity : BaseActivity<VerifyOTPGuaranteePresenter>(),I
         })
 
         txtStatus.setOnClickListener {
-            if (DetailStampActivity.isVietNamLanguage == false){
+            if (StampDetailActivity.isVietNamLanguage == false){
                 if (txtStatus.text.toString() == "Resend code") {
                     progressBar.visibility = View.VISIBLE
                     txtStatus.text = "Sending code"
@@ -92,7 +90,7 @@ class VerifyOTPGuaranteeActivity : BaseActivity<VerifyOTPGuaranteePresenter>(),I
 
     @SuppressLint("SetTextI18n")
     private fun showTextTime(isShow: Boolean) {
-        if (DetailStampActivity.isVietNamLanguage == false){
+        if (StampDetailActivity.isVietNamLanguage == false){
             if (isShow) {
                 txtTime.visibility = View.VISIBLE
                 txtTime.text = getString(R.string.khong_nhan_duoc_ma_xac_nhan_gui_lai_sau_xxx_giay_en, "60")
@@ -124,7 +122,7 @@ class VerifyOTPGuaranteeActivity : BaseActivity<VerifyOTPGuaranteePresenter>(),I
     }
 
     override fun onGetDataError() {
-        if (DetailStampActivity.isVietNamLanguage == false) {
+        if (StampDetailActivity.isVietNamLanguage == false) {
             DialogHelper.showNotification(this, R.string.co_loi_xay_ra_vui_long_thu_lai_en, false, object : NotificationDialogListener {
                 override fun onDone() {
                     onBackPressed()
@@ -142,7 +140,7 @@ class VerifyOTPGuaranteeActivity : BaseActivity<VerifyOTPGuaranteePresenter>(),I
     override fun onGetDataIntentSuccess(obj: ICUpdateCustomerGuarantee) {
         KeyboardUtils.showSoftInput(edtOtp)
 
-        if (DetailStampActivity.isVietNamLanguage == false){
+        if (StampDetailActivity.isVietNamLanguage == false){
             txtContent.text = Html.fromHtml(getString(R.string.otp_content_xxx_en, obj.phone))
         } else {
             txtContent.text = Html.fromHtml(getString(R.string.otp_content_xxx, obj.phone))
@@ -164,7 +162,7 @@ class VerifyOTPGuaranteeActivity : BaseActivity<VerifyOTPGuaranteePresenter>(),I
 
             override fun onTick(millisecond: Long) {
                 this@VerifyOTPGuaranteeActivity.let {
-                    if (DetailStampActivity.isVietNamLanguage == false) {
+                    if (StampDetailActivity.isVietNamLanguage == false) {
                         txtTime?.text = it.getString(R.string.khong_nhan_duoc_ma_xac_nhan_gui_lai_sau_xxx_giay_en, (millisecond / 1000).toString())
                     } else {
                         txtTime?.text = it.getString(R.string.khong_nhan_duoc_ma_xac_nhan_gui_lai_sau_xxx_giay, (millisecond / 1000).toString())
@@ -178,7 +176,7 @@ class VerifyOTPGuaranteeActivity : BaseActivity<VerifyOTPGuaranteePresenter>(),I
 
     override fun updateInformationCusomterGuaranteeSuccess() {
         setResult(Activity.RESULT_OK)
-        if (DetailStampActivity.isVietNamLanguage == false) {
+        if (StampDetailActivity.isVietNamLanguage == false) {
             showShortSuccess("Successfully updated")
         } else {
             showShortSuccess("Cập nhật thông tin thành công")
@@ -187,7 +185,7 @@ class VerifyOTPGuaranteeActivity : BaseActivity<VerifyOTPGuaranteePresenter>(),I
     }
 
     override fun updateInformationCusomterGuaranteeFail() {
-        if (DetailStampActivity.isVietNamLanguage == false) {
+        if (StampDetailActivity.isVietNamLanguage == false) {
             showShortError("Occurred. Please try again")
         } else {
             showShortError(getString(R.string.co_loi_xay_ra_vui_long_thu_lai))

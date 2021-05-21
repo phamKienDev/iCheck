@@ -860,6 +860,18 @@ class DetailStampRepository : BaseRepository() {
         composite.add(disposable)
     }
 
+    suspend fun getProductVariant(productID: Long, page: Int? = null): ICResponse<ICVariantProductStampV6_1> {
+        val fields = HashMap<String, Any>()
+
+        if (page != null) {
+            fields["offset"] = page
+        }
+        fields["limit"] = APIConstants.LIMIT
+
+        val host = APIConstants.DETAIL_STAMP_HOST + APIConstants.VARIANTPRODUCT().replace("{product_id}", productID.toString())
+        return ICNetworkClient.getStampClient().getProductVariant(host, fields)
+    }
+
     fun getFieldListGuarantee(codeStamp: String, listener: ICApiListener<ICResponse<MutableList<ICFieldGuarantee>>>) {
         val host = APIConstants.DETAIL_STAMP_HOST + APIConstants.GETFIELDLISTGUARANTEE().replace("{code}", codeStamp)
         val disposable = ICNetworkClient.getStampClient().getFieldListGuarantee(host)

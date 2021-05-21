@@ -12,7 +12,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICVariantProductStampV6_1
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICVerifiedPhone
-import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
+import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.UpdateInformationFirstActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.verified_phone.presenter.VerifiedPhonePresenter
 import vn.icheck.android.screen.user.detail_stamp_v6_1.verified_phone.view.IVerifiedPhoneView
@@ -34,10 +34,10 @@ class VerifiedPhoneActivity : BaseActivity<VerifiedPhonePresenter>(), IVerifiedP
 
     @SuppressLint("SetTextI18n")
     override fun onInitView() {
-        DetailStampActivity.listActivities.add(this)
+        StampDetailActivity.listActivities.add(this)
         presenter.onGetDataIntent(intent)
 
-        if (DetailStampActivity.isVietNamLanguage == false){
+        if (StampDetailActivity.isVietNamLanguage == false){
             txtTitle.text = "Activated Phone Number"
             tvMessTitleVerifyPhone.text = "Enter the actived phone number for this product before updating new information"
             tvSubTel.text = "Phone Number"
@@ -69,7 +69,7 @@ class VerifiedPhoneActivity : BaseActivity<VerifiedPhonePresenter>(), IVerifiedP
     }
 
     override fun onErrorIntent() {
-        if (DetailStampActivity.isVietNamLanguage == false) {
+        if (StampDetailActivity.isVietNamLanguage == false) {
             DialogHelper.showNotification(this, "Occurred. Please try again", false, object : NotificationDialogListener {
                 override fun onDone() {
                     onBackPressed()
@@ -107,7 +107,7 @@ class VerifiedPhoneActivity : BaseActivity<VerifiedPhonePresenter>(), IVerifiedP
             intent.putExtra(Constant.DATA_8, mCodeStamp)
             startActivity(intent)
         } else {
-            if (DetailStampActivity.isVietNamLanguage == false) {
+            if (StampDetailActivity.isVietNamLanguage == false) {
                 val obj = object : NotificationDialog(this, null, "The entered phone number does not match with the activated phone number of the stamp. Please try again!", "OK", false) {
                     override fun onDone() {
                         dismiss()
@@ -128,7 +128,7 @@ class VerifiedPhoneActivity : BaseActivity<VerifiedPhonePresenter>(), IVerifiedP
     }
 
     override fun onVerifiedPhoneFail() {
-        if (DetailStampActivity.isVietNamLanguage == false) {
+        if (StampDetailActivity.isVietNamLanguage == false) {
             showShortError("Occurred. Please try again")
         } else {
             showShortError(getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
@@ -142,6 +142,6 @@ class VerifiedPhoneActivity : BaseActivity<VerifiedPhonePresenter>(), IVerifiedP
 
     override fun onDestroy() {
         super.onDestroy()
-        DetailStampActivity.listActivities.remove(this)
+        StampDetailActivity.listActivities.remove(this)
     }
 }

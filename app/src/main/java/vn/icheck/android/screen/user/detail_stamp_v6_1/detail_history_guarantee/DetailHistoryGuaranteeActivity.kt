@@ -21,7 +21,7 @@ import vn.icheck.android.network.models.detail_stamp_v6_1.ICResp_Note_Guarantee
 import vn.icheck.android.screen.user.detail_stamp_v6_1.detail_history_guarantee.adapter.ListNoteHistoryAdapter
 import vn.icheck.android.screen.user.detail_stamp_v6_1.detail_history_guarantee.presenter.DetailHistoryGuaranteePresenter
 import vn.icheck.android.screen.user.detail_stamp_v6_1.detail_history_guarantee.view.IDetaiHistoryGuaranteeView
-import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
+import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.screen.user.view_item_image_stamp.ViewItemImageActivity
 import vn.icheck.android.ui.view.TextBody1
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -38,7 +38,7 @@ class DetailHistoryGuaranteeActivity : BaseActivity<DetailHistoryGuaranteePresen
     private val adapter = ListNoteHistoryAdapter()
 
     override fun onInitView() {
-        if (DetailStampActivity.isVietNamLanguage == false) {
+        if (StampDetailActivity.isVietNamLanguage == false) {
             txtTitle.text = "Details of warranty information"
             tvCustomerInfor.text = "Customer Information"
             tvWarrantyInfor.text = "Warranty Information"
@@ -209,7 +209,7 @@ class DetailHistoryGuaranteeActivity : BaseActivity<DetailHistoryGuaranteePresen
         }
 
         if (!item.note.isNullOrEmpty()) {
-            if (DetailStampActivity.isVietNamLanguage == false) {
+            if (StampDetailActivity.isVietNamLanguage == false) {
                 layoutContent.addView(createTableRow("Notes of Warranty return:", item.note))
             } else {
                 layoutContent.addView(createTableRow("Ghi chú trả BH:", item.note))
@@ -233,7 +233,7 @@ class DetailHistoryGuaranteeActivity : BaseActivity<DetailHistoryGuaranteePresen
         }
 
         if (item.extra != null) {
-            if (DetailStampActivity.isVietNamLanguage == false) {
+            if (StampDetailActivity.isVietNamLanguage == false) {
                 layoutContent.addView(createTableRow("Variation:", item.extra?.extra))
             } else {
                 layoutContent.addView(createTableRow("Biến thể:", item.extra?.extra))
