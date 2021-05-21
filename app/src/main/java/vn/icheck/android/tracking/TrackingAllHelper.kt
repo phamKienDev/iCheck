@@ -96,6 +96,23 @@ object TrackingAllHelper {
         TekoHelper.tagScanSuccessful(obj)
     }
 
+
+    fun trackScanBarcodeSuccess(obj: ICDataProductDetail) {
+        InsiderHelper.tagScanBarcodeSuccess(obj)
+    }
+
+    fun trackScanBarcodeViewedSuccess(obj: ICDataProductDetail) {
+        InsiderHelper.tagScanBarcodeViewedSuccess(obj)
+    }
+
+    fun trackScanBarcodeFailed(barcode:String, status:String) {
+        InsiderHelper.tagScanBarcodeFailed(barcode, status)
+    }
+
+    fun trackScanQrcode(content:String, icheck:Boolean) {
+        InsiderHelper.tagScanQrcode(content, icheck)
+    }
+
     fun trackScanStart(scan_type: String) {
         TrackingFirebaseHelper.tagScanStart(scan_type)
         InsiderHelper.tagScanStart(scan_type)
