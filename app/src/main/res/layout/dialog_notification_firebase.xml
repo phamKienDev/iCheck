@@ -23,8 +23,8 @@
         android:background="@drawable/bg_white_corners_10"
         android:orientation="vertical"
         android:paddingStart="@dimen/size_10"
-        android:paddingTop="@dimen/size_18"
-        android:paddingEnd="@dimen/size_12"
+        android:paddingTop="@dimen/size_10"
+        android:paddingEnd="@dimen/size_10"
         android:paddingBottom="@dimen/size_10"
         android:visibility="visible">
 
@@ -44,7 +44,7 @@
         android:paddingStart="@dimen/size_12"
         android:paddingTop="@dimen/size_20"
         android:paddingEnd="@dimen/size_12"
-        android:paddingBottom="@dimen/size_12"
+        android:paddingBottom="@dimen/size_20"
         android:visibility="gone">
 
         <WebView

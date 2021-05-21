@@ -53,7 +53,7 @@ class AdsMoreActivity : BaseActivityGame() {
         recyclerView.setHasFixedSize(true)
         recyclerView.setScrollSpeed()
         recyclerView.layoutManager = if (viewModel.adsModel?.type == Constant.HORIZONTAL) {
-            LinearLayoutManager(this@AdsMoreActivity, LinearLayoutManager.HORIZONTAL, false)
+            LinearLayoutManager(this@AdsMoreActivity, LinearLayoutManager.VERTICAL, false)
         } else {
             GridLayoutManager(this@AdsMoreActivity, 2, GridLayoutManager.VERTICAL, false)
         }
