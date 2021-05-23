@@ -473,16 +473,19 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
 
         viewModel.onAddLayout.observe(this) {
             if (it.viewType == ICViewTypes.HEADER_TYPE) {
-                if (productViewedInsider) {
-                    viewModel.productDetail?.let { productDetail ->
+                viewModel.productDetail?.let { productDetail ->
+                    if (productViewedInsider) {
                         TrackingAllHelper.trackProductViewed(productDetail)
                         if (intent.getBooleanExtra(Constant.DATA_2, false)) {
                             TrackingAllHelper.trackScanSuccessful(productDetail)
+                            TrackingAllHelper.trackScanBarcodeSuccess(productDetail)
                             intent.putExtra(Constant.DATA_2, false)
                         }
                         productViewedInsider = false
                     }
+                    TrackingAllHelper.trackScanBarcodeViewedSuccess(productDetail)
                 }
+
             }
             imgActionGray.beVisible()
             layoutBottom.beVisible()
@@ -640,6 +643,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
 
         swipeLayout.setOnRefreshListener {
             getLayoutData()
+            adapter.setRefeshTextReview(true)
         }
     }
 
@@ -1028,7 +1032,8 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                         } else if (adapter.getListData[index].viewType == ICViewTypes.LIST_REVIEWS_TYPE) {
                             (adapter.getListData[index].data as ProductListReviewModel).data.forEachIndexed { indexReview, icPost ->
                                 if ((adapter.getListData[index].data as ProductListReviewModel).data[indexReview].id == event.data.id) {
-                                    (adapter.getListData[index].data as ProductListReviewModel).data[indexReview] = event.data
+                                    (adapter.getListData[index].data as ProductListReviewModel).data[indexReview] =
+                                        event.data
                                     adapter.notifyItemChanged(index)
                                 }
                             }

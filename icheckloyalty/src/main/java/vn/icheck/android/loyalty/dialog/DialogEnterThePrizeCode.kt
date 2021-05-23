@@ -2,7 +2,10 @@ package vn.icheck.android.loyalty.dialog
 
 import android.content.Context
 import android.os.Handler
+import android.text.Editable
+import android.text.TextWatcher
 import kotlinx.android.synthetic.main.dialog_enter_the_prize_code.*
+import kotlinx.android.synthetic.main.item_loyalty_holder.view.*
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.dialog.base.BaseDialog
 import vn.icheck.android.loyalty.base.setGone
@@ -16,6 +19,7 @@ import vn.icheck.android.loyalty.model.ICKResponse
 import vn.icheck.android.loyalty.network.ICApiListener
 import vn.icheck.android.loyalty.repository.RedeemPointRepository
 import vn.icheck.android.loyalty.utils.KeyboardUtils
+import java.util.*
 
 abstract class DialogEnterThePrizeCode(
         context: Context,
@@ -28,6 +32,26 @@ abstract class DialogEnterThePrizeCode(
 ) : BaseDialog(context, R.style.DialogTheme) {
     private val repository = RedeemPointRepository()
 
+    private val textWatcher = object : TextWatcher {
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+        }
+
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            edtInput.removeTextChangedListener(this)
+
+            edtInput.setText(edtInput.text.toString().toUpperCase(Locale.getDefault()))
+
+            edtInput.setSelection(edtInput.text.toString().length)
+
+            edtInput.addTextChangedListener(this)
+        }
+
+        override fun afterTextChanged(p0: Editable?) {
+
+        }
+    }
+
     override val getLayoutID: Int
         get() = R.layout.dialog_enter_the_prize_code
     override val getIsCancelable: Boolean
@@ -36,6 +60,9 @@ abstract class DialogEnterThePrizeCode(
     override fun onInitView() {
         edtInput.requestFocus()
         KeyboardUtils.showSoftInput(edtInput)
+
+        edtInput.removeTextChangedListener(textWatcher)
+        edtInput.addTextChangedListener(textWatcher)
 
         imgTitle.setImageResource(title)
 

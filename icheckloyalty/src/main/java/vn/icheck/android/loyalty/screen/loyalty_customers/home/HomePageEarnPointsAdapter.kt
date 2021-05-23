@@ -114,10 +114,16 @@ internal class HomePageEarnPointsAdapter(private val banner: String?, private va
         override fun bind(obj: ICKLongTermProgram) {
             WidgetHelper.loadImageUrl(itemView.imgBanner, banner)
 
-            itemView.tvNameUser.text = if (obj.customer?.name.isNullOrEmpty()) {
+            val name = if (obj.customer?.name.isNullOrEmpty()) {
                 "Chào ${SessionManager.session.user?.name},"
             } else {
                 "Chào ${obj.customer?.name},"
+            }
+
+            itemView.tvNameUser.text = if (name.contains("null")) {
+                "Chào bạn,"
+            } else {
+                name
             }
 
             itemView.tvPoint.text = TextHelper.formatMoneyPhay(obj.point?.points

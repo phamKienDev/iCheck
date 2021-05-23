@@ -20,7 +20,7 @@ class NewsListV2Adapter(val listener: IRecyclerViewCallback) : RecyclerView.Adap
     private val itemMessage = 3
 
     private var mMessageError: String? = null
-    private var iconMessage = R.drawable.ic_error_request
+    private var iconMessage = R.drawable.ic_default_loyalty
     private var isLoading = false
     private var isLoadMore = false
 
@@ -117,14 +117,14 @@ class NewsListV2Adapter(val listener: IRecyclerViewCallback) : RecyclerView.Adap
             }
             is MessageHolder -> {
                 if (mMessageError.isNullOrEmpty()) {
-                    holder.bind(iconMessage, "Không có bản tin mới nào!")
+                    holder.bind(iconMessage, message = "Chưa có tin tức nào!", buttonID = -1)
                 } else {
                     holder.bind(iconMessage, mMessageError!!)
-                }
 
-                holder.listener(View.OnClickListener {
-                    listener.onMessageClicked()
-                })
+                    holder.listener(View.OnClickListener {
+                        listener.onMessageClicked()
+                    })
+                }
             }
         }
     }

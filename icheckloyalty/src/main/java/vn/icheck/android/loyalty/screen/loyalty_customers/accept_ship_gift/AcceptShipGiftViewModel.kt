@@ -19,7 +19,7 @@ class AcceptShipGiftViewModel : BaseViewModel<Any>() {
     private val repository = LoyaltyCustomersRepository()
 
     val onSuccessRedemption = MutableLiveData<ICKRedemptionHistory?>()
-    val onSuccessVoucher = MutableLiveData<String>()
+    val onSuccessVoucher = MutableLiveData<Long>()
     val onSuccessReceiveGift = MutableLiveData<ICKWinner?>()
     val onSuccessUsedVoucher = MutableLiveData<String>()
 
@@ -124,11 +124,18 @@ class AcceptShipGiftViewModel : BaseViewModel<Any>() {
 
         var isSuccess = true
 
-        if (name.isNullOrEmpty()) {
-            isSuccess = false
-            onErrorName.postValue("Vui lòng nhập tên")
-        } else {
-            onErrorName.postValue("")
+        when {
+            name.isNullOrEmpty() -> {
+                isSuccess = false
+                onErrorName.postValue("Vui lòng nhập tên")
+            }
+            name.length > 255 -> {
+                isSuccess = false
+                onErrorName.postValue("Họ và tên không nhập quá 255 kí tự")
+            }
+            else -> {
+                onErrorName.postValue("")
+            }
         }
 
         val validPhone = ValidHelper.validPhoneNumber(ApplicationHelper.getApplicationByReflect(), phone)
@@ -199,7 +206,7 @@ class AcceptShipGiftViewModel : BaseViewModel<Any>() {
                     repository.exchangeCardGiftVQMM(null, collectionID, phone, object : ICApiListener<ICKResponse<ICKRedemptionHistory>> {
                         override fun onSuccess(obj: ICKResponse<ICKRedemptionHistory>) {
                             if (obj.statusCode == 200) {
-                                onSuccessVoucher.postValue("SUCCESS")
+                                onSuccessVoucher.postValue(obj.data?.id)
                             } else {
                                 showError.postValue(obj.data?.message
                                         ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
@@ -234,9 +241,14 @@ class AcceptShipGiftViewModel : BaseViewModel<Any>() {
         }
     }
 
-    fun usedVoucher(voucher: String, note: String?, name: String, phone: String, email: String?, address: String){
+    fun usedVoucher(voucher: String, note: String?, name: String, phone: String, email: String?, address: String) {
         if (NetworkHelper.isNotConnected(ApplicationHelper.getApplicationByReflect())) {
             checkError(false)
+            return
+        }
+
+        if (name.length > 100) {
+            onErrorName.postValue("Tên bạn nhập quá dài!")
             return
         }
 

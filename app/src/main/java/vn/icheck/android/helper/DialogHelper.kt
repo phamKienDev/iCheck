@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
 import com.facebook.shimmer.ShimmerFrameLayout
-import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.accecp_ship_gift.DialogAcceptShipGift
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
@@ -27,7 +26,6 @@ import vn.icheck.android.base.dialog.notify.notification.NotificationDialog
 import vn.icheck.android.base.dialog.notify.shaking.DialogEmtyBoxGift
 import vn.icheck.android.base.dialog.reward_login.RewardLoginCallback
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
-import vn.icheck.android.base.dialog.reward_login.RewardLoginDialogV2
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.models.ICMission
 import vn.icheck.android.screen.account.home.AccountActivity
@@ -426,7 +424,7 @@ object DialogHelper {
     }
 
     fun showLoginPopup(activity: Activity) {
-        RewardLoginDialogV2.show((activity as AppCompatActivity).supportFragmentManager, object : RewardLoginCallback {
+        RewardLoginDialog.show((activity as AppCompatActivity).supportFragmentManager, object : RewardLoginCallback {
             override fun onLogin() {
                 ActivityUtils.startActivity<AccountActivity>(activity)
             }

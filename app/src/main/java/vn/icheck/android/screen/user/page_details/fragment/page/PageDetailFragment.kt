@@ -20,7 +20,7 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.dialog.reward_login.RewardLoginCallback
-import vn.icheck.android.base.dialog.reward_login.RewardLoginDialogV2
+import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
 import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.IRecyclerViewCallback
@@ -573,7 +573,7 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
 
     private fun showRequireLogin() {
         ICheckApplication.currentActivity()?.let { activity ->
-            RewardLoginDialogV2.show((activity as AppCompatActivity).supportFragmentManager, object : RewardLoginCallback {
+            RewardLoginDialog.show((activity as AppCompatActivity).supportFragmentManager, object : RewardLoginCallback {
                 override fun onLogin() {
                     val intent = Intent(context, IckLoginActivity::class.java)
                     startActivityForResult(intent, requireLogin)

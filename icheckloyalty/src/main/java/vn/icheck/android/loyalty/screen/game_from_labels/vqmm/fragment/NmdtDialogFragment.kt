@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,11 +16,34 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import kotlinx.android.synthetic.main.fragment_nmdt.*
+import kotlinx.android.synthetic.main.item_loyalty_holder.view.*
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.screen.game_from_labels.vqmm.viewmodel.LuckyGameViewModel
 import vn.icheck.android.loyalty.screen.game_from_labels.vqmm.viewmodel.LuckyGameViewModelFactory
+import java.util.*
 
 class NmdtDialogFragment : DialogFragment() {
+
+    private val textWatcher = object : TextWatcher {
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+        }
+
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            edt_nmdt.removeTextChangedListener(this)
+
+            edt_nmdt.setText(edt_nmdt.text.toString().toUpperCase(Locale.getDefault()))
+
+            edt_nmdt.setSelection(edt_nmdt.text.toString().length)
+
+            edt_nmdt.addTextChangedListener(this)
+        }
+
+        override fun afterTextChanged(p0: Editable?) {
+
+        }
+    }
 
     val args: NmdtDialogFragmentArgs by navArgs()
     private val luckyGameViewModel: LuckyGameViewModel by activityViewModels() {
@@ -34,6 +59,10 @@ class NmdtDialogFragment : DialogFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         dialog?.window?.attributes?.windowAnimations = R.style.game_lucky_wheel_dialog_animation
+
+        edt_nmdt.removeTextChangedListener(textWatcher)
+        edt_nmdt.addTextChangedListener(textWatcher)
+
         btn_close.setOnClickListener {
             dismiss()
         }

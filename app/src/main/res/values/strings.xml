@@ -804,7 +804,7 @@
     <string name="bao_cao_trang">Báo cáo trang</string>
     <string name="ban_chua_co_trang_nao">Bạn chưa có trang nào</string>
     <string name="da_xac_thuc">Đã xác thực</string>
-    <string name="tren_ca_tuyet_voi">Trên tuyệt vời</string>
+    <string name="tren_ca_tuyet_voi">Trên cả tuyệt vời</string>
     <string name="tuyet_voi">Tuyệt vời</string>
     <string name="tot">Tốt</string>
     <string name="hai_long">Hài lòng</string>
@@ -916,4 +916,5 @@
     <string name="doi_ban_phiim">Đổi bàn phím</string>
     <string name="ban_phim_chu">Bàn phím chữ</string>
     <string name="ban_phim_so">Bàn phím số</string>
+    <string name="tai_tro_boi">Tài trợ bởi</string>
 </resources>

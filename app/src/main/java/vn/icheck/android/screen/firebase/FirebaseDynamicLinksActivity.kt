@@ -30,7 +30,7 @@ import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.reward_login.RewardLoginCallback
-import vn.icheck.android.base.dialog.reward_login.RewardLoginDialogV2
+import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.ISettingListener
 import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
@@ -892,7 +892,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                 val id = deepLink?.getQueryParameter("id")
 
                 if (!id.isNullOrEmpty()) {
-                    ActivityUtils.startActivity<WebViewActivity, String>(this, Constant.DATA_1, id)
+                    WebViewActivity.start(this, id)
                 }
             }
             url -> {
@@ -1294,7 +1294,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
     }
 
     private fun showLoginDialog() {
-        RewardLoginDialogV2.show(supportFragmentManager, object : RewardLoginCallback {
+        RewardLoginDialog.show(supportFragmentManager, object : RewardLoginCallback {
             override fun onLogin() {
                 ActivityUtils.startActivityForResult<IckLoginActivity>(this@FirebaseDynamicLinksActivity, requestLogin)
 

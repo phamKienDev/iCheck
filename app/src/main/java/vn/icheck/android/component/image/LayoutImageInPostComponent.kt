@@ -264,39 +264,21 @@ class LayoutImageInPostComponent : ConstraintLayout {
                     it.setMargins(0, SizeHelper.size5, 0, 0)
                 }
                 imgOne.scaleType = ImageView.ScaleType.FIT_XY
-                WidgetUtils.loadImageUrlRounded(
-                    imgOne,
-                    list[0].src,
-                    R.drawable.img_default_loading_icheck,
-                    R.drawable.img_default_loading_icheck,
-                    SizeHelper.size4
-                )
+                WidgetUtils.loadImageUrlRounded(imgOne, list[0].src, R.drawable.img_default_loading_icheck, R.drawable.img_default_loading_icheck, SizeHelper.size4)
 
                 imgTwo.id = R.id.imgTwo
-                imgTwo.layoutParams = LayoutParams(0, 0).also {
+                imgTwo.layoutParams = LayoutParams(SizeHelper.dpToPx(124), 0).also {
                     it.setMargins(SizeHelper.size5, 0, 0, 0)
                 }
                 imgTwo.scaleType = ImageView.ScaleType.FIT_XY
-                WidgetUtils.loadImageUrlRounded(
-                    imgTwo,
-                    list[1].src,
-                    R.drawable.img_default_loading_icheck,
-                    R.drawable.img_default_loading_icheck,
-                    SizeHelper.size4
-                )
+                WidgetUtils.loadImageUrlRounded(imgTwo, list[1].src, R.drawable.img_default_loading_icheck, R.drawable.img_default_loading_icheck, SizeHelper.size4)
 
                 imgThree.id = R.id.imgThree
                 imgThree.layoutParams = LayoutParams(0, 0).also {
                     it.setMargins(0, SizeHelper.size5, 0, 0)
                 }
                 imgThree.scaleType = ImageView.ScaleType.FIT_XY
-                WidgetUtils.loadImageUrlRounded(
-                    imgThree,
-                    list[2].src,
-                    R.drawable.img_default_loading_icheck,
-                    R.drawable.img_default_loading_icheck,
-                    SizeHelper.size4
-                )
+                WidgetUtils.loadImageUrlRounded(imgThree, list[2].src, R.drawable.img_default_loading_icheck, R.drawable.img_default_loading_icheck, SizeHelper.size4)
 
                 addView(imgOne)
                 addView(imgTwo)
@@ -340,23 +322,13 @@ class LayoutImageInPostComponent : ConstraintLayout {
 
                 imageSet.connect(imagePlay1.id, ConstraintSet.START, imgOne.id, ConstraintSet.END)
                 imageSet.connect(imagePlay1.id, ConstraintSet.TOP, imgOne.id, ConstraintSet.TOP)
-                imageSet.connect(
-                    imagePlay1.id,
-                    ConstraintSet.BOTTOM,
-                    imgTwo.id,
-                    ConstraintSet.BOTTOM
-                )
+                imageSet.connect(imagePlay1.id, ConstraintSet.BOTTOM, imgTwo.id, ConstraintSet.BOTTOM)
                 imageSet.connect(imagePlay1.id, ConstraintSet.END, id, ConstraintSet.END)
 
                 imageSet.connect(imagePlay2.id, ConstraintSet.TOP, imgTwo.id, ConstraintSet.BOTTOM)
                 imageSet.connect(imagePlay2.id, ConstraintSet.START, imgTwo.id, ConstraintSet.START)
                 imageSet.connect(imagePlay2.id, ConstraintSet.END, imgTwo.id, ConstraintSet.END)
-                imageSet.connect(
-                    imagePlay2.id,
-                    ConstraintSet.BOTTOM,
-                    imgOne.id,
-                    ConstraintSet.BOTTOM
-                )
+                imageSet.connect(imagePlay2.id, ConstraintSet.BOTTOM, imgOne.id, ConstraintSet.BOTTOM)
 
                 imageSet.constrainPercentWidth(imgOne.id, 0.65F)
                 imageSet.setDimensionRatio(imgTwo.id, "H, 1:1")
@@ -394,7 +366,7 @@ class LayoutImageInPostComponent : ConstraintLayout {
                 )
 
                 imgTwo.id = R.id.imgTwo
-                imgTwo.layoutParams = LayoutParams(0, 0).also {
+                imgTwo.layoutParams = LayoutParams(SizeHelper.dpToPx(124), 0).also {
                     it.setMargins(SizeHelper.size5, 0, 0, 0)
                 }
                 imgTwo.scaleType = ImageView.ScaleType.FIT_XY

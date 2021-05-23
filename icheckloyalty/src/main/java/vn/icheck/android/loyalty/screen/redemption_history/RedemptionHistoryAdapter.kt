@@ -142,14 +142,14 @@ internal class RedemptionHistoryAdapter(callback: IRecyclerViewCallback) : Recyc
                                     data.colorBackground = R.drawable.bg_corner_30_orange_opacity_02
                                 } else if (obj.voucher?.checked_condition?.code == "MAX_NUM_OF_USED_VOUCHER" || obj.voucher?.checked_condition?.code == "MAX_NUM_OF_USED_CUSTOMER") {
 
-                                    data.statusChange = "Đã sử dụng"
+                                    data.statusChange = "Hết lượt sử dụng"
 
                                     data.colorText = ContextCompat.getColor(itemView.context, R.color.errorColor)
 
                                     data.colorBackground = R.drawable.bg_corner_30_red_opacity_02
                                 } else {
 
-                                    data.dateChange = TimeHelper.convertDateTimeSvToDateVn(obj.voucher?.end_at)
+                                    data.dateChange = ""
 
                                     data.statusChange = "Hết hạn sử dụng"
 
@@ -159,52 +159,9 @@ internal class RedemptionHistoryAdapter(callback: IRecyclerViewCallback) : Recyc
                                 }
                             } else {
 
-                                /**
-                                 * Nếu startAt và endAt khác null thì hiển thị dd/mm/yy
-                                 * Nếu startAt, endAt, releaseAt và effectiveTime khác null nhưng thời gian tổng của startAt và endAt nhỏ hơn thời gian của effectiveTime thì hiển thị: ${Còn xx ngày, xx giờ} theo thời gian hiện tại đến endAt
-                                 * Nếu startAt, endAt, releaseAt và effectiveTime khác null nhưng thời gian tổng của startAt và endAt lớn hơn thời gian của effectiveTime thì hiển thị: ${Còn xx ngày, xx giờ} theo releaseAt và effectiveTime
-                                 */
-                                data.dateChange = when {
-                                    !obj.voucher?.start_at.isNullOrEmpty()
-                                            && !obj.voucher?.end_at.isNullOrEmpty()
-                                            && (obj.voucher?.effective_time.isNullOrEmpty()
-                                            || obj.voucher?.effective_type.isNullOrEmpty()) -> {
+                                data.dateChange = TimeHelper.timeGiftVoucher(obj.voucher!!)
 
-                                        "Còn ${TimeHelper.convertDateTimeSvToCurrentDate(TimeHelper.convertDateTimeSvToMillisecond(obj.voucher?.end_at))}"
-
-                                    }
-                                    !obj.voucher?.released_at.isNullOrEmpty()
-                                            && !obj.voucher?.effective_time.isNullOrEmpty()
-                                            && !obj.voucher?.effective_type.isNullOrEmpty()
-                                            && (obj.voucher?.start_at.isNullOrEmpty()
-                                            || obj.voucher?.end_at.isNullOrEmpty()) -> {
-
-
-                                        "Còn ${TimeHelper.convertDateTimeSvToCurrentDate(millisecondEffectiveTime(obj.voucher?.effective_type!!, obj.voucher?.effective_time!!, obj.voucher?.released_at!!))}"
-                                    }
-                                    !obj.voucher?.released_at.isNullOrEmpty()
-                                            && !obj.voucher?.effective_time.isNullOrEmpty()
-                                            && !obj.voucher?.effective_type.isNullOrEmpty()
-                                            && !obj.voucher?.start_at.isNullOrEmpty()
-                                            && !obj.voucher?.end_at.isNullOrEmpty() -> {
-
-                                        val millisecondWithEffectiveTime = millisecondEffectiveTime(obj.voucher?.effective_type!!, obj.voucher?.effective_time!!, obj.voucher?.released_at!!)
-
-                                        val currentMillisecondWithEndAt = (TimeHelper.convertDateTimeSvToMillisecond(obj.voucher?.end_at)
-                                                ?: 0) - System.currentTimeMillis()
-
-                                        if (millisecondWithEffectiveTime > currentMillisecondWithEndAt) {
-                                            "Còn ${TimeHelper.convertDateTimeSvToCurrentDate(TimeHelper.convertDateTimeSvToMillisecond(obj.voucher?.end_at))}"
-                                        } else {
-                                            "Còn ${TimeHelper.convertDateTimeSvToCurrentDate(millisecondWithEffectiveTime)}"
-                                        }
-                                    }
-                                    else -> {
-                                        ""
-                                    }
-                                }
-
-                                if (data.dateChange == "Còn ") {
+                                if (data.dateChange == "Còn lại ") {
 
                                     data.dateChange = ""
 
@@ -309,7 +266,7 @@ internal class RedemptionHistoryAdapter(callback: IRecyclerViewCallback) : Recyc
                                     setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
                                 } else if (obj.voucher?.checked_condition?.code == "MAX_NUM_OF_USED_VOUCHER" || obj.voucher?.checked_condition?.code == "MAX_NUM_OF_USED_CUSTOMER") {
 
-                                    text = "Đã sử dụng"
+                                    text = "Hết lượt sử dụng"
                                     setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
                                     setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
                                 } else {

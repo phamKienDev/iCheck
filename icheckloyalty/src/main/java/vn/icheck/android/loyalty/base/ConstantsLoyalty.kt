@@ -23,4 +23,5 @@ object ConstantsLoyalty {
     const val TDNH = "TICH_DIEM_NGAN_HAN"
     const val TDDH = "TICH_DIEM_DAI_HAN"
 
+    const val BACK_TO_DETAIL = "BACK_TO_DETAIL"
 }

@@ -156,6 +156,7 @@
                 android:text="Chi tiết chương trình"
                 android:layout_marginTop="@dimen/size_13"
                 android:layout_gravity="center"
+                android:visibility="gone"
                 android:textSize="14sp"
                 android:gravity="center"
                 android:textColor="@color/colorSecondary"
