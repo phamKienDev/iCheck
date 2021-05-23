@@ -8,12 +8,16 @@ import android.animation.ValueAnimator
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.media.MediaMetadataRetriever
+import android.text.InputType
 import android.text.method.PasswordTransformationMethod
 import android.view.View
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.marginLeft
+import androidx.core.view.marginTop
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -31,7 +35,9 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.callback.LoadImageListener
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.visibleOrGone
 import vn.icheck.android.ui.RoundedCornersTransformation
+import vn.icheck.android.ui.edittext.FocusableEditText
 import vn.icheck.android.util.ick.logError
 import java.io.File
 import java.io.FileInputStream
@@ -1333,5 +1339,34 @@ object WidgetUtils {
                 .placeholder(circularProgressDrawableBlue)
                 .error(defaultError)
                 .into(image)
+    }
+
+    fun changePasswordInput(editText: AppCompatEditText) {
+        editText.apply {
+            if (isFocused) {
+                val mTransformationMethod = transformationMethod
+
+                inputType = if (inputType != InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD) {
+//                    binding.btnKeyboard.setText(R.string.ban_phim_so)
+                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                } else {
+//                    binding.btnKeyboard.setText(R.string.ban_phim_chu)
+                    InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
+                }
+
+                transformationMethod = mTransformationMethod
+
+                setSelection(length())
+            }
+        }
+    }
+
+    fun setButtonKeyboardMargin(imgKeyboard: AppCompatImageView, edtPassword: FocusableEditText) {
+        imgKeyboard.apply {
+            visibleOrGone(edtPassword.isFocused)
+            layoutParams = (layoutParams as ConstraintLayout.LayoutParams).apply {
+                setMargins(marginLeft, marginTop, marginEnd, vn.icheck.android.ichecklibs.SizeHelper.size12)
+            }
+        }
     }
 }
