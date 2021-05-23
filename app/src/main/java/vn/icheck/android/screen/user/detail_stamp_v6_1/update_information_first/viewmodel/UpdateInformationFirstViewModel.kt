@@ -14,11 +14,11 @@ class UpdateInformationFirstViewModel @Inject constructor() : BaseViewModel() {
     private val repository = DetailStampRepository()
 
     var productID = 0L
-    var typeShow = 0
+    var updateType = 0
     var distributorID = 0L
     var phoneNumber: String? = null
     var productCode: String? = null
-    var serial: String? = null
+    var serial = ""
     var objVariant: ICVariantProductStampV6_1.ICVariant.ICObjectVariant? = null
     var barcode = ""
 
@@ -28,9 +28,18 @@ class UpdateInformationFirstViewModel @Inject constructor() : BaseViewModel() {
         null
     }
 
+    suspend fun getCustomerVariant() = try {
+        repository.getCustomerVariant(barcode).data
+    } catch (e: Exception) {
+        null
+    }
+
     suspend fun getGuaranteeVariant() = try {
         repository.getGuaranteeVariant(barcode).data
     } catch (e: Exception) {
         null
     }
+
+    fun getGuaranteeCustomerDetail(phoneNumber: String) = request { repository.getGuaranteeCustomerDetail(distributorID, phoneNumber) }
+
 }

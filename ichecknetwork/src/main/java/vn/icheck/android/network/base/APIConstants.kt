@@ -44,6 +44,7 @@ object APIConstants {
     external fun STAMPGETCONFIGERROR(): String
     external fun PRODUCTINFO(): String
     external fun VARIANTPRODUCT(): String
+    external fun getCustomerVariant(): String
     external fun GETFIELDLISTGUARANTEE(): String
     external fun USERSENDOTPCONFIRMPHONESTAMP(): String
     external fun USERCONFIRMPHONESTAMP(): String

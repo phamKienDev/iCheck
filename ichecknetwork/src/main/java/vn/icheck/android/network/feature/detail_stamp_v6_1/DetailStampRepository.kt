@@ -433,6 +433,11 @@ class DetailStampRepository : BaseRepository() {
         composite.add(disposable)
     }
 
+    suspend fun getGuaranteeCustomerDetail(distributionID: Long, phoneNumber: String): ICResponse<ICGuaranteeCustomerDetail> {
+        val host = APIConstants.DETAIL_STAMP_HOST + APIConstants.STAMPDETAILCUSTOMERGUARANTEE().replace("{distributor_id}", distributionID.toString()).replace("{phone}", phoneNumber)
+        return ICNetworkClient.getStampClient().getGuaranteeCustomerDetail(host)
+    }
+
     fun getNameCity(city: Int?, listener: ICApiListener<ICNameCity>) {
         val host = APIConstants.DETAIL_STAMP_HOST + APIConstants.ADDRESSDETAILCITY().replace("{id}", city.toString())
         ICNetworkClient.getStampClient2().getNameCity(host).enqueue(object : Callback<ICNameCity> {
@@ -620,7 +625,9 @@ class DetailStampRepository : BaseRepository() {
         composite.add(disposable)
     }
 
-    fun updateInfomationGuarantee(obj: ICUpdateCustomerGuarantee, deviceId: String?, mId: String?, productCode: String?, mSerial: String?, variant: Long?, mBody: HashMap<String, Any>, listener: ICApiListener<IC_RESP_UpdateCustomerGuarantee>) {
+    fun updateInfomationGuarantee(obj: ICUpdateCustomerGuarantee, deviceId: String?, mId: String?,
+                                  productCode: String?, mSerial: String?, variant: Long?,
+                                  guaranteeData: HashMap<String, Any>, listener: ICApiListener<IC_RESP_UpdateCustomerGuarantee>) {
         val body = hashMapOf<String, Any>()
         body["customer"] = obj
 
@@ -640,9 +647,86 @@ class DetailStampRepository : BaseRepository() {
             body["variant_id"] = variant
         }
 
-        body["fields"] = mBody
+        body["fields"] = guaranteeData
+
         val host = APIConstants.DETAIL_STAMP_HOST + APIConstants.STAMPUPDATEINFORMATIONCUSTOMERGUARANTEE().replace("{serial}", mSerial
                 ?: "")
+        val disposable = ICNetworkClient.getStampClient().updateInformationCustomerGuarantee(host, body)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        {
+                            dispose()
+                            listener.onSuccess(it)
+                        },
+                        {
+                            dispose()
+                            try {
+                                val errorBody = ICBaseResponse()
+                                errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+
+                                if (it is HttpException) {
+                                    val error = parseJson(it.response()?.errorBody()?.string(), ICResponseErrorStamp::class.java)
+
+                                    if (error != null) {
+                                        if (!error.data?.message?.message.isNullOrEmpty()) {
+                                            errorBody.message = error.data?.message?.message
+                                        }
+                                    }
+                                }
+                                listener.onError(errorBody)
+                            } catch (e: Exception) {
+                            }
+                        }
+                )
+        composite.add(disposable)
+    }
+
+    fun updateInformationGuarantee(name: String, phone: String, email: String, address: String,
+                                   district: Int?, city: Int?, deviceId: String?, mId: String?,
+                                   productCode: String?, variant: Long?,
+                                   customerData: HashMap<String, Any>, guaranteeData: HashMap<String, Any>,
+                                   mSerial: String?,
+                                   listener: ICApiListener<IC_RESP_UpdateCustomerGuarantee>) {
+        val body = hashMapOf<String, Any>()
+        body["customer"] = hashMapOf<String, Any>().apply {
+            if (name.isNotEmpty())
+                put("name", name)
+            if (phone.isNotEmpty())
+                put("phone", phone)
+            if (email.isNotEmpty())
+                put("email", email)
+            if (address.isNotEmpty())
+                put("address", address)
+            if (district != null)
+                put("district", district)
+            if (city != null)
+                put("city", city)
+            if (!customerData.isNullOrEmpty()) {
+                put("fields", customerData)
+            }
+        }
+
+        if (mId != null) {
+            body["icheck_id"] = mId
+        }
+
+        if (deviceId != null) {
+            body["device_id"] = deviceId
+        }
+
+        if (!productCode.isNullOrEmpty()) {
+            body["product_code"] = productCode
+        }
+
+        if (variant != null && variant != 0L) {
+            body["variant_id"] = variant
+        }
+
+        if (!guaranteeData.isNullOrEmpty())
+            body["fields"] = guaranteeData
+
+        val host = APIConstants.DETAIL_STAMP_HOST + APIConstants.STAMPUPDATEINFORMATIONCUSTOMERGUARANTEE().replace("{serial}", mSerial ?: "")
         val disposable = ICNetworkClient.getStampClient().updateInformationCustomerGuarantee(host, body)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -870,6 +954,11 @@ class DetailStampRepository : BaseRepository() {
 
         val host = APIConstants.DETAIL_STAMP_HOST + APIConstants.VARIANTPRODUCT().replace("{product_id}", productID.toString())
         return ICNetworkClient.getStampClient().getProductVariant(host, fields)
+    }
+
+    suspend fun getCustomerVariant(barcode: String): ICResponse<MutableList<ICFieldGuarantee>> {
+        val host = APIConstants.DETAIL_STAMP_HOST + APIConstants.getCustomerVariant().replace("{code}", barcode)
+        return ICNetworkClient.getStampClient().getGuaranteeVariant(host)
     }
 
     suspend fun getGuaranteeVariant(barcode: String): ICResponse<MutableList<ICFieldGuarantee>> {

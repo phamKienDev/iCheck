@@ -683,6 +683,9 @@ interface ICNetworkAPI {
     @GET
     fun getDetailCustomerGuarantee(@Url url: String): Observable<ICDetailCustomerGuranteeVerified>
 
+    @GET
+    suspend fun getGuaranteeCustomerDetail(@Url url: String): ICResponse<ICGuaranteeCustomerDetail>
+
     //Get name city
     @GET
     fun getNameCity(@Url url: String): Call<ICNameCity>

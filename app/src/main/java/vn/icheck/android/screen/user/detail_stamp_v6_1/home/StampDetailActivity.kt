@@ -253,14 +253,6 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
         }
 
         textFab.setOnClickListener {
-            // todo
-
-            idDistributor
-            verfiedSerial
-            productId
-
-//          productCode // res cũ éo có
-
             if (guarantee != null) {
                 if (guarantee?.customerId != null) {
                     val intent = Intent(this, VerifiedPhoneActivity::class.java)
@@ -268,7 +260,7 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
                     intent.putExtra(Constant.DATA_2, idDistributor)
 //                    intent.putExtra(Constant.DATA_3, productCode)
                     intent.putExtra(Constant.DATA_4, productId)
-                    intent.putExtra(Constant.DATA_5, viewModel.barcode)
+                    intent.putExtra(Constant.DATA_5, objVariant)
                     intent.putExtra(Constant.DATA_8, viewModel.barcode)
                     ActivityUtils.startActivity(this, intent)
                 } else {

@@ -2,7 +2,9 @@ package vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -14,16 +16,19 @@ import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_update_information_first.*
 import kotlinx.coroutines.*
 import org.greenrobot.eventbus.EventBus
+import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.chat.icheckchat.helper.NetworkHelper
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.SessionManager
+import vn.icheck.android.network.base.Status
 import vn.icheck.android.network.models.detail_stamp_v6_1.*
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.otp_information_guarantee.VerifyOTPGuaranteeActivity
@@ -39,23 +44,10 @@ import vn.icheck.android.util.ick.logError
 import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
-class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresenter>(), IUpdateInformationFirstView {
+class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFirstView {
     private val viewModel by viewModels<UpdateInformationFirstViewModel>()
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_update_information_first
-
-    override val getPresenter: UpdateInformationFirstPresenter
-        get() = UpdateInformationFirstPresenter(this)
-
-    private var mProductCode: String? = null
-    private var mVariantName: String? = null
-    private var distributorID: Long? = null
-    private var mIdVariantSelected: Long? = null
-    private var cityId: Int? = null
-    private var districtId: Int? = null
-
-    private var typeUpdateCustomer: Int? = null
+    private val presenter = UpdateInformationFirstPresenter(this)
 
     private var isChangeData: Boolean? = false
     private var requestChangeData = 1
@@ -65,10 +57,13 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
 
     private var disposable: Disposable? = null
 
-    private var adapter = FieldAdapter()
+    private var customerVariantAdapter = FieldAdapter()
+    private var guaranteeVariantAdapter = FieldAdapter()
 
-    @SuppressLint("SetTextI18n")
-    override fun onInitView() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_update_information_first)
+
         StampDetailActivity.listActivities.add(this)
 
         setupView()
@@ -133,36 +128,54 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
             onBackPressed()
         }
 
-        btnUpdate.setOnClickListener {
-            val body = getBody()
-
-            if (body == null) {
-                if (StampDetailActivity.isVietNamLanguage == false) {
-                    showShortError("Please fill in the required fields")
-                } else {
-                    showShortError("Bạn cần nhập các trường yêu cầu")
-                }
-                return@setOnClickListener
-            }
-
-            presenter.validUpdateInformationGuarantee(edtName.text.toString(), edtPhone.text.toString(), edtEmail.text.toString(), edtAddress.text.toString(), edtProductCode.text.toString(), mIdVariantSelected, typeUpdateCustomer, body, viewModel.barcode)
-        }
-
         layoutSelectCity.setOnClickListener {
-            val intent = Intent(this, SelectProvinceStampActivity::class.java)
-            startActivityForResult(intent, requestSelectProvince)
+//            val intent = Intent(this, SelectProvinceStampActivity::class.java)
+//            startActivityForResult(intent, requestSelectProvince)
+            startActivityForResult<SelectProvinceStampActivity>(requestSelectProvince)
         }
 
         layoutSelectDistrict.setOnClickListener {
-            val intent = Intent(this, SelectDistrictStampActivity::class.java)
-            intent.putExtra(Constant.DATA_1, cityId)
-            startActivityForResult(intent, requestSelectDistrict)
+//            val intent = Intent(this, SelectDistrictStampActivity::class.java)
+//            intent.putExtra(Constant.DATA_1, cityId)
+//            startActivityForResult(intent, requestSelectDistrict)
+            presenter.cityId?.let {
+                startActivityForResult<SelectDistrictStampActivity, Int>(Constant.DATA_1, it, requestSelectDistrict)
+            }
         }
 
         edtVariant.setOnClickListener {
             val intent = Intent(this, SelectVariantActivity::class.java)
             intent.putExtra(Constant.DATA_1, viewModel.productID)
             startActivityForResult(intent, requestSelectVariant)
+        }
+
+        btnUpdate.setOnClickListener {
+            val customerData = getBody(customerVariantAdapter.listData)
+            if (customerData == null) {
+                showInputDataError()
+                return@setOnClickListener
+            }
+
+            val guaranteeData = getBody(guaranteeVariantAdapter.listData)
+            if (guaranteeData == null) {
+                showInputDataError()
+                return@setOnClickListener
+            }
+
+            presenter.validUpdateInformationGuarantee(name = edtName.text.toString(),
+                    phone = edtPhone.text.toString(), email = edtEmail.text.toString(),
+                    address = edtAddress.text.toString(), productCode = edtProductCode.text.toString(),
+                    variant = viewModel.objVariant?.id, customerData = customerData,
+                    guaranteeData = guaranteeData, barcode = viewModel.barcode,
+                    updateType = viewModel.updateType, serial = viewModel.serial)
+        }
+    }
+
+    private fun showInputDataError() {
+        if (StampDetailActivity.isVietNamLanguage == false) {
+            showShortError("Please fill in the required fields")
+        } else {
+            showShortError("Bạn cần nhập các trường yêu cầu")
         }
     }
 
@@ -172,9 +185,7 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
                 .debounce(1000, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    if (distributorID != null) {
-                        presenter.searchInforCustomer(distributorID!!, edtPhone.text.toString())
-                    }
+                    searchGuaranteeCustomerDetail(edtPhone.text.toString())
                 }, {
                     logError(it)
                 })
@@ -182,11 +193,11 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
 
     private fun checkData() {
         viewModel.productID = intent.getLongExtra(Constant.DATA_6, 0)
-        viewModel.typeShow = intent.getIntExtra(Constant.DATA_1, 0)
+        viewModel.updateType = intent.getIntExtra(Constant.DATA_1, 0)
         viewModel.distributorID = intent.getLongExtra(Constant.DATA_2, 0)
         viewModel.phoneNumber = intent.getStringExtra(Constant.DATA_3)
         viewModel.productCode = intent.getStringExtra(Constant.DATA_4)
-        viewModel.serial = intent.getStringExtra(Constant.DATA_5)
+        viewModel.serial = intent.getStringExtra(Constant.DATA_5) ?: ""
         viewModel.objVariant = try {
             intent.getSerializableExtra(Constant.DATA_7) as ICVariantProductStampV6_1.ICVariant.ICObjectVariant?
         } catch (e: Exception) {
@@ -197,71 +208,12 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
         if (viewModel.productID != 0L && viewModel.barcode.isNotEmpty()) {
             getProductVariant()
         } else {
-            DialogHelper.showNotification(this@UpdateInformationFirstActivity,
-                    R.string.co_loi_xay_ra_vui_long_thu_lai, false,
+            DialogHelper.showNotification(this@UpdateInformationFirstActivity, R.string.co_loi_xay_ra_vui_long_thu_lai, false,
                     object : NotificationDialogListener {
                         override fun onDone() {
                             onBackPressed()
                         }
                     })
-        }
-    }
-
-    private fun getProductVariant() {
-        if (NetworkHelper.isNotConnected(this)) {
-            getProductVariantError(if (StampDetailActivity.isVietNamLanguage == false) {
-                "Checking network. Please try again"
-            } else {
-                getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
-            })
-            return
-        }
-
-        lifecycleScope.launch {
-            var productVariant: ICVariantProductStampV6_1? = null
-            var guaranteeVariant: MutableList<ICFieldGuarantee>? = null
-
-            withContext(Dispatchers.IO) {
-                val listSync = mutableListOf<Deferred<Any>>()
-
-                listSync.add(async {
-                    productVariant = withTimeoutOrNull(APIConstants.REQUEST_TIME) { viewModel.getProductVariant() }
-                })
-                if (viewModel.typeShow == 1 || viewModel.typeShow == 2) {
-                    listSync.add(async {
-                        guaranteeVariant = withTimeoutOrNull(APIConstants.REQUEST_TIME) { viewModel.getGuaranteeVariant() }
-                    })
-                }
-
-                listSync.awaitAll()
-            }
-
-            withContext(Dispatchers.Main) {
-                if (!productVariant?.data?.products.isNullOrEmpty()) {
-                    tvSubProductCode.visibility = View.GONE
-                    edtProductCode.visibility = View.GONE
-                    tvSubProductVariant.visibility = View.VISIBLE
-                    edtVariant.visibility = View.VISIBLE
-                } else {
-                    tvSubProductCode.visibility = View.VISIBLE
-                    edtProductCode.visibility = View.VISIBLE
-                    tvSubProductVariant.visibility = View.GONE
-                    edtVariant.visibility = View.GONE
-                }
-
-                if (!guaranteeVariant.isNullOrEmpty()) {
-                    tvTitleField.visibility = View.VISIBLE
-                    rcvField.visibility = View.VISIBLE
-                    rcvField.layoutManager = CustomLinearLayoutManager(this@UpdateInformationFirstActivity, LinearLayoutManager.VERTICAL, false).also { rcvField.layoutManager = it }
-                    rcvField.adapter = adapter
-                    adapter.addData(guaranteeVariant!!)
-                } else {
-                    tvTitleField.visibility = View.GONE
-                    rcvField.visibility = View.GONE
-                }
-            }
-
-            onGetDataIntentSuccess(viewModel.typeShow, viewModel.distributorID, viewModel.phoneNumber, viewModel.productCode, viewModel.objVariant)
         }
     }
 
@@ -277,27 +229,268 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
         })
     }
 
-    override fun onGetProductVariantSuccess(products: MutableList<ICVariantProductStampV6_1.ICVariant.ICObjectVariant>, productId: Long) {
-        tvSubProductCode.visibility = View.GONE
-        edtProductCode.visibility = View.GONE
-        tvSubProductVariant.visibility = View.VISIBLE
-        edtVariant.visibility = View.VISIBLE
-        presenter.getDataByIntentSecond(intent)
+    private fun getProductVariant() {
+        if (NetworkHelper.isNotConnected(this)) {
+            getProductVariantError(if (StampDetailActivity.isVietNamLanguage == false) {
+                "Checking network. Please try again"
+            } else {
+                getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
+            })
+            return
+        }
+
+        lifecycleScope.launch {
+            var productVariant: ICVariantProductStampV6_1? = null
+            var customerVariant: MutableList<ICFieldGuarantee>? = null
+            var guaranteeVariant: MutableList<ICFieldGuarantee>? = null
+
+            withContext(Dispatchers.IO) {
+                val listSync = mutableListOf<Deferred<Any>>()
+
+                listSync.add(async {
+                    productVariant = withTimeoutOrNull(APIConstants.REQUEST_TIME) { viewModel.getProductVariant() }
+                })
+                listSync.add(async {
+                    customerVariant = withTimeoutOrNull(APIConstants.REQUEST_TIME) { viewModel.getCustomerVariant() }
+                })
+                if (viewModel.updateType == 1 || viewModel.updateType == 2) {
+                    listSync.add(async {
+                        guaranteeVariant = withTimeoutOrNull(APIConstants.REQUEST_TIME) { viewModel.getGuaranteeVariant() }
+                    })
+                }
+
+                listSync.awaitAll()
+            }
+
+            withContext(Dispatchers.Main) {
+                if (productVariant == null || customerVariant == null || guaranteeVariant == null) {
+                    getProductVariantError(if (StampDetailActivity.isVietNamLanguage == false) {
+                        "Occurred. Please try again"
+                    } else {
+                        getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                    })
+                    return@withContext
+                }
+
+                if (!productVariant?.data?.products.isNullOrEmpty()) {
+                    tvSubProductCode.visibility = View.GONE
+                    edtProductCode.visibility = View.GONE
+                    tvSubProductVariant.visibility = View.VISIBLE
+                    edtVariant.visibility = View.VISIBLE
+                } else {
+                    tvSubProductCode.visibility = View.VISIBLE
+                    edtProductCode.visibility = View.VISIBLE
+                    tvSubProductVariant.visibility = View.GONE
+                    edtVariant.visibility = View.GONE
+                }
+
+                if (!customerVariant.isNullOrEmpty()) {
+                    rcvCustomerVariant.apply {
+                        beVisible()
+                        layoutManager = CustomLinearLayoutManager(this@UpdateInformationFirstActivity, LinearLayoutManager.VERTICAL, false)
+                        adapter = customerVariantAdapter
+                    }
+                    customerVariantAdapter.addData(customerVariant!!)
+                } else {
+                    rcvCustomerVariant.visibility = View.GONE
+                }
+
+                if (!guaranteeVariant.isNullOrEmpty()) {
+                    tvTitleField.visibility = View.VISIBLE
+                    rcvField.apply {
+                        beVisible()
+                        rcvField.layoutManager = CustomLinearLayoutManager(this@UpdateInformationFirstActivity, LinearLayoutManager.VERTICAL, false)
+                        rcvField.adapter = guaranteeVariantAdapter
+                    }
+                    guaranteeVariantAdapter.addData(guaranteeVariant!!)
+                } else {
+                    tvTitleField.visibility = View.GONE
+                    rcvField.visibility = View.GONE
+                }
+
+                when (viewModel.updateType) {
+                    1 -> {
+                        //show layout ForceUpdate
+                        tvViewForceUpdate.visibility = View.VISIBLE
+                        edtProductCode.setText(viewModel.productCode)
+                        edtVariant.setText(viewModel.objVariant?.extra)
+                        if (!viewModel.phoneNumber.isNullOrEmpty()) {
+                            searchGuaranteeCustomerDetail(viewModel.phoneNumber!!)
+                        } else {
+                            edtPhone.setText(SessionManager.session.user?.phone)
+                        }
+                    }
+                    2 -> {
+                        //getData customer ve va show len view
+                        tvViewVerifiedPhoneNumber.visibility = View.VISIBLE
+                        edtProductCode.setText(viewModel.productCode)
+                        edtVariant.setText(viewModel.objVariant?.extra)
+                        if (!viewModel.phoneNumber.isNullOrEmpty()) {
+                            searchGuaranteeCustomerDetail(viewModel.phoneNumber!!)
+                        } else {
+                            edtPhone.setText(SessionManager.session.user?.phone)
+                        }
+                    }
+                    else -> {
+                        imgBack.visibility = View.GONE
+                        tvSubProductCode.visibility = View.GONE
+                        edtProductCode.visibility = View.GONE
+                        tvSubProductVariant.visibility = View.GONE
+                        edtVariant.visibility = View.GONE
+                        edtPhone.setText(SessionManager.session.user?.phone)
+                        edtName.setText(SessionManager.session.user?.first_name + SessionManager.session.user?.last_name)
+                        edtEmail.setText(SessionManager.session.user?.email)
+                        tvCities.text = SessionManager.session.user?.city?.name
+                        tvDistricts.text = SessionManager.session.user?.district?.name
+                        presenter.cityId = SessionManager.session.user?.city?.id?.toInt()
+                        presenter.districtId = SessionManager.session.user?.district?.id
+                    }
+                }
+            }
+        }
     }
 
-    override fun onGetProductVariantError() {
-        tvSubProductCode.visibility = View.VISIBLE
-        edtProductCode.visibility = View.VISIBLE
-        tvSubProductVariant.visibility = View.GONE
-        edtVariant.visibility = View.GONE
-        presenter.getDataByIntentSecond(intent)
+    private fun searchGuaranteeCustomerDetail(phoneNumber: String) {
+        viewModel.getGuaranteeCustomerDetail(phoneNumber).observe(this, {
+            when (it.status) {
+                Status.LOADING -> {
+                    if (it.message.isNullOrEmpty()) {
+                        DialogHelper.showLoading(this@UpdateInformationFirstActivity)
+                    } else {
+                        DialogHelper.closeLoading(this@UpdateInformationFirstActivity)
+                    }
+                }
+                Status.ERROR_NETWORK -> {
+                    showLongError(ICheckApplication.getError(it.message))
+                    resetCustomerInfo()
+                }
+                Status.ERROR_REQUEST -> {
+                    showLongError(ICheckApplication.getError(it.message))
+                    resetCustomerInfo()
+                }
+                Status.SUCCESS -> {
+                    val customer = it.data?.data?.customer
+
+                    if (customer != null) {
+                        setCustomerInfo(customer)
+                    } else {
+                        resetCustomerInfo()
+                    }
+                }
+            }
+        })
     }
 
+    private fun setCustomerInfo(customer: ICGuaranteeCustomerDetail.ICGuaranteeCustomer) {
+        customer.city?.let {
+            if (it > 0) {
+                presenter.cityId = it
+                presenter.onGetNameCity(customer.city)
+            }
+        }
 
-    private fun getBody(): HashMap<String, Any>? {
+        customer.district?.let {
+            if (it > 0) {
+                presenter.districtId = it
+                presenter.onGetNameDistricts(customer.district)
+            }
+        }
+
+        if (!customer.name.isNullOrEmpty()) {
+            edtName.setText(customer.name)
+        } else {
+            if (StampDetailActivity.isVietNamLanguage == false) {
+                edtName.hint = "Enter Name"
+            } else {
+                edtName.hint = "Nhập họ tên"
+            }
+        }
+
+        disposable?.dispose()
+        disposable = null
+
+        if (!customer.phone.isNullOrEmpty()) {
+            edtPhone.setText(customer.phone)
+
+            viewModel.updateType = if (edtPhone.text.toString() != customer.phone) {
+                2
+            } else {
+                1
+            }
+        } else {
+            if (StampDetailActivity.isVietNamLanguage == false) {
+                edtPhone.hint = "Enter Phone Number"
+            } else {
+                edtPhone.hint = "Nhập số điện thoại"
+            }
+        }
+
+        setupSearchCustomer()
+
+        if (!customer.email.isNullOrEmpty()) {
+            edtEmail.setText(customer.email)
+        } else {
+            if (StampDetailActivity.isVietNamLanguage == false) {
+                edtEmail.hint = "Enter Email"
+            } else {
+                edtEmail.hint = "Nhập email"
+            }
+        }
+
+        if (!customer.address.isNullOrEmpty()) {
+            edtAddress.setText(customer.address)
+        } else {
+            if (StampDetailActivity.isVietNamLanguage == false) {
+                edtAddress.hint = "Enter Address"
+            } else {
+                edtAddress.hint = "Nhập địa chỉ"
+            }
+        }
+
+        if (!viewModel.productCode.isNullOrEmpty()) {
+            edtProductCode.setText(viewModel.productCode)
+        } else {
+            if (StampDetailActivity.isVietNamLanguage == false) {
+                edtProductCode.hint = "Enter Product Code"
+            } else {
+                edtProductCode.hint = "Nhập mã hiệu sản phẩm"
+            }
+        }
+
+        if (!viewModel.objVariant?.extra.isNullOrEmpty()) {
+            edtVariant.setText(viewModel.objVariant?.extra)
+        } else {
+            if (StampDetailActivity.isVietNamLanguage == false) {
+                edtVariant.hint = "Enter Variation Code"
+            } else {
+                edtVariant.hint = "Nhập biến thể sản phẩm"
+            }
+        }
+    }
+
+    private fun resetCustomerInfo() {
+        edtName.setText("")
+        edtEmail.setText("")
+        edtAddress.setText("")
+        if (StampDetailActivity.isVietNamLanguage == false) {
+            edtName.hint = "Enter Name"
+            edtEmail.hint = "Enter Email"
+            tvCities.text = "Option"
+            tvDistricts.text = "Option"
+            edtAddress.hint = "Enter Address"
+        } else {
+            edtName.hint = "Nhập họ tên"
+            edtEmail.hint = "Nhập email"
+            tvCities.text = "Tùy chọn"
+            tvDistricts.text = "Tùy chọn"
+            edtAddress.hint = "Nhập địa chỉ"
+        }
+    }
+
+    private fun getBody(listData: MutableList<ICFieldGuarantee>): HashMap<String, Any>? {
         val body = hashMapOf<String, Any>()
 
-        for (item in adapter.listData) {
+        for (item in listData) {
             if (item.type == "input") {
                 if (item.require == 1) {
                     if (item.inputContent.isNullOrEmpty()) {
@@ -368,245 +561,13 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
         return body
     }
 
-    @SuppressLint("SetTextI18n")
-    override fun onSearchCustomerFail() {
-        runOnUiThread {
-            edtName.setText("")
-            edtEmail.setText("")
-            edtAddress.setText("")
-            if (StampDetailActivity.isVietNamLanguage == false) {
-                edtPhone.hint = "Enter Phone Number"
-                edtName.hint = "Enter Name"
-                edtEmail.hint = "Enter Email"
-                tvCities.text = "Option"
-                tvDistricts.text = "Option"
-                edtAddress.hint = "Enter Address"
-            } else {
-                edtPhone.hint = "Nhập số điện thoại"
-                edtName.hint = "Nhập họ tên"
-                edtEmail.hint = "Nhập email"
-                tvCities.text = "Tùy chọn"
-                tvDistricts.text = "Tùy chọn"
-                edtAddress.hint = "Nhập địa chỉ"
-            }
-        }
-    }
-
-    @SuppressLint("SetTextI18n")
-    override fun onGetDataIntentSuccess(type: Int, id: Long, phoneNumber: String?, productCode: String?, objVariant: ICVariantProductStampV6_1.ICVariant.ICObjectVariant?) {
-        typeUpdateCustomer = type
-        mVariantName = objVariant?.extra
-        mIdVariantSelected = objVariant?.id
-        mProductCode = productCode
-
-        when (type) {
-            1 -> {
-                distributorID = id
-                //show layout ForceUpdate
-                tvViewForceUpdate.visibility = View.VISIBLE
-                edtProductCode.setText(productCode)
-                edtVariant.setText(mVariantName)
-                phoneNumber?.let {
-                    presenter.getInforCustomer(id, it)
-                }
-
-            }
-            2 -> {
-                distributorID = id
-                //getData customer ve va show len view
-                tvViewVerifiedPhoneNumber.visibility = View.VISIBLE
-                edtProductCode.setText(productCode)
-                edtVariant.setText(mVariantName)
-                phoneNumber?.let {
-                    presenter.getInforCustomer(id, it)
-                }
-            }
-            3 -> {
-                imgBack.visibility = View.GONE
-                tvSubProductCode.visibility = View.GONE
-                edtProductCode.visibility = View.GONE
-                tvSubProductVariant.visibility = View.GONE
-                edtVariant.visibility = View.GONE
-                edtPhone.setText(SessionManager.session.user?.phone)
-                edtName.setText(SessionManager.session.user?.first_name + SessionManager.session.user?.last_name)
-                edtEmail.setText(SessionManager.session.user?.email)
-                tvCities.text = SessionManager.session.user?.city?.name
-                tvDistricts.text = SessionManager.session.user?.district?.name
-                presenter.cityId = SessionManager.session.user?.city?.id?.toInt()
-                presenter.districtId = SessionManager.session.user?.district?.id
-            }
-        }
-    }
-
-    override fun onGetFieldListGuareanteeSuccess(data: MutableList<ICFieldGuarantee>) {
-        if (!data.isNullOrEmpty()) {
-            tvTitleField.visibility = View.VISIBLE
-            rcvField.visibility = View.VISIBLE
-            initRecyclerView()
-            adapter.addData(data)
-        } else {
-            tvTitleField.visibility = View.GONE
-            rcvField.visibility = View.GONE
-        }
-    }
-
-    private fun initRecyclerView() {
-        rcvField.layoutManager = CustomLinearLayoutManager(this, LinearLayoutManager.VERTICAL, false).also { rcvField.layoutManager = it }
-        rcvField.adapter = adapter
-    }
-
-    override fun onGetFieldListGuareanteeFail() {
-        tvTitleField.visibility = View.GONE
-        rcvField.visibility = View.GONE
-    }
-
     override fun onGetDetailStampSuccess(obj: ICDetailStampV6_1) {
         finish()
         EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REFRESH_DATA))
     }
 
-    override fun onGetDataError(errorType: Int) {
-        when (errorType) {
-            Constant.ERROR_INTERNET -> {
-                if (StampDetailActivity.isVietNamLanguage == false) {
-                    DialogHelper.showConfirm(this@UpdateInformationFirstActivity, "Checking network. Please try again", false, object : ConfirmDialogListener {
-                        override fun onDisagree() {
-                            onBackPressed()
-                        }
-
-                        override fun onAgree() {
-                            presenter.getDataByIntent(intent)
-                        }
-                    })
-                } else {
-                    DialogHelper.showConfirm(this@UpdateInformationFirstActivity, R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai, false, object : ConfirmDialogListener {
-                        override fun onDisagree() {
-                            onBackPressed()
-                        }
-
-                        override fun onAgree() {
-                            presenter.getDataByIntent(intent)
-                        }
-                    })
-                }
-            }
-        }
-    }
-
-    @SuppressLint("SetTextI18n")
-    override fun onGetDataDetailCustomeFail() {
-        typeUpdateCustomer = 2
-
-        runOnUiThread {
-            edtName.setText("")
-            edtEmail.setText("")
-            edtAddress.setText("")
-            if (StampDetailActivity.isVietNamLanguage == false) {
-                edtName.hint = "Enter Name"
-                edtEmail.hint = "Enter Email"
-                tvCities.text = "Option"
-                tvDistricts.text = "Option"
-                edtAddress.hint = "Enter Address"
-            } else {
-                edtName.hint = "Nhập họ tên"
-                edtEmail.hint = "Nhập email"
-                tvCities.text = "Tùy chọn"
-                tvDistricts.text = "Tùy chọn"
-                edtAddress.hint = "Nhập địa chỉ"
-            }
-        }
-    }
-
-    override fun onGetDataDetailCustomeSuccess(customer: ICDetailCustomerGuranteeVerified.ICDetailCustomerGurantee.ICObjectCustomerGurantee) {
-        runOnUiThread {
-            customer.city?.let {
-                if (it > 0) {
-                    presenter.cityId = it
-                    presenter.onGetNameCity(customer.city)
-                }
-            }
-
-            customer.district?.let {
-                if (it > 0) {
-                    presenter.districtId = it
-                    presenter.onGetNameDistricts(customer.district)
-                }
-            }
-
-            if (!customer.name.isNullOrEmpty()) {
-                edtName.setText(customer.name)
-            } else {
-                if (StampDetailActivity.isVietNamLanguage == false) {
-                    edtName.hint = "Enter Name"
-                } else {
-                    edtName.hint = "Nhập họ tên"
-                }
-            }
-
-            disposable?.dispose()
-            disposable = null
-
-            if (!customer.phone.isNullOrEmpty()) {
-                edtPhone.setText(customer.phone)
-
-                typeUpdateCustomer = if (edtPhone.text.toString() != customer.phone) {
-                    2
-                } else {
-                    1
-                }
-
-            } else {
-                if (StampDetailActivity.isVietNamLanguage == false) {
-                    edtPhone.hint = "Enter Phone Number"
-                } else {
-                    edtPhone.hint = "Nhập số điện thoại"
-                }
-            }
-            setupSearchCustomer()
-
-            if (!customer.email.isNullOrEmpty()) {
-                edtEmail.setText(customer.email)
-            } else {
-                if (StampDetailActivity.isVietNamLanguage == false) {
-                    edtEmail.hint = "Enter Email"
-                } else {
-                    edtEmail.hint = "Nhập email"
-                }
-            }
-
-            if (!customer.address.isNullOrEmpty()) {
-                edtAddress.setText(customer.address)
-            } else {
-                if (StampDetailActivity.isVietNamLanguage == false) {
-                    edtAddress.hint = "Enter Address"
-                } else {
-                    edtAddress.hint = "Nhập địa chỉ"
-                }
-            }
-
-            if (!mProductCode.isNullOrEmpty()) {
-                edtProductCode.setText(mProductCode)
-            } else {
-                if (StampDetailActivity.isVietNamLanguage == false) {
-                    edtProductCode.hint = "Enter Product Code"
-                } else {
-                    edtProductCode.hint = "Nhập mã hiệu sản phẩm"
-                }
-            }
-
-            if (!mVariantName.isNullOrEmpty()) {
-                edtVariant.setText(mVariantName)
-            } else {
-                if (StampDetailActivity.isVietNamLanguage == false) {
-                    edtVariant.hint = "Enter Variation Code"
-                } else {
-                    edtVariant.hint = "Nhập biến thể sản phẩm"
-                }
-            }
-        }
-    }
-
     override fun onGetNameCitySuccess(obj: ICNameCity) {
+        presenter.cityId = obj.data?.id
         tvCities.text = obj.data?.name
     }
 
@@ -656,7 +617,6 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
     override fun onSetCityName(name: String, id: Int) {
         tvCities.text = name
         presenter.cityId = id
-        cityId = id
 
         if (StampDetailActivity.isVietNamLanguage == false) {
             tvDistricts.text = "Option"
@@ -668,35 +628,21 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
     override fun onSetDistrictName(name: String, id: Int) {
         tvDistricts.text = name
         presenter.districtId = id
-        districtId = id
     }
 
-    override fun onSendOtpGuaranteeSuccess(name: String, phone: String, email: String, cityId: Int?, districtId: Int?, address: String, productCode: String, mSerial: String?, variant: Long?, body: HashMap<String, Any>) {
-        val obj = ICUpdateCustomerGuarantee()
-        if (!name.isEmpty()) {
-            obj.name = name
-        }
-        obj.phone = phone
-        if (!email.isEmpty()) {
-            obj.email = email
-        }
-        if (!address.isEmpty()) {
-            obj.address = address
-        }
-        if (cityId != null) {
-            obj.city = cityId
-        }
-        if (districtId != null) {
-            obj.district = districtId
-        }
+    override fun onSendOtpGuaranteeSuccess(name: String, phone: String, email: String, cityId: Int?,
+                                           districtId: Int?, address: String, productCode: String,
+                                           variant: Long?, customerData: HashMap<String, Any>,
+                                           guaranteeData: HashMap<String, Any>) {
+        val obj = ICUpdateCustomerGuarantee(name, phone, email, address, districtId, cityId, customerData)
 
         val intent = Intent(this, VerifyOTPGuaranteeActivity::class.java)
         intent.putExtra(Constant.DATA_1, obj)
-        intent.putExtra(Constant.DATA_2, mSerial)
+        intent.putExtra(Constant.DATA_2, viewModel.serial)
         intent.putExtra(Constant.DATA_3, productCode)
         intent.putExtra(Constant.DATA_4, variant)
-        intent.putExtra(Constant.DATA_5, body)
-        startActivityForResult(intent, requestChangeData)
+        intent.putExtra(Constant.DATA_5, guaranteeData)
+        startActivityForResult(this, intent, requestChangeData)
     }
 
     override fun updateInformationCusomterGuaranteeSuccess() {
@@ -738,7 +684,7 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
 
                 requestSelectVariant -> {
                     val variantName = data?.getStringExtra(Constant.DATA_1)
-                    mIdVariantSelected = data?.getLongExtra(Constant.DATA_2, 0L)
+                    viewModel.objVariant?.id = data?.getLongExtra(Constant.DATA_2, 0L)
                     edtVariant.setText(variantName)
                 }
             }
@@ -746,12 +692,18 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
     }
 
     override fun showError(errorMessage: String) {
-        super.showError(errorMessage)
         showShortError(errorMessage)
     }
 
+    override val mContext: Context
+        get() = this
+
+    override fun onShowLoading(isShow: Boolean) {
+
+    }
+
     override fun onBackPressed() {
-        if (typeUpdateCustomer == 1 || typeUpdateCustomer == 2) {
+        if (viewModel.updateType == 1 || viewModel.updateType == 2) {
             super.onBackPressed()
             if (isChangeData == true) {
                 EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REFRESH_DATA))
