@@ -71,33 +71,33 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
     }
 
     private var disposable: Disposable? = null
-    var id = -1L
+//    var id = -1L
 
     private var isShow = true
     private var numberPage = 0
     private var distributorId: Long? = null
     private var productId: Long? = null
-    private var objVariant: ICVariantProductStampV6_1.ICVariant.ICObjectVariant? = null
+//    private var objVariant: ICVariantProductStampV6_1.ICVariant.ICObjectVariant? = null
     private var serial: String? = null
-
-    private var seller_id: Long? = null
-    private var barcode: String? = null
 
     private var itemDistributor: ICObjectDistributor? = null
 
     private var mFusedLocationClient: FusedLocationProviderClient? = null
 
     private val requestGpsPermission = 39
-    private val requestGps = 2
     private val requestGoToCart = 4
     private val requestRefreshData = 5
+
     private var requestRequireLogin = 0
+    private val requestGps = 2
+    private val requestUpdateOrDestroy = 1
+    private var requestLogin = 101
 
     private var guarantee: ICWidgetData? = null
     private var isExistLastGuarantee = false
 
     //    private var nameProduct: String? = null
-    private var url: String? = null
+//    private var url: String? = null
 
     override fun isRegisterEventBus(): Boolean {
         return true
@@ -260,7 +260,7 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
                     intent.putExtra(Constant.DATA_2, distributorId)
 //                    intent.putExtra(Constant.DATA_3, productCode)
                     intent.putExtra(Constant.DATA_4, productId)
-                    intent.putExtra(Constant.DATA_5, objVariant)
+//                    intent.putExtra(Constant.DATA_5, objVariant)
                     intent.putExtra(Constant.DATA_8, viewModel.barcode)
                     ActivityUtils.startActivity(this, intent)
                 } else {
@@ -270,7 +270,7 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
 //                intent.putExtra(Constant.DATA_4, productCode)
                     intent.putExtra(Constant.DATA_5, serial)
                     intent.putExtra(Constant.DATA_6, productId)
-                    intent.putExtra(Constant.DATA_7, objVariant)
+//                    intent.putExtra(Constant.DATA_7, objVariant)
                     intent.putExtra(Constant.DATA_8, viewModel.barcode)
                     ActivityUtils.startActivity(this, intent)
                 }
@@ -281,7 +281,7 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
 //                intent.putExtra(Constant.DATA_4, productCode)
                 intent.putExtra(Constant.DATA_5, serial)
                 intent.putExtra(Constant.DATA_6, productId)
-                intent.putExtra(Constant.DATA_7, objVariant)
+//                intent.putExtra(Constant.DATA_7, objVariant)
                 ActivityUtils.startActivity(this, intent)
             }
 
@@ -567,6 +567,7 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
                         getCampaign()
 
                         textFab.visibleOrInvisible(mData.canUpdate == true)
+
                         if (mData.forceUpdate == true) {
                             if (guarantee != null) {
                                 val intent = Intent(this, UpdateInformationFirstActivity::class.java)
@@ -575,7 +576,7 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
 //                                intent.putExtra(Constant.DATA_4, product_code)
                                 intent.putExtra(Constant.DATA_5, serial)
                                 intent.putExtra(Constant.DATA_6, productId)
-                                intent.putExtra(Constant.DATA_7, objVariant)
+//                                intent.putExtra(Constant.DATA_7, objVariant)
                                 intent.putExtra(Constant.DATA_8, viewModel.barcode)
                                 startActivity(intent)
                             } else {
@@ -585,7 +586,7 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
 //                                intent.putExtra(Constant.DATA_4, product_code)
                                 intent.putExtra(Constant.DATA_5, serial)
                                 intent.putExtra(Constant.DATA_6, productId)
-                                intent.putExtra(Constant.DATA_7, objVariant)
+//                                intent.putExtra(Constant.DATA_7, objVariant)
                                 intent.putExtra(Constant.DATA_8, viewModel.barcode)
                                 startActivity(intent)
                             }
@@ -707,14 +708,9 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
 //        idDistributor = obj.data?.distributor?.id
 
 //      set image local cho tab history qrCode
-        url = obj.data?.product?.image
+//        url = obj.data?.product?.image
 //        productId = obj.data?.product?.id
-        objVariant = obj.data?.guarantee?.last_guarantee?.variant
-
-        if (!obj.data?.barcode.isNullOrEmpty() && obj.data?.seller_id != null) {
-            seller_id = obj.data?.seller_id!!
-            barcode = obj.data?.barcode
-        }
+//        objVariant = obj.data?.guarantee?.last_guarantee?.variant
 
 //      check force update thong tin ca nhan
 //        if (obj.data?.force_update == true) {
@@ -859,19 +855,22 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
         }
     }
 
-    private var requestLogin = 101
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == requestLogin) {
-            if (resultCode == Activity.RESULT_OK) {
-                onRequireLoginSuccess(requestRequireLogin)
-            } else {
-                onRequireLoginCancel()
-            }
-        }
-
         when (requestCode) {
+            requestUpdateOrDestroy -> {
+                if (resultCode != RESULT_OK) {
+                    onBackPressed()
+                }
+            }
+            requestLogin -> {
+                if (resultCode == Activity.RESULT_OK) {
+                    onRequireLoginSuccess(requestRequireLogin)
+                } else {
+                    onRequireLoginCancel()
+                }
+            }
             requestGps -> {
                 if (NetworkHelper.isOpenedGPS(this)) {
                     getLocation()

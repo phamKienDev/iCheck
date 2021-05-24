@@ -2,16 +2,10 @@ package vn.icheck.android.screen.account.icklogin.fragment
 
 import android.content.Context
 import android.os.Bundle
-import android.text.InputType
-import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import androidx.appcompat.widget.AppCompatEditText
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.marginLeft
-import androidx.core.view.marginTop
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -22,11 +16,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import vn.icheck.android.base.fragment.CoroutineFragment
 import vn.icheck.android.databinding.FragmentFillPwBinding
-import vn.icheck.android.ichecklibs.WidgetHelper
-import vn.icheck.android.ichecklibs.visibleOrGone
-import vn.icheck.android.lib.keyboard.KeyboardVisibilityEvent
-import vn.icheck.android.lib.keyboard.KeyboardVisibilityEventListener
-import vn.icheck.android.lib.keyboard.Unregistrar
 import vn.icheck.android.screen.account.icklogin.viewmodel.IckLoginViewModel
 import vn.icheck.android.util.kotlin.WidgetUtils
 

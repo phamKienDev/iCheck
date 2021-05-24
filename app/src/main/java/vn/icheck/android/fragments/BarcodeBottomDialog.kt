@@ -2,7 +2,6 @@ package vn.icheck.android.fragments
 
 import android.os.Bundle
 import android.text.Editable
-import android.text.InputType
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -12,10 +11,6 @@ import androidx.fragment.app.FragmentManager
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialogFragment
 import vn.icheck.android.databinding.IckBarcodeBottomBinding
-import vn.icheck.android.ichecklibs.util.visibleOrGone
-import vn.icheck.android.lib.keyboard.KeyboardVisibilityEvent
-import vn.icheck.android.lib.keyboard.KeyboardVisibilityEventListener
-import vn.icheck.android.lib.keyboard.Unregistrar
 import vn.icheck.android.util.AfterTextWatcher
 import vn.icheck.android.util.kotlin.WidgetUtils
 

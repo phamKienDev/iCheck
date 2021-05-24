@@ -1,12 +1,9 @@
 package vn.icheck.android.screen.user.wall.updatepassword
 
 import android.os.Bundle
-import android.text.InputType
-import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -14,13 +11,9 @@ import androidx.navigation.fragment.findNavController
 import vn.icheck.android.base.fragment.CoroutineFragment
 import vn.icheck.android.databinding.FragmentNewPwBinding
 import vn.icheck.android.helper.DialogHelper
-import vn.icheck.android.ichecklibs.util.visibleOrGone
-import vn.icheck.android.lib.keyboard.KeyboardVisibilityEvent
-import vn.icheck.android.lib.keyboard.KeyboardVisibilityEventListener
-import vn.icheck.android.lib.keyboard.Unregistrar
+import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.model.ApiErrorResponse
 import vn.icheck.android.network.model.ApiSuccessResponse
-import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.screen.user.wall.IckUserWallViewModel
 import vn.icheck.android.util.ick.showShortError
 import vn.icheck.android.util.ick.showSimpleErrorToast
@@ -78,7 +71,7 @@ class IckNewPwFragment : CoroutineFragment() {
                     binding.edtRePassword.text?.length ?: 0 < 6 -> {
                         binding.edtRePassword.setError("Mật khẩu phải lớn hơn hoặc bằng 6 ký tự")
                     }
-                    binding.edtPassword.text.toString() !=  binding.edtRePassword.text.toString() -> {
+                    binding.edtPassword.text.toString() != binding.edtRePassword.text.toString() -> {
                         binding.edtRePassword.setError("Xác nhận mật khẩu không trùng khớp")
                     }
                     else -> {
@@ -90,7 +83,7 @@ class IckNewPwFragment : CoroutineFragment() {
                                     if (it is ApiSuccessResponse) {
                                         if (it.body.statusCode == "200") {
                                             requireContext().showSimpleSuccessToast("Bạn đã cập nhật mật khẩu thành công")
-                                            ickUserWallViewModel.getUserInfo().observe(requireActivity(), {user ->
+                                            ickUserWallViewModel.getUserInfo().observe(requireActivity(), { user ->
                                                 SessionManager.updateUser(user?.data?.createICUser())
                                             })
                                             delayAction({
@@ -121,7 +114,7 @@ class IckNewPwFragment : CoroutineFragment() {
                     binding.edtRePassword.text?.length ?: 0 < 6 -> {
                         binding.edtRePassword.setError("Mật khẩu phải lớn hơn hoặc bằng 6 ký tự")
                     }
-                    binding.edtPassword.text.toString() !=  binding.edtRePassword.text.toString() -> {
+                    binding.edtPassword.text.toString() != binding.edtRePassword.text.toString() -> {
                         binding.edtRePassword.setError("Xác nhận mật khẩu không trùng khớp")
                     }
                     else -> {

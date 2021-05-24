@@ -21,7 +21,7 @@ import vn.icheck.android.helper.CartHelper
 import vn.icheck.android.helper.RelationshipHelper
 import vn.icheck.android.helper.SettingHelper
 import vn.icheck.android.helper.ShareSessionToModule
-import vn.icheck.android.ichecklibs.visibleOrGone
+import vn.icheck.android.ichecklibs.util.visibleOrGone
 import vn.icheck.android.lib.keyboard.KeyboardVisibilityEvent
 import vn.icheck.android.lib.keyboard.KeyboardVisibilityEventListener
 import vn.icheck.android.lib.keyboard.Unregistrar

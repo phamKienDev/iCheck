@@ -122,9 +122,6 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
 
     private fun setupListener() {
         imgBack.setOnClickListener {
-            if (isChangeData == true) {
-                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REFRESH_DATA))
-            }
             onBackPressed()
         }
 
@@ -646,6 +643,8 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
     }
 
     override fun updateInformationCusomterGuaranteeSuccess() {
+        setResult(RESULT_OK)
+
         for (act in StampDetailActivity.listActivities) {
             act.finish()
             EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REFRESH_DATA))
@@ -671,6 +670,7 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
                 requestChangeData -> {
+                    setResult(RESULT_OK)
                     isChangeData = true
                 }
 
@@ -703,12 +703,16 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
     }
 
     override fun onBackPressed() {
-        if (viewModel.updateType == 1 || viewModel.updateType == 2) {
-            super.onBackPressed()
-            if (isChangeData == true) {
-                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REFRESH_DATA))
-            }
+        super.onBackPressed()
+
+        if (isChangeData == true) {
+            EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REFRESH_DATA))
         }
+//        if (viewModel.updateType == 1 || viewModel.updateType == 2) {
+//            if (isChangeData == true) {
+//                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REFRESH_DATA))
+//            }
+//        }
     }
 
     override fun onDestroy() {

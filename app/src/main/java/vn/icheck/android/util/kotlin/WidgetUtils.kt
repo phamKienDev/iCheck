@@ -1,7 +1,5 @@
 package vn.icheck.android.util.kotlin
 
-//import vn.teko.android.vnshop.di.module.GlideApp
-
 import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ValueAnimator
@@ -35,7 +33,7 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.callback.LoadImageListener
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.ichecklibs.visibleOrGone
+import vn.icheck.android.ichecklibs.util.visibleOrGone
 import vn.icheck.android.ui.RoundedCornersTransformation
 import vn.icheck.android.ui.edittext.FocusableEditText
 import vn.icheck.android.util.ick.logError

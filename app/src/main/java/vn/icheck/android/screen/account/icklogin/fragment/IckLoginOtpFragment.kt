@@ -10,10 +10,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import vn.icheck.android.base.fragment.CoroutineFragment
 import vn.icheck.android.databinding.FragmentIckOtpLoginBinding
-import vn.icheck.android.ichecklibs.util.visibleOrGone
-import vn.icheck.android.lib.keyboard.KeyboardVisibilityEvent
-import vn.icheck.android.lib.keyboard.KeyboardVisibilityEventListener
-import vn.icheck.android.lib.keyboard.Unregistrar
 import vn.icheck.android.screen.account.icklogin.FORGOT_PW
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.account.icklogin.LOGIN_OTP

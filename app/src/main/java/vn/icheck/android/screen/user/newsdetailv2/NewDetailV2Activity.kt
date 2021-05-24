@@ -24,7 +24,7 @@ import vn.icheck.android.component.news.NewsAdapter
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.TimeHelper
-import vn.icheck.android.ichecklibs.visibleOrGone
+import vn.icheck.android.ichecklibs.util.visibleOrGone
 import vn.icheck.android.loyalty.base.setGone
 import vn.icheck.android.loyalty.base.setVisible
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
