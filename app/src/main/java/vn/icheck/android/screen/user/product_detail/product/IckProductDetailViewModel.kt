@@ -229,7 +229,7 @@ class IckProductDetailViewModel : BaseViewModel() {
 
         if (productDetail?.status == "ok" && productDetail?.state == "active") {
             checkBookMark()
-            getProductLayoutData(isUpdate, obj, productDetail)
+//            getProductLayoutData(isUpdate, obj, productDetail)
             onDataProduct.postValue(productDetail)
         } else if (productDetail?.status == "notFound") {
             onProductNotFound.postValue(true)
