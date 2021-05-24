@@ -2,6 +2,7 @@ package vn.icheck.android.tracking.firebase
 
 import android.os.Bundle
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.useinsider.insider.Insider
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.network.model.cart.ItemCartItem
 import vn.icheck.android.network.model.cart.PurchasedOrderResponse
@@ -86,11 +87,56 @@ object TrackingFirebaseHelper {
                 ?: 0.0)
         bundle.putDouble("scan_product_rating", obj.basicInfo?.rating ?: 0.0)
         bundle.putBoolean("verified_status", obj.verified ?: false)
-        bundle.putString("country_of_origin", obj.owner?.city?.name ?: "Việt Nam")
+        bundle.putString("country_of_origin", obj.owner?.city?.name ?: " ")
         bundle.putString("scan_company_name", obj.owner?.name ?: " ")
         bundle.putString("scan_product_category", category)
 
         firebaseAnalytics.logEvent("scan_successful", bundle)
+    }
+
+    fun tagScanBarcodeSuccess(obj: ICDataProductDetail) {
+        val bundle = Bundle()
+        bundle.putString("barcode", obj.barcode)
+        bundle.putString("name", obj.basicInfo?.name)
+        bundle.putDouble("price", obj.basicInfo?.price?.toDouble() ?: 0.0)
+        bundle.putDouble("rating", obj.basicInfo?.rating ?: 0.0)
+        bundle.putBoolean("verified", obj.verified ?: false)
+        bundle.putString("country", obj.owner?.city?.name)
+        bundle.putString("business", obj.manager?.name ?: obj.owner?.name)
+
+        firebaseAnalytics.logEvent("scan_barcode_success", bundle)
+    }
+
+
+    fun tagScanBarcodeViewedSuccess(obj: ICDataProductDetail) {
+        val bundle = Bundle()
+        bundle.putString("barcode", obj.barcode)
+        bundle.putString("name", obj.basicInfo?.name)
+        bundle.putDouble("price", obj.basicInfo?.price?.toDouble() ?: 0.0)
+        bundle.putDouble("rating", obj.basicInfo?.rating ?: 0.0)
+        bundle.putBoolean("verified", obj.verified ?: false)
+        bundle.putString("country", obj.owner?.city?.name)
+        bundle.putString("business", obj.manager?.name ?: obj.owner?.name)
+
+        firebaseAnalytics.logEvent("barcode_viewed_success", bundle)
+    }
+
+
+    fun tagScanBarcodeFailed(barcode:String, status:String) {
+        val bundle = Bundle()
+        bundle.putString("barcode", barcode)
+        bundle.putString("status", status)
+
+        firebaseAnalytics.logEvent("scan_barcode_failed", bundle)
+    }
+
+    fun tagScanQrcode(content:String, icheck:Boolean) {
+        val bundle = Bundle()
+        bundle.putString("content", content)
+        bundle.putBoolean("icheck", icheck)
+
+        firebaseAnalytics.logEvent("scan_qrcode", bundle)
+
     }
 
     fun tagScanStart(scan_type: String) {
