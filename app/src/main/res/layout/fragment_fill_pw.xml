@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:fitsSystemWindows="true"
     android:layout_height="match_parent"
     android:background="@android:color/transparent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:fitsSystemWindows="true">
 
     <ImageView
         android:id="@+id/btn_back"
@@ -32,7 +31,6 @@
     <ScrollView
         android:id="@+id/scrollView4"
         android:layout_width="match_parent"
-
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_login"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,36 +52,75 @@
                 android:gravity="center"
                 android:text="Hãy ghi nhớ mật khẩu cận thận nhé!" />
 
-            <vn.icheck.android.ui.edittext.FocusableEditText
-                android:id="@+id/edt_pw"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_32"
                 android:layout_marginTop="@dimen/size_32"
-                android:layout_marginEnd="@dimen/size_32"
-                android:fontFamily="@font/barlow_semi_bold"
-                android:focusableInTouchMode="true"
-                android:gravity="center"
-                android:hint="Nhập mật khẩu"
-                android:inputType="textPassword"
-                android:paddingBottom="@dimen/size_20"
-                android:textSize="@dimen/font_18" />
+                android:layout_marginEnd="@dimen/size_32">
 
-            <vn.icheck.android.ui.edittext.FocusableEditText
-                android:id="@+id/edt_repw"
+                <vn.icheck.android.ui.edittext.FocusableEditText
+                    android:id="@+id/edtPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="@dimen/size_40"
+                    android:focusableInTouchMode="true"
+                    android:fontFamily="@font/barlow_semi_bold"
+                    android:gravity="center"
+                    android:hint="Nhập mật khẩu"
+                    android:inputType="numberPassword"
+                    android:paddingStart="@dimen/size_64"
+                    android:paddingBottom="@dimen/size_20"
+                    android:textSize="@dimen/font_18"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@id/btnKeyboard"
+                    android:layout_width="@dimen/size_24"
+                    android:layout_height="@dimen/size_24"
+                    android:layout_marginEnd="@dimen/size_32"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_keyboard_gray_18dp"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@id/edtPassword"
+                    app:layout_constraintEnd_toEndOf="@id/edtPassword"
+                    app:layout_constraintTop_toTopOf="@id/edtPassword" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_32"
-                android:focusableInTouchMode="true"
                 android:layout_marginTop="@dimen/size_32"
-                android:layout_marginEnd="@dimen/size_32"
-                android:fontFamily="@font/barlow_semi_bold"
-                android:gravity="center"
-                android:hint="Nhập lại mật khẩu"
-                android:inputType="textPassword"
-                android:paddingBottom="@dimen/size_20"
-                android:textSize="@dimen/font_18" />
+                android:layout_marginEnd="@dimen/size_32">
 
+                <vn.icheck.android.ui.edittext.FocusableEditText
+                    android:id="@+id/edtRePassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="@dimen/size_40"
+                    android:focusableInTouchMode="true"
+                    android:fontFamily="@font/barlow_semi_bold"
+                    android:gravity="center"
+                    android:hint="Nhập lại mật khẩu"
+                    android:inputType="numberPassword"
+                    android:paddingStart="@dimen/size_64"
+                    android:paddingBottom="@dimen/size_20"
+                    android:textSize="@dimen/font_18"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@id/btnKeyboardNew"
+                    android:layout_width="@dimen/size_24"
+                    android:layout_height="@dimen/size_24"
+                    android:layout_marginEnd="@dimen/size_32"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_keyboard_gray_18dp"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@id/edtRePassword"
+                    app:layout_constraintEnd_toEndOf="@id/edtRePassword"
+                    app:layout_constraintTop_toTopOf="@id/edtRePassword" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </ScrollView>
 
@@ -101,5 +138,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

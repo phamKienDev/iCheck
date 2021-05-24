@@ -1,11 +1,13 @@
 package vn.icheck.android.component.infomation_contribution
 
 import android.os.Build
+import android.os.Handler
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import de.hdodenhof.circleimageview.CircleImageView
@@ -19,6 +21,8 @@ import vn.icheck.android.component.view.ListAvatar
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
+import vn.icheck.android.ichecklibs.MiddleMultilineTextView
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.product.ProductInteractor
 import vn.icheck.android.network.models.ICProductContribution
@@ -28,15 +32,18 @@ import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.screen.user.contribute_product.IckContributeProductActivity
 import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionDialog
 import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionSuccessDialog
+import vn.icheck.android.util.ick.setRankUser
 import vn.icheck.android.util.ick.showSimpleErrorToast
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
-class ContributionHolder(parent: ViewGroup) : BaseViewHolder<ContributrionModel>(ViewHelper.createContributionHolder(parent.context)) {
+class ContributionHolder(parent: ViewGroup) :
+    BaseViewHolder<ContributrionModel>(ViewHelper.createContributionHolder(parent.context)) {
     lateinit var layoutAvatarUser: RelativeLayout
     lateinit var imgAvatarUser: CircleImageView
     lateinit var imgVerified: AppCompatTextView
-    lateinit var tvNameUser: AppCompatTextView
+    lateinit var imgRank: AppCompatImageView
+    lateinit var tvNameUser: MiddleMultilineTextView
     lateinit var tvUpVote: AppCompatTextView
     lateinit var tvDownVote: AppCompatTextView
     lateinit var tvAction: AppCompatTextView
@@ -57,8 +64,9 @@ class ContributionHolder(parent: ViewGroup) : BaseViewHolder<ContributrionModel>
                 layoutAvatarUser = getChildAt(0) as RelativeLayout
                 imgAvatarUser = layoutAvatarUser.getChildAt(0) as CircleImageView
                 imgVerified = layoutAvatarUser.getChildAt(1) as AppCompatTextView
+                imgRank = layoutAvatarUser.getChildAt(2) as AppCompatImageView
 
-                tvNameUser = getChildAt(1) as AppCompatTextView
+                tvNameUser = getChildAt(1) as MiddleMultilineTextView
                 tvUpVote = getChildAt(2) as AppCompatTextView
                 tvDownVote = getChildAt(3) as AppCompatTextView
             }
@@ -71,11 +79,16 @@ class ContributionHolder(parent: ViewGroup) : BaseViewHolder<ContributrionModel>
         }
 
         imgVerified.visibility = View.GONE
-
         checkProductVerify(obj)
+
         if (obj.productVerify) {
             if (obj.manager != null) {
-                WidgetUtils.loadImageUrl(imgAvatarUser, obj.manager.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
+                WidgetUtils.loadImageUrl(
+                    imgAvatarUser,
+                    obj.manager.avatar,
+                    R.drawable.ic_business_v2,
+                    R.drawable.ic_business_v2
+                )
                 tvNameUser.text = if (obj.manager.name.isNullOrEmpty())
                     itemView.context.getString(R.string.chua_cap_nhat)
                 else
@@ -90,16 +103,42 @@ class ContributionHolder(parent: ViewGroup) : BaseViewHolder<ContributrionModel>
             }
         } else {
             if (obj.data?.contribution == null) {
-                WidgetUtils.loadImageUrl(imgAvatarUser, "", R.drawable.ic_avatar_default_84px, R.drawable.ic_avatar_default_84px)
+                WidgetUtils.loadImageUrl(
+                    imgAvatarUser,
+                    "",
+                    R.drawable.ic_avatar_default_84px,
+                    R.drawable.ic_avatar_default_84px
+                )
                 tvNameUser.text = itemView.context.getString(R.string.chua_cap_nhat)
             } else {
-                WidgetUtils.loadImageUrl(imgAvatarUser, obj.data!!.contribution?.user?.avatar, R.drawable.ic_avatar_default_84px, R.drawable.ic_avatar_default_84px)
-                tvNameUser.text = obj.data!!.contribution?.user?.getName
+                WidgetUtils.loadImageUrl(
+                    imgAvatarUser,
+                    obj.data!!.contribution?.user?.avatar,
+                    R.drawable.ic_avatar_default_84px,
+                    R.drawable.ic_avatar_default_84px
+                )
+                if (obj.data!!.contribution?.user?.kycStatus == 2) {
+                    tvNameUser.setDrawbleNextEndText(
+                        obj.data!!.contribution?.user?.getName,
+                        R.drawable.ic_verified_user_16dp
+                    )
+                    Handler().postDelayed({
+                        tvNameUser.setDrawbleNextEndText(
+                            obj.data!!.contribution?.user?.getName,
+                            R.drawable.ic_verified_user_16dp
+                        )
+                    }, 100)
+                } else {
+                    tvNameUser.text = obj.data!!.contribution?.user?.getName
+                }
+                imgRank.setRankUser(obj.data!!.contribution?.user?.rank?.level)
                 checkVote(obj.data!!)
                 checkListUserContribute(obj)
                 initListener(obj)
             }
         }
+
+
     }
 
     private fun checkProductVerify(contribution: ContributrionModel) {
@@ -133,24 +172,84 @@ class ContributionHolder(parent: ViewGroup) : BaseViewHolder<ContributrionModel>
 
         if (contribution.contribution != null) {
             if (contribution.contribution!!.myVote == null) {
-                tvUpVote.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_contribute_correct_unfc_30_px, 0, 0)
-                tvUpVote.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorSecondText))
+                tvUpVote.setCompoundDrawablesWithIntrinsicBounds(
+                    0,
+                    R.drawable.ic_contribute_correct_unfc_30_px,
+                    0,
+                    0
+                )
+                tvUpVote.setTextColor(
+                    ContextCompat.getColor(
+                        itemView.context,
+                        R.color.colorSecondText
+                    )
+                )
 
-                tvDownVote.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_contribute_incorrect_unfc_30px, 0, 0)
-                tvDownVote.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorSecondText))
+                tvDownVote.setCompoundDrawablesWithIntrinsicBounds(
+                    0,
+                    R.drawable.ic_contribute_incorrect_unfc_30px,
+                    0,
+                    0
+                )
+                tvDownVote.setTextColor(
+                    ContextCompat.getColor(
+                        itemView.context,
+                        R.color.colorSecondText
+                    )
+                )
             } else {
                 if (contribution.contribution!!.myVote!!) {
-                    tvUpVote.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_contribute_correct_fc_30px, 0, 0)
-                    tvUpVote.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorPrimary))
+                    tvUpVote.setCompoundDrawablesWithIntrinsicBounds(
+                        0,
+                        R.drawable.ic_contribute_correct_fc_30px,
+                        0,
+                        0
+                    )
+                    tvUpVote.setTextColor(
+                        ContextCompat.getColor(
+                            itemView.context,
+                            R.color.colorPrimary
+                        )
+                    )
 
-                    tvDownVote.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_contribute_incorrect_unfc_30px, 0, 0)
-                    tvDownVote.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorSecondText))
+                    tvDownVote.setCompoundDrawablesWithIntrinsicBounds(
+                        0,
+                        R.drawable.ic_contribute_incorrect_unfc_30px,
+                        0,
+                        0
+                    )
+                    tvDownVote.setTextColor(
+                        ContextCompat.getColor(
+                            itemView.context,
+                            R.color.colorSecondText
+                        )
+                    )
                 } else {
-                    tvUpVote.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_contribute_correct_unfc_30_px, 0, 0)
-                    tvUpVote.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorSecondText))
+                    tvUpVote.setCompoundDrawablesWithIntrinsicBounds(
+                        0,
+                        R.drawable.ic_contribute_correct_unfc_30_px,
+                        0,
+                        0
+                    )
+                    tvUpVote.setTextColor(
+                        ContextCompat.getColor(
+                            itemView.context,
+                            R.color.colorSecondText
+                        )
+                    )
 
-                    tvDownVote.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_contribute_incorrect_fc_30px, 0, 0)
-                    tvDownVote.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorAccentYellow))
+                    tvDownVote.setCompoundDrawablesWithIntrinsicBounds(
+                        0,
+                        R.drawable.ic_contribute_incorrect_fc_30px,
+                        0,
+                        0
+                    )
+                    tvDownVote.setTextColor(
+                        ContextCompat.getColor(
+                            itemView.context,
+                            R.color.colorAccentYellow
+                        )
+                    )
                 }
             }
             tvUpVote.text = if (contribution.contribution!!.upVotes > 0) {
@@ -178,17 +277,24 @@ class ContributionHolder(parent: ViewGroup) : BaseViewHolder<ContributrionModel>
                 if (obj.data!!.contribution!!.myVote!!) {
                     sendReportContribute(null, obj)
                 } else {
-                    DialogHelper.showConfirm(itemView.context, itemView.context.getString(R.string.thay_doi_binh_chon), itemView.context.getString(R.string.content_change_vote_contribution), "Không, tôi muốn giữ", "Chắc chắn", true, object : ConfirmDialogListener {
-                        override fun onDisagree() {
-                            ICheckApplication.currentActivity()?.let { activity ->
-                                DialogHelper.closeLoading(activity)
+                    DialogHelper.showConfirm(
+                        itemView.context,
+                        itemView.context.getString(R.string.thay_doi_binh_chon),
+                        itemView.context.getString(R.string.content_change_vote_contribution),
+                        "Không, tôi muốn giữ",
+                        "Chắc chắn",
+                        true,
+                        object : ConfirmDialogListener {
+                            override fun onDisagree() {
+                                ICheckApplication.currentActivity()?.let { activity ->
+                                    DialogHelper.closeLoading(activity)
+                                }
                             }
-                        }
 
-                        override fun onAgree() {
-                            sendReportContribute(true, obj)
-                        }
-                    })
+                            override fun onAgree() {
+                                sendReportContribute(true, obj)
+                            }
+                        })
                 }
             }
         }
@@ -209,7 +315,8 @@ class ContributionHolder(parent: ViewGroup) : BaseViewHolder<ContributrionModel>
         }
 
         tvAll.setOnClickListener {
-            EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.OPEN_LIST_CONTRIBUTION, obj.barcode))
+            EventBus.getDefault()
+                .post(ICMessageEvent(ICMessageEvent.Type.OPEN_LIST_CONTRIBUTION, obj.barcode))
         }
 
         tvAction.setOnClickListener {
@@ -217,7 +324,8 @@ class ContributionHolder(parent: ViewGroup) : BaseViewHolder<ContributrionModel>
                 if (SessionManager.isUserLogged) {
                     IckContributeProductActivity.start(it, obj.barcode, obj.productId)
                 } else {
-                    EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REQUEST_VOTE_CONTRIBUTION))
+                    EventBus.getDefault()
+                        .post(ICMessageEvent(ICMessageEvent.Type.REQUEST_VOTE_CONTRIBUTION))
                 }
             }
         }
@@ -238,7 +346,12 @@ class ContributionHolder(parent: ViewGroup) : BaseViewHolder<ContributrionModel>
             viewLine.visibility = View.VISIBLE
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                listAvatar.bind(ICAvatarOfFriend(data.data!!.userContributions!!.toMutableList(), data.data!!.count))
+                listAvatar.bind(
+                    ICAvatarOfFriend(
+                        data.data!!.userContributions!!.toMutableList(),
+                        data.data!!.count
+                    )
+                )
             }
             tvListAvatar.text = "${data.data!!.count} người khác đã đóng góp thông tin"
         } else {
@@ -252,19 +365,29 @@ class ContributionHolder(parent: ViewGroup) : BaseViewHolder<ContributrionModel>
         ICheckApplication.currentActivity()?.let {
             if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
                 tvDownVote.isEnabled = true
-                ToastUtils.showLongError(itemView.context, itemView.context.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+                ToastUtils.showLongError(
+                    itemView.context,
+                    itemView.context.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
+                )
                 return
             }
 
-            productInteractor.getListReportFormContribute(object : ICNewApiListener<ICResponse<ICListResponse<ICReportForm>>> {
+            productInteractor.getListReportFormContribute(object :
+                ICNewApiListener<ICResponse<ICListResponse<ICReportForm>>> {
                 override fun onSuccess(obj: ICResponse<ICListResponse<ICReportForm>>) {
                     tvDownVote.isEnabled = true
                     if (!obj.data?.rows.isNullOrEmpty()) {
                         dialog?.dismiss()
                         dialog = ReportWrongContributionDialog(obj.data?.rows!!)
 
-                        dialog?.setListener(object : ReportWrongContributionDialog.DialogClickListener {
-                            override fun buttonClick(position: Int, listReason: MutableList<Int>, message: String, listMessage: MutableList<String>) {
+                        dialog?.setListener(object :
+                            ReportWrongContributionDialog.DialogClickListener {
+                            override fun buttonClick(
+                                position: Int,
+                                listReason: MutableList<Int>,
+                                message: String,
+                                listMessage: MutableList<String>
+                            ) {
                                 sendReportContribute(false, model, listReason, message)
                             }
                         })
@@ -274,88 +397,122 @@ class ContributionHolder(parent: ViewGroup) : BaseViewHolder<ContributrionModel>
 
                 override fun onError(error: ICResponseCode?) {
                     tvDownVote.isEnabled = true
-                    ToastUtils.showLongError(itemView.context, itemView.context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                    ToastUtils.showLongError(
+                        itemView.context,
+                        itemView.context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                    )
                 }
             })
         }
     }
 
-    private fun sendReportContribute(isVote: Boolean?, model: ContributrionModel, listReport: MutableList<Int>? = null, message: String? = null) {
+    private fun sendReportContribute(
+        isVote: Boolean?,
+        model: ContributrionModel,
+        listReport: MutableList<Int>? = null,
+        message: String? = null
+    ) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            ToastUtils.showLongError(itemView.context, itemView.context.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+            ToastUtils.showLongError(
+                itemView.context,
+                itemView.context.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
+            )
             return
         }
 
         val contribution = model.data
         if (contribution!!.contribution != null) {
-            productInteractor.sendReportContribute(contribution.contribution!!.id!!, isVote, listReport, message, object : ICNewApiListener<ICResponse<ICReportContribute>> {
-                override fun onSuccess(obj: ICResponse<ICReportContribute>) {
-                    if (dialog != null) {
-                        dialog?.dismiss()
-                    }
+            productInteractor.sendReportContribute(
+                contribution.contribution!!.id!!,
+                isVote,
+                listReport,
+                message,
+                object : ICNewApiListener<ICResponse<ICReportContribute>> {
+                    override fun onSuccess(obj: ICResponse<ICReportContribute>) {
+                        if (dialog != null) {
+                            dialog?.dismiss()
+                        }
 
-                    if (!obj.data?.reports.isNullOrEmpty()) {
-                        if (isVote != null && !isVote) {
-                            val dialogFragment = ReportWrongContributionSuccessDialog(itemView.context)
+                        if (!obj.data?.reports.isNullOrEmpty()) {
+                            if (isVote != null && !isVote) {
+                                val dialogFragment =
+                                    ReportWrongContributionSuccessDialog(itemView.context)
 
-                            if (!message.isNullOrEmpty()) {
-                                for (i in obj.data!!.reports.size - 1 downTo 0) {
-                                    if (obj.data!!.reports[i].name == "Khác") {
-                                        obj.data!!.reports.removeAt(i)
+                                if (!message.isNullOrEmpty()) {
+                                    for (i in obj.data!!.reports.size - 1 downTo 0) {
+                                        if (obj.data!!.reports[i].name == "Khác") {
+                                            obj.data!!.reports.removeAt(i)
+                                        }
                                     }
+                                    obj.data?.reports?.add(
+                                        ICReportForm(
+                                            obj.data?.reports!!.size + 1,
+                                            message
+                                        )
+                                    )
                                 }
-                                obj.data?.reports?.add(ICReportForm(obj.data?.reports!!.size + 1, message))
-                            }
-                            dialogFragment.show(obj.data?.reports!!, "contributor", null, model.barcode)
-                        }
-                    }
-
-
-                    if (contribution.contribution!!.myVote == null) {
-                        obj.data!!.isVote?.let {
-                            if (it) {
-                                contribution.contribution!!.upVotes++
-                            } else {
-                                contribution.contribution!!.downVotes++
+                                dialogFragment.show(
+                                    obj.data?.reports!!,
+                                    "contributor",
+                                    null,
+                                    model.barcode
+                                )
                             }
                         }
-                    } else {
-                        if (contribution.contribution!!.myVote!!) {
-                            if (isVote == null) {
-                                contribution.contribution!!.upVotes--
-                            } else {
-                                contribution.contribution!!.upVotes--
-                                contribution.contribution!!.downVotes++
+
+
+                        if (contribution.contribution!!.myVote == null) {
+                            obj.data!!.isVote?.let {
+                                if (it) {
+                                    contribution.contribution!!.upVotes++
+                                } else {
+                                    contribution.contribution!!.downVotes++
+                                }
                             }
                         } else {
-                            if (isVote == null) {
-                                contribution.contribution!!.downVotes--
+                            if (contribution.contribution!!.myVote!!) {
+                                if (isVote == null) {
+                                    contribution.contribution!!.upVotes--
+                                } else {
+                                    contribution.contribution!!.upVotes--
+                                    contribution.contribution!!.downVotes++
+                                }
                             } else {
-                                contribution.contribution!!.upVotes++
-                                contribution.contribution!!.downVotes--
+                                if (isVote == null) {
+                                    contribution.contribution!!.downVotes--
+                                } else {
+                                    contribution.contribution!!.upVotes++
+                                    contribution.contribution!!.downVotes--
+                                }
                             }
                         }
+
+                        contribution.contribution!!.myVote = obj.data?.isVote
+                        checkVote(contribution)
                     }
 
-                    contribution.contribution!!.myVote = obj.data?.isVote
-                    checkVote(contribution)
-                }
-
-                override fun onError(error: ICResponseCode?) {
-                    if (dialog != null) {
-                        dialog?.dismiss()
-                    }
-                    if (error?.statusCode == "S402") {
-                        EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REQUEST_VOTE_CONTRIBUTION, isVote))
-                    } else {
-                        itemView.context.showSimpleErrorToast(if (error?.message.isNullOrEmpty()) {
-                            itemView.context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                    override fun onError(error: ICResponseCode?) {
+                        if (dialog != null) {
+                            dialog?.dismiss()
+                        }
+                        if (error?.statusCode == "S402") {
+                            EventBus.getDefault().post(
+                                ICMessageEvent(
+                                    ICMessageEvent.Type.REQUEST_VOTE_CONTRIBUTION,
+                                    isVote
+                                )
+                            )
                         } else {
-                            error?.message
-                        })
+                            itemView.context.showSimpleErrorToast(
+                                if (error?.message.isNullOrEmpty()) {
+                                    itemView.context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                                } else {
+                                    error?.message
+                                }
+                            )
+                        }
                     }
-                }
-            })
+                })
         }
     }
 }

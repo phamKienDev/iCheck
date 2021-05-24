@@ -38,8 +38,8 @@ android {
         applicationId "vn.icheck.android"
         minSdkVersion 19
         targetSdkVersion 30
-            versionCode 21050701
-            versionName "6.20.1"
+        versionCode 21052401
+        versionName "6.21.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled = true
         signingConfig signingConfigs.release
@@ -79,7 +79,7 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
 //        freeCompilerArgs += ["-Xopt-in=kotlin.RequiresOptIn"]-
     }
-    buildToolsVersion = '29.0.3'
+//    buildToolsVersion = '29.0.3'
     flavorDimensions 'default'
 
     productFlavors {
@@ -89,15 +89,26 @@ android {
             resValue "string", "app_id", "1465397716834916"
             resValue "string", "ak_login_protocol_scheme", "ak1465397716834916"
             resValue "string", "client_token", "7e784c39b6e8276791c06bb407f1c58b"
+
+            // todo bỏ khi release
+//            resConfigs "xxhdpi"
+//            ext.enableCrashlytics = false
+//            ext.alwaysUpdateBuildId = false
         }
         prod {
             resValue "string", "app_name", "iCheck"
             resValue "string", "app_id", "906784082696285"
             resValue "string", "ak_login_protocol_scheme", "ak906784082696285"
             resValue "string", "client_token", "2d5a74d2ced833d25af57a02e63132a9"
+
+            // todo bỏ khi release
+//            resConfigs "xxhdpi"
+//            ext.enableCrashlytics = false
+//            ext.alwaysUpdateBuildId = false
         }
     }
     dexOptions {
+//        preDexLibraries true
         javaMaxHeapSize "4g"
     }
 }

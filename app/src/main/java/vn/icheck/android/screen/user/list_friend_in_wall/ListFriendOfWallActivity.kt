@@ -29,6 +29,7 @@ import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.Re
 import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
 import vn.icheck.android.screen.user.wall.USER_ID
+import vn.icheck.android.util.KeyboardUtils
 import vn.icheck.android.util.ick.forceShowKeyboard
 import vn.icheck.android.util.ick.showSimpleErrorToast
 import vn.icheck.android.util.ick.showSimpleSuccessToast
@@ -230,6 +231,7 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
     }
 
     override fun clickUser(item: ICUserFollowWall) {
+        KeyboardUtils.hideSoftInput(this)
         IckUserWallActivity.create(item.id, this)
     }
 

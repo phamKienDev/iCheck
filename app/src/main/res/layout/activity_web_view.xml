@@ -55,15 +55,28 @@
             android:layout_height="match_parent" />
     </LinearLayout>
 
-    <include
+    <FrameLayout
         android:id="@id/layoutCenter"
-        layout="@layout/dialog_loading"
-        android:layout_width="@dimen/size_0"
-        android:layout_height="@dimen/size_0"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="@id/layoutContent"
         app:layout_constraintEnd_toEndOf="@id/layoutContent"
         app:layout_constraintStart_toStartOf="@id/layoutContent"
-        app:layout_constraintTop_toTopOf="@id/layoutContent" />
+        app:layout_constraintTop_toTopOf="@id/layoutContent" >
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:scaleType="centerInside"
+            app:lottie_autoPlay="true"
+            app:lottie_enableMergePathsForKitKatAndAbove="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loading_short" />
+    </FrameLayout>
 
     <View
         style="@style/Shadow_Bottom"

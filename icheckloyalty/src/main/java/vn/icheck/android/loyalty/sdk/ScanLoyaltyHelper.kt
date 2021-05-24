@@ -93,7 +93,7 @@ object ScanLoyaltyHelper {
                             object : DialogErrorScanGame(activity, R.drawable.ic_error_scan_game,
                                     "Mã QRcode của sản phẩm này không còn lượt quay", "Thử quét với những mã QRcode khác để thêm lượt quay nhận ngàn quà hay nhé") {
                                 override fun onDismiss() {
-                                    activity.finish()
+                                    mPickerScan(false)
                                 }
 
                             }.show()
@@ -102,7 +102,16 @@ object ScanLoyaltyHelper {
                             object : DialogErrorScanGame(activity, R.drawable.ic_error_scan_game_1,
                                     "Mã QRcode của sản phẩm này không thuộc chương trình", "Thử quét với những mã QRcode khác để thêm lượt quay nhận ngàn quà hay nhé") {
                                 override fun onDismiss() {
-                                    activity.finish()
+                                    mPickerScan(false)
+                                }
+
+                            }.show()
+                        }
+                        "USED_TARGET" -> {
+                            object : DialogErrorScanGame(activity, R.drawable.ic_error_scan_game,
+                                    "Mã QRcode của sản phẩm này không còn lượt quay", "Thử quét với những mã QRcode khác để thêm lượt quay nhận ngàn quà hay nhé") {
+                                override fun onDismiss() {
+                                    mPickerScan(false)
                                 }
 
                             }.show()

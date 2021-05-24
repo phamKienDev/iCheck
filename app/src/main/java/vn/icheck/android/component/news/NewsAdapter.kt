@@ -2,6 +2,7 @@ package vn.icheck.android.component.news
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
@@ -9,6 +10,7 @@ import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ItemNewBinding
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.ichecklibs.visibleOrGone
 import vn.icheck.android.network.models.ICNews
 import vn.icheck.android.screen.user.newsdetailv2.NewDetailV2Activity
@@ -29,11 +31,21 @@ class NewsAdapter(private val listData: List<ICNews>) : RecyclerView.Adapter<New
     inner class ViewHolder(parent: ViewGroup, val binding: ItemNewBinding = ItemNewBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : BaseViewHolder<ICNews>(binding.root) {
 
         override fun bind(obj: ICNews) {
-            WidgetUtils.loadImageUrlRoundedTransformation(binding.imgNews, obj.thumbnail?.trim(),R.drawable.img_default_loading_icheck,R.drawable.img_default_loading_icheck, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+            WidgetUtils.loadImageUrlRoundedTransformation(binding.imgNews, obj.thumbnail?.trim(), R.drawable.img_default_loading_icheck, R.drawable.img_default_loading_icheck, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
 
+
+            val millisecond = TimeHelper.convertDateTimeSvToMillisecond(obj.createdAt) ?: 0
+
+            binding.tvName.apply {
+                text = obj.title
+
+                if (System.currentTimeMillis() - millisecond < 86400000) {
+                    setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(itemView.context, R.drawable.ic_new_36dp), null, null, null)
+                } else {
+                    setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
+                }
+            }
             binding.tvStatus.visibleOrGone(!obj.pageIds.isNullOrEmpty())
-
-            binding.tvName.text = obj.title
 
             itemView.setOnClickListener {
                 ICheckApplication.currentActivity()?.let { activity ->

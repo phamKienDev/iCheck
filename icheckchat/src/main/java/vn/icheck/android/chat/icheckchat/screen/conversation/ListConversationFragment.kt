@@ -117,6 +117,8 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
         binding.swipeRefresh.isRefreshing = true
 
         listData.clear()
+        binding.layoutNoData.setGone()
+        binding.layoutNoDataSearch.setGone()
         binding.edtSearch.removeTextChangedListener(textChangeListener)
         binding.edtSearch.setText("")
         binding.edtSearch.addTextChangedListener(textChangeListener)
@@ -221,6 +223,7 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
                             element.targetUserName = success.child("name").value.toString()
                             element.imageTargetUser = success.child("image").value.toString()
                             element.isVerified = success.child("is_verify").value.toString().toBoolean()
+                            element.kycStatus = success.child("kycStatus").value as Long? ?: 0L
 
                             adapter.refreshItem(element)
                         }, {

@@ -20,6 +20,7 @@
                 android:scaleType="centerCrop" />
 
             <LinearLayout
+                android:id="@+id/layoutInput"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="@dimen/size_10"

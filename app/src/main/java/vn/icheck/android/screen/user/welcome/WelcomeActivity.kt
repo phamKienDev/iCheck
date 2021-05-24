@@ -12,6 +12,7 @@ import androidx.viewpager.widget.ViewPager
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import kotlinx.android.synthetic.main.activity_welcome.*
 import vn.icheck.android.R
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.CartHelper
 import vn.icheck.android.tracking.insider.InsiderHelper
@@ -29,7 +30,7 @@ import vn.icheck.android.util.kotlin.ActivityUtils
  * hungphp@icheck.vn
  */
 
-class WelcomeActivity : AppCompatActivity() {
+class WelcomeActivity : BaseActivityMVVM() {
 
     companion object {
         var type1 = 1
@@ -102,10 +103,13 @@ class WelcomeActivity : AppCompatActivity() {
     }
 
     private fun goToHome(isLogin: Boolean = false) {
-        val intent = Intent(this@WelcomeActivity, HomeActivity::class.java)
-        intent.putExtra(Constant.DATA_2, isLogin)
-        intent.putExtra(Constant.DATA_3, this@WelcomeActivity.intent?.getStringExtra(Constant.DATA_2))
-        ActivityUtils.startActivityAndFinish(this@WelcomeActivity, intent)
+        this@WelcomeActivity.apply {
+            val intent = Intent(this, HomeActivity::class.java)
+            intent.putExtra(Constant.DATA_2, isLogin)
+            intent.putExtra(Constant.DATA_3, this.intent?.getStringExtra(Constant.DATA_2))
+            intent.putExtra(Constant.DATA_4, this.intent?.getStringExtra(Constant.DATA_3))
+            ActivityUtils.startActivityAndFinish(this@WelcomeActivity, intent)
+        }
     }
 
     private fun getDefaultSetting() {

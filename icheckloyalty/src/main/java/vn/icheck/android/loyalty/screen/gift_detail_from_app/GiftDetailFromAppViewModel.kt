@@ -1,16 +1,13 @@
-package vn.icheck.android.loyalty.screen.gift_voucher
+package vn.icheck.android.loyalty.screen.gift_detail_from_app
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.lifecycle.MutableLiveData
-import kotlinx.android.synthetic.main.item_gift_detail_from_app.view.*
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.BaseViewModel
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
-import vn.icheck.android.loyalty.base.setVisible
 import vn.icheck.android.loyalty.helper.ApplicationHelper
 import vn.icheck.android.loyalty.helper.NetworkHelper
-import vn.icheck.android.loyalty.helper.TimeHelper
 import vn.icheck.android.loyalty.helper.ToastHelper
 import vn.icheck.android.loyalty.model.*
 import vn.icheck.android.loyalty.network.ICApiListener

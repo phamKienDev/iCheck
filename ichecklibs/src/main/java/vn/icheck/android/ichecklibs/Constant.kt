@@ -208,4 +208,56 @@ object Constant {
             phone
         }
     }
+
+    fun getPath(type: String?, id: String?): String? {
+        return if (!type.isNullOrEmpty()) {
+            if (!id.isNullOrEmpty()) {
+                "icheck://$type?id=$id"
+            } else {
+                "icheck://$type"
+            }
+        } else {
+            null
+        }
+    }
+
+    fun getAddress(address: String?, district: String?, city: String?, country: String?, default: String?): String {
+        val stringBuilder = StringBuilder()
+
+        var isAdded = false
+        if (!address.isNullOrEmpty()) {
+            isAdded = true
+            stringBuilder.append(address)
+        }
+
+        if (!district.isNullOrEmpty()) {
+            isAdded = true
+            if (isAdded) {
+                stringBuilder.append(", ")
+            }
+            stringBuilder.append(district)
+        }
+
+        if (!city.isNullOrEmpty()) {
+            isAdded = true
+            if (isAdded) {
+                stringBuilder.append(", ")
+            }
+            stringBuilder.append(city)
+        }
+
+        if (!country.isNullOrEmpty()) {
+            isAdded = true
+            if (isAdded) {
+                stringBuilder.append(", ")
+            }
+            stringBuilder.append(country)
+        }
+
+        if (!isAdded) {
+            stringBuilder.append(default ?: "")
+        }
+
+        return stringBuilder.toString()
+    }
 }

@@ -1,5 +1,7 @@
 package vn.icheck.android.loyalty.model
 
+import android.content.res.ColorStateList
+import android.graphics.drawable.Drawable
 import com.google.gson.annotations.Expose
 import java.io.Serializable
 
@@ -42,5 +44,11 @@ class ICKRedemptionHistory : Serializable {
     var status: String? = null
 
     @Expose
+    var status_title: String? = null
+
+    @Expose
     var win_at: String? = null
+
+    @Expose
+    var voucher: ICKVoucher? = null
 }

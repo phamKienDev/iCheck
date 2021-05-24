@@ -39,6 +39,12 @@ class ContactAdapter(callback: IRecyclerViewCallback) : BaseRecyclerView<MCUser>
             checkNullOrEmpty(binding.tvNameUser, obj.getName)
             binding.imgRank.setRankUserBig(obj.rank?.level)
 
+            if (obj.kycStatus == 2){
+                binding.tvNameUser.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_16px, 0)
+            }else{
+                binding.tvNameUser.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+            }
+
             binding.root.setOnClickListener {
                 ChatSocialDetailActivity.createRoomChat(itemView.context, obj.id ?: -1, "user")
             }

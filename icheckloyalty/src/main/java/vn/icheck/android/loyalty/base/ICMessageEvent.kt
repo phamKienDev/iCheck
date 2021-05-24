@@ -12,6 +12,7 @@ data class ICMessageEvent(val type: Type, val data: Any? = null) {
         OPEN_DETAIL_GIFT,
         BACK,
         QR_SCANNED,
-        SCAN_FAILED
+        SCAN_FAILED,
+        ON_BACK_PRESSED
     }
 }
