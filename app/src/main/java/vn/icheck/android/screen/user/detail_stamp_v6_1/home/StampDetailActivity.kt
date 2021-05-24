@@ -66,7 +66,7 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
 
     companion object {
         val listActivities = mutableListOf<AppCompatActivity>()
-        var isVietNamLanguage: Boolean? = null
+        var isVietNamLanguage = true
         var mSerial: String? = null
     }
 
@@ -117,7 +117,7 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
     private fun setupView() {
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
-        isVietNamLanguage = Locale.getDefault().displayLanguage.toLowerCase(Locale.getDefault()) == "vi"
+//        isVietNamLanguage = Locale.getDefault().displayLanguage.toLowerCase(Locale.getDefault()) == "vi"
 
         runOnUiThread {
             if (isVietNamLanguage == false) {
