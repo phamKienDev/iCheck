@@ -117,7 +117,6 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
                             id = item.child("id").value.toString().trim()
                             toId = item.child("source_id").value.toString()
                             toType = item.child("type").value.toString()
-                            kycStatus = item.child("kyc_status").value as Long? ?: 0L
                         } else {
                             notification = item.child("is_subscribe").value.toString().toBoolean()
                             deleteAt = if (item.child("deleted_at").value != null) {
@@ -255,6 +254,8 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
             }
 
             if (success.exists()) {
+                kycStatus = success.child("kyc_status").value as Long? ?: 0L
+
                 binding.imgAvatar.apply {
                     val ssb = SpannableStringBuilder(success.child("name").value.toString().replace("null", "") + "   ")
 
