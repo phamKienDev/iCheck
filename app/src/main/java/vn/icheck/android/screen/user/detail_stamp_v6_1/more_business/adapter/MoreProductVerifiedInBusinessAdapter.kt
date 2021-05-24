@@ -214,7 +214,7 @@ class MoreProductVerifiedInBusinessAdapter(val view: IMoreBusinessView, val isVi
 
                 itemView.tvAddress.text = Html.fromHtml("<font color=#434343>Address : </font>" +
                         "<b>" + vn.icheck.android.ichecklibs.Constant.getAddress(objVendor.address,
-                                objVendor.district, objVendor.city,
+                                objVendor.district, objVendor.city, objVendor.country_name,
                                 if (isVietNamLanguage == false) {
                                     "updating"
                                 } else {
@@ -340,7 +340,7 @@ class MoreProductVerifiedInBusinessAdapter(val view: IMoreBusinessView, val isVi
 
                 itemView.tvAddress.text = Html.fromHtml("<font color=#434343>Address : </font>" +
                         "<b>" + vn.icheck.android.ichecklibs.Constant.getAddress(objDistributor?.address,
-                        objDistributor?.district, objDistributor?.city,
+                        objDistributor?.district, objDistributor?.city, objDistributor?.country_name,
                         if (isVietNamLanguage == false) {
                             "updating"
                         } else {

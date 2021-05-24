@@ -98,7 +98,12 @@ class ListConversationAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
                 if (obj.type == "user") {
                     setBackgroundResource(0)
                     loadImageUrl(this@apply, obj.imageTargetUser, R.drawable.ic_user_default_52dp, R.drawable.ic_user_default_52dp)
-                    binding.tvNameUser.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+
+                    if (obj.kycStatus == 2L) {
+                        binding.tvNameUser.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_16px, 0)
+                    } else {
+                        binding.tvNameUser.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                    }
                 } else {
 
                     if (obj.isVerified) {
@@ -159,7 +164,7 @@ class ListConversationAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
             }
         }
 
-        fun updateConversation(obj: MCConversation){
+        fun updateConversation(obj: MCConversation) {
             checkNullOrEmpty(binding.tvMessage, obj.lastMessage)
             binding.tvTime.text = convertDateTimeSvToCurrentDay(obj.time)
 
