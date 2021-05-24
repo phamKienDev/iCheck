@@ -228,6 +228,7 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
                         }, {
 
                         })
+                        element.kycStatus = i.child("kyc_status").value as Long? ?: 0L
                         element.type = i.child("type").value.toString().trim()
                     } else {
                         element.isNotification = i.child("is_subscribe").value.toString().toBoolean()
