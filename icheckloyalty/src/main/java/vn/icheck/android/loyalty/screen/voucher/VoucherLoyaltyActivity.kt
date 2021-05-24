@@ -30,6 +30,7 @@ class VoucherLoyaltyActivity : BaseActivityGame() {
             val hints = mutableMapOf<EncodeHintType, Any>()
             hints[EncodeHintType.CHARACTER_SET] = "UTF-8"
             hints[EncodeHintType.MARGIN] = 2
+            hints[EncodeHintType.ERROR_CORRECTION] = "H"
 
             val bitMatrix = writer.encode("icv$code", BarcodeFormat.QR_CODE, 512, 512, hints)
             val width = bitMatrix.width

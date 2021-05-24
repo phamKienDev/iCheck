@@ -29,4 +29,6 @@ class MCConversation : Serializable {
     var type: String = "user"
 
     var isVerified: Boolean = false
+
+    var kycStatus: Long? = null
 }

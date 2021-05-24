@@ -26,6 +26,9 @@ class MCUser : Serializable {
     @Expose
     val phone: String? = null
 
+    @Expose
+    val kycStatus: Int? = null
+
     fun getPhoneOnly(): String {
         return if (phone != null) {
             StringBuilder(phone!!).apply {
