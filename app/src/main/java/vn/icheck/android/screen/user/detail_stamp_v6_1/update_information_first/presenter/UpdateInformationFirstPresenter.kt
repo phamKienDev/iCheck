@@ -2,6 +2,7 @@ package vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first
 
 import android.content.Intent
 import com.google.gson.annotations.Expose
+import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityPresenter
 import vn.icheck.android.constant.Constant
@@ -306,7 +307,7 @@ class UpdateInformationFirstPresenter(val view: IUpdateInformationFirstView) : B
 
             override fun onError(error: ICBaseResponse?) {
                 error?.message?.let {
-                    showError(view.mContext.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                    showError(ICheckApplication.getError(error.message))
                 }
             }
         })

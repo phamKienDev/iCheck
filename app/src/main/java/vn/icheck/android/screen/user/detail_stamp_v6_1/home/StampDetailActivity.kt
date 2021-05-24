@@ -75,10 +75,10 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
 
     private var isShow = true
     private var numberPage = 0
-    private var idDistributor: Long? = null
+    private var distributorId: Long? = null
     private var productId: Long? = null
     private var objVariant: ICVariantProductStampV6_1.ICVariant.ICObjectVariant? = null
-    private var verfiedSerial: String? = null
+    private var serial: String? = null
 
     private var seller_id: Long? = null
     private var barcode: String? = null
@@ -256,8 +256,8 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
             if (guarantee != null) {
                 if (guarantee?.customerId != null) {
                     val intent = Intent(this, VerifiedPhoneActivity::class.java)
-                    intent.putExtra(Constant.DATA_1, verfiedSerial)
-                    intent.putExtra(Constant.DATA_2, idDistributor)
+                    intent.putExtra(Constant.DATA_1, serial)
+                    intent.putExtra(Constant.DATA_2, distributorId)
 //                    intent.putExtra(Constant.DATA_3, productCode)
                     intent.putExtra(Constant.DATA_4, productId)
                     intent.putExtra(Constant.DATA_5, objVariant)
@@ -266,9 +266,9 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
                 } else {
                     val intent = Intent(this, UpdateInformationFirstActivity::class.java)
                     intent.putExtra(Constant.DATA_1, 2)
-                    intent.putExtra(Constant.DATA_2, idDistributor)
+                    intent.putExtra(Constant.DATA_2, distributorId)
 //                intent.putExtra(Constant.DATA_4, productCode)
-                    intent.putExtra(Constant.DATA_5, verfiedSerial)
+                    intent.putExtra(Constant.DATA_5, serial)
                     intent.putExtra(Constant.DATA_6, productId)
                     intent.putExtra(Constant.DATA_7, objVariant)
                     intent.putExtra(Constant.DATA_8, viewModel.barcode)
@@ -277,9 +277,9 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
             } else {
                 val intent = Intent(this, UpdateInformationFirstActivity::class.java)
                 intent.putExtra(Constant.DATA_1, 2)
-                intent.putExtra(Constant.DATA_2, idDistributor)
+                intent.putExtra(Constant.DATA_2, distributorId)
 //                intent.putExtra(Constant.DATA_4, productCode)
-                intent.putExtra(Constant.DATA_5, verfiedSerial)
+                intent.putExtra(Constant.DATA_5, serial)
                 intent.putExtra(Constant.DATA_6, productId)
                 intent.putExtra(Constant.DATA_7, objVariant)
                 ActivityUtils.startActivity(this, intent)
@@ -450,8 +450,8 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
                         val listData = mutableListOf<ICLayout>()
 
                         for (widget in it.data!!.data!!.widgets!!) {
-                            idDistributor = mData.distributorId
-                            verfiedSerial = mData.serial
+                            distributorId = mData.distributorId
+                            serial = mData.serial
 
                             when (widget.name) {
                                 "IMAGE_PRODUCT" -> {
@@ -568,7 +568,27 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
 
                         textFab.visibleOrInvisible(mData.canUpdate == true)
                         if (mData.forceUpdate == true) {
-                            // Todo
+                            if (guarantee != null) {
+                                val intent = Intent(this, UpdateInformationFirstActivity::class.java)
+                                intent.putExtra(Constant.DATA_1, 1)
+                                intent.putExtra(Constant.DATA_2, distributorId)
+//                                intent.putExtra(Constant.DATA_4, product_code)
+                                intent.putExtra(Constant.DATA_5, serial)
+                                intent.putExtra(Constant.DATA_6, productId)
+                                intent.putExtra(Constant.DATA_7, objVariant)
+                                intent.putExtra(Constant.DATA_8, viewModel.barcode)
+                                startActivity(intent)
+                            } else {
+                                val intent = Intent(this, UpdateInformationFirstActivity::class.java)
+                                intent.putExtra(Constant.DATA_1, 2)
+                                intent.putExtra(Constant.DATA_2, distributorId)
+//                                intent.putExtra(Constant.DATA_4, product_code)
+                                intent.putExtra(Constant.DATA_5, serial)
+                                intent.putExtra(Constant.DATA_6, productId)
+                                intent.putExtra(Constant.DATA_7, objVariant)
+                                intent.putExtra(Constant.DATA_8, viewModel.barcode)
+                                startActivity(intent)
+                            }
                         }
                     } else {
                         textFab.visibleOrInvisible(false)
@@ -697,29 +717,29 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
         }
 
 //      check force update thong tin ca nhan
-        if (obj.data?.force_update == true) {
-            if (obj.data?.guarantee != null) {
-                val intent = Intent(this, UpdateInformationFirstActivity::class.java)
-                intent.putExtra(Constant.DATA_1, 1)
-                intent.putExtra(Constant.DATA_2, idDistributor)
-                intent.putExtra(Constant.DATA_4, obj.data?.guarantee?.last_guarantee?.product_code)
-                intent.putExtra(Constant.DATA_5, verfiedSerial)
-                intent.putExtra(Constant.DATA_6, obj.data?.product?.id)
-                intent.putExtra(Constant.DATA_7, obj.data?.guarantee?.last_guarantee?.variant)
-                intent.putExtra(Constant.DATA_8, viewModel.barcode)
-                startActivity(intent)
-            } else {
-                val intent = Intent(this, UpdateInformationFirstActivity::class.java)
-                intent.putExtra(Constant.DATA_1, 2)
-                intent.putExtra(Constant.DATA_2, idDistributor)
-                intent.putExtra(Constant.DATA_4, obj.data?.guarantee?.last_guarantee?.product_code)
-                intent.putExtra(Constant.DATA_5, verfiedSerial)
-                intent.putExtra(Constant.DATA_6, obj.data?.product?.id)
-                intent.putExtra(Constant.DATA_7, obj.data?.guarantee?.last_guarantee?.variant)
-                intent.putExtra(Constant.DATA_8, viewModel.barcode)
-                startActivity(intent)
-            }
-        }
+//        if (obj.data?.force_update == true) {
+//            if (obj.data?.guarantee != null) {
+//                val intent = Intent(this, UpdateInformationFirstActivity::class.java)
+//                intent.putExtra(Constant.DATA_1, 1)
+//                intent.putExtra(Constant.DATA_2, idDistributor)
+//                intent.putExtra(Constant.DATA_4, obj.data?.guarantee?.last_guarantee?.product_code)
+//                intent.putExtra(Constant.DATA_5, verfiedSerial)
+//                intent.putExtra(Constant.DATA_6, obj.data?.product?.id)
+//                intent.putExtra(Constant.DATA_7, obj.data?.guarantee?.last_guarantee?.variant)
+//                intent.putExtra(Constant.DATA_8, viewModel.barcode)
+//                startActivity(intent)
+//            } else {
+//                val intent = Intent(this, UpdateInformationFirstActivity::class.java)
+//                intent.putExtra(Constant.DATA_1, 2)
+//                intent.putExtra(Constant.DATA_2, idDistributor)
+//                intent.putExtra(Constant.DATA_4, obj.data?.guarantee?.last_guarantee?.product_code)
+//                intent.putExtra(Constant.DATA_5, verfiedSerial)
+//                intent.putExtra(Constant.DATA_6, obj.data?.product?.id)
+//                intent.putExtra(Constant.DATA_7, obj.data?.guarantee?.last_guarantee?.variant)
+//                intent.putExtra(Constant.DATA_8, viewModel.barcode)
+//                startActivity(intent)
+//            }
+//        }
 
 //      setdata slide image product
         if (obj.data?.product?.images != null) {

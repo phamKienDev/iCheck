@@ -263,14 +263,14 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
             }
 
             withContext(Dispatchers.Main) {
-                if (productVariant == null || customerVariant == null || guaranteeVariant == null) {
-                    getProductVariantError(if (StampDetailActivity.isVietNamLanguage == false) {
-                        "Occurred. Please try again"
-                    } else {
-                        getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
-                    })
-                    return@withContext
-                }
+//                if (productVariant == null || customerVariant == null || guaranteeVariant == null) {
+//                    getProductVariantError(if (StampDetailActivity.isVietNamLanguage == false) {
+//                        "Occurred. Please try again"
+//                    } else {
+//                        getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+//                    })
+//                    return@withContext
+//                }
 
                 if (!productVariant?.data?.products.isNullOrEmpty()) {
                     tvSubProductCode.visibility = View.GONE
