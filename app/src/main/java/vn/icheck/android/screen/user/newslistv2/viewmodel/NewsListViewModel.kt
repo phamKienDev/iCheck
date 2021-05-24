@@ -22,9 +22,11 @@ class NewsListViewModel : ViewModel() {
     var onError = MutableLiveData<ICError>()
     var offset = 0
 
+    var idCategory = -1L
+
     val getCategorySuccess = MutableLiveData<MutableList<ICArticleCategory>>()
 
-    fun getNewsList(isLoadMore: Boolean, articleCategoryId: Long? = null) {
+    fun getNewsList(isLoadMore: Boolean, articleCategoryId: Long) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
             onError.postValue(ICError(R.drawable.ic_error_network, ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
             return
@@ -37,6 +39,7 @@ class NewsListViewModel : ViewModel() {
         listener.getListNews(offset, APIConstants.LIMIT, articleCategoryId, object : ICNewApiListener<ICResponse<ICListResponse<ICNews>>> {
             override fun onSuccess(obj: ICResponse<ICListResponse<ICNews>>) {
                 offset += APIConstants.LIMIT
+
                 liveData.postValue(
                         BaseModelList(isLoadMore, obj.data?.rows ?: mutableListOf(), null, null)
                 )
@@ -56,10 +59,18 @@ class NewsListViewModel : ViewModel() {
 
         repository.getListNewsCategory(object : ICNewApiListener<ICResponse<ICListResponse<ICArticleCategory>>> {
             override fun onSuccess(obj: ICResponse<ICListResponse<ICArticleCategory>>) {
+
                 obj.data?.rows?.add(0, ICArticleCategory().apply {
                     name = "Tất cả"
                     isChecked = true
                 })
+
+                if (idCategory != -1L) {
+                    for (i in (obj.data?.rows ?: mutableListOf()).size - 1 downTo 0) {
+                        obj.data?.rows?.get(i)?.isChecked = obj.data?.rows?.get(i)?.id == idCategory
+                    }
+                }
+
                 getCategorySuccess.postValue(obj.data?.rows)
             }
 

@@ -184,12 +184,21 @@ class NewDetailV2Activity : BaseActivityMVVM() {
                 }
             }
 
-            if (!it.obj?.articleCategory?.code.isNullOrEmpty()){
-                layoutType.setVisible()
+            if (!it.obj?.articleCategory?.name.isNullOrEmpty()){
+                tvType.setVisible()
+                view.setVisible()
 
-                tvType.text = "#${it.obj?.articleCategory?.code}"
+                tvType.apply {
+                    text = "#${it.obj?.articleCategory?.name}"
+
+                    setOnClickListener { _ ->
+                        ActivityUtils.startActivity<NewsListV2Activity, Long>(this@NewDetailV2Activity, Constant.ID, it.obj?.articleCategory?.id ?: -1)
+                    }
+                }
+
             }else{
-                layoutType.setGone()
+                tvType.setGone()
+                view.setGone()
             }
 
             if (!it.obj?.createdAt.isNullOrEmpty()) {
@@ -219,8 +228,8 @@ class NewDetailV2Activity : BaseActivityMVVM() {
 
                 tvTitleNew.text = it.obj?.articleCategory?.name
 
-                txtViewAll.setOnClickListener {
-                    ActivityUtils.startActivity<NewsListV2Activity>(this)
+                txtViewAll.setOnClickListener { _ ->
+                    ActivityUtils.startActivity<NewsListV2Activity, Long>(this, Constant.ID, it.obj?.articleCategory?.id ?: -1)
                 }
 
                 val adapter = NewsAdapter(it.listData)

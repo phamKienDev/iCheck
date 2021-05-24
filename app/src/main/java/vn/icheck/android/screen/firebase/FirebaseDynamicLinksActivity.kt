@@ -892,7 +892,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                 val id = deepLink?.getQueryParameter("id")
 
                 if (!id.isNullOrEmpty()) {
-                    ActivityUtils.startActivity<WebViewActivity, String>(this, Constant.DATA_1, id)
+                    WebViewActivity.start(this, id)
                 }
             }
             url -> {

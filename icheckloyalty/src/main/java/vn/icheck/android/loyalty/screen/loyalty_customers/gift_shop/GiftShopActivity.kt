@@ -159,10 +159,39 @@ class GiftShopActivity : BaseActivityGame() {
         super.onMessageEvent(event)
         when (event.type) {
             ICMessageEvent.Type.ON_COUNT_GIFT -> {
-                for (item in arrCheckBox) {
-                    item.isChecked = false
-                }
-                getShopProducts()
+                val arr = arrCheckBox
+                        .filter { checkbox ->
+                            checkbox.isChecked
+                        }
+                        .map { checkbox ->
+                            checkbox.text.toString()
+                        }
+                        .toList()
+
+                val giftType = arr
+                        .map { key ->
+                            when (key) {
+                                "Quà hiện vật" -> {
+                                    "PRODUCT"
+                                }
+                                "Quà nhân tại cửa hàng" -> {
+                                    "RECEIVE_STORE"
+                                }
+                                "Quà xu" -> {
+                                    "ICOIN"
+                                }
+                                "Quà thẻ cào" -> {
+                                    "PHONE_CARD"
+                                }
+                                "Quà voucher" -> {
+                                    "VOUCHER"
+                                }
+                                else -> "PRODUCT,RECEIVE_STORE,ICOIN,PHONE_CARD,VOUCHER"
+                            }
+                        }
+                        .toList()
+                        .joinToString(separator = ",")
+                getShopProducts(giftType)
             }
             ICMessageEvent.Type.OPEN_DETAIL_GIFT -> {
                 GiftDetailActivity.startActivityGiftDetail(this, (event.data as LoyaltyGiftItem).id
@@ -183,7 +212,40 @@ class GiftShopActivity : BaseActivityGame() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
-                getShopProducts()
+
+                val arr = arrCheckBox
+                        .filter { checkbox ->
+                            checkbox.isChecked
+                        }
+                        .map { checkbox ->
+                            checkbox.text.toString()
+                        }
+                        .toList()
+
+                val giftType = arr
+                        .map { key ->
+                            when (key) {
+                                "Quà hiện vật" -> {
+                                    "PRODUCT"
+                                }
+                                "Quà nhân tại cửa hàng" -> {
+                                    "RECEIVE_STORE"
+                                }
+                                "Quà xu" -> {
+                                    "ICOIN"
+                                }
+                                "Quà thẻ cào" -> {
+                                    "PHONE_CARD"
+                                }
+                                "Quà voucher" -> {
+                                    "VOUCHER"
+                                }
+                                else -> "PRODUCT,RECEIVE_STORE,ICOIN,PHONE_CARD,VOUCHER"
+                            }
+                        }
+                        .toList()
+                        .joinToString(separator = ",")
+                getShopProducts(giftType)
             }
         }
     }

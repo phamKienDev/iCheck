@@ -135,7 +135,7 @@ class AdsPageAdapter(val fullScreen:Boolean=false) : RecyclerView.Adapter<Recycl
             WidgetUtils.loadImageUrl(binding.imgAvatar, obj.avatar?.content, R.drawable.ic_business_v2)
 
             binding.tvName.text = obj.name
-            if (obj.verified == true) {
+            if (obj.isVerify == true) {
                 binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
             } else {
                 binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
@@ -238,7 +238,7 @@ class AdsPageAdapter(val fullScreen:Boolean=false) : RecyclerView.Adapter<Recycl
 
             WidgetUtils.loadImageUrl(binding.imgAvatar, obj.avatar?.content, R.drawable.ic_business_v2)
             binding.tvName.text = obj.name
-            if (obj.verified == true) {
+            if (obj.isVerify == true) {
                 binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
             } else {
                 binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)

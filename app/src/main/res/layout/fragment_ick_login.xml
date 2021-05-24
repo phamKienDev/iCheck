@@ -11,7 +11,6 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/layoutKeyboard"
         android:layout_alignParentTop="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -47,11 +46,12 @@
                 android:layout_marginStart="@dimen/size_62"
                 android:layout_marginTop="@dimen/size_16"
                 android:layout_marginEnd="@dimen/size_62"
+                android:drawablePadding="@dimen/size_40"
                 android:ems="10"
                 android:focusableInTouchMode="true"
                 android:hint="@string/nhap_mat_khau"
                 android:inputType="numberPassword"
-                android:paddingStart="@dimen/size_24"
+                android:paddingStart="@dimen/size_64"
                 android:paddingBottom="@dimen/size_20"
                 android:textAlignment="center"
                 android:textColor="#212121"
@@ -59,6 +59,18 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edt_phone" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@id/btnKeyboard"
+                android:layout_width="@dimen/size_24"
+                android:layout_height="@dimen/size_24"
+                android:layout_marginEnd="@dimen/size_32"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_keyboard_gray_18dp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@id/edtPassword"
+                app:layout_constraintEnd_toEndOf="@id/edtPassword"
+                app:layout_constraintTop_toTopOf="@id/edtPassword" />
 
             <vn.icheck.android.ui.EnableButton
                 android:id="@+id/btn_login"
@@ -193,26 +205,4 @@
                 app:srcCompat="@drawable/ic_facebook" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
-    <FrameLayout
-        android:id="@id/layoutKeyboard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@color/colorBackgroundGray">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@id/btnKeyboard"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginEnd="@dimen/size_12"
-            android:drawableStart="@drawable/ic_keyboard_black_18dp"
-            android:drawablePadding="@dimen/size_8"
-            android:paddingTop="@dimen/size_4"
-            android:paddingBottom="@dimen/size_4"
-            android:text="@string/doi_ban_phiim"
-            android:textColor="@color/colorNormalText"
-            android:visibility="gone" />
-    </FrameLayout>
 </RelativeLayout>
