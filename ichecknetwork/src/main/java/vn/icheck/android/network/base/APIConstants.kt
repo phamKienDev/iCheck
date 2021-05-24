@@ -255,6 +255,7 @@ object APIConstants {
 
     object News {
         const val LIST = "articles"
+        const val LIST_CATEGORY = "${PATH}/cms/article-categories"
         const val DETAIL = "articles/{id}"
         const val DETAIL_SOCIAL = "${PATH}/cms/articles/{id}"
         const val LIST_SOCIAL = "social/api/cms/articles"

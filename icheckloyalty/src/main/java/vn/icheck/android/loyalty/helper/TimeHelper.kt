@@ -1,6 +1,8 @@
 package vn.icheck.android.loyalty.helper
 
 import android.app.AlarmManager
+import kotlinx.android.synthetic.main.item_gift_detail_from_app.view.*
+import vn.icheck.android.loyalty.model.ICKVoucher
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -120,5 +122,52 @@ object TimeHelper {
         }
 
         return (convertDateTimeSvToMillisecond(released_at) ?: 0) + millisecond
+    }
+
+    fun timeGiftVoucher(voucher: ICKVoucher): String {
+        /**
+         * Nếu startAt và endAt khác null thì hiển thị dd/mm/yy
+         * Nếu startAt, endAt, releaseAt và effectiveTime khác null nhưng thời gian tổng của startAt và endAt nhỏ hơn thời gian của effectiveTime thì hiển thị: ${Còn xx ngày, xx giờ} theo thời gian hiện tại đến endAt
+         * Nếu startAt, endAt, releaseAt và effectiveTime khác null nhưng thời gian tổng của startAt và endAt lớn hơn thời gian của effectiveTime thì hiển thị: ${Còn xx ngày, xx giờ} theo releaseAt và effectiveTime
+         */
+        return when {
+            !voucher.start_at.isNullOrEmpty()
+                    && !voucher.end_at.isNullOrEmpty()
+                    && (voucher.effective_time.isNullOrEmpty()
+                    || voucher.effective_type.isNullOrEmpty()) -> {
+
+                convertDateTimeSvToDateVn(voucher.end_at) ?: ""
+            }
+            !voucher.released_at.isNullOrEmpty()
+                    && !voucher.effective_time.isNullOrEmpty()
+                    && !voucher.effective_type.isNullOrEmpty()
+                    && (voucher.start_at.isNullOrEmpty()
+                    || voucher.end_at.isNullOrEmpty()) -> {
+
+
+                "Còn lại ${convertDateTimeSvToCurrentDate(millisecondEffectiveTime(voucher.effective_type, voucher.effective_time, voucher.released_at))}"
+            }
+            !voucher.released_at.isNullOrEmpty()
+                    && !voucher.effective_time.isNullOrEmpty()
+                    && !voucher.effective_type.isNullOrEmpty()
+                    && !voucher.start_at.isNullOrEmpty()
+                    && !voucher.end_at.isNullOrEmpty() -> {
+
+                val millisecondWithEffectiveTime = millisecondEffectiveTime(voucher.effective_type, voucher.effective_time, voucher.released_at)
+
+                val millisecondWithEffectiveTimeAndCurrent = millisecondEffectiveTime(voucher.effective_type, voucher.effective_time, voucher.released_at) - System.currentTimeMillis()
+
+                val currentMillisecondWithEndAtAndCurrent = (convertDateTimeSvToMillisecond(voucher.end_at) ?: 0) - System.currentTimeMillis()
+
+                if (millisecondWithEffectiveTimeAndCurrent > currentMillisecondWithEndAtAndCurrent) {
+                    "Còn lại ${convertDateTimeSvToCurrentDate(convertDateTimeSvToMillisecond(voucher.end_at))}"
+                } else {
+                    "Còn lại ${convertDateTimeSvToCurrentDate(millisecondWithEffectiveTime)}"
+                }
+            }
+            else -> {
+                ""
+            }
+        }
     }
 }

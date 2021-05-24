@@ -323,6 +323,7 @@
         <activity
             android:name=".screen.user.contribute_product.IckContributeProductActivity"
             android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".screen.user.cropimage.CropImageActivity"

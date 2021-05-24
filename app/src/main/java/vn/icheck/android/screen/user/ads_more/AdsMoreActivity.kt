@@ -53,7 +53,7 @@ class AdsMoreActivity : BaseActivityGame() {
         recyclerView.setHasFixedSize(true)
         recyclerView.setScrollSpeed()
         recyclerView.layoutManager = if (viewModel.adsModel?.type == Constant.HORIZONTAL) {
-            LinearLayoutManager(this@AdsMoreActivity, LinearLayoutManager.HORIZONTAL, false)
+            LinearLayoutManager(this@AdsMoreActivity, LinearLayoutManager.VERTICAL, false)
         } else {
             GridLayoutManager(this@AdsMoreActivity, 2, GridLayoutManager.VERTICAL, false)
         }
@@ -88,7 +88,7 @@ class AdsMoreActivity : BaseActivityGame() {
     }
 
     private fun setAdsProduct(it: ICAdsNew) {
-        val adapter = AdsProductAdapter()
+        val adapter = AdsProductAdapter(true)
         recyclerView.adapter = adapter
 
         if (it.type == Constant.GRID) {
@@ -110,7 +110,7 @@ class AdsMoreActivity : BaseActivityGame() {
     }
 
     private fun setAdsPage(obj: ICAdsNew) {
-        val adapter = AdsPageAdapter()
+        val adapter = AdsPageAdapter(true)
         recyclerView.adapter = adapter
 
         if (obj.type == Constant.GRID) {

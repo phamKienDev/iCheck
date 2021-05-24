@@ -54,6 +54,7 @@ import vn.icheck.android.component.rating_star.RatingStarComponent
 import vn.icheck.android.ui.view.TextBarlowSemiBold
 import vn.icheck.android.ui.view.TextBarlowMedium
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.MiddleMultilineTextView
 import vn.icheck.android.ui.colorcardview.ColorCardView
 import vn.icheck.android.ui.layout.CustomGridLayoutManager
 import vn.icheck.android.ui.layout.HeightWrappingViewPager
@@ -3291,13 +3292,14 @@ object ViewHelper {
             })
 
             //name user
-            it.addView(AppCompatTextView(context).also {
+            it.addView(MiddleMultilineTextView(context).also {
                 it.layoutParams =
                     createLayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f).also {
                         it.leftMargin = SizeHelper.size8
                     }
                 it.setTextColor(ContextCompat.getColor(context, R.color.black_21_v2))
                 it.text = context.getString(R.string.thong_tin_duoc_dong_gop_boi)
+                it.maxLines=2
                 it.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
                 it.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
                 it.includeFontPadding = false

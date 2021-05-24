@@ -19,8 +19,6 @@ import android.view.View
 import android.webkit.*
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
-import kotlinx.android.synthetic.main.activity_web_view.*
-import kotlinx.android.synthetic.main.toolbar_light_blue.*
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
@@ -28,6 +26,7 @@ import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.databinding.ActivityWebViewBinding
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.loyalty.helper.ActivityHelper
@@ -66,7 +65,7 @@ class WebViewActivity : BaseActivityMVVM() {
             if (title != null)
                 intent.putExtra(Constant.DATA_3, title)
 
-            if (isMarketing != null) {
+            if (Constant.isMarketingStamps(url)) {
                 intent.putExtra(Constant.DATA_4, isMarketing)
             }
 
@@ -87,6 +86,10 @@ class WebViewActivity : BaseActivityMVVM() {
             if (title != null)
                 intent.putExtra(Constant.DATA_3, title)
 
+            if (Constant.isMarketingStamps(url)) {
+                intent.putExtra(Constant.DATA_4, true)
+            }
+
             ActivityUtils.startActivity(activity, intent)
         }
 
@@ -106,9 +109,12 @@ class WebViewActivity : BaseActivityMVVM() {
         }
     }
 
+    private lateinit var binding: ActivityWebViewBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_web_view)
+        binding = ActivityWebViewBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         url = intent?.getStringExtra(Constant.DATA_1) ?: ""
         var isScan = intent?.getIntExtra(Constant.DATA_2, 0) ?: 0
@@ -142,19 +148,19 @@ class WebViewActivity : BaseActivityMVVM() {
 
     private fun setupToolbar(url: String, title: String?) {
         if (title.isNullOrEmpty()) {
-            txtTitle.text = url
+            binding.layoutToolbar.txtTitle.text = url
         } else {
-            txtTitle.text = title
+            binding.layoutToolbar.txtTitle.text = title
         }
 
-        imgBack.setOnClickListener {
+        binding.layoutToolbar.imgBack.setOnClickListener {
             ActivityUtils.finishActivity(this@WebViewActivity)
         }
     }
 
     @SuppressLint("SetJavaScriptEnabled")
     private fun setupWebView(url: String, title: String?) {
-        webView.settings.apply {
+        binding.webView.settings.apply {
             javaScriptEnabled = true
             domStorageEnabled = true
             allowFileAccessFromFileURLs = true
@@ -215,16 +221,16 @@ class WebViewActivity : BaseActivityMVVM() {
                     urlBuilder.appendQueryParameter("lon", APIConstants.LONGITUDE.toString())
                 }
 
-                webView.loadUrl(urlBuilder.build().toString(), header)
+                binding.webView.loadUrl(urlBuilder.build().toString(), header)
             } else {
-                webView.loadUrl(url)
+                binding.webView.loadUrl(url)
             }
         } else {
-            webView.settings.defaultFontSize = 14f.spToPx().toInt()
-            webView.loadData(Constant.getHtmlData(url), "text/html; charset=utf-8", "UTF-8")
+            binding.webView.settings.defaultFontSize = 14f.spToPx().toInt()
+            binding.webView.loadData(Constant.getHtmlData(url), "text/html; charset=utf-8", "UTF-8")
         }
 
-        webView.webViewClient = object : WebViewClient() {
+        binding.webView.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     request?.url?.let { url ->
@@ -238,18 +244,18 @@ class WebViewActivity : BaseActivityMVVM() {
                 super.onPageFinished(view, url)
                 countUrl++
                 if (!checkUrlPVCombank(url)) {
-                    layoutCenter.visibility = View.GONE
+                    binding.layoutCenter.visibility = View.GONE
 
                     if (title.isNullOrEmpty()) {
                         if (!view?.title.isNullOrEmpty()) {
-                            txtTitle.text = view?.title
+                            binding.layoutToolbar.txtTitle.text = view?.title
                         }
                     }
                 }
             }
         }
 
-        webView.webChromeClient = object : WebChromeClient() {
+        binding.webView.webChromeClient = object : WebChromeClient() {
             override fun onPermissionRequest(request: PermissionRequest?) {
                 if (request != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     for (permission in request.resources) {
@@ -299,7 +305,7 @@ class WebViewActivity : BaseActivityMVVM() {
     }
 
     private fun confirmAllowCamera(request: PermissionRequest?) {
-        DialogHelper.showConfirm(this@WebViewActivity, null, "'${URL(webView.url).host}' muốn sử dụng camera của bạn", "Từ chối", "Cho phép", true, null, R.color.colorSecondary, object : ConfirmDialogListener {
+        DialogHelper.showConfirm(this@WebViewActivity, null, "'${URL(binding.webView.url).host}' muốn sử dụng camera của bạn", "Từ chối", "Cho phép", true, null, R.color.colorSecondary, object : ConfirmDialogListener {
             override fun onDisagree() {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     request?.deny()
@@ -395,13 +401,13 @@ class WebViewActivity : BaseActivityMVVM() {
                 }
             }, 67, 67 + hotline.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 
-            layoutNote.visibility = View.VISIBLE
-            tvNote.text = spannable
-            tvNote.movementMethod = LinkMovementMethod.getInstance()
+            binding.layoutNote.visibility = View.VISIBLE
+            binding.tvNote.text = spannable
+            binding.tvNote.movementMethod = LinkMovementMethod.getInstance()
         }
 
-        imgClose.setOnClickListener {
-            layoutNote.visibility = View.GONE
+        binding.imgClose.setOnClickListener {
+            binding.layoutNote.visibility = View.GONE
         }
     }
 
@@ -435,8 +441,8 @@ class WebViewActivity : BaseActivityMVVM() {
     }
 
     override fun onBackPressed() {
-        if (webView.canGoBack() && !url.contains("dev.qcheck.vn")) {
-            webView.goBack()
+        if (binding.webView.canGoBack() && !url.contains("dev.qcheck.vn")) {
+            binding.webView.goBack()
         } else {
             super.onBackPressed()
         }

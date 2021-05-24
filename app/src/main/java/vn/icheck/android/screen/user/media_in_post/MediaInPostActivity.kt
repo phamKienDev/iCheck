@@ -313,37 +313,41 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
     private fun checkPrivacyConfig() {
         if (viewModel.postDetail?.page == null) {
             if (viewModel.postDetail?.user?.id != SessionManager.session.user?.id) {
-                when (viewModel.postDetail?.user?.userPrivacyConfig?.whoCommentYourPost) {
-                    Constant.EVERYONE -> {
-                        layoutComment.beVisible()
-                    }
-                    Constant.FRIEND -> {
-                        if (ICheckApplication.getInstance().mFirebase.auth.currentUser != null && SessionManager.session.user?.id != null) {
-                            //người khác gửi kết bạn cho mình
-                            ICheckApplication.getInstance().mFirebase.registerRelationship(
-                                Constant.myFriendIdList,
-                                viewModel.postDetail?.user?.id.toString(),
-                                object : ValueEventListener {
-                                    override fun onDataChange(snapshot: DataSnapshot) {
-                                        if (snapshot.value != null && snapshot.value is Long) {
-                                            layoutComment.beVisible()
-                                        } else {
-                                            layoutComment.beGone()
-                                        }
-                                    }
-
-                                    override fun onCancelled(error: DatabaseError) {
-                                        logError(error.toException())
-                                    }
-                                })
-                        }
-
-                    }
-                    else -> {
-                        if (viewModel.postDetail?.user?.id == SessionManager.session.user?.id) {
+                if(viewModel.postDetail?.user?.userPrivacyConfig?.whoCommentYourPost==null){
+                    layoutComment.beVisible()
+                }else{
+                    when (viewModel.postDetail?.user?.userPrivacyConfig?.whoCommentYourPost) {
+                        Constant.EVERYONE -> {
                             layoutComment.beVisible()
-                        } else {
-                            layoutComment.beGone()
+                        }
+                        Constant.FRIEND -> {
+                            if (ICheckApplication.getInstance().mFirebase.auth.currentUser != null && SessionManager.session.user?.id != null) {
+                                //người khác gửi kết bạn cho mình
+                                ICheckApplication.getInstance().mFirebase.registerRelationship(
+                                    Constant.myFriendIdList,
+                                    viewModel.postDetail?.user?.id.toString(),
+                                    object : ValueEventListener {
+                                        override fun onDataChange(snapshot: DataSnapshot) {
+                                            if (snapshot.value != null && snapshot.value is Long) {
+                                                layoutComment.beVisible()
+                                            } else {
+                                                layoutComment.beGone()
+                                            }
+                                        }
+
+                                        override fun onCancelled(error: DatabaseError) {
+                                            logError(error.toException())
+                                        }
+                                    })
+                            }
+
+                        }
+                        else -> {
+                            if (viewModel.postDetail?.user?.id == SessionManager.session.user?.id) {
+                                layoutComment.beVisible()
+                            } else {
+                                layoutComment.beGone()
+                            }
                         }
                     }
                 }

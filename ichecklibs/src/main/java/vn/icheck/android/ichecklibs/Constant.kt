@@ -220,4 +220,24 @@ object Constant {
             null
         }
     }
+
+    fun getAddress(address: String?, district: String?, city: String?, country: String?, default: String?): String {
+        return if (!address.isNullOrEmpty()) {
+            if (!district.isNullOrEmpty()) {
+                if (!city.isNullOrEmpty()) {
+                    if (!country.isNullOrEmpty()) {
+                        "$address, $district, $city, $country"
+                    } else {
+                        "$address, $district, $city"
+                    }
+                } else {
+                    "$address, $district"
+                }
+            } else {
+                address
+            }
+        } else {
+            default ?: ""
+        }
+    }
 }

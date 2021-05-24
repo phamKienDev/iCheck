@@ -268,6 +268,8 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
     private fun hideLayoutStatus() {
         layoutStatus.visibility = View.GONE
         layoutToolbarAlpha.alpha = 0f
+        imgLike.beVisible()
+        imgAction.setImageResource(R.drawable.ic_more_light_blue_24dp)
     }
 
     private fun setupViewModel() {
@@ -471,8 +473,8 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
 
         viewModel.onAddLayout.observe(this) {
             if (it.viewType == ICViewTypes.HEADER_TYPE) {
-                if (productViewedInsider) {
-                    viewModel.productDetail?.let { productDetail ->
+                viewModel.productDetail?.let { productDetail ->
+                    if (productViewedInsider) {
                         TrackingAllHelper.trackProductViewed(productDetail)
                         if (intent.getBooleanExtra(Constant.DATA_2, false)) {
                             TrackingAllHelper.trackScanSuccessful(productDetail)
@@ -480,6 +482,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                         }
                         productViewedInsider = false
                     }
+                    TrackingAllHelper.trackScanBarcodeViewedSuccess(productDetail)
                 }
             }
             imgActionGray.beVisible()
@@ -638,6 +641,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
 
         swipeLayout.setOnRefreshListener {
             getLayoutData()
+            adapter.setRefeshTextReview(true)
         }
     }
 
@@ -957,11 +961,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                         if (!viewModel.listMedia.isNullOrEmpty()) {
                             intent.putExtra(Constant.DATA_2, viewModel.listMedia[0].content)
                         }
-                        startActivityForResult<ListContributeActivity, String>(
-                            Constant.DATA_1,
-                            event.data,
-                            requestListContribution
-                        )
+                        this.startActivityForResult(intent, requestListContribution)
                     }
                 }
             }
@@ -1026,7 +1026,8 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                         } else if (adapter.getListData[index].viewType == ICViewTypes.LIST_REVIEWS_TYPE) {
                             (adapter.getListData[index].data as ProductListReviewModel).data.forEachIndexed { indexReview, icPost ->
                                 if ((adapter.getListData[index].data as ProductListReviewModel).data[indexReview].id == event.data.id) {
-                                    (adapter.getListData[index].data as ProductListReviewModel).data[indexReview] = event.data
+                                    (adapter.getListData[index].data as ProductListReviewModel).data[indexReview] =
+                                        event.data
                                     adapter.notifyItemChanged(index)
                                 }
                             }

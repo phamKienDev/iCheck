@@ -3,14 +3,11 @@ package vn.icheck.android.screen.account.icklogin.fragment
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
-import android.text.InputType
-import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.facebook.CallbackManager
 import com.facebook.login.LoginManager
@@ -24,7 +21,7 @@ import vn.icheck.android.helper.CartHelper
 import vn.icheck.android.helper.RelationshipHelper
 import vn.icheck.android.helper.SettingHelper
 import vn.icheck.android.helper.ShareSessionToModule
-import vn.icheck.android.ichecklibs.util.visibleOrGone
+import vn.icheck.android.ichecklibs.visibleOrGone
 import vn.icheck.android.lib.keyboard.KeyboardVisibilityEvent
 import vn.icheck.android.lib.keyboard.KeyboardVisibilityEventListener
 import vn.icheck.android.lib.keyboard.Unregistrar
@@ -44,6 +41,7 @@ import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.tracking.insider.InsiderHelper
 import vn.icheck.android.util.AfterTextWatcher
 import vn.icheck.android.util.ick.*
+import vn.icheck.android.util.kotlin.WidgetUtils
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -58,26 +56,9 @@ class IckLoginFragment : CoroutineFragment() {
 
     lateinit var binding: FragmentIckLoginBinding
 
-    private var unregistrar: Unregistrar? = null
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentIckLoginBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    override fun onResume() {
-        super.onResume()
-        unregistrar = KeyboardVisibilityEvent.registerEventListener(requireActivity(), object : KeyboardVisibilityEventListener {
-            override fun onVisibilityChanged(isOpen: Boolean) {
-                binding.btnKeyboard.visibleOrGone(isOpen && binding.edtPassword.isFocused)
-            }
-        })
-    }
-
-    override fun onPause() {
-        super.onPause()
-        unregistrar?.unregister()
-        unregistrar = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -152,14 +133,13 @@ class IckLoginFragment : CoroutineFragment() {
 
                 }
 
-
                 override fun onGetClientSuccess(list: MutableList<ICClientSetting>?) {
                     WebViewActivity.start(requireActivity(), list?.firstOrNull()?.value, null, "Hỗ trợ đăng nhập")
                 }
             })
 //            WebViewActivity.start(requireActivity(), "http://quotes.icheck.com.vn/van-de-khi-dang-nhap/")
         }
-        ickLoginViewModel.stateRegister.observe(viewLifecycleOwner, {
+        ickLoginViewModel.stateRegister.observe(viewLifecycleOwner, Observer {
             if (it == 1) {
                 binding.edtPhone.setText("")
                 binding.edtPassword.setText("")
@@ -170,22 +150,13 @@ class IckLoginFragment : CoroutineFragment() {
     }
 
     private fun setupListener() {
-        binding.edtPassword.setOnFocusChangeListener { v, hasFocus ->
-            binding.btnKeyboard.visibleOrGone(hasFocus)
+        binding.edtPassword.setOnFocusChangeListener { _, _ ->
+            WidgetUtils.setButtonKeyboardMargin(binding.btnKeyboard, binding.edtPassword)
+            WidgetUtils.setButtonKeyboardMargin(binding.btnKeyboard, binding.edtPassword)
         }
 
         binding.btnKeyboard.setOnClickListener {
-            binding.edtPassword.apply {
-                inputType = if (inputType != InputType.TYPE_TEXT_VARIATION_PASSWORD) {
-//                    binding.btnKeyboard.setText(R.string.ban_phim_so)
-                    InputType.TYPE_TEXT_VARIATION_PASSWORD
-                } else {
-//                    binding.btnKeyboard.setText(R.string.ban_phim_chu)
-                    InputType.TYPE_CLASS_NUMBER
-                }
-                transformationMethod = PasswordTransformationMethod()
-                setSelection(length())
-            }
+            WidgetUtils.changePasswordInput(binding.edtPassword)
         }
     }
 
@@ -252,5 +223,4 @@ class IckLoginFragment : CoroutineFragment() {
         callbackManager.onActivityResult(requestCode, resultCode, data)
         super.onActivityResult(requestCode, resultCode, data)
     }
-
 }

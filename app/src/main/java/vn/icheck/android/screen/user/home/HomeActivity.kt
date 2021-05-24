@@ -1058,6 +1058,10 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                 clearFilter()
 
                 checkLoginOrLogoutChat(false)
+
+                FirebaseMessaging.getInstance().token.addOnSuccessListener { token ->
+                    ickLoginViewModel.loginDevice(token).observe(this, Observer {  })
+                }
             }
             ICMessageEvent.Type.ON_LOG_IN -> {
                 tv_username.text = SessionManager.session.user?.getName
@@ -1177,6 +1181,11 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
 
     override fun onResume() {
         super.onResume()
+
+        FirebaseMessaging.getInstance().token.addOnCompleteListener {
+            if (it.isSuccessful) {
+            }
+        }
 
         try {
             presenter.checkVersionApp()

@@ -2,6 +2,7 @@ package vn.icheck.android.network.feature.news
 
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.base.BaseInteractor
+import vn.icheck.android.network.models.ICArticleCategory
 import vn.icheck.android.network.models.ICNews
 import java.util.*
 
@@ -52,11 +53,19 @@ class NewsInteractor : BaseInteractor() {
         requestApi(ICNetworkClient.getApiClient().getListNews(params), listener)
     }
 
-    fun getListNews(offset: Int, limit: Int, listener: ICNewApiListener<ICResponse<ICListResponse<ICNews>>>) {
+    fun getListNews(offset: Int, limit: Int, articleCategoryId: Long, listener: ICNewApiListener<ICResponse<ICListResponse<ICNews>>>) {
         val params = hashMapOf<String, Any>()
         params["offset"] = offset
         params["limit"] = limit
+        if (articleCategoryId != -1L) {
+            params["articleCategoryId"] = articleCategoryId
+        }
 
         requestNewApi(ICNetworkClient.getSocialApi().getListNewsSocial(params), listener)
+    }
+
+    fun getListNewsCategory(listener: ICNewApiListener<ICResponse<ICListResponse<ICArticleCategory>>>) {
+
+        requestNewApi(ICNetworkClient.getSocialApi().getListNewsCategory(), listener)
     }
 }

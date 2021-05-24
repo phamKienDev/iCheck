@@ -46,6 +46,7 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
     private val functionInteractor = UtilityRepository()
     private val settingInteraction = SettingRepository()
     private val pvcombankRepository = PVcomBankRepository()
+    private val adsRepository = AdsRepository()
 
     private val cartHelper = CartHelper()
 
@@ -474,7 +475,7 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
     }
 
     fun getHomePopup() {
-        AdsRepository().getAds("home_popup", null, 1, null, object : ICApiListener<ICListResponse<ICAds>> {
+        adsRepository.getAds("home_popup", null, 1, null, object : ICApiListener<ICListResponse<ICAds>> {
             override fun onSuccess(obj: ICListResponse<ICAds>) {
                 if (obj.rows.isNotEmpty()) {
                     onShowPopup.postValue(obj.rows[0])
@@ -585,5 +586,6 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
         settingInteraction.dispose()
         cartHelper.dispose()
         pvcombankRepository.dispose()
+        adsRepository.dispose()
     }
 }

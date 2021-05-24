@@ -20,11 +20,8 @@ import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.confirm.ConfirmDialog
 import vn.icheck.android.base.dialog.reward_login.RewardLoginCallback
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
-import vn.icheck.android.base.dialog.reward_login.RewardLoginDialogV2
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
-import vn.icheck.android.constant.Constant
-import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.network.base.*
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.user.home.HomeActivity
@@ -132,7 +129,7 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
     override fun onRequireLogin(requestCode: Int) {
         requestLogin = requestCode
         runOnUiThread {
-            RewardLoginDialogV2.show(supportFragmentManager, object : RewardLoginCallback {
+            RewardLoginDialog.show(supportFragmentManager, object : RewardLoginCallback {
                 override fun onDismiss() {
                     onRequireLoginCancel()
                 }

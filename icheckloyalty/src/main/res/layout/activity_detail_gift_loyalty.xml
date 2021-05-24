@@ -54,7 +54,7 @@
             app:layout_constraintEnd_toEndOf="@+id/appCompatImageView5"
             app:layout_constraintStart_toEndOf="@+id/imgProduct"
             app:layout_constraintTop_toTopOf="@+id/imgProduct"
-            tools:text="Son kem lì Innissfree (tên quà dài không giới hạn...) tiếp tiếp tiếp tiếp"
+            tools:text="Son kem lì Innissfree "
             android:layout_marginEnd="@dimen/size_30"
             android:layout_marginStart="@dimen/size_10" />
 

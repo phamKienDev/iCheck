@@ -415,4 +415,6 @@
     <item name="tvWebsite" type="id" />
     <item name="tvGln" type="id" />
     <item name="tvDescription" type="id" />
+    <item name="btnKeyboardNew" type="id" />
+    <item name="btnKeyboardOld" type="id" />
 </resources>

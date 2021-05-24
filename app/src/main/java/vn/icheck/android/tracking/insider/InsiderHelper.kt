@@ -189,9 +189,48 @@ object InsiderHelper {
             )
             .addParameterWithDouble("scan_product_rating", obj.basicInfo?.rating ?: 0.0)
             .addParameterWithBoolean("verified_status", obj.verified ?: false)
-            .addParameterWithString("country_of_origin", obj.owner?.city?.name ?: "Việt Nam")
+            .addParameterWithString("country_of_origin", obj.owner?.city?.name)
             .addParameterWithString("scan_company_name", obj.manager?.name ?: obj.owner?.name)
             .addParameterWithString("scan_product_category", category)
+            .build()
+    }
+
+    fun tagScanBarcodeSuccess(obj: ICDataProductDetail) {
+        Insider.Instance.tagEvent("scan_barcode_success")
+            .addParameterWithString("barcode", obj.barcode)
+            .addParameterWithString("name", obj.basicInfo?.name)
+            .addParameterWithDouble("price", obj.basicInfo?.price?.toDouble() ?: 0.0)
+            .addParameterWithDouble("rating", obj.basicInfo?.rating ?: 0.0)
+            .addParameterWithBoolean("verified", obj.verified ?: false)
+            .addParameterWithString("country", obj.owner?.city?.name)
+            .addParameterWithString("business", obj.manager?.name ?: obj.owner?.name)
+            .build()
+    }
+
+    fun tagScanBarcodeViewedSuccess(obj: ICDataProductDetail) {
+        Insider.Instance.tagEvent("barcode_viewed_success")
+            .addParameterWithString("barcode", obj.barcode)
+            .addParameterWithString("name", obj.basicInfo?.name)
+            .addParameterWithDouble("price", obj.basicInfo?.price?.toDouble() ?: 0.0)
+            .addParameterWithDouble("rating", obj.basicInfo?.rating ?: 0.0)
+            .addParameterWithBoolean("verified", obj.verified ?: false)
+            .addParameterWithString("country", obj.owner?.city?.name)
+            .addParameterWithString("business", obj.manager?.name ?: obj.owner?.name)
+            .build()
+    }
+
+
+    fun tagScanBarcodeFailed(barcode:String, status:String) {
+        Insider.Instance.tagEvent("scan_barcode_failed")
+            .addParameterWithString("barcode", barcode)
+            .addParameterWithString("status", status)
+            .build()
+    }
+
+    fun tagScanQrcode(content:String, icheck:Boolean) {
+        Insider.Instance.tagEvent("scan_qrcode")
+            .addParameterWithString("content", content)
+            .addParameterWithBoolean("icheck", icheck)
             .build()
     }
 

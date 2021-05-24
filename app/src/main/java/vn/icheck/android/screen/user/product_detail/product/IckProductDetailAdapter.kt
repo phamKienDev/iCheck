@@ -1,7 +1,10 @@
 package vn.icheck.android.screen.user.product_detail.product
 
 import android.graphics.Color
+import android.os.Handler
+import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatEditText
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.base.adapter.RecyclerViewCustomAdapter
@@ -60,6 +63,7 @@ import vn.icheck.android.component.shopvariant.product_detail.ListShopHolder
 import vn.icheck.android.component.shopvariant.product_detail.ShopProductModel
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.getAdsType
+import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.helper.CampaignLoyaltyHelper
 import vn.icheck.android.loyalty.holder.LoyaltyViewHolder
 import vn.icheck.android.loyalty.model.ICKLoyalty
@@ -71,7 +75,7 @@ import vn.icheck.android.util.KeyboardUtils
 
 class IckProductDetailAdapter(listener: IRecyclerViewCallback, private val productListener: ProductDetailListener, private val submitReviewListener: ISubmitReviewListener, private val listenerLoyalty: CampaignLoyaltyHelper.IRemoveHolderInputLoyaltyListener, private val listenerLogin: CampaignLoyaltyHelper.ILoginListener, private val listenerMyReview: IMyReviewListener) : RecyclerViewCustomAdapter<ICLayout>(listener) {
     private var sharedPool: RecyclerView.RecycledViewPool? = null
-
+    private var refeshTextReview=true
 //    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
 //        super.onAttachedToRecyclerView(recyclerView)
 //        sharedPool = recyclerView.recycledViewPool
@@ -89,6 +93,10 @@ class IckProductDetailAdapter(listener: IRecyclerViewCallback, private val produ
     fun removeHolderInput() {
         listData.removeAt(0)
         notifyItemRemoved(0)
+    }
+
+    fun setRefeshTextReview(refesh:Boolean){
+        refeshTextReview=refesh
     }
 
     fun removeContributionEnterprise() {
@@ -156,7 +164,7 @@ class IckProductDetailAdapter(listener: IRecyclerViewCallback, private val produ
             if (listData[i].subType == ICViewTypes.ADS_TYPE && !listData[i].entityIdList.isNullOrEmpty()) {
                 for (j in listAds.size - 1 downTo 0) {
                     if (listData[i].entityIdList?.find { it == listAds[j].id } != null) {
-                        if (listData[i].data==null) {
+                        if (listData[i].data == null) {
                             listData[i].data = listAds[j]
                             listData[i].viewType = listAds[j].objectType.getAdsType()
                             listAds.removeAt(j)
@@ -302,7 +310,7 @@ class IckProductDetailAdapter(listener: IRecyclerViewCallback, private val produ
             ICViewTypes.VENDOR_TYPE -> (holder as VendorHolder).bind((listData[position].data as VendorModel).listVendor)
             ICViewTypes.DISTRIBUTOR -> (holder as DistributorHolder).bind(listData[position].data as DistributorModel, IckProductDetailActivity.urlDistributor)
             ICViewTypes.LIST_REVIEWS_TYPE -> (holder as ProductListReviewHolder).bind(listData[position].data as ProductListReviewModel)
-            ICViewTypes.SUBMIT_REVIEW_TYPE -> (holder as SubmitReviewHolder).bind(listData[position].data as SubmitReviewModel)
+            ICViewTypes.SUBMIT_REVIEW_TYPE -> (holder as SubmitReviewHolder).bind(listData[position].data as SubmitReviewModel,refeshTextReview).apply { refeshTextReview=false }
             ICViewTypes.MY_REVIEW_TYPE -> (holder as MyReviewHolder).bind(listData[position].data as MyReviewModel)
             ICViewTypes.QUESTIONS_ANSWER_TYPE -> (holder as ProductQuestionHolder).bind(listData[position].data as ProductQuestionModel)
             ICViewTypes.EMPTY_QA_TYPE -> (holder as ProductEmptyQaHolder).bind(listData[position].data as EmptyQAModel)
@@ -318,9 +326,24 @@ class IckProductDetailAdapter(listener: IRecyclerViewCallback, private val produ
             ICViewTypes.ADS_CAMPAIGN -> (holder as AdsCampaignHolder).bind(listData[position].data as ICAdsNew)
             ICViewTypes.ADS_PRODUCT -> (holder as AdsProductHolder).bind(listData[position].data as ICAdsNew)
             ICViewTypes.MY_CONTRIBUTION -> (holder as MyContributionHolder).bind(listData[position].data as MyContributionViewModel)
-            ICViewTypes.LOYALTY_HOLDER_TYPE -> ICheckApplication.currentActivity()?.let { activity ->
-                if (activity is IckProductDetailActivity) {
-                    (holder as LoyaltyViewHolder).bind(listData[position].data as ICKLoyalty, IckProductDetailActivity.barcode, activity, listenerLoyalty, listenerLogin)
+            ICViewTypes.LOYALTY_HOLDER_TYPE -> {
+                (holder as LoyaltyViewHolder).apply {
+                    bind(listData[position].data as ICKLoyalty, IckProductDetailActivity.barcode)
+
+                    itemView.findViewById<View>(R.id.btnCheckCode).apply {
+                        setOnClickListener {
+                            ICheckApplication.currentActivity()?.let { activity ->
+                                if (activity is IckProductDetailActivity) {
+                                    isEnabled = false
+                                    CampaignLoyaltyHelper.checkCodeLoyalty(activity, (listData[position].data as ICKLoyalty), itemView.findViewById<AppCompatEditText>(R.id.edittext).text.toString().trim(), IckProductDetailActivity.barcode, listenerLoyalty, listenerLogin)
+                                    itemView.findViewById<AppCompatEditText>(R.id.edittext).setText("")
+                                    Handler().postDelayed({
+                                        isEnabled = true
+                                    }, 3000)
+                                }
+                            }
+                        }
+                    }
                 }
             }
             ICViewTypes.PRODUCT_ECCOMMERCE_TYPE -> (holder as ListProductsECommerceHolder).bind(listData[position].data as MutableList<ICProductECommerce>)

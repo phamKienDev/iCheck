@@ -94,7 +94,6 @@ android {
             resConfigs "xxhdpi"
             ext.enableCrashlytics = false
             ext.alwaysUpdateBuildId = false
-//            crunchPngs false
         }
         prod {
             resValue "string", "app_name", "iCheck"
@@ -103,27 +102,11 @@ android {
             resValue "string", "client_token", "2d5a74d2ced833d25af57a02e63132a9"
 
             // todo bỏ khi release
+            resConfigs "xxhdpi"
+            ext.enableCrashlytics = false
             ext.alwaysUpdateBuildId = false
-//            crunchPngs false
         }
     }
-
-    // todo bỏ khi release
-    // The defaultConfig values above are fixed, so your incremental builds don't
-    // need to rebuild the manifest (and therefore the whole APK, slowing build times).
-    // But for release builds, it's okay. So the following script iterates through
-    // all the known variants, finds those that are "release" build types, and
-    // changes those properties to something dynamic.
-//    applicationVariants.all { variant ->
-//        if (variant.buildType.name == "release") {
-//            variant.mergedFlavor.versionCode = minutesSinceEpoch;
-//            variant.mergedFlavor.versionName = minutesSinceEpoch + "-" + variant.flavorName;
-//        } else if (variant.buildType.name == "debug") {
-//            variant.mergedFlavor.versionCode = minutesSinceEpoch;
-//            variant.mergedFlavor.versionName = minutesSinceEpoch + "-" + variant.flavorName;
-//        }
-//    }
-
     dexOptions {
         preDexLibraries true
         javaMaxHeapSize "4G"

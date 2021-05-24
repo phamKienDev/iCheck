@@ -977,10 +977,12 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         })
 
         viewModel.stampHoaPhat.observe(this, {
+            TrackingAllHelper.trackScanQrcode(viewModel.codeScan,true)
             ActivityUtils.startActivity<DetailStampHoaPhatActivity, String>(this, Constant.DATA, viewModel.codeScan)
         })
 
         viewModel.stampThinhLong.observe(this, {
+            TrackingAllHelper.trackScanQrcode(viewModel.codeScan,true)
             ActivityUtils.startActivity<DetailStampThinhLongActivity, String>(this, Constant.DATA, viewModel.codeScan)
         })
 
@@ -1008,13 +1010,14 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                             params.append("&user_id=$userID")
                         }
                     }
-
+                    TrackingAllHelper.trackScanQrcode(viewModel.codeScan,false)
                     WebViewActivity.start(this, link + params.toString(), 1, null, false)
                 }
                 it.code.isNullOrEmpty() -> {
                     checkStampQr(viewModel.codeScan)
                 }
                 else -> {
+                    TrackingAllHelper.trackScanQrcode(viewModel.codeScan,true)
                     ActivityUtils.startActivity<StampDetailActivity, String>(this, Constant.DATA, it.code!!)
                 }
             }
@@ -1048,9 +1051,11 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                     }
                 }
                 Constant.isMarketingStamps(it) -> {
+                    TrackingAllHelper.trackScanQrcode(viewModel.codeScan,false)
                     WebViewActivity.start(this, it, 1, null, true)
                 }
                 it.contains("dev-qcheck.icheck.vn") || it.contains("qcheck-dev.vn") || it.contains("qcheck.vn") || it.contains("qrcode.icheck.com.vn") -> {
+                    TrackingAllHelper.trackScanQrcode(viewModel.codeScan,true)
                     ActivityUtils.startActivity<StampDetailActivity, String>(this, Constant.DATA, it)
                 }
                 it.contains("ktra.vn") -> {
@@ -1061,21 +1066,26 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                     }
 
                     if (!path.contains("/") && !path.contains("?") && !path.contains(".")) {
+                        TrackingAllHelper.trackScanQrcode(viewModel.codeScan,false)
                         ActivityHelper.startActivity(this, Intent(this, WebViewActivity::class.java).apply {
                             putExtra(Constant.DATA_1, getString(R.string.stamp_v3_format, path, DeviceUtils.getUniqueDeviceId()))
                             putExtra(Constant.DATA_2, 1)
                         })
                     } else {
+                        TrackingAllHelper.trackScanQrcode(viewModel.codeScan,true)
                         ActivityUtils.startActivity<DetailStampV6Activity, String>(this, Constant.DATA, it)
                     }
                 }
                 it.contains("cg.icheck.com.vn") -> {
+                    TrackingAllHelper.trackScanQrcode(viewModel.codeScan,true)
                     ActivityUtils.startActivity<DetailStampV5Activity, String>(this, Constant.DATA, it)
                 }
                 it.startsWith("http") || it.startsWith("https") -> {
+                    TrackingAllHelper.trackScanQrcode(viewModel.codeScan,false)
                     WebViewActivity.start(this, it, 1)
                 }
                 else -> {
+                    TrackingAllHelper.trackScanQrcode(viewModel.codeScan,false)
                     handleQr(getQrType(it), it)
                 }
             }
@@ -1308,22 +1318,26 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
             }
 
             override fun onGoToDetail(code: String?) {
+                TrackingAllHelper.trackScanQrcode(viewModel.codeScan,true)
                 ActivityUtils.startActivity<StampDetailActivity, String>(this@V6ScanditActivity, Constant.DATA, codeStamp)
             }
 
             override fun onGoToSms(target: String?, content: String?) {
+                TrackingAllHelper.trackScanQrcode(viewModel.codeScan,false)
                 startActivity(Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:$target")).apply {
                     putExtra("sms_body", content)
                 })
             }
 
             override fun onGoToEmail(target: String?, content: String?) {
+                TrackingAllHelper.trackScanQrcode(viewModel.codeScan,false)
                 startActivity(Intent.createChooser(Intent(Intent.ACTION_SENDTO).apply {
                     data = Uri.parse("mailto:$target")
                 }, "Send Email"))
             }
 
             override fun onGoToLink(target: String?, content: String?) {
+                TrackingAllHelper.trackScanQrcode(viewModel.codeScan,false)
                 if (target != null) {
                     startActivity(Intent().apply {
                         action = Intent.ACTION_VIEW
@@ -1333,6 +1347,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
             }
 
             override fun onGoToPhone(target: String?) {
+                TrackingAllHelper.trackScanQrcode(viewModel.codeScan,false)
                 if (target != null) {
                     phoneNumber = target
                     if (PermissionHelper.checkPermission(this@V6ScanditActivity, Manifest.permission.CALL_PHONE, requestPhone)) {

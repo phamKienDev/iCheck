@@ -1,38 +1,28 @@
 package vn.icheck.android.component.ads.product
 
-import android.graphics.Color
 import android.graphics.Paint
-import android.graphics.drawable.Drawable
 import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.DrawableCompat
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.Target
-import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.item_ads_product_grid.view.*
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseVideoViewHolder
 import vn.icheck.android.base.holder.BaseViewHolder
-import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ItemAdsProductGridBinding
 import vn.icheck.android.databinding.ItemAdsProductHorizontalBinding
+import vn.icheck.android.databinding.ItemAdsProductHorizontalMoreBinding
 import vn.icheck.android.databinding.ItemAdsProductSlideBinding
 import vn.icheck.android.helper.ExoPlayerManager
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
-import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.models.ICAdsData
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
@@ -43,7 +33,8 @@ import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.util.kotlin.WidgetUtils
 import vn.icheck.android.util.text.ReviewPointText
 
-class AdsProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class AdsProductAdapter(var fullScreen: Boolean = false) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val listData = mutableListOf<ICAdsData>()
     private var adsType = ""
     private var showType = Constant.ADS_SLIDE_TYPE
@@ -60,7 +51,14 @@ class AdsProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         notifyDataSetChanged()
     }
 
-    fun setData(list: List<ICAdsData>, adsType: String, showType: Int, targetType: String?, targetID: String?, itemCount: Int? = null) {
+    fun setData(
+        list: List<ICAdsData>,
+        adsType: String,
+        showType: Int,
+        targetType: String?,
+        targetID: String?,
+        itemCount: Int? = null
+    ) {
         listData.clear()
         listData.addAll(list)
 
@@ -87,13 +85,29 @@ class AdsProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (showType) {
             Constant.ADS_SLIDE_TYPE -> {
-                ViewHolderSlide(ItemAdsProductSlideBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+                ViewHolderSlide(
+                    ItemAdsProductSlideBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    )
+                )
             }
             Constant.ADS_HORIZONTAL_TYPE -> {
-                ViewHolderHorizontal(ItemAdsProductHorizontalBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+                if(fullScreen){
+                    ViewHolderHorizontalMore(ItemAdsProductHorizontalMoreBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+                }else{
+                    ViewHolderHorizontal(ItemAdsProductHorizontalBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+                }
             }
             else -> {
-                ViewHolderGrid(ItemAdsProductGridBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+                ViewHolderGrid(
+                    ItemAdsProductGridBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    )
+                )
             }
         }
     }
@@ -109,10 +123,14 @@ class AdsProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             is ViewHolderHorizontal -> {
                 holder.bind(listData[position])
             }
+            is ViewHolderHorizontalMore ->{
+                holder.bind(listData[position])
+            }
         }
     }
 
-    inner class ViewHolderSlide(val binding: ItemAdsProductSlideBinding) : BaseVideoViewHolder(binding.root) {
+    inner class ViewHolderSlide(val binding: ItemAdsProductSlideBinding) :
+        BaseVideoViewHolder(binding.root) {
         fun bind(obj: ICAdsData) {
             binding.imgImage.visibility = View.VISIBLE
             binding.surfaceView.visibility = View.INVISIBLE
@@ -122,25 +140,39 @@ class AdsProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 if (obj.media!![0].type == Constant.VIDEO) {
                     binding.imgPlay.visibility = View.VISIBLE
                     if (!obj.media!![0].content.isNullOrEmpty()) {
-                        binding.imgImage.scaleType=ImageView.ScaleType.FIT_CENTER
-                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, obj.media!![0].content, R.drawable.img_error_ads_product, R.drawable.img_error_ads_product, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                        binding.imgImage.scaleType = ImageView.ScaleType.FIT_CENTER
+                        WidgetUtils.loadImageUrlRoundedTransformation(
+                            binding.imgImage,
+                            obj.media!![0].content,
+                            R.drawable.img_default_product_big,
+                            R.drawable.img_default_product_big,
+                            SizeHelper.size4,
+                            RoundedCornersTransformation.CornerType.TOP
+                        )
                     } else {
-                        binding.imgImage.scaleType=ImageView.ScaleType.FIT_XY
-                        binding.imgImage.setImageResource(R.drawable.img_error_ads_product)
+                        binding.imgImage.scaleType = ImageView.ScaleType.CENTER_CROP
+                        binding.imgImage.setImageResource(R.drawable.img_default_product_big)
                     }
                 } else {
                     binding.imgPlay.visibility = View.INVISIBLE
                     if (!obj.media!![0].content.isNullOrEmpty()) {
-                        binding.imgImage.scaleType=ImageView.ScaleType.FIT_CENTER
-                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, obj.media!![0].content, R.drawable.img_error_ads_product, R.drawable.img_error_ads_product, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                        binding.imgImage.scaleType = ImageView.ScaleType.FIT_CENTER
+                        WidgetUtils.loadImageUrlRoundedTransformation(
+                            binding.imgImage,
+                            obj.media!![0].content,
+                            R.drawable.img_default_product_big,
+                            R.drawable.img_default_product_big,
+                            SizeHelper.size4,
+                            RoundedCornersTransformation.CornerType.TOP
+                        )
                     } else {
-                        binding.imgImage.scaleType=ImageView.ScaleType.FIT_XY
-                        binding.imgImage.setImageResource(R.drawable.img_error_ads_product)
+                        binding.imgImage.scaleType = ImageView.ScaleType.CENTER_CROP
+                        binding.imgImage.setImageResource(R.drawable.img_default_product_big)
                     }
                 }
             } else {
-                binding.imgImage.scaleType=ImageView.ScaleType.CENTER_CROP
-                binding.imgImage.setImageResource(R.drawable.img_error_ads_product)
+                binding.imgImage.scaleType = ImageView.ScaleType.CENTER_CROP
+                binding.imgImage.setImageResource(R.drawable.img_default_product_big)
             }
 
             if (!obj.name.isNullOrEmpty()) {
@@ -176,7 +208,8 @@ class AdsProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 if (obj.sellPrice != null) {
                     binding.tvPriceOriginal.beVisible()
                     binding.tvPriceOriginal.text = TextHelper.formatMoney(obj.sellPrice) + "đ"
-                    binding.tvPriceOriginal.paintFlags = binding.tvPriceOriginal.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                    binding.tvPriceOriginal.paintFlags =
+                        binding.tvPriceOriginal.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
                 }
             } else {
                 binding.tvPriceUpdating.beVisible()
@@ -191,8 +224,9 @@ class AdsProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
             if (obj.rating != null) {
                 binding.tvPoint.beVisible()
+                binding.tvRatingUpdating.beGone()
                 binding.tvRatingText.beVisible()
-                binding.tvPoint.text = (obj.rating!!*2).toString()
+                binding.tvPoint.text = Math.round((obj.rating!! * 2) * 10).div(10.0).toString()
                 ReviewPointText.setText(binding.tvRatingText, obj.rating!!)
             } else {
                 binding.tvRatingUpdating.beVisible()
@@ -207,7 +241,11 @@ class AdsProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             itemView.setOnClickListener {
                 ICheckApplication.currentActivity()?.let { activity ->
                     if (!obj.targetType.isNullOrEmpty()) {
-                        FirebaseDynamicLinksActivity.startTarget(activity, obj.targetType, obj.targetId)
+                        FirebaseDynamicLinksActivity.startTarget(
+                            activity,
+                            obj.targetType,
+                            obj.targetId
+                        )
                     } else {
                         FirebaseDynamicLinksActivity.startTarget(activity, targetType, targetID)
                     }
@@ -231,6 +269,8 @@ class AdsProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
+
+
     inner class ViewHolderHorizontal(val binding: ItemAdsProductHorizontalBinding) : BaseVideoViewHolder(binding.root) {
         fun bind(obj: ICAdsData) {
             binding.imgImage.visibility = View.VISIBLE
@@ -238,43 +278,96 @@ class AdsProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             binding.progressBar.visibility = View.INVISIBLE
 
             if (!SettingManager.themeSetting?.theme?.productOverlayImage.isNullOrEmpty()) {
-                WidgetUtils.loadImageUrlFitCenter(binding.productOverlayImage, SettingManager.themeSetting?.theme?.productOverlayImage, android.R.color.transparent, android.R.color.transparent)
+                WidgetUtils.loadImageUrlFitCenter(
+                    binding.productOverlayImage,
+                    SettingManager.themeSetting?.theme?.productOverlayImage,
+                    android.R.color.transparent,
+                    android.R.color.transparent
+                )
             }
 
             if (!obj.media.isNullOrEmpty()) {
                 if (obj.media!![0].type == Constant.VIDEO) {
                     binding.imgPlay.visibility = View.VISIBLE
                     if (!obj.media!![0].content.isNullOrEmpty()) {
-                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, obj.media!![0].content, R.drawable.img_error_ads_product, R.drawable.img_error_ads_product, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                        WidgetUtils.loadImageUrlRoundedTransformationCenterCrop(
+                            binding.imgImage,
+                            obj.media!![0].content,
+                            R.drawable.img_default_product_big,
+                            R.drawable.img_default_product_big,
+                            SizeHelper.size4,
+                            RoundedCornersTransformation.CornerType.TOP
+                        )
                     } else {
-                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, R.drawable.img_error_ads_product, R.drawable.img_error_ads_product, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                        binding.imgImage.scaleType = ImageView.ScaleType.CENTER_CROP
+                        WidgetUtils.loadImageUrlRoundedTransformationCenterCrop(
+                            binding.imgImage,
+                            null,
+                            R.drawable.img_default_product_big,
+                            R.drawable.img_default_product_big,
+                            SizeHelper.size4,
+                            RoundedCornersTransformation.CornerType.TOP
+                        )
                     }
                 } else {
                     binding.imgPlay.visibility = View.INVISIBLE
                     if (!obj.media!![0].content.isNullOrEmpty()) {
-                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, obj.media!![0].content, R.drawable.img_error_ads_product, R.drawable.img_error_ads_product, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                        WidgetUtils.loadImageUrlRoundedTransformationCenterCrop(
+                            binding.imgImage,
+                            obj.media!![0].content,
+                            R.drawable.img_default_product_big,
+                            R.drawable.img_default_product_big,
+                            SizeHelper.size4,
+                            RoundedCornersTransformation.CornerType.TOP
+                        )
                     } else {
-                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, R.drawable.img_error_ads_product, R.drawable.img_error_ads_product, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                        WidgetUtils.loadImageUrlRoundedTransformationCenterCrop(
+                            binding.imgImage,
+                            null,
+                            R.drawable.img_default_product_big,
+                            R.drawable.img_default_product_big,
+                            SizeHelper.size4,
+                            RoundedCornersTransformation.CornerType.TOP
+                        )
                     }
                 }
             } else {
-                WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, R.drawable.img_error_ads_product, R.drawable.img_error_ads_product, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                WidgetUtils.loadImageUrlRoundedTransformationCenterCrop(
+                    binding.imgImage,
+                    null,
+                    R.drawable.img_default_product_big,
+                    R.drawable.img_default_product_big,
+                    SizeHelper.size4,
+                    RoundedCornersTransformation.CornerType.TOP
+                )
             }
 
             if (!obj.owner?.avatar?.content.isNullOrEmpty()) {
-                WidgetUtils.loadImageUrl(binding.imgAvatar, obj.owner?.avatar?.content, R.drawable.ic_business_v2)
+                WidgetUtils.loadImageUrl(
+                    binding.imgAvatar,
+                    obj.owner?.avatar?.content,
+                    R.drawable.ic_business_v2
+                )
             } else {
-                WidgetUtils.loadImageUrl(binding.imgAvatar, obj.owner?.avatar?.content, R.drawable.ic_business_v2)
+                WidgetUtils.loadImageUrl(binding.imgAvatar, null, R.drawable.ic_business_v2)
             }
+
 
 
             if (obj.owner?.verified == true) {
                 itemView.tvName.setDrawbleNextEndText(obj.owner?.name, R.drawable.ic_verified_16px)
                 Handler().postDelayed({
-                    itemView.tvName.setDrawbleNextEndText(obj.owner?.name, R.drawable.ic_verified_16px)
+                    itemView.tvName.setDrawbleNextEndText(
+                        obj.owner?.name,
+                        R.drawable.ic_verified_16px
+                    )
                 }, 100)
             } else {
-                binding.tvName.text = obj.owner?.name ?: ""
+                binding.tvName.text = if (obj.owner?.name.isNullOrEmpty()) {
+                    itemView.context.getString(R.string.dang_cap_nhat)
+                } else {
+                    obj.owner?.name
+                }
             }
 
             if (!obj.name.isNullOrEmpty()) {
@@ -291,6 +384,7 @@ class AdsProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 binding.tvPriceOriginal.beGone()
                 binding.tvPriceUpdating.beVisible()
             } else {
+                binding.tvPriceUpdating.beGone()
                 if (obj.price != null) {
                     binding.tvPriceSpecial.beVisible()
                     binding.tvPriceSpecial.text = TextHelper.formatMoney(obj.price) + "đ"
@@ -299,7 +393,8 @@ class AdsProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 if (obj.sellPrice != null) {
                     binding.tvPriceOriginal.beVisible()
                     binding.tvPriceOriginal.text = TextHelper.formatMoney(obj.sellPrice) + "đ"
-                    binding.tvPriceOriginal.paintFlags = binding.tvPriceOriginal.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                    binding.tvPriceOriginal.paintFlags =
+                        binding.tvPriceOriginal.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
                 }
             }
 
@@ -309,9 +404,10 @@ class AdsProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 setButtonText(binding.btnAction, obj.isFollow, 0)
             }
             if (obj.rating != null) {
+                binding.tvRatingUpdating.beGone()
                 binding.tvPoint.beVisible()
                 binding.tvRatingText.beVisible()
-                binding.tvPoint.text = (obj.rating!!*2).toString()
+                binding.tvPoint.text = Math.round((obj.rating!! * 2) * 10).div(10.0).toString()
                 ReviewPointText.setText(binding.tvRatingText, obj.rating!!)
             } else {
                 binding.tvRatingUpdating.beVisible()
@@ -340,7 +436,11 @@ class AdsProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             itemView.setOnClickListener {
                 ICheckApplication.currentActivity()?.let { activity ->
                     if (!obj.targetType.isNullOrEmpty()) {
-                        FirebaseDynamicLinksActivity.startTarget(activity, obj.targetType, obj.targetId)
+                        FirebaseDynamicLinksActivity.startTarget(
+                            activity,
+                            obj.targetType,
+                            obj.targetId
+                        )
                     } else {
                         FirebaseDynamicLinksActivity.startTarget(activity, targetType, targetID)
                     }
@@ -364,22 +464,247 @@ class AdsProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    inner class ViewHolderGrid(val binding: ItemAdsProductGridBinding) : BaseViewHolder<ICAdsData>(binding.root) {
+
+    inner class ViewHolderHorizontalMore(val binding: ItemAdsProductHorizontalMoreBinding) : BaseVideoViewHolder(binding.root) {
+        fun bind(obj: ICAdsData) {
+            binding.imgImage.visibility = View.VISIBLE
+            binding.surfaceView.visibility = View.INVISIBLE
+            binding.progressBar.visibility = View.INVISIBLE
+
+            if (!SettingManager.themeSetting?.theme?.productOverlayImage.isNullOrEmpty()) {
+                WidgetUtils.loadImageUrlFitCenter(
+                    binding.productOverlayImage,
+                    SettingManager.themeSetting?.theme?.productOverlayImage,
+                    android.R.color.transparent,
+                    android.R.color.transparent
+                )
+            }
+
+            if (!obj.media.isNullOrEmpty()) {
+                if (obj.media!![0].type == Constant.VIDEO) {
+                    binding.imgPlay.visibility = View.VISIBLE
+                    if (!obj.media!![0].content.isNullOrEmpty()) {
+                        WidgetUtils.loadImageUrlRoundedTransformation(
+                            binding.imgImage,
+                            obj.media!![0].content,
+                            R.drawable.img_default_product_big,
+                            R.drawable.img_default_product_big,
+                            SizeHelper.size4,
+                            RoundedCornersTransformation.CornerType.TOP
+                        )
+                    } else {
+                        binding.imgImage.scaleType = ImageView.ScaleType.CENTER_CROP
+                        WidgetUtils.loadImageUrlRoundedTransformation(
+                            binding.imgImage,
+                            null,
+                            R.drawable.img_default_product_big,
+                            R.drawable.img_default_product_big,
+                            SizeHelper.size4,
+                            RoundedCornersTransformation.CornerType.TOP
+                        )
+                    }
+                } else {
+                    binding.imgPlay.visibility = View.INVISIBLE
+                    if (!obj.media!![0].content.isNullOrEmpty()) {
+                        WidgetUtils.loadImageUrlRoundedTransformation(
+                            binding.imgImage,
+                            obj.media!![0].content,
+                            R.drawable.img_default_product_big,
+                            R.drawable.img_default_product_big,
+                            SizeHelper.size4,
+                            RoundedCornersTransformation.CornerType.TOP
+                        )
+                    } else {
+                        binding.imgImage.scaleType = ImageView.ScaleType.CENTER_CROP
+                        WidgetUtils.loadImageUrlRoundedTransformation(
+                            binding.imgImage,
+                            null,
+                            R.drawable.img_default_product_big,
+                            R.drawable.img_default_product_big,
+                            SizeHelper.size4,
+                            RoundedCornersTransformation.CornerType.TOP
+                        )
+                    }
+                }
+            } else {
+                binding.imgImage.scaleType = ImageView.ScaleType.CENTER_CROP
+                WidgetUtils.loadImageUrlRoundedTransformation(
+                    binding.imgImage,
+                    null,
+                    R.drawable.img_default_product_big,
+                    R.drawable.img_default_product_big,
+                    SizeHelper.size4,
+                    RoundedCornersTransformation.CornerType.TOP
+                )
+            }
+
+            if (!obj.owner?.avatar?.content.isNullOrEmpty()) {
+                WidgetUtils.loadImageUrl(
+                    binding.imgAvatar,
+                    obj.owner?.avatar?.content,
+                    R.drawable.ic_business_v2
+                )
+            } else {
+                WidgetUtils.loadImageUrl(binding.imgAvatar, null, R.drawable.ic_business_v2)
+            }
+
+
+
+            if (obj.owner?.verified == true) {
+                itemView.tvName.setDrawbleNextEndText(obj.owner?.name, R.drawable.ic_verified_16px)
+                Handler().postDelayed({
+                    itemView.tvName.setDrawbleNextEndText(
+                        obj.owner?.name,
+                        R.drawable.ic_verified_16px
+                    )
+                }, 100)
+            } else {
+                binding.tvName.text = if (obj.owner?.name.isNullOrEmpty()) {
+                    itemView.context.getString(R.string.dang_cap_nhat)
+                } else {
+                    obj.owner?.name
+                }
+            }
+
+            if (!obj.name.isNullOrEmpty()) {
+                binding.tvContent.text = obj.name
+                binding.tvContent.beVisible()
+                binding.tvTenSpUpdating.beInvisible()
+            } else {
+                binding.tvContent.beInvisible()
+                binding.tvTenSpUpdating.beVisible()
+            }
+
+            if (obj.price == null && obj.sellPrice == null) {
+                binding.tvPriceSpecial.beGone()
+                binding.tvPriceOriginal.beGone()
+                binding.tvPriceUpdating.beVisible()
+            } else {
+                binding.tvPriceUpdating.beGone()
+                if (obj.price != null) {
+                    binding.tvPriceSpecial.beVisible()
+                    binding.tvPriceSpecial.text = TextHelper.formatMoney(obj.price) + "đ"
+                }
+
+                if (obj.sellPrice != null) {
+                    binding.tvPriceOriginal.beVisible()
+                    binding.tvPriceOriginal.text = TextHelper.formatMoney(obj.sellPrice) + "đ"
+                    binding.tvPriceOriginal.paintFlags =
+                        binding.tvPriceOriginal.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                }
+            }
+
+            if (adsType == Constant.PRODUCT_APPROACH) {
+                setButtonText(binding.btnAction, obj.isFollow, 0, true)
+            } else {
+                setButtonText(binding.btnAction, obj.isFollow, 0)
+            }
+            if (obj.rating != null) {
+                binding.tvRatingUpdating.beGone()
+                binding.tvPoint.beVisible()
+                binding.tvRatingText.beVisible()
+                binding.tvPoint.text = Math.round((obj.rating!! * 2) * 10).div(10.0).toString()
+                ReviewPointText.setText(binding.tvRatingText, obj.rating!!)
+            } else {
+                binding.tvRatingUpdating.beVisible()
+                binding.tvPoint.beGone()
+                binding.tvRatingText.beGone()
+            }
+
+            binding.surfaceView.addOnLayoutChangeListener { view, i, i2, i3, i4, i5, i6, i7, i8 ->
+                if (view.visibility == View.VISIBLE) {
+                    binding.imgPlay.visibility = View.INVISIBLE
+                    binding.progressBar.visibility = View.INVISIBLE
+                } else {
+                    if (!obj.media.isNullOrEmpty() && obj.media!![0].type == Constant.VIDEO) {
+                        binding.imgPlay.visibility = View.VISIBLE
+                    } else {
+                        binding.imgPlay.visibility = View.INVISIBLE
+                    }
+                    binding.progressBar.visibility = View.INVISIBLE
+                }
+            }
+
+            binding.btnAction.setOnClickListener {
+                actionButton(this, obj)
+            }
+
+            itemView.setOnClickListener {
+                ICheckApplication.currentActivity()?.let { activity ->
+                    if (!obj.targetType.isNullOrEmpty()) {
+                        FirebaseDynamicLinksActivity.startTarget(
+                            activity,
+                            obj.targetType,
+                            obj.targetId
+                        )
+                    } else {
+                        FirebaseDynamicLinksActivity.startTarget(activity, targetType, targetID)
+                    }
+                }
+            }
+        }
+
+        override fun onPlayVideo(): Boolean {
+            return if (playVideo(binding.surfaceView, listData[adapterPosition].media)) {
+                if (ExoPlayerManager.player?.isPlaying == true) {
+                    binding.imgPlay.visibility = View.INVISIBLE
+                    binding.progressBar.visibility = View.INVISIBLE
+                } else {
+                    binding.imgPlay.visibility = View.INVISIBLE
+                    binding.progressBar.visibility = View.VISIBLE
+                }
+                true
+            } else {
+                false
+            }
+        }
+    }
+
+
+
+    inner class ViewHolderGrid(val binding: ItemAdsProductGridBinding) :
+        BaseViewHolder<ICAdsData>(binding.root) {
         override fun bind(obj: ICAdsData) {
             binding.imgImage.visibility = View.VISIBLE
 
             if (!SettingManager.themeSetting?.theme?.productOverlayImage.isNullOrEmpty()) {
-                WidgetUtils.loadImageUrlFitCenter(binding.productOverlayImage, SettingManager.themeSetting?.theme?.productOverlayImage, android.R.color.transparent, android.R.color.transparent)
+                WidgetUtils.loadImageUrlFitCenter(
+                    binding.productOverlayImage,
+                    SettingManager.themeSetting?.theme?.productOverlayImage,
+                    android.R.color.transparent,
+                    android.R.color.transparent
+                )
             }
 
             if (!obj.media.isNullOrEmpty()) {
                 if (!obj.media!![0].content.isNullOrEmpty()) {
-                    WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, obj.media!![0].content, R.drawable.img_error_ads_product, R.drawable.img_error_ads_product, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                    WidgetUtils.loadImageUrlRoundedTransformation(
+                        binding.imgImage,
+                        obj.media!![0].content,
+                        R.drawable.img_default_product_big,
+                        R.drawable.img_default_product_big,
+                        SizeHelper.size4,
+                        RoundedCornersTransformation.CornerType.TOP
+                    )
                 } else {
-                    WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, R.drawable.img_error_ads_product, R.drawable.img_error_ads_product, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                    WidgetUtils.loadImageUrlRoundedTransformation(
+                        binding.imgImage,
+                        null,
+                        R.drawable.img_default_product_big,
+                        R.drawable.img_default_product_big,
+                        SizeHelper.size4,
+                        RoundedCornersTransformation.CornerType.TOP
+                    )
                 }
             } else {
-                WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, R.drawable.img_error_ads_product, R.drawable.img_error_ads_product, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                WidgetUtils.loadImageUrlRoundedTransformation(
+                    binding.imgImage,
+                    null,
+                    R.drawable.img_default_product_big,
+                    R.drawable.img_default_product_big,
+                    SizeHelper.size4,
+                    RoundedCornersTransformation.CornerType.TOP
+                )
             }
 
             if (!obj.name.isNullOrEmpty()) {
@@ -434,7 +759,11 @@ class AdsProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             itemView.setOnClickListener {
                 ICheckApplication.currentActivity()?.let { activity ->
                     if (!obj.targetType.isNullOrEmpty()) {
-                        FirebaseDynamicLinksActivity.startTarget(activity, obj.targetType, obj.targetId)
+                        FirebaseDynamicLinksActivity.startTarget(
+                            activity,
+                            obj.targetType,
+                            obj.targetId
+                        )
                     } else {
                         FirebaseDynamicLinksActivity.startTarget(activity, targetType, targetID)
                     }
@@ -443,7 +772,12 @@ class AdsProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    private fun setButtonText(tvButton: AppCompatTextView, isFollow: Boolean, drawable: Int, isGone: Boolean = false) {
+    private fun setButtonText(
+        tvButton: AppCompatTextView,
+        isFollow: Boolean,
+        drawable: Int,
+        isGone: Boolean = false
+    ) {
         when (adsType) {
             Constant.PRODUCT_CHANGE_BUY -> { // Mua sản phẩm
                 tvButton.visibility = View.VISIBLE

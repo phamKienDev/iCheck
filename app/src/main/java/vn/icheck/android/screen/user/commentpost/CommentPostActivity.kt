@@ -105,7 +105,12 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
             ActivityUtils.startActivityWithoutAnimation(activity, intent)
         }
 
-        fun startForResult(activity: FragmentActivity, postID: Long, type: Int? = null, requestCode: Int) {
+        fun startForResult(
+            activity: FragmentActivity,
+            postID: Long,
+            type: Int? = null,
+            requestCode: Int
+        ) {
             val intent = Intent(activity, CommentPostActivity::class.java)
             intent.putExtra(Constant.DATA_1, postID)
 
@@ -216,9 +221,9 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
             override fun onItemClick(position: Int, item: Any?) {
                 if (item != null && item is Stickers) {
                     KeyboardUtils.showSoftInput(edtContent)
-                    layoutImage.visibility = View.VISIBLE
-                    layoutImage.tag = item.image
-                    WidgetUtils.loadImageUrlRounded(imgImage, item.image, SizeHelper.size4)
+//                    layoutImage.visibility = View.VISIBLE
+//                    layoutImage.tag = item.image
+//                    WidgetUtils.loadImageUrlRounded(imgImage, item.image, SizeHelper.size4)
 
                     checkShowEmoji(false)
                     checkSendStatus()
@@ -229,7 +234,11 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
     }
 
     private fun setUpSwipeLayout() {
-        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary), ContextCompat.getColor(this, R.color.colorPrimary))
+        swipeLayout.setColorSchemeColors(
+            ContextCompat.getColor(this, R.color.colorSecondary),
+            ContextCompat.getColor(this, R.color.colorPrimary),
+            ContextCompat.getColor(this, R.color.colorPrimary)
+        )
         swipeLayout.isNestedScrollingEnabled = false
         swipeLayout.setOnRefreshListener {
             viewModel.getData()
@@ -237,18 +246,23 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
     }
 
     private fun setupPermission() {
-        permissionAdapter = CommentPermissionAdapter(object : ItemClickListener<ICCommentPermission> {
-            override fun onItemClick(position: Int, item: ICCommentPermission?) {
-                if (item != null) {
-                    if (item.type == Constant.PAGE) {
-                        WidgetUtils.loadImageUrl(imgAvatar, item.avatar, R.drawable.ic_business_v2)
-                    } else {
-                        WidgetUtils.loadImageUrl(imgAvatar, item.avatar, R.drawable.ic_user_svg)
+        permissionAdapter =
+            CommentPermissionAdapter(object : ItemClickListener<ICCommentPermission> {
+                override fun onItemClick(position: Int, item: ICCommentPermission?) {
+                    if (item != null) {
+                        if (item.type == Constant.PAGE) {
+                            WidgetUtils.loadImageUrl(
+                                imgAvatar,
+                                item.avatar,
+                                R.drawable.ic_business_v2
+                            )
+                        } else {
+                            WidgetUtils.loadImageUrl(imgAvatar, item.avatar, R.drawable.ic_user_svg)
+                        }
                     }
+                    showLayoutPermission(false)
                 }
-                showLayoutPermission(false)
-            }
-        })
+            })
         recPermission.adapter = permissionAdapter
     }
 
@@ -259,13 +273,21 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
             if (it != null) {
                 checkLikePost(it)
 
-                WidgetUtils.loadImageUrl(imgAvatar, SessionManager.session.user?.avatar, R.drawable.ic_user_svg)
+                WidgetUtils.loadImageUrl(
+                    imgAvatar,
+                    SessionManager.session.user?.avatar,
+                    R.drawable.ic_user_svg
+                )
             } else {
-                DialogHelper.showNotification(this@CommentPostActivity, R.string.co_loi_xay_ra_vui_long_thu_lai, false, object : NotificationDialogListener {
-                    override fun onDone() {
-                        onBackPressed()
-                    }
-                })
+                DialogHelper.showNotification(
+                    this@CommentPostActivity,
+                    R.string.co_loi_xay_ra_vui_long_thu_lai,
+                    false,
+                    object : NotificationDialogListener {
+                        override fun onDone() {
+                            onBackPressed()
+                        }
+                    })
             }
             checkPrivacyConfig()
             adapter.showOrHideAnswer(it.involveType)
@@ -276,13 +298,22 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
 
             when {
                 it.size >= 3 -> {
-                    recPermission.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.dpToPx(126))
+                    recPermission.layoutParams = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        SizeHelper.dpToPx(126)
+                    )
                 }
                 it.size == 3 -> {
-                    recPermission.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.dpToPx(106))
+                    recPermission.layoutParams = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        SizeHelper.dpToPx(106)
+                    )
                 }
                 else -> {
-                    recPermission.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                    recPermission.layoutParams = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                    )
                 }
             }
 
@@ -393,11 +424,15 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
                 ICMessageEvent.Type.BACK -> {
                     closeLoading()
 
-                    DialogHelper.showNotification(this@CommentPostActivity, R.string.co_loi_xay_ra_vui_long_thu_lai, false, object : NotificationDialogListener {
-                        override fun onDone() {
-                            onBackPressed()
-                        }
-                    })
+                    DialogHelper.showNotification(
+                        this@CommentPostActivity,
+                        R.string.co_loi_xay_ra_vui_long_thu_lai,
+                        false,
+                        object : NotificationDialogListener {
+                            override fun onDone() {
+                                onBackPressed()
+                            }
+                        })
                 }
             }
         })
@@ -408,36 +443,44 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
     private fun checkPrivacyConfig() {
         if (viewModel.post?.page == null) {
             if (viewModel.post?.user?.id != SessionManager.session.user?.id) {
-                when (viewModel.post?.user?.userPrivacyConfig?.whoCommentYourPost) {
-                    Constant.EVERYONE -> {
-                        containerComment.beVisible()
-                    }
-                    Constant.FRIEND -> {
-                        if (ICheckApplication.getInstance().mFirebase.auth.currentUser != null && SessionManager.session.user?.id != null) {
-                            ICheckApplication.getInstance().mFirebase.registerRelationship(Constant.myFriendIdList, viewModel.post?.user?.id.toString(), object : ValueEventListener {
-                                override fun onDataChange(snapshot: DataSnapshot) {
-                                    if (snapshot.value != null && snapshot.value is Long) {
-                                        containerComment.beVisible()
-                                    } else {
-                                        notAllowReply()
-                                        containerComment.beGone()
-                                    }
-                                }
-
-                                override fun onCancelled(error: DatabaseError) {
-                                    logError(error.toException())
-                                }
-                            })
-                        }
-                    }
-                    else -> {
-                        if (viewModel.post?.user?.id == SessionManager.session.user?.id) {
+                if (viewModel.post?.user?.userPrivacyConfig?.whoCommentYourPost == null) {
+                    containerComment.beVisible()
+                } else {
+                    when (viewModel.post?.user?.userPrivacyConfig?.whoCommentYourPost) {
+                        Constant.EVERYONE -> {
                             containerComment.beVisible()
-                        } else {
-                            notAllowReply()
-                            containerComment.beGone()
+                        }
+                        Constant.FRIEND -> {
+                            if (ICheckApplication.getInstance().mFirebase.auth.currentUser != null && SessionManager.session.user?.id != null) {
+                                ICheckApplication.getInstance().mFirebase.registerRelationship(
+                                    Constant.myFriendIdList,
+                                    viewModel.post?.user?.id.toString(),
+                                    object : ValueEventListener {
+                                        override fun onDataChange(snapshot: DataSnapshot) {
+                                            if (snapshot.value != null && snapshot.value is Long) {
+                                                containerComment.beVisible()
+                                            } else {
+                                                notAllowReply()
+                                                containerComment.beGone()
+                                            }
+                                        }
+
+                                        override fun onCancelled(error: DatabaseError) {
+                                            logError(error.toException())
+                                        }
+                                    })
+                            }
+                        }
+                        else -> {
+                            if (viewModel.post?.user?.id == SessionManager.session.user?.id) {
+                                containerComment.beVisible()
+                            } else {
+                                notAllowReply()
+                                containerComment.beGone()
+                            }
                         }
                     }
+
                 }
             } else {
                 containerComment.beVisible()
@@ -487,14 +530,23 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
         })
 
         imgCamera.onDelayClick({
-            if (PermissionHelper.checkPermission(this, arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE), requestTakePicture)) {
-                TakeMediaDialog.show(supportFragmentManager, this, takeMediaListener, isVideo = true)
+            if (PermissionHelper.checkPermission(
+                    this,
+                    arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                    requestTakePicture
+                )
+            ) {
+                TakeMediaDialog.show(
+                    supportFragmentManager,
+                    this,
+                    takeMediaListener,
+                    isVideo = true
+                )
             }
         }, 2000)
 
         imgCloseImage.setOnClickListener {
             showLayoutImage(null)
-            imgImage.setImageResource(android.R.color.transparent)
             enableCamera(false)
             checkSendStatus()
         }
@@ -526,7 +578,12 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
         imgSend.setOnClickListener {
             imgSend.isEnabled = false
             if (SessionManager.isUserLogged) {
-                viewModel.send(permissionAdapter.getPageID, layoutActor.tag as Long?, imgImage.tag as File?, edtContent.text.toString())
+                viewModel.send(
+                    permissionAdapter.getPageID,
+                    layoutActor.tag as Long?,
+                    imgCommentSend.tag as File?,
+                    edtContent.text.toString()
+                )
             } else {
                 imgSend.isEnabled = true
                 onRequireLogin(requestLogin)
@@ -537,11 +594,11 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
     fun showLayoutImage(file: File?) {
         if (file != null) {
             view2.beVisible()
-            imgImage.beVisible()
             imgCloseImage.beVisible()
-            imgImage.tag = file
+            cardViewImage.beVisible()
+            imgCommentSend.tag = file
 
-            imgImage.loadImageFromVideoFile(file, null, SizeHelper.dpToPx(4))
+            imgCommentSend.loadImageFromVideoFile(file, null, SizeHelper.dpToPx(4))
 
             if (file.absolutePath.contains(".mp4")) {
                 imgPlay.beVisible()
@@ -551,10 +608,11 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
             enableCamera(true)
         } else {
             view2.beGone()
-            imgImage.beInvisible()
-            imgImage.tag = null
             imgCloseImage.beGone()
-            imgPlay.beInvisible()
+            cardViewImage.beGone()
+
+            imgCommentSend.tag = null
+
             enableCamera(false)
         }
         checkSendStatus()
@@ -602,7 +660,7 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
     }
 
     private fun checkSendStatus() {
-        if (edtContent.text.toString().trim().isNotEmpty() || imgImage.tag != null) {
+        if (edtContent.text.toString().trim().isNotEmpty() || imgCommentSend.tag != null) {
             imgSend.setImageResource(R.drawable.ic_chat_send_24px)
             imgSend.isClickable = true
         } else {
@@ -690,25 +748,32 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
 
     override fun onResume() {
         super.onResume()
-        unregistrar = KeyboardVisibilityEvent.registerEventListener(this, object : KeyboardVisibilityEventListener {
-            override fun onVisibilityChanged(isOpen: Boolean) {
-                if (isOpen) {
-                    if (layoutEmoji.visibility == View.VISIBLE) {
-                        checkShowEmoji(false)
+        unregistrar = KeyboardVisibilityEvent.registerEventListener(
+            this,
+            object : KeyboardVisibilityEventListener {
+                override fun onVisibilityChanged(isOpen: Boolean) {
+                    if (isOpen) {
+                        if (layoutEmoji.visibility == View.VISIBLE) {
+                            checkShowEmoji(false)
+                        }
                     }
                 }
-            }
-        })
+            })
     }
 
     override fun onPause() {
         super.onPause()
         unregistrar?.unregister()
         unregistrar = null
-        EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.RESULT_COMMENT_POST_ACTIVITY, viewModel.post))
+        EventBus.getDefault()
+            .post(ICMessageEvent(ICMessageEvent.Type.RESULT_COMMENT_POST_ACTIVITY, viewModel.post))
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == requestTakePicture) {
             if (PermissionHelper.checkResult(grantResults)) {

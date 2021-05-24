@@ -567,6 +567,7 @@
     <string name="x_tot">%s Tốt</string>
     <string name="x_hai_long">%s Hài lòng</string>
     <string name="x_diem_danh_gia">%s Điểm đánh giá</string>
+    <string name="diem_danh_gia">Điểm đánh giá</string>
     <string name="x_ban_be_dang_su_dung_icheck">%d Bạn bè Facebook đang sử dụng iCheck</string>
     <string name="feed_option_off_follow_title">Bỏ theo dõi %s</string>
     <string name="feed_option_off_follow_user_message">Khi bỏ theo dõi, các bài viết của người này sẽ không hiển thị trên trang chủ của bạn nữa.</string>
@@ -808,7 +809,7 @@
     <string name="bao_cao_trang">Báo cáo trang</string>
     <string name="ban_chua_co_trang_nao">Bạn chưa có trang nào</string>
     <string name="da_xac_thuc">Đã xác thực</string>
-    <string name="tren_ca_tuyet_voi">Trên tuyệt vời</string>
+    <string name="tren_ca_tuyet_voi">Trên cả tuyệt vời</string>
     <string name="tuyet_voi">Tuyệt vời</string>
     <string name="tot">Tốt</string>
     <string name="hai_long">Hài lòng</string>
@@ -921,6 +922,7 @@
     <string name="doi_ban_phiim">Đổi bàn phím</string>
     <string name="ban_phim_chu">Bàn phím chữ</string>
     <string name="ban_phim_so">Bàn phím số</string>
+    <string name="tai_tro_boi">Tài trợ bởi</string>
     <string name="san_pham_chinh_hang_uppercase">SẢN PHẨM CHÍNH HÃNG</string>
     <string name="canh_bao_uppercase">CẢNH BÁO!</string>
     <string name="canh_bao_uppercase_down_xxx">CẢNH BÁO!\n%s</string>
