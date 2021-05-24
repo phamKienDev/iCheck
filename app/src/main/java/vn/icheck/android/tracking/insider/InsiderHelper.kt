@@ -189,7 +189,7 @@ object InsiderHelper {
             )
             .addParameterWithDouble("scan_product_rating", obj.basicInfo?.rating ?: 0.0)
             .addParameterWithBoolean("verified_status", obj.verified ?: false)
-            .addParameterWithString("country_of_origin", obj.owner?.city?.name ?: "Việt Nam")
+            .addParameterWithString("country_of_origin", obj.owner?.city?.name)
             .addParameterWithString("scan_company_name", obj.manager?.name ?: obj.owner?.name)
             .addParameterWithString("scan_product_category", category)
             .build()
@@ -202,7 +202,7 @@ object InsiderHelper {
             .addParameterWithDouble("price", obj.basicInfo?.price?.toDouble() ?: 0.0)
             .addParameterWithDouble("rating", obj.basicInfo?.rating ?: 0.0)
             .addParameterWithBoolean("verified", obj.verified ?: false)
-            .addParameterWithString("country", obj.owner?.city?.name ?: "Việt Nam")
+            .addParameterWithString("country", obj.owner?.city?.name)
             .addParameterWithString("business", obj.manager?.name ?: obj.owner?.name)
             .build()
     }
@@ -214,7 +214,7 @@ object InsiderHelper {
             .addParameterWithDouble("price", obj.basicInfo?.price?.toDouble() ?: 0.0)
             .addParameterWithDouble("rating", obj.basicInfo?.rating ?: 0.0)
             .addParameterWithBoolean("verified", obj.verified ?: false)
-            .addParameterWithString("country", obj.owner?.city?.name ?: "Việt Nam")
+            .addParameterWithString("country", obj.owner?.city?.name)
             .addParameterWithString("business", obj.manager?.name ?: obj.owner?.name)
             .build()
     }

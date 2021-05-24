@@ -478,14 +478,12 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                         TrackingAllHelper.trackProductViewed(productDetail)
                         if (intent.getBooleanExtra(Constant.DATA_2, false)) {
                             TrackingAllHelper.trackScanSuccessful(productDetail)
-                            TrackingAllHelper.trackScanBarcodeSuccess(productDetail)
                             intent.putExtra(Constant.DATA_2, false)
                         }
                         productViewedInsider = false
                     }
                     TrackingAllHelper.trackScanBarcodeViewedSuccess(productDetail)
                 }
-
             }
             imgActionGray.beVisible()
             layoutBottom.beVisible()
