@@ -185,8 +185,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fillViewport="true"
-            android:visibility="gone"
-            >
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -323,7 +322,6 @@
                     android:fontFamily="@font/roboto_regular"
                     android:textColor="#838383"
                     android:textSize="@dimen/font_14" />
-
             </LinearLayout>
         </LinearLayout>
 
@@ -1616,42 +1614,35 @@
                             android:textStyle="normal"
                             tools:text="www.icheck.com.vn" />
 
-                        <LinearLayout
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvPhoneVendor"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/size_12"
+                            android:layout_marginTop="@dimen/size_4"
+                            android:layout_marginEnd="@dimen/size_12"
+                            android:fontFamily="sans-serif"
+                            android:textColor="#3c5a99"
+                            android:textSize="@dimen/font_14"
+                            android:textStyle="normal"
+                            tools:text="0902195488" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvMailVendor"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/size_12"
                             android:layout_marginTop="@dimen/size_4"
                             android:layout_marginEnd="@dimen/size_12"
                             android:layout_marginBottom="@dimen/size_12"
-                            android:orientation="horizontal">
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvPhoneVendor"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:fontFamily="sans-serif"
-                                android:textColor="#3c5a99"
-                                android:textSize="@dimen/font_14"
-                                android:textStyle="normal"
-                                tools:text="0902195488" />
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvMailVendor"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:ellipsize="end"
-                                android:fontFamily="sans-serif"
-                                android:gravity="end"
-                                android:maxLines="1"
-                                android:singleLine="true"
-                                android:textColor="#3c5a99"
-                                android:textSize="@dimen/font_14"
-                                android:textStyle="normal"
-                                tools:text="cskh@icheck.vn" />
-
-                        </LinearLayout>
+                            android:ellipsize="end"
+                            android:fontFamily="sans-serif"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:textColor="#3c5a99"
+                            android:textSize="@dimen/font_14"
+                            android:textStyle="normal"
+                            tools:text="cskh@icheck.vn" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -1678,7 +1669,8 @@
                     android:layout_marginEnd="@dimen/size_12"
                     android:layout_marginBottom="@dimen/size_8"
                     android:visibility="gone"
-                    app:cardCornerRadius="@dimen/size_10">
+                    app:cardCornerRadius="@dimen/size_10"
+                    tools:visibility="visible">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -1759,42 +1751,35 @@
                             android:textStyle="normal"
                             tools:text="www.icheck.com.vn" />
 
-                        <LinearLayout
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvPhoneDistributor"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/size_12"
+                            android:layout_marginTop="@dimen/size_4"
+                            android:layout_marginEnd="@dimen/size_12"
+                            android:fontFamily="sans-serif"
+                            android:textColor="#3c5a99"
+                            android:textSize="@dimen/font_14"
+                            android:textStyle="normal"
+                            tools:text="0902195488" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvMailDistributor"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/size_12"
                             android:layout_marginTop="@dimen/size_4"
                             android:layout_marginEnd="@dimen/size_12"
                             android:layout_marginBottom="@dimen/size_12"
-                            android:orientation="horizontal">
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvPhoneDistributor"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:fontFamily="sans-serif"
-                                android:textColor="#3c5a99"
-                                android:textSize="@dimen/font_14"
-                                android:textStyle="normal"
-                                tools:text="0902195488" />
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvMailDistributor"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:ellipsize="end"
-                                android:fontFamily="sans-serif"
-                                android:gravity="end"
-                                android:maxLines="1"
-                                android:singleLine="true"
-                                android:textColor="#3c5a99"
-                                android:textSize="@dimen/font_14"
-                                android:textStyle="normal"
-                                tools:text="cskh@icheck.vn" />
-
-                        </LinearLayout>
+                            android:ellipsize="end"
+                            android:fontFamily="sans-serif"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:textColor="#3c5a99"
+                            android:textSize="@dimen/font_14"
+                            android:textStyle="normal"
+                            tools:text="cskh@icheck.vn" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
