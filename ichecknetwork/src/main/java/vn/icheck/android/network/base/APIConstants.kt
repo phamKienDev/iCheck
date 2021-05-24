@@ -315,6 +315,10 @@ object APIConstants {
         const val LIST_ICON_GRID = "${PATH}/loyalty/campaign/{id}/icon"
     }
 
+    object Popup {
+        const val GET_POPUP_BY_SCREEN = "social/api/popup-ads/find-by-target"
+    }
+
     object Stamp {
         const val DETAIL_STAMP = "scan"
         const val MORE_PRODUCT_VERIFIED_DISTRIBUTOR = "products/distributor/{distributorId}"

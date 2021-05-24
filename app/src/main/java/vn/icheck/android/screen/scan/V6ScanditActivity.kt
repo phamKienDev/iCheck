@@ -68,6 +68,7 @@ import vn.icheck.android.network.base.*
 import vn.icheck.android.network.models.ICProductDetail
 import vn.icheck.android.network.models.ICValidStampSocial
 import vn.icheck.android.network.util.DeviceUtils
+import vn.icheck.android.screen.dialog.DialogNotificationFirebaseAds
 import vn.icheck.android.screen.scan.viewmodel.V6ViewModel
 import vn.icheck.android.screen.user.contribute_product.CONTRIBUTE_REQUEST
 import vn.icheck.android.screen.user.cropimage.CropImageActivity
@@ -264,6 +265,8 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         checkIsScan()
         initViews()
         pushUpHeight()
+
+        viewModel.getPopup()
     }
 
     private fun checkIsLoyalty() {
@@ -653,6 +656,14 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                     model.showGuide = false
                 }
             }
+        })
+
+        viewModel.onPopupAds.observe(this,{
+            object : DialogNotificationFirebaseAds(this,image = it.image, htmlText = it.document,link=it.url,schema = it.deeplink) {
+                override fun onDismiss() {
+
+                }
+            }.show()
         })
         initListener()
     }

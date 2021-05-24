@@ -55,6 +55,7 @@ import vn.icheck.android.loyalty.sdk.LoyaltySdk
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.*
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
+import vn.icheck.android.screen.dialog.DialogNotificationFirebaseAds
 import vn.icheck.android.screen.user.contact.ContactActivity
 import vn.icheck.android.screen.user.contribute_product.IckContributeProductActivity
 import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
@@ -579,6 +580,14 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         })
         viewModel.onRegisterBuyProduct.observe(this@IckProductDetailActivity, Observer {
             showSimpleSuccessToast("Cảm ơn bạn, chúng tôi sẽ liên hệ lại trong thời gian sớm nhất.")
+        })
+        viewModel.onPopupAds.observe(this@IckProductDetailActivity,Observer{
+            object : DialogNotificationFirebaseAds(this@IckProductDetailActivity,image = it.image, htmlText = it.document,link=it.url,schema = it.deeplink) {
+                override fun onDismiss() {
+
+                }
+
+            }.show()
         })
     }
 

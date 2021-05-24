@@ -43,6 +43,7 @@ import vn.icheck.android.network.models.ICPageOverview
 import vn.icheck.android.network.models.ICPost
 import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
+import vn.icheck.android.screen.dialog.DialogNotificationFirebaseAds
 import vn.icheck.android.screen.user.createpost.CreateOrUpdatePostActivity
 import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
 import vn.icheck.android.screen.user.edit_review.EditReviewActivity
@@ -315,6 +316,14 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
         viewModel.onDeletePost.observe(viewLifecycleOwner, {
             DialogHelper.showDialogSuccessBlack(requireContext(), getString(R.string.ban_da_xoa_bai_viet_thanh_cong), null, 1000)
             adapter.deletePost(it)
+        })
+        viewModel.onPopupAds.observe(viewLifecycleOwner,{
+            object : DialogNotificationFirebaseAds(requireActivity(),image = it.image, htmlText = it.document,link=it.url,schema = it.deeplink) {
+                override fun onDismiss() {
+
+                }
+
+            }.show()
         })
     }
 

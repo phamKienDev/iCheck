@@ -63,6 +63,17 @@ object Constant {
     const val ENTERPRISE = "enterprise"
     const val SHOP = "shop"
 
+    /*
+    ScreenCode Popup
+     */
+
+    const val SCAN = "scan"
+    const val HOME = "home"
+    const val PAGE_VERIFY = "page_verified"
+    const val PAGE_UNVERIFIED = "page_unverified"
+    const val PRODUCT_UNVERIFIED = "product_unverified"
+    const val PRODUCT_VERIFY = "product_verified"
+
     const val PAGE_BRAND_TYPE = 1 // Nhãn hàng
     const val PAGE_EXPERT_TYPE = 2 // Chuyên gia
     const val PAGE_ENTERPRISE_TYPE = 3 // Doanh nghiệp
