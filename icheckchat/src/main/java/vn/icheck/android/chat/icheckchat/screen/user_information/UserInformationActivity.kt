@@ -37,6 +37,8 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
     private var key: String? = null
     private var nameUser: String? = null
 
+    private var kycStatus: Long? = null
+
     private var listTime = 0L
 
     override val bindingInflater: (LayoutInflater) -> ActivityUserInformationBinding
@@ -115,6 +117,7 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
                             id = item.child("id").value.toString().trim()
                             toId = item.child("source_id").value.toString()
                             toType = item.child("type").value.toString()
+                            kycStatus = item.child("kyc_status").value as Long? ?: 0L
                         } else {
                             notification = item.child("is_subscribe").value.toString().toBoolean()
                             deleteAt = if (item.child("deleted_at").value != null) {
@@ -253,9 +256,11 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
 
             if (success.exists()) {
                 binding.imgAvatar.apply {
+                    val ssb = SpannableStringBuilder(success.child("name").value.toString().replace("null", "") + "   ")
+
                     if (success.child("is_verify").value != null && success.child("is_verify").value.toString().toBoolean()) {
-                        val ssb = SpannableStringBuilder(success.child("name").value.toString().replace("null", "") + "   ")
                         ssb.setSpan(getImageSpan(R.drawable.ic_verified_24dp_chat), ssb.length - 1, ssb.length, 0)
+
                         binding.tvNameUser.setText(ssb, TextView.BufferType.SPANNABLE)
 
                         if (toType.contains("page")) {
@@ -265,8 +270,15 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
                         }
 
                     } else {
+                        ssb.setSpan(getImageSpan(R.drawable.ic_verified_user_16px), ssb.length - 1, ssb.length, 0)
+
                         setBackgroundResource(0)
-                        binding.tvNameUser.text = success.child("name").value.toString().replace("null", "")
+
+                        if (toType != "page" && kycStatus == 2L){
+                            binding.tvNameUser.setText(ssb, TextView.BufferType.SPANNABLE)
+                        }else{
+                            binding.tvNameUser.text = success.child("name").value.toString().replace("null", "")
+                        }
                     }
                 }
             } else {
