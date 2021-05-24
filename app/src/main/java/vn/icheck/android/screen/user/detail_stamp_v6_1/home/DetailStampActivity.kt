@@ -1305,7 +1305,7 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
                     }
 
                     tvAddressVendor.text = vn.icheck.android.ichecklibs.Constant.getAddress(obj.data?.product?.vendor?.address,
-                            obj.data?.product?.vendor?.district, obj.data?.product?.vendor?.city, getString(R.string.dang_cap_nhat))
+                            obj.data?.product?.vendor?.district, obj.data?.product?.vendor?.city, obj.data?.product?.vendor?.country_name, getString(R.string.dang_cap_nhat))
 //                    tvAddressVendor.text = if (!obj.data?.product?.vendor?.address.isNullOrEmpty()) {
 //                        if (!obj.data?.product?.vendor?.city.isNullOrEmpty()) {
 //                            if (!obj.data?.product?.vendor?.district.isNullOrEmpty()) {
@@ -1368,7 +1368,7 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
                     }
 
                     tvAddressDistributor.text = vn.icheck.android.ichecklibs.Constant.getAddress(obj.data?.distributor?.address,
-                            obj.data?.distributor?.district, obj.data?.distributor?.city, getString(R.string.dang_cap_nhat))
+                            obj.data?.distributor?.district, obj.data?.distributor?.city, obj.data?.distributor?.country_name, getString(R.string.dang_cap_nhat))
 
 //                    tvAddressDistributor.text = if (!obj.data?.distributor?.address.isNullOrEmpty()) {
 //                        if (!obj.data?.distributor?.district.isNullOrEmpty()) {

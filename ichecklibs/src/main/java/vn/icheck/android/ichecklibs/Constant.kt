@@ -221,11 +221,15 @@ object Constant {
         }
     }
 
-    fun getAddress(address: String?, district: String?, city: String?, default: String?): String {
+    fun getAddress(address: String?, district: String?, city: String?, country: String?, default: String?): String {
         return if (!address.isNullOrEmpty()) {
             if (!district.isNullOrEmpty()) {
                 if (!city.isNullOrEmpty()) {
-                    "$address, $district, $city"
+                    if (!country.isNullOrEmpty()) {
+                        "$address, $district, $city, $country"
+                    } else {
+                        "$address, $district, $city"
+                    }
                 } else {
                     "$address, $district"
                 }
