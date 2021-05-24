@@ -14,7 +14,6 @@ import java.util.concurrent.TimeUnit;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import kotlin.jvm.Volatile;
 import okhttp3.Authenticator;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -22,18 +21,15 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.Route;
 //import okhttp3.logging.HttpLoggingInterceptor;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import vn.icheck.android.ichecklibs.event.ICMessageEvent;
 import vn.icheck.android.network.BuildConfig;
 import vn.icheck.android.network.models.ICSessionData;
 import vn.icheck.android.network.util.DeviceUtils;
 
 public class ICNetworkClient {
     public static ICNetworkCallbackManager networkCallbackManager = ICNetworkCallbackManager.Factory.create();
-
 
     private static final Gson gson = new GsonBuilder()
             .setLenient()
@@ -58,7 +54,7 @@ public class ICNetworkClient {
         }
     };
 
-    private static final HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
+//    private static final HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
 
     private static final OkHttpClient client = new OkHttpClient.Builder()
             .connectTimeout(20, TimeUnit.SECONDS)
@@ -66,7 +62,7 @@ public class ICNetworkClient {
             .writeTimeout(20, TimeUnit.SECONDS)
             .authenticator(authenticator)
 //            .authenticator(new TokenAuthenticator())
-            .addInterceptor(loggingInterceptor)
+//            .addInterceptor(loggingInterceptor)
             .addInterceptor(ICNetworkClient::requireLoginCallback).build();
 
     private static OkHttpClient getClient(int timeRequest) {
@@ -76,7 +72,7 @@ public class ICNetworkClient {
                 .writeTimeout(timeRequest, TimeUnit.SECONDS)
                 .authenticator(authenticator)
 //            .authenticator(new TokenAuthenticator())
-                .addInterceptor(loggingInterceptor)
+//                .addInterceptor(loggingInterceptor)
                 .addInterceptor(ICNetworkClient::requireLoginCallback).build();
     }
 
@@ -104,7 +100,7 @@ public class ICNetworkClient {
             .writeTimeout(30, TimeUnit.SECONDS)
             .authenticator(authenticator)
 //            .authenticator(new TokenAuthenticator())
-            .addInterceptor(loggingInterceptor)
+//            .addInterceptor(loggingInterceptor)
             .addInterceptor(ICNetworkClient::requireLoginCallback4).build();
 
     private static final OkHttpClient clientStamp = new OkHttpClient.Builder()
