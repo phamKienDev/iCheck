@@ -222,22 +222,42 @@ object Constant {
     }
 
     fun getAddress(address: String?, district: String?, city: String?, country: String?, default: String?): String {
-        return if (!address.isNullOrEmpty()) {
-            if (!district.isNullOrEmpty()) {
-                if (!city.isNullOrEmpty()) {
-                    if (!country.isNullOrEmpty()) {
-                        "$address, $district, $city, $country"
-                    } else {
-                        "$address, $district, $city"
-                    }
-                } else {
-                    "$address, $district"
-                }
-            } else {
-                address
-            }
-        } else {
-            default ?: ""
+        val stringBuilder = StringBuilder()
+
+        var isAdded = false
+        if (!address.isNullOrEmpty()) {
+            isAdded = true
+            stringBuilder.append(address)
         }
+
+        if (!district.isNullOrEmpty()) {
+            isAdded = true
+            if (isAdded) {
+                stringBuilder.append(", ")
+            }
+            stringBuilder.append(district)
+        }
+
+        if (!city.isNullOrEmpty()) {
+            isAdded = true
+            if (isAdded) {
+                stringBuilder.append(", ")
+            }
+            stringBuilder.append(city)
+        }
+
+        if (!country.isNullOrEmpty()) {
+            isAdded = true
+            if (isAdded) {
+                stringBuilder.append(", ")
+            }
+            stringBuilder.append(country)
+        }
+
+        if (!isAdded) {
+            stringBuilder.append(default ?: "")
+        }
+
+        return stringBuilder.toString()
     }
 }
