@@ -66,7 +66,7 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
 
     companion object {
         val listActivities = mutableListOf<AppCompatActivity>()
-        var isVietNamLanguage = true
+        var isVietNamLanguage: Boolean? = true
         var mSerial: String? = null
     }
 
