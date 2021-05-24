@@ -71,12 +71,11 @@
         android:paddingBottom="@dimen/size_10"
         android:visibility="visible">
 
-        <View
+        <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
             android:id="@+id/viewTop"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_0_5"
             android:layout_marginStart="@dimen/size_12"
-            android:background="@color/grayLoyalty"
             app:layout_constraintTop_toTopOf="parent" />
 
         <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary

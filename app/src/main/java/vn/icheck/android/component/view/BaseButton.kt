@@ -145,15 +145,15 @@ abstract class BaseButton : AppCompatTextView {
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 statesListDrawable.addState(intArrayOf(android.R.attr.state_enabled), ViewHelper.createRippleDrawable(Color.parseColor(color), defaultStrokeWidth, defaultStrokeColor, defaultRadius))
-                statesListDrawable.addState(intArrayOf(-android.R.attr.state_enabled), ViewHelper.createShapeDrawable(ContextCompat.getColor(context, R.color.grayLoyalty), defaultStrokeWidth, defaultStrokeColor, defaultRadius))
+                statesListDrawable.addState(intArrayOf(-android.R.attr.state_enabled), ViewHelper.createShapeDrawable(ContextCompat.getColor(context, R.color.colorLineView), defaultStrokeWidth, defaultStrokeColor, defaultRadius))
             } else {
                 statesListDrawable.addState(intArrayOf(android.R.attr.state_enabled), ViewHelper.createShapeDrawable(Color.parseColor(color), defaultStrokeWidth, defaultStrokeColor, defaultRadius))
                 statesListDrawable.addState(intArrayOf(android.R.attr.state_pressed), ViewHelper.createShapeDrawable(Color.parseColor(hover), defaultStrokeWidth, defaultStrokeColor, defaultRadius))
-                statesListDrawable.addState(intArrayOf(-android.R.attr.state_enabled), ViewHelper.createShapeDrawable(ContextCompat.getColor(context, R.color.grayLoyalty), defaultStrokeWidth, defaultStrokeColor, defaultRadius))
+                statesListDrawable.addState(intArrayOf(-android.R.attr.state_enabled), ViewHelper.createShapeDrawable(ContextCompat.getColor(context, R.color.colorLineView), defaultStrokeWidth, defaultStrokeColor, defaultRadius))
             }
 
             background = ViewHelper.createStateListDrawable(
-                    ContextCompat.getColor(context, R.color.grayLoyalty), Color.parseColor(color), Color.parseColor(hover),
+                    ContextCompat.getColor(context, R.color.colorLineView), Color.parseColor(color), Color.parseColor(hover),
                     defaultStrokeColor, defaultStrokeColor, defaultStrokeColor,
                     defaultStrokeWidth, defaultRadius
             )

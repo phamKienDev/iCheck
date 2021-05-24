@@ -18,11 +18,10 @@
         android:textSize="@dimen/font_16"
         tools:text="Thời trang Nam" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_1"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_6"
-        android:layout_marginEnd="@dimen/size_12"
-        android:background="@color/grayLoyalty" />
+        android:layout_marginEnd="@dimen/size_12" />
 </LinearLayout>

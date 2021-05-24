@@ -20,7 +20,7 @@
 
     <color name="colorLine">#D8D8D8</color>
     <color name="colorLineIc">#D8D8D8</color>
-    <color name="colorLineView">#D8D8D8</color> <!-- textcolor, editText, background -->
+    <color name="colorLineView">#D8D8D8</color> <!-- textcolor, editText, background , civ_border_color-->
 
     <color name="colorBackgroundGra1y">#F0F0F0</color>
     <color name="colorBackgroundWhite">#FFFFFF</color>

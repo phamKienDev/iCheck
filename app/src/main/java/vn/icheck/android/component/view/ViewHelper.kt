@@ -941,7 +941,7 @@ object ViewHelper {
         btnRight.setTextColor(Color.WHITE)
         btnRight.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
         btnRight.background = createStateListDrawable(
-                ContextCompat.getColor(context, R.color.grayLoyalty),
+                ContextCompat.getColor(context, R.color.colorLineView),
                 ContextCompat.getColor(context, R.color.colorSecondary),
                 ContextCompat.getColor(context, R.color.darkBlue),
                 Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT, 0, (SizeHelper.size16 + SizeHelper.size2).toFloat()
@@ -1163,7 +1163,7 @@ object ViewHelper {
                 },
                 createStateListDrawable(
                         Color.WHITE, ContextCompat.getColor(context, R.color.lightGr1ay),
-                        ContextCompat.getColor(context, R.color.grayLoyalty), ContextCompat.getColor(context, R.color.grayLoyalty),
+                        ContextCompat.getColor(context, R.color.colorLineView), ContextCompat.getColor(context, R.color.colorLineView),
                         SizeHelper.size1, SizeHelper.size36.toFloat()),
                 createTypeface(sansSerifMedium),
                 Constant.getDisableTextColor(context),
@@ -2240,7 +2240,7 @@ object ViewHelper {
                 imgLogo.layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
                 imgLogo.scaleType = ImageView.ScaleType.CENTER_CROP
                 imgLogo.id = R.id.img_logo
-                imgLogo.borderColor = ContextCompat.getColor(context, R.color.grayLoyalty)
+                imgLogo.borderColor = ContextCompat.getColor(context, R.color.colorLineView)
                 imgLogo.borderWidth = SizeHelper.size0_5
                 layoutImage.addView(imgLogo)
 
@@ -2317,7 +2317,7 @@ object ViewHelper {
             it.layoutParams = createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.dpToPx(1)).also {
                 it.topMargin = SizeHelper.size10
             }
-            it.setBackgroundColor(ContextCompat.getColor(context, R.color.grayLoyalty))
+            it.setBackgroundColor(Constant.getLineColor(context))
         })
 
         // list avatar
@@ -2422,7 +2422,7 @@ object ViewHelper {
                 line.layoutParams = createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.dpToPx(1)).also {
                     it.topMargin = SizeHelper.size8
                 }
-                line.setBackgroundColor(ContextCompat.getColor(context, R.color.grayLoyalty))
+                line.setBackgroundColor(Constant.getLineColor(context))
             })
 
             //camera
@@ -2455,7 +2455,7 @@ object ViewHelper {
             it.addView(CircleImageView(context).also {
                 it.layoutParams = createLayoutParams(SizeHelper.dpToPx(30), SizeHelper.dpToPx(30))
                 it.borderWidth = SizeHelper.size0_5
-                it.borderColor = ContextCompat.getColor(context, R.color.grayLoyalty)
+                it.borderColor = ContextCompat.getColor(context, R.color.colorLineView)
             })
             it.addView(AppCompatImageView(context).also { imgCamera ->
                 imgCamera.layoutParams = createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
@@ -2625,12 +2625,7 @@ object ViewHelper {
             ).also {
                 it.topMargin = SizeHelper.size10
             }
-            line.setBackgroundColor(
-                    ContextCompat.getColor(
-                            context,
-                            R.color.grayLoyalty
-                    )
-            )
+            line.setBackgroundColor(Constant.getLineColor(context))
         })
         return layoutParent
     }
@@ -2914,7 +2909,7 @@ object ViewHelper {
         layoutPermission.addView(CircleImageView(parent.context).also {
             it.layoutParams = createLayoutParams(SizeHelper.dpToPx(30), SizeHelper.dpToPx(30))
             it.borderWidth = SizeHelper.size0_5
-            it.borderColor = ContextCompat.getColor(parent.context, R.color.grayLoyalty)
+            it.borderColor = ContextCompat.getColor(parent.context, R.color.colorLineView)
         })
 
         layoutPermission.addView(AppCompatTextView(parent.context).also {
@@ -3529,7 +3524,7 @@ object ViewHelper {
                     view.layoutParams = createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size1).also {
                         it.setMargins(0, SizeHelper.size14, 0, 0)
                     }
-                    view.setBackgroundColor(ContextCompat.getColor(context, R.color.grayLoyalty))
+                    view.setBackgroundColor(Constant.getLineColor(context))
                 })
             })
         }

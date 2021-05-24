@@ -16,7 +16,7 @@
         android:textSize="@dimen/font_16"
         android:fontFamily="@font/roboto_medium"
         tools:text="Ngày 2020-08-12"
-        android:background="@color/grayLoyalty"/>
+        android:background="@color/colorLineView"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@id/tvTitle"

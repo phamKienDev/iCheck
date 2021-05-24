@@ -103,10 +103,9 @@
                 android:textStyle="normal" />
         </LinearLayout>
 
-        <View
+        <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
             android:layout_width="match_parent"
-            android:layout_height="@dimen/size_1"
-            android:background="@color/grayLoyalty" />
+            android:layout_height="@dimen/size_1" />
 
         <LinearLayout
             android:id="@id/layoutContent"
@@ -189,12 +188,11 @@
             android:textStyle="normal"
             app:layout_constraintTop_toBottomOf="@id/tvShippingName" />
 
-        <View
+        <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
             android:id="@id/viewLine"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_1"
             android:layout_marginTop="@dimen/size_12"
-            android:background="@color/grayLoyalty"
             app:layout_constraintTop_toBottomOf="@id/tvShippingTime" />
 
         <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
@@ -255,10 +253,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvMoney" />
 
-        <View
+        <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
             android:layout_width="@dimen/size_0"
             android:layout_height="@dimen/size_1"
-            android:background="@color/grayLoyalty"
             app:layout_constraintEnd_toEndOf="@id/edtNote"
             app:layout_constraintStart_toStartOf="@id/edtNote"
             app:layout_constraintTop_toBottomOf="@id/edtNote" />

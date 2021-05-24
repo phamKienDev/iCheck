@@ -80,7 +80,7 @@ class ReportWrongContributionDialog(val listData: MutableList<ICReportForm>, val
         // Line gray - 1
         layoutParent.addView(View(context).also {
             it.layoutParams = ViewHelper.createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size1)
-            it.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.grayLoyalty))
+            it.setBackgroundColor(Constant.getLineColor(requireContext()))
         })
 
         // Layout list reason - 2
@@ -127,7 +127,7 @@ class ReportWrongContributionDialog(val listData: MutableList<ICReportForm>, val
         // Input reason - 3
         layoutParent.addView(ViewHelper.createEditText(requireContext(),
                 ViewHelper.createLayoutParams(SizeHelper.size12, 0, SizeHelper.size12, 0),
-                ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size1, ContextCompat.getColor(requireContext(), R.color.grayLoyalty), SizeHelper.size4.toFloat()),
+                ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size1, ContextCompat.getColor(requireContext(), R.color.colorLineView), SizeHelper.size4.toFloat()),
                 ViewHelper.createTypeface(requireContext(), R.font.barlow_medium),
                 ContextCompat.getColor(requireContext(), R.color.colorNormalText),
                 14f).also {

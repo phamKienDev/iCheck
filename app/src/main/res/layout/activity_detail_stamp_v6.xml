@@ -828,12 +828,11 @@
                             android:textStyle="normal"
                             tools:text="Ngày hẹn trả bảo hành: 20/11/2017" />
 
-                        <View
+                        <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/size_1"
                             android:layout_marginStart="@dimen/size_12"
-                            android:layout_marginEnd="@dimen/size_12"
-                            android:background="@color/grayLoyalty" />
+                            android:layout_marginEnd="@dimen/size_12" />
 
                         <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                             android:id="@+id/tvMoreHistoryGuarantee"
@@ -849,13 +848,12 @@
                             android:textSize="@dimen/font_14"
                             android:textStyle="normal" />
 
-                        <View
+                        <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
                             android:id="@+id/viewGuarantee"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/size_1"
                             android:layout_marginStart="@dimen/size_12"
                             android:layout_marginEnd="@dimen/size_12"
-                            android:background="@color/grayLoyalty"
                             android:visibility="gone" />
 
                         <androidx.appcompat.widget.AppCompatTextView

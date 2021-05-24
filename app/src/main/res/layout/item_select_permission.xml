@@ -14,7 +14,7 @@
         android:layout_height="@dimen/size_40"
         android:layout_marginStart="@dimen/size_8"
         android:layout_marginLeft="@dimen/size_8"
-        app:civ_border_color="@color/grayLoyalty"
+        app:civ_border_color="@color/colorLineView"
         app:civ_border_width="@dimen/size_0_5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -39,11 +39,10 @@
         app:layout_constraintTop_toTopOf="@id/imgAvatar"
         tools:text="Hà Linh ( vai trò user đầu tiên) - 1 dòng ..." />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
         android:layout_width="0dp"
         android:layout_height="@dimen/size_0_5"
         android:layout_marginTop="@dimen/size_8"
-        android:background="@color/grayLoyalty"
         app:layout_constraintStart_toStartOf="@id/imgAvatar"
         app:layout_constraintTop_toBottomOf="@id/imgAvatar" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -799,12 +799,11 @@
                                 app:layout_constraintTop_toTopOf="parent"
                                 tools:text="Serial: L - 00123" />
 
-                            <View
+                            <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
                                 android:id="@+id/view1"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/size_1"
                                 android:layout_marginTop="@dimen/size_8"
-                                android:background="@color/grayLoyalty"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/tvSerialFake" />
@@ -841,11 +840,10 @@
                                 app:layout_constraintTop_toBottomOf="@+id/appCompatTextView12"
                                 tools:text="17.842" />
 
-                            <View
+                            <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
                                 android:id="@+id/viewNotVerify"
                                 android:layout_width="@dimen/size_1"
                                 android:layout_height="0dp"
-                                android:background="@color/grayLoyalty"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toStartOf="@+id/appCompatTextView13"
                                 app:layout_constraintStart_toEndOf="@+id/appCompatTextView12"
@@ -950,12 +948,11 @@
                                 app:layout_constraintTop_toTopOf="parent"
                                 tools:text="Serial: L - 00123" />
 
-                            <View
+                            <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
                                 android:id="@+id/view2"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/size_1"
                                 android:layout_marginTop="@dimen/size_8"
-                                android:background="@color/grayLoyalty"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/tvSerialVerified" />
@@ -993,11 +990,10 @@
                                 app:layout_constraintTop_toBottomOf="@+id/appCompatTextView15"
                                 tools:text="17.842" />
 
-                            <View
+                            <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
                                 android:id="@+id/viewVerify"
                                 android:layout_width="@dimen/size_1"
                                 android:layout_height="0dp"
-                                android:background="@color/grayLoyalty"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toStartOf="@+id/appCompatTextView16"
                                 app:layout_constraintStart_toEndOf="@+id/appCompatTextView15"
@@ -1174,12 +1170,11 @@
                                 app:layout_constraintTop_toTopOf="parent"
                                 tools:text="Serial: L - 00123" />
 
-                            <View
+                            <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
                                 android:id="@+id/view3"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/size_1"
                                 android:layout_marginTop="@dimen/size_8"
-                                android:background="@color/grayLoyalty"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/tvSerialVerifiedBaoHanh" />
@@ -1217,11 +1212,10 @@
                                 app:layout_constraintTop_toBottomOf="@+id/appCompatTextView19"
                                 tools:text="17.842" />
 
-                            <View
+                            <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
                                 android:id="@+id/viewBaoHanh"
                                 android:layout_width="@dimen/size_1"
                                 android:layout_height="0dp"
-                                android:background="@color/grayLoyalty"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toStartOf="@+id/appCompatTextView20"
                                 app:layout_constraintStart_toEndOf="@+id/appCompatTextView19"

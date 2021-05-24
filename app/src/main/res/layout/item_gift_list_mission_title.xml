@@ -6,14 +6,13 @@
     android:layout_marginTop="@dimen/size_14"
     android:layout_marginBottom="@dimen/size_4">
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
         android:layout_width="@dimen/size_0"
         android:layout_height="@dimen/size_1"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginEnd="@dimen/size_5"
         android:layout_marginRight="@dimen/size_5"
-        android:background="@color/grayLoyalty"
         app:layout_constraintBottom_toBottomOf="@id/tvTitle"
         app:layout_constraintEnd_toStartOf="@id/tvTitle"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,14 +30,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
         android:layout_width="@dimen/size_0"
         android:layout_height="@dimen/size_1"
         android:layout_marginStart="@dimen/size_5"
         android:layout_marginLeft="@dimen/size_5"
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
-        android:background="@color/grayLoyalty"
         app:layout_constraintBottom_toBottomOf="@id/tvTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/tvTitle"

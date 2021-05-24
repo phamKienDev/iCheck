@@ -110,10 +110,9 @@
                                     tools:text="2 ngày, 14 giờ 12 phút" />
                             </LinearLayout>
 
-                            <View
+                            <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
                                 android:layout_width="@dimen/size_0_5"
-                                android:layout_height="match_parent"
-                                android:background="@color/grayLoyalty" />
+                                android:layout_height="match_parent" />
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvGift"

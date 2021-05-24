@@ -16,12 +16,11 @@
         android:textColor="#828282"
         tools:text="Test" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_1"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_8"
         android:layout_marginEnd="@dimen/size_12"
-        android:layout_marginBottom="@dimen/size_12"
-        android:background="@color/grayLoyalty" />
+        android:layout_marginBottom="@dimen/size_12" />
 </LinearLayout>

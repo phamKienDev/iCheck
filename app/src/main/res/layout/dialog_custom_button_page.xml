@@ -87,14 +87,13 @@
     </LinearLayout>
 
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
         android:id="@+id/view"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_0_5"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_12"
         android:layout_marginEnd="@dimen/size_12"
-        android:background="@color/grayLoyalty"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/containerChinh" />

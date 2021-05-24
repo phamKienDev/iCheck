@@ -16,7 +16,7 @@
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_8"
         android:src="@color/g1ray_e5"
-        app:civ_border_color="@color/grayLoyalty"
+        app:civ_border_color="@color/colorLineView"
         app:civ_border_width="@dimen/size_0_5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/imgRank" />

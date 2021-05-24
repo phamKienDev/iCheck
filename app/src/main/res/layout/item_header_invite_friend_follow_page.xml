@@ -89,13 +89,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvFriendCount" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
         android:id="@+id/view45"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/size_0_5"
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_10"
-        android:background="@color/grayLoyalty"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvNote" />
 

@@ -55,7 +55,7 @@ class AvatarUserComponent : LinearLayout {
                 val size = typedArray.getDimensionPixelSize(R.styleable.AvatarUserComponent_avatarSize, 0)
                 imgAvatar.layoutParams = ViewHelper.createLayoutParams(size, size, 0, -(rankSize / 2), 0, 0)
                 imgAvatar.setBorderWidth(SizeHelper.size0_5)
-                imgAvatar.borderColor=ContextCompat.getColor(context,R.color.grayLoyalty)
+                imgAvatar.borderColor=ContextCompat.getColor(context,R.color.colorLineView)
             } else {
                 imgAvatar.layoutParams = ViewHelper.createLayoutParams(avatarSize, avatarSize, 0, -(rankSize / 2), 0, 0)
             }

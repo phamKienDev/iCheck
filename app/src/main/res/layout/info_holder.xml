@@ -16,10 +16,9 @@
         android:text="Chọn tiêu đề nội dung"
         android:textColor="#434343" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_1"
-        android:background="@color/grayLoyalty" />
+        android:layout_height="@dimen/size_1"/>
 
     <EditText
         android:id="@+id/edt_info"

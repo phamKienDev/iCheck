@@ -71,7 +71,7 @@ class ReportWrongContributionSuccessDialog(val context: Context, isCancelable: B
                 it.layoutParams = ViewHelper.createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size0_5).also { params ->
                     params.topMargin = SizeHelper.size10
                 }
-                it.setBackgroundColor(ContextCompat.getColor(context, R.color.grayLoyalty))
+                it.setBackgroundColor(Constant.getLineColor(context))
             })
 
             layoutParent.addView(ViewHelper.createText(context,
