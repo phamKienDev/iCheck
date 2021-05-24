@@ -42,7 +42,6 @@ import vn.icheck.android.util.ick.logError
 import java.io.File
 import java.io.FileInputStream
 
-
 object WidgetUtils {
     const val FRAME_FRAGMENT_ID = R.id.frameFragment
 
@@ -780,18 +779,18 @@ object WidgetUtils {
     fun loadImageUrlRoundedTransformationCenterCrop(image: AppCompatImageView, url: String?, placeHolder: Int, error: Int, roundCorners: Int, cornerType: RoundedCornersTransformation.CornerType) {
         if (url.isNullOrEmpty()) {
             Glide.with(image.context.applicationContext)
-                .load(error)
-                .transform(CenterCrop(), RoundedCornersTransformation(image.context, roundCorners, 0, cornerType))
-                .into(image)
+                    .load(error)
+                    .transform(CenterCrop(), RoundedCornersTransformation(image.context, roundCorners, 0, cornerType))
+                    .into(image)
             return
         }
 
         Glide.with(image.context.applicationContext)
-            .load(url)
-            .placeholder(placeHolder)
-            .error(error)
-            .transform(CenterCrop(), RoundedCornersTransformation(image.context, roundCorners, 0, cornerType))
-            .into(image)
+                .load(url)
+                .placeholder(placeHolder)
+                .error(error)
+                .transform(CenterCrop(), RoundedCornersTransformation(image.context, roundCorners, 0, cornerType))
+                .into(image)
     }
 
     fun loadImageUrlRoundedCenterCrop(image: AppCompatImageView, url: String?, placeHolder: Int, error: Int, roundCorners: Int, cornerType: RoundedCornersTransformation.CornerType) {
@@ -1341,17 +1340,15 @@ object WidgetUtils {
                 .into(image)
     }
 
-    fun changePasswordInput(editText: AppCompatEditText) {
+    fun changePasswordInput(editText: FocusableEditText) {
         editText.apply {
             if (isFocused) {
                 val mTransformationMethod = transformationMethod
 
-                inputType = if (inputType != InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD) {
-//                    binding.btnKeyboard.setText(R.string.ban_phim_so)
-                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                inputType = if (inputType != InputType.TYPE_TEXT_VARIATION_PASSWORD) {
+                    InputType.TYPE_TEXT_VARIATION_PASSWORD
                 } else {
-//                    binding.btnKeyboard.setText(R.string.ban_phim_chu)
-                    InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
+                    InputType.TYPE_CLASS_NUMBER
                 }
 
                 transformationMethod = mTransformationMethod

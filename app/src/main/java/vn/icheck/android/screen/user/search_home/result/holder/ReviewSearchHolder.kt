@@ -198,7 +198,7 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
             EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.OPEN_MEDIA_IN_POST, obj))
         }
 
-        itemView.tvProduct.setOnClickListener {
+        itemView.containerMeta.setOnClickListener {
             ICheckApplication.currentActivity()?.let { activity ->
                 obj.meta?.product?.id?.let { id -> IckProductDetailActivity.start(activity, id) }
             }
@@ -230,12 +230,12 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
             postLikeReview(obj)
         }
 
-        itemView.tvShop.setOnClickListener{
-            ICheckApplication.currentActivity()?.let { activity ->
-                if (obj.meta?.product?.owner?.pageId != null)
-                    ActivityUtils.startActivity<PageDetailActivity, Long>(activity, Constant.DATA_1, obj.meta?.product?.owner?.pageId!!)
-            }
-        }
+//        itemView.tvShop.setOnClickListener{
+//            ICheckApplication.currentActivity()?.let { activity ->
+//                if (obj.meta?.product?.owner?.pageId != null)
+//                    ActivityUtils.startActivity<PageDetailActivity, Long>(activity, Constant.DATA_1, obj.meta?.product?.owner?.pageId!!)
+//            }
+//        }
 
         itemView.tvComment.setOnClickListener{
             EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.OPEN_DETAIL_POST, obj))

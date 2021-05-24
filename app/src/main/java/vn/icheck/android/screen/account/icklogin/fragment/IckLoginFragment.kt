@@ -149,6 +149,7 @@ class IckLoginFragment : CoroutineFragment() {
     private fun setupListener() {
         binding.edtPassword.setOnFocusChangeListener { _, _ ->
             WidgetUtils.setButtonKeyboardMargin(binding.btnKeyboard, binding.edtPassword)
+            WidgetUtils.setButtonKeyboardMargin(binding.btnKeyboard, binding.edtPassword)
         }
 
         binding.btnKeyboard.setOnClickListener {
