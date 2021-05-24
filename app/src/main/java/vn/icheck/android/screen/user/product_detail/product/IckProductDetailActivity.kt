@@ -478,14 +478,12 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                         TrackingAllHelper.trackProductViewed(productDetail)
                         if (intent.getBooleanExtra(Constant.DATA_2, false)) {
                             TrackingAllHelper.trackScanSuccessful(productDetail)
-                            TrackingAllHelper.trackScanBarcodeSuccess(productDetail)
                             intent.putExtra(Constant.DATA_2, false)
                         }
                         productViewedInsider = false
                     }
                     TrackingAllHelper.trackScanBarcodeViewedSuccess(productDetail)
                 }
-
             }
             imgActionGray.beVisible()
             layoutBottom.beVisible()
@@ -963,11 +961,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                         if (!viewModel.listMedia.isNullOrEmpty()) {
                             intent.putExtra(Constant.DATA_2, viewModel.listMedia[0].content)
                         }
-                        startActivityForResult<ListContributeActivity, String>(
-                            Constant.DATA_1,
-                            event.data,
-                            requestListContribution
-                        )
+                        this.startActivityForResult(intent, requestListContribution)
                     }
                 }
             }

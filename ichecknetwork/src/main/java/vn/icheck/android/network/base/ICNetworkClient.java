@@ -104,7 +104,7 @@ public class ICNetworkClient {
             .writeTimeout(30, TimeUnit.SECONDS)
             .authenticator(authenticator)
 //            .authenticator(new TokenAuthenticator())
-//            .addInterceptor(loggingInterceptor)
+            .addInterceptor(loggingInterceptor)
             .addInterceptor(ICNetworkClient::requireLoginCallback4).build();
 
     private static final OkHttpClient clientStamp = new OkHttpClient.Builder()

@@ -44,6 +44,10 @@ class ListContributeActivity : BaseActivityMVVM(), IRecyclerViewCallback, IListC
             onBackPressed()
         }
 
+        if(!intent.getStringExtra(Constant.DATA_2).isNullOrEmpty()){
+            WidgetUtils.loadImageUrlRoundedFitCenter(imgProduct,intent.getStringExtra(Constant.DATA_2)!!,R.drawable.error_load_image,SizeHelper.size4)
+        }
+
         WidgetUtils.loadImageUrlRounded(imgProduct, intent.getStringExtra(Constant.DATA_2), R.drawable.default_product_image, SizeHelper.size4)
     }
 
