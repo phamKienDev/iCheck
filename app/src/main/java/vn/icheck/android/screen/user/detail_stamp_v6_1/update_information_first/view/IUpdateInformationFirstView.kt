@@ -17,7 +17,7 @@ interface IUpdateInformationFirstView : BaseActivityView {
     fun onSetCityName(name: String, id: Int)
     fun onSetDistrictName(name: String, id: Int)
     fun onSendOtpGuaranteeSuccess(name: String, phone: String, email: String, cityId: Int?, districtId: Int?, address: String, productCode: String, variant: Long?, customerData: HashMap<String, Any>, guaranteeData: HashMap<String, Any>)
-    fun updateInformationCusomterGuaranteeSuccess()
+    fun updateInformationCusomterGuaranteeSuccess(user: ICUpdateCustomerGuarantee)
     fun updateInformationCusomterGuaranteeFail()
     fun onGetDetailStampSuccess(obj: ICDetailStampV6_1)
 }

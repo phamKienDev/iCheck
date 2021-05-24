@@ -18,59 +18,6 @@
             android:id="@id/layoutToolbar"
             layout="@layout/toolbar_blue" />
 
-        <!--Error Stamp-->
-        <!--        <androidx.core.widget.NestedScrollView-->
-        <!--            android:id="@+id/scrollViewError"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:fillViewport="true"-->
-        <!--            android:visibility="gone"-->
-        <!--            tools:visibility="visible">-->
-
-        <!--            <LinearLayout-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:gravity="center"-->
-        <!--                android:orientation="vertical">-->
-
-        <!--                <LinearLayout-->
-        <!--                    android:layout_width="match_parent"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:layout_marginStart="@dimen/size_17"-->
-        <!--                    android:layout_marginTop="@dimen/size_20"-->
-        <!--                    android:layout_marginEnd="@dimen/size_17"-->
-        <!--                    android:background="@drawable/bg_corner_red_10"-->
-        <!--                    android:gravity="center">-->
-
-        <!--                    <androidx.appcompat.widget.AppCompatTextView-->
-        <!--                        android:id="@+id/tvMessageStampError"-->
-        <!--                        android:layout_width="wrap_content"-->
-        <!--                        android:layout_height="wrap_content"-->
-        <!--                        android:layout_marginStart="@dimen/size_12"-->
-        <!--                        android:layout_marginTop="@dimen/size_15"-->
-        <!--                        android:layout_marginEnd="@dimen/size_12"-->
-        <!--                        android:layout_marginBottom="@dimen/size_17"-->
-        <!--                        android:drawableTop="@drawable/ic_stamp_fake_50_dp"-->
-        <!--                        android:drawablePadding="@dimen/size_9"-->
-        <!--                        android:fontFamily="sans-serif-medium"-->
-        <!--                        android:gravity="center"-->
-        <!--                        android:textColor="#ffffff"-->
-        <!--                        android:textSize="@dimen/font_14"-->
-        <!--                        android:textStyle="normal"-->
-        <!--                        tools:text="CẢNH BÁO! \n MÃ TEM KHÔNG HỢP LỆ (TEXT KHÔNG CỐ ĐỊNH)" />-->
-
-        <!--                </LinearLayout>-->
-
-        <!--                <androidx.recyclerview.widget.RecyclerView-->
-        <!--                    android:id="@+id/rcvConfigError"-->
-        <!--                    android:layout_width="match_parent"-->
-        <!--                    android:layout_height="wrap_content" />-->
-        <!--            </LinearLayout>-->
-
-        <!--        </androidx.core.widget.NestedScrollView>-->
-
-        <!--        scans exceeded-->
-        <!--Exceeded number of scans-->
         <LinearLayout
             android:id="@+id/layoutExceededScan"
             android:layout_width="match_parent"

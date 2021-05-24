@@ -284,65 +284,6 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
 //                intent.putExtra(Constant.DATA_7, objVariant)
                 ActivityUtils.startActivity(this, intent)
             }
-
-//            // 0 - la chong gia , 1 - tran hang , 2 - bao hanh
-//            if (objGuarantee != null) {
-//                if (objCustomerLastGuarantee != null) {
-//                    val intent = Intent(this, VerifiedPhoneActivity::class.java)
-//                    when {
-//                        tvSerialFake.text.toString().isNotEmpty() -> {
-//                            intent.putExtra(Constant.DATA_1, tvSerialFake.text.toString())
-//                        }
-//                        tvSerialVerified.text.toString().isNotEmpty() -> {
-//                            intent.putExtra(Constant.DATA_1, tvSerialVerified.text.toString())
-//                        }
-//                        tvSerialVerifiedChongGia.text.toString().isNotEmpty() -> {
-//                            intent.putExtra(Constant.DATA_1, tvSerialVerifiedChongGia.text.toString())
-//                        }
-//                        else -> {
-//                            intent.putExtra(Constant.DATA_1, tvSerialVerifiedBaoHanh.text.toString())
-//                        }
-//                    }
-//                    intent.putExtra(Constant.DATA_2, idDistributor)
-//                    intent.putExtra(Constant.DATA_3, productCode)
-//                    intent.putExtra(Constant.DATA_4, productId)
-//                    intent.putExtra(Constant.DATA_5, objVariant)
-//                    intent.putExtra(Constant.DATA_8, viewModel.barcode)
-//                    startActivity(intent)
-//                } else {
-//                    val intent = Intent(this, UpdateInformationFirstActivity::class.java)
-//                    intent.putExtra(Constant.DATA_1, 2)
-//                    intent.putExtra(Constant.DATA_2, idDistributor)
-//                    intent.putExtra(Constant.DATA_4, productCode)
-//                    intent.putExtra(Constant.DATA_5, verfiedSerial)
-//                    intent.putExtra(Constant.DATA_6, productId)
-//                    intent.putExtra(Constant.DATA_7, objVariant)
-//                    intent.putExtra(Constant.DATA_8, viewModel.barcode)
-//                    startActivity(intent)
-//                }
-//            } else {
-//                val intent = Intent(this, UpdateInformationFirstActivity::class.java)
-//                intent.putExtra(Constant.DATA_1, 2)
-//                intent.putExtra(Constant.DATA_2, idDistributor)
-//                intent.putExtra(Constant.DATA_4, productCode)
-//                when {
-//                    tvSerialFake.text.toString().isNotEmpty() -> {
-//                        intent.putExtra(Constant.DATA_5, tvSerialFake.text.toString())
-//                    }
-//                    tvSerialVerified.text.toString().isNotEmpty() -> {
-//                        intent.putExtra(Constant.DATA_5, tvSerialVerified.text.toString())
-//                    }
-//                    tvSerialVerifiedChongGia.text.toString().isNotEmpty() -> {
-//                        intent.putExtra(Constant.DATA_5, tvSerialVerifiedChongGia.text.toString())
-//                    }
-//                    else -> {
-//                        intent.putExtra(Constant.DATA_5, tvSerialVerifiedBaoHanh.text.toString())
-//                    }
-//                }
-//                intent.putExtra(Constant.DATA_6, productId)
-//                intent.putExtra(Constant.DATA_7, objVariant)
-//                startActivity(intent)
-//            }
         }
 
         tvHotlineBussiness.setOnClickListener {
@@ -357,10 +298,6 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
             }
         }
     }
-
-//    private fun setupViewModel() {
-//        viewModel = ViewModelProviders.of(this).get(ICDetailStampViewModel::class.java)
-//    }
 
     private fun getIntentData() {
         viewModel.getData(intent)
@@ -446,6 +383,7 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
                 }
                 Status.SUCCESS -> {
                     val mData = it.data?.data
+
                     if (mData != null && !mData.widgets.isNullOrEmpty()) {
                         val listData = mutableListOf<ICLayout>()
 
@@ -592,12 +530,19 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
                             }
                         }
                     } else {
-                        textFab.visibleOrInvisible(false)
-
-                        if (it.data?.message.isNullOrEmpty()) {
-                            adapter.setError(R.drawable.ic_error_request, ICheckApplication.getError(it.data?.message), null)
+                        if (it.data?.code == 4) {
+                            val intent = Intent(this, UpdateInformationFirstActivity::class.java)
+                            intent.putExtra(Constant.DATA_1, 3)
+                            intent.putExtra(Constant.DATA_8, viewModel.barcode)
+                            startActivityForResult(this, intent, requestUpdateOrDestroy)
                         } else {
-                            getStampConfig(it.data!!.message!!)
+                            textFab.visibleOrInvisible(false)
+
+                            if (it.data?.message.isNullOrEmpty()) {
+                                adapter.setError(R.drawable.ic_error_request, ICheckApplication.getError(it.data?.message), null)
+                            } else {
+                                getStampConfig(it.data!!.message!!)
+                            }
                         }
                     }
                 }
@@ -691,12 +636,12 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
             return
         }
 
-        if (obj.data?.active_require_profile == 1) {
-            val intent = Intent(this, UpdateInformationFirstActivity::class.java)
-            intent.putExtra(Constant.DATA_1, 3)
-            intent.putExtra(Constant.DATA_8, viewModel.barcode)
-            startActivity(intent)
-        }
+//        if (obj.data?.active_require_profile == 1) {
+//            val intent = Intent(this, UpdateInformationFirstActivity::class.java)
+//            intent.putExtra(Constant.DATA_1, 3)
+//            intent.putExtra(Constant.DATA_8, viewModel.barcode)
+//            startActivity(intent)
+//        }
 
 //            if (!obj.data?.message?.message.isNullOrEmpty()) {
 //                presenter.getConfigError()
@@ -860,7 +805,19 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
 
         when (requestCode) {
             requestUpdateOrDestroy -> {
-                if (resultCode != RESULT_OK) {
+                if (resultCode == RESULT_OK) {
+                    viewModel.user = try {
+                        data?.getSerializableExtra(Constant.DATA_1) as ICUpdateCustomerGuarantee?
+                    } catch (e: Exception) {
+                        null
+                    }
+
+                    if (viewModel.user != null) {
+                        getStampDetailV61()
+                    } else {
+                        onBackPressed()
+                    }
+                } else {
                     onBackPressed()
                 }
             }

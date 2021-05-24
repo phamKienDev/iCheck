@@ -2,6 +2,7 @@ package vn.icheck.android.screen.user.detail_stamp_v6_1.otp_information_guarante
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Intent
 import android.os.CountDownTimer
 import android.text.Editable
 import android.text.Html
@@ -12,6 +13,7 @@ import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivity
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
+import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICUpdateCustomerGuarantee
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
@@ -174,8 +176,11 @@ class VerifyOTPGuaranteeActivity : BaseActivity<VerifyOTPGuaranteePresenter>(),I
         timer?.start()
     }
 
-    override fun updateInformationCusomterGuaranteeSuccess() {
-        setResult(Activity.RESULT_OK)
+    override fun updateInformationCusomterGuaranteeSuccess(user: ICUpdateCustomerGuarantee) {
+        setResult(Activity.RESULT_OK, Intent().apply {
+            putExtra(Constant.DATA_1, user)
+        })
+
         if (StampDetailActivity.isVietNamLanguage == false) {
             showShortSuccess("Successfully updated")
         } else {

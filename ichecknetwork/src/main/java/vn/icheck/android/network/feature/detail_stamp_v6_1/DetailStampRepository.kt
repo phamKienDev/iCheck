@@ -14,26 +14,16 @@ import vn.icheck.android.network.util.JsonHelper
 
 class DetailStampRepository : BaseRepository() {
 
-    suspend fun getDetailStampV61(barcode: String, lat: Double?, lon: Double?): ICResponse<ICStampV61> {
+    suspend fun getDetailStampV61(user: ICUpdateCustomerGuarantee?, barcode: String, lat: Double?, lon: Double?): ICResponse<ICStampV61> {
         val body = hashMapOf<String, Any>()
 
-        SessionManager.session.user?.let { user ->
-            val name = if (user.last_name.isNullOrEmpty()) {
-                user.first_name
-            } else {
-                if (!user.first_name.isNullOrEmpty()) {
-                    user.last_name + " " + user.first_name
-                } else {
-                    user.last_name
-                }
-            }
+        if (user != null) {
+//            if (user.id != 0L) {
+//                body["icheck_id"] = "i-${user.id}"
+//            }
 
-            if (user.id != 0L) {
-                body["icheck_id"] = "i-${user.id}"
-            }
-
-            if (!name.isNullOrEmpty()) {
-                body["name"] = name
+            if (!user.name.isNullOrEmpty()) {
+                body["name"] = user.name!!
             }
 
             if (!user.phone.isNullOrEmpty()) {
@@ -46,6 +36,38 @@ class DetailStampRepository : BaseRepository() {
 
             if (!user.address.isNullOrEmpty()) {
                 body["address"] = user.address!!
+            }
+        } else {
+            SessionManager.session.user?.let { mUser ->
+                val name = if (mUser.last_name.isNullOrEmpty()) {
+                    mUser.first_name
+                } else {
+                    if (!mUser.first_name.isNullOrEmpty()) {
+                        mUser.last_name + " " + mUser.first_name
+                    } else {
+                        mUser.last_name
+                    }
+                }
+
+                if (mUser.id != 0L) {
+                    body["icheck_id"] = "i-${mUser.id}"
+                }
+
+                if (!name.isNullOrEmpty()) {
+                    body["name"] = name
+                }
+
+                if (!mUser.phone.isNullOrEmpty()) {
+                    body["phone"] = mUser.phone!!
+                }
+
+                if (!mUser.email.isNullOrEmpty()) {
+                    body["email"] = mUser.email!!
+                }
+
+                if (!mUser.address.isNullOrEmpty()) {
+                    body["address"] = mUser.address!!
+                }
             }
         }
 

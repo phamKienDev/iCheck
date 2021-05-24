@@ -642,8 +642,10 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
         startActivityForResult(this, intent, requestChangeData)
     }
 
-    override fun updateInformationCusomterGuaranteeSuccess() {
-        setResult(RESULT_OK)
+    override fun updateInformationCusomterGuaranteeSuccess(user: ICUpdateCustomerGuarantee) {
+        setResult(RESULT_OK, Intent().apply {
+            putExtra(Constant.DATA_1, user)
+        })
 
         for (act in StampDetailActivity.listActivities) {
             act.finish()
@@ -670,7 +672,15 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
                 requestChangeData -> {
-                    setResult(RESULT_OK)
+                    val user = try {
+                        data?.getSerializableExtra(Constant.DATA_1) as ICUpdateCustomerGuarantee?
+                    } catch (e: Exception) {
+                        null
+                    }
+
+                    setResult(RESULT_OK, Intent().apply {
+                        putExtra(Constant.DATA_1, user)
+                    })
                     isChangeData = true
                 }
 

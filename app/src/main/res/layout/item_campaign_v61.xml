@@ -1,47 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_106">
+        android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/bannerLoyalty"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:scaleType="centerCrop" />
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_0"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="H, 375:106"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:src="@drawable/ic_view_detail_gift" />
+            android:src="@drawable/ic_view_detail_gift"
+            app:layout_constraintBottom_toBottomOf="@id/bannerLoyalty"
+            app:layout_constraintEnd_toEndOf="@id/bannerLoyalty" />
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ui.view.TextBody1
         android:id="@+id/tvDescp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/size_8"
         android:layout_marginTop="@dimen/size_10"
         android:text="Mã dự thưởng chương trình:"
-        android:textColor="@color/darkGray1"
-        android:textSize="@dimen/font_14" />
+        android:textColor="@color/colorNormalText" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ui.view.TextSubheader2
         android:id="@+id/loyaltyDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        tools:text="TH trao yêu thương - Gửi hạnh phúc"
         android:layout_marginHorizontal="@dimen/size_8"
         android:layout_marginTop="@dimen/size_4"
-        android:textColor="@color/colorSecondary"
-        android:textSize="@dimen/font_16"
-        android:textStyle="bold" />
+        android:textColor="@color/colorSecondary" />
 
     <LinearLayout
         android:layout_width="match_parent"

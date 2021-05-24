@@ -5,6 +5,7 @@ import vn.icheck.android.base.viewmodel.BaseViewModel
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.loyalty.model.ICKLoyalty
 import vn.icheck.android.network.feature.detail_stamp_v6_1.DetailStampRepository
+import vn.icheck.android.network.models.detail_stamp_v6_1.ICUpdateCustomerGuarantee
 import javax.inject.Inject
 
 class ICDetailStampViewModel @Inject constructor(): BaseViewModel() {
@@ -16,6 +17,8 @@ class ICDetailStampViewModel @Inject constructor(): BaseViewModel() {
 
     var codeInput = ""
     var loyaltyObj: ICKLoyalty? = null
+
+    var user: ICUpdateCustomerGuarantee? = null
 
     fun getData(intent: Intent?) {
         val data = intent?.getStringExtra("data") ?: ""
@@ -36,7 +39,7 @@ class ICDetailStampViewModel @Inject constructor(): BaseViewModel() {
         }
     }
 
-    fun getStampDetailV61() = request { repository.getDetailStampV61(barcode, lat, lng) }
+    fun getStampDetailV61() = request { repository.getDetailStampV61(user, barcode, lat, lng) }
 
     fun getStampConfig() = request { repository.getStampConfig() }
 }

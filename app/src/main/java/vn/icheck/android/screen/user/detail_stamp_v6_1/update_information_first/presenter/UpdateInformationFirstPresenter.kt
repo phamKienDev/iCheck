@@ -299,7 +299,7 @@ class UpdateInformationFirstPresenter(val view: IUpdateInformationFirstView) : B
         interactor.updateInformationGuarantee(name, phone, email, address, district, city, deviceId, mId, productCode, variant, customerData, guaranteeData, serial, object : ICApiListener<IC_RESP_UpdateCustomerGuarantee> {
             override fun onSuccess(obj: IC_RESP_UpdateCustomerGuarantee) {
                 if (obj.status == 200) {
-                    view.updateInformationCusomterGuaranteeSuccess()
+                    view.updateInformationCusomterGuaranteeSuccess(ICUpdateCustomerGuarantee(name, phone, email, address, district, city))
                 } else {
                     view.updateInformationCusomterGuaranteeFail()
                 }

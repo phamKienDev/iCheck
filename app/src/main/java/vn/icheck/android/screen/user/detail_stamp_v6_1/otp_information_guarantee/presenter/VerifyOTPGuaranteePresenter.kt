@@ -156,7 +156,7 @@ class VerifyOTPGuaranteePresenter(val view: IVerifyOTPGuaranteeView) : BaseActiv
         interactor.updateInfomationGuarantee(obj!!, deviceId, mId, mProductCode, StampDetailActivity.mSerial, mProductVariant, body, object : ICApiListener<IC_RESP_UpdateCustomerGuarantee> {
             override fun onSuccess(obj: IC_RESP_UpdateCustomerGuarantee) {
                 if (obj.status == 200) {
-                    view.updateInformationCusomterGuaranteeSuccess()
+                    view.updateInformationCusomterGuaranteeSuccess(this@VerifyOTPGuaranteePresenter.obj!!)
                 } else {
                     view.updateInformationCusomterGuaranteeFail()
                 }
