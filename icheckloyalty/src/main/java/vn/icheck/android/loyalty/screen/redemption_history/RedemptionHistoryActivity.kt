@@ -1,5 +1,6 @@
 package vn.icheck.android.loyalty.screen.redemption_history
 
+import android.annotation.SuppressLint
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -37,6 +38,7 @@ class RedemptionHistoryActivity : BaseActivityGame(), IRecyclerViewCallback {
         initListener()
     }
 
+    @SuppressLint("SetTextI18n")
     fun initToolbar() {
         imgBack.setOnClickListener {
             onBackPressed()
@@ -72,7 +74,7 @@ class RedemptionHistoryActivity : BaseActivityGame(), IRecyclerViewCallback {
     }
 
     fun initListener() {
-        viewModel.onError.observe(this, Observer {
+        viewModel.onError.observe(this, {
             swipeLayout.isRefreshing = false
 
             if (adapter.isEmpty) {
@@ -82,25 +84,25 @@ class RedemptionHistoryActivity : BaseActivityGame(), IRecyclerViewCallback {
             }
         })
 
-        viewModel.onSetData.observe(this, Observer {
+        viewModel.onSetData.observe(this, {
             swipeLayout.isRefreshing = false
             adapter.setDataICKRewardGameLoyalty(it)
         })
 
-        viewModel.onAddData.observe(this, Observer {
+        viewModel.onAddData.observe(this, {
             adapter.addDataICKRewardGameLoyalty(it)
         })
 
-        viewModel.setData.observe(this, Observer {
+        viewModel.setData.observe(this, {
             swipeLayout.isRefreshing = false
             adapter.setDataICKRedemptionHistory(it)
         })
 
-        viewModel.addData.observe(this, Observer {
+        viewModel.addData.observe(this, {
             adapter.addDataICKRedemptionHistory(it)
         })
 
-        viewModel.onErrorEmpty.observe(this, Observer {
+        viewModel.onErrorEmpty.observe(this, {
             swipeLayout.isRefreshing = false
             adapter.setError(it)
         })
