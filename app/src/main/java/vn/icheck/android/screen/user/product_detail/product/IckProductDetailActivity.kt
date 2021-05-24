@@ -961,11 +961,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                         if (!viewModel.listMedia.isNullOrEmpty()) {
                             intent.putExtra(Constant.DATA_2, viewModel.listMedia[0].content)
                         }
-                        startActivityForResult<ListContributeActivity, String>(
-                            Constant.DATA_1,
-                            event.data,
-                            requestListContribution
-                        )
+                        this.startActivityForResult(intent, requestListContribution)
                     }
                 }
             }
