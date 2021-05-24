@@ -184,7 +184,7 @@ class NewDetailV2Activity : BaseActivityMVVM() {
                 }
             }
 
-            if (!it.obj?.articleCategory?.name.isNullOrEmpty()){
+            if (!it.obj?.articleCategory?.name.isNullOrEmpty()) {
                 tvType.setVisible()
                 view.setVisible()
 
@@ -192,11 +192,12 @@ class NewDetailV2Activity : BaseActivityMVVM() {
                     text = "#${it.obj?.articleCategory?.name}"
 
                     setOnClickListener { _ ->
-                        ActivityUtils.startActivity<NewsListV2Activity, Long>(this@NewDetailV2Activity, Constant.ID, it.obj?.articleCategory?.id ?: -1)
+                        ActivityUtils.startActivity<NewsListV2Activity, Long>(this@NewDetailV2Activity, Constant.ID, it.obj?.articleCategory?.id
+                                ?: -1)
                     }
                 }
 
-            }else{
+            } else {
                 tvType.setGone()
                 view.setGone()
             }
@@ -214,22 +215,27 @@ class NewDetailV2Activity : BaseActivityMVVM() {
                 }
             }
 
-            if (!it.obj?.pages.isNullOrEmpty()){
+            if (!it.obj?.pages.isNullOrEmpty()) {
                 layoutBusiness.setVisible()
 
                 recyclerView.layoutManager = GridLayoutManager(this@NewDetailV2Activity, 6)
                 recyclerViewBusiness.adapter = NewDetailBusinessAdapter(it.obj?.pages!!)
-            }else{
+            } else {
                 layoutBusiness.setGone()
             }
 
             if (!it.listData.isNullOrEmpty()) {
                 constraintLayout.visibility = View.VISIBLE
 
-                tvTitleNew.text = it.obj?.articleCategory?.name
+                tvTitleNew.text = if (it.obj?.articleCategory?.name.isNullOrEmpty()) {
+                    "Tin tức liên quan"
+                } else {
+                    it.obj?.articleCategory?.name
+                }
 
                 txtViewAll.setOnClickListener { _ ->
-                    ActivityUtils.startActivity<NewsListV2Activity, Long>(this, Constant.ID, it.obj?.articleCategory?.id ?: -1)
+                    ActivityUtils.startActivity<NewsListV2Activity, Long>(this, Constant.ID, it.obj?.articleCategory?.id
+                            ?: -1)
                 }
 
                 val adapter = NewsAdapter(it.listData)

@@ -18,14 +18,13 @@ import vn.icheck.android.lib.keyboard.KeyboardVisibilityEvent
 import vn.icheck.android.lib.keyboard.KeyboardVisibilityEventListener
 import vn.icheck.android.lib.keyboard.Unregistrar
 import vn.icheck.android.util.AfterTextWatcher
+import vn.icheck.android.util.kotlin.WidgetUtils
 
 class BarcodeBottomDialog : BaseBottomSheetDialogFragment() {
 
     private var onBarCodeDismiss: OnBarCodeDismiss? = null
     private var _binding: IckBarcodeBottomBinding? = null
     private val binding get() = _binding!!
-
-    private var unregistrar: Unregistrar? = null
 
     companion object {
         fun show(fragmentManager: FragmentManager, isCancel: Boolean, listener: OnBarCodeDismiss) {
@@ -48,36 +47,9 @@ class BarcodeBottomDialog : BaseBottomSheetDialogFragment() {
         setStyle(DialogFragment.STYLE_NORMAL, R.style.DialogStyle)
     }
 
-//    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-//        return BottomSheetDialog(requireContext(), R.style.BottomSheetDialogTheme).also { dialog ->
-//            dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
-//            dialog.setOnShowListener {
-//                val bottomSheet = dialog.findViewById<FrameLayout>(R.id.design_bottom_sheet)
-//                bottomSheet?.setBackgroundResource(R.drawable.rounded_dialog)
-//                val bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet!!)
-//                bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-//            }
-//        }
-//    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = IckBarcodeBottomBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    override fun onResume() {
-        super.onResume()
-        unregistrar = KeyboardVisibilityEvent.registerEventListener(requireActivity(), object : KeyboardVisibilityEventListener {
-            override fun onVisibilityChanged(isOpen: Boolean) {
-                binding.btnKeyboard.visibleOrGone(isOpen && binding.edtBarcode.isFocused)
-            }
-        })
-    }
-
-    override fun onPause() {
-        super.onPause()
-        unregistrar?.unregister()
-        unregistrar = null
     }
 
     override fun onDestroy() {
@@ -122,21 +94,12 @@ class BarcodeBottomDialog : BaseBottomSheetDialogFragment() {
     }
 
     private fun setupListener() {
-        binding.edtBarcode.setOnFocusChangeListener { v, hasFocus ->
-            binding.btnKeyboard.visibleOrGone(hasFocus)
+        binding.edtBarcode.setOnFocusChangeListener { _, _ ->
+            WidgetUtils.setButtonKeyboardMargin(binding.btnKeyboard, binding.edtBarcode)
         }
 
         binding.btnKeyboard.setOnClickListener {
-            binding.edtBarcode.apply {
-                inputType = if (inputType != InputType.TYPE_CLASS_TEXT) {
-//                    binding.btnKeyboard.setText(R.string.ban_phim_so)
-                    InputType.TYPE_CLASS_TEXT
-                } else {
-//                    binding.btnKeyboard.setText(R.string.ban_phim_chu)
-                    InputType.TYPE_CLASS_NUMBER
-                }
-                setSelection(length())
-            }
+            WidgetUtils.changePasswordInput(binding.edtBarcode)
         }
     }
 
