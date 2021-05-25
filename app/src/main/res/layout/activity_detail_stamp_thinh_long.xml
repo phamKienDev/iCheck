@@ -234,7 +234,7 @@
                 android:id="@id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/g1ray_stamp_hoa_phat"
+                android:background="@color/gray_stamp_hoa_phat"
                 android:visibility="gone"
                 tools:visibility="visible" />
         </LinearLayout>

@@ -15,7 +15,7 @@
         android:id="@id/viewBackground"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_10"
-        android:background="@color/colorBackgroundGra1y"
+        android:background="@color/colorBackgroundGray"
         app:layout_constraintTop_toBottomOf="@id/layoutToolbar" />
 
     <View

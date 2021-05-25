@@ -34,7 +34,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/ma_du_thuong_chuong_trinh"
-                    android:textColor="@color/darkG1ray1"
+                    android:textColor="@color/darkGray1"
                     android:textSize="14sp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -95,7 +95,7 @@
                         android:layout_marginStart="@dimen/size_4"
                         android:layout_marginLeft="@dimen/size_4"
                         android:text="@string/thong_tin_chuong_trinh"
-                        android:textColor="@color/darkG1ray1"
+                        android:textColor="@color/darkGray1"
                         android:textSize="16sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -105,7 +105,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_4"
-                    android:textColor="@color/darkG1ray1"
+                    android:textColor="@color/darkGray1"
                     android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>

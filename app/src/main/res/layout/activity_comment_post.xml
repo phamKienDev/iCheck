@@ -204,7 +204,7 @@
                             android:paddingEnd="@dimen/size_8"
                             android:paddingBottom="@dimen/size_2"
                             android:singleLine="true"
-                            android:textColor="@color/darkG1ray1"
+                            android:textColor="@color/darkGray1"
                             android:textSize="@dimen/font_12"
                             android:visibility="visible"
                             tools:text="Trả lời  Đặng Trung Đ  Đặng Trung Đức ặng Trung Đức ặng Trung Đức" />
@@ -275,7 +275,7 @@
                     android:id="@+id/rcvChildEmoji"
                     android:layout_width="match_parent"
                     android:layout_height="260dp"
-                    android:background="@color/colorBackgroundGra1y"
+                    android:background="@color/colorBackgroundGray"
                     android:clipToPadding="false"
                     android:orientation="vertical"
                     android:paddingStart="@dimen/size_2"

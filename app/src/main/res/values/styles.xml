@@ -542,7 +542,7 @@
         <item name="android:drawableLeft">@drawable/ic_list_blue_12px</item>
         <item name="android:drawablePadding">@dimen/size_2</item>
         <item name="android:includeFontPadding">false</item>
-        <item name="android:textColor">@color/darkG1ray1</item>
+        <item name="android:textColor">@color/darkGray1</item>
         <item name="android:layout_marginTop">@dimen/size_12</item>
         <item name="android:textStyle">normal</item>
     </style>
@@ -553,7 +553,7 @@
         <item name="android:includeFontPadding">false</item>
         <item name="fontFamily">@font/barlow_medium</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/darkG1ray1</item>
+        <item name="android:textColor">@color/darkGray1</item>
         <item name="android:layout_marginStart">@dimen/size_12</item>
         <item name="android:layout_marginLeft">@dimen/size_12</item>
     </style>

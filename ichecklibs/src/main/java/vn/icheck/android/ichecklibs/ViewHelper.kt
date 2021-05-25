@@ -584,7 +584,7 @@ object ViewHelper {
 
         //  android:state_enabled="false"
         val bgNotEnabled = GradientDrawable().also {
-            it.setColor(ContextCompat.getColor(context,R.color.colorBackgroundGra1y))
+            it.setColor(ContextCompat.getColor(context,R.color.colorBackgroundGray))
             it.cornerRadius=SizeHelper.size4.toFloat()
         }
 

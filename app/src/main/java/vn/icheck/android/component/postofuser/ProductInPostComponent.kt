@@ -29,7 +29,7 @@ class ProductInPostComponent : LinearLayout {
 
     private fun createView() {
         orientation = HORIZONTAL
-        background = ViewHelper.createShapeDrawable(ContextCompat.getColor(context, R.color.colorBackgroundGra1y), SizeHelper.size4.toFloat())
+        background = ViewHelper.createShapeDrawable(ContextCompat.getColor(context, R.color.colorBackgroundGray), SizeHelper.size4.toFloat())
         setPadding(SizeHelper.size4, SizeHelper.size4, SizeHelper.size4, SizeHelper.size4)
 
         // Image logo
@@ -46,7 +46,7 @@ class ProductInPostComponent : LinearLayout {
                     ViewHelper.createLayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 0, 0, 0, SizeHelper.size6),
                     null,
                     ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
-                    ContextCompat.getColor(context, R.color.darkG1ray1),
+                    ContextCompat.getColor(context, R.color.darkGray1),
                     16f,
                     2))
 

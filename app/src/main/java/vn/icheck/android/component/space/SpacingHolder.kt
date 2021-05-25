@@ -22,7 +22,7 @@ class SpacingHolder(parent: ViewGroup): BaseViewHolder<Int>(createView(parent.co
         private fun createView(context: Context) : View {
             return View(context).also {
                 it.layoutParams = ViewHelper.createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size10)
-                it.setBackgroundColor(ContextCompat.getColor(context, R.color.colorBackgroundGra1y))
+                it.setBackgroundColor(ContextCompat.getColor(context, R.color.colorBackgroundGray))
             }
         }
     }

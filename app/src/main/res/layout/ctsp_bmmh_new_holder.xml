@@ -47,7 +47,7 @@
             android:paddingBottom="@dimen/size_8"
             android:text="Bạn muốn mua hàng tại nhà sản xuất?"
             android:textAlignment="center"
-            android:textColor="@color/darkG1ray1"
+            android:textColor="@color/darkGray1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView10"
             app:layout_constraintTop_toTopOf="parent" />

@@ -374,7 +374,7 @@
                             android:layout_marginLeft="@dimen/size_8"
                             android:layout_marginTop="@dimen/size_10"
                             android:text="Mã dự thưởng chương trình:"
-                            android:textColor="@color/darkG1ray1"
+                            android:textColor="@color/darkGray1"
                             android:textSize="@dimen/font_14" />
 
                         <LinearLayout

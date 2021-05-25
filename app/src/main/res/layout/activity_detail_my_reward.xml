@@ -75,7 +75,7 @@
                 android:id="@+id/group_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorBackgroundGra1y"
+                android:background="@color/colorBackgroundGray"
                 android:orientation="vertical"
                 android:visibility="visible"
                 tools:visibility="visible">
@@ -323,7 +323,7 @@
                     android:layout_marginLeft="@dimen/size_12"
                     android:layout_marginTop="@dimen/size_10"
                     android:padding="@dimen/size_1"
-                    app:civ_circle_background_color="@color/darkG1ray1"
+                    app:civ_circle_background_color="@color/darkGray1"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:src="#03A9F4" />
@@ -408,7 +408,7 @@ Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận t
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/size_12"
-                    android:background="@color/colorBackgroundGra1y" />
+                    android:background="@color/colorBackgroundGray" />
             </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

@@ -71,7 +71,7 @@ class ListFriendSuggestionActivity : BaseActivityMVVM(), IRecyclerViewCallback {
         adapter.disableLoadMore()
         val horizontalDecoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
         horizontalDecoration.setDrawable(ShapeDrawable().apply {
-            paint.color = ContextCompat.getColor(this@ListFriendSuggestionActivity, R.color.colorBackgroundGra1y)
+            paint.color = ContextCompat.getColor(this@ListFriendSuggestionActivity, R.color.colorBackgroundGray)
             intrinsicHeight = SizeHelper.size1
         })
         recyclerView.addItemDecoration(horizontalDecoration)

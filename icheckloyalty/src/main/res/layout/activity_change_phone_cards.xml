@@ -23,7 +23,7 @@
         android:gravity="center"
         android:includeFontPadding="false"
         android:text="Để nhận quà này, bạn vui lòng nhập\nsố điện thoại và chọn nhà mạng để nhận thẻ cào."
-        android:textColor="@color/darkG1ray1"
+        android:textColor="@color/darkGray1"
         android:textSize="14sp" />
 
     <androidx.appcompat.widget.AppCompatEditText

@@ -34,7 +34,7 @@
             android:ellipsize="end"
             android:fontFamily="@font/barlow_medium"
             android:maxLines="4"
-            android:textColor="@color/darkG1ray1"
+            android:textColor="@color/darkGray1"
             android:textSize="@dimen/font_14"
             app:layout_constraintTop_toBottomOf="@id/tvTitle"
             tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing sed do eiusmod tempor. Lorem ipsum dolor sit amet, consectetur adipiscing elit (Short Description tối đa 4 dòng)..." />

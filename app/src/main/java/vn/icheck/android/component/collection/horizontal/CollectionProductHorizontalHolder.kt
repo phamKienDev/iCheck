@@ -99,7 +99,7 @@ class CollectionProductHorizontalHolder(parent: ViewGroup) : BaseViewHolder<ICPr
             return LinearLayout(context).also { layoutParent ->
                 layoutParent.layoutParams = ViewHelper.createLayoutParams(SizeHelper.size152, LinearLayout.LayoutParams.WRAP_CONTENT, SizeHelper.size4, 0, SizeHelper.size4, 0)
                 layoutParent.orientation = LinearLayout.VERTICAL
-                layoutParent.background = ViewHelper.createStateListDrawable(Color.WHITE, ContextCompat.getColor(context, R.color.lightGr1ay), Color.TRANSPARENT, Color.TRANSPARENT, 0, 0f)
+                layoutParent.background = ViewHelper.createStateListDrawable(Color.WHITE, ContextCompat.getColor(context, R.color.lightGray), Color.TRANSPARENT, Color.TRANSPARENT, 0, 0f)
                 layoutParent.setPadding(SizeHelper.size6, SizeHelper.size6, SizeHelper.size6, SizeHelper.size6)
 
                 // Image product

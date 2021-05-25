@@ -78,7 +78,7 @@
                 android:layout_width="@dimen/size_32"
                 android:layout_height="@dimen/size_32"
                 android:padding="@dimen/size_1"
-                app:civ_circle_background_color="@color/darkG1ray1"
+                app:civ_circle_background_color="@color/darkGray1"
                 android:src="@drawable/img_default_shop_logo"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -119,6 +119,6 @@
             android:id="@+id/rcv_search_pages"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorBackgroundGra1y" />
+            android:background="@color/colorBackgroundGray" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </LinearLayout>

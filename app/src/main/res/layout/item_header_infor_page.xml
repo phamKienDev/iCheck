@@ -154,12 +154,11 @@
             tools:text="Huy, Quân, Hoàng và 3.000 người khác theo dõi trang này " />
     </LinearLayout>
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
         android:id="@id/view"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_0_5"
-        android:layout_marginTop="11.5dp"
-        android:background="@color/placeholder_bg" />
+        android:layout_marginTop="11.5dp" />
 
     <LinearLayout
         android:id="@+id/containerOverview"
@@ -239,7 +238,7 @@
         android:id="@+id/viewbg"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_10"
-        android:background="@color/colorBackgroundGra1y" />
+        android:background="@color/colorBackgroundGray" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/containerCreate"

@@ -9,7 +9,7 @@
     android:layout_marginTop="@dimen/size_6"
     android:layout_marginEnd="@dimen/size_12"
     android:layout_marginBottom="@dimen/size_6"
-    card_view:cardBackgroundColor="@color/lightGr1ay"
+    card_view:cardBackgroundColor="@color/lightGray"
     card_view:cardCornerRadius="@dimen/size_10">
 
     <LinearLayout

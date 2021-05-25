@@ -120,7 +120,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_10"
-        android:background="@color/colorBackgroundGra1y"/>
+        android:background="@color/colorBackgroundGray"/>
 
 
 </LinearLayout>

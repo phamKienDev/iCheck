@@ -105,7 +105,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_0_5"
             android:layout_marginTop="@dimen/size_12"
-            android:background="@color/darkG1ray4"
+            android:background="@color/darkGray4"
             app:layout_constraintTop_toBottomOf="@id/tvPhone" />
 
         <androidx.appcompat.widget.AppCompatTextView

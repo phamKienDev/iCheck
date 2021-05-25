@@ -79,7 +79,7 @@
                 android:id="@+id/tv_user_1_comment"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textColor="@color/darkG1ray1"
+                android:textColor="@color/darkGray1"
                 android:textSize="@dimen/font_14"
                 android:includeFontPadding="false"
                 app:layout_constraintEnd_toEndOf="@id/tv_1_time"

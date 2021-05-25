@@ -8,7 +8,7 @@
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_0"
-        android:background="@color/placeholder_bg"
+        android:background="@color/colorLineView"
         app:layout_constraintDimensionRatio="H, 500:250"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +41,7 @@
         android:layout_height="@dimen/size_50"
         android:layout_marginTop="@dimen/size_12"
         android:layout_marginBottom="@dimen/size_20"
-        android:background="@color/placeholder_bg"
+        android:background="@color/colorLineView"
         app:layout_constraintBottom_toBottomOf="@id/view2"
         app:layout_constraintEnd_toEndOf="@id/view2"
         app:layout_constraintStart_toStartOf="@id/view2"
@@ -50,7 +50,7 @@
     <View
         android:layout_width="@dimen/size_100"
         android:layout_height="@dimen/size_10"
-        android:background="@color/placeholder_bg"
+        android:background="@color/colorLineView"
         app:layout_constraintBottom_toBottomOf="@id/view2"
         app:layout_constraintEnd_toEndOf="@id/view2"
         app:layout_constraintStart_toStartOf="@id/view2"
@@ -73,7 +73,7 @@
         android:layout_height="@dimen/size_20"
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_12"
-        android:background="@color/placeholder_bg"
+        android:background="@color/colorLineView"
         app:layout_constraintStart_toStartOf="@id/view5"
         app:layout_constraintTop_toTopOf="@id/view5" />
 
@@ -82,7 +82,7 @@
         android:layout_height="@dimen/size_20"
         android:layout_marginLeft="@dimen/size_20"
         android:layout_marginRight="@dimen/size_12"
-        android:background="@color/placeholder_bg"
+        android:background="@color/colorLineView"
         app:layout_constraintEnd_toEndOf="@id/view5"
         app:layout_constraintStart_toEndOf="@id/view6"
         app:layout_constraintTop_toTopOf="@id/view6" />
@@ -92,7 +92,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_1"
         android:layout_marginTop="@dimen/size_8"
-        android:background="@color/placeholder_bg"
+        android:background="@color/colorLineView"
         app:layout_constraintTop_toBottomOf="@id/view6" />
 
     <View
@@ -101,7 +101,7 @@
         android:layout_height="@dimen/size_10"
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_8"
-        android:background="@color/placeholder_bg"
+        android:background="@color/colorLineView"
         app:layout_constraintStart_toStartOf="@id/view7"
         app:layout_constraintTop_toBottomOf="@id/view7" />
 
@@ -110,7 +110,7 @@
         android:layout_width="200dp"
         android:layout_height="@dimen/size_20"
         android:layout_marginRight="@dimen/size_12"
-        android:background="@color/placeholder_bg"
+        android:background="@color/colorLineView"
         app:layout_constraintBottom_toBottomOf="@id/view8"
         app:layout_constraintEnd_toEndOf="@id/view7"
         app:layout_constraintTop_toTopOf="@id/view8" />
@@ -121,14 +121,14 @@
         android:layout_height="@dimen/size_10"
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_18"
-        android:background="@color/placeholder_bg"
+        android:background="@color/colorLineView"
         app:layout_constraintStart_toStartOf="@id/view7"
         app:layout_constraintTop_toBottomOf="@id/view8" />
 
     <View
         android:layout_width="200dp"
         android:layout_height="@dimen/size_20"
-        android:background="@color/placeholder_bg"
+        android:background="@color/colorLineView"
         app:layout_constraintBottom_toBottomOf="@id/view10"
         app:layout_constraintEnd_toEndOf="@id/view9"
         app:layout_constraintTop_toTopOf="@id/view10" />
@@ -139,14 +139,14 @@
         android:layout_height="@dimen/size_10"
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_18"
-        android:background="@color/placeholder_bg"
+        android:background="@color/colorLineView"
         app:layout_constraintStart_toStartOf="@id/view7"
         app:layout_constraintTop_toBottomOf="@id/view10" />
 
     <View
         android:layout_width="200dp"
         android:layout_height="@dimen/size_20"
-        android:background="@color/placeholder_bg"
+        android:background="@color/colorLineView"
         app:layout_constraintBottom_toBottomOf="@id/view12"
         app:layout_constraintEnd_toEndOf="@id/view9"
         app:layout_constraintTop_toTopOf="@id/view12" />
@@ -157,14 +157,14 @@
         android:layout_height="@dimen/size_10"
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_18"
-        android:background="@color/placeholder_bg"
+        android:background="@color/colorLineView"
         app:layout_constraintStart_toStartOf="@id/view7"
         app:layout_constraintTop_toBottomOf="@id/view12" />
 
     <View
         android:layout_width="200dp"
         android:layout_height="@dimen/size_20"
-        android:background="@color/placeholder_bg"
+        android:background="@color/colorLineView"
         app:layout_constraintBottom_toBottomOf="@id/view14"
         app:layout_constraintEnd_toEndOf="@id/view9"
         app:layout_constraintTop_toTopOf="@id/view14" />
@@ -175,7 +175,7 @@
         android:layout_height="@dimen/size_10"
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_18"
-        android:background="@color/placeholder_bg"
+        android:background="@color/colorLineView"
         app:layout_constraintStart_toStartOf="@id/view7"
         app:layout_constraintTop_toBottomOf="@id/view14" />
 
@@ -183,7 +183,7 @@
         android:id="@+id/view17"
         android:layout_width="200dp"
         android:layout_height="@dimen/size_20"
-        android:background="@color/placeholder_bg"
+        android:background="@color/colorLineView"
         app:layout_constraintBottom_toBottomOf="@id/view16"
         app:layout_constraintEnd_toEndOf="@id/view9"
         app:layout_constraintTop_toTopOf="@id/view16" />
@@ -193,17 +193,16 @@
         android:layout_width="@dimen/size_20"
         android:layout_height="@dimen/size_20"
         android:layout_marginTop="@dimen/size_25"
-        android:background="@color/placeholder_bg"
+        android:background="@color/colorLineView"
         android:paddingTop="@dimen/size_5"
         app:layout_constraintStart_toStartOf="@id/view16"
         app:layout_constraintTop_toBottomOf="@id/view16" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ViewBgTransparentRadius10Stroke1
         android:id="@+id/view19"
         android:layout_width="@dimen/size_0"
         android:layout_height="@dimen/size_100"
         android:layout_marginLeft="@dimen/size_12"
-        android:background="@drawable/bg_corner_gray_10_no_soli"
         app:layout_constraintEnd_toEndOf="@id/view17"
         app:layout_constraintStart_toEndOf="@id/view18"
         app:layout_constraintTop_toTopOf="@id/view18" />
@@ -213,7 +212,7 @@
         android:layout_height="@dimen/size_12"
         android:layout_marginLeft="@dimen/size_8"
         android:layout_marginTop="@dimen/size_8"
-        android:background="@color/placeholder_bg"
+        android:background="@color/colorLineView"
         app:layout_constraintStart_toStartOf="@id/view19"
         app:layout_constraintTop_toTopOf="@id/view19" />
 
@@ -232,7 +231,7 @@
         android:layout_width="@dimen/size_150"
         android:layout_height="@dimen/size_14"
         android:layout_marginTop="@dimen/size_20"
-        android:background="@color/placeholder_bg"
+        android:background="@color/colorLineView"
         app:layout_constraintStart_toStartOf="@id/view20"
         app:layout_constraintTop_toBottomOf="@id/view20" />
 
@@ -241,7 +240,7 @@
         android:layout_width="@dimen/size_36"
         android:layout_height="@dimen/size_36"
         android:layout_marginTop="@dimen/size_12"
-        android:src="@color/placeholder_bg"
+        android:src="@color/colorLineView"
         app:layout_constraintStart_toStartOf="@id/view21"
         app:layout_constraintTop_toBottomOf="@id/view21" />
 
@@ -265,7 +264,7 @@
                 android:layout_height="@dimen/size_10"
                 android:layout_marginLeft="@dimen/size_8"
                 android:layout_marginTop="@dimen/size_8"
-                android:background="@color/placeholder_bg"
+                android:background="@color/colorLineView"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -274,7 +273,7 @@
                 android:layout_width="@dimen/size_70"
                 android:layout_height="@dimen/size_14"
                 android:layout_marginTop="@dimen/size_8"
-                android:background="@color/placeholder_bg"
+                android:background="@color/colorLineView"
                 app:layout_constraintStart_toStartOf="@id/view23"
                 app:layout_constraintTop_toBottomOf="@id/view23" />
 
@@ -283,7 +282,7 @@
                 android:layout_width="@dimen/size_70"
                 android:layout_height="@dimen/size_10"
                 android:layout_marginRight="@dimen/size_8"
-                android:background="@color/placeholder_bg"
+                android:background="@color/colorLineView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/view23" />
 
@@ -291,7 +290,7 @@
                 android:layout_width="@dimen/size_0"
                 android:layout_height="@dimen/size_50"
                 android:layout_marginTop="@dimen/size_8"
-                android:background="@color/placeholder_bg"
+                android:background="@color/colorLineView"
                 app:layout_constraintEnd_toEndOf="@id/view25"
                 app:layout_constraintStart_toStartOf="@id/view24"
                 app:layout_constraintTop_toBottomOf="@id/view24" />
@@ -300,7 +299,7 @@
                 android:id="@+id/view27"
                 android:layout_width="@dimen/size_0"
                 android:layout_height="@dimen/size_30"
-                android:background="@color/placeholder_bg"
+                android:background="@color/colorLineView"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />

@@ -299,7 +299,7 @@ object TextHelper {
             setText(name)
             textSize = 16f
             typeface = ViewHelper.createTypeface(ICheckApplication.getInstance(), R.font.barlow_semi_bold)
-            setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.darkG1ray1))
+            setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.darkGray1))
         }
     }
 

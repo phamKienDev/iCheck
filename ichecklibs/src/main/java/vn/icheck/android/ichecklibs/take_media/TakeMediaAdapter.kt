@@ -266,7 +266,7 @@ class TakeMediaAdapter(val listData: MutableList<TakeMediaDialog.ICIMageFile>,
         layoutParent.layoutParams = ViewHelper.createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
         layoutParent.orientation = LinearLayout.VERTICAL
         layoutParent.gravity = Gravity.CENTER
-        layoutParent.setBackgroundColor(ContextCompat.getColor(parent.context, R.color.colorBackgroundGra1y))
+        layoutParent.setBackgroundColor(ContextCompat.getColor(parent.context, R.color.colorBackgroundGray))
 
         layoutParent.addView(AppCompatImageView(parent.context).also {
             it.layoutParams = ViewHelper.createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)

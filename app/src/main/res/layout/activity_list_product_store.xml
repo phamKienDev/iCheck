@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackgroundGra1y"
+    android:background="@color/colorBackgroundGray"
     android:orientation="vertical"
     tools:context="vn.icheck.android.screen.user.icheckstore.list.ProductStoreiCheckActivity">
 

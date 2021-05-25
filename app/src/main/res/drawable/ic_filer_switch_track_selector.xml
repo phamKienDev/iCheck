@@ -12,7 +12,7 @@
             android:shape="rectangle"
             android:useLevel="false"
             android:visible="true">
-            <solid android:color="@color/colorBackgroundGra1y" />
+            <solid android:color="@color/colorBackgroundGray" />
             <corners android:radius="@dimen/size_15" />
             <size android:width="@dimen/size_50" android:height="@dimen/size_30" />
         </shape>

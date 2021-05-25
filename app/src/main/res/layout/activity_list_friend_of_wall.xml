@@ -48,7 +48,7 @@
         android:maxLines="1"
         android:paddingStart="@dimen/size_8"
         android:singleLine="true"
-        android:textColor="@color/darkG1ray1"
+        android:textColor="@color/darkGray1"
         android:paddingLeft="@dimen/size_8"
         android:drawableLeft="@drawable/ic_search_gray_24dp" />
 

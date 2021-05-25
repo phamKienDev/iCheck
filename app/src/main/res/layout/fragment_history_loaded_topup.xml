@@ -10,7 +10,7 @@
         android:id="@+id/rcvHistoryLoadedTopup"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorBackgroundGra1y"
+        android:background="@color/colorBackgroundGray"
         android:paddingTop="@dimen/size_5"/>
 
 <!--    <com.facebook.shimmer.ShimmerFrameLayout-->

@@ -26,7 +26,7 @@
     <color name="orange_opactity">#33FBBB00</color>
     <color name="green2">#49aa2d</color>
     <color name="orange_red">#FE4E1B</color>
-    <color name="darkG1ray1">#434343</color>
-    <color name="lightGr1ay">#F1F1F1</color>
+    <color name="darkGray1">#434343</color>
+    <color name="lightGray">#F1F1F1</color>
     <color name="gra1y_item_search">#F5F5F5</color>
 </resources>

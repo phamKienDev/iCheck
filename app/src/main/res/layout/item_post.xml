@@ -188,7 +188,7 @@
                 android:fontFamily="@font/barlow_semi_bold"
                 android:includeFontPadding="false"
                 android:maxLines="2"
-                android:textColor="@color/darkG1ray1"
+                android:textColor="@color/darkGray1"
                 android:textSize="@dimen/font_16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/imgProduct"

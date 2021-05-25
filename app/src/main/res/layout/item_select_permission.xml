@@ -32,7 +32,7 @@
         android:fontFamily="@font/barlow_medium"
         android:gravity="center_vertical"
         android:singleLine="true"
-        android:textColor="@color/darkG1ray1"
+        android:textColor="@color/darkGray1"
         app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/imgAvatar"
