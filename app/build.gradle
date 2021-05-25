@@ -38,8 +38,8 @@ android {
         applicationId "vn.icheck.android"
         minSdkVersion 19
         targetSdkVersion 30
-        versionCode 21050701
-        versionName "6.20.1"
+        versionCode 21052401
+        versionName "6.21.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled = true
         signingConfig signingConfigs.release
@@ -91,9 +91,9 @@ android {
             resValue "string", "client_token", "7e784c39b6e8276791c06bb407f1c58b"
 
             // todo bỏ khi release
-            resConfigs "xxhdpi"
-            ext.enableCrashlytics = false
-            ext.alwaysUpdateBuildId = false
+//            resConfigs "xxhdpi"
+//            ext.enableCrashlytics = false
+//            ext.alwaysUpdateBuildId = false
         }
         prod {
             resValue "string", "app_name", "iCheck"
@@ -102,19 +102,20 @@ android {
             resValue "string", "client_token", "2d5a74d2ced833d25af57a02e63132a9"
 
             // todo bỏ khi release
-            resConfigs "xxhdpi"
-            ext.enableCrashlytics = false
-            ext.alwaysUpdateBuildId = false
+//            resConfigs "xxhdpi"
+//            ext.enableCrashlytics = false
+//            ext.alwaysUpdateBuildId = false
         }
     }
     dexOptions {
+//        preDexLibraries true
         javaMaxHeapSize "4g"
     }
 }
 
 dependencies {
 
-    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
     implementation 'com.google.android.gms:play-services-location:17.0.0'
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation "com.google.maps.android:android-maps-utils:0.5"
@@ -136,6 +137,7 @@ dependencies {
 //    api ('com.github.bumptech.glide:okhttp3-integration:4.11.0'){
 //        exclude group: 'glide-parent'
 //    }
+    implementation 'com.romandanylyk:pageindicatorview:1.0.3'
     implementation 'it.sephiroth.android.library.rangeseekbar:rangeseekbar:1.1.0'
     /** Facebook */
     implementation 'com.facebook.android:facebook-login:5.13.0'
@@ -154,6 +156,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:20.0.2'
     implementation 'com.google.firebase:firebase-database:19.6.0'
     implementation 'com.google.firebase:firebase-crashlytics:17.3.1'
+
+    implementation platform('com.google.firebase:firebase-bom:27.0.0')
+    implementation 'com.google.firebase:firebase-inappmessaging-display-ktx'
 
     /* Firebase Performance */
     implementation 'com.google.firebase:firebase-perf-ktx:19.1.1'

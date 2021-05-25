@@ -41,7 +41,7 @@ import vn.icheck.android.component.product_review.submit_review.SubmitReviewMode
 import vn.icheck.android.component.shopvariant.product_detail.ShopProductModel
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
-import vn.icheck.android.model.category.CategoryAttributesItem
+import vn.icheck.android.network.model.category.CategoryAttributesItem
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.ads.AdsRepository
 import vn.icheck.android.network.feature.post.PostInteractor
@@ -56,6 +56,7 @@ import vn.icheck.android.network.models.product_detail.ICManager
 import vn.icheck.android.network.util.JsonHelper
 import vn.icheck.android.screen.user.home_page.model.ICListHomeItem
 import vn.icheck.android.screen.user.product_detail.product.model.IckReviewSummaryModel
+import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.kotlin.HideWebUtils
 
 class IckProductDetailViewModel : BaseViewModel() {
@@ -232,10 +233,13 @@ class IckProductDetailViewModel : BaseViewModel() {
             getProductLayoutData(isUpdate, obj, productDetail)
             onDataProduct.postValue(productDetail)
         } else if (productDetail?.status == "notFound") {
+            TrackingAllHelper.trackScanBarcodeFailed(barcode,"notFound")
             onProductNotFound.postValue(true)
         } else if (productDetail?.state == "adminDeactive") {
+            TrackingAllHelper.trackScanBarcodeFailed(barcode,"adminDeactive")
             onProductAdminDeactivate.postValue(true)
         } else if (productDetail?.state == "businessDeactive") {
+            TrackingAllHelper.trackScanBarcodeFailed(barcode,"businessDeactive")
             if (productDetail?.manager?.code != 4) {
                 onProductBusinessDeactivate.postValue(true)
             } else {

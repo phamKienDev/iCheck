@@ -7,6 +7,6 @@ import java.io.Serializable
 data class ICNearesShop(
         @Expose val id: Long? = null,
         @Expose val shop: ICShop? = null,
-        @Expose val distance : Long? = null,
+        @Expose val distance : Double? = null,
         var isClick : Boolean = false
 ) : Serializable

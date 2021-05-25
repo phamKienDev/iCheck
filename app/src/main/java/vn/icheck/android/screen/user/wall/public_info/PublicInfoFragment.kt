@@ -76,7 +76,7 @@ class PublicInfoFragment : Fragment() {
                 binding.rowDistrict.beGone()
                 binding.viewDistrict.beGone()
             }
-            if (!user.city?.name.isNullOrEmpty()) {
+            if (!user.ward?.name.isNullOrEmpty()) {
                 binding.tvWard simpleText user.ward?.name
             } else {
                 binding.rowWard.beGone()
@@ -92,7 +92,7 @@ class PublicInfoFragment : Fragment() {
             binding.rowPhone goneIf user.infoPrivacyConfig?.phone
             binding.viewPhone goneIf user.infoPrivacyConfig?.phone
             binding.rowEmail goneIf user.infoPrivacyConfig?.email
-            if (user.infoPrivacyConfig?.email==false && user.infoPrivacyConfig.phone ==false) {
+            if (user.infoPrivacyConfig?.email==false && user.infoPrivacyConfig?.phone ==false) {
                 binding.viewEmail.beGone()
             }
             binding.rowGender goneIf user.infoPrivacyConfig?.gender

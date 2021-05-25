@@ -369,6 +369,9 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
 //                }
                 }
                 listImageAdapter.notifyDataSetChanged()
+            } else {
+                binding.rcvImages.beGone()
+                binding.tvDescription.beVisible()
             }
 
 
@@ -386,7 +389,7 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
             ickContributeProductViewModel.getCategoryAttributes(it).observe(this, Observer { data ->
                 if (data?.data != null) {
                     ickContributeProductViewModel.categoryAttributes.clear()
-                    for (item in data.data) {
+                    for (item in data.data ?: arrayListOf()) {
                         ickContributeProductViewModel.categoryAttributes.add(CategoryAttributesModel(item))
                     }
                     ickContributeProductViewModel.categoryAttributes.filter { model ->
@@ -431,7 +434,9 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
                                     binding.textView4 simpleText "Chỉnh sửa đóng góp"
                                     DialogHelper.showLoading(this@IckContributeProductActivity)
                                     ickContributeProductViewModel.requestBody.putAll(rp.get("data") as Map<String, Any?>)
-                                    ickContributeProductViewModel.myContributionId = (ickContributeProductViewModel.requestBody.get("id") as Double?)?.toLong()
+                                    if (ickContributeProductViewModel.requestBody.get("id") != null) {
+                                        ickContributeProductViewModel.myContributionId = (ickContributeProductViewModel.requestBody.get("id") as Double?)?.toLong()
+                                    }
                                     if (ickContributeProductViewModel.requestBody.get("name") as String? != null) {
                                         binding.edtNameProduct simpleText ickContributeProductViewModel.requestBody.get("name") as String?
                                     }
@@ -475,6 +480,9 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
                                                     mapArr.indexOf(file.name)
                                                 }
                                                 when (arr.size) {
+                                                    0 -> {
+
+                                                    }
                                                     1 -> {
                                                         binding.imgFirst.loadSimpleFile(arr[0])
                                                         binding.tvImgFirst simpleText "Chỉnh sửa"
@@ -499,7 +507,7 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
                                         binding.edtEmail simpleText (ickContributeProductViewModel.requestBody.get("unverifiedOwner") as Map<*, *>).get("email") as String?
                                         binding.edtTax simpleText (ickContributeProductViewModel.requestBody.get("unverifiedOwner") as Map<*, *>).get("tax") as String?
                                     }
-                                    if (ickContributeProductViewModel.requestBody.get("categoryId") is Double?) {
+                                    if (ickContributeProductViewModel.requestBody.get("categoryId") != null && ickContributeProductViewModel.requestBody.get("categoryId") is Double?) {
                                         ickContributeProductViewModel.getCategoryById((ickContributeProductViewModel.requestBody.get("categoryId") as Double).toLong())
                                                 .observe(this@IckContributeProductActivity, Observer { category ->
                                                     lifecycleScope.launch {
@@ -515,7 +523,7 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
                                                                              */
                                                                             val att = ickContributeProductViewModel.requestBody["attributes"] as ArrayList<LinkedTreeMap<String, Any?>>
                                                                             ickContributeProductViewModel.categoryAttributes.clear()
-                                                                            for (item in data.data) {
+                                                                            for (item in data.data ?: arrayListOf()) {
                                                                                 ickContributeProductViewModel.categoryAttributes.add(CategoryAttributesModel(item).apply {
                                                                                     val filt = att.firstOrNull { map ->
                                                                                         map.containsValue("${item.code}")
@@ -597,7 +605,7 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
                                     val data = rp.get("data") as Map<String, Any?>
                                     if (data["hidden"] != null) {
                                         if (data["hidden"] as Boolean) {
-                                            val msg = if (!(data["reason"] as String?).isNullOrEmpty()) "Đóng góp trước đó của bạn đã bị Huỷ duyệt với lý do: " + data["reason"].toString() else "Đóng góp trước đó của bạn đã bị Huỷ duyệt bởi người quản trị. Bạn có muốn thực hiện đóng góp thông tin lại cho sản phẩm này?"
+                                            val msg = if (!(data["reason"] as String?).isNullOrEmpty()) "Đóng góp trước đó của bạn đã bị Huỷ duyệt với lý do: \"" + data["reason"].toString() +"\". Bạn có muốn thực hiện đóng góp thông tin lại cho sản phẩm này?" else "Đóng góp trước đó của bạn đã bị Huỷ duyệt bởi người quản trị. Bạn có muốn thực hiện đóng góp thông tin lại cho sản phẩm này?"
                                             DialogHelper.showConfirm(this@IckContributeProductActivity, "Thông báo",
                                                     msg,
                                                     "Hủy",
@@ -610,11 +618,11 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
 
                                                         override fun onAgree() {
                                                             try {
+                                                                firstJob?.cancel()
+                                                                secondJob?.cancel()
                                                                 ickContributeProductViewModel.requestBody.clear()
                                                                 categoryAttributesAdapter.notifyDataSetChanged()
-                                                                ickContributeProductViewModel.listImageModel.clear()
-                                                                listImageAdapter.notifyDataSetChanged()
-                                                                ickContributeProductViewModel.postSize()
+
                                                                 binding.edtNameProduct.setText("")
                                                                 binding.edtPrice.setText("")
                                                                 binding.edtAddressPage.setText("")
@@ -630,8 +638,15 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
                                                                 binding.imgFirst.setImageResource(R.drawable.ic_front_image_holder)
                                                                 binding.imgSecond.setImageResource(R.drawable.ic_back_image_holder)
                                                                 binding.tvImgSecond simpleText "+ Ảnh mặt sau"
-                                                                firstJob?.cancel()
-                                                                secondJob?.cancel()
+                                                                lifecycleScope.launch {
+                                                                    delay(200)
+                                                                    ickContributeProductViewModel.listImageModel.clear()
+                                                                    ickContributeProductViewModel.arrayListImage.clear()
+                                                                    ickContributeProductViewModel.postSize()
+                                                                    ickContributeProductViewModel.requestBody.remove("categoryId")
+                                                                    ickContributeProductViewModel.requestBody.remove("name")
+                                                                    ickContributeProductViewModel.currentCategory = null
+                                                                }
                                                             } catch (e: Exception) {
                                                             }
                                                         }

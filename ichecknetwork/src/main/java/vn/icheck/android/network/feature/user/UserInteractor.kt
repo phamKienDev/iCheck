@@ -1,7 +1,9 @@
 package vn.icheck.android.network.feature.user
 
+import okhttp3.ResponseBody
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.base.BaseInteractor
+import vn.icheck.android.network.model.kyc.KycResponse
 import vn.icheck.android.network.models.*
 import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.network.models.wall.ICUserFollowWall
@@ -187,4 +189,13 @@ public class UserInteractor : BaseInteractor() {
         requestNewApi(ICNetworkClient.getNewSocialApi().postKyc(url, body), listener)
     }
 
+//    fun createUserKyc(body: HashMap<String, Any?>, listener: ICNewApiListener<ResponseBody>) {
+//        val url = APIConstants.socialHost + "social/api/users/kyc-request"
+//        requestNewApi(ICNetworkClient.getNewSocialApi().createUserKyc(url, body), listener)
+//    }
+
+    fun getUserKyc(listener: ICNewApiListener<ICResponse<ListResponse<KycResponse>>>) {
+        val url = APIConstants.socialHost + "social/api/users/kyc-request"
+        requestNewApi(ICNetworkClient.getNewSocialApi().getUserKyc(url), listener)
+    }
 }

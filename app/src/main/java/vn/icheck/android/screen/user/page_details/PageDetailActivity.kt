@@ -192,8 +192,8 @@ class PageDetailActivity : BaseActivityMVVM(), View.OnClickListener {
         btnFollow.setOnClickListener {
             if (SessionManager.isUserLogged) {
                 if (viewModel.isFollowPage) {
-                    SocialChatActivity.createPageChat(this, pageID)
-//                    ChatSocialDetailActivity.createRoomChat(this@PageDetailActivity, pageID, "page")
+//                    SocialChatActivity.createPageChat(this, pageID)
+                    ChatSocialDetailActivity.createRoomChat(this@PageDetailActivity, pageID, "page")
                 } else {
                     viewModel.pageOverview?.let { page ->
                         viewModel.followPage(page.id)
@@ -284,7 +284,7 @@ class PageDetailActivity : BaseActivityMVVM(), View.OnClickListener {
 
     fun openPageImage(item: ICMediaPage) {
         if (item.postId != null) {
-            MediaInPostActivity.start(item.postId!!, this, null, requestPageImage)
+            MediaInPostActivity.start(item.postId!!, this, item.content, requestPageImage)
         }
     }
 
@@ -386,12 +386,12 @@ class PageDetailActivity : BaseActivityMVVM(), View.OnClickListener {
 
         if (requestCode == requestPageImage) {
             if (resultCode == Activity.RESULT_OK) {
-                tvHome.performClick()
-                (viewPager.adapter as ViewPagerAdapter?)?.getFragment(0)?.let { fragment ->
-                    if (fragment is PageDetailFragment) {
-                        fragment.scrollToTop()
-                    }
-                }
+//                tvHome.performClick()
+//                (viewPager.adapter as ViewPagerAdapter?)?.getFragment(0)?.let { fragment ->
+//                    if (fragment is PageDetailFragment) {
+//                        fragment.scrollToTop()
+//                    }
+//                }
             }
         }
     }

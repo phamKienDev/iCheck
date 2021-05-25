@@ -164,6 +164,9 @@ class SearchReviewActivity : BaseActivityMVVM(), View.OnClickListener, IRecycler
                     if (event.data != null && event.data is ICPost) {
                         val intent = Intent(this, MediaInPostActivity::class.java)
                         intent.putExtra(Constant.DATA_1, event.data)
+                        if(event.data.positionMedia != -1){
+                            intent.putExtra(Constant.DATA_3, event.data.positionMedia)
+                        }
                         startActivityForResult(intent, requestReviewDetail)
                     }
                 }

@@ -17,7 +17,7 @@ import vn.icheck.android.constant.ATTRIBUTES_POSITION
 import vn.icheck.android.constant.CONTRIBUTIONS_ACTION
 import vn.icheck.android.constant.PUT_ATTRIBUTES
 import vn.icheck.android.databinding.ItemSelectBinding
-import vn.icheck.android.model.category.OptionsItem
+import vn.icheck.android.network.model.category.OptionsItem
 import vn.icheck.android.screen.user.contribute_product.viewmodel.CategoryAttributesModel
 import vn.icheck.android.util.ick.*
 
@@ -58,20 +58,20 @@ class SelectHolder(private val itemSelectBinding: ItemSelectBinding) : RecyclerV
             itemSelectBinding.groupSpinner.beGone()
             itemSelectBinding.groupSelect.removeAllViews()
             if (!categoryAttributesModel.categoryItem.options.isNullOrEmpty()) {
-                for (item in categoryAttributesModel.categoryItem.options) {
+                for (item in categoryAttributesModel.categoryItem.options ?: arrayListOf()) {
                     itemSelectBinding.groupSelect.addView(RadioButton(itemSelectBinding.root.context).apply {
                         text = item?.value
                         if (item?.id == categoryAttributesModel.values) {
                             isChecked = true
                         }
                         setCustomChecked(object : CompoundButton.OnCheckedChangeListener {
-                            val pos = categoryAttributesModel.categoryItem.options.indexOf(item)
+                            val pos = categoryAttributesModel.categoryItem.options?.indexOf(item) ?: 0
                             override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
                                 if (isChecked) {
                                     itemSelectBinding.root.context.sendBroadcast(Intent(CONTRIBUTIONS_ACTION).apply {
                                         putExtra(CONTRIBUTIONS_ACTION, PUT_ATTRIBUTES)
                                         putExtra(ATTRIBUTES_POSITION, bindingAdapterPosition)
-                                        putExtra(PUT_ATTRIBUTES, categoryAttributesModel.categoryItem.options.get(pos)?.id)
+                                        putExtra(PUT_ATTRIBUTES, categoryAttributesModel.categoryItem.options?.get(pos)?.id)
                                     })
                                 }
                             }
@@ -85,7 +85,7 @@ class SelectHolder(private val itemSelectBinding: ItemSelectBinding) : RecyclerV
                     it?.id == (categoryAttributesModel.values as Double).toInt()
                 }
                 if (filter != null) {
-                    itemSelectBinding.groupSelect.check(itemSelectBinding.groupSelect.getChildAt(categoryAttributesModel.categoryItem.options.indexOf(filter)).id)
+                    itemSelectBinding.groupSelect.check(itemSelectBinding.groupSelect.getChildAt(categoryAttributesModel.categoryItem.options?.indexOf(filter) ?: 0).id )
                 }
 
             } else if (categoryAttributesModel.values != null && categoryAttributesModel.values is String?) {
@@ -98,10 +98,10 @@ class SelectHolder(private val itemSelectBinding: ItemSelectBinding) : RecyclerV
             itemSelectBinding.groupSpinner.beVisible()
 
             val arrAdapter = if (!categoryAttributesModel.categoryItem.options.isNullOrEmpty()) {
-                if (categoryAttributesModel.categoryItem.options[0]!!.id != 0) {
-                    categoryAttributesModel.categoryItem.options.add(0, OptionsItem(0, itemView.context.getString(R.string.tuy_chon)))
+                if (categoryAttributesModel.categoryItem.options?.firstOrNull()?.id != 0) {
+                    categoryAttributesModel.categoryItem.options?.add(0, OptionsItem(0, itemView.context.getString(R.string.tuy_chon)))
                 }
-                ArrayAdapter(itemSelectBinding.root.context, android.R.layout.simple_spinner_item, categoryAttributesModel.categoryItem.options)
+                ArrayAdapter(itemSelectBinding.root.context, android.R.layout.simple_spinner_item, categoryAttributesModel.categoryItem.options ?: arrayListOf())
             } else {
                 ArrayAdapter(itemSelectBinding.root.context, android.R.layout.simple_spinner_item, listOf(OptionsItem(0, itemView.context.getString(R.string.tuy_chon))))
             }

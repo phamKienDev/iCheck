@@ -307,15 +307,15 @@ class HomePageAdapter(
             ICViewTypes.ADS_LIST_PRODUCT_VERTICAL -> {
                 CollectionVerticalHolder(parent)
             }
-            ICViewTypes.ADS_DIRECT_SURVEY_TYPE -> {
-                CollectionSurveyHolder(parent)
-            }
-            ICViewTypes.ADS_DIRECT_SURVEY_SUCCESS_TYPE -> {
-                CollectionSurveySuccessHolder(parent)
-            }
+//            ICViewTypes.ADS_DIRECT_SURVEY_TYPE -> {
+//                CollectionSurveyHolder(parent)
+//            }
+//            ICViewTypes.ADS_DIRECT_SURVEY_SUCCESS_TYPE -> {
+//                CollectionSurveySuccessHolder(parent)
+//            }
             ICViewTypes.EXPERIENCE_NEW_PRODUCT -> {
 //                ExperienceNewProductsViewHolder(parent)
-                TrendingProductHolder.create(parent)
+                TrendingProductHolder(parent)
             }
             ICViewTypes.MESSAGE_TYPE -> {
                 ShortMessageHolder(parent)

@@ -1,5 +1,6 @@
 package vn.icheck.android.screen.user.detail_media
 
+import android.Manifest
 import android.app.Activity
 import android.app.DownloadManager
 import android.content.Context
@@ -17,10 +18,12 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.DownloadHelper
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.network.models.ICMedia
 import vn.icheck.android.network.util.JsonHelper
 import vn.icheck.android.screen.user.media_in_post.ICExoMedia
 import vn.icheck.android.screen.user.media_in_post.MediaInPostAdapter
+import vn.icheck.android.util.ick.showSimpleErrorToast
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -28,6 +31,7 @@ class DetailMediaActivity : BaseActivityMVVM(), View.OnClickListener {
     private lateinit var adapter: MediaInPostAdapter
 
     private var positionView: Int = -1
+    private val permissionWrite = 1
 
     private lateinit var downloadManager: DownloadManager
     private var downloadHelper: DownloadHelper? = null
@@ -50,6 +54,32 @@ class DetailMediaActivity : BaseActivityMVVM(), View.OnClickListener {
             intent.putExtra(Constant.DATA_1, json)
             ActivityUtils.startActivity(activity, intent)
         }
+
+        fun start(activity: Activity, listImage: ArrayList<String?>, pos: Int = 0) {
+            val listMedia = arrayListOf<ICMedia>()
+            listImage.filter { !it.isNullOrEmpty() }.forEach {
+                listMedia.add(ICMedia(it, Constant.IMAGE))
+            }
+            val json = JsonHelper.toJson(listMedia)
+
+            val intent = Intent(activity, DetailMediaActivity::class.java)
+            intent.putExtra(Constant.DATA_1, json)
+            intent.putExtra(Constant.DATA_2, pos)
+            ActivityUtils.startActivity(activity, intent)
+        }
+
+        fun start(context: Context, listImage: ArrayList<String?>, pos: Int = 0) {
+            val listMedia = arrayListOf<ICMedia>()
+            listImage.filter { !it.isNullOrEmpty() }.forEach {
+                listMedia.add(ICMedia(it, Constant.IMAGE))
+            }
+            val json = JsonHelper.toJson(listMedia)
+
+            val intent = Intent(context, DetailMediaActivity::class.java)
+            intent.putExtra(Constant.DATA_1, json)
+            intent.putExtra(Constant.DATA_2, pos)
+            context.startActivity(intent)
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,7 +91,7 @@ class DetailMediaActivity : BaseActivityMVVM(), View.OnClickListener {
     }
 
     private fun initRecyclerView() {
-       val listData = JsonHelper.parseListAttachment(intent.getStringExtra(Constant.DATA_1))
+        val listData = JsonHelper.parseListAttachment(intent.getStringExtra(Constant.DATA_1))
 
         if (listData.isNullOrEmpty()) {
             showShortError(getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
@@ -75,9 +105,20 @@ class DetailMediaActivity : BaseActivityMVVM(), View.OnClickListener {
             }
 
             adapter.setData(listExo)
-            tvSlide.text = "1/${listExo.size}"
-            listExo[0].exoPlayer?.playWhenReady = true
-            positionView = 0
+
+            val position = intent.getIntExtra(Constant.DATA_2, -1)
+            if (position != -1) {
+                rcvMedia.scrollToPosition(position)
+                tvSlide.text = "${position + 1}/${listExo.size}"
+                listExo[position].exoPlayer?.playWhenReady = true
+                positionView = position
+            } else {
+                tvSlide.text = "1/${listExo.size}"
+                listExo[0].exoPlayer?.playWhenReady = true
+                positionView = 0
+            }
+
+
 
             rcvMedia.addScrollStateChangeListener(object : DiscreteScrollView.ScrollStateChangeListener<RecyclerView.ViewHolder> {
                 override fun onScroll(p0: Float, p1: Int, p2: Int, p3: RecyclerView.ViewHolder?, p4: RecyclerView.ViewHolder?) {
@@ -130,22 +171,40 @@ class DetailMediaActivity : BaseActivityMVVM(), View.OnClickListener {
         WidgetUtils.setClickListener(this, imgBack, imgDownload)
     }
 
+    private fun downloadMedia(){
+        if (!adapter.getListData.isNullOrEmpty()) {
+            if (adapter.getListData[positionView].mediaError || NetworkHelper.isNotConnected(this)) {
+                DialogHelper.showDialogErrorBlack(this@DetailMediaActivity, "Tải xuống thất bại")
+            } else {
+                imgDownload.setImageResource(R.drawable.ic_download_24_gray)
+                imgDownload.isEnabled = false
+                downloadId = downloadHelper?.startDownload(adapter.getListData[positionView].src)
+                        ?: -1
+            }
+        }
+    }
+
     override fun onClick(p0: View?) {
         when (p0?.id) {
             R.id.imgBack -> {
                 onBackPressed()
             }
             R.id.imgDownload -> {
-                if (!adapter.getListData.isNullOrEmpty()) {
-                    if (adapter.getListData[positionView].mediaError || NetworkHelper.isNotConnected(this)) {
-                        DialogHelper.showDialogErrorBlack(this@DetailMediaActivity, "Tải xuống thất bại")
-                    } else {
-                        imgDownload.setImageResource(R.drawable.ic_download_24_gray)
-                        imgDownload.isEnabled = false
-                        downloadId = downloadHelper?.startDownload(adapter.getListData[positionView].src)
-                                ?: -1
-                    }
+                val permission = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                if (PermissionHelper.checkPermission(this, permission, permissionWrite)) {
+                    downloadMedia()
                 }
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == permissionWrite){
+            if (PermissionHelper.checkResult(grantResults)){
+                downloadMedia()
+            }else{
+                showSimpleErrorToast(R.string.khong_the_thuc_hien_tac_vu_vi_ban_chua_cap_quyen)
             }
         }
     }

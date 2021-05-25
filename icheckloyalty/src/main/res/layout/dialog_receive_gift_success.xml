@@ -149,6 +149,22 @@
                 </LinearLayout>
             </LinearLayout>
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/btnCTCC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chi tiết chương trình"
+                android:layout_marginTop="@dimen/size_13"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:textColor="@color/colorSecondary"
+                android:fontFamily="@font/roboto_medium"
+                android:drawableEnd="@drawable/ic_two_arrow_right_blue_24dp"
+                android:textStyle="italic"
+                android:drawableRight="@drawable/ic_two_arrow_right_blue_24dp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -222,8 +238,8 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/btnClose"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/size_24"
+            android:layout_height="@dimen/size_24"
             android:layout_marginTop="@dimen/size_20"
             android:src="@drawable/ic_close_popup_32px"
             app:layout_constraintBottom_toBottomOf="parent"

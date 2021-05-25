@@ -2,6 +2,7 @@ package vn.icheck.android.screen.user.listcontribute
 
 import android.annotation.SuppressLint
 import android.graphics.Typeface
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,9 @@ import androidx.appcompat.widget.AppCompatCheckedTextView
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_contribute.view.*
+import kotlinx.android.synthetic.main.item_contribute.view.imgAvatar
+import kotlinx.android.synthetic.main.item_contribute.view.tvName
+import kotlinx.android.synthetic.main.item_me_follow_page_holder.view.*
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
@@ -21,6 +25,7 @@ import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.product.ProductInteractor
 import vn.icheck.android.network.models.ICContribute
@@ -32,6 +37,7 @@ import vn.icheck.android.screen.user.page_details.fragment.page.widget.message.M
 import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionDialog
 import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionSuccessDialog
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
+import vn.icheck.android.util.ick.setRankUser
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -174,8 +180,17 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
                 }
             }
 
+            itemView.imgRank.setRankUser(obj.user?.rank?.level)
+
             itemView.tvName.run {
-                text = obj.user?.getName
+                if (obj.user?.kycStatus == 2) {
+                    setDrawbleNextEndText(obj.user?.getName, R.drawable.ic_verified_user_16dp)
+                    Handler().postDelayed({
+                      setDrawbleNextEndText(text?.toString(), R.drawable.ic_verified_user_16dp)
+                    }, 100)
+                } else {
+                    text = obj.user?.getName
+                }
 
                 setOnClickListener {
                     IckUserWallActivity.create(obj.user?.id, itemView.context)

@@ -18,12 +18,15 @@ import vn.icheck.android.component.product_review.my_review.MyReviewModel
 import vn.icheck.android.component.product_review.submit_review.ISubmitReviewListener
 import vn.icheck.android.component.product_review.submit_review.SubmitReviewHolder
 import vn.icheck.android.component.product_review.submit_review.SubmitReviewModel
-import vn.icheck.android.component.space.SpacingHolder
-import vn.icheck.android.component.space.SpacingModel
 import vn.icheck.android.network.models.ICPost
 
 class ListProductReviewAdapter(var callback: IRecyclerViewCallback, private val submitReviewListener: ISubmitReviewListener, private val myReviewListener: IMyReviewListener) : RecyclerViewCustomAdapter<ICViewModel>(callback) {
     var isReviewSummary = 0
+    private var refeshTextReview=true
+
+    fun setRefeshTextReview(refesh:Boolean){
+        refeshTextReview=refesh
+    }
 
     fun updateItemReview(post: ICPost) {
         for (i in 0 until listData.size) {
@@ -81,7 +84,7 @@ class ListProductReviewAdapter(var callback: IRecyclerViewCallback, private val 
             }
 
             is SubmitReviewHolder -> {
-                holder.bind(listData[position] as SubmitReviewModel)
+                holder.bind(listData[position] as SubmitReviewModel,refeshTextReview).apply { refeshTextReview=false }
             }
 
             is MyReviewHolder -> {

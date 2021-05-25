@@ -10,6 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:orientation="horizontal">
 
         <ImageView
@@ -23,6 +24,7 @@
             android:id="@+id/textView4"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/size_50"
             android:layout_marginEnd="@dimen/size_50"
             android:layout_weight="1"
             android:focusableInTouchMode="true"
@@ -33,9 +35,7 @@
 
     <View
         android:id="@+id/divider4"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/size_1"
-        android:background="?android:attr/listDivider" />
+        style="@style/Shadow_Bottom"/>
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/root_scroll"

@@ -20,9 +20,9 @@
     <FrameLayout
         android:id="@id/layoutName"
         android:layout_width="0dp"
-        android:layout_marginTop="@dimen/size_8"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_8"
+        android:layout_marginTop="@dimen/size_8"
         android:layout_marginEnd="@dimen/size_8"
         app:layout_constraintEnd_toStartOf="@id/btnConfirm"
         app:layout_constraintStart_toEndOf="@id/layoutAvatar"
@@ -32,6 +32,7 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/size_4"
             android:ellipsize="end"
             android:gravity="center_vertical"
             android:includeFontPadding="false"

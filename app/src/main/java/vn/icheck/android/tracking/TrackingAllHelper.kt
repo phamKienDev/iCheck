@@ -1,9 +1,9 @@
 package vn.icheck.android.tracking
 
 import com.useinsider.insider.Insider
-import vn.icheck.android.model.cart.ItemCartItem
-import vn.icheck.android.model.cart.PurchasedOrderResponse
-import vn.icheck.android.model.loyalty.ShipAddressResponse
+import vn.icheck.android.network.model.cart.ItemCartItem
+import vn.icheck.android.network.model.cart.PurchasedOrderResponse
+import vn.icheck.android.network.model.loyalty.ShipAddressResponse
 import vn.icheck.android.network.models.ICPageOverview
 import vn.icheck.android.network.models.ICStoreiCheck
 import vn.icheck.android.network.models.product_detail.ICDataProductDetail
@@ -94,6 +94,26 @@ object TrackingAllHelper {
         TrackingFirebaseHelper.tagScanSuccessful(obj)
         InsiderHelper.tagScanSuccessful(obj)
         TekoHelper.tagScanSuccessful(obj)
+
+        //trackScanBarcodeSuccess
+        InsiderHelper.tagScanBarcodeSuccess(obj)
+        TrackingFirebaseHelper.tagScanBarcodeSuccess(obj)
+    }
+
+
+    fun trackScanBarcodeViewedSuccess(obj: ICDataProductDetail) {
+        InsiderHelper.tagScanBarcodeViewedSuccess(obj)
+        TrackingFirebaseHelper.tagScanBarcodeViewedSuccess(obj)
+    }
+
+    fun trackScanBarcodeFailed(barcode:String, status:String) {
+        InsiderHelper.tagScanBarcodeFailed(barcode, status)
+        TrackingFirebaseHelper.tagScanBarcodeFailed(barcode, status)
+    }
+
+    fun trackScanQrcode(content:String, icheck:Boolean) {
+        InsiderHelper.tagScanQrcode(content, icheck)
+        TrackingFirebaseHelper.tagScanQrcode(content, icheck)
     }
 
     fun trackScanStart(scan_type: String) {

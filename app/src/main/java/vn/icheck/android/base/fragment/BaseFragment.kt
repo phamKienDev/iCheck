@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
+import vn.icheck.android.base.dialog.reward_login.RewardLoginCallback
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.base.ICRequireLogin
@@ -118,8 +119,8 @@ abstract class BaseFragment<P : BaseFragmentPresenter> : Fragment(), BaseFragmen
         }
         requestRequireLogin = requestCode
 
-        context?.let {
-            object : RewardLoginDialog(it) {
+        activity?.supportFragmentManager?.let {
+            RewardLoginDialog.show(it, object : RewardLoginCallback {
                 override fun onLogin() {
                     startActivityForResult<IckLoginActivity>(requestLogin)
                 }
@@ -131,7 +132,7 @@ abstract class BaseFragment<P : BaseFragmentPresenter> : Fragment(), BaseFragmen
                 override fun onDismiss() {
                     onRequireLoginCancel()
                 }
-            }.show()
+            })
         }
     }
 

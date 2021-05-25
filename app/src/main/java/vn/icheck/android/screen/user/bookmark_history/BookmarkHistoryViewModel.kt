@@ -8,13 +8,11 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
-import vn.icheck.android.model.bookmark.BookmarkHistoryResponse
-import vn.icheck.android.model.category.CategoryItem
 import vn.icheck.android.network.api.ICKApi
 import vn.icheck.android.network.base.ICListResponse
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ListTypeResponse
+import vn.icheck.android.network.model.bookmark.BookmarkHistoryResponse
 import vn.icheck.android.util.ick.logError
 
 class BookmarkHistoryViewModel @ViewModelInject constructor(val ickApi: ICKApi, val bookmarkHistoryDataSource: BookmarkHistoryDataSource, @Assisted savedStateHandle: SavedStateHandle):ViewModel() {

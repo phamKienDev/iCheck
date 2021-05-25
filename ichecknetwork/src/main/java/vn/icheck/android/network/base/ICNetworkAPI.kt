@@ -242,6 +242,10 @@ interface ICNetworkAPI {
     @GET(APIConstants.News.LIST)
     fun getListNews(@QueryMap queries: HashMap<String, Any>): Observable<ICListResponse<ICNews>>
 
+    // GET LIST NEWS CATEGORY
+    @GET(APIConstants.News.LIST_CATEGORY)
+    fun getListNewsCategory(): Observable<ICResponse<ICListResponse<ICArticleCategory>>>
+
     @GET(APIConstants.News.LIST_SOCIAL)
     fun getListNewsSocial(@QueryMap queries: HashMap<String, Any>): Observable<ICResponse<ICListResponse<ICNews>>>
 

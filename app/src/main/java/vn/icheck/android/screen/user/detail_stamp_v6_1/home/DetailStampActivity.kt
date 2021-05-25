@@ -146,12 +146,10 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
     var banner = ""
     var description = ""
     var targetType = ""
-    var hasChanceCode = false
 
     private var nameProduct: String? = null
     private var url: String? = null
     private var km: String? = null
-    var ownerImage = ""
 
     private var bannerAdapter: BannerAdapter? = null
     private lateinit var adapterSuggestion: MoreProductVerifiedAdapter
@@ -166,13 +164,6 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
 
     var codeInput = ""
     var obj: ICKLoyalty? = null
-
-//    private val loyaltyCampaign = LoyaltyInteractor()
-
-    private var nameCampaign: String? = null
-    private lateinit var user: ICUser
-    private val userInteraction = UserInteractor()
-
 
     override fun isRegisterEventBus(): Boolean {
         return true
@@ -223,24 +214,12 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
         }
 
         getData()
-        getUserDetail()
+//        getUserDetail()
 //        initUpdateLocation()
         listener()
     }
 
     // Loyalty Campaign
-
-    fun getUserDetail() {
-        userInteraction.getUserMeDelay(object : ICApiListener<ICUser> {
-            override fun onSuccess(obj: ICUser) {
-                user = obj
-            }
-
-            override fun onError(error: ICBaseResponse?) {
-
-            }
-        })
-    }
 
     //End Loyalty (longdq)
 
@@ -894,7 +873,8 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
 
                 tvViewMore.visibleOrInvisible(adapter.getListData.size > 3)
                 tvViewMore.setOnClickListener {
-                    ActivityHelper.startActivity<ListProductsECommerceActivity>(this@DetailStampActivity, Constant.DATA_1, JsonHelper.toJson(obj.data?.product_link ?: mutableListOf()))
+                    ActivityHelper.startActivity<ListProductsECommerceActivity>(this@DetailStampActivity, Constant.DATA_1, JsonHelper.toJson(obj.data?.product_link
+                            ?: mutableListOf()))
                 }
             }
 
@@ -1323,19 +1303,9 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
                         getString(R.string.dang_cap_nhat)
                     }
 
-                    tvAddressVendor.text = if (!obj.data?.product?.vendor?.address.isNullOrEmpty()) {
-                        if (!obj.data?.product?.vendor?.city.isNullOrEmpty()) {
-                            if (!obj.data?.product?.vendor?.district.isNullOrEmpty()) {
-                                obj.data?.product?.vendor?.address + ", " + obj.data?.product?.vendor?.city + ", " + obj.data?.product?.vendor?.district
-                            } else {
-                                obj.data?.product?.vendor?.address + ", " + obj.data?.product?.vendor?.city
-                            }
-                        } else {
-                            obj.data?.product?.vendor?.address
-                        }
-                    } else {
-                        getString(R.string.dang_cap_nhat)
-                    }
+                    tvAddressVendor.text = vn.icheck.android.ichecklibs.Constant.getAddress(obj.data?.product?.vendor?.address,
+                            obj.data?.product?.vendor?.district, obj.data?.product?.vendor?.city,
+                            obj.data?.product?.vendor?.country_name, getString(R.string.dang_cap_nhat))
 
                     tvWebsiteVendor.text = if (!obj.data?.product?.vendor?.website.isNullOrEmpty()) {
                         obj.data?.product?.vendor?.website
@@ -1344,7 +1314,7 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
                     }
 
                     tvPhoneVendor.text = if (!obj.data?.product?.vendor?.phone.isNullOrEmpty()) {
-                        obj.data?.product?.vendor?.phone
+                        obj.data?.product?.vendor?.phone?.trim()
                     } else {
                         getString(R.string.dang_cap_nhat)
                     }
@@ -1384,19 +1354,9 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
                         getString(R.string.dang_cap_nhat)
                     }
 
-                    tvAddressDistributor.text = if (!obj.data?.distributor?.address.isNullOrEmpty()) {
-                        if (!obj.data?.distributor?.district.isNullOrEmpty()) {
-                            if (!obj.data?.distributor?.city.isNullOrEmpty()) {
-                                obj.data?.distributor?.address + ", " + obj.data?.distributor?.district + ", " + obj.data?.distributor?.city
-                            } else {
-                                obj.data?.distributor?.address + ", " + obj.data?.distributor?.district
-                            }
-                        } else {
-                            obj.data?.distributor?.address
-                        }
-                    } else {
-                        getString(R.string.dang_cap_nhat)
-                    }
+                    tvAddressDistributor.text = vn.icheck.android.ichecklibs.Constant.getAddress(obj.data?.distributor?.address,
+                            obj.data?.distributor?.district, obj.data?.distributor?.city,
+                            obj.data?.distributor?.country_name, getString(R.string.dang_cap_nhat))
 
                     tvWebsiteDistributor.text = if (!obj.data?.distributor?.website.isNullOrEmpty()) {
                         obj.data?.distributor?.website
@@ -1405,7 +1365,7 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
                     }
 
                     tvPhoneDistributor.text = if (!obj.data?.distributor?.phone.isNullOrEmpty()) {
-                        obj.data?.distributor?.phone
+                        obj.data?.distributor?.phone?.trim()
                     } else {
                         getString(R.string.dang_cap_nhat)
                     }

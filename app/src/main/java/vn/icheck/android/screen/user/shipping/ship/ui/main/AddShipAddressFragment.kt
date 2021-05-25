@@ -1,15 +1,18 @@
 package vn.icheck.android.screen.user.shipping.ship.ui.main
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.core.view.children
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import vn.icheck.android.databinding.FragmentAddShipAddressBinding
-import vn.icheck.android.ichecklibs.ViewHelper
-import vn.icheck.android.model.location.CityItem
+import vn.icheck.android.network.model.location.CityItem
 import vn.icheck.android.screen.location.CITY
 import vn.icheck.android.screen.location.CityPicker
 import vn.icheck.android.screen.location.DISTRICT

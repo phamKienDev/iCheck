@@ -60,6 +60,7 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
         Constant.DATA_2: postId
         Constant.DATA_3: postion media trong list
         Constant.DATA_4: check có vào từ màn PostDetaik?
+        Constant.DATA_5: truyền ảnh vào đề tìm vị trí trong list media
          */
 
         fun start(post: ICPost, activity: Activity, position: Int? = null, requestCode: Int = -1) {
@@ -92,6 +93,18 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
                 ActivityUtils.startActivityForResult(activity, intent, requestCode)
             }
         }
+
+        fun start(postId: Long, activity: Activity, image: String?, requestCode: Int = -1) {
+            val intent = Intent(activity, MediaInPostActivity::class.java)
+            intent.putExtra(Constant.DATA_2, postId)
+            intent.putExtra(Constant.DATA_5, image)
+
+            if (requestCode == -1) {
+                ActivityUtils.startActivity(activity, intent)
+            } else {
+                ActivityUtils.startActivityForResult(activity, intent, requestCode)
+            }
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -112,27 +125,48 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
         postScreen = intent.getStringExtra(Constant.DATA_4)
         downloadManager = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
 
-        downloadHelper = DownloadHelper(downloadManager, this, object : DownloadHelper.DownloadHelperCallback {
-            override fun downloadSuccess() {
-                imgDownload.setImageResource(R.drawable.ic_download_24_white)
-                imgDownload.isEnabled = true
-                DialogHelper.showDialogSuccessBlack(this@MediaInPostActivity, "Tải xuống thành công")
-            }
+        downloadHelper =
+            DownloadHelper(downloadManager, this, object : DownloadHelper.DownloadHelperCallback {
+                override fun downloadSuccess() {
+                    imgDownload.setImageResource(R.drawable.ic_download_24_white)
+                    imgDownload.isEnabled = true
+                    DialogHelper.showDialogSuccessBlack(
+                        this@MediaInPostActivity,
+                        "Tải xuống thành công"
+                    )
+                }
 
-            override fun downloadError() {
-                imgDownload.setImageResource(R.drawable.ic_download_24_white)
-                imgDownload.isEnabled = true
-                DialogHelper.showDialogErrorBlack(this@MediaInPostActivity, "Tải xuống thất bại")
-                downloadHelper?.cancelDownload(downloadId)
+                override fun downloadError() {
+                    imgDownload.setImageResource(R.drawable.ic_download_24_white)
+                    imgDownload.isEnabled = true
+                    DialogHelper.showDialogErrorBlack(
+                        this@MediaInPostActivity,
+                        "Tải xuống thất bại"
+                    )
+                    downloadHelper?.cancelDownload(downloadId)
 
-            }
-        })
+                }
+            })
         downloadHelper?.register()
 
         adapter = MediaInPostAdapter(false)
         rcvMedia.adapter = adapter
 
-        WidgetUtils.setClickListener(this, imgBack, imgDownload, layoutHeader, tvViewComment, containerComment, imgAvatarSend, imgDown, tvLike, tvShare, imgAvatar, tvName, containerRating, tvContent)
+        WidgetUtils.setClickListener(
+            this, imgBack,
+            imgDownload,
+            layoutHeader,
+            tvViewComment,
+            containerComment,
+            imgAvatarSend,
+            imgDown,
+            tvLike,
+            tvShare,
+            imgAvatar,
+            tvName,
+            containerRating,
+            tvContent
+        )
     }
 
     private fun listenerData() {
@@ -143,25 +177,38 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
                 WidgetUtils.loadImageUrl(imgAvatar, it.page!!.avatar, R.drawable.ic_business_v2)
                 tvName.text = it.page!!.name
                 if (it.page!!.isVerify) {
-                    tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
+                    tvName.setCompoundDrawablesWithIntrinsicBounds(
+                        0,
+                        0,
+                        R.drawable.ic_verified_16px,
+                        0
+                    )
                 } else {
                     tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                 }
 
                 imgRank.beInvisible()
             } else {
-                WidgetUtils.loadImageUrl(imgAvatar, it.user!!.avatar, R.drawable.ic_avatar_default_84px)
+                WidgetUtils.loadImageUrl(
+                    imgAvatar,
+                    it.user!!.avatar,
+                    R.drawable.ic_avatar_default_84px
+                )
                 imgRank.beVisible()
                 imgRank.setRankUser(it.user?.rank?.level)
                 tvName.apply {
                     text = it.user?.getName
                     if (it.user?.kycStatus == 2) {
-                        setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_16dp, 0)
+                        setCompoundDrawablesWithIntrinsicBounds(
+                            0,
+                            0,
+                            R.drawable.ic_verified_user_16dp,
+                            0
+                        )
                     } else {
                         setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                     }
                 }
-                tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
             if (!it.customerCriteria.isNullOrEmpty() && it.avgPoint != 0f) {
                 containerRating.beVisible()
@@ -172,13 +219,20 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
             tvTime.text = TimeHelper.convertDateTimeSvToCurrentDay2(it.createdAt)
             if (!it.content.isNullOrEmpty()) {
                 tvContent.text = it.content!!.trim()
-                ViewHelper.setExpandTextWithoutAction(tvContent, 2, getString(R.string.xem_chi_tiet), "#FFB800")
+                ViewHelper.setExpandTextWithoutAction(
+                    tvContent,
+                    2,
+                    getString(R.string.xem_chi_tiet),
+                    "#FFB800"
+                )
             }
-            tvLike.setCompoundDrawablesWithIntrinsicBounds(if (it.expressive == null) {
-                R.drawable.ic_like_white_off_24px
-            } else {
-                R.drawable.ic_like_on_24dp
-            }, 0, 0, 0)
+            tvLike.setCompoundDrawablesWithIntrinsicBounds(
+                if (it.expressive == null) {
+                    R.drawable.ic_like_white_off_24px
+                } else {
+                    R.drawable.ic_like_on_24dp
+                }, 0, 0, 0
+            )
             tvLike.text = it.expressiveCount.toString()
             tvViewComment.text = it.commentCount.toString()
             tvView.text = it.viewCount.toString()
@@ -190,20 +244,33 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
             adapter.setData(it)
 
             val positionIntent = intent.getIntExtra(Constant.DATA_3, -1)
+            val image = intent.getStringExtra(Constant.DATA_5)
             if (positionIntent != -1) {
                 rcvMedia.scrollToPosition(positionIntent)
                 tvSlide.text = "${positionIntent + 1}/${it.size}"
                 it[positionIntent].exoPlayer?.playWhenReady = true
                 positionView = positionIntent
-
+            } else if (!image.isNullOrEmpty()) {
+                val index = it.indexOfFirst { it.src == image }
+                rcvMedia.scrollToPosition(index)
+                tvSlide.text = "${index + 1}/${it.size}"
+                it[index].exoPlayer?.playWhenReady = true
+                positionView = index
             } else {
                 tvSlide.text = "1/${it.size}"
                 it[0].exoPlayer?.playWhenReady = true
                 positionView = 0
             }
 
-            rcvMedia.addScrollStateChangeListener(object : DiscreteScrollView.ScrollStateChangeListener<RecyclerView.ViewHolder> {
-                override fun onScroll(p0: Float, p1: Int, p2: Int, p3: RecyclerView.ViewHolder?, p4: RecyclerView.ViewHolder?) {
+            rcvMedia.addScrollStateChangeListener(object :
+                DiscreteScrollView.ScrollStateChangeListener<RecyclerView.ViewHolder> {
+                override fun onScroll(
+                    p0: Float,
+                    p1: Int,
+                    p2: Int,
+                    p3: RecyclerView.ViewHolder?,
+                    p4: RecyclerView.ViewHolder?
+                ) {
 
                 }
 
@@ -221,10 +288,10 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
 
         viewModel.onSharePost.observe(this, {
             ShareCompat.IntentBuilder.from(this)
-                    .setType("text/plain")
-                    .setChooserTitle(this.getString(R.string.chia_se))
-                    .setText(it)
-                    .startChooser()
+                .setType("text/plain")
+                .setChooserTitle(this.getString(R.string.chia_se))
+                .setText(it)
+                .startChooser()
             tvShare.text = (tvShare.text.toString().toInt() + 1).toString()
         })
 
@@ -249,34 +316,41 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
     private fun checkPrivacyConfig() {
         if (viewModel.postDetail?.page == null) {
             if (viewModel.postDetail?.user?.id != SessionManager.session.user?.id) {
-                when (viewModel.postDetail?.user?.userPrivacyConfig?.whoCommentYourPost) {
-                    Constant.EVERYONE -> {
-                        layoutComment.beVisible()
-                    }
-                    Constant.FRIEND -> {
-                        if (ICheckApplication.getInstance().mFirebase.auth.currentUser != null && SessionManager.session.user?.id != null) {
-                            //người khác gửi kết bạn cho mình
-                            ICheckApplication.getInstance().mFirebase.registerRelationship(Constant.myFriendIdList, viewModel.postDetail?.user?.id.toString(), object : ValueEventListener {
-                                override fun onDataChange(snapshot: DataSnapshot) {
-                                    if (snapshot.value != null && snapshot.value is Long) {
-                                        layoutComment.beVisible()
-                                    } else {
-                                        layoutComment.beGone()
-                                    }
-                                }
-
-                                override fun onCancelled(error: DatabaseError) {
-                                    logError(error.toException())
-                                }
-                            })
-                        }
-
-                    }
-                    else -> {
-                        if (viewModel.postDetail?.user?.id == SessionManager.session.user?.id) {
+                if(viewModel.postDetail?.user?.userPrivacyConfig?.whoCommentYourPost==null){
+                    layoutComment.beVisible()
+                }else{
+                    when (viewModel.postDetail?.user?.userPrivacyConfig?.whoCommentYourPost) {
+                        Constant.EVERYONE -> {
                             layoutComment.beVisible()
-                        } else {
-                            layoutComment.beGone()
+                        }
+                        Constant.FRIEND -> {
+                            if (ICheckApplication.getInstance().mFirebase.auth.currentUser != null && SessionManager.session.user?.id != null) {
+                                //người khác gửi kết bạn cho mình
+                                ICheckApplication.getInstance().mFirebase.registerRelationship(
+                                    Constant.myFriendIdList,
+                                    viewModel.postDetail?.user?.id.toString(),
+                                    object : ValueEventListener {
+                                        override fun onDataChange(snapshot: DataSnapshot) {
+                                            if (snapshot.value != null && snapshot.value is Long) {
+                                                layoutComment.beVisible()
+                                            } else {
+                                                layoutComment.beGone()
+                                            }
+                                        }
+
+                                        override fun onCancelled(error: DatabaseError) {
+                                            logError(error.toException())
+                                        }
+                                    })
+                            }
+
+                        }
+                        else -> {
+                            if (viewModel.postDetail?.user?.id == SessionManager.session.user?.id) {
+                                layoutComment.beVisible()
+                            } else {
+                                layoutComment.beGone()
+                            }
                         }
                     }
                 }
@@ -294,7 +368,12 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
                 onBackPressed()
             }
             R.id.imgDownload -> {
-                if (PermissionHelper.checkPermission(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), requestWriteStorage)) {
+                if (PermissionHelper.checkPermission(
+                        this,
+                        arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                        requestWriteStorage
+                    )
+                ) {
                     downloadMedia()
                 }
             }
@@ -342,7 +421,15 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
                         viewModel.postDetail!!.user?.getName
                     }
 
-                    ReviewBottomSheet.show(supportFragmentManager, true, ICReviewBottom(name, viewModel.postDetail!!.avgPoint, viewModel.postDetail!!.customerCriteria))
+                    ReviewBottomSheet.show(
+                        supportFragmentManager,
+                        true,
+                        ICReviewBottom(
+                            name,
+                            viewModel.postDetail!!.avgPoint,
+                            viewModel.postDetail!!.customerCriteria
+                        )
+                    )
                 }
             }
             R.id.tvContent -> {
@@ -363,11 +450,14 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
                 imgDownload.setImageResource(R.drawable.ic_download_24_gray)
                 imgDownload.isEnabled = false
                 downloadId = downloadHelper?.startDownload(adapter.getListData[positionView].src!!)
-                        ?: -1
+                    ?: -1
                 if (downloadId == -1L) {
                     imgDownload.setImageResource(R.drawable.ic_download_24_white)
                     imgDownload.isEnabled = true
-                    DialogHelper.showDialogErrorBlack(this@MediaInPostActivity, "Tải xuống thất bại")
+                    DialogHelper.showDialogErrorBlack(
+                        this@MediaInPostActivity,
+                        "Tải xuống thất bại"
+                    )
                     downloadHelper?.cancelDownload(downloadId)
                 }
             }
@@ -391,11 +481,20 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
         setResult(RESULT_OK, Intent().apply {
             putExtra(Constant.DATA_1, viewModel.postDetail)
         })
-        EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.RESULT_MEDIA_POST_ACTIVITY, viewModel.postDetail))
+        EventBus.getDefault().post(
+            ICMessageEvent(
+                ICMessageEvent.Type.RESULT_MEDIA_POST_ACTIVITY,
+                viewModel.postDetail
+            )
+        )
         finish()
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == requestWriteStorage) {
             if (PermissionHelper.checkResult(grantResults)) {
@@ -420,7 +519,12 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
             ICMessageEvent.Type.DELETE_DETAIL_POST -> {
                 if (event.data != null && event.data is Long) {
                     if (event.data == viewModel.postDetail?.id) {
-                        DialogHelper.showDialogErrorBlack(this, getString(R.string.bai_viet_khong_con_ton_tai), null, 2000)
+                        DialogHelper.showDialogErrorBlack(
+                            this,
+                            getString(R.string.bai_viet_khong_con_ton_tai),
+                            null,
+                            2000
+                        )
                         Handler().postDelayed({
                             finish()
                         }, 2200)

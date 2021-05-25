@@ -11,13 +11,29 @@
         android:id="@id/layoutToolbar"
         layout="@layout/toolbar_blue_v2" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:paddingStart="@dimen/size_2"
+        android:paddingEnd="@dimen/size_12"
+        android:clipToPadding="false"
+        android:paddingTop="@dimen/size_10"
+        android:paddingBottom="@dimen/size_10"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutToolbar" />
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeLayout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_0"
         android:background="@color/colorBackgroundGray"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layoutToolbar">
+        app:layout_constraintTop_toBottomOf="@id/recyclerViewCategory">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -29,5 +45,5 @@
         style="@style/Shadow_Bottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layoutToolbar" />
+        app:layout_constraintTop_toBottomOf="@id/recyclerViewCategory" />
 </androidx.constraintlayout.widget.ConstraintLayout>

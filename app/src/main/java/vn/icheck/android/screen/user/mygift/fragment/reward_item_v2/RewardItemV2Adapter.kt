@@ -16,7 +16,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.helper.ActivityHelper
-import vn.icheck.android.loyalty.screen.gift_voucher.GiftDetailFromAppActivity
+import vn.icheck.android.loyalty.screen.gift_detail_from_app.GiftDetailFromAppActivity
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.models.ICItemReward
 import vn.icheck.android.screen.user.campaign.holder.base.LoadingHolder
@@ -25,7 +25,6 @@ import vn.icheck.android.screen.user.page_details.fragment.page.widget.message.M
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.util.ick.*
 import vn.icheck.android.util.kotlin.ActivityUtils
-import java.net.URL
 
 class RewardItemV2Adapter(private val listenerRecyclerView: IRecyclerViewCallback) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     val listData = mutableListOf<ICItemReward>()
@@ -200,6 +199,9 @@ class RewardItemV2Adapter(private val listenerRecyclerView: IRecyclerViewCallbac
                 }
                 "CODE" -> {
                     itemView.tvState simpleText "Mã dự thưởng"
+                }
+                "VOUCHER" -> {
+                    itemView.tvState simpleText "Voucher"
                 }
                 else -> {
                     itemView.tvState simpleText "Quà hiện vật"

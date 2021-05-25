@@ -28,6 +28,7 @@ import vn.icheck.android.network.models.ICPost
 import vn.icheck.android.network.models.ICReqCriteriaReview
 import vn.icheck.android.network.models.ICCommentPermission
 import vn.icheck.android.ui.layout.CustomLinearLayoutManager
+import vn.icheck.android.util.ick.logDebug
 import vn.icheck.android.util.ick.logError
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -45,10 +46,10 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
 
     /*lưu giá trị gửi đánh giá*/
     lateinit var listImageAdapter: ListImageSendAdapter
-    private val listImageSend = mutableListOf<File>()
-    private var listImageString = mutableListOf<String>()
+    private val listImageFile = mutableListOf<File>()
+    private var listImageString = hashMapOf<String, String>()
 
-    fun bind(obj: SubmitReviewModel) {
+    fun bind(obj: SubmitReviewModel, refeshTextReview:Boolean) {
         (itemView as ViewGroup).run {
             rcvRating = getChildAt(2) as RecyclerView
             (getChildAt(3) as LinearLayout).run {
@@ -61,6 +62,10 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
                 btnPermission = getChildAt(1) as AppCompatImageView
                 btnSubmit = getChildAt(2) as AppCompatTextView
             }
+        }
+
+        if(refeshTextReview){
+            edtEnter.setText("")
         }
 
         setUpRcvImage()
@@ -86,6 +91,10 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
             })
         }
 
+        initClick(obj)
+    }
+
+    private fun initClick(obj: SubmitReviewModel) {
         imgCamera.setOnClickListener {
             listener.onTakeImage(adapterPosition)
         }
@@ -126,18 +135,26 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
                         DialogHelper.showLoading(activity)
                     }
                     listImageString.clear()
-                    if (!listImageSend.isNullOrEmpty()) {
+                    if (!listImageFile.isNullOrEmpty()) {
                         uploadImageToServer(obj, edtEnter.text.toString(), criteria)
-                    }else{
+                    } else {
                         postReview(obj, edtEnter.text.toString(), criteria)
                     }
                 } else {
                     btnSubmit.isClickable = true
-                    EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REQUEST_POST_REVIEW, adapterPosition))
+                    EventBus.getDefault().post(
+                        ICMessageEvent(
+                            ICMessageEvent.Type.REQUEST_POST_REVIEW,
+                            adapterPosition
+                        )
+                    )
                 }
             } else {
                 btnSubmit.isClickable = true
-                ToastUtils.showShortError(itemView.context, itemView.context.getString(R.string.vui_long_dien_day_du_tieu_chi))
+                ToastUtils.showShortError(
+                    itemView.context,
+                    itemView.context.getString(R.string.vui_long_dien_day_du_tieu_chi)
+                )
             }
         }
     }
@@ -146,7 +163,7 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
         listImageAdapter = ListImageSendAdapter(object : ListImageSendAdapter.IListImageSendListener {
             override fun onClickDeleteImageSend(position: Int) {
                 listImageAdapter.deleteItem(position)
-                listImageSend.removeAt(position)
+                listImageFile.removeAt(position)
             }
         })
         rcvImage.layoutManager = CustomLinearLayoutManager(itemView.context, RecyclerView.HORIZONTAL, reverseLayout = false, isScrollEnabled = true)
@@ -175,12 +192,12 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
 
     fun setImage(list: MutableList<File>) {
         listImageAdapter.addData(list)
-        listImageSend.addAll(list)
+        listImageFile.addAll(list)
     }
 
     fun setImage(file: File) {
         listImageAdapter.addItem(file)
-        listImageSend.add(file)
+        listImageFile.add(file)
     }
 
     private fun uploadImageToServer(objReview: SubmitReviewModel, message: String, criteria: MutableList<ICReqCriteriaReview>) {
@@ -195,12 +212,12 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
 
         CoroutineScope(Dispatchers.Main).launch {
             val listCall = mutableListOf<Deferred<Any?>>()
-            listImageSend.forEach {
+            listImageFile.forEach {
                 listCall.add(async {
                     try {
                         val response = withTimeout(60000) { ImageHelper.uploadMediaV2(it) }
                         if (!response.data?.src.isNullOrEmpty()) {
-                            listImageString.add(response.data?.src!!)
+                            listImageString[it.absolutePath] = response.data?.src!!
                         }
                     } catch (e: Exception) {
                         logError(e)
@@ -223,13 +240,22 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
     }
 
     private fun postReview(objReview: SubmitReviewModel, message: String, criteria: MutableList<ICReqCriteriaReview>) {
-        val listImage = mutableListOf<ICMedia>()
-        listImageString.forEach {
-            listImage.add(ICMedia(it, if (it.contains(".mp4")) {
-                Constant.VIDEO
-            } else {
-                Constant.IMAGE
-            }))
+        val listMedia = mutableListOf<ICMedia>()
+
+        //sắp xếp lại vị trí response theo đúng vị trí file ng dùng chọn
+        listImageFile.forEach { file ->
+            listImageString.filterKeys { key ->
+                key == file.toString()
+            }.apply {
+                if (!this.isNullOrEmpty()) {
+                    val value = this[this.keys.first()] ?: ""
+                    listMedia.add(ICMedia(value, if (value.contains(".mp4")) {
+                        Constant.VIDEO
+                    } else {
+                        Constant.IMAGE
+                    }))
+                }
+            }
         }
 
         val pageId = if (SettingManager.getPostPermission() != null) {
@@ -242,7 +268,7 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
             null
         }
 
-        ProductReviewInteractor().postReview(objReview.productId, message, criteria, listImage, pageId, object : ICNewApiListener<ICResponse<ICPost>> {
+        ProductReviewInteractor().postReview(objReview.productId, message, criteria, listMedia, pageId, object : ICNewApiListener<ICResponse<ICPost>> {
             override fun onSuccess(obj: ICResponse<ICPost>) {
                 ICheckApplication.currentActivity()?.let { activity ->
                     DialogHelper.closeLoading(activity)

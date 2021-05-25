@@ -2,6 +2,8 @@ package vn.icheck.android.fragments
 
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputType
+import android.text.method.PasswordTransformationMethod
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +13,12 @@ import androidx.fragment.app.FragmentManager
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialogFragment
 import vn.icheck.android.databinding.IckBarcodeBottomBinding
+import vn.icheck.android.ichecklibs.visibleOrGone
+import vn.icheck.android.lib.keyboard.KeyboardVisibilityEvent
+import vn.icheck.android.lib.keyboard.KeyboardVisibilityEventListener
+import vn.icheck.android.lib.keyboard.Unregistrar
 import vn.icheck.android.util.AfterTextWatcher
+import vn.icheck.android.util.kotlin.WidgetUtils
 
 class BarcodeBottomDialog : BaseBottomSheetDialogFragment() {
 
@@ -39,18 +46,6 @@ class BarcodeBottomDialog : BaseBottomSheetDialogFragment() {
         super.onCreate(savedInstanceState)
         setStyle(DialogFragment.STYLE_NORMAL, R.style.DialogStyle)
     }
-
-//    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-//        return BottomSheetDialog(requireContext(), R.style.BottomSheetDialogTheme).also { dialog ->
-//            dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
-//            dialog.setOnShowListener {
-//                val bottomSheet = dialog.findViewById<FrameLayout>(R.id.design_bottom_sheet)
-//                bottomSheet?.setBackgroundResource(R.drawable.rounded_dialog)
-//                val bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet!!)
-//                bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-//            }
-//        }
-//    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = IckBarcodeBottomBinding.inflate(inflater, container, false)
@@ -93,6 +88,18 @@ class BarcodeBottomDialog : BaseBottomSheetDialogFragment() {
             if (!binding.edtBarcode.text.isNullOrEmpty()) {
                 submitBarcode()
             }
+        }
+
+        setupListener()
+    }
+
+    private fun setupListener() {
+        binding.edtBarcode.setOnFocusChangeListener { _, _ ->
+            WidgetUtils.setButtonKeyboardMargin(binding.btnKeyboard, binding.edtBarcode)
+        }
+
+        binding.btnKeyboard.setOnClickListener {
+            WidgetUtils.changePasswordInput(binding.edtBarcode)
         }
     }
 

@@ -15,13 +15,18 @@ import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
+import vn.icheck.android.base.dialog.notify.confirm.ConfirmDialog
+import vn.icheck.android.base.dialog.reward_login.RewardLoginCallback
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.network.base.*
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
+import vn.icheck.android.screen.user.home.HomeActivity
+import vn.icheck.android.screen.user.home_page.HomePageFragment
 import vn.icheck.android.util.ick.logError
 import vn.icheck.android.util.ick.simpleStartForResultActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
@@ -29,10 +34,10 @@ import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.io.Serializable
 
-abstract class BaseActivity<P : BaseActivityPresenter> : AppCompatActivity(), BaseActivityView, ICRequireLogin, ICNetworkCallback {
+abstract class BaseActivity<P : BaseActivityPresenter> : AppCompatActivity(), BaseActivityView, ICRequireLogin, ICNetworkCallback, TokenTimeoutCallback {
     val presenter = getPresenter
     var job: Job? = null
-
+    var confirmLogin: ConfirmDialog? = null
     inline fun delayAction(crossinline action: () -> Unit, timeout: Long = 200) {
         job = if (job?.isActive == true) {
             job?.cancel()
@@ -116,16 +121,73 @@ abstract class BaseActivity<P : BaseActivityPresenter> : AppCompatActivity(), Ba
     override fun onPause() {
         super.onPause()
         ICNetworkManager.unregister(this)
+        ICNetworkManager.unregisterTokenTimeoutCallback(this)
     }
 
     override fun onResume() {
         super.onResume()
-
+        ICNetworkManager.registerTokenTimeoutCallback(this)
         ICNetworkManager.register(this)
         try {
             EventBus.getDefault().post(ICMessageEvent.Type.ON_CHECK_UPDATE_LOCATION)
         } catch (e: Exception) {
             logError(e)
+        }
+    }
+
+    override fun onTokenTimeout() {
+        runOnUiThread {
+            ICheckApplication.currentActivity()?.let {
+
+                if (confirmLogin == null) {
+                    confirmLogin = object : ConfirmDialog(it,
+                            "Thông báo",
+                            "Phiên đăng nhập hết hạn, vui lòng đăng nhập lại!",
+                            "Để sau",
+                            "Đăng nhập ngay",
+                            false) {
+                        override fun onDisagree() {
+
+                        }
+
+                        override fun onAgree() {
+                            startActivityForResult<IckLoginActivity>(requestLogin)
+                        }
+
+                        override fun onDismiss() {
+                            //                            HomePageFragment.INSTANCE?.refreshHomeData()
+                        }
+                    }
+                    if (!it.isFinishing && !it.isDestroyed) {
+                        confirmLogin?.show()
+                        if (it is HomeActivity) {
+                            HomeActivity.INSTANCE?.logoutFromHome()
+                            lifecycleScope.launch {
+                                delay(200)
+                                HomePageFragment.INSTANCE?.refreshHomeData()
+                                delay(200)
+                                HomePageFragment.INSTANCE?.refreshHomeData()
+                            }
+                        }
+                    }
+                } else {
+                    if (!it.isFinishing && !it.isDestroyed) {
+                        if (SessionManager.isUserLogged && confirmLogin?.isShowing == false) {
+                            confirmLogin?.show()
+                            if (it is HomeActivity) {
+                                HomeActivity.INSTANCE?.logoutFromHome()
+                                lifecycleScope.launch {
+                                    delay(500)
+                                    HomePageFragment.INSTANCE?.refreshHomeData()
+                                    delay(200)
+                                    HomePageFragment.INSTANCE?.refreshHomeData()
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
         }
     }
 
@@ -154,21 +216,21 @@ abstract class BaseActivity<P : BaseActivityPresenter> : AppCompatActivity(), Ba
 
     override fun onRequireLogin(requestCode: Int) {
         requestRequireLogin = requestCode
+        runOnUiThread {
+            RewardLoginDialog.show(supportFragmentManager, object : RewardLoginCallback {
+                override fun onDismiss() {
+                    onRequireLoginCancel()
+                }
 
-        object : RewardLoginDialog(this@BaseActivity) {
-            override fun onLogin() {
-                startActivityForResult<IckLoginActivity>(requestLogin)
-            }
+                override fun onLogin() {
+                    startActivityForResult<IckLoginActivity>(requestLogin)
+                }
 
-            override fun onRegister() {
-                simpleStartForResultActivity(IckLoginActivity::class.java, 1)
-//                startActivityForResult<IckLoginActivity>(Constant.DATA_1, Constant.REGISTER_TYPE, requestLogin)
-            }
-
-            override fun onDismiss() {
-                onRequireLoginCancel()
-            }
-        }.show()
+                override fun onRegister() {
+                    simpleStartForResultActivity(IckLoginActivity::class.java, 1)
+                }
+            })
+        }
     }
 
     override fun onRequireLoginSuccess(requestCode: Int) {

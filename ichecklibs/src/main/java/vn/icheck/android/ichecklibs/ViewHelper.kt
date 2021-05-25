@@ -7,6 +7,10 @@ import android.graphics.Color
 import android.graphics.drawable.*
 import android.os.Build
 import android.view.Gravity
+import android.R
+import android.content.res.ColorStateList
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.StateListDrawable
 import android.widget.LinearLayout
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
@@ -25,6 +29,32 @@ object ViewHelper {
         height: Int = LinearLayout.LayoutParams.WRAP_CONTENT
     ): LinearLayout.LayoutParams {
         return LinearLayout.LayoutParams(width, height)
+    }
+
+    fun createColorStateList(unCheckColor: Int, checkedColor: Int): ColorStateList {
+        return ColorStateList(
+                arrayOf(
+                        intArrayOf(-R.attr.state_checked),
+                        intArrayOf(R.attr.state_checked),
+                        intArrayOf(-R.attr.state_selected),
+                        intArrayOf(R.attr.state_selected)
+                ), intArrayOf(unCheckColor, checkedColor, unCheckColor, checkedColor)
+        )
+    }
+
+    fun createCheckedDrawable(uncheckedResource: Drawable?, checkedResource: Drawable?): StateListDrawable {
+        val statesListDrawable = StateListDrawable()
+
+        statesListDrawable.addState(
+                intArrayOf(-android.R.attr.state_checked),
+                uncheckedResource
+        )
+        statesListDrawable.addState(
+                intArrayOf(android.R.attr.state_checked),
+                checkedResource
+        )
+
+        return statesListDrawable
     }
 
     fun createColorStateList(unCheckColor: Int, checkedColor: Int): ColorStateList {

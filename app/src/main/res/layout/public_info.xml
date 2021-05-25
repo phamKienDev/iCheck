@@ -432,7 +432,8 @@
                     android:layout_weight="1" />
             </TableRow>
 
-            <TableRow android:gravity="center_vertical">
+            <TableRow android:gravity="center_vertical"
+                android:visibility="gone">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/UpdateProfile_Title"

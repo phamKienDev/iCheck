@@ -374,6 +374,11 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
             })
 
             if (file.absolutePath.contains(".mp4")) {
+                parent.addView(AppCompatImageView(this).also { image ->
+                    image.layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT)
+                    image.setBackgroundColor(ContextCompat.getColor(this,R.color.black_20))
+                })
+
                 parent.addView(AppCompatImageView(this).also { play ->
                     play.layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT).also { params ->
                         params.gravity = Gravity.CENTER

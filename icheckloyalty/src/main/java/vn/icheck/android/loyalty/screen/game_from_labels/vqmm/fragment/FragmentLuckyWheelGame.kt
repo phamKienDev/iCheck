@@ -49,6 +49,7 @@ import vn.icheck.android.loyalty.screen.game_from_labels.vqmm.GameActivity
 import vn.icheck.android.loyalty.screen.game_from_labels.vqmm.animations.*
 import vn.icheck.android.loyalty.screen.game_from_labels.vqmm.viewmodel.LuckyGameViewModel
 import vn.icheck.android.loyalty.screen.game_from_labels.vqmm.viewmodel.LuckyGameViewModelFactory
+import vn.icheck.android.loyalty.sdk.LoyaltySdk
 
 class FragmentLuckyWheelGame : Fragment() {
     private val args: FragmentLuckyWheelGameArgs by navArgs()
@@ -169,20 +170,26 @@ class FragmentLuckyWheelGame : Fragment() {
                         }, 400)
                     } else {
                         Handler().postDelayed({
-                            val action = FragmentLuckyWheelGameDirections.actionFragmentLuckyWheelGameToScanForGameFragment(luckyGameViewModel.currentCount, args.campaignId, args.campaignName, args.shopName, args.avatarShop)
-                            findNavController().navigate(action)
+                            LoyaltySdk.openActivity("scan?typeLoyalty=mini_game&campaignId=${args.campaignId}&nameCampaign=${args.campaignName}&nameShop=${args.shopName}&avatarShop=${args.avatarShop}&currentCount=${luckyGameViewModel.currentCount}")
+//                            val action = FragmentLuckyWheelGameDirections.actionFragmentLuckyWheelGameToScanForGameFragment(luckyGameViewModel.currentCount, args.campaignId, args.campaignName, args.shopName, args.avatarShop)
+//                            findNavController().navigate(action)
                         }, 400)
                     }
                 }
                 ICMessageEvent.Type.UPDATE_COUNT_GAME -> {
                     update = true
-                    val count = event.data as Long
-                    luckyGameViewModel.updatePlay(count.toInt())
+
+                    if (event.data != null){
+                        val count = event.data as Long?
+                        luckyGameViewModel.updatePlay(count?.toInt())
+                    }
+
                 }
                 ICMessageEvent.Type.SCAN_GAME -> {
                     Handler().postDelayed({
-                        val action = FragmentLuckyWheelGameDirections.actionFragmentLuckyWheelGameToScanForGameFragment(luckyGameViewModel.currentCount, args.campaignId, args.campaignName, args.shopName, args.avatarShop)
-                        findNavController().navigate(action)
+                        LoyaltySdk.openActivity("scan?typeLoyalty=mini_game&campaignId=${args.campaignId}&nameCampaign=${args.campaignName}&nameShop=${args.shopName}&avatarShop=${args.avatarShop}&currentCount=${luckyGameViewModel.currentCount}")
+//                        val action = FragmentLuckyWheelGameDirections.actionFragmentLuckyWheelGameToScanForGameFragment(luckyGameViewModel.currentCount, args.campaignId, args.campaignName, args.shopName, args.avatarShop)
+//                        findNavController().navigate(action)
                     }, 400)
                 }
             }
@@ -462,6 +469,7 @@ class FragmentLuckyWheelGame : Fragment() {
                         if (response != null) {
                             luckyGameViewModel.updatePlay(response.data?.play)
                             if (response.data?.gift != null) {
+                                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.UPDATE_COUNT_GAME))
                                 spinToGift(response)
                             } else {
                                 spinToNoGift()
@@ -472,6 +480,7 @@ class FragmentLuckyWheelGame : Fragment() {
                     luckyGameViewModel.playGame(args.campaignId).observe(viewLifecycleOwner, Observer { response ->
                         try {
                             if (response?.data?.gift != null) {
+                                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.UPDATE_COUNT_GAME))
                                 spinning = true
                                 playClickSound()
                                 luckyGameViewModel.updatePlay(response.data.play)
@@ -495,8 +504,9 @@ class FragmentLuckyWheelGame : Fragment() {
                                         override fun onClick() {
                                             object : DialogGuidePlayGame(requireContext()) {
                                                 override fun onClick() {
-                                                    val action = FragmentLuckyWheelGameDirections.actionFragmentLuckyWheelGameToScanForGameFragment(luckyGameViewModel.currentCount, args.campaignId, args.campaignName, args.shopName, args.avatarShop)
-                                                    findNavController().navigate(action)
+//                                                    val action = FragmentLuckyWheelGameDirections.actionFragmentLuckyWheelGameToScanForGameFragment(luckyGameViewModel.currentCount, args.campaignId, args.campaignName, args.shopName, args.avatarShop)
+//                                                    findNavController().navigate(action)
+                                                    LoyaltySdk.openActivity("scan?typeLoyalty=mini_game&campaignId=${args.campaignId}&nameCampaign=${args.campaignName}&nameShop=${args.shopName}&avatarShop=${args.avatarShop}&currentCount=${luckyGameViewModel.currentCount}")
                                                 }
                                             }.show()
                                         }
@@ -532,8 +542,9 @@ class FragmentLuckyWheelGame : Fragment() {
                     } else {
                         object : DialogGuidePlayGame(requireContext()) {
                             override fun onClick() {
-                                val action = FragmentLuckyWheelGameDirections.actionFragmentLuckyWheelGameToScanForGameFragment(luckyGameViewModel.currentCount, args.campaignId, args.campaignName, args.shopName, args.avatarShop)
-                                findNavController().navigate(action)
+//                                val action = FragmentLuckyWheelGameDirections.actionFragmentLuckyWheelGameToScanForGameFragment(luckyGameViewModel.currentCount, args.campaignId, args.campaignName, args.shopName, args.avatarShop)
+//                                findNavController().navigate(action)
+                                LoyaltySdk.openActivity("scan?typeLoyalty=mini_game&campaignId=${args.campaignId}&nameCampaign=${args.campaignName}&nameShop=${args.shopName}&avatarShop=${args.avatarShop}&currentCount=${luckyGameViewModel.currentCount}")
                             }
                         }.show()
                     }

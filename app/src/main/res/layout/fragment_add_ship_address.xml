@@ -129,6 +129,7 @@
                 android:layout_height="wrap_content"
                 android:text="Số điện thoại (*)"
                 android:textSize="@dimen/font_12" />
+
             <vn.icheck.android.ichecklibs.view.line_color.CornerErrorEdittextNormalBgTransparentRadius4
                 android:id="@+id/edt_phone"
                 android:layout_width="match_parent"
@@ -214,6 +215,7 @@
                 android:layout_height="wrap_content"
                 android:text="Xã phường (*)"
                 android:textSize="@dimen/font_12" />
+
             <vn.icheck.android.ichecklibs.view.line_color.CornerErrorEdittextNormalBgTransparentRadius4
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -227,12 +229,14 @@
                 android:hint="Tùy chọn"
                 android:inputType="textPersonName"
                 app:drawableRightCompat="@drawable/ic_arrow_down_blue_24px_vector" />
+
             <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                 android:layout_marginTop="@dimen/size_18"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Địa chỉ (*)"
                 android:textSize="@dimen/font_12" />
+
             <vn.icheck.android.ichecklibs.view.line_color.CornerErrorEdittextNormalBgTransparentRadius4
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

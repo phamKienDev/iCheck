@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/size_10"
-    android:background="@color/white"
-    android:layout_height="wrap_content">
+    android:background="@color/white">
 
     <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/text"
@@ -15,36 +15,53 @@
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_12"
         android:layout_marginEnd="@dimen/size_12"
-        android:layout_marginRight="@dimen/size_12"
+        android:fontFamily="@font/barlow_medium"
         android:lineSpacingExtra="@dimen/font_14"
         android:text="Thông tin được đóng góp bởi"
         android:textSize="@dimen/font_12"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imgAvatar"
-        android:layout_width="@dimen/size_40"
-        android:layout_height="@dimen/size_40"
-        android:layout_marginTop="@dimen/size_6"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutAvatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@id/text"
-        app:layout_constraintTop_toBottomOf="@id/text" />
+        app:layout_constraintTop_toBottomOf="@id/text">
 
-    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgRank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_avatar_rank_diamond_16dp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgAvatar"
+            android:layout_width="@dimen/size_40"
+            android:layout_height="@dimen/size_40"
+            android:layout_marginTop="@dimen/size_8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@color/colorSecondary" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <vn.icheck.android.ichecklibs.MiddleMultilineTextView
         android:id="@+id/tvName"
-        android:layout_width="@dimen/size_0"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_8"
-        android:layout_marginLeft="@dimen/size_8"
         android:layout_marginEnd="@dimen/size_12"
-        android:layout_marginRight="@dimen/size_12"
-        android:ellipsize="end"
+        android:fontFamily="@font/barlow_medium"
         android:includeFontPadding="false"
-        android:singleLine="true"
+        android:maxLines="2"
+        android:textColor="#212121"
         android:textSize="@dimen/font_14"
-        app:layout_constraintBottom_toBottomOf="@+id/imgAvatar"
+        app:layout_constraintBottom_toBottomOf="@+id/layoutAvatar"
         app:layout_constraintEnd_toStartOf="@+id/tvYes"
-        app:layout_constraintStart_toEndOf="@+id/imgAvatar"
-        app:layout_constraintTop_toTopOf="@+id/imgAvatar"
+        app:layout_constraintStart_toEndOf="@+id/layoutAvatar"
+        app:layout_constraintTop_toTopOf="@+id/layoutAvatar"
         tools:text="Vân Trương" />
 
     <androidx.appcompat.widget.AppCompatCheckedTextView
@@ -53,14 +70,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_2"
         android:layout_marginEnd="@dimen/size_20"
+        android:layout_marginRight="@dimen/size_20"
         android:drawableTop="@drawable/item_contribute_checked_yes"
         android:drawablePadding="@dimen/size_3"
         android:ellipsize="end"
         android:fontFamily="@font/barlow_semi_bold"
+        android:gravity="center"
         android:includeFontPadding="false"
         android:lineSpacingExtra="@dimen/font_6"
         android:singleLine="true"
-        android:gravity="center"
         android:textAlignment="center"
         android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toStartOf="@+id/tvNo"
@@ -76,13 +94,14 @@
         android:drawableTop="@drawable/item_contribute_checked_no"
         android:drawablePadding="@dimen/size_3"
         android:ellipsize="end"
-        android:gravity="center"
-        android:textAlignment="center"
         android:fontFamily="@font/barlow_semi_bold"
+        android:gravity="center"
         android:lineSpacingExtra="@dimen/font_6"
         android:paddingLeft="@dimen/size_10"
         android:paddingRight="@dimen/size_10"
         android:singleLine="true"
+        android:textAlignment="center"
+        android:textColor="@drawable/text_color_contribute"
         android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toBottomOf="@+id/tvYes"
         app:layout_constraintEnd_toEndOf="parent"
@@ -96,7 +115,7 @@
         android:layout_marginTop="@dimen/size_10"
         android:background="#f4f4f4"
         app:layout_constraintEnd_toEndOf="@id/text"
-        app:layout_constraintStart_toStartOf="@id/imgAvatar"
+        app:layout_constraintStart_toStartOf="@id/layoutAvatar"
         app:layout_constraintTop_toBottomOf="@id/tvYes" />
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -183,14 +202,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_8"
         android:layout_marginBottom="@dimen/size_10"
-        android:lineSpacingExtra="@dimen/font_6"
-        android:textSize="@dimen/font_14"
+        android:background="@drawable/bg_corners_4_light_blue_no_solid"
+        android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center"
+        android:lineSpacingExtra="@dimen/font_6"
         android:paddingTop="@dimen/size_5"
         android:paddingBottom="@dimen/size_5"
+        android:text="Chỉnh sửa đóng góp"
+        android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/tvBarcode"
         app:layout_constraintStart_toStartOf="@+id/tvBarcode"
-        app:layout_constraintTop_toBottomOf="@id/tvBarcode"
-        android:text="Chỉnh sửa đóng góp" />
+        app:layout_constraintTop_toBottomOf="@id/tvBarcode" />
 </androidx.constraintlayout.widget.ConstraintLayout>

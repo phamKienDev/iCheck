@@ -213,35 +213,45 @@ class MoreProductVerifiedInBusinessAdapter(val view: IMoreBusinessView, val isVi
                     }
                 }
 
-                if (isVietNamLanguage == false) {
-                    itemView.tvAddress.text = if (!objVendor.address.isNullOrEmpty()) {
-                        if (!objVendor.city.isNullOrEmpty()) {
-                            if (!objVendor.district.isNullOrEmpty()) {
-                                Html.fromHtml("<font color=#434343>Address : </font>" + "<b>" + objVendor.address + " ," + objVendor.city + " ," + objVendor.district + "</b>")
-                            } else {
-                                Html.fromHtml("<font color=#434343>Address : </font>" + "<b>" + objVendor.address + " ," + objVendor.city + "</b>")
-                            }
-                        } else {
-                            Html.fromHtml("<font color=#434343>Address : </font>" + "<b>" + objVendor.address + "</b>")
-                        }
-                    } else {
-                        Html.fromHtml("<font color=#434343>Address : </font>" + "<b>" + "updating" + "</b>")
-                    }
-                } else {
-                    itemView.tvAddress.text = if (!objVendor.address.isNullOrEmpty()) {
-                        if (!objVendor.city.isNullOrEmpty()) {
-                            if (!objVendor.district.isNullOrEmpty()) {
-                                Html.fromHtml("<font color=#434343>Address : </font>" + "<b>" + objVendor.address + " ," + objVendor.city + " ," + objVendor.district + "</b>")
-                            } else {
-                                Html.fromHtml("<font color=#434343>Address : </font>" + "<b>" + objVendor.address + " ," + objVendor.city + "</b>")
-                            }
-                        } else {
-                            Html.fromHtml("<font color=#434343>Address : </font>" + "<b>" + objVendor.address + "</b>")
-                        }
-                    } else {
-                        Html.fromHtml("<font color=#434343>Địa chỉ : </font>" + "<b>" + itemView.context.getString(R.string.dang_cap_nhat) + "</b>")
-                    }
-                }
+                itemView.tvAddress.text = Html.fromHtml("<font color=#434343>Address : </font>" +
+                        "<b>" + vn.icheck.android.ichecklibs.Constant.getAddress(objVendor.address,
+                                objVendor.district, objVendor.city, objVendor.country_name,
+                                if (isVietNamLanguage == false) {
+                                    "updating"
+                                } else {
+                                    itemView.context.getString(R.string.dang_cap_nhat)
+                                })
+                        + "</b>")
+
+//                if (isVietNamLanguage == false) {
+//                    itemView.tvAddress.text = if (!objVendor.address.isNullOrEmpty()) {
+//                        if (!objVendor.city.isNullOrEmpty()) {
+//                            if (!objVendor.district.isNullOrEmpty()) {
+//                                Html.fromHtml("<font color=#434343>Address : </font>" + "<b>" + objVendor.address + " ," + objVendor.city + " ," + objVendor.district + "</b>")
+//                            } else {
+//                                Html.fromHtml("<font color=#434343>Address : </font>" + "<b>" + objVendor.address + " ," + objVendor.city + "</b>")
+//                            }
+//                        } else {
+//                            Html.fromHtml("<font color=#434343>Address : </font>" + "<b>" + objVendor.address + "</b>")
+//                        }
+//                    } else {
+//                        Html.fromHtml("<font color=#434343>Address : </font>" + "<b>" + "updating" + "</b>")
+//                    }
+//                } else {
+//                    itemView.tvAddress.text = if (!objVendor.address.isNullOrEmpty()) {
+//                        if (!objVendor.city.isNullOrEmpty()) {
+//                            if (!objVendor.district.isNullOrEmpty()) {
+//                                Html.fromHtml("<font color=#434343>Address : </font>" + "<b>" + objVendor.address + " ," + objVendor.city + " ," + objVendor.district + "</b>")
+//                            } else {
+//                                Html.fromHtml("<font color=#434343>Address : </font>" + "<b>" + objVendor.address + " ," + objVendor.city + "</b>")
+//                            }
+//                        } else {
+//                            Html.fromHtml("<font color=#434343>Address : </font>" + "<b>" + objVendor.address + "</b>")
+//                        }
+//                    } else {
+//                        Html.fromHtml("<font color=#434343>Địa chỉ : </font>" + "<b>" + itemView.context.getString(R.string.dang_cap_nhat) + "</b>")
+//                    }
+//                }
 
                 if (isVietNamLanguage == false) {
                     itemView.tvEmail.text = if (!objVendor.email.isNullOrEmpty()) {
@@ -314,19 +324,30 @@ class MoreProductVerifiedInBusinessAdapter(val view: IMoreBusinessView, val isVi
                     }
                 }
 
-                if (isVietNamLanguage == false) {
-                    itemView.tvAddress.text = if (!objDistributor?.address.isNullOrEmpty()) {
-                        Html.fromHtml("<font color=#434343>Address : </font>" + "<b>" + objDistributor?.address + " ," + objDistributor?.city + " ," + objDistributor?.district + "</b>")
-                    } else {
-                        Html.fromHtml("<font color=#434343>Address : </font>" + "<b>" + "updating" + "</b>")
-                    }
-                } else {
-                    itemView.tvAddress.text = if (!objDistributor?.address.isNullOrEmpty()) {
-                        Html.fromHtml("<font color=#434343>Địa chỉ : </font>" + "<b>" + objDistributor?.address + " ," + objDistributor?.city + " ," + objDistributor?.district + "</b>")
-                    } else {
-                        Html.fromHtml("<font color=#434343>Địa chỉ : </font>" + "<b>" + itemView.context.getString(R.string.dang_cap_nhat) + "</b>")
-                    }
-                }
+//                if (isVietNamLanguage == false) {
+//                    itemView.tvAddress.text = if (!objDistributor?.address.isNullOrEmpty()) {
+//                        Html.fromHtml("<font color=#434343>Address : </font>" + "<b>" + objDistributor?.address + " ," + objDistributor?.city + " ," + objDistributor?.district + "</b>")
+//                    } else {
+//                        Html.fromHtml("<font color=#434343>Address : </font>" + "<b>" + "updating" + "</b>")
+//                    }
+//                } else {
+//                    itemView.tvAddress.text = if (!objDistributor?.address.isNullOrEmpty()) {
+//                        Html.fromHtml("<font color=#434343>Địa chỉ : </font>" + "<b>" + objDistributor?.address + " ," + objDistributor?.city + " ," + objDistributor?.district + "</b>")
+//                    } else {
+//                        Html.fromHtml("<font color=#434343>Địa chỉ : </font>" + "<b>" + itemView.context.getString(R.string.dang_cap_nhat) + "</b>")
+//                    }
+//                }
+
+
+                itemView.tvAddress.text = Html.fromHtml("<font color=#434343>Address : </font>" +
+                        "<b>" + vn.icheck.android.ichecklibs.Constant.getAddress(objDistributor?.address,
+                        objDistributor?.district, objDistributor?.city, objDistributor?.country_name,
+                        if (isVietNamLanguage == false) {
+                            "updating"
+                        } else {
+                            itemView.context.getString(R.string.dang_cap_nhat)
+                        })
+                        + "</b>")
 
                 if (isVietNamLanguage == false) {
                     itemView.tvEmail.text = if (!objDistributor?.email.isNullOrEmpty()) {

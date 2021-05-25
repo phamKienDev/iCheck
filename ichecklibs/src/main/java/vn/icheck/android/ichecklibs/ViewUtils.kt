@@ -22,6 +22,7 @@ import androidx.annotation.MainThread
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.children
+import androidx.lifecycle.Lifecycle
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterInside
@@ -97,4 +98,14 @@ fun EditText.addPriceTextWatcher() {
             }
         }
     })
+}
+
+
+fun Int.toPx(): Int {
+    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this.toFloat(), Resources.getSystem().displayMetrics).toInt()
+}
+
+
+fun Float.toPx(): Float {
+    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this, Resources.getSystem().displayMetrics)
 }

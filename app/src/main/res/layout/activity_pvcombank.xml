@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <vn.icheck.android.ichecklibs.view.normal_text.CheckBoxNormal
+        <CheckBox
             android:id="@+id/checkbox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,8 +45,9 @@
             android:paddingLeft="@dimen/size_8"
             android:layout_marginTop="@dimen/size_8"
             android:text="@string/toi_dong_y_voi_dieu_khoan_nay"
-            android:textSize="@dimen/size_14"
-            android:visibility="visible"
+            android:textColor="@color/colorNormalText"
+            android:textSize="@dimen/font_14"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@id/containerButton"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -67,6 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/size_12"
                 android:layout_weight="1"
+                android:background="@drawable/bg_corner_4_light_blue_white"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:paddingTop="@dimen/size_8"
@@ -79,8 +81,9 @@
                 android:id="@+id/tvContinue"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/size_12"
+                android:layout_marginRight="@dimen/size_12"
                 android:layout_weight="1"
+                android:background="@drawable/bg_corners_4_light_blue_solid"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:paddingTop="@dimen/size_8"
@@ -89,6 +92,7 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_16" />
         </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <include

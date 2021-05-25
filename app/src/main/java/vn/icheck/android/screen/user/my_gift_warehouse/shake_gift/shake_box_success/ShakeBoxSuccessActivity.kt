@@ -56,7 +56,10 @@ class ShakeBoxSuccessActivity : BaseActivityMVVM() {
 
     private val requestShare = 1
 
-    private val listPermission = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
+    private val listPermission = arrayOf(
+        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+        Manifest.permission.READ_EXTERNAL_STORAGE
+    )
 
     private var player: MediaPlayer? = null
     private var vibrate: Vibrator? = null
@@ -82,22 +85,30 @@ class ShakeBoxSuccessActivity : BaseActivityMVVM() {
 
     private fun setupStatusBar() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+            )
         }
     }
 
     private fun listener() {
         imgBack.setOnClickListener {
-            val intent = Intent()
-            intent.putExtra(Constant.DATA_2, 2)
-            setResult(Activity.RESULT_OK, intent)
-            TrackingAllHelper.tagOpenGiftBoxDismissClicked(viewModel.campaign?.id, viewModel.shakeGift?.rewardType)
-            onBackPressed()
+             Intent().apply {
+                putExtra(Constant.DATA_2, 2)
+                putExtra(Constant.DATA_3, viewModel.campaign?.id)
+                putExtra(Constant.DATA_4, viewModel.shakeGift?.rewardType)
+                setResult(Activity.RESULT_OK, this)
+            }
+            finish()
         }
 
         btnShare.setOnClickListener {
-            tvThankNhaTaiTro.visibility = View.VISIBLE
-            tvThankNhaTaiTro.text = Html.fromHtml("<font color=#828282>Nhà tài trợ</font>" + "<br>" + "${viewModel.campaign?.businessName}" + "</br>")
+            if (!viewModel.campaign?.businessName.isNullOrEmpty()) {
+                tvThankNhaTaiTro.visibility = View.VISIBLE
+                tvThankNhaTaiTro.text =
+                    Html.fromHtml("<font color=#828282>Nhà tài trợ</font>" + "<br>" + "${viewModel.campaign?.businessName}" + "</br>")
+            }
             layoutTaiApp.visibility = View.VISIBLE
             btnShare.visibility = View.INVISIBLE
             btnMyGift.visibility = View.INVISIBLE
@@ -111,24 +122,31 @@ class ShakeBoxSuccessActivity : BaseActivityMVVM() {
             Handler().postDelayed({
                 qrCodeBitmap = screenShot(layoutParent)
 
-                PermissionDialog.checkPermission(this@ShakeBoxSuccessActivity, PermissionDialog.STORAGE, object : PermissionDialog.PermissionListener {
-                    override fun onPermissionAllowed() {
-                        ShareImage(this@ShakeBoxSuccessActivity).execute()
-                    }
+                PermissionDialog.checkPermission(
+                    this@ShakeBoxSuccessActivity,
+                    PermissionDialog.STORAGE,
+                    object : PermissionDialog.PermissionListener {
+                        override fun onPermissionAllowed() {
+                            ShareImage(this@ShakeBoxSuccessActivity).execute()
+                        }
 
-                    override fun onRequestPermission() {
-                        PermissionHelper.checkPermission(this@ShakeBoxSuccessActivity, listPermission, requestShare)
-                    }
+                        override fun onRequestPermission() {
+                            PermissionHelper.checkPermission(
+                                this@ShakeBoxSuccessActivity,
+                                listPermission,
+                                requestShare
+                            )
+                        }
 
-                    override fun onPermissionNotAllow() {
-                        tvThankNhaTaiTro.text = null
-                        tvThankNhaTaiTro.visibility = View.GONE
-                        layoutTaiApp.visibility = View.INVISIBLE
-                        btnShare.visibility = View.VISIBLE
-                        btnMyGift.visibility = View.VISIBLE
-                        showShortError(R.string.khong_the_thuc_hien_tac_vu_vi_ban_chua_cap_quyen)
-                    }
-                })
+                        override fun onPermissionNotAllow() {
+                            tvThankNhaTaiTro.text = null
+                            tvThankNhaTaiTro.visibility = View.GONE
+                            layoutTaiApp.visibility = View.INVISIBLE
+                            btnShare.visibility = View.VISIBLE
+                            btnMyGift.visibility = View.VISIBLE
+                            showShortError(R.string.khong_the_thuc_hien_tac_vu_vi_ban_chua_cap_quyen)
+                        }
+                    })
             }, 500)
         }
     }
@@ -143,7 +161,8 @@ class ShakeBoxSuccessActivity : BaseActivityMVVM() {
     @SuppressLint("SetTextI18n")
     private fun initViewModel() {
         viewModel.objCampaign.observe(this, Observer {
-            tvThank.text = Html.fromHtml("<font color=#828282>Cảm ơn bạn đã tham gia sự kiện</font>" + "<br>" + "${it.title}" + "</br>")
+            tvThank.text =
+                Html.fromHtml("<font color=#828282>Cảm ơn bạn đã tham gia sự kiện</font>" + "<br>" + "${it.title}" + "</br>")
             if (it.businessName == "iCheck") {
                 imgLogo.borderColor = ContextCompat.getColor(this, R.color.colorLineView)
                 imgLogo.borderWidth = SizeHelper.size2
@@ -156,18 +175,22 @@ class ShakeBoxSuccessActivity : BaseActivityMVVM() {
 
         viewModel.objICOpenShakeGift.observe(this, Observer {
             TrackingAllHelper.tagOpenGiftBoxSuccessful(
-                    campaign_id = viewModel.campaign?.id,
-                    gift_type = it.rewardType,
-                    gift_name = it.name,
-                    coin = it.icoin,
-                    code = null)
+                campaign_id = viewModel.campaign?.id,
+                gift_type = it.rewardType,
+                gift_name = it.name,
+                coin = it.icoin,
+                code = null
+            )
 
             when (it.type) {
                 1 -> {
                     tvNameGift.text = it.name
                     btnMyGift.text = getString(R.string.xem_qua)
                     btnMyGift.setOnClickListener {
-                        TrackingAllHelper.tagOpenGiftBoxProceedCtaClicked(viewModel.campaign?.id, viewModel.shakeGift?.rewardType)
+                        TrackingAllHelper.tagOpenGiftBoxProceedCtaClicked(
+                            viewModel.campaign?.id,
+                            viewModel.shakeGift?.rewardType
+                        )
                         startActivity<MyGiftActivity, Int>(Constant.DATA_1, 1)
                     }
                 }
@@ -186,12 +209,16 @@ class ShakeBoxSuccessActivity : BaseActivityMVVM() {
                     tvNameGift.text = it.name
                     btnMyGift.text = getString(R.string.nhan_qua)
                     btnMyGift.setOnClickListener { _ ->
-                        giftViewModel.getDetailReward(it.rewardId).observe(this, Observer { reward ->
-                            TrackingAllHelper.tagOpenGiftBoxProceedCtaClicked(viewModel.campaign?.id, viewModel.shakeGift?.rewardType)
-                            startActivity(Intent(this, ShipActivity::class.java).apply {
-                                putExtra("gift", reward)
+                        giftViewModel.getDetailReward(it.rewardId)
+                            .observe(this, Observer { reward ->
+                                TrackingAllHelper.tagOpenGiftBoxProceedCtaClicked(
+                                    viewModel.campaign?.id,
+                                    viewModel.shakeGift?.rewardType
+                                )
+                                startActivity(Intent(this, ShipActivity::class.java).apply {
+                                    putExtra("gift", reward)
+                                })
                             })
-                        })
 
                     }
                     WidgetUtils.loadImageUrl(imageGift, it.image)
@@ -204,8 +231,15 @@ class ShakeBoxSuccessActivity : BaseActivityMVVM() {
                     tvNameGift.text = it.name
                     btnMyGift.text = getString(R.string.nhan_qua)
                     btnMyGift.setOnClickListener { _ ->
-                        TrackingAllHelper.tagOpenGiftBoxProceedCtaClicked(viewModel.campaign?.id, viewModel.shakeGift?.rewardType)
-                        ActivityUtils.startActivity<DetailMyRewardActivity, String>(this, Constant.DATA_1, it.rewardId.toString())
+                        TrackingAllHelper.tagOpenGiftBoxProceedCtaClicked(
+                            viewModel.campaign?.id,
+                            viewModel.shakeGift?.rewardType
+                        )
+                        ActivityUtils.startActivity<DetailMyRewardActivity, String>(
+                            this,
+                            Constant.DATA_1,
+                            it.rewardId.toString()
+                        )
                     }
                     WidgetUtils.loadImageUrl(imageGift, it.image)
                 }
@@ -217,8 +251,15 @@ class ShakeBoxSuccessActivity : BaseActivityMVVM() {
                     tvNameGift.text = it.name
                     btnMyGift.text = getString(R.string.xem_qua)
                     btnMyGift.setOnClickListener { _ ->
-                        TrackingAllHelper.tagOpenGiftBoxProceedCtaClicked(viewModel.campaign?.id, viewModel.shakeGift?.rewardType)
-                        ActivityUtils.startActivity<DetailMyRewardActivity, String>(this, Constant.DATA_1, it.rewardId.toString())
+                        TrackingAllHelper.tagOpenGiftBoxProceedCtaClicked(
+                            viewModel.campaign?.id,
+                            viewModel.shakeGift?.rewardType
+                        )
+                        ActivityUtils.startActivity<DetailMyRewardActivity, String>(
+                            this,
+                            Constant.DATA_1,
+                            it.rewardId.toString()
+                        )
                     }
                     WidgetUtils.loadImageUrl(imageGift, it.image)
                 }
@@ -228,8 +269,15 @@ class ShakeBoxSuccessActivity : BaseActivityMVVM() {
                     tvNameGift.text = it.name
                     btnMyGift.text = getString(R.string.xem_qua)
                     btnMyGift.setOnClickListener { _ ->
-                        TrackingAllHelper.tagOpenGiftBoxProceedCtaClicked(viewModel.campaign?.id, viewModel.shakeGift?.rewardType)
-                        ActivityUtils.startActivity<DetailMyRewardActivity, String>(this, Constant.DATA_1, it.rewardId.toString())
+                        TrackingAllHelper.tagOpenGiftBoxProceedCtaClicked(
+                            viewModel.campaign?.id,
+                            viewModel.shakeGift?.rewardType
+                        )
+                        ActivityUtils.startActivity<DetailMyRewardActivity, String>(
+                            this,
+                            Constant.DATA_1,
+                            it.rewardId.toString()
+                        )
                     }
                     WidgetUtils.loadImageUrl(imageGift, it.image)
                 }
@@ -242,10 +290,15 @@ class ShakeBoxSuccessActivity : BaseActivityMVVM() {
 
                     btnMyGift.setText(R.string.xem_lich_boc_tham)
                     btnMyGift.setOnClickListener { _ ->
-                        TrackingAllHelper.tagOpenGiftBoxProceedCtaClicked(viewModel.campaign?.id, viewModel.shakeGift?.rewardType)
+                        TrackingAllHelper.tagOpenGiftBoxProceedCtaClicked(
+                            viewModel.campaign?.id,
+                            viewModel.shakeGift?.rewardType
+                        )
                         val intent = Intent(this, CampaignOnboardingActivity::class.java)
-                        intent.putExtra(Constant.DATA_1, it.campaignId ?: viewModel.campaign?.id
-                        ?: "")
+                        intent.putExtra(
+                            Constant.DATA_1, it.campaignId ?: viewModel.campaign?.id
+                            ?: ""
+                        )
                         intent.putExtra(Constant.DATA_2, "CODE")
                         ActivityUtils.startActivity(this, intent)
                     }
@@ -265,10 +318,17 @@ class ShakeBoxSuccessActivity : BaseActivityMVVM() {
                     tvNameGift.text = TextHelper.formatMoney(it.icoin) + "Xu"
                     btnMyGift.text = getString(R.string.quan_ly_xu)
                     btnMyGift.setOnClickListener {
-                        TrackingAllHelper.tagOpenGiftBoxProceedCtaClicked(viewModel.campaign?.id, viewModel.shakeGift?.rewardType)
+                        TrackingAllHelper.tagOpenGiftBoxProceedCtaClicked(
+                            viewModel.campaign?.id,
+                            viewModel.shakeGift?.rewardType
+                        )
                         startActivity<CoinHistoryActivity>()
                     }
-                    WidgetUtils.loadImageUrlFitCenter(imageGift, it.icoin_icon,R.drawable.ic_icheck_xu)
+                    WidgetUtils.loadImageUrlFitCenter(
+                        imageGift,
+                        it.icoin_icon,
+                        R.drawable.ic_icheck_xu
+                    )
 
                 }
             }
@@ -277,11 +337,16 @@ class ShakeBoxSuccessActivity : BaseActivityMVVM() {
         viewModel.onError.observe(this, Observer {
             when (it.type) {
                 ICMessageEvent.Type.MESSAGE_ERROR -> {
-                    DialogHelper.showNotification(this, null, R.string.co_loi_xay_ra_vui_long_thu_lai, false, object : NotificationDialogListener {
-                        override fun onDone() {
-                            onBackPressed()
-                        }
-                    })
+                    DialogHelper.showNotification(
+                        this,
+                        null,
+                        R.string.co_loi_xay_ra_vui_long_thu_lai,
+                        false,
+                        object : NotificationDialogListener {
+                            override fun onDone() {
+                                onBackPressed()
+                            }
+                        })
                 }
                 else -> {
                 }
@@ -320,7 +385,12 @@ class ShakeBoxSuccessActivity : BaseActivityMVVM() {
         val vibra = SettingManager.getVibrateSetting
         if (vibra) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                vibrate?.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE))
+                vibrate?.vibrate(
+                    VibrationEffect.createOneShot(
+                        500,
+                        VibrationEffect.DEFAULT_AMPLITUDE
+                    )
+                )
             } else {
                 vibrate?.vibrate(500)
             }
@@ -335,12 +405,19 @@ class ShakeBoxSuccessActivity : BaseActivityMVVM() {
             val intent = Intent()
             intent.putExtra(Constant.DATA_2, 2)
             setResult(Activity.RESULT_OK, intent)
-            TrackingAllHelper.tagOpenGiftBoxDismissClicked(viewModel.campaign?.id, viewModel.shakeGift?.rewardType)
+            TrackingAllHelper.tagOpenGiftBoxDismissClicked(
+                viewModel.campaign?.id,
+                viewModel.shakeGift?.rewardType
+            )
             onBackPressed()
         }
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
         if (requestCode == requestShare) {
@@ -366,7 +443,8 @@ class ShakeBoxSuccessActivity : BaseActivityMVVM() {
 
     inner class ShareImage(val context: Context) : AsyncTask<Bitmap, String, File>() {
         override fun doInBackground(vararg params: Bitmap?): File? {
-            val fileFolder = (Environment.getExternalStorageDirectory().toString() + "/Android/data/" + context.packageName + "/Files" + "/Share")
+            val fileFolder = (Environment.getExternalStorageDirectory()
+                .toString() + "/Android/data/" + context.packageName + "/Files" + "/Share")
 
             val dir = File(fileFolder)
 

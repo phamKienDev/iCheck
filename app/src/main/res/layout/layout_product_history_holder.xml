@@ -160,10 +160,13 @@
             android:fontFamily="@font/barlow_medium"
             android:textColor="#4f4f4f"
             android:textSize="@dimen/font_16"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:layout_marginEnd="@dimen/size_4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/avaShop"
             app:layout_constraintTop_toTopOf="@+id/avaShop"
-            tools:text="Siêu thị VinMart Mỹ Đình" />
+            tools:text="Siêu thị VinMart Mỹ Đình Siêu thị VinMart Mỹ Đình" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvDistance"

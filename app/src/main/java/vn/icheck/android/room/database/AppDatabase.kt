@@ -10,7 +10,7 @@ import vn.icheck.android.activities.chat.sticker.StickerDao
 import vn.icheck.android.activities.chat.sticker.StickerPackages
 import vn.icheck.android.activities.chat.sticker.StickerPackagesDao
 import vn.icheck.android.activities.chat.sticker.StickerView
-import vn.icheck.android.model.chat.ChatConversation
+import vn.icheck.android.network.model.chat.ChatConversation
 import vn.icheck.android.room.dao.*
 import vn.icheck.android.room.entity.*
 

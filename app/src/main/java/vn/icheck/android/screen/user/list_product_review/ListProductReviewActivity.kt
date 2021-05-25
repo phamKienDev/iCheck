@@ -109,6 +109,7 @@ class ListProductReviewActivity : BaseActivityMVVM(), ISubmitReviewListener, IRe
 
         swipe_container.setOnRefreshListener {
             getData()
+            adapter.setRefeshTextReview(true)
         }
     }
 

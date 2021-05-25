@@ -113,8 +113,13 @@ class GameFromLabelsListActivity : BaseActivityGame(), IRecyclerViewCallback, IC
     override fun onMessageEvent(event: ICMessageEvent) {
         super.onMessageEvent(event)
 
-        if (event.type == ICMessageEvent.Type.ON_UPDATE_POINT) {
-            getData()
+        when(event.type){
+            ICMessageEvent.Type.ON_UPDATE_POINT -> {
+                getData()
+            }
+            ICMessageEvent.Type.UPDATE_COUNT_GAME -> {
+                getData()
+            }
         }
     }
 

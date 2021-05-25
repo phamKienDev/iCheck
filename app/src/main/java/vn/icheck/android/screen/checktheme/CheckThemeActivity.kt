@@ -4,6 +4,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.ContentResolver
 import android.content.Context
+import android.content.Intent
 import android.media.AudioAttributes
 import android.net.Uri
 import android.os.Build
@@ -22,7 +23,6 @@ import kotlinx.coroutines.*
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
-import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.chat.icheckchat.sdk.ChatSdk
 import vn.icheck.android.constant.Constant
@@ -44,27 +44,20 @@ import java.io.File
 class CheckThemeActivity : BaseActivityMVVM() {
     private lateinit var viewModel: CheckThemeViewModel
 
+    private var notificationPath: String? = null
+
     private var isShowUpdate = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_check_theme)
 
-//        setupView()
+        getData()
         onInitView()
     }
 
-    private fun setupView() {
-//        progressbar.apply {
-//            progressDrawable = ViewHelper.progressPrimaryBackgroundTransparentCorners8(context)
-//        }
-//
-//        Handler(Looper.getMainLooper()).postDelayed({
-//            progressbar.progress = 70
-//            progressbar.max = 100
-//        }, 3000)
-
-        layoutContent.beVisible()
+    private fun getData() {
+        notificationPath = intent?.getStringExtra(Constant.DATA_1)
     }
 
     private fun onInitView() {
@@ -125,7 +118,7 @@ class CheckThemeActivity : BaseActivityMVVM() {
     }
 
     private fun getThemeSetting() {
-        ChatSdk.shareIntent(SessionManager.session.firebaseToken, SessionManager.session.user?.id, SessionManager.session.token, DeviceUtils.getUniqueDeviceId())
+        ChatSdk.shareIntent(SessionManager.session.firebaseToken, SessionManager.session.user?.id, SessionManager.session.token, DeviceUtils.getUniqueDeviceId(),SessionManager.isUserLogged)
 
         lifecycleScope.launch {
             var themeSettingRes: ICResponse<ICThemeSetting>? = null
@@ -236,7 +229,10 @@ class CheckThemeActivity : BaseActivityMVVM() {
 
     private fun onGoToHome() {
         if (viewModel.appInitScheme.isNotEmpty()) {
-            startActivityAndFinish<WelcomeActivity, String>(Constant.DATA_2, viewModel.appInitScheme)
+            val intent = Intent(this@CheckThemeActivity, WelcomeActivity::class.java)
+            intent.putExtra(Constant.DATA_2, viewModel.appInitScheme)
+            intent.putExtra(Constant.DATA_3, notificationPath)
+            startActivityAndFinish(intent)
         } else {
             startActivityAndFinish<WelcomeActivity>()
         }

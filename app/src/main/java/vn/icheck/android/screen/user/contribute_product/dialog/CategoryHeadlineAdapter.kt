@@ -4,8 +4,7 @@ import android.graphics.Color
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.databinding.ItemCategoryTitleBinding
-import vn.icheck.android.ichecklibs.Constant
-import vn.icheck.android.model.category.CategoryItem
+import vn.icheck.android.network.model.category.CategoryItem
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beInvisible
 import vn.icheck.android.util.ick.getLayoutInflater

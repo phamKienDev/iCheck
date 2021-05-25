@@ -8,9 +8,9 @@ import kotlinx.android.synthetic.main.avatar_user_28px.view.*
 import kotlinx.android.synthetic.main.comment_holder_v1.view.*
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
-import vn.icheck.android.activities.image.DetailImagesActivity
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.network.models.ICProductReviews
+import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
 import vn.icheck.android.util.kotlin.WidgetUtils
 import vn.icheck.android.util.text.CommentTimeUtil
 import vn.icheck.android.util.ui.GlideUtil
@@ -102,9 +102,9 @@ class ReviewsCommentStampHolder(parent: ViewGroup) : BaseViewHolder<ICProductRev
 
     fun showDetailImages(list: List<String?>) {
         ICheckApplication.currentActivity()?.let { activity ->
-            val ar = arrayListOf<String?>()
-            ar.addAll(list)
-            DetailImagesActivity.start(ar, activity)
+            val arr = arrayListOf<String?>()
+            arr.addAll(list)
+            DetailMediaActivity.start(activity,arr)
         }
     }
 }

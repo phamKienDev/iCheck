@@ -3,9 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@id/layoutParent"
-    android:layout_marginTop="@dimen/size_10"
     android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_10"
+        android:background="@color/colorBackgroundGray" />
 
     <LinearLayout
         android:id="@+id/layoutTitle"
@@ -19,16 +24,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_12"
-            android:layout_marginLeft="@dimen/size_12"
             android:layout_weight="1"
-            android:text="Title" />
+            tools:text="Title"/>
 
         <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
             android:id="@id/btnMore"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginEnd="@dimen/size_12"
-            android:layout_marginRight="@dimen/size_12"
             android:gravity="center"
             android:text="Xem thêm"
             android:textSize="@dimen/font_14" />
@@ -64,7 +67,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_arrow_left_light_white_24dp"
-            android:drawableLeft="@drawable/ic_arrow_left_light_white_24dp"
             app:layout_constraintBottom_toBottomOf="@id/viewBackground"
             app:layout_constraintStart_toStartOf="@id/viewBackground"
             app:layout_constraintTop_toTopOf="@id/viewBackground" />
@@ -74,7 +76,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_arrow_right_light_white_24dp"
-            android:drawableLeft="@drawable/ic_arrow_right_light_white_24dp"
             app:layout_constraintBottom_toBottomOf="@id/viewBackground"
             app:layout_constraintEnd_toEndOf="@id/viewBackground"
             app:layout_constraintTop_toTopOf="@id/viewBackground" />

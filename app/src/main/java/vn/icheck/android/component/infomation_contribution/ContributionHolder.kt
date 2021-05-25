@@ -1,11 +1,13 @@
 package vn.icheck.android.component.infomation_contribution
 
 import android.os.Build
+import android.os.Handler
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import de.hdodenhof.circleimageview.CircleImageView
@@ -19,6 +21,8 @@ import vn.icheck.android.component.view.ListAvatar
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
+import vn.icheck.android.ichecklibs.MiddleMultilineTextView
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.product.ProductInteractor
@@ -29,6 +33,7 @@ import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.screen.user.contribute_product.IckContributeProductActivity
 import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionDialog
 import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionSuccessDialog
+import vn.icheck.android.util.ick.setRankUser
 import vn.icheck.android.util.ick.showSimpleErrorToast
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -37,7 +42,8 @@ class ContributionHolder(parent: ViewGroup) : BaseViewHolder<ContributrionModel>
     lateinit var layoutAvatarUser: RelativeLayout
     lateinit var imgAvatarUser: CircleImageView
     lateinit var imgVerified: AppCompatTextView
-    lateinit var tvNameUser: AppCompatTextView
+    lateinit var imgRank: AppCompatImageView
+    lateinit var tvNameUser: MiddleMultilineTextView
     lateinit var tvUpVote: AppCompatTextView
     lateinit var tvDownVote: AppCompatTextView
     lateinit var tvAction: AppCompatTextView
@@ -58,8 +64,9 @@ class ContributionHolder(parent: ViewGroup) : BaseViewHolder<ContributrionModel>
                 layoutAvatarUser = getChildAt(0) as RelativeLayout
                 imgAvatarUser = layoutAvatarUser.getChildAt(0) as CircleImageView
                 imgVerified = layoutAvatarUser.getChildAt(1) as AppCompatTextView
+                imgRank = layoutAvatarUser.getChildAt(2) as AppCompatImageView
 
-                tvNameUser = getChildAt(1) as AppCompatTextView
+                tvNameUser = getChildAt(1) as MiddleMultilineTextView
                 tvUpVote = getChildAt(2) as AppCompatTextView
                 tvDownVote = getChildAt(3) as AppCompatTextView
             }
@@ -72,8 +79,8 @@ class ContributionHolder(parent: ViewGroup) : BaseViewHolder<ContributrionModel>
         }
 
         imgVerified.visibility = View.GONE
-
         checkProductVerify(obj)
+
         if (obj.productVerify) {
             if (obj.manager != null) {
                 WidgetUtils.loadImageUrl(imgAvatarUser, obj.manager.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
@@ -95,12 +102,22 @@ class ContributionHolder(parent: ViewGroup) : BaseViewHolder<ContributrionModel>
                 tvNameUser.text = itemView.context.getString(R.string.chua_cap_nhat)
             } else {
                 WidgetUtils.loadImageUrl(imgAvatarUser, obj.data!!.contribution?.user?.avatar, R.drawable.ic_avatar_default_84px, R.drawable.ic_avatar_default_84px)
-                tvNameUser.text = obj.data!!.contribution?.user?.getName
+                if (obj.data!!.contribution?.user?.kycStatus == 2) {
+                    tvNameUser.setDrawbleNextEndText(obj.data!!.contribution?.user?.getName, R.drawable.ic_verified_user_16dp)
+                    Handler().postDelayed({
+                        tvNameUser.setDrawbleNextEndText(obj.data!!.contribution?.user?.getName, R.drawable.ic_verified_user_16dp)
+                    }, 100)
+                } else {
+                    tvNameUser.text = obj.data!!.contribution?.user?.getName
+                }
+                imgRank.setRankUser(obj.data!!.contribution?.user?.rank?.level)
                 checkVote(obj.data!!)
                 checkListUserContribute(obj)
                 initListener(obj)
             }
         }
+
+
     }
 
     private fun checkProductVerify(contribution: ContributrionModel) {
@@ -144,11 +161,13 @@ class ContributionHolder(parent: ViewGroup) : BaseViewHolder<ContributrionModel>
                     tvUpVote.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_contribute_correct_fc_30px, 0, 0)
                     tvUpVote.setTextColor(Constant.getPrimaryColor(itemView.context))
 
+
                     tvDownVote.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_contribute_incorrect_unfc_30px, 0, 0)
                     tvDownVote.setTextColor(Constant.getSecondTextColor(itemView.context))
                 } else {
                     tvUpVote.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_contribute_correct_unfc_30_px, 0, 0)
                     tvUpVote.setTextColor(Constant.getSecondTextColor(itemView.context))
+
 
                     tvDownVote.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_contribute_incorrect_fc_30px, 0, 0)
                     tvDownVote.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorAccentYellow))

@@ -20,7 +20,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_10"
                 android:background="#1A057DDA"
-                android:visibility="gone"
                 android:drawableStart="@drawable/ic_contact_blue_20dp_chat"
                 android:drawableLeft="@drawable/ic_contact_blue_20dp_chat"
                 android:drawableEnd="@drawable/ic_arrow_right_blue_24dp_chat"
@@ -33,7 +32,8 @@
                 android:paddingEnd="@dimen/size_12"
                 android:paddingBottom="@dimen/size_14"
                 android:text="@string/dong_bo_danh_ba"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:visibility="gone" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
@@ -47,7 +47,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="match_parent"
@@ -71,7 +72,9 @@
                     android:layout_marginTop="15dp"
                     android:gravity="center"
                     android:includeFontPadding="false"
-                    android:text="@string/dong_bo_danh_ba_de_trao_doi" />
+                    android:text="@string/dong_bo_danh_ba_de_trao_doi"
+                    android:textColor="@color/black_21"
+                    android:visibility="gone" />
 
                 <LinearLayout
                     android:id="@+id/btnRequest"
@@ -82,7 +85,8 @@
                     android:layout_marginEnd="38dp"
                     android:background="@drawable/bg_corner_4_light_blue"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="wrap_content"

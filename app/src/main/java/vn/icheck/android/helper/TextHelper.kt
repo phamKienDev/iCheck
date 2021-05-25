@@ -42,6 +42,24 @@ object TextHelper {
         }
     }
 
+    // Có thêm khoảng cách giữa số và KM
+    fun convertMtoKmV2(distance: Long, textView: AppCompatTextView, key: String? = null) {
+        if (distance > 999) {
+            val value = distance / 1000
+            if (!key.isNullOrEmpty()) {
+                textView.text = "${key} " + value.toString() + " km"
+            } else {
+                textView.text = value.toString() + " km"
+            }
+        } else {
+            if (!key.isNullOrEmpty()) {
+                textView.text = "${key} " + distance.toString() + " m"
+            } else {
+                textView.text = distance.toString() + " m"
+            }
+        }
+    }
+
     fun getFullAddress(address: String?, ward: ICWard?, district: ICDistrict?, province: ICProvince?, country: ICCountry?): String {
         return if (address != null) {
             var mAddress = address

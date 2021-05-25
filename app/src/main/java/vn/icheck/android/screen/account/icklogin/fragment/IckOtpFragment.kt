@@ -40,6 +40,8 @@ import vn.icheck.android.helper.ShareSessionToModule
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.model.icklogin.ConfirmOtpResponse
 import vn.icheck.android.model.icklogin.IckUserInfoData
+import vn.icheck.android.network.model.icklogin.ConfirmOtpResponse
+import vn.icheck.android.network.model.icklogin.IckUserInfoData
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICSessionData
 import vn.icheck.android.screen.account.icklogin.FORGOT_PW
@@ -89,6 +91,7 @@ class IckOtpFragment : Fragment() {
         arr.add(4, ' ')
         val span = SpannableString("Mã xác nhận OTP đã được gửi đến số điện thoại ${arr.joinToString(separator = "")}")
         span.setSpan(ForegroundColorSpan(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(requireContext())), 45, span.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        val text = String.format("<p>Mã xác nhận OTP đã được gửi đến số điện thoại <font color=#057DDA>%s</font></p>", arr.joinToString(separator = ""))
 
         val spannableString = SpannableString(span)
         val onclickPhone = object : ClickableSpan() {
@@ -252,9 +255,9 @@ class IckOtpFragment : Fragment() {
                         it.data?.token?.let { token ->
                             ickLoginViewModel.getUserInfo().observe(viewLifecycleOwner, { res ->
                                 res?.data?.let { userInfoRes ->
-                                    setData(userInfoRes, token, it.data?.firebaseToken)
+                                    setData(userInfoRes, token, it.data?.firebaseToken.toString())
 
-                                    if (it.data.firstLogin == true) {
+                                    if (it.data?.firstLogin == true) {
                                         val action = IckOtpFragmentDirections.actionIckOtpFragmentToIckFacebookUserInfoFragment(args.phone, args.userName, args.userAvatar)
                                         findNavController().navigate(action)
                                     } else {
@@ -330,7 +333,7 @@ class IckOtpFragment : Fragment() {
                         it.data?.token?.let { token ->
                             ickLoginViewModel.getUserInfo().observe(viewLifecycleOwner) { res ->
                                 res?.data?.let { userInfoRes ->
-                                    setData(userInfoRes, token, it.data.firebaseToken)
+                                    setData(userInfoRes, token, it.data?.firebaseToken.toString())
                                     if (it.data?.responseCode == "U3046") {
                                         val action = IckOtpFragmentDirections.actionIckOtpFragmentToIckFacebookUserInfoFragment(args.phone, args.userName, args.userAvatar)
                                         findNavController().navigate(action)

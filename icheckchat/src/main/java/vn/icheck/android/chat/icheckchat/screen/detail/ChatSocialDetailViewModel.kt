@@ -16,19 +16,18 @@ import java.lang.Exception
 
 class ChatSocialDetailViewModel : BaseViewModelChat() {
     private val repository = ChatRepository()
-    val listMediaData = MutableLiveData<MutableList<MCUploadResponse>>()
-
-//    fun getChatMessage(key: String, success: (obj: DataSnapshot) -> Unit, error: (error: DatabaseError) -> Unit) = firebaseHelper.getMessageDetail(key, success, error)
+    val listMediaData = MutableLiveData<MCDetailMessage>()
 
     fun getChatMessage(lastTimeStamp: Long, key: String, success: (obj: DataSnapshot) -> Unit, error: (error: DatabaseError) -> Unit) = firebaseHelper.getMessageDetailV2(lastTimeStamp, key, success, error)
 
-    fun getChangeMessageChat(key: String, onAdd: (obj: DataSnapshot) -> Unit, timeStart: Long) = firebaseHelper.getChangeMessageChat(key, onAdd, timeStart)
+    fun getChangeMessageChat(key: String, onAdd: (obj: DataSnapshot) -> Unit) = firebaseHelper.getChangeMessageChat(key, onAdd)
 
-    fun uploadImage(files: MutableList<File>) {
+    fun uploadImage(obj: MCDetailMessage) {
         viewModelScope.launch {
             val listMedia = mutableListOf<MCUploadResponse>()
             val listCall = mutableListOf<Deferred<Any?>>()
-            files.forEach {
+
+            obj.listMediaFile?.forEach {
                 listCall.add(async {
                     try {
                         val response = withTimeout(60000){repository.uploadMedia(it)}
@@ -41,7 +40,17 @@ class ChatSocialDetailViewModel : BaseViewModelChat() {
             }
 
             listCall.awaitAll()
-            listMediaData.postValue(listMedia)
+
+            obj.listMedia = mutableListOf()
+            listMedia.forEach {
+                obj.listMedia!!.add(MCMedia(it.src, if (it.src.endsWith(".mp4")) {
+                    "video"
+                } else {
+                    "image"
+                }))
+            }
+
+            listMediaData.postValue(obj)
         }
     }
 

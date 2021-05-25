@@ -35,12 +35,13 @@
         <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
             android:id="@+id/tvNamePage"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="29dp"
+            android:drawablePadding="@dimen/size_8"
             android:ellipsize="end"
             android:gravity="center_vertical"
             android:includeFontPadding="false"
             android:singleLine="true"
-            android:drawablePadding="@dimen/size_8"
+            android:textColor="@color/colorSecondary"
             android:textSize="@dimen/font_16"
             tools:text="Công ty Cổ phần ViviDa" />
     </LinearLayout>

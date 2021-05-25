@@ -11,7 +11,7 @@ import vn.icheck.android.constant.SHOW_LIST_MUTUAL_FRIEND
 import vn.icheck.android.constant.USER_WALL_BROADCAST
 import vn.icheck.android.constant.USER_WALL_EVENT_SETTING
 import vn.icheck.android.databinding.FriendInWallHolderBinding
-import vn.icheck.android.model.profile.IckUserFriendModel
+import vn.icheck.android.network.model.profile.IckUserFriendModel
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.screen.user.list_friend_in_wall.ListFriendOfWallActivity
 import vn.icheck.android.screen.user.wall.USER_ID

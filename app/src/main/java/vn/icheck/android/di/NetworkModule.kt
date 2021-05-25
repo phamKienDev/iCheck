@@ -1,12 +1,12 @@
 package vn.icheck.android.di
 
+//import okhttp3.logging.HttpLoggingInterceptor
 import android.content.SharedPreferences
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
+import okhttp3.*
 //import okhttp3.logging.HttpLoggingInterceptor
 import org.greenrobot.eventbus.EventBus
 import retrofit2.Retrofit
@@ -17,6 +17,8 @@ import vn.icheck.android.network.api.ICKApi
 import vn.icheck.android.network.api.UploadApi
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.APIConstants.socialHost
+import vn.icheck.android.network.base.ICNetworkManager.onEndOfToken
+import vn.icheck.android.network.base.ICNetworkManager.onTokenTimeout
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.util.DeviceUtils
 import java.net.SocketTimeoutException
@@ -28,11 +30,25 @@ object NetworkModule {
 
     @Provides
     fun provideOkHttp(sharedPreferences: SharedPreferences):OkHttpClient{
-        val httpLoggingInterceptor = HttpLoggingInterceptor()
+//        val httpLoggingInterceptor = HttpLoggingInterceptor()
         return OkHttpClient.Builder()
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.SECONDS)
                 .writeTimeout(30, TimeUnit.SECONDS)
+                .authenticator(object : Authenticator {
+                    override fun authenticate(route: Route?, response: Response): Request? {
+                        if (!response.request.url.toUrl().toString().contains("/ads") &&
+                                !response.request.url.toUrl().toString().contains("system-setting")
+                                && !response.request.url.toUrl().toString().contains("relationships/information")) {
+                            if (response.peekBody(1000).string().contains("U102")) {
+                                onTokenTimeout()
+                            } else {
+                                onEndOfToken()
+                            }
+                        }
+                        return null
+                    }
+                })
                 .addInterceptor{ chain ->
                     try {
                         val request = chain.request().newBuilder()
@@ -43,7 +59,7 @@ object NetworkModule {
 
                                 .build()
                         val hasMultipart = request.headers.names().contains("multipart")
-                        if (hasMultipart) httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.NONE) else httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+//                        if (hasMultipart) httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.NONE) else httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
                         chain.proceed(request)
                     } catch (e: SocketTimeoutException) {
                         EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.SOCKET_TIMEOUT))
@@ -54,11 +70,11 @@ object NetworkModule {
                                 .addHeader("User-Agent", "Model:${DeviceUtils.getModel()}  +  AppVersion:${SettingManager.appVersion}")
                                 .build()
                         val hasMultipart = request.headers.names().contains("multipart")
-                        if (hasMultipart) httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.NONE) else httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+//                        if (hasMultipart) httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.NONE) else httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
                         chain.proceed(request)
                     }
                 }
-                .addInterceptor(httpLoggingInterceptor)
+//                .addInterceptor(httpLoggingInterceptor)
                 .build()
     }
 

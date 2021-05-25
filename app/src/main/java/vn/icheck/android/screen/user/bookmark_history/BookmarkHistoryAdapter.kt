@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
 import vn.icheck.android.databinding.ItemBookmarkBinding
+import vn.icheck.android.network.model.bookmark.BookmarkHistoryResponse
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.model.bookmark.BookmarkHistoryResponse
 import vn.icheck.android.util.ick.*

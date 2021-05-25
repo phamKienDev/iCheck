@@ -222,9 +222,9 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
             override fun onItemClick(position: Int, item: Any?) {
                 if (item != null && item is Stickers) {
                     KeyboardUtils.showSoftInput(edtContent)
-                    layoutImage.visibility = View.VISIBLE
-                    layoutImage.tag = item.image
-                    WidgetUtils.loadImageUrlRounded(imgImage, item.image, SizeHelper.size4)
+//                    layoutImage.visibility = View.VISIBLE
+//                    layoutImage.tag = item.image
+//                    WidgetUtils.loadImageUrlRounded(imgImage, item.image, SizeHelper.size4)
 
                     checkShowEmoji(false)
                     checkSendStatus()
@@ -445,6 +445,7 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
                             containerComment.beGone()
                         }
                     }
+
                 }
             } else {
                 containerComment.beVisible()
@@ -495,13 +496,12 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
 
         imgCamera.onDelayClick({
             if (PermissionHelper.checkPermission(this, arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE), requestTakePicture)) {
-                TakeMediaDialog.show(supportFragmentManager,this,takeMediaListener)
+                TakeMediaDialog.show(supportFragmentManager, this, takeMediaListener, isVideo = true)
             }
         }, 2000)
 
         imgCloseImage.setOnClickListener {
             showLayoutImage(null)
-            imgImage.setImageResource(android.R.color.transparent)
             enableCamera(false)
             checkSendStatus()
         }
@@ -533,7 +533,7 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
         imgSend.setOnClickListener {
             imgSend.isEnabled = false
             if (SessionManager.isUserLogged) {
-                viewModel.send(permissionAdapter.getPageID, layoutActor.tag as Long?, imgImage.tag as File?, edtContent.text.toString())
+                viewModel.send(permissionAdapter.getPageID, layoutActor.tag as Long?, imgCommentSend.tag as File?, edtContent.text.toString())
             } else {
                 imgSend.isEnabled = true
                 onRequireLogin(requestLogin)
@@ -544,11 +544,11 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
     fun showLayoutImage(file: File?) {
         if (file != null) {
             view2.beVisible()
-            imgImage.beVisible()
             imgCloseImage.beVisible()
-            imgImage.tag = file
+            cardViewImage.beVisible()
+            imgCommentSend.tag = file
 
-            imgImage.loadImageFromVideoFile(file, null, SizeHelper.dpToPx(4))
+            imgCommentSend.loadImageFromVideoFile(file, null, SizeHelper.dpToPx(4))
 
             if (file.absolutePath.contains(".mp4")) {
                 imgPlay.beVisible()
@@ -558,10 +558,11 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
             enableCamera(true)
         } else {
             view2.beGone()
-            imgImage.beGone()
-            imgImage.tag = null
             imgCloseImage.beGone()
-            imgPlay.beInvisible()
+            cardViewImage.beGone()
+
+            imgCommentSend.tag = null
+
             enableCamera(false)
         }
         checkSendStatus()
@@ -609,7 +610,7 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
     }
 
     private fun checkSendStatus() {
-        if (edtContent.text.toString().trim().isNotEmpty() || imgImage.tag != null) {
+        if (edtContent.text.toString().trim().isNotEmpty() || imgCommentSend.tag != null) {
             imgSend.setImageResource(R.drawable.ic_chat_send_24px)
             imgSend.isClickable = true
         } else {

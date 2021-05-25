@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="bottom"
     android:rotation="180"
+    tools:rotation="0"
+    android:layout_height="wrap_content"
     tools:ignore="RtlSymmetry">
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -19,6 +22,7 @@
 
     <LinearLayout
         android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -356,7 +360,9 @@
 
         <include
             android:id="@+id/layoutImageDetail"
-            layout="@layout/item_image_chat_detail" />
+            layout="@layout/item_image_chat_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
             android:id="@+id/tvTime"
@@ -371,4 +377,4 @@
             android:textSize="12sp"
             tools:text="12:34, 13/09/2020" />
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

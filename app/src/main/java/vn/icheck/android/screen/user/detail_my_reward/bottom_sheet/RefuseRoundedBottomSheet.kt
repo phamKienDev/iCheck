@@ -17,6 +17,7 @@ import vn.icheck.android.R
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.network.model.ICNameId
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.model.ICNameId
 

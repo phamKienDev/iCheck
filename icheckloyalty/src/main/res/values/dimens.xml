@@ -42,9 +42,4 @@
     <dimen name="size_60">60dp</dimen>
     <dimen name="size_70">70dp</dimen>
 
-    <!--Font Size-->
-    <dimen name="font_size_2">12sp</dimen>
-    <dimen name="font_size_4">14sp</dimen>
-
-
 </resources>

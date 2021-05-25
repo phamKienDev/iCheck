@@ -2,9 +2,9 @@ package vn.icheck.android.tracking.teko
 
 import org.json.JSONObject
 import vn.icheck.android.ICheckApplication
-import vn.icheck.android.model.cart.ItemCartItem
-import vn.icheck.android.model.cart.PurchasedOrderResponse
-import vn.icheck.android.model.loyalty.ShipAddressResponse
+import vn.icheck.android.network.model.cart.ItemCartItem
+import vn.icheck.android.network.model.cart.PurchasedOrderResponse
+import vn.icheck.android.network.model.loyalty.ShipAddressResponse
 import vn.icheck.android.network.models.ICMissionDetail
 import vn.icheck.android.network.models.ICPageOverview
 import vn.icheck.android.network.models.ICStoreiCheck
@@ -345,7 +345,7 @@ object TekoHelper {
 
         val json = JSONObject()
         json.put("event_name", "checkout_success")
-        json.put("order_id", obj.id.toDouble())
+        json.put("order_id", obj.id?.toDouble())
         json.put("order_value", totalValue)
         json.put("number_of_products", totalProduct)
         json.put("phone", obj.customer?.phone ?: "")
