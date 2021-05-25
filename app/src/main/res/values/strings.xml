@@ -36,6 +36,7 @@
     <string name="quen_mat_khau">Quên mật khẩu</string>
     <string name="ban_gap_van_de_voi_dang_nhap">Bạn gặp vấn đề về đăng nhập?</string>
     <string name="so_dien_thoai">Số điện thoại</string>
+    <string name="so_dien_thoai_kich_hoat">Số điện thoại kích hoạt</string>
     <string name="mat_khau">Mật khẩu</string>
     <string name="tra_loi_xxx"><![CDATA[Trả lời  <b><font color="#3c5a99">%s</font></b>]]></string>
     <string name="binh_luan_xxx"><![CDATA[Bình luận  <b><font color="#3c5a99">%s</font></b>]]></string>
@@ -67,6 +68,7 @@
     <string name="email">Email</string>
     <string name="ngay_sinh">Ngày sinh</string>
     <string name="quan_huyen">Quận/Huyện</string>
+    <string name="quan_huyen_bat_buoc">Quận/Huyện (*)</string>
     <string name="ho_khong_duoc_de_trong">Họ không được để trống</string>
     <string name="ten_khong_duoc_de_trong">Tên không được để trống</string>
     <string name="ten_khong_hop_le">Tên không hợp lệ</string>
@@ -200,6 +202,7 @@
     <string name="nhap_email">Nhập email</string>
     <string name="nhap_dia_chi">Nhập địa chỉ</string>
     <string name="nhap_ho">Nhập họ</string>
+    <string name="nhap_ho_va_ten">Nhập họ và tên</string>
     <string name="nhap_ten">Nhập tên</string>
     <string name="nhap_ngay_sinh">Nhập ngày sinh</string>
     <string name="update_profile_gift_facebook">Liên kết ngay để nhận 1 hộp quà từ iCheck nhé</string>
@@ -941,6 +944,7 @@
     <string name="thong_tin_khach_hang">Thông tin khách hàng</string>
     <string name="tien_do_bao_hanh">Tiến độ bảo hành</string>
     <string name="ho_va_ten_v2">Họ và tên:</string>
+    <string name="ho_va_ten">Họ và tên</string>
     <string name="so_dien_thoai_v2">Số điện thoại:</string>
     <string name="email_v2">Email:</string>
     <string name="dia_chi_v2">Địa chỉ:</string>
@@ -955,4 +959,15 @@
     <string name="dien_thoai_xxx_stamp_v61">Điện thoại: %s</string>
     <string name="email_xxx_stamp_v61">Email: %s</string>
     <string name="website_xxx_stamp_v61">Website: %s</string>
+    <string name="thong_bao_nhap_thong_tin_ca_nhan_stamp_v61">Bạn phải nhập thông tin cá nhân để kích hoạt bảo hành.\nNhà sản xuất có quyền từ chối bảo hành nếu thông tin\nkhông chính xác.</string>
+    <string name="thong_bao_nhap_thong_tin_khach_hang_stamp_v61">Cập nhật thông tin khách hàng để nhận các ưu đãi\nvà chăm sóc tốt nhất.</string>
+    <string name="ma_hieu_san_pham">Mã hiệu sản phẩm</string>
+    <string name="nhap_ma_hieu_san_pham">Nhập mã hiệu sản phẩm</string>
+    <string name="ma_bien_the">Mã biến thể</string>
+    <string name="nhap_bien_the_san_pham">Nhập biến thể sản phẩm</string>
+    <string name="thong_tin_tiep_nhan">Thông tin tiếp nhận</string>
+    <string name="chon_ngay_thang">Chọn ngày tháng</string>
+    <string name="tieu_de_xac_nhan_so_dien_thoai_stamp_v61">Nhập số điện thoại đã kích hoạt bảo hành trước đây\ncho sản phẩm này trước khi cập nhận tông tin mới</string>
+    <string name="xac_thuc">Xác thực</string>
+    <string name="da_hieu">Đã hiểu</string>
 </resources>

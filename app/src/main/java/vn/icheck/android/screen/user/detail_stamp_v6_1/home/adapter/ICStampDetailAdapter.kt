@@ -14,7 +14,7 @@ import vn.icheck.android.network.models.*
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICStampConfig
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.holder.*
 
-class ICDetailStampAdapter(listener: IRecyclerViewCallback) : RecyclerViewCustomAdapter<ICLayout>(listener) {
+class ICStampDetailAdapter(listener: IRecyclerViewCallback) : RecyclerViewCustomAdapter<ICLayout>(listener) {
     private var bannerClicked: ((obj: ICKLoyalty) -> Unit)? = null
     private var checkCode: ((obj: ICKLoyalty) -> Unit)? = null
 

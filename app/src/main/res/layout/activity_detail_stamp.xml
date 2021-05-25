@@ -16,7 +16,7 @@
 
         <include
             android:id="@id/layoutToolbar"
-            layout="@layout/toolbar_blue" />
+            layout="@layout/toolbar_light_blue" />
 
         <LinearLayout
             android:id="@+id/layoutExceededScan"
@@ -138,24 +138,22 @@
         android:layout_height="wrap_content"
         android:visibility="invisible" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ui.view.TextSubheader2
         android:id="@+id/textFab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
         android:layout_gravity="center"
-        android:layout_marginBottom="@dimen/size_68"
-        android:background="@drawable/bg_corner_dark_blue_45"
-        android:fontFamily="sans-serif-medium"
-        android:gravity="center"
+        android:layout_marginBottom="@dimen/size_24"
+        android:background="@drawable/btn_light_blue_corners_4"
+        android:drawableStart="@drawable/ic_update_user_info_white_24px"
+        android:drawablePadding="@dimen/size_6"
         android:paddingStart="@dimen/size_12"
-        android:paddingTop="@dimen/size_10"
+        android:paddingTop="@dimen/size_8"
         android:paddingEnd="@dimen/size_12"
-        android:paddingBottom="@dimen/size_10"
-        android:textColor="#ffffff"
-        android:textSize="@dimen/font_16"
-        android:textStyle="normal"
+        android:paddingBottom="@dimen/size_8"
+        android:textColor="@color/white"
         android:visibility="invisible" />
 
     <LinearLayout

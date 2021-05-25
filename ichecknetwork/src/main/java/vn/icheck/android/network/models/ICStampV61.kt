@@ -9,5 +9,7 @@ data class ICStampV61(
         @Expose val canUpdate: Boolean?,
         @Expose val onlyIdentity: Boolean?,
         @Expose val qrm: String?,
-        @Expose val widgets: List<ICWidget>?
+        @Expose val widgets: List<ICWidget>?,
+        @Expose val errorCode: Int?,
+        @Expose val errorMessage: String?
 )

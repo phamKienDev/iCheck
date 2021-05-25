@@ -50,7 +50,7 @@ class VerifiedPhonePresenter(val view: IVerifiedPhoneView) : BaseActivityPresent
         }
 
         val objVariant = try {
-            intent.getSerializableExtra(Constant.DATA_5) as ICVariantProductStampV6_1.ICVariant.ICObjectVariant
+            intent.getSerializableExtra(Constant.DATA_5) as ICVariantProductStampV6_1.ICVariant.ICObjectVariant?
         } catch (e: Exception) {
             null
         }
@@ -74,7 +74,7 @@ class VerifiedPhonePresenter(val view: IVerifiedPhoneView) : BaseActivityPresent
     fun onValidPhoneNumber(phone: String) {
         var isValidSuccess = true
 
-        val validPhone = ValidHelper.validPhoneNumber(view.mContext, phone)
+        val validPhone = ValidHelper.validInternationalPhoneNumber(view.mContext, phone)
 
         if (validPhone != null) {
             isValidSuccess = false

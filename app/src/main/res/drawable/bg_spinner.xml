@@ -12,7 +12,7 @@
             </item>
 
             <item android:right="@dimen/size_5">
-                <bitmap android:gravity="center_vertical|right" android:src="@drawable/ic_down_blue_18px" />
+                <bitmap android:gravity="center_vertical|right" android:src="@drawable/ic_arrow_down_blue_24px" />
             </item>
         </layer-list>
     </item>

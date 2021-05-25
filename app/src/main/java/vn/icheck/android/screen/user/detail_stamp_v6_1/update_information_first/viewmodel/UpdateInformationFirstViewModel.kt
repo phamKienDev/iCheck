@@ -29,13 +29,13 @@ class UpdateInformationFirstViewModel @Inject constructor() : BaseViewModel() {
     }
 
     suspend fun getCustomerVariant() = try {
-        repository.getCustomerVariant(barcode).data
+        repository.getCustomerVariant(barcode = barcode).data
     } catch (e: Exception) {
         null
     }
 
     suspend fun getGuaranteeVariant() = try {
-        repository.getGuaranteeVariant(barcode).data
+        repository.getGuaranteeVariant(barcode = barcode).data
     } catch (e: Exception) {
         null
     }

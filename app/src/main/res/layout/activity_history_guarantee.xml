@@ -10,7 +10,7 @@
 
     <include
         android:id="@id/layoutToolbar"
-        layout="@layout/toolbar_blue" />
+        layout="@layout/toolbar_light_blue" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvHistoryGuarantee"

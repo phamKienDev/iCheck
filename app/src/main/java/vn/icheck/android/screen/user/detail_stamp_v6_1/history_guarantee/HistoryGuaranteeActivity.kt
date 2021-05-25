@@ -3,7 +3,7 @@ package vn.icheck.android.screen.user.detail_stamp_v6_1.history_guarantee
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.toolbar_blue.view.*
+import kotlinx.android.synthetic.main.toolbar_light_blue.view.*
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.callback.IRecyclerViewCallback

@@ -2,7 +2,9 @@ package vn.icheck.android.screen.user.detail_stamp_v6_1.otp_information_guarante
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.Editable
 import android.text.Html
@@ -11,7 +13,7 @@ import android.view.View
 import kotlinx.android.synthetic.main.activity_verify_otpguarantee.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
@@ -21,18 +23,15 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.otp_information_guarantee
 import vn.icheck.android.screen.user.detail_stamp_v6_1.otp_information_guarantee.view.IVerifyOTPGuaranteeView
 import vn.icheck.android.util.KeyboardUtils
 
-class VerifyOTPGuaranteeActivity : BaseActivity<VerifyOTPGuaranteePresenter>(),IVerifyOTPGuaranteeView {
-
-    override val getLayoutID: Int
-        get() = R.layout.activity_verify_otpguarantee
-
-    override val getPresenter: VerifyOTPGuaranteePresenter
-        get() = VerifyOTPGuaranteePresenter(this)
+class VerifyOTPGuaranteeActivity : BaseActivityMVVM(), IVerifyOTPGuaranteeView {
+    private val presenter = VerifyOTPGuaranteePresenter(this)
 
     private var timer: CountDownTimer? = null
 
-    @SuppressLint("SetTextI18n")
-    override fun onInitView() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_verify_otpguarantee)
+
         presenter.getDataByIntent(intent)
         if (StampDetailActivity.isVietNamLanguage == false) {
             txtTitle.text = "Enter verified code"
@@ -68,7 +67,7 @@ class VerifyOTPGuaranteeActivity : BaseActivity<VerifyOTPGuaranteePresenter>(),I
         })
 
         txtStatus.setOnClickListener {
-            if (StampDetailActivity.isVietNamLanguage == false){
+            if (StampDetailActivity.isVietNamLanguage == false) {
                 if (txtStatus.text.toString() == "Resend code") {
                     progressBar.visibility = View.VISIBLE
                     txtStatus.text = "Sending code"
@@ -92,7 +91,7 @@ class VerifyOTPGuaranteeActivity : BaseActivity<VerifyOTPGuaranteePresenter>(),I
 
     @SuppressLint("SetTextI18n")
     private fun showTextTime(isShow: Boolean) {
-        if (StampDetailActivity.isVietNamLanguage == false){
+        if (StampDetailActivity.isVietNamLanguage == false) {
             if (isShow) {
                 txtTime.visibility = View.VISIBLE
                 txtTime.text = getString(R.string.khong_nhan_duoc_ma_xac_nhan_gui_lai_sau_xxx_giay_en, "60")
@@ -142,7 +141,7 @@ class VerifyOTPGuaranteeActivity : BaseActivity<VerifyOTPGuaranteePresenter>(),I
     override fun onGetDataIntentSuccess(obj: ICUpdateCustomerGuarantee) {
         KeyboardUtils.showSoftInput(edtOtp)
 
-        if (StampDetailActivity.isVietNamLanguage == false){
+        if (StampDetailActivity.isVietNamLanguage == false) {
             txtContent.text = Html.fromHtml(getString(R.string.otp_content_xxx_en, obj.phone))
         } else {
             txtContent.text = Html.fromHtml(getString(R.string.otp_content_xxx, obj.phone))
@@ -203,9 +202,18 @@ class VerifyOTPGuaranteeActivity : BaseActivity<VerifyOTPGuaranteePresenter>(),I
     }
 
     override fun showError(errorMessage: String) {
-        super.showError(errorMessage)
-
         showShortError(errorMessage)
+    }
+
+    override val mContext: Context
+        get() = this
+
+    override fun onShowLoading(isShow: Boolean) {
+        if (isShow) {
+            DialogHelper.showLoading(this)
+        } else {
+            DialogHelper.closeLoading(this)
+        }
     }
 
     override fun onDestroy() {

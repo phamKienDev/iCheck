@@ -20,8 +20,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.location.*
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.disposables.Disposable
-import kotlinx.android.synthetic.main.activity_detail_stamp.*
-import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
@@ -30,6 +28,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.databinding.ActivityDetailStampBinding
 import vn.icheck.android.helper.*
 import vn.icheck.android.ichecklibs.util.visibleOrInvisible
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
@@ -59,10 +58,11 @@ import kotlin.math.hypot
 
 @AndroidEntryPoint
 class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewCallback, IClickListener, CampaignLoyaltyHelper.ILoginListener, CampaignLoyaltyHelper.IRemoveHolderInputLoyaltyListener {
+    private lateinit var binding: ActivityDetailStampBinding
     private val viewModel by viewModels<ICDetailStampViewModel>()
     private val presenter = DetailStampPresenter(this)
 
-    private val adapter = ICDetailStampAdapter(this)
+    private val adapter = ICStampDetailAdapter(this)
 
     companion object {
         val listActivities = mutableListOf<AppCompatActivity>()
@@ -71,13 +71,11 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
     }
 
     private var disposable: Disposable? = null
-//    var id = -1L
 
     private var isShow = true
     private var numberPage = 0
     private var distributorId: Long? = null
     private var productId: Long? = null
-//    private var objVariant: ICVariantProductStampV6_1.ICVariant.ICObjectVariant? = null
     private var serial: String? = null
 
     private var itemDistributor: ICObjectDistributor? = null
@@ -105,7 +103,8 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail_stamp)
+        binding = ActivityDetailStampBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         setupView()
         setupToolbar()
@@ -121,76 +120,76 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
 
         runOnUiThread {
             if (isVietNamLanguage == false) {
-                txtTitle.text = "Verified product"
-                tvChatWithAdmin.text = "Contact to Admin Icheck"
+                binding.layoutToolbar.txtTitle.text = "Verified product"
+                binding.tvChatWithAdmin.text = "Contact to Admin Icheck"
 //                btnAgainError.text = "Try Again"
 //                btnRequestPermission.text = "Turn on GPS"
-                textFab.text = "Update customer information"
+                binding.textFab.text = "Update customer information"
             } else {
-                txtTitle.text = "Xác thực sản phẩm"
-                tvChatWithAdmin.text = "Liên hệ Admin iCheck"
+                binding.layoutToolbar.txtTitle.text = "Xác thực sản phẩm"
+                binding.tvChatWithAdmin.text = "Liên hệ Admin iCheck"
 //                btnAgainError.text = "Thử Lại"
 //                btnRequestPermission.text = "Bật GPS"
-                textFab.setText(R.string.cap_nhat_thong_tin_khach_hang)
+                binding.textFab.setText(R.string.cap_nhat_thong_tin_khach_hang)
             }
         }
     }
 
     private fun setupToolbar() {
-        imgBack.setOnClickListener {
+        binding.layoutToolbar.imgBack.setOnClickListener {
             onBackPressed()
         }
 
-        imgAction.apply {
+        binding.layoutToolbar.imgAction.apply {
             setImageResource(R.drawable.ic_more_horiz_24px)
 
             setOnClickListener {
-                imgAction.isClickable = false
-                val cx: Int = layoutChatAdmin.measuredWidth * 2
-                val cy: Int = layoutChatAdmin.measuredHeight / 2
-                val finalRadius = hypot(layoutChatAdmin.width * 2.toDouble(), layoutChatAdmin.height.toDouble()).toFloat()
+                binding.layoutToolbar.imgAction.isClickable = false
+                val cx: Int = binding.layoutChatAdmin.measuredWidth * 2
+                val cy: Int = binding.layoutChatAdmin.measuredHeight / 2
+                val finalRadius = hypot(binding.layoutChatAdmin.width * 2.toDouble(), binding.layoutChatAdmin.height.toDouble()).toFloat()
 
-                if (layoutChatAdmin.visibility == View.VISIBLE) {
+                if (binding.layoutChatAdmin.visibility == View.VISIBLE) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        val anim = ViewAnimationUtils.createCircularReveal(layoutChatAdmin, cx, cy, finalRadius, 0f)
+                        val anim = ViewAnimationUtils.createCircularReveal(binding.layoutChatAdmin, cx, cy, finalRadius, 0f)
                         anim.addListener(object : AnimatorListenerAdapter() {
                             override fun onAnimationEnd(animation: Animator) {
                                 super.onAnimationEnd(animation)
-                                layoutChatAdmin.visibility = View.INVISIBLE
-                                imgAction.isClickable = true
+                                binding.layoutChatAdmin.visibility = View.INVISIBLE
+                                binding.layoutToolbar.imgAction.isClickable = true
                             }
                         })
                         anim.duration = 1000
                         anim.start()
                     } else {
-                        layoutChatAdmin.visibility = View.INVISIBLE
-                        imgAction.isClickable = true
+                        binding.layoutChatAdmin.visibility = View.INVISIBLE
+                        binding.layoutToolbar.imgAction.isClickable = true
                     }
                 } else {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        val anim = ViewAnimationUtils.createCircularReveal(layoutChatAdmin, cx, cy, 0f, finalRadius)
-                        layoutChatAdmin.visibility = View.VISIBLE
+                        val anim = ViewAnimationUtils.createCircularReveal(binding.layoutChatAdmin, cx, cy, 0f, finalRadius)
+                        binding.layoutChatAdmin.visibility = View.VISIBLE
                         anim.addListener(object : AnimatorListenerAdapter() {
                             override fun onAnimationEnd(animation: Animator) {
                                 super.onAnimationEnd(animation)
-                                imgAction.isClickable = true
+                                binding.layoutToolbar.imgAction.isClickable = true
                             }
                         })
                         anim.duration = 1000
                         anim.start()
                     } else {
-                        layoutChatAdmin.visibility = View.VISIBLE
-                        imgAction.isClickable = true
+                        binding.layoutChatAdmin.visibility = View.VISIBLE
+                        binding.layoutToolbar.imgAction.isClickable = true
                     }
                 }
             }
         }
 
-        txtTitle.setText(R.string.xac_thuc_san_pham)
+        binding.layoutToolbar.txtTitle.setText(R.string.xac_thuc_san_pham)
     }
 
     private fun setupRecyclerView() {
-        recyclerView.apply {
+        binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(this@StampDetailActivity, LinearLayoutManager.VERTICAL, false)
 
             adapter = this@StampDetailActivity.adapter.apply {
@@ -216,26 +215,26 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
 
-                    if (textFab.isVisible) {
+                    if (binding.textFab.isVisible) {
                         val currentFirstVisible = computeVerticalScrollOffset()
 
-                        if (currentFirstVisible > firstVisibleInListview) { // scroll up
+                        if (currentFirstVisible >= firstVisibleInListview) { // scroll up
                             if (!isShow) {
                                 isShow = true
-                                textFab.animate()
+                                binding.textFab.animate()
                                         .translationY(0f)
                                         .setDuration(300)
                                         .setListener(object : AnimatorListenerAdapter() {
                                             override fun onAnimationEnd(animation: Animator?) {
                                                 super.onAnimationEnd(animation)
-                                                textFab.visibility = View.VISIBLE
+                                                binding.textFab.visibility = View.VISIBLE
                                             }
                                         })
                             }
                         } else { // scroll down
                             if (isShow) {
                                 isShow = false
-                                textFab.animate().translationY(500f).duration = 300
+                                binding.textFab.animate().translationY(500f).duration = 300
                             }
                         }
 
@@ -247,12 +246,12 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
     }
 
     private fun setupListener() {
-        layoutChatAdmin.setOnClickListener {
+        binding.layoutChatAdmin.setOnClickListener {
             startActivity<ContactSupportActivity>()
-            layoutChatAdmin.visibility = View.INVISIBLE
+            binding.layoutChatAdmin.visibility = View.INVISIBLE
         }
 
-        textFab.setOnClickListener {
+        binding.textFab.setOnClickListener {
             if (guarantee != null) {
                 if (guarantee?.customerId != null) {
                     val intent = Intent(this, VerifiedPhoneActivity::class.java)
@@ -286,11 +285,11 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
             }
         }
 
-        tvHotlineBussiness.setOnClickListener {
+        binding.tvHotlineBussiness.setOnClickListener {
             Constant.callPhone(itemDistributor?.phone)
         }
 
-        tvEmailBussiness.setOnClickListener {
+        binding.tvEmailBussiness.setOnClickListener {
             if (!itemDistributor?.email.isNullOrEmpty()) {
                 val intent = Intent(Intent.ACTION_SENDTO)
                 intent.data = Uri.parse("mailto:" + itemDistributor?.email)
@@ -336,14 +335,14 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
                 }
 
                 mFusedLocationClient?.removeLocationUpdates(this)
-                getStampDetailV61()
+                getStampDetail()
                 presenter.onGetDataDetailStamp(viewModel.barcode, viewModel.lat, viewModel.lng)
             }
 
             override fun onLocationAvailability(locationAvailability: LocationAvailability?) {
                 super.onLocationAvailability(locationAvailability)
                 if (locationAvailability?.isLocationAvailable != true) {
-                    getStampDetailV61()
+                    getStampDetail()
                 }
             }
         }, Looper.getMainLooper())
@@ -365,7 +364,7 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
             return true
         }
 
-    private fun getStampDetailV61() {
+    private fun getStampDetail() {
         viewModel.getStampDetailV61().observe(this, {
             when (it.status) {
                 Status.LOADING -> {
@@ -384,166 +383,172 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
                 Status.SUCCESS -> {
                     val mData = it.data?.data
 
-                    if (mData != null && !mData.widgets.isNullOrEmpty()) {
-                        val listData = mutableListOf<ICLayout>()
+                    if (mData != null) {
+                        if (!mData.widgets.isNullOrEmpty()) {
+                            val listData = mutableListOf<ICLayout>()
 
-                        for (widget in it.data!!.data!!.widgets!!) {
-                            distributorId = mData.distributorId
-                            serial = mData.serial
+                            for (widget in it.data!!.data!!.widgets!!) {
+                                distributorId = mData.distributorId
+                                serial = mData.serial
 
-                            when (widget.name) {
-                                "IMAGE_PRODUCT" -> {
-                                    if (!widget.data?.atts.isNullOrEmpty()) {
-                                        listData.add(ICLayout().apply {
-                                            viewType = ICViewTypes.PRODUCT_IMAGE_TYPE
-                                            data = widget.data!!.atts!!
-                                        })
-                                    }
-                                }
-                                "PRODUCT" -> {
-                                    if (widget.data != null) {
-                                        productId = widget.data?.id
-                                        listData.add(ICLayout().apply {
-                                            viewType = ICViewTypes.PRODUCT_TYPE
-                                            data = widget.data!!
-                                        })
-                                    }
-                                }
-                                "MESSAGE_RESULT" -> {
-                                    if (widget.data != null) {
-                                        listData.add(ICLayout().apply {
-                                            viewType = ICViewTypes.MESSAGE_TYPE
-                                            data = widget.data!!
-                                        })
-                                    }
-                                }
-                                "STAMP_INFO" -> {
-                                    if (!widget.data?.serial.isNullOrEmpty()) {
-                                        listData.add(ICLayout().apply {
-                                            viewType = ICViewTypes.STAMP_INFO_TYPE
-                                            data = widget.data!!.serial
-                                        })
-                                    }
-                                }
-                                "SCAN_INFO" -> {
-                                    if (widget.data != null) {
-                                        listData.add(ICLayout().apply {
-                                            viewType = ICViewTypes.SCAN_INFO_TYPE
-                                            data = widget.data
-                                        })
-                                    }
-                                }
-                                "GUARANTEE" -> {
-                                    if (widget.data != null) {
-                                        guarantee = widget.data
-                                        listData.add(ICLayout().apply {
-                                            viewType = ICViewTypes.GUARANTEE_INFO_TYPE
-                                            data = widget.data
-                                        })
-                                    }
-                                }
-                                "LAST_GUARANTEE" -> {
-                                    if (widget.data != null) {
-                                        isExistLastGuarantee = true
-                                        listData.add(ICLayout().apply {
-                                            viewType = ICViewTypes.LAST_GUARANTEE_INFO_TYPE
-                                            data = widget.data!!.apply {
-                                                if (serial.isNullOrEmpty()) {
-                                                    serial = it.data!!.data!!.serial
-                                                }
-                                            }
-                                        })
-                                    }
-                                }
-                                "VENDOR" -> {
-                                    if (widget.data != null) {
-                                        listData.add(ICLayout().apply {
-                                            viewType = ICViewTypes.VENDOR_TYPE
-                                            data = widget.data!!.apply {
-                                                this.category = getString(R.string.nha_san_xuat)
-                                                this.icon = R.drawable.ic_verified_24px
-                                                this.background = R.color.colorPrimary
-                                            }
-                                        })
-                                    }
-                                }
-                                "DISTRIBUTOR" -> {
-                                    if (widget.data != null) {
-                                        listData.add(ICLayout().apply {
-                                            viewType = ICViewTypes.VENDOR_TYPE
-                                            data = widget.data!!.apply {
-                                                this.category = getString(R.string.nha_phan_phoi)
-                                                this.icon = R.drawable.ic_verified_24px
-                                                this.background = R.color.colorPrimary
-                                            }
-                                        })
-                                    }
-                                }
-                                "PRODUCT_INFO" -> {
-                                    if (!widget.data?.infors.isNullOrEmpty()) {
-                                        for (info in widget.data!!.infors!!) {
+                                when (widget.name) {
+                                    "IMAGE_PRODUCT" -> {
+                                        if (!widget.data?.atts.isNullOrEmpty()) {
                                             listData.add(ICLayout().apply {
-                                                viewType = ICViewTypes.PRODUCT_INFO_TYPE
-                                                data = info
+                                                viewType = ICViewTypes.PRODUCT_IMAGE_TYPE
+                                                data = widget.data!!.atts!!
+                                            })
+                                        }
+                                    }
+                                    "PRODUCT" -> {
+                                        if (widget.data != null) {
+                                            productId = widget.data?.id
+                                            listData.add(ICLayout().apply {
+                                                viewType = ICViewTypes.PRODUCT_TYPE
+                                                data = widget.data!!
+                                            })
+                                        }
+                                    }
+                                    "MESSAGE_RESULT" -> {
+                                        if (widget.data != null) {
+                                            listData.add(ICLayout().apply {
+                                                viewType = ICViewTypes.MESSAGE_TYPE
+                                                data = widget.data!!
+                                            })
+                                        }
+                                    }
+                                    "STAMP_INFO" -> {
+                                        if (!widget.data?.serial.isNullOrEmpty()) {
+                                            listData.add(ICLayout().apply {
+                                                viewType = ICViewTypes.STAMP_INFO_TYPE
+                                                data = widget.data!!.serial
+                                            })
+                                        }
+                                    }
+                                    "SCAN_INFO" -> {
+                                        if (widget.data != null) {
+                                            listData.add(ICLayout().apply {
+                                                viewType = ICViewTypes.SCAN_INFO_TYPE
+                                                data = widget.data
+                                            })
+                                        }
+                                    }
+                                    "GUARANTEE" -> {
+                                        if (widget.data != null) {
+                                            guarantee = widget.data
+                                            listData.add(ICLayout().apply {
+                                                viewType = ICViewTypes.GUARANTEE_INFO_TYPE
+                                                data = widget.data
+                                            })
+                                        }
+                                    }
+                                    "LAST_GUARANTEE" -> {
+                                        if (widget.data != null) {
+                                            isExistLastGuarantee = true
+                                            listData.add(ICLayout().apply {
+                                                viewType = ICViewTypes.LAST_GUARANTEE_INFO_TYPE
+                                                data = widget.data!!.apply {
+                                                    if (serial.isNullOrEmpty()) {
+                                                        serial = it.data!!.data!!.serial
+                                                    }
+                                                }
+                                            })
+                                        }
+                                    }
+                                    "VENDOR" -> {
+                                        if (widget.data != null) {
+                                            listData.add(ICLayout().apply {
+                                                viewType = ICViewTypes.VENDOR_TYPE
+                                                data = widget.data!!.apply {
+                                                    this.category = getString(R.string.nha_san_xuat)
+                                                    this.icon = R.drawable.ic_verified_24px
+                                                    this.background = R.color.colorPrimary
+                                                }
+                                            })
+                                        }
+                                    }
+                                    "DISTRIBUTOR" -> {
+                                        if (widget.data != null) {
+                                            listData.add(ICLayout().apply {
+                                                viewType = ICViewTypes.VENDOR_TYPE
+                                                data = widget.data!!.apply {
+                                                    this.category = getString(R.string.nha_phan_phoi)
+                                                    this.icon = R.drawable.ic_verified_24px
+                                                    this.background = R.color.colorPrimary
+                                                }
+                                            })
+                                        }
+                                    }
+                                    "PRODUCT_INFO" -> {
+                                        if (!widget.data?.infors.isNullOrEmpty()) {
+                                            for (info in widget.data!!.infors!!) {
+                                                listData.add(ICLayout().apply {
+                                                    viewType = ICViewTypes.PRODUCT_INFO_TYPE
+                                                    data = info
+                                                })
+                                            }
+                                        }
+                                    }
+                                    "PRODUCT_LINK" -> {
+                                        if (!widget.data?.productLinks.isNullOrEmpty()) {
+                                            listData.add(ICLayout().apply {
+                                                viewType = ICViewTypes.PRODUCT_ECCOMMERCE_TYPE
+                                                data = widget.data!!.productLinks
                                             })
                                         }
                                     }
                                 }
-                                "PRODUCT_LINK" -> {
-                                    if (!widget.data?.productLinks.isNullOrEmpty()) {
-                                        listData.add(ICLayout().apply {
-                                            viewType = ICViewTypes.PRODUCT_ECCOMMERCE_TYPE
-                                            data = widget.data!!.productLinks
-                                        })
-                                    }
+                            }
+
+                            adapter.setListData(listData)
+
+                            getCampaign()
+
+                            binding.textFab.visibleOrInvisible(mData.canUpdate == true)
+
+                            if (mData.forceUpdate == true) {
+                                if (guarantee != null) {
+                                    val intent = Intent(this, UpdateInformationFirstActivity::class.java)
+                                    intent.putExtra(Constant.DATA_1, 1)
+                                    intent.putExtra(Constant.DATA_2, distributorId)
+//                                intent.putExtra(Constant.DATA_4, product_code)
+                                    intent.putExtra(Constant.DATA_5, serial)
+                                    intent.putExtra(Constant.DATA_6, productId)
+//                                intent.putExtra(Constant.DATA_7, objVariant)
+                                    intent.putExtra(Constant.DATA_8, viewModel.barcode)
+                                    startActivity(intent)
+                                } else {
+                                    val intent = Intent(this, UpdateInformationFirstActivity::class.java)
+                                    intent.putExtra(Constant.DATA_1, 2)
+                                    intent.putExtra(Constant.DATA_2, distributorId)
+//                                intent.putExtra(Constant.DATA_4, product_code)
+                                    intent.putExtra(Constant.DATA_5, serial)
+                                    intent.putExtra(Constant.DATA_6, productId)
+//                                intent.putExtra(Constant.DATA_7, objVariant)
+                                    intent.putExtra(Constant.DATA_8, viewModel.barcode)
+                                    startActivity(intent)
+                                }
+                            }
+                        } else {
+                            if (it.data?.data?.errorCode == 4) {
+                                adapter.setError(R.drawable.ic_error_request, ICheckApplication.getError(mData.errorMessage), null)
+
+                                val intent = Intent(this, UpdateInformationFirstActivity::class.java)
+                                intent.putExtra(Constant.DATA_1, 3)
+                                intent.putExtra(Constant.DATA_8, viewModel.barcode)
+                                startActivityForResult(this, intent, requestUpdateOrDestroy)
+                            } else {
+                                binding.textFab.visibleOrInvisible(false)
+
+                                if (mData.errorMessage.isNullOrEmpty()) {
+                                    adapter.setError(R.drawable.ic_error_request, ICheckApplication.getError(mData.errorMessage), null)
+                                } else {
+                                    getStampConfig(mData.errorMessage!!)
                                 }
                             }
                         }
-
-                        adapter.setListData(listData)
-
-                        getCampaign()
-
-                        textFab.visibleOrInvisible(mData.canUpdate == true)
-
-                        if (mData.forceUpdate == true) {
-                            if (guarantee != null) {
-                                val intent = Intent(this, UpdateInformationFirstActivity::class.java)
-                                intent.putExtra(Constant.DATA_1, 1)
-                                intent.putExtra(Constant.DATA_2, distributorId)
-//                                intent.putExtra(Constant.DATA_4, product_code)
-                                intent.putExtra(Constant.DATA_5, serial)
-                                intent.putExtra(Constant.DATA_6, productId)
-//                                intent.putExtra(Constant.DATA_7, objVariant)
-                                intent.putExtra(Constant.DATA_8, viewModel.barcode)
-                                startActivity(intent)
-                            } else {
-                                val intent = Intent(this, UpdateInformationFirstActivity::class.java)
-                                intent.putExtra(Constant.DATA_1, 2)
-                                intent.putExtra(Constant.DATA_2, distributorId)
-//                                intent.putExtra(Constant.DATA_4, product_code)
-                                intent.putExtra(Constant.DATA_5, serial)
-                                intent.putExtra(Constant.DATA_6, productId)
-//                                intent.putExtra(Constant.DATA_7, objVariant)
-                                intent.putExtra(Constant.DATA_8, viewModel.barcode)
-                                startActivity(intent)
-                            }
-                        }
                     } else {
-                        if (it.data?.code == 4) {
-                            val intent = Intent(this, UpdateInformationFirstActivity::class.java)
-                            intent.putExtra(Constant.DATA_1, 3)
-                            intent.putExtra(Constant.DATA_8, viewModel.barcode)
-                            startActivityForResult(this, intent, requestUpdateOrDestroy)
-                        } else {
-                            textFab.visibleOrInvisible(false)
-
-                            if (it.data?.message.isNullOrEmpty()) {
-                                adapter.setError(R.drawable.ic_error_request, ICheckApplication.getError(it.data?.message), null)
-                            } else {
-                                getStampConfig(it.data!!.message!!)
-                            }
-                        }
+                        adapter.setError(R.drawable.ic_error_request, ICheckApplication.getError(it.message), null)
                     }
                 }
             }
@@ -626,13 +631,12 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
         //check Error detail Stamp
         if (obj.data?.scan_message?.redirect_warning == true) {
             itemDistributor = obj.data?.distributor
-//                scrollView.visibility = View.GONE
-            layoutExceededScan.visibility = View.VISIBLE
-            tvMessageApollo.text = obj.data?.scan_message?.text
-            tvBussinessName.text = obj.data?.distributor?.name
-            tvAddressBussiness.text = "Địa chỉ: " + obj.data?.distributor?.address + ", " + obj.data?.distributor?.district + ", " + obj.data?.distributor?.city
-            tvHotlineBussiness.text = "Tổng đài: " + obj.data?.distributor?.phone
-            tvEmailBussiness.text = " - Email: " + obj.data?.distributor?.email
+            binding.layoutExceededScan.visibility = View.VISIBLE
+            binding.tvMessageApollo.text = obj.data?.scan_message?.text
+            binding.tvBussinessName.text = obj.data?.distributor?.name
+            binding.tvAddressBussiness.text = "Địa chỉ: " + obj.data?.distributor?.address + ", " + obj.data?.distributor?.district + ", " + obj.data?.distributor?.city
+            binding.tvHotlineBussiness.text = "Tổng đài: " + obj.data?.distributor?.phone
+            binding.tvEmailBussiness.text = " - Email: " + obj.data?.distributor?.email
             return
         }
 
@@ -777,7 +781,7 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
         super.onMessageEvent(event)
 
         if (event.type == ICMessageEvent.Type.REFRESH_DATA) {
-            getStampDetailV61()
+            getStampDetail()
         }
     }
 
@@ -813,7 +817,8 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
                     }
 
                     if (viewModel.user != null) {
-                        getStampDetailV61()
+                        adapter.setListData(mutableListOf())
+                        getStampDetail()
                     } else {
                         onBackPressed()
                     }

@@ -11,7 +11,6 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -25,10 +24,12 @@ import vn.icheck.android.network.model.country.Nation
 import vn.icheck.android.screen.account.icklogin.viewmodel.IckLoginViewModel
 import vn.icheck.android.util.AfterTextWatcher
 
-class IckNationBottomDialog : BottomSheetDialogFragment() {
-    lateinit var nationAdapter: NationAdapter
-    var array = arrayListOf<Nation>()
-    val ickLoginViewModel: IckLoginViewModel by activityViewModels()
+class ICNationBottomDialog : BottomSheetDialogFragment() {
+    private val ickLoginViewModel by activityViewModels<IckLoginViewModel>()
+
+    private lateinit var nationAdapter: NationAdapter
+    private var listCountries = arrayListOf<Nation>()
+
     val callback = object : NationAdapter.OnNationClick {
         override fun onNationClick(nation: Nation) {
             ickLoginViewModel.nationLiveData.postValue(nation)
@@ -68,23 +69,24 @@ class IckNationBottomDialog : BottomSheetDialogFragment() {
             override fun afterTextChanged(s: Editable?) {
                 if (s.isNullOrEmpty()) {
                     nationAdapter.array.clear()
-                    nationAdapter.array.addAll(array)
+                    nationAdapter.array.addAll(listCountries)
                     nationAdapter.notifyDataSetChanged()
                 } else {
                     nationAdapter.array.clear()
-                    nationAdapter.array.addAll(array.filter {
+                    nationAdapter.array.addAll(listCountries.filter {
                         it.name.contains(s.toString(), true)
                     })
                     nationAdapter.notifyDataSetChanged()
                 }
             }
         })
+
         val asm = context?.assets
         val s = asm?.readAssetsFile("CountryCodes.json")
         val gson = Gson()
         val arr = gson.fromJson(s, Array<Nation>::class.java)
-        arr.sortWith(Comparator<Nation> { o1, o2 -> o1!!.name[0].compareTo(o2!!.name[0]) })
-        array.addAll(arr)
+        arr.sortWith { o1, o2 -> o1!!.name[0].compareTo(o2!!.name[0]) }
+        listCountries.addAll(arr)
         val cop = arrayListOf<Nation>()
         cop.addAll(arr)
         nationAdapter = NationAdapter(cop, callback)

@@ -253,7 +253,6 @@ object ValidHelper {
         }
     }
 
-
     /**
      * Kiểm tra số điện thoại có đúng định dạng
      *
@@ -261,6 +260,24 @@ object ValidHelper {
      * @param phoneNumber
      * @return thông báo lỗi nếu có
      */
+    fun validInternationalPhoneNumber(context: Context?, phoneNumber: String): String? {
+        if (context == null) {
+            return ""
+        }
+
+        return when {
+            phoneNumber.isEmpty() -> {
+                context.getString(R.string.so_dien_thoai_khong_duoc_de_trong)
+            }
+            !Patterns.PHONE.matcher(phoneNumber).matches() -> {
+                context.getString(R.string.so_dien_thoai_co_chua_ky_tu_dac_biet)
+            }
+            else -> {
+                null
+            }
+        }
+    }
+
     fun validPhoneNumber(context: Context?, phoneNumber: String): String? {
         if (context == null) {
             return ""
@@ -283,89 +300,87 @@ object ValidHelper {
     }
 
     fun checkValidatePhoneNumber(context: Context, phoneNumber: String): Boolean {
-        if (phoneNumber == "") {
+        return if (phoneNumber == "") {
             ToastUtils.showShortError(context, context.getString(R.string.so_dien_thoai_khong_duoc_de_trong))
-            return false
+            false
         } else {
             if (phoneNumber.length < 10) {
                 ToastUtils.showShortError(context, context.getString(R.string.so_dien_thoai_khong_dung_dinh_dang))
-                return false
+                false
             } else {
                 if (!Patterns.PHONE.matcher(phoneNumber).matches()) {
                     ToastUtils.showShortError(context, context.getString(R.string.so_dien_thoai_co_chua_ky_tu_dac_biet))
-                    return false
+                    false
                 } else {
-                    if (phoneNumber.subSequence(0, 3).equals("+84")) {
+                    if (phoneNumber.subSequence(0, 3) == "+84") {
                         if (phoneNumber.length == 12) {
-                            return true
+                            true
                         } else {
                             ToastUtils.showShortError(context, context.getString(R.string.so_dien_thoai_khong_dung_dinh_dang))
-                            return false
+                            false
                         }
                     } else {
-                        if (phoneNumber.subSequence(0, 2).equals("84")) {
+                        if (phoneNumber.subSequence(0, 2) == "84") {
                             if (phoneNumber.length == 11) {
-                                return true
+                                true
                             } else {
                                 ToastUtils.showShortError(context, context.getString(R.string.so_dien_thoai_khong_dung_dinh_dang))
-                                return false
+                                false
                             }
                         } else {
                             if (phoneNumber.length == 10) {
-                                return true
+                                true
                             } else {
                                 ToastUtils.showShortError(context, context.getString(R.string.so_dien_thoai_khong_dung_dinh_dang))
-                                return false
+                                false
                             }
                         }
                     }
                 }
             }
         }
-        return true
     }
 
     fun checkValidatePhoneNumberBuyCard(context: Context, phoneNumber: String): Boolean {
-        if (phoneNumber == "") {
+        return if (phoneNumber == "") {
             context.showSimpleErrorToast(context.getString(R.string.vui_long_nhap_sdt_ban_muon_nap_the))
-            return false
+            false
         } else {
             if (phoneNumber.length < 10) {
                 context.showSimpleErrorToast(context.getString(R.string.so_dien_thoai_khong_dung_dinh_dang))
-                return false
+                false
             } else {
                 if (!Patterns.PHONE.matcher(phoneNumber).matches()) {
                     context.showSimpleErrorToast(context.getString(R.string.so_dien_thoai_co_chua_ky_tu_dac_biet))
-                    return false
+                    false
                 } else {
-                    if (phoneNumber.subSequence(0, 3).equals("+84")) {
+                    if (phoneNumber.subSequence(0, 3) == "+84") {
                         if (phoneNumber.length == 12) {
-                            return true
+                            true
                         } else {
                             context.showSimpleErrorToast(context.getString(R.string.so_dien_thoai_khong_dung_dinh_dang))
-                            return false
+                            false
                         }
                     } else {
-                        if (phoneNumber.subSequence(0, 2).equals("84")) {
+                        if (phoneNumber.subSequence(0, 2) == "84") {
                             if (phoneNumber.length == 11) {
-                                return true
+                                true
                             } else {
                                 context.showSimpleErrorToast(context.getString(R.string.so_dien_thoai_khong_dung_dinh_dang))
-                                return false
+                                false
                             }
                         } else {
                             if (phoneNumber.length == 10) {
-                                return true
+                                true
                             } else {
                                 context.showSimpleErrorToast(context.getString(R.string.so_dien_thoai_khong_dung_dinh_dang))
-                                return false
+                                false
                             }
                         }
                     }
                 }
             }
         }
-        return true
     }
 
     private fun isPhoneNumber(phoneNumber: String): Boolean {
