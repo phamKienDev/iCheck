@@ -600,7 +600,7 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
         }
     }
 
-    override fun onErrorPhone(message: String) {
+    override fun onShowError(message: String) {
         showShortError(message)
     }
 

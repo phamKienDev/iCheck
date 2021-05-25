@@ -38,14 +38,19 @@ object ValidHelper {
         val vietnameseDiacriticCharacters = "àáãạảăắằẳẵặâấầẩẫậèéẹẻẽêềếểễệđìíĩỉịòóõọỏôốồổỗộơớờởỡợùúũụủưứừửữựỳỵỷỹýÀÁÃẠẢĂẮẰẲẴẶÂẤẦẨẪẬÈÉẸẺẼÊỀẾỂỄỆĐÌÍĨỈỊÒÓÕỌỎÔỐỒỔỖỘƠỚỜỞỠỢÙÚŨỤỦƯỨỪỬỮỰỲỴỶỸÝ"
         val pattern = Pattern.compile("[a-zA-Z $vietnameseDiacriticCharacters]+")
 
-        return if (text.isNullOrEmpty()) {
-            context.getString(R.string.ten_khong_duoc_de_trong)
-        } else if (pattern.matcher(text).matches()) {
-            null
-        } else if (text.contains(" ")) {
-            context.getString(R.string.ten_khong_dung_dinh_dang)
-        } else {
-            null
+        return when {
+            text.isNullOrEmpty() -> {
+                context.getString(R.string.ten_khong_duoc_de_trong)
+            }
+            pattern.matcher(text).matches() -> {
+                null
+            }
+            text.contains(" ") -> {
+                context.getString(R.string.ten_khong_dung_dinh_dang)
+            }
+            else -> {
+                null
+            }
         }
     }
 

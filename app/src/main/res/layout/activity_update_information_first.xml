@@ -98,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_18"
-                android:text="@string/ho_va_ten"
+                android:text="@string/ho_va_ten_bat_buoc"
                 android:textColor="@color/colorNormalText" />
 
             <vn.icheck.android.ui.view.EditTextBody1

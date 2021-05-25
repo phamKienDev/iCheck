@@ -10,12 +10,11 @@ import android.text.Editable
 import android.text.Html
 import android.text.TextWatcher
 import android.view.View
-import kotlinx.android.synthetic.main.activity_verify_otpguarantee.*
-import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.databinding.ActivityVerifyOtpguaranteeBinding
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICUpdateCustomerGuarantee
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
@@ -24,37 +23,34 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.otp_information_guarantee
 import vn.icheck.android.util.KeyboardUtils
 
 class VerifyOTPGuaranteeActivity : BaseActivityMVVM(), IVerifyOTPGuaranteeView {
+    private lateinit var binding: ActivityVerifyOtpguaranteeBinding
     private val presenter = VerifyOTPGuaranteePresenter(this)
 
     private var timer: CountDownTimer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_verify_otpguarantee)
+        binding = ActivityVerifyOtpguaranteeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        setupToolbar()
 
         presenter.getDataByIntent(intent)
-        if (StampDetailActivity.isVietNamLanguage == false) {
-            txtTitle.text = "Enter verified code"
-            txtOtp.text = "Verified code"
-            txtStatus.text = "Resend code"
-            btnConfirm.text = "Confirm"
-        } else {
-            txtTitle.text = "Nhập mã xác nhận"
-            txtOtp.text = "Mã xác thực"
-            txtStatus.text = "Gửi lại mã"
-            btnConfirm.text = "Xác nhận"
+    }
+
+    private fun setupToolbar() {
+        binding.layoutToolbar.txtTitle.setText(R.string.xac_thuc_so_dien_thoai)
+
+        binding.layoutToolbar.imgBack.setOnClickListener {
+            finish()
         }
     }
 
     @SuppressLint("SetTextI18n")
-    private fun listener() {
-        imgBack.setOnClickListener {
-            finish()
-        }
-
-        edtOtp.addTextChangedListener(object : TextWatcher {
+    private fun setupListener() {
+        binding.edtOtp.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
-                txtOtp.visibility = if (edtOtp.text.isNullOrEmpty()) {
+                binding.txtOtp.visibility = if (binding.edtOtp.text.isNullOrEmpty()) {
                     View.VISIBLE
                 } else {
                     View.GONE
@@ -66,26 +62,26 @@ class VerifyOTPGuaranteeActivity : BaseActivityMVVM(), IVerifyOTPGuaranteeView {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         })
 
-        txtStatus.setOnClickListener {
+        binding.txtStatus.setOnClickListener {
             if (StampDetailActivity.isVietNamLanguage == false) {
-                if (txtStatus.text.toString() == "Resend code") {
-                    progressBar.visibility = View.VISIBLE
-                    txtStatus.text = "Sending code"
+                if (binding.txtStatus.text.toString() == "Resend code") {
+                    binding.progressBar.visibility = View.VISIBLE
+                    binding.txtStatus.text = "Sending code"
 
                     presenter.sendOtpConfirmPhone()
                 }
             } else {
-                if (txtStatus.text.toString() == "Gửi lại mã") {
-                    progressBar.visibility = View.VISIBLE
-                    txtStatus.text = "Đang gửi mã"
+                if (binding.txtStatus.text.toString() == "Gửi lại mã") {
+                    binding.progressBar.visibility = View.VISIBLE
+                    binding.txtStatus.text = "Đang gửi mã"
 
                     presenter.sendOtpConfirmPhone()
                 }
             }
         }
 
-        btnConfirm.setOnClickListener {
-            presenter.confirmOtp(edtOtp.text.toString())
+        binding.btnConfirm.setOnClickListener {
+            presenter.confirmOtp(binding.edtOtp.text.toString())
         }
     }
 
@@ -93,61 +89,50 @@ class VerifyOTPGuaranteeActivity : BaseActivityMVVM(), IVerifyOTPGuaranteeView {
     private fun showTextTime(isShow: Boolean) {
         if (StampDetailActivity.isVietNamLanguage == false) {
             if (isShow) {
-                txtTime.visibility = View.VISIBLE
-                txtTime.text = getString(R.string.khong_nhan_duoc_ma_xac_nhan_gui_lai_sau_xxx_giay_en, "60")
+                binding.txtTime.visibility = View.VISIBLE
+                binding.txtTime.text = getString(R.string.gui_lai_ma_xxx_s, "60")
 
-                layoutStatus.visibility = View.INVISIBLE
-                progressBar.visibility = View.INVISIBLE
+                binding.layoutStatus.visibility = View.INVISIBLE
+                binding.progressBar.visibility = View.INVISIBLE
             } else {
-                txtTime.visibility = View.INVISIBLE
+                binding.txtTime.visibility = View.INVISIBLE
 
-                layoutStatus.visibility = View.VISIBLE
-                progressBar.visibility = View.INVISIBLE
-                txtStatus.text = "Resend code"
+                binding.layoutStatus.visibility = View.VISIBLE
+                binding.progressBar.visibility = View.INVISIBLE
+                binding.txtStatus.text = "Resend code"
             }
         } else {
             if (isShow) {
-                txtTime.visibility = View.VISIBLE
-                txtTime.text = getString(R.string.khong_nhan_duoc_ma_xac_nhan_gui_lai_sau_xxx_giay, "60")
+                binding.txtTime.visibility = View.VISIBLE
+                binding.txtTime.text = getString(R.string.gui_lai_ma_xxx_s, "60")
 
-                layoutStatus.visibility = View.INVISIBLE
-                progressBar.visibility = View.INVISIBLE
+                binding.layoutStatus.visibility = View.INVISIBLE
+                binding.progressBar.visibility = View.INVISIBLE
             } else {
-                txtTime.visibility = View.INVISIBLE
+                binding.txtTime.visibility = View.INVISIBLE
 
-                layoutStatus.visibility = View.VISIBLE
-                progressBar.visibility = View.INVISIBLE
-                txtStatus.setText(R.string.gui_lai_ma)
+                binding.layoutStatus.visibility = View.VISIBLE
+                binding.progressBar.visibility = View.INVISIBLE
+                binding.txtStatus.setText(R.string.gui_lai_ma)
             }
         }
     }
 
     override fun onGetDataError() {
-        if (StampDetailActivity.isVietNamLanguage == false) {
-            DialogHelper.showNotification(this, R.string.co_loi_xay_ra_vui_long_thu_lai_en, false, object : NotificationDialogListener {
-                override fun onDone() {
-                    onBackPressed()
-                }
-            })
-        } else {
-            DialogHelper.showNotification(this, R.string.co_loi_xay_ra_vui_long_thu_lai, false, object : NotificationDialogListener {
-                override fun onDone() {
-                    onBackPressed()
-                }
-            })
-        }
+        DialogHelper.showNotification(this, R.string.co_loi_xay_ra_vui_long_thu_lai, false, object : NotificationDialogListener {
+            override fun onDone() {
+                onBackPressed()
+            }
+        })
     }
 
     override fun onGetDataIntentSuccess(obj: ICUpdateCustomerGuarantee) {
-        KeyboardUtils.showSoftInput(edtOtp)
+        binding.tvTitle.text = Html.fromHtml(getString(R.string.login_ma_xac_thuc_otp_da_duoc_gui_toi, obj.phone ?: getString(R.string.dang_cap_nhat)))
 
-        if (StampDetailActivity.isVietNamLanguage == false) {
-            txtContent.text = Html.fromHtml(getString(R.string.otp_content_xxx_en, obj.phone))
-        } else {
-            txtContent.text = Html.fromHtml(getString(R.string.otp_content_xxx, obj.phone))
-        }
+        KeyboardUtils.showSoftInput(binding.edtOtp)
+//        binding.txtContent.text = Html.fromHtml(getString(R.string.otp_content_xxx, obj.phone))
 
-        listener()
+        setupListener()
     }
 
     override fun onCountDownOtp() {
@@ -163,11 +148,7 @@ class VerifyOTPGuaranteeActivity : BaseActivityMVVM(), IVerifyOTPGuaranteeView {
 
             override fun onTick(millisecond: Long) {
                 this@VerifyOTPGuaranteeActivity.let {
-                    if (StampDetailActivity.isVietNamLanguage == false) {
-                        txtTime?.text = it.getString(R.string.khong_nhan_duoc_ma_xac_nhan_gui_lai_sau_xxx_giay_en, (millisecond / 1000).toString())
-                    } else {
-                        txtTime?.text = it.getString(R.string.khong_nhan_duoc_ma_xac_nhan_gui_lai_sau_xxx_giay, (millisecond / 1000).toString())
-                    }
+                    binding.txtTime?.text = it.getString(R.string.gui_lai_ma_xxx_s, (millisecond / 1000).toString())
                 }
             }
         }
@@ -197,8 +178,8 @@ class VerifyOTPGuaranteeActivity : BaseActivityMVVM(), IVerifyOTPGuaranteeView {
     }
 
     override fun onErrorOtp(errorMessage: String) {
-        layoutInputOtp.error = errorMessage
-        edtOtp.setSelection(edtOtp.text.toString().length)
+        binding.layoutInputOtp.error = errorMessage
+        binding.edtOtp.setSelection(binding.edtOtp.text.toString().length)
     }
 
     override fun showError(errorMessage: String) {

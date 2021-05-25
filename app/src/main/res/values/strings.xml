@@ -26,6 +26,9 @@
     <string name="khong_co_ket_noi_mang_vui_long_thu_lai_sau">Không có kết nối mạng. Vui lòng thử lại sau</string>
     <string name="de_hien_thi_du_lieu_vui_long_bat_gps">"Để hiển thị dữ liệu Cửa hàng, vui lòng bật GPS"</string>
     <string name="so_dien_thoai_khong_duoc_de_trong">Số điện thoại không được để trống</string>
+    <string name="tinh_thanh_khong_duoc_de_trong">Tỉnh thành không được để trống</string>
+    <string name="quan_huyen_khong_duoc_de_trong">Quận/Huyện không được để trống</string>
+    <string name="dia_chi_khong_duoc_de_trong">Địa chỉ không được để trống</string>
     <string name="so_dien_thoai_co_chua_ky_tu_dac_biet">Số điện thoại có chứa ký tự đăc biệt</string>
     <string name="so_dien_thoai_khong_dung_dinh_dang">Số điện thoại không đúng định dạng</string>
     <string name="khong_the_thuc_hien_tac_vu_vi_ban_chua_cap_quyen">Không thể thực hiện tác vụ vì bạn chưa cấp đủ quyền</string>
@@ -945,6 +948,7 @@
     <string name="tien_do_bao_hanh">Tiến độ bảo hành</string>
     <string name="ho_va_ten_v2">Họ và tên:</string>
     <string name="ho_va_ten">Họ và tên</string>
+    <string name="ho_va_ten_bat_buoc">Họ và tên (*)</string>
     <string name="so_dien_thoai_v2">Số điện thoại:</string>
     <string name="email_v2">Email:</string>
     <string name="dia_chi_v2">Địa chỉ:</string>
@@ -970,4 +974,5 @@
     <string name="tieu_de_xac_nhan_so_dien_thoai_stamp_v61">Nhập số điện thoại đã kích hoạt bảo hành trước đây\ncho sản phẩm này trước khi cập nhận tông tin mới</string>
     <string name="xac_thuc">Xác thực</string>
     <string name="da_hieu">Đã hiểu</string>
+    <string name="xac_thuc_so_dien_thoai">Xác thực số điện thoại</string>
 </resources>

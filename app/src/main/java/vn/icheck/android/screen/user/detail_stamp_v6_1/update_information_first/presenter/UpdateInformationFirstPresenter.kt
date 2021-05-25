@@ -1,7 +1,6 @@
 package vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.presenter
 
 import android.content.Intent
-import com.google.gson.annotations.Expose
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityPresenter
@@ -17,7 +16,6 @@ import vn.icheck.android.network.feature.user.UserInteractor
 import vn.icheck.android.network.models.ICStatus
 import vn.icheck.android.network.models.detail_stamp_v6_1.*
 import vn.icheck.android.network.util.DeviceUtils
-import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.view.IUpdateInformationFirstView
 
 /**
@@ -224,9 +222,30 @@ class UpdateInformationFirstPresenter(val view: IUpdateInformationFirstView) : B
                                         customerData: HashMap<String, Any>,
                                         guaranteeData: HashMap<String, Any>,
                                         barcode: String, updateType: Int?, serial: String) {
+        val validName = ValidHelper.validName(view.mContext, name)
+        if (validName != null) {
+            view.onShowError(validName)
+            return
+        }
+
         val validPhone = ValidHelper.validPhoneNumber(view.mContext, phone)
         if (validPhone != null) {
-            view.onErrorPhone(validPhone)
+            view.onShowError(validPhone)
+            return
+        }
+
+        if (cityId ?: 0 <= 0) {
+            view.onShowError(view.mContext.getString(R.string.tinh_thanh_khong_duoc_de_trong))
+            return
+        }
+
+        if (districtId ?: 0 <= 0) {
+            view.onShowError(view.mContext.getString(R.string.quan_huyen_khong_duoc_de_trong))
+            return
+        }
+
+        if (address.isEmpty()) {
+            view.onShowError(view.mContext.getString(R.string.dia_chi_khong_duoc_de_trong))
             return
         }
 

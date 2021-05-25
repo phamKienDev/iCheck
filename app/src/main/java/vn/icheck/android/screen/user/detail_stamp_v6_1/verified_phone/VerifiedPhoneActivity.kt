@@ -70,10 +70,10 @@ class VerifiedPhoneActivity : BaseActivityMVVM(), IVerifiedPhoneView {
 
         binding.btnUpdate.setOnClickListener {
             val phone = if (binding.tvCode.text.toString() == "+84") {
-                binding.tvCode.text.toString() + if (binding.edtPhone.text.toString().startsWith("0")) {
-                    binding.edtPhone.text.toString().removeRange(0, 1)
-                } else {
+                if (binding.edtPhone.text.toString().startsWith("0")) {
                     binding.edtPhone.text.toString()
+                } else {
+                    binding.tvCode.text.toString() + binding.edtPhone.text.toString()
                 }
             } else {
                 binding.tvCode.text.toString() + binding.edtPhone.text.toString()

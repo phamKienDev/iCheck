@@ -318,6 +318,8 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
             return
         }
 
+        DialogHelper.showLoading(this)
+
         val locationRequest = LocationRequest.create()
         locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
         locationRequest.interval = 500
@@ -336,7 +338,7 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
 
                 mFusedLocationClient?.removeLocationUpdates(this)
                 getStampDetail()
-                presenter.onGetDataDetailStamp(viewModel.barcode, viewModel.lat, viewModel.lng)
+//                presenter.onGetDataDetailStamp(viewModel.barcode, viewModel.lat, viewModel.lng)
             }
 
             override fun onLocationAvailability(locationAvailability: LocationAvailability?) {
