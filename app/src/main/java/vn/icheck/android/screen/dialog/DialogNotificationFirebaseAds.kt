@@ -1,10 +1,7 @@
 package vn.icheck.android.screen.dialog
 
 import android.app.Activity
-import android.content.Context
 import android.os.Build
-import android.os.Handler
-import android.text.Html
 import android.webkit.WebSettings
 import kotlinx.android.synthetic.main.dialog_notification_firebase.*
 import vn.icheck.android.ICheckApplication
@@ -12,12 +9,9 @@ import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseDialog
 import vn.icheck.android.chat.icheckchat.base.view.setGoneView
 import vn.icheck.android.chat.icheckchat.base.view.setVisible
-import vn.icheck.android.constant.Constant
-import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.Constant.getHtmlData
 import vn.icheck.android.ichecklibs.WidgetHelper
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
-import vn.icheck.android.util.text.HtmlImageGetter
 
 abstract class DialogNotificationFirebaseAds(context: Activity, private val image: String?, private val htmlText: String?, private val link: String?, private val schema: String?) : BaseDialog(context, R.style.DialogTheme) {
 
