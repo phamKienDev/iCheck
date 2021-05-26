@@ -7,6 +7,8 @@ import android.text.Html
 import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
 import vn.icheck.android.ichecklibs.databinding.DialogConfirmBinding
+import vn.icheck.android.ichecklibs.util.beGone
+import vn.icheck.android.ichecklibs.util.beVisible
 
 abstract class ConfirmDialog(
         context: Context,

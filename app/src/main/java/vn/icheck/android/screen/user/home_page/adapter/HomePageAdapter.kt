@@ -336,7 +336,7 @@ class HomePageAdapter(
                 ShoppingCatalogHolder(parent)
             }
             else -> {
-                NullHolder.create(parent)
+                NullHolder(parent)
             }
         }
     }

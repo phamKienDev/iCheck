@@ -27,7 +27,7 @@ data class ICListHistoryGuarantee(
         @Expose
         var updated_time: String? = null,
         @Expose
-        var user_created: Int? = null,
+        var user_created: String? = null,
         @Expose
         var user_id: Long? = null,
         @Expose

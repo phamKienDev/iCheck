@@ -29,7 +29,7 @@ class CategoryAttributesAdapter(val listCategory:List<CategoryAttributesModel>):
             DATE -> DateHolder.create(parent)
             MULTI_SELECT -> MultiSelectHolder.create(parent)
             INTEGER -> IntegerHolder(ItemIntegerBinding.inflate(parent.getLayoutInflater(), parent, false))
-            else -> NullHolder.create(parent)
+            else -> NullHolder(parent)
         }
     }
 

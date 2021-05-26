@@ -22,8 +22,8 @@ import vn.icheck.android.constant.ATTRIBUTES_POSITION
 import vn.icheck.android.constant.CONTRIBUTIONS_ACTION
 import vn.icheck.android.constant.PUT_ATTRIBUTES
 import vn.icheck.android.databinding.ItemGroupBinding
-import vn.icheck.android.ichecklibs.beGone
-import vn.icheck.android.ichecklibs.beVisible
+import vn.icheck.android.ichecklibs.util.beGone
+import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.screen.user.contribute_product.viewmodel.CategoryAttributesModel
 import vn.icheck.android.util.AfterTextWatcher
 import vn.icheck.android.util.ick.showSimpleSuccessToast

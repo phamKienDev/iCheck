@@ -39,9 +39,8 @@ import kotlinx.coroutines.launch
 import vn.icheck.android.ichecklibs.R
 import vn.icheck.android.ichecklibs.camera.utils.GenericListAdapter
 import vn.icheck.android.ichecklibs.camera.utils.decodeExifOrientation
-import vn.icheck.android.ichecklibs.getNavigationHeight
-import vn.icheck.android.ichecklibs.setMarginConstraintLayout
-import vn.icheck.android.ichecklibs.toPx
+import vn.icheck.android.ichecklibs.util.getNavigationHeight
+import vn.icheck.android.ichecklibs.util.setMarginConstraintLayout
 import java.io.BufferedInputStream
 import java.io.File
 import kotlin.math.max

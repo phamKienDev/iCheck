@@ -3,17 +3,12 @@ package vn.icheck.android.ichecklibs.view
 import android.content.Context
 import android.graphics.Paint
 import android.graphics.Rect
-import android.graphics.RectF
 import android.graphics.Typeface
-import android.os.Build
 import android.text.TextUtils
 import android.util.AttributeSet
-import android.util.TypedValue
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.annotation.RequiresApi
 import vn.icheck.android.ichecklibs.R
-import vn.icheck.android.ichecklibs.toPx
 import kotlin.math.roundToInt
 
 class UserNameText:LinearLayout {

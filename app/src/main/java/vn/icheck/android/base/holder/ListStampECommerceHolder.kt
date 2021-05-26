@@ -14,6 +14,7 @@ import vn.icheck.android.screen.user.listproductecommerce.ListProductsECommerceA
 import vn.icheck.android.util.ick.visibleOrInvisible
 
 class ListStampECommerceHolder(parent: ViewGroup, val binding: ItemListProductsEcommerceBinding = ItemListProductsEcommerceBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : BaseViewHolder<MutableList<ICProductLink>>(binding.root) {
+
     private val adapter = object : RecyclerViewAdapter<ICProductLink>() {
         override fun getItemCount() = if (listData.size > 3) 3 else listData.size
 

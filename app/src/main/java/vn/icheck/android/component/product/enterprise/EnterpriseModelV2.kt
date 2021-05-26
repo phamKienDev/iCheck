@@ -5,9 +5,7 @@ import vn.icheck.android.component.ICViewTags
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.network.models.ICOwner
 
-class EnterpriseModelV2(val business: ICOwner?,
-                        val icon: Int?,
-                        val background: Int) : ICViewModel {
+class EnterpriseModelV2(val business: ICOwner?) : ICViewModel {
 
     override fun getTag(): String {
         return ICViewTags.ENTERPRISE_COMPONENT

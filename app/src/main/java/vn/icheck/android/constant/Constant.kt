@@ -60,9 +60,9 @@ object Constant {
     const val DATA_3 = "data_3"
     const val DATA_4 = "data_4"
     const val DATA_5 = "data_5"
-    const val DATA_6 = "data_5"
-    const val DATA_7 = "data_5"
-    const val DATA_8 = "data_5"
+    const val DATA_6 = "data_6"
+    const val DATA_7 = "data_7"
+    const val DATA_8 = "data_8"
 
     const val ID = "id"
     const val CODE = "code"
@@ -436,29 +436,35 @@ object Constant {
         return Pattern.compile(regex).matcher(Uri.parse(http).host ?: "").matches()
     }
 
-    fun callPhone(phone: String) {
-        ICheckApplication.currentActivity()?.let { activity ->
-            val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:${phone.replace(" ".toRegex(), "")}"))
-            ActivityUtils.startActivity(activity, intent)
-        }
-    }
-
-    fun sendEmail(email: String) {
-        ICheckApplication.currentActivity()?.let { activity ->
-            val mailIntent = Intent(Intent.ACTION_VIEW)
-            val data = Uri.parse("mailto:?to=${email}")
-            mailIntent.data = data
-            try {
-                ActivityUtils.startActivity(activity, Intent.createChooser(mailIntent, "Send mail..."))
-            } catch (e: Exception) {
-                e.printStackTrace()
+    fun callPhone(phone: String?) {
+        if (!phone.isNullOrEmpty()) {
+            ICheckApplication.currentActivity()?.let { activity ->
+                val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:${phone.replace(" ".toRegex(), "")}"))
+                ActivityUtils.startActivity(activity, intent)
             }
         }
     }
 
-    fun openUrl(url: String) {
-        ICheckApplication.currentActivity()?.let { activity ->
-            WebViewActivity.start(activity, url)
+    fun sendEmail(email: String?) {
+        if (!email.isNullOrEmpty()) {
+            ICheckApplication.currentActivity()?.let { activity ->
+                val mailIntent = Intent(Intent.ACTION_VIEW)
+                val data = Uri.parse("mailto:?to=${email}")
+                mailIntent.data = data
+                try {
+                    ActivityUtils.startActivity(activity, Intent.createChooser(mailIntent, "Send mail..."))
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+        }
+    }
+
+    fun openUrl(url: String?) {
+        if (!url.isNullOrEmpty()) {
+            ICheckApplication.currentActivity()?.let { activity ->
+                WebViewActivity.start(activity, url)
+            }
         }
     }
 

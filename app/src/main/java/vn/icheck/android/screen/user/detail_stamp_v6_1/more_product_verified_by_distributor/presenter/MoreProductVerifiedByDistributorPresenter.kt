@@ -1,15 +1,13 @@
 package vn.icheck.android.screen.user.detail_stamp_v6_1.more_product_verified_by_distributor.presenter
 
 import android.content.Intent
-import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityPresenter
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.ICApiListener
 import vn.icheck.android.network.base.ICBaseResponse
-import vn.icheck.android.network.feature.detail_stamp_v6_1.DetailStampInteractor
+import vn.icheck.android.network.feature.detail_stamp_v6_1.DetailStampRepository
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICMoreProductVerified
 import vn.icheck.android.screen.user.detail_stamp_v6_1.more_product_verified_by_distributor.view.IMoreProductVerifiedByDistributorView
 
@@ -20,7 +18,7 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.more_product_verified_by_
  */
 class MoreProductVerifiedByDistributorPresenter(val view: IMoreProductVerifiedByDistributorView) : BaseActivityPresenter(view) {
 
-    private val interactor = DetailStampInteractor()
+    private val interactor = DetailStampRepository()
 
     var id:Long? = null
     private var offset = 0

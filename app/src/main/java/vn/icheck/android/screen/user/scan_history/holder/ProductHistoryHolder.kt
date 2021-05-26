@@ -15,13 +15,11 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.LayoutProductHistoryHolderBinding
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
-import vn.icheck.android.ichecklibs.beGone
-import vn.icheck.android.ichecklibs.beInvisible
-import vn.icheck.android.ichecklibs.beVisible
+import vn.icheck.android.ichecklibs.util.beGone
+import vn.icheck.android.ichecklibs.util.beInvisible
+import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.network.models.history.ICItemHistory
-import vn.icheck.android.network.models.history.ICStoreNear
-import vn.icheck.android.network.util.JsonHelper
 import vn.icheck.android.screen.user.map_scan_history.MapScanHistoryActivity
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.screen.user.store_sell_history.StoreSellHistoryActivity

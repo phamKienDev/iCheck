@@ -2,36 +2,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/size_20"
+    android:layout_marginStart="@dimen/size_12"
+    android:layout_marginTop="@dimen/size_18"
+    android:layout_marginEnd="@dimen/size_12"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ui.view.TextCaption
         android:id="@+id/tvTitleTextArea"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/size_24"
-        android:fontFamily="sans-serif"
-        android:textColor="#434343"
-        android:textSize="@dimen/font_14"
-        android:textStyle="normal" />
+        android:textColor="@color/colorNormalText" />
 
-    <androidx.appcompat.widget.AppCompatEditText
+    <vn.icheck.android.ui.view.EditTextBody1
         android:id="@+id/edtTextArea"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_98"
-        android:layout_marginTop="@dimen/size_8"
-        android:layout_marginStart="@dimen/size_12"
-        android:layout_marginEnd="@dimen/size_12"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_6"
+        android:background="@drawable/bg_transparent_corners_4"
         android:gravity="start|top"
-        android:background="@drawable/bg_gray_corners_4_solid_white"
-        android:fontFamily="sans-serif"
-        android:paddingStart="@dimen/size_16"
-        android:paddingEnd="@dimen/size_16"
-        android:paddingTop="@dimen/size_10"
-        android:paddingBottom="@dimen/size_10"
-        android:textColor="#000000"
-        android:textColorHint="#b4b4b4"
-        android:textSize="@dimen/font_14"
-        android:textStyle="normal" />
-
+        android:minLines="4"
+        android:paddingStart="@dimen/size_10"
+        android:paddingTop="@dimen/size_8"
+        android:paddingEnd="@dimen/size_10"
+        android:paddingBottom="@dimen/size_8"
+        android:textColor="@color/colorNormalText"
+        android:textColorHint="@color/colorSecondText" />
 </LinearLayout>

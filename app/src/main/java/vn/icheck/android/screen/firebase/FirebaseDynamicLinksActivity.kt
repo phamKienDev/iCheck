@@ -61,7 +61,7 @@ import vn.icheck.android.screen.user.detail_my_reward.DetailMyRewardActivity
 import vn.icheck.android.screen.user.detail_post.DetailPostActivity
 import vn.icheck.android.screen.user.detail_stamp_v5.home.DetailStampV5Activity
 import vn.icheck.android.screen.user.detail_stamp_v6.home.DetailStampV6Activity
-import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
+import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.screen.user.home.HomeActivity
 import vn.icheck.android.screen.user.icheckstore.list.ProductStoreiCheckActivity
 import vn.icheck.android.screen.user.list_campaign.ListCampaignActivity
@@ -715,12 +715,12 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                 val id = deepLink?.getQueryParameter("id")
 
                 if (!id.isNullOrEmpty()) {
-                    ActivityUtils.startActivity<DetailStampActivity, String>(this, Constant.DATA_1, id)
+                    ActivityUtils.startActivity<StampDetailActivity, String>(this, Constant.DATA_1, id)
                 } else {
                     val targetCode = deepLink?.getQueryParameter("code")
 
                     if (!targetCode.isNullOrEmpty()) {
-                        ActivityUtils.startActivity<DetailStampActivity, String>(this, Constant.DATA_1, targetCode)
+                        ActivityUtils.startActivity<StampDetailActivity, String>(this, Constant.DATA_1, targetCode)
                     }
                 }
             }

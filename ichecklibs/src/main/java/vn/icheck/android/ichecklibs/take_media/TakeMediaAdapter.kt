@@ -17,6 +17,8 @@ import androidx.core.view.setPadding
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.ichecklibs.*
 import vn.icheck.android.ichecklibs.util.LoadImageUtils
+import vn.icheck.android.ichecklibs.util.beGone
+import vn.icheck.android.ichecklibs.util.beVisible
 
 class TakeMediaAdapter(val listData: MutableList<TakeMediaDialog.ICIMageFile>,
                        val selectMulti: Boolean = false, // cho phép chọn nhiều hay không?
