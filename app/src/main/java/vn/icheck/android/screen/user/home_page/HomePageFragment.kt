@@ -140,6 +140,8 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
     }
 
     private fun setupView() {
+        tvNotificationCount.background=vn.icheck.android.ichecklibs.ViewHelper.bgRedNotifyHome(requireContext())
+        tv_count.background=vn.icheck.android.ichecklibs.ViewHelper.bgAccentRedRadius6(requireContext())
         layoutHeader.setPadding(0, getStatusBarHeight + SizeHelper.size16, 0, 0)
 
 //        txtSearch.background = ViewHelper.createDrawableStateList(

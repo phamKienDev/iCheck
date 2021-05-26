@@ -5,7 +5,6 @@ import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.OvalShape
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
-import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.SizeHelper
 
 class TextviewBgCircleCountCartAccentGreen : AppCompatTextView {

@@ -38,7 +38,6 @@
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_10"
                 android:layout_marginEnd="@dimen/size_12"
-                android:background="@drawable/bg_red_corner_6"
                 android:drawableStart="@drawable/ic_warning_white_24dp"
                 android:drawableLeft="@drawable/ic_warning_white_24dp"
                 android:drawablePadding="@dimen/size_10"

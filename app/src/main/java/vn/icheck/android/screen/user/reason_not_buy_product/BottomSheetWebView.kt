@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.activity_web_view.*
 import kotlinx.android.synthetic.main.bottom_sheet_dialog_reason_not_buy_product.view.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
+import vn.icheck.android.ichecklibs.ViewHelper
 
 class BottomSheetWebView (context: Context) : FrameLayout(context) {
 
@@ -69,6 +70,8 @@ class BottomSheetWebView (context: Context) : FrameLayout(context) {
     @SuppressLint("SetJavaScriptEnabled")
     fun showWithUrl(url: String) {
         mBottomSheetDialog.show()
+
+        linearLayout.background=ViewHelper.bgAccentRedRadiusTop16(context)
 
         webView.settings.javaScriptEnabled = true
         @Suppress("DEPRECATION")

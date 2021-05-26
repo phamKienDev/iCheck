@@ -96,7 +96,7 @@ class CreateContactQrCodeFragment : BaseCreateQrCodeFragment<CreateContactQrCode
     override fun onInvalidPhone(error: String) {
         tvMessagePhone.visibility = View.VISIBLE
         tvMessagePhone.text = error
-        edtPhone.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_stroke_red_4)
+        edtPhone.background = ViewHelper.bgTransparentRadius4StrokeAccentRed05(requireContext())
         edtPhone.requestFocus()
     }
 
@@ -108,7 +108,7 @@ class CreateContactQrCodeFragment : BaseCreateQrCodeFragment<CreateContactQrCode
     override fun onInvalidFirstName(error: String) {
         tvMessageFirstName.visibility = View.VISIBLE
         tvMessageFirstName.text = error
-        edtFirstName.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_stroke_red_4)
+        edtFirstName.background = ViewHelper.bgTransparentRadius4StrokeAccentRed05(requireContext())
         edtFirstName.requestFocus()
     }
 
@@ -120,21 +120,21 @@ class CreateContactQrCodeFragment : BaseCreateQrCodeFragment<CreateContactQrCode
     override fun onInvalidLastName(error: String) {
         tvMessageLastName.visibility = View.VISIBLE
         tvMessageLastName.text = error
-        edtLastName.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_stroke_red_4)
+        edtLastName.background = ViewHelper.bgTransparentRadius4StrokeAccentRed05(requireContext())
         edtLastName.requestFocus()
     }
 
     override fun onInvalidEmail(error: String) {
         tvMessageEmail.visibility = View.VISIBLE
         tvMessageEmail.text = error
-        edtEmail.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_stroke_red_4)
+        edtEmail.background = ViewHelper.bgTransparentRadius4StrokeAccentRed05(requireContext())
         edtEmail.requestFocus()
     }
 
     override fun onInvalidAddress(error: String) {
         tvMessageAddress.visibility = View.VISIBLE
         tvMessageAddress.text = error
-        edtAddress.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_stroke_red_4)
+        edtAddress.background = ViewHelper.bgTransparentRadius4StrokeAccentRed05(requireContext())
         edtAddress.requestFocus()
     }
 

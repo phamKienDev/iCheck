@@ -63,21 +63,21 @@ class CreateEmailQrCodeFragment : BaseCreateQrCodeFragment<CreateEmailQrCodePres
     override fun onInvalidEmail(error: String) {
         tvMessageEmail.visibility = View.VISIBLE
         tvMessageEmail.text = error
-        edtEmail.background = ContextCompat.getDrawable(requireContext(),R.drawable.bg_corner_stroke_red_4)
+        edtEmail.background = ViewHelper.bgTransparentRadius4StrokeAccentRed05(requireContext())
         edtEmail.requestFocus()
     }
 
     override fun onInvalidTitle(error: String) {
         tvMessageTitle.visibility = View.VISIBLE
         tvMessageTitle.text = error
-        edtTitle.background = ContextCompat.getDrawable(requireContext(),R.drawable.bg_corner_stroke_red_4)
+        edtTitle.background = ViewHelper.bgTransparentRadius4StrokeAccentRed05(requireContext())
         edtTitle.requestFocus()
     }
 
     override fun onInvalidContent(error: String) {
         tvMessageContent.visibility = View.VISIBLE
         tvMessageContent.text = error
-        edtContent.background = ContextCompat.getDrawable(requireContext(),R.drawable.bg_corner_stroke_red_4)
+        edtContent.background = ViewHelper.bgTransparentRadius4StrokeAccentRed05(requireContext())
         edtContent.requestFocus()
     }
 

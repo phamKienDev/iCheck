@@ -94,7 +94,7 @@ class CreateMessageQrCodeFragment : BaseCreateQrCodeFragment<CreateMessageQrCode
     override fun onInvalidPhone(error: String) {
         tvMessage.visibility = View.VISIBLE
         tvMessage.text = error
-        edtPhone.background = ContextCompat.getDrawable(requireContext(),R.drawable.bg_corner_stroke_red_4)
+        edtPhone.background = ViewHelper.bgTransparentRadius4StrokeAccentRed05(requireContext())
         edtPhone.requestFocus()
     }
 
@@ -106,7 +106,7 @@ class CreateMessageQrCodeFragment : BaseCreateQrCodeFragment<CreateMessageQrCode
     override fun onInvalidContent(error: String) {
         tvMessageContent.visibility = View.VISIBLE
         tvMessageContent.text = error
-        edtContent.background = ContextCompat.getDrawable(requireContext(),R.drawable.bg_corner_stroke_red_4)
+        edtContent.background = ViewHelper.bgTransparentRadius4StrokeAccentRed05(requireContext())
         edtContent.requestFocus()
     }
 

@@ -106,7 +106,7 @@ class CreatePhoneQrCodeFragment : BaseCreateQrCodeFragment<BaseCreateQrCodePrese
         super.showError(errorMessage)
         tvMessage.visibility = View.VISIBLE
         tvMessage.text = errorMessage
-        edtContent.background = ContextCompat.getDrawable(requireContext(),R.drawable.bg_corner_stroke_red_4)
+        edtContent.background = ViewHelper.bgTransparentRadius4StrokeAccentRed05(requireContext())
         edtContent.requestFocus()
     }
 

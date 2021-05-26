@@ -455,7 +455,29 @@ object Constant {
             return if (accentGreenColor.isNotEmpty()) {
                 accentGreenColor
             } else {
-                "#00BAF2"
+                "#85c440"
+            }
+        }
+
+
+    /*
+    *Color accent red
+    * * */
+
+    fun getAccentRedColor(context: Context): Int {
+        return if (accentRedColor.isNotEmpty()) {
+            Color.parseColor(accentRedColor)
+        } else {
+            ContextCompat.getColor(context, R.color.colorAccentRed)
+        }
+    }
+
+    val getAccentRedCode: String
+        get() {
+            return if (accentRedColor.isNotEmpty()) {
+                accentRedColor
+            } else {
+                "#ff0000"
             }
         }
 }

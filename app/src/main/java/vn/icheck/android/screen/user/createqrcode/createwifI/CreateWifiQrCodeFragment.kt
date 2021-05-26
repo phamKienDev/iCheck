@@ -94,7 +94,7 @@ class CreateWifiQrCodeFragment : BaseCreateQrCodeFragment<CreateWifiQrCodePresen
     override fun onInValidName(error: String) {
         tvMessageName.visibility = View.VISIBLE
         tvMessageName.text = error
-        edtName.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_stroke_red_4)
+        edtName.background = ViewHelper.bgTransparentRadius4StrokeAccentRed05(requireContext())
         edtName.requestFocus()
     }
 
@@ -106,7 +106,7 @@ class CreateWifiQrCodeFragment : BaseCreateQrCodeFragment<CreateWifiQrCodePresen
     override fun onInValidPassword(error: String) {
         tvMessagePassword.visibility = View.VISIBLE
         tvMessagePassword.text = error
-        edtPassword.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_stroke_red_4)
+        edtPassword.background = ViewHelper.bgTransparentRadius4StrokeAccentRed05(requireContext())
         edtPassword.requestFocus()
     }
 

@@ -9,6 +9,7 @@ import android.os.Build
 import android.view.Gravity
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.StateListDrawable
+import android.graphics.drawable.shapes.OvalShape
 import android.widget.LinearLayout
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
@@ -54,7 +55,6 @@ object ViewHelper {
 
         return statesListDrawable
     }
-
 
 
     @ColorInt
@@ -389,8 +389,8 @@ object ViewHelper {
 
     fun bgBtnFacebook(context: Context) = createShapeDrawable(
         color = Constant.getAppBackgroundColor(context),
-        strokeWidth =SizeHelper.size1,
-        strokeColor =Constant.getLineColor(context),
+        strokeWidth = SizeHelper.size1,
+        strokeColor = Constant.getLineColor(context),
         radius = SizeHelper.size26.toFloat()
     )
 
@@ -398,7 +398,7 @@ object ViewHelper {
         color = Constant.getAppBackgroundColor(context),
         strokeWidth = SizeHelper.size1,
         strokeColor = Constant.getLineColor(context),
-        radius=SizeHelper.size4.toFloat()
+        radius = SizeHelper.size4.toFloat()
     )
 
     fun bgGrayRadius4StrokeLineColor1(context: Context) = createShapeDrawable(
@@ -444,10 +444,10 @@ object ViewHelper {
     )
 
 
-    fun bgGrayRadiusBottom4StrokeLineColor05(context: Context)=GradientDrawable().apply {
+    fun bgGrayRadiusBottom4StrokeLineColor05(context: Context) = GradientDrawable().apply {
         setColor(Color.parseColor("#f5f5f5"))
-        setStroke(SizeHelper.size0_5,Constant.getLineColor(context))
-        cornerRadii=floatArrayOf(
+        setStroke(SizeHelper.size0_5, Constant.getLineColor(context))
+        cornerRadii = floatArrayOf(
             // top left
             0f,
             0f,
@@ -513,15 +513,15 @@ object ViewHelper {
     )
 
     fun lineDottedVerticalLineColor(context: Context) = GradientDrawable().apply {
-        setStroke(SizeHelper.size1_5,Constant.getLineColor(context),SizeHelper.size1_5.toFloat(),SizeHelper.size5.toFloat())
+        setStroke(SizeHelper.size1_5, Constant.getLineColor(context), SizeHelper.size1_5.toFloat(), SizeHelper.size5.toFloat())
     }
 
     fun lineDottedVertical7LineColor(context: Context) = GradientDrawable().apply {
-        setStroke(SizeHelper.size7,Constant.getLineColor(context),SizeHelper.size4.toFloat(),SizeHelper.size4.toFloat())
+        setStroke(SizeHelper.size7, Constant.getLineColor(context), SizeHelper.size4.toFloat(), SizeHelper.size4.toFloat())
     }
 
 
-    fun bgEdtSelectorFocusLineColor1(context: Context) :StateListDrawable{
+    fun bgEdtSelectorFocusLineColor1(context: Context): StateListDrawable {
         //android:state_focused="true"
         val focused = GradientDrawable().also {
             it.setStroke(SizeHelper.size1, Constant.getPrimaryColor(context))
@@ -561,7 +561,7 @@ object ViewHelper {
         return statesListDrawable
     }
 
-    fun lineUnderColorLine1(context: Context) :LayerDrawable{
+    fun lineUnderColorLine1(context: Context): LayerDrawable {
         //android:state_focused="true"
         val line = GradientDrawable().also {
             it.setStroke(SizeHelper.size1, Constant.getLineColor(context))
@@ -581,25 +581,25 @@ object ViewHelper {
         return layerDrawbleFocused
     }
 
-    fun bgWhiteRadius4StrokeLineColor0_5Pressed(context: Context) :StateListDrawable{
+    fun bgWhiteRadius4StrokeLineColor0_5Pressed(context: Context): StateListDrawable {
         // android:state_pressed="true"
         val bgPressed = GradientDrawable().also {
             it.setStroke(SizeHelper.size1, Constant.getLineColor(context))
-            it.setColor(ContextCompat.getColor(context,R.color.black_20))
-            it.cornerRadius=SizeHelper.size4.toFloat()
+            it.setColor(ContextCompat.getColor(context, R.color.black_20))
+            it.cornerRadius = SizeHelper.size4.toFloat()
         }
 
         //  android:state_enabled="false"
         val bgNotEnabled = GradientDrawable().also {
-            it.setColor(ContextCompat.getColor(context,R.color.colorBackgroundGray))
-            it.cornerRadius=SizeHelper.size4.toFloat()
+            it.setColor(ContextCompat.getColor(context, R.color.colorBackgroundGray))
+            it.cornerRadius = SizeHelper.size4.toFloat()
         }
 
         //  background
         val background = GradientDrawable().also {
             it.setStroke(SizeHelper.size1, Constant.getLineColor(context))
-            it.setColor(ContextCompat.getColor(context,R.color.white))
-            it.cornerRadius=SizeHelper.size4.toFloat()
+            it.setColor(ContextCompat.getColor(context, R.color.white))
+            it.cornerRadius = SizeHelper.size4.toFloat()
         }
 
         val statesListDrawable = StateListDrawable()
@@ -611,7 +611,7 @@ object ViewHelper {
     }
 
 
-    fun bgProductItem(context: Context,left:Int,top:Int,right:Int,bottom:Int) :LayerDrawable{
+    fun bgProductItem(context: Context, left: Int, top: Int, right: Int, bottom: Int): LayerDrawable {
         val backgroundGray = GradientDrawable().also {
             it.setColor(Constant.getLineColor(context))
         }
@@ -621,9 +621,9 @@ object ViewHelper {
         layerDrawbleFocused.setId(0, android.R.id.background)
 
 
-        val bgWhite = ContextCompat.getDrawable(context,R.drawable.btn_white)
+        val bgWhite = ContextCompat.getDrawable(context, R.drawable.btn_white)
 
-        val layerList = arrayOf(backgroundGray,bgWhite)
+        val layerList = arrayOf(backgroundGray, bgWhite)
         val layerDrawble = LayerDrawable(layerList)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -637,16 +637,72 @@ object ViewHelper {
     }
 
 
-    fun bgProductItemBottemLeft(context: Context) = bgProductItem(context,left = 0,top = SizeHelper.size1, right= SizeHelper.size0_5,bottom = 0)
-    fun bgProductItemBottemRight(context: Context) = bgProductItem(context,left = SizeHelper.size0_5,top = SizeHelper.size1, right = 0,bottom = 0)
-    fun bgProductItemTopLeft(context: Context) = bgProductItem(context,left = 0,top = 0, right = SizeHelper.size0_5,bottom = 0)
-    fun bgProductItemTopRight(context: Context) = bgProductItem(context,left = SizeHelper.size0_5,top = 0, 0,bottom = 0)
-
-
-
+    fun bgProductItemBottemLeft(context: Context) = bgProductItem(context, left = 0, top = SizeHelper.size1, right = SizeHelper.size0_5, bottom = 0)
+    fun bgProductItemBottemRight(context: Context) = bgProductItem(context, left = SizeHelper.size0_5, top = SizeHelper.size1, right = 0, bottom = 0)
+    fun bgProductItemTopLeft(context: Context) = bgProductItem(context, left = 0, top = 0, right = SizeHelper.size0_5, bottom = 0)
+    fun bgProductItemTopRight(context: Context) = bgProductItem(context, left = SizeHelper.size0_5, top = 0, 0, bottom = 0)
 
     /*
     * End lineColor
+    * */
+
+    /*
+    * Accent Red
+    * */
+
+    fun bgTransparentRadius4StrokeAccentRed05(context: Context) = createShapeDrawable(
+        color = Color.TRANSPARENT,
+        strokeColor = Constant.getAccentRedColor(context),
+        strokeWidth = SizeHelper.size0_5,
+        radius = SizeHelper.size4.toFloat()
+    )
+
+    fun bgAccentRedRadius6(context: Context) = createShapeDrawable(
+        color = Constant.getAccentRedColor(context),
+        strokeColor = Color.TRANSPARENT,
+        strokeWidth = 0,
+        radius = SizeHelper.size6.toFloat()
+    )
+
+    fun bgAccentRedRadiusTop16(context: Context) =GradientDrawable().apply {
+        setColor(Constant.getAccentRedColor(context))
+        cornerRadii = floatArrayOf(
+            // top left
+            SizeHelper.size16.toFloat(),
+            SizeHelper.size16.toFloat(),
+            // top right
+            SizeHelper.size16.toFloat(),
+            SizeHelper.size16.toFloat(),
+            // bottom right
+            0f,
+            0f,
+            // bottom left
+            0f,
+            0f
+        )
+    }
+
+    fun bgRedNotifyHome(context: Context):StateListDrawable {
+        val notCheck = createShapeDrawable(
+            color = Constant.getAccentRedColor(context),
+            strokeColor = Color.parseColor("#124998"),
+            strokeWidth = SizeHelper.size1_5,
+            radius = SizeHelper.size22.toFloat()
+        )
+
+        val checked=createShapeDrawable(
+            color = Constant.getAccentRedColor(context),
+            strokeColor = Color.WHITE,
+            strokeWidth = SizeHelper.size1_5,
+            radius = SizeHelper.size22.toFloat()
+        )
+
+        return createCheckedDrawable(notCheck,checked)
+    }
+
+
+    /*
+    * End Accent Red
     * */
 
 
