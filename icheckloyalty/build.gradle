@@ -60,7 +60,7 @@ dependencies {
     implementation "androidx.room:room-ktx:2.2.6"
     implementation "androidx.room:room-rxjava2:2.2.6"
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.4.10"
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     kapt "androidx.room:room-compiler:2.2.6"
 

@@ -10,19 +10,14 @@ import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.feature.page.PageRepository
-import vn.icheck.android.network.feature.relationship.RelationshipInteractor
-import vn.icheck.android.network.models.ICFriendSuggestion
-import vn.icheck.android.network.models.ICNotification
 import vn.icheck.android.network.models.ICNotificationPage
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
 import vn.icheck.android.ui.view.SquareImageView
-import vn.icheck.android.util.ick.showSimpleSuccessToast
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 

@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/size_10"
     android:paddingEnd="@dimen/size_0">
 
-    <vn.icheck.android.ui.view.TextBody2
+    <vn.icheck.android.ichecklibs.view.TextBody2
         android:id="@id/tvStatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,7 +22,7 @@
         tools:includeFontPadding="false"
         tools:text="Kích hoạt" />
 
-    <vn.icheck.android.ui.view.TextBody1
+    <vn.icheck.android.ichecklibs.view.TextBody1
         android:id="@id/tvState"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
         tools:includeFontPadding="false"
         tools:text="Tình trạng" />
 
-    <vn.icheck.android.ui.view.TextBody1
+    <vn.icheck.android.ichecklibs.view.TextBody1
         android:id="@id/tvDateTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

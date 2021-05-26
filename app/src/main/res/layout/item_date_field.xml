@@ -7,13 +7,13 @@
     android:layout_marginEnd="@dimen/size_12"
     android:orientation="vertical">
 
-    <vn.icheck.android.ui.view.TextCaption
+    <vn.icheck.android.ichecklibs.view.TextCaption
         android:id="@+id/tvTitleDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/colorNormalText" />
 
-    <vn.icheck.android.ui.view.TextBody1
+    <vn.icheck.android.ichecklibs.view.TextBody1
         android:id="@+id/edtInputDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

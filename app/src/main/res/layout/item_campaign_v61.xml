@@ -28,7 +28,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <vn.icheck.android.ui.view.TextBody1
+    <vn.icheck.android.ichecklibs.view.TextBody1
         android:id="@+id/tvDescp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
         android:text="Mã dự thưởng chương trình:"
         android:textColor="@color/colorNormalText" />
 
-    <vn.icheck.android.ui.view.TextSubheader2
+    <vn.icheck.android.ichecklibs.view.TextSubheader2
         android:id="@+id/loyaltyDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -7,13 +7,13 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <vn.icheck.android.ui.view.TextSubheader2
+    <vn.icheck.android.ichecklibs.view.TextSubheader2
         android:id="@id/tvMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/size_12"
         android:layout_marginTop="@dimen/size_20"
-        android:drawableTop="@drawable/ic_circle_warning_white_40dp"
+        android:drawableTop="@drawable/ic_waring_white_40_px"
         android:drawablePadding="@dimen/size_4"
         android:gravity="center"
         android:paddingHorizontal="@dimen/size_34"

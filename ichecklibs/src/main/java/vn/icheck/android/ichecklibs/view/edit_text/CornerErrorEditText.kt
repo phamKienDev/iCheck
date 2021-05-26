@@ -68,7 +68,7 @@ open class CornerErrorEditText : AppCompatEditText {
                 drawText(
                         mError.toString(),
                         0f,
-                        (bottom + 23.5f.dpToPx()).toFloat(),
+                        (bottom + 23.5f.dpToPx()),
                         mErrorTextPaint
                 )
             }

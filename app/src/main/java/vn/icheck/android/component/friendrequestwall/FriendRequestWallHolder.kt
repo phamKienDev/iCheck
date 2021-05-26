@@ -19,7 +19,7 @@ import vn.icheck.android.constant.USER_WALL_BROADCAST
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.network.base.ICListResponse
 import vn.icheck.android.network.models.ICSearchUser
-import vn.icheck.android.util.ick.toPx
+import vn.icheck.android.ichecklibs.util.dpToPx
 
 class FriendRequestWallHolder(parent: ViewGroup) : BaseViewHolder<ICListResponse<ICSearchUser>>(createView(parent.context)) {
     private val friendRequestAdapter = FriendRequestWallAdapter()
@@ -78,7 +78,7 @@ class FriendRequestWallHolder(parent: ViewGroup) : BaseViewHolder<ICListResponse
 
         private fun createView(context: Context): LinearLayout {
             return LinearLayout(context).also { layoutParent ->
-                layoutParent.layoutParams = ViewHelper.createLayoutParams(0, 0, 0, 10.toPx())
+                layoutParent.layoutParams = ViewHelper.createLayoutParams(0, 0, 0, 10.dpToPx())
                 layoutParent.orientation = LinearLayout.VERTICAL
                 layoutParent.setBackgroundColor(Color.WHITE)
 

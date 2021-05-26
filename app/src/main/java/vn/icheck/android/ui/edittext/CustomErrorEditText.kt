@@ -13,6 +13,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
 import vn.icheck.android.R
 import vn.icheck.android.util.ick.toPx
+import vn.icheck.android.ichecklibs.util.dpToPx
 
 open class CustomErrorEditText : AppCompatEditText {
 
@@ -47,7 +48,7 @@ open class CustomErrorEditText : AppCompatEditText {
         mLinePaint = Paint()
         mLinePaint.strokeWidth = 1f.toPx()
 
-        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom + 20.toPx())
+        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom + 20.dpToPx())
         mErrorTextPaint.color = ContextCompat.getColor(context, R.color.colorAccentRed)
         setBackgroundResource(0)
     }
@@ -67,7 +68,7 @@ open class CustomErrorEditText : AppCompatEditText {
                 )
                 drawText(
                         mError.toString(),
-                        26.toPx().toFloat(),
+                        26.dpToPx().toFloat(),
                         (bottom + 16f.toPx()).toFloat(),
                         mErrorTextPaint
                 )

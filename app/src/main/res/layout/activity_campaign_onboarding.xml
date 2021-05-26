@@ -44,7 +44,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <vn.icheck.android.ui.view.TextSubheader2
+        <vn.icheck.android.ichecklibs.view.TextSubheader2
             android:id="@+id/btnActionBack"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -57,7 +57,7 @@
             android:visibility="gone"
             android:textColor="@color/light_blue" />
 
-        <vn.icheck.android.ui.view.TextSubheader2
+        <vn.icheck.android.ichecklibs.view.TextSubheader2
             android:id="@+id/btnActionContinue"
             android:layout_width="0dp"
             android:layout_weight="1"

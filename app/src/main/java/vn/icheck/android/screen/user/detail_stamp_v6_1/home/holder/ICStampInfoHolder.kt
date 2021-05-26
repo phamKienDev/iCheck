@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.ichecklibs.R
 import vn.icheck.android.ichecklibs.SizeHelper
-import vn.icheck.android.ui.view.TextHeader
+import vn.icheck.android.ichecklibs.view.TextHeader
 
 class ICStampInfoHolder(parent: ViewGroup) : BaseViewHolder<String>(
         TextHeader(parent.context).apply {

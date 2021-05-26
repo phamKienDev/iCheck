@@ -19,7 +19,7 @@ import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.user.home_page.HomePageViewModel
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
-import vn.icheck.android.util.ick.showSimpleSuccessToast
+import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.util.ick.simpleText
 
 class ReminderHomeDialog:BaseBottomSheetDialogFragment() {
@@ -59,7 +59,7 @@ class ReminderHomeDialog:BaseBottomSheetDialogFragment() {
                     override fun onAgree() {
                         viewModel.deleteReminder(position).observe(viewLifecycleOwner, Observer {
                             if (it.statusCode == "200") {
-                                requireContext().showSimpleSuccessToast("Bạn đã xóa lời nhắc thành công")
+                                requireContext().showShortSuccessToast("Bạn đã xóa lời nhắc thành công")
                                 remindersAdapter.notifyItemRemoved(position)
                                 EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.UPDATE_REMINDER))
 

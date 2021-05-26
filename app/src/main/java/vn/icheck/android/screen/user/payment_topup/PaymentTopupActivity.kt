@@ -34,7 +34,7 @@ import vn.icheck.android.screen.user.payment_topup.adapter.ValuePaymentAdapter
 import vn.icheck.android.screen.user.payment_topup.viewmodel.PaymentViewModel
 import vn.icheck.android.screen.user.payment_topup_success.BuyTopupSuccessActivity
 import vn.icheck.android.screen.user.recharge_phone.RechargePhoneActivity
-import vn.icheck.android.util.ick.showSimpleErrorToast
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 
 class PaymentTopupActivity : BaseActivityMVVM(), ItemClickListener<ICRechargePhone> {
 
@@ -167,7 +167,7 @@ class PaymentTopupActivity : BaseActivityMVVM(), ItemClickListener<ICRechargePho
         })
 
         viewModel.errorData.observe(this, {
-            this@PaymentTopupActivity.showSimpleErrorToast(it)
+            this@PaymentTopupActivity.showShortErrorToast(it)
             Handler().postDelayed({
                 this@PaymentTopupActivity.onBackPressed()
             }, 2000)

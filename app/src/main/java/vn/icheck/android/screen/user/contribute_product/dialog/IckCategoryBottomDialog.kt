@@ -1,29 +1,17 @@
 package vn.icheck.android.screen.user.contribute_product.dialog
 
-import android.graphics.Color
 import android.os.Bundle
 import android.text.*
-import android.text.method.LinkMovementMethod
-import android.text.method.ScrollingMovementMethod
-import android.text.style.ClickableSpan
-import android.text.style.ForegroundColorSpan
-import android.text.style.RelativeSizeSpan
 import android.view.*
 import android.widget.FrameLayout
-import android.widget.LinearLayout
 import androidx.core.view.ViewCompat
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.ick_left_menu.*
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
@@ -34,9 +22,7 @@ import vn.icheck.android.screen.user.contribute_product.IckContributeProductView
 import vn.icheck.android.screen.user.contribute_product.adapter.IckCategoryAdapter
 import vn.icheck.android.util.AfterTextWatcher
 import vn.icheck.android.util.ick.logError
-import vn.icheck.android.util.ick.simpleText
-import vn.icheck.android.util.ick.toPx
-import vn.icheck.android.util.spansAppend
+import vn.icheck.android.ichecklibs.util.dpToPx
 
 class IckCategoryBottomDialog : BottomSheetDialogFragment() {
 
@@ -140,7 +126,7 @@ class IckCategoryBottomDialog : BottomSheetDialogFragment() {
                 binding.edtSearch.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_search_gray_24dp, 0, R.drawable.ic_delete_gray_vector, 0)
                 binding.edtSearch.setOnTouchListener { view, motionEvent ->
                     if (motionEvent.action == MotionEvent.ACTION_UP) {
-                        if (motionEvent.rawX > binding.edtSearch.right - 30.toPx()) {
+                        if (motionEvent.rawX > binding.edtSearch.right - 30.dpToPx()) {
                             binding.edtSearch.setText("")
                             return@setOnTouchListener true
                         }

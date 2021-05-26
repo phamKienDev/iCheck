@@ -14,19 +14,16 @@ import java.util.concurrent.TimeUnit;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import kotlin.jvm.Volatile;
 import okhttp3.Authenticator;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.Route;
-//import okhttp3.logging.HttpLoggingInterceptor;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import vn.icheck.android.ichecklibs.event.ICMessageEvent;
 import vn.icheck.android.network.BuildConfig;
 import vn.icheck.android.network.models.ICSessionData;
 import vn.icheck.android.network.util.DeviceUtils;
@@ -34,7 +31,7 @@ import vn.icheck.android.network.util.DeviceUtils;
 public class ICNetworkClient {
     public static ICNetworkCallbackManager networkCallbackManager = ICNetworkCallbackManager.Factory.create();
 
-    public static final Gson gson = new GsonBuilder()
+    private static final Gson gson = new GsonBuilder()
             .setLenient()
             .serializeNulls()
             .create();

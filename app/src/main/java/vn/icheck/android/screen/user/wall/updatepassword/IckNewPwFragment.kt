@@ -11,13 +11,12 @@ import androidx.navigation.fragment.findNavController
 import vn.icheck.android.base.fragment.CoroutineFragment
 import vn.icheck.android.databinding.FragmentNewPwBinding
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
+import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.model.ApiErrorResponse
 import vn.icheck.android.network.model.ApiSuccessResponse
 import vn.icheck.android.screen.user.wall.IckUserWallViewModel
-import vn.icheck.android.util.ick.showShortError
-import vn.icheck.android.util.ick.showSimpleErrorToast
-import vn.icheck.android.util.ick.showSimpleSuccessToast
 import vn.icheck.android.util.ick.simpleText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -82,7 +81,7 @@ class IckNewPwFragment : CoroutineFragment() {
                                     DialogHelper.closeLoading(this)
                                     if (it is ApiSuccessResponse) {
                                         if (it.body.statusCode == "200") {
-                                            requireContext().showSimpleSuccessToast("Bạn đã cập nhật mật khẩu thành công")
+                                            requireContext().showShortSuccessToast("Bạn đã cập nhật mật khẩu thành công")
                                             ickUserWallViewModel.getUserInfo().observe(requireActivity(), { user ->
                                                 SessionManager.updateUser(user?.data?.createICUser())
                                             })
@@ -91,11 +90,11 @@ class IckNewPwFragment : CoroutineFragment() {
                                             }, 3000)
                                         } else {
                                             it.body.message?.let { msg ->
-                                                requireContext().showSimpleErrorToast(msg)
+                                                requireContext().showShortErrorToast(msg)
                                             }
                                         }
                                     } else if (it is ApiErrorResponse) {
-                                        requireContext().showShortError(it.error.message)
+                                        requireContext().showShortErrorToast(it.error.message)
                                     }
                                 })
                     }
@@ -125,17 +124,17 @@ class IckNewPwFragment : CoroutineFragment() {
                                     DialogHelper.closeLoading(this)
                                     if (it is ApiSuccessResponse) {
                                         if (it.body.statusCode == "200") {
-                                            requireContext().showSimpleSuccessToast("Bạn đã cập nhật mật khẩu thành công")
+                                            requireContext().showShortSuccessToast("Bạn đã cập nhật mật khẩu thành công")
                                             delayAction({
                                                 findNavController().popBackStack()
                                             }, 3000)
                                         } else {
                                             it.body.message?.let { msg ->
-                                                requireContext().showSimpleErrorToast(msg)
+                                                requireContext().showShortErrorToast(msg)
                                             }
                                         }
                                     } else if (it is ApiErrorResponse) {
-                                        requireContext().showShortError(it.error.message)
+                                        requireContext().showShortErrorToast(it.error.message)
                                     }
                                 })
                     }

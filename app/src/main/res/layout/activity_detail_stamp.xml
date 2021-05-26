@@ -138,7 +138,7 @@
         android:layout_height="wrap_content"
         android:visibility="invisible" />
 
-    <vn.icheck.android.ui.view.TextSubheader2
+    <vn.icheck.android.ichecklibs.view.TextSubheader2
         android:id="@+id/textFab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

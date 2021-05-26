@@ -29,6 +29,7 @@ import vn.icheck.android.component.view.ViewHelper.onDelayClick
 import vn.icheck.android.constant.*
 import vn.icheck.android.helper.*
 import vn.icheck.android.helper.TextHelper.setTextNameProductInPost
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.network.model.posts.PostViewModel
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
@@ -690,7 +691,7 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
                                     })
                             }
                         } else {
-                            itemView.context.showSimpleErrorToast(
+                            itemView.context.showShortErrorToast(
                                 error?.message
                                     ?: activity.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                             )

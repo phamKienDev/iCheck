@@ -40,6 +40,7 @@ import vn.icheck.android.databinding.ActivityIckContributeProductBinding
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.screen.user.contribute_product.adapter.*
 import vn.icheck.android.screen.user.contribute_product.dialog.IckCategoryBottomDialog
 import vn.icheck.android.screen.user.contribute_product.viewmodel.CategoryAttributesModel
@@ -462,7 +463,7 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
                                                     } catch (e: Exception) {
                                                         dismissLoadingScreen()
                                                         withContext(Dispatchers.Main) {
-                                                            showSimpleErrorToast("Đã xảy ra lỗi vui lòng thử lại sau")
+                                                            showShortErrorToast("Đã xảy ra lỗi vui lòng thử lại sau")
                                                         }
                                                         logError(e)
                                                     }
@@ -553,7 +554,7 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
                                                                                                             } catch (e: Exception) {
                                                                                                                 dismissLoadingScreen()
                                                                                                                 withContext(Dispatchers.Main) {
-                                                                                                                    showSimpleErrorToast("Đã xảy ra lỗi vui lòng thử lại sau")
+                                                                                                                    showShortErrorToast("Đã xảy ra lỗi vui lòng thử lại sau")
                                                                                                                 }
                                                                                                                 logError(e)
                                                                                                             }
@@ -887,11 +888,11 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
         }
         ickContributeProductViewModel.mErr.observe(this, Observer {
             dismissLoadingScreen()
-            showShortError(it.toICBaseResponse()?.message)
+            showShortErrorToast(it.toICBaseResponse()?.message)
         })
         ickContributeProductViewModel.mException.observe(this) {
             dismissLoadingScreen()
-            showShortError(it.message)
+            showShortErrorToast(it.message)
         }
         binding.imgBack.setOnClickListener {
             finish()
