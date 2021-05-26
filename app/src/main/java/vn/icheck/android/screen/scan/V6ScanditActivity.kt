@@ -41,9 +41,6 @@ import com.scandit.datacapture.core.common.feedback.Vibration
 import com.scandit.datacapture.core.data.FrameData
 import com.scandit.datacapture.core.source.*
 import com.scandit.datacapture.core.ui.DataCaptureView
-import com.scandit.datacapture.core.ui.DataCaptureViewListener
-import com.scandit.datacapture.core.ui.orientation.DeviceOrientation
-import com.scandit.datacapture.core.ui.orientation.DeviceOrientationMapper
 import com.yalantis.ucrop.UCrop
 import kotlinx.android.synthetic.main.item_ads_product_grid.view.*
 import kotlinx.coroutines.delay
@@ -59,7 +56,7 @@ import vn.icheck.android.constant.SCAN_REVIEW
 import vn.icheck.android.databinding.IckScanCustomViewBinding
 import vn.icheck.android.fragments.BarcodeBottomDialog
 import vn.icheck.android.helper.*
-import vn.icheck.android.ichecklibs.getDeviceWidth
+import vn.icheck.android.ichecklibs.util.getDeviceWidth
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
@@ -72,12 +69,11 @@ import vn.icheck.android.network.models.ICValidStampSocial
 import vn.icheck.android.network.util.DeviceUtils
 import vn.icheck.android.screen.scan.viewmodel.V6ViewModel
 import vn.icheck.android.screen.user.contribute_product.CONTRIBUTE_REQUEST
-import vn.icheck.android.screen.user.cropimage.CropImageActivity
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.DetailStampHoaPhatActivity
 import vn.icheck.android.screen.user.detail_stamp_thinh_long.home.DetailStampThinhLongActivity
 import vn.icheck.android.screen.user.detail_stamp_v5.home.DetailStampV5Activity
 import vn.icheck.android.screen.user.detail_stamp_v6.home.DetailStampV6Activity
-import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
+import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.screen.user.edit_review.EditReviewActivity
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
@@ -903,6 +899,12 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                         }
                     }
                 }
+            } else {
+                DialogHelper.showNotification(this@V6ScanditActivity, code, false, object : NotificationDialogListener {
+                    override fun onDone() {
+                        enableCapture()
+                    }
+                })
             }
         }
     }
@@ -1016,7 +1018,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                 }
                 else -> {
                     TrackingAllHelper.trackScanQrcode(viewModel.codeScan,true)
-                    ActivityUtils.startActivity<DetailStampActivity, String>(this, Constant.DATA, it.code!!)
+                    ActivityUtils.startActivity<StampDetailActivity, String>(this, Constant.DATA, it.code!!)
                 }
             }
         })
@@ -1052,9 +1054,9 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                     TrackingAllHelper.trackScanQrcode(viewModel.codeScan,false)
                     WebViewActivity.start(this, it, 1, null, true)
                 }
-                it.contains("qcheck-dev.vn") || it.contains("qcheck.vn") || it.contains("qrcode.icheck.com.vn") -> {
+                it.contains("dev-qcheck.icheck.vn") || it.contains("qcheck-dev.vn") || it.contains("qcheck.vn") || it.contains("qrcode.icheck.com.vn") -> {
                     TrackingAllHelper.trackScanQrcode(viewModel.codeScan,true)
-                    ActivityUtils.startActivity<DetailStampActivity, String>(this, Constant.DATA, it)
+                    ActivityUtils.startActivity<StampDetailActivity, String>(this, Constant.DATA, it)
                 }
                 it.contains("ktra.vn") -> {
                     var path = URL(it).path
@@ -1317,7 +1319,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
             override fun onGoToDetail(code: String?) {
                 TrackingAllHelper.trackScanQrcode(viewModel.codeScan,true)
-                ActivityUtils.startActivity<DetailStampActivity, String>(this@V6ScanditActivity, Constant.DATA, codeStamp)
+                ActivityUtils.startActivity<StampDetailActivity, String>(this@V6ScanditActivity, Constant.DATA, codeStamp)
             }
 
             override fun onGoToSms(target: String?, content: String?) {

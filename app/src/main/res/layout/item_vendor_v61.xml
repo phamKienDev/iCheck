@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/size_10">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@id/layoutTop"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_66"
+        android:background="@color/colorPrimary"
+        android:paddingStart="@dimen/size_12"
+        android:paddingTop="@dimen/size_10"
+        android:paddingEnd="@dimen/size_12"
+        android:paddingBottom="@dimen/size_10"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@id/imgAvatar"
+            android:layout_width="@dimen/size_40"
+            android:layout_height="@dimen/size_40"
+            android:layout_marginTop="@dimen/size_12"
+            android:layout_marginBottom="@dimen/size_12"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@color/white" />
+
+        <FrameLayout
+            android:id="@id/layoutName"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="@dimen/size_0"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginEnd="@dimen/size_8"
+            app:layout_constraintBottom_toTopOf="@id/tvType"
+            app:layout_constraintEnd_toStartOf="@id/tvArrow"
+            app:layout_constraintStart_toEndOf="@id/imgAvatar"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <vn.icheck.android.ui.view.TextSubheader2
+                android:id="@id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_verified_24px"
+                android:drawablePadding="@dimen/size_8"
+                android:gravity="center_vertical"
+                android:includeFontPadding="false"
+                android:textAlignment="gravity"
+                android:textColor="@color/white"
+                tools:text="Công ty Cổ phần ViviDa" />
+        </FrameLayout>
+
+        <vn.icheck.android.ui.view.TextBody1
+            android:id="@id/tvType"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="@dimen/size_0"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/layoutName"
+            app:layout_constraintStart_toStartOf="@id/layoutName"
+            app:layout_constraintTop_toBottomOf="@id/layoutName"
+            tools:text="Nhà sản xuất" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/tvArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/exo_ic_chevron_right"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TableLayout
+        android:id="@id/layoutCenter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingStart="@dimen/size_8"
+        android:paddingTop="@dimen/size_10"
+        android:paddingEnd="@dimen/size_8"
+        android:paddingBottom="@dimen/size_10"
+        android:shrinkColumns="*"
+        app:layout_constraintTop_toBottomOf="@id/layoutTop">
+
+        <TableRow>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/size_2"
+                android:drawableStart="@drawable/ic_list_blue_12px" />
+
+            <vn.icheck.android.ui.view.TextBody1
+                android:id="@id/tvPhone"
+                android:layout_width="@dimen/size_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:hint="@string/dang_cap_nhat"
+                android:singleLine="true"
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/colorPrimary" />
+        </TableRow>
+
+        <TableRow>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/size_2"
+                android:drawableStart="@drawable/ic_list_blue_12px" />
+
+            <vn.icheck.android.ui.view.TextBody1
+                android:id="@id/tvAddress"
+                android:layout_width="@dimen/size_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:hint="@string/dang_cap_nhat"
+                android:singleLine="true"
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/colorPrimary" />
+        </TableRow>
+    </TableLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

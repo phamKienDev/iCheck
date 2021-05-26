@@ -59,8 +59,7 @@ public final class KeyboardUtils {
      *              0 or have the {@link InputMethodManager#SHOW_IMPLICIT} bit set.
      */
     public static void showSoftInput(@NonNull final View view, final int flags) {
-        InputMethodManager imm =
-                (InputMethodManager) Utils.getApp().getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager imm = (InputMethodManager) Utils.getApp().getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm == null) return;
         view.setFocusable(true);
         view.setFocusableInTouchMode(true);

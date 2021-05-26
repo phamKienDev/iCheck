@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/size_9"
-        app:srcCompat="@drawable/ic_waring_1_white_40px" />
+        app:srcCompat="@drawable/ic_circle_warning_white_40dp" />
 
     <TextView
         android:id="@+id/tv_content"

@@ -1,25 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ui.view.CheckedTextBody1 xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tvCheck"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/size_5"
-    android:layout_marginBottom="@dimen/size_5"
-    android:orientation="vertical">
-
-    <androidx.appcompat.widget.AppCompatCheckedTextView
-        android:id="@+id/tvCheck"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/font_14"
-        android:drawablePadding="@dimen/size_15"
-        android:checked="false"
-        android:gravity="center"
-        android:drawableStart="@drawable/state_check_field_guarantee"
-        android:drawableLeft="@drawable/state_check_field_guarantee"
-        android:fontFamily="sans-serif"
-        android:textStyle="normal"
-        android:textColor="@drawable/state_text_color_check_field_guarantee"
-        tools:text="checkbox"/>
-
-</LinearLayout>
+    android:layout_marginTop="@dimen/size_6"
+    android:checked="true"
+    android:drawableStart="@drawable/state_check_field_guarantee"
+    android:drawablePadding="@dimen/size_10"
+    android:gravity="center_vertical"
+    android:textAlignment="gravity"
+    android:textColor="@drawable/state_text_color_check_field_guarantee"
+    tools:text="checkbox" />

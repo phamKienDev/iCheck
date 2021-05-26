@@ -574,7 +574,7 @@ class IckProductDetailViewModel : BaseViewModel() {
     }
 
     private fun getTransparency(data: JsonObject?, layout: ICLayout, productDetail: ICDataProductDetail?) {
-        if (productDetail?.verified != null && productDetail?.verified == false) {
+        if (productDetail?.verified != null && productDetail.verified == false) {
             layout.viewType = ICViewTypes.TRANSPARENCY_TYPE
             val transparency = layoutHelper.getObject(data, layout.key, ICTransparency::class.java)
 
@@ -607,7 +607,33 @@ class IckProductDetailViewModel : BaseViewModel() {
         val listData = layoutHelper.getListVendor(data, layout.key)
 
         if (!listData.isNullOrEmpty()) {
-            layout.data = VendorModel(listData, null)
+            layout.data = VendorModel(listData.apply {
+                for (item in listData) {
+                    if (verifyProduct) {
+                        if (owner!!.verified == true) {
+                            EnterpriseModelV2(owner!!.apply {
+                                icon = R.drawable.ic_verified_24px
+                                background = R.color.colorPrimary
+                            })
+                        } else {
+                            EnterpriseModelV2(owner!!.apply {
+                                background = R.color.colorPrimary
+                            })
+                        }
+                    } else {
+                        if (owner!!.verified == true) {
+                            EnterpriseModelV2(owner!!.apply {
+                                background = R.color.colorPrimary
+                            })
+                        } else {
+                            EnterpriseModelV2(owner!!.apply {
+                                icon = R.drawable.ic_not_verified_24px
+                                background = R.color.colorDisableText
+                            })
+                        }
+                    }
+                }
+            })
             onAddLayout.value = layout
         } else if (!layout.request.url.isNullOrEmpty()) {
             onAddLayout.value = layout
@@ -615,7 +641,7 @@ class IckProductDetailViewModel : BaseViewModel() {
             productRepository.getListPage(layout.request.url!!, object : ICNewApiListener<ICResponse<ICListResponse<ICPage>>> {
                 override fun onSuccess(obj: ICResponse<ICListResponse<ICPage>>) {
                     if (!obj.data?.rows.isNullOrEmpty()) {
-                        layout.data = VendorModel(obj.data!!.rows, null)
+                        layout.data = VendorModel(obj.data!!.rows)
                         onUpdateLayout.value = layout
                     } else {
                         checkTotalError(layout)
@@ -664,15 +690,26 @@ class IckProductDetailViewModel : BaseViewModel() {
             layout.viewType = ICViewTypes.ENTERPRISE_TYPE
             layout.data = if (verifyProduct) {
                 if (owner!!.verified == true) {
-                    EnterpriseModelV2(owner!!, R.drawable.ic_verified_24px, R.color.colorPrimary)
+                    owner!!.apply {
+                        icon = R.drawable.ic_verified_24px
+                        background = R.color.colorPrimary
+                    }
                 } else {
-                    EnterpriseModelV2(owner!!, null, R.color.colorPrimary)
+                    owner!!.apply {
+                        background = R.color.colorPrimary
+                    }
                 }
             } else {
                 if (owner!!.verified == true) {
-                    EnterpriseModelV2(owner!!, null, R.color.colorPrimary)
+                    owner!!.apply {
+                        icon = R.drawable.ic_verified_24px
+                        background = R.color.colorPrimary
+                    }
                 } else {
-                    EnterpriseModelV2(owner!!, R.drawable.ic_not_verified_24px, R.color.colorDisableText)
+                    owner!!.apply {
+                        icon = R.drawable.ic_not_verified_24px
+                        background = R.color.colorDisableText
+                    }
                 }
             }
 
@@ -686,7 +723,10 @@ class IckProductDetailViewModel : BaseViewModel() {
             if (productDetail?.unverifiedOwner != null) {
                 val newLayout = ICLayout()
                 newLayout.viewType = ICViewTypes.ENTERPRISE_TYPE
-                newLayout.data = EnterpriseModelV2(productDetail.unverifiedOwner, R.drawable.ic_not_verified_24px, R.color.colorDisableText)
+                newLayout.data = productDetail.unverifiedOwner?.apply {
+                    icon = R.drawable.ic_not_verified_24px
+                    background = R.color.colorDisableText
+                }
                 onAddLayout.value = newLayout
             }
         }
@@ -1145,14 +1185,13 @@ class IckProductDetailViewModel : BaseViewModel() {
             override fun onSuccess(obj: ICResponse<ICTransparency>) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                 if (obj.data != null) {
-                    onPostTransparency.postValue(obj.data)
+                    onPostTransparency.postValue(obj.data!!)
                 }
             }
 
             override fun onError(error: ICResponseCode?) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                errorMessage.postValue(error?.message
-                        ?: ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                errorMessage.postValue(error?.message ?: ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         })
     }
@@ -1175,7 +1214,7 @@ class IckProductDetailViewModel : BaseViewModel() {
             override fun onSuccess(obj: ICResponse<String>) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                 if (!obj.data.isNullOrEmpty()) {
-                    onShareLinkProduct.postValue(obj.data)
+                    onShareLinkProduct.postValue(obj.data!!)
                 } else {
                     errorMessage.postValue(ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 }
@@ -1212,8 +1251,7 @@ class IckProductDetailViewModel : BaseViewModel() {
 
             override fun onError(error: ICResponseCode?) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                errorMessage.postValue(error?.message
-                        ?: ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                errorMessage.postValue(error?.message ?: ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         })
     }
@@ -1225,7 +1263,7 @@ class IckProductDetailViewModel : BaseViewModel() {
 
         postInteractor.getPostDetail(postId, object : ICNewApiListener<ICResponse<ICPost>> {
             override fun onSuccess(obj: ICResponse<ICPost>) {
-                onDetailPost.postValue(obj.data)
+                onDetailPost.postValue(obj.data!!)
             }
 
             override fun onError(error: ICResponseCode?) {
@@ -1249,7 +1287,7 @@ class IckProductDetailViewModel : BaseViewModel() {
             productRepository.getMyReview(url, pageId, object : ICNewApiListener<ICResponse<ICProductMyReview>> {
                 override fun onSuccess(obj: ICResponse<ICProductMyReview>) {
                     if (obj.data != null) {
-                        onMyReviewData.postValue(obj.data)
+                        onMyReviewData.postValue(obj.data!!)
                     }
                 }
 

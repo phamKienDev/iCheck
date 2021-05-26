@@ -147,7 +147,7 @@ class ListNotificationAdapter(private val messageListener: IMessageListener) : R
             ICViewTypes.RELATED_PAGE_TYPE -> NotificationPageComponent(parent)
             ICViewTypes.OTHER_NOTIFICATION_TYPE -> OtherNotificationHolder(parent)
             ICViewTypes.MESSAGE_TYPE -> LongMessageHolder(parent)
-            else -> NullHolder.create(parent)
+            else -> NullHolder(parent)
         }
     }
 

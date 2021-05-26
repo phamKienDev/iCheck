@@ -1,0 +1,38 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@id/container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/size_10"
+    android:paddingStart="@dimen/size_12"
+    android:paddingTop="@dimen/size_16"
+    android:paddingEnd="@dimen/size_12"
+    android:paddingBottom="@dimen/size_16">
+
+    <vn.icheck.android.ui.view.TextBarlowBold
+        android:id="@id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/san_pham_chinh_hang_uppercase"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_14"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <vn.icheck.android.ui.view.TextBarlowMedium
+        android:id="@id/tvContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_10"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_14"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/size_4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

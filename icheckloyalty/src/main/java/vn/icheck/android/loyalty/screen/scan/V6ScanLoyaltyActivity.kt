@@ -32,7 +32,6 @@ import androidx.lifecycle.lifecycleScope
 import com.scandit.datacapture.barcode.capture.BarcodeCapture
 import com.scandit.datacapture.barcode.capture.BarcodeCaptureListener
 import com.scandit.datacapture.barcode.capture.BarcodeCaptureSession
-import com.scandit.datacapture.barcode.capture.BarcodeCaptureSettings
 import com.scandit.datacapture.barcode.data.Symbology
 import com.scandit.datacapture.core.capture.DataCaptureContext
 import com.scandit.datacapture.core.common.async.Callback
@@ -44,18 +43,15 @@ import com.scandit.datacapture.core.source.*
 import com.scandit.datacapture.core.ui.DataCaptureView
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ichecklibs.*
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
-import vn.icheck.android.ichecklibs.util.PermissionHelper
+import vn.icheck.android.ichecklibs.util.*
 import vn.icheck.android.ichecklibs.web.WebViewActivity
 import vn.icheck.android.icheckscanditv6.*
 import vn.icheck.android.icheckscanditv6.databinding.IckScanCustomViewBinding
-import vn.icheck.android.loyalty.BuildConfig
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
-import vn.icheck.android.loyalty.base.ICMessageEvent
 import vn.icheck.android.loyalty.dialog.base.DialogHelperGame
 import vn.icheck.android.loyalty.dialog.listener.IClickButtonDialog
 import vn.icheck.android.loyalty.dialog.listener.IDismissDialog
@@ -379,7 +375,7 @@ class V6ScanLoyaltyActivity : AppCompatActivity(), BarcodeCaptureListener {
             dataCaptureView.post {
                 val lp = dataCaptureView.layoutParams
                 if (lp.height != getDeviceHeight()) {
-                    lp.height = getDeviceHeight() + 50.toPx(resources)
+                    lp.height = getDeviceHeight() + 50.dpToPx()
                     lp.width = getDeviceWidth()
                     dataCaptureView.layoutParams = lp
                 }

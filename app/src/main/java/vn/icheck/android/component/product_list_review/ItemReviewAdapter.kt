@@ -41,7 +41,7 @@ class ItemReviewAdapter(val type: Int? = null) : RecyclerView.Adapter<RecyclerVi
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             itemType -> ReviewSearchHolder(parent, type)
-            else -> NullHolder.create(parent)
+            else -> NullHolder(parent)
         }
     }
 

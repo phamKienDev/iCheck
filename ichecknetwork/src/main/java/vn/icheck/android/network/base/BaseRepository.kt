@@ -8,7 +8,7 @@ import retrofit2.HttpException
 import vn.icheck.android.network.util.JsonHelper
 
 open class BaseRepository {
-    private val composite = CompositeDisposable()
+    val composite = CompositeDisposable()
 
     fun dispose() {
         composite.clear()
@@ -55,4 +55,6 @@ open class BaseRepository {
 
         listener.onError(errorBody)
     }
+
+    fun <T> parseJson(json: String?, clazz: Class<T>) = JsonHelper.parseJson(json, clazz)
 }
