@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/size_18"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingStart="@dimen/size_12"
+    android:paddingEnd="@dimen/size_12">
 
     <vn.icheck.android.ui.view.TextCaption
         android:id="@+id/tvTitleRadiobox"
@@ -15,5 +17,5 @@
         android:id="@+id/rcvRadioBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_6"/>
+        android:layout_marginTop="@dimen/size_6" />
 </LinearLayout>

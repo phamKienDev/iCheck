@@ -28,7 +28,6 @@
     <string name="so_dien_thoai_khong_duoc_de_trong">Số điện thoại không được để trống</string>
     <string name="tinh_thanh_khong_duoc_de_trong">Tỉnh thành không được để trống</string>
     <string name="quan_huyen_khong_duoc_de_trong">Quận/Huyện không được để trống</string>
-    <string name="dia_chi_khong_duoc_de_trong">Địa chỉ không được để trống</string>
     <string name="so_dien_thoai_co_chua_ky_tu_dac_biet">Số điện thoại có chứa ký tự đăc biệt</string>
     <string name="so_dien_thoai_khong_dung_dinh_dang">Số điện thoại không đúng định dạng</string>
     <string name="khong_the_thuc_hien_tac_vu_vi_ban_chua_cap_quyen">Không thể thực hiện tác vụ vì bạn chưa cấp đủ quyền</string>

@@ -34,47 +34,18 @@
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@id/tvTitle">
 
-        <FrameLayout
+        <vn.icheck.android.ui.OtpEditText
+            android:id="@+id/edtOtp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/size_38"
-            android:layout_marginEnd="@dimen/size_38">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@id/txtOtp"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/size_42"
-                android:layout_gravity="center"
-                android:fontFamily="sans-serif"
-                android:gravity="center"
-                android:textColor="#66000000"
-                android:textSize="@dimen/font_14"
-                android:textStyle="normal" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@id/layoutInputOtp"
-                style="@style/Account_TextInputLayout.Register"
-                android:layout_margin="@dimen/size_0"
-                android:background="@android:color/transparent"
-                app:hintEnabled="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@id/edtOtp"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/size_42"
-                    android:background="@drawable/under_line_1dp_gray"
-                    android:fontFamily="sans-serif"
-                    android:gravity="center"
-                    android:inputType="number"
-                    android:maxLength="8"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/font_36"
-                    android:textStyle="bold" />
-            </com.google.android.material.textfield.TextInputLayout>
-        </FrameLayout>
+            android:layout_marginHorizontal="@dimen/size_66"
+            android:layout_marginBottom="@dimen/size_24"
+            android:cursorVisible="false"
+            android:digits="1234567890"
+            android:inputType="number"
+            android:maxLength="6"
+            android:textIsSelectable="false"
+            android:textSize="@dimen/font_24" />
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -122,18 +93,6 @@
                 android:textAlignment="gravity"
                 android:textColor="@color/colorSecondText" />
         </FrameLayout>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@id/txtContent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/size_38"
-            android:layout_marginTop="@dimen/size_32"
-            android:layout_marginEnd="@dimen/size_38"
-            android:fontFamily="sans-serif"
-            android:textColor="#b4b4b4"
-            android:textSize="@dimen/font_14"
-            android:textStyle="normal" />
     </LinearLayout>
 
     <View
@@ -147,6 +106,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_36"
         android:layout_margin="@dimen/size_12"
+        android:visibility="gone"
         android:background="@drawable/btn_light_blue_corners_4"
         android:gravity="center"
         android:text="@string/xac_nhan"

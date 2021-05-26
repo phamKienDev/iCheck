@@ -189,6 +189,11 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
                 .debounce(1000, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
+                    viewModel.updateType = if (binding.edtPhone.text.toString() != viewModel.phoneNumber) {
+                        2
+                    } else {
+                        1
+                    }
                     searchGuaranteeCustomerDetail(binding.edtPhone.text.toString())
                 }, {
                     logError(it)
@@ -325,7 +330,10 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
                         if (!viewModel.phoneNumber.isNullOrEmpty()) {
                             searchGuaranteeCustomerDetail(viewModel.phoneNumber!!)
                         } else {
-                            binding.edtPhone.setText(SessionManager.session.user?.phone)
+                            val phone = SessionManager.session.user?.phone
+                            if (!phone.isNullOrEmpty()) {
+                                searchGuaranteeCustomerDetail(phone)
+                            }
                         }
                     }
                     2 -> {
@@ -336,7 +344,10 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
                         if (!viewModel.phoneNumber.isNullOrEmpty()) {
                             searchGuaranteeCustomerDetail(viewModel.phoneNumber!!)
                         } else {
-                            binding.edtPhone.setText(SessionManager.session.user?.phone)
+                            val phone = SessionManager.session.user?.phone
+                            if (!phone.isNullOrEmpty()) {
+                                searchGuaranteeCustomerDetail(phone)
+                            }
                         }
                     }
                     else -> {
@@ -418,12 +429,6 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
 
         if (!customer.phone.isNullOrEmpty()) {
             binding.edtPhone.setText(customer.phone)
-
-            viewModel.updateType = if (binding.edtPhone.text.toString() != customer.phone) {
-                2
-            } else {
-                1
-            }
         } else {
             if (StampDetailActivity.isVietNamLanguage == false) {
                 binding.edtPhone.hint = "Enter Phone Number"
@@ -601,18 +606,6 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
     }
 
     override fun onShowError(message: String) {
-        showShortError(message)
-    }
-
-    override fun onErrorName(message: String) {
-        showShortError(message)
-    }
-
-    override fun onErrorEmail(message: String) {
-        showShortError(message)
-    }
-
-    override fun onErrorAddress(message: String) {
         showShortError(message)
     }
 

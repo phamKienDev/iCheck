@@ -10,6 +10,7 @@ import android.text.Editable
 import android.text.Html
 import android.text.TextWatcher
 import android.view.View
+import androidx.core.widget.addTextChangedListener
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
@@ -17,6 +18,9 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ActivityVerifyOtpguaranteeBinding
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICUpdateCustomerGuarantee
+import vn.icheck.android.screen.account.icklogin.FORGOT_PW
+import vn.icheck.android.screen.account.icklogin.LOGIN_OTP
+import vn.icheck.android.screen.account.icklogin.REGISTER
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.otp_information_guarantee.presenter.VerifyOTPGuaranteePresenter
 import vn.icheck.android.screen.user.detail_stamp_v6_1.otp_information_guarantee.view.IVerifyOTPGuaranteeView
@@ -48,19 +52,11 @@ class VerifyOTPGuaranteeActivity : BaseActivityMVVM(), IVerifyOTPGuaranteeView {
 
     @SuppressLint("SetTextI18n")
     private fun setupListener() {
-        binding.edtOtp.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(p0: Editable?) {
-                binding.txtOtp.visibility = if (binding.edtOtp.text.isNullOrEmpty()) {
-                    View.VISIBLE
-                } else {
-                    View.GONE
-                }
+        binding.edtOtp.addTextChangedListener {
+            if (it.toString().trim().length == 6) {
+                binding.btnConfirm.performClick()
             }
-
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-        })
+        }
 
         binding.txtStatus.setOnClickListener {
             if (StampDetailActivity.isVietNamLanguage == false) {
@@ -130,7 +126,6 @@ class VerifyOTPGuaranteeActivity : BaseActivityMVVM(), IVerifyOTPGuaranteeView {
         binding.tvTitle.text = Html.fromHtml(getString(R.string.login_ma_xac_thuc_otp_da_duoc_gui_toi, obj.phone ?: getString(R.string.dang_cap_nhat)))
 
         KeyboardUtils.showSoftInput(binding.edtOtp)
-//        binding.txtContent.text = Html.fromHtml(getString(R.string.otp_content_xxx, obj.phone))
 
         setupListener()
     }
@@ -178,8 +173,7 @@ class VerifyOTPGuaranteeActivity : BaseActivityMVVM(), IVerifyOTPGuaranteeView {
     }
 
     override fun onErrorOtp(errorMessage: String) {
-        binding.layoutInputOtp.error = errorMessage
-        binding.edtOtp.setSelection(binding.edtOtp.text.toString().length)
+        showShortError(errorMessage)
     }
 
     override fun showError(errorMessage: String) {
