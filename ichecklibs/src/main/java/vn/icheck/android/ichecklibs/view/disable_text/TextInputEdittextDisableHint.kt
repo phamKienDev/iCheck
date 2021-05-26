@@ -8,7 +8,7 @@ import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
 import vn.icheck.android.ichecklibs.ViewHelper
 
-class TextInputEdittextDisableHint :TextInputEditText{
+open class TextInputEdittextDisableHint :TextInputEditText{
     constructor(context: Context) : super(context) {
         setup()
     }

@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:rotation="180"
     android:gravity="center_vertical|right"
-    android:orientation="vertical">
+    android:rotation="180"
+    android:orientation="vertical"
+    tools:rotation="0">
 
 
     <LinearLayout
@@ -36,6 +37,7 @@
                 android:layout_width="228dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
+                tools:visibility="gone"
                 android:background="@drawable/bg_corner_10_gray_f0"
                 android:paddingBottom="10dp"
                 android:visibility="visible">
@@ -84,12 +86,11 @@
                     app:layout_constraintTop_toBottomOf="@id/tvNameProduct"
                     tools:text="03514364161461" />
 
-                <View
+                <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
                     android:id="@+id/view"
                     android:layout_width="0dp"
                     android:layout_height="0.5dp"
                     android:layout_marginTop="10dp"
-                    android:background="@color/gray_D8"
                     app:layout_constraintEnd_toEndOf="@id/tvBarcode"
                     app:layout_constraintStart_toStartOf="@id/tvBarcode"
                     app:layout_constraintTop_toBottomOf="@id/tvBarcode" />
@@ -129,7 +130,9 @@
 
             <include
                 android:id="@+id/layoutImageDetail"
-                layout="@layout/item_image_chat_detail" />
+                layout="@layout/item_image_chat_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvMessage"
@@ -144,16 +147,16 @@
                 android:textSize="14sp"
                 android:visibility="visible"
                 tools:targetApi="p"
-                tools:text="Tôi muốn ất ở đâu? ( độ rộng maximum)" />
+                tools:text="Tôi muốn ất ở đâu?" />
 
             <LinearLayout
                 android:id="@+id/layoutLink"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:visibility="gone"
                 android:background="@drawable/bg_corner_10_gray_f0"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvLink"

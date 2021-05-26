@@ -11,6 +11,7 @@ import android.view.MotionEvent
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.res.ResourcesCompat
 import vn.icheck.android.ichecklibs.R
+import vn.icheck.android.ichecklibs.ViewHelper
 
 open class OldFocusableEditText: AppCompatEditText {
     constructor(context: Context):super(context){
@@ -37,7 +38,7 @@ open class OldFocusableEditText: AppCompatEditText {
 
         }
         if (background != null) {
-            setBackgroundResource(R.drawable.edt_bg_selector)
+            background= ViewHelper.bgEdtSelectorFocusLineColor1(context)
         }
     }
 

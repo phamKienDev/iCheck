@@ -82,13 +82,13 @@ class SearchResultActivity : BaseActivityMVVM(), View.OnClickListener {
         }
 
         dispose = RxTextView.textChangeEvents(edtSearch)
-                .skipInitialValue()
-                .distinctUntilChanged()
-                .debounce(600, TimeUnit.MILLISECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    getData()
-                }
+            .skipInitialValue()
+            .distinctUntilChanged()
+            .debounce(600, TimeUnit.MILLISECONDS)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                getData()
+            }
 
         btn_all.background = ViewHelper.bgPrimaryCorners4(this)
         WidgetUtils.setClickListener(this, btn_review, btn_product, btn_page, btn_shop, btn_user, imgBack, imgClear)
@@ -98,6 +98,7 @@ class SearchResultActivity : BaseActivityMVVM(), View.OnClickListener {
         swipe_container.setOnRefreshListener {
             getData()
         }
+
         val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
         swipe_container.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
     }
@@ -259,6 +260,9 @@ class SearchResultActivity : BaseActivityMVVM(), View.OnClickListener {
                     if (event.data != null && event.data is ICPost) {
                         val intent = Intent(this, MediaInPostActivity::class.java)
                         intent.putExtra(Constant.DATA_1, event.data)
+                        if (event.data.positionMedia != -1) {
+                            intent.putExtra(Constant.DATA_3, event.data.positionMedia)
+                        }
                         startActivityForResult(intent, requestReviewDetail)
                     }
                 }

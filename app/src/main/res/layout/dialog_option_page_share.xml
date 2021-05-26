@@ -37,10 +37,9 @@
             app:layout_constraintTop_toTopOf="@id/imgCancel" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_1"
-        android:background="#d8d8d8" />
+        android:layout_height="@dimen/size_1" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@id/recyclerView"

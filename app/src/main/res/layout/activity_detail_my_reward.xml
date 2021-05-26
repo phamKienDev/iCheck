@@ -109,8 +109,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/bg_reward_top"
-                     >
+                        android:background="@drawable/bg_reward_top">
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@id/imgLogo"
@@ -166,9 +165,8 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingTop="@dimen/size_32"
                         android:background="@drawable/bg_reward_bottom"
-                     >
+                        android:paddingTop="@dimen/size_32">
 
                         <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
                             android:id="@+id/tvState"
@@ -176,12 +174,12 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/size_8"
                             android:layout_marginEnd="@dimen/size_32"
+                            android:text="Đang cập nhật"
                             android:textSize="@dimen/font_16"
                             android:visibility="gone"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/tv_mathecao"
                             app:layout_constraintTop_toTopOf="parent"
-                            android:text="Đang cập nhật"
                             tools:visibility="visible" />
 
                         <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
@@ -203,6 +201,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/size_32"
                             android:ellipsize="end"
+                            android:hint="Đang cập nhật"
                             android:lineSpacingExtra="@dimen/font_6"
                             android:maxLines="1"
                             android:textSize="@dimen/font_14"
@@ -210,7 +209,6 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/tvRefuse"
                             app:layout_constraintTop_toTopOf="@id/tvRefuse"
-                            android:hint="Đang cập nhật"
                             tools:visibility="visible" />
 
                         <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
@@ -238,12 +236,12 @@
                             android:ellipsize="end"
                             android:lineSpacingExtra="@dimen/font_6"
                             android:maxLines="1"
+                            android:text="Đang cập nhật"
                             android:textSize="@dimen/font_14"
                             app:layout_constraintBottom_toBottomOf="@id/tvTime"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/tvTime"
                             app:layout_constraintTop_toTopOf="@id/tvTime"
-                            android:text="Đang cập nhật"
                             tools:visibility="visible" />
 
                         <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
@@ -283,13 +281,12 @@
                     android:text="Địa chỉ đến lấy quà"
                     android:textSize="@dimen/font_14" />
 
-                <View
+                <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:layout_marginStart="@dimen/size_12"
                     android:layout_marginLeft="@dimen/size_12"
-                    android:layout_marginTop="9.5dp"
-                    android:background="#d8d8d8" />
+                    android:layout_marginTop="9.5dp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_address"
@@ -387,12 +384,11 @@
                     android:text="Thông tin quà"
                     android:textSize="@dimen/font_14" />
 
-                <View
+                <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:layout_marginStart="@dimen/size_12"
-                    android:layout_marginTop="9.5dp"
-                    android:background="#d8d8d8" />
+                    android:layout_marginTop="9.5dp" />
 
                 <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                     android:id="@+id/tvInformation"
@@ -422,11 +418,11 @@ Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận t
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        tools:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:visibility="gone" />
 
     <FrameLayout
         android:id="@+id/toolbar"
@@ -435,10 +431,10 @@ Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận t
         android:background="@color/transparent"
         android:paddingTop="@dimen/size_40"
         android:paddingBottom="@dimen/size_12"
-        tools:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="gone">
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/imgBackGray"
@@ -453,14 +449,14 @@ Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận t
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:alpha="0"
-        tools:visibility="gone"
         android:background="@color/white"
+        android:elevation="@dimen/size_4"
         android:paddingTop="@dimen/size_40"
         android:paddingBottom="@dimen/size_12"
-        android:elevation="@dimen/size_4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"

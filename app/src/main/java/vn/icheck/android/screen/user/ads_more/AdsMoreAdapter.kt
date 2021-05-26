@@ -26,6 +26,7 @@ import vn.icheck.android.helper.ExoPlayerManager
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.loyalty.base.BaseViewHolder
 import vn.icheck.android.loyalty.base.ICKViewType
 import vn.icheck.android.network.models.ICAdsData
@@ -77,7 +78,7 @@ class AdsMoreAdapter : RecyclerViewCustomAdapter<ICAdsData>() {
 
         when (holder) {
             is ViewHolder -> {
-                holder.itemView.setBackgroundResource(R.drawable.bg_transparent_outline_gray_0_5)
+                holder.itemView.background=ViewHelper.bgTransparentStrokeLineColor0_5(holder.itemView.context)
                 holder.bind(listData[position])
             }
             is AdsVertical -> {
@@ -185,7 +186,7 @@ class AdsMoreAdapter : RecyclerViewCustomAdapter<ICAdsData>() {
                 itemView.tvPriceUpdating.beGone()
                 if (obj.price != null) {
                     itemView.tvPriceSpecial.beVisible()
-                    itemView.tvPriceSpecial.text = TextHelper.formatMoney(obj.price) + "đ"
+                    itemView.tvPriceSpecial.text = TextHelper.formatMoney((obj.price?:0.0).toLong()) + "đ"
                 }
 
                 if (obj.sellPrice != null) {
@@ -209,7 +210,7 @@ class AdsMoreAdapter : RecyclerViewCustomAdapter<ICAdsData>() {
                 if (obj.rating != null) {
                     itemView.tvPoint.beVisible()
                     itemView.tvRatingText.beVisible()
-                    itemView.tvPoint.text = obj.rating.toString()
+                    itemView.tvPoint.text = (obj.rating!! * 2).toString()
                     ReviewPointText.setText(itemView.tvRatingText, obj.rating!!)
                 } else {
                     itemView.tvRatingUpdating.beVisible()
@@ -290,7 +291,7 @@ class AdsMoreAdapter : RecyclerViewCustomAdapter<ICAdsData>() {
 
             if (obj.price != null) {
                 itemView.tvPrice.beVisible()
-                itemView.tvPrice.text = TextHelper.formatMoney(obj.price) + "đ"
+                itemView.tvPrice.text = TextHelper.formatMoney((obj.price?:0.0).toLong()) + "đ"
                 itemView.tvPriceUpdating.beGone()
             } else {
                 itemView.tvPriceUpdating.beVisible()

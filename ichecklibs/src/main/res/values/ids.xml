@@ -11,4 +11,5 @@
     <item name="tvTimeDuration" type="id" />
     <item name="frameFragment" type="id" />
     <item name="txtName" type="id" />
+    <item name="dialogLoading" type="id" />
 </resources>

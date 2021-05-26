@@ -6,7 +6,7 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatTextView
 import vn.icheck.android.ichecklibs.Constant
 
-class EdittextDisableHint : AppCompatEditText {
+open class EdittextDisableHint : AppCompatEditText {
 
     constructor(context: Context) : super(context) {
         setup()

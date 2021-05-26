@@ -29,6 +29,7 @@ object ConstantChat {
     const val TOKEN = "TOKEN"
     const val DEVICE_ID = "DEVICE_ID"
     const val USER_ID = "USER_ID"
+    const val USER_LOGIN = "USER_LOGIN"
     const val BARCODE = "BARCODE"
     const val QR_CODE = "QR_CODE"
     const val VIDEO = "video"

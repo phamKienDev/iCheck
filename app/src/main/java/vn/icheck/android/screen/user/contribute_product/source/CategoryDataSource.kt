@@ -2,7 +2,7 @@ package vn.icheck.android.screen.user.contribute_product.source
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import vn.icheck.android.model.category.CategoryItem
+import vn.icheck.android.network.model.category.CategoryItem
 import vn.icheck.android.network.api.ICKApi
 import javax.inject.Inject
 
@@ -14,7 +14,7 @@ class CategoryDataSource @Inject constructor(val ickApi: ICKApi):PagingSource<In
             val nextPageNumber = params.key ?: 0
             val response =  ickApi.getCategories(params.loadSize, nextPageNumber, 1)
             if (nextPageNumber < response.data?.count!!) LoadResult.Page(
-                    data = response.data.rows!!,
+                    data = response.data?.rows ?: arrayListOf(),
                     prevKey = null, // Only paging forward.
                     nextKey = nextPageNumber + params.loadSize
             ) else {

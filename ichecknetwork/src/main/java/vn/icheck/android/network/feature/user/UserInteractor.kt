@@ -1,7 +1,9 @@
 package vn.icheck.android.network.feature.user
 
+import okhttp3.ResponseBody
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.base.BaseInteractor
+import vn.icheck.android.network.model.kyc.KycResponse
 import vn.icheck.android.network.models.*
 import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.network.models.wall.ICUserFollowWall
@@ -29,66 +31,6 @@ public class UserInteractor : BaseInteractor() {
 //        val host = APIConstants.DEFAULT_HOST + APIConstants.USERCONFIRMPHONESTAMP()
         val host = APIConstants.defaultHost + APIConstants.USERCONFIRMPHONESTAMP()
         requestApi(ICNetworkClient.getApiClient().confirmPhone(host, body), listener)
-    }
-
-    fun sendOtpResetPassword(phone: String, listener: ICApiListener<ICStatus>) {
-        val body = hashMapOf<String, String>()
-        body["phone"] = phone
-
-        requestApi(ICNetworkClient.getApiClient().sendOtpResetPassword(body), listener)
-    }
-
-    fun resetPassword(phone: String, otp: String, oldPassword: String? = null, password: String, listener: ICApiListener<ICID>) {
-        val json = hashMapOf<String, String>()
-        json["phone"] = phone
-        json["otp"] = otp
-
-        if (oldPassword != null) {
-            json["old_password"] = oldPassword
-        }
-
-        json["password"] = password
-        json["confirmed_password"] = password
-
-        requestApi(ICNetworkClient.getApiClient().resetPassword(json), listener)
-    }
-
-    fun checkCredentials(phone: String, listener: ICApiListener<ICStatus>) {
-        val body = hashMapOf<String, String>()
-        body["phone"] = phone
-
-        requestApi(ICNetworkClient.getApiClient().checkCredentials(body), listener)
-    }
-
-    fun sendOtpConfirmPhone(phone: String, listener: ICApiListener<ICStatus>) {
-        val body = hashMapOf<String, String>()
-        body["phone"] = phone
-
-//        requestApi(ICNetworkClient.getApiClient().sendOtpConfirmPhone(body), listener)
-    }
-
-    fun confirmNewPhone(phone: String, otp: String, listener: ICApiListener<ICUser>) {
-        val body = hashMapOf<String, String>()
-        body["phone"] = phone
-        body["otp"] = otp
-
-        requestApi(ICNetworkClient.getApiClient().confirmNewPhone(body), listener)
-    }
-
-    fun confirmOtp(phone: String, otp: String, listener: ICApiListener<ICStatus>) {
-        val body = hashMapOf<String, String>()
-        body["phone"] = phone
-        body["otp"] = otp
-
-//        requestApi(ICNetworkClient.getApiClient().confirmPhone(body), listener)
-    }
-
-    fun registerUser(body: ICReqRegisterUser, listener: ICApiListener<ICNone>) {
-        requestApi(ICNetworkClient.getApiClient().registerUser(body), listener)
-    }
-
-    fun updateUser(userID: Long, body: ICReqUpdateUser, listener: ICApiListener<ICUser>) {
-        requestApi(ICNetworkClient.getApiClient().updateUser(userID, body), listener)
     }
 
     fun getUserMe(listener: ICApiListener<ICUser>) {
@@ -247,4 +189,13 @@ public class UserInteractor : BaseInteractor() {
         requestNewApi(ICNetworkClient.getNewSocialApi().postKyc(url, body), listener)
     }
 
+//    fun createUserKyc(body: HashMap<String, Any?>, listener: ICNewApiListener<ResponseBody>) {
+//        val url = APIConstants.socialHost + "social/api/users/kyc-request"
+//        requestNewApi(ICNetworkClient.getNewSocialApi().createUserKyc(url, body), listener)
+//    }
+
+    fun getUserKyc(listener: ICNewApiListener<ICResponse<ListResponse<KycResponse>>>) {
+        val url = APIConstants.socialHost + "social/api/users/kyc-request"
+        requestNewApi(ICNetworkClient.getNewSocialApi().getUserKyc(url), listener)
+    }
 }

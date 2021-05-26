@@ -12,7 +12,7 @@ import io.reactivex.disposables.CompositeDisposable
 import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.base.SessionManager
-import vn.icheck.android.screen.account.home.AccountActivity
+import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
 
@@ -30,7 +30,7 @@ abstract class BaseICActivity : AppCompatActivity() {
         if (requiresLogin) {
             if (!SessionManager.isUserLogged) {
                 finish()
-                val it = Intent(this, AccountActivity::class.java)
+                val it = Intent(this, IckLoginActivity::class.java)
                 startActivity(it)
             }
         }
@@ -60,13 +60,6 @@ abstract class BaseICActivity : AppCompatActivity() {
     fun getTv(@IdRes id: Int): TextView {
         return findViewById(id)
     }
-
-    fun login() {
-        val it = Intent(this, AccountActivity::class.java)
-        startActivity(it)
-    }
-
-
 
     fun isPackageInstalled(packageName: String): Boolean {
         val pm = packageManager

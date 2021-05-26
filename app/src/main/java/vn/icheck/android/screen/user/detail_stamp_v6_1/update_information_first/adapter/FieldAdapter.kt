@@ -16,13 +16,13 @@ import kotlinx.android.synthetic.main.item_select_field.view.*
 import kotlinx.android.synthetic.main.item_text_field.view.*
 import kotlinx.android.synthetic.main.item_radio_box_field.view.*
 import vn.icheck.android.R
-import vn.icheck.android.activities.product.contribute.NullHolder
 import vn.icheck.android.base.dialog.date_time.callback.DateTimePickerListener
 import vn.icheck.android.base.holder.BaseViewHolder
+import vn.icheck.android.component.`null`.NullHolder
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICFieldGuarantee
 import vn.icheck.android.network.models.detail_stamp_v6_1.ValueFItem
-
 
 class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -195,8 +195,9 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 objHint.value = "Chọn " + obj.name
                 list?.add(objHint)
 
-                val adapter = HintSpinnerAdapter(itemView.context, obj.valueF, android.R.layout.simple_spinner_item)
+                val adapter = HintSpinnerAdapter(itemView.context, obj.valueF, R.layout.item_sp_select_field)
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                itemView.spinner.background = ViewHelper.bgWhiteRadius40StrokeLineColor1(itemView.context)
                 itemView.spinner.adapter = adapter
                 itemView.spinner.setSelection(adapter.count)
                 itemView.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {

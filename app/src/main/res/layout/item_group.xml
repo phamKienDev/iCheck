@@ -36,7 +36,6 @@
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
-        android:background="@drawable/bg_gray_stroke_corner_10"
         android:ems="10"
         android:fontFamily="@font/barlow_medium"
         android:gravity="start|top"

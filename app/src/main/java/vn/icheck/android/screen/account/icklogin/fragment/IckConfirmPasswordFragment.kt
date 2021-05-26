@@ -1,19 +1,12 @@
 package vn.icheck.android.screen.account.icklogin.fragment
 
 import android.content.Context
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.os.Build
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.core.widget.addTextChangedListener
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
@@ -21,27 +14,19 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import vn.icheck.android.R
 import vn.icheck.android.base.fragment.CoroutineFragment
 import vn.icheck.android.databinding.FragmentFillPwBinding
-import vn.icheck.android.network.base.SessionManager
-import vn.icheck.android.network.models.ICSessionData
 import vn.icheck.android.screen.account.icklogin.viewmodel.IckLoginViewModel
-import vn.icheck.android.util.AfterTextWatcher
-import vn.icheck.android.util.ick.beGone
-import vn.icheck.android.util.ick.beVisible
-import vn.icheck.android.util.ick.forceShowKeyboard
-import vn.icheck.android.util.kotlin.ToastUtils
+import vn.icheck.android.util.kotlin.WidgetUtils
 
 class IckConfirmPasswordFragment : CoroutineFragment() {
-
-    private var _binding: FragmentFillPwBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentFillPwBinding
     private val ickLoginViewModel: IckLoginViewModel by activityViewModels()
     private val args: IckConfirmPasswordFragmentArgs by navArgs()
 
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        _binding = FragmentFillPwBinding.inflate(inflater, container, false)
+        binding = FragmentFillPwBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -52,36 +37,36 @@ class IckConfirmPasswordFragment : CoroutineFragment() {
             findNavController().popBackStack()
         }
 
-        binding.edtPw.addTextChangedListener {
+        binding.edtPassword.addTextChangedListener {
             validate()
         }
-        binding.edtRepw.addTextChangedListener {
+        binding.edtRePassword.addTextChangedListener {
             validate()
         }
         binding.btnLogin.setOnClickListener {
             when {
 
-                binding.edtPw.text?.trim().toString().length < 6 -> {
-                    binding.edtPw.setError("Mật khẩu phải lớn hơn hoặc bằng 6 kí tự")
-                    binding.edtPw.requestFocus()
+                binding.edtPassword.text?.trim().toString().length < 6 -> {
+                    binding.edtPassword.setError("Mật khẩu phải lớn hơn hoặc bằng 6 kí tự")
+                    binding.edtPassword.requestFocus()
                 }
-                binding.edtRepw.text?.trim().isNullOrEmpty() -> {
-                    binding.edtRepw.setError("Vui lòng nhập dữ liệu")
-                    binding.edtRepw.requestFocus()
+                binding.edtRePassword.text?.trim().isNullOrEmpty() -> {
+                    binding.edtRePassword.setError("Vui lòng nhập dữ liệu")
+                    binding.edtRePassword.requestFocus()
                 }
-                binding.edtRepw.text?.trim().toString() != binding.edtPw.text?.trim().toString() -> {
-                    binding.edtRepw.setError("Xác nhận mật khẩu không trùng khớp")
-                    binding.edtRepw.requestFocus()
+                binding.edtRePassword.text?.trim().toString() != binding.edtPassword.text?.trim().toString() -> {
+                    binding.edtRePassword.setError("Xác nhận mật khẩu không trùng khớp")
+                    binding.edtRePassword.requestFocus()
                 }
                 else -> {
-                    ickLoginViewModel.updatePassword(args.token, binding.edtPw.text.toString()).observe(viewLifecycleOwner, Observer {
+                    ickLoginViewModel.updatePassword(args.token, binding.edtPassword.text.toString()).observe(viewLifecycleOwner, Observer {
                         if (it?.statusCode == "200") {
                             IckChangePasswordSuccessDialog {
                                 ickLoginViewModel.showLoginRegister()
                                 val act = IckConfirmPasswordFragmentDirections.actionIckFillPwFragmentToIckLoginFragment()
                                 findNavController().navigate(act)
                             }.show(requireActivity().supportFragmentManager, null)
-                        }  else {
+                        } else {
                             it?.message?.let { msg ->
                                 showError(msg)
                             }
@@ -92,25 +77,40 @@ class IckConfirmPasswordFragment : CoroutineFragment() {
         }
         lifecycleScope.launch {
             delay(200)
-            binding.edtPw.requestFocus()
+            binding.edtPassword.requestFocus()
             val imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
+        }
+
+        setupListener()
+    }
+
+    private fun setupListener() {
+        binding.edtPassword.setOnFocusChangeListener { _, _ ->
+            WidgetUtils.setButtonKeyboardMargin(binding.btnKeyboard, binding.edtPassword)
+        }
+
+        binding.btnKeyboard.setOnClickListener {
+            WidgetUtils.changePasswordInput(binding.edtPassword)
+        }
+
+        binding.edtRePassword.setOnFocusChangeListener { _, _ ->
+            WidgetUtils.setButtonKeyboardMargin(binding.btnKeyboardNew, binding.edtRePassword)
+        }
+
+        binding.btnKeyboardNew.setOnClickListener {
+            WidgetUtils.changePasswordInput(binding.edtRePassword)
         }
     }
 
     fun validate() {
         lifecycleScope.launch {
             delay(300)
-            if (binding.edtPw.text.toString().isNotEmpty() || binding.edtRepw.text.toString().isNotEmpty()) {
+            if (binding.edtPassword.text.toString().isNotEmpty() || binding.edtRePassword.text.toString().isNotEmpty()) {
                 binding.btnLogin.enable()
             } else {
                 binding.btnLogin.disable()
             }
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.DataSnapshot
 import vn.icheck.android.chat.icheckchat.R
 import vn.icheck.android.chat.icheckchat.base.recyclerview.BaseRecyclerView
 import vn.icheck.android.chat.icheckchat.base.recyclerview.IRecyclerViewCallback
@@ -14,15 +15,48 @@ import vn.icheck.android.chat.icheckchat.base.view.*
 import vn.icheck.android.chat.icheckchat.base.view.MCViewType.TYPE_CONVERSATION
 import vn.icheck.android.chat.icheckchat.databinding.ItemConversationBinding
 import vn.icheck.android.chat.icheckchat.model.MCConversation
+import java.util.*
 
 class ListConversationAdapter(callback: IRecyclerViewCallback) : BaseRecyclerView<MCConversation>(callback) {
     private var listenerHolder: IListener? = null
 
-    fun setData(obj: MutableList<MCConversation>) {
-        listData.clear()
+//    fun setData(obj: MutableList<MCConversation>) {
+//        listData.clear()
+//
+//        listData.addAll(obj)
+//        notifyDataSetChanged()
+//    }
 
-        listData.addAll(obj)
-        notifyDataSetChanged()
+    fun changeConversation(obj: DataSnapshot) {
+        val key = obj.key.toString()
+
+        for (position in listData.size - 1 downTo 0) {
+            if (listData[position].key == key) {
+                val mObj = listData[position].apply {
+                    this.key = obj.key.toString()
+                    enableAlert = obj.child("enable_alert").value.toString().toBoolean()
+                    keyRoom = obj.key.toString()
+                    unreadCount = obj.child("unread_count").value as Long? ?: 0L
+                    time = obj.child("last_activity").child("time").value as Long?
+                            ?: System.currentTimeMillis()
+                    lastMessage = if (obj.child("last_activity").child("content").value != null) {
+                        obj.child("last_activity").child("content").value.toString()
+                    } else {
+                        ""
+                    }
+                }
+
+                // xóa tin nhắn mới ở vị trí hiện tại
+                listData.removeAt(position)
+                notifyItemRemoved(position)
+
+                // chuyển tin nhắn mới lên vị trí trên đầu
+                listData.add(0, mObj)
+                notifyItemInserted(0)
+
+                return
+            }
+        }
     }
 
     fun refreshItem(obj: MCConversation) {
@@ -64,7 +98,12 @@ class ListConversationAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
                 if (obj.type == "user") {
                     setBackgroundResource(0)
                     loadImageUrl(this@apply, obj.imageTargetUser, R.drawable.ic_user_default_52dp, R.drawable.ic_user_default_52dp)
-                    binding.tvNameUser.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+
+                    if (obj.kycStatus == 2L) {
+                        binding.tvNameUser.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_16px, 0)
+                    } else {
+                        binding.tvNameUser.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                    }
                 } else {
 
                     if (obj.isVerified) {
@@ -120,6 +159,36 @@ class ListConversationAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
 
             itemView.setOnClickListener {
                 listenerHolder?.onClickConversation(obj)
+                obj.unreadCount = 0
+                notifyItemChanged(adapterPosition)
+            }
+        }
+
+        fun updateConversation(obj: MCConversation) {
+            checkNullOrEmpty(binding.tvMessage, obj.lastMessage)
+            binding.tvTime.text = convertDateTimeSvToCurrentDay(obj.time)
+
+            if (obj.unreadCount != null) {
+                binding.tvCountMessage.setVisible()
+                when {
+                    obj.unreadCount!! > 9 -> {
+                        binding.tvCountMessage.text = "9+"
+                        binding.layout.setBackgroundColor(Color.parseColor("#1A057DDA"))
+                    }
+                    obj.unreadCount!! > 0 -> {
+                        binding.tvCountMessage.text = "${obj.unreadCount}"
+                        binding.layout.setBackgroundColor(Color.parseColor("#1A057DDA"))
+                    }
+                    else -> {
+                        binding.tvCountMessage.setGone()
+                        binding.tvCountMessage.text = "${obj.unreadCount}"
+                        binding.layout.setBackgroundColor(Color.WHITE)
+                    }
+                }
+            } else {
+                binding.tvCountMessage.setGone()
+                binding.tvCountMessage.text = "0"
+                binding.layout.setBackgroundColor(Color.WHITE)
             }
         }
     }

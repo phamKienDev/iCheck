@@ -69,7 +69,6 @@
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginEnd="@dimen/size_12"
             android:layout_marginBottom="@dimen/size_10"
-            android:background="@drawable/bg_outline_gray_1_corners_4"
             android:fontFamily="@font/barlow_medium"
             android:gravity="top"
             android:hint="@string/mo_ta_noi_dung_bao_loi"

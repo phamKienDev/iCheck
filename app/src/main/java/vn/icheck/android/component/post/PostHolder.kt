@@ -17,6 +17,7 @@ import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
+import vn.icheck.android.base.dialog.reward_login.RewardLoginCallback
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
 import vn.icheck.android.base.holder.CoroutineViewHolder
 import vn.icheck.android.base.model.ICMessageEvent
@@ -28,7 +29,7 @@ import vn.icheck.android.component.view.ViewHelper.onDelayClick
 import vn.icheck.android.constant.*
 import vn.icheck.android.helper.*
 import vn.icheck.android.helper.TextHelper.setTextNameProductInPost
-import vn.icheck.android.model.posts.PostViewModel
+import vn.icheck.android.network.model.posts.PostViewModel
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -97,9 +98,6 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
     private fun setupHeader(obj: ICPost) {
         if (obj.page != null) {
             WidgetUtils.loadImageUrl(itemView.imgLogo, obj.page?.avatar, R.drawable.ic_business_v2)
-//            itemView.imgLogo.layoutParams = ConstraintLayout.LayoutParams(SizeHelper.size40, SizeHelper.size40).also {
-//                it.topMargin = 0
-//            }
             itemView.tvPageName.text = obj.page?.getName
             itemView.imgRank.beGone()
             if (obj.page!!.isVerify) {
@@ -109,13 +107,11 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
             }
         } else {
             WidgetUtils.loadImageUrl(itemView.imgLogo, obj.user?.avatar, R.drawable.ic_avatar_default_84px)
-//            itemView.imgLogo.layoutParams = ConstraintLayout.LayoutParams(SizeHelper.size40, SizeHelper.size40).also {
-//                it.topMargin = SizeHelper.size8
-//            }
             itemView.tvPageName.apply {
                 text = obj.user?.getName
                 if (obj.user?.kycStatus == 2) {
-                    setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_16dp, 0)
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_16dp, 0
+                    )
                 } else {
                     setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                 }
@@ -227,8 +223,18 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
 
     private fun checkLike(obj: ICPost) {
         if (!obj.expressive.isNullOrEmpty()) {
-            itemView.tvLike.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_like_on_24dp, 0, 0, 0)
-            itemView.tvLike.setTextColor(ContextCompat.getColor(itemView.context, R.color.red_like_question))
+            itemView.tvLike.setCompoundDrawablesWithIntrinsicBounds(
+                R.drawable.ic_like_on_24dp,
+                0,
+                0,
+                0
+            )
+            itemView.tvLike.setTextColor(
+                ContextCompat.getColor(
+                    itemView.context,
+                    R.color.red_like_question
+                )
+            )
         } else {
             itemView.tvLike.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_like_off_24dp, 0, 0, 0)
             itemView.tvLike.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondTextColor(itemView.context))
@@ -240,33 +246,40 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
     private fun checkPrivacyConfig(post: ICPost) {
         if (post.page == null) {
             if (post.user?.id != SessionManager.session.user?.id) {
-                when (post.user?.userPrivacyConfig?.whoCommentYourPost) {
-                    Constant.EVERYONE -> {
-                        itemView.containerComment.beVisible()
-                    }
-                    Constant.FRIEND -> {
-                        if (ICheckApplication.getInstance().mFirebase.auth.currentUser != null && SessionManager.session.user?.id != null) {
-                            ICheckApplication.getInstance().mFirebase.registerRelationship(Constant.myFriendIdList, post.user?.id.toString(), object : ValueEventListener {
-                                override fun onDataChange(snapshot: DataSnapshot) {
-                                    if (snapshot.value != null && snapshot.value is Long) {
-                                        itemView.containerComment.beVisible()
-                                    } else {
-                                        itemView.containerComment.beGone()
-                                    }
-                                }
-
-                                override fun onCancelled(error: DatabaseError) {
-                                    logError(error.toException())
-                                }
-                            })
-                        }
-
-                    }
-                    else -> {
-                        if (post.user?.id == SessionManager.session.user?.id) {
+                if (post.user?.userPrivacyConfig?.whoCommentYourPost == null) {
+                    itemView.containerComment.beVisible()
+                } else {
+                    when (post.user?.userPrivacyConfig?.whoCommentYourPost) {
+                        Constant.EVERYONE -> {
                             itemView.containerComment.beVisible()
-                        } else {
-                            itemView.containerComment.beGone()
+                        }
+                        Constant.FRIEND -> {
+                            if (ICheckApplication.getInstance().mFirebase.auth.currentUser != null && SessionManager.session.user?.id != null) {
+                                ICheckApplication.getInstance().mFirebase.registerRelationship(
+                                    Constant.myFriendIdList,
+                                    post.user?.id.toString(),
+                                    object : ValueEventListener {
+                                        override fun onDataChange(snapshot: DataSnapshot) {
+                                            if (snapshot.value != null && snapshot.value is Long) {
+                                                itemView.containerComment.beVisible()
+                                            } else {
+                                                itemView.containerComment.beGone()
+                                            }
+                                        }
+
+                                        override fun onCancelled(error: DatabaseError) {
+                                            logError(error.toException())
+                                        }
+                                    })
+                            }
+
+                        }
+                        else -> {
+                            if (post.user?.id == SessionManager.session.user?.id) {
+                                itemView.containerComment.beVisible()
+                            } else {
+                                itemView.containerComment.beGone()
+                            }
                         }
                     }
                 }
@@ -279,6 +292,7 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
     }
 
     private fun setupComment(commentCount: Int, comments: ICCommentPost?) {
+        itemView.edtComment.background=vn.icheck.android.ichecklibs.ViewHelper.bgTransparentRadius4StrokeLineColor1(itemView.context)
         if (comments != null) {
             itemView.layoutComment.beVisible()
             itemView.divider39.beVisible()
@@ -540,19 +554,24 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
                     DialogHelper.closeLoading(activity)
                     if (error?.statusCode == "S402") {
                         ICheckApplication.currentActivity()?.let { activity ->
-                            object : RewardLoginDialog(activity) {
-                                override fun onLogin() {
-                                    (activity as AppCompatActivity) simpleStartActivity IckLoginActivity::class.java
-                                }
+                            RewardLoginDialog.show((activity as AppCompatActivity).supportFragmentManager,
+                                object : RewardLoginCallback {
+                                    override fun onLogin() {
+                                        activity simpleStartActivity IckLoginActivity::class.java
 
-                                override fun onRegister() {
-                                    (activity as AppCompatActivity).simpleStartForResultActivity(IckLoginActivity::class.java, 1)
-                                }
+                                    }
 
-                                override fun onDismiss() {
+                                    override fun onRegister() {
+                                        activity.simpleStartForResultActivity(
+                                            IckLoginActivity::class.java,
+                                            1
+                                        )
 
-                                }
-                            }.show()
+                                    }
+
+                                    override fun onDismiss() {
+                                    }
+                                })
                         }
                     } else {
                         itemView.context.showSimpleErrorToast(error?.message

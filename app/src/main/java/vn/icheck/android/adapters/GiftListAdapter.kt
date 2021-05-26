@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import vn.icheck.android.R
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICListGift
 
 typealias gift = ICListGift.Rows
@@ -27,6 +28,7 @@ class GiftListAdapter(val context: Context): RecyclerView.Adapter<GiftListAdapte
 
     override fun onBindViewHolder(holder: GiftChildHolder, position: Int) {
         val child = listGift.get(position)
+        holder.view.background=ViewHelper.lineDottedVertical7LineColor(holder.view.context)
         holder.title.text = child.name
         holder.available.text = String.format("Còn lại: %d", child.remain)
         holder.cost.text = child.price.toString()
@@ -38,6 +40,7 @@ class GiftListAdapter(val context: Context): RecyclerView.Adapter<GiftListAdapte
 
     class GiftChildHolder(view: View) : RecyclerView.ViewHolder(view) {
         val image = view.findViewById<ImageView>(R.id.img_image)
+        val view = view.findViewById<TextView>(R.id.view10)
         val title = view.findViewById<TextView>(R.id.tv_title)
         val available = view.findViewById<TextView>(R.id.tv_available)
         val cost = view.findViewById<TextView>(R.id.tv_cost)

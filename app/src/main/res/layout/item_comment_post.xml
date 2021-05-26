@@ -12,7 +12,7 @@
         android:layout_width="@dimen/size_30"
         android:layout_height="@dimen/size_30"
         android:layout_marginTop="@dimen/size_6"
-        app:civ_border_color="@color/gray"
+        app:civ_border_color="@color/colorLineView"
         app:civ_border_width="@dimen/size_0_5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

@@ -28,9 +28,8 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Câu lạc bộ hội những người yêu thích điện tử chế đồ Việt Nam" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_0_5"
-        android:background="@color/gray"
         app:layout_constraintBottom_toBottomOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

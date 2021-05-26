@@ -118,11 +118,10 @@
         android:layout_marginStart="@dimen/size_4"
         android:layout_marginEnd="@dimen/size_4"
         android:layout_height="@dimen/size_50" />
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
         android:layout_marginTop="@dimen/size_20"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_1"
-        android:background="@color/gray" />
+        android:layout_height="@dimen/size_1" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -145,11 +144,10 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
         android:id="@+id/div"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_1"
-        android:background="@color/gray" />
+        android:layout_height="@dimen/size_1" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -170,10 +168,9 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_1"
-        android:background="@color/gray" />
+        android:layout_height="@dimen/size_1" />
     <TextView
         android:id="@+id/btn_delete_chat"
         android:layout_width="match_parent"
@@ -182,8 +179,7 @@
         android:text="Xoá cuộc hội thoại"
         android:textColor="#EB5757"
         android:textSize="@dimen/font_14" />
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_1"
-        android:background="@color/gray" />
+        android:layout_height="@dimen/size_1"/>
 </LinearLayout>

@@ -24,6 +24,7 @@ class ListImageAdapter(var listData:List<ImageModel>) : RecyclerView.Adapter<Rec
 
     var type:Int = 0 // Main == 0, Holder == 1, SINGLE = 2
     var parentPosition = 0
+    var lastClickTime = System.currentTimeMillis()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val lf = LayoutInflater.from(parent.context)
@@ -58,6 +59,10 @@ class ListImageAdapter(var listData:List<ImageModel>) : RecyclerView.Adapter<Rec
                     .load(R.drawable.ick_add_more)
                     .into(img)
             img.setOnClickListener {
+                if (System.currentTimeMillis() - lastClickTime < 500) {
+                    return@setOnClickListener
+                }
+                lastClickTime = System.currentTimeMillis()
                 if (type == 1) {
                     if (listData.get(position).file == null) {
                         holder.view.context.sendBroadcast(Intent(CONTRIBUTIONS_ACTION).apply {

@@ -14,8 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_12"
-        android:layout_marginEnd="@dimen/size_12"
-        android:background="@drawable/bg_border_gray_4dp_item_shop_variant">
+        android:layout_marginEnd="@dimen/size_12">
 
         <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
             android:id="@+id/tv_shop_name"
@@ -43,14 +42,13 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_shop_name"
             tools:text="Khoảng cách: 3km" />
 
-        <View
+        <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
             android:id="@id/view"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_marginStart="@dimen/size_8"
             android:layout_marginTop="9.5dp"
             android:layout_marginEnd="@dimen/size_8"
-            android:background="#d8d8d8"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_distance" />

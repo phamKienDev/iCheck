@@ -219,7 +219,7 @@
                     android:checked="false"
                     android:paddingStart="8dp"
                     android:paddingLeft="8dp"
-                    android:text="Quà nhân tại cửa hàng"
+                    android:text="Quà nhận tại cửa hàng"
                     android:textColor="#757575" />
 
                 <androidx.appcompat.widget.AppCompatCheckBox
@@ -242,6 +242,17 @@
                     android:paddingStart="8dp"
                     android:paddingLeft="8dp"
                     android:text="Quà thẻ cào"
+                    android:textColor="#757575" />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/voucher"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:button="@drawable/radio_button_cancel_order_detail"
+                    android:paddingStart="8dp"
+                    android:paddingLeft="8dp"
+                    android:text="Quà voucher"
                     android:textColor="#757575" />
             </LinearLayout>
 

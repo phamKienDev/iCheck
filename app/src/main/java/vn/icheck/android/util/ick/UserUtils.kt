@@ -1,6 +1,6 @@
 package vn.icheck.android.util.ick
 
-import vn.icheck.android.model.icklogin.IckUserInfoResponse
+import vn.icheck.android.network.model.icklogin.IckUserInfoResponse
 
 enum class Privacy{
     ONLY_ME,
@@ -10,7 +10,7 @@ enum class Privacy{
 
 fun IckUserInfoResponse.getInfoPrivacy():Privacy {
     if (this.data?.userPrivacyConfig != null) {
-        return when (this.data.userPrivacyConfig.whoViewYourInfo) {
+        return when (this.data?.userPrivacyConfig?.whoViewYourInfo) {
             "ONLY_ME" -> Privacy.ONLY_ME
             "FRIEND" -> Privacy.FRIEND
             "EVERYONE" -> Privacy.EVERYONE
@@ -22,7 +22,7 @@ fun IckUserInfoResponse.getInfoPrivacy():Privacy {
 
 fun IckUserInfoResponse.getInvitePrivacy():Privacy {
     if (this.data?.userPrivacyConfig != null) {
-        return when (this.data.userPrivacyConfig.whoInviteFriend) {
+        return when (this.data?.userPrivacyConfig?.whoInviteFriend) {
             "ONLY_ME" -> Privacy.ONLY_ME
             "FRIEND" -> Privacy.FRIEND
             "EVERYONE" -> Privacy.EVERYONE

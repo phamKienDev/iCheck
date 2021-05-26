@@ -116,12 +116,14 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/layoutDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_12"
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTitleDate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
@@ -157,6 +159,7 @@
             android:layout_marginTop="@dimen/size_8" />
 
         <LinearLayout
+            android:id="@+id/layoutMaDuThuong"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_20"

@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment
 import vn.icheck.android.ichecklibs.BuildConfig
 import vn.icheck.android.ichecklibs.TimeHelper
 import vn.icheck.android.ichecklibs.camera.CameraActivity
+import vn.icheck.android.ichecklibs.camera.CropCameraActivity
 import java.io.*
 import kotlin.jvm.Throws
 
@@ -35,8 +36,12 @@ class TakeMediaHelper(val activity: Activity?, val callback: TakeCameraListener,
 
     fun startTakeMedia(fragment: Fragment? = null) {
         activity?.let { activity ->
-            val imageCapture = Intent(fragment?.requireContext(), CameraActivity::class.java)
-//                    Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            val imageCapture = if (fragment == null) {
+                Intent(activity, CameraActivity::class.java)
+            } else {
+                Intent(fragment.requireContext(), CameraActivity::class.java)
+            }
+
             val videoCapture =
                     Intent(MediaStore.ACTION_VIDEO_CAPTURE)
 
@@ -173,7 +178,7 @@ class TakeMediaHelper(val activity: Activity?, val callback: TakeCameraListener,
         }
     }
 
-    fun onActivityResult(requestCode: Int, resultCode: Int, data:Intent?) {
+    fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
                 requestImage -> {

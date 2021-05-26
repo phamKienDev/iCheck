@@ -8,33 +8,26 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import vn.icheck.android.base.fragment.CoroutineFragment
 import vn.icheck.android.databinding.FragmentNewPwBinding
 import vn.icheck.android.helper.DialogHelper
-import vn.icheck.android.model.ApiErrorResponse
-import vn.icheck.android.model.ApiSuccessResponse
 import vn.icheck.android.network.base.SessionManager
+import vn.icheck.android.network.model.ApiErrorResponse
+import vn.icheck.android.network.model.ApiSuccessResponse
 import vn.icheck.android.screen.user.wall.IckUserWallViewModel
 import vn.icheck.android.util.ick.showShortError
 import vn.icheck.android.util.ick.showSimpleErrorToast
 import vn.icheck.android.util.ick.showSimpleSuccessToast
 import vn.icheck.android.util.ick.simpleText
+import vn.icheck.android.util.kotlin.WidgetUtils
 
 class IckNewPwFragment : CoroutineFragment() {
-    private var _binding: FragmentNewPwBinding? = null
-    private val binding get() = _binding!!
-    private val args: IckNewPwFragmentArgs by navArgs()
+    private lateinit var binding: FragmentNewPwBinding
     private val ickUserWallViewModel: IckUserWallViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        _binding = FragmentNewPwBinding.inflate(inflater, container, false)
+        binding = FragmentNewPwBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,21 +35,21 @@ class IckNewPwFragment : CoroutineFragment() {
         if (SessionManager.session.user?.hasPassword == false) {
             binding.textView26 simpleText "Cập nhật mật khẩu"
             binding.tvDesc simpleText "Vui lòng nhập mật khẩu"
-            binding.groupOldPw.visibility = View.GONE
-            binding.groupPw.addTextChangedListener {
+            binding.edtOldPassword.visibility = View.GONE
+            binding.edtPassword.addTextChangedListener {
                 validate()
             }
-            binding.groupRePw.addTextChangedListener {
+            binding.edtRePassword.addTextChangedListener {
                 validate()
             }
         } else {
-            binding.groupOldPw.addTextChangedListener {
+            binding.edtOldPassword.addTextChangedListener {
                 validate()
             }
-            binding.groupPw.addTextChangedListener {
+            binding.edtPassword.addTextChangedListener {
                 validate()
             }
-            binding.groupRePw.addTextChangedListener {
+            binding.edtRePassword.addTextChangedListener {
                 validate()
             }
         }
@@ -66,25 +59,25 @@ class IckNewPwFragment : CoroutineFragment() {
         binding.btnContinue.setOnClickListener {
             if (SessionManager.session.user?.hasPassword == true) {
                 when {
-                    binding.groupOldPw.text?.toString().isNullOrEmpty() -> {
-                        binding.groupOldPw.setError("Bạn chưa nhập mật khẩu cũ")
+                    binding.edtOldPassword.text?.toString().isNullOrEmpty() -> {
+                        binding.edtOldPassword.setError("Bạn chưa nhập mật khẩu cũ")
                     }
-                    binding.groupRePw.text?.toString().isNullOrEmpty() -> {
-                        binding.groupRePw.setError("Xin vui lòng xác nhận mật khẩu")
+                    binding.edtRePassword.text?.toString().isNullOrEmpty() -> {
+                        binding.edtRePassword.setError("Xin vui lòng xác nhận mật khẩu")
                     }
-                    binding.groupOldPw.text?.length ?: 0 < 6 -> {
-                        binding.groupOldPw.setError("Mật khẩu phải lớn hơn hoặc bằng 6 ký tự")
+                    binding.edtOldPassword.text?.length ?: 0 < 6 -> {
+                        binding.edtOldPassword.setError("Mật khẩu phải lớn hơn hoặc bằng 6 ký tự")
                     }
-                    binding.groupRePw.text?.length ?: 0 < 6 -> {
-                        binding.groupRePw.setError("Mật khẩu phải lớn hơn hoặc bằng 6 ký tự")
+                    binding.edtRePassword.text?.length ?: 0 < 6 -> {
+                        binding.edtRePassword.setError("Mật khẩu phải lớn hơn hoặc bằng 6 ký tự")
                     }
-                    binding.groupPw.text.toString() !=  binding.groupRePw.text.toString() -> {
-                        binding.groupRePw.setError("Xác nhận mật khẩu không trùng khớp")
+                    binding.edtPassword.text.toString() !=  binding.edtRePassword.text.toString() -> {
+                        binding.edtRePassword.setError("Xác nhận mật khẩu không trùng khớp")
                     }
                     else -> {
 
                         DialogHelper.showLoading(this)
-                        ickUserWallViewModel.updatePassword(binding.groupOldPw.text.toString(), binding.groupPw.text.toString())
+                        ickUserWallViewModel.updatePassword(binding.edtOldPassword.text.toString(), binding.edtPassword.text.toString())
                                 .observe(viewLifecycleOwner, Observer {
                                     DialogHelper.closeLoading(this)
                                     if (it is ApiSuccessResponse) {
@@ -109,25 +102,25 @@ class IckNewPwFragment : CoroutineFragment() {
                 }
             } else {
                 when {
-                    binding.groupPw.text?.toString().isNullOrEmpty() -> {
-                        binding.groupPw.setError("Bạn chưa nhập mật khẩu mới")
+                    binding.edtPassword.text?.toString().isNullOrEmpty() -> {
+                        binding.edtPassword.setError("Bạn chưa nhập mật khẩu mới")
                     }
-                    binding.groupRePw.text?.toString().isNullOrEmpty() -> {
-                        binding.groupRePw.setError("Xin vui lòng xác nhận mật khẩu")
+                    binding.edtRePassword.text?.toString().isNullOrEmpty() -> {
+                        binding.edtRePassword.setError("Xin vui lòng xác nhận mật khẩu")
                     }
-                    binding.groupPw.text?.length ?: 0 < 6 -> {
-                        binding.groupPw.setError("Mật khẩu phải lớn hơn hoặc bằng 6 ký tự")
+                    binding.edtPassword.text?.length ?: 0 < 6 -> {
+                        binding.edtPassword.setError("Mật khẩu phải lớn hơn hoặc bằng 6 ký tự")
                     }
-                    binding.groupRePw.text?.length ?: 0 < 6 -> {
-                        binding.groupRePw.setError("Mật khẩu phải lớn hơn hoặc bằng 6 ký tự")
+                    binding.edtRePassword.text?.length ?: 0 < 6 -> {
+                        binding.edtRePassword.setError("Mật khẩu phải lớn hơn hoặc bằng 6 ký tự")
                     }
-                    binding.groupPw.text.toString() !=  binding.groupRePw.text.toString() -> {
-                        binding.groupRePw.setError("Xác nhận mật khẩu không trùng khớp")
+                    binding.edtPassword.text.toString() !=  binding.edtRePassword.text.toString() -> {
+                        binding.edtRePassword.setError("Xác nhận mật khẩu không trùng khớp")
                     }
                     else -> {
 
                         DialogHelper.showLoading(this)
-                        ickUserWallViewModel.firstPassword(binding.groupPw.text.toString())
+                        ickUserWallViewModel.firstPassword(binding.edtPassword.text.toString())
                                 .observe(viewLifecycleOwner, Observer {
                                     DialogHelper.closeLoading(this)
                                     if (it is ApiSuccessResponse) {
@@ -151,10 +144,38 @@ class IckNewPwFragment : CoroutineFragment() {
 
 
         }
+
+        setupListener()
+    }
+
+    private fun setupListener() {
+        binding.edtOldPassword.setOnFocusChangeListener { _, _ ->
+            WidgetUtils.setButtonKeyboardMargin(binding.btnKeyboardOld, binding.edtOldPassword)
+        }
+
+        binding.btnKeyboardOld.setOnClickListener {
+            WidgetUtils.changePasswordInput(binding.edtOldPassword)
+        }
+
+        binding.edtPassword.setOnFocusChangeListener { _, _ ->
+            WidgetUtils.setButtonKeyboardMargin(binding.btnKeyboard, binding.edtPassword)
+        }
+
+        binding.btnKeyboard.setOnClickListener {
+            WidgetUtils.changePasswordInput(binding.edtPassword)
+        }
+
+        binding.edtRePassword.setOnFocusChangeListener { _, _ ->
+            WidgetUtils.setButtonKeyboardMargin(binding.btnKeyboardNew, binding.edtRePassword)
+        }
+
+        binding.btnKeyboardNew.setOnClickListener {
+            WidgetUtils.changePasswordInput(binding.edtRePassword)
+        }
     }
 
     private fun validate() {
-        if (!binding.groupOldPw.text?.toString().isNullOrEmpty() || !binding.groupPw.text?.toString().isNullOrEmpty() || !binding.groupRePw.text?.toString().isNullOrEmpty()) {
+        if (!binding.edtOldPassword.text?.toString().isNullOrEmpty() || !binding.edtPassword.text?.toString().isNullOrEmpty() || !binding.edtRePassword.text?.toString().isNullOrEmpty()) {
             enableContinue()
         } else {
             binding.btnContinue.disable()

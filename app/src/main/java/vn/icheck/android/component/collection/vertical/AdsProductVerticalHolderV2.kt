@@ -38,7 +38,7 @@ class AdsProductVerticalHolderV2(parent: ViewGroup) : BaseViewHolder<ICProductTr
 
     override fun bind(obj: ICProductTrend) {
         (itemView as ViewGroup).run {
-            setBackgroundResource(R.drawable.bg_transparent_outline_gray_0_5)
+            background=vn.icheck.android.ichecklibs.ViewHelper.bgTransparentStrokeLineColor0_5(context)
             // Image
             (getChildAt(0) as AppCompatImageView).let {
                 if (!obj.media.isNullOrEmpty()) {

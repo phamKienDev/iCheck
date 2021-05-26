@@ -55,7 +55,7 @@
         android:id="@+id/divider3"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_1"
-        android:background="@color/gray" />
+        android:background="@color/grayLoyalty" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/no_rv"
@@ -68,7 +68,7 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/size_1"
             android:layout_marginTop="@dimen/size_20"
-            android:background="@color/gray"
+            android:background="@color/grayLoyalty"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rcv_rating" />
@@ -88,7 +88,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_8"
             android:layout_marginEnd="@dimen/size_8"
-            android:background="@drawable/bg_gray_stroke_corner_10"
             android:ems="10"
             android:gravity="start|top"
             android:hint="Viết đánh giá"

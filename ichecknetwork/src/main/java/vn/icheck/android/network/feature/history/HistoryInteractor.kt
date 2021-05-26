@@ -320,8 +320,11 @@ class HistoryInteractor : BaseInteractor() {
         requestNewApi(ICNetworkClient.getNewSocialApi().getRouteShop(params), listener)
     }
 
-    fun getStoreNear(idShopSelect: Long, listener: ICNewApiListener<ICResponse<ICListResponse<ICStoreNear>>>) {
-        requestNewApi(ICNetworkClient.getNewSocialApi().getStoreNearHistory(idShopSelect), listener)
+    fun getStoreNear(idShopSelect: Long, offset: Int,listener: ICNewApiListener<ICResponse<ICListResponse<ICStoreNear>>>) {
+        val params = hashMapOf<String, Any>()
+        params["offset"] = offset
+        params["limit"] = APIConstants.LIMIT
+        requestNewApi(ICNetworkClient.getNewSocialApi().getStoreNearHistory(idShopSelect,params), listener)
     }
 
     fun checkScanQrCode(code: String, listener: ICNewApiListener<ICResponse<ICValidStampSocial>>) {

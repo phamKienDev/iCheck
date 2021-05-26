@@ -7,7 +7,6 @@
     android:layout_marginLeft="@dimen/size_12"
     android:layout_marginTop="@dimen/size_12"
     android:layout_marginRight="@dimen/size_12"
-    android:background="@drawable/bg_white_stroke_gray_corners_4"
     android:paddingBottom="@dimen/size_12">
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -17,7 +16,7 @@
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_12"
-        app:civ_border_color="@color/gray"
+        app:civ_border_color="@color/colorLineView"
         app:civ_border_width="@dimen/size_0_5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

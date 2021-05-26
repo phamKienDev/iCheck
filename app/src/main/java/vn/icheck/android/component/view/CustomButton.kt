@@ -47,7 +47,7 @@ class CustomButton : AppCompatTextView {
         if (typedArray.hasValue(R.styleable.CustomButton_cb_disable_background_color)) {
             statesListDrawable.addState(intArrayOf(-android.R.attr.state_enabled),
                     ViewHelper.createShapeDrawable(
-                            typedArray.getColor(R.styleable.CustomButton_cb_disable_background_color, ContextCompat.getColor(context, R.color.gray)),
+                            typedArray.getColor(R.styleable.CustomButton_cb_disable_background_color, ContextCompat.getColor(context, R.color.colorLineView)),
                             strokeWidth,
                             typedArray.getColor(R.styleable.CustomButton_cb_disable_stroke_color, Color.TRANSPARENT),
                             radius)
@@ -55,7 +55,7 @@ class CustomButton : AppCompatTextView {
         } else if (typedArray.hasValue(R.styleable.CustomButton_cb_disable_stroke_color)) {
             statesListDrawable.addState(intArrayOf(-android.R.attr.state_enabled),
                     ViewHelper.createShapeDrawable(
-                            ContextCompat.getColor(context, R.color.gray),
+                            ContextCompat.getColor(context, R.color.colorLineView),
                             strokeWidth,
                             typedArray.getColor(R.styleable.CustomButton_cb_disable_stroke_color, Color.TRANSPARENT),
                             radius)

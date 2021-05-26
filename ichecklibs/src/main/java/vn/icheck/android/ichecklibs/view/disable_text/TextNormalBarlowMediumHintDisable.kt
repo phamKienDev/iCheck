@@ -13,7 +13,7 @@ import vn.icheck.android.ichecklibs.R
 import vn.icheck.android.ichecklibs.view.TextBarlowMedium
 import vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
 
-class TextNormalBarlowMediumHintDisable : TextNormalBarlowMedium {
+open class TextNormalBarlowMediumHintDisable : TextNormalBarlowMedium {
     constructor(context: Context) : super(context) {
         setup()
     }

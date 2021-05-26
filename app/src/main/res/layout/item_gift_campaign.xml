@@ -10,11 +10,10 @@
     android:layout_marginTop="@dimen/size_10"
     android:layout_marginBottom="@dimen/size_6">
 
-    <LinearLayout
+    <vn.icheck.android.ichecklibs.view.line_color.LinearLayoutBgWhiteRadius4Stroke05
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_corners_white_4_border_05"
         android:orientation="vertical"
         android:paddingBottom="@dimen/size_10"
         android:layout_marginLeft="@dimen/size_4"
@@ -86,7 +85,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
+    </vn.icheck.android.ichecklibs.view.line_color.LinearLayoutBgWhiteRadius4Stroke05>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutCount"

@@ -14,6 +14,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.screen.user.product_detail.product.dialog.ContactBusinessDialog
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.util.ick.visibleOrGone
@@ -126,7 +127,7 @@ class ProductNotVerifiedHolder(parent: ViewGroup) : BaseViewHolder<ProductNotVer
                         it.layoutParams = ViewHelper.createLayoutParams(SizeHelper.size1, LinearLayout.LayoutParams.MATCH_PARENT).also { params ->
                             params.setMargins(0, SizeHelper.size14, 0, SizeHelper.size14)
                         }
-                        it.setBackgroundColor(ContextCompat.getColor(context, R.color.gray))
+                        it.setBackgroundColor(Constant.getLineColor(context))
                     })
 
                     // Layout end

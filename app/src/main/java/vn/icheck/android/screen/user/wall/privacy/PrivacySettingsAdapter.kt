@@ -11,7 +11,7 @@ import vn.icheck.android.component.`null`.NullHolder
 import vn.icheck.android.databinding.ItemConfirmPrivacyBinding
 import vn.icheck.android.databinding.ItemPrivacySettingBinding
 import vn.icheck.android.ichecklibs.ViewHelper
-import vn.icheck.android.model.privacy.UserPrivacyModel
+import vn.icheck.android.network.model.privacy.UserPrivacyModel
 import vn.icheck.android.util.ick.logError
 
 class PrivacySettingsAdapter(val onSaveChangeListener: OnSaveChangeListener):RecyclerView.Adapter<RecyclerView.ViewHolder>() {

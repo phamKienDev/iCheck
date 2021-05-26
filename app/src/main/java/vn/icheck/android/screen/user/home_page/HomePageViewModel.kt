@@ -19,7 +19,7 @@ import vn.icheck.android.component.tendency.ICTopTrend
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.CartHelper
 import vn.icheck.android.helper.NetworkHelper
-import vn.icheck.android.model.reminders.ReminderResponse
+import vn.icheck.android.network.model.reminders.ReminderResponse
 import vn.icheck.android.network.api.ICKApi
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.ads.AdsRepository
@@ -46,6 +46,7 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
     private val functionInteractor = UtilityRepository()
     private val settingInteraction = SettingRepository()
     private val pvcombankRepository = PVcomBankRepository()
+    private val adsRepository = AdsRepository()
 
     private val cartHelper = CartHelper()
 
@@ -199,7 +200,10 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
             }
 
             override fun onError(error: ICResponseCode?) {
-                onError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getInstance().getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai), null, null))
+                if (!error?.message.isNullOrEmpty()) {
+                    onError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getInstance().getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai), null, null))
+                }
+//                onError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getInstance().getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai), null, null))
             }
         })
     }
@@ -211,7 +215,7 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
         }
 
         if (errorRequest == totalRequest) {
-            onError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getInstance().getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai), null, null))
+//            onError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getInstance().getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai), null, null))
         }
     }
 
@@ -471,7 +475,7 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
     }
 
     fun getHomePopup() {
-        AdsRepository().getAds("home_popup", null, 1, null, object : ICApiListener<ICListResponse<ICAds>> {
+        adsRepository.getAds("home_popup", null, 1, null, object : ICApiListener<ICListResponse<ICAds>> {
             override fun onSuccess(obj: ICListResponse<ICAds>) {
                 if (obj.rows.isNotEmpty()) {
                     onShowPopup.postValue(obj.rows[0])
@@ -582,5 +586,6 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
         settingInteraction.dispose()
         cartHelper.dispose()
         pvcombankRepository.dispose()
+        adsRepository.dispose()
     }
 }

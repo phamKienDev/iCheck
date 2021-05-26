@@ -11,8 +11,11 @@ import android.text.Editable
 import android.text.Html
 import android.text.TextWatcher
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatImageButton
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.database.DataSnapshot
@@ -43,6 +46,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.network.base.SessionManager
@@ -151,6 +155,9 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
 
 
     private fun initView() {
+        containerEnter.background=ViewHelper.bgTransparentRadius4StrokeLineColor1(this)
+        tvActor.background=ViewHelper.bgTransparentRadius10StrokeLineColor1(this)
+
         edtEnter.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 if (s.toString().trim().isNotEmpty()) {
@@ -346,41 +353,46 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
     private fun checkPrivacyConfig() {
         if (viewModel.post?.page == null) {
             if (viewModel.post?.user?.id != SessionManager.session.user?.id) {
-                when (viewModel.post?.user?.userPrivacyConfig?.whoCommentYourPost) {
-                    Constant.EVERYONE -> {
-                        view3.beVisible()
-                        containerSent.beVisible()
-                    }
-                    Constant.FRIEND -> {
-                        if (ICheckApplication.getInstance().mFirebase.auth.currentUser != null && SessionManager.session.user?.id != null) {
-                            ICheckApplication.getInstance().mFirebase.registerRelationship(Constant.myFriendIdList, viewModel.post?.user?.id.toString(), object : ValueEventListener {
-                                override fun onDataChange(snapshot: DataSnapshot) {
-                                    if (snapshot.value != null && snapshot.value is Long) {
-                                        view3.beVisible()
-                                        containerSent.beVisible()
-                                    } else {
-                                        notAllowReply()
-                                        view3.beGone()
-                                        containerSent.beGone()
-                                    }
-                                }
-
-                                override fun onCancelled(error: DatabaseError) {
-                                    logError(error.toException())
-                                }
-                            })
-                        }
-                    }
-                    else -> {
-                        if (viewModel.post?.user?.id == SessionManager.session.user?.id) {
+                if (viewModel.post?.user?.userPrivacyConfig?.whoCommentYourPost!=null) {
+                    when (viewModel.post?.user?.userPrivacyConfig?.whoCommentYourPost) {
+                        Constant.EVERYONE -> {
                             view3.beVisible()
                             containerSent.beVisible()
-                        } else {
-                            notAllowReply()
-                            view3.beGone()
-                            containerSent.beGone()
+                        }
+                        Constant.FRIEND -> {
+                            if (ICheckApplication.getInstance().mFirebase.auth.currentUser != null && SessionManager.session.user?.id != null) {
+                                ICheckApplication.getInstance().mFirebase.registerRelationship(Constant.myFriendIdList, viewModel.post?.user?.id.toString(), object : ValueEventListener {
+                                        override fun onDataChange(snapshot: DataSnapshot) {
+                                            if (snapshot.value != null && snapshot.value is Long) {
+                                                view3.beVisible()
+                                                containerSent.beVisible()
+                                            } else {
+                                                notAllowReply()
+                                                view3.beGone()
+                                                containerSent.beGone()
+                                            }
+                                        }
+
+                                        override fun onCancelled(error: DatabaseError) {
+                                            logError(error.toException())
+                                        }
+                                    })
+                            }
+                        }
+                        else -> {
+                            if (viewModel.post?.user?.id == SessionManager.session.user?.id) {
+                                view3.beVisible()
+                                containerSent.beVisible()
+                            } else {
+                                notAllowReply()
+                                view3.beGone()
+                                containerSent.beGone()
+                            }
                         }
                     }
+                }else{
+                    view3.beVisible()
+                    containerSent.beVisible()
                 }
             } else {
                 view3.beVisible()
@@ -416,27 +428,23 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
         if (show) {
             imgCamera.setImageResource(R.drawable.ic_camera_on_24px)
             view2.beVisible()
-            imgCommentSend.beVisible()
             imgClearImage.beVisible()
+            cardViewImage.beVisible()
             imgCommentSend.tag = file
 
             imgCommentSend.loadImageFromVideoFile(file, null, SizeHelper.dpToPx(4))
 
-            if (file != null) {
-                if (file.absolutePath.contains(".mp4")) {
-                    btnPlay.beVisible()
-                } else {
-                    btnPlay.beInvisible()
-                }
+            if (file?.absolutePath?.contains(".mp4") == true) {
+                btnPlay.beVisible()
             } else {
                 btnPlay.beInvisible()
             }
+
         } else {
             imgCamera.setImageResource(R.drawable.ic_camera_off_24px)
             view2.beGone()
-            imgCommentSend.beGone()
             imgClearImage.beGone()
-            btnPlay.beInvisible()
+            cardViewImage.beGone()
         }
     }
 
@@ -538,10 +546,11 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
                 }, 200)
             }
             R.id.imgCamera -> {
-                val permissions = arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                val permissions =
+                    arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 imgCamera.delayTimeoutClick(2000)
                 if (PermissionHelper.isAllowPermission(this, permissions)) {
-                    TakeMediaDialog.show(supportFragmentManager,this,takeMediaListener)
+                    TakeMediaDialog.show(supportFragmentManager, this, takeMediaListener, isVideo = true)
                 } else {
                     PermissionHelper.checkPermission(this, permissions, requestCamera)
                 }
@@ -722,7 +731,7 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
     }
 
     override fun onBackPressed() {
-        EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.RESULT_DETAIL_POST_ACTIVITY, viewModel.post))
+        EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.RESULT_DETAIL_POST_ACTIVITY, adapter.getListData.firstOrNull { it is ICPost }))
         Intent().apply {
             putExtra(Constant.DATA_1, viewModel.post)
             setResult(RESULT_OK, this)

@@ -15,10 +15,14 @@
     <color name="colorDisableText">#B4B4B4</color>
     <color name="colorDisableView">#B4B4B4</color>
 
+    <color name="black_21">#B4B4B4</color>
+
     <color name="colorNormalText">#212121</color> <!-- textview, editText, radioButton, checkBox -->
     <color name="colorNormalView">#212121</color>
 
     <color name="colorLine">#D8D8D8</color>
+    <color name="colorLineIc">#D8D8D8</color>
+    <color name="colorLineView">#D8D8D8</color> <!-- textcolor, editText, background , civ_border_color-->
 
     <color name="colorBackgroundGray">#F0F0F0</color>
     <color name="colorBackgroundWhite">#FFFFFF</color>
@@ -26,6 +30,7 @@
 
 
 
+    <color name="colorNormalTextOpacity25">#40212121</color>
     <color name="white_alpha_50">#80ffffff</color>
     <color name="colorPrimaryDark">#0580dc</color>
     <color name="darkBlue">#20336B</color>
@@ -44,7 +49,6 @@
     <color name="gray">#D8D8D8</color>
     <color name="red_05">#0Dff0000</color>
     <color name="gray_60">#99D8D8D8</color>
-    <color name="lightGray">#F1F1F1</color>
     <color name="white">#FFFFFF</color>
     <color name="green">#62AF58</color>
     <color name="green_v2">#49CA4E</color>
@@ -72,7 +76,6 @@
     <color name="red_popup_notifi">#EB5757</color>
     <color name="red_v2">#ff2f2a</color>
     <color name="yellow_popup_notifi">#FCD872</color>
-    <color name="placeholder_bg">#D8D8D8</color>
     <color name="orange_v2">#FC9603</color>
     <color name="green_text_verified_product">#85C440</color>
     <color name="violet">#8488DA</color>
@@ -98,7 +101,8 @@
     <color name="gray_stamp_hoa_phat">#F2F2F2</color>
     <color name="errorColorStamp">#ff1616</color>
     <color name="color_egg">#4D4D9DFF</color>
-
+    <color name="lightGray">#F1F1F1</color>
+    <color name="gray_f0">#F0F0F0</color>
     <!--
         100% — FF
         95% — F2

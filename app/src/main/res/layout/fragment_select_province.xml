@@ -11,14 +11,13 @@
         android:id="@id/layoutToolbar"
         layout="@layout/toolbar_blue" />
 
-    <androidx.appcompat.widget.AppCompatEditText
+    <vn.icheck.android.ichecklibs.view.line_color.EdittextBgTransparentRadius4Stroke1
         android:id="@id/edtSearch"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_36"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_8"
         android:layout_marginEnd="@dimen/size_12"
-        android:background="@drawable/bg_outline_gray_1_corners_4"
         android:drawableStart="@drawable/ic_baseline_search_gray_24dp"
         android:drawablePadding="@dimen/size_8"
         android:paddingStart="@dimen/size_12"

@@ -3,15 +3,14 @@ package vn.icheck.android.component.product.certifications
 import android.content.Context
 import android.graphics.Color
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
-import vn.icheck.android.activities.image.DetailImagesActivity
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class CertificationsAdapter(val listData: List<String>) : RecyclerView.Adapter<CertificationsAdapter.ViewHolder>() {
@@ -29,7 +28,7 @@ class CertificationsAdapter(val listData: List<String>) : RecyclerView.Adapter<C
                 for (item in listData) {
                     listImg.add(item)
                 }
-                DetailImagesActivity.start(listImg, activity)
+                DetailMediaActivity.start(activity,listImg)
             }
         }
     }

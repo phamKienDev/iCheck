@@ -18,8 +18,13 @@ abstract class CointSettingDialog(context: Context, var type: Int, val begin: St
             setButton(true)
         }
 
+        dialog.txtSettingAgain.background=ViewHelper.bgTransparentRadius4StrokeLineColor1(dialog.context)
+
         dialog.txtBegin.text = begin
         dialog.txtEnd.text = end
+
+        dialog.txtBegin.background=ViewHelper.bgTransparentRadius4StrokeLineColor1(dialog.context)
+        dialog.txtEnd.background=ViewHelper.bgTransparentRadius4StrokeLineColor1(dialog.context)
 
         when (type) {
             1 -> {
@@ -106,7 +111,7 @@ abstract class CointSettingDialog(context: Context, var type: Int, val begin: St
             dialog.txtSettingAgain.isEnabled = true
         } else {
             dialog.txtSettingAgain.setTextColor(Constant.getDisableTextColor(dialog.context))
-            dialog.txtSettingAgain.setBackgroundResource(R.drawable.bg_border_gray_4dp_shop)
+            dialog.txtSettingAgain.background=ViewHelper.bgTransparentRadius4StrokeLineColor1(dialog.context)
             dialog.txtSettingAgain.isEnabled = false
         }
     }

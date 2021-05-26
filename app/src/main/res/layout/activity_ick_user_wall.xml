@@ -8,7 +8,7 @@
     tools:context=".screen.user.wall.IckUserWallActivity">
 
     <fragment
-        android:id="@+id/nav_host_fragment"
+        android:id="@+id/nav_host_wall_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -17,10 +17,9 @@
         app:navGraph="@navigation/user_wall_nav_graph"
         tools:layout="@layout/fragment_user_wall" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_1"
-        android:background="@color/gray" />
+        android:layout_height="@dimen/size_1" />
 
     <LinearLayout
         android:id="@+id/nav_bottom"

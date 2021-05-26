@@ -236,7 +236,7 @@ class ListProductStoreAdapter constructor(val view: IGiftStoreView, val listener
                     layoutParams1.gravity = Gravity.BOTTOM
                     layoutParams1.setMargins(0, 0, 0, SizeHelper.size4)
                     v.layoutParams = layoutParams1
-                    v.setBackgroundColor(ContextCompat.getColor(context, R.color.gray))
+                    v.setBackgroundColor(Constant.getLineColor(context))
                 })
 
                 params.addView(AppCompatTextView(context).also { poin ->
@@ -256,7 +256,7 @@ class ListProductStoreAdapter constructor(val view: IGiftStoreView, val listener
                     layoutParams2.setMargins(SizeHelper.size4, 0, 0, SizeHelper.size4)
                     layoutParams2.gravity = Gravity.BOTTOM
                     v.layoutParams = layoutParams2
-                    v.setBackgroundColor(ContextCompat.getColor(context, R.color.gray))
+                    v.setBackgroundColor(Constant.getLineColor(context))
                 })
             })
 

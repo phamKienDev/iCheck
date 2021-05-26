@@ -18,7 +18,7 @@
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginLeft="@dimen/size_12"
             android:layout_marginTop="@dimen/size_16"
-            app:civ_border_color="#D8D8D8"
+            app:civ_border_color="@color/colorLineView"
             app:civ_border_width="@dimen/size_1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -154,12 +154,11 @@
             tools:text="Huy, Quân, Hoàng và 3.000 người khác theo dõi trang này " />
     </LinearLayout>
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
         android:id="@id/view"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_0_5"
-        android:layout_marginTop="11.5dp"
-        android:background="@color/placeholder_bg" />
+        android:layout_marginTop="11.5dp" />
 
     <LinearLayout
         android:id="@+id/containerOverview"
@@ -265,7 +264,7 @@
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginBottom="@dimen/size_18"
             android:src="@drawable/ic_business_v2"
-            app:civ_border_color="@color/gray"
+            app:civ_border_color="@color/colorLineView"
             app:civ_border_width="@dimen/size_0_5"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/textView36"

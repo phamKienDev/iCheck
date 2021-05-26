@@ -37,10 +37,9 @@
                 android:textSize="@dimen/font_14" />
         </LinearLayout>
 
-        <View
+        <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
             android:layout_width="@dimen/size_1"
-            android:layout_height="@dimen/size_20"
-            android:background="@color/gray" />
+            android:layout_height="@dimen/size_20"/>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -64,10 +63,9 @@
         </LinearLayout>
     </LinearLayout>
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_1"
-        android:background="@color/gray" />
+        android:layout_height="@dimen/size_1"/>
 
     <LinearLayout
         android:layout_width="match_parent"

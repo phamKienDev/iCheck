@@ -29,6 +29,14 @@ fun View.beInvisible() {
     this.visibility = View.INVISIBLE
 }
 
+fun View.visibleOrGone(logic: Boolean) {
+    if (logic) {
+        this.visibility = View.VISIBLE
+    } else {
+        this.visibility = View.GONE
+    }
+}
+
 fun View.visibleOrInvisible(logic: Boolean) {
     if (logic) {
         this.visibility = View.VISIBLE

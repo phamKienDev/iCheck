@@ -68,35 +68,14 @@ interface ICNetworkAPI {
     @POST
     fun createAnswer(@Url url: String, @Body body: ICReqProductAnswer): Single<ICQuestionsAnswers>
 
-    @POST(APIConstants.User.SEND_OTP_RESET_PASSWORD)
-    fun sendOtpResetPassword(@Body body: HashMap<String, String>): Observable<ICStatus>
-
-    @POST(APIConstants.User.RESET_PASSWORD)
-    fun resetPassword(@Body body: HashMap<String, String>): Observable<ICID>
-
-    @POST(APIConstants.User.CHECK_CREDENTIALS)
-    fun checkCredentials(@Body body: HashMap<String, String>): Observable<ICStatus>
-
     @POST
     fun uploadImageV1(@Url url: String, @Body body: RequestBody): Call<UploadResponse>
 
     @POST
     fun sendOtpConfirmPhone(@Url url: String, @Body body: HashMap<String, String>): Observable<ICStatus>
 
-    @POST(APIConstants.User.CONFIRM_NEW_PHONE)
-    fun confirmNewPhone(@Body body: HashMap<String, String>): Observable<ICUser>
-
     @POST
     fun confirmPhone(@Url url: String, @Body body: HashMap<String, String>): Observable<ICStatus>
-
-    @POST(APIConstants.User.REGISTER)
-    fun registerUser(@Body body: ICReqRegisterUser): Observable<ICNone>
-
-    @PUT(APIConstants.User.UPDATE)
-    fun updateUser(@Path("id") id: Long, @Body body: ICReqUpdateUser): Observable<ICUser>
-
-    @POST(APIConstants.User.CHANGE_PASSWORD)
-    fun changePassword(@Body body: HashMap<String, String>): Observable<ICUser>
 
     @get:GET(APIConstants.User.ME)
     val userMe: Observable<ICUser>
@@ -262,6 +241,10 @@ interface ICNetworkAPI {
 // GET LIST NEWS
     @GET(APIConstants.News.LIST)
     fun getListNews(@QueryMap queries: HashMap<String, Any>): Observable<ICListResponse<ICNews>>
+
+    // GET LIST NEWS CATEGORY
+    @GET(APIConstants.News.LIST_CATEGORY)
+    fun getListNewsCategory(): Observable<ICResponse<ICListResponse<ICArticleCategory>>>
 
     @GET(APIConstants.News.LIST_SOCIAL)
     fun getListNewsSocial(@QueryMap queries: HashMap<String, Any>): Observable<ICResponse<ICListResponse<ICNews>>>

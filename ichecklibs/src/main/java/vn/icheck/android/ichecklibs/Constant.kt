@@ -221,6 +221,59 @@ object Constant {
         }
     }
 
+    fun getPath(type: String?, id: String?): String? {
+        return if (!type.isNullOrEmpty()) {
+            if (!id.isNullOrEmpty()) {
+                "icheck://$type?id=$id"
+            } else {
+                "icheck://$type"
+            }
+        } else {
+            null
+        }
+    }
+
+    fun getAddress(address: String?, district: String?, city: String?, country: String?, default: String?): String {
+        val stringBuilder = StringBuilder()
+
+        var isAdded = false
+        if (!address.isNullOrEmpty()) {
+            isAdded = true
+            stringBuilder.append(address)
+        }
+
+        if (!district.isNullOrEmpty()) {
+            isAdded = true
+            if (isAdded) {
+                stringBuilder.append(", ")
+            }
+            stringBuilder.append(district)
+        }
+
+        if (!city.isNullOrEmpty()) {
+            isAdded = true
+            if (isAdded) {
+                stringBuilder.append(", ")
+            }
+            stringBuilder.append(city)
+        }
+
+        if (!country.isNullOrEmpty()) {
+            isAdded = true
+            if (isAdded) {
+                stringBuilder.append(", ")
+            }
+            stringBuilder.append(country)
+        }
+
+        if (!isAdded) {
+            stringBuilder.append(default ?: "")
+        }
+
+        return stringBuilder.toString()
+    }
+
+
     /*
     * Color Primary
     */
@@ -318,6 +371,48 @@ object Constant {
                 disableTextColor
             } else {
                 "#B4B4B4"
+            }
+        }
+
+
+    /*
+   * Color line
+   */
+    fun getLineColor(context: Context): Int {
+        return if (lineColor.isNotEmpty()) {
+            Color.parseColor(lineColor)
+        } else {
+            ContextCompat.getColor(context, R.color.colorLine)
+        }
+    }
+
+    val getLineColorCode: String
+        get() {
+            return if (lineColor.isNotEmpty()) {
+                lineColor
+            } else {
+                "#D8D8D8"
+            }
+        }
+
+
+    /*
+    * Color background White
+    */
+    fun getAppBackgroundColor(context: Context): Int {
+        return if (appBackgroundColor.isNotEmpty()) {
+            Color.parseColor(appBackgroundColor)
+        } else {
+            ContextCompat.getColor(context, R.color.white)
+        }
+    }
+
+    val getAppBackgroundColorCode: String
+        get() {
+            return if (appBackgroundColor.isNotEmpty()) {
+                appBackgroundColor
+            } else {
+                "#FFFFFF"
             }
         }
 

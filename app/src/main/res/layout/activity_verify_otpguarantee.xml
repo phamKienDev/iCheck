@@ -51,7 +51,6 @@
                     android:id="@id/edtOtp"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/size_42"
-                    android:background="@drawable/under_line_1dp_gray"
                     android:fontFamily="sans-serif"
                     android:gravity="center"
                     android:inputType="number"

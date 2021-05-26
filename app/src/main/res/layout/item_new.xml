@@ -17,17 +17,39 @@
     app:cardShadowColorEnd="@color/app_selector_shadow_end"
     app:cardShadowColorStart="@color/elevation_color_card">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@id/imgNews"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_130"
-            tools:background="@color/light_blue"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@color/light_blue" />
+
+        <vn.icheck.android.ichecklibs.view.TextBarlowSemiBold
+            android:id="@id/tvStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_6"
+            android:layout_marginBottom="@dimen/size_6"
+            android:background="@drawable/bg_normal_text_color_opacity_25_corners_3"
+            android:drawableStart="@drawable/ic_world_12dp"
+            android:drawablePadding="@dimen/size_3"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/size_3"
+            android:paddingTop="@dimen/size_2"
+            android:paddingEnd="@dimen/size_4"
+            android:paddingBottom="@dimen/size_2"
+            android:singleLine="true"
+            android:text="@string/duoc_tai_tro"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_10"
+            app:layout_constraintBottom_toBottomOf="@id/imgNews"
+            app:layout_constraintStart_toStartOf="@id/imgNews" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@id/tvName"
@@ -40,9 +62,14 @@
             android:ellipsize="end"
             android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
+            android:drawableLeft="@drawable/ic_new_36dp"
             android:maxLines="2"
             android:textColor="@color/black_21_v2"
-            android:textSize="@dimen/font_14" />
-
-    </LinearLayout>
+            android:drawablePadding="@dimen/size_5"
+            android:gravity="center_vertical"
+            tools:text="asdjklaksj j lksajdklas j jsakld"
+            android:textSize="@dimen/font_14"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imgNews" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </vn.icheck.android.ui.colorcardview.ColorCardView>

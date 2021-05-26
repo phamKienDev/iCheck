@@ -1,6 +1,5 @@
 package vn.icheck.android.network.feature.utility
 
-import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.ICNetworkClient
 import vn.icheck.android.network.base.ICNewApiListener

@@ -17,12 +17,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
         android:id="@+id/view36"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_0_5"
         android:layout_marginTop="@dimen/size_10"
-        android:background="@color/gray"
         app:layout_constraintTop_toBottomOf="@+id/appCompatTextView18"
         tools:layout_editor_absoluteX="@dimen/size_12" />
 
@@ -165,7 +164,6 @@
         android:layout_marginTop="@dimen/size_10"
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
-        android:background="@drawable/bg_stroke_gray_corners_4"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"

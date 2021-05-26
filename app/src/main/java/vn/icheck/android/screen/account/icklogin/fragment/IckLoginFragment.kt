@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.facebook.CallbackManager
 import com.facebook.login.LoginManager
@@ -18,12 +17,19 @@ import vn.icheck.android.base.fragment.CoroutineFragment
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.ISettingListener
 import vn.icheck.android.databinding.FragmentIckLoginBinding
-import vn.icheck.android.helper.*
+import vn.icheck.android.helper.CartHelper
+import vn.icheck.android.helper.RelationshipHelper
+import vn.icheck.android.helper.SettingHelper
+import vn.icheck.android.helper.ShareSessionToModule
 import vn.icheck.android.ichecklibs.ViewHelper
-import vn.icheck.android.network.base.*
+import vn.icheck.android.network.base.ICNewApiListener
+import vn.icheck.android.network.base.ICResponse
+import vn.icheck.android.network.base.ICResponseCode
+import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.feature.page.PageRepository
 import vn.icheck.android.network.models.ICClientSetting
 import vn.icheck.android.network.models.ICRelationshipsInformation
+import vn.icheck.android.network.models.ICSessionData
 import vn.icheck.android.screen.account.icklogin.FORGOT_PW
 import vn.icheck.android.screen.account.icklogin.LOGIN_OTP
 import vn.icheck.android.screen.account.icklogin.viewmodel.IckLoginViewModel
@@ -32,6 +38,7 @@ import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.tracking.insider.InsiderHelper
 import vn.icheck.android.util.AfterTextWatcher
 import vn.icheck.android.util.ick.*
+import vn.icheck.android.util.kotlin.WidgetUtils
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -44,22 +51,17 @@ class IckLoginFragment : CoroutineFragment() {
     @Inject
     lateinit var loginManager: LoginManager
 
-    var _binding:FragmentIckLoginBinding? = null
-    val binding get() = _binding!!
+    lateinit var binding: FragmentIckLoginBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        _binding = FragmentIckLoginBinding.inflate(inflater, container, false)
+        binding = FragmentIckLoginBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.btnLogin.disable()
+        binding.btnLoginFacebook.background=ViewHelper.bgBtnFacebook(requireContext())
         TrackingAllHelper.trackLoginStart()
         binding.edtPhone.addTextChangedListener(object : AfterTextWatcher() {
             override fun afterTextChanged(s: Editable?) {
@@ -68,9 +70,9 @@ class IckLoginFragment : CoroutineFragment() {
 //                    binding.edtPhone.setSelection(1)
 //                }
                 if (s.toString().isNotEmpty()) {
-                    binding.edtPhone.setPadding(24.toPx(),0,0,20.toPx())
+                    binding.edtPhone.setPadding(24.toPx(), 0, 0, 20.toPx())
                 } else {
-                    binding.edtPhone.setPadding(0,0,0,20.toPx())
+                    binding.edtPhone.setPadding(0, 0, 0, 20.toPx())
                 }
                 checkForm()
             }
@@ -86,7 +88,7 @@ class IckLoginFragment : CoroutineFragment() {
         binding.btnLogin.setOnSingleClickListener {
             when {
                 binding.edtPhone.text?.trim().toString().isPhoneNumber() -> {
-                    when{
+                    when {
                         binding.edtPassword.text.isNullOrEmpty() -> {
                             binding.edtPassword.requestFocus()
                             binding.edtPassword.setSelection(binding.edtPassword.text?.toString()?.length
@@ -132,19 +134,31 @@ class IckLoginFragment : CoroutineFragment() {
 
                 }
 
-
                 override fun onGetClientSuccess(list: MutableList<ICClientSetting>?) {
                     WebViewActivity.start(requireActivity(), list?.firstOrNull()?.value, null, "Hỗ trợ đăng nhập")
                 }
             })
 //            WebViewActivity.start(requireActivity(), "http://quotes.icheck.com.vn/van-de-khi-dang-nhap/")
         }
-        ickLoginViewModel.stateRegister.observe(viewLifecycleOwner, {
+        ickLoginViewModel.stateRegister.observe(viewLifecycleOwner, Observer {
             if (it == 1) {
                 binding.edtPhone.setText("")
                 binding.edtPassword.setText("")
             }
         })
+
+        setupListener()
+    }
+
+    private fun setupListener() {
+        binding.edtPassword.setOnFocusChangeListener { _, _ ->
+            WidgetUtils.setButtonKeyboardMargin(binding.btnKeyboard, binding.edtPassword)
+            WidgetUtils.setButtonKeyboardMargin(binding.btnKeyboard, binding.edtPassword)
+        }
+
+        binding.btnKeyboard.setOnClickListener {
+            WidgetUtils.changePasswordInput(binding.edtPassword)
+        }
     }
 
     private fun login() {
@@ -158,9 +172,9 @@ class IckLoginFragment : CoroutineFragment() {
 
                     ickLoginViewModel.getUserInfo().observe(viewLifecycleOwner, Observer {
                         it?.data?.let { userInfoRes ->
-                            loginRes.data.user = userInfoRes.createICUser()
-                            SessionManager.session = loginRes.data
-                            ShareSessionToModule.setSession(loginRes.data)
+                            loginRes.data?.user = userInfoRes.createICUser()
+                            SessionManager.session = loginRes.data ?: ICSessionData()
+                            ShareSessionToModule.setSession(loginRes.data ?: ICSessionData())
                             CartHelper().getCartSocial()
                             InsiderHelper.onLogin()
 
@@ -199,7 +213,7 @@ class IckLoginFragment : CoroutineFragment() {
 
     private fun checkForm() {
         //&& binding.edtPassword.text?.length?:0 >= 6
-        if (binding.edtPhone.text?.length?:0 >= 1) {
+        if (binding.edtPhone.text?.length ?: 0 >= 1) {
             binding.btnLogin.enable()
         } else {
             binding.btnLogin.disable()
@@ -210,5 +224,4 @@ class IckLoginFragment : CoroutineFragment() {
         callbackManager.onActivityResult(requestCode, resultCode, data)
         super.onActivityResult(requestCode, resultCode, data)
     }
-
 }

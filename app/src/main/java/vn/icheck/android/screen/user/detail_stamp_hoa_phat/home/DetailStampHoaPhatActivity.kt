@@ -4,12 +4,10 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Color
 import android.location.Location
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -17,7 +15,6 @@ import com.google.android.gms.location.LocationServices
 import kotlinx.android.synthetic.main.activity_detail_stamp_hoa_phat.*
 import vn.icheck.android.R
 import vn.icheck.android.WrapContentLinearLayoutManager
-import vn.icheck.android.activities.image.DetailImagesActivity
 import vn.icheck.android.activities.product.product_questions_v1.ProductQuestionsV1Activity
 import vn.icheck.android.activities.product.review_product_v1.ReviewProductV1Activity
 import vn.icheck.android.activities.product.review_v1.EditReviewV1Activity
@@ -25,6 +22,7 @@ import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
+import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.fragments.ProductReviewsBottomDialog
 import vn.icheck.android.helper.DialogHelper
@@ -33,7 +31,8 @@ import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICCriteria
-import vn.icheck.android.screen.account.home.AccountActivity
+import vn.icheck.android.screen.account.icklogin.IckLoginActivity
+import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.adapter.DetailStampHoaPhatAdapter
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.call_back.SlideHeaderStampHoaPhatListener
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.view_model.DetailStampHoaPhatViewModel
@@ -108,11 +107,11 @@ class DetailStampHoaPhatActivity : BaseActivityMVVM(), SlideHeaderStampHoaPhatLi
         viewModel = ViewModelProvider(this).get(DetailStampHoaPhatViewModel::class.java)
 //        qrScanViewModel = ViewModelProvider(this).get(QrScanViewModel::class.java)
 
-        viewModel.getIdSocial.observe(this,{
+        viewModel.getIdSocial.observe(this, {
             PageDetailActivity.start(this, it, Constant.PAGE_ENTERPRISE_TYPE)
         })
 
-        viewModel.successDataMessage.observe(this,{
+        viewModel.successDataMessage.observe(this, {
             showShortSuccess(it)
         })
 
@@ -207,15 +206,16 @@ class DetailStampHoaPhatActivity : BaseActivityMVVM(), SlideHeaderStampHoaPhatLi
 
         btnChat.setOnClickListener {
             if (SessionManager.isUserLogged || SessionManager.isDeviceLogged) {
-//                viewModel.barcodeProduct?.let {
-//                    it.manager?.let { manager ->
+                viewModel.barcodeProduct?.let {
+                    it.manager?.let { manager ->
 //                        SocialChatActivity.createPageChat(this, manager.id)
-//                    } ?: run {
+                        ChatSocialDetailActivity.createRoomChat(this@DetailStampHoaPhatActivity, manager.id, "page")
+                    } ?: run {
 //                        SocialChatActivity.createPageChat(this,viewModel.barcodeProduct?.owner?.id, it.barcode)
-//                    }
-//                }
+                    }
+                }
             } else {
-                val account = Intent(this, AccountActivity::class.java)
+                val account = Intent(this, IckLoginActivity::class.java)
                 startActivity(account)
             }
         }
@@ -271,7 +271,7 @@ class DetailStampHoaPhatActivity : BaseActivityMVVM(), SlideHeaderStampHoaPhatLi
     }
 
     override fun itemPagerClick(list: ArrayList<String?>, position: Int) {
-        DetailImagesActivity.start(list, this)
+        DetailMediaActivity.start(this, list)
     }
 
     override fun itemPagerClickToImage(url: String, position: Int) {

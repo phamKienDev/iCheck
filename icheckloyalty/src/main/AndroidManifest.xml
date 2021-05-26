@@ -5,9 +5,15 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application>
-        <activity android:name=".screen.scan.V6ScanLoyaltyActivity"></activity>
+        <activity android:name=".screen.gift_detail_voucher.GiftVoucherStaffActivity"></activity>
         <activity
-            android:name=".screen.gift_voucher.GiftDetailFromAppActivity"
+            android:name=".screen.voucher.VoucherLoyaltyActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_White" />
+        <activity android:name=".screen.scan.V6ScanLoyaltyActivity" />
+        <activity
+            android:name=".screen.gift_detail_from_app.GiftDetailFromAppActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme_White" />

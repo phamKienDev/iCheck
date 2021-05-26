@@ -37,6 +37,8 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
     private var key: String? = null
     private var nameUser: String? = null
 
+    private var kycStatus: Long? = null
+
     private var listTime = 0L
 
     override val bindingInflater: (LayoutInflater) -> ActivityUserInformationBinding
@@ -97,6 +99,7 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
 
         if (!key.isNullOrEmpty()) {
             getChatRoom(key!!)
+            getImage(0, key!!)
         }
     }
 
@@ -188,8 +191,6 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
                         }
                     }
                 }
-
-                getImage(0, key)
             }
         }, { error ->
             showToastError(error.message)
@@ -253,10 +254,14 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
             }
 
             if (success.exists()) {
+                kycStatus = success.child("kyc_status").value as Long? ?: 0L
+
                 binding.imgAvatar.apply {
+                    val ssb = SpannableStringBuilder(success.child("name").value.toString().replace("null", "") + "   ")
+
                     if (success.child("is_verify").value != null && success.child("is_verify").value.toString().toBoolean()) {
-                        val ssb = SpannableStringBuilder(success.child("name").value.toString().replace("null", "") + "   ")
                         ssb.setSpan(getImageSpan(R.drawable.ic_verified_24dp_chat), ssb.length - 1, ssb.length, 0)
+
                         binding.tvNameUser.setText(ssb, TextView.BufferType.SPANNABLE)
 
                         if (toType.contains("page")) {
@@ -266,8 +271,15 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
                         }
 
                     } else {
+                        ssb.setSpan(getImageSpan(R.drawable.ic_verified_user_16px), ssb.length - 1, ssb.length, 0)
+
                         setBackgroundResource(0)
-                        binding.tvNameUser.text = success.child("name").value.toString().replace("null", "")
+
+                        if (toType != "page" && kycStatus == 2L){
+                            binding.tvNameUser.setText(ssb, TextView.BufferType.SPANNABLE)
+                        }else{
+                            binding.tvNameUser.text = success.child("name").value.toString().replace("null", "")
+                        }
                     }
                 }
             } else {
@@ -307,6 +319,7 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
                 }
                 MCStatus.SUCCESS -> {
                     binding.btnCheckedNotification.isChecked = false
+                    EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.UPDATE_DATA))
                 }
             }
         })
@@ -323,6 +336,7 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
                 }
                 MCStatus.SUCCESS -> {
                     binding.btnCheckedNotification.isChecked = true
+                    EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.UPDATE_DATA))
                 }
             }
         })

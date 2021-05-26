@@ -1,6 +1,5 @@
 package vn.icheck.android.screen.user.bookmark_history
 
-import android.graphics.Color
 import android.graphics.Typeface
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -10,7 +9,7 @@ import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
 import vn.icheck.android.databinding.ItemBookmarkBinding
 import vn.icheck.android.ichecklibs.Constant
-import vn.icheck.android.model.bookmark.BookmarkHistoryResponse
+import vn.icheck.android.network.model.bookmark.BookmarkHistoryResponse
 import vn.icheck.android.util.ick.*
 
 class BookmarkHistoryAdapter : PagingDataAdapter<BookmarkHistoryResponse, RecyclerView.ViewHolder>(DIFF_UTIL) {

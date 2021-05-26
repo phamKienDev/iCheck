@@ -24,6 +24,7 @@ import vn.icheck.android.activities.product.product_questions_v1.adapter.Product
 import vn.icheck.android.screen.user.product_questions.presenter.ProductQuestionsPresenter
 import vn.icheck.android.activities.product.product_questions_v1.view.IProductQuestionsView
 import vn.icheck.android.activities.product.review_product_v1.adapter.HorizontalImageSendAdapter
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.v1.ICBarcodeProductV1
 import vn.icheck.android.network.models.v1.ICQuestionRow
 import vn.icheck.android.network.models.v1.ICQuestionsAnswers
@@ -66,6 +67,10 @@ class ProductQuestionsV1Activity : BaseActivity<ProductQuestionsPresenter>(), IP
 
         container_comment.visibility = View.VISIBLE
         tv_answer_actor.visibility = View.GONE
+
+        linearLayoutActor.background=ViewHelper.bgTransparentRadius10StrokeLineColor1(this)
+        tv_answer_actor.background=ViewHelper.bgTransparentRadius10StrokeLineColor1(this)
+
         WidgetUtils.setClickListener(this, img_send, img_choose_image, tv_answer_actor)
     }
 

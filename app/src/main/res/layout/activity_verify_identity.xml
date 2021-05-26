@@ -45,7 +45,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:padding="@dimen/size_4"
                 android:text="Có lỗi trong việc xác thực danh tính của bạn.
-Vui lòng kiểm tra kỹ lại thông tin và ảnh chụp giấy tờ chính chủ. Cảm ơn!"
+\nVui lòng kiểm tra kỹ lại thông tin và ảnh chụp giấy tờ chính chủ. Cảm ơn!"
                 android:textColor="@color/white"
                 android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -104,7 +104,6 @@ Vui lòng kiểm tra kỹ lại thông tin và ảnh chụp giấy tờ chính c
                 android:layout_marginTop="@dimen/size_6"
                 android:layout_marginEnd="@dimen/size_12"
                 android:layout_marginRight="@dimen/size_12"
-                android:background="@drawable/gray_stroke_corner_4"
                 android:drawableEnd="@drawable/ic_arrow_down_blue_24px"
                 android:drawableRight="@drawable/ic_arrow_down_blue_24px"
                 android:fontFamily="@font/barlow_medium"
@@ -147,29 +146,13 @@ Vui lòng kiểm tra kỹ lại thông tin và ảnh chụp giấy tờ chính c
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/imgFront"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="200dp"
+                        android:layout_height="123dp"
+                        android:scaleType="fitXY"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/front_passport" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvErrorFront"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/bg_red_opacity_60_radius_6"
-                        android:fontFamily="@font/barlow_semi_bold"
-                        android:paddingStart="@dimen/size_6"
-                        android:paddingTop="@dimen/size_4"
-                        android:paddingEnd="@dimen/size_6"
-                        android:paddingBottom="@dimen/size_4"
-                        android:text="@string/loi_thong_tin"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/font_14"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -213,29 +196,13 @@ Vui lòng kiểm tra kỹ lại thông tin và ảnh chụp giấy tờ chính c
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/imgAfter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="200dp"
+                        android:scaleType="fitXY"
+                        android:layout_height="123dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/after_passport" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvErrorAfter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/bg_red_opacity_60_radius_6"
-                        android:fontFamily="@font/barlow_semi_bold"
-                        android:paddingStart="@dimen/size_6"
-                        android:paddingTop="@dimen/size_4"
-                        android:paddingEnd="@dimen/size_6"
-                        android:paddingBottom="@dimen/size_4"
-                        android:text="@string/loi_thong_tin"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/font_14"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

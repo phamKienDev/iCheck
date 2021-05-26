@@ -256,8 +256,8 @@
                         app:piv_interactiveAnimation="true"
                         app:piv_padding="@dimen/size_6"
                         app:piv_radius="@dimen/size_3"
-                        app:piv_selectedColor="#d8d8d8"
-                        app:piv_unselectedColor="#d8d8d8"
+                        app:piv_selectedColor="@color/colorLineView"
+                        app:piv_unselectedColor="@color/colorLineView"
                         app:piv_viewPager="@id/viewPagerImgProduct" />
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -456,7 +456,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:background="@color/gray_item_search"
+                                android:background="@color/gra1y_item_search"
                                 android:orientation="vertical">
 
                                 <androidx.appcompat.widget.AppCompatTextView
@@ -533,7 +533,7 @@
                                             android:drawablePadding="@dimen/size_7"
                                             android:fontFamily="sans-serif"
                                             android:gravity="center"
-                                            android:textColor="#d8d8d8"
+                                            android:textColor="@color/colorLineView"
                                             android:textSize="@dimen/font_14"
                                             android:textStyle="normal"
                                             tools:text="130,000" />
@@ -843,12 +843,11 @@
                             android:textStyle="normal"
                             tools:text="Ngày hẹn trả bảo hành: 20/11/2017" />
 
-                        <View
+                        <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/size_1"
                             android:layout_marginStart="@dimen/size_12"
-                            android:layout_marginEnd="@dimen/size_12"
-                            android:background="@color/gray" />
+                            android:layout_marginEnd="@dimen/size_12" />
 
                         <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                             android:id="@+id/tvMoreHistoryGuarantee"
@@ -864,13 +863,12 @@
                             android:textSize="@dimen/font_14"
                             android:textStyle="normal" />
 
-                        <View
+                        <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
                             android:id="@+id/viewGuarantee"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/size_1"
                             android:layout_marginStart="@dimen/size_12"
                             android:layout_marginEnd="@dimen/size_12"
-                            android:background="@color/gray"
                             android:visibility="gone" />
 
                         <androidx.appcompat.widget.AppCompatTextView

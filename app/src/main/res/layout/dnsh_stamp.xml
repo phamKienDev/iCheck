@@ -30,7 +30,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/gray_item_search">
+            android:background="@color/gra1y_item_search">
 
             <LinearLayout
                 android:id="@+id/owner_name_vg"

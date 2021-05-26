@@ -1,6 +1,5 @@
 package vn.icheck.android.util.ick
 
-import android.content.Context
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -10,30 +9,25 @@ import android.graphics.drawable.TransitionDrawable
 import android.media.ThumbnailUtils
 import android.text.Editable
 import android.text.InputType
-import android.util.DisplayMetrics
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import android.view.inputmethod.InputMethodManager
 import android.widget.CompoundButton
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.DrawableRes
-import androidx.annotation.IdRes
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.children
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import kotlinx.android.synthetic.main.activity_contribute_product.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -404,6 +398,25 @@ fun AppCompatImageView.setRankUserBig(rank: Int?) {
     }
 }
 
+fun AppCompatImageView.setRankUser36dp(rank: Int?) {
+    when (rank) {
+        Constant.USER_LEVEL_SILVER -> {
+            this.setImageResource(R.drawable.ic_leftmenu_avatar_silver_36dp)
+        }
+        Constant.USER_LEVEL_GOLD -> {
+            this.setImageResource(R.drawable.ic_leftmenu_avatar_gold_36dp)
+        }
+        Constant.USER_LEVEL_DIAMOND -> {
+            this.setImageResource(R.drawable.ic_leftmenu_avatar_diamond_36dp)
+        }
+        Constant.USER_LEVEL_STANDARD -> {
+            this.setImageResource(R.drawable.ic_leftmenu_avatar_standard_36dp)
+        }
+        else -> {
+            this.setImageResource(R.drawable.ic_leftmenu_avatar_standard_36dp)
+        }
+    }
+}
 
 fun setRankUser(rank: Int): Int {
     return when (rank) {

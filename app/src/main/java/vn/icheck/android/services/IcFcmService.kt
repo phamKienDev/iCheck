@@ -2,6 +2,8 @@ package vn.icheck.android.services
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Handler
+import androidx.annotation.WorkerThread
 import androidx.preference.PreferenceManager
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
@@ -21,6 +23,7 @@ import vn.icheck.android.network.base.ICResponseCode
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.feature.mission.MissionInteractor
 import vn.icheck.android.network.models.ICMissionDetail
+import vn.icheck.android.screen.dialog.DialogNotificationFirebaseAds
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.user.popup_complete_mission.PopupCompleteMissionActivity
 import vn.icheck.android.screen.user.rank_of_user.RankUpActivity
@@ -47,9 +50,9 @@ class IcFcmService : FirebaseMessagingService() {
             body = remoteMessage.data["body"]
         }
 
-        var targetType = remoteMessage.data["target_type"]
-        if (targetType.isNullOrEmpty()) {
-            targetType = remoteMessage.data["type"]
+        var targetType = remoteMessage.data["target_type"] ?: ""
+        if (targetType.isEmpty()) {
+            targetType = remoteMessage.data["type"] ?: ""
         }
 
         var targetID = remoteMessage.data["target_id"]
@@ -57,15 +60,35 @@ class IcFcmService : FirebaseMessagingService() {
             targetID = remoteMessage.data["id"]
         }
 
-        val action = remoteMessage.data["type"]
         val path = remoteMessage.data["path"] ?: ""
+
+
+        val schema = remoteMessage.data["action"] ?: ""
+
+        if (targetType.isNotEmpty()) {
+            when {
+                targetType.contains("popup_image") -> {
+                    showDialogNotification(image = targetID, schema = schema)
+                }
+                targetType.contains("popup_html") -> {
+                    showDialogNotification(htmlText = targetID)
+                }
+                targetType.contains("popup_link") -> {
+                    showDialogNotification(link = targetID)
+                }
+                else -> {
+                    checkPath(body, path, targetID, schema)
+                }
+            }
+        } else {
+            checkPath(body, path, targetID, schema)
+        }
+    }
+
+    private fun checkPath(body: String?, path: String, targetID: String?, schema: String) {
         if (body.isNullOrEmpty()) {
             return
         }
-
-        logDebug("$title - $body - $targetType - $targetID - $action - $path")
-
-        playNotificationSound()
 
         if (path.contains("inbox") || path.contains("inbox_user")) {
             if (ListConversationFragment.isOpenConversation) {
@@ -90,6 +113,8 @@ class IcFcmService : FirebaseMessagingService() {
             }
         }
 
+        playNotificationSound()
+
         when {
             path.contains("completed_mission") -> {
                 val pathUri = Uri.parse(path).getQueryParameter("id")
@@ -97,30 +122,60 @@ class IcFcmService : FirebaseMessagingService() {
             }
             path.contains("level_up") -> {
                 ICheckApplication.currentActivity()?.let { act ->
-//                    Alerter.create(act)
-//                            .setBackgroundColorRes(R.color.green_popup_notifi)
-//                            .setDuration(3000)
-//                            .setText(body)
-//                            .setOnClickListener {
-//                                FirebaseDynamicLinksActivity.startTargetPath(act, path)
-//                            }
-//                            .show()
+    //                    Alerter.create(act)
+    //                            .setBackgroundColorRes(R.color.green_popup_notifi)
+    //                            .setDuration(3000)
+    //                            .setText(body)
+    //                            .setOnClickListener {
+    //                                FirebaseDynamicLinksActivity.startTargetPath(act, path)
+    //                            }
+    //                            .show()
                     startActivity(Intent(act, RankUpActivity::class.java).apply {
                         addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     })
                 }
             }
+            path.contains("popup_image") -> {
+                showDialogNotification(image = targetID, schema = schema)
+            }
+            path.contains("popup_html") -> {
+                showDialogNotification(htmlText = targetID)
+            }
+            path.contains("popup_link") -> {
+                showDialogNotification(link = targetID)
+            }
             else -> {
                 ICheckApplication.currentActivity()?.let { act ->
-                    Alerter.create(act)
-                            .setBackgroundColorRes(R.color.green_popup_notifi)
-                            .setDuration(3000)
-                            .setText(body)
-                            .setOnClickListener {
-                                FirebaseDynamicLinksActivity.startTargetPath(act, path)
-                            }
-                            .show()
+                    act.runOnUiThread {
+                        if (Alerter.isShowing) {
+                            Alerter.hide()
+                        }
+
+                        Handler().postDelayed({
+                            Alerter.create(act)
+                                    .setBackgroundColorRes(R.color.green_popup_notifi)
+                                    .setDuration(3000)
+                                    .setText(body)
+                                    .setOnClickListener {
+                                        FirebaseDynamicLinksActivity.startTargetPath(act, path)
+                                    }
+                                    .show()
+                        }, 1000)
+                    }
                 }
+            }
+        }
+    }
+
+    @WorkerThread
+    private fun showDialogNotification(image: String? = null, htmlText: String? = null, link: String? = null, schema: String? = null) {
+        ICheckApplication.currentActivity()?.apply {
+            runOnUiThread {
+                object : DialogNotificationFirebaseAds(this, image, htmlText, link, schema) {
+                    override fun onDismiss() {
+
+                    }
+                }.show()
             }
         }
     }

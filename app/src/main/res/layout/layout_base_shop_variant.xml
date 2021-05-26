@@ -92,7 +92,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/gray_item_search"
+                    android:background="@color/gra1y_item_search"
                     android:orientation="vertical">
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -171,7 +171,7 @@
                                 android:drawablePadding="@dimen/size_7"
                                 android:fontFamily="sans-serif"
                                 android:gravity="center"
-                                android:textColor="#d8d8d8"
+                                android:textColor="@color/colorLineView"
                                 android:textSize="@dimen/font_14"
                                 android:textStyle="normal"
                                 tools:text="130,000" />

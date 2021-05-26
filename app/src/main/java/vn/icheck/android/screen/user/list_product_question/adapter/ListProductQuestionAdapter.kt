@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_comment_post.view.*
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
-import vn.icheck.android.activities.image.DetailImagesActivity
 import vn.icheck.android.base.adapter.RecyclerViewCustomAdapter
 import vn.icheck.android.callback.ItemClickListener
 import vn.icheck.android.component.commentpost.CommentPostMoreHolder
@@ -24,6 +23,7 @@ import vn.icheck.android.network.base.ICResponseCode
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.feature.comment.CommentRepository
 import vn.icheck.android.network.models.ICProductQuestion
+import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
 import vn.icheck.android.screen.user.list_product_question.view.IListProductQuestionView
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
@@ -285,7 +285,7 @@ class ListProductQuestionAdapter(val callback: IListProductQuestionView) : Recyc
                 listString.add(image.content)
             }
             itemView.imageView.setOnClickListener {
-                DetailImagesActivity.start(listString, itemView.context)
+                DetailMediaActivity.start(itemView.context, listString)
             }
 
             itemView.imgAvatar.setOnClickListener {

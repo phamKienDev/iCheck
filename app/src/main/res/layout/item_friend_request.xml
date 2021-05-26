@@ -29,21 +29,33 @@
         tools:drawableEnd="@drawable/ic_avatar_standard_24dp"
         tools:drawableRight="@drawable/ic_avatar_rank_silver_16dp" />
 
-    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
-        android:id="@id/tvName"
+    <LinearLayout
+        android:id="@+id/layoutName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/size_14"
-        android:drawablePadding="@dimen/size_4"
-        android:ellipsize="end"
-        android:gravity="center_vertical"
-        android:textAlignment="gravity"
-        android:singleLine="true"
-        android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="@dimen/size_14"
         app:layout_constraintStart_toEndOf="@id/imgAvatar"
-        app:layout_constraintTop_toTopOf="@id/imgAvatar"
-        tools:text="Xuyến Đỗ" />
+        app:layout_constraintTop_toTopOf="@id/imgAvatar">
+
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
+            android:id="@id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/size_4"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:drawableEnd="@drawable/ic_verified_user_16dp"
+            android:textAlignment="gravity"
+            android:textSize="@dimen/font_14"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgAvatar"
+            app:layout_constraintTop_toTopOf="@id/imgAvatar"
+            tools:text="Xuyến Đỗ Xuyến Đỗ Xuyến Đỗ Xuyến Đỗ Xuyến Đỗ Xuyến Đỗ" />
+
+    </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@id/btnAgree"
@@ -59,14 +71,15 @@
         android:text="@string/xac_nhan"
         android:textColor="@color/white"
         android:textSize="@dimen/font_14"
-        app:layout_constraintStart_toStartOf="@id/tvName"
-        app:layout_constraintTop_toBottomOf="@id/tvName" />
+        app:layout_constraintStart_toStartOf="@id/layoutName"
+        app:layout_constraintTop_toBottomOf="@id/layoutName" />
 
     <vn.icheck.android.ichecklibs.view.primary.TextPrimary
         android:id="@+id/btnDisagree"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/size_28"
         android:layout_marginStart="@dimen/size_10"
+        android:layout_marginLeft="@dimen/size_10"
         android:layout_marginTop="@dimen/size_10"
         android:background="@drawable/btn_white_outline_light_blue_1_corners_4"
         android:gravity="center"
@@ -77,7 +90,7 @@
         android:text="@string/tu_choi"
         android:textSize="@dimen/font_14"
         app:layout_constraintStart_toEndOf="@id/btnAgree"
-        app:layout_constraintTop_toBottomOf="@id/tvName" />
+        app:layout_constraintTop_toBottomOf="@id/layoutName" />
 
     <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@id/tvStatus"
@@ -89,7 +102,7 @@
         android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/tvName"
-        app:layout_constraintTop_toBottomOf="@id/tvName"
+        app:layout_constraintStart_toStartOf="@id/layoutName"
+        app:layout_constraintTop_toBottomOf="@id/layoutName"
         tools:text="Vân Trương đã trở thành bạn bè của bạn" />
 </androidx.constraintlayout.widget.ConstraintLayout>

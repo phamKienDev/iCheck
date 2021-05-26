@@ -1,20 +1,22 @@
 package vn.icheck.android.screen.splashscreen
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import vn.icheck.android.BuildConfig
+import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.tracking.insider.InsiderHelper
-import vn.icheck.android.tracking.teko.TekoHelper
 import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.util.DeviceUtils
 import vn.icheck.android.screen.checktheme.CheckThemeActivity
+import vn.icheck.android.screen.dialog.DialogNotificationFirebaseAds
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.user.home.HomeActivity
 import vn.icheck.android.tracking.TrackingAllHelper
+import vn.icheck.android.tracking.insider.InsiderHelper
 
 /**
  * Created by VuLCL on 3/5/2020.
@@ -29,11 +31,9 @@ class SplashScreenActivity : Activity() {
         SettingManager.setDeviceID(DeviceUtils.getUDID(this))
         SettingManager.appVersion = BuildConfig.VERSION_NAME
 
-
-        val targetFull = intent?.getStringExtra(Constant.DATA_3)
-        if (!targetFull.isNullOrEmpty()) {
-            FirebaseDynamicLinksActivity.startDestinationUrl(this, targetFull)
-            finish()
+        val path = intent?.getStringExtra(Constant.DATA_3) ?: intent?.extras?.getString("path")
+        if (!path.isNullOrEmpty()) {
+            goToCheckTheme(path, null, null)
         } else {
             var targetType = intent?.getStringExtra(Constant.DATA_1)
             if (targetType.isNullOrEmpty()) {
@@ -51,16 +51,27 @@ class SplashScreenActivity : Activity() {
                 targetID = intent?.extras?.getString("id")
             }
 
-            if (targetType.isNullOrEmpty()) {
-                if (HomeActivity.isOpen == true) {
-                    finish()
-                } else {
-                    ActivityHelper.startActivityAndFinish<CheckThemeActivity>(this@SplashScreenActivity)
+            when {
+                (targetType ?: "").contains("popup_image") -> {
+                    showDialogNotification(image = targetID, schema = intent?.extras?.getString("action") ?: "")
                 }
-            } else {
-//                FirebaseDynamicLinksActivity.startTarget(this, targetType, targetID)
-                FirebaseDynamicLinksActivity.startTargetPath(this, intent.getStringExtra("path"))
-                finish()
+                (targetType ?: "").contains("popup_html") -> {
+                    showDialogNotification(htmlText = targetID)
+                }
+                (targetType ?: "").contains("popup_link") -> {
+                    showDialogNotification(link = targetID)
+                }
+                else -> {
+                    if (targetType.isNullOrEmpty()) {
+                        if (HomeActivity.isOpen == true) {
+                            finish()
+                        } else {
+                            goToCheckTheme()
+                        }
+                    } else {
+                        goToCheckTheme(null, targetType, targetID)
+                    }
+                }
             }
 
             overridePendingTransition(R.anim.none, R.anim.none)
@@ -70,5 +81,43 @@ class SplashScreenActivity : Activity() {
             TrackingAllHelper.trackAppStarted()
             InsiderHelper.setUserAttributes()
         }, 500)
+    }
+
+    private fun showDialogNotification(image: String? = null, htmlText: String? = null, link: String? = null, schema: String? = null) {
+        ActivityHelper.startActivityAndFinish<HomeActivity>(this)
+
+        Handler().postDelayed({
+            ICheckApplication.currentActivity()?.apply {
+                object : DialogNotificationFirebaseAds(this, image, htmlText, link, schema) {
+                    override fun onDismiss() {
+
+                    }
+                }.show()
+            }
+        }, 2000)
+    }
+
+    private fun goToCheckTheme(path: String? = null, type: String? = null, id: String? = null) {
+        when {
+            !path.isNullOrEmpty() -> {
+                if (HomeActivity.isOpen != true) {
+                    ActivityHelper.startActivity<CheckThemeActivity>(this, Constant.DATA_1, path)
+                } else {
+                    FirebaseDynamicLinksActivity.startDestinationUrl(this, path)
+                }
+            }
+            !type.isNullOrEmpty() -> {
+                if (HomeActivity.isOpen != true) {
+                    ActivityHelper.startActivity<CheckThemeActivity>(this, Constant.DATA_1, vn.icheck.android.ichecklibs.Constant.getPath(type, id))
+                } else {
+                    FirebaseDynamicLinksActivity.startTarget(this, type, id)
+                }
+            }
+            else -> {
+                ActivityHelper.startActivity<CheckThemeActivity>(this)
+            }
+        }
+
+        finish()
     }
 }

@@ -2,9 +2,9 @@ package vn.icheck.android.network.base
 
 import com.google.gson.JsonObject
 import io.reactivex.Observable
-import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.http.*
+import vn.icheck.android.network.model.kyc.KycResponse
 import vn.icheck.android.network.models.*
 import vn.icheck.android.network.models.history.*
 import vn.icheck.android.network.models.product.detail.ICProductVariant
@@ -177,6 +177,12 @@ interface ICNetworkSocialApi {
 
     @PUT
     fun postKyc(@Url url: String, @Body body: ICPostKyc): Observable<ICResponse<String>>
+
+    @GET
+    fun getUserKyc(@Url url: String): Observable<ICResponse<ListResponse<KycResponse>>>
+
+    @POST
+    fun createUserKyc(@Url url: String, @Body body: HashMap<String, Any?>): Observable<ResponseBody>
 
     /*
     * End Wall
@@ -390,7 +396,7 @@ interface ICNetworkSocialApi {
     fun getRouteShop(@QueryMap params: HashMap<String, Any>): Observable<ICResponse<MutableList<ICRoutesShop>>>
 
     @GET(APIConstants.History.GET_STORE_NEAR)
-    fun getStoreNearHistory(@Path("id") id: Long): Observable<ICResponse<ICListResponse<ICStoreNear>>>
+    fun getStoreNearHistory(@Path("id") id: Long, @QueryMap params: HashMap<String, Any>): Observable<ICResponse<ICListResponse<ICStoreNear>>>
     /*
     * End History
     */

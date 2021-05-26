@@ -5,10 +5,12 @@ import android.content.Intent
 import kotlinx.android.synthetic.main.dialog_confirm_exchange_gifts.*
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.loyalty.R
-import vn.icheck.android.loyalty.dialog.base.BaseDialog
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.base.ICMessageEvent
+import vn.icheck.android.loyalty.dialog.base.BaseDialog
 import vn.icheck.android.loyalty.dialog.base.DialogHelperGame
+import vn.icheck.android.loyalty.dialog.listener.IClickButtonDialog
+import vn.icheck.android.loyalty.dialog.listener.IDismissDialog
 import vn.icheck.android.loyalty.helper.NetworkHelper
 import vn.icheck.android.loyalty.helper.TextHelper
 import vn.icheck.android.loyalty.helper.ToastHelper
@@ -20,6 +22,7 @@ import vn.icheck.android.loyalty.network.ICApiListener
 import vn.icheck.android.loyalty.network.SessionManager
 import vn.icheck.android.loyalty.repository.RedeemPointRepository
 import vn.icheck.android.loyalty.screen.game_from_labels.redeem_points.accept_ship_gift.AcceptShipGiftLoyaltyActivity
+import vn.icheck.android.loyalty.screen.redemption_history.RedemptionHistoryActivity
 
 open class DialogConfirmExchangeGifts(context: Context, val obj: ICKBoxGifts, val campaignId: Long) : BaseDialog(context, R.style.DialogTheme) {
     private val repository = RedeemPointRepository()
@@ -67,6 +70,9 @@ open class DialogConfirmExchangeGifts(context: Context, val obj: ICKBoxGifts, va
                     intent.putExtra(ConstantsLoyalty.DATA_3, campaignId)
                     context.startActivity(intent)
                 }
+                "VOUCHER" -> {
+                    exchangeGift()
+                }
             }
         }
     }
@@ -96,8 +102,21 @@ open class DialogConfirmExchangeGifts(context: Context, val obj: ICKBoxGifts, va
                             "ICOIN" -> {
                                 DialogHelperGame.dialogExchangeGiftsPointSuccess(context, obj.data?.gift?.icoin, campaignId, R.drawable.bg_gradient_button_orange_yellow)
                             }
-                            "PHONE_CARD" -> {
-                                ToastHelper.showLongWarning(context, "Chưa làm")
+                            "VOUCHER" -> {
+                                DialogHelperGame.dialogAcceptShipGiftSuccess(context, obj.data?.gift?.image?.original
+                                        ?: "", campaignId, R.drawable.bg_gradient_button_orange_yellow,
+                                        object : IDismissDialog {
+                                            override fun onDismiss() {
+
+                                            }
+                                        },
+                                        object : IClickButtonDialog<Long> {
+                                            override fun onClickButtonData(obj: Long?) {
+                                                context.startActivity(Intent(context, RedemptionHistoryActivity::class.java).apply {
+                                                    putExtra(ConstantsLoyalty.DATA_1, obj)
+                                                })
+                                            }
+                                        })
                             }
                             else -> {
                                 ToastHelper.showLongError(context, obj.data?.message)

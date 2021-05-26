@@ -70,7 +70,6 @@
             android:layout_marginTop="@dimen/size_8"
             android:layout_marginEnd="@dimen/size_20"
             android:layout_marginRight="@dimen/size_20"
-            android:background="@drawable/bg_gray_stroke_corner_10"
             android:ems="10"
             android:gravity="start|top"
             android:hint="Viết đánh giá"

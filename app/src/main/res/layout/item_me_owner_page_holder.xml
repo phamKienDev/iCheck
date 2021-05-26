@@ -11,7 +11,7 @@
         android:id="@+id/imgAvatar"
         android:layout_width="@dimen/size_44"
         android:layout_height="@dimen/size_44"
-        app:civ_border_color="#D8D8D8"
+        app:civ_border_color="@color/colorLineView"
         app:civ_border_width="@dimen/size_1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -31,11 +31,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_8"
+            android:drawablePadding="@dimen/size_5"
             android:ellipsize="middle"
             android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
             android:singleLine="true"
-            android:drawablePadding="@dimen/size_5"
             android:textSize="@dimen/font_16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgAvatar"
@@ -48,6 +48,7 @@
         android:id="@+id/tvCountFollow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_8"
         android:layout_marginTop="@dimen/size_4"
         android:ellipsize="end"
         android:includeFontPadding="false"
@@ -57,10 +58,9 @@
         app:layout_constraintTop_toBottomOf="@id/layoutName"
         tools:text="147,214 Người đang theo dõi" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_0_5"
         android:layout_marginTop="@dimen/size_12"
-        android:background="@color/gray"
         app:layout_constraintTop_toBottomOf="@id/tvCountFollow" />
 </androidx.constraintlayout.widget.ConstraintLayout>

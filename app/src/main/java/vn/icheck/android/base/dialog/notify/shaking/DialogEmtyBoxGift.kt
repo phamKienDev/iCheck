@@ -35,6 +35,7 @@ abstract class DialogEmtyBoxGift(context: Context, private val image: Int, priva
         val btnAction = findViewById<AppCompatTextView>(R.id.btnAction)
 
         findViewById<LinearLayout>(R.id.containerMission)?.run {
+            background=vn.icheck.android.ichecklibs.ViewHelper.bgBorderDotted10LineColorRadius10(context)
             if (missions.isNullOrEmpty()) {
                 tvTitle.text = "Bạn không đủ lượt để mở quà"
                 tvDescription.beGone()

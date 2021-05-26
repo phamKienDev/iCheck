@@ -7,18 +7,20 @@ import android.os.Handler
 import android.text.TextUtils
 import android.util.TypedValue
 import android.view.*
-import android.widget.*
+import android.widget.CheckBox
+import android.widget.FrameLayout
+import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.bottom_sheet_dialog_refuse_gift.*
 import vn.icheck.android.R
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.Constant
-import vn.icheck.android.model.ICNameId
+import vn.icheck.android.network.model.ICNameId
 
 class RefuseRoundedBottomSheet(val mId: String?) : BottomSheetDialogFragment() {
 

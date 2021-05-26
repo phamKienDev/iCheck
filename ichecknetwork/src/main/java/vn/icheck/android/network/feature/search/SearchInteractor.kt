@@ -72,8 +72,6 @@ class SearchInteractor : BaseInteractor() {
             query["cityIds"] = city
         }
 
-        query["objectType"] = "enterprise"
-
         return ICNetworkClient.getSocialApi().getPageSearch(query)
     }
 

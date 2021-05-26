@@ -52,6 +52,7 @@ import vn.icheck.android.ichecklibs.view.TextBarlowSemiBold
 import vn.icheck.android.ichecklibs.view.TextBarlowMedium
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.MiddleMultilineTextView
 import vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
 import vn.icheck.android.ichecklibs.view.second_text.TextSecondSendOtpLogin
 import vn.icheck.android.ichecklibs.view.secondary.TextSecondary
@@ -826,28 +827,38 @@ object ViewHelper {
     fun createSlideBannerHolder(context: Context): View {
         val layoutParent = FrameLayout(context)
         layoutParent.layoutParams = createLayoutParams()
-        layoutParent.setPadding(SizeHelper.size12, SizeHelper.size12, SizeHelper.size12, 0)
-        layoutParent.setBackgroundColor(Color.WHITE)
+        layoutParent.setPadding(SizeHelper.size12, 0, SizeHelper.size12, 0)
+        layoutParent.setBackgroundColor(ContextCompat.getColor(context,R.color.colorBackgroundGray))
+
+        layoutParent.addView(View(context).also {
+            it.layoutParams =
+                createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size10)
+            it.setBackgroundColor(ContextCompat.getColor(it.context, R.color.colorBackgroundGray))
+        })
 
         val viewPager = HeightWrappingViewPager(context)
-        viewPager.layoutParams = createLayoutParams()
+        viewPager.layoutParams = createLayoutParams().also {
+            it.topMargin = SizeHelper.size10
+        }
         layoutParent.addView(viewPager)
 
         val layoutIndicator = IndicatorLineHorizontal(context)
-        layoutIndicator.layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, SizeHelper.size4).also {
-            it.gravity = Gravity.BOTTOM
-            it.setMargins(0, 0, 0, SizeHelper.size3)
-        }
+        layoutIndicator.layoutParams =
+            FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, SizeHelper.size4).also {
+                it.gravity = Gravity.BOTTOM
+                it.setMargins(0, 0, 0, SizeHelper.size3)
+            }
         layoutIndicator.setupViewPager(viewPager)
         layoutParent.addView(layoutIndicator)
 
         return layoutParent
+
     }
 
     fun createSurvey(context: Context): CardView {
         val layoutParent = CardView(context)
         layoutParent.layoutParams = createLayoutParams(SizeHelper.size12, SizeHelper.size6, SizeHelper.size12, SizeHelper.size6)
-        layoutParent.setCardBackgroundColor(ContextCompat.getColor(context, R.color.gray_item_search))
+        layoutParent.setCardBackgroundColor(ContextCompat.getColor(context, R.color.gra1y_item_search))
         layoutParent.radius = SizeHelper.size10.toFloat()
 
         val layoutContent = LinearLayout(context)
@@ -941,7 +952,7 @@ object ViewHelper {
         btnRight.setTextColor(Color.WHITE)
         btnRight.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
         btnRight.background = createStateListDrawable(
-                ContextCompat.getColor(context, R.color.gray),
+                ContextCompat.getColor(context, R.color.colorLineView),
                 ContextCompat.getColor(context, R.color.colorSecondary),
                 ContextCompat.getColor(context, R.color.darkBlue),
                 Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT, 0, (SizeHelper.size16 + SizeHelper.size2).toFloat()
@@ -1163,7 +1174,7 @@ object ViewHelper {
                 },
                 createStateListDrawable(
                         Color.WHITE, ContextCompat.getColor(context, R.color.lightGray),
-                        ContextCompat.getColor(context, R.color.gray), ContextCompat.getColor(context, R.color.gray),
+                        ContextCompat.getColor(context, R.color.colorLineView), ContextCompat.getColor(context, R.color.colorLineView),
                         SizeHelper.size1, SizeHelper.size36.toFloat()),
                 createTypeface(sansSerifMedium),
                 Constant.getDisableTextColor(context),
@@ -1312,6 +1323,12 @@ object ViewHelper {
             layoutParent.layoutParams = createLayoutParams()
             layoutParent.orientation = LinearLayout.VERTICAL
             layoutParent.setBackgroundColor(ContextCompat.getColor(context, R.color.white))
+
+            layoutParent.addView(View(context).also {
+                it.layoutParams =
+                    createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size10)
+                it.setBackgroundColor(ContextCompat.getColor(context, R.color.colorBackgroundGray))
+            })
 
             layoutParent.addView(LinearLayout(context).also { layoutTitle ->
                 layoutTitle.layoutParams = createLayoutParams(0, SizeHelper.size16, 0, 0)
@@ -1957,10 +1974,16 @@ object ViewHelper {
         val layoutParent = LinearLayout(context)
         layoutParent.layoutParams = createLayoutParams()
         layoutParent.orientation = LinearLayout.VERTICAL
-        layoutParent.setPadding(SizeHelper.size12, 0, 0, 0)
+
+        layoutParent.addView(View(context).also {
+            it.layoutParams = createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size10)
+            it.setBackgroundColor(ContextCompat.getColor(context, R.color.colorBackgroundGray))
+        })
 
         layoutParent.addView(LinearLayout(context).also {
-            it.layoutParams = createLayoutParams()
+            it.layoutParams = createLayoutParams().also { layoutParams ->
+                layoutParams.marginStart = SizeHelper.size12
+            }
             it.orientation = LinearLayout.HORIZONTAL
             it.gravity = Gravity.CENTER_VERTICAL
             //img flash sale
@@ -2021,7 +2044,9 @@ object ViewHelper {
         })
 
         layoutParent.addView(RecyclerView(context).also {
-            it.layoutParams = createLayoutParams()
+            it.layoutParams = createLayoutParams().also { layoutParams ->
+                layoutParams.marginStart = SizeHelper.size12
+            }
         })
 
         return layoutParent
@@ -2240,8 +2265,9 @@ object ViewHelper {
                 imgLogo.layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
                 imgLogo.scaleType = ImageView.ScaleType.CENTER_CROP
                 imgLogo.id = R.id.img_logo
-                imgLogo.borderColor = ContextCompat.getColor(context, R.color.gray)
+                imgLogo.borderColor = ContextCompat.getColor(context, R.color.colorLineView)
                 imgLogo.borderWidth = SizeHelper.size0_5
+                imgLogo.setPadding(0, SizeHelper.size8, 0, 0)
                 layoutImage.addView(imgLogo)
 
                 val tvVerified = AppCompatTextView(context).also {
@@ -2256,15 +2282,32 @@ object ViewHelper {
                     it.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
                 }
                 layoutImage.addView(tvVerified)
+
+                val imgRank = AppCompatImageView(context).also {
+                    it.layoutParams = RelativeLayout.LayoutParams(
+                        RelativeLayout.LayoutParams.WRAP_CONTENT,
+                        RelativeLayout.LayoutParams.WRAP_CONTENT
+                    ).also { params ->
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                            params.addRule(RelativeLayout.ALIGN_END, R.id.img_logo)
+                        } else {
+                            params.addRule(RelativeLayout.ALIGN_RIGHT, R.id.img_logo)
+                        }
+                        params.addRule(RelativeLayout.ALIGN_TOP, R.id.img_logo)
+                    }
+                }
+                layoutImage.addView(imgRank)
             })
 
             //name user
-            it.addView(AppCompatTextView(context).also {
-                it.layoutParams = createLayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f).also {
-                    it.leftMargin = SizeHelper.size8
-                }
+            it.addView(MiddleMultilineTextView(context).also {
+                it.layoutParams =
+                    createLayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f).also {
+                        it.leftMargin = SizeHelper.size8
+                    }
                 it.setTextColor(ContextCompat.getColor(context, R.color.black_21_v2))
                 it.text = context.getString(R.string.thong_tin_duoc_dong_gop_boi)
+                it.maxLines=2
                 it.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
                 it.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
                 it.includeFontPadding = false
@@ -2317,7 +2360,7 @@ object ViewHelper {
             it.layoutParams = createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.dpToPx(1)).also {
                 it.topMargin = SizeHelper.size10
             }
-            it.setBackgroundColor(ContextCompat.getColor(context, R.color.gray))
+            it.setBackgroundColor(Constant.getLineColor(context))
         })
 
         // list avatar
@@ -2401,7 +2444,7 @@ object ViewHelper {
                 it.setMargins(SizeHelper.size12, 0, SizeHelper.size12, 0)
             }
             it.orientation = LinearLayout.VERTICAL
-            it.background = ContextCompat.getDrawable(context, R.drawable.bg_border_gray_4dp_shop)
+            it.background = vn.icheck.android.ichecklibs.ViewHelper.bgTransparentRadius4StrokeLineColor1(it.context)
             it.setPadding(SizeHelper.size10, 0, SizeHelper.size10, SizeHelper.size4)
 
             //edit text
@@ -2422,7 +2465,7 @@ object ViewHelper {
                 line.layoutParams = createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.dpToPx(1)).also {
                     it.topMargin = SizeHelper.size8
                 }
-                line.setBackgroundColor(ContextCompat.getColor(context, R.color.gray))
+                line.setBackgroundColor(Constant.getLineColor(context))
             })
 
             //camera
@@ -2455,7 +2498,7 @@ object ViewHelper {
             it.addView(CircleImageView(context).also {
                 it.layoutParams = createLayoutParams(SizeHelper.dpToPx(30), SizeHelper.dpToPx(30))
                 it.borderWidth = SizeHelper.size0_5
-                it.borderColor = ContextCompat.getColor(context, R.color.gray)
+                it.borderColor = ContextCompat.getColor(context, R.color.colorLineView)
             })
             it.addView(AppCompatImageView(context).also { imgCamera ->
                 imgCamera.layoutParams = createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
@@ -2557,8 +2600,7 @@ object ViewHelper {
 
             //icon like - comment
             layoutHeader.addView(TextSecondBarlowMedium(context).also {
-                it.layoutParams =
-                        createLayoutParams(
+                it.layoutParams = createLayoutParams(
                                 LinearLayout.LayoutParams.WRAP_CONTENT,
                                 LinearLayout.LayoutParams.WRAP_CONTENT
                         ).also {
@@ -2569,7 +2611,7 @@ object ViewHelper {
                 it.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
                 it.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_like_12px, 0, 0, 0)
                 it.compoundDrawablePadding = SizeHelper.size4
-                it.background = ContextCompat.getDrawable(context, R.drawable.gray_stroke_corner_4)
+                it.background = vn.icheck.android.ichecklibs.ViewHelper.bgTransparentRadius4StrokeLineColor1(it.context)
                 it.includeFontPadding = false
             })
             layoutHeader.addView(TextSecondBarlowMedium(context).also {
@@ -2586,7 +2628,7 @@ object ViewHelper {
                 it.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
                 it.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_comment_12px, 0, 0, 0)
                 it.compoundDrawablePadding = SizeHelper.size4
-                it.background = ContextCompat.getDrawable(context, R.drawable.gray_stroke_corner_4)
+                it.background = vn.icheck.android.ichecklibs.ViewHelper.bgTransparentRadius4StrokeLineColor1(context)
                 it.includeFontPadding = false
             })
         })
@@ -2619,18 +2661,10 @@ object ViewHelper {
 
         //line
         layoutParent.addView(View(context).also { line ->
-            line.layoutParams = createLayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    SizeHelper.dpToPx(1)
-            ).also {
+            line.layoutParams = createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.dpToPx(1)).also {
                 it.topMargin = SizeHelper.size10
             }
-            line.setBackgroundColor(
-                    ContextCompat.getColor(
-                            context,
-                            R.color.gray
-                    )
-            )
+            line.setBackgroundColor(Constant.getLineColor(context))
         })
         return layoutParent
     }
@@ -2654,8 +2688,7 @@ object ViewHelper {
                 tvName.layoutParams =
                         createLayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
                 tvName.setTextColor(secondaryColor)
-                tvName.typeface =
-                        Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
+                tvName.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
                 tvName.isSingleLine = true
                 tvName.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
                 tvName.includeFontPadding = false
@@ -2712,8 +2745,7 @@ object ViewHelper {
                 tvName.layoutParams =
                         createLayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
                 tvName.setTextColor(secondaryColor)
-                tvName.typeface =
-                        Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
+                tvName.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
                 tvName.isSingleLine = true
                 tvName.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
                 tvName.includeFontPadding = false
@@ -2722,8 +2754,7 @@ object ViewHelper {
             it.addView(AppCompatTextView(context).also { tvAll ->
                 tvAll.layoutParams = createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
                 tvAll.setTextColor(secondaryColor)
-                tvAll.typeface =
-                        Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
+                tvAll.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
                 tvAll.isSingleLine = true
                 tvAll.text = context.getString(R.string.xem_tat_ca)
                 tvAll.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
@@ -2749,24 +2780,15 @@ object ViewHelper {
         layoutParent.setBackgroundColor(Color.WHITE)
 
         layoutParent.addView(AppCompatImageView(context).also {
-            it.layoutParams = createLayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-            )
-            it.background =
-                    ContextCompat.getDrawable(context, R.drawable.ic_img_not_question_product_203dp)
+            it.layoutParams = createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+            it.background = ContextCompat.getDrawable(context, R.drawable.ic_img_not_question_product_203dp)
         })
 
         layoutParent.addView(AppCompatTextView(context).also {
             it.layoutParams = createLayoutParams().also {
                 it.topMargin = SizeHelper.size2
             }
-            it.setTextColor(
-                    ContextCompat.getColor(
-                            context,
-                            R.color.colorNormalText
-                    )
-            )
+            it.setTextColor(ContextCompat.getColor(context, R.color.colorNormalText))
             it.gravity = Gravity.CENTER_HORIZONTAL
             it.text = context.getString(R.string.ban_co_thac_mac_gi_ve_san_pham_khong)
             it.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
@@ -2804,18 +2826,12 @@ object ViewHelper {
             it.gravity = Gravity.CENTER_VERTICAL
 
             it.addView(LinearLayout(parent.context).also { layoutHeader ->
-                layoutHeader.layoutParams = createLayoutParams(
-                        0,
-                        LinearLayout.LayoutParams.WRAP_CONTENT, 1f
-                )
+                layoutHeader.layoutParams = createLayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
                 layoutHeader.orientation = LinearLayout.VERTICAL
 
                 //tv đánh giá của bạn
                 layoutHeader.addView(TextSecondBarlowMedium(parent.context).also {
-                    it.layoutParams = createLayoutParams(
-                            LinearLayout.LayoutParams.WRAP_CONTENT,
-                            LinearLayout.LayoutParams.WRAP_CONTENT
-                    )
+                    it.layoutParams = createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
                     it.text = parent.context.getString(R.string.danh_gia_cua_ban)
                     it.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
                     it.includeFontPadding = false
@@ -2823,23 +2839,18 @@ object ViewHelper {
 
                 //tv điểm đánh giá
                 layoutHeader.addView(AppCompatTextView(parent.context).also {
-                    it.layoutParams = createLayoutParams(
-                            LinearLayout.LayoutParams.WRAP_CONTENT,
-                            LinearLayout.LayoutParams.WRAP_CONTENT
-                    ).also {
+                    it.layoutParams = createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).also {
                         it.topMargin = SizeHelper.size4
                     }
                     it.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(it.context))
-                    it.typeface =
-                            Typeface.createFromAsset(parent.context.assets, "font/barlow_semi_bold.ttf")
+                    it.typeface = Typeface.createFromAsset(parent.context.assets, "font/barlow_semi_bold.ttf")
                     it.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
                     it.includeFontPadding = false
                 })
             })
 
             //view star
-            val viewStar = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_list_rating_36dp, parent, false)
+            val viewStar = LayoutInflater.from(parent.context).inflate(R.layout.item_list_rating_36dp, parent, false)
             it.addView(viewStar)
         })
 
@@ -2858,12 +2869,7 @@ object ViewHelper {
                 it.text = parent.context.getString(R.string.xem_chi_tiet)
                 it.typeface = Typeface.createFromAsset(parent.context.assets, "font/barlow_medium.ttf")
                 it.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13f)
-                it.setCompoundDrawablesWithIntrinsicBounds(
-                        0,
-                        0,
-                        R.drawable.ic_arrow_down_blue_24px,
-                        0
-                )
+                it.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_blue_24px, 0)
                 it.includeFontPadding = false
             })
         }
@@ -2884,12 +2890,7 @@ object ViewHelper {
             it.layoutParams = createLayoutParams().also {
                 it.setMargins(SizeHelper.size12, 0, SizeHelper.size12, SizeHelper.size10)
             }
-            it.setTextColor(
-                    ContextCompat.getColor(
-                            parent.context,
-                            R.color.colorNormalText
-                    )
-            )
+            it.setTextColor(ContextCompat.getColor(parent.context, R.color.colorNormalText))
             it.typeface = Typeface.createFromAsset(parent.context.assets, "font/barlow_medium.ttf")
             it.maxLines = 3
             it.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
@@ -2914,7 +2915,7 @@ object ViewHelper {
         layoutPermission.addView(CircleImageView(parent.context).also {
             it.layoutParams = createLayoutParams(SizeHelper.dpToPx(30), SizeHelper.dpToPx(30))
             it.borderWidth = SizeHelper.size0_5
-            it.borderColor = ContextCompat.getColor(parent.context, R.color.gray)
+            it.borderColor = ContextCompat.getColor(parent.context, R.color.colorLineView)
         })
 
         layoutPermission.addView(AppCompatTextView(parent.context).also {
@@ -2943,7 +2944,7 @@ object ViewHelper {
             }
             layoutParams.gravity = Gravity.CENTER_VERTICAL
             layoutParams.orientation = LinearLayout.HORIZONTAL
-            layoutParams.background = ContextCompat.getDrawable(context, R.drawable.bg_corners_white_4_border_05)
+            layoutParams.background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteRadius4StrokeLineColor0_5(context)
 
             layoutParams.addView(AppCompatImageView(context).also { img ->
                 img.layoutParams = createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
@@ -3388,7 +3389,7 @@ object ViewHelper {
                 it.setMargins(SizeHelper.size12, 0, 0, 0)
             }
             layoutParams.orientation = LinearLayout.HORIZONTAL
-            layoutParams.setBackgroundResource(R.drawable.bg_stroke_gray_corner_4)
+            layoutParams.background=vn.icheck.android.ichecklibs.ViewHelper.bgTransparentRadius4StrokeLineColor1(layoutParams.context)
 
             layoutParams.addView(AppCompatImageView(context).also { params ->
                 params.layoutParams = createLayoutParams(SizeHelper.size40, SizeHelper.size40).also {
@@ -3529,7 +3530,7 @@ object ViewHelper {
                     view.layoutParams = createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size1).also {
                         it.setMargins(0, SizeHelper.size14, 0, 0)
                     }
-                    view.setBackgroundColor(ContextCompat.getColor(context, R.color.gray))
+                    view.setBackgroundColor(Constant.getLineColor(context))
                 })
             })
         }

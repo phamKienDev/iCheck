@@ -51,8 +51,7 @@ class PermissionsFragment : Fragment() {
         }
         if (hasPermissions(requireContext())) {
             // If permissions have already been granted, proceed
-           findNavController().navigate(
-                    PermissionsFragmentDirections.actionPermissionsFragmentToCameraFragment(id?.cameraId.toString(), ImageFormat.JPEG))
+           findNavController().navigate(PermissionsFragmentDirections.actionPermissionsFragmentToCameraFragment(id?.cameraId.toString(), ImageFormat.JPEG))
         } else {
             // Request camera-related permissions
             requestPermissions(PERMISSIONS_REQUIRED, PERMISSIONS_REQUEST_CODE)
@@ -75,8 +74,7 @@ class PermissionsFragment : Fragment() {
                 }
 
                 // Takes the user to the success fragment when permission is granted
-               findNavController().navigate(
-                        PermissionsFragmentDirections.actionPermissionsFragmentToCameraFragment(id?.cameraId.toString(), ImageFormat.JPEG))
+               findNavController().navigate(PermissionsFragmentDirections.actionPermissionsFragmentToCameraFragment(id?.cameraId.toString(), ImageFormat.JPEG))
             } else {
                 Toast.makeText(context, "Permission request denied", Toast.LENGTH_LONG).show()
             }

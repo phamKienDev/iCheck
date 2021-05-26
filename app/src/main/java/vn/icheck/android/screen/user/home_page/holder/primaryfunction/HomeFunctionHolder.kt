@@ -78,16 +78,16 @@ class HomeFunctionHolder(parent: ViewGroup, isExistTheme: Boolean, listener: IHo
     fun updateTheme() {
         val path = FileHelper.getPath(itemView.context)
 
-        itemView.imgBackground.requestLayout()
-        val backgroundImage = BitmapFactory.decodeFile(path + FileHelper.homeBackgroundImage)
-        if (backgroundImage != null) {
-            itemView.imgBackground.apply {
-                setVisible()
-                setImageBitmap(backgroundImage)
-            }
-        } else {
-            itemView.imgBackground.setGone()
-        }
+//        itemView.imgBackground.requestLayout()
+//        val backgroundImage = BitmapFactory.decodeFile(path + FileHelper.homeBackgroundImage)
+//        if (backgroundImage != null) {
+//            itemView.imgBackground.apply {
+//                setVisible()
+//                setImageBitmap(backgroundImage)
+//            }
+//        } else {
+//            itemView.imgBackground.setGone()
+//        }
 
         itemView.imgHeader.apply {
             val headerImage = BitmapFactory.decodeFile(path + FileHelper.homeHeaderImage)
@@ -201,7 +201,7 @@ class HomeFunctionHolder(parent: ViewGroup, isExistTheme: Boolean, listener: IHo
                     }
 
                     if (user?.kycStatus == 2) {
-                        setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_18dp, 0)
+                        setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_16dp, 0)
                     } else {
                         setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                     }

@@ -19,13 +19,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:paddingBottom="@dimen/size_10"
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@id/imgImage"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_0"
-            android:scaleType="centerCrop"
             app:layout_constraintDimensionRatio="H, 171:82"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -68,7 +68,7 @@
             android:layout_marginStart="@dimen/size_8"
             android:layout_marginLeft="@dimen/size_8"
             android:layout_marginTop="@dimen/size_8"
-            app:civ_border_color="#D8D8D8"
+            app:civ_border_color="@color/colorLineView"
             app:civ_border_width="0.5dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imgImage"
@@ -144,10 +144,11 @@
             android:layout_marginStart="@dimen/size_8"
             android:layout_marginTop="@dimen/size_12"
             android:layout_marginEnd="@dimen/size_8"
-            android:layout_marginBottom="@dimen/size_10"
             android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:maxLines="2"
+            android:visibility="gone"
+            android:textColor="@color/colorNormalText"
             android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imgAvatar"

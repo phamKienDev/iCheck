@@ -10,13 +10,13 @@ import vn.icheck.android.activities.chat.sticker.StickerDao
 import vn.icheck.android.activities.chat.sticker.StickerPackages
 import vn.icheck.android.activities.chat.sticker.StickerPackagesDao
 import vn.icheck.android.activities.chat.sticker.StickerView
-import vn.icheck.android.model.chat.ChatConversation
+import vn.icheck.android.network.model.chat.ChatConversation
 import vn.icheck.android.room.dao.*
 import vn.icheck.android.room.entity.*
 
-@Database(entities = [ICProvince::class, ICDistrict::class, ICWard::class, ICCart::class, ICQrScan::class,
+@Database(entities = [ICProvince::class, ICDistrict::class, ICWard::class, ICCart::class,
     StickerView::class, StickerPackages::class, ICMyFollowingPage::class,ChatConversation::class,
-    ICOwnerPage::class, ICMeFollowUser::class, ICMyFriendIdUser::class, ICMyFriendInvitationUserId::class, ICFriendInvitationMeUserId::class, ICProductIdInCart::class], version = 26)
+    ICOwnerPage::class, ICMeFollowUser::class, ICMyFriendIdUser::class, ICMyFriendInvitationUserId::class, ICFriendInvitationMeUserId::class, ICProductIdInCart::class], version = 27)
 @TypeConverters(ShopCartConverter::class, ItemsConverter::class)
 abstract class AppDatabase : RoomDatabase() {
 
@@ -24,7 +24,6 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun districtDao(): DistrictDao
     abstract fun wardDao(): WardDao
     abstract fun cartDao(): CartDao
-    abstract fun qrScanDao(): QrScanDao
     abstract fun stickerDao(): StickerDao
     abstract fun stickerPackagesDao(): StickerPackagesDao
     abstract fun pageFollowsDao(): PageFollowDao

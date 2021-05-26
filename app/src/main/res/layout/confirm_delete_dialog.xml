@@ -27,10 +27,9 @@
         android:textAlignment="center"
         android:textColor="#4F4F4F" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_1"
-        android:background="@color/gray" />
+        android:layout_height="@dimen/size_1"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -48,10 +47,9 @@
             android:textAlignment="center"
             android:textSize="@dimen/font_16" />
 
-        <View
+        <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
             android:layout_width="@dimen/size_1"
-            android:layout_height="match_parent"
-            android:background="@color/gray" />
+            android:layout_height="match_parent"/>
 
         <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
             android:id="@+id/btn_yes"

@@ -13,6 +13,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.component.product.ProductDetailListener
 import vn.icheck.android.helper.ImageHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
 
@@ -21,6 +22,7 @@ class HeaderInforProductComponent(view: View, val listener: ProductDetailListene
 
     fun bind(productHeaderModel: ProductHeaderModelV2) {
         itemView.img_fav.apply {
+            background=ViewHelper.bgTransparentRadius4StrokeLineColor0_5(itemView.img_fav.context)
             if (productHeaderModel.icBarcodeProduct.isBookMark == true) {
                 setImageResource(R.drawable.ic_like_on_24dp)
             } else {

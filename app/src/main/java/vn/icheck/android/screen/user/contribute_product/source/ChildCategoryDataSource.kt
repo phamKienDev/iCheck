@@ -3,7 +3,7 @@ package vn.icheck.android.screen.user.contribute_product.source
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import vn.icheck.android.model.category.CategoryItem
+import vn.icheck.android.network.model.category.CategoryItem
 import vn.icheck.android.network.api.ICKApi
 import javax.inject.Inject
 

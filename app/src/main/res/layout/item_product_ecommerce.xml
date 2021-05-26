@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/size_10"
-    android:background="@drawable/btn_white_outline_gray_0_5_corners_4"
     android:padding="@dimen/size_10">
 
     <androidx.appcompat.widget.AppCompatImageView

@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
 import vn.icheck.android.ichecklibs.Constant
 
-class TextDisableHint : AppCompatTextView {
+open class TextDisableHint : AppCompatTextView {
 
     constructor(context: Context) : super(context) {
         setup()

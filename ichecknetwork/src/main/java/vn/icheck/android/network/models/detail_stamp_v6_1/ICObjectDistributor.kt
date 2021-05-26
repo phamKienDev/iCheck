@@ -13,6 +13,8 @@ data class ICObjectDistributor(
         @Expose
         var city: String? = null,
         @Expose
+        var country_name: String? = null,
+        @Expose
         var city_id: Long? = null,
         @Expose
         var collaborator_phone: String? = null,

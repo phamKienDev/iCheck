@@ -59,11 +59,14 @@ class IntegerHolder(val binding:ItemIntegerBinding):CoroutineViewHolder(binding.
             if (categoryAttributesModel.values is Double) {
                 binding.tvValue.setText((categoryAttributesModel.values as Double).toInt().toString())
                 value = (categoryAttributesModel.values as Double).toLong()
-            } else if(categoryAttributesModel.values is Int){
+            } else if (categoryAttributesModel.values is Int) {
                 binding.tvValue.setText(categoryAttributesModel.values.toString())
                 value = categoryAttributesModel.values as Long
             }
 
+        } else {
+            binding.tvValue.setText("")
+            value = 0L
         }
         binding.tvValue.addTextChangedListener {
             if (it.toString().toLongOrNull() != null) {

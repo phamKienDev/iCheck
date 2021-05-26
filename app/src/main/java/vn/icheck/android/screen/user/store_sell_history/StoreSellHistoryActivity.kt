@@ -161,7 +161,7 @@ class StoreSellHistoryActivity : BaseActivityMVVM(), StoreSellHistoryView {
         val data = JsonHelper.toJson(listData)
         val intent = Intent(this, MapScanHistoryActivity::class.java)
         intent.putExtra(Constant.DATA_1, data)
-        intent.putExtra(Constant.DATA_2, id)
+        intent.putExtra(Constant.DATA_2, viewModel.idProduct)
         startActivity(intent)
     }
 

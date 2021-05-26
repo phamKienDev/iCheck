@@ -6,17 +6,14 @@ import android.os.Build
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.Gravity
-import android.view.View
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
-import androidx.core.view.marginEnd
 import de.hdodenhof.circleimageview.CircleImageView
 import vn.icheck.android.R
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.network.models.ICUser
 import vn.icheck.android.network.models.feed.ICAvatarOfFriend
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -54,7 +51,7 @@ class ListAvatar : LinearLayout {
                 for (i in 0 until mSize) {
                     addView(CircleImageView(context).also { avatar ->
                         avatar.layoutParams = ViewHelper.createLayoutParams(SizeHelper.size28, SizeHelper.size28, marginStart, 0, 0, 0)
-                        avatar.borderColor = ContextCompat.getColor(context, R.color.gray)
+                        avatar.borderColor = ContextCompat.getColor(context, R.color.colorLineView)
                         avatar.borderWidth = SizeHelper.size0_5
                         avatar.elevation = elevation
                         WidgetUtils.loadImageUrl(avatar, obj.user!![i], error)
@@ -68,7 +65,7 @@ class ListAvatar : LinearLayout {
 
                     frameLayout.addView(CircleImageView(context).also { avatar ->
                         avatar.layoutParams = ViewHelper.createLayoutParams(SizeHelper.size28, SizeHelper.size28)
-                        avatar.borderColor = ContextCompat.getColor(context, R.color.gray)
+                        avatar.borderColor = ContextCompat.getColor(context, R.color.colorLineView)
                         avatar.borderWidth = SizeHelper.size0_5
                         WidgetUtils.loadImageUrl(avatar, obj.user!![mSize], error)
                     })

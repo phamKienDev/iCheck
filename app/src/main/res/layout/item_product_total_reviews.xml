@@ -14,12 +14,11 @@
         android:paddingEnd="@dimen/size_12"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <vn.icheck.android.ichecklibs.view.line_color.ViewLineDotted
             android:id="@id/viewTop"
             android:layout_width="0dp"
             android:layout_height="@dimen/size_4"
             android:layerType="software"
-            android:src="@drawable/dotted"
             app:layout_constraintEnd_toEndOf="@+id/tvViewAll"
             app:layout_constraintStart_toStartOf="@+id/ratingBar"
             app:layout_constraintTop_toTopOf="parent" />

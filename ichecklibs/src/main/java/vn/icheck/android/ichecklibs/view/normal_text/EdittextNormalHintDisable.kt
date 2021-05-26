@@ -6,7 +6,7 @@ import android.widget.EditText
 import androidx.appcompat.widget.AppCompatEditText
 import vn.icheck.android.ichecklibs.Constant
 
-class EdittextNormalHintDisable : EdittextNormal {
+open class EdittextNormalHintDisable : EdittextNormal {
     constructor(context: Context) : super(context) {
         setup()
     }

@@ -54,7 +54,7 @@
             app:layout_constraintEnd_toEndOf="@+id/appCompatImageView5"
             app:layout_constraintStart_toEndOf="@+id/imgProduct"
             app:layout_constraintTop_toTopOf="@+id/imgProduct"
-            tools:text="Son kem lì Innissfree (tên quà dài không giới hạn...) tiếp tiếp tiếp tiếp"
+            tools:text="Son kem lì Innissfree "
             android:layout_marginEnd="@dimen/size_30"
             android:layout_marginStart="@dimen/size_10" />
 
@@ -126,7 +126,7 @@
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/appCompatTextView18"
+            android:id="@+id/tvTitleDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_50"
@@ -146,10 +146,10 @@
             android:includeFontPadding="false"
             android:singleLine="true"
             android:textColor="#434343"
-            app:layout_constraintBottom_toBottomOf="@id/appCompatTextView18"
+            app:layout_constraintBottom_toBottomOf="@id/tvTitleDate"
             app:layout_constraintEnd_toEndOf="@+id/linearLayout"
             app:layout_constraintStart_toStartOf="@id/linearLayout"
-            app:layout_constraintTop_toTopOf="@id/appCompatTextView18"
+            app:layout_constraintTop_toTopOf="@id/tvTitleDate"
             tools:text="13:34, 20/02/2020" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -161,8 +161,8 @@
             android:includeFontPadding="false"
             android:text="@string/loai_qua"
             android:textColor="#757575"
-            app:layout_constraintStart_toStartOf="@+id/appCompatTextView18"
-            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView18" />
+            app:layout_constraintStart_toStartOf="@+id/tvTitleDate"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleDate" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvVanChuyen"

@@ -1,53 +1,97 @@
 package vn.icheck.android.base.dialog.reward_login
 
-import android.content.Context
-import androidx.appcompat.widget.AppCompatButton
-import androidx.appcompat.widget.AppCompatTextView
+import android.content.DialogInterface
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.Window
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentManager
+import kotlinx.android.synthetic.main.dialog_reward_login.*
+import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseDialog
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.screen.checktheme.CheckThemeActivity
 
-abstract class RewardLoginDialog(context: Context) : BaseDialog(context, R.style.DialogTheme) {
+class RewardLoginDialog : DialogFragment() {
 
     private var isStartLogin = false
 
-    override val getLayoutID: Int
-        get() = R.layout.dialog_reward_login
+    private var listener: RewardLoginCallback? = null
 
-    override val getIsCancelable: Boolean
-        get() = true
+    companion object {
+        var currentFragmentManager: String? = null
+        fun show(fragmentManager: FragmentManager, callback: RewardLoginCallback) {
+            if (fragmentManager.findFragmentByTag(RewardLoginDialog::class.java.simpleName)?.isAdded == true) {
+                currentFragmentManager = null
+            } else {
+                if (ICheckApplication.currentActivity() !is CheckThemeActivity) {
+                    if (currentFragmentManager != fragmentManager.toString()) {
+                        RewardLoginDialog().apply {
+                            setListener(callback)
+                            show(fragmentManager, RewardLoginDialog::class.java.simpleName)
+                            currentFragmentManager = fragmentManager.toString()
+                        }
+                    }
+                }
+            }
+        }
+    }
 
-    override fun onInitView() {
-        findViewById<AppCompatTextView>(R.id.btnLogin)?.apply {
+    fun setListener(listener: RewardLoginCallback){
+        this.listener = listener
+    }
+
+    override fun onStart() {
+        super.onStart()
+        dialog?.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        dialog?.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        if (dialog != null && dialog!!.window != null) {
+            dialog!!.window!!.requestFeature(Window.FEATURE_NO_TITLE)
+        }
+        return inflater.inflate(R.layout.dialog_reward_login, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        currentFragmentManager = null
+        btnLogin.apply{
             background = ViewHelper.bgPrimaryCorners4(context)
             setOnClickListener {
                 isStartLogin = true
                 dismiss()
-                onLogin()
+                listener?.onLogin()
             }
         }
 
-        findViewById<AppCompatTextView>(R.id.btnRegister)?.apply {
+        btnRegister.apply{
             background = ViewHelper.bgOutlinePrimary1Corners4(context)
             setOnClickListener {
                 isStartLogin = true
                 dismiss()
-                onRegister()
+                listener?.onRegister()
             }
         }
 
-        findViewById<AppCompatTextView>(R.id.tvClose)?.setOnClickListener {
+
+        tvClose?.setOnClickListener {
             dismiss()
-            onDismiss()
+            listener?.onDismiss()
         }
 
-        setOnDismissListener {
-            if (!isStartLogin)
-                onDismiss()
-        }
     }
 
-    protected abstract fun onLogin()
-    protected abstract fun onRegister()
-    protected abstract fun onDismiss()
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        if (!isStartLogin)
+            listener?.onDismiss()
+    }
+
 }

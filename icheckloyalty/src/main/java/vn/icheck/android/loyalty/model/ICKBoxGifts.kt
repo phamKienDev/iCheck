@@ -1,5 +1,7 @@
 package vn.icheck.android.loyalty.model
 
+import android.content.res.ColorStateList
+import android.graphics.drawable.Drawable
 import com.google.gson.annotations.Expose
 import java.io.Serializable
 
@@ -44,6 +46,9 @@ class ICKBoxGifts: Serializable {
     var gift: ICKGift? = null
 
     @Expose
+    var voucher: ICKVoucher? = null
+
+    @Expose
     var export_gift_to: String? = null
 
     @Expose
@@ -57,4 +62,25 @@ class ICKBoxGifts: Serializable {
      * state = 5 -> Hủy
      */
     var state = 0
+
+    /**
+     * sau khi đã sửa theo điều kiện
+     * title Date
+     * date
+     * status
+     * color Text status
+     * color Background status
+     */
+    var titleDate: String? = null
+
+    var dateChange: String? = null
+
+    var statusChange: String? = null
+
+    var colorText: Int = 0
+
+    var colorBackground: Int = 0
+    /**
+     * End
+     */
 }

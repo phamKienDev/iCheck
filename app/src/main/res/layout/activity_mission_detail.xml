@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_item_search">
+    android:background="@color/gra1y_item_search">
 
 
     <androidx.core.widget.NestedScrollView
@@ -110,10 +110,9 @@
                                     tools:text="2 ngày, 14 giờ 12 phút" />
                             </LinearLayout>
 
-                            <View
+                            <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
                                 android:layout_width="@dimen/size_0_5"
-                                android:layout_height="match_parent"
-                                android:background="@color/gray" />
+                                android:layout_height="match_parent" />
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvGift"
@@ -139,10 +138,9 @@
 
                         </LinearLayout>
 
-                        <View
+                        <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
                             android:layout_width="match_parent"
-                            android:layout_height="0.5dp"
-                            android:background="#D8D8D8"/>
+                            android:layout_height="0.5dp"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"

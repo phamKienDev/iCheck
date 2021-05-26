@@ -73,7 +73,8 @@ class ListShakeGridBoxActivity : BaseActivityMVVM() {
     }
 
     private fun initRecycleView() {
-        recyclerView.layoutManager = GridLayoutManager(this@ListShakeGridBoxActivity, 3, GridLayoutManager.VERTICAL, false)
+        recyclerView.layoutManager =
+            GridLayoutManager(this@ListShakeGridBoxActivity, 3, GridLayoutManager.VERTICAL, false)
         recyclerView.adapter = adapter
         adapter.setItemClickListener(object : ItemClickListener<ICGridBoxShake> {
             override fun onItemClick(position: Int, item: ICGridBoxShake?) {
@@ -91,7 +92,12 @@ class ListShakeGridBoxActivity : BaseActivityMVVM() {
     private fun listenerGetData() {
         viewModel.icItemReward.observe(this, {
             it.itemCount?.let { number -> numberGiftUser = number }
-            WidgetUtils.loadImageUrl(imgBanner, it.image, R.drawable.bg_error_campaign, R.drawable.bg_error_campaign)
+            WidgetUtils.loadImageUrl(
+                imgBanner,
+                it.image,
+                R.drawable.bg_error_campaign,
+                R.drawable.bg_error_campaign
+            )
             tvCountGift.text = "${it.itemCount}"
         })
 
@@ -112,15 +118,20 @@ class ListShakeGridBoxActivity : BaseActivityMVVM() {
         viewModel.statusCode.observe(this, {
             when (it) {
                 ICMessageEvent.Type.ON_NO_INTERNET -> {
-                    DialogHelper.showConfirm(this, R.string.khong_co_ket_noi_mang_vui_long_thu_lai_sau, R.string.huy_bo, R.string.thu_lai, object : ConfirmDialogListener {
-                        override fun onDisagree() {
-                            onBackPressed()
-                        }
+                    DialogHelper.showConfirm(
+                        this,
+                        R.string.khong_co_ket_noi_mang_vui_long_thu_lai_sau,
+                        R.string.huy_bo,
+                        R.string.thu_lai,
+                        object : ConfirmDialogListener {
+                            override fun onDisagree() {
+                                onBackPressed()
+                            }
 
-                        override fun onAgree() {
-                            viewModel.getDataIntent(intent)
-                        }
-                    })
+                            override fun onAgree() {
+                                viewModel.getDataIntent(intent)
+                            }
+                        })
                 }
                 else -> {
                 }
@@ -130,19 +141,27 @@ class ListShakeGridBoxActivity : BaseActivityMVVM() {
         viewModel.errorData.observe(this, {
             when (it) {
                 Constant.ERROR_EMPTY -> {
-                    DialogHelper.showNotification(this, R.string.co_loi_xay_ra_vui_long_thu_lai, false, object : NotificationDialogListener {
-                        override fun onDone() {
-                            onBackPressed()
-                        }
-                    })
+                    DialogHelper.showNotification(
+                        this,
+                        R.string.co_loi_xay_ra_vui_long_thu_lai,
+                        false,
+                        object : NotificationDialogListener {
+                            override fun onDone() {
+                                onBackPressed()
+                            }
+                        })
                 }
 
                 Constant.ERROR_SERVER -> {
-                    DialogHelper.showNotification(this, R.string.co_loi_xay_ra_vui_long_thu_lai, false, object : NotificationDialogListener {
-                        override fun onDone() {
-                            onBackPressed()
-                        }
-                    })
+                    DialogHelper.showNotification(
+                        this,
+                        R.string.co_loi_xay_ra_vui_long_thu_lai,
+                        false,
+                        object : NotificationDialogListener {
+                            override fun onDone() {
+                                onBackPressed()
+                            }
+                        })
                 }
             }
         })
@@ -164,25 +183,52 @@ class ListShakeGridBoxActivity : BaseActivityMVVM() {
             btnMore.isEnabled = false
             object : MoreShakeBottomSheet(this@ListShakeGridBoxActivity, viewModel.objCampaign) {
                 override fun onClickHistoryShake() {
-                    startActivity(Intent(this@ListShakeGridBoxActivity, GiftHistoryV2Activity::class.java).apply {
-                        putExtra(Constant.DATA_1, "${this@ListShakeGridBoxActivity.viewModel.objCampaign?.id}")
-                        putExtra(LOGO, "${this@ListShakeGridBoxActivity.viewModel.objCampaign?.image}")
-                    })
+                    startActivity(
+                        Intent(
+                            this@ListShakeGridBoxActivity,
+                            GiftHistoryV2Activity::class.java
+                        ).apply {
+                            putExtra(
+                                Constant.DATA_1,
+                                "${this@ListShakeGridBoxActivity.viewModel.objCampaign?.id}"
+                            )
+                            putExtra(
+                                LOGO,
+                                "${this@ListShakeGridBoxActivity.viewModel.objCampaign?.image}"
+                            )
+                        })
                     dialog.dismiss()
                 }
 
                 override fun onClickHistoryReward() {
-                    startActivity(Intent(this@ListShakeGridBoxActivity, GiftOfCampaignActivity::class.java).apply {
-                        putExtra(CAMPAIGN_ID, "${this@ListShakeGridBoxActivity.viewModel.objCampaign?.id}")
-                        putExtra(LOGO, "${this@ListShakeGridBoxActivity.viewModel.objCampaign?.image}")
-                    })
+                    startActivity(
+                        Intent(
+                            this@ListShakeGridBoxActivity,
+                            GiftOfCampaignActivity::class.java
+                        ).apply {
+                            putExtra(
+                                CAMPAIGN_ID,
+                                "${this@ListShakeGridBoxActivity.viewModel.objCampaign?.id}"
+                            )
+                            putExtra(
+                                LOGO,
+                                "${this@ListShakeGridBoxActivity.viewModel.objCampaign?.image}"
+                            )
+                        })
                     dialog.dismiss()
                 }
 
                 override fun onClickTutorial() {
-                    startActivity(Intent(this@ListShakeGridBoxActivity, WinnerCampaignActivity::class.java).apply {
-                        putExtra(Constant.DATA_1, "${this@ListShakeGridBoxActivity.viewModel.objCampaign?.id}")
-                    })
+                    startActivity(
+                        Intent(
+                            this@ListShakeGridBoxActivity,
+                            WinnerCampaignActivity::class.java
+                        ).apply {
+                            putExtra(
+                                Constant.DATA_1,
+                                "${this@ListShakeGridBoxActivity.viewModel.objCampaign?.id}"
+                            )
+                        })
                     dialog.dismiss()
                 }
 
@@ -229,22 +275,48 @@ class ListShakeGridBoxActivity : BaseActivityMVVM() {
     }
 
     private fun showEmpityGiftDialog(message: String) {
-        DialogHelper.showDialogEmtyBoxGift(this@ListShakeGridBoxActivity, R.drawable.ic_emty_box_shake, message, viewModel.objCampaign!!.id!!, viewModel.listMissionActive, false, object : NotEnoughPointListener {
-            override fun onClose() {
-            }
+        DialogHelper.showDialogEmtyBoxGift(
+            this@ListShakeGridBoxActivity,
+            R.drawable.ic_emty_box_shake,
+            message,
+            viewModel.objCampaign!!.id!!,
+            viewModel.listMissionActive,
+            false,
+            object : NotEnoughPointListener {
+                override fun onClose() {
+                }
 
-            override fun onGiveIcoin() {
-                startActivity(Intent(this@ListShakeGridBoxActivity, GiftOfCampaignActivity::class.java).apply {
-                    putExtra(CAMPAIGN_ID, "${this@ListShakeGridBoxActivity.viewModel.objCampaign?.id}")
-                    putExtra(LOGO, "${this@ListShakeGridBoxActivity.viewModel.objCampaign?.image}")
-                })
-            }
-        })
+                override fun onGiveIcoin() {
+                    startActivity(
+                        Intent(
+                            this@ListShakeGridBoxActivity,
+                            GiftOfCampaignActivity::class.java
+                        ).apply {
+                            putExtra(
+                                CAMPAIGN_ID,
+                                "${this@ListShakeGridBoxActivity.viewModel.objCampaign?.id}"
+                            )
+                            putExtra(
+                                LOGO,
+                                "${this@ListShakeGridBoxActivity.viewModel.objCampaign?.image}"
+                            )
+                        })
+                }
+            })
     }
 
     override fun onResume() {
         tvAddMoreTurn.isEnabled = true
         super.onResume()
+    }
+
+    override fun onMessageEvent(event: ICMessageEvent) {
+        super.onMessageEvent(event)
+        if(event.type==ICMessageEvent.Type.REQUEST_MISSION_SUCCESS){
+            if(event.data is String && event.data.isNotEmpty()){
+                viewModel.getInfoCampaign(event.data)
+            }
+        }
     }
 
     override fun onRequireLoginSuccess(requestCode: Int) {
@@ -264,6 +336,14 @@ class ListShakeGridBoxActivity : BaseActivityMVVM() {
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == requestCount) {
                 viewModel.getDataIntentWithType(data)
+                if (data?.getIntExtra(Constant.DATA_2, 0) ?: 1 == 2) {
+                    // luồng lắc quà success để bắn lên insider
+                    val idCampaign = data?.getStringExtra(Constant.DATA_3)
+                    val rewarType = data?.getStringExtra(Constant.DATA_4)
+                    if (!idCampaign.isNullOrEmpty() && !rewarType.isNullOrEmpty()) {
+                        TrackingAllHelper.tagOpenGiftBoxDismissClicked(idCampaign, rewarType)
+                    }
+                }
                 tvCountGift.text = "$numberGiftUser"
                 if (numberGiftUser == 0) {
                     checkShowDialogEmpity()

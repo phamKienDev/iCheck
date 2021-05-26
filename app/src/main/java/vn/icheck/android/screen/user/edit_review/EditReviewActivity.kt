@@ -57,6 +57,7 @@ class EditReviewActivity : BaseActivityMVVM() {
     }
 
     private fun setupView() {
+        containerSubmit.background=ViewHelper.bgTransparentRadius4StrokeLineColor1(this)
         btnSend.background = ViewHelper.btnPrimaryCorners4(this)
     }
 

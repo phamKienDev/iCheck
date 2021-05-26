@@ -10,6 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:orientation="horizontal">
 
         <ImageView
@@ -23,6 +24,7 @@
             android:id="@+id/textView4"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/size_50"
             android:layout_marginEnd="@dimen/size_50"
             android:layout_weight="1"
             android:focusableInTouchMode="true"
@@ -33,9 +35,7 @@
 
     <View
         android:id="@+id/divider4"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/size_1"
-        android:background="?android:attr/listDivider" />
+        style="@style/Shadow_Bottom"/>
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/root_scroll"
@@ -184,7 +184,6 @@
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_6"
                 android:layout_marginEnd="@dimen/size_12"
-                android:background="@drawable/bg_edt_ick_contribute_product_disabled"
                 android:ems="10"
                 android:enabled="false"
                 android:focusable="false"
@@ -203,14 +202,13 @@
                 android:text="Tên sản phẩm (*)"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
+            <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalHintDisableBgWhiteRadius4Stroke1
                 android:id="@+id/edt_name_product"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_6"
                 android:layout_marginEnd="@dimen/size_12"
-                android:background="@drawable/bg_edt_ick_contribute_product"
                 android:ems="10"
                 android:fontFamily="@font/barlow_medium"
                 android:hint="Nhập tên sản phẩm"
@@ -226,14 +224,13 @@
                 android:text="Giá sản phẩm"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
+            <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalHintDisableBgWhiteRadius4Stroke1
                 android:id="@+id/edt_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_6"
                 android:layout_marginEnd="@dimen/size_12"
-                android:background="@drawable/bg_edt_ick_contribute_product"
                 android:fontFamily="@font/barlow_medium"
                 android:hint="Nhập giá sản phẩm"
                 android:inputType="number"
@@ -252,13 +249,12 @@
                 android:textSize="@dimen/font_12" />
 
 
-            <LinearLayout
+            <vn.icheck.android.ichecklibs.view.line_color.LinearLayoutBgWhiteRadius4
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_6"
-                android:layout_marginEnd="@dimen/size_12"
-                android:background="@drawable/bg_edt_ick_contribute_product">
+                android:layout_marginEnd="@dimen/size_12">
 
                 <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormal
                     android:id="@+id/edt_category"
@@ -274,7 +270,7 @@
                     android:hint="Chọn danh mục"
                     android:padding="@dimen/size_8"
                     android:textSize="@dimen/font_14" />
-            </LinearLayout>
+            </vn.icheck.android.ichecklibs.view.line_color.LinearLayoutBgWhiteRadius4>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/group_attributes"
@@ -306,14 +302,13 @@
                 android:text="Tên doanh nghiệp"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
+            <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalHintDisableBgWhiteRadius4Stroke1
                 android:id="@+id/edt_name_page"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_6"
                 android:layout_marginEnd="@dimen/size_12"
-                android:background="@drawable/bg_edt_ick_contribute_product"
                 android:ems="10"
                 android:fontFamily="@font/barlow_medium"
                 android:hint="Nhập tên doanh nghiệp"
@@ -329,14 +324,13 @@
                 android:text="Địa chỉ "
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
+            <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalHintDisableBgWhiteRadius4Stroke1
                 android:id="@+id/edt_address_page"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_6"
                 android:layout_marginEnd="@dimen/size_12"
-                android:background="@drawable/bg_edt_ick_contribute_product"
                 android:ems="10"
                 android:fontFamily="@font/barlow_medium"
                 android:hint="Nhập địa chỉ"
@@ -352,14 +346,13 @@
                 android:text="Số điện thoại"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
+            <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalHintDisableBgWhiteRadius4Stroke1
                 android:id="@+id/edt_phone_page"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_6"
                 android:layout_marginEnd="@dimen/size_12"
-                android:background="@drawable/bg_edt_ick_contribute_product"
                 android:digits="0123456789"
                 android:ems="10"
                 android:fontFamily="@font/barlow_medium"
@@ -377,14 +370,13 @@
                 android:text="Email"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
+            <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalHintDisableBgWhiteRadius4Stroke1
                 android:id="@+id/edt_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_6"
                 android:layout_marginEnd="@dimen/size_12"
-                android:background="@drawable/bg_edt_ick_contribute_product"
                 android:ems="10"
                 android:fontFamily="@font/barlow_medium"
                 android:hint="Nhập email"
@@ -401,14 +393,13 @@
                 android:text="Mã số thuế"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
+            <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalHintDisableBgWhiteRadius4Stroke1
                 android:id="@+id/edt_tax"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_6"
                 android:layout_marginEnd="@dimen/size_12"
-                android:background="@drawable/bg_edt_ick_contribute_product"
                 android:digits="0123456789"
                 android:ems="10"
                 android:fontFamily="@font/barlow_medium"

@@ -10,8 +10,8 @@ import kotlinx.android.synthetic.main.item_choose_page_share.view.*
 import kotlinx.android.synthetic.main.item_service_shop_variant.view.*
 import vn.icheck.android.R
 import vn.icheck.android.callback.ItemClickListener
-import vn.icheck.android.model.ICNameId
-import vn.icheck.android.model.ICNameValue
+import vn.icheck.android.network.model.ICNameId
+import vn.icheck.android.network.model.ICNameValue
 import vn.icheck.android.network.models.ICChoosePage
 import vn.icheck.android.network.models.ICItemReward
 import vn.icheck.android.network.models.ICPageUserManager

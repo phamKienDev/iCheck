@@ -138,7 +138,7 @@ class ReportProductActivity : BaseActivityMVVM() {
             }
         })
 
-        layoutParent.addView(ViewHelper.createEditText(this, ViewHelper.createLayoutParams(SizeHelper.size12, 0, SizeHelper.size12, 0), ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size1, ContextCompat.getColor(this, R.color.gray), SizeHelper.size4.toFloat()), ViewHelper.createTypeface(this, R.font.barlow_medium), Constant.getNormalTextColor(this), 14f).also {
+        layoutParent.addView(ViewHelper.createEditText(this, ViewHelper.createLayoutParams(SizeHelper.size12, 0, SizeHelper.size12, 0), ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size1, ContextCompat.getColor(this, R.color.colorLineView), SizeHelper.size4.toFloat()), ViewHelper.createTypeface(this, R.font.barlow_medium), Constant.getNormalTextColor(this), 14f).also {
             it.setHintTextColor(Constant.getDisableTextColor(this))
             it.minLines = 3
             it.maxLines = 6

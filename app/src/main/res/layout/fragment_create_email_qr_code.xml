@@ -69,14 +69,13 @@
                 android:text="Email"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
+            <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalHintDisableBgWhiteRadius4Stroke05
                 android:id="@id/edtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_36"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_6"
                 android:layout_marginEnd="@dimen/size_12"
-                android:background="@drawable/bg_corner_gray_solid_white"
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="start|center"
                 android:hint="Bắt buộc"
@@ -111,14 +110,13 @@
                 android:text="Tiêu đề"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
+            <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalHintDisableBgWhiteRadius4Stroke05
                 android:id="@id/edtTitle"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_36"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_6"
                 android:layout_marginEnd="@dimen/size_12"
-                android:background="@drawable/bg_corner_gray_solid_white"
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="start|center"
                 android:hint="Không bắt buộc"
@@ -153,14 +151,13 @@
                 android:text="Nội dung tin nhắn"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
+            <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalHintDisableBgWhiteRadius4Stroke05
                 android:id="@id/edtContent"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_76"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_6"
                 android:layout_marginEnd="@dimen/size_12"
-                android:background="@drawable/bg_corner_gray_solid_white"
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="start|top"
                 android:hint="Nội dung"

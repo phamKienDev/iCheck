@@ -73,11 +73,10 @@
                 app:srb_stepSize="0.2" />
         </LinearLayout>
 
-        <View
+        <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_1"
-            android:layout_marginTop="@dimen/size_1"
-            android:background="@color/gray" />
+            android:layout_marginTop="@dimen/size_1"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

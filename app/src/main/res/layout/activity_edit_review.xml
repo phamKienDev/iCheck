@@ -75,7 +75,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/divider3" />
 
-
     <LinearLayout
         android:id="@+id/containerSubmit"
         android:layout_width="match_parent"
@@ -83,7 +82,6 @@
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
-        android:background="@drawable/bg_border_gray_4dp_shop"
         android:orientation="vertical"
         android:paddingLeft="@dimen/size_10"
         android:paddingRight="@dimen/size_10"
@@ -103,11 +101,10 @@
             android:lines="3"
             android:textSize="@dimen/font_14" />
 
-        <View
+        <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_1"
-            android:layout_marginTop="@dimen/size_12"
-            android:background="@color/gray" />
+            android:layout_marginTop="@dimen/size_12" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="wrap_content"

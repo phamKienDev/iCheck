@@ -18,6 +18,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Base64
 import androidx.annotation.MainThread
+import androidx.annotation.WorkerThread
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
@@ -28,16 +29,18 @@ import com.tripi.hotel.config.HotelSDK
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
+import vn.icheck.android.base.dialog.reward_login.RewardLoginCallback
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.ISettingListener
+import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.constant.ICK_REQUEST_CAMERA
 import vn.icheck.android.helper.*
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.loyalty.helper.ToastHelper
-import vn.icheck.android.loyalty.screen.gift_voucher.GiftDetailFromAppActivity
+import vn.icheck.android.loyalty.screen.gift_detail_from_app.GiftDetailFromAppActivity
 import vn.icheck.android.loyalty.screen.url_gift_detail.UrlGiftDetailActivity
 import vn.icheck.android.loyalty.sdk.LoyaltySdk
 import vn.icheck.android.network.base.*
@@ -47,6 +50,7 @@ import vn.icheck.android.network.models.ICCampaign
 import vn.icheck.android.network.models.ICClientSetting
 import vn.icheck.android.network.models.ICLink
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
+import vn.icheck.android.screen.dialog.DialogNotificationFirebaseAds
 import vn.icheck.android.screen.scan.MyQrActivity
 import vn.icheck.android.screen.scan.V6ScanditActivity
 import vn.icheck.android.screen.user.buy_mobile_card.BuyMobileCardV2Activity
@@ -59,14 +63,14 @@ import vn.icheck.android.screen.user.detail_stamp_v5.home.DetailStampV5Activity
 import vn.icheck.android.screen.user.detail_stamp_v6.home.DetailStampV6Activity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
 import vn.icheck.android.screen.user.home.HomeActivity
-import vn.icheck.android.screen.user.list_campaign.ListCampaignActivity
-import vn.icheck.android.screen.user.my_gift_warehouse.list_mission.list.ListMissionActivity
-import vn.icheck.android.screen.user.my_gift_warehouse.shake_gift.list_box_gift.ListShakeGridBoxActivity
 import vn.icheck.android.screen.user.icheckstore.list.ProductStoreiCheckActivity
+import vn.icheck.android.screen.user.list_campaign.ListCampaignActivity
 import vn.icheck.android.screen.user.list_product_question.ListProductQuestionActivity
 import vn.icheck.android.screen.user.listnotification.ListNotificationActivity
 import vn.icheck.android.screen.user.listproduct.ListProductActivity
 import vn.icheck.android.screen.user.missiondetail.MissionDetailActivity
+import vn.icheck.android.screen.user.my_gift_warehouse.list_mission.list.ListMissionActivity
+import vn.icheck.android.screen.user.my_gift_warehouse.shake_gift.list_box_gift.ListShakeGridBoxActivity
 import vn.icheck.android.screen.user.mygift.MyGiftActivity
 import vn.icheck.android.screen.user.newsdetailv2.NewDetailV2Activity
 import vn.icheck.android.screen.user.newslistv2.NewsListV2Activity
@@ -80,7 +84,6 @@ import vn.icheck.android.screen.user.pvcombank.home.HomePVCardActivity
 import vn.icheck.android.screen.user.rank_of_user.RankOfUserActivity
 import vn.icheck.android.screen.user.recharge_phone.RechargePhoneActivity
 import vn.icheck.android.screen.user.shipping.ship.ShipActivity
-import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 import vn.icheck.android.screen.user.surveydetail.answer.SurveyDetailActivity
 import vn.icheck.android.screen.user.utilities.UtilitiesActivity
 import vn.icheck.android.screen.user.vinmart.VinMartActivity
@@ -191,6 +194,13 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
     private var deepLink: Uri? = null
     private var targetType: String = ""
 
+    private var typeLoyalty: String? = null
+    private var campaignId: Long? = null
+    private var nameCampaign: String? = null
+    private var nameShop: String? = null
+    private var avatarShop: String? = null
+    private var currentCount: Int? = null
+
     companion object {
         @MainThread
         fun startDestinationUrl(fragmentActivity: Activity?, uri: String?) {
@@ -295,6 +305,19 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                 }
             }
         }
+
+        @WorkerThread
+        fun showDialogNotification(image: String? = null, htmlText: String? = null, link: String? = null, schema: String? = null) {
+            ICheckApplication.currentActivity()?.apply {
+                runOnUiThread {
+                    object : DialogNotificationFirebaseAds(this, image, htmlText, link, schema) {
+                        override fun onDismiss() {
+
+                        }
+                    }.show()
+                }
+            }
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -382,8 +405,23 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                 }
             }
             scan -> {
+                typeLoyalty = deepLink?.getQueryParameter("typeLoyalty")
+                campaignId = deepLink?.getQueryParameter("campaignId")?.toLong()
+                nameCampaign = deepLink?.getQueryParameter("nameCampaign")
+                nameShop = deepLink?.getQueryParameter("nameShop")
+                avatarShop = deepLink?.getQueryParameter("avatarShop")
+                currentCount = if (!deepLink?.getQueryParameter("currentCount").isNullOrEmpty()) {
+                    deepLink?.getQueryParameter("currentCount")?.toInt()
+                } else {
+                    null
+                }
+
                 if (PermissionHelper.checkPermission(this@FirebaseDynamicLinksActivity, Manifest.permission.CAMERA, ICK_REQUEST_CAMERA)) {
-                    V6ScanditActivity.create(this)
+                    if (typeLoyalty.isNullOrEmpty()) {
+                        V6ScanditActivity.create(this)
+                    } else {
+                        campaignId?.let { V6ScanditActivity.scanOnlyLoyalty(this, typeLoyalty!!, it, nameCampaign, nameShop, avatarShop, currentCount) }
+                    }
                 } else {
                     return
                 }
@@ -397,6 +435,9 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
             }
             login -> {
                 if (!SessionManager.isUserLogged) {
+                    if (HomeActivity.isOpen != true) {
+                        ActivityUtils.startActivity<HomeActivity>(this)
+                    }
                     ActivityUtils.startActivity<IckLoginActivity>(this)
                 }
             }
@@ -802,8 +843,8 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                         showLoginDialog()
                         return
                     } else {
-//                        ChatSocialDetailActivity.openRoomChatWithKey(this@FirebaseDynamicLinksActivity, id)
-                        SocialChatActivity.createRoomChat(this@FirebaseDynamicLinksActivity, null, id)
+                        ChatSocialDetailActivity.openRoomChatWithKey(this@FirebaseDynamicLinksActivity, id)
+//                        SocialChatActivity.createRoomChat(this@FirebaseDynamicLinksActivity, null, id)
                     }
                 }
             }
@@ -815,8 +856,8 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                         showLoginDialog()
                         return
                     } else if (ValidHelper.validNumber(id)) {
-//                        ChatSocialDetailActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong(), "user")
-                        SocialChatActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong())
+                        ChatSocialDetailActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong(), "user")
+//                        SocialChatActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong())
                     }
                 }
             }
@@ -828,8 +869,8 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                         showLoginDialog()
                         return
                     } else if (ValidHelper.validNumber(id)) {
-//                        ChatSocialDetailActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong(), "page")
-                        SocialChatActivity.createRoomChat(this@FirebaseDynamicLinksActivity, null, id)
+                        ChatSocialDetailActivity.createRoomChat(this@FirebaseDynamicLinksActivity, id.toLong(), "page")
+//                        SocialChatActivity.createRoomChat(this@FirebaseDynamicLinksActivity, null, id)
                     }
                 }
             }
@@ -851,7 +892,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                 val id = deepLink?.getQueryParameter("id")
 
                 if (!id.isNullOrEmpty()) {
-                    ActivityUtils.startActivity<WebViewActivity, String>(this, Constant.DATA_1, id)
+                    WebViewActivity.start(this, id)
                 }
             }
             url -> {
@@ -1253,20 +1294,22 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
     }
 
     private fun showLoginDialog() {
-        object : RewardLoginDialog(this@FirebaseDynamicLinksActivity) {
+        RewardLoginDialog.show(supportFragmentManager, object : RewardLoginCallback {
             override fun onLogin() {
                 ActivityUtils.startActivityForResult<IckLoginActivity>(this@FirebaseDynamicLinksActivity, requestLogin)
+
             }
 
             override fun onRegister() {
                 this@FirebaseDynamicLinksActivity.simpleStartForResultActivity(IckLoginActivity::class.java, requestLogin)
-//                ActivityUtils.startActivityForResult<IckLoginActivity>(this@FirebaseDynamicLinksActivity, Constant.DATA_1, Constant.REGISTER_TYPE, requestLogin)
+
             }
 
             override fun onDismiss() {
                 finishActivity()
             }
-        }.show()
+        })
+
     }
 
     private fun finishActivity() {
@@ -1292,7 +1335,11 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
         if (PermissionHelper.checkResult(grantResults)) {
             if (requestCode == ICK_REQUEST_CAMERA) {
                 if (requestCode == ICK_REQUEST_CAMERA) {
-                    V6ScanditActivity.create(this)
+                    if (typeLoyalty.isNullOrEmpty()) {
+                        V6ScanditActivity.create(this)
+                    } else {
+                        campaignId?.let { V6ScanditActivity.scanOnlyLoyalty(this, typeLoyalty!!, it, nameCampaign, nameShop, avatarShop, currentCount) }
+                    }
                 }
             }
         }

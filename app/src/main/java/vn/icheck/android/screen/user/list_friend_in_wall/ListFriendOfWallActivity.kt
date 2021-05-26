@@ -29,6 +29,7 @@ import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.Re
 import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
 import vn.icheck.android.screen.user.wall.USER_ID
+import vn.icheck.android.util.KeyboardUtils
 import vn.icheck.android.util.ick.forceShowKeyboard
 import vn.icheck.android.util.ick.showSimpleErrorToast
 import vn.icheck.android.util.ick.showSimpleSuccessToast
@@ -230,17 +231,18 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
     }
 
     override fun clickUser(item: ICUserFollowWall) {
+        KeyboardUtils.hideSoftInput(this)
         IckUserWallActivity.create(item.id, this)
     }
 
     override fun goToChat(item: ICUserFollowWall) {
         if (ListConversationFragment.isOpenChat) {
             ListConversationFragment.finishAllChat()
-//            EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_FINISH_ALL_CHAT))
+            EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_FINISH_ALL_CHAT))
             finishActivity()
         }
-//        ChatSocialDetailActivity.createRoomChat(this@ListFriendOfWallActivity, item.id ?: -1, "user")
-        SocialChatActivity.createRoomChat(this, item.id)
+        ChatSocialDetailActivity.createRoomChat(this@ListFriendOfWallActivity, item.id ?: -1, "user")
+//        SocialChatActivity.createRoomChat(this, item.id)
     }
 
     override fun goToAddFriend(item: ICUserFollowWall, position: Int) {

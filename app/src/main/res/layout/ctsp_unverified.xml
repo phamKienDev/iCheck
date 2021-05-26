@@ -29,7 +29,7 @@
         app:piv_radius="@dimen/size_3"
         app:piv_selectedColor="@color/colorPrimary"
         app:piv_strokeWidth="@dimen/size_1"
-        app:piv_unselectedColor="#D8D8D8" />
+        app:piv_unselectedColor="@color/colorLineView" />
 
     <TextView
         android:id="@+id/tv_product_name"
@@ -59,12 +59,11 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_product_name"
         tools:visibility="gone" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
         android:id="@+id/view20"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_1"
         android:layout_marginTop="@dimen/size_8"
-        android:background="@color/gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_recommend" />

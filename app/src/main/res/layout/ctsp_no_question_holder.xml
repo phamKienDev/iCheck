@@ -18,12 +18,11 @@
         android:textAlignment="center"
         android:textSize="@dimen/font_18" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_1"
         android:layout_marginStart="@dimen/size_8"
-        android:layout_marginEnd="@dimen/size_8"
-        android:background="@color/gray" />
+        android:layout_marginEnd="@dimen/size_8" />
 
     <TextView
         android:layout_width="match_parent"

@@ -18,7 +18,6 @@ import vn.icheck.android.ui.layout.CustomGridLayoutManager
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.util.kotlin.WidgetUtils
-import java.util.*
 
 class GiftOfCampaignAdapter(callback: IRecyclerViewCallback, val banner: String?) : RecyclerViewCustomAdapter<GiftOfCampaignModel>(callback) {
 

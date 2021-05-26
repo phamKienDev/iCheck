@@ -90,7 +90,7 @@ class CreateContactQrCodeFragment : BaseCreateQrCodeFragment<CreateContactQrCode
 
     override fun onInvalidPhoneSuccess() {
         tvMessagePhone.visibility = View.GONE
-        edtPhone.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_gray_solid_white)
+        edtPhone.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtPhone.context)
     }
 
     override fun onInvalidPhone(error: String) {
@@ -102,7 +102,7 @@ class CreateContactQrCodeFragment : BaseCreateQrCodeFragment<CreateContactQrCode
 
     override fun onInvalidFirstNameSuccess() {
         tvMessageFirstName.visibility = View.GONE
-        edtFirstName.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_gray_solid_white)
+        edtFirstName.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtFirstName.context)
     }
 
     override fun onInvalidFirstName(error: String) {
@@ -114,7 +114,7 @@ class CreateContactQrCodeFragment : BaseCreateQrCodeFragment<CreateContactQrCode
 
     override fun onInvalidLastNameSuccess() {
         tvMessageLastName.visibility = View.GONE
-        edtLastName.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_gray_solid_white)
+        edtLastName.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtLastName.context)
     }
 
     override fun onInvalidLastName(error: String) {
@@ -143,10 +143,10 @@ class CreateContactQrCodeFragment : BaseCreateQrCodeFragment<CreateContactQrCode
         tvMessageLastName.visibility = View.GONE
         tvMessageEmail.visibility = View.GONE
         tvMessageAddress.visibility = View.GONE
-        edtPhone.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_gray_solid_white)
-        edtLastName.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_gray_solid_white)
-        edtEmail.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_gray_solid_white)
-        edtAddress.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_gray_solid_white)
+        edtPhone.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtPhone.context)
+        edtLastName.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtPhone.context)
+        edtEmail.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtPhone.context)
+        edtAddress.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtPhone.context)
 
         KeyboardUtils.hideSoftInput(edtPhone)
 

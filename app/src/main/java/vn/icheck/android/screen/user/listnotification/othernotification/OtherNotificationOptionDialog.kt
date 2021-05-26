@@ -6,6 +6,7 @@ import kotlinx.android.synthetic.main.dialog_other_notification_option.*
 import kotlinx.android.synthetic.main.item_other_notification.view.*
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialog
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICNotification
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -13,6 +14,7 @@ abstract class OtherNotificationOptionDialog(context: Context) : BaseBottomSheet
 
     fun show(obj: ICNotification) {
 //        WidgetUtils.loadImageUrl(dialog.imgAvatar, obj.sourceUser?.firstOrNull()?.avatar, R.drawable.ic_circle_avatar_default)
+        dialog.imgAvatar.background=ViewHelper.bgTransparentRadius4StrokeLineColor1(dialog.context)
         dialog.imgAvatar.setImageResource(R.drawable.ic_icheck_logo)
         when (obj.targetEntity) {
             "system_score_changed" -> {
@@ -30,10 +32,12 @@ abstract class OtherNotificationOptionDialog(context: Context) : BaseBottomSheet
             "USER" -> {
                 if (obj.action == "MISSION_FINISH") {
                     dialog.tvStatus.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_notification_gift_20dp, 0)
+                }else if(obj.action=="SYSTEM"){
+                    dialog.tvStatus.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_notification_admin_20dp, 0)
                 }
             }
             else -> {
-                dialog.tvStatus.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                dialog.tvStatus.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_notification_admin_20dp, 0)
             }
         }
 

@@ -38,19 +38,18 @@
             app:layout_constraintTop_toTopOf="@id/imgCancel" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_1"
-        android:background="#d8d8d8" />
+        android:layout_height="@dimen/size_1"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_10"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginBottom="@dimen/size_10"
-        android:background="@drawable/bg_rectange_gray"
         android:orientation="vertical">
 
         <vn.icheck.android.component.avatar_user.AvatarUserComponent

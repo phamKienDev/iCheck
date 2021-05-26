@@ -88,7 +88,7 @@ class CreateWifiQrCodeFragment : BaseCreateQrCodeFragment<CreateWifiQrCodePresen
 
     override fun onInValidNameSuccess() {
         tvMessageName.visibility = View.GONE
-        edtName.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_gray_solid_white)
+        edtName.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtName.context)
     }
 
     override fun onInValidName(error: String) {
@@ -100,7 +100,7 @@ class CreateWifiQrCodeFragment : BaseCreateQrCodeFragment<CreateWifiQrCodePresen
 
     override fun onInValidPasswordSuccess() {
         tvMessagePassword.visibility = View.GONE
-        edtPassword.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_gray_solid_white)
+        edtPassword.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtPassword.context)
     }
 
     override fun onInValidPassword(error: String) {
@@ -114,8 +114,8 @@ class CreateWifiQrCodeFragment : BaseCreateQrCodeFragment<CreateWifiQrCodePresen
         tvMessageName.visibility = View.GONE
         tvMessagePassword.visibility = View.GONE
 
-        edtName.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_gray_solid_white)
-        edtPassword.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_gray_solid_white)
+        edtName.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtName.context)
+        edtPassword.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtName.context)
 
         KeyboardUtils.hideSoftInput(edtName)
 

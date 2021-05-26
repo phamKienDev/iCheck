@@ -69,14 +69,13 @@
                 android:text="Tên mạng"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
+            <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalHintDisableBgWhiteRadius4Stroke05
                 android:id="@id/edtName"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_36"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_6"
                 android:layout_marginEnd="@dimen/size_12"
-                android:background="@drawable/bg_corner_gray_solid_white"
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center|start"
                 android:hint="Bắt buộc"
@@ -111,14 +110,13 @@
                 android:text="Mật khẩu"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
+            <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalHintDisableBgWhiteRadius4Stroke05
                 android:id="@id/edtPassword"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_36"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_6"
                 android:layout_marginEnd="@dimen/size_12"
-                android:background="@drawable/bg_corner_gray_solid_white"
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center|start"
                 android:hint="Bắt buộc"
@@ -158,14 +156,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_8">
 
-                <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
+                <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalHintDisableBgWhiteRadius4Stroke05
                     android:id="@id/edtType"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/size_36"
                     android:layout_marginStart="@dimen/size_12"
                     android:layout_marginTop="@dimen/size_6"
                     android:layout_marginEnd="@dimen/size_12"
-                    android:background="@drawable/bg_corner_gray_solid_white"
                     android:drawableEnd="@drawable/ic_arrow_down_light_blue_24px"
                     android:drawableRight="@drawable/ic_arrow_down_light_blue_24px"
                     android:gravity="center|start"

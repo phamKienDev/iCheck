@@ -23,14 +23,13 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Tên sản phẩm (*)" />
 
-    <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
+    <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalHintDisableBgWhiteRadius4Stroke1
         android:id="@+id/edt_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginBottom="@dimen/size_11"
-        android:background="@drawable/bg_edt_ick_contribute_product"
         android:drawableEnd="@drawable/ic_calendar_off_24px"
         android:drawableRight="@drawable/ic_calendar_off_24px"
         android:ems="10"

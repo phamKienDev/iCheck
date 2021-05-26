@@ -49,8 +49,7 @@ class ContactBusinessDialog(context: Context) : BaseBottomSheetDialog(context, R
             background = ViewHelper.bgWhiteOutlinePrimary1Corners4(context)
 
             setOnClickListener {
-                SocialChatActivity.createPageChat(dialog.context, id)
-//            ChatSocialDetailActivity.createRoomChat(dialog.context, id ?: -1, "page")
+                ChatSocialDetailActivity.createRoomChat(dialog.context, id ?: -1, "page")
             }
         }
 

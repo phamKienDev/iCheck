@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.DrawableRes
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.ICheckApplication
@@ -37,7 +38,7 @@ import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 import kotlin.random.Random
 
-class AdsPageAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class AdsPageAdapter(val fullScreen:Boolean=false) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val listData = mutableListOf<ICAdsData>()
     private var adsType = ""
     private var showType = Constant.ADS_SLIDE_TYPE
@@ -135,7 +136,7 @@ class AdsPageAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             WidgetUtils.loadImageUrl(binding.imgAvatar, obj.avatar?.content, R.drawable.ic_business_v2)
 
             binding.tvName.text = obj.name
-            if (obj.verified == true) {
+            if (obj.isVerify == true) {
                 binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
             } else {
                 binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
@@ -202,6 +203,16 @@ class AdsPageAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     inner class ViewHolderHorizontal(val binding: ItemAdsPageHorizontalBinding) : BaseVideoViewHolder(binding.root) {
 
         fun bind(obj: ICAdsData) {
+            if(fullScreen){
+                binding.root.layoutParams=ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT,ConstraintLayout.LayoutParams.WRAP_CONTENT).apply {
+                    setMargins(SizeHelper.size6,SizeHelper.size8,SizeHelper.size6,0)
+                }
+            }else{
+                binding.root.layoutParams=ConstraintLayout.LayoutParams(SizeHelper.dpToPx(310),ConstraintLayout.LayoutParams.WRAP_CONTENT).apply {
+                    setMargins(SizeHelper.size3,SizeHelper.size7,SizeHelper.size3,SizeHelper.size7)
+                }
+
+            }
             binding.imgImage.visibility = View.VISIBLE
             binding.surfaceView.visibility = View.INVISIBLE
             binding.progressBar.visibility = View.INVISIBLE
@@ -210,25 +221,25 @@ class AdsPageAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 if (obj.media!![0].type == Constant.VIDEO) {
                     binding.imgPlay.visibility = View.VISIBLE
                     if (!obj.media!![0].content.isNullOrEmpty()) {
-                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, obj.media!![0].content, getDrawable(), getDrawable(), SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                        WidgetUtils.loadImageUrlRoundedTransformationCenterCrop(binding.imgImage, obj.media!![0].content, getDrawable(), getDrawable(), SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
                     } else {
-                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, getDrawable(), getDrawable(), SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                        WidgetUtils.loadImageUrlRoundedTransformationCenterCrop(binding.imgImage, null, getDrawable(), getDrawable(), SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
                     }
                 } else {
                     binding.imgPlay.visibility = View.INVISIBLE
                     if (!obj.media!![0].content.isNullOrEmpty()) {
-                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, obj.media!![0].content, getDrawable(), getDrawable(), SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                        WidgetUtils.loadImageUrlRoundedTransformationCenterCrop(binding.imgImage, obj.media!![0].content, getDrawable(), getDrawable(), SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
                     } else {
-                        WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, getDrawable(), getDrawable(), SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                        WidgetUtils.loadImageUrlRoundedTransformationCenterCrop(binding.imgImage, null, getDrawable(), getDrawable(), SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
                     }
                 }
             } else {
-                WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, getDrawable(), getDrawable(), SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                WidgetUtils.loadImageUrlRoundedTransformationCenterCrop(binding.imgImage, null, getDrawable(), getDrawable(), SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
             }
 
             WidgetUtils.loadImageUrl(binding.imgAvatar, obj.avatar?.content, R.drawable.ic_business_v2)
             binding.tvName.text = obj.name
-            if (obj.verified == true) {
+            if (obj.isVerify == true) {
                 binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
             } else {
                 binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
@@ -305,7 +316,7 @@ class AdsPageAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 WidgetUtils.loadImageUrlRoundedTransformation(binding.imgImage, null, getDrawable(), getDrawable(), SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
             }
 
-            WidgetUtils.loadImageUrl(binding.imgAvatar, obj.avatar?.content, R.drawable.ic_business_v2)
+            WidgetUtils.loadImageUrl(binding.imgAvatar, obj.avatar?.content, R.drawable.ic_business_v2,R.drawable.ic_business_v2)
             if (obj.isVerify == true) {
                 binding.tvName.setDrawbleNextEndText(obj.name ?: "", R.drawable.ic_verified_16px)
                 Handler().postDelayed({

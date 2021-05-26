@@ -111,7 +111,7 @@
             android:digits="0123456789"
             android:hint="Nhập số điện thoại"
             android:imeOptions="actionSend"
-            android:inputType="phone"
+            android:inputType="number"
             android:paddingBottom="@dimen/size_10"
             app:layout_constraintBottom_toBottomOf="@+id/tv_phone_head"
             app:layout_constraintEnd_toStartOf="@+id/img_clear"

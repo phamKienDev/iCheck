@@ -33,7 +33,6 @@
             android:id="@id/imgAvatar"
             android:layout_width="@dimen/size_36"
             android:layout_height="@dimen/size_36"
-            android:background="@drawable/bg_outline_gray_1_corners_4"
             android:padding="@dimen/size_1"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_circle_avatar_default"
