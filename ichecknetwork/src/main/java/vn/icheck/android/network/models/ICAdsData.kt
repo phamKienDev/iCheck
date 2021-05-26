@@ -12,7 +12,7 @@ data class ICAdsData(
         @SerializedName("barcode") val barcode: String?,
         @SerializedName("name") val name: String?,
         @SerializedName("expireTime") val expireTime: Int?,
-        @SerializedName("price") val price: Long?,
+        @SerializedName("price") val price: Double?,
         @SerializedName("sellPrice ") val sellPrice: Long?,
         @SerializedName("verified") val verified: Boolean?,
         @SerializedName("isVerify") val isVerify: Boolean?,
