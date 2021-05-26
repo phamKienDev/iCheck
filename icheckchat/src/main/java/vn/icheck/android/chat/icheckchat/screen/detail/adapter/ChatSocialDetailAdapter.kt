@@ -6,7 +6,6 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Context.CLIPBOARD_SERVICE
 import android.content.Intent
-import android.graphics.Paint
 import android.net.Uri
 import android.text.Html
 import android.text.util.Linkify
@@ -41,13 +40,11 @@ import vn.icheck.android.chat.icheckchat.model.MCStatus
 import vn.icheck.android.chat.icheckchat.model.MCSticker
 import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.chat.icheckchat.screen.detail_image.ImageDetailActivity
-import vn.icheck.android.ichecklibs.Constant
-import vn.icheck.android.ichecklibs.util.beGone
 import vn.icheck.android.chat.icheckchat.sdk.ChatSdk
 import vn.icheck.android.chat.icheckchat.sdk.ChatSdk.openActivity
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.SizeHelper
-import java.util.regex.Matcher
-import vn.icheck.android.ichecklibs.beGone
+import vn.icheck.android.ichecklibs.util.beGone
 
 class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val listData = mutableListOf<MCDetailMessage>()

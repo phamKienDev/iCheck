@@ -554,19 +554,24 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
                     DialogHelper.closeLoading(activity)
                     if (error?.statusCode == "S402") {
                         ICheckApplication.currentActivity()?.let { activity ->
-                            object : RewardLoginDialog(activity) {
-                                override fun onLogin() {
-                                    (activity as AppCompatActivity) simpleStartActivity IckLoginActivity::class.java
-                                }
+                            RewardLoginDialog.show((activity as AppCompatActivity).supportFragmentManager,
+                                object : RewardLoginCallback {
+                                    override fun onLogin() {
+                                        activity simpleStartActivity IckLoginActivity::class.java
 
-                                override fun onRegister() {
-                                    (activity as AppCompatActivity).simpleStartForResultActivity(IckLoginActivity::class.java, 1)
-                                }
+                                    }
 
-                                override fun onDismiss() {
+                                    override fun onRegister() {
+                                        activity.simpleStartForResultActivity(
+                                            IckLoginActivity::class.java,
+                                            1
+                                        )
 
-                                }
-                            }.show()
+                                    }
+
+                                    override fun onDismiss() {
+                                    }
+                                })
                         }
                     } else {
                         itemView.context.showSimpleErrorToast(error?.message

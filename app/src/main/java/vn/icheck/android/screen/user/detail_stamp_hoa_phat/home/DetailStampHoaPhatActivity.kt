@@ -31,9 +31,8 @@ import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICCriteria
-import vn.icheck.android.screen.account.home.AccountActivity
-import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
+import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.adapter.DetailStampHoaPhatAdapter
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.call_back.SlideHeaderStampHoaPhatListener
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.view_model.DetailStampHoaPhatViewModel

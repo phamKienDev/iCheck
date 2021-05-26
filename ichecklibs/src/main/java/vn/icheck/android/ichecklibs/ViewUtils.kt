@@ -99,13 +99,3 @@ fun EditText.addPriceTextWatcher() {
         }
     })
 }
-
-
-fun Int.toPx(): Int {
-    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this.toFloat(), Resources.getSystem().displayMetrics).toInt()
-}
-
-
-fun Float.toPx(): Float {
-    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this, Resources.getSystem().displayMetrics)
-}

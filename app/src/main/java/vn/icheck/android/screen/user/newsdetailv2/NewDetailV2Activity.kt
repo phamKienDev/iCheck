@@ -24,16 +24,13 @@ import vn.icheck.android.component.news.NewsAdapter
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.TimeHelper
-import vn.icheck.android.ichecklibs.visibleOrGone
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.loyalty.base.setGone
 import vn.icheck.android.loyalty.base.setVisible
-import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.user.newsdetailv2.adapter.NewDetailBusinessAdapter
-import vn.icheck.android.screen.user.newsdetailv2.adapter.NewDetailV2Adapter
 import vn.icheck.android.screen.user.newsdetailv2.viewmodel.NewDetailViewModel
 import vn.icheck.android.screen.user.newslistv2.NewsListV2Activity
-import vn.icheck.android.ui.layout.CustomLinearLayoutManager
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.StatusBarUtils
 import vn.icheck.android.util.kotlin.WidgetUtils

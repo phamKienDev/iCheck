@@ -76,7 +76,7 @@ class RewardLoginDialog : DialogFragment() {
             setOnClickListener {
                 isStartLogin = true
                 dismiss()
-                onRegister()
+                listener?.onRegister()
             }
         }
 

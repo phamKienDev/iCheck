@@ -35,9 +35,9 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.callback.LoadImageListener
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.ichecklibs.visibleOrGone
+import vn.icheck.android.ichecklibs.FocusableEditText
+import vn.icheck.android.ichecklibs.util.visibleOrGone
 import vn.icheck.android.ui.RoundedCornersTransformation
-import vn.icheck.android.ui.edittext.FocusableEditText
 import vn.icheck.android.util.ick.logError
 import java.io.File
 import java.io.FileInputStream

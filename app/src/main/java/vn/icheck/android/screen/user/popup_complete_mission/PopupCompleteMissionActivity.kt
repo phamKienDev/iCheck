@@ -35,7 +35,7 @@ class PopupCompleteMissionActivity : BaseActivityMVVM() {
             requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         }
 
-        val giftCount = intent.getIntExtra("giftCount",0)
+        val giftCount = intent.getIntExtra("giftCount", 0)
         val campaignId = intent.getStringExtra("campaignId")
 
         tvNameGift.text = "Bạn nhận được $giftCount lượt mở quà"
@@ -45,7 +45,7 @@ class PopupCompleteMissionActivity : BaseActivityMVVM() {
             this.overridePendingTransition(0, 0)
         }
 
-        EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REQUEST_MISSION_SUCCESS,campaignId))
+        EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REQUEST_MISSION_SUCCESS, campaignId))
 
         btnGift.apply {
             background = ViewHelper.bgPrimaryCorners4(context)
@@ -56,4 +56,5 @@ class PopupCompleteMissionActivity : BaseActivityMVVM() {
                 finish()
             }
         }
+    }
 }

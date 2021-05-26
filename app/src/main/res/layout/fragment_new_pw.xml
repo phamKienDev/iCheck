@@ -145,7 +145,7 @@
                 android:layout_marginEnd="@dimen/size_34"
                 android:layout_marginRight="@dimen/size_34">
 
-                <vn.icheck.android.ui.edittext.FocusableEditText
+                <vn.icheck.android.ichecklibs.FocusableEditText
                     android:id="@id/edtRePassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

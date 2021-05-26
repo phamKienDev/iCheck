@@ -15,6 +15,8 @@
     <color name="colorDisableText">#B4B4B4</color>
     <color name="colorDisableView">#B4B4B4</color>
 
+    <color name="black_21">#B4B4B4</color>
+
     <color name="colorNormalText">#212121</color> <!-- textview, editText, radioButton, checkBox -->
     <color name="colorNormalView">#212121</color>
 
@@ -100,7 +102,7 @@
     <color name="errorColorStamp">#ff1616</color>
     <color name="color_egg">#4D4D9DFF</color>
     <color name="lightGray">#F1F1F1</color>
-
+    <color name="gray_f0">#F0F0F0</color>
     <!--
         100% — FF
         95% — F2

@@ -186,7 +186,7 @@ class AdsMoreAdapter : RecyclerViewCustomAdapter<ICAdsData>() {
                 itemView.tvPriceUpdating.beGone()
                 if (obj.price != null) {
                     itemView.tvPriceSpecial.beVisible()
-                    itemView.tvPriceSpecial.text = TextHelper.formatMoney(obj.price) + "đ"
+                    itemView.tvPriceSpecial.text = TextHelper.formatMoney((obj.price?:0.0).toLong()) + "đ"
                 }
 
                 if (obj.sellPrice != null) {
@@ -291,7 +291,7 @@ class AdsMoreAdapter : RecyclerViewCustomAdapter<ICAdsData>() {
 
             if (obj.price != null) {
                 itemView.tvPrice.beVisible()
-                itemView.tvPrice.text = TextHelper.formatMoney(obj.price) + "đ"
+                itemView.tvPrice.text = TextHelper.formatMoney((obj.price?:0.0).toLong()) + "đ"
                 itemView.tvPriceUpdating.beGone()
             } else {
                 itemView.tvPriceUpdating.beVisible()

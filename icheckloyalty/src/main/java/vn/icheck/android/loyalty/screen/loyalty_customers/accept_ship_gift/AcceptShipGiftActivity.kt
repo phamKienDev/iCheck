@@ -13,7 +13,7 @@ import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.activity_accept_ship_gift_loyalty.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import org.greenrobot.eventbus.EventBus
-import vn.icheck.android.ichecklibs.showSimpleSuccessToast
+import vn.icheck.android.ichecklibs.util.showSimpleSuccessToast
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.base.ICMessageEvent

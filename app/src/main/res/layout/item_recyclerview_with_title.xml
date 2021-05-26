@@ -7,27 +7,25 @@
     android:layout_height="wrap_content"
     android:background="@color/colorBackgroundGray">
 
-    <vn.icheck.android.ui.view.TextHeader
+    <vn.icheck.android.ichecklibs.view.secondary.TextHeaderSecondary
         android:id="@id/tvTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_20"
         android:layout_weight="1"
-        android:textColor="@color/colorSecondary"
         app:layout_constraintEnd_toStartOf="@id/btnMore"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Title" />
 
-    <vn.icheck.android.ui.view.TextBody2
+    <vn.icheck.android.ichecklibs.view.secondary.TextBody2Secondary
         android:id="@id/btnMore"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/size_0"
         android:layout_marginEnd="@dimen/size_12"
         android:gravity="center"
         android:text="@string/xem_them"
-        android:textColor="@color/colorSecondary"
         android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toBottomOf="@id/tvTitle"
         app:layout_constraintEnd_toEndOf="parent"

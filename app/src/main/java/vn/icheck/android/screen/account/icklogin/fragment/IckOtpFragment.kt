@@ -14,12 +14,13 @@ import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.view.inputmethod.InputMethodManager.SHOW_IMPLICIT
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -35,21 +36,22 @@ import vn.icheck.android.RelationshipManager
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.databinding.FragmentOtpBinding
 import vn.icheck.android.helper.CartHelper
-import vn.icheck.android.tracking.insider.InsiderHelper
 import vn.icheck.android.helper.ShareSessionToModule
 import vn.icheck.android.ichecklibs.Constant
-import vn.icheck.android.model.icklogin.ConfirmOtpResponse
-import vn.icheck.android.model.icklogin.IckUserInfoData
+import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.model.icklogin.ConfirmOtpResponse
 import vn.icheck.android.network.model.icklogin.IckUserInfoData
-import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICSessionData
 import vn.icheck.android.screen.account.icklogin.FORGOT_PW
 import vn.icheck.android.screen.account.icklogin.LOGIN_OTP
 import vn.icheck.android.screen.account.icklogin.REGISTER
 import vn.icheck.android.screen.account.icklogin.viewmodel.IckLoginViewModel
 import vn.icheck.android.tracking.TrackingAllHelper
-import vn.icheck.android.util.ick.*
+import vn.icheck.android.tracking.insider.InsiderHelper
+import vn.icheck.android.util.ick.dismissLoadingScreen
+import vn.icheck.android.util.ick.forceHideKeyboard
+import vn.icheck.android.util.ick.showLoadingTimeOut
+import vn.icheck.android.util.ick.showSimpleErrorToast
 
 
 class IckOtpFragment : Fragment() {

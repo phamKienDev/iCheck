@@ -4,7 +4,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Handler
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.FragmentActivity
@@ -30,9 +29,6 @@ import vn.icheck.android.databinding.FriendInWallHolderBinding
 import vn.icheck.android.databinding.ItemCreatePostBinding
 import vn.icheck.android.databinding.ItemUserProfileWallBinding
 import vn.icheck.android.ichecklibs.ViewHelper
-import vn.icheck.android.model.posts.PostViewModel
-import vn.icheck.android.model.profile.IckUserFriendModel
-import vn.icheck.android.model.profile.IckUserProfileModel
 import vn.icheck.android.network.base.ICListResponse
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.model.posts.PostViewModel
@@ -40,9 +36,7 @@ import vn.icheck.android.network.model.profile.IckUserFriendModel
 import vn.icheck.android.network.model.profile.IckUserProfileModel
 import vn.icheck.android.network.models.ICSearchUser
 import vn.icheck.android.network.models.ICUser
-import vn.icheck.android.room.database.AppDatabase
 import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
-import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 import vn.icheck.android.screen.user.wall.ICWallModel
 import vn.icheck.android.screen.user.wall.holder.friend.FriendWallHolder
 import vn.icheck.android.util.ick.*
@@ -338,11 +332,7 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
                     binding.groupFriend.beVisible()
                     ViewHelper.bgPrimaryCorners4(itemView.context)
                     binding.btnSendMsg.setTextColor(Color.parseColor("#057DDA"))
-                    binding.btnSendMsg.background = ResourcesCompat.getDrawable(
-                        binding.root.context.resources,
-                        R.drawable.bg_corners_4_light_blue_no_solid,
-                        null
-                    )
+                    binding.btnSendMsg.background = ViewHelper.bgOutlinePrimary1Corners4(itemView.context)
                     binding.btnAddFriend.beVisible()
                 }
             }
