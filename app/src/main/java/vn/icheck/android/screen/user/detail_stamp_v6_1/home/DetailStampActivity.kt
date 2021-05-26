@@ -45,9 +45,9 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.component.banner.ListBannerAdapter
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
-import vn.icheck.android.ichecklibs.beGone
-import vn.icheck.android.ichecklibs.beVisible
-import vn.icheck.android.ichecklibs.visibleOrInvisible
+import vn.icheck.android.ichecklibs.util.beGone
+import vn.icheck.android.ichecklibs.util.beVisible
+import vn.icheck.android.ichecklibs.util.visibleOrInvisible
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.base.listener.IClickListener
 import vn.icheck.android.loyalty.helper.ActivityHelper
@@ -56,7 +56,6 @@ import vn.icheck.android.loyalty.model.ICKLoyalty
 import vn.icheck.android.loyalty.screen.url_gift_detail.UrlGiftDetailActivity
 import vn.icheck.android.loyalty.sdk.LoyaltySdk
 import vn.icheck.android.network.base.*
-import vn.icheck.android.network.feature.user.UserInteractor
 import vn.icheck.android.network.models.*
 import vn.icheck.android.network.models.detail_stamp_v6_1.*
 import vn.icheck.android.network.util.JsonHelper

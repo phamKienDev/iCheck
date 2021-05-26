@@ -6,7 +6,6 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
@@ -16,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_crop_image.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import vn.icheck.android.ichecklibs.util.PermissionHelper
+import vn.icheck.android.ichecklibs.util.*
 
 import java.io.File
 import java.io.FileOutputStream
@@ -134,8 +133,8 @@ class CropImageActivity : AppCompatActivity() {
 
         intent?.getStringExtra(Constant.DATA_3)?.let { ratio ->
             try {
-                val ratio = ratio.split(":")
-                imageView.setAspectRatio(ratio[0].toInt(), ratio[1].toInt())
+                val mRatio = ratio.split(":")
+                imageView.setAspectRatio(mRatio[0].toInt(), mRatio[1].toInt())
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -151,7 +150,7 @@ class CropImageActivity : AppCompatActivity() {
             if (PermissionHelper.checkPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE, requestPermission)) {
                 cropImage()
             } else {
-                showSimpleErrorLongToast(getString(R.string.khong_the_thuc_hien_tac_vu_vi_ban_chua_cap_quyen))
+                showLongErrorToast(getString(R.string.khong_the_thuc_hien_tac_vu_vi_ban_chua_cap_quyen))
             }
         }
     }
@@ -178,7 +177,7 @@ class CropImageActivity : AppCompatActivity() {
                 setResult(Activity.RESULT_OK, Intent().apply { putExtra(Constant.DATA_1, path) })
                 onBackPressed()
             } else {
-                showSimpleErrorToast(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                showShortErrorToast(R.string.co_loi_xay_ra_vui_long_thu_lai)
             }
         }
     }
@@ -190,7 +189,7 @@ class CropImageActivity : AppCompatActivity() {
             if (PermissionHelper.checkResult(grantResults)) {
                 cropImage()
             } else {
-                showSimpleErrorToast(R.string.khong_the_thuc_hien_tac_vu_vi_ban_chua_cap_quyen)
+                showShortErrorToast(R.string.khong_the_thuc_hien_tac_vu_vi_ban_chua_cap_quyen)
             }
         }
     }

@@ -114,7 +114,7 @@ dependencies {
      */
     api 'com.google.android.exoplayer:exoplayer:2.13.3'
     /** discrete scroll **/
-    api 'com.yarolegovich:discrete-scrollview:1.4.9'
+    implementation 'com.yarolegovich:discrete-scrollview:1.5.1'
 
 
     /** firebase **/
@@ -122,7 +122,7 @@ dependencies {
     api 'com.google.firebase:firebase-database-ktx'
     api 'com.google.firebase:firebase-auth:20.0.4'
 
-    api 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
 
     /** ucrop for crop image**/
     api 'com.github.yalantis:ucrop:2.2.6-native'

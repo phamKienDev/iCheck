@@ -17,7 +17,7 @@ import vn.icheck.android.base.fragment.CoroutineBottomSheetDialogFragment
 import vn.icheck.android.databinding.DialogReportUserBinding
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.screen.user.wall.IckUserWallViewModel
-import vn.icheck.android.util.ick.showSimpleErrorToast
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 
 class ReportUserDialog : CoroutineBottomSheetDialogFragment() {
     private var _binding: DialogReportUserBinding? = null
@@ -96,7 +96,7 @@ class ReportUserDialog : CoroutineBottomSheetDialogFragment() {
                         dismiss()
                     })
                 } else {
-                    requireContext().showSimpleErrorToast("Vui lòng chọn ít nhất một lý do")
+                    requireContext().showShortErrorToast("Vui lòng chọn ít nhất một lý do")
                 }
             })
 

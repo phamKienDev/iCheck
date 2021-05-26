@@ -5,7 +5,7 @@ buildscript {
 
     repositories {
         google()
-        jcenter()
+//        jcenter()
         mavenCentral()
         maven {
             url 'https://maven.fabric.io/public'
@@ -29,7 +29,7 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
+//        jcenter()
         maven { url "https://jitpack.io" }
         maven { url "http://mobilesdk.useinsider.com/android" }
 //        maven() {

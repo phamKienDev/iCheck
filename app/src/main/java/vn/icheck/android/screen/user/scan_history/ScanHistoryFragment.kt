@@ -38,6 +38,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICValidStampSocial
 import vn.icheck.android.network.models.history.ICBigCorp
@@ -455,7 +456,7 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
                             val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?daddr=$a"))
                             startActivity(intent)
                         } catch (exception: ActivityNotFoundException) {
-                            requireContext().showSimpleErrorToast("Không tìm thấy ứng dụng google map!")
+                            requireContext().showShortErrorToast("Không tìm thấy ứng dụng google map!")
                         }
                     }
                 }, 800)

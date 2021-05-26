@@ -81,7 +81,7 @@
             android:layout_height="match_parent"
             android:gravity="bottom">
 
-            <vn.icheck.android.ui.view.TextSubheader2
+            <vn.icheck.android.ichecklibs.view.TextSubheader2
                 android:id="@id/btnConfirm"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_36"

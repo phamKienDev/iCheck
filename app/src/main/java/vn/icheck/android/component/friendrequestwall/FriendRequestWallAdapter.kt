@@ -1,6 +1,5 @@
 package vn.icheck.android.component.friendrequestwall
 
-import android.content.Intent
 import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
@@ -11,8 +10,6 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.constant.USER_WALL_BROADCAST
-import vn.icheck.android.constant.USER_WALL_EVENT_SETTING
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
@@ -22,8 +19,8 @@ import vn.icheck.android.network.base.ICResponseCode
 import vn.icheck.android.network.feature.relationship.RelationshipInteractor
 import vn.icheck.android.network.models.ICSearchUser
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
-import vn.icheck.android.util.ick.showSimpleErrorToast
-import vn.icheck.android.util.ick.showSimpleSuccessToast
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
+import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -116,14 +113,14 @@ class FriendRequestWallAdapter : RecyclerView.Adapter<FriendRequestWallAdapter.V
                             } else {
                                 activity.getString(R.string.cac_ban_da_tro_thanh_ban_be)
                             }
-                            itemView.context.showSimpleSuccessToast(message)
+                            itemView.context.showShortSuccessToast(message)
                             listener?.onClick(null)
                         }, 200)
                     }
 
                     override fun onError(error: ICResponseCode?) {
                         DialogHelper.closeLoading(activity)
-                        itemView.context.showSimpleErrorToast(error?.message ?: itemView.context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                        itemView.context.showShortErrorToast(error?.message ?: itemView.context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
 //                        ToastUtils.showLongError(activity, R.string.co_loi_xay_ra_vui_long_thu_lai)
                     }
                 })

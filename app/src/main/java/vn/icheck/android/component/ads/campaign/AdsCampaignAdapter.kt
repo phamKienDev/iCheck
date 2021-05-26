@@ -24,7 +24,7 @@ import vn.icheck.android.network.models.ICCampaign
 import vn.icheck.android.screen.user.campaign_onboarding.CampaignOnboardingActivity
 import vn.icheck.android.screen.user.my_gift_warehouse.shake_gift.list_box_gift.ListShakeGridBoxActivity
 import vn.icheck.android.ui.RoundedCornersTransformation
-import vn.icheck.android.util.ick.showSimpleErrorToast
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class AdsCampaignAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -212,7 +212,7 @@ class AdsCampaignAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     } else {
                         error!!.message
                     }
-                    ICheckApplication.getInstance().showSimpleErrorToast(message)
+                    ICheckApplication.getInstance().showShortErrorToast(message)
                 }
             })
         }

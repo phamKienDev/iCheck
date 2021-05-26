@@ -23,8 +23,8 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.databinding.FragmentPageManagementBinding
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
-import vn.icheck.android.ichecklibs.beGone
-import vn.icheck.android.ichecklibs.beVisible
+import vn.icheck.android.ichecklibs.util.beGone
+import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.network.base.ICListResponse
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.models.ICPage

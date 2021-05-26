@@ -18,7 +18,7 @@ import vn.icheck.android.network.feature.relationship.RelationshipInteractor
 import vn.icheck.android.network.models.ICNotification
 import vn.icheck.android.network.models.ICSearchUser
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
-import vn.icheck.android.util.ick.showSimpleSuccessToast
+import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -143,7 +143,7 @@ class FriendRequestHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInf
                         objFriend.requestStatus = Constant.FRIEND_REQUEST_ACCEPTED
                     } else {
                         objFriend.requestStatus = Constant.FRIEND_REQUEST_DENIED
-                        itemView.context.showSimpleSuccessToast("Bạn đã từ chối kết bạn với ${objFriend.getName}")
+                        itemView.context.showShortSuccessToast("Bạn đã từ chối kết bạn với ${objFriend.getName}")
                     }
 
                     checkFriend(objFriend.requestStatus)

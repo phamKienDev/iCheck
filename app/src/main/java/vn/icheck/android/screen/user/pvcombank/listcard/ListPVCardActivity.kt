@@ -31,7 +31,7 @@ import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.ui.carousel_recyclerview.CenterScrollListener
 import vn.icheck.android.ui.carousel_recyclerview.LinePagerIndicatorBankDecoration
 import vn.icheck.android.ui.carousel_recyclerview.ZoomCenterCardLayoutManager
-import vn.icheck.android.util.ick.showSimpleSuccessToast
+import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 
 class ListPVCardActivity : BaseActivityMVVM(), CardPVComBankListener {
     private lateinit var adapter: ListCardPVComBankAdapter
@@ -100,7 +100,7 @@ class ListPVCardActivity : BaseActivityMVVM(), CardPVComBankListener {
         */
         viewModel.dataLockCard.observe(this, Observer {
             if (it.verification?.bypass == "N") {
-                showSimpleSuccessToast("Thẻ đã khóa thành công")
+                showShortSuccessToast("Thẻ đã khóa thành công")
                 adapter.setLockCard(viewModel.cardId, viewModel.pos, true)
             }
         })
@@ -325,7 +325,7 @@ class ListPVCardActivity : BaseActivityMVVM(), CardPVComBankListener {
                 requestUnLockCard -> {
                     val id = data?.getStringExtra(Constant.DATA_1)
                     if (id != null) {
-                        showSimpleSuccessToast("Thẻ đã mở khóa thành công")
+                        showShortSuccessToast("Thẻ đã mở khóa thành công")
                         adapter.setLockCard(id, viewModel.pos, false)
                     }
                 }

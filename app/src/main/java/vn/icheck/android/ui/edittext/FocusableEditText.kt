@@ -13,6 +13,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
 import vn.icheck.android.R
 import vn.icheck.android.util.ick.toPx
+import vn.icheck.android.ichecklibs.util.dpToPx
 
 
 class FocusableEditText : AppCompatEditText {
@@ -195,7 +196,7 @@ class FocusableEditText : AppCompatEditText {
                 )
                 drawText(
                         mError.toString(),
-                        26.toPx().toFloat(),
+                        26.dpToPx().toFloat(),
                         (bottom + 15f.toPx()).toFloat(),
                         mErrorTextPaint
                 )
@@ -215,7 +216,7 @@ class FocusableEditText : AppCompatEditText {
         mError = error
         setPadding(paddingLeft, paddingTop, paddingRight, originalPadding)
         requestLayout()
-        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom + 20.toPx())
+        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom + 20.dpToPx())
         requestLayout()
     }
 
@@ -223,7 +224,7 @@ class FocusableEditText : AppCompatEditText {
         mError = error
         setPadding(paddingLeft, paddingTop, paddingRight, originalPadding)
         requestLayout()
-        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom + 20.toPx())
+        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom + 20.dpToPx())
         requestLayout()
     }
 }

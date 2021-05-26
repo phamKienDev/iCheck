@@ -14,6 +14,7 @@ import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.network.models.ICSuggestTopic
 import vn.icheck.android.screen.user.home.HomeActivity
 import vn.icheck.android.screen.user.suggest_page.SuggestPageActivity
@@ -68,7 +69,7 @@ class SuggestTopicActivity : BaseActivityMVVM(), ISuggestTopicView {
         viewModel.onError.observe(this, Observer {
             DialogHelper.closeLoading(this)
             if (!adapter.isEmpty) {
-                showShortError(it.message)
+                showShortErrorToast(it.message)
             } else {
                 textView25.text = ""
                 viewShadow.beVisible()

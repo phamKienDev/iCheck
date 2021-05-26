@@ -18,6 +18,7 @@ import vn.icheck.android.base.dialog.notify.confirm.ConfirmDialog
 import vn.icheck.android.base.fragment.CoroutineBottomSheetDialogFragment
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.databinding.DialogFriendWallSettingsBinding
+import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.room.database.AppDatabase
 import vn.icheck.android.room.entity.ICMeFollowUser
@@ -25,7 +26,6 @@ import vn.icheck.android.screen.user.wall.IckUserWallViewModel
 import vn.icheck.android.util.ick.*
 
 class FriendWallSettingsDialog( val ickUserWallViewModel: IckUserWallViewModel, val owner: LifecycleOwner) : CoroutineBottomSheetDialogFragment() {
-
 
     private var _binding: DialogFriendWallSettingsBinding? = null
     private val binding get() = _binding!!
@@ -156,7 +156,7 @@ class FriendWallSettingsDialog( val ickUserWallViewModel: IckUserWallViewModel, 
                     if (AppDatabase.getDatabase().meFollowUserDao().getUserByID(ickUserWallViewModel.userInfo?.data?.id!!) != null) {
                         ickUserWallViewModel.unFollowUser().observe(owner, {
                             if (it?.statusCode == "200") {
-                                requireContext().showSimpleSuccessToast("Bạn đã hủy theo dõi với ${ickUserWallViewModel.userInfo?.data?.getName()}")
+                                requireContext().showShortSuccessToast("Bạn đã hủy theo dõi với ${ickUserWallViewModel.userInfo?.data?.getName()}")
                                 AppDatabase.getDatabase().meFollowUserDao().deleteUserById(ickUserWallViewModel.userInfo?.data?.id!!)
                                 dismiss()
                             }
@@ -164,7 +164,7 @@ class FriendWallSettingsDialog( val ickUserWallViewModel: IckUserWallViewModel, 
                     } else {
                         ickUserWallViewModel.followUser().observe(owner, {
                             if (it?.statusCode == "200") {
-                                requireContext().showSimpleSuccessToast("Bạn đã theo dõi ${ickUserWallViewModel.userInfo?.data?.getName()}")
+                                requireContext().showShortSuccessToast("Bạn đã theo dõi ${ickUserWallViewModel.userInfo?.data?.getName()}")
                                 AppDatabase.getDatabase().meFollowUserDao().insertMeFollowUser(ICMeFollowUser(ickUserWallViewModel.userInfo?.data?.id!!))
                                 dismiss()
                             }

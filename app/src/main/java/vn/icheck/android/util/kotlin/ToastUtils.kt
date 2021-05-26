@@ -5,8 +5,10 @@ import android.view.Gravity
 import android.widget.Toast
 import vn.icheck.android.base.commons.CustomPopupNotification
 import vn.icheck.android.base.commons.CustomPopupNotificationComplete
-import vn.icheck.android.base.commons.CustomToast
-import vn.icheck.android.util.ick.showSimpleErrorToast
+import vn.icheck.android.ichecklibs.util.showLongErrorToast
+import vn.icheck.android.ichecklibs.util.showLongSuccessToast
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
+import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 
 object ToastUtils {
     private var toast: Toast? = null
@@ -16,66 +18,66 @@ object ToastUtils {
         toast = null
     }
 
-
-    fun showShortSuccess(context: Context?, messageID: Int) {
-        showToast(context, context?.getString(messageID), CustomToast.SUCCESS, Toast.LENGTH_SHORT)
+    /*
+    * Success
+    * */
+    fun showShortSuccess(context: Context?, message: Int) {
+        context?.showShortSuccessToast(message)
     }
 
     fun showShortSuccess(context: Context?, message: String?) {
-        showToast(context, message, CustomToast.SUCCESS, Toast.LENGTH_SHORT)
+        context?.showShortSuccessToast(message)
     }
 
-    fun showLongSuccess(context: Context?, messageID: Int) {
-        showToast(context, context?.getString(messageID), CustomToast.SUCCESS, Toast.LENGTH_LONG)
+    fun showLongSuccess(context: Context?, message: Int) {
+        context?.showLongSuccessToast(message)
     }
 
     fun showLongSuccess(context: Context?, message: String?) {
-        showToast(context, message, CustomToast.SUCCESS, Toast.LENGTH_LONG)
+        context?.showLongSuccessToast(message)
     }
 
-
-    fun showShortError(context: Context?, messageID: Int) {
-        showToast(context, context?.getString(messageID), CustomToast.ERROR, Toast.LENGTH_SHORT)
+    /*
+    * Error
+    * */
+    fun showShortError(context: Context?, message: Int) {
+        context?.showShortErrorToast(message)
     }
 
     fun showShortError(context: Context?, message: String?) {
-        showToast(context, message, CustomToast.ERROR, Toast.LENGTH_SHORT)
-//        context?.showSimpleErrorToast(message)
+        context?.showShortErrorToast(message)
     }
 
-    fun showLongError(context: Context?, messageID: Int) {
-        showToast(context, context?.getString(messageID), CustomToast.ERROR, Toast.LENGTH_LONG)
+    fun showLongError(context: Context?, message: Int) {
+        context?.showLongErrorToast(message)
     }
 
     fun showLongError(context: Context?, message: String?) {
-        showToast(context, message, CustomToast.ERROR, Toast.LENGTH_LONG)
+        context?.showLongErrorToast(message)
     }
 
-
-    fun showShortWarning(context: Context?, messageID: Int) {
-        showToast(context, context?.getString(messageID), CustomToast.WARNING, Toast.LENGTH_SHORT)
+    /*
+    * Warning
+    * */
+    fun showShortWarning(context: Context?, message: Int) {
+        context?.showShortErrorToast(message)
     }
 
     fun showShortWarning(context: Context?, message: String?) {
-        showToast(context, message, CustomToast.WARNING, Toast.LENGTH_SHORT)
+        context?.showShortErrorToast(message)
     }
 
-    fun showLongWarning(context: Context?, messageID: Int) {
-        showToast(context, context?.getString(messageID), CustomToast.WARNING, Toast.LENGTH_LONG)
+    fun showLongWarning(context: Context?, message: Int) {
+        context?.showLongErrorToast(message)
     }
 
     fun showLongWarning(context: Context?, message: String?) {
-        showToast(context, message, CustomToast.WARNING, Toast.LENGTH_LONG)
+        context?.showLongErrorToast(message)
     }
 
 
-    private fun showToast(context: Context?, message: String?, type: Int, duration: Int) {
-        cancelToast()
-
-        context?.let {
-            toast = CustomToast(it, message, type, duration)
-            toast?.show()
-        }
+    fun showPopup(context: Context?, title: String?, message: String?) {
+        showPopupNotification(context, title, message, Toast.LENGTH_LONG)
     }
 
     private fun showPopupNotification(context: Context?, title: String?, message: String?, duration: Int) {
@@ -86,10 +88,6 @@ object ToastUtils {
             toast?.setGravity(Gravity.TOP or Gravity.FILL_HORIZONTAL, 0, 0)
             toast?.show()
         }
-    }
-
-    fun showPopup(context: Context?, title: String?, message: String?) {
-        showPopupNotification(context, title, message, Toast.LENGTH_LONG)
     }
 
     private fun showPopupNotificationMiniComplete(context: Context?, message: String?, duration: Int) {
@@ -106,3 +104,4 @@ object ToastUtils {
         showPopupNotificationMiniComplete(context, message, Toast.LENGTH_LONG)
     }
 }
+

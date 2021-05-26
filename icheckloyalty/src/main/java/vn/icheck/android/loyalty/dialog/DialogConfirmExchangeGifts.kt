@@ -4,12 +4,10 @@ import android.content.Context
 import android.content.Intent
 import kotlinx.android.synthetic.main.dialog_confirm_exchange_gifts.*
 import org.greenrobot.eventbus.EventBus
-import vn.icheck.android.ichecklibs.showSimpleSuccessToast
 import vn.icheck.android.loyalty.R
-import vn.icheck.android.loyalty.dialog.base.BaseDialog
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.base.ICMessageEvent
-import vn.icheck.android.loyalty.base.showCustomErrorToast
+import vn.icheck.android.loyalty.dialog.base.BaseDialog
 import vn.icheck.android.loyalty.dialog.base.DialogHelperGame
 import vn.icheck.android.loyalty.dialog.listener.IClickButtonDialog
 import vn.icheck.android.loyalty.dialog.listener.IDismissDialog
@@ -25,7 +23,6 @@ import vn.icheck.android.loyalty.network.SessionManager
 import vn.icheck.android.loyalty.repository.RedeemPointRepository
 import vn.icheck.android.loyalty.screen.game_from_labels.redeem_points.accept_ship_gift.AcceptShipGiftLoyaltyActivity
 import vn.icheck.android.loyalty.screen.redemption_history.RedemptionHistoryActivity
-import vn.icheck.android.loyalty.sdk.LoyaltySdk
 
 open class DialogConfirmExchangeGifts(context: Context, val obj: ICKBoxGifts, val campaignId: Long) : BaseDialog(context, R.style.DialogTheme) {
     private val repository = RedeemPointRepository()

@@ -3,10 +3,8 @@ package vn.icheck.android.helper
 import android.content.Context
 import android.text.TextUtils
 import android.util.Patterns
-import android.widget.Toast
 import vn.icheck.android.R
-import vn.icheck.android.util.ick.showSimpleErrorToast
-import vn.icheck.android.util.ick.showSimpleSuccessToast
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.util.kotlin.ToastUtils
 import java.util.regex.Pattern
 
@@ -327,22 +325,22 @@ object ValidHelper {
 
     fun checkValidatePhoneNumberBuyCard(context: Context, phoneNumber: String): Boolean {
         if (phoneNumber == "") {
-            context.showSimpleErrorToast(context.getString(R.string.vui_long_nhap_sdt_ban_muon_nap_the))
+            context.showShortErrorToast(context.getString(R.string.vui_long_nhap_sdt_ban_muon_nap_the))
             return false
         } else {
             if (phoneNumber.length < 10) {
-                context.showSimpleErrorToast(context.getString(R.string.so_dien_thoai_khong_dung_dinh_dang))
+                context.showShortErrorToast(context.getString(R.string.so_dien_thoai_khong_dung_dinh_dang))
                 return false
             } else {
                 if (!Patterns.PHONE.matcher(phoneNumber).matches()) {
-                    context.showSimpleErrorToast(context.getString(R.string.so_dien_thoai_co_chua_ky_tu_dac_biet))
+                    context.showShortErrorToast(context.getString(R.string.so_dien_thoai_co_chua_ky_tu_dac_biet))
                     return false
                 } else {
                     if (phoneNumber.subSequence(0, 3).equals("+84")) {
                         if (phoneNumber.length == 12) {
                             return true
                         } else {
-                            context.showSimpleErrorToast(context.getString(R.string.so_dien_thoai_khong_dung_dinh_dang))
+                            context.showShortErrorToast(context.getString(R.string.so_dien_thoai_khong_dung_dinh_dang))
                             return false
                         }
                     } else {
@@ -350,14 +348,14 @@ object ValidHelper {
                             if (phoneNumber.length == 11) {
                                 return true
                             } else {
-                                context.showSimpleErrorToast(context.getString(R.string.so_dien_thoai_khong_dung_dinh_dang))
+                                context.showShortErrorToast(context.getString(R.string.so_dien_thoai_khong_dung_dinh_dang))
                                 return false
                             }
                         } else {
                             if (phoneNumber.length == 10) {
                                 return true
                             } else {
-                                context.showSimpleErrorToast(context.getString(R.string.so_dien_thoai_khong_dung_dinh_dang))
+                                context.showShortErrorToast(context.getString(R.string.so_dien_thoai_khong_dung_dinh_dang))
                                 return false
                             }
                         }

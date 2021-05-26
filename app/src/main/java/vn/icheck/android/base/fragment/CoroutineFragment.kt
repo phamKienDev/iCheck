@@ -1,16 +1,11 @@
 package vn.icheck.android.base.fragment
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.viewbinding.ViewBinding
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import vn.icheck.android.util.ick.showSimpleErrorToast
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 
 open class CoroutineFragment: Fragment() {
 
@@ -32,6 +27,6 @@ open class CoroutineFragment: Fragment() {
     }
 
     fun showError(msg: String?) {
-        requireContext().showSimpleErrorToast(msg)
+        requireContext().showShortErrorToast(msg)
     }
 }

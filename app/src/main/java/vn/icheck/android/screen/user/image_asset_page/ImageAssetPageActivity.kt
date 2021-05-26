@@ -2,7 +2,6 @@ package vn.icheck.android.screen.user.image_asset_page
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.activity_image_asset_page.*
@@ -14,7 +13,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.network.models.ICMediaPage
 import vn.icheck.android.screen.user.media_in_post.MediaInPostActivity
-import vn.icheck.android.util.ick.showSimpleErrorToast
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 
 class ImageAssetPageActivity : BaseActivityMVVM(), IImageAssetPageView {
 
@@ -105,7 +104,7 @@ class ImageAssetPageActivity : BaseActivityMVVM(), IImageAssetPageView {
 
                 Constant.ERROR_SERVER -> {
                     if (adapter.isListNotEmpty){
-                        showSimpleErrorToast(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                        showShortErrorToast(R.string.co_loi_xay_ra_vui_long_thu_lai)
                     }else{
                         adapter.setErrorCode(Constant.ERROR_SERVER)
 
@@ -114,7 +113,7 @@ class ImageAssetPageActivity : BaseActivityMVVM(), IImageAssetPageView {
 
                 Constant.ERROR_INTERNET -> {
                     if (adapter.isListNotEmpty) {
-                        showSimpleErrorToast(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
+                        showShortErrorToast(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
                     }else{
                         adapter.setErrorCode(Constant.ERROR_INTERNET)
 

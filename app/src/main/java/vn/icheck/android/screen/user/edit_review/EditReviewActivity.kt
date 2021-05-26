@@ -27,7 +27,7 @@ import vn.icheck.android.network.models.ICCriteriaReview
 import vn.icheck.android.network.models.ICPost
 import vn.icheck.android.network.models.ICReqCriteriaReview
 import vn.icheck.android.tracking.TrackingAllHelper
-import vn.icheck.android.util.ick.showSimpleErrorToast
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.util.ick.simpleText
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -162,7 +162,7 @@ class EditReviewActivity : BaseActivityMVVM() {
                 }
                 else -> {
                     DialogHelper.closeLoading(this)
-                    showSimpleErrorToast((it.data as ICError).message ?: "")
+                    showShortErrorToast((it.data as ICError).message ?: "")
                 }
             }
         })

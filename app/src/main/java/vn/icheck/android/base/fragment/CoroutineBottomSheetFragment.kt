@@ -16,7 +16,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import vn.icheck.android.R
-import vn.icheck.android.util.ick.showSimpleErrorToast
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 
 abstract class CoroutineBottomSheetFragment<VB : ViewBinding>:BottomSheetDialogFragment() {
     private var _binding: ViewBinding? = null
@@ -78,6 +78,6 @@ abstract class CoroutineBottomSheetFragment<VB : ViewBinding>:BottomSheetDialogF
     }
 
     fun showError(msg: String?) {
-        requireContext().showSimpleErrorToast(msg)
+        requireContext().showShortErrorToast(msg)
     }
 }

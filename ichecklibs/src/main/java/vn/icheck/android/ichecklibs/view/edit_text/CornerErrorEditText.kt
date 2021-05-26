@@ -7,7 +7,7 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
 import vn.icheck.android.ichecklibs.R
-import vn.icheck.android.ichecklibs.toPx
+import vn.icheck.android.ichecklibs.util.dpToPx
 
 open class CornerErrorEditText : AppCompatEditText {
     var originalPadding = 0
@@ -35,7 +35,7 @@ open class CornerErrorEditText : AppCompatEditText {
         mErrorTextPaint.color = ContextCompat.getColor(context, R.color.colorAccentRed)
         originalPadding = paddingBottom
         mBackgroundPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-        mBackgroundPaint.strokeWidth = 1f.toPx()
+        mBackgroundPaint.strokeWidth = 1f.dpToPx()
         mBackgroundPaint.style = Paint.Style.STROKE
         mBackgroundPaint.setColor(Color.parseColor("#D8D8D8"))
         setPadding(paddingLeft, paddingTop, paddingRight, originalPadding)
@@ -59,16 +59,16 @@ open class CornerErrorEditText : AppCompatEditText {
         super.onDraw(canvas)
         canvas?.apply {
             canvas.translate(scrollX.toFloat(), 0f)
-            val bottom = height - paddingBottom + 2.5f.toPx()
+            val bottom = height - paddingBottom + 2.5f.dpToPx()
             if (!::rect.isInitialized) {
                 rect = RectF(0f, 0f, width.toFloat(), height.toFloat())
             }
-            drawRoundRect(rect, 4f.toPx(), 4f.toPx(), mBackgroundPaint)
+            drawRoundRect(rect, 4f.dpToPx(), 4f.dpToPx(), mBackgroundPaint)
             if (!mError.isNullOrEmpty()) {
                 drawText(
                         mError.toString(),
                         0f,
-                        (bottom + 23.5f.toPx()).toFloat(),
+                        (bottom + 23.5f.dpToPx()),
                         mErrorTextPaint
                 )
             }
@@ -82,7 +82,7 @@ open class CornerErrorEditText : AppCompatEditText {
         mBackgroundPaint.setColor(ContextCompat.getColor(context, R.color.colorAccentRed))
         setPadding(paddingLeft, paddingTop, paddingRight, originalPadding)
         requestLayout()
-        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom + 20.toPx())
+        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom + 20.dpToPx())
         requestLayout()
     }
 
@@ -92,7 +92,7 @@ open class CornerErrorEditText : AppCompatEditText {
         mBackgroundPaint.setColor(ContextCompat.getColor(context, R.color.colorAccentRed))
         setPadding(paddingLeft, paddingTop, paddingRight, originalPadding)
         requestLayout()
-        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom + 20.toPx())
+        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom + 20.dpToPx())
         requestLayout()
     }
 

@@ -20,14 +20,12 @@ import kotlinx.android.synthetic.main.holder_list_shop_variant.view.tv_price
 import kotlinx.android.synthetic.main.holder_list_shop_variant.view.tv_sale_price
 import kotlinx.android.synthetic.main.holder_list_shop_variant.view.tv_score
 import kotlinx.android.synthetic.main.holder_list_shop_variant.view.tv_shop_name
-import kotlinx.android.synthetic.main.holder_shop.view.*
 import vn.icheck.android.R
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
-import vn.icheck.android.ichecklibs.beGone
-import vn.icheck.android.ichecklibs.beInvisible
-import vn.icheck.android.ichecklibs.beVisible
+import vn.icheck.android.ichecklibs.util.beInvisible
+import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.network.models.ICShopVariantV2
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICServiceShopVariant
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.adapter.ServiceShopVariantAdapter

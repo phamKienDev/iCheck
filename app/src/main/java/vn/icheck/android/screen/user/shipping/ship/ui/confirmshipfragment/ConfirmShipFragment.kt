@@ -21,8 +21,8 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.FragmentConfirmShipBinding
 import vn.icheck.android.databinding.ItemConfirmShipBinding
 import vn.icheck.android.helper.DialogHelper
-import vn.icheck.android.tracking.teko.TekoHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.screen.user.report.ReportActivity
 import vn.icheck.android.screen.user.shipping.ship.ShipActivity
@@ -82,7 +82,7 @@ class ConfirmShipFragment : Fragment() {
                                 }
                             }.show(childFragmentManager, null)
                         } else {
-                            requireContext().showSimpleErrorToast(it.message)
+                            requireContext().showShortErrorToast(it.message)
                         }
                     })
                 } else {
@@ -103,7 +103,7 @@ class ConfirmShipFragment : Fragment() {
                                 }
                             }.show(childFragmentManager, null)
                         } else {
-                            requireContext().showSimpleErrorToast(checkout.message)
+                            requireContext().showShortErrorToast(checkout.message)
                         }
 
                     })
@@ -121,7 +121,7 @@ class ConfirmShipFragment : Fragment() {
 //                                dismissLoadingScreen()
 //                            })
 //                        } else {
-//                            requireContext().showSimpleErrorToast(" Đã xảy ra lỗi vui lòng thử lại sau!")
+//                            requireContext().showShortErrorToast(" Đã xảy ra lỗi vui lòng thử lại sau!")
 //                            dismissLoadingScreen()
 //                        }
 //                    })

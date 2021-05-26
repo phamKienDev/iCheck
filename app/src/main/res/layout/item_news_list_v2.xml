@@ -21,7 +21,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <vn.icheck.android.ui.view.TextSubheader1
+        <vn.icheck.android.ichecklibs.view.TextSubheader1
             android:id="@id/tvTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <vn.icheck.android.ui.view.TextBody1
+            <vn.icheck.android.ichecklibs.view.TextBody1
                 android:id="@id/tvTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -82,7 +82,7 @@
         android:layout_marginTop="@dimen/size_10"
         android:layout_height="@dimen/trp_flight_dip_175" />
 
-    <vn.icheck.android.ui.view.TextBody1
+    <vn.icheck.android.ichecklibs.view.TextBody1
         android:id="@+id/txtDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

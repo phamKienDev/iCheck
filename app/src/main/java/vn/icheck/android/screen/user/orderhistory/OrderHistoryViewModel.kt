@@ -2,17 +2,13 @@ package vn.icheck.android.screen.user.orderhistory
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.model.ICError
-import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.order.OrderInteractor
 import vn.icheck.android.network.models.ICOrderHistoryV2
-import vn.icheck.android.network.models.ICRespID
-import vn.icheck.android.util.ick.showSimpleErrorToast
 
 class OrderHistoryViewModel : ViewModel() {
     private val interactor = OrderInteractor()
