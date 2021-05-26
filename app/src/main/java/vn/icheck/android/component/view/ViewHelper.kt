@@ -5253,7 +5253,12 @@ object ViewHelper {
             }
             "image" -> {
                 if (!popup.image.isNullOrEmpty()) {
-                    dialog= object : DialogNotificationFirebaseAds(this, link = null,htmlText = null,image = popup.image,schema = popup.deeplink,schemaParams=popup.deeplinkParams, idAds = popup.id) {
+                    val schema=if(popup.deeplink.isNullOrEmpty()){
+                        popup.path
+                    }else{
+                        popup.deeplink
+                    }
+                    dialog= object : DialogNotificationFirebaseAds(this, link = null,htmlText = null,image = popup.image,schema = schema, schemaParams=popup.deeplinkParams, idAds = popup.id) {
                         override fun onDismiss() {
 
                         }
