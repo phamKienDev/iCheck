@@ -31,6 +31,7 @@ import vn.icheck.android.component.image_video_slider.ICMediaType
 import vn.icheck.android.component.image_video_slider.MediaLogic
 import vn.icheck.android.component.post.IPostListener
 import vn.icheck.android.component.view.ViewHelper.setScrollSpeed
+import vn.icheck.android.component.view.ViewHelper.showPopupAds
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
@@ -180,7 +181,11 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
     }
 
     private fun setupSwipeLayout() {
-        swipeLayout.setColorSchemeColors(ContextCompat.getColor(requireContext(), R.color.colorSecondary), ContextCompat.getColor(requireContext(), R.color.colorSecondary), ContextCompat.getColor(requireContext(), R.color.colorPrimary))
+        swipeLayout.setColorSchemeColors(
+            ContextCompat.getColor(requireContext(), R.color.colorSecondary),
+            ContextCompat.getColor(requireContext(), R.color.colorSecondary),
+            ContextCompat.getColor(requireContext(), R.color.colorPrimary)
+        )
 
         swipeLayout.setOnRefreshListener {
             getData()
@@ -317,13 +322,8 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
             DialogHelper.showDialogSuccessBlack(requireContext(), getString(R.string.ban_da_xoa_bai_viet_thanh_cong), null, 1000)
             adapter.deletePost(it)
         })
-        viewModel.onPopupAds.observe(viewLifecycleOwner,{
-            object : DialogNotificationFirebaseAds(requireActivity(),image = it.image, htmlText = it.document,link=it.url,schema = it.deeplink) {
-                override fun onDismiss() {
-
-                }
-
-            }.show()
+        viewModel.onPopupAds.observe(viewLifecycleOwner, {
+            requireActivity().showPopupAds(it)
         })
     }
 
@@ -383,13 +383,20 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
     private fun actionFollowAndUnfollow(id: Long) {
         if (SessionManager.isUserLogged) {
             if (viewModel.isFollowPage) {
-                DialogHelper.showConfirm(requireContext(), getString(R.string.ban_chac_chan_bo_theo_doi_trang_nay), null, getString(R.string.de_sau), getString(R.string.dong_y), true, object : ConfirmDialogListener {
-                    override fun onDisagree() {}
+                DialogHelper.showConfirm(
+                    requireContext(),
+                    getString(R.string.ban_chac_chan_bo_theo_doi_trang_nay),
+                    null,
+                    getString(R.string.de_sau),
+                    getString(R.string.dong_y),
+                    true,
+                    object : ConfirmDialogListener {
+                        override fun onDisagree() {}
 
-                    override fun onAgree() {
-                        viewModel.unFollowPage(id)
-                    }
-                })
+                        override fun onAgree() {
+                            viewModel.unFollowPage(id)
+                        }
+                    })
             } else {
                 viewModel.followPage(id)
             }
@@ -490,11 +497,13 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
             }
             ICMessageEvent.Type.UPDATE_SUBCRIBE_STATUS -> {
                 adapter.updateSubcribeState(event.data as Boolean)
-                DialogHelper.showDialogSuccessBlack(requireContext(), if (event.data) {
-                    requireContext().getString(R.string.ban_da_bat_thong_bao_trang_nay)
-                } else {
-                    requireContext().getString(R.string.ban_da_tat_thong_bao_trang_nay)
-                })
+                DialogHelper.showDialogSuccessBlack(
+                    requireContext(), if (event.data) {
+                        requireContext().getString(R.string.ban_da_bat_thong_bao_trang_nay)
+                    } else {
+                        requireContext().getString(R.string.ban_da_tat_thong_bao_trang_nay)
+                    }
+                )
             }
             ICMessageEvent.Type.UPDATE_COUNT_CART -> {
                 val count = event.data as String?
@@ -667,9 +676,25 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
         if (requestCode == requestPermissionImage) {
             if (PermissionHelper.checkResult(grantResults)) {
                 if (typeEditImage == ICViewTypes.HEADER_INFOR_PAGE) {
-                    TakeMediaDialog.show(this@PageDetailFragment.requireActivity().supportFragmentManager, this@PageDetailFragment.requireActivity(), takeMediaListener, selectMulti = false, cropImage = false, ratio = "1:1", isVideo = false)
+                    TakeMediaDialog.show(
+                        this@PageDetailFragment.requireActivity().supportFragmentManager,
+                        this@PageDetailFragment.requireActivity(),
+                        takeMediaListener,
+                        selectMulti = false,
+                        cropImage = false,
+                        ratio = "1:1",
+                        isVideo = false
+                    )
                 } else {
-                    TakeMediaDialog.show(this@PageDetailFragment.requireActivity().supportFragmentManager, this@PageDetailFragment.requireActivity(), takeMediaListener, selectMulti = false, cropImage = false, ratio = "375:192", isVideo = false)
+                    TakeMediaDialog.show(
+                        this@PageDetailFragment.requireActivity().supportFragmentManager,
+                        this@PageDetailFragment.requireActivity(),
+                        takeMediaListener,
+                        selectMulti = false,
+                        cropImage = false,
+                        ratio = "375:192",
+                        isVideo = false
+                    )
                 }
             } else {
                 showLongWarning(R.string.khong_the_thuc_hien_tac_vu_vi_ban_chua_cap_quyen)

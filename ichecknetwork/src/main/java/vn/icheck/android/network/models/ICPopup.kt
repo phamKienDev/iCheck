@@ -22,7 +22,7 @@ data class ICPopup(
     @SerializedName("endTime")
     val endTime: String?=null,
     @SerializedName("id")
-    val id: Int,
+    val id: Long?=null,
     @SerializedName("image")
     val image: String?=null,
     @SerializedName("name")

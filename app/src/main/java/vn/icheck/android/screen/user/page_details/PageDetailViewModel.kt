@@ -363,6 +363,10 @@ open class PageDetailViewModel : ViewModel() {
     }
 
     private fun getPopup(page: ICPageOverview) {
+        if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
+            return
+        }
+
         popupRepository.getPopup(page.id,
             if (page.isVerify) {
                 vn.icheck.android.ichecklibs.Constant.PAGE_VERIFY

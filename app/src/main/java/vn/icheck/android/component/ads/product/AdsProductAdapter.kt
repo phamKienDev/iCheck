@@ -387,7 +387,7 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
                 binding.tvPriceUpdating.beGone()
                 if (obj.price != null) {
                     binding.tvPriceSpecial.beVisible()
-                    binding.tvPriceSpecial.text = TextHelper.formatMoney(obj.price) + "đ"
+                    binding.tvPriceSpecial.text = TextHelper.formatMoney((obj.price?:0.0).toLong()) + "đ"
                 }
 
                 if (obj.sellPrice != null) {

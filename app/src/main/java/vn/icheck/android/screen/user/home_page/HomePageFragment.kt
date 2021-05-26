@@ -43,6 +43,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.LoadImageListener
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.component.view.ViewHelper.setScrollSpeed
+import vn.icheck.android.component.view.ViewHelper.showPopupAds
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.ExoPlayerManager
@@ -279,6 +280,10 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
             layoutHeader.beVisible()
         })
 
+        viewModel.onPopupAds.observe(viewLifecycleOwner, Observer {
+            requireActivity().showPopupAds(it)
+        })
+
 //        viewModel.onUpdatePVCombank.observe(viewLifecycleOwner, Observer {
 //            for (i in homeAdapter.listData.indices) {
 //                if (homeAdapter.listData[i].viewType == ICViewTypes.HOME_PRIMARY_FUNC) {
@@ -385,6 +390,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         swipeLayout.post {
             viewModel.getHomeLayout()
             viewModel.getHomePopup()
+            viewModel.getPopupAds()
             // Gọi api pvcombank
         }
     }

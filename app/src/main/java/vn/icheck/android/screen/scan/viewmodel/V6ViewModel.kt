@@ -68,6 +68,10 @@ class V6ViewModel: ViewModel() {
     }
 
      fun getPopup() {
+         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
+             return
+         }
+
         popupRepository.getPopup(null, Constant.SCAN, object : ICNewApiListener<ICResponse<ICPopup>> {
             override fun onSuccess(obj: ICResponse<ICPopup>) {
                 if (obj.data != null) {

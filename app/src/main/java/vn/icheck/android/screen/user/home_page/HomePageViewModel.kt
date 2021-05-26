@@ -26,6 +26,7 @@ import vn.icheck.android.network.feature.ads.AdsRepository
 import vn.icheck.android.network.feature.campaign.CampainsInteractor
 import vn.icheck.android.network.feature.mall.MallInteractor
 import vn.icheck.android.network.feature.news.NewsInteractor
+import vn.icheck.android.network.feature.popup.PopupInteractor
 import vn.icheck.android.network.feature.product.ProductInteractor
 import vn.icheck.android.network.feature.pvcombank.PVcomBankRepository
 import vn.icheck.android.network.feature.setting.SettingRepository
@@ -39,6 +40,7 @@ import kotlin.collections.set
 
 class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHandle: SavedStateHandle, val ickApi: ICKApi) : BaseViewModel() {
     private val productInteraction = ProductInteractor()
+    private val popupInteraction = PopupInteractor()
     private val campaignInteraction = CampainsInteractor()
     private val newsInteraction = NewsInteractor()
     private val mallInteractor = MallInteractor()
@@ -58,6 +60,7 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
     val onUpdateListData = MutableLiveData<ICListHomeItem>()
     val onUpdatePVCombank = MutableLiveData<ICListCardPVBank?>()
     val onUpdateAds = MutableLiveData<Boolean>()
+    val onPopupAds = MutableLiveData<ICPopup>()
 
     private var totalRequest = 0
     private var errorRequest = 0
@@ -232,6 +235,23 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
             override fun onError(error: ICResponseCode?) {
                 finishRequest(false)
                 onUpdateData.value = layout
+            }
+        })
+    }
+
+    fun getPopupAds() {
+        if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
+            return
+        }
+
+        popupInteraction.getPopup(null,vn.icheck.android.ichecklibs.Constant.SCAN, object : ICNewApiListener<ICResponse<ICPopup>> {
+            override fun onSuccess(obj: ICResponse<ICPopup>) {
+                if (obj.data!=null) {
+                    onPopupAds.postValue(obj.data!!)
+                }
+            }
+
+            override fun onError(error: ICResponseCode?) {
             }
         })
     }

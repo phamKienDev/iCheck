@@ -318,6 +318,7 @@ object APIConstants {
 
     object Popup {
         const val GET_POPUP_BY_SCREEN = "social/api/popup-ads/find-by-target"
+        const val CLICK_POUP_ADS = "social/api/popup-ads/{id}/add-click"
     }
 
     object Stamp {

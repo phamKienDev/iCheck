@@ -327,6 +327,10 @@ class IckProductDetailViewModel : BaseViewModel() {
     }
 
     private fun getPopup() {
+        if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
+            return
+        }
+
         popupRepository.getPopup(productDetail?.id, if (productDetail?.verified == true) {
             vn.icheck.android.ichecklibs.Constant.PRODUCT_VERIFY
         } else {

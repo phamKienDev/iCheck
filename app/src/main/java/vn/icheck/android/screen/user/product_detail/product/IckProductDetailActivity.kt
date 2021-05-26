@@ -44,6 +44,8 @@ import vn.icheck.android.component.product_review.my_review.MyReviewModel
 import vn.icheck.android.component.product_review.submit_review.ISubmitReviewListener
 import vn.icheck.android.component.product_review.submit_review.SubmitReviewHolder
 import vn.icheck.android.component.product_review.submit_review.SubmitReviewModel
+import vn.icheck.android.component.view.ViewHelper
+import vn.icheck.android.component.view.ViewHelper.showPopupAds
 import vn.icheck.android.constant.*
 import vn.icheck.android.fragments.ReviewTributeDialog
 import vn.icheck.android.helper.*
@@ -632,12 +634,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
             showSimpleSuccessToast("Cảm ơn bạn, chúng tôi sẽ liên hệ lại trong thời gian sớm nhất.")
         })
         viewModel.onPopupAds.observe(this@IckProductDetailActivity,Observer{
-            object : DialogNotificationFirebaseAds(this@IckProductDetailActivity,image = it.image, htmlText = it.document,link=it.url,schema = it.deeplink) {
-                override fun onDismiss() {
-
-                }
-
-            }.show()
+           showPopupAds(it)
         })
     }
 
