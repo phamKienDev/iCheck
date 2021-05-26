@@ -168,6 +168,21 @@ object TimeHelper {
         }
     }
 
+    fun convertDateTimeSvToTimeDateVnV2(date: String?): String? {
+        if (date.isNullOrEmpty())
+            return null
+
+        val sdfSv = simpleDateFormatSv
+        val sdfVn = simpleDateFormatVn("dd/MM/yyyy ,HH:mm")
+
+        return try {
+            val mDate = sdfSv.parse(date)
+            sdfVn.format(mDate)
+        } catch (e: Exception) {
+            null
+        }
+    }
+
     fun convertDateTimeSvToTimeVn(date: String?): String? {
         if (date.isNullOrEmpty())
             return null

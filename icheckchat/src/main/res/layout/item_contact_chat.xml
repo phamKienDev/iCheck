@@ -27,24 +27,35 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@color/colorPrimary" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvNameUser"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="@dimen/size_0"
         android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:layout_marginLeft="14dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginRight="12dp"
-        android:ellipsize="end"
-        android:fontFamily="@font/barlow_semi_bold"
-        android:includeFontPadding="false"
-        android:singleLine="true"
-        android:textColor="@color/black_21"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="@id/imgAvatarFriend"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/imgAvatarFriend"
-        app:layout_constraintTop_toTopOf="@id/imgAvatarFriend"
-        tools:text="Test" />
+        app:layout_constraintTop_toTopOf="@id/imgAvatarFriend">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvNameUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
+            android:drawablePadding="@dimen/size_4"
+            android:ellipsize="end"
+            android:fontFamily="@font/barlow_semi_bold"
+            android:gravity="center_vertical"
+            android:includeFontPadding="false"
+            android:singleLine="true"
+            android:textColor="@color/black_21"
+            tools:drawableEnd="@drawable/ic_verified_user_16px"
+            tools:drawableRight="@drawable/ic_verified_user_16px"
+            tools:text="Test asldk lsakdk lsad la;sdl kadl;s ksldak dal;skd a;sk d;askd;ál" />
+
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
