@@ -44,8 +44,6 @@ class V6ViewModel: ViewModel() {
     val errorString = MutableLiveData<String>()
     val onPopupAds = MutableLiveData<ICPopup>()
 
-    private var firstPopup = true
-
     fun getMyID() {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
             onError.postValue(ICError(R.drawable.ic_error_network, ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), null, null))

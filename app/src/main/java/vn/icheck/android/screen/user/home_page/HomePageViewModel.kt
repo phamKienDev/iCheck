@@ -244,7 +244,7 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
             return
         }
 
-        popupInteraction.getPopup(null,vn.icheck.android.ichecklibs.Constant.SCAN, object : ICNewApiListener<ICResponse<ICPopup>> {
+        popupInteraction.getPopup(null,vn.icheck.android.ichecklibs.Constant.HOME, object : ICNewApiListener<ICResponse<ICPopup>> {
             override fun onSuccess(obj: ICResponse<ICPopup>) {
                 if (obj.data!=null) {
                     onPopupAds.postValue(obj.data!!)
