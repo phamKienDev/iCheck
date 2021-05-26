@@ -217,10 +217,14 @@ class GiftDetailFromAppActivity : BaseActivityGame() {
     }
 
     override fun onMessageEvent(event: ICMessageEvent) {
-        if (event.type == ICMessageEvent.Type.BACK) {
-            getData()
-        } else {
-            super.onMessageEvent(event)
+        when (event.type) {
+            ICMessageEvent.Type.BACK -> {
+                getData()
+            }
+            ICMessageEvent.Type.BACK_UPDATE -> {
+                getData()
+            }
+            else -> super.onMessageEvent(event)
         }
     }
 

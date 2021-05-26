@@ -143,6 +143,9 @@ class GiftDetailActivity : BaseActivityGame() {
             ICMessageEvent.Type.EXCHANGE_PHONE_CARD -> {
                 ChangePhoneCardsActivity.start(this, event.data as Long, ConstantsLoyalty.TDDH, requestCard)
             }
+            ICMessageEvent.Type.BACK_UPDATE -> {
+                viewModel.getDetailGift()
+            }
         }
     }
 

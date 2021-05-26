@@ -1,7 +1,5 @@
 package vn.icheck.android.loyalty.model
 
-import android.content.res.ColorStateList
-import android.graphics.drawable.Drawable
 import com.google.gson.annotations.Expose
 import java.io.Serializable
 
@@ -16,10 +14,16 @@ class ICKBoxGifts: Serializable {
     val box_id: Long? = null
 
     @Expose
+    val box_gift: ICKBox? = null
+
+    @Expose
     val quota: Long? = null
 
     @Expose
     var points: Long? = null
+
+    @Expose
+    var status: String? = null
 
     @Expose
     var total_gift: Long? = null
