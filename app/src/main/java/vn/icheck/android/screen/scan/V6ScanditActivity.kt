@@ -50,6 +50,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.dialog.notify.internal_stamp.InternalStampDialog
+import vn.icheck.android.component.view.ViewHelper.showPopupAds
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.constant.ICK_REQUEST_CAMERA
 import vn.icheck.android.constant.SCAN_REVIEW
@@ -67,6 +68,7 @@ import vn.icheck.android.network.base.*
 import vn.icheck.android.network.models.ICProductDetail
 import vn.icheck.android.network.models.ICValidStampSocial
 import vn.icheck.android.network.util.DeviceUtils
+import vn.icheck.android.screen.dialog.DialogNotificationFirebaseAds
 import vn.icheck.android.screen.scan.viewmodel.V6ViewModel
 import vn.icheck.android.screen.user.contribute_product.CONTRIBUTE_REQUEST
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.DetailStampHoaPhatActivity
@@ -262,6 +264,8 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         checkIsScan()
         initViews()
         pushUpHeight()
+
+        viewModel.getPopup()
     }
 
     private fun checkIsLoyalty() {
@@ -652,6 +656,10 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                 }
             }
         })
+
+        viewModel.onPopupAds.observe(this, {
+            showPopupAds(it)
+        })
         initListener()
     }
 
@@ -977,12 +985,12 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         })
 
         viewModel.stampHoaPhat.observe(this, {
-            TrackingAllHelper.trackScanQrcode(viewModel.codeScan,true)
+            TrackingAllHelper.trackScanQrcode(viewModel.codeScan, true)
             ActivityUtils.startActivity<DetailStampHoaPhatActivity, String>(this, Constant.DATA, viewModel.codeScan)
         })
 
         viewModel.stampThinhLong.observe(this, {
-            TrackingAllHelper.trackScanQrcode(viewModel.codeScan,true)
+            TrackingAllHelper.trackScanQrcode(viewModel.codeScan, true)
             ActivityUtils.startActivity<DetailStampThinhLongActivity, String>(this, Constant.DATA, viewModel.codeScan)
         })
 
@@ -1010,7 +1018,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                             params.append("&user_id=$userID")
                         }
                     }
-                    TrackingAllHelper.trackScanQrcode(viewModel.codeScan,false)
+                    TrackingAllHelper.trackScanQrcode(viewModel.codeScan, false)
                     WebViewActivity.start(this, link + params.toString(), 1, null, false)
                 }
                 it.code.isNullOrEmpty() -> {

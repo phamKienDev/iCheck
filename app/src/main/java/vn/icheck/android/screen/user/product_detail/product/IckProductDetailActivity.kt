@@ -44,6 +44,8 @@ import vn.icheck.android.component.product_review.my_review.MyReviewModel
 import vn.icheck.android.component.product_review.submit_review.ISubmitReviewListener
 import vn.icheck.android.component.product_review.submit_review.SubmitReviewHolder
 import vn.icheck.android.component.product_review.submit_review.SubmitReviewModel
+import vn.icheck.android.component.view.ViewHelper
+import vn.icheck.android.component.view.ViewHelper.showPopupAds
 import vn.icheck.android.constant.*
 import vn.icheck.android.fragments.ReviewTributeDialog
 import vn.icheck.android.helper.*
@@ -56,6 +58,7 @@ import vn.icheck.android.loyalty.sdk.LoyaltySdk
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.*
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
+import vn.icheck.android.screen.dialog.DialogNotificationFirebaseAds
 import vn.icheck.android.screen.user.contact.ContactActivity
 import vn.icheck.android.screen.user.contribute_product.IckContributeProductActivity
 import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
@@ -629,6 +632,9 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         })
         viewModel.onRegisterBuyProduct.observe(this@IckProductDetailActivity, Observer {
             showSimpleSuccessToast("Cảm ơn bạn, chúng tôi sẽ liên hệ lại trong thời gian sớm nhất.")
+        })
+        viewModel.onPopupAds.observe(this@IckProductDetailActivity,Observer{
+           showPopupAds(it)
         })
     }
 
