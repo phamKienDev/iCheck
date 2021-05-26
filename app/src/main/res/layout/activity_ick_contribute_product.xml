@@ -10,6 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:orientation="horizontal">
 
         <ImageView
@@ -19,7 +20,7 @@
             android:scaleType="centerInside"
             app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-        <vn.icheck.android.ui.view.TextBarlowMedium
+        <vn.icheck.android.ui.view.TextBarlowSemiBold
             android:id="@+id/textView4"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -35,9 +36,7 @@
 
     <View
         android:id="@+id/divider4"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/size_1"
-        android:background="?android:attr/listDivider" />
+        style="@style/Shadow_Bottom"/>
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/root_scroll"

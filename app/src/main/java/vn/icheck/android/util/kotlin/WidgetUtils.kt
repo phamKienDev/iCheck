@@ -5,14 +5,19 @@ package vn.icheck.android.util.kotlin
 import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ValueAnimator
+import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.media.MediaMetadataRetriever
+import android.text.InputType
 import android.text.method.PasswordTransformationMethod
 import android.view.View
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.marginLeft
+import androidx.core.view.marginTop
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -30,11 +35,12 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.callback.LoadImageListener
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.visibleOrGone
 import vn.icheck.android.ui.RoundedCornersTransformation
+import vn.icheck.android.ui.edittext.FocusableEditText
 import vn.icheck.android.util.ick.logError
 import java.io.File
 import java.io.FileInputStream
-
 
 object WidgetUtils {
     const val FRAME_FRAGMENT_ID = R.id.frameFragment
@@ -770,6 +776,23 @@ object WidgetUtils {
                 .into(image)
     }
 
+    fun loadImageUrlRoundedTransformationCenterCrop(image: AppCompatImageView, url: String?, placeHolder: Int, error: Int, roundCorners: Int, cornerType: RoundedCornersTransformation.CornerType) {
+        if (url.isNullOrEmpty()) {
+            Glide.with(image.context.applicationContext)
+                    .load(error)
+                    .transform(CenterCrop(), RoundedCornersTransformation(image.context, roundCorners, 0, cornerType))
+                    .into(image)
+            return
+        }
+
+        Glide.with(image.context.applicationContext)
+                .load(url)
+                .placeholder(placeHolder)
+                .error(error)
+                .transform(CenterCrop(), RoundedCornersTransformation(image.context, roundCorners, 0, cornerType))
+                .into(image)
+    }
+
     fun loadImageUrlRoundedCenterCrop(image: AppCompatImageView, url: String?, placeHolder: Int, error: Int, roundCorners: Int, cornerType: RoundedCornersTransformation.CornerType) {
         if (url.isNullOrEmpty()) {
             Glide.with(image.context.applicationContext)
@@ -1031,6 +1054,41 @@ object WidgetUtils {
                 .into(image)
     }
 
+    fun loadImageUrlRounded10FitCenter(image: AppCompatImageView, url: String?, listener: RequestListener<Bitmap>) {
+        if (url.isNullOrEmpty()) {
+            Glide.with(image.context.applicationContext)
+                    .load(defaultError)
+                    .transform(FitCenter(), RoundedCorners(SizeHelper.size10))
+                    .into(image)
+            return
+        }
+
+        Glide.with(ICheckApplication.getInstance())
+                .load(url)
+                .placeholder(circularProgressDrawable)
+                .error(defaultError)
+                .transform(CenterCrop(), RoundedCorners(SizeHelper.size10))
+                .into(image)
+
+//        Glide.with(image.context.applicationContext)
+//                .load(url)
+//                .
+//                .placeholder(circularProgressDrawable)
+//                .error(error)
+//                .transform(FitCenter(), RoundedCorners(SizeHelper.size10))
+//                .listener(object : RequestListener<Bitmap> {
+//                    override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Bitmap>?, isFirstResource: Boolean): Boolean {
+//                        TODO("Not yet implemented")
+//                    }
+//
+//                    override fun onResourceReady(resource: Bitmap?, model: Any?, target: Target<Bitmap>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+//                        TODO("Not yet implemented")
+//                    }
+//
+//                })
+//                .into(image)
+    }
+
     fun loadImageUrlRounded10FitCenter(image: AppCompatImageView, url: String?, placeHolder: Int, error: Int) {
         if (url.isNullOrEmpty()) {
             Glide.with(image.context.applicationContext)
@@ -1280,5 +1338,32 @@ object WidgetUtils {
                 .placeholder(circularProgressDrawableBlue)
                 .error(defaultError)
                 .into(image)
+    }
+
+    fun changePasswordInput(editText: FocusableEditText) {
+        editText.apply {
+            if (isFocused) {
+                val mTransformationMethod = transformationMethod
+
+                inputType = if (inputType != InputType.TYPE_TEXT_VARIATION_PASSWORD) {
+                    InputType.TYPE_TEXT_VARIATION_PASSWORD
+                } else {
+                    InputType.TYPE_CLASS_NUMBER
+                }
+
+                transformationMethod = mTransformationMethod
+
+                setSelection(length())
+            }
+        }
+    }
+
+    fun setButtonKeyboardMargin(imgKeyboard: AppCompatImageView, edtPassword: FocusableEditText) {
+        imgKeyboard.apply {
+            visibleOrGone(edtPassword.isFocused)
+            layoutParams = (layoutParams as ConstraintLayout.LayoutParams).apply {
+                setMargins(marginLeft, marginTop, marginEnd, vn.icheck.android.ichecklibs.SizeHelper.size12)
+            }
+        }
     }
 }

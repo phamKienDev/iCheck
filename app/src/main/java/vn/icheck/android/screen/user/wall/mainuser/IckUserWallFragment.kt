@@ -34,7 +34,6 @@ import vn.icheck.android.RelationshipManager
 import vn.icheck.android.WrapContentLinearLayoutManager
 import vn.icheck.android.base.dialog.reward_login.RewardLoginCallback
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
-import vn.icheck.android.base.dialog.reward_login.RewardLoginDialogV2
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.component.post.IPostListener
 import vn.icheck.android.constant.*
@@ -316,9 +315,11 @@ class IckUserWallFragment : Fragment(), IPostListener {
                             binding.notify.setImageResource(R.drawable.ic_homenoti_empty_blue_24px)
                         }
                         binding.titleDiv.beVisible()
-                        binding.tvNewImage.beVisible()
-                        binding.verticalDiv.beVisible()
-                        binding.tvNewPost.beVisible()
+                        if (ickUserWallViewModel.userInfo?.data?.id ==SessionManager.session.user?.id) {
+                            binding.tvNewImage.beVisible()
+                            binding.verticalDiv.beVisible()
+                            binding.tvNewPost.beVisible()
+                        }
                         showToolbar = true
                     }
                 } else {
@@ -490,7 +491,7 @@ class IckUserWallFragment : Fragment(), IPostListener {
             ICMessageEvent.Type.ON_REQUIRE_LOGIN -> {
                 if (isActivityVisble) {
                     ICheckApplication.currentActivity()?.let { activity ->
-                        RewardLoginDialogV2.show((activity as AppCompatActivity).supportFragmentManager, object : RewardLoginCallback {
+                        RewardLoginDialog.show((activity as AppCompatActivity).supportFragmentManager, object : RewardLoginCallback {
                             override fun onLogin() {
                                 val intent = Intent(context, IckLoginActivity::class.java)
                                 startActivityForResult(intent, requestLogin)

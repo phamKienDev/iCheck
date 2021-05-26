@@ -10,6 +10,10 @@ import vn.icheck.android.loyalty.R
 import java.io.Serializable
 
 object ActivityHelper {
+    fun startActivityWithoutAnimation(activity: Activity, intent: Intent) {
+        activity.startActivity(intent)
+        activity.overridePendingTransition(R.anim.none_no_time, R.anim.none_no_time)
+    }
 
     inline fun <reified T : FragmentActivity> startActivity(fragment: Fragment) {
         fragment.startActivity(Intent(fragment.context, T::class.java))
@@ -97,7 +101,7 @@ object ActivityHelper {
         activity.overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
     }
 
-    inline fun <reified T : FragmentActivity> startActivity(activity: Activity, key: String, value: String) {
+    inline fun <reified T : FragmentActivity> startActivity(activity: Activity, key: String, value: String?) {
         val intent = Intent(activity, T::class.java)
         intent.putExtra(key, value)
         activity.startActivity(intent)
@@ -173,7 +177,7 @@ object ActivityHelper {
         activity.finish()
     }
 
-    fun startActivityAndFinish(activity: FragmentActivity, intent: Intent) {
+    fun startActivityAndFinish(activity: Activity, intent: Intent) {
         activity.startActivity(intent)
         activity.overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
         activity.finish()

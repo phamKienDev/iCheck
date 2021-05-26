@@ -396,7 +396,7 @@ interface ICNetworkSocialApi {
     fun getRouteShop(@QueryMap params: HashMap<String, Any>): Observable<ICResponse<MutableList<ICRoutesShop>>>
 
     @GET(APIConstants.History.GET_STORE_NEAR)
-    fun getStoreNearHistory(@Path("id") id: Long): Observable<ICResponse<ICListResponse<ICStoreNear>>>
+    fun getStoreNearHistory(@Path("id") id: Long, @QueryMap params: HashMap<String, Any>): Observable<ICResponse<ICListResponse<ICStoreNear>>>
     /*
     * End History
     */

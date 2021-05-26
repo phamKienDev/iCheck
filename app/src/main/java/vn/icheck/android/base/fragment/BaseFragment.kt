@@ -12,7 +12,7 @@ import androidx.fragment.app.FragmentActivity
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.reward_login.RewardLoginCallback
-import vn.icheck.android.base.dialog.reward_login.RewardLoginDialogV2
+import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.base.ICRequireLogin
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
@@ -120,7 +120,7 @@ abstract class BaseFragment<P : BaseFragmentPresenter> : Fragment(), BaseFragmen
         requestRequireLogin = requestCode
 
         activity?.supportFragmentManager?.let {
-            RewardLoginDialogV2.show(it, object : RewardLoginCallback {
+            RewardLoginDialog.show(it, object : RewardLoginCallback {
                 override fun onLogin() {
                     startActivityForResult<IckLoginActivity>(requestLogin)
                 }

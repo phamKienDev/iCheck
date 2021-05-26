@@ -39,8 +39,10 @@ import vn.icheck.android.chat.icheckchat.model.MCDetailMessage
 import vn.icheck.android.chat.icheckchat.model.MCMessageEvent
 import vn.icheck.android.chat.icheckchat.model.MCStatus
 import vn.icheck.android.chat.icheckchat.model.MCSticker
+import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.chat.icheckchat.screen.detail_image.ImageDetailActivity
 import vn.icheck.android.chat.icheckchat.sdk.ChatSdk
+import vn.icheck.android.chat.icheckchat.sdk.ChatSdk.openActivity
 import vn.icheck.android.ichecklibs.SizeHelper
 import java.util.regex.Matcher
 import vn.icheck.android.ichecklibs.beGone
@@ -252,15 +254,14 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
                     binding.tvTime.setTextColor(ContextCompat.getColor(itemView.context, R.color.gray_b4))
                     obj.timeText = convertDateTimeSvToCurrentDay(obj.time)
                     binding.tvTime.text = obj.timeText
-                    binding.tvMessage.background=ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_10_blue)
+                    binding.tvMessage.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_10_blue)
                 }
                 MCStatus.LOADING -> {
                     binding.imgRetry.setGone()
                     binding.tvTime.setTextColor(ContextCompat.getColor(itemView.context, R.color.gray_b4))
                     binding.tvTime.text = itemView.context.getString(R.string.dang_gui)
-                    binding.tvMessage.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.blue_opactity))
 //                    binding.tvMessage.setBackgroundDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_10_blue_opacity))
-                    binding.tvMessage.background=ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_10_blue)
+                    binding.tvMessage.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_10_blue)
                 }
                 else -> {
                     binding.imgRetry.setVisible()
@@ -495,6 +496,14 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
                         this.bottomMargin = SizeHelper.size16
                     }
                     obj.showStatus = 1
+                }
+            }
+
+            binding.imgAvatarUser.setOnClickListener {
+                if (ChatSocialDetailActivity.toType.contains("page")) {
+                    openActivity("page?id=${ChatSocialDetailActivity.toId}")
+                } else {
+                    openActivity("user?id=${ChatSocialDetailActivity.toId}")
                 }
             }
         }

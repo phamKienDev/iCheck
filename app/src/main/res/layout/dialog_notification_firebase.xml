@@ -2,19 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/size_20"
+    android:layout_margin="@dimen/size_20"
     android:gravity="center"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:maxHeight="450dp"
-        android:adjustViewBounds="true" />
-
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
 
     <LinearLayout
         android:id="@+id/textView"
@@ -22,11 +22,11 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bg_white_corners_10"
         android:orientation="vertical"
-        android:paddingStart="@dimen/size_12"
-        android:paddingTop="@dimen/size_20"
-        android:paddingEnd="@dimen/size_12"
-        android:paddingBottom="@dimen/size_12"
-        android:visibility="gone">
+        android:paddingStart="@dimen/size_10"
+        android:paddingTop="@dimen/size_10"
+        android:paddingEnd="@dimen/size_10"
+        android:paddingBottom="@dimen/size_10"
+        android:visibility="visible">
 
         <WebView
             android:id="@+id/webViewHtml"
@@ -44,7 +44,7 @@
         android:paddingStart="@dimen/size_12"
         android:paddingTop="@dimen/size_20"
         android:paddingEnd="@dimen/size_12"
-        android:paddingBottom="@dimen/size_12"
+        android:paddingBottom="@dimen/size_20"
         android:visibility="gone">
 
         <WebView

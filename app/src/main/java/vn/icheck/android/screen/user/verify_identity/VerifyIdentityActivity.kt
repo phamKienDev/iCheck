@@ -45,6 +45,7 @@ class VerifyIdentityActivity : BaseActivityMVVM(), View.OnClickListener {
         viewModel = ViewModelProvider(this).get(VerifyIdentityViewModel::class.java)
         initView()
         listenerData()
+        DialogHelper.showLoading(this)
         viewModel.getKyc()
         viewModel.kycResponseLiveData.observe(this, {
             it.firstOrNull()?.let { item ->
@@ -110,8 +111,7 @@ class VerifyIdentityActivity : BaseActivityMVVM(), View.OnClickListener {
                         } else {
                             imgAfter.setImageResource(R.drawable.after_passport)
                         }
-
-
+                        DialogHelper.closeLoading(this@VerifyIdentityActivity)
                     }
                 }
             }
@@ -133,7 +133,6 @@ class VerifyIdentityActivity : BaseActivityMVVM(), View.OnClickListener {
             when (it) {
                 3 -> {
                     tvErrorVerify.visibility = View.VISIBLE
-
                 }
                 else -> {
                     tvErrorVerify.visibility = View.GONE

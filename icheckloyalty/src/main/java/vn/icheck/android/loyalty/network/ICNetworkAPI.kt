@@ -158,4 +158,14 @@ interface ICNetworkAPI {
 
     @GET("loyalty/loyalty/joined-network/{id}/transaction-history")
     suspend fun getLoyaltyTransactionHistory(@Path("id") id: Long, @Query("offset") offset: Int, @Query("limit") limit: Int): ICKResponse<ICKListResponse<TransactionHistoryResponse>>
+
+    /**
+     * Voucher
+     */
+
+    @POST
+    fun scanVoucher(@Url url: String, @Body body: HashMap<String, Any>): Observable<ICKResponse<ICKScanVoucher>>
+
+    @POST
+    fun usedVoucher(@Url url: String, @Body body: HashMap<String, Any>): Observable<ICKResponse<ICKNone>>
 }

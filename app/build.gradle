@@ -79,7 +79,7 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
 //        freeCompilerArgs += ["-Xopt-in=kotlin.RequiresOptIn"]-
     }
-    buildToolsVersion = '29.0.3'
+//    buildToolsVersion = '29.0.3'
     flavorDimensions 'default'
 
     productFlavors {
@@ -89,12 +89,22 @@ android {
             resValue "string", "app_id", "1465397716834916"
             resValue "string", "ak_login_protocol_scheme", "ak1465397716834916"
             resValue "string", "client_token", "7e784c39b6e8276791c06bb407f1c58b"
+
+            // todo bỏ khi release
+            resConfigs "xxhdpi"
+            ext.enableCrashlytics = false
+            ext.alwaysUpdateBuildId = false
         }
         prod {
             resValue "string", "app_name", "iCheck"
             resValue "string", "app_id", "906784082696285"
             resValue "string", "ak_login_protocol_scheme", "ak906784082696285"
             resValue "string", "client_token", "2d5a74d2ced833d25af57a02e63132a9"
+
+            // todo bỏ khi release
+            resConfigs "xxhdpi"
+            ext.enableCrashlytics = false
+            ext.alwaysUpdateBuildId = false
         }
     }
     dexOptions {

@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_map_scan_history.*
 import kotlinx.android.synthetic.main.item_routes.view.*
@@ -65,11 +64,11 @@ class MapScanHistoryActivity : BaseActivityMVVM(), StoreSellMapHistoryView, OnMa
     }
 
     private fun initViewModel() {
-        viewModel.listData.observe(this, Observer {
-            listStore = it
-//            adapter.setData(it, viewModel.idShopSelect)
+        viewModel.setListData.observe(this, {
+            listStore.clear()
+            listStore.addAll(it)
 
-            adapter.setData(it, viewModel.idShopSelect).let { selectedPos ->
+            adapter.setData(it, viewModel.idProduct).let { selectedPos ->
                 recyclerView.scrollToPosition(selectedPos)
 
                 Handler(Looper.getMainLooper()).postDelayed({
@@ -78,13 +77,18 @@ class MapScanHistoryActivity : BaseActivityMVVM(), StoreSellMapHistoryView, OnMa
             }
         })
 
-        viewModel.listRoute.observe(this, Observer {
+        viewModel.addListData.observe(this, {
+            listStore.addAll(it)
+            adapter.addListData(it)
+        })
+
+        viewModel.listRoute.observe(this, {
             removePolyline()
             latLngListServer = it
             initMap()
         })
 
-        viewModel.onError.observe(this, Observer {
+        viewModel.onError.observe(this, {
             when (it) {
                 Constant.ERROR_SERVER -> {
                     if (viewModel.latShop != 0.0 && viewModel.lonShop != 0.0) {
@@ -95,7 +99,7 @@ class MapScanHistoryActivity : BaseActivityMVVM(), StoreSellMapHistoryView, OnMa
             }
         })
 
-        viewModel.onShowErrorMessage.observe(this, Observer {
+        viewModel.onShowErrorMessage.observe(this, {
             showLongError(it)
         })
     }
@@ -249,6 +253,14 @@ class MapScanHistoryActivity : BaseActivityMVVM(), StoreSellMapHistoryView, OnMa
             viewModel.lonShop = item.location?.lon ?: 0.0
             viewModel.getLocationShop(viewModel.latShop, viewModel.lonShop)
         }
+    }
+
+    override fun onMessageClicked() {
+
+    }
+
+    override fun onLoadMore() {
+        viewModel.getStoreNear(true)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String?>, grantResults: IntArray) {

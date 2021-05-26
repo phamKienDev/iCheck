@@ -46,6 +46,10 @@ class SlideBannerV2Adapter(val listData: MutableList<ICAdsData>, private val top
             WidgetUtils.loadImageUrlRoundedNotTransform(itemView.imgImage, banner.media!![0].content, R.drawable.img_default_loading_icheck, R.drawable.img_default_loading_icheck, SizeHelper.size4)
         }
 
+        itemView.imgPlay.setOnClickListener {
+            itemView.performClick()
+        }
+
         itemView.setOnClickListener {
             if (!banner.media.isNullOrEmpty()) {
                 if (banner.media!![0].type == "video") {

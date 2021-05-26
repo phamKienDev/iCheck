@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:fitsSystemWindows="true"
+    android:layout_height="match_parent"
     android:background="@android:color/transparent"
-    xmlns:android="http://schemas.android.com/apk/res/android" >
+    android:fitsSystemWindows="true">
 
     <ImageView
         android:id="@+id/btn_back"
@@ -36,10 +36,10 @@
         android:id="@+id/scrollView3"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@android:color/white"
         app:layout_constraintBottom_toTopOf="@+id/btn_continue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        android:background="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_back"
         app:layout_constraintVertical_bias="0.0">
@@ -109,10 +109,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_16"
                 android:focusable="false"
-                android:fontFamily="@font/barlow_medium"
-                android:paddingBottom="@dimen/size_20"
                 android:focusableInTouchMode="false"
+                android:fontFamily="@font/barlow_medium"
                 android:hint="+84"
+                android:paddingBottom="@dimen/size_20"
                 android:textColor="#757575"
                 android:textSize="@dimen/font_20"
                 app:layout_constraintBottom_toBottomOf="@+id/edt_phone"
@@ -130,7 +130,7 @@
                 android:gravity="center"
                 android:hint="Nhập số điện thoại"
                 android:imeOptions="actionSend"
-                android:inputType="phone"
+                android:inputType="number"
                 android:paddingBottom="@dimen/size_20"
                 android:textColor="#212121"
                 android:textSize="@dimen/font_20"
@@ -139,15 +139,16 @@
                 app:layout_constraintTop_toTopOf="@+id/tv_phone_head" />
 
             <vn.icheck.android.ui.edittext.FocusableEditText
-                android:id="@+id/group_pw"
+                android:id="@id/edtPassword"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_34"
                 android:layout_marginTop="@dimen/size_16"
                 android:layout_marginEnd="@dimen/size_34"
+                android:drawablePadding="@dimen/size_40"
                 android:focusableInTouchMode="true"
                 android:hint="Nhập mật khẩu"
-                android:inputType="textPassword"
+                android:inputType="numberPassword"
                 android:orientation="horizontal"
                 android:paddingBottom="@dimen/size_20"
                 android:textColor="#212121"
@@ -157,17 +158,30 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_phone_head"
                 tools:visibility="visible" />
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@id/btnKeyboard"
+                android:layout_width="@dimen/size_24"
+                android:layout_height="@dimen/size_24"
+                android:layout_marginEnd="@dimen/size_32"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_keyboard_gray_18dp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@id/edtPassword"
+                app:layout_constraintEnd_toEndOf="@id/edtPassword"
+                app:layout_constraintTop_toTopOf="@id/edtPassword" />
+
             <vn.icheck.android.ui.edittext.FocusableEditText
-                android:id="@+id/group_re_pw"
+                android:id="@id/edtRePassword"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_34"
                 android:layout_marginTop="@dimen/size_16"
                 android:layout_marginEnd="@dimen/size_34"
                 android:layout_marginBottom="@dimen/size_16"
+                android:drawablePadding="@dimen/size_40"
                 android:focusableInTouchMode="true"
                 android:hint="Nhập lại mật khẩu"
-                android:inputType="textPassword"
+                android:inputType="numberPassword"
                 android:orientation="horizontal"
                 android:paddingBottom="@dimen/size_20"
                 android:textColor="#212121"
@@ -175,8 +189,20 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/group_pw"
+                app:layout_constraintTop_toBottomOf="@+id/edtPassword"
                 tools:visibility="visible" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@id/btnKeyboardNew"
+                android:layout_width="@dimen/size_24"
+                android:layout_height="@dimen/size_24"
+                android:layout_marginEnd="@dimen/size_32"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_keyboard_gray_18dp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@id/edtRePassword"
+                app:layout_constraintEnd_toEndOf="@id/edtRePassword"
+                app:layout_constraintTop_toTopOf="@id/edtRePassword" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

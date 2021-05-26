@@ -6,8 +6,10 @@ import android.content.pm.ActivityInfo
 import android.os.Build
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_popup_complete_mission.*
+import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
+import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.screen.user.my_gift_warehouse.shake_gift.list_box_gift.ListShakeGridBoxActivity
 
@@ -42,12 +44,13 @@ class PopupCompleteMissionActivity : BaseActivityMVVM() {
             this.overridePendingTransition(0, 0)
         }
 
+        EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REQUEST_MISSION_SUCCESS,campaignId))
+
         btnGift.setOnClickListener {
             if (campaignId != null) {
                 startActivity<ListShakeGridBoxActivity>(Constant.DATA_1, campaignId)
             }
             finish()
-
         }
     }
 

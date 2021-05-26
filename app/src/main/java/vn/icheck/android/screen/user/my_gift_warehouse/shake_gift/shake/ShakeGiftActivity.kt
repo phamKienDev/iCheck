@@ -61,11 +61,12 @@ class ShakeGiftActivity : BaseActivityMVVM() {
     private fun initView() {
         progressBar.setOnTouchListener { view, motionEvent -> true }
 
-        val layerDrawable: LayerDrawable = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            resources.getDrawable(R.drawable.progress_shake_gift, null) as LayerDrawable
-        } else {
-            resources.getDrawable(R.drawable.progress_shake_gift) as LayerDrawable
-        }
+        val layerDrawable: LayerDrawable =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                resources.getDrawable(R.drawable.progress_shake_gift, null) as LayerDrawable
+            } else {
+                resources.getDrawable(R.drawable.progress_shake_gift) as LayerDrawable
+            }
         val radius = DimensionUtil.convertDpToPixel(40f, this)
         val radii = floatArrayOf(radius, radius, radius, radius, radius, radius, radius, radius)
         val shapeDrawable = ShapeDrawable(RoundRectShape(radii, null, null))
@@ -83,7 +84,12 @@ class ShakeGiftActivity : BaseActivityMVVM() {
 
     @SuppressLint("SetTextI18n")
     private fun initSensorManager() {
-        val listTitle = arrayOf(R.string.message_shake_1, R.string.message_shake_2, R.string.message_shake_3, R.string.message_shake_4)
+        val listTitle = arrayOf(
+            R.string.message_shake_1,
+            R.string.message_shake_2,
+            R.string.message_shake_3,
+            R.string.message_shake_4
+        )
         mShakeDetector.initSensor(this)
         mShakeDetector.setOnShakeListener(object : ShakeDetector.OnShakeListener {
             override fun onShaking(total: Int, progress: Int) {
@@ -141,15 +147,20 @@ class ShakeGiftActivity : BaseActivityMVVM() {
         viewModel.statusCode.observe(this, Observer {
             when (it) {
                 ICMessageEvent.Type.ON_NO_INTERNET -> {
-                    DialogHelper.showConfirm(this, R.string.khong_co_ket_noi_mang_vui_long_thu_lai_sau, R.string.huy_bo, R.string.thu_lai, object : ConfirmDialogListener {
-                        override fun onDisagree() {
-                            onBackPressed()
-                        }
+                    DialogHelper.showConfirm(
+                        this,
+                        R.string.khong_co_ket_noi_mang_vui_long_thu_lai_sau,
+                        R.string.huy_bo,
+                        R.string.thu_lai,
+                        object : ConfirmDialogListener {
+                            override fun onDisagree() {
+                                onBackPressed()
+                            }
 
-                        override fun onAgree() {
-                            viewModel.openGiftBox()
-                        }
-                    })
+                            override fun onAgree() {
+                                viewModel.openGiftBox()
+                            }
+                        })
                 }
                 else -> {
                 }
@@ -159,11 +170,16 @@ class ShakeGiftActivity : BaseActivityMVVM() {
         viewModel.errorData.observe(this, Observer {
             when (it.type) {
                 ICMessageEvent.Type.ERROR_EMPTY -> {
-                    DialogHelper.showNotification(this, null, R.string.co_loi_xay_ra_vui_long_thu_lai, false, object : NotificationDialogListener {
-                        override fun onDone() {
-                            onBackPressed()
-                        }
-                    })
+                    DialogHelper.showNotification(
+                        this,
+                        null,
+                        R.string.co_loi_xay_ra_vui_long_thu_lai,
+                        false,
+                        object : NotificationDialogListener {
+                            override fun onDone() {
+                                onBackPressed()
+                            }
+                        })
                 }
 
                 ICMessageEvent.Type.ERROR_SERVER -> {
@@ -176,11 +192,15 @@ class ShakeGiftActivity : BaseActivityMVVM() {
                             ListShakeGridBoxActivity.numberGiftUser = 0
                         }
                     }
-                    DialogHelper.showNotification(this, message, false, object : NotificationDialogListener {
-                        override fun onDone() {
-                            onBackPressed()
-                        }
-                    })
+                    DialogHelper.showNotification(
+                        this,
+                        message,
+                        false,
+                        object : NotificationDialogListener {
+                            override fun onDone() {
+                                onBackPressed()
+                            }
+                        })
                 }
             }
         })
@@ -201,10 +221,12 @@ class ShakeGiftActivity : BaseActivityMVVM() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == requestResultCount) {
-                val trigger = data?.getIntExtra(Constant.DATA_2, 0)
-                val intent = Intent()
-                intent.putExtra(Constant.DATA_2, trigger)
-                setResult(Activity.RESULT_OK, intent)
+                Intent().apply {
+                    putExtra(Constant.DATA_2, data?.getIntExtra(Constant.DATA_2, 0))
+                    putExtra(Constant.DATA_3, data?.getStringExtra(Constant.DATA_3)) // id campaign
+                    putExtra(Constant.DATA_4, data?.getStringExtra(Constant.DATA_4)) // rewardType
+                    setResult(Activity.RESULT_OK, this)
+                }
                 finish()
             }
         }

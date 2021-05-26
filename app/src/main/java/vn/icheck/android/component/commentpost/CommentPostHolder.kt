@@ -140,6 +140,11 @@ class CommentPostHolder(val binding: ItemCommentPostBinding, val listener: IComm
             showOption(obj)
             true
         }
+
+        binding.btnPlay.setOnLongClickListener {
+            showOption(obj)
+            true
+        }
     }
 
     private fun checkLike(isLike: String?) {

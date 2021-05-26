@@ -487,6 +487,7 @@ class EditMyInformationFragment : CoroutineFragment() {
             if (resultCode == Activity.RESULT_OK) {
                 ickUserWallViewModel.getUserInfo().observe(viewLifecycleOwner, {
                     if (it != null) {
+                        ickUserWallViewModel.userInfo = it
                         checkKyc(it)
                     }
                 })

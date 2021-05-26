@@ -12,7 +12,7 @@ import vn.icheck.android.loyalty.base.commons.RecyclerViewCustomAdapter
 import vn.icheck.android.loyalty.base.listener.IRecyclerViewCallback
 import vn.icheck.android.loyalty.helper.WidgetHelper
 import vn.icheck.android.loyalty.model.ICKRewardGameVQMMLoyalty
-import vn.icheck.android.loyalty.screen.gift_voucher.GiftDetailFromAppActivity
+import vn.icheck.android.loyalty.screen.gift_detail_from_app.GiftDetailFromAppActivity
 import vn.icheck.android.loyalty.sdk.LoyaltySdk
 
 internal class ListOfGiftsReceivedAdapter(callback: IRecyclerViewCallback) : RecyclerViewCustomAdapter<ICKRewardGameVQMMLoyalty>(callback) {

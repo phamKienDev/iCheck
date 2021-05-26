@@ -100,17 +100,22 @@ internal class LoyaltyCustomersRepository : BaseRepository() {
     /**
      * Api Đổi quà tích điểm ngắn hạn
      */
-    fun exchangeCardGiftVQMM(serviceId: Long, giftId: Long, phone: String, listener: ICApiListener<ICKResponse<ICKRedemptionHistory>>) {
+    fun exchangeCardGiftVQMM(serviceId: Long? = null, giftId: Long, phone: String, listener: ICApiListener<ICKResponse<ICKRedemptionHistory>>) {
         val user = SessionManager.session.user
 
         val params = hashMapOf<String, Any>()
 
-        params["serviceId"] = serviceId
+        if (serviceId != null) {
+            params["serviceId"] = serviceId
+        }
         params["winner_id"] = giftId
 
 
         if (!user?.name.isNullOrEmpty()) {
             params["name"] = user?.name!!
+        }
+        if (!user?.phone.isNullOrEmpty()) {
+            params["phone"] = user?.phone!!
         }
 
         if (phone.isNotEmpty()) {
@@ -153,7 +158,6 @@ internal class LoyaltyCustomersRepository : BaseRepository() {
             params["avatar"] = user?.avatar!!
         }
 
-
         val url = APIConstants.LOYALTY_HOST + "loyalty/customer/campaign/receive-gift "
         requestApi(ICNetworkClient.getApiClientLoyalty().exchangeGift(url, params), listener)
     }
@@ -163,7 +167,7 @@ internal class LoyaltyCustomersRepository : BaseRepository() {
      * Api Đổi điểm lấy quà tích điểm ngắn hạn
      */
 
-        fun exchangeCardGiftTDNH(campaignId: Long, giftID: Long, serviceId: Long, receiverPhone: String, listener: ICApiListener<ICKResponse<ICKRedemptionHistory>>) {
+    fun exchangeCardGiftTDNH(campaignId: Long, giftID: Long, serviceId: Long, receiverPhone: String, listener: ICApiListener<ICKResponse<ICKRedemptionHistory>>) {
         val params = hashMapOf<String, Any>()
 
         val user = SessionManager.session.user
@@ -234,7 +238,7 @@ internal class LoyaltyCustomersRepository : BaseRepository() {
             params["email"] = user?.email!!
         }
 
-        params["city_id"] =78
+        params["city_id"] = 78
 
         if (user?.city_id != null) {
             params["city_id"] = user.city_id!!

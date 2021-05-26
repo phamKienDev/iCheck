@@ -16,6 +16,7 @@ import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.model.ICMessageEvent
+import vn.icheck.android.callback.ItemClickListener
 import vn.icheck.android.component.image.LayoutImageInPostComponent
 import vn.icheck.android.component.review.ReviewBottomSheet
 import vn.icheck.android.constant.Constant
@@ -133,9 +134,18 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
 
                 val list = mutableListOf<ICImageInPost>()
                 for (item in obj.media!!) {
-                    list.add(ICImageInPost(item.content ?: "", Constant.IMAGE, null, null))
+                    list.add(ICImageInPost(item.content ?: "", item.type?:Constant.IMAGE, null, null))
                 }
                 imgMulti.setImageInPost(list)
+
+                imgMulti.onClickImageDetail(object : ItemClickListener<MutableList<ICImageInPost>> {
+                    override fun onItemClick(position: Int, item: MutableList<ICImageInPost>?) {
+                        EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.OPEN_MEDIA_IN_POST, obj.also {
+                            it.positionMedia=position
+                        }))
+
+                    }
+                })
             } else {
                 imgMulti.visibility = View.GONE
                 imgOne.visibility = View.VISIBLE
@@ -183,15 +193,12 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
     }
 
     private fun listener(imgMulti: LayoutImageInPostComponent, obj: ICPost, imgOne: AppCompatImageView) {
-        imgMulti.setOnClickListener {
-            EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.OPEN_MEDIA_IN_POST, obj))
-        }
 
         imgOne.setOnClickListener {
             EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.OPEN_MEDIA_IN_POST, obj))
         }
 
-        itemView.tvProduct.setOnClickListener {
+        itemView.containerMeta.setOnClickListener {
             ICheckApplication.currentActivity()?.let { activity ->
                 obj.meta?.product?.id?.let { id -> IckProductDetailActivity.start(activity, id) }
             }
@@ -223,12 +230,12 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
             postLikeReview(obj)
         }
 
-        itemView.tvShop.setOnClickListener{
-            ICheckApplication.currentActivity()?.let { activity ->
-                if (obj.meta?.product?.owner?.pageId != null)
-                    ActivityUtils.startActivity<PageDetailActivity, Long>(activity, Constant.DATA_1, obj.meta?.product?.owner?.pageId!!)
-            }
-        }
+//        itemView.tvShop.setOnClickListener{
+//            ICheckApplication.currentActivity()?.let { activity ->
+//                if (obj.meta?.product?.owner?.pageId != null)
+//                    ActivityUtils.startActivity<PageDetailActivity, Long>(activity, Constant.DATA_1, obj.meta?.product?.owner?.pageId!!)
+//            }
+//        }
 
         itemView.tvComment.setOnClickListener{
             EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.OPEN_DETAIL_POST, obj))

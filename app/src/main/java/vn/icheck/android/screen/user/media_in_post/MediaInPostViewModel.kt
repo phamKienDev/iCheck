@@ -80,6 +80,7 @@ class MediaInPostViewModel : ViewModel() {
     }
 
     private fun getMedia(icPost: ICPost) {
+        listMedia.clear()
         if (!icPost.media.isNullOrEmpty()) {
             for (i in icPost.media!!) {
                 listMedia.add(ICExoMedia(i.content, i.type).also {
