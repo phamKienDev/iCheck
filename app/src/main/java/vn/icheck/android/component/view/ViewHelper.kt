@@ -5277,5 +5277,29 @@ object ViewHelper {
         }
 
         dialog?.show()
+
+
+        // when (popup.displayType) {
+        //            "url" -> {
+        //                if (!popup.url.isNullOrEmpty()) {
+        //                    DialogNotificationFirebaseAdsV2.show(this, link = popup.url,htmlText = null,image = null,schema = null, idAds = popup.id)
+        //                }
+        //            }
+        //            "image" -> {
+        //                if (!popup.image.isNullOrEmpty()) {
+        //                    val schema=if(popup.deeplink.isNullOrEmpty()){
+        //                        popup.path
+        //                    }else{
+        //                        popup.deeplink
+        //                    }
+        //                    DialogNotificationFirebaseAdsV2.show(this, link = null,htmlText = null,image = popup.image,schema = schema, schemaParams=popup.deeplinkParams, idAds = popup.id)
+        //                }
+        //            }
+        //            else->{
+        //                if (!popup.document.isNullOrEmpty()) {
+        //                    DialogNotificationFirebaseAdsV2.show(this, link = null,htmlText = popup.document,image = null,schema = null, idAds = popup.id)
+        //                }
+        //            }
+        //        }
     }
 }

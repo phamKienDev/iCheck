@@ -4,15 +4,16 @@ import android.app.Activity
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
+import android.os.Handler
 import android.util.Log
-import android.webkit.WebChromeClient
-import android.webkit.WebSettings
-import android.webkit.WebView
-import android.webkit.WebViewClient
+import android.webkit.*
 import android.widget.LinearLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.FitCenter
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import kotlinx.android.synthetic.main.dialog_notification_firebase.*
@@ -22,6 +23,7 @@ import kotlinx.coroutines.launch
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseDialog
+import vn.icheck.android.chat.icheckchat.base.view.setGone
 import vn.icheck.android.chat.icheckchat.base.view.setGoneView
 import vn.icheck.android.chat.icheckchat.base.view.setVisible
 import vn.icheck.android.helper.DialogHelper
@@ -32,7 +34,7 @@ import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.popup.PopupInteractor
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
-import vn.icheck.android.util.ick.spToPx
+import vn.icheck.android.util.ick.beGone
 
 abstract class DialogNotificationFirebaseAds(
     context: Activity, private val image: String?, private val htmlText: String?, private val link: String?, private val schema: String?,
@@ -46,17 +48,18 @@ abstract class DialogNotificationFirebaseAds(
         get() = false
 
     override fun onInitView() {
-        setGoneView(imageView, textView, layoutWeb)
-
+        DialogHelper.showLoading(this)
         when {
             image != null -> {
-                imageView.setVisible()
+                layoutWeb.beGone()
+                layoutText.beGone()
 
                 CoroutineScope(Dispatchers.IO).launch {
                     Glide.with(ICheckApplication.getInstance())
                         .asBitmap()
                         .timeout(30000)
                         .load(image)
+                        .transform(FitCenter(), RoundedCorners(SizeHelper.size6))
                         .listener(object : RequestListener<Bitmap> {
                             override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Bitmap>?, isFirstResource: Boolean): Boolean {
                                 Log.d("onLoad", "onLoadFailed: false")
@@ -117,6 +120,7 @@ abstract class DialogNotificationFirebaseAds(
                                                 }
                                             }
                                         }
+                                        DialogHelper.closeLoading(this@DialogNotificationFirebaseAds)
                                         imageView.setImageBitmap(resource)
                                     }
                                 }
@@ -139,19 +143,30 @@ abstract class DialogNotificationFirebaseAds(
                 }
             }
             htmlText != null -> {
-                setupWebView()
-                webView.settings.defaultFontSize = 14f.spToPx().toInt()
-                textView.setVisible()
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                    webViewHtml.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING;
-                } else {
-                    webViewHtml.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.NORMAL;
-                }
-                webViewHtml.loadDataWithBaseURL(null, getHtmlData(htmlText), "text/html", "utf-8", "")
+                layoutWeb.setGone()
+
+                Handler().postDelayed({
+                    webViewHtml.settings.defaultFontSize = 14f.toInt()
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                        webViewHtml.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING;
+                    } else {
+                        webViewHtml.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.NORMAL;
+                    }
+                    webViewHtml.loadDataWithBaseURL(null, getHtmlData(htmlText), "text/html", "utf-8", "")
+                    webViewHtml.isVerticalScrollBarEnabled = true
+                    webViewHtml.webViewClient = object : WebViewClient() {
+
+                        override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+                            DialogHelper.closeLoading(this@DialogNotificationFirebaseAds)
+                            super.onPageStarted(view, url, favicon)
+                        }
+                    }
+                }, 200)
             }
             link != null -> {
-                setupWebView()
-                layoutWeb.setVisible()
+                layoutText.beGone()
+                setupWebViewLink()
+
 
                 if (vn.icheck.android.constant.Constant.isMarketingStamps(link)) {
                     val header = hashMapOf<String, String>()
@@ -231,7 +246,7 @@ abstract class DialogNotificationFirebaseAds(
         dismiss()
         if (!schema.isNullOrEmpty()) {
             if (schema.startsWith("http")) {
-                WebViewActivity.openChrome(schema)
+                WebViewActivity.start(ICheckApplication.currentActivity(), schema)
             } else {
                 ICheckApplication.currentActivity()?.let { activity ->
                     if (!schemaParams.isNullOrEmpty()) {
@@ -244,7 +259,7 @@ abstract class DialogNotificationFirebaseAds(
         }
     }
 
-    private fun setupWebView() {
+    private fun setupWebViewLink() {
         webView.apply {
             settings.apply {
                 javaScriptEnabled = true
@@ -274,6 +289,7 @@ abstract class DialogNotificationFirebaseAds(
 
             webViewClient = object : WebViewClient() {
                 override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+                    DialogHelper.closeLoading(this@DialogNotificationFirebaseAds)
                     super.onPageStarted(view, url, favicon)
                     isPageLoaded = false
                 }
@@ -288,6 +304,11 @@ abstract class DialogNotificationFirebaseAds(
                         }
                     }
                     return super.shouldOverrideUrlLoading(view, url)
+                }
+
+                override fun onPageFinished(view: WebView?, url: String?) {
+                    super.onPageFinished(view, url)
+
                 }
             }
 
