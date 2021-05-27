@@ -53,7 +53,7 @@ class CheckThemeActivity : BaseActivityMVVM() {
         setContentView(R.layout.activity_check_theme)
 
         getData()
-//        onInitView()
+        onInitView()
     }
 
     private fun getData() {
