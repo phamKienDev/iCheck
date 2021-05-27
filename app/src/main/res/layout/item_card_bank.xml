@@ -190,14 +190,13 @@
                     android:text="@string/so_du_the"
                     android:textSize="@dimen/font_16" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.accent.accent_yellow.TextAccentYellow
                     android:id="@+id/tvAvlBalance"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/barlow_semi_bold"
                     android:gravity="center|end"
                     tools:text="254.241.000 đ"
-                    android:textColor="#ffb800"
                     android:textSize="@dimen/font_20" />
             </LinearLayout>
 

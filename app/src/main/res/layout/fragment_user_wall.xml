@@ -139,9 +139,7 @@
                 android:layout_marginTop="@dimen/size_3"
                 android:layout_marginEnd="@dimen/size_6"
                 android:layout_marginRight="@dimen/size_6"
-                android:background="@drawable/circle_red"
                 android:gravity="center"
-
                 android:includeFontPadding="false"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_12"

@@ -223,7 +223,7 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
                     tvContent,
                     2,
                     getString(R.string.xem_chi_tiet),
-                    "#FFB800"
+                    vn.icheck.android.ichecklibs.Constant.getAccentYellowCode
                 )
             }
             tvLike.setCompoundDrawablesWithIntrinsicBounds(

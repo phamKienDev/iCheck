@@ -83,7 +83,7 @@ class ProductNotVerifiedHolder(parent: ViewGroup) : BaseViewHolder<ProductNotVer
                         ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
                         Color.WHITE,
                         14f).also {
-                    it.setBackgroundColor(ContextCompat.getColor(context, R.color.colorAccentRed))
+                    it.setBackgroundColor(Constant.getAccentRedColor(context))
                     it.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_group_error_card, 0, 0, 0)
                 }.also {
                     it.setPadding(SizeHelper.size12, SizeHelper.size10, SizeHelper.size12, SizeHelper.size10)

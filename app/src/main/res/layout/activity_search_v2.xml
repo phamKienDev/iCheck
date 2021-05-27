@@ -53,14 +53,13 @@
             app:layout_constraintTop_toTopOf="@id/edtSearch"
             app:srcCompat="@drawable/ic_delete_gray_vector" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.accent.accent_red.TextAccentRed
             android:id="@+id/tv_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/barlow_semi_bold"
             android:padding="@dimen/size_12"
             android:text="@string/huy"
-            android:textColor="@color/colorAccentRed"
             android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toBottomOf="@id/container_search"
             app:layout_constraintEnd_toEndOf="parent"

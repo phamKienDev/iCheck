@@ -664,7 +664,7 @@ object ViewHelper {
         radius = SizeHelper.size6.toFloat()
     )
 
-    fun bgAccentRedRadiusTop16(context: Context) =GradientDrawable().apply {
+    fun bgAccentRedRadiusTop16(context: Context) = GradientDrawable().apply {
         setColor(Constant.getAccentRedColor(context))
         cornerRadii = floatArrayOf(
             // top left
@@ -682,7 +682,7 @@ object ViewHelper {
         )
     }
 
-    fun bgRedNotifyHome(context: Context):StateListDrawable {
+    fun bgRedNotifyHome(context: Context): StateListDrawable {
         val notCheck = createShapeDrawable(
             color = Constant.getAccentRedColor(context),
             strokeColor = Color.parseColor("#124998"),
@@ -690,20 +690,88 @@ object ViewHelper {
             radius = SizeHelper.size22.toFloat()
         )
 
-        val checked=createShapeDrawable(
+        val checked = createShapeDrawable(
             color = Constant.getAccentRedColor(context),
             strokeColor = Color.WHITE,
             strokeWidth = SizeHelper.size1_5,
             radius = SizeHelper.size22.toFloat()
         )
 
-        return createCheckedDrawable(notCheck,checked)
+        return createCheckedDrawable(notCheck, checked)
     }
 
+    fun bgRedCircle22dp(context: Context) = ShapeDrawable(OvalShape()).apply {
+        paint.color = Constant.getAccentRedColor(context)
+    }
 
     /*
     * End Accent Red
     * */
 
+
+
+
+    /*
+    * Accent Yellow
+    * */
+
+    fun progressbarAccentYellowMission(context: Context):LayerDrawable{
+        val background = GradientDrawable().also {
+            it.setColor(Color.parseColor("#f0f0f0"))
+            it.cornerRadius = SizeHelper.size10.toFloat()
+        }
+
+
+        val progressDrawable = GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT,null).also {
+            it.setColor(Constant.getAccentYellowColor(context))
+            it.cornerRadius = SizeHelper.size10.toFloat() }
+        val progress = ScaleDrawable(progressDrawable, Gravity.START, 1f, 0.1f)
+
+        val layers = arrayOf(background, progress)
+        val layerDrawble = LayerDrawable(layers)
+        layerDrawble.setId(0, android.R.id.background)
+        layerDrawble.setId(1, android.R.id.progress)
+
+        return layerDrawble
+    }
+
+    fun textColorDisableTextUncheckYellowChecked(context: Context): ColorStateList {
+        return createColorStateList(
+            Constant.getDisableTextColor(context),
+            Constant.getAccentYellowColor(context)
+        )
+    }
+
+    /*
+      * End Accent Yellow
+      * */
+
+    /*
+    *  Accent Cyan
+    * */
+    fun bgAccentCyanRadiusTop8(context: Context) = GradientDrawable().apply {
+        setColor(Constant.getAccentCyanColor(context))
+        cornerRadii = floatArrayOf(
+            // top left
+            SizeHelper.size8.toFloat(),
+            SizeHelper.size8.toFloat(),
+            // top right
+            SizeHelper.size8.toFloat(),
+            SizeHelper.size8.toFloat(),
+            // bottom right
+            0f,
+            0f,
+            // bottom left
+            0f,
+            0f
+        )
+    }
+
+    fun bgAccentCyanRadius4(context: Context) = createShapeDrawable(
+        color = Constant.getAccentCyanColor(context),
+        strokeColor = Color.TRANSPARENT,
+        strokeWidth = 0,
+        radius = SizeHelper.size64.toFloat()
+    )
 
 }

@@ -58,14 +58,13 @@
                 android:textSize="@dimen/font_12"
                 android:textStyle="normal" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.accent.accent_red.TextAccentRed
                 android:id="@id/tvMoney"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_4"
                 android:fontFamily="sans-serif-medium"
                 android:includeFontPadding="false"
-                android:textColor="@color/colorAccentRed"
                 android:textSize="@dimen/font_20"
                 android:textStyle="normal"
                 tools:text="1,250,000đ" />

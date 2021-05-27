@@ -119,7 +119,7 @@ class HeaderInforRewardHolder(parent: ViewGroup) : BaseViewHolder<ICItemReward>(
                 itemView.tvRefuse.visibility = View.VISIBLE
                 itemView.tvTime.visibility = View.VISIBLE
 
-                itemView.tvState.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorAccentRed))
+                itemView.tvState.setTextColor(Constant.getAccentRedColor(itemView.context))
                 itemView.tvState.text = "Bạn đã từ chối nhận quà"
 
                 itemView.tvRefuse.text = "Lý do từ chối"

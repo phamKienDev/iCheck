@@ -480,4 +480,46 @@ object Constant {
                 "#ff0000"
             }
         }
+
+    /*
+    *Color accent yellow
+    * * */
+
+    fun getAccentYellowColor(context: Context): Int {
+        return if (accentYellowColor.isNotEmpty()) {
+            Color.parseColor(accentYellowColor)
+        } else {
+            ContextCompat.getColor(context, R.color.colorAccentYellow)
+        }
+    }
+
+    val getAccentYellowCode: String
+        get() {
+            return if (accentYellowColor.isNotEmpty()) {
+                accentYellowColor
+            } else {
+                "#FFB800"
+            }
+        }
+
+    /*
+    *Color accent cyan
+    * * */
+
+    fun getAccentCyanColor(context: Context): Int {
+        return if (accentCyanColor.isNotEmpty()) {
+            Color.parseColor(accentCyanColor)
+        } else {
+            ContextCompat.getColor(context, R.color.colorAccentCyan)
+        }
+    }
+
+    val getAccentCyanCode: String
+        get() {
+            return if (accentCyanColor.isNotEmpty()) {
+                accentCyanColor
+            } else {
+                "#CCF1FC"
+            }
+        }
 }

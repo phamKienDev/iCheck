@@ -82,6 +82,7 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
 
     private fun setupView() {
         binding.btnRefuse.background = ViewHelper.bgOutlinePrimary1Corners4(this)
+        binding.tvAddress.background = ViewHelper.bgAccentCyanRadius4(this)
         ViewHelper.bgPrimaryCorners4(this).apply {
             binding.btnShare.background = this
             binding.btnAcceptDaLay.background = this
@@ -349,7 +350,7 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                 resetTvWidth()
                 binding.tvMathecao.beVisible()
                 binding.tvMathecao simpleText "Bạn đã từ chối nhận quà này"
-                binding.tvMathecao.setTextColor(ContextCompat.getColor(this, R.color.colorAccentRed))
+                binding.tvMathecao.setTextColor(vn.icheck.android.ichecklibs.Constant.getAccentRedColor(binding.tvMathecao.context))
                 binding.tvMathecao.typeface = Typeface.createFromAsset(assets, "font/barlow_semi_bold.ttf")
                 binding.layoutBottom.beGone()
             }

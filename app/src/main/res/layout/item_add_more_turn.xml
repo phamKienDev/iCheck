@@ -71,7 +71,6 @@
         android:layout_width="@dimen/size_95"
         android:layout_height="@dimen/size_32"
         android:layout_marginEnd="@dimen/size_12"
-        android:background="@drawable/bg_more_turn"
         android:gravity="center"
         android:textSize="@dimen/font_16"
         app:layout_constraintBottom_toBottomOf="@+id/tvCountTurn"

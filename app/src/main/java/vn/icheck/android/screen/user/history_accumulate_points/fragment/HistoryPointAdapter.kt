@@ -159,7 +159,7 @@ class HistoryPointAdapter(val listener: IRecyclerViewCallback, val type: String)
                 "+${TextHelper.formatMoney(obj.amount)}"
             }
             itemView.tvPoint.setTextColor(if (type == "used") {
-                ContextCompat.getColor(itemView.context, R.color.colorAccentRed)
+                Constant.getAccentRedColor(itemView.context)
             } else {
                 Constant.getAccentGreenColor(itemView.context)
             })

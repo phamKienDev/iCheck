@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.accent.accent_red.TextAccentRed
             android:id="@id/tvCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,7 +31,6 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center_vertical"
             android:includeFontPadding="false"
-            android:textColor="@color/colorAccentRed"
             android:textSize="@dimen/font_16"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -114,7 +113,7 @@
             app:layout_constraintTop_toTopOf="@id/tvName"
             tools:text="5/5" />
 
-        <ProgressBar
+        <vn.icheck.android.ichecklibs.view.accent.accent_yellow.ProgressBarAccentYellowMission
             android:id="@id/progressBar"
             style="@android:style/Widget.ProgressBar.Horizontal"
             android:layout_width="@dimen/size_0"
@@ -126,7 +125,6 @@
             android:max="100"
             android:progress="30"
             app:layout_constraintTop_toBottomOf="@id/tvName"
-            android:progressDrawable="@drawable/progress_yellow"
             app:layout_constraintBottom_toBottomOf="@id/imgIcon"
             app:layout_constraintEnd_toEndOf="@id/imgStatus"
             app:layout_constraintStart_toStartOf="@id/tvName" />

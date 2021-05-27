@@ -90,7 +90,7 @@ class LinePagerIndicatorBankDecoration : ItemDecoration() {
     }
 
     private fun drawHighlights(c: Canvas, indicatorStartX: Float, indicatorPosY: Float, highlightPosition: Int, progress: Float) {
-        colorActive = Color.parseColor("#ffb800")
+        colorActive = Constant.getAccentYellowColor(ICheckApplication.getInstance())
         mPaint.color = colorActive
 
         // lấy ra chiều rộng của indicator (bao gồm luôn cả padding của item đó )

@@ -49,7 +49,7 @@ class WidgetCampaignAdapter(val listData: MutableList<ICCampaign>) : RecyclerVie
                 if (obj.state is String) {
                     when (obj.state) {
                         "running" -> {
-                            setTextColor(ContextCompat.getColor(itemView.context, R.color.colorAccentRed))
+                            setTextColor(Constant.getAccentRedColor(itemView.context))
                             text = "Đang diễn ra"
                         }
                         "finished" -> {

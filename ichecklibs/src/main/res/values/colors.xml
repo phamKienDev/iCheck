@@ -5,9 +5,11 @@
 
     <color name="colorAccentBlue">#00BAF2</color>
     <color name="colorAccentGreen">#85c440</color>
-    <color name="colorAccentRed">#ff0000</color>
     <color name="colorAccentCyan">#CCF1FC</color>
+    <color name="colorAccentRed">#ff0000</color>
     <color name="colorAccentYellow">#FFB800</color>
+
+
 
     <color name="colorSecondText">#757575</color> <!-- textview, editText, radioButton, checkBox -->
     <color name="colorSecondViewGroup">#757575</color>

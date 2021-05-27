@@ -95,13 +95,12 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_business_name"
             tools:text="2/2 sản phẩm" />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.accent.accent_red.TextAccentRed
             android:id="@+id/tv_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/size_12"
             android:fontFamily="@font/barlow_semi_bold"
-            android:textColor="@color/colorAccentRed"
             app:layout_constraintBottom_toBottomOf="@+id/business_logo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/business_logo"

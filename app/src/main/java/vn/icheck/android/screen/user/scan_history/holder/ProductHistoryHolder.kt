@@ -15,6 +15,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.LayoutProductHistoryHolderBinding
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.beGone
 import vn.icheck.android.ichecklibs.util.beInvisible
 import vn.icheck.android.ichecklibs.util.beVisible
@@ -111,6 +112,8 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
             binding.tvCountShop.visibility = View.INVISIBLE
             binding.layoutShop.visibility = View.GONE
         }
+
+        binding.btnSearchNear.background=ViewHelper.bgAccentCyanRadiusTop8(binding.btnSearchNear.context)
 
         if (obj.nearestShop?.shop != null) {
             binding.layoutShop.visibility = View.VISIBLE

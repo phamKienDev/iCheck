@@ -297,7 +297,6 @@
                     android:layout_marginTop="@dimen/size_10"
                     android:layout_marginEnd="@dimen/size_12"
                     android:layout_marginBottom="@dimen/size_12"
-                    android:background="@drawable/bg_text_address"
                     android:fontFamily="@font/barlow_semi_bold"
                     android:lineSpacingExtra="@dimen/font_6"
                     android:padding="@dimen/size_8"

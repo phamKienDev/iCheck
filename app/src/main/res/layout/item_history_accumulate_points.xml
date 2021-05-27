@@ -39,7 +39,7 @@
             android:textSize="@dimen/font_14"
             tools:text="Bạn nhận được từ đơn hàng mã KGFICIS2Bạn nhận được từ đơn hàng mã KGFICIS2Bạn nhận được từ đơn hàng mã KGFICIS2" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.accent.accent_red.TextAccentRed
             android:id="@+id/tvPoint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,7 +47,6 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
             android:singleLine="true"
-            android:textColor="@color/colorAccentRed"
             android:textSize="@dimen/font_14"
             tools:text="+2.000" />
     </LinearLayout>

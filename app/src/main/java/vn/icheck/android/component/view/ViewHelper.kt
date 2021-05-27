@@ -3034,7 +3034,7 @@ object ViewHelper {
                     it.ellipsize = TextUtils.TruncateAt.END
                     it.includeFontPadding = false
                     it.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
-                    it.setTextColor(ContextCompat.getColor(context, R.color.colorAccentRed))
+                    it.setTextColor(Constant.getAccentRedColor(context))
                 })
 
                 layoutParams.addView(AppCompatTextView(context).also {

@@ -18,7 +18,6 @@
 <!--    <color name="colorPrimary">#057DDA</color>-->
     <color name="colorAccentBlue">#00BAF2</color>
     <color name="darkBlue">#20336B</color>
-    <color name="colorAccentRed">#ff0000</color>
     <color name="transparent">@android:color/transparent</color>
     <color name="blueVip">#0064B1</color>
     <color name="blueVip10">#1A0064B1</color>

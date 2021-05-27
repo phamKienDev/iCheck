@@ -90,6 +90,9 @@ abstract class ConfirmDialog(
             R.color.colorSecondary -> {
                 vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context)
             }
+            R.color.colorAccentRed -> {
+                vn.icheck.android.ichecklibs.Constant.getAccentRedColor(context)
+            }
             else -> {
                 ContextCompat.getColor(context, color)
             }

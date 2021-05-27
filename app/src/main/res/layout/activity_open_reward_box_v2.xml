@@ -147,7 +147,6 @@
                     android:layout_width="@dimen/size_95"
                     android:layout_height="@dimen/size_32"
                     android:layout_marginEnd="@dimen/size_20"
-                    android:background="@drawable/bg_more_turn"
                     android:gravity="center"
                     android:text="Thêm lượt"
                     android:textSize="@dimen/font_16"

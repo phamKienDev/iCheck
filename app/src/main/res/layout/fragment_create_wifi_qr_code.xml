@@ -83,7 +83,7 @@
                 android:paddingEnd="@dimen/size_10"
                 android:textSize="@dimen/font_14" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.accent.accent_red.TextAccentRed
                 android:id="@+id/tvMessageName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -95,7 +95,6 @@
                 android:drawablePadding="@dimen/size_4"
                 android:fontFamily="@font/barlow_medium"
                 android:lineSpacingExtra="@dimen/font_14"
-                android:textColor="@color/colorAccentRed"
                 android:textSize="@dimen/font_12"
                 android:visibility="gone"
                 tools:text="Nhập sai định dạng. Thử lại!" />
@@ -124,7 +123,7 @@
                 android:paddingEnd="@dimen/size_10"
                 android:textSize="@dimen/font_14" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.accent.accent_red.TextAccentRed
                 android:id="@+id/tvMessagePassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -136,7 +135,6 @@
                 android:drawablePadding="@dimen/size_4"
                 android:fontFamily="@font/barlow_medium"
                 android:lineSpacingExtra="@dimen/font_14"
-                android:textColor="@color/colorAccentRed"
                 android:textSize="@dimen/font_12"
                 android:visibility="gone"
                 tools:text="Nhập sai định dạng. Thử lại!" />
@@ -181,7 +179,7 @@
                     android:background="@null" />
             </FrameLayout>
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.accent.accent_red.TextAccentRed
                 android:id="@+id/tvMessageType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -192,7 +190,6 @@
                 android:drawableLeft="@drawable/ic_error_red_18dp"
                 android:drawablePadding="@dimen/size_4"
                 android:lineSpacingExtra="@dimen/font_14"
-                android:textColor="@color/colorAccentRed"
                 android:textSize="@dimen/font_12"
                 android:visibility="gone"
                 tools:text="Nhập sai định dạng. Thử lại!" />

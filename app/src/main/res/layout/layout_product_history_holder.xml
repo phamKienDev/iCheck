@@ -190,7 +190,6 @@
         android:layout_height="@dimen/size_38"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/size_17"
-        android:background="@drawable/bg_corner_top_8_blue_20opac"
         android:gravity="center"
         android:text="Tìm kiếm quanh đây"
         android:textSize="@dimen/font_16"

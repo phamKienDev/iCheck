@@ -87,7 +87,7 @@ class RankOfUserActivity : BaseActivityMVVM() {
                 }
                 Constant.USER_LEVEL_GOLD -> {
                     tvPoint.text = "${score} Điểm"
-                    tvPoint.setTextColor(Color.parseColor("#ffb800"))
+                    tvPoint.setTextColor(vn.icheck.android.ichecklibs.Constant.getAccentYellowColor(this))
                     tvNameRank.text = "Thành viên Vàng"
                     img_rank_user.setImageResource(R.drawable.ic_leftmenu_avatar_gold_36dp)
                     goToHistory.setImageResource(R.drawable.ic_arrow_right_gold_8)

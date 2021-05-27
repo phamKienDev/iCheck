@@ -81,13 +81,12 @@
                 app:layout_constraintTop_toBottomOf="@id/imgExclusive"
                 tools:text="Chào hè quét mã nhận ngay quà khủng" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.accent.accent_red.TextAccentRed
                 android:id="@+id/appCompatTextView27"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_8"
                 android:fontFamily="@font/barlow_medium"
-                android:textColor="@color/colorAccentRed"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/appCompatTextView17"

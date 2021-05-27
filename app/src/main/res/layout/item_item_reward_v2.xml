@@ -91,7 +91,7 @@
             app:layout_constraintTop_toBottomOf="@id/tvProduct"
             tools:text="Từ Công ty cổ phần iCheck (tối đa 1 dòng)..." />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.accent.accent_red.TextAccentRed
             android:id="@+id/tvState"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -104,7 +104,6 @@
             android:paddingRight="@dimen/size_16"
             android:paddingBottom="@dimen/size_4"
             android:singleLine="true"
-            android:textColor="@color/colorAccentRed"
             android:textSize="@dimen/font_12"
             app:layout_constraintBottom_toBottomOf="@+id/imgProduct"
             app:layout_constraintStart_toEndOf="@+id/view"
@@ -114,13 +113,12 @@
             tools:layout_conversion_absoluteWidth="@dimen/size_85"
             tools:text="Đã từ chối" />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.accent.accent_red.TextAccentRed
             android:id="@+id/tv_gift_state"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_8"
             android:layout_marginTop="@dimen/size_8"
-            android:textColor="@color/colorAccentRed"
             android:textSize="@dimen/font_12"
             android:visibility="gone"
             app:layout_constraintStart_toEndOf="@+id/tvState"

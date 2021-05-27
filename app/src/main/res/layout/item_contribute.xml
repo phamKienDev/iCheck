@@ -101,7 +101,6 @@
         android:paddingRight="@dimen/size_10"
         android:singleLine="true"
         android:textAlignment="center"
-        android:textColor="@drawable/text_color_contribute"
         android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toBottomOf="@+id/tvYes"
         app:layout_constraintEnd_toEndOf="parent"

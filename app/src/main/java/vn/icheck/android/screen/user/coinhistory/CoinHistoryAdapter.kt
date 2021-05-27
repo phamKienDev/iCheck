@@ -220,7 +220,7 @@ class CoinHistoryAdapter(val callback: ICoinHistoryView) : RecyclerView.Adapter<
                 itemView.tvMoney.setTextColor(Constant.getAccentGreenColor(itemView.context))
             } else {
                 itemView.imgType.setImageResource(R.drawable.ic_xu_contract_20px)
-                itemView.tvMoney.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorAccentRed))
+                itemView.tvMoney.setTextColor(Constant.getAccentRedColor(itemView.tvMoney.context))
             }
 
             itemView.tvMission.text = obj.title
