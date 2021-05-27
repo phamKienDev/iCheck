@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <vn.icheck.android.ui.view.TextBody1
+            <vn.icheck.android.ichecklibs.view.TextBody1
                 android:id="@+id/tvViewVerifiedPhoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
                 android:visibility="gone"
                 tools:visibility="visible" />
 
-            <vn.icheck.android.ui.view.TextBody1
+            <vn.icheck.android.ichecklibs.view.TextBody1
                 android:id="@+id/tvViewForceUpdate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
                 android:visibility="gone"
                 tools:visibility="visible" />
 
-            <vn.icheck.android.ui.view.TextSubheader2
+            <vn.icheck.android.ichecklibs.view.TextSubheader2
                 android:id="@+id/tvLabelInforCustomer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
                 android:text="@string/thong_tin_khach_hang"
                 android:textColor="@color/colorSecondary" />
 
-            <vn.icheck.android.ui.view.TextCaption
+            <vn.icheck.android.ichecklibs.view.TextCaption
                 android:id="@+id/tvSubPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -92,7 +92,7 @@
                 android:textColor="@color/colorNormalText"
                 android:textColorHint="@color/colorSecondText" />
 
-            <vn.icheck.android.ui.view.TextCaption
+            <vn.icheck.android.ichecklibs.view.TextCaption
                 android:id="@+id/tvSubName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -116,7 +116,7 @@
                 android:textColor="@color/colorNormalText"
                 android:textColorHint="@color/colorSecondText" />
 
-            <vn.icheck.android.ui.view.TextCaption
+            <vn.icheck.android.ichecklibs.view.TextCaption
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
@@ -147,7 +147,7 @@
                 android:layout_marginTop="@dimen/size_18"
                 android:layout_marginEnd="@dimen/size_12">
 
-                <vn.icheck.android.ui.view.TextCaption
+                <vn.icheck.android.ichecklibs.view.TextCaption
                     android:id="@+id/tvSubTinhThanh"
                     android:layout_width="@dimen/size_0"
                     android:layout_height="wrap_content"
@@ -158,7 +158,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <vn.icheck.android.ui.view.TextCaption
+                <vn.icheck.android.ichecklibs.view.TextCaption
                     android:id="@+id/tvSubHuyen"
                     android:layout_width="@dimen/size_0"
                     android:layout_height="wrap_content"
@@ -181,7 +181,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvSubTinhThanh">
 
-                    <vn.icheck.android.ui.view.TextBody1
+                    <vn.icheck.android.ichecklibs.view.TextBody1
                         android:id="@+id/tvCities"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -218,7 +218,7 @@
                     app:layout_constraintStart_toEndOf="@+id/layoutSelectCity"
                     app:layout_constraintTop_toBottomOf="@+id/tvSubHuyen">
 
-                    <vn.icheck.android.ui.view.TextBody1
+                    <vn.icheck.android.ichecklibs.view.TextBody1
                         android:id="@+id/tvDistricts"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -245,7 +245,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <vn.icheck.android.ui.view.TextCaption
+            <vn.icheck.android.ichecklibs.view.TextCaption
                 android:id="@+id/tvSubAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -269,7 +269,7 @@
                 android:textColor="@color/colorNormalText"
                 android:textColorHint="@color/colorSecondText" />
 
-            <vn.icheck.android.ui.view.TextCaption
+            <vn.icheck.android.ichecklibs.view.TextCaption
                 android:id="@+id/tvSubProductCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -297,7 +297,7 @@
                 android:visibility="gone"
                 tools:visibility="visible" />
 
-            <vn.icheck.android.ui.view.TextCaption
+            <vn.icheck.android.ichecklibs.view.TextCaption
                 android:id="@+id/tvSubProductVariant"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -332,7 +332,7 @@
                 android:layout_height="wrap_content"
                 android:visibility="gone" />
 
-            <vn.icheck.android.ui.view.TextSubheader2
+            <vn.icheck.android.ichecklibs.view.TextSubheader2
                 android:id="@+id/tvTitleField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -349,7 +349,7 @@
                 android:layout_height="wrap_content"
                 android:visibility="gone" />
 
-            <vn.icheck.android.ui.view.TextSubheader2
+            <vn.icheck.android.ichecklibs.view.TextSubheader2
                 android:id="@+id/btnUpdate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

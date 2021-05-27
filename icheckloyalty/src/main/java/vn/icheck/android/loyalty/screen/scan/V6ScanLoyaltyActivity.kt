@@ -342,11 +342,11 @@ class V6ScanLoyaltyActivity : AppCompatActivity(), BarcodeCaptureListener {
 
     private fun initBarcodeCapture() {
         if (DataCaptureManager.barcodeCapture == null) {
-            showSimpleErrorToast("Đã xảy ra lỗi vui lòng thử lại sau")
+            showShortErrorToast("Đã xảy ra lỗi vui lòng thử lại sau")
             finish()
         }
         if (DataCaptureManager.dataCaptureContext == null) {
-            showSimpleErrorToast("Đã xảy ra lỗi vui lòng thử lại sau")
+            showShortErrorToast("Đã xảy ra lỗi vui lòng thử lại sau")
             finish()
         }
         barcodeCapture = DataCaptureManager.barcodeCapture!!
@@ -666,7 +666,7 @@ class V6ScanLoyaltyActivity : AppCompatActivity(), BarcodeCaptureListener {
 
     private fun initListener() {
         viewModel.errorString.observe(this, {
-            showSimpleErrorToast("Kết nối mạng của bạn có vấn đề.\nVui lòng thử lại.")
+            showShortErrorToast("Kết nối mạng của bạn có vấn đề.\nVui lòng thử lại.")
             enableCapture(barcodeCapture)
         })
         viewModel.stampFake.observe(this, {
@@ -816,7 +816,7 @@ class V6ScanLoyaltyActivity : AppCompatActivity(), BarcodeCaptureListener {
                         val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?daddr=$a"))
                         startActivity(intent);
                     } catch (exception: ActivityNotFoundException) {
-                        showSimpleErrorToast("Không tìm thấy ứng dụng google map!")
+                        showShortErrorToast("Không tìm thấy ứng dụng google map!")
                         enableCapture(barcodeCapture)
                     }
                 }

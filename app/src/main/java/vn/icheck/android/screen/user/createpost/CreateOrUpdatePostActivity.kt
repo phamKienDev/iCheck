@@ -47,7 +47,7 @@ import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.util.ick.setRankUser
-import vn.icheck.android.util.ick.showSimpleErrorToast
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.util.kotlin.WidgetUtils
 import vn.icheck.android.util.kotlin.WidgetUtils.loadImageFromVideoFile
 import java.io.File
@@ -532,7 +532,7 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
                     if (product.status == "ok" && product.state == "active") {
                         addProduct(product)
                     } else {
-                        showSimpleErrorToast("Không tìm thấy sản phẩm")
+                        showShortErrorToast("Không tìm thấy sản phẩm")
                     }
                 }
             }

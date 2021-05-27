@@ -27,7 +27,7 @@ import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.Re
 import vn.icheck.android.util.KeyboardUtils
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
-import vn.icheck.android.util.ick.showSimpleErrorToast
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 
 class ReportActivity : BaseActivityMVVM() {
     lateinit var viewModel: ReportViewModel
@@ -210,7 +210,7 @@ class ReportActivity : BaseActivityMVVM() {
         }
 
         if (listReason.isEmpty()) {
-            showSimpleErrorToast(R.string.vui_long_chon_it_nhat_1_ly_do)
+            showShortErrorToast(R.string.vui_long_chon_it_nhat_1_ly_do)
         } else {
             viewModel.putOrder(listReason, edtContent.text.toString())
         }

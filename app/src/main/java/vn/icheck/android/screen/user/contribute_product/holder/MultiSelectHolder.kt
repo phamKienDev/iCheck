@@ -3,12 +3,9 @@ package vn.icheck.android.screen.user.contribute_product.holder
 import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.appcompat.widget.TooltipCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.chip.Chip
 import com.skydoves.balloon.*
 import vn.icheck.android.R
 import vn.icheck.android.constant.ATTRIBUTES_POSITION
@@ -67,7 +64,7 @@ class MultiSelectHolder(val binding:ItemMultiSelectBinding):RecyclerView.ViewHol
                 binding.root.addView(CheckBox(binding.root.context).apply {
                     viewTreeObserver.addOnGlobalLayoutListener {
                         val lp = layoutParams as LinearLayout.LayoutParams
-                        lp.setMargins(10.toPx(), 0,10.toPx(), 0)
+                        lp.setMargins(10.dpToPx(), 0,10.dpToPx(), 0)
                         layoutParams = lp
                     }
                     text = item?.value

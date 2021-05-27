@@ -26,13 +26,12 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.network.models.wall.ICUserFollowWall
 import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionDialog
 import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionSuccessDialog
-import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
 import vn.icheck.android.screen.user.wall.USER_ID
 import vn.icheck.android.util.KeyboardUtils
 import vn.icheck.android.util.ick.forceShowKeyboard
-import vn.icheck.android.util.ick.showSimpleErrorToast
-import vn.icheck.android.util.ick.showSimpleSuccessToast
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
+import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.util.ick.simpleText
 import java.util.concurrent.TimeUnit
 
@@ -122,7 +121,7 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
             viewModel.unFriend.observe(this, Observer {
                 lifecycleScope.launch {
                     delay(100)
-                    this@ListFriendOfWallActivity.showSimpleSuccessToast("Bạn đã hủy kết bạn với $nameItem")
+                    this@ListFriendOfWallActivity.showShortSuccessToast("Bạn đã hủy kết bạn với $nameItem")
                     adapter.removeItem(positionList!!)
                     setResult(RESULT_OK)
                 }
@@ -131,7 +130,7 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
             viewModel.followOrUnFollow.observe(this, Observer {
                 lifecycleScope.launch {
                     delay(100)
-                    this@ListFriendOfWallActivity.showSimpleSuccessToast("Bạn đã bỏ theo dõi $nameItem")
+                    this@ListFriendOfWallActivity.showShortSuccessToast("Bạn đã bỏ theo dõi $nameItem")
                 }
             })
 
@@ -178,15 +177,15 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
             viewModel.errorDataPut.observe(this, Observer {
                 when (it) {
                     Constant.ERROR_SERVER -> {
-                        showSimpleErrorToast(resources.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                        showShortErrorToast(resources.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                     }
 
                     Constant.ERROR_INTERNET -> {
-                        showSimpleErrorToast(resources.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+                        showShortErrorToast(resources.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
                     }
 
                     Constant.ERROR_UNKNOW -> {
-                        showSimpleErrorToast(resources.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                        showShortErrorToast(resources.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                     }
                 }
             })

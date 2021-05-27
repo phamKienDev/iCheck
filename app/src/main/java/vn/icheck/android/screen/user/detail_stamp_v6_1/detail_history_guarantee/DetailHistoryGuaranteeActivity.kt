@@ -23,7 +23,7 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.detail_history_guarantee.
 import vn.icheck.android.screen.user.detail_stamp_v6_1.detail_history_guarantee.view.IDetaiHistoryGuaranteeView
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.screen.user.view_item_image_stamp.ViewItemImageActivity
-import vn.icheck.android.ui.view.TextBody1
+import vn.icheck.android.ichecklibs.view.TextBody1
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.text.SimpleDateFormat
 

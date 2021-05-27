@@ -10,12 +10,9 @@ import com.google.android.exoplayer2.Player
 import kotlinx.android.synthetic.main.ic_image_holder.view.*
 import kotlinx.android.synthetic.main.ic_image_holder2.view.*
 import kotlinx.android.synthetic.main.video_detail_holder.view.*
-import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
-import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.util.ick.showSimpleErrorLongToast
-import vn.icheck.android.util.ick.showSimpleErrorToast
+import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class MediaInPostAdapter(val isFullMedia: Boolean) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -88,7 +85,7 @@ class MediaInPostAdapter(val isFullMedia: Boolean) : RecyclerView.Adapter<Recycl
                 media.exoPlayer?.addListener(object : Player.EventListener {
                     override fun onPlayerError(error: ExoPlaybackException) {
                         super.onPlayerError(error)
-                        itemView.context.showSimpleErrorLongToast("Trình phát video lỗi")
+                        itemView.context.showLongErrorToast("Trình phát video lỗi")
                         itemView.progress.visibility = View.GONE
                         media.mediaError = true
                     }
@@ -99,7 +96,7 @@ class MediaInPostAdapter(val isFullMedia: Boolean) : RecyclerView.Adapter<Recycl
                         when (playbackState) {
                             Player.STATE_IDLE -> {
                                 itemView.progress.visibility = View.GONE
-                                itemView.context.showSimpleErrorLongToast("Trình phát video lỗi")
+                                itemView.context.showLongErrorToast("Trình phát video lỗi")
                             }
                             Player.STATE_BUFFERING -> {
                                 itemView.progress.visibility = View.VISIBLE

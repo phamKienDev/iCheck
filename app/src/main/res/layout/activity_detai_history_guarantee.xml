@@ -54,7 +54,7 @@
 
                 <TableRow android:layout_marginTop="@dimen/size_8">
 
-                    <vn.icheck.android.ui.view.TextBody1
+                    <vn.icheck.android.ichecklibs.view.TextBody1
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/size_12"
@@ -66,7 +66,7 @@
                         android:textSize="@dimen/font_14"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <vn.icheck.android.ui.view.TextBody1
+                    <vn.icheck.android.ichecklibs.view.TextBody1
                         android:id="@+id/tvNameCustomer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
 
                 <TableRow android:layout_marginTop="@dimen/size_8">
 
-                    <vn.icheck.android.ui.view.TextBody1
+                    <vn.icheck.android.ichecklibs.view.TextBody1
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/size_12"
@@ -93,7 +93,7 @@
                         android:textSize="@dimen/font_14"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <vn.icheck.android.ui.view.TextBody1
+                    <vn.icheck.android.ichecklibs.view.TextBody1
                         android:id="@+id/tvPhoneCustomer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -108,7 +108,7 @@
 
                 <TableRow android:layout_marginTop="@dimen/size_8">
 
-                    <vn.icheck.android.ui.view.TextBody1
+                    <vn.icheck.android.ichecklibs.view.TextBody1
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/size_12"
@@ -120,7 +120,7 @@
                         android:textSize="@dimen/font_14"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <vn.icheck.android.ui.view.TextBody1
+                    <vn.icheck.android.ichecklibs.view.TextBody1
                         android:id="@+id/tvMailCustomer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -135,7 +135,7 @@
 
                 <TableRow android:layout_marginTop="@dimen/size_8">
 
-                    <vn.icheck.android.ui.view.TextBody1
+                    <vn.icheck.android.ichecklibs.view.TextBody1
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/size_12"
@@ -147,7 +147,7 @@
                         android:textSize="@dimen/font_14"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <vn.icheck.android.ui.view.TextBody1
+                    <vn.icheck.android.ichecklibs.view.TextBody1
                         android:id="@+id/tvAddressCustomer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -189,7 +189,7 @@
 
                 <TableRow android:layout_marginTop="@dimen/size_8">
 
-                    <vn.icheck.android.ui.view.TextBody1
+                    <vn.icheck.android.ichecklibs.view.TextBody1
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/size_12"
@@ -201,7 +201,7 @@
                         android:textSize="@dimen/font_14"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <vn.icheck.android.ui.view.TextBody1
+                    <vn.icheck.android.ichecklibs.view.TextBody1
                         android:id="@+id/tvTimeGuarantee"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -216,7 +216,7 @@
 
                 <TableRow android:layout_marginTop="@dimen/size_8">
 
-                    <vn.icheck.android.ui.view.TextBody1
+                    <vn.icheck.android.ichecklibs.view.TextBody1
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/size_12"
@@ -228,7 +228,7 @@
                         android:textSize="@dimen/font_14"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <vn.icheck.android.ui.view.TextBody1
+                    <vn.icheck.android.ichecklibs.view.TextBody1
                         android:id="@+id/tvNameStoreGuarantee"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -243,7 +243,7 @@
 
                 <TableRow android:layout_marginTop="@dimen/size_8">
 
-                    <vn.icheck.android.ui.view.TextBody1
+                    <vn.icheck.android.ichecklibs.view.TextBody1
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/size_12"
@@ -255,7 +255,7 @@
                         android:textSize="@dimen/font_14"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <vn.icheck.android.ui.view.TextBody1
+                    <vn.icheck.android.ichecklibs.view.TextBody1
                         android:id="@+id/tvStateGuarantee"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -270,7 +270,7 @@
 
                 <TableRow android:layout_marginTop="@dimen/size_8">
 
-                    <vn.icheck.android.ui.view.TextBody1
+                    <vn.icheck.android.ichecklibs.view.TextBody1
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/size_12"
@@ -282,7 +282,7 @@
                         android:textSize="@dimen/font_14"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <vn.icheck.android.ui.view.TextBody1
+                    <vn.icheck.android.ichecklibs.view.TextBody1
                         android:id="@+id/tvReturnTimeGuarantee"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

@@ -9,7 +9,6 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
-import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
@@ -43,7 +42,7 @@ import vn.icheck.android.screen.user.suggest_topic.SuggestTopicActivity
 import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.util.ick.forceHideKeyboard
 import vn.icheck.android.util.ick.logError
-import vn.icheck.android.util.ick.showSimpleErrorToast
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import javax.inject.Inject
 
 const val LOGIN_OTP = 1
@@ -113,7 +112,7 @@ class IckLoginActivity : BaseCoroutineActivity() {
             }
         }
         ickLoginViewModel.mErr.observe(this, Observer {
-            showSimpleErrorToast(it.toICBaseResponse()?.message ?: it.message)
+            showShortErrorToast(it.toICBaseResponse()?.message ?: it.message)
 //            ToastUtils.showShortError(this, it.toICBaseResponse()?.message ?: it.message)
         })
         ickLoginViewModel.mState.observe(this, Observer {
@@ -168,7 +167,7 @@ class IckLoginActivity : BaseCoroutineActivity() {
                                         }
                                     }
                                     "U3004" -> {
-                                        showSimpleErrorToast(response.message)
+                                        showShortErrorToast(response.message)
                                     }
                                     "200" -> {
                                         loginFacebookSuccess(response.data?.token.toString())

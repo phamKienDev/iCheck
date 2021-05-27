@@ -25,7 +25,7 @@ import vn.icheck.android.screen.user.history_loading_card.home.HistoryCardActivi
 import vn.icheck.android.screen.user.home.HomeActivity
 import vn.icheck.android.screen.user.payment_topup.viewmodel.PaymentViewModel
 import vn.icheck.android.tracking.TrackingAllHelper
-import vn.icheck.android.util.ick.showSimpleErrorToast
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.util.kotlin.ToastUtils
 
 class BuyCardSuccessActivity : AppCompatActivity() {
@@ -77,7 +77,7 @@ class BuyCardSuccessActivity : AppCompatActivity() {
 
         viewModel.errorMessage.observe(this, Observer {
             DialogHelper.closeLoading(this)
-            this.showSimpleErrorToast(it)
+            this.showShortErrorToast(it)
             onBackPressed()
         })
 

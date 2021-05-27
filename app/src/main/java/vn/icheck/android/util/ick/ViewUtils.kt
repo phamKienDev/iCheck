@@ -1,6 +1,5 @@
 package vn.icheck.android.util.ick
 
-import android.content.Context
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -10,25 +9,21 @@ import android.graphics.drawable.TransitionDrawable
 import android.media.ThumbnailUtils
 import android.text.Editable
 import android.text.InputType
-import android.util.DisplayMetrics
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import android.view.inputmethod.InputMethodManager
 import android.widget.CompoundButton
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.DrawableRes
-import androidx.annotation.IdRes
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.children
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
@@ -194,7 +189,7 @@ fun ImageView.loadSimpleFile(src: File?, corner: Int) {
     circularProgressDrawable.start()
    Glide.with(this.context.applicationContext)
             .load(src)
-            .apply(RequestOptions().transform(RoundedCorners(corner.toPx())))
+            .apply(RequestOptions().transform(RoundedCorners(corner.dpToPx())))
             .placeholder(circularProgressDrawable)
             .error(R.drawable.error_load_image)
             .into(this)
@@ -249,15 +244,7 @@ fun Bitmap.centerCrop(newWidth: Int, newHeight: Int):Bitmap {
 }
 
 
-fun Int.toPx(): Int {
-    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this.toFloat(), ICheckApplication.getInstance().resources.displayMetrics).toInt()
-}
-
 fun Int.dpToPx(): Int {
-    return (this * Resources.getSystem().displayMetrics.density).toInt()
-}
-
-fun Float.dpToPx(): Int {
     return (this * Resources.getSystem().displayMetrics.density).toInt()
 }
 

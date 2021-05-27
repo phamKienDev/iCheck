@@ -23,7 +23,7 @@ import vn.icheck.android.network.models.ICMedia
 import vn.icheck.android.network.util.JsonHelper
 import vn.icheck.android.screen.user.media_in_post.ICExoMedia
 import vn.icheck.android.screen.user.media_in_post.MediaInPostAdapter
-import vn.icheck.android.util.ick.showSimpleErrorToast
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -204,7 +204,7 @@ class DetailMediaActivity : BaseActivityMVVM(), View.OnClickListener {
             if (PermissionHelper.checkResult(grantResults)){
                 downloadMedia()
             }else{
-                showSimpleErrorToast(R.string.khong_the_thuc_hien_tac_vu_vi_ban_chua_cap_quyen)
+                showShortErrorToast(R.string.khong_the_thuc_hien_tac_vu_vi_ban_chua_cap_quyen)
             }
         }
     }

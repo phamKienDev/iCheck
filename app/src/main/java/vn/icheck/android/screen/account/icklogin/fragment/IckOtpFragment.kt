@@ -36,6 +36,7 @@ import vn.icheck.android.databinding.FragmentOtpBinding
 import vn.icheck.android.helper.CartHelper
 import vn.icheck.android.tracking.insider.InsiderHelper
 import vn.icheck.android.helper.ShareSessionToModule
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.network.model.icklogin.ConfirmOtpResponse
 import vn.icheck.android.network.model.icklogin.IckUserInfoData
 import vn.icheck.android.network.base.SessionManager
@@ -154,7 +155,7 @@ class IckOtpFragment : Fragment() {
                                             ickLoginViewModel.waitResponse = false
                                             start()
                                         } else {
-                                            requireContext().showSimpleErrorToast(it?.message)
+                                            requireContext().showShortErrorToast(it?.message)
                                         }
                                     }
                                 }
@@ -166,7 +167,7 @@ class IckOtpFragment : Fragment() {
                                             ickLoginViewModel.waitResponse = false
                                             start()
                                         } else {
-                                            requireContext().showSimpleErrorToast(it?.message)
+                                            requireContext().showShortErrorToast(it?.message)
                                         }
                                     }
                                 }
@@ -179,7 +180,7 @@ class IckOtpFragment : Fragment() {
                                                 ickLoginViewModel.waitResponse = false
                                                 start()
                                             } else {
-                                                requireContext().showSimpleErrorToast(it?.message)
+                                                requireContext().showShortErrorToast(it?.message)
                                             }
                                         }
                                     } else {
@@ -190,7 +191,7 @@ class IckOtpFragment : Fragment() {
                                                 ickLoginViewModel.waitResponse = false
                                                 start()
                                             } else {
-                                                requireContext().showSimpleErrorToast(it?.message)
+                                                requireContext().showShortErrorToast(it?.message)
                                             }
                                         }
                                     }
@@ -276,7 +277,7 @@ class IckOtpFragment : Fragment() {
 
     private fun toastError(it: ConfirmOtpResponse?) {
         it?.message?.let { msg ->
-            requireContext().showSimpleErrorToast(msg)
+            requireContext().showShortErrorToast(msg)
         }
     }
 

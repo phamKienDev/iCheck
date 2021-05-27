@@ -7,7 +7,7 @@
     android:layout_marginTop="@dimen/size_30"
     android:orientation="vertical">
 
-    <vn.icheck.android.ui.view.TextHeader
+    <vn.icheck.android.ichecklibs.view.TextHeader
         android:id="@id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,7 +16,7 @@
         android:textColor="@color/colorNormalText"
         tools:text="iCheck Cơ sở phía Bắc" />
 
-    <vn.icheck.android.ui.view.TextBody2
+    <vn.icheck.android.ichecklibs.view.TextBody2
         android:id="@id/tvHotline"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
         android:textColor="@color/colorPrimary"
         tools:text="Hotline: 1900xxxx" />
 
-    <vn.icheck.android.ui.view.TextBody2
+    <vn.icheck.android.ichecklibs.view.TextBody2
         android:id="@id/tvEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

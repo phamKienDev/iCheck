@@ -13,6 +13,7 @@ import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.component.view.ViewHelper.onDelayClick
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -181,7 +182,7 @@ class OtherNotificationHolder(parent: ViewGroup) : BaseViewHolder<ICNotification
                             DialogHelper.closeLoading(activity)
                         }
                         if (objNotification.isReaded == false && isShowLoading) {
-                            itemView.context.showSimpleSuccessToast("Bạn đã đọc thông báo này")
+                            itemView.context.showShortSuccessToast("Bạn đã đọc thông báo này")
                         }
                         objNotification.isReaded = true
                         checkRead(objNotification.isReaded == true)
@@ -258,7 +259,7 @@ class OtherNotificationHolder(parent: ViewGroup) : BaseViewHolder<ICNotification
                         DialogHelper.closeLoading(activity)
 
                         listener?.onClick(null)
-                        itemView.context.showSimpleSuccessToast("Xóa thông báo thành công")
+                        itemView.context.showShortSuccessToast("Xóa thông báo thành công")
                     }
 
                     override fun onError(error: ICResponseCode?) {

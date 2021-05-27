@@ -33,7 +33,7 @@ import vn.icheck.android.screen.user.contribute_product.IckContributeProductActi
 import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionDialog
 import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionSuccessDialog
 import vn.icheck.android.util.ick.setRankUser
-import vn.icheck.android.util.ick.showSimpleErrorToast
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -503,7 +503,7 @@ class ContributionHolder(parent: ViewGroup) :
                                 )
                             )
                         } else {
-                            itemView.context.showSimpleErrorToast(
+                            itemView.context.showShortErrorToast(
                                 if (error?.message.isNullOrEmpty()) {
                                     itemView.context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                                 } else {
