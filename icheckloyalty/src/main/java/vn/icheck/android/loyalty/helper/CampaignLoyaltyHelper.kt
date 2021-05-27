@@ -6,6 +6,7 @@ import android.graphics.Canvas
 import android.os.Handler
 import android.view.View
 import androidx.fragment.app.FragmentActivity
+import vn.icheck.android.ichecklibs.showSimpleErrorToast
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.base.listener.IClickListener
@@ -412,6 +413,27 @@ object CampaignLoyaltyHelper {
             override fun onError(error: ICKBaseResponse?) {
                 showCustomErrorToast(activity, error?.message
                         ?: "Mã $code không hợp lệ")
+            }
+        })
+    }
+
+    fun scanCheckVoucher(activity: FragmentActivity, voucher: String, success: () -> Unit, error: (error: String) -> Unit){
+        if (NetworkHelper.isNotConnected(ApplicationHelper.getApplicationByReflect())) {
+            error(activity.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+            return
+        }
+
+        CampaignRepository().scanVoucher(voucher, object : ICApiListener<ICKResponse<ICKScanVoucher>> {
+            override fun onSuccess(obj: ICKResponse<ICKScanVoucher>) {
+                if (obj.statusCode != 200){
+                    error(obj.message ?: activity.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                }else{
+                    success()
+                }
+            }
+
+            override fun onError(error: ICKBaseResponse?) {
+                error(error?.message ?: activity.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         })
     }

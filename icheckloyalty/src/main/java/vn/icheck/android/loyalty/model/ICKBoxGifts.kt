@@ -58,6 +58,10 @@ class ICKBoxGifts: Serializable {
     @Expose
     var export_gift_from: String? = null
 
+
+    @Expose
+    var owner: ICKOwner? = null
+
     /**
      * state = 1 -> Chờ xác nhận
      * state = 2 -> Chờ giao
