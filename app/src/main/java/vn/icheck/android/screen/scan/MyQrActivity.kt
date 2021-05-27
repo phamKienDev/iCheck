@@ -26,6 +26,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.FragmentQrAndBarcodeOfMeBinding
 import vn.icheck.android.helper.SettingHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.models.ICClientSetting
@@ -44,7 +45,8 @@ class MyQrActivity : AppCompatActivity() {
     var qrHeight = 200.toPx()
     val viewModel by viewModels<V6ViewModel>()
 
-    companion object{
+
+    companion object {
         fun createOnly(context: Context) {
             context.startActivity(Intent(context, MyQrActivity::class.java).apply {
                 putExtra(Constant.DATA_1, 3)
@@ -107,7 +109,9 @@ class MyQrActivity : AppCompatActivity() {
         listKey.add("MY_QR_CAMPAIGN_DESCRIPTION")
         listKey.add("MY_QR_CAMPAIGN_BANNER")
         binding.btnScan.setOnClickListener {
-            simpleStartActivity(V6ScanditActivity::class.java)
+            val intent = Intent(this, V6ScanditActivity::class.java)
+            intent.putExtra("fromMyQr", true)
+            ActivityHelper.startActivity(this, intent)
             finish()
         }
         viewModel.getMyID()
@@ -125,45 +129,47 @@ class MyQrActivity : AppCompatActivity() {
                     logDebug(list.toString())
                     if (!list.isNullOrEmpty()) {
                         if (list.firstOrNull { setting ->
-                                    setting.key == "my-qr-campaign.button-target"
-                                } == null) {
+                                setting.key == "my-qr-campaign.button-target"
+                            } == null) {
                             binding.btnCampaign.beGone()
                         }
                         if (list.firstOrNull { setting ->
-                                    setting.key == "my-qr-campaign.banner"
-                                } == null) {
+                                setting.key == "my-qr-campaign.banner"
+                            } == null) {
                             binding.imgBanner.beGone()
                         }
                         if (list.firstOrNull { setting ->
-                                    setting.key == "my-qr-campaign.button-label"
-                                } == null) {
+                                setting.key == "my-qr-campaign.button-label"
+                            } == null) {
                             binding.btnCampaign.beGone()
                         }
                         for (item in list) {
                             when (item.key) {
                                 "my-qr-campaign.banner" -> {
                                     Glide.with(applicationContext)
-                                            .asBitmap()
-                                            .load(item.value)
-                                            .error(R.drawable.error_load_image)
-                                            .placeholder(R.drawable.error_load_image)
-                                            .into(object : CustomTarget<Bitmap>() {
-                                                override fun onLoadCleared(placeholder: Drawable?) {
-                                                }
+                                        .asBitmap()
+                                        .load(item.value)
+                                        .error(R.drawable.error_load_image)
+                                        .placeholder(R.drawable.error_load_image)
+                                        .into(object : CustomTarget<Bitmap>() {
+                                            override fun onLoadCleared(placeholder: Drawable?) {
+                                            }
 
-                                                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                                                    val newBmp = resource.resizeBitmap(binding.imgBanner.width, binding.imgBanner.height, isCenterCrop = true)
-                                                    Glide.with(binding.imgBanner.context.applicationContext)
-                                                            .load(newBmp)
+                                            override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+                                                val newBmp = resource.resizeBitmap(binding.imgBanner.width, binding.imgBanner.height, isCenterCrop = true)
+                                                Glide.with(binding.imgBanner.context.applicationContext)
+                                                    .load(newBmp)
 
-                                                            .apply(RequestOptions().transform(
-                                                                    RoundedCornersTransformation(this@MyQrActivity, 18.toPx(), 0, RoundedCornersTransformation.CornerType.TOP)
-                                                            ))
-                                                            .error(R.drawable.error_load_image)
-                                                            .placeholder(R.drawable.error_load_image)
-                                                            .into(binding.imgBanner)
-                                                }
-                                            })
+                                                    .apply(
+                                                        RequestOptions().transform(
+                                                            RoundedCornersTransformation(this@MyQrActivity, 18.toPx(), 0, RoundedCornersTransformation.CornerType.TOP)
+                                                        )
+                                                    )
+                                                    .error(R.drawable.error_load_image)
+                                                    .placeholder(R.drawable.error_load_image)
+                                                    .into(binding.imgBanner)
+                                            }
+                                        })
 
                                 }
                                 "my-qr-campaign.button-label" -> {
