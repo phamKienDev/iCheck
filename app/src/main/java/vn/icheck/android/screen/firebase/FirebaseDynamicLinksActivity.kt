@@ -260,7 +260,11 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
             if (!targetType.isNullOrEmpty()) {
                 if (!targetID.isNullOrEmpty()) {
                     val intent = Intent(context, FirebaseDynamicLinksActivity::class.java)
-                    intent.data = Uri.parse("icheck://$targetType?${Constant.ID}=$targetID")
+                    if (!targetType.startsWith("icheck://") ) {
+                        intent.data = Uri.parse("icheck://$targetType?${Constant.ID}=$targetID")
+                    }else{
+                        intent.data = Uri.parse("$targetType?${Constant.ID}=$targetID")
+                    }
                     context.startActivity(intent)
                 } else {
                     startTarget(context, targetType)
