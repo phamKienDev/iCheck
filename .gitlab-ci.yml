@@ -11,7 +11,7 @@ assembleDevDebug:
     - autobuild
   only:
     refs:
-      - develop
+      - evs
   stage: build_develop
   script:
     - ./gradlew clean
