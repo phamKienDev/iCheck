@@ -19,11 +19,6 @@ import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_ick_product_detail.*
-import kotlinx.android.synthetic.main.activity_ick_product_detail.imgBack
-import kotlinx.android.synthetic.main.activity_ick_product_detail.layoutBottom
-import kotlinx.android.synthetic.main.activity_ick_product_detail.recyclerView
-import kotlinx.android.synthetic.main.activity_ick_product_detail.txtTitle
-import kotlinx.android.synthetic.main.activity_ick_product_detail.view
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
@@ -44,13 +39,12 @@ import vn.icheck.android.component.product_review.my_review.MyReviewModel
 import vn.icheck.android.component.product_review.submit_review.ISubmitReviewListener
 import vn.icheck.android.component.product_review.submit_review.SubmitReviewHolder
 import vn.icheck.android.component.product_review.submit_review.SubmitReviewModel
-import vn.icheck.android.component.view.ViewHelper
-import vn.icheck.android.component.view.ViewHelper.showPopupAds
 import vn.icheck.android.constant.*
 import vn.icheck.android.fragments.ReviewTributeDialog
 import vn.icheck.android.helper.*
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
+import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.loyalty.base.listener.IClickListener
 import vn.icheck.android.loyalty.helper.CampaignLoyaltyHelper
 import vn.icheck.android.loyalty.model.ICKLoyalty
@@ -75,7 +69,6 @@ import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.ick.beInvisible
 import vn.icheck.android.util.ick.beVisible
-import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.util.ick.simpleStartActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.StatusBarUtils
@@ -634,7 +627,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
             showShortSuccessToast("Cảm ơn bạn, chúng tôi sẽ liên hệ lại trong thời gian sớm nhất.")
         })
         viewModel.onPopupAds.observe(this@IckProductDetailActivity,Observer{
-           showPopupAds(it)
+            DialogNotificationFirebaseAds.showPopupAds(this,it)
         })
     }
 

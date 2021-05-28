@@ -260,9 +260,9 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
             if (!targetType.isNullOrEmpty()) {
                 if (!targetID.isNullOrEmpty()) {
                     val intent = Intent(context, FirebaseDynamicLinksActivity::class.java)
-                    if (!targetType.startsWith("icheck://") ) {
+                    if (!targetType.startsWith("icheck://")) {
                         intent.data = Uri.parse("icheck://$targetType?${Constant.ID}=$targetID")
-                    }else{
+                    } else {
                         intent.data = Uri.parse("$targetType?${Constant.ID}=$targetID")
                     }
                     context.startActivity(intent)
@@ -306,19 +306,6 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                     fragmentActivity.overridePendingTransition(R.anim.none, R.anim.none)
                 } else {
                     startTarget(fragmentActivity, targetType)
-                }
-            }
-        }
-
-        @WorkerThread
-        fun showDialogNotification(image: String? = null, htmlText: String? = null, link: String? = null, schema: String? = null) {
-            ICheckApplication.currentActivity()?.apply {
-                runOnUiThread {
-                    object : DialogNotificationFirebaseAds(this, image, htmlText, link, schema=schema) {
-                        override fun onDismiss() {
-
-                        }
-                    }.show()
                 }
             }
         }
@@ -1033,12 +1020,12 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                     val subID = SessionManager.session.user?.id?.toString()
                     val tranID = Base64.encodeToString("$subID-${System.currentTimeMillis() / 1000}".toByteArray(charset("UTF-8")), Base64.DEFAULT).trim()
                     Flight.create(this)
-                            .language(FlightConfig.Language.VI)
-                            .subId(subID)
-                            .tranId(tranID)
-                            .caId(14)
-                            .appToken(APIConstants.tripiTokenProduct)
-                            .start(requestFlight)
+                        .language(FlightConfig.Language.VI)
+                        .subId(subID)
+                        .tranId(tranID)
+                        .caId(14)
+                        .appToken(APIConstants.tripiTokenProduct)
+                        .start(requestFlight)
                     overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
                 }
             }
@@ -1050,12 +1037,12 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                     val subID = SessionManager.session.user?.id?.toString()
                     val tranID = Base64.encodeToString("$subID-${System.currentTimeMillis() / 1000}".toByteArray(charset("UTF-8")), Base64.DEFAULT).trim()
                     HotelSDK.create(this)
-                            .language(HotelConfig.Language.VI)
-                            .subId(subID)
-                            .transId(tranID)
-                            .caId(14)
-                            .appToken(APIConstants.tripiTokenProduct)
-                            .start(requestHotel)
+                        .language(HotelConfig.Language.VI)
+                        .subId(subID)
+                        .transId(tranID)
+                        .caId(14)
+                        .appToken(APIConstants.tripiTokenProduct)
+                        .start(requestHotel)
                     overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
                 }
             }
@@ -1235,8 +1222,10 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                 val orderInfo = deepLink?.getQueryParameter("vnp_OrderInfo")
 
                 if (responseCode == "00") {
-                    ActivityHelper.startActivity<BuyTopupSuccessActivity, Long>(this@FirebaseDynamicLinksActivity, Constant.DATA_2, (orderInfo
-                            ?: "-1").toLong())
+                    ActivityHelper.startActivity<BuyTopupSuccessActivity, Long>(
+                        this@FirebaseDynamicLinksActivity, Constant.DATA_2, (orderInfo
+                            ?: "-1").toLong()
+                    )
                 } else {
                     ActivityHelper.startActivity<BuyTopupSuccessActivity, Long>(this@FirebaseDynamicLinksActivity, Constant.DATA_2, -1)
                 }
@@ -1246,8 +1235,10 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                 val orderInfo = deepLink?.getQueryParameter("vnp_OrderInfo")
 
                 if (responseCode == "00") {
-                    ActivityHelper.startActivity<BuyCardSuccessActivity, Long>(this@FirebaseDynamicLinksActivity, Constant.DATA_2, (orderInfo
-                            ?: "-1").toLong())
+                    ActivityHelper.startActivity<BuyCardSuccessActivity, Long>(
+                        this@FirebaseDynamicLinksActivity, Constant.DATA_2, (orderInfo
+                            ?: "-1").toLong()
+                    )
                 } else {
                     ActivityHelper.startActivity<BuyCardSuccessActivity, Long>(this@FirebaseDynamicLinksActivity, Constant.DATA_2, -1)
                 }

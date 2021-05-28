@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import androidx.appcompat.app.AppCompatActivity
 import vn.icheck.android.BuildConfig
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
@@ -23,7 +24,7 @@ import vn.icheck.android.tracking.insider.InsiderHelper
  * Phone: 0986495949
  * Email: vulcl@icheck.vn
  */
-class SplashScreenActivity : Activity() {
+class SplashScreenActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,15 +86,8 @@ class SplashScreenActivity : Activity() {
 
     private fun showDialogNotification(image: String? = null, htmlText: String? = null, link: String? = null, schema: String? = null) {
         ActivityHelper.startActivityAndFinish<HomeActivity>(this)
-
         Handler().postDelayed({
-            ICheckApplication.currentActivity()?.apply {
-                object : DialogNotificationFirebaseAds(this, image, htmlText, link, schema) {
-                    override fun onDismiss() {
-
-                    }
-                }.show()
-            }
+                DialogNotificationFirebaseAds.showPopupFirebase(this, image, htmlText, link, schema)
         }, 2000)
     }
 

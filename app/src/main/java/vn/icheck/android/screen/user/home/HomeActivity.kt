@@ -8,7 +8,6 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
-import android.graphics.Typeface
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Build
@@ -19,8 +18,6 @@ import android.text.SpannableString
 import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
-import android.text.style.ForegroundColorSpan
-import android.text.style.StyleSpan
 import android.view.Gravity
 import android.view.View
 import androidx.activity.viewModels
@@ -65,20 +62,17 @@ import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.constant.ICK_REQUEST_CAMERA
 import vn.icheck.android.helper.*
-import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.base.SettingManager
-import vn.icheck.android.network.base.TokenTimeoutCallback
 import vn.icheck.android.network.models.ICClientSetting
-import vn.icheck.android.network.models.ICUser
 import vn.icheck.android.network.models.history.ICBigCorp
 import vn.icheck.android.network.models.history.ICTypeHistory
 import vn.icheck.android.network.util.DeviceUtils
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.account.icklogin.viewmodel.IckLoginViewModel
-import vn.icheck.android.screen.account.registeruser.register.RegisterUserActivity
 import vn.icheck.android.screen.checktheme.CheckThemeViewModel
+import vn.icheck.android.screen.dialog.DialogNotificationFirebaseAds
 import vn.icheck.android.screen.dialog.PermissionDialog
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.info.AppInfoActivity
@@ -99,7 +93,6 @@ import vn.icheck.android.screen.user.scan_history.model.ICScanHistory
 import vn.icheck.android.screen.user.scan_history.view.IScanHistoryView
 import vn.icheck.android.screen.user.scan_history.view_model.ScanHistoryViewModel
 import vn.icheck.android.screen.user.setting.SettingsActivity
-import vn.icheck.android.screen.user.social_chat.SocialChatFragment
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.screen.user.welcome.WelcomeActivity
