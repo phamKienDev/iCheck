@@ -54,13 +54,19 @@ abstract class DialogNotificationFirebaseAds(
                     .asBitmap()
                     .timeout(30000)
                     .load(image)
-                    .transform(FitCenter(),RoundedCorners(SizeHelper.size10))
+                    .transform(FitCenter(), RoundedCorners(SizeHelper.size10))
                     .listener(object : RequestListener<Bitmap> {
                         override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Bitmap>?, isFirstResource: Boolean): Boolean {
                             return false
                         }
 
-                        override fun onResourceReady(resource: Bitmap?, model: Any?, target: Target<Bitmap>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                        override fun onResourceReady(
+                            resource: Bitmap?,
+                            model: Any?,
+                            target: Target<Bitmap>?,
+                            dataSource: DataSource?,
+                            isFirstResource: Boolean
+                        ): Boolean {
                             if (resource != null) {
                                 CoroutineScope(Dispatchers.Main).launch {
                                     object : DialogNotificationFirebaseAds(activity, null, null, resource, schema, popup) {
@@ -114,10 +120,10 @@ abstract class DialogNotificationFirebaseAds(
         }
 
 
-        fun showPopupFirebase(activity: FragmentActivity, image: String?, document: String?,url: String?, schema: String?) {
+        fun showPopupFirebase(activity: FragmentActivity, image: String?, document: String?, url: String?, schema: String?) {
             if (image.isNullOrEmpty()) {
                 CoroutineScope(Dispatchers.Main).launch {
-                    object : DialogNotificationFirebaseAds(activity,document= document,url = url,null,schema) {
+                    object : DialogNotificationFirebaseAds(activity, document = document, url = url, null, schema) {
                         override fun onDismiss() {
 
                         }
@@ -139,7 +145,6 @@ abstract class DialogNotificationFirebaseAds(
         get() = false
 
     override fun onInitView() {
-        DialogHelper.showLoading(this)
         when {
             bitmap != null -> {
                 layoutWeb.beGone()
@@ -267,7 +272,6 @@ abstract class DialogNotificationFirebaseAds(
                     }
                 }
             }
-            DialogHelper.closeLoading(this@DialogNotificationFirebaseAds)
             imageView.setImageBitmap(resource)
         }
     }
@@ -288,7 +292,7 @@ abstract class DialogNotificationFirebaseAds(
                         }
 
                         override fun onError(error: ICResponseCode?) {
-                            DialogHelper.closeLoading(activity)
+                            DialogHelper.showLoading(activity)
                             checkSchemePopupAds(popup)
                         }
                     })
@@ -327,7 +331,6 @@ abstract class DialogNotificationFirebaseAds(
 
             webViewClient = object : WebViewClient() {
                 override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
-                    DialogHelper.closeLoading(this@DialogNotificationFirebaseAds)
                     super.onPageStarted(view, url, favicon)
                     isPageLoaded = false
                 }
@@ -390,7 +393,6 @@ abstract class DialogNotificationFirebaseAds(
 
             webViewClient = object : WebViewClient() {
                 override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
-                    DialogHelper.closeLoading(this@DialogNotificationFirebaseAds)
                     super.onPageStarted(view, url, favicon)
                     isPageLoaded = false
                 }
