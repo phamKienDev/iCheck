@@ -89,21 +89,21 @@ class WebViewActivity : BaseActivityGame() {
 
     @SuppressLint("SetJavaScriptEnabled")
     private fun setupWebView(url: String, title: String?) {
-        webView.settings.javaScriptEnabled = true
+        webViewUrl.settings.javaScriptEnabled = true
         @Suppress("DEPRECATION")
-        webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
-        webView.settings.domStorageEnabled = true
-        webView.settings.allowFileAccessFromFileURLs = true
-        webView.settings.useWideViewPort = true
-        webView.settings.loadWithOverviewMode = true
-        webView.settings.allowUniversalAccessFromFileURLs = true
+        webViewUrl.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
+        webViewUrl.settings.domStorageEnabled = true
+        webViewUrl.settings.allowFileAccessFromFileURLs = true
+        webViewUrl.settings.useWideViewPort = true
+        webViewUrl.settings.loadWithOverviewMode = true
+        webViewUrl.settings.allowUniversalAccessFromFileURLs = true
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            webView.settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
+            webViewUrl.settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
+            webViewUrl.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
         }
 
         if (url.startsWith("http")) {
@@ -129,19 +129,19 @@ class WebViewActivity : BaseActivityGame() {
                         }
                     }
 
-                    webView.loadUrl(url, header)
+                    webViewUrl.loadUrl(url, header)
                 }
             } else {
-                webView.loadUrl(url)
+                webViewUrl.loadUrl(url)
             }
         } else {
-            webView.loadData(url, "text/html; charset=utf-8", "UTF-8")
+            webViewUrl.loadData(url, "text/html; charset=utf-8", "UTF-8")
         }
 
         var loadingFinished = true
         var redirect = false
 
-        webView.webViewClient = object : WebViewClient() {
+        webViewUrl.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(webView: WebView, request: WebResourceRequest): Boolean {
                 if (!loadingFinished) {
                     redirect = true

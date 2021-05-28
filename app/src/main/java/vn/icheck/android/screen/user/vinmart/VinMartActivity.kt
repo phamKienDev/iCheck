@@ -46,24 +46,24 @@ class VinMartActivity : BaseActivity<BaseActivityPresenter>(), BaseActivityView 
 
     @SuppressLint("SetJavaScriptEnabled")
     private fun setupWebView(url: String) {
-        webView.settings.javaScriptEnabled = true
+        webViewUrl.settings.javaScriptEnabled = true
         @Suppress("DEPRECATION")
-        webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
-        webView.settings.domStorageEnabled = true
-        webView.settings.allowFileAccessFromFileURLs = true
-        webView.settings.allowUniversalAccessFromFileURLs = true
+        webViewUrl.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
+        webViewUrl.settings.domStorageEnabled = true
+        webViewUrl.settings.allowFileAccessFromFileURLs = true
+        webViewUrl.settings.allowUniversalAccessFromFileURLs = true
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
+            webViewUrl.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
         }
 
         if (url.startsWith("http")) {
-            webView.loadUrl(url)
+            webViewUrl.loadUrl(url)
         } else {
-            webView.loadData(url, "text/html; charset=utf-8", "UTF-8");
+            webViewUrl.loadData(url, "text/html; charset=utf-8", "UTF-8");
         }
 
-        webView.webViewClient = object : WebViewClient() {
+        webViewUrl.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     request?.url?.let { url ->
@@ -105,8 +105,8 @@ class VinMartActivity : BaseActivity<BaseActivityPresenter>(), BaseActivityView 
     }
 
     override fun onBackPressed() {
-        if (webView.canGoBack()) {
-            webView.goBack()
+        if (webViewUrl.canGoBack()) {
+            webViewUrl.goBack()
         } else {
             super.onBackPressed()
         }

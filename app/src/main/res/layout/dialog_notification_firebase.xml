@@ -38,9 +38,9 @@
         android:background="@drawable/bg_white_corners_10"
         android:orientation="vertical"
         android:paddingStart="@dimen/size_10"
-        android:paddingTop="@dimen/size_10"
+        android:paddingTop="@dimen/size_20"
         android:paddingEnd="@dimen/size_10"
-        android:paddingBottom="@dimen/size_10">
+        android:paddingBottom="@dimen/size_20">
 
         <WebView
             android:id="@+id/webViewHtml"
@@ -57,13 +57,13 @@
         android:layout_height="550dp"
         android:background="@drawable/bg_white_corners_10"
         android:orientation="vertical"
-        android:paddingStart="@dimen/size_12"
+        android:paddingStart="@dimen/size_10"
         android:paddingTop="@dimen/size_20"
-        android:paddingEnd="@dimen/size_12"
+        android:paddingEnd="@dimen/size_10"
         android:paddingBottom="@dimen/size_20">
 
         <WebView
-            android:id="@+id/webView"
+            android:id="@+id/webViewUrl"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:rotation="180" />

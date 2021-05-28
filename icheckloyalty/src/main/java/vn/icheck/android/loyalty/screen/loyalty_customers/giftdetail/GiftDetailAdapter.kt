@@ -222,8 +222,8 @@ internal class GiftDetailAdapter(val type: Int = 0) : RecyclerViewCustomAdapter<
                 }
             }
 
-            itemView.webView.settings.javaScriptEnabled = true
-            itemView.webView.loadDataWithBaseURL(null, obj.gift?.description
+            itemView.webViewUrl.settings.javaScriptEnabled = true
+            itemView.webViewUrl.loadDataWithBaseURL(null, obj.gift?.description
                     ?: "", "text/html; charset=utf-8", "UTF-8", null)
 
             WidgetHelper.loadImageUrl(itemView.imgAvatar, obj.owner?.logo?.medium)
@@ -290,8 +290,8 @@ internal class GiftDetailAdapter(val type: Int = 0) : RecyclerViewCustomAdapter<
                 }
             }
 
-            itemView.webView.settings.javaScriptEnabled = true
-            itemView.webView.loadDataWithBaseURL(null, obj.loyalty_gift?.gift?.description
+            itemView.webViewUrl.settings.javaScriptEnabled = true
+            itemView.webViewUrl.loadDataWithBaseURL(null, obj.loyalty_gift?.gift?.description
                     ?: "", "text/html; charset=utf-8", "UTF-8", null)
 
             WidgetHelper.loadImageUrl(itemView.imgAvatar, obj.business?.logo?.medium)
