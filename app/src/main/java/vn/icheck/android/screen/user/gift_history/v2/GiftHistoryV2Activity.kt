@@ -40,6 +40,8 @@ class GiftHistoryV2Activity : BaseActivityGame(), IRecyclerViewCallback {
                 ListMissionActivity.show(this@GiftHistoryV2Activity, viewModel.campaignId)
             }
         }
+
+        layoutNoData.background=ViewHelper.bgWhiteRadiusTop20(this)
     }
 
     @SuppressLint("SetTextI18n")

@@ -418,7 +418,6 @@
                 android:layout_marginTop="@dimen/size_16"
                 android:layout_marginEnd="@dimen/size_16"
                 android:layout_marginBottom="@dimen/size_12"
-                android:background="@drawable/bg_corners_4_green"
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center"
                 android:includeFontPadding="false"

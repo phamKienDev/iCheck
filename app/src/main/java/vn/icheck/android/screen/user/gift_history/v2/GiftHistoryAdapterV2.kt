@@ -13,6 +13,7 @@ import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.loyalty.base.BaseViewHolder
 import vn.icheck.android.loyalty.base.ICKViewType
 import vn.icheck.android.network.models.ICItemReward
@@ -93,6 +94,7 @@ class GiftHistoryAdapterV2(callback: IRecyclerViewCallback) : RecyclerViewCustom
 
     inner class HeaderViewHolder(parent: ViewGroup) : BaseViewHolder<String>(R.layout.item_header_gift_campaign, parent) {
         override fun bind(obj: String) {
+            itemView.textView.background=ViewHelper.bgWhiteRadiusTop20(itemView.context)
             WidgetUtils.loadImageUrl(itemView.imgBanner, obj, R.drawable.bg_error_campaign)
         }
     }

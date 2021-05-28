@@ -46,7 +46,7 @@
             android:src="@drawable/bg_light"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
+        <vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutBgWhiteRadius10
             android:id="@+id/linearLayout14"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -55,7 +55,6 @@
             android:layout_marginTop="@dimen/size_57"
             android:layout_marginEnd="@dimen/size_29"
             android:layout_marginRight="@dimen/size_29"
-            android:background="@drawable/bg_corner_white_10"
             android:orientation="vertical"
             android:paddingBottom="@dimen/size_23"
             app:layout_constraintEnd_toEndOf="parent"
@@ -198,7 +197,7 @@
                 android:textSize="@dimen/font_14"
                 android:visibility="gone"
                 tools:text="Nhà tài trợ\nCông ty Cổ phần iCheck" />
-        </LinearLayout>
+        </vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutBgWhiteRadius10>
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/viewBow"

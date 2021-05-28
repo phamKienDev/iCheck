@@ -54,7 +54,6 @@
                 android:layout_height="@dimen/size_28"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginLeft="@dimen/size_12"
-                android:background="@drawable/bg_corner_white_5"
                 android:fontFamily="@font/roboto_medium"
                 android:gravity="center"
                 android:includeFontPadding="false"

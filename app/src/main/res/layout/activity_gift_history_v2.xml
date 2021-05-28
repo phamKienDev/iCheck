@@ -34,7 +34,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_0"
                 android:layout_marginTop="@dimen/size_180"
-                android:background="@drawable/bg_corner_top_20"
                 android:orientation="vertical"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"

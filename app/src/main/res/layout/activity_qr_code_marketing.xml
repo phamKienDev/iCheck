@@ -75,11 +75,10 @@
                     app:layout_constraintStart_toStartOf="@id/imgBanner"
                     app:layout_constraintTop_toBottomOf="@id/imgBanner" />
 
-                <View
+                <vn.icheck.android.ichecklibs.view.app_background.white_background.ICViewBgWhiteRadius10
                     android:id="@+id/view"
                     android:layout_width="@dimen/size_36"
                     android:layout_height="@dimen/size_36"
-                    android:background="@drawable/bg_corner_white_10"
                     app:layout_constraintBottom_toBottomOf="@+id/imgQrCode"
                     app:layout_constraintEnd_toEndOf="@+id/imgQrCode"
                     app:layout_constraintStart_toStartOf="@+id/imgQrCode"
@@ -99,7 +98,6 @@
                         android:id="@+id/imgLogo"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/bg_corners_blue_10"
                         android:src="@drawable/ic_logo_icheck_marketing" />
                 </androidx.cardview.widget.CardView>
             </androidx.constraintlayout.widget.ConstraintLayout>

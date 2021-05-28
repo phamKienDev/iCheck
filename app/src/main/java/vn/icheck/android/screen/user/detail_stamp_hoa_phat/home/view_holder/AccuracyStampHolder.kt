@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.accuracy_stamp.view.*
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICDetailStampV6_1
 import vn.icheck.android.util.ick.beGone
 
@@ -71,7 +72,7 @@ class AccuracyStampHolder(parent: ViewGroup) : BaseViewHolder<ICDetailStampV6_1.
                     }
                     //Guarantee
                     2 -> {
-                        itemView.layoutheaderAccuracy.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_top_white_10)
+                        itemView.layoutheaderAccuracy.background = ViewHelper.bgWhiteRadiusTop10(itemView.context)
                         itemView.tvSubName.setTextColor(Color.parseColor("#434343"))
                         itemView.tvSubName.text = obj.scan_message?.text
                         itemView.imgAccuracy.setImageResource(R.drawable.ic_verified_stamp_36dp)

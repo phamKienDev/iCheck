@@ -47,14 +47,15 @@ class GiftOfCampaignAdapter(callback: IRecyclerViewCallback, val banner: String?
         }
     }
 
-    inner class ViewHolder(parent: ViewGroup) : BaseViewHolder<GiftOfCampaignModel>(LayoutInflater.from(parent.context).inflate(R.layout.item_gift_campain_all, parent, false)) {
+    inner class ViewHolder(parent: ViewGroup) :
+        BaseViewHolder<GiftOfCampaignModel>(LayoutInflater.from(parent.context).inflate(R.layout.item_gift_campain_all, parent, false)) {
         @SuppressLint("SetTextI18n")
         override fun bind(obj: GiftOfCampaignModel) {
 
             val adapter = ItemGiftOfCampaignAdapter(obj.data, obj.type)
 
             WidgetUtils.loadImageUrl(itemView.imgHeader, banner)
-
+            itemView.layoutData.background = ViewHelper.bgWhiteRadiusTop20(itemView.context)
             itemView.imgHeader.run {
                 if (adapterPosition == 0) {
                     beVisible()
@@ -77,8 +78,10 @@ class GiftOfCampaignAdapter(callback: IRecyclerViewCallback, val banner: String?
             itemView.recyclerView.adapter = adapter
             adapter.setData()
 
-            itemView.btnMore.setCompoundDrawablesWithIntrinsicBounds(null, null,
-                    ViewHelper.getDrawableFillColor(itemView.context, R.drawable.ic_arrow_down_light_blue_accent_24px, Constant.getAccentBlueCode), null)
+            itemView.btnMore.setCompoundDrawablesWithIntrinsicBounds(
+                null, null,
+                ViewHelper.getDrawableFillColor(itemView.context, R.drawable.ic_arrow_down_light_blue_accent_24px, Constant.getAccentBlueCode), null
+            )
             if (obj.data.size > 6) {
                 itemView.btnMore.beVisible()
 

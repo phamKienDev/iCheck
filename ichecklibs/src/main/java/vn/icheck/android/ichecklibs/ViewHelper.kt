@@ -132,12 +132,7 @@ object ViewHelper {
         }
     }
 
-    fun createShapeDrawable(
-        color: Int,
-        strokeWidth: Int,
-        strokeColor: Int,
-        radius: Float
-    ): GradientDrawable {
+    fun createShapeDrawable(color: Int, strokeWidth: Int, strokeColor: Int, radius: Float): GradientDrawable {
         return GradientDrawable().also {
             it.setColor(color)
             it.setStroke(strokeWidth, strokeColor)
@@ -145,15 +140,109 @@ object ViewHelper {
         }
     }
 
-    fun createShapeDrawable(
-        color: Int,
-        strokeWidth: Int,
-        strokeColor: Int,
-        radiusTopLeft: Float,
-        radiusTopLRight: Float,
-        radiusBottomRight: Float,
-        radiusBottomLeft: Float
-    ): GradientDrawable {
+    fun createShapeDrawableRadius(floatArray: FloatArray,color: Int, strokeWidth: Int, strokeColor: Int): GradientDrawable {
+        return GradientDrawable().apply {
+            cornerRadii = floatArray
+            setColor(color)
+            setStroke(strokeWidth, strokeColor)
+        }
+    }
+
+    fun createShapeDrawableRadius(floatArray: FloatArray,color: Int): GradientDrawable {
+        return GradientDrawable().apply {
+            cornerRadii = floatArray
+            setColor(color)
+        }
+    }
+
+
+
+    fun createShapeDrawableRadiusTop(color: Int, strokeWidth: Int, strokeColor: Int, radiusTop: Float): GradientDrawable {
+        return GradientDrawable().apply {
+            cornerRadii = floatArrayOf(
+                // top left
+                radiusTop,
+                radiusTop,
+                // top right
+                radiusTop,
+                radiusTop,
+                // bottom right
+                0f,
+                0f,
+                // bottom left
+                0f,
+                0f
+            )
+            setColor(color)
+            setStroke(strokeWidth, strokeColor)
+        }
+    }
+
+    fun createShapeDrawableRadiusTop(color: Int, radiusTop: Float): GradientDrawable {
+        return GradientDrawable().apply {
+            cornerRadii = floatArrayOf(
+                // top left
+                radiusTop,
+                radiusTop,
+                // top right
+                radiusTop,
+                radiusTop,
+                // bottom right
+                0f,
+                0f,
+                // bottom left
+                0f,
+                0f
+            )
+            setColor(color)
+        }
+    }
+
+
+    fun createShapeDrawableRadiusBottom(color: Int, strokeWidth: Int, strokeColor: Int, radiusBottom: Float): GradientDrawable {
+        return GradientDrawable().apply {
+            cornerRadii = floatArrayOf(
+                // top left
+                0f,
+                0f,
+                // top right
+                0f,
+                0f,
+                // bottom right
+                radiusBottom,
+                radiusBottom,
+                // bottom left
+                radiusBottom,
+                radiusBottom
+            )
+            setColor(color)
+            setStroke(strokeWidth, strokeColor)
+        }
+    }
+
+    fun createShapeDrawableRadiusBottom(color: Int, radiusBottom: Float): GradientDrawable {
+        return GradientDrawable().apply {
+            cornerRadii = floatArrayOf(
+                // top left
+                0f,
+                0f,
+                // top right
+                0f,
+                0f,
+                // bottom right
+                radiusBottom,
+                radiusBottom,
+                // bottom left
+                radiusBottom,
+                radiusBottom
+            )
+            setColor(color)
+        }
+    }
+
+
+
+    fun createShapeDrawable(color: Int, strokeWidth: Int, strokeColor: Int, radiusTopLeft: Float, radiusTopLRight: Float, radiusBottomRight: Float, radiusBottomLeft: Float): GradientDrawable {
         return GradientDrawable().also { gradientDrawable ->
             gradientDrawable.setColor(color)
             gradientDrawable.setStroke(strokeWidth, strokeColor)
@@ -177,13 +266,7 @@ object ViewHelper {
     /*
     * StateListDrawable
     * */
-    fun createButtonStateListDrawable(
-        context: Context,
-        enableColor: Int,
-        pressedColor: Int,
-        disableColor: Int,
-        radius: Float
-    ): StateListDrawable {
+    fun createButtonStateListDrawable(context: Context, enableColor: Int, pressedColor: Int, disableColor: Int, radius: Float): StateListDrawable {
         val statesListDrawable = StateListDrawable()
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -213,12 +296,7 @@ object ViewHelper {
         return statesListDrawable
     }
 
-    fun createButtonStateListDrawable(
-        context: Context,
-        enableColor: Int, pressedColor: Int, disableColor: Int,
-        enableStrokeColor: Int, pressedStrokeColor: Int, disableStrokeColor: Int,
-        strokeWidth: Int, radius: Float
-    ): StateListDrawable {
+    fun createButtonStateListDrawable(context: Context, enableColor: Int, pressedColor: Int, disableColor: Int, enableStrokeColor: Int, pressedStrokeColor: Int, disableStrokeColor: Int, strokeWidth: Int, radius: Float): StateListDrawable {
         val statesListDrawable = StateListDrawable()
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -749,23 +827,8 @@ object ViewHelper {
     /*
     *  Accent Cyan
     * */
-    fun bgAccentCyanRadiusTop8(context: Context) = GradientDrawable().apply {
-        setColor(Constant.getAccentCyanColor(context))
-        cornerRadii = floatArrayOf(
-            // top left
-            SizeHelper.size8.toFloat(),
-            SizeHelper.size8.toFloat(),
-            // top right
-            SizeHelper.size8.toFloat(),
-            SizeHelper.size8.toFloat(),
-            // bottom right
-            0f,
-            0f,
-            // bottom left
-            0f,
-            0f
-        )
-    }
+    fun bgAccentCyanRadiusTop8(context: Context) = createShapeDrawableRadiusTop(Constant.getAccentCyanColor(context),SizeHelper.size8.toFloat())
+
 
     fun bgAccentCyanRadius4(context: Context) = createShapeDrawable(
         color = Constant.getAccentCyanColor(context),
@@ -783,12 +846,27 @@ object ViewHelper {
     *  App Background White
     * */
 
-    fun bgWhiteRadius14(context: Context) = createShapeDrawable(
-        color = Constant.getAppBackgroundWhiteColor(context),
-        strokeColor = Color.TRANSPARENT,
-        strokeWidth = 0,
-        radius = SizeHelper.size14.toFloat()
-    )
+    fun bgWhiteRadius14(context: Context) = createShapeDrawable(color = Constant.getAppBackgroundWhiteColor(context), radius = SizeHelper.size14.toFloat())
+    fun bgWhiteRadius4(context: Context) = createShapeDrawable(color = Constant.getAppBackgroundWhiteColor(context), radius = SizeHelper.size4.toFloat())
+    fun bgWhiteRadius10(context: Context) = createShapeDrawable(color = Constant.getAppBackgroundWhiteColor(context), radius = SizeHelper.size10.toFloat())
+    fun bgWhiteRadius5(context: Context) = createShapeDrawable(color = Constant.getAppBackgroundWhiteColor(context), radius = SizeHelper.size5.toFloat())
+
+
+    fun bgWhiteRadiusTop6(context: Context)= createShapeDrawableRadiusTop(Constant.getAppBackgroundWhiteColor(context),SizeHelper.size6.toFloat())
+    fun bgWhiteRadiusTop10(context: Context)= createShapeDrawableRadiusTop(Constant.getAppBackgroundWhiteColor(context),SizeHelper.size10.toFloat())
+    fun bgWhiteRadiusTop13(context: Context)= createShapeDrawableRadiusTop(Constant.getAppBackgroundWhiteColor(context),SizeHelper.size13.toFloat())
+    fun bgWhiteRadiusTop20(context: Context)= createShapeDrawableRadiusTop(Constant.getAppBackgroundWhiteColor(context),SizeHelper.size20.toFloat())
+    fun bgWhiteRadiusTop25(context: Context)= createShapeDrawableRadiusTop(Constant.getAppBackgroundWhiteColor(context),SizeHelper.size25.toFloat())
+    fun bgWhiteRadiusBottom10(context: Context)= createShapeDrawableRadiusBottom(Constant.getAppBackgroundWhiteColor(context),SizeHelper.size10.toFloat())
+
+
+    fun bgWhiteRadiusTopLeft6(context: Context)= createShapeDrawableRadius(
+        floatArrayOf(SizeHelper.size6.toFloat(),SizeHelper.size6.toFloat(),0f,0f,0f,0f,0f,0f),
+        Constant.getAppBackgroundWhiteColor(context))
+
+    fun bgWhiteRadiusTopRight6(context: Context)= createShapeDrawableRadius(
+        floatArrayOf(0f,0f,SizeHelper.size6.toFloat(),SizeHelper.size6.toFloat(),0f,0f,0f,0f),
+        Constant.getAppBackgroundWhiteColor(context))
 
     fun bgProductInfomation(context: Context):GradientDrawable{
         val colors= intArrayOf(Constant.getAppBackgroundWhiteColor(context),Color.parseColor("#97ffffff"),Color.parseColor("#00ffffff"))
@@ -802,25 +880,6 @@ object ViewHelper {
         radius = SizeHelper.size40.toFloat()
     )
 
-    fun bgWhiteRadiusTop13(context: Context):GradientDrawable{
-        return GradientDrawable().apply {
-            cornerRadii= floatArrayOf(
-                // top left
-                SizeHelper.size13.toFloat(),
-                SizeHelper.size13.toFloat(),
-                // top right
-                SizeHelper.size13.toFloat(),
-                SizeHelper.size13.toFloat(),
-                // bottom right
-                0f,
-                0f,
-                // bottom left
-                0f,
-                0f
-            )
-            setColor(Constant.getAppBackgroundWhiteColor(context))
-        }
-    }
 
     fun bgCircleWhiteStrokeOrange1Size45(context: Context)= createShapeDrawable(
         color=Constant.getAppBackgroundWhiteColor(context),
@@ -828,6 +887,28 @@ object ViewHelper {
         strokeColor = ContextCompat.getColor(context,R.color.orange_1),
         radius = SizeHelper.dpToPx(45).toFloat()
     )
+
+    fun bgWhiteRadius8StrokeBlue1(context: Context) = createShapeDrawable(
+        color = Constant.getAppBackgroundWhiteColor(context),
+        strokeColor = Color.parseColor("#3c5a99"),
+        strokeWidth = SizeHelper.size1,
+        radius = SizeHelper.size8.toFloat()
+    )
+
+    fun bgWhiteRadius10StrokeSecondary1(context: Context) = createShapeDrawable(
+        color = Constant.getAppBackgroundWhiteColor(context),
+        strokeColor = Constant.getSecondaryColor(context),
+        strokeWidth = SizeHelper.size1,
+        radius = SizeHelper.size10.toFloat()
+    )
+
+    fun bgWhiteRadius4StrokeGreen1(context: Context) = createShapeDrawable(
+        color = Constant.getAppBackgroundWhiteColor(context),
+        strokeColor = Constant.getAccentGreenColor(context),
+        strokeWidth = SizeHelper.size1,
+        radius = SizeHelper.size4.toFloat()
+    )
+
 
     fun bgCircleWhiteCountCard22dp(context: Context):LayerDrawable{
         val white = GradientDrawable().also {
@@ -855,43 +936,6 @@ object ViewHelper {
         }
         return layerDrawbleFocused
     }
-
-    fun bgWhiteRadius4(context: Context) = createShapeDrawable(
-        color = Constant.getAppBackgroundWhiteColor(context),
-        strokeColor = Color.TRANSPARENT,
-        strokeWidth = 0,
-        radius = SizeHelper.size4.toFloat()
-    )
-
-    fun bgWhiteRadiusBottom10(context: Context):GradientDrawable{
-        return GradientDrawable().apply {
-            cornerRadii= floatArrayOf(
-                // top left
-                0f,
-                0f,
-                // top right
-                0f,
-                0f,
-                // bottom right
-                SizeHelper.size10.toFloat(),
-                SizeHelper.size10.toFloat(),
-                // bottom left
-                SizeHelper.size10.toFloat(),
-                SizeHelper.size10.toFloat()
-            )
-            setColor(Constant.getAppBackgroundWhiteColor(context))
-        }
-    }
-
-    fun bgWhiteRadius8StrokeBlue1(context: Context) = createShapeDrawable(
-        color = Constant.getAppBackgroundWhiteColor(context),
-        strokeColor = Color.parseColor("#3c5a99"),
-        strokeWidth = SizeHelper.size1,
-        radius = SizeHelper.size8.toFloat()
-    )
-
-
-
 
 
 }

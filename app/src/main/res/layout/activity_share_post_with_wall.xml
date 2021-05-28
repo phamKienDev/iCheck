@@ -253,7 +253,6 @@
         android:id="@id/layoutBottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_corner_top_white_25"
         android:elevation="@dimen/size_50"
         android:gravity="end"
         android:orientation="horizontal"

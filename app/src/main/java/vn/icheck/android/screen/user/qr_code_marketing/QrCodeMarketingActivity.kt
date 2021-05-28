@@ -6,6 +6,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivity
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.screen.user.qr_code_marketing.presenter.QrCodeMarketingPresenter
@@ -18,6 +19,8 @@ class QrCodeMarketingActivity : BaseActivity<QrCodeMarketingPresenter>(), IQrCod
         get() = QrCodeMarketingPresenter(this)
 
     override fun onInitView() {
+        imgLogo.background=ViewHelper.bgWhiteRadius10StrokeSecondary1(this)
+
         presenter.createQrCodeMarketing(SessionManager.session.user, SettingManager.clientSetting, imgBanner, tvMess, btnJoin, this@QrCodeMarketingActivity, imgLogo)
         initListener()
     }

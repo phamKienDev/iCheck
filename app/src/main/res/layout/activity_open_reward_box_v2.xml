@@ -41,10 +41,10 @@
         android:layout_marginTop="-25dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/layoutBottom"
-            android:background="@drawable/bg_corner_top_white_25">
+            android:layout_above="@id/layoutBottom">
 
             <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
                 android:id="@+id/appCompatTextView40"

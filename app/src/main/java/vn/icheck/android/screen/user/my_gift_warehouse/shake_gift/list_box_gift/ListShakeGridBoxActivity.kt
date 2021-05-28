@@ -63,6 +63,8 @@ class ListShakeGridBoxActivity : BaseActivityMVVM() {
         initRecycleView()
         listener()
 
+        constraintLayout.background=ViewHelper.bgWhiteRadiusTop25(this)
+
         val campaign = intent?.getSerializableExtra(Constant.DATA_1)
         if (campaign != null) {
             if (campaign is String) {

@@ -31,7 +31,6 @@
             android:layout_height="@dimen/size_164"
             android:layout_marginLeft="@dimen/size_2"
             android:layout_marginTop="@dimen/size_2"
-            android:background="@drawable/bg_corners_top_6_white"
             app:layout_constraintEnd_toStartOf="@id/top3"
             app:layout_constraintStart_toEndOf="@id/top2"
             app:layout_constraintTop_toTopOf="@id/tvTop1" />
@@ -42,7 +41,6 @@
             android:layout_height="@dimen/size_0"
             android:layout_marginLeft="@dimen/size_16"
             android:layout_marginTop="@dimen/size_2"
-            android:background="@drawable/bg_corners_top_left_6_white"
             app:layout_constraintBottom_toBottomOf="@id/top1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tvTop2" />
@@ -53,7 +51,6 @@
             android:layout_height="@dimen/size_0"
             android:layout_marginTop="@dimen/size_2"
             android:layout_marginRight="@dimen/size_16"
-            android:background="@drawable/bg_corners_top_right_6_white"
             app:layout_constraintBottom_toBottomOf="@id/top1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/tvTop3" />

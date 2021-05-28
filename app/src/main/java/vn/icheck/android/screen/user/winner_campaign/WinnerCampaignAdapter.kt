@@ -18,6 +18,7 @@ import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICCampaign
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -87,6 +88,10 @@ class WinnerCampaignAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
         override fun bind(obj: MutableList<ICCampaign>) {
             (itemView as ViewGroup).run {
                 (getChildAt(1) as ConstraintLayout).run {
+                    val viewTop1 = getChildAt(0) as View
+                    val viewTop2 = getChildAt(1) as View
+                    val viewTop3 = getChildAt(2) as View
+
                     val avatarTop1 = getChildAt(11) as CircleImageView
                     val avatarTop2 = getChildAt(6) as CircleImageView
                     val avatarTop3 = getChildAt(16) as CircleImageView
@@ -98,6 +103,10 @@ class WinnerCampaignAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
                     val coinTop1 = getChildAt(14) as AppCompatTextView
                     val coinTop2 = getChildAt(9) as AppCompatTextView
                     val coinTop3 = getChildAt(19) as AppCompatTextView
+
+                    viewTop1.background=ViewHelper.bgWhiteRadiusTop6(viewTop1.context)
+                    viewTop2.background=ViewHelper.bgWhiteRadiusTopLeft6(viewTop1.context)
+                    viewTop3.background=ViewHelper.bgWhiteRadiusTopRight6(viewTop1.context)
 
                     //Top 1
                     WidgetUtils.loadImageUrl(avatarTop1, obj[0].avatar, R.drawable.ic_user_svg)

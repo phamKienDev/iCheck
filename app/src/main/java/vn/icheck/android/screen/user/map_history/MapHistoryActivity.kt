@@ -24,6 +24,7 @@ import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.component.header_page.bottom_sheet_header_page.InforPageBottomSheet
 import vn.icheck.android.component.view.MySpannable
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 /**
@@ -40,6 +41,7 @@ class MapHistoryActivity : BaseActivityMVVM() {
 
         viewModel = ViewModelProvider(this).get(MapHistoryViewModel::class.java)
 
+        view.background = ViewHelper.bgWhiteRadiusTop20(this)
         initToolbar()
         initSwipeLayout()
         initListener()
@@ -117,7 +119,14 @@ class MapHistoryActivity : BaseActivityMVVM() {
             tvDescription.run {
                 if (!obj.newDetail?.description.isNullOrEmpty()) {
                     text = obj.newDetail?.description
-                    makeTextViewResizable(this@MapHistoryActivity, tvDescription, 5, "Đọc tiếp", vn.icheck.android.ichecklibs.Constant.getPrimaryColorCode, obj.newDetail?.description!!)
+                    makeTextViewResizable(
+                        this@MapHistoryActivity,
+                        tvDescription,
+                        5,
+                        "Đọc tiếp",
+                        vn.icheck.android.ichecklibs.Constant.getPrimaryColorCode,
+                        obj.newDetail?.description!!
+                    )
                 }
             }
 
@@ -166,7 +175,13 @@ class MapHistoryActivity : BaseActivityMVVM() {
         })
     }
 
-    private fun addClickablePartTextViewResizable(context: Context, strSpanned: Spanned, spanableText: String, color: String, description: String): SpannableStringBuilder? {
+    private fun addClickablePartTextViewResizable(
+        context: Context,
+        strSpanned: Spanned,
+        spanableText: String,
+        color: String,
+        description: String
+    ): SpannableStringBuilder? {
         val str: String = strSpanned.toString()
         val ssb = SpannableStringBuilder(strSpanned)
         if (str.contains(spanableText)) {

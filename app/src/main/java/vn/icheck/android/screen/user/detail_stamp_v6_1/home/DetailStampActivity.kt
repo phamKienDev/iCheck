@@ -179,9 +179,7 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
         val language = Locale.getDefault().toLanguageTag()
         isVietNamLanguage = language == "vi-VN"
 
-        btnRequestPermission.background=vn.icheck.android.ichecklibs.ViewHelper.bgWhiteRadius40StrokeSecondary1(this)
-        btnEnableLocation.background=vn.icheck.android.ichecklibs.ViewHelper.bgWhiteRadius40StrokeSecondary1(this)
-        constraintLayoutDiemBan.background=vn.icheck.android.ichecklibs.ViewHelper.bgWhiteRadiusBottom10(this)
+        setupView()
 
         runOnUiThread {
             if (isVietNamLanguage == false) {
@@ -222,6 +220,13 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
 //        getUserDetail()
 //        initUpdateLocation()
         listener()
+    }
+
+    private fun setupView() {
+        btnRequestPermission.background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteRadius40StrokeSecondary1(this)
+        btnEnableLocation.background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteRadius40StrokeSecondary1(this)
+        constraintLayoutDiemBan.background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteRadiusBottom10(this)
+        layoutheaderBaoHanh.background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteRadiusTop10(this)
     }
 
     // Loyalty Campaign
