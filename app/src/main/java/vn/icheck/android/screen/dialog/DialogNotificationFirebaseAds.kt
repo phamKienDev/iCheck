@@ -61,6 +61,7 @@ abstract class DialogNotificationFirebaseAds(
                         .listener(object : RequestListener<Bitmap> {
                             override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Bitmap>?, isFirstResource: Boolean): Boolean {
                                 Log.d("onLoad", "onLoadFailed: false")
+                                DialogHelper.closeLoading(this@DialogNotificationFirebaseAds)
                                 dismiss()
                                 return false
                             }
