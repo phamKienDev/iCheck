@@ -121,27 +121,35 @@ internal class RedemptionHistoryAdapter(callback: IRecyclerViewCallback) : Recyc
                             text = "Hạn sử dụng"
 
                             if (obj.voucher?.checked_condition?.status == false) {
-                                if (obj.voucher?.checked_condition?.code == "START_TIME_CAN_USE") {
+                                when(obj.voucher?.checked_condition?.code){
+                                    "START_TIME_CAN_USE" -> {
+                                        text = "Chưa có hiệu lực"
 
-                                    text = "Chưa có hiệu lực"
+                                        setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
 
-                                    setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
+                                        setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
+                                    }
+                                    "MAX_NUM_OF_USED_VOUCHER", "MAX_NUM_OF_USED_CUSTOMER" -> {
+                                        text = "Hết lượt sử dụng"
 
-                                    setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
-                                } else if (obj.voucher?.checked_condition?.code == "MAX_NUM_OF_USED_VOUCHER" || obj.voucher?.checked_condition?.code == "MAX_NUM_OF_USED_CUSTOMER") {
+                                        setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
 
-                                    text = "Hết lượt sử dụng"
+                                        setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
+                                    }
+                                    "BUSINESS_LOCKED_VOUCHER", "ADMIN_LOCKED_VOUCHER" -> {
+                                        text = "Đã bị khóa"
 
-                                    setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
+                                        setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
 
-                                    setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
-                                } else {
+                                        setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
+                                    }
+                                    else -> {
+                                        text = "Hết hạn sử dụng"
 
-                                    text = "Hết hạn sử dụng"
+                                        setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
 
-                                    setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
-
-                                    setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
+                                        setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
+                                    }
                                 }
                             } else {
 
@@ -231,21 +239,27 @@ internal class RedemptionHistoryAdapter(callback: IRecyclerViewCallback) : Recyc
                         itemView.tvState.run {
                             if (obj.voucher?.checked_condition?.status == false) {
 
-                                if (obj.voucher?.checked_condition?.code == "START_TIME_CAN_USE") {
-
-                                    text = "Chưa có hiệu lực"
-                                    setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
-                                    setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
-                                } else if (obj.voucher?.checked_condition?.code == "MAX_NUM_OF_USED_VOUCHER" || obj.voucher?.checked_condition?.code == "MAX_NUM_OF_USED_CUSTOMER") {
-
-                                    text = "Hết lượt sử dụng"
-                                    setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
-                                    setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
-                                } else {
-
-                                    text = "Hết hạn sử dụng"
-                                    setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
-                                    setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
+                                when(obj.voucher?.checked_condition?.code){
+                                    "START_TIME_CAN_USE" -> {
+                                        text = "Chưa có hiệu lực"
+                                        setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
+                                        setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
+                                    }
+                                    "MAX_NUM_OF_USED_VOUCHER", "MAX_NUM_OF_USED_CUSTOMER" -> {
+                                        text = "Hết lượt sử dụng"
+                                        setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
+                                        setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
+                                    }
+                                    "BUSINESS_LOCKED_VOUCHER", "ADMIN_LOCKED_VOUCHER" -> {
+                                        text = "Đã bị khóa"
+                                        setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
+                                        setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
+                                    }
+                                    else -> {
+                                        text = "Hết hạn sử dụng"
+                                        setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
+                                        setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
+                                    }
                                 }
                             } else {
                                 text = "Có thể sử dụng"

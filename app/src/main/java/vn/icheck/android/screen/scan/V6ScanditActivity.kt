@@ -793,7 +793,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                                     },
                                     { error ->
                                         resetCamera()
-                                        showSimpleErrorToast(error)
+                                        showShortErrorToast(error)
                                     })
                         }
                         else -> viewModel.checkQrStampSocial()

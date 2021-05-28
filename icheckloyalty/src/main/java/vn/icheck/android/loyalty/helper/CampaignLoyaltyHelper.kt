@@ -1,14 +1,10 @@
  package vn.icheck.android.loyalty.helper
 
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.Canvas
 import android.os.Handler
-import android.view.View
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
-import vn.icheck.android.ichecklibs.showSimpleErrorToast
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.base.listener.IClickListener

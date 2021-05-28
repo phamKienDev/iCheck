@@ -3,14 +3,12 @@ package vn.icheck.android.loyalty.screen.game_from_labels.redeem_points.detail_g
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Handler
-import android.view.View
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_detail_gift_loyalty.*
 import kotlinx.android.synthetic.main.item_redemption_history.view.*
 import org.greenrobot.eventbus.EventBus
-import vn.icheck.android.ichecklibs.showSimpleErrorLongToast
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.*
 import vn.icheck.android.loyalty.base.activity.BaseActivityGame
@@ -71,7 +69,7 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
 
         viewModel.onError.observe(this@DetailGiftLoyaltyActivity, {
             runOnUiThread {
-                showSimpleErrorLongToast(it.title)
+                showShortErrorToast(it.title)
                 ActivityHelper.finishActivity(this)
             }
         })
@@ -306,33 +304,43 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
                 obj.titleDate = "Hạn sử dụng"
 
                 if (obj.voucher?.checked_condition?.status == false) {
-                    if (obj.voucher?.checked_condition?.code == "START_TIME_CAN_USE") {
+                    when (obj.voucher?.checked_condition?.code) {
+                        "START_TIME_CAN_USE" -> {
+                            obj.titleDate = "Có hiệu lực từ"
 
-                        obj.titleDate = "Có hiệu lực từ"
+                            obj.dateChange = TimeHelper.convertDateTimeSvToDateVn(obj.voucher?.start_at)
 
-                        obj.dateChange = TimeHelper.convertDateTimeSvToDateVn(obj.voucher?.start_at)
+                            obj.statusChange = "Chưa có hiệu lực"
 
-                        obj.statusChange = "Chưa có hiệu lực"
+                            obj.colorText = ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.orange)
 
-                        obj.colorText = ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.orange)
+                            obj.colorBackground = R.drawable.bg_corner_30_orange_opacity_02
+                        }
+                        "MAX_NUM_OF_USED_VOUCHER", "MAX_NUM_OF_USED_CUSTOMER" -> {
+                            obj.statusChange = "Hết lượt sử dụng"
 
-                        obj.colorBackground = R.drawable.bg_corner_30_orange_opacity_02
-                    } else if (obj.voucher?.checked_condition?.code == "MAX_NUM_OF_USED_VOUCHER" || obj.voucher?.checked_condition?.code == "MAX_NUM_OF_USED_CUSTOMER") {
+                            obj.colorText = ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.errorColor)
 
-                        obj.statusChange = "Hết lượt sử dụng"
+                            obj.colorBackground = R.drawable.bg_corner_30_red_opacity_02
+                        }
+                        "BUSINESS_LOCKED_VOUCHER", "ADMIN_LOCKED_VOUCHER" -> {
+                            obj.dateChange = ""
 
-                        obj.colorText = ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.errorColor)
+                            obj.statusChange = "Đã bị khóa"
 
-                        obj.colorBackground = R.drawable.bg_corner_30_red_opacity_02
-                    } else {
+                            obj.colorText = ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.errorColor)
 
-                        obj.dateChange = ""
+                            obj.colorBackground = R.drawable.bg_corner_30_red_opacity_02
+                        }
+                        else -> {
+                            obj.dateChange = ""
 
-                        obj.statusChange = "Hết hạn sử dụng"
+                            obj.statusChange = "Hết hạn sử dụng"
 
-                        obj.colorText = ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.errorColor)
+                            obj.colorText = ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.errorColor)
 
-                        obj.colorBackground = R.drawable.bg_corner_30_red_opacity_02
+                            obj.colorBackground = R.drawable.bg_corner_30_red_opacity_02
+                        }
                     }
                 } else {
 
@@ -529,7 +537,7 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
 
     override fun onDestroy() {
         super.onDestroy()
-        if (type == 1){
+        if (type == 1) {
             obj = null
         }
     }
