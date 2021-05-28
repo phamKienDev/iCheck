@@ -10,7 +10,7 @@ import android.util.TypedValue
 import android.widget.ImageView
 import android.widget.TextView
 import vn.icheck.android.ICheckApplication
-
+import vn.icheck.android.ichecklibs.util.dpToPx
 
 internal object SizeHelper {
     val size0_5 = dpToPx(0.5)
@@ -124,16 +124,9 @@ internal object SizeHelper {
      * @param dp value muốn chuyển
      * @return kết quả pixels
      */
-    fun dpToPx(context: Context?, dp: Int): Int {
-        if (context == null)
-            return 0
-
-        val displayMetrics = context.resources.displayMetrics
-        return Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT))
-    }
 
     fun dpToPx(dp: Int): Int {
-        return (dp * Resources.getSystem().displayMetrics.density).toInt()
+        return dp.dpToPx()
     }
 
     fun dpToPx(dp: Float): Int {
@@ -167,9 +160,5 @@ internal object SizeHelper {
      */
     fun spToPx(spValue: Float): Float {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spValue, Resources.getSystem().displayMetrics)
-    }
-
-    fun dpToSp(dp: Int, context: Context): Int {
-        return (dpToPx(context, dp) / context.resources.displayMetrics.scaledDensity).toInt()
     }
 }

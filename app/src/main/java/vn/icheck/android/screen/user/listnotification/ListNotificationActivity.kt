@@ -19,6 +19,7 @@ import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.loyalty.base.setVisible
 import vn.icheck.android.network.models.ICNotification
 import vn.icheck.android.screen.user.campaign.calback.IMessageListener
@@ -102,7 +103,7 @@ class ListNotificationActivity : BaseActivityMVVM(), IMessageListener {
 
         viewModel.onMarkAllSuccess.observe(this, Observer {
             adapter.markReadAll()
-            showSimpleSuccessToast(it)
+            showShortSuccessToast(it)
 //            DialogHelper.showSpecialNotification(this@ListNotificationActivity, null, it, false)
         })
 

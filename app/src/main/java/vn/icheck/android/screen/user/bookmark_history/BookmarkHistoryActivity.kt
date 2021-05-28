@@ -6,8 +6,6 @@ import androidx.activity.viewModels
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.observe
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -18,6 +16,7 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import vn.icheck.android.databinding.ActivityBookmarkHistoryBinding
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.ick.*
@@ -109,14 +108,14 @@ class BookmarkHistoryActivity : AppCompatActivity() {
             data["checked"] == true -> {
                 bookmarkHistoryViewModel.bookmark(data["id"] as Long? ?: 0L).observe(this, {
                     if (it.statusCode != "200") {
-                        showSimpleErrorToast(it.message)
+                        showShortErrorToast(it.message)
                     }
                 })
             }
             data["checked"] == false -> {
                 bookmarkHistoryViewModel.deleteBookmark(data["id"] as Long? ?: 0L).observe(this, {
                     if (it.statusCode != "200") {
-                        showSimpleErrorToast(it.message)
+                        showShortErrorToast(it.message)
                     }
                 })
             }

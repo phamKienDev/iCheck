@@ -516,7 +516,7 @@
                 app:layout_constraintStart_toStartOf="@+id/imgAvatar"
                 app:srcCompat="@drawable/ic_leftmenu_avatar_standard_36dp" />
 
-            <vn.icheck.android.ui.view.TextTitle
+            <vn.icheck.android.ichecklibs.view.TextTitle
                 android:id="@+id/tv_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

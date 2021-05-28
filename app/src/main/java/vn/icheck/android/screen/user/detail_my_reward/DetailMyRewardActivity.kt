@@ -23,8 +23,9 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ActivityDetailMyRewardBinding
 import vn.icheck.android.helper.DialogHelper
-import vn.icheck.android.tracking.insider.InsiderHelper
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
+import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.network.models.campaign.DetailRewardData
 import vn.icheck.android.network.models.campaign.DetailRewardResponse
 import vn.icheck.android.screen.dialog.CallPhoneDialog
@@ -53,14 +54,14 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
         lifecycleScope.launch {
             delay(10000)
             if (!viewModel.loadSuccess) {
-                showSimpleErrorToast("Có lỗi xảy ra vui lòng thử lại sau")
+                showShortErrorToast("Có lỗi xảy ra vui lòng thử lại sau")
                 dismissLoadingScreen()
                 finish()
             }
         }
         viewModel = ViewModelProvider(this).get(DetailMyRewardViewModel::class.java)
         viewModel.error.observe(this, Observer{
-            showSimpleErrorToast("Có lỗi xảy ra vui lòng thử lại sau")
+            showShortErrorToast("Có lỗi xảy ra vui lòng thử lại sau")
             dismissLoadingScreen()
         })
         listener()
@@ -68,7 +69,7 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
 
         binding.recyclerView.viewTreeObserver.addOnScrollChangedListener {
             val scrollY = binding.recyclerView.scrollY
-            if (scrollY > 50.toPx()) {
+            if (scrollY > 50.dpToPx()) {
                 binding.toolbar.simpleGoneAnim()
                 binding.toolbarAlpha.simpleVisibleAnim()
             } else {
@@ -167,7 +168,7 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                             try {
                                 viewModel.updateUsingState().observe(this, Observer {
                                     dismissLoadingScreen()
-                                    showSimpleSuccessToast(getString(R.string.ban_da_danh_dau_nap_the_nay))
+                                    showShortSuccessToast(getString(R.string.ban_da_danh_dau_nap_the_nay))
                                     getData()
     //                                binding.layoutBottom.beGone()
     //                                binding.imgLogo.alpha = 0.5f
@@ -234,7 +235,7 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                             if (listId.isNotEmpty()) {
                                 viewModel.refuseGift(listId, listMessage)
                             } else {
-                                showSimpleErrorToast("Vui lòng chọn ít nhất một lí do")
+                                showShortErrorToast("Vui lòng chọn ít nhất một lí do")
                             }
                         }
                     })
@@ -292,7 +293,7 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                     binding.tvRefuse.post {
                         val lp = binding.tvRefuse.layoutParams as ConstraintLayout.LayoutParams
                         lp.width = ConstraintLayout.LayoutParams.WRAP_CONTENT
-                        lp.setMargins(lp.leftMargin, lp.topMargin, 8.toPx(), lp.bottomMargin)
+                        lp.setMargins(lp.leftMargin, lp.topMargin, 8.dpToPx(), lp.bottomMargin)
                         binding.tvRefuse.layoutParams = lp
                     }
 
@@ -310,7 +311,7 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                     binding.tvRefuse.post {
                         val lp = binding.tvRefuse.layoutParams as ConstraintLayout.LayoutParams
                         lp.width = ConstraintLayout.LayoutParams.WRAP_CONTENT
-                        lp.setMargins(lp.leftMargin, lp.topMargin, 8.toPx(), lp.bottomMargin)
+                        lp.setMargins(lp.leftMargin, lp.topMargin, 8.dpToPx(), lp.bottomMargin)
                         binding.tvRefuse.layoutParams = lp
                     }
                     binding.tvRefuseDes simpleText data.dataRps?.shipTime?.getHourMinutesTime()

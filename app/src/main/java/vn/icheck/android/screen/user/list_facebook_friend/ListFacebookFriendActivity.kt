@@ -16,7 +16,7 @@ import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
-import vn.icheck.android.util.ick.showShortError
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import java.util.concurrent.TimeUnit
 
 class ListFacebookFriendActivity : BaseActivityMVVM(), IRecyclerViewCallback {
@@ -104,7 +104,7 @@ class ListFacebookFriendActivity : BaseActivityMVVM(), IRecyclerViewCallback {
             if (adapter.isEmpty) {
                 it.message?.let { it1 -> adapter.setError(it.icon, it1, R.string.thu_lai) }
             } else {
-                showShortError(it.message)
+                showShortErrorToast(it.message)
             }
         })
     }

@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.setPadding
+import vn.icheck.android.ichecklibs.util.dpToPx
 
 class EnableButton: AppCompatButton {
     constructor(context: Context):super(context){
@@ -23,7 +24,7 @@ class EnableButton: AppCompatButton {
     fun initView() {
         isEnabled = false
         typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
-        setPadding(8.toPx(resources))
+        setPadding(8.dpToPx())
         includeFontPadding = false
     }
 

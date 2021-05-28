@@ -6,13 +6,10 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.BitmapFactory
-import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
-import android.view.ViewTreeObserver
 import android.widget.FrameLayout
-import android.widget.ScrollView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -40,16 +37,16 @@ import vn.icheck.android.R
 import vn.icheck.android.RelationshipManager
 import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.base.model.ICMessageEvent
-import vn.icheck.android.callback.LoadImageListener
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.component.view.ViewHelper.setScrollSpeed
+import vn.icheck.android.component.view.ViewHelper.showPopupAds
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.ExoPlayerManager
 import vn.icheck.android.helper.FileHelper
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.ichecklibs.beGone
-import vn.icheck.android.ichecklibs.beVisible
+import vn.icheck.android.ichecklibs.util.beGone
+import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.loyalty.helper.ToastHelper
 import vn.icheck.android.network.base.SessionManager
@@ -77,7 +74,6 @@ import vn.icheck.android.screen.user.search_home.main.SearchHomeActivity
 import vn.icheck.android.screen.user.shipping.ship.ShipActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.util.AdsUtils
-import vn.icheck.android.util.ick.beInvisible
 import vn.icheck.android.util.ick.loadImageWithHolder
 import vn.icheck.android.util.ick.simpleText
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -279,6 +275,10 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
             layoutHeader.beVisible()
         })
 
+        viewModel.onPopupAds.observe(viewLifecycleOwner, Observer {
+            requireActivity().showPopupAds(it)
+        })
+
 //        viewModel.onUpdatePVCombank.observe(viewLifecycleOwner, Observer {
 //            for (i in homeAdapter.listData.indices) {
 //                if (homeAdapter.listData[i].viewType == ICViewTypes.HOME_PRIMARY_FUNC) {
@@ -385,6 +385,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         swipeLayout.post {
             viewModel.getHomeLayout()
             viewModel.getHomePopup()
+            viewModel.getPopupAds()
             // Gọi api pvcombank
         }
     }

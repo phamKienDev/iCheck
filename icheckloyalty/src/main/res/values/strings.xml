@@ -49,4 +49,5 @@
     <string name="ma_du_thuong_chuong_trinh">Mã dự thưởng chương trình:</string>
     <string name="xac_nhan">Xác nhận</string>
     <string name="nhap_so_dien_thoai">Nhập số điện thoại</string>
+    <string name="ma_du_thuong_khong_duoc_de_trong_vui_long_kiem_tra_lai">"Mã dự thưởng không được để trống\nVui lòng kiểm tra lại"</string>
 </resources>

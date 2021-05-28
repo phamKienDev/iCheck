@@ -15,7 +15,7 @@ import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICObjectDistributor
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICObjectListMoreProductVerified
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICObjectVendor
-import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
+import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.more_business.adapter.MoreProductVerifiedInBusinessAdapter
 import vn.icheck.android.screen.user.detail_stamp_v6_1.more_business.presenter.MoreBusinessPresenter
 import vn.icheck.android.screen.user.detail_stamp_v6_1.more_business.view.IMoreBusinessView
@@ -30,7 +30,7 @@ class MoreBusinessActivity : BaseActivity<MoreBusinessPresenter>(), IMoreBusines
     override val getPresenter: MoreBusinessPresenter
         get() = MoreBusinessPresenter(this)
 
-    private var adapterSuggestion = MoreProductVerifiedInBusinessAdapter(this,DetailStampActivity.isVietNamLanguage)
+    private var adapterSuggestion = MoreProductVerifiedInBusinessAdapter(this,StampDetailActivity.isVietNamLanguage)
 
     private var objVendor: ICObjectVendor? = null
     private var objDistributor: ICObjectDistributor? = null

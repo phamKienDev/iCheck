@@ -5,9 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.activity_mission_detail.*
 import kotlinx.android.synthetic.main.item_order_manager.view.*
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
@@ -25,14 +23,12 @@ import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.order.OrderInteractor
 import vn.icheck.android.network.models.ICOrderHistoryV2
 import vn.icheck.android.network.models.ICRespID
-import vn.icheck.android.network.models.OrderItemItem
 import vn.icheck.android.screen.user.orderhistory.OrderHistoryActivity
 import vn.icheck.android.screen.user.report.ReportActivity
 import vn.icheck.android.screen.user.shipping.ship.ShipActivity
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
-import vn.icheck.android.util.ick.showSimpleErrorToast
-import vn.icheck.android.util.kotlin.WidgetUtils
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 
 class OrderHistoryAdapter(val status: Int, callback: IRecyclerViewCallback) : RecyclerViewAdapter<ICOrderHistoryV2>(callback) {
 
@@ -159,7 +155,7 @@ class OrderHistoryAdapter(val status: Int, callback: IRecyclerViewCallback) : Re
 
         fun updateStatusOrder(orderId: Long, status: Int) {
             if (NetworkHelper.isNotConnected(itemView.context)) {
-                itemView.context.showSimpleErrorToast(itemView.context.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+                itemView.context.showShortErrorToast(itemView.context.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
                 return
             }
 
@@ -172,7 +168,7 @@ class OrderHistoryAdapter(val status: Int, callback: IRecyclerViewCallback) : Re
                 }
 
                 override fun onError(error: ICResponseCode?) {
-                    itemView.context.showSimpleErrorToast(if (error?.message.isNullOrEmpty()) {
+                    itemView.context.showShortErrorToast(if (error?.message.isNullOrEmpty()) {
                         itemView.context.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
                     } else {
                         error!!.message

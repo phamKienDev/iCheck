@@ -30,8 +30,8 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.models.ICMission
 import vn.icheck.android.screen.account.home.AccountActivity
 import vn.icheck.android.screen.dialog.ScanBuyPopUp
-import vn.icheck.android.util.ick.showSimpleErrorToast
-import vn.icheck.android.util.ick.showSimpleSuccessToast
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
+import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.util.kotlin.ActivityUtils
 
 object DialogHelper {
@@ -387,30 +387,12 @@ object DialogHelper {
         }
     }
 
-    fun showAddCartSuccess(context: Context, message: String?) {
-        object : Dialog(context, R.style.DialogNotification) {}.apply {
-            setContentView(R.layout.dialog_special_notification)
-            val txtMessage = findViewById<AppCompatTextView>(R.id.tvMessage)
-
-            txtMessage?.text = message
-            if (window != null) {
-                window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            }
-
-            show()
-
-            Handler().postDelayed({
-                dismiss()
-            }, 1000)
-        }
-    }
-
     fun showDialogSuccessBlack(context: Context, message: String? = null, style: Int? = null, time: Long = 1500) {
-        context.showSimpleSuccessToast(message)
+        context.showShortSuccessToast(message)
     }
 
     fun showDialogErrorBlack(context: Context, message: String? = null, style: Int? = null, time: Long = 1500) {
-        context.showSimpleErrorToast(message)
+        context.showShortErrorToast(message)
     }
 
     fun showShimmer(shimmer: ShimmerFrameLayout) {

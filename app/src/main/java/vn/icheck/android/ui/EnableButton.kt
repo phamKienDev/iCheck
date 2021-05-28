@@ -1,17 +1,13 @@
 package vn.icheck.android.ui
 
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Typeface
-import android.os.Build
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.setPadding
 import vn.icheck.android.R
-import vn.icheck.android.util.DimensionUtil
-import vn.icheck.android.util.ick.toPx
+import vn.icheck.android.ichecklibs.util.dpToPx
 
 class EnableButton:AppCompatButton {
     constructor(context: Context):super(context){
@@ -29,7 +25,7 @@ class EnableButton:AppCompatButton {
     fun initView() {
         isEnabled = false
         typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
-        setPadding(8.toPx())
+        setPadding(8.dpToPx())
         includeFontPadding = false
     }
 

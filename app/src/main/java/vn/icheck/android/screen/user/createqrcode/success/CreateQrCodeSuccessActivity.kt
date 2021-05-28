@@ -6,17 +6,15 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import kotlinx.android.synthetic.main.fragment_create_qr_code_success.*
-import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivity
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
-import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.screen.dialog.PermissionDialog
 import vn.icheck.android.screen.user.createqrcode.success.presenter.CreateQrCodeSuccessPresenter
 import vn.icheck.android.screen.user.createqrcode.success.view.ICreateQrCodeSuccessView
-import vn.icheck.android.util.ick.showSimpleSuccessToast
+import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 
 /**
  * Created by VuLCL on 10/5/2019.
@@ -96,7 +94,7 @@ class CreateQrCodeSuccessActivity : BaseActivity<CreateQrCodeSuccessPresenter>()
     }
 
     override fun onSaveQrCodeSuccess() {
-        showSimpleSuccessToast("Tải xuống thành công")
+        showShortSuccessToast("Tải xuống thành công")
     }
 
     override fun onShareQrCode(contentUri: Uri) {

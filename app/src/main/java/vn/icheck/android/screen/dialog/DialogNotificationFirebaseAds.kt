@@ -4,37 +4,40 @@ import android.app.Activity
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
+import android.os.Handler
 import android.util.Log
-import android.view.View
 import android.webkit.*
 import android.widget.LinearLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.load.resource.bitmap.FitCenter
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
-import kotlinx.android.synthetic.main.activity_web_view.*
 import kotlinx.android.synthetic.main.dialog_notification_firebase.*
-import kotlinx.android.synthetic.main.dialog_notification_firebase.imgClose
-import kotlinx.android.synthetic.main.dialog_notification_firebase.webView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseDialog
-import vn.icheck.android.chat.icheckchat.base.view.setGoneView
-import vn.icheck.android.chat.icheckchat.base.view.setVisible
-import vn.icheck.android.constant.Constant
+import vn.icheck.android.chat.icheckchat.base.view.setGone
+import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.Constant.getHtmlData
-import vn.icheck.android.network.base.APIConstants
-import vn.icheck.android.network.base.SessionManager
+import vn.icheck.android.network.base.*
+import vn.icheck.android.network.feature.popup.PopupInteractor
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
-import vn.icheck.android.util.ick.spToPx
+import vn.icheck.android.util.ick.beGone
 
-abstract class DialogNotificationFirebaseAds(context: Activity, private val image: String?, private val htmlText: String?, private val link: String?, private val schema: String?) : BaseDialog(context, R.style.DialogTheme) {
+abstract class DialogNotificationFirebaseAds(
+    context: Activity, private val image: String?, private val htmlText: String?, private val link: String?, private val schema: String?,
+    private val schemaParams: String? = null,
+    private val idAds: Long? = null, // phân biệt popup firebase vs popup quảng cáo
+) : BaseDialog(context, R.style.DialogTheme) {
 
     override val getLayoutID: Int
         get() = R.layout.dialog_notification_firebase
@@ -42,168 +45,127 @@ abstract class DialogNotificationFirebaseAds(context: Activity, private val imag
         get() = false
 
     override fun onInitView() {
-        setGoneView(imageView, textView, layoutWeb)
-
+        DialogHelper.showLoading(this)
         when {
             image != null -> {
-                imageView.setVisible()
+                layoutWeb.beGone()
+                layoutText.beGone()
 
                 CoroutineScope(Dispatchers.IO).launch {
                     Glide.with(ICheckApplication.getInstance())
-                            .asBitmap()
-                            .timeout(30000)
-                            .load(image)
-                            .listener(object : RequestListener<Bitmap> {
-                                override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Bitmap>?, isFirstResource: Boolean): Boolean {
-                                    Log.d("onLoad", "onLoadFailed: false")
-                                    dismiss()
-                                    return false
-                                }
+                        .asBitmap()
+                        .timeout(30000)
+                        .load(image)
+                        .transform(FitCenter(), RoundedCorners(SizeHelper.size6))
+                        .listener(object : RequestListener<Bitmap> {
+                            override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Bitmap>?, isFirstResource: Boolean): Boolean {
+                                Log.d("onLoad", "onLoadFailed: false")
+                                dismiss()
+                                return false
+                            }
 
-                                override fun onResourceReady(resource: Bitmap?, model: Any?, target: Target<Bitmap>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-                                    if (resource != null) {
-                                        CoroutineScope(Dispatchers.Main).launch {
-                                            val maxHeight = container.height - SizeHelper.size52
-                                            val ratioHeight = container.height.toDouble() /resource.height.toDouble()
-                                            val ratioWidth =  container.width.toDouble() /resource.width.toDouble()
-                                            when {
-                                                resource.width > container.width && resource.height <= container.height -> {
-                                                    // ảnh rộng quá màn hình -> max with, wrap height
-                                                    imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-                                                }
-                                                resource.height > container.height && resource.width <= container.width -> {
-                                                    //  ảnh dài quá màn hình ->  max height, wrap with
-                                                    imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, maxHeight)
-                                                }
-                                                resource.width > resource.height && resource.width > container.width -> {
-                                                    //  ảnh rộng quá màn hình && ảnh có chiều rộng lớn hơn-> max with, wrap height
-                                                    imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-                                                }
-                                                resource.height > resource.width && resource.height > container.height -> {
-                                                    if (ratioWidth > ratioHeight) {
-                                                        // max with
-                                                        imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT)
-                                                    } else {
-                                                        // max height
-                                                        imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-                                                    }
-                                                }
-                                                resource.height < container.height && resource.width < container.width->{
-                                                    /* ảnh có chiều rộng & chiều dài đều bé hơn màn hình
-                                                    -> tính tỉ lệ chiều nào gần full màn hình sẽ lấy chiều đó là MATCH_PARENT
-                                                     */
-                                                    if (ratioWidth > ratioHeight) {
-                                                        // max with
-                                                        imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT)
-                                                    } else {
-                                                        // max height
-                                                        imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT )
-                                                    }
+                            override fun onResourceReady(
+                                resource: Bitmap?,
+                                model: Any?,
+                                target: Target<Bitmap>?,
+                                dataSource: DataSource?,
+                                isFirstResource: Boolean
+                            ): Boolean {
+                                if (resource != null) {
+                                    CoroutineScope(Dispatchers.Main).launch {
+                                        val maxHeight = container.height - SizeHelper.size52
+                                        val ratioHeight = container.height.toDouble() / resource.height.toDouble()
+                                        val ratioWidth = container.width.toDouble() / resource.width.toDouble()
+                                        when {
+                                            resource.width > container.width && resource.height <= container.height -> {
+                                                // ảnh rộng quá màn hình -> max with, wrap height
+                                                imageView.layoutParams =
+                                                    LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                                            }
+                                            resource.height > container.height && resource.width <= container.width -> {
+                                                //  ảnh dài quá màn hình ->  max height, wrap with
+                                                imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, maxHeight)
+                                            }
+                                            resource.width > resource.height && resource.width > container.width -> {
+                                                //  ảnh rộng quá màn hình && ảnh có chiều rộng lớn hơn-> max with, wrap height
+                                                imageView.layoutParams =
+                                                    LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                                            }
+                                            resource.height > resource.width && resource.height > container.height -> {
+                                                if (ratioWidth > ratioHeight) {
+                                                    // max with
+                                                    imageView.layoutParams =
+                                                        LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT)
+                                                } else {
+                                                    // max height
+                                                    imageView.layoutParams =
+                                                        LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
                                                 }
                                             }
-                                            imageView.setImageBitmap(resource)
+                                            resource.height < container.height && resource.width < container.width -> {
+                                                /* ảnh có chiều rộng & chiều dài đều bé hơn màn hình
+                                                -> tính tỉ lệ chiều nào gần full màn hình sẽ lấy chiều đó là MATCH_PARENT
+                                                 */
+                                                if (ratioWidth > ratioHeight) {
+                                                    // max with
+                                                    imageView.layoutParams =
+                                                        LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT)
+                                                } else {
+                                                    // max height
+                                                    imageView.layoutParams =
+                                                        LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                                                }
+                                            }
                                         }
+                                        DialogHelper.closeLoading(this@DialogNotificationFirebaseAds)
+                                        imageView.setImageBitmap(resource)
                                     }
-                                    return false
                                 }
-                            })
-                            .submit()
-                            .get()
+                                return false
+                            }
+                        })
+                        .submit()
+                        .get()
                 }
 
-//                WidgetHelper.loadImageUrlRounded10FitCenter(imageView, image)
-//                WidgetUtils.loadImageUrlRounded10FitCenter(imageView, image, object : RequestListener<Bitmap> {
-//                    override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Bitmap>?, isFirstResource: Boolean): Boolean {
-//                        return false
-//                    }
-//
-//                    override fun onResourceReady(resource: Bitmap?, model: Any?, target: Target<Bitmap>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-//                        if (resource != null) {
-//                            val maxHeight = container.height - SizeHelper.size52
-//                            when {
-//                                resource.width > container.width && resource.height <= container.height -> {
-//                                    // max with, wrap height
-//                                    imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-//                                }
-//                                resource.height > container.height && resource.width <= container.width -> {
-//                                    // max height, wrap with
-//                                    imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, maxHeight)
-//                                }
-//                                resource.width > resource.height && resource.width > container.width -> {
-//                                    // max with, wrap height
-//                                    imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-//                                }
-//                                resource.height > resource.width && resource.height > container.height -> {
-//                                    val ratio = resource.height / container.height
-//                                    if (resource.width / ratio > container.width) {
-//                                        // max with
-//                                        imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-//                                    } else {
-//                                        // max height
-//                                        imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, maxHeight)
-//                                    }
-//                                }
-//                            }
-//                        }
-//                        return false
-//                    }
-//                })
-//
-//                val viewTreeObserver = imageView.viewTreeObserver
-//                viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
-//
-//
-//                    override fun onGlobalLayout() {
-////                        val height = imageView.measuredHeight
-////                        val width = imageView.measuredWidth
-////                        val widthImage = imageView.drawable.intrinsicWidth
-////                        val heightImage = imageView.drawable.intrinsicHeight
-////                        logDebug("$width,$height,$widthImage, $heightImage ")
-////                        imageView.layoutParams = LinearLayout.LayoutParams(SizeHelper.dpToPx(widthImage), SizeHelper.dpToPx(heightImage))
-//
-//                        var ih=imageView.measuredHeight;//height of imageView
-//                        var iw=imageView.measuredWidth;//width of imageView
-//                        val iH=imageView.drawable.intrinsicHeight;//original height of underlying image
-//                        val iW=imageView.drawable.intrinsicWidth;//original width of underlying image
-//
-//                        if (ih/iH<=iw/iW) {
-//                            iw=iW*ih/iH
-//                        }else{
-//                            ih= iH*iw/iW
-//                        };//rescaled width of image within ImageView
-//                        ;//rescaled height of image within ImageView
-//                        logDebug("$iw,$ih ")
-//                        Handler().postDelayed({
-//                            imageView.layoutParams = LinearLayout.LayoutParams(iw, ih)
-//                        },200)
-//                        }
-//
-//                })
-
-
                 imageView.setOnClickListener {
-                    dismiss()
-                    ICheckApplication.currentActivity()?.let { activity ->
-                        FirebaseDynamicLinksActivity.startDestinationUrl(activity, schema)
+                    if (idAds != null) {
+                        clickPopupAds(idAds)
+                    } else {
+                        dismiss()
+                        ICheckApplication.currentActivity()?.let { activity ->
+                            FirebaseDynamicLinksActivity.startDestinationUrl(activity, schema)
+                        }
                     }
                 }
             }
             htmlText != null -> {
-                setupWebView()
-                webView.settings.defaultFontSize = 14f.spToPx().toInt()
-                textView.setVisible()
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                    webViewHtml.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING;
-                } else {
-                    webViewHtml.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.NORMAL;
-                }
-                webViewHtml.loadDataWithBaseURL(null, getHtmlData(htmlText), "text/html", "utf-8", "")
+                layoutWeb.setGone()
+
+                Handler().postDelayed({
+                    webViewHtml.settings.defaultFontSize = 14f.toInt()
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                        webViewHtml.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING;
+                    } else {
+                        webViewHtml.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.NORMAL;
+                    }
+                    webViewHtml.loadDataWithBaseURL(null, getHtmlData(htmlText), "text/html", "utf-8", "")
+                    webViewHtml.isVerticalScrollBarEnabled = true
+                    webViewHtml.webViewClient = object : WebViewClient() {
+
+                        override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+                            DialogHelper.closeLoading(this@DialogNotificationFirebaseAds)
+                            super.onPageStarted(view, url, favicon)
+                        }
+                    }
+                }, 200)
             }
             link != null -> {
-                setupWebView()
-                layoutWeb.setVisible()
+                layoutText.beGone()
+                setupWebViewLink()
 
-                if (Constant.isMarketingStamps(link)){
+
+                if (vn.icheck.android.constant.Constant.isMarketingStamps(link)) {
                     val header = hashMapOf<String, String>()
                     val urlBuilder = Uri.parse(link).buildUpon()
 
@@ -240,7 +202,7 @@ abstract class DialogNotificationFirebaseAds(context: Activity, private val imag
                     }
 
                     webView.loadUrl(urlBuilder.build().toString(), header)
-                }else{
+                } else {
                     webView.loadUrl(link)
                 }
             }
@@ -255,7 +217,46 @@ abstract class DialogNotificationFirebaseAds(context: Activity, private val imag
         }
     }
 
-    private fun setupWebView() {
+    private fun clickPopupAds(id: Long) {
+        if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
+            checkSchemePopupAds()
+        } else {
+            ICheckApplication.currentActivity()?.let { activity ->
+                DialogHelper.showLoading(activity)
+
+                PopupInteractor().clickPopup(id, object : ICNewApiListener<ICResponse<Any>> {
+                    override fun onSuccess(obj: ICResponse<Any>) {
+                        DialogHelper.closeLoading(activity)
+                        checkSchemePopupAds()
+                    }
+
+                    override fun onError(error: ICResponseCode?) {
+                        DialogHelper.closeLoading(activity)
+                        checkSchemePopupAds()
+                    }
+                })
+            }
+        }
+    }
+
+    private fun checkSchemePopupAds() {
+        dismiss()
+        if (!schema.isNullOrEmpty()) {
+            if (schema.startsWith("http")) {
+                WebViewActivity.start(ICheckApplication.currentActivity(), schema)
+            } else {
+                ICheckApplication.currentActivity()?.let { activity ->
+                    if (!schemaParams.isNullOrEmpty()) {
+                        FirebaseDynamicLinksActivity.startTarget(activity, schema, schemaParams)
+                    } else {
+                        FirebaseDynamicLinksActivity.startDestinationUrl(activity, schema)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun setupWebViewLink() {
         webView.apply {
             settings.apply {
                 javaScriptEnabled = true
@@ -285,6 +286,7 @@ abstract class DialogNotificationFirebaseAds(context: Activity, private val imag
 
             webViewClient = object : WebViewClient() {
                 override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+                    DialogHelper.closeLoading(this@DialogNotificationFirebaseAds)
                     super.onPageStarted(view, url, favicon)
                     isPageLoaded = false
                 }
@@ -299,6 +301,11 @@ abstract class DialogNotificationFirebaseAds(context: Activity, private val imag
                         }
                     }
                     return super.shouldOverrideUrlLoading(view, url)
+                }
+
+                override fun onPageFinished(view: WebView?, url: String?) {
+                    super.onPageFinished(view, url)
+
                 }
             }
 

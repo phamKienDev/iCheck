@@ -21,7 +21,11 @@ import vn.icheck.android.helper.CartHelper
 import vn.icheck.android.helper.RelationshipHelper
 import vn.icheck.android.helper.SettingHelper
 import vn.icheck.android.helper.ShareSessionToModule
-import vn.icheck.android.ichecklibs.visibleOrGone
+import vn.icheck.android.ichecklibs.util.dpToPx
+import vn.icheck.android.ichecklibs.util.visibleOrGone
+import vn.icheck.android.lib.keyboard.KeyboardVisibilityEvent
+import vn.icheck.android.lib.keyboard.KeyboardVisibilityEventListener
+import vn.icheck.android.lib.keyboard.Unregistrar
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -69,9 +73,9 @@ class IckLoginFragment : CoroutineFragment() {
 //                    binding.edtPhone.setSelection(1)
 //                }
                 if (s.toString().isNotEmpty()) {
-                    binding.edtPhone.setPadding(24.toPx(), 0, 0, 20.toPx())
+                    binding.edtPhone.setPadding(24.dpToPx(), 0, 0, 20.dpToPx())
                 } else {
-                    binding.edtPhone.setPadding(0, 0, 0, 20.toPx())
+                    binding.edtPhone.setPadding(0, 0, 0, 20.dpToPx())
                 }
                 checkForm()
             }

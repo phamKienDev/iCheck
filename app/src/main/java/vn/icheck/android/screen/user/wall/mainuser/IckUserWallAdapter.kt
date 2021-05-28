@@ -120,7 +120,7 @@ class IckUserWallAdapter(val listener: IPostListener) :
                 )
             )
             ICViewTypes.ITEM_USER_POST -> PostHolder(parent, listener)
-            else -> NullHolder.create(parent)
+            else -> NullHolder(parent)
         }
     }
 

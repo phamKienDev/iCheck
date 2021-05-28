@@ -14,7 +14,7 @@ import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.DistrictsItem
-import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
+import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.screen.user.selectdistrict.adapter.SelectDistrictStampAdapter
 import vn.icheck.android.screen.user.selectdistrict.presenter.SelectDistrictStampPresenter
 import vn.icheck.android.screen.user.selectdistrict.view.SelectDistrictStampView
@@ -41,7 +41,7 @@ class SelectDistrictStampActivity : BaseActivity<SelectDistrictStampPresenter>()
 
     @SuppressLint("SetTextI18n")
     private fun initToolbar() {
-        if (DetailStampActivity.isVietNamLanguage == false) {
+        if (StampDetailActivity.isVietNamLanguage == false) {
             txtTitle.text = "Select District"
         } else {
             txtTitle.setText(R.string.chon_quan_huyen)

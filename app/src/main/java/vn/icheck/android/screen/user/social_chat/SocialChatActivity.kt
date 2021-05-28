@@ -7,15 +7,12 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
-import android.os.Parcelable
 import android.view.LayoutInflater
 import android.webkit.*
 import androidx.annotation.RequiresApi
-import androidx.annotation.StringDef
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
-import kotlinx.android.parcel.Parcelize
 import vn.icheck.android.base.activity.ViewBindingActivity
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.constant.ICK_REQUEST_CAMERA
@@ -26,7 +23,7 @@ import vn.icheck.android.network.model.chat.*
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.scan.V6ScanditActivity
 import vn.icheck.android.util.ick.logDebug
-import vn.icheck.android.util.ick.showSimpleSuccessToast
+import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 
 
 
@@ -101,7 +98,7 @@ class SocialChatActivity : ViewBindingActivity<ActivitySocialChatBinding>() {
         binding.container.setInitialScale(1)
         binding.container.webChromeClient = object : WebChromeClient() {
             override fun onJsAlert(view: WebView?, url: String?, message: String?, result: JsResult?): Boolean {
-                this@SocialChatActivity.showSimpleSuccessToast(message)
+                this@SocialChatActivity.showShortSuccessToast(message)
                 return true
             }
 
@@ -260,7 +257,7 @@ class SocialChatActivity : ViewBindingActivity<ActivitySocialChatBinding>() {
 
         @JavascriptInterface
         fun alert(message: String) {
-            context.showSimpleSuccessToast(message)
+            context.showShortSuccessToast(message)
         }
     }
 }

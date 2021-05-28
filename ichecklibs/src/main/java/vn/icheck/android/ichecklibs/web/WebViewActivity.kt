@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.activity_web_view.*
 import kotlinx.android.synthetic.main.toolbar_light_blue.*
 import vn.icheck.android.ichecklibs.*
 import vn.icheck.android.ichecklibs.util.PermissionHelper
+import vn.icheck.android.ichecklibs.util.dpToPx
 import java.net.URL
 import java.util.*
 import java.util.regex.Pattern
@@ -185,7 +186,7 @@ class WebViewActivity : AppCompatActivity() {
                 webView.loadUrl(url)
             }
         } else {
-            webView.settings.defaultFontSize = 14.toPx(resources)
+            webView.settings.defaultFontSize = 14.dpToPx()
             webView.loadData(Constant.getHtmlData(url), "text/html; charset=utf-8", "UTF-8")
         }
 

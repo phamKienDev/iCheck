@@ -38,6 +38,8 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.component.post.IPostListener
 import vn.icheck.android.constant.*
 import vn.icheck.android.databinding.FragmentUserWallBinding
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
+import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.network.model.ApiErrorResponse
 import vn.icheck.android.network.model.ApiSuccessResponse
 import vn.icheck.android.network.model.posts.PostViewModel
@@ -176,7 +178,7 @@ class IckUserWallFragment : Fragment(), IPostListener {
                                 }
 
                                 override fun onError(error: ICResponseCode?) {
-                                    requireContext().showSimpleErrorToast(error?.message
+                                    requireContext().showShortErrorToast(error?.message
                                             ?: requireContext().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
 //                        ToastUtils.showLongError(activity, R.string.co_loi_xay_ra_vui_long_thu_lai)
                                 }
@@ -392,7 +394,7 @@ class IckUserWallFragment : Fragment(), IPostListener {
             }
         }
         ickUserWallViewModel.mErr.observe(viewLifecycleOwner) {
-            requireContext() showShortError it
+            requireContext() showShortErrorToast it
         }
         ickUserWallViewModel.showSuccessReport.observe(viewLifecycleOwner, Observer {
 //            ReportUserSuccessDialog().show(childFragmentManager, null)
@@ -512,12 +514,12 @@ class IckUserWallFragment : Fragment(), IPostListener {
             }
             ICMessageEvent.Type.UNFRIEND -> {
                 if (isActivityVisble) {
-                    requireContext().showSimpleSuccessToast("Bạn đã hủy kết bạn với ${ickUserWallViewModel.userInfo?.data?.getName()}")
+                    requireContext().showShortSuccessToast("Bạn đã hủy kết bạn với ${ickUserWallViewModel.userInfo?.data?.getName()}")
                 }
             }
             ICMessageEvent.Type.ERROR_SERVER -> {
                 if (isActivityVisble) {
-                    requireContext().showSimpleErrorToast(null)
+                    requireContext().showShortErrorToast(null)
                 }
             }
             else -> {
@@ -535,7 +537,7 @@ class IckUserWallFragment : Fragment(), IPostListener {
                         val icViewModel = PostViewModel(post)
                         ickUserWallViewModel.addView(ickUserWallViewModel.posCreatePost + 1, icViewModel)
                         ickUserWallAdapter.addPost(ickUserWallViewModel.posCreatePost + 1, icViewModel)
-                        requireContext().showSimpleSuccessToast("Bạn đã tạo bài viết thành công!")
+                        requireContext().showShortSuccessToast("Bạn đã tạo bài viết thành công!")
                     }
                 }
                 EDIT_MY_PUBLIC_INFO -> {
@@ -602,7 +604,7 @@ class IckUserWallFragment : Fragment(), IPostListener {
         ickUserWallViewModel.deletePost(id).observe(viewLifecycleOwner) {
             if (it != null) {
                 if (it.data?.id != null) {
-                    requireContext().showSimpleSuccessToast(getString(R.string.ban_da_xoa_bai_viet_thanh_cong))
+                    requireContext().showShortSuccessToast(getString(R.string.ban_da_xoa_bai_viet_thanh_cong))
                     ickUserWallAdapter.deletePost(it.data?.id!!)
                 }
             }

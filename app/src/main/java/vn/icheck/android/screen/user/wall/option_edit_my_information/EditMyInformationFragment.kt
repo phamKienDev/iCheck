@@ -39,6 +39,8 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
+import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.network.model.ApiErrorResponse
 import vn.icheck.android.network.model.ApiSuccessResponse
 import vn.icheck.android.network.model.icklogin.IckUserInfoResponse
@@ -95,7 +97,7 @@ class EditMyInformationFragment : CoroutineFragment() {
                                 SessionManager.updateUser(userInfo?.data?.createICUser())
                             })
                         } else {
-                            requireContext().showSimpleErrorToast("Tài khoản facebook đã được đăng ký trên hệ thống")
+                            requireContext().showShortErrorToast("Tài khoản facebook đã được đăng ký trên hệ thống")
                         }
                     })
 
@@ -237,7 +239,7 @@ class EditMyInformationFragment : CoroutineFragment() {
                     }
                     val d = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse("$year-$months-$days")
                     if (ickUserWallViewModel.currentDate.before(d)) {
-                        requireContext().showSimpleErrorToast("Ngày sinh không đúng")
+                        requireContext().showShortErrorToast("Ngày sinh không đúng")
                     } else {
                         ickUserWallViewModel.calendar.set(year, month, day)
                         val df = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
@@ -310,7 +312,7 @@ class EditMyInformationFragment : CoroutineFragment() {
                     cityPicker?.show(childFragmentManager, null)
                 }
                 else -> {
-                    requireContext().showSimpleErrorToast("Vui lòng chọn tỉnh thành trước")
+                    requireContext().showShortErrorToast("Vui lòng chọn tỉnh thành trước")
                 }
             }
         }
@@ -342,7 +344,7 @@ class EditMyInformationFragment : CoroutineFragment() {
                     cityPicker?.show(childFragmentManager, null)
                 }
                 else -> {
-                    requireContext().showSimpleErrorToast("Vui lòng chọn quận huyện trước")
+                    requireContext().showShortErrorToast("Vui lòng chọn quận huyện trước")
                 }
             }
         }
@@ -369,7 +371,7 @@ class EditMyInformationFragment : CoroutineFragment() {
                     updateInfo()
                     return@setOnClickListener
                 } else {
-                    requireContext().showSimpleErrorToast("Nhập sai định dạng email!")
+                    requireContext().showShortErrorToast("Nhập sai định dạng email!")
 //                    binding.edtEmail.setError("Nhập sai định dạng. Thử lại!", ResourcesCompat.getDrawable(resources, R.drawable.ic_error_red_18dp, null))
                     return@setOnClickListener
                 }
@@ -401,7 +403,7 @@ class EditMyInformationFragment : CoroutineFragment() {
                     it.state == WorkInfo.State.FAILED
                 }
                 if (fail != null) {
-                    requireActivity().showSimpleErrorToast(null)
+                    requireActivity().showShortErrorToast(null)
                     DialogHelper.closeLoading(this)
                 }
                 if (filter == null) {
@@ -442,7 +444,7 @@ class EditMyInformationFragment : CoroutineFragment() {
                     ickUserWallViewModel.getUserInfo().observe(viewLifecycleOwner, androidx.lifecycle.Observer { userInfo ->
                         SessionManager.updateUser(userInfo?.data?.createICUser())
                         InsiderHelper.setUserAttributes()
-                        requireContext() showSimpleSuccessToast ("Bạn đã lưu thông tin thành công")
+                        requireContext() showShortSuccessToast ("Bạn đã lưu thông tin thành công")
                         findNavController().popBackStack()
                     })
                 }

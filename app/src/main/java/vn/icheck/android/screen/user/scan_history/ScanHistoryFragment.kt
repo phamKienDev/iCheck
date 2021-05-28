@@ -38,6 +38,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICValidStampSocial
 import vn.icheck.android.network.models.history.ICBigCorp
@@ -46,7 +47,7 @@ import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.DetailStampHoaPh
 import vn.icheck.android.screen.user.detail_stamp_thinh_long.home.DetailStampThinhLongActivity
 import vn.icheck.android.screen.user.detail_stamp_v5.home.DetailStampV5Activity
 import vn.icheck.android.screen.user.detail_stamp_v6.home.DetailStampV6Activity
-import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
+import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.screen.user.history_search.HistorySearchActivity
 import vn.icheck.android.screen.user.home.HomeActivity
 import vn.icheck.android.screen.user.scan_history.adapter.ScanHistoryAdapter
@@ -203,7 +204,7 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
             if (it.code.isNullOrEmpty()) {
                 checkStampQr(codeQr)
             } else {
-                ActivityUtils.startActivity<DetailStampActivity, String>(requireActivity(), Constant.DATA, it.code!!)
+                ActivityUtils.startActivity<StampDetailActivity, String>(requireActivity(), Constant.DATA, it.code!!)
             }
         })
 
@@ -231,7 +232,7 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
             }
 
             override fun onGoToDetail(code: String?) {
-                ActivityUtils.startActivity<DetailStampActivity, String>(requireActivity(), Constant.DATA, codeStamp)
+                ActivityUtils.startActivity<StampDetailActivity, String>(requireActivity(), Constant.DATA, codeStamp)
             }
 
             override fun onGoToSms(target: String?, content: String?) {
@@ -282,8 +283,8 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
             Constant.isMarketingStamps(it) -> {
                 WebViewActivity.start(requireActivity(), it, 1, null, true)
             }
-            it.contains("qcheck-dev.vn") || it.contains("qcheck.vn") || it.contains("qrcode.icheck.com.vn") -> {
-                ActivityUtils.startActivity<DetailStampActivity, String>(requireActivity(), Constant.DATA, it)
+            it.contains("dev-qcheck.icheck.vn") || it.contains("qcheck-dev.vn") || it.contains("qcheck.vn") || it.contains("qrcode.icheck.com.vn") -> {
+                ActivityUtils.startActivity<StampDetailActivity, String>(requireActivity(), Constant.DATA, it)
             }
             it.contains("ktra.vn") -> {
                 var path = URL(it).path
@@ -455,7 +456,7 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
                             val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?daddr=$a"))
                             startActivity(intent)
                         } catch (exception: ActivityNotFoundException) {
-                            requireContext().showSimpleErrorToast("Không tìm thấy ứng dụng google map!")
+                            requireContext().showShortErrorToast("Không tìm thấy ứng dụng google map!")
                         }
                     }
                 }, 800)

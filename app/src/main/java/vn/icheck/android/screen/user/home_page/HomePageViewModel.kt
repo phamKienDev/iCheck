@@ -26,6 +26,7 @@ import vn.icheck.android.network.feature.ads.AdsRepository
 import vn.icheck.android.network.feature.campaign.CampainsInteractor
 import vn.icheck.android.network.feature.mall.MallInteractor
 import vn.icheck.android.network.feature.news.NewsInteractor
+import vn.icheck.android.network.feature.popup.PopupInteractor
 import vn.icheck.android.network.feature.product.ProductInteractor
 import vn.icheck.android.network.feature.pvcombank.PVcomBankRepository
 import vn.icheck.android.network.feature.setting.SettingRepository
@@ -39,6 +40,7 @@ import kotlin.collections.set
 
 class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHandle: SavedStateHandle, val ickApi: ICKApi) : BaseViewModel() {
     private val productInteraction = ProductInteractor()
+    private val popupInteraction = PopupInteractor()
     private val campaignInteraction = CampainsInteractor()
     private val newsInteraction = NewsInteractor()
     private val mallInteractor = MallInteractor()
@@ -58,6 +60,7 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
     val onUpdateListData = MutableLiveData<ICListHomeItem>()
     val onUpdatePVCombank = MutableLiveData<ICListCardPVBank?>()
     val onUpdateAds = MutableLiveData<Boolean>()
+    val onPopupAds = MutableLiveData<ICPopup>()
 
     private var totalRequest = 0
     private var errorRequest = 0
@@ -88,109 +91,110 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
                     for (i in 0 until obj.layout?.size!!) {
                         val item = obj.layout!![i]
 
-                        when (obj.layout!![i].id) {
-                            "home-features-1" -> {
-                                if (!item.request.url.isNullOrEmpty()) {
-                                    totalRequest++
-                                    val primary = ICLayout(viewType = ICViewTypes.HOME_PRIMARY_FUNC, id = item.id, request = item.request, key = "", custom = item.custom)
-                                    onAddData.value = primary
-                                    getFunc(primary, item.request.url!!)
-                                }
-                            }
-                            "ads-1" -> {
+                        if (obj.layout!![i].id?.contains("home-features") == true) {
+                            if (!item.request.url.isNullOrEmpty()) {
                                 totalRequest++
-                                onAddData.value = item.apply {
-                                    subType = ICViewTypes.ADS_TYPE
-                                }
-                                getAds(false)
+                                val primary = ICLayout(viewType = ICViewTypes.HOME_PRIMARY_FUNC, id = item.id, request = item.request, key = "", custom = item.custom)
+                                onAddData.value = primary
+                                getFunc(primary, item.request.url!!)
                             }
-                            "news-1" -> {
-                                if (!item.request.url.isNullOrEmpty()) {
+                        } else {
+                            when (obj.layout!![i].id) {
+                                "ads-1" -> {
                                     totalRequest++
-                                    onAddData.value = item.apply { viewType = ICViewTypes.LIST_NEWS_TYPE }
-                                    getNews(item, item.request.url!!)
-                                }
-                            }
-                            "ads-survey-1" -> {
-                                if (!item.request.url.isNullOrEmpty()) {
-                                    totalRequest++
-                                    onAddData.value = item.apply { viewType = ICViewTypes.ADS_DIRECT_SURVEY_TYPE }
-                                    getAdsSurvey(item, item.request.url!!)
-                                }
-                            }
-                            "ads-coll-1" -> {
-                                if (!item.request.url.isNullOrEmpty()) {
-                                    totalRequest++
-                                    onAddData.value = item.apply { viewType = ICViewTypes.COLLECTION_TYPE }
-                                    getCollection(item, item.request.url!!)
-                                }
-                            }
-                            "flash-sale-1" -> {
-                                // flashSale
-                                if (!item.request.url.isNullOrEmpty()) {
-                                    totalRequest++
-                                    onAddData.value = item.apply { viewType = ICViewTypes.FLASH_SALE_TYPE }
-                                    loadFlashSale(item, item.request.url!!)
-                                }
-                            }
-                            "campaigns-1" -> {
-                                // campaigns
-                                if (!item.request.url.isNullOrEmpty()) {
-                                    totalRequest++
-                                    onAddData.value = item.apply { viewType = ICViewTypes.CAMPAIGNS }
-                                    getWidgetCampaigns(item, item.request.url!!)
-                                }
-                            }
-                            "mall-1" -> {
-                                // Danh Mục Mua Sắm
-                                if (!item.request.url.isNullOrEmpty()) {
-                                    totalRequest++
-                                    onAddData.value = item.apply { viewType = ICViewTypes.MALL_CATALOG }
-                                    getMallCatalog(item, item.request.url!!)
-                                }
-                            }
-                            "new-pro-1" -> {
-                                // newProduct
-                                if (!item.request.url.isNullOrEmpty()) {
-                                    totalRequest++
-                                    onAddData.value = item.apply { viewType = ICViewTypes.EXPERIENCE_NEW_PRODUCT }
-                                    getExperienceNewProducts(item, item.request.url!!)
-                                }
-                            }
-                            "pro-1" -> {
-                                // suggestionProduct
-                                if (!item.request.url.isNullOrEmpty()) {
-                                    totalRequest++
-                                    onAddData.value = item.apply { viewType = ICViewTypes.PRODUCT_FOR_YOU_TYPE }
-                                    loadProductForYou(item, item.request.url!!)
-                                }
-                            }
-                            "trend-1" -> {
-                                // trendProducts
-                                totalRequest++
-                                val listCategory = mutableListOf<ICExperienceCategory>()
-                                listCategory.add(ICExperienceCategory(0, "Sản phẩm", true))
-                                listCategory.add(ICExperienceCategory(0, "Doanh nghiệp", false))
-                                listCategory.add(ICExperienceCategory(0, "Chuyên gia", false))
-                                onAddData.value = item.apply {
-                                    viewType = ICViewTypes.TREND
-                                    data = ICTopTrend(listCategory)
-                                }
-                                finishRequest(true)
-                            }
-                            "sugg-review-1" -> {
-                                // Product Need Review
-                                if (!item.request.url.isNullOrEmpty()) {
-                                    totalRequest++
-                                    onAddData.value = item.apply { viewType = ICViewTypes.PRODUCT_NEED_REVIEW }
-                                    getProductNeedReview(item, item.request.url!!)
-                                }
-                            }
-                            "app-sugg-update-1" -> {
-                                if (SettingManager.configUpdateApp?.isSuggested == true) {
                                     onAddData.value = item.apply {
-                                        viewType = ICViewTypes.CHECK_UPDATE_TYPE
-                                        data = true
+                                        subType = ICViewTypes.ADS_TYPE
+                                    }
+                                    getAds(false)
+                                }
+                                "news-1" -> {
+                                    if (!item.request.url.isNullOrEmpty()) {
+                                        totalRequest++
+                                        onAddData.value = item.apply { viewType = ICViewTypes.LIST_NEWS_TYPE }
+                                        getNews(item, item.request.url!!)
+                                    }
+                                }
+                                "ads-survey-1" -> {
+                                    if (!item.request.url.isNullOrEmpty()) {
+                                        totalRequest++
+                                        onAddData.value = item.apply { viewType = ICViewTypes.ADS_DIRECT_SURVEY_TYPE }
+                                        getAdsSurvey(item, item.request.url!!)
+                                    }
+                                }
+                                "ads-coll-1" -> {
+                                    if (!item.request.url.isNullOrEmpty()) {
+                                        totalRequest++
+                                        onAddData.value = item.apply { viewType = ICViewTypes.COLLECTION_TYPE }
+                                        getCollection(item, item.request.url!!)
+                                    }
+                                }
+                                "flash-sale-1" -> {
+                                    // flashSale
+                                    if (!item.request.url.isNullOrEmpty()) {
+                                        totalRequest++
+                                        onAddData.value = item.apply { viewType = ICViewTypes.FLASH_SALE_TYPE }
+                                        loadFlashSale(item, item.request.url!!)
+                                    }
+                                }
+                                "campaigns-1" -> {
+                                    // campaigns
+                                    if (!item.request.url.isNullOrEmpty()) {
+                                        totalRequest++
+                                        onAddData.value = item.apply { viewType = ICViewTypes.CAMPAIGNS }
+                                        getWidgetCampaigns(item, item.request.url!!)
+                                    }
+                                }
+                                "mall-1" -> {
+                                    // Danh Mục Mua Sắm
+                                    if (!item.request.url.isNullOrEmpty()) {
+                                        totalRequest++
+                                        onAddData.value = item.apply { viewType = ICViewTypes.MALL_CATALOG }
+                                        getMallCatalog(item, item.request.url!!)
+                                    }
+                                }
+                                "new-pro-1" -> {
+                                    // newProduct
+                                    if (!item.request.url.isNullOrEmpty()) {
+                                        totalRequest++
+                                        onAddData.value = item.apply { viewType = ICViewTypes.EXPERIENCE_NEW_PRODUCT }
+                                        getExperienceNewProducts(item, item.request.url!!)
+                                    }
+                                }
+                                "pro-1" -> {
+                                    // suggestionProduct
+                                    if (!item.request.url.isNullOrEmpty()) {
+                                        totalRequest++
+                                        onAddData.value = item.apply { viewType = ICViewTypes.PRODUCT_FOR_YOU_TYPE }
+                                        loadProductForYou(item, item.request.url!!)
+                                    }
+                                }
+                                "trend-1" -> {
+                                    // trendProducts
+                                    totalRequest++
+                                    val listCategory = mutableListOf<ICExperienceCategory>()
+                                    listCategory.add(ICExperienceCategory(0, "Sản phẩm", true))
+                                    listCategory.add(ICExperienceCategory(0, "Doanh nghiệp", false))
+                                    listCategory.add(ICExperienceCategory(0, "Chuyên gia", false))
+                                    onAddData.value = item.apply {
+                                        viewType = ICViewTypes.TREND
+                                        data = ICTopTrend(listCategory)
+                                    }
+                                    finishRequest(true)
+                                }
+                                "sugg-review-1" -> {
+                                    // Product Need Review
+                                    if (!item.request.url.isNullOrEmpty()) {
+                                        totalRequest++
+                                        onAddData.value = item.apply { viewType = ICViewTypes.PRODUCT_NEED_REVIEW }
+                                        getProductNeedReview(item, item.request.url!!)
+                                    }
+                                }
+                                "app-sugg-update-1" -> {
+                                    if (SettingManager.configUpdateApp?.isSuggested == true) {
+                                        onAddData.value = item.apply {
+                                            viewType = ICViewTypes.CHECK_UPDATE_TYPE
+                                            data = true
+                                        }
                                     }
                                 }
                             }
@@ -232,6 +236,23 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
             override fun onError(error: ICResponseCode?) {
                 finishRequest(false)
                 onUpdateData.value = layout
+            }
+        })
+    }
+
+    fun getPopupAds() {
+        if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
+            return
+        }
+
+        popupInteraction.getPopup(null,vn.icheck.android.ichecklibs.Constant.HOME, object : ICNewApiListener<ICResponse<ICPopup>> {
+            override fun onSuccess(obj: ICResponse<ICPopup>) {
+                if (obj.data!=null) {
+                    onPopupAds.postValue(obj.data!!)
+                }
+            }
+
+            override fun onError(error: ICResponseCode?) {
             }
         })
     }
