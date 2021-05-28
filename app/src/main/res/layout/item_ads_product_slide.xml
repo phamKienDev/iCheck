@@ -14,7 +14,6 @@
         android:layout_height="@dimen/size_0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@drawable/bg_corner_4_solid_white"
         app:layout_constraintDimensionRatio="H, 351:174"
         app:layout_constraintTop_toTopOf="parent" />
 

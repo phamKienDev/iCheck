@@ -120,6 +120,7 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
     }
 
     private fun setupView() {
+        tvCountCart.background=ViewHelper.bgCircleWhiteCountCard22dp(requireContext())
         btnGps.background = ViewHelper.bgPrimaryCorners4(requireContext())
     }
 

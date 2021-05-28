@@ -318,7 +318,7 @@
                 android:background="@drawable/bg_blue_corners_40"
                 android:fontFamily="sans-serif-medium"
                 android:text="Cập nhật"
-                android:textColor="#ffffff"
+                android:textColor="@color/white"
                 android:textSize="@dimen/font_16"
                 android:textStyle="normal" />
 

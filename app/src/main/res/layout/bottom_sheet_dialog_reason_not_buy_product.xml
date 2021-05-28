@@ -7,11 +7,11 @@
     android:paddingTop="@dimen/size_40">
 
     <View
+        android:id="@id/view"
         android:layout_width="@dimen/size_51"
         android:layout_height="@dimen/size_6"
         android:layout_gravity="center"
-        android:layout_marginBottom="@dimen/size_8"
-        android:background="@drawable/bg_indicator_selected" />
+        android:layout_marginBottom="@dimen/size_8" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -29,7 +29,7 @@
             android:drawablePadding="@dimen/size_14"
             android:gravity="start|center"
             android:text="Tiếc quá,\nBạn không thể mua hàng tại nhà sản xuất!"
-            android:textColor="#ffffff"
+            android:textColor="@color/white"
             android:textSize="@dimen/font_14" />
 
     </LinearLayout>

@@ -45,7 +45,7 @@
             android:layout_weight="1"
             android:fontFamily="sans-serif-medium"
             android:text="@string/tong_thanh_toan_xxx_d"
-            android:textColor="#ffffff"
+            android:textColor="@color/white"
             android:textSize="@dimen/font_14"
             android:textStyle="normal" />
 
@@ -64,7 +64,7 @@
             android:paddingEnd="@dimen/size_12"
             android:paddingBottom="@dimen/size_8"
             android:text="@string/dat_hang"
-            android:textColor="#ffffff"
+            android:textColor="@color/white"
             android:textSize="@dimen/font_14"
             android:textStyle="normal" />
     </vn.icheck.android.ichecklibs.view.secondary.LinearLayoutSecondary>

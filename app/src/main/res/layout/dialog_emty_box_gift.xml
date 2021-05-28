@@ -96,7 +96,7 @@
                 android:paddingTop="@dimen/size_10"
                 android:paddingBottom="@dimen/size_10"
                 android:text="Danh sách quà"
-                android:textColor="#ffffff"
+                android:textColor="@color/white"
                 android:textSize="@dimen/font_16" />
         </LinearLayout>
 

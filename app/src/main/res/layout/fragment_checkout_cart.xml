@@ -80,7 +80,7 @@
             android:includeFontPadding="false"
             android:text="@string/hoan_tat_dat_hang"
             android:textAllCaps="false"
-            android:textColor="#ffffff"
+            android:textColor="@color/white"
             android:textSize="@dimen/font_14"
             android:textStyle="normal" />
     </LinearLayout>

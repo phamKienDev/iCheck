@@ -95,14 +95,13 @@
                 android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
 
-            <vn.icheck.android.ichecklibs.view.secondary.ButtonSecondary
+            <vn.icheck.android.ichecklibs.view.app_background.white_background.ICButtonSecondaryBgWhiteStrokeBlue1
                 android:id="@+id/btnAgainError"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_40"
                 android:layout_marginTop="@dimen/size_16"
                 android:layout_marginEnd="@dimen/size_40"
-                android:background="@drawable/bg_corner_solid_white_strokke_blue"
                 android:fontFamily="sans-serif-medium"
                 android:text="Thử Lại"
                 android:textSize="@dimen/font_16"
@@ -145,7 +144,7 @@
                         android:drawablePadding="@dimen/size_9"
                         android:fontFamily="sans-serif-medium"
                         android:gravity="center"
-                        android:textColor="#ffffff"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/font_14"
                         android:textStyle="normal"
                         tools:text="CẢNH BÁO! \n MÃ TEM KHÔNG HỢP LỆ (TEXT KHÔNG CỐ ĐỊNH)" />
@@ -378,7 +377,7 @@
                                 android:layout_marginStart="@dimen/size_8"
                                 android:layout_marginTop="@dimen/size_8"
                                 android:fontFamily="sans-serif-medium"
-                                android:textColor="#ffffff"
+                                android:textColor="@color/white"
                                 android:textSize="@dimen/font_16"
                                 android:textStyle="normal"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -392,7 +391,7 @@
                                 android:layout_marginTop="@dimen/size_8"
                                 android:layout_marginBottom="@dimen/size_6"
                                 android:fontFamily="sans-serif-medium"
-                                android:textColor="#ffffff"
+                                android:textColor="@color/white"
                                 android:textSize="@dimen/font_14"
                                 android:textStyle="normal"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -420,7 +419,7 @@
                                 android:drawableStart="@drawable/ic_start_stamp_12"
                                 android:drawablePadding="@dimen/size_8"
                                 android:fontFamily="sans-serif-medium"
-                                android:textColor="#ffffff"
+                                android:textColor="@color/white"
                                 android:textSize="@dimen/font_14"
                                 android:textStyle="normal"
                                 app:layout_constraintBottom_toBottomOf="@+id/view"
@@ -464,9 +463,9 @@
                             </LinearLayout>
 
                             <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/constraintLayout"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/bg_corner_bottom_white_10">
+                                android:layout_height="wrap_content">
 
                                 <androidx.appcompat.widget.AppCompatTextView
                                     android:id="@+id/appCompatTextView11"
@@ -526,7 +525,7 @@
                                             android:layout_height="wrap_content"
                                             android:layout_marginEnd="@dimen/size_8"
                                             android:fontFamily="sans-serif"
-                                            android:textColor="#ffffff"
+                                            android:textColor="@color/white"
                                             android:textSize="@dimen/font_16"
                                             android:textStyle="bold"
                                             tools:text="90,000đ" />
@@ -573,7 +572,7 @@
                                 android:drawablePadding="@dimen/size_10"
                                 android:fontFamily="sans-serif-medium"
                                 android:textAlignment="center"
-                                android:textColor="#ffffff"
+                                android:textColor="@color/white"
                                 android:textSize="@dimen/font_16"
                                 android:textStyle="normal"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -642,7 +641,7 @@
                                 android:drawablePadding="@dimen/size_10"
                                 android:fontFamily="sans-serif-medium"
                                 android:textAlignment="center"
-                                android:textColor="#ffffff"
+                                android:textColor="@color/white"
                                 android:textSize="@dimen/font_16"
                                 android:textStyle="normal"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -769,7 +768,7 @@
                                 android:layout_marginBottom="@dimen/size_13"
                                 android:fontFamily="sans-serif-medium"
                                 android:text="Thông tin bảo hành"
-                                android:textColor="#ffffff"
+                                android:textColor="@color/white"
                                 android:textSize="@dimen/font_16"
                                 android:textStyle="normal"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -1061,7 +1060,7 @@
                                 android:fontFamily="sans-serif-medium"
                                 android:maxLines="1"
                                 android:singleLine="true"
-                                android:textColor="#ffffff"
+                                android:textColor="@color/white"
                                 android:textSize="@dimen/font_16"
                                 android:textStyle="normal"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -1157,7 +1156,7 @@
                                 android:ellipsize="end"
                                 android:fontFamily="sans-serif-medium"
                                 android:maxLines="1"
-                                android:textColor="#ffffff"
+                                android:textColor="@color/white"
                                 android:textSize="@dimen/font_16"
                                 android:textStyle="normal"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -1360,7 +1359,7 @@
         android:paddingEnd="@dimen/size_12"
         android:paddingBottom="@dimen/size_10"
         android:text="Cập nhật thông tin khách hàng"
-        android:textColor="#ffffff"
+        android:textColor="@color/white"
         android:textSize="@dimen/font_16"
         android:textStyle="normal"
         android:visibility="invisible" />
@@ -1388,7 +1387,7 @@
             android:paddingTop="@dimen/size_8"
             android:paddingEnd="@dimen/size_8"
             android:text="Liên hệ Admin iCheck"
-            android:textColor="#ffffff"
+            android:textColor="@color/white"
             android:textSize="@dimen/font_12"
             android:textStyle="normal" />
     </LinearLayout>

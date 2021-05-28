@@ -3,14 +3,13 @@ package vn.icheck.android.component.view
 import android.content.Context
 import android.os.Build
 import android.util.AttributeSet
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.annotation.RequiresApi
 import androidx.viewpager.widget.ViewPager
-import retrofit2.http.POST
 import vn.icheck.android.R
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.util.DimensionUtil
 
 class IndicatorLineHorizontal : LinearLayout {
@@ -42,7 +41,7 @@ class IndicatorLineHorizontal : LinearLayout {
                 lm.marginEnd = DimensionUtil.convertDpToPixel(5f, context).toInt()
             }
             if (i == 0) {
-                v.setBackgroundResource(R.drawable.bg_indicator_selected)
+                v.background=ViewHelper.bgWhiteRadius14(v.context)
             }
             v.layoutParams = lm
             addView(v)
@@ -64,7 +63,7 @@ class IndicatorLineHorizontal : LinearLayout {
             override fun onPageSelected(position: Int) {
                 if (position != current) {
                     getChildAt(current).setBackgroundResource(R.drawable.bg_indicator_not_select)
-                    getChildAt(position).setBackgroundResource(R.drawable.bg_indicator_selected)
+                    getChildAt(position).background=ViewHelper.bgWhiteRadius14(context)
                     current = position
                 }
             }

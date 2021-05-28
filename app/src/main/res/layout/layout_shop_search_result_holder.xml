@@ -17,7 +17,6 @@
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_12"
         android:layout_marginBottom="@dimen/size_12"
-        android:background="@drawable/bg_circle_border_orange_1dp"
         android:padding="@dimen/size_3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

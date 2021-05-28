@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_success_epin.*
 import vn.icheck.android.R
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICBuyEpin
 import vn.icheck.android.screen.user.history_loading_card.home.HistoryCardActivity
 
@@ -25,6 +26,9 @@ class SuccessBuyEpinFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        btn_again.background= ViewHelper.bgWhiteRadius40StrokeSecondary1(requireContext())
+
         arguments?.let {
             it.getSerializable("data")?.let { data ->
                 tv_serial.text = (data as ICBuyEpin.EpinData).serial

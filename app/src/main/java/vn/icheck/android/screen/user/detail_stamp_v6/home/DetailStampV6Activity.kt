@@ -36,6 +36,7 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.network.models.ICProductLink
 import vn.icheck.android.network.models.detail_stamp_v6.ICDetailStampV6
@@ -107,6 +108,8 @@ class DetailStampV6Activity : BaseActivity<DetailStampV6Presenter>(), IDetailSta
         initBanner()
         initUpdateLocation()
         listener()
+
+        constraintLayout.background=ViewHelper.bgWhiteRadiusBottom10(this)
     }
 
     private fun initGps() {

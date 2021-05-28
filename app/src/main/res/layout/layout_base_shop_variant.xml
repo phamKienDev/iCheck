@@ -32,7 +32,7 @@
                     android:layout_marginStart="@dimen/size_8"
                     android:layout_marginTop="@dimen/size_8"
                     android:fontFamily="sans-serif-medium"
-                    android:textColor="#ffffff"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/font_16"
                     android:textStyle="normal"
                     app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +46,7 @@
                     android:layout_marginTop="@dimen/size_8"
                     android:layout_marginBottom="@dimen/size_6"
                     android:fontFamily="sans-serif-medium"
-                    android:textColor="#ffffff"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/font_14"
                     android:textStyle="normal"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -74,7 +74,7 @@
                     android:drawableStart="@drawable/ic_start_stamp_12"
                     android:drawablePadding="@dimen/size_8"
                     android:fontFamily="sans-serif-medium"
-                    android:textColor="#ffffff"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/font_14"
                     android:textStyle="normal"
                     app:layout_constraintBottom_toBottomOf="@+id/view"
@@ -119,9 +119,9 @@
                 </LinearLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_corner_bottom_white_10">
+                    android:layout_height="wrap_content">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvAddToCartInDiemBan"
@@ -182,7 +182,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="@dimen/size_8"
                                 android:fontFamily="sans-serif"
-                                android:textColor="#ffffff"
+                                android:textColor="@color/white"
                                 android:textSize="@dimen/font_16"
                                 android:textStyle="bold"
                                 tools:text="90,000đ" />

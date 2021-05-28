@@ -48,7 +48,7 @@ class ShopSearchHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflat
 
         if (obj.isOffline) {
             itemView.img_avatar.setPadding(SizeHelper.size3, SizeHelper.size3, SizeHelper.size3, SizeHelper.size3)
-            itemView.img_avatar.setBackgroundResource(R.drawable.bg_circle_border_orange_1dp)
+            itemView.img_avatar.background=ViewHelper.bgCircleWhiteStrokeOrange1Size45(itemView.context)
             itemView.tv_verified.visibility = View.VISIBLE
         } else {
             itemView.img_avatar.setPadding(0, 0, 0, 0)

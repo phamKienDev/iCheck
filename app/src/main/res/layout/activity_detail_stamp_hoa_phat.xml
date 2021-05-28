@@ -108,7 +108,6 @@
                     android:layout_marginStart="@dimen/size_40"
                     android:layout_marginTop="@dimen/size_16"
                     android:layout_marginEnd="@dimen/size_40"
-                    android:background="@drawable/bg_corner_solid_white_strokke_blue"
                     android:fontFamily="sans-serif-medium"
                     android:text="Thử Lại"
                     android:textSize="@dimen/font_16"
@@ -149,7 +148,6 @@
                     android:layout_marginStart="@dimen/size_38"
                     android:layout_marginTop="@dimen/size_13"
                     android:layout_marginEnd="@dimen/size_38"
-                    android:background="@drawable/bg_blue_corners_40_solid_white"
                     android:fontFamily="sans-serif-medium"
                     android:gravity="center"
                     android:paddingTop="@dimen/size_11"
@@ -165,7 +163,6 @@
                     android:layout_marginStart="@dimen/size_38"
                     android:layout_marginTop="@dimen/size_13"
                     android:layout_marginEnd="@dimen/size_38"
-                    android:background="@drawable/bg_blue_corners_40_solid_white"
                     android:fontFamily="sans-serif-medium"
                     android:gravity="center"
                     android:paddingTop="@dimen/size_11"
@@ -211,7 +208,7 @@
                             android:drawablePadding="@dimen/size_9"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:textColor="#ffffff"
+                            android:textColor="@color/white"
                             android:textSize="@dimen/font_14"
                             android:textStyle="normal"
                             tools:text="CẢNH BÁO! \n MÃ TEM KHÔNG HỢP LỆ (TEXT KHÔNG CỐ ĐỊNH)" />
@@ -266,7 +263,7 @@
                     android:drawablePadding="@dimen/size_3"
                     android:fontFamily="sans-serif-medium"
                     android:text="Chat ngay"
-                    android:textColor="#ffffff"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/font_12"
                     android:textStyle="normal"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -296,7 +293,7 @@
                 <!--                    android:drawablePadding="@dimen/size_3"-->
                 <!--                    android:fontFamily="sans-serif-medium"-->
                 <!--                    android:text="+ Giỏ hàng"-->
-                <!--                    android:textColor="#ffffff"-->
+                <!--                    android:textColor="@color/white"-->
                 <!--                    android:textSize="@dimen/font_12"-->
                 <!--                    android:textStyle="normal"-->
                 <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
@@ -320,7 +317,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-medium"
                     android:text="Mua ngay"
-                    android:textColor="#ffffff"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/font_16"
                     android:textStyle="normal" />
             </vn.icheck.android.ichecklibs.view.secondary.LinearLayoutSecondary>
@@ -345,7 +342,7 @@
             android:paddingEnd="@dimen/size_12"
             android:paddingBottom="@dimen/size_10"
             android:text="Cập nhật thông tin khách hàng"
-            android:textColor="#ffffff"
+            android:textColor="@color/white"
             android:textSize="@dimen/font_16"
             android:textStyle="normal"
             android:visibility="invisible"

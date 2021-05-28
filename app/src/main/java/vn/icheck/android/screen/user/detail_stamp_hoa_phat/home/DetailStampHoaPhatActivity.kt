@@ -28,6 +28,7 @@ import vn.icheck.android.fragments.ProductReviewsBottomDialog
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.PermissionHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICCriteria
@@ -76,6 +77,9 @@ class DetailStampHoaPhatActivity : BaseActivityMVVM(), SlideHeaderStampHoaPhatLi
         setContentView(R.layout.activity_detail_stamp_hoa_phat)
         INSTANCE = this
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
+        btnRequestPermission.background=ViewHelper.bgWhiteRadius40StrokeSecondary1(this)
+        btnEnableLocation.background=ViewHelper.bgWhiteRadius40StrokeSecondary1(this)
 
         setupRecyclerView()
         setupSwipeLayout()

@@ -12,9 +12,7 @@ import android.webkit.WebViewClient
 import android.widget.FrameLayout
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import kotlinx.android.synthetic.main.activity_web_view.*
 import kotlinx.android.synthetic.main.bottom_sheet_dialog_reason_not_buy_product.view.*
-import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
 import vn.icheck.android.ichecklibs.ViewHelper
 
@@ -71,6 +69,7 @@ class BottomSheetWebView (context: Context) : FrameLayout(context) {
     fun showWithUrl(url: String) {
         mBottomSheetDialog.show()
 
+        view.background=ViewHelper.bgWhiteRadius14(context)
         linearLayout.background=ViewHelper.bgAccentRedRadiusTop16(context)
 
         webView.settings.javaScriptEnabled = true

@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.FrameLayout
+import androidx.core.content.ContextCompat
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import vn.icheck.android.R
@@ -44,6 +45,7 @@ class SelectCityBottomSheet : BottomSheetDialogFragment(), ISelectCityView {
             Handler().postDelayed(Runnable {
                 val d = dialog as BottomSheetDialog
                 val bottomSheet = d.findViewById<FrameLayout>(R.id.design_bottom_sheet)
+                bottomSheet?.background=ViewHelper.bgWhiteRadiusTop13(requireContext())
                 val bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet!!)
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
             }, 0)

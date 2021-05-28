@@ -17,7 +17,7 @@
         android:paddingStart="@dimen/size_20"
         android:paddingEnd="@dimen/size_20"
         android:text="@string/da_co_trong_gio_hang"
-        android:textColor="#ffffff"
+        android:textColor="@color/white"
         android:textSize="@dimen/font_12"
         android:textStyle="normal"
         android:visibility="invisible"

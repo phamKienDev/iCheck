@@ -15,6 +15,7 @@ import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.screen.user.shipping.ship.ShipActivity
 import vn.icheck.android.util.ick.beGone
@@ -49,6 +50,8 @@ class HistorySearchActivity : BaseActivityMVVM(), HistoryScanSearchView {
         imgBack.setOnClickListener {
             onBackPressed()
         }
+
+        tvCountCart.background=ViewHelper.bgCircleWhiteCountCard22dp(this)
 
         imgCart.setOnClickListener {
             if (SessionManager.isUserLogged) {

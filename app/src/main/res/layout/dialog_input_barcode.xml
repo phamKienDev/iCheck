@@ -81,7 +81,7 @@
         android:background="@drawable/btn_blue_corners_10"
         android:enabled="false"
         android:text="@string/gui_ma_upcase"
-        android:textColor="#ffffff"
+        android:textColor="@color/white"
         android:textSize="@dimen/font_16"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/edtBarcode"

@@ -6,7 +6,7 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
 import vn.icheck.android.ichecklibs.Constant
 
-class ButtonSecondary : AppCompatButton {
+open class ButtonSecondary : AppCompatButton {
 
     constructor(context: Context) : super(context) { setup() }
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { setup() }

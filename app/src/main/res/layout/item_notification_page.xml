@@ -40,6 +40,6 @@
         android:paddingBottom="@dimen/size_8"
         android:text="@string/theo_doi"
         android:textAlignment="gravity"
-        android:textColor="#ffffff"
+        android:textColor="@color/white"
         android:textSize="@dimen/font_14" />
 </LinearLayout>

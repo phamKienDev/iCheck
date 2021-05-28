@@ -274,7 +274,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/app_de_tham_gia_chuong_trinh"
-                android:textColor="#ffffff"
+                android:textColor="@color/white"
                 android:textSize="@dimen/font_12" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

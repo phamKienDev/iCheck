@@ -47,7 +47,7 @@
             android:paddingEnd="@dimen/size_4"
             android:paddingBottom="@dimen/size_6"
             android:text="0%"
-            android:textColor="#ffffff"
+            android:textColor="@color/white"
             android:textSize="@dimen/font_10"
             android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="@id/viewPosition"

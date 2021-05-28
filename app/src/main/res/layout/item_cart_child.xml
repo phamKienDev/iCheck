@@ -48,7 +48,7 @@
         android:singleLine="true"
         android:text="@string/mua_sau"
         android:textAlignment="gravity"
-        android:textColor="#ffffff"
+        android:textColor="@color/white"
         android:textSize="@dimen/font_12"
         android:textStyle="normal"
         android:visibility="gone"

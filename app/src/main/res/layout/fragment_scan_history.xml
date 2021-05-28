@@ -62,7 +62,6 @@
                 android:layout_height="@dimen/size_22"
                 android:layout_marginStart="@dimen/size_10"
                 android:layout_marginEnd="@dimen/size_3"
-                android:background="@drawable/bg_circle_count_cart_22dp"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:text="99"

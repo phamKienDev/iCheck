@@ -151,7 +151,7 @@
             android:paddingTop="@dimen/size_8"
             android:paddingBottom="@dimen/size_9"
             android:text="Xác nhận thanh toán"
-            android:textColor="#ffffff"
+            android:textColor="@color/white"
             android:textSize="@dimen/font_16" />
     </LinearLayout>
 </LinearLayout>

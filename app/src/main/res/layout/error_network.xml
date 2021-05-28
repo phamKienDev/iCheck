@@ -21,12 +21,11 @@
         android:textSize="@dimen/font_14"
         android:textStyle="normal" />
 
-    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICTextSecondaryBgWhiteStrokeBlue1
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_32"
         android:layout_marginEnd="@dimen/size_32"
-        android:background="@drawable/bg_corner_solid_white_strokke_blue"
         android:fontFamily="sans-serif-medium"
         android:padding="@dimen/size_16"
         android:text="Trang Chủ"

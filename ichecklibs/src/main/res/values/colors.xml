@@ -52,6 +52,7 @@
     <color name="red_05">#0Dff0000</color>
     <color name="gray_60">#99D8D8D8</color>
     <color name="white">#FFFFFF</color>
+    <color name="stroke_white">#FFFFFF</color>
     <color name="green">#62AF58</color>
     <color name="green_v2">#49CA4E</color>
     <color name="errorColor">#EB5757</color>

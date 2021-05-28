@@ -52,7 +52,6 @@
             android:id="@id/viewBackground"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_0"
-            android:background="@drawable/bg_product_information"
             app:layout_constraintBottom_toBottomOf="@id/imgImage"
             app:layout_constraintDimensionRatio="H, 351:102" />
 

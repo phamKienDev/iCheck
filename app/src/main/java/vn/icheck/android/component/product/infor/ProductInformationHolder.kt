@@ -8,6 +8,7 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICMedia
 import vn.icheck.android.network.models.ICProductInformations
 import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
@@ -29,6 +30,7 @@ class ProductInformationHolder(parent: ViewGroup) : BaseViewHolder<ICProductInfo
             itemView.tvContent.beGone()
         }
 
+        itemView.viewBackground.background=ViewHelper.bgProductInfomation(itemView.context)
         if (!obj.image.isNullOrEmpty()) {
             itemView.imgImage.beVisible()
             itemView.viewBackground.beVisible()

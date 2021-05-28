@@ -60,7 +60,7 @@
                 android:singleLine="true"
                 android:text="@string/ghe_tham_shop"
                 android:textAllCaps="false"
-                android:textColor="#ffffff"
+                android:textColor="@color/white"
                 android:textSize="@dimen/font_16"
                 android:textStyle="normal"
                 tools:text="Ghé thăm shop" />

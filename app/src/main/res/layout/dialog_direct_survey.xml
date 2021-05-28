@@ -45,7 +45,7 @@
                         android:fontFamily="sans-serif-medium"
                         android:gravity="center_horizontal"
                         android:includeFontPadding="false"
-                        android:textColor="#ffffff"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/font_14"
                         android:textStyle="normal" />
 
@@ -59,7 +59,7 @@
                         android:fontFamily="sans-serif-medium"
                         android:gravity="center_horizontal"
                         android:includeFontPadding="false"
-                        android:textColor="#ffffff"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/font_16"
                         android:textStyle="normal" />
 

@@ -265,7 +265,6 @@
             android:layout_marginEnd="@dimen/size_8"
             android:layout_marginBottom="@dimen/size_8"
             android:layout_weight="1"
-            android:background="@drawable/bg_blue_corners_40_solid_white"
             android:text="Mua mã thẻ khác"
             android:textAllCaps="false" />
 

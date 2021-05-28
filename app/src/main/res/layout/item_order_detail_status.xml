@@ -14,7 +14,7 @@
         android:layout_weight="1"
         android:fontFamily="sans-serif"
         android:padding="@dimen/size_12"
-        android:textColor="#ffffff"
+        android:textColor="@color/white"
         android:textSize="@dimen/font_14"
         android:textStyle="bold"
         tools:text="Đang giao hàng" />
@@ -30,7 +30,7 @@
         android:includeFontPadding="false"
         android:padding="@dimen/size_12"
         android:textAlignment="gravity"
-        android:textColor="#ffffff"
+        android:textColor="@color/white"
         android:textSize="@dimen/font_14"
         android:textStyle="normal"
         android:text="@string/xem_chi_tiet" />

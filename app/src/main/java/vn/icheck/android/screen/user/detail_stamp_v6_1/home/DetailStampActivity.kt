@@ -43,6 +43,7 @@ import vn.icheck.android.base.adapter.RecyclerViewAdapter
 import vn.icheck.android.base.holder.StampECommerceHolder
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.component.banner.ListBannerAdapter
+import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
 import vn.icheck.android.ichecklibs.util.beGone
@@ -177,6 +178,10 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
 
         val language = Locale.getDefault().toLanguageTag()
         isVietNamLanguage = language == "vi-VN"
+
+        btnRequestPermission.background=vn.icheck.android.ichecklibs.ViewHelper.bgWhiteRadius40StrokeSecondary1(this)
+        btnEnableLocation.background=vn.icheck.android.ichecklibs.ViewHelper.bgWhiteRadius40StrokeSecondary1(this)
+        constraintLayoutDiemBan.background=vn.icheck.android.ichecklibs.ViewHelper.bgWhiteRadiusBottom10(this)
 
         runOnUiThread {
             if (isVietNamLanguage == false) {

@@ -65,7 +65,7 @@
         android:text="@string/da_nhan_hang"
         android:textAlignment="gravity"
         android:textAllCaps="false"
-        android:textColor="#ffffff"
+        android:textColor="@color/white"
         android:textSize="@dimen/font_16"
         android:textStyle="normal"
         android:visibility="gone"

@@ -164,7 +164,7 @@
         android:text="@string/dat_lai_don_nay"
         android:textAlignment="gravity"
         android:textAllCaps="false"
-        android:textColor="#ffffff"
+        android:textColor="@color/white"
         android:textSize="@dimen/font_16"
         android:textStyle="normal"
         android:visibility="gone"

@@ -23,6 +23,7 @@ import vn.icheck.android.helper.ExoPlayerManager
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.models.ICAdsData
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
@@ -94,9 +95,9 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
                 )
             }
             Constant.ADS_HORIZONTAL_TYPE -> {
-                if(fullScreen){
+                if (fullScreen) {
                     ViewHolderHorizontalMore(ItemAdsProductHorizontalMoreBinding.inflate(LayoutInflater.from(parent.context), parent, false))
-                }else{
+                } else {
                     ViewHolderHorizontal(ItemAdsProductHorizontalBinding.inflate(LayoutInflater.from(parent.context), parent, false))
                 }
             }
@@ -123,7 +124,7 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
             is ViewHolderHorizontal -> {
                 holder.bind(listData[position])
             }
-            is ViewHolderHorizontalMore ->{
+            is ViewHolderHorizontalMore -> {
                 holder.bind(listData[position])
             }
         }
@@ -135,6 +136,7 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
             binding.imgImage.visibility = View.VISIBLE
             binding.surfaceView.visibility = View.INVISIBLE
             binding.progressBar.visibility = View.INVISIBLE
+            binding.imgImage.background = ViewHelper.bgWhiteRadius4(binding.imgImage.context)
 
             if (!obj.media.isNullOrEmpty()) {
                 if (obj.media!![0].type == Constant.VIDEO) {
@@ -202,7 +204,7 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
                 binding.tvPriceUpdating.beGone()
                 if (obj.price != null) {
                     binding.tvPriceSpecial.beVisible()
-                    binding.tvPriceSpecial.text = TextHelper.formatMoney((obj.price?:0.0).toLong()) + "đ"
+                    binding.tvPriceSpecial.text = TextHelper.formatMoney((obj.price ?: 0.0).toLong()) + "đ"
                 }
 
                 if (obj.sellPrice != null) {
@@ -268,7 +270,6 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
             }
         }
     }
-
 
 
     inner class ViewHolderHorizontal(val binding: ItemAdsProductHorizontalBinding) : BaseVideoViewHolder(binding.root) {
@@ -387,7 +388,7 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
                 binding.tvPriceUpdating.beGone()
                 if (obj.price != null) {
                     binding.tvPriceSpecial.beVisible()
-                    binding.tvPriceSpecial.text = TextHelper.formatMoney((obj.price?:0.0).toLong()) + "đ"
+                    binding.tvPriceSpecial.text = TextHelper.formatMoney((obj.price ?: 0.0).toLong()) + "đ"
                 }
 
                 if (obj.sellPrice != null) {
@@ -583,7 +584,7 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
                 binding.tvPriceUpdating.beGone()
                 if (obj.price != null) {
                     binding.tvPriceSpecial.beVisible()
-                    binding.tvPriceSpecial.text = TextHelper.formatMoney((obj.price?:0.0).toLong()) + "đ"
+                    binding.tvPriceSpecial.text = TextHelper.formatMoney((obj.price ?: 0.0).toLong()) + "đ"
                 }
 
                 if (obj.sellPrice != null) {
@@ -661,7 +662,6 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
     }
 
 
-
     inner class ViewHolderGrid(val binding: ItemAdsProductGridBinding) :
         BaseViewHolder<ICAdsData>(binding.root) {
         override fun bind(obj: ICAdsData) {
@@ -718,7 +718,7 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
 
             if (obj.price != null) {
                 binding.tvPrice.beVisible()
-                binding.tvPrice.text = TextHelper.formatMoney((obj.price?:0.0).toLong()) + "đ"
+                binding.tvPrice.text = TextHelper.formatMoney((obj.price ?: 0.0).toLong()) + "đ"
                 binding.tvPriceUpdating.beGone()
             } else {
                 binding.tvPriceUpdating.beVisible()

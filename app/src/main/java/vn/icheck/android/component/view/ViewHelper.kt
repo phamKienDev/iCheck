@@ -53,6 +53,7 @@ import vn.icheck.android.ichecklibs.view.TextBarlowMedium
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.MiddleMultilineTextView
+import vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutBgWhite
 import vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
 import vn.icheck.android.ichecklibs.view.second_text.TextSecondSendOtpLogin
 import vn.icheck.android.ichecklibs.view.secondary.TextSecondary
@@ -585,10 +586,9 @@ object ViewHelper {
     }
 
     fun createProductHorizontalNew(context: Context): View {
-        val layoutParent = LinearLayout(context)
+        val layoutParent = ICLinearLayoutBgWhite(context)
         layoutParent.layoutParams = createLayoutParams(SizeHelper.size150, LinearLayout.LayoutParams.WRAP_CONTENT, 0, 0, SizeHelper.size1, 0)
         layoutParent.orientation = LinearLayout.VERTICAL
-        layoutParent.setBackgroundColor(Color.parseColor("#ffffff"))
         layoutParent.setPadding(SizeHelper.size4, SizeHelper.size4, SizeHelper.size4, SizeHelper.size4)
 
         //Image Product

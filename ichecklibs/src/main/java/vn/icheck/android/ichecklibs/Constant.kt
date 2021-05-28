@@ -399,20 +399,41 @@ object Constant {
     /*
     * Color background White
     */
-    fun getAppBackgroundColor(context: Context): Int {
+    fun getAppBackgroundWhiteColor(context: Context): Int {
         return if (appBackgroundColor.isNotEmpty()) {
             Color.parseColor(appBackgroundColor)
         } else {
-            ContextCompat.getColor(context, R.color.white)
+            ContextCompat.getColor(context, R.color.colorBackgroundWhite)
         }
     }
 
-    val getAppBackgroundColorCode: String
+    val getAppBackgroundWhiteColorCode: String
         get() {
             return if (appBackgroundColor.isNotEmpty()) {
                 appBackgroundColor
             } else {
                 "#FFFFFF"
+            }
+        }
+
+
+    /*
+    * Color background Gray
+    */
+    fun getAppBackgroundGrayColor(context: Context): Int {
+        return if (appBackgroundColor.isNotEmpty()) {
+            Color.parseColor(appBackgroundColor)
+        } else {
+            ContextCompat.getColor(context, R.color.colorBackgroundGray)
+        }
+    }
+
+    val getAppBackgroundGrayColorCode: String
+        get() {
+            return if (appBackgroundColor.isNotEmpty()) {
+                appBackgroundColor
+            } else {
+                "#F0F0F0"
             }
         }
 
@@ -522,4 +543,5 @@ object Constant {
                 "#CCF1FC"
             }
         }
+
 }

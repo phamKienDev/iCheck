@@ -37,6 +37,8 @@ import vn.icheck.android.loyalty.helper.StatusBarHelper
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.models.*
 import vn.icheck.android.network.util.DeviceUtils
+import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.bottom_sheet.SelectCityBottomSheet
+import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.bottom_sheet.SelectDistrictBottomSheet
 import vn.icheck.android.screen.user.welcome.WelcomeActivity
 import vn.icheck.android.util.ick.openAppInGooglePlay
 import java.io.File
@@ -53,7 +55,8 @@ class CheckThemeActivity : BaseActivityMVVM() {
         setContentView(R.layout.activity_check_theme)
 
         getData()
-        onInitView()
+//        onInitView()
+        SelectCityBottomSheet().show(supportFragmentManager,null)
     }
 
     private fun getData() {
