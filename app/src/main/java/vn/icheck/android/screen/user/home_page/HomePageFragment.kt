@@ -27,8 +27,8 @@ import kotlinx.android.synthetic.main.fragment_home.swipeLayout
 import kotlinx.android.synthetic.main.fragment_home.tvCartCount
 import kotlinx.android.synthetic.main.fragment_home.viewShadow
 import kotlinx.android.synthetic.main.fragment_page_detail.*
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -39,7 +39,6 @@ import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.component.view.ViewHelper.setScrollSpeed
-import vn.icheck.android.component.view.ViewHelper.showPopupAds
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.ExoPlayerManager
@@ -53,6 +52,7 @@ import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.base.Status
 import vn.icheck.android.network.models.product_need_review.ICProductNeedReview
+import vn.icheck.android.screen.dialog.DialogNotificationFirebaseAds
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.user.campaign.calback.IBannerV2Listener
 import vn.icheck.android.screen.user.campaign.calback.IMessageListener
@@ -276,7 +276,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         })
 
         viewModel.onPopupAds.observe(viewLifecycleOwner, Observer {
-            requireActivity().showPopupAds(it)
+            DialogNotificationFirebaseAds.showPopupAds(requireActivity(),it)
         })
 
 //        viewModel.onUpdatePVCombank.observe(viewLifecycleOwner, Observer {
