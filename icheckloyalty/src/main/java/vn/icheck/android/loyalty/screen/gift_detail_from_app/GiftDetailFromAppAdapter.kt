@@ -11,7 +11,6 @@ import vn.icheck.android.loyalty.base.commons.RecyclerViewCustomAdapter
 import vn.icheck.android.loyalty.base.setGone
 import vn.icheck.android.loyalty.base.setVisible
 import vn.icheck.android.loyalty.helper.TimeHelper
-import vn.icheck.android.loyalty.helper.TimeHelper.millisecondEffectiveTime
 import vn.icheck.android.loyalty.helper.WidgetHelper
 import vn.icheck.android.loyalty.model.ICKGift
 
@@ -176,8 +175,8 @@ internal class GiftDetailFromAppAdapter : RecyclerViewCustomAdapter<ICKGift>() {
             }
 
             if (!obj.desc.isNullOrEmpty()) {
-                itemView.webView.settings.javaScriptEnabled = true
-                itemView.webView.loadData(obj.desc, "text/html; charset=utf-8", "UTF-8")
+                itemView.webViewUrl.settings.javaScriptEnabled = true
+                itemView.webViewUrl.loadData(obj.desc, "text/html; charset=utf-8", "UTF-8")
             }
 
             itemView.tvCode.text = obj.id.toString()

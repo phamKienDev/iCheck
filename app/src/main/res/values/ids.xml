@@ -170,7 +170,7 @@
     <item name="layoutInputNote" type="id" />
     <item name="edtNote" type="id" />
     <item name="imgLocation" type="id" />
-    <item name="webView" type="id" />
+    <item name="webViewUrl" type="id" />
     <item name="imgClose" type="id" />
     <item name="imgAnswer" type="id" />
     <item name="imgHelp" type="id" />

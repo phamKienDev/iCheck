@@ -34,18 +34,18 @@ class HelpGameFragment : Fragment() {
 
     private fun setupWebView() {
         @Suppress("SetJavaScriptEnabled")
-        webView.settings.javaScriptEnabled = true
+        webViewUrl.settings.javaScriptEnabled = true
         @Suppress("DEPRECATION")
-        webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
-        webView.settings.domStorageEnabled = true
-        webView.settings.allowFileAccessFromFileURLs = true
-        webView.settings.useWideViewPort = true
-        webView.settings.loadWithOverviewMode = true
-        webView.settings.allowUniversalAccessFromFileURLs = true
-        webView.settings.defaultFontSize = 24
+        webViewUrl.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
+        webViewUrl.settings.domStorageEnabled = true
+        webViewUrl.settings.allowFileAccessFromFileURLs = true
+        webViewUrl.settings.useWideViewPort = true
+        webViewUrl.settings.loadWithOverviewMode = true
+        webViewUrl.settings.allowUniversalAccessFromFileURLs = true
+        webViewUrl.settings.defaultFontSize = 24
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
+            webViewUrl.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
         }
     }
 
@@ -53,7 +53,7 @@ class HelpGameFragment : Fragment() {
         val html = args.description
 
         if (html.isNotEmpty()) {
-            webView.loadDataWithBaseURL(null, html, "text/html; charset=utf-8", "UTF-8", null)
+            webViewUrl.loadDataWithBaseURL(null, html, "text/html; charset=utf-8", "UTF-8", null)
         } else {
 //            DialogHelper.showNotification(requireContext(), R.string.thong_bao, R.string.co_loi_xay_ra_vui_long_thu_lai, false, object : NotificationDialogListener {
 //                override fun onDone() {

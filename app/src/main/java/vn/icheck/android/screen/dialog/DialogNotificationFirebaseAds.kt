@@ -29,14 +29,15 @@ import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.Constant.getHtmlData
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.popup.PopupInteractor
+import vn.icheck.android.network.models.ICPopup
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.util.ick.beGone
 
 abstract class DialogNotificationFirebaseAds(
-    context: Activity, private val image: String?, private val htmlText: String?, private val link: String?, private val schema: String?,
-    private val schemaParams: String? = null,
-    private val idAds: Long? = null, // phân biệt popup firebase vs popup quảng cáo
+    context: Activity, private val image: String?, private val htmlText: String?, private val link: String?,
+    private val schema: String? = null,
+    private val popup: ICPopup? = null // phân biệt popup firebase vs popup quảng cáo
 ) : BaseDialog(context, R.style.DialogTheme) {
 
     override val getLayoutID: Int
@@ -56,7 +57,7 @@ abstract class DialogNotificationFirebaseAds(
                         .asBitmap()
                         .timeout(30000)
                         .load(image)
-                        .transform(FitCenter(), RoundedCorners(SizeHelper.size6))
+                        .transform(FitCenter(), RoundedCorners(SizeHelper.size10))
                         .listener(object : RequestListener<Bitmap> {
                             override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Bitmap>?, isFirstResource: Boolean): Boolean {
                                 Log.d("onLoad", "onLoadFailed: false")
@@ -129,8 +130,8 @@ abstract class DialogNotificationFirebaseAds(
                 }
 
                 imageView.setOnClickListener {
-                    if (idAds != null) {
-                        clickPopupAds(idAds)
+                    if (popup != null) {
+                        clickPopupAds(popup)
                     } else {
                         dismiss()
                         ICheckApplication.currentActivity()?.let { activity ->
@@ -141,28 +142,13 @@ abstract class DialogNotificationFirebaseAds(
             }
             htmlText != null -> {
                 layoutWeb.setGone()
-
                 Handler().postDelayed({
-                    webViewHtml.settings.defaultFontSize = 14f.toInt()
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                        webViewHtml.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING;
-                    } else {
-                        webViewHtml.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.NORMAL;
-                    }
-                    webViewHtml.loadDataWithBaseURL(null, getHtmlData(htmlText), "text/html", "utf-8", "")
-                    webViewHtml.isVerticalScrollBarEnabled = true
-                    webViewHtml.webViewClient = object : WebViewClient() {
-
-                        override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
-                            DialogHelper.closeLoading(this@DialogNotificationFirebaseAds)
-                            super.onPageStarted(view, url, favicon)
-                        }
-                    }
+                    setupWebViewHtml(htmlText)
                 }, 200)
             }
             link != null -> {
                 layoutText.beGone()
-                setupWebViewLink()
+                setupWebViewUrl()
 
 
                 if (vn.icheck.android.constant.Constant.isMarketingStamps(link)) {
@@ -201,9 +187,9 @@ abstract class DialogNotificationFirebaseAds(
                         urlBuilder.appendQueryParameter("lon", APIConstants.LONGITUDE.toString())
                     }
 
-                    webView.loadUrl(urlBuilder.build().toString(), header)
+                    webViewUrl.loadUrl(urlBuilder.build().toString(), header)
                 } else {
-                    webView.loadUrl(link)
+                    webViewUrl.loadUrl(link)
                 }
             }
         }
@@ -217,47 +203,95 @@ abstract class DialogNotificationFirebaseAds(
         }
     }
 
-    private fun clickPopupAds(id: Long) {
+
+    private fun clickPopupAds(popup: ICPopup) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            checkSchemePopupAds()
+            checkSchemePopupAds(popup)
         } else {
             ICheckApplication.currentActivity()?.let { activity ->
                 DialogHelper.showLoading(activity)
 
-                PopupInteractor().clickPopup(id, object : ICNewApiListener<ICResponse<Any>> {
-                    override fun onSuccess(obj: ICResponse<Any>) {
-                        DialogHelper.closeLoading(activity)
-                        checkSchemePopupAds()
-                    }
+                popup.id?.let {
+                    PopupInteractor().clickPopup(it, object : ICNewApiListener<ICResponse<Any>> {
+                        override fun onSuccess(obj: ICResponse<Any>) {
+                            DialogHelper.closeLoading(activity)
+                            checkSchemePopupAds(popup)
+                        }
 
-                    override fun onError(error: ICResponseCode?) {
-                        DialogHelper.closeLoading(activity)
-                        checkSchemePopupAds()
-                    }
-                })
-            }
-        }
-    }
-
-    private fun checkSchemePopupAds() {
-        dismiss()
-        if (!schema.isNullOrEmpty()) {
-            if (schema.startsWith("http")) {
-                WebViewActivity.start(ICheckApplication.currentActivity(), schema)
-            } else {
-                ICheckApplication.currentActivity()?.let { activity ->
-                    if (!schemaParams.isNullOrEmpty()) {
-                        FirebaseDynamicLinksActivity.startTarget(activity, schema, schemaParams)
-                    } else {
-                        FirebaseDynamicLinksActivity.startDestinationUrl(activity, schema)
-                    }
+                        override fun onError(error: ICResponseCode?) {
+                            DialogHelper.closeLoading(activity)
+                            checkSchemePopupAds(popup)
+                        }
+                    })
                 }
             }
         }
     }
 
-    private fun setupWebViewLink() {
-        webView.apply {
+    private fun checkSchemePopupAds(popup: ICPopup) {
+        dismiss()
+        ICheckApplication.currentActivity()?.let { activity ->
+            if (!popup.deeplink.isNullOrEmpty()) {
+                if (popup.deeplinkParams.isNullOrEmpty()) {
+                    FirebaseDynamicLinksActivity.startDestinationUrl(activity, popup.deeplink)
+                } else {
+                    FirebaseDynamicLinksActivity.startTarget(activity, popup.deeplink, popup.deeplinkParams)
+                }
+            } else if (!popup.path.isNullOrEmpty()) {
+                WebViewActivity.start(ICheckApplication.currentActivity(), popup.path)
+            }
+        }
+    }
+
+    private fun setupWebViewHtml(htmlText: String) {
+        webViewHtml.apply {
+            settings.defaultFontSize = 14f.toInt()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING;
+            } else {
+                settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.NORMAL;
+            }
+            loadDataWithBaseURL(null, getHtmlData(htmlText), "text/html", "utf-8", "")
+            isVerticalScrollBarEnabled = true
+            var isPageLoaded = false
+
+            webViewClient = object : WebViewClient() {
+                override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+                    DialogHelper.closeLoading(this@DialogNotificationFirebaseAds)
+                    super.onPageStarted(view, url, favicon)
+                    isPageLoaded = false
+                }
+
+                override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
+                    if (isPageLoaded) {
+                        if (url?.startsWith("http") == true) {
+                            ICheckApplication.currentActivity()?.let { activity ->
+                                WebViewActivity.start(activity, url)
+                            }
+                            return true
+                        }
+                    }
+                    return super.shouldOverrideUrlLoading(view, url)
+                }
+
+                override fun onPageFinished(view: WebView?, url: String?) {
+                    super.onPageFinished(view, url)
+
+                }
+            }
+
+            webChromeClient = object : WebChromeClient() {
+                override fun onProgressChanged(view: WebView?, newProgress: Int) {
+                    super.onProgressChanged(view, newProgress)
+                    isPageLoaded = newProgress == 100
+                }
+            }
+        }
+    }
+
+
+    private fun setupWebViewUrl() {
+        webViewUrl.apply {
             settings.apply {
                 javaScriptEnabled = true
                 domStorageEnabled = true

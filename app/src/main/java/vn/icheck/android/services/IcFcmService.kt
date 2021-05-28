@@ -171,7 +171,7 @@ class IcFcmService : FirebaseMessagingService() {
     private fun showDialogNotification(image: String? = null, htmlText: String? = null, link: String? = null, schema: String? = null) {
         ICheckApplication.currentActivity()?.apply {
             runOnUiThread {
-                object : DialogNotificationFirebaseAds(this, image, htmlText, link, schema) {
+                object : DialogNotificationFirebaseAds(this, image, htmlText, link, schema=schema) {
                     override fun onDismiss() {
 
                     }

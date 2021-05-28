@@ -67,7 +67,7 @@ class InformationProductActivity : BaseActivityMVVM() {
 
     @SuppressLint("SetJavaScriptEnabled")
     private fun setupWebView(url: String?) {
-        webView.settings.apply {
+        webViewUrl.settings.apply {
             javaScriptEnabled = true
             domStorageEnabled = true
             allowFileAccessFromFileURLs = true
@@ -76,13 +76,13 @@ class InformationProductActivity : BaseActivityMVVM() {
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
+            webViewUrl.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
         } else {
-            webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
+            webViewUrl.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
         }
 
         if (!url.isNullOrEmpty()) {
-            webView.loadDataWithBaseURL(null, Constant.getHtmlData(url), "text/html", "utf-8", "")
+            webViewUrl.loadDataWithBaseURL(null, Constant.getHtmlData(url), "text/html", "utf-8", "")
         }
 
 //        webView.webViewClient = object : WebViewClient() {

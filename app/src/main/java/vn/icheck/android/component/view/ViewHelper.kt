@@ -5244,7 +5244,7 @@ object ViewHelper {
         when (popup.displayType) {
             "url" -> {
                 if (!popup.url.isNullOrEmpty()) {
-                    dialog= object : DialogNotificationFirebaseAds(this, link = popup.url,htmlText = null,image = null,schema = null, idAds = popup.id) {
+                    dialog= object : DialogNotificationFirebaseAds(this, link = popup.url,htmlText = null,image = null,popup = popup) {
                         override fun onDismiss() {
 
                         }
@@ -5253,12 +5253,7 @@ object ViewHelper {
             }
             "image" -> {
                 if (!popup.image.isNullOrEmpty()) {
-                    val schema=if(popup.deeplink.isNullOrEmpty()){
-                        popup.path
-                    }else{
-                        popup.deeplink
-                    }
-                    dialog= object : DialogNotificationFirebaseAds(this, link = null,htmlText = null,image = popup.image,schema = schema, schemaParams=popup.deeplinkParams, idAds = popup.id) {
+                    dialog= object : DialogNotificationFirebaseAds(this, link = null,htmlText = null,image = popup.image,popup = popup) {
                         override fun onDismiss() {
 
                         }
@@ -5267,7 +5262,7 @@ object ViewHelper {
             }
             else->{
                 if (!popup.document.isNullOrEmpty()) {
-                    dialog= object : DialogNotificationFirebaseAds(this, link = null,htmlText = popup.document,image = null,schema = null, idAds = popup.id) {
+                    dialog= object : DialogNotificationFirebaseAds(this, link = null,htmlText = popup.document,image = null,popup = popup) {
                         override fun onDismiss() {
 
                         }
