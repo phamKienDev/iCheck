@@ -55,7 +55,7 @@ abstract class DialogNotificationFirebaseAds(
                 CoroutineScope(Dispatchers.IO).launch {
                     Glide.with(ICheckApplication.getInstance())
                         .asBitmap()
-                        .timeout(30000)
+                        .timeout(10000)
                         .load(image)
                         .transform(FitCenter(), RoundedCorners(SizeHelper.size10))
                         .listener(object : RequestListener<Bitmap> {
@@ -230,15 +230,16 @@ abstract class DialogNotificationFirebaseAds(
     }
 
     private fun checkSchemePopupAds(popup: ICPopup) {
-        dismiss()
         ICheckApplication.currentActivity()?.let { activity ->
             if (!popup.deeplink.isNullOrEmpty()) {
+                dismiss()
                 if (popup.deeplinkParams.isNullOrEmpty()) {
                     FirebaseDynamicLinksActivity.startDestinationUrl(activity, popup.deeplink)
                 } else {
                     FirebaseDynamicLinksActivity.startTarget(activity, popup.deeplink, popup.deeplinkParams)
                 }
             } else if (!popup.path.isNullOrEmpty()) {
+                dismiss()
                 WebViewActivity.start(ICheckApplication.currentActivity(), popup.path)
             }
         }
