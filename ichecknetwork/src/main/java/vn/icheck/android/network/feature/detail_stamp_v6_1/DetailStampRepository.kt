@@ -1,5 +1,6 @@
 package vn.icheck.android.network.feature.detail_stamp_v6_1
 
+import android.util.Base64
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Call
@@ -70,6 +71,12 @@ class DetailStampRepository : BaseRepository() {
                 }
             }
         }
+
+        val currentTime = System.currentTimeMillis()
+        val sourceApp = Base64.encodeToString("isIcheck=true&time=$currentTime".toByteArray(Charsets.UTF_8), Base64.DEFAULT).toString().trim()
+
+        body["sourceTime"] = currentTime
+        body["sourceApp"] = sourceApp
 
         body["code"] = barcode
         body["device_id"] = DeviceUtils.getUniqueDeviceId()

@@ -509,32 +509,32 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
                             binding.textFab.visibleOrInvisible(mData.canUpdate == true)
 
                             if (mData.forceUpdate == true) {
-                                if (guarantee != null) {
-                                    val intent = Intent(this, UpdateInformationFirstActivity::class.java)
-                                    intent.putExtra(Constant.DATA_1, 1)
-                                    intent.putExtra(Constant.DATA_2, distributorId)
+                                Handler(Looper.getMainLooper()).postDelayed({
+                                    if (guarantee != null) {
+                                        val intent = Intent(this, UpdateInformationFirstActivity::class.java)
+                                        intent.putExtra(Constant.DATA_1, 1)
+                                        intent.putExtra(Constant.DATA_2, distributorId)
 //                                intent.putExtra(Constant.DATA_4, product_code)
-                                    intent.putExtra(Constant.DATA_5, serial)
-                                    intent.putExtra(Constant.DATA_6, productId)
+                                        intent.putExtra(Constant.DATA_5, serial)
+                                        intent.putExtra(Constant.DATA_6, productId)
 //                                intent.putExtra(Constant.DATA_7, objVariant)
-                                    intent.putExtra(Constant.DATA_8, viewModel.barcode)
-                                    startActivity(intent)
-                                } else {
-                                    val intent = Intent(this, UpdateInformationFirstActivity::class.java)
-                                    intent.putExtra(Constant.DATA_1, 2)
-                                    intent.putExtra(Constant.DATA_2, distributorId)
+                                        intent.putExtra(Constant.DATA_8, viewModel.barcode)
+                                        startActivity(this, intent)
+                                    } else {
+                                        val intent = Intent(this, UpdateInformationFirstActivity::class.java)
+                                        intent.putExtra(Constant.DATA_1, 2)
+                                        intent.putExtra(Constant.DATA_2, distributorId)
 //                                intent.putExtra(Constant.DATA_4, product_code)
-                                    intent.putExtra(Constant.DATA_5, serial)
-                                    intent.putExtra(Constant.DATA_6, productId)
+                                        intent.putExtra(Constant.DATA_5, serial)
+                                        intent.putExtra(Constant.DATA_6, productId)
 //                                intent.putExtra(Constant.DATA_7, objVariant)
-                                    intent.putExtra(Constant.DATA_8, viewModel.barcode)
-                                    startActivity(intent)
-                                }
+                                        intent.putExtra(Constant.DATA_8, viewModel.barcode)
+                                        startActivity(this, intent)
+                                    }
+                                }, 500)
                             }
                         } else {
                             if (it.data?.data?.errorCode == 4) {
-//                                adapter.setError(R.drawable.ic_error_request, ICheckApplication.getError(mData.errorMessage), null)
-
                                 val intent = Intent(this, UpdateInformationFirstActivity::class.java)
                                 intent.putExtra(Constant.DATA_1, 3)
                                 intent.putExtra(Constant.DATA_8, viewModel.barcode)

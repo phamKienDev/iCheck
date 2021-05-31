@@ -9,9 +9,9 @@ import android.widget.AdapterView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import vn.icheck.android.activities.product.contribute.NullHolder
 import vn.icheck.android.base.dialog.date_time.callback.DateTimePickerListener
 import vn.icheck.android.base.holder.BaseViewHolder
+import vn.icheck.android.component.`null`.NullHolder
 import vn.icheck.android.databinding.*
 import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICFieldGuarantee
@@ -89,7 +89,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 textType
             }
             "select" -> {
-                if (listData[position].valueF?.isNullOrEmpty() == false) {
+                if (!listData[position].valueF.isNullOrEmpty()) {
                     if (listData[position].valueF?.size!! > 6) {
                         selectType
                     } else {
@@ -111,9 +111,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    override fun getItemCount(): Int {
-        return listData.size
-    }
+    override fun getItemCount() = listData.size
 
     inner class InputFieldHolder(parent: ViewGroup, val binding: ItemInputFieldBinding =
             ItemInputFieldBinding.inflate(LayoutInflater.from(parent.context), parent, false)) :

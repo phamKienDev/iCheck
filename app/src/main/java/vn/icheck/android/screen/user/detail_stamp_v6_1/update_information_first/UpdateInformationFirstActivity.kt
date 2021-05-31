@@ -276,15 +276,6 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
             }
 
             withContext(Dispatchers.Main) {
-//                if (productVariant == null || customerVariant == null || guaranteeVariant == null) {
-//                    getProductVariantError(if (StampDetailActivity.isVietNamLanguage == false) {
-//                        "Occurred. Please try again"
-//                    } else {
-//                        getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
-//                    })
-//                    return@withContext
-//                }
-
                 if (!productVariant?.data?.products.isNullOrEmpty()) {
                     binding.tvSubProductCode.visibility = View.GONE
                     binding.edtProductCode.visibility = View.GONE
@@ -297,6 +288,17 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
                     binding.edtVariant.visibility = View.GONE
                 }
 
+                /*
+                * Thông tin động của user
+                * */
+                customerVariant?.let { variant ->
+                    for (i in variant.size - 1 downTo 0) {
+                        if (variant[i].status == 0) {
+                            variant.removeAt(i)
+                        }
+                    }
+                }
+
                 if (!customerVariant.isNullOrEmpty()) {
                     binding.rcvCustomerVariant.apply {
                         beVisible()
@@ -306,6 +308,17 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
                     customerVariantAdapter.addData(customerVariant!!)
                 } else {
                     binding.rcvCustomerVariant.visibility = View.GONE
+                }
+
+                /*
+                * Thông tin động của bảo hành
+                * */
+                guaranteeVariant?.let { variant ->
+                    for (i in variant.size - 1 downTo 0) {
+                        if (variant[i].status == 0) {
+                            variant.removeAt(i)
+                        }
+                    }
                 }
 
                 if (!guaranteeVariant.isNullOrEmpty()) {
