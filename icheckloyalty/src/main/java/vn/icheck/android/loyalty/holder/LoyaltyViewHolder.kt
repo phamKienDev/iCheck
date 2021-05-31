@@ -1,6 +1,7 @@
 package vn.icheck.android.loyalty.holder
 
 import android.content.Intent
+import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
@@ -55,6 +56,32 @@ class LoyaltyViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInfla
                 putExtra(ConstantsLoyalty.DATA_2, barcode)
                 putExtra(ConstantsLoyalty.DATA_3, obj)
             })
+        }
+    }
+
+    fun bind(obj: ICKLoyalty, bannerClicked: (obj: ICKLoyalty) -> Unit, checkCode: (obj: ICKLoyalty) -> Unit) {
+        WidgetHelper.loadImageUrl(itemView.banner_game, obj.image?.original)
+
+        itemView.loyalty_description.text = if (!obj.name.isNullOrEmpty()) {
+            obj.name
+        } else {
+            itemView.context.getString(R.string.dang_cap_nhat)
+        }
+
+        itemView.edittext.removeTextChangedListener(textWatcher)
+
+        itemView.edittext.addTextChangedListener(textWatcher)
+
+        itemView.banner_game.setOnClickListener {
+            bannerClicked.invoke(obj)
+        }
+
+        itemView.btnCheckCode.setOnClickListener {
+            itemView.btnCheckCode.isEnabled = false
+            Handler().postDelayed({
+                itemView.btnCheckCode.isEnabled = true
+            }, 3000)
+            checkCode.invoke(obj)
         }
     }
 }
