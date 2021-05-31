@@ -533,7 +533,7 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
                             }
                         } else {
                             if (it.data?.data?.errorCode == 4) {
-                                adapter.setError(R.drawable.ic_error_request, ICheckApplication.getError(mData.errorMessage), null)
+//                                adapter.setError(R.drawable.ic_error_request, ICheckApplication.getError(mData.errorMessage), null)
 
                                 val intent = Intent(this, UpdateInformationFirstActivity::class.java)
                                 intent.putExtra(Constant.DATA_1, 3)
