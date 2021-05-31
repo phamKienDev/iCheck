@@ -153,6 +153,21 @@ object TimeHelper {
         }
     }
 
+    fun convertDateTimeSvToTimeDateVnStamp(date: String?): String? {
+        if (date.isNullOrEmpty())
+            return null
+
+        val sdfSv = simpleDateFormatSv("yyyy-MM-dd HH:mm:ss")
+        val sdfVn = simpleDateFormatVn("dd/MM/yyyy")
+
+        return try {
+            val mDate = sdfSv.parse(date)
+            sdfVn.format(mDate)
+        } catch (e: Exception) {
+            null
+        }
+    }
+
     fun convertDateTimeSvToTimeDateVnV1(date: String?): String? {
         if (date.isNullOrEmpty())
             return null
@@ -280,6 +295,20 @@ object TimeHelper {
 
         val sdfSv = simpleDateFormatSv
         val sdfVn = simpleDateFormatVn("hh:mm, dd/MM/yyyy")
+
+        return try {
+            sdfVn.format(sdfSv.parse(date))
+        } catch (e: Exception) {
+            null
+        }
+    }
+
+    fun convertDateTimeSvToDateVnStamp(date: String?): String? {
+        if (date.isNullOrEmpty())
+            return null
+
+        val sdfSv = simpleDateFormatSv("yyyy-MM-dd HH:mm:ss")
+        val sdfVn = simpleDateFormatVn("dd/MM/yyyy")
 
         return try {
             sdfVn.format(sdfSv.parse(date))

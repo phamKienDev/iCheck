@@ -14,7 +14,7 @@ import vn.icheck.android.util.kotlin.ActivityUtils
 class ICLastGuaranteeHolder(parent: ViewGroup, val binding: ItemLastGuaranteeBinding = ItemLastGuaranteeBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : BaseViewHolder<ICWidgetData>(binding.root) {
 
     override fun bind(obj: ICWidgetData) {
-        binding.tvTime.text = TimeHelper.convertDateTimeSvToTimeDateVn(obj.createTime)
+        binding.tvTime.text = TimeHelper.convertDateTimeSvToTimeDateVnStamp(obj.createTime)
         binding.tvAddress.text = obj.storeName
         binding.tvStatus.text = obj.status
         binding.tvState.text = obj.state

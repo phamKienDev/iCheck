@@ -194,7 +194,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 objHint.value = "Chọn " + obj.name
                 list?.add(objHint)
 
-                val adapter = HintSpinnerAdapter(itemView.context, obj.valueF, android.R.layout.simple_spinner_item)
+                val adapter = HintSpinnerAdapter(binding.root.context, obj.valueF, android.R.layout.simple_spinner_item)
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 binding.spinner.adapter = adapter
                 binding.spinner.setSelection(adapter.count)
@@ -229,7 +229,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
 
             if (!obj.valueF.isNullOrEmpty() && obj.valueF!!.size > 0) {
-                binding.rcvRadioBox.layoutManager = GridLayoutManager(itemView.context, 2)
+                binding.rcvRadioBox.layoutManager = GridLayoutManager(binding.root.context, 2)
                 binding.rcvRadioBox.adapter = RadioButtonFieldAdapter(obj.valueF!!)
             }
         }
@@ -247,7 +247,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
 
             if (!obj.valueF.isNullOrEmpty() && obj.valueF!!.size > 0) {
-                binding.rcvCheckBox.layoutManager = LinearLayoutManager(itemView.context)
+                binding.rcvCheckBox.layoutManager = LinearLayoutManager(binding.root.context)
                 binding.rcvCheckBox.adapter = CheckBoxFieldAdapter(obj.valueF!!)
             }
         }
@@ -264,8 +264,8 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 binding.tvTitleDate.text = obj.name
             }
 
-            itemView.setOnClickListener {
-                TimeHelper.datePicker(itemView.context, System.currentTimeMillis(), object : DateTimePickerListener {
+            binding.edtInputDate.setOnClickListener {
+                TimeHelper.datePicker(binding.root.context, System.currentTimeMillis(), object : DateTimePickerListener {
                     override fun onSelected(dateTime: String, milliseconds: Long) {
                         binding.edtInputDate.text = dateTime
                         listData[adapterPosition].date = dateTime

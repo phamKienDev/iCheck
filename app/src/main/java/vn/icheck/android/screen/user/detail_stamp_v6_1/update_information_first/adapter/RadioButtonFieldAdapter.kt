@@ -33,7 +33,7 @@ class RadioButtonFieldAdapter(val listData: MutableList<ValueFItem>) : RecyclerV
                 checkedPosition = adapterPosition
             }
 
-            itemView.setOnClickListener {
+            binding.tvRadio.setOnClickListener {
                 binding.tvRadio.isChecked = true
 
                 if (checkedPosition != adapterPosition && checkedPosition != -1) {

@@ -30,7 +30,7 @@ class CheckBoxFieldAdapter (val listData: MutableList<ValueFItem>) : RecyclerVie
 
             binding.tvCheck.isChecked = item.isChecked
 
-            itemView.setOnClickListener {
+            binding.tvCheck.setOnClickListener {
                 item.isChecked =! item.isChecked
                 binding.tvCheck.isChecked = item.isChecked
             }
