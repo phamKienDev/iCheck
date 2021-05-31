@@ -733,13 +733,13 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
 
     }
 
-
-
     override fun onMessageClicked() {
         getLocation()
     }
 
     override fun onClick(obj: Any) {
+        val position = binding.recyclerView.scrollY
+
         if (obj is ICKLoyalty) {
             adapter.addCampaign(ICLayout().apply {
                 viewType = ICViewTypes.CAMPAIGN_TYPE
@@ -747,9 +747,9 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
             })
         }
 
-        Handler(Looper.getMainLooper()).postDelayed({
+        if (position == 0) {
             (binding.recyclerView.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(0, 0)
-        }, 500)
+        }
     }
 
     override fun showDialogLogin(data: ICKLoyalty, code: String?) {
