@@ -223,7 +223,7 @@ object Constant {
     /*
     * Slide
     * */
-    const val TIME_DELAY_SLIDE_SECOND = 3L
+    const val TIME_DELAY_SLIDE_SECOND = 5L
     const val TIME_DELAY_SLIDE_MILLISECOND = 3000L
 
     /**
