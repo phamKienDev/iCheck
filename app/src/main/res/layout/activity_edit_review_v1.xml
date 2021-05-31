@@ -57,11 +57,10 @@
         android:layout_height="@dimen/size_1"
         android:background="@color/grayLoyalty" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutBgWhiteRadiusTop16
         android:id="@+id/no_rv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_dialog">
+        android:layout_height="wrap_content">
 
         <View
             android:id="@+id/view25"
@@ -133,5 +132,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutBgWhiteRadiusTop16>
 </LinearLayout>

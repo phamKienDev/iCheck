@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.fragment_checkout.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.ICNetworkClient
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.base.SettingManager
@@ -44,6 +45,8 @@ class CheckOutFragment : Fragment() {
         }
         tv_icoin.text = String.format("Số dư hiện tại: %,d iCoin", SessionManager.getCoin())
 
+        img_icoin.background = ViewHelper.bgWhiteRadius4StrokeSecondary1(img_icoin.context)
+
         txtTitle.setText(R.string.thanh_toan)
         imgBack.setOnClickListener {
             activity?.onBackPressed()
@@ -56,39 +59,44 @@ class CheckOutFragment : Fragment() {
             requestBody.put("service_id", mspId)
             requestBody.put("denomination", fee)
             ICNetworkClient.getApiClient().postBuyEpin(requestBody)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(object : SingleObserver<ICBuyEpin> {
-                        override fun onSuccess(t: ICBuyEpin) {
-                            DialogHelper.closeLoading(this@CheckOutFragment)
-                            btn_checkout.isEnabled = true
-                            if (t.statusCode != null && t.statusCode != 200 && t.message != null) {
-                                Toast.makeText(context, t.message, Toast.LENGTH_SHORT).show()
-                            } else {
-                                t.epinData?.let {
-                                    val successBuyEpinFragment = SuccessBuyEpinFragment()
-                                    val bundle = Bundle()
-                                    bundle.putSerializable("data", it)
-                                    bundle.putString("msp", msp!!)
-                                    successBuyEpinFragment.arguments = bundle
-                                    activity!!.supportFragmentManager.beginTransaction()
-                                            .setCustomAnimations(R.anim.right_to_left_enter, R.anim.right_to_left_exit, R.anim.left_to_right_pop_enter, R.anim.left_to_right_pop_exit)
-                                            .replace(R.id.content, successBuyEpinFragment)
-                                            .commit()
-                                }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object : SingleObserver<ICBuyEpin> {
+                    override fun onSuccess(t: ICBuyEpin) {
+                        DialogHelper.closeLoading(this@CheckOutFragment)
+                        btn_checkout.isEnabled = true
+                        if (t.statusCode != null && t.statusCode != 200 && t.message != null) {
+                            Toast.makeText(context, t.message, Toast.LENGTH_SHORT).show()
+                        } else {
+                            t.epinData?.let {
+                                val successBuyEpinFragment = SuccessBuyEpinFragment()
+                                val bundle = Bundle()
+                                bundle.putSerializable("data", it)
+                                bundle.putString("msp", msp!!)
+                                successBuyEpinFragment.arguments = bundle
+                                activity!!.supportFragmentManager.beginTransaction()
+                                    .setCustomAnimations(
+                                        R.anim.right_to_left_enter,
+                                        R.anim.right_to_left_exit,
+                                        R.anim.left_to_right_pop_enter,
+                                        R.anim.left_to_right_pop_exit
+                                    )
+                                    .replace(R.id.content, successBuyEpinFragment)
+                                    .commit()
                             }
                         }
+                    }
 
-                        override fun onSubscribe(d: Disposable) {
-                        }
+                    override fun onSubscribe(d: Disposable) {
+                    }
 
-                        override fun onError(e: Throwable) {
-                            DialogHelper.closeLoading(this@CheckOutFragment)
-                            Log.e("e", "err", e)
-                            btn_checkout.isEnabled = true
-                            ToastUtils.showLongError(context, getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
-                        }
-                    })
+                    override fun onError(e: Throwable) {
+                        DialogHelper.closeLoading(this@CheckOutFragment)
+                        Log.e("e", "err", e)
+                        btn_checkout.isEnabled = true
+                        ToastUtils.showLongError(context, getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                    }
+                })
         }
     }
 

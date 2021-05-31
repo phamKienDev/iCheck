@@ -6,17 +6,16 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <View
+    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICViewBgWhiteRadius10
+        android:id="@+id/view"
         android:layout_width="@dimen/size_50"
         android:layout_height="@dimen/size_6"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/bg_white_corners_10" />
+        android:layout_gravity="center_horizontal" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutBgWhiteRadiusTop16
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_12"
-        android:background="@drawable/bg_white_corners_top_16">
+        android:layout_marginTop="@dimen/size_12">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@id/imgAvatar"
@@ -103,5 +102,5 @@
                 android:drawableLeft="@drawable/ic_unfollow_40dp"
                 android:text="@string/xoa_thong_bao_nay" />
         </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutBgWhiteRadiusTop16>
 </LinearLayout>

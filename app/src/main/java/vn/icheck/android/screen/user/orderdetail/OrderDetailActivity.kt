@@ -14,6 +14,7 @@ import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICOrderDetail
 import vn.icheck.android.screen.user.cart.CartActivity
 import vn.icheck.android.screen.user.orderdetail.adapter.OrderDetailAdapter
@@ -46,6 +47,8 @@ class OrderDetailActivity : BaseActivity<OrderDetailPresenter>(), IOrderDetailVi
         setupRecyclerView()
         WidgetUtils.setClickListener(this, btnActionOne, btnActionTwo)
         presenter.getID(intent)
+
+        btnActionTwo.background=ViewHelper.bgWhitePressStroke1Radius36(this)
     }
 
     private fun setupToolbar() {

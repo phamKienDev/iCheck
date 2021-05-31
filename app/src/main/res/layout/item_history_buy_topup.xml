@@ -19,7 +19,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginTop="@dimen/size_8"
-            android:background="@drawable/rectangle_corner_stroke_gray_8"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">

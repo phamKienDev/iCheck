@@ -7,12 +7,12 @@
     android:layout_gravity="center">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginEnd="@dimen/size_12"
-        android:background="@drawable/bg_white_corners_10"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 

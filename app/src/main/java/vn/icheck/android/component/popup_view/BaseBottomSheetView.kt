@@ -5,6 +5,7 @@ import android.widget.FrameLayout
 import kotlinx.android.synthetic.main.base_bottom_sheet_view.*
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialog
+import vn.icheck.android.ichecklibs.ViewHelper
 
 abstract class BaseBottomSheetView(context: Context, isCancelable: Boolean) : BaseBottomSheetDialog(context, isCancelable) {
 
@@ -18,6 +19,8 @@ abstract class BaseBottomSheetView(context: Context, isCancelable: Boolean) : Ba
     }
 
     private fun initView() {
+        dialog.linearLayout.background=ViewHelper.bgWhiteRadiusTop20(dialog.context)
+
         if(!title.isNullOrEmpty()){
             dialog.tvTitle.text = title
         }

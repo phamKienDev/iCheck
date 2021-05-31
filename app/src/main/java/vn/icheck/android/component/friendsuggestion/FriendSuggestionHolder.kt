@@ -14,6 +14,7 @@ import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -95,8 +96,11 @@ class FriendSuggestionHolder(parent: ViewGroup) : BaseViewHolder<ICUser>(LayoutI
                 getChildAt(5).visibility = View.GONE
                 (getChildAt(4) as TextView?)?.text = "Xóa"
                 // Text disagree
-                getChildAt(4).setOnClickListener {
-                    removeSuggestion(obj)
+                getChildAt(4).apply {
+                    background=ViewHelper.bgWhitePressStrokePrimary1Radius4(context)
+                    setOnClickListener {
+                        removeSuggestion(obj)
+                    }
                 }
             }
         }

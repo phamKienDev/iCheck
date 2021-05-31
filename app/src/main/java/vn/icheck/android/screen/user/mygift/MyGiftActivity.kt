@@ -44,6 +44,8 @@ class MyGiftActivity : BaseActivityMVVM(), IRecyclerViewCallback {
             tvMyGift.setTextColor(this)
             tvGiftReward.setTextColor(this)
         }
+        line.background=ViewHelper.bgWhiteMyGiftTitle(this)
+        line1.background=ViewHelper.bgWhiteMyGiftTitle(this)
     }
 
     private fun initRecyclerView() {

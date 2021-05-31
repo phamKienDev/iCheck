@@ -17,6 +17,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import vn.icheck.android.R
 import vn.icheck.android.constant.*
 import vn.icheck.android.databinding.DialogBottomWallSettingBinding
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.screen.user.option_edit_information_public.EditInformationPublicActivity
 import vn.icheck.android.screen.user.option_manager_user_watching.ManagerUserWatchingActivity
@@ -39,7 +40,7 @@ class UserWallSettingFragment:BottomSheetDialogFragment() {
         dialog?.setOnShowListener {
             val bottomSheetDialog = dialog as BottomSheetDialog
             val bottomSheet = bottomSheetDialog.findViewById<View>(R.id.design_bottom_sheet) as FrameLayout?
-            bottomSheet?.setBackgroundResource(R.drawable.rounded_dialog)
+            dialog?.context?.let { it1 -> bottomSheet?.background = ViewHelper.bgWhiteRadiusTop16(it1) }
             BottomSheetBehavior.from(bottomSheet!!).state = BottomSheetBehavior.STATE_EXPANDED
         }
         _binding = DialogBottomWallSettingBinding.inflate(inflater, container, false)

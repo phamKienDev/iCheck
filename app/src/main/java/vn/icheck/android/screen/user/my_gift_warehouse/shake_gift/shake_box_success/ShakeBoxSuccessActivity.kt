@@ -30,6 +30,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.*
 import vn.icheck.android.screen.dialog.PermissionDialog
 import vn.icheck.android.screen.user.campaign_onboarding.CampaignOnboardingActivity
@@ -81,6 +82,8 @@ class ShakeBoxSuccessActivity : BaseActivityMVVM() {
 
     private fun initView() {
         ListShakeGridBoxActivity.numberGiftUser--
+
+        btnMyGift.background=ViewHelper.bgWhiteRadius4(this)
     }
 
     private fun setupStatusBar() {

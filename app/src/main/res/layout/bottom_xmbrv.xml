@@ -31,7 +31,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_24"
         android:layout_marginBottom="@dimen/size_12"
-        android:background="@drawable/btn_white_outline_blue_1_corners_36"
         android:fontFamily="sans-serif-medium"
         android:text="Xem tất cả đánh giá"
         android:textAllCaps="false"

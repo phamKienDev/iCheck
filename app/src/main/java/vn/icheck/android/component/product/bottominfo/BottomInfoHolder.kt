@@ -12,6 +12,7 @@ import vn.icheck.android.component.BottomModel
 import vn.icheck.android.component.product.ProductDetailListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.SettingManager
 
 class BottomInfoHolder(parent: ViewGroup,val listener: ProductDetailListener) : BaseHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_product_bottom_info, parent, false)) {
@@ -19,6 +20,7 @@ class BottomInfoHolder(parent: ViewGroup,val listener: ProductDetailListener) : 
     private val productContact = SettingManager.productContact
 
     fun bind(bottomModel: BottomModel) {
+        itemView.view.background=ViewHelper.bgWhiteRadiusTop16(itemView.context)
         itemView.rcvContacSetting.layoutManager = LinearLayoutManager(itemView.context)
         itemView.rcvContacSetting.adapter = adapter
         adapter.setListData(bottomModel.list)

@@ -85,7 +85,6 @@
                 android:id="@id/btnActionTwo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/btn_white_outline_blue_1_corners_36"
                 android:ellipsize="end"
                 android:fontFamily="sans-serif-medium"
                 android:paddingStart="@dimen/size_24"

@@ -48,6 +48,9 @@ class ConfirmShipFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.tvReport.background=ViewHelper.bgWhitePressStrokePrimary1Radius4(requireContext())
+
         if (viewModel.arrayCart.isEmpty()) {
             binding.btnConfirm simpleText "Thanh toán"
         }

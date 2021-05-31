@@ -58,7 +58,6 @@
         android:layout_width="@dimen/size_48"
         android:layout_height="@dimen/size_48"
         android:layout_marginEnd="@dimen/size_38"
-        android:background="@drawable/btn_white_oval"
         android:src="@drawable/ic_add_blue_48"
         app:layout_constraintEnd_toStartOf="@id/imgDownload"
         app:layout_constraintTop_toTopOf="@id/imgDownload" />
@@ -81,7 +80,6 @@
         android:layout_width="@dimen/size_48"
         android:layout_height="@dimen/size_48"
         android:layout_marginBottom="@dimen/size_60"
-        android:background="@drawable/btn_white_oval"
         android:src="@drawable/ic_download_blue_48"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -105,7 +103,6 @@
         android:layout_width="@dimen/size_48"
         android:layout_height="@dimen/size_48"
         android:layout_marginStart="@dimen/size_38"
-        android:background="@drawable/btn_white_oval"
         android:src="@drawable/ic_share_blue_48"
         app:layout_constraintStart_toEndOf="@id/imgDownload"
         app:layout_constraintTop_toTopOf="@id/imgDownload" />

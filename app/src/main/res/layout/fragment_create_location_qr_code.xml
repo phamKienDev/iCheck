@@ -68,7 +68,6 @@
             android:id="@id/edtSearch"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/bg_white_corners_4"
             android:drawableEnd="@drawable/ic_search_gray_24dp"
             android:drawablePadding="@dimen/size_10"
             android:fontFamily="@font/barlow_medium"

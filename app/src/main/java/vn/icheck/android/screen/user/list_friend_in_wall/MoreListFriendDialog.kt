@@ -4,6 +4,7 @@ import android.content.Context
 import kotlinx.android.synthetic.main.dialog_more_list_friend.*
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialog
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.wall.ICUserFollowWall
 
 abstract class MoreListFriendDialog(context: Context, val item: ICUserFollowWall) : BaseBottomSheetDialog(context, R.layout.dialog_more_list_friend, true) {
@@ -19,7 +20,7 @@ abstract class MoreListFriendDialog(context: Context, val item: ICUserFollowWall
         }
 
         dialog.tvUnfriend.text = "Hủy kết bạn ${item.getUserName()}"
-
+        dialog.view.background = ViewHelper.bgWhiteRadius4(dialog.context)
         dialog.show()
         listener()
     }

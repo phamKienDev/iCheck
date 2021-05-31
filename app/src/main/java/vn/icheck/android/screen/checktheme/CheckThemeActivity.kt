@@ -9,10 +9,7 @@ import android.media.AudioAttributes
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.animation.AnimationUtils
-import android.widget.ProgressBar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -31,14 +28,10 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.FileHelper
 import vn.icheck.android.helper.RelationshipHelper
 import vn.icheck.android.helper.ShareSessionToModule
-import vn.icheck.android.ichecklibs.ViewHelper
-import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.loyalty.helper.StatusBarHelper
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.models.*
 import vn.icheck.android.network.util.DeviceUtils
-import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.bottom_sheet.SelectCityBottomSheet
-import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.bottom_sheet.SelectDistrictBottomSheet
 import vn.icheck.android.screen.user.welcome.WelcomeActivity
 import vn.icheck.android.util.ick.openAppInGooglePlay
 import java.io.File
@@ -55,8 +48,7 @@ class CheckThemeActivity : BaseActivityMVVM() {
         setContentView(R.layout.activity_check_theme)
 
         getData()
-//        onInitView()
-        SelectCityBottomSheet().show(supportFragmentManager,null)
+        onInitView()
     }
 
     private fun getData() {

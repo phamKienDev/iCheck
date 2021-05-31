@@ -13,6 +13,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import vn.icheck.android.R
 import vn.icheck.android.databinding.FragmentChangePhoneBinding
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.wall.IckUserWallViewModel
 import vn.icheck.android.util.AfterTextWatcher
 
@@ -33,6 +34,9 @@ class IckChangePhoneFragment:Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.scrollView.background=ViewHelper.bgWhiteRadiusTop20(requireContext())
+        binding.constraintLayout.background=ViewHelper.bgWhiteRadiusTop20(requireContext())
+
         binding.edtPhone.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
                 binding.imgClear.visibility = View.VISIBLE

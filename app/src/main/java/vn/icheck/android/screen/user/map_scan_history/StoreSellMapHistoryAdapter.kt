@@ -63,7 +63,8 @@ class StoreSellMapHistoryAdapter(val view: StoreSellMapHistoryView) : RecyclerVi
     inner class ViewHolder(parent: ViewGroup, val binding: ItemStoreSellInMapBinding = ItemStoreSellInMapBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : RecyclerView.ViewHolder(binding.root) {
         fun bindData(item: ICStoreNear) {
             binding.layoutImage.background=ViewHelper.bgTransparentRadius12StrokeLineColor1(binding.layoutImage.context)
-            binding.layoutParent.layoutParams = if (listData.size > 1) {
+            binding.layoutParent.background=ViewHelper.bgWhiteRadius16(binding.layoutParent.context)
+            binding.layoutParent.layoutParams = if (listData.size > 1){
                 RecyclerView.LayoutParams(sizeWidth, RecyclerView.LayoutParams.WRAP_CONTENT).apply {
                     setMargins(sizeMargin, 0, sizeMargin, 0)
                 }
@@ -87,7 +88,7 @@ class StoreSellMapHistoryAdapter(val view: StoreSellMapHistoryView) : RecyclerVi
             if (selectedPos == absoluteAdapterPosition) {
                 itemView.layoutParent.background = ViewHelper.bgWhiteOutlinePrimary2Corners16(itemView.context)
             } else {
-                itemView.layoutParent.setBackgroundResource(R.drawable.bg_white_corners_16)
+                itemView.layoutParent.background= ViewHelper.bgWhiteRadius16(itemView.context)
             }
 
             itemView.tvName.text = item.name ?: itemView.context.getString(R.string.dang_cap_nhat)

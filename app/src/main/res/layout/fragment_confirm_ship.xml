@@ -415,7 +415,6 @@
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_20"
                 android:layout_marginEnd="@dimen/size_12"
-                android:background="@drawable/btn_white_outline_light_blue_1_corners_4"
                 android:gravity="center"
                 android:padding="@dimen/size_8"
                 android:text="Báo lỗi"

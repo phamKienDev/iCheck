@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutBgWhiteRadius4 xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/bg_white_corners_4">
+    android:layout_height="wrap_content">
 
     <vn.icheck.android.component.avatar_user.AvatarUserComponent
         android:id="@id/layoutAvatar"
@@ -79,7 +78,6 @@
         android:id="@id/tvMessage"
         android:layout_width="@dimen/size_0"
         android:layout_height="@dimen/size_28"
-        android:background="@drawable/btn_white_outline_light_blue_1_corners_4"
         android:drawablePadding="@dimen/size_8"
         android:gravity="center"
         android:includeFontPadding="false"
@@ -99,4 +97,4 @@
         android:layout_marginTop="@dimen/size_12"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvContent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutBgWhiteRadius4>

@@ -22,6 +22,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.util.JsonHelper
 import vn.icheck.android.screen.user.bannersurvey.presenter.BannerSurveyPresenter
 import vn.icheck.android.screen.user.bannersurvey.view.IBannerSurveyView
@@ -44,6 +45,9 @@ class BannerSurveyActivity : BaseActivity<BannerSurveyPresenter>(), IBannerSurve
     override fun onInitView() {
         initToolbar()
         presenter.getData(intent)
+
+        btnHome.background=ViewHelper.bgWhitePressStrokeSecondary1Radius4(this)
+        btnLeft.background=ViewHelper.bgWhitePressStrokeSecondary1Radius4(this)
     }
 
     private fun initToolbar() {

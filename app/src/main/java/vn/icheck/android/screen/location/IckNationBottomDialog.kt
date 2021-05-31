@@ -20,6 +20,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.bottom_nation_dialog.*
 import vn.icheck.android.R
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.model.country.CountryCode
 import vn.icheck.android.network.model.country.Nation
 import vn.icheck.android.screen.account.icklogin.viewmodel.IckLoginViewModel
@@ -43,7 +44,7 @@ class IckNationBottomDialog : BottomSheetDialogFragment() {
         dialog?.setOnShowListener {
             val bottomSheetDialog = dialog as BottomSheetDialog
             val bottomSheet = bottomSheetDialog.findViewById<View>(R.id.design_bottom_sheet) as FrameLayout?
-            bottomSheet?.setBackgroundResource(R.drawable.rounded_dialog)
+            dialog?.context?.let { it1 -> bottomSheet?.background = ViewHelper.bgWhiteRadiusTop16(it1) }
             BottomSheetBehavior.from(bottomSheet!!).state = BottomSheetBehavior.STATE_EXPANDED
         }
         return inflater.inflate(R.layout.bottom_nation_dialog, container, false)

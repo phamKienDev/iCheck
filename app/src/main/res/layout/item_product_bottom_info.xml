@@ -7,9 +7,9 @@
     android:paddingBottom="@dimen/size_12">
 
     <View
+        android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_0"
-        android:background="@drawable/bg_white_corners_top_16"
         app:layout_constraintBottom_toBottomOf="@id/tvHotline"
         app:layout_constraintTop_toTopOf="parent" />
 

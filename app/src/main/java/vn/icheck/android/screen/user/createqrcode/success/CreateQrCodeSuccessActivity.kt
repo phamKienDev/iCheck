@@ -13,6 +13,7 @@ import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.dialog.PermissionDialog
 import vn.icheck.android.screen.user.createqrcode.success.presenter.CreateQrCodeSuccessPresenter
 import vn.icheck.android.screen.user.createqrcode.success.view.ICreateQrCodeSuccessView
@@ -36,6 +37,10 @@ class CreateQrCodeSuccessActivity : BaseActivity<CreateQrCodeSuccessPresenter>()
     override fun onInitView() {
         presenter.getData(intent)
         initListener()
+
+        imgCreate.background=ViewHelper.bgWhiteCirclePressRadius48(this)
+        imgSave.background=ViewHelper.bgWhiteCirclePressRadius48(this)
+        imgDownload.background=ViewHelper.bgWhiteCirclePressRadius48(this)
     }
 
     private fun initListener() {

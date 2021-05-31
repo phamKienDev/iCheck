@@ -53,7 +53,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/size_0"
                     android:adjustViewBounds="true"
-                    android:background="@drawable/bg_white_corners_top_10"
                     android:cropToPadding="true"
                     android:scaleType="centerCrop"
                     app:layout_constraintBottom_toTopOf="@id/imgQrCode"

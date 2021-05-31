@@ -17,12 +17,11 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/left_menu_bg" />
 
-    <LinearLayout
+    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutBgWhiteRadiusTop16
         android:id="@+id/bg_info"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_130"
-        android:background="@drawable/rounded_dialog"
         android:orientation="vertical"
         android:paddingBottom="@dimen/size_15"
         app:layout_constraintEnd_toEndOf="parent"
@@ -284,7 +283,7 @@
             android:drawableEnd="@drawable/ic_arrow_right_light_blue_24dp"
             android:fontFamily="@font/barlow_medium"
             android:text="Xem thêm thông tin cá nhân" />
-    </LinearLayout>
+    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutBgWhiteRadiusTop16>
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/user_avatar"

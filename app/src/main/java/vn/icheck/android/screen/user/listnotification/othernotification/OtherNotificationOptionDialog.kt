@@ -16,6 +16,7 @@ abstract class OtherNotificationOptionDialog(context: Context) : BaseBottomSheet
 //        WidgetUtils.loadImageUrl(dialog.imgAvatar, obj.sourceUser?.firstOrNull()?.avatar, R.drawable.ic_circle_avatar_default)
         dialog.imgAvatar.background=ViewHelper.bgTransparentRadius4StrokeLineColor1(dialog.context)
         dialog.imgAvatar.setImageResource(R.drawable.ic_icheck_logo)
+
         when (obj.targetEntity) {
             "system_score_changed" -> {
                 dialog.tvStatus.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_notification_icoin_20dp, 0)

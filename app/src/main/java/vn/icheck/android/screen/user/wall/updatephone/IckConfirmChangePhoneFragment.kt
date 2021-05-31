@@ -14,6 +14,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import vn.icheck.android.databinding.FragmentConfirmChangePhoneBinding
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.wall.IckUserWallViewModel
 
 class IckConfirmChangePhoneFragment:Fragment() {
@@ -42,6 +43,8 @@ class IckConfirmChangePhoneFragment:Fragment() {
     }
 
     private fun initViews() {
+        binding.constraintLayout.background=ViewHelper.bgWhiteRadiusTop20(requireContext())
+
         val text = String.format("<p>Mã xác nhận OTP đã được gửi đến\n" +
                 "số điện thoại <span style='color:${vn.icheck.android.ichecklibs.Constant.getSecondaryColorCode}'>%s</span></p>", args.phone)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

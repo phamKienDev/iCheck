@@ -114,7 +114,7 @@ class TakeMediaDialog(val activity: Activity,
     }
 
     private fun setupView() {
-        btnSubmit.background = ViewHelper.bgOutlinePrimary1Corners4(requireContext())
+        btnSubmit.background = ViewHelper.bgPrimaryCorners4(requireContext())
     }
 
     override fun onResume() {

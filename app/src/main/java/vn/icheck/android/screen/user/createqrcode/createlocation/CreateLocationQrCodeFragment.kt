@@ -78,6 +78,7 @@ class CreateLocationQrCodeFragment : BaseCreateQrCodeFragment<CreateLocationQrCo
     }
 
     private fun setupView() {
+        edtSearch.background=ViewHelper.bgWhiteRadius4(requireContext())
         btnCreate.background = ViewHelper.btnPrimaryCorners4(requireContext())
     }
 

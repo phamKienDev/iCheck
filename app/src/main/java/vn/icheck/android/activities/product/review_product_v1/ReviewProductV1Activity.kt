@@ -99,6 +99,7 @@ class ReviewProductV1Activity : BaseActivity<ReviewProductPresenter>(), IReviewP
 
         linearLayoutActor.background=ViewHelper.bgTransparentRadius10StrokeLineColor1(this)
         tv_answer_actor.background=ViewHelper.bgTransparentRadius10StrokeLineColor1(this)
+        view28.background=ViewHelper.bgWhiteRadiusTop16(this)
     }
 
     private fun initSwipeLayout() {

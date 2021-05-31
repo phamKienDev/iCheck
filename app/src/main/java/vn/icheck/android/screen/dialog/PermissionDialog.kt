@@ -9,6 +9,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseDialog
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.helper.PermissionHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 
 class PermissionDialog(context: Context, val type: Int, val listener: PermissionListener): BaseDialog(context, R.style.DialogTheme) {
 
@@ -102,7 +103,7 @@ class PermissionDialog(context: Context, val type: Int, val listener: Permission
                 button = R.string.ask_permission_call_button
             }
         }
-
+        constraintLayout.background=ViewHelper.bgWhiteRadius10(constraintLayout.context)
         imgIcon.setImageResource(icon)
         tvTitle.setText(title)
         tvMessage.setText(message)

@@ -53,7 +53,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_8"
-        android:background="@drawable/btn_white_outline_blue_1_corners_36"
         android:drawableStart="@drawable/ic_outline_place_blue_18px"
         android:fontFamily="sans-serif"
         android:gravity="center_vertical"

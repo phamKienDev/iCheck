@@ -53,7 +53,6 @@
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginEnd="@dimen/size_12"
         android:textSize="@dimen/font_14"
-        android:background="@drawable/rectangle_corner_stroke_gray_4"
         android:fontFamily="@font/barlow_medium"
         android:gravity="top|start"
         android:hint="Mô tả nội dung khác"

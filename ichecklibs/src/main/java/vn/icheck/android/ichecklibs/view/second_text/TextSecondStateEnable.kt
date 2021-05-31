@@ -6,7 +6,7 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
 import vn.icheck.android.ichecklibs.Constant
 
-class TextSecondStateEnable : AppCompatTextView {
+open class TextSecondStateEnable : AppCompatTextView {
     constructor(context: Context) : super(context) {
         setup()
     }

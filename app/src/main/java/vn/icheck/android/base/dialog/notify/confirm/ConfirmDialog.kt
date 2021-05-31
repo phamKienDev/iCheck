@@ -8,6 +8,7 @@ import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
 import vn.icheck.android.R
 import vn.icheck.android.databinding.DialogConfirmBinding
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.beGone
 import vn.icheck.android.ichecklibs.util.beVisible
 
@@ -39,6 +40,9 @@ abstract class ConfirmDialog(
 
     @Suppress("DEPRECATION")
     private fun onInitView() {
+        binding.btnDisagree.background=ViewHelper.bgWhitePressRadiusBottomLeft8(context)
+        binding.btnAgree.background=ViewHelper.bgWhitePressRadiusBottomRight8(context)
+
         if (colorTitle != null)
             binding.txtTitle.setTextColor(getColor(colorTitle))
 

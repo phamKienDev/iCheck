@@ -16,23 +16,21 @@
         app:behavior_peekHeight="1000dp"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
-        <View
+        <vn.icheck.android.ichecklibs.view.app_background.white_background.ICViewBgWhiteRadius4
             android:id="@id/viewTop"
             android:layout_width="@dimen/size_50"
             android:layout_height="@dimen/size_6"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/size_16"
-            android:background="@drawable/bg_white_corners_4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutBgWhiteRadiusTop16
             android:id="@id/layoutContent"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/size_8"
-            android:background="@drawable/bg_white_corners_top_16"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/viewTop">
 
@@ -318,7 +316,7 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintBottom_toBottomOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutBgWhiteRadiusTop16>
 
         <LinearLayout
             android:id="@+id/layoutPermission"

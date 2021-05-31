@@ -41,7 +41,7 @@ class TopTendencyCategoryAdapter(val listener: ITopTendencyListener) : RecyclerV
 
                 if (obj.isSelected) {
                     oldPos = adapterPosition
-                    background = ContextCompat.getDrawable(context, R.drawable.bg_white_corners_16)
+                    background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteRadius16(context)
                     setTextColor(ContextCompat.getColor(context, R.color.colorAccentYellow))
                 } else {
                     background = ViewHelper.createStateListDrawable(

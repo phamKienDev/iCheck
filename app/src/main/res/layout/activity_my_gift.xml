@@ -71,7 +71,6 @@
                 android:layout_width="@dimen/size_80"
                 android:layout_height="@dimen/size_3"
                 android:layout_gravity="center"
-                android:background="@drawable/bg_my_gift_title"
                 android:checked="true"
                 android:gravity="center" />
         </LinearLayout>
@@ -99,7 +98,6 @@
                 android:layout_width="@dimen/size_80"
                 android:layout_height="@dimen/size_3"
                 android:layout_gravity="center"
-                android:background="@drawable/bg_my_gift_title"
                 android:checked="false"
                 android:gravity="center" />
         </LinearLayout>

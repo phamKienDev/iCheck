@@ -110,7 +110,6 @@
             android:layout_height="@dimen/size_28"
             android:layout_marginEnd="@dimen/size_8"
             android:layout_marginRight="@dimen/size_8"
-            android:background="@drawable/btn_white_outline_light_blue_1_corners_4"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:includeFontPadding="false"

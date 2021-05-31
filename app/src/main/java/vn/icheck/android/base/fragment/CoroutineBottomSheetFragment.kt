@@ -16,6 +16,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import vn.icheck.android.R
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.util.ick.showSimpleErrorToast
 
 abstract class CoroutineBottomSheetFragment<VB : ViewBinding>:BottomSheetDialogFragment() {
@@ -40,7 +41,7 @@ abstract class CoroutineBottomSheetFragment<VB : ViewBinding>:BottomSheetDialogF
         dialog?.setOnShowListener {
             val bottomSheetDialog = it as BottomSheetDialog
             (bottomSheetDialog.findViewById<View>(R.id.design_bottom_sheet) as FrameLayout?)?.let { bottomSheet ->
-                bottomSheet.setBackgroundResource(R.drawable.rounded_dialog)
+                bottomSheet.background=ViewHelper.bgWhiteRadiusTop16(requireContext())
                 BottomSheetBehavior.from(bottomSheet).state = BottomSheetBehavior.STATE_EXPANDED
             }
         }

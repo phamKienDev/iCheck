@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/ick_bg_top_corner_20"
+    android:id="@+id/scrollView"
     android:layout_height="match_parent">
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:background="@drawable/ick_bg_top_corner_20"
         android:layout_height="wrap_content">
 
         <ImageView

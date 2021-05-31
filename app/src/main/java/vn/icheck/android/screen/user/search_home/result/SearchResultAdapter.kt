@@ -13,6 +13,7 @@ import vn.icheck.android.base.model.ICError
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICProductTrend
 import vn.icheck.android.network.models.ICSearchUser
 import vn.icheck.android.screen.user.campaign.holder.base.LongMessageHolder
@@ -140,6 +141,7 @@ class SearchResultAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     inner class SearchMoreHolder(parent: ViewGroup) : BaseViewHolder<ICSearchResult>(LayoutInflater.from(parent.context).inflate(R.layout.item_search_more_holder, parent, false)) {
         override fun bind(obj: ICSearchResult) {
+            itemView.rootView.background=ViewHelper.bgWhiteRadius4(itemView.context)
             if (obj.data != null) {
                 Handler().post{
                     itemView.beVisible()

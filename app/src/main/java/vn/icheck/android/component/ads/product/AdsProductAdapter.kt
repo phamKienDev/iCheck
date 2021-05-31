@@ -137,6 +137,7 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
             binding.surfaceView.visibility = View.INVISIBLE
             binding.progressBar.visibility = View.INVISIBLE
             binding.imgImage.background = ViewHelper.bgWhiteRadius4(binding.imgImage.context)
+            binding.btnAction.background=ViewHelper.bgWhitePressStrokePrimary1Radius4(binding.btnAction.context)
 
             if (!obj.media.isNullOrEmpty()) {
                 if (obj.media!![0].type == Constant.VIDEO) {
@@ -277,7 +278,7 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
             binding.imgImage.visibility = View.VISIBLE
             binding.surfaceView.visibility = View.INVISIBLE
             binding.progressBar.visibility = View.INVISIBLE
-
+            binding.btnAction.background=ViewHelper.bgWhitePressStrokePrimary1Radius4(binding.btnAction.context)
             if (!SettingManager.themeSetting?.theme?.productOverlayImage.isNullOrEmpty()) {
                 WidgetUtils.loadImageUrlFitCenter(
                     binding.productOverlayImage,
@@ -471,7 +472,7 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
             binding.imgImage.visibility = View.VISIBLE
             binding.surfaceView.visibility = View.INVISIBLE
             binding.progressBar.visibility = View.INVISIBLE
-
+            binding.btnAction.background=ViewHelper.bgWhitePressStrokePrimary1Radius4(binding.btnAction.context)
             if (!SettingManager.themeSetting?.theme?.productOverlayImage.isNullOrEmpty()) {
                 WidgetUtils.loadImageUrlFitCenter(
                     binding.productOverlayImage,
@@ -666,7 +667,7 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
         BaseViewHolder<ICAdsData>(binding.root) {
         override fun bind(obj: ICAdsData) {
             binding.imgImage.visibility = View.VISIBLE
-
+            binding.tvAction.background=ViewHelper.bgWhitePressStrokePrimary1Radius4(binding.tvAction.context)
             if (!SettingManager.themeSetting?.theme?.productOverlayImage.isNullOrEmpty()) {
                 WidgetUtils.loadImageUrlFitCenter(
                     binding.productOverlayImage,

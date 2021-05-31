@@ -20,6 +20,7 @@ class QrCodeMarketingActivity : BaseActivity<QrCodeMarketingPresenter>(), IQrCod
 
     override fun onInitView() {
         imgLogo.background=ViewHelper.bgWhiteRadius10StrokeSecondary1(this)
+        imgBanner.background=ViewHelper.bgWhiteRadiusTop10(this)
 
         presenter.createQrCodeMarketing(SessionManager.session.user, SettingManager.clientSetting, imgBanner, tvMess, btnJoin, this@QrCodeMarketingActivity, imgLogo)
         initListener()

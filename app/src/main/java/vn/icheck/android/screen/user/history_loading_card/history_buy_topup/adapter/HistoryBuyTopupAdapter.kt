@@ -17,6 +17,7 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -163,6 +164,7 @@ class HistoryBuyTopupAdapter constructor(val view: IHistoryBuyTopupView) : Recyc
 
         fun bind(item: ICRechargePhone) {
             WidgetUtils.loadImageFitCenterUrl(itemView.imgTopup, item.avatar)
+            itemView.layoutImg.background=ViewHelper.bgWhiteStrokeGrayRadius8(itemView.context)
 
             itemView.tvNameNetwork.text = "Thẻ ${item.provider}"
 

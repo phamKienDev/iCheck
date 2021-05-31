@@ -231,7 +231,6 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/size_36"
             android:layout_marginStart="8.5dp"
-            android:background="@drawable/bg_corners_white_4"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:text="@string/xem_kho_qua"

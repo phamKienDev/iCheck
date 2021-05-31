@@ -44,13 +44,12 @@
         app:layout_constraintEnd_toEndOf="@id/layoutCenter"
         app:srcCompat="@drawable/ic_edit_img_26px" />
 
-    <androidx.core.widget.NestedScrollView
+    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICNestedScrollViewBgWhiteRadiusTop16
         android:id="@id/layoutCenter"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/size_50"
         android:layout_marginBottom="@dimen/size_8"
-        android:background="@drawable/bg_white_corners_top_16"
         android:fillViewport="true"
         android:paddingTop="@dimen/size_72"
         app:layout_constraintBottom_toTopOf="@+id/btnUpdate"
@@ -634,7 +633,7 @@
 
             </TableRow>
         </TableLayout>
-    </androidx.core.widget.NestedScrollView>
+    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICNestedScrollViewBgWhiteRadiusTop16>
 
     <FrameLayout
         android:id="@id/layoutAvatar"

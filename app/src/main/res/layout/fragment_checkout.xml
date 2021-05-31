@@ -47,7 +47,6 @@
                 android:layout_height="@dimen/size_40"
                 android:layout_marginTop="@dimen/size_12"
                 android:adjustViewBounds="true"
-                android:background="@drawable/bg_wallet"
                 android:scaleType="centerInside"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

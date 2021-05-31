@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutBgWhiteRadiusTop16 xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/rounded_dialog"
     android:orientation="vertical">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutBgWhiteRadiusTop16
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_dialog">
+        android:layout_height="wrap_content">
 
         <ImageButton
             android:id="@+id/btn_clear"
@@ -81,7 +79,7 @@
             app:layout_constraintTop_toBottomOf="@+id/edt_search"
             tools:listitem="@layout/item_category_title" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutBgWhiteRadiusTop16>
 
 
     <TextView
@@ -105,4 +103,4 @@
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_ick_category" />
-</LinearLayout>
+</vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutBgWhiteRadiusTop16>

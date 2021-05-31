@@ -25,14 +25,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutBgWhiteRadius8
         android:id="@id/layoutContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_12"
         android:layout_marginEnd="@dimen/size_12"
-        android:background="@drawable/bg_white_corners_8"
         app:layout_constraintTop_toBottomOf="@id/tvExist"
         app:layout_goneMarginTop="@dimen/size_6">
 
@@ -166,6 +165,8 @@
             app:layout_constraintStart_toEndOf="@id/btnUnAdd"
             app:layout_constraintTop_toTopOf="@id/btnUnAdd" />
 
+<!--        android:background="@drawable/btn_white_outline_blue_1_corners_36"
+ sẽ thay = code sau-->
         <vn.icheck.android.ichecklibs.view.secondary.ButtonSecondary
             android:id="@id/btnAddToCart"
             android:layout_width="wrap_content"
@@ -186,7 +187,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layoutShop" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutBgWhiteRadius8>
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@id/imgClose"

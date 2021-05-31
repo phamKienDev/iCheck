@@ -686,7 +686,7 @@ object ViewHelper {
         layoutParams.setMargins(SizeHelper.size4, 0, SizeHelper.size4, SizeHelper.size8)
         imageButton.layoutParams = layoutParams
         imageButton.setPadding(SizeHelper.size1, SizeHelper.size1, SizeHelper.size1, SizeHelper.size1)
-        imageButton.background = ContextCompat.getDrawable(context, R.drawable.bg_outline_blue_1_corners_10)
+        imageButton.background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteRadius10StrokeSecondary1(context)
         return imageButton
     }
 
@@ -1197,7 +1197,7 @@ object ViewHelper {
             it.layoutParams = createLayoutParams(SizeHelper.size60, SizeHelper.size60).also { layoutParams ->
                 layoutParams.gravity = Gravity.CENTER_HORIZONTAL
             }
-            it.background = ContextCompat.getDrawable(context, R.drawable.bg_outline_blue_1_corners_10)
+            it.background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteRadius10StrokeSecondary1(context)
             it.setPadding(SizeHelper.size10, SizeHelper.size10, SizeHelper.size10, SizeHelper.size10)
             it.isClickable = false
             it.isFocusable = false
@@ -3542,7 +3542,7 @@ object ViewHelper {
                 it.setMargins(SizeHelper.size12, SizeHelper.size10, SizeHelper.size12, 0)
             }
             layoutParams.id = R.id.constraintLayout
-            layoutParams.background = ContextCompat.getDrawable(context, R.drawable.bg_white_corners_4)
+            layoutParams.background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteRadius4(context)
             layoutParams.setPadding(SizeHelper.size12)
 
             val circleImageView = CircleImageView(context).also { params ->

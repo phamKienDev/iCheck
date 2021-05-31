@@ -107,7 +107,8 @@ class UserFollowPageAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
         }
     }
 
-    inner class InfoHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.layout_info_user_follow_page_holder, parent, false)) {
+    inner class InfoHolder(parent: ViewGroup) :
+        RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.layout_info_user_follow_page_holder, parent, false)) {
         fun bind(obj: ICPageOverview) {
 
             val listAvatar = mutableListOf<String>()
@@ -167,7 +168,8 @@ class UserFollowPageAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
         }
     }
 
-    inner class ListUserHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_list_user_search_result, parent, false)) {
+    inner class ListUserHolder(parent: ViewGroup) :
+        RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_list_user_search_result, parent, false)) {
         private val interaction = RelationshipInteractor()
 
         private var isMyFriendInvitationUser: Boolean? = null
@@ -176,7 +178,7 @@ class UserFollowPageAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
 
         fun bind(obj: ICSearchUser) {
             itemView.btnConfirm.background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context)
-
+            itemView.tvMessage.background = vn.icheck.android.ichecklibs.ViewHelper.bgWhitePressStrokePrimary1Radius4(itemView.context)
             itemView.layoutAvatar.setData(obj.avatar, obj.rank?.level, R.drawable.ic_avatar_default_84px)
 
             itemView.tvTitle.apply {
@@ -269,7 +271,7 @@ class UserFollowPageAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
                         ""
                     }
 
-                    when  {
+                    when {
                         isFriendInvitationMeUser!! -> {
                             itemView.tvContent.text = content
 

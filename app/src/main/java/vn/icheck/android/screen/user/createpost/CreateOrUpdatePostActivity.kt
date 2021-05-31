@@ -110,6 +110,7 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
     }
 
     private fun setupView() {
+        tvViewMore.background=vn.icheck.android.ichecklibs.ViewHelper.bgWhitePressStrokeSecondary1Radius4(this)
         if (intent?.getLongExtra(Constant.DATA_2, -1) != -1L) {
 
             WidgetUtils.loadImageUrl(imgAvatar, intent.getStringExtra(Constant.DATA_4), R.drawable.ic_business_v2)
