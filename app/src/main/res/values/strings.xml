@@ -629,6 +629,7 @@
     <string name="email_icheck"><![CDATA[Email: <font color="#057dda">%s</font>]]></string>
     <string name="ma_so_thue_icheck">MST: %s</string>
     <string name="hotline_dang_ky"><![CDATA[Hotline đăng ký: <font color="#057dda">%s</font>]]></string>
+    <string name="hotline_v2_xxx">Hotline: %s</string>
     <string name="dang_ky_ma_so_ma_vach">Đăng ký mã số mã vạch</string>
     <string name="thong_tin_thuong_pham">Thông tin thương phẩm</string>
     <string name="tem_dien_tu_chong_gia">Tem điện tử chống giả</string>
@@ -930,7 +931,7 @@
     <string name="tai_tro_boi">Tài trợ bởi</string>
     <string name="san_pham_chinh_hang_uppercase">SẢN PHẨM CHÍNH HÃNG</string>
     <string name="canh_bao_uppercase">CẢNH BÁO!</string>
-    <string name="canh_bao_uppercase_down_xxx">CẢNH BÁO!\n%s</string>
+    <string name="canh_bao_down_line_xxx">Cảnh báo!\n%s</string>
     <string name="so_lan_quet">Số lần quét</string>
     <string name="so_nguoi_quet">Số người quét</string>
     <string name="thong_tin_bao_hanh">Thông tin bảo hành</string>
@@ -950,6 +951,7 @@
     <string name="ho_va_ten_bat_buoc">Họ và tên (*)</string>
     <string name="so_dien_thoai_v2">Số điện thoại:</string>
     <string name="email_v2">Email:</string>
+    <string name="email_v2_xxx">Email: %s</string>
     <string name="dia_chi_v2">Địa chỉ:</string>
     <string name="diem_bao_hanh_v2">Điểm bảo hành:</string>
     <string name="ngay_hen_tra_v2">Ngày hẹn trả:</string>

@@ -58,11 +58,7 @@ class ICPageInfoHolder(parent: ViewGroup, val binding: ItemPageInfoBinding = Ite
             binding.tvDangCapNhatSDT.visibility = View.VISIBLE
         }
 
-        if (obj.address.isNullOrEmpty()) {
-            binding.tvAddress.text = binding.root.context.getString(R.string.dia_chi_dang_cap_nhat)
-        } else {
-            binding.tvAddress.text = obj.address
-        }
+        binding.tvAddress.text = vn.icheck.android.ichecklibs.Constant.getAddress(obj.address, obj.district?.name, obj.city?.name, null, null)
 
         if (!obj.tax.isNullOrEmpty()) {
             binding.tvMST.text = "Mã số thuế: " + obj.tax
@@ -142,11 +138,7 @@ class ICPageInfoHolder(parent: ViewGroup, val binding: ItemPageInfoBinding = Ite
             binding.tvDangCapNhatSDT.visibility = View.VISIBLE
         }
 
-        if (obj.address.isNullOrEmpty()) {
-            binding.tvAddress.text = binding.root.context.getString(R.string.dia_chi_dang_cap_nhat)
-        } else {
-            binding.tvAddress.text = obj.address
-        }
+        binding.tvAddress.text = vn.icheck.android.ichecklibs.Constant.getAddress(obj.address, obj.district, obj.city, null, null)
 
         if (!obj.tax.isNullOrEmpty()) {
             binding.tvMST.text = "Mã số thuế: " + obj.tax

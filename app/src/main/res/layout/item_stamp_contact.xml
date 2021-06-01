@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="@dimen/size_12"
-    android:layout_marginTop="@dimen/size_30"
+    android:layout_marginTop="@dimen/size_36"
     android:orientation="vertical">
 
     <vn.icheck.android.ui.view.TextHeader
@@ -21,7 +21,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_8"
-        android:background="@drawable/bg_outline_blue_1_corners_40"
         android:gravity="center"
         android:padding="@dimen/size_10"
         android:textAlignment="gravity"
@@ -33,7 +32,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_8"
-        android:background="@drawable/bg_outline_blue_1_corners_40"
         android:gravity="center"
         android:padding="@dimen/size_10"
         android:textAlignment="gravity"

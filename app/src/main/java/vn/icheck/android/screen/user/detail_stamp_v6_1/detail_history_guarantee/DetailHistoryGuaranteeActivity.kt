@@ -48,8 +48,8 @@ class DetailHistoryGuaranteeActivity : BaseActivity<DetailHistoryGuaranteePresen
             tvWarrantyInfor.text = "Thông tin bảo hành"
         }
 
-        listener()
         initRecyclerview()
+        setupListener()
 
         presenter.getObjectIntent(intent)
     }
@@ -64,7 +64,7 @@ class DetailHistoryGuaranteeActivity : BaseActivity<DetailHistoryGuaranteePresen
         recyclerView.adapter = adapter
     }
 
-    private fun listener() {
+    private fun setupListener() {
         imgBack.setOnClickListener {
             onBackPressed()
         }
