@@ -58,6 +58,10 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
 
     private fun initToolbar() {
         imgBack.setOnClickListener {
+
+            if (type != 1) {
+                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.BACK_UPDATE))
+            }
             onBackPressed()
         }
     }

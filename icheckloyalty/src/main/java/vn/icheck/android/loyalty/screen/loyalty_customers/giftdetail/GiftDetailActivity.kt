@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_gift_detail.*
+import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.base.ICMessageEvent
@@ -65,6 +66,9 @@ class GiftDetailActivity : BaseActivityGame() {
 
     private fun initToolbar() {
         imgBack.setOnClickListener {
+            if (type == 0) {
+                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.BACK_UPDATE))
+            }
             onBackPressed()
         }
     }
