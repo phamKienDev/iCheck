@@ -1,14 +1,22 @@
 package vn.icheck.android.screen.dialog
 
-import android.app.Activity
-import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
+import android.os.Bundle
 import android.os.Handler
-import android.webkit.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.Window
+import android.webkit.WebChromeClient
+import android.webkit.WebSettings
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.LinearLayout
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
@@ -24,28 +32,33 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
-import vn.icheck.android.base.dialog.notify.base.BaseDialog
-import vn.icheck.android.chat.icheckchat.base.view.setGone
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.Constant.getHtmlData
+import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.popup.PopupInteractor
 import vn.icheck.android.network.models.ICPopup
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
-import vn.icheck.android.util.ick.beGone
 
-abstract class DialogNotificationFirebaseAds(
-    context: Activity,
-    private val document: String? = null,
-    private val url: String? = null,
-    private val bitmap: Bitmap? = null,
-    private val schema: String? = null,
-    private val popup: ICPopup? = null
-) : BaseDialog(context, R.style.DialogTheme) {
+class DialogNotificationFirebaseAds : DialogFragment() {
 
+    private var document: String? = null
+    private var url: String? = null
+    private var bitmap: Bitmap? = null
+    private var schema: String? = null
+    private var popup: ICPopup? = null
+
+
+    fun setData(document: String?, url: String?, bitmap: Bitmap?, schema: String?, popup: ICPopup?) {
+        this.document = document
+        this.url = url
+        this.bitmap = bitmap
+        this.schema = schema
+        this.popup = popup
+    }
 
     companion object {
         private fun loadImage(activity: FragmentActivity, image: String, schema: String?, popup: ICPopup?, onDissmis: () -> Unit) {
@@ -69,11 +82,9 @@ abstract class DialogNotificationFirebaseAds(
                         ): Boolean {
                             if (resource != null) {
                                 CoroutineScope(Dispatchers.Main).launch {
-                                    object : DialogNotificationFirebaseAds(activity, null, null, resource, schema, popup) {
-                                        override fun onDismiss() {
-                                            onDissmis.invoke()
-                                        }
-                                    }.show()
+                                    DialogNotificationFirebaseAds().apply {
+                                        setData(null, null, resource, schema, popup)
+                                    }.show(activity.supportFragmentManager, null)
                                 }
                             }
                             return false
@@ -82,7 +93,6 @@ abstract class DialogNotificationFirebaseAds(
                     .submit()
                     .get()
             }
-
         }
 
         fun showPopupAds(activity: FragmentActivity, popup: ICPopup) {
@@ -90,11 +100,9 @@ abstract class DialogNotificationFirebaseAds(
                 "url" -> {
                     if (!popup.url.isNullOrEmpty()) {
                         CoroutineScope(Dispatchers.Main).launch {
-                            object : DialogNotificationFirebaseAds(activity, url = popup.url, popup = popup) {
-                                override fun onDismiss() {
-
-                                }
-                            }.show()
+                            DialogNotificationFirebaseAds().apply {
+                                setData(null,popup.url,null,null,popup)
+                            }.show(activity.supportFragmentManager,null)
                         }
                     }
                 }
@@ -108,11 +116,9 @@ abstract class DialogNotificationFirebaseAds(
                 else -> {
                     if (!popup.document.isNullOrEmpty()) {
                         CoroutineScope(Dispatchers.Main).launch {
-                            object : DialogNotificationFirebaseAds(activity, document = popup.document, popup = popup) {
-                                override fun onDismiss() {
-
-                                }
-                            }.show()
+                            DialogNotificationFirebaseAds().apply {
+                                setData(popup.document,null,null,null,popup)
+                            }.show(activity.supportFragmentManager,null)
                         }
                     }
                 }
@@ -123,13 +129,11 @@ abstract class DialogNotificationFirebaseAds(
         fun showPopupFirebase(activity: FragmentActivity, image: String?, document: String?, url: String?, schema: String?) {
             if (image.isNullOrEmpty()) {
                 CoroutineScope(Dispatchers.Main).launch {
-                    object : DialogNotificationFirebaseAds(activity, document = document, url = url, null, schema) {
-                        override fun onDismiss() {
-
-                        }
-
-                    }.show()
+                    DialogNotificationFirebaseAds().apply {
+                        setData(document,url,null,schema,null)
+                    }.show(activity.supportFragmentManager,null)
                 }
+
             } else {
                 loadImage(activity, image, schema, null) {
 
@@ -138,22 +142,30 @@ abstract class DialogNotificationFirebaseAds(
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        dialog?.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        dialog?.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    }
 
-    override val getLayoutID: Int
-        get() = R.layout.dialog_notification_firebase
-    override val getIsCancelable: Boolean
-        get() = false
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        if (dialog != null && dialog!!.window != null) {
+            dialog!!.window!!.requestFeature(Window.FEATURE_NO_TITLE)
+        }
+        return inflater.inflate(R.layout.dialog_notification_firebase,container)
+    }
 
-    override fun onInitView() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         when {
             bitmap != null -> {
-                layoutWeb.beGone()
-                layoutText.beGone()
-                setImageView(bitmap)
+                imageView.beVisible()
+                setImageView(bitmap!!)
 
                 imageView.setOnClickListener {
                     if (popup != null) {
-                        clickPopupAds(popup)
+                        clickPopupAds(popup!!)
                     } else {
                         dismiss()
                         ICheckApplication.currentActivity()?.let { activity ->
@@ -164,17 +176,15 @@ abstract class DialogNotificationFirebaseAds(
             }
 
             document != null -> {
-                layoutWeb.setGone()
                 Handler().postDelayed({
-                    setupWebViewHtml(document)
+                    setupWebViewHtml(document!!)
                 }, 200)
             }
             url != null -> {
-                layoutText.beGone()
                 setupWebViewUrl()
 
 
-                if (vn.icheck.android.constant.Constant.isMarketingStamps(url)) {
+                if (vn.icheck.android.constant.Constant.isMarketingStamps(url!!)) {
                     val header = hashMapOf<String, String>()
                     val urlBuilder = Uri.parse(url).buildUpon()
 
@@ -212,7 +222,7 @@ abstract class DialogNotificationFirebaseAds(
 
                     webViewUrl.loadUrl(urlBuilder.build().toString(), header)
                 } else {
-                    webViewUrl.loadUrl(url)
+                    webViewUrl.loadUrl(url!!)
                 }
             }
         }
@@ -220,11 +230,8 @@ abstract class DialogNotificationFirebaseAds(
         imgClose.setOnClickListener {
             dismiss()
         }
-
-        setOnDismissListener {
-            onDismiss()
-        }
     }
+
 
     private fun setImageView(resource: Bitmap) {
         CoroutineScope(Dispatchers.Main).launch {
@@ -235,26 +242,36 @@ abstract class DialogNotificationFirebaseAds(
                 resource.width > container.width && resource.height <= container.height -> {
                     // ảnh rộng quá màn hình -> max with, wrap height
                     imageView.layoutParams =
-                        LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                        LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT).apply {
+                            setMargins(SizeHelper.size20,0,SizeHelper.size20,SizeHelper.size20)
+                        }
                 }
                 resource.height > container.height && resource.width <= container.width -> {
                     //  ảnh dài quá màn hình ->  max height, wrap with
-                    imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, maxHeight)
+                    imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, maxHeight).apply {
+                        setMargins(SizeHelper.size20,0,SizeHelper.size20,SizeHelper.size20)
+                    }
                 }
                 resource.width > resource.height && resource.width > container.width -> {
                     //  ảnh rộng quá màn hình && ảnh có chiều rộng lớn hơn-> max with, wrap height
                     imageView.layoutParams =
-                        LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                        LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT).apply {
+                            setMargins(SizeHelper.size20,0,SizeHelper.size20,SizeHelper.size20)
+                        }
                 }
                 resource.height > resource.width && resource.height > container.height -> {
                     if (ratioWidth > ratioHeight) {
                         // max with
                         imageView.layoutParams =
-                            LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT)
+                            LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT).apply {
+                                setMargins(SizeHelper.size20,0,SizeHelper.size20,SizeHelper.size20)
+                            }
                     } else {
                         // max height
                         imageView.layoutParams =
-                            LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                            LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT).apply {
+                                setMargins(SizeHelper.size20,0,SizeHelper.size20,SizeHelper.size20)
+                            }
                     }
                 }
                 resource.height < container.height && resource.width < container.width -> {
@@ -264,11 +281,15 @@ abstract class DialogNotificationFirebaseAds(
                     if (ratioWidth > ratioHeight) {
                         // max with
                         imageView.layoutParams =
-                            LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT)
+                            LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT).apply {
+                                setMargins(SizeHelper.size20,0,SizeHelper.size20,SizeHelper.size20)
+                            }
                     } else {
                         // max height
                         imageView.layoutParams =
-                            LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                            LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT).apply {
+                                setMargins(SizeHelper.size20,0,SizeHelper.size20,SizeHelper.size20)
+                            }
                     }
                 }
             }
@@ -349,7 +370,7 @@ abstract class DialogNotificationFirebaseAds(
 
                 override fun onPageFinished(view: WebView?, url: String?) {
                     super.onPageFinished(view, url)
-
+                    layoutText.beVisible()
                 }
             }
 
@@ -411,7 +432,7 @@ abstract class DialogNotificationFirebaseAds(
 
                 override fun onPageFinished(view: WebView?, url: String?) {
                     super.onPageFinished(view, url)
-
+                    layoutWeb.beVisible()
                 }
             }
 
@@ -423,6 +444,4 @@ abstract class DialogNotificationFirebaseAds(
             }
         }
     }
-
-    protected abstract fun onDismiss()
 }

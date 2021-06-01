@@ -191,6 +191,7 @@ public class ICNetworkClient {
         builder.addHeader("Content-Type", "application/json")
                 .addHeader("User-Agent", "Model: " + deviceModel() + " + AppVersion:" + SettingManager.INSTANCE.getAppVersion())
                 .addHeader("device-id", DeviceUtils.getUniqueDeviceId())
+                .addHeader("platform", "android")
                 .addHeader("appVersion", SettingManager.INSTANCE.getAppVersion());
 
         if (SessionManager.INSTANCE.isUserLogged() || SessionManager.INSTANCE.isDeviceLogged()) {
@@ -225,6 +226,7 @@ public class ICNetworkClient {
         builder.addHeader("Content-Type", "application/json")
                 .addHeader("User-Agent", "Model: " + deviceModel() + " + AppVersion:" + SettingManager.INSTANCE.getAppVersion())
                 .addHeader("device_id", DeviceUtils.getUniqueDeviceId())
+                .addHeader("platform", "android")
                 .addHeader("appVersion", SettingManager.INSTANCE.getAppVersion());
 
         if (sessionData.getUser() != null && sessionData.getUser().getId() != 0) {
@@ -250,6 +252,7 @@ public class ICNetworkClient {
 
         builder.addHeader("Content-Type", "application/json")
                 .addHeader("device-id", DeviceUtils.getUniqueDeviceId())
+                .addHeader("platform", "android")
                 .addHeader("appVersion", SettingManager.INSTANCE.getAppVersion());
 
         if (APIConstants.LATITUDE != 0.0 && APIConstants.LONGITUDE != 00.0) {
@@ -271,6 +274,7 @@ public class ICNetworkClient {
 
         builder.addHeader("Content-Type", "application/json")
                 .addHeader("User-Agent", "Model: " + deviceModel() + " + AppVersion:" + SettingManager.INSTANCE.getAppVersion())
+                .addHeader("platform", "android")
                 .addHeader("device-id", DeviceUtils.getUniqueDeviceId())
                 .addHeader("appVersion", SettingManager.INSTANCE.getAppVersion());
 
@@ -294,6 +298,7 @@ public class ICNetworkClient {
         builder.addHeader("Content-Type", "application/json")
                 .addHeader("User-Agent", "Model: " + deviceModel() + " + AppVersion:" + SettingManager.INSTANCE.getAppVersion())
                 .addHeader("device-id", DeviceUtils.getUniqueDeviceId())
+                .addHeader("platform", "android")
                 .addHeader("appVersion", SettingManager.INSTANCE.getAppVersion());
 
         if (APIConstants.LATITUDE != 0.0 && APIConstants.LONGITUDE != 0.0) {
