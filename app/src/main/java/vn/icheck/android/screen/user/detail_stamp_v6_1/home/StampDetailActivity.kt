@@ -67,7 +67,6 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
     companion object {
         val listActivities = mutableListOf<AppCompatActivity>()
         var isVietNamLanguage: Boolean? = true
-        var mSerial: String? = null
     }
 
     private var disposable: Disposable? = null
@@ -862,6 +861,5 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
         disposable?.dispose()
         listActivities.clear()
         isVietNamLanguage = null
-        mSerial = null
     }
 }
