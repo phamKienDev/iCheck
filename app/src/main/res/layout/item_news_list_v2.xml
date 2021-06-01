@@ -80,7 +80,7 @@
         android:id="@+id/imgNews"
         android:layout_width="match_parent"
         android:layout_marginTop="@dimen/size_10"
-        android:layout_height="@dimen/trp_flight_dip_175" />
+        android:layout_height="@dimen/size_175" />
 
     <vn.icheck.android.ichecklibs.view.TextBody1
         android:id="@+id/txtDescription"
