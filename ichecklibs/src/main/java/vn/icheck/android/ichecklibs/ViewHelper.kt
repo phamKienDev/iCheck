@@ -434,6 +434,8 @@ object ViewHelper {
         radius = 4f.dpToPx()
     )
 
+
+
     fun progressPrimaryBackgroundTransparentCorners8(context: Context): LayerDrawable {
         val radius = 8f.dpToPx()
         val primaryColor = Constant.getPrimaryColor(context)
@@ -1062,4 +1064,13 @@ object ViewHelper {
     fun bgWhiteCirclePressRadius48(context: Context)= createPressDrawable(
         context, createShapeDrawable(Constant.getAppBackgroundWhiteColor(context),SizeHelper.dpToPx(48).toFloat())
     )
+
+    fun progressWhiteBackgroundGrayCorners4(context: Context): LayerDrawable {
+        val radius = 4f.dpToPx()
+        return createProgressStateListDrawable(
+            backgroundDrawable = createShapeDrawable(Color.parseColor("#80FFFFFF"), radius),
+            secondaryDrawable = createScaleDrawable(createShapeDrawable(Color.TRANSPARENT, radius)),
+            progressDrawable = createScaleDrawable(createShapeDrawable(Constant.getAppBackgroundWhiteColor(context), radius))
+        )
+    }
 }

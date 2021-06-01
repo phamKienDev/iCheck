@@ -14,6 +14,7 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.SettingHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICClientSetting
 import vn.icheck.android.screen.user.history_accumulate_points.HistoryAccumulatePointActivity
@@ -37,6 +38,7 @@ class RankOfUserActivity : BaseActivityMVVM() {
 
     @SuppressLint("ClickableViewAccessibility")
     private fun initView() {
+        seekBar.progressDrawable=ViewHelper.progressWhiteBackgroundGrayCorners4(this)
         seekBar.isEnabled = false
         seekBar.setOnTouchListener { view, motionEvent ->
             false

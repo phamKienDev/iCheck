@@ -63,8 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:maxHeight="@dimen/size_8"
-                android:minHeight="@dimen/size_8"
-                android:progressDrawable="@drawable/standard_progress_bar_rank" />
+                android:minHeight="@dimen/size_8" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@id/imgLevel"
