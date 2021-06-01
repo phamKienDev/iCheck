@@ -306,17 +306,21 @@ class DialogNotificationFirebaseAds : DialogFragment() {
                 DialogHelper.showLoading(activity)
 
                 popup.id?.let {
-                    PopupInteractor().clickPopup(it, object : ICNewApiListener<ICResponse<Any>> {
-                        override fun onSuccess(obj: ICResponse<Any>) {
-                            DialogHelper.closeLoading(activity)
-                            checkSchemePopupAds(popup)
-                        }
+                    if(!popup.deeplink.isNullOrEmpty() || !popup.path.isNullOrEmpty()){
+                        PopupInteractor().clickPopup(it, object : ICNewApiListener<ICResponse<Any>> {
+                            override fun onSuccess(obj: ICResponse<Any>) {
+                                DialogHelper.closeLoading(activity)
+                                checkSchemePopupAds(popup)
+                            }
 
-                        override fun onError(error: ICResponseCode?) {
-                            DialogHelper.showLoading(activity)
-                            checkSchemePopupAds(popup)
-                        }
-                    })
+                            override fun onError(error: ICResponseCode?) {
+                                DialogHelper.showLoading(activity)
+                                checkSchemePopupAds(popup)
+                            }
+                        })
+                    }else{
+                        checkSchemePopupAds(popup)
+                    }
                 }
             }
         }
