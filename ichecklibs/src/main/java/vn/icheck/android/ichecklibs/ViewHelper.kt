@@ -1051,12 +1051,12 @@ object ViewHelper {
         createShapeDrawable(Constant.getAppBackgroundWhiteColor(context),SizeHelper.size1,Constant.getSecondaryColor(context),SizeHelper.size36.toFloat())
     )
 
-    fun bgWhitePressStrokeSecondary1Radius4(context: Context) = createPressDrawable(
+    fun bgWhitePressRadius4StrokeSecondary1(context: Context) = createPressDrawable(
         context,
         createShapeDrawable(Constant.getAppBackgroundWhiteColor(context),SizeHelper.size1,Constant.getSecondaryColor(context),SizeHelper.size4.toFloat())
     )
 
-    fun bgWhitePressStrokePrimary1Radius4(context: Context) = createPressDrawable(
+    fun bgWhitePressRadius4StrokePrimary1(context: Context) = createPressDrawable(
         context,
         createShapeDrawable(Constant.getAppBackgroundWhiteColor(context),SizeHelper.size1,Constant.getPrimaryColor(context),SizeHelper.size4.toFloat())
     )

@@ -131,7 +131,7 @@ class AdsMoreAdapter : RecyclerViewCustomAdapter<ICAdsData>() {
             itemView.imgImage.visibility = View.VISIBLE
             itemView.surfaceView.visibility = View.INVISIBLE
             itemView.progressBar.visibility = View.INVISIBLE
-            itemView.btnAction.background=ViewHelper.bgWhitePressStrokePrimary1Radius4(itemView.context)
+            itemView.btnAction.background=ViewHelper.bgWhitePressRadius4StrokePrimary1(itemView.context)
             if (!obj.media.isNullOrEmpty()) {
                 if (obj.media!![0].type == Constant.VIDEO) {
                     itemView.imgPlay.visibility = View.VISIBLE

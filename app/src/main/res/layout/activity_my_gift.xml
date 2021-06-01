@@ -7,10 +7,9 @@
     android:orientation="vertical"
     tools:context="vn.icheck.android.screen.user.mygift.MyGiftActivity">
 
-    <FrameLayout
+    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICFrameLayoutWhite
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_44"
-        android:background="@color/white"
         android:elevation="@dimen/size_4">
 
         <androidx.appcompat.widget.AppCompatImageButton
@@ -39,12 +38,11 @@
             android:layout_gravity="end"
             android:background="?android:attr/selectableItemBackground"
             android:visibility="gone" />
-    </FrameLayout>
+    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICFrameLayoutWhite>
 
-    <LinearLayout
+    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_44"
-        android:background="@color/white"
         android:orientation="horizontal"
         android:visibility="gone">
 
@@ -101,7 +99,7 @@
                 android:checked="false"
                 android:gravity="center" />
         </LinearLayout>
-    </LinearLayout>
+    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite>
 
     <!--    <vn.icheck.android.helper.ViewPagerNoScroll-->
     <!--        android:id="@+id/viewPager"-->

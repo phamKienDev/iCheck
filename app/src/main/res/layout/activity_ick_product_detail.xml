@@ -51,12 +51,11 @@
             android:src="@drawable/ic_more_black_28dp" />
     </FrameLayout>
 
-    <LinearLayout
+    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite
         android:id="@id/layoutToolbarAlpha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:alpha="0"
-        android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent">
@@ -105,7 +104,7 @@
             android:background="?android:attr/selectableItemBackground"
             android:padding="@dimen/size_8"
             android:src="@drawable/ic_more_light_blue_24dp" />
-    </LinearLayout>
+    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite>
 
     <FrameLayout
         android:id="@id/layoutLoading"
@@ -128,11 +127,10 @@
             app:lottie_rawRes="@raw/loading_short" />
     </FrameLayout>
 
-    <LinearLayout
+    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite
         android:id="@id/layoutStatus"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_0"
-        android:background="@color/white"
         android:clickable="true"
         android:focusable="true"
         android:gravity="top|center"
@@ -256,7 +254,7 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_16" />
         </LinearLayout>
-    </LinearLayout>
+    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite>
 
     <View
         android:id="@id/view"
@@ -267,11 +265,10 @@
         app:layout_constraintEnd_toEndOf="@id/layoutBottom"
         app:layout_constraintStart_toStartOf="@id/layoutBottom" />
 
-    <LinearLayout
+    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite
         android:id="@+id/layoutBottom"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:orientation="horizontal"
         android:paddingBottom="@dimen/size_25"
         android:visibility="gone"
@@ -326,7 +323,7 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_14" />
         </LinearLayout>
-    </LinearLayout>
+    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@id/layoutAction"
@@ -375,7 +372,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:background="@color/white" />
+                android:background="@color/view_white" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@id/tvShare"
@@ -394,7 +391,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:background="@color/white" />
+                android:background="@color/view_white" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@id/tvReport"

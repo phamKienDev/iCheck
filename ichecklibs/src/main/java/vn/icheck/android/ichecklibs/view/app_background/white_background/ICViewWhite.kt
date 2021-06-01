@@ -2,10 +2,11 @@ package vn.icheck.android.ichecklibs.view.app_background.white_background
 
 import android.content.Context
 import android.util.AttributeSet
-import vn.icheck.android.ichecklibs.ViewHelper
-import vn.icheck.android.ichecklibs.view.secondary.ButtonSecondary
+import android.view.View
+import androidx.core.widget.NestedScrollView
+import vn.icheck.android.ichecklibs.Constant
 
-class ICAppcompatButtonBgWhiteUnpressStrokeSecondary1:ButtonSecondary {
+class ICViewWhite : View {
     constructor(context: Context) : super(context) {
         setup()
     }
@@ -23,6 +24,6 @@ class ICAppcompatButtonBgWhiteUnpressStrokeSecondary1:ButtonSecondary {
     }
 
     private fun setup() {
-        background= ViewHelper.bgWhitePressStrokeSecondary1Radius4(context)
+        setBackgroundColor(Constant.getAppBackgroundWhiteColor(context))
     }
 }

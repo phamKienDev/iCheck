@@ -23,6 +23,6 @@ class ICButtonSecondaryBgWhiteUnpressStrokeSecondary1:ButtonSecondary {
     }
 
     private fun setup() {
-        background= ViewHelper.bgWhitePressStrokeSecondary1Radius4(context)
+        background= ViewHelper.bgWhitePressRadius4StrokeSecondary1(context)
     }
 }

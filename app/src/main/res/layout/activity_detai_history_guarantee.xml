@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:descendantFocusability="blocksDescendants"
     android:orientation="vertical"
     tools:context="vn.icheck.android.screen.user.detail_stamp_v6_1.detail_history_guarantee.DetaiHistoryGuaranteeActivity">
@@ -215,4 +213,4 @@
                 android:layout_marginEnd="@dimen/size_12" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-</LinearLayout>
+</vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite>

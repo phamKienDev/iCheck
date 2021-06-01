@@ -23,6 +23,6 @@ class ICTextSecondBgWhiteUnpressStrokePrimary1:TextSecondStateEnable {
     }
 
     private fun setup() {
-        background= ViewHelper.bgWhitePressStrokePrimary1Radius4(context)
+        background= ViewHelper.bgWhitePressRadius4StrokePrimary1(context)
     }
 }

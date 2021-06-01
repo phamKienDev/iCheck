@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:orientation="vertical"
     tools:context="vn.icheck.android.screen.user.list_friend_in_wall.ListFriendOfWallActivity">
 
-    <FrameLayout
+    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICFrameLayoutWhite
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_44"
-        android:background="@color/white"
         android:elevation="@dimen/size_4">
 
         <androidx.appcompat.widget.AppCompatImageButton
@@ -31,7 +29,7 @@
             android:gravity="center"
             android:singleLine="true"
             tools:text="Tiêu đề" />
-    </FrameLayout>
+    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICFrameLayoutWhite>
 
     <vn.icheck.android.ichecklibs.view.disable_text.EdittextDisableHint
         android:id="@id/edtSearch"
@@ -70,4 +68,4 @@
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginEnd="@dimen/size_12"/>
 
-</LinearLayout>
+</vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite>

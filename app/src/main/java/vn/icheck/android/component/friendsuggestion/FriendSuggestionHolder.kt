@@ -97,7 +97,7 @@ class FriendSuggestionHolder(parent: ViewGroup) : BaseViewHolder<ICUser>(LayoutI
                 (getChildAt(4) as TextView?)?.text = "Xóa"
                 // Text disagree
                 getChildAt(4).apply {
-                    background=ViewHelper.bgWhitePressStrokePrimary1Radius4(context)
+                    background=ViewHelper.bgWhitePressRadius4StrokePrimary1(context)
                     setOnClickListener {
                         removeSuggestion(obj)
                     }

@@ -7,10 +7,9 @@
     android:orientation="vertical"
     tools:context="vn.icheck.android.screen.user.list_product_history.ListProductHistoryActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutWhite
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/imgClose"
@@ -30,7 +29,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/imgClose"
             tools:text="Danh sách sản phẩm" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutWhite>
 
     <View
         style="@style/Shadow_Bottom"

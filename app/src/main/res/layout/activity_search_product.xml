@@ -7,10 +7,9 @@
     android:orientation="vertical"
     tools:context=".screen.user.search_home.product.SearchProductActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutWhite
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:layout_height="wrap_content">
 
         <include
             android:id="@+id/layoutEdittext"
@@ -98,7 +97,7 @@
             </LinearLayout>
 
         </HorizontalScrollView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutWhite>
 
     <View
         style="@style/Shadow_Bottom"

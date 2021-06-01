@@ -7,10 +7,9 @@
     android:orientation="vertical"
     tools:context=".screen.user.pvcombank.confirmunlockcard.ConfirmUnlockPVCardActivity">
 
-    <FrameLayout
+    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICFrameLayoutWhite
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_44"
-        android:background="@color/white"
         android:elevation="@dimen/size_4">
 
         <androidx.appcompat.widget.AppCompatImageButton
@@ -26,18 +25,16 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="Xác nhận mở thẻ" />
-    </FrameLayout>
+    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICFrameLayoutWhite>
 
-    <androidx.core.widget.NestedScrollView
+    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICNestedScrollViewWhite
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/white"
         android:layout_weight="1">
 
-        <LinearLayout
+        <vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
             android:orientation="vertical">
 
             <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
@@ -86,14 +83,13 @@
                 android:text="Gửi lại mã (60s)"
                 android:textSize="@dimen/font_14" />
 
-        </LinearLayout>
+        </vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite>
 
-    </androidx.core.widget.NestedScrollView>
+    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICNestedScrollViewWhite>
 
-    <LinearLayout
+    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@id/btnConfirm"
@@ -109,5 +105,5 @@
             android:textSize="@dimen/font_16"
             android:text="Xác nhận" />
 
-    </LinearLayout>
+    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite>
 </LinearLayout>

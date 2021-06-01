@@ -84,14 +84,13 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutWhite
             android:id="@id/layoutBottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:background="@color/white"
             android:elevation="@dimen/size_8">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -156,7 +155,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutWhite>
 
     </RelativeLayout>
 

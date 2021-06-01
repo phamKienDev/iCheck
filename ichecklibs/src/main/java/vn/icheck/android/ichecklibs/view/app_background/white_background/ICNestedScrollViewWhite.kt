@@ -2,11 +2,10 @@ package vn.icheck.android.ichecklibs.view.app_background.white_background
 
 import android.content.Context
 import android.util.AttributeSet
-import vn.icheck.android.ichecklibs.ViewHelper
-import vn.icheck.android.ichecklibs.view.primary.TextPrimary
+import androidx.core.widget.NestedScrollView
+import vn.icheck.android.ichecklibs.Constant
 
-class ICTextPrimaryBgWhitePressStrokeBlueRadius4 : TextPrimary {
-
+class ICNestedScrollViewWhite : NestedScrollView {
     constructor(context: Context) : super(context) {
         setup()
     }
@@ -24,6 +23,6 @@ class ICTextPrimaryBgWhitePressStrokeBlueRadius4 : TextPrimary {
     }
 
     private fun setup() {
-        background = ViewHelper.bgWhitePressRadius4StrokePrimary1(context)
+        setBackgroundColor(Constant.getAppBackgroundWhiteColor(context))
     }
 }

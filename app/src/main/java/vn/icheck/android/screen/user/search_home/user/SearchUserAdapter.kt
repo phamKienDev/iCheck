@@ -28,7 +28,6 @@ import vn.icheck.android.network.base.ICResponseCode
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.feature.relationship.RelationshipInteractor
 import vn.icheck.android.network.models.ICSearchUser
-import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.kotlin.ToastUtils
 
@@ -60,7 +59,7 @@ class SearchUserAdapter(val typeView: Int, val callback: IRecyclerViewSearchCall
 
         override fun bind(obj: ICSearchUser) {
             itemView.findViewById<AppCompatTextView>(R.id.btnConfirm)?.background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context)
-            itemView.tvMessage.background=ViewHelper.bgWhitePressStrokePrimary1Radius4(itemView.context)
+            itemView.tvMessage.background=ViewHelper.bgWhitePressRadius4StrokePrimary1(itemView.context)
             itemView.layoutAvatar.setData(obj.avatar, obj.rank?.level, R.drawable.ic_avatar_default_84px)
             itemView.tvTitle.apply {
                 text = obj.getName

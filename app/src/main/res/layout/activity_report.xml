@@ -4,10 +4,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <FrameLayout
+    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICFrameLayoutWhite
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatImageButton
@@ -30,7 +29,7 @@
             android:paddingTop="@dimen/size_10"
             android:paddingBottom="@dimen/size_10"
             android:text="@string/bao_cao_bai_viet" />
-    </FrameLayout>
+    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICFrameLayoutWhite>
 
     <View style="@style/Shadow_Bottom" />
 

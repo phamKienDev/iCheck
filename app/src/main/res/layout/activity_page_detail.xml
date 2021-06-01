@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     tools:context=".screen.user.page_details.PageDetailActivity">
 
     <vn.icheck.android.helper.ViewPagerNoScroll
@@ -22,11 +21,10 @@
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/layoutFollow" />
 
-    <LinearLayout
+    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite
         android:id="@+id/layoutFollow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:orientation="horizontal"
         android:padding="@dimen/size_12"
         android:visibility="gone"
@@ -79,7 +77,7 @@
             android:paddingEnd="@dimen/size_23"
             android:paddingRight="@dimen/size_23"
             android:src="@drawable/ic_3_cham_light_blue_16" />
-    </LinearLayout>
+    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutBottom"
@@ -120,4 +118,4 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tvPost" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutWhite>

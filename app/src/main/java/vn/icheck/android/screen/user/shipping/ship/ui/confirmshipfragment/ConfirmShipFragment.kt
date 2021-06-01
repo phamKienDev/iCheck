@@ -2,7 +2,6 @@ package vn.icheck.android.screen.user.shipping.ship.ui.confirmshipfragment
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
@@ -49,7 +48,7 @@ class ConfirmShipFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.tvReport.background=ViewHelper.bgWhitePressStrokePrimary1Radius4(requireContext())
+        binding.tvReport.background=ViewHelper.bgWhitePressRadius4StrokePrimary1(requireContext())
 
         if (viewModel.arrayCart.isEmpty()) {
             binding.btnConfirm simpleText "Thanh toán"

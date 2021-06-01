@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:paddingTop="@dimen/size_20"
     tools:context="vn.icheck.android.screen.user.invite_friend_follow_page.InviteFriendFollowPageActivity">
 
@@ -97,4 +96,4 @@
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutWhite>

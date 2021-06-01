@@ -46,8 +46,8 @@ class BannerSurveyActivity : BaseActivity<BannerSurveyPresenter>(), IBannerSurve
         initToolbar()
         presenter.getData(intent)
 
-        btnHome.background=ViewHelper.bgWhitePressStrokeSecondary1Radius4(this)
-        btnLeft.background=ViewHelper.bgWhitePressStrokeSecondary1Radius4(this)
+        btnHome.background=ViewHelper.bgWhitePressRadius4StrokeSecondary1(this)
+        btnLeft.background=ViewHelper.bgWhitePressRadius4StrokeSecondary1(this)
     }
 
     private fun initToolbar() {

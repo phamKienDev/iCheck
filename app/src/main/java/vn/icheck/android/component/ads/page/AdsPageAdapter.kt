@@ -1,6 +1,5 @@
 package vn.icheck.android.component.ads.page
 
-import android.graphics.Color
 import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +7,6 @@ import android.view.ViewGroup
 import androidx.annotation.DrawableRes
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
@@ -37,7 +35,6 @@ import vn.icheck.android.ui.RoundedCornersTransformation
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
-import kotlin.random.Random
 
 class AdsPageAdapter(val fullScreen:Boolean=false) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val listData = mutableListOf<ICAdsData>()
@@ -113,7 +110,7 @@ class AdsPageAdapter(val fullScreen:Boolean=false) : RecyclerView.Adapter<Recycl
             binding.imgImage.visibility = View.VISIBLE
             binding.surfaceView.visibility = View.INVISIBLE
             binding.progressBar.visibility = View.INVISIBLE
-            binding.btnAction.background=ViewHelper.bgWhitePressStrokePrimary1Radius4(binding.btnAction.context)
+            binding.btnAction.background=ViewHelper.bgWhitePressRadius4StrokePrimary1(binding.btnAction.context)
             if (!obj.media.isNullOrEmpty()) {
                 if (obj.media!![0].type == Constant.VIDEO) {
                     binding.imgPlay.visibility = View.VISIBLE
@@ -214,7 +211,7 @@ class AdsPageAdapter(val fullScreen:Boolean=false) : RecyclerView.Adapter<Recycl
                 }
 
             }
-            binding.btnAction.background=ViewHelper.bgWhitePressStrokePrimary1Radius4(binding.btnAction.context)
+            binding.btnAction.background=ViewHelper.bgWhitePressRadius4StrokePrimary1(binding.btnAction.context)
             binding.imgImage.visibility = View.VISIBLE
             binding.surfaceView.visibility = View.INVISIBLE
             binding.progressBar.visibility = View.INVISIBLE
@@ -307,7 +304,7 @@ class AdsPageAdapter(val fullScreen:Boolean=false) : RecyclerView.Adapter<Recycl
 
         override fun bind(obj: ICAdsData) {
             binding.imgImage.visibility = View.VISIBLE
-            binding.btnAction.background=ViewHelper.bgWhitePressStrokePrimary1Radius4(binding.btnAction.context)
+            binding.btnAction.background=ViewHelper.bgWhitePressRadius4StrokePrimary1(binding.btnAction.context)
 
             if (!obj.media.isNullOrEmpty()) {
                 if (!obj.media!![0].content.isNullOrEmpty()) {

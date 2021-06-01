@@ -1,12 +1,15 @@
 package vn.icheck.android.ichecklibs.view.app_background.white_background
 
 import android.content.Context
+import android.graphics.drawable.GradientDrawable
+import android.os.Build
 import android.util.AttributeSet
-import android.view.View
-import androidx.constraintlayout.widget.ConstraintLayout
+import android.widget.LinearLayout
+import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.SizeHelper
 import vn.icheck.android.ichecklibs.ViewHelper
 
-class ICConstraintLayoutBgWhiteRadius16StrokeGray1 : ConstraintLayout {
+class ICLinearLayoutWhite : LinearLayout {
     constructor(context: Context) : super(context) {
         setup()
     }
@@ -24,6 +27,6 @@ class ICConstraintLayoutBgWhiteRadius16StrokeGray1 : ConstraintLayout {
     }
 
     private fun setup() {
-        background= ViewHelper.bgWhiteRadius16StrokeGray1(context)
+        setBackgroundColor(Constant.getAppBackgroundWhiteColor(context))
     }
 }

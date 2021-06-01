@@ -38,6 +38,7 @@ class SurveyDetailSuccessActivity : BaseActivity<SurveyDetailSuccessPresenter>()
 
     private fun setupView() {
         btnShare.background = ViewHelper.btnPrimaryCorners4(this)
+        btnHome.background = ViewHelper.bgWhitePressRadius4StrokeSecondary1(this)
     }
 
     /**
