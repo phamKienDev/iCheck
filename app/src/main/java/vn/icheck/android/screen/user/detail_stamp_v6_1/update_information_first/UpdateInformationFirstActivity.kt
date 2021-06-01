@@ -407,6 +407,30 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
         if (!viewModel.objVariant?.extra.isNullOrEmpty()) {
             binding.edtVariant.setText(viewModel.objVariant?.extra)
         }
+
+        customer.fields?.let { customerField ->
+            for (field in customerVariantAdapter.listData) {
+                customerField.find { it.key == field.key }?.let { find ->
+                    if (field.type == "checkbox") {
+                        find.string_values?.split(",")?.let { listSelected ->
+                            try {
+                                for (i in (field.valueF ?: mutableListOf()).indices) {
+                                    if (listSelected.find { it.toInt() == i } != null) {
+                                        field.valueF!![i].isChecked = true
+                                    }
+                                }
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                            }
+                        }
+                    } else {
+                        field.string_values = find.string_values
+                    }
+                }
+            }
+
+            customerVariantAdapter.notifyDataSetChanged()
+        }
     }
 
     private fun resetCustomerInfo() {
@@ -421,34 +445,34 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
         for (item in listData) {
             if (item.type == "input") {
                 if (item.require == 1) {
-                    if (item.inputContent.isNullOrEmpty()) {
+                    if (item.string_values.isNullOrEmpty()) {
                         return null
                     }
                 }
-                if (!item.inputContent.isNullOrEmpty()) {
-                    body[item.key] = item.inputContent!!
+                if (!item.string_values.isNullOrEmpty()) {
+                    body[item.key] = item.string_values!!
                 }
             }
 
             if (item.type == "textarea") {
                 if (item.require == 1) {
-                    if (item.inputArea.isNullOrEmpty()) {
+                    if (item.string_values.isNullOrEmpty()) {
                         return null
                     }
                 }
-                if (!item.inputArea.isNullOrEmpty()) {
-                    body[item.key] = item.inputArea!!
+                if (!item.string_values.isNullOrEmpty()) {
+                    body[item.key] = item.string_values!!
                 }
             }
 
             if (item.type == "date") {
                 if (item.require == 1) {
-                    if (item.date.isNullOrEmpty()) {
+                    if (item.string_values.isNullOrEmpty()) {
                         return null
                     }
                 }
-                if (!item.date.isNullOrEmpty()) {
-                    body[item.key] = item.date!!
+                if (!item.string_values.isNullOrEmpty()) {
+                    body[item.key] = item.string_values!!
                 }
             }
 

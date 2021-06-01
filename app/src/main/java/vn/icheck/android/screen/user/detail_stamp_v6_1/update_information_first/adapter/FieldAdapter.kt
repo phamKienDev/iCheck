@@ -123,7 +123,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                listData[adapterPosition].inputContent = s.toString()
+                listData[adapterPosition].string_values = s.toString()
             }
 
             override fun afterTextChanged(s: Editable?) {
@@ -137,9 +137,12 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             } else {
                 binding.tvTitle.text = obj.name
             }
-            binding.edtInput.hint = "Nhập " + obj.name
-            binding.edtInput.removeTextChangedListener(textWatcher)
-            binding.edtInput.addTextChangedListener(textWatcher)
+            binding.edtInput.apply {
+                hint = "Nhập " + obj.name
+                removeTextChangedListener(textWatcher)
+                setText(obj.string_values)
+                addTextChangedListener(textWatcher)
+            }
         }
     }
 
@@ -153,7 +156,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                listData[adapterPosition].inputArea = s.toString()
+                listData[adapterPosition].string_values = s.toString()
             }
 
             override fun afterTextChanged(s: Editable?) {
@@ -167,9 +170,12 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             } else {
                 binding.tvTitleTextArea.text = obj.name
             }
-            binding.edtTextArea.hint = "Nhập " + obj.name
-            binding.edtTextArea.removeTextChangedListener(textWatcher)
-            binding.edtTextArea.addTextChangedListener(textWatcher)
+            binding.edtTextArea.apply {
+                hint = "Nhập " + obj.name
+                removeTextChangedListener(textWatcher)
+                setText(obj.string_values)
+                addTextChangedListener(textWatcher)
+            }
         }
     }
 
@@ -195,7 +201,18 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 val adapter = HintSpinnerAdapter(binding.root.context, obj.valueF, android.R.layout.simple_spinner_item)
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 binding.spinner.adapter = adapter
-                binding.spinner.setSelection(adapter.count)
+
+                val selectedPosition = if (!obj.string_values.isNullOrEmpty()) {
+                    try {
+                        obj.string_values!!.toInt()
+                    } catch (e: Exception) {
+                        adapter.count
+                    }
+                } else {
+                    adapter.count
+                }
+                binding.spinner.setSelection(selectedPosition)
+
                 binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                         if (checkedPos != position && checkedPos != -1) {
@@ -228,7 +245,15 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
             if (!obj.valueF.isNullOrEmpty() && obj.valueF!!.size > 0) {
                 binding.rcvRadioBox.layoutManager = GridLayoutManager(binding.root.context, 2)
-                binding.rcvRadioBox.adapter = RadioButtonFieldAdapter(obj.valueF!!)
+                binding.rcvRadioBox.adapter = RadioButtonFieldAdapter(obj.valueF!!, if (!obj.string_values.isNullOrEmpty()) {
+                    try {
+                        obj.string_values!!.toInt()
+                    } catch (e: Exception) {
+                        -1
+                    }
+                } else {
+                    -1
+                })
             }
         }
     }
@@ -262,13 +287,17 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 binding.tvTitleDate.text = obj.name
             }
 
-            binding.edtInputDate.setOnClickListener {
-                TimeHelper.datePicker(binding.root.context, System.currentTimeMillis(), object : DateTimePickerListener {
-                    override fun onSelected(dateTime: String, milliseconds: Long) {
-                        binding.edtInputDate.text = dateTime
-                        listData[adapterPosition].date = dateTime
-                    }
-                })
+            binding.edtInputDate.apply {
+                text = TimeHelper.convertDateTimeSvToDateVn(obj.string_values)
+
+                setOnClickListener {
+                    TimeHelper.datePicker(binding.root.context, System.currentTimeMillis(), object : DateTimePickerListener {
+                        override fun onSelected(dateTime: String, milliseconds: Long) {
+                            binding.edtInputDate.text = dateTime
+                            listData[adapterPosition].string_values = dateTime
+                        }
+                    })
+                }
             }
         }
     }

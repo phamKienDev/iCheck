@@ -222,7 +222,7 @@ class DetailHistoryGuaranteeActivity : BaseActivity<DetailHistoryGuaranteePresen
                 try {
                     val value = sdf.parse(i.value!!)
                     if (value != null) {
-                        layoutContent.addView(createTableRow(i.name, TimeHelper.convertDateTimeSvToDateVn(i.value)))
+                        layoutContent.addView(createTableRow(i.name, TimeHelper.convertDateTimeSvToTimeDateVnPhay(i.value)))
                     } else {
                         layoutContent.addView(createTableRow(i.name, i.value))
                     }

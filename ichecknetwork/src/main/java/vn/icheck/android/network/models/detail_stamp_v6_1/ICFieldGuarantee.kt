@@ -25,9 +25,12 @@ data class ICFieldGuarantee(
 		@SerializedName("status")
 		val status: Int? = null,
 
-		var inputContent:String? = null,
-		var inputArea:String? = null,
-		var date:String? = null
+		@SerializedName("string_values")
+		var string_values: String? = null,
+
+//		var inputContent:String? = null,
+//		var inputArea:String? = null,
+//		var date:String? = null
 )
 
 class ValueFItem {

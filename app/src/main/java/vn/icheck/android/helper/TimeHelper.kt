@@ -134,7 +134,7 @@ object TimeHelper {
         } else if (time <= (7 * AlarmManager.INTERVAL_DAY)) {
             (time / AlarmManager.INTERVAL_DAY).toString() + " ngày trước"
         } else {
-            convertDateTimeSvToDateVn(date) ?: ""
+            convertDateTimeSvToTimeDateVnPhay(date) ?: ""
         }
     }
 
@@ -294,7 +294,7 @@ object TimeHelper {
             return null
 
         val sdfSv = simpleDateFormatSv
-        val sdfVn = simpleDateFormatVn("hh:mm, dd/MM/yyyy")
+        val sdfVn = simpleDateFormatVn("dd/MM/yyyy")
 
         return try {
             sdfVn.format(sdfSv.parse(date))
@@ -422,7 +422,7 @@ object TimeHelper {
                 (time / AlarmManager.INTERVAL_DAY).toString() + " ngày"
             }
             else -> {
-                convertDateTimeSvToDateVn(date) ?: ""
+                convertDateTimeSvToTimeDateVnPhay(date) ?: ""
             }
         }
     }
@@ -487,7 +487,7 @@ object TimeHelper {
 //            (time / AlarmManager.INTERVAL_DAY).toString() + " ngày trước"
 //        }
         else {
-            convertDateTimeSvToDateVn(date) ?: ""
+            convertDateTimeSvToTimeDateVnPhay(date) ?: ""
         }
     }
 
@@ -541,7 +541,7 @@ object TimeHelper {
         } else if (time < AlarmManager.INTERVAL_DAY) {
             (time / intervalHour).toString() + " giờ trước"
         } else {
-            convertDateTimeSvToDateVn(date) ?: ""
+            convertDateTimeSvToTimeDateVnPhay(date) ?: ""
         }
     }
 

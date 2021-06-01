@@ -6,8 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.databinding.ItemRadioButtonFieldBinding
 import vn.icheck.android.network.models.detail_stamp_v6_1.ValueFItem
 
-class RadioButtonFieldAdapter(val listData: MutableList<ValueFItem>) : RecyclerView.Adapter<RadioButtonFieldAdapter.ViewHolder>() {
-    private var checkedPosition = -1
+class RadioButtonFieldAdapter(val listData: MutableList<ValueFItem>, var checkedPosition: Int = -1) : RecyclerView.Adapter<RadioButtonFieldAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(parent)
 
