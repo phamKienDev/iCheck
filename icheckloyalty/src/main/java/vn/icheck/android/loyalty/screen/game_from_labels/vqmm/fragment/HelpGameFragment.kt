@@ -11,6 +11,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import kotlinx.android.synthetic.main.fragment_help_game.*
+import vn.icheck.android.ichecklibs.util.spToPx
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.screen.game_from_labels.vqmm.viewmodel.LuckyGameViewModel
 
@@ -34,18 +35,18 @@ class HelpGameFragment : Fragment() {
 
     private fun setupWebView() {
         @Suppress("SetJavaScriptEnabled")
-        webViewUrl.settings.javaScriptEnabled = true
+        webView.settings.javaScriptEnabled = true
         @Suppress("DEPRECATION")
-        webViewUrl.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
-        webViewUrl.settings.domStorageEnabled = true
-        webViewUrl.settings.allowFileAccessFromFileURLs = true
-        webViewUrl.settings.useWideViewPort = true
-        webViewUrl.settings.loadWithOverviewMode = true
-        webViewUrl.settings.allowUniversalAccessFromFileURLs = true
-        webViewUrl.settings.defaultFontSize = 24
+        webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
+        webView.settings.domStorageEnabled = true
+        webView.settings.allowFileAccessFromFileURLs = true
+        webView.settings.useWideViewPort = true
+        webView.settings.loadWithOverviewMode = true
+        webView.settings.allowUniversalAccessFromFileURLs = true
+        webView.settings.defaultFontSize = 16.spToPx()
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            webViewUrl.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
+            webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
         }
     }
 
@@ -53,7 +54,7 @@ class HelpGameFragment : Fragment() {
         val html = args.description
 
         if (html.isNotEmpty()) {
-            webViewUrl.loadDataWithBaseURL(null, html, "text/html; charset=utf-8", "UTF-8", null)
+            webView.loadDataWithBaseURL(null, html, "text/html; charset=utf-8", "UTF-8", null)
         } else {
 //            DialogHelper.showNotification(requireContext(), R.string.thong_bao, R.string.co_loi_xay_ra_vui_long_thu_lai, false, object : NotificationDialogListener {
 //                override fun onDone() {

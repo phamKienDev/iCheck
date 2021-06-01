@@ -62,6 +62,9 @@ class FragmentLoadingGame : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        loading_game_progress.isEnabled = false
+        loading_game_progress.isClickable = false
+
         luckyGameViewModel.gameInfoLiveData.observe(viewLifecycleOwner, Observer { response ->
             campaignName = response?.data?.campaign?.name.toString()
             shopName = response?.data?.campaign?.owner?.name.toString()

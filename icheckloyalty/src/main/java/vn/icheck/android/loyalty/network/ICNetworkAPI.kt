@@ -85,6 +85,9 @@ interface ICNetworkAPI {
     fun getPointUser(@Url url: String): Observable<ICKResponse<ICKPointUser>>
 
     @GET
+    fun getDetailGiftRedeemPoint(@Url url: String): Observable<ICKResponse<ICKBoxGifts>>
+
+    @GET
     fun getListRedemptionHistory(@Url url: String, @QueryMap params: HashMap<String, Any>): Observable<ICKResponse<ICKListResponse<ICKBoxGifts>>>
 
     @POST

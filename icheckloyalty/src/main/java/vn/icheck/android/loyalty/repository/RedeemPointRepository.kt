@@ -9,6 +9,11 @@ import vn.icheck.android.loyalty.network.SessionManager
 
 internal class RedeemPointRepository : BaseRepository() {
 
+    fun getDetailGift(winnerId: Long, listener: ICApiListener<ICKResponse<ICKBoxGifts>>){
+        val host = APIConstants.LOYALTY_HOST + "loyalty/customer/campaign/accumulate-member/history-exchange-gift/$winnerId"
+        requestApi(ICNetworkClient.getApiClientLoyalty().getDetailGiftRedeemPoint(host), listener)
+    }
+
     fun getPointUser(id: Long, listener: ICApiListener<ICKResponse<ICKPointUser>>) {
         val host = APIConstants.LOYALTY_HOST + "loyalty/customer/campaign/${id}/accumulate/info"
         requestApi(ICNetworkClient.getApiClientLoyalty().getPointUser(host), listener)
