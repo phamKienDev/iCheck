@@ -825,6 +825,7 @@
         <activity
             android:name=".screen.user.detail_stamp_v6_1.home.StampDetailActivity"
             android:exported="true"
+            android:theme="@style/AppTheme_White"
             android:screenOrientation="portrait" />
         <activity
             android:name=".screen.user.setting.SettingsActivity"
@@ -968,7 +969,7 @@
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@mipmap/ic_logo_icheck_tet" />
+            android:resource="@mipmap/ic_launcher" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorPrimary" />

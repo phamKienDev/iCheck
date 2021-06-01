@@ -18,16 +18,24 @@
             android:id="@id/layoutToolbar"
             layout="@layout/toolbar_light_blue" />
 
-        <LinearLayout
-            android:id="@+id/layoutExceededScan"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@id/recyclerView"
             android:layout_width="match_parent"
-            android:gravity="center"
-            android:orientation="vertical"
             android:layout_height="@dimen/size_0"
             android:background="@color/colorBackgroundGray"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layoutToolbar"
-            android:visibility="gone">
+            app:layout_constraintTop_toBottomOf="@id/layoutToolbar" />
+
+        <LinearLayout
+            android:id="@+id/layoutExceededScan"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_0"
+            android:background="@color/colorBackgroundGray"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutToolbar">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -115,14 +123,6 @@
 
             </LinearLayout>
         </LinearLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/size_0"
-            android:background="@color/colorBackgroundGray"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layoutToolbar" />
 
         <View
             android:id="@id/viewShadow"
