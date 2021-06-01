@@ -35,7 +35,6 @@ import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.view.setPadding
 import androidx.core.widget.NestedScrollView
-import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -51,15 +50,13 @@ import vn.icheck.android.component.avatar_user.AvatarUserComponent
 import vn.icheck.android.component.image.LayoutImageInPostComponent
 import vn.icheck.android.component.postofuser.ProductInFeedComponent
 import vn.icheck.android.component.rating_star.RatingStarComponent
-import vn.icheck.android.ui.view.TextBarlowSemiBold
-import vn.icheck.android.ui.view.TextBarlowMedium
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.MiddleMultilineTextView
-import vn.icheck.android.network.models.ICPopup
-import vn.icheck.android.screen.dialog.DialogNotificationFirebaseAds
 import vn.icheck.android.ui.layout.CustomGridLayoutManager
 import vn.icheck.android.ui.layout.HeightWrappingViewPager
 import vn.icheck.android.ui.view.SquareImageView
+import vn.icheck.android.ui.view.TextBarlowMedium
+import vn.icheck.android.ui.view.TextBarlowSemiBold
 import vn.icheck.android.util.kotlin.WidgetUtils
 import kotlin.math.abs
 

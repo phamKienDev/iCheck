@@ -1,12 +1,9 @@
 package vn.icheck.android.screen.splashscreen
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import vn.icheck.android.BuildConfig
-import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.loyalty.helper.ActivityHelper
