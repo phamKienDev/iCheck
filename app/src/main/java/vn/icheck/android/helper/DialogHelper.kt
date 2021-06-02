@@ -9,6 +9,7 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
@@ -239,11 +240,15 @@ object DialogHelper {
 
     private fun showNotification(context: Context?, title: String?, message: String?, button: String?, isCancelable: Boolean, listener: NotificationDialogListener?) {
         context?.let {
-            object : NotificationDialog(it, title, message, button, isCancelable) {
-                override fun onDone() {
-                    listener?.onDone()
-                }
-            }.show()
+            try {
+                object : NotificationDialog(it, title, message, button, isCancelable) {
+                    override fun onDone() {
+                        listener?.onDone()
+                    }
+                }.show()
+            }catch (error: WindowManager.BadTokenException){
+
+            }
         }
     }
 
