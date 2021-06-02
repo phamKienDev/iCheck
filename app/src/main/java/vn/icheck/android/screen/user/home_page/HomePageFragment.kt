@@ -240,10 +240,16 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
 
     private fun setupViewModel() {
         viewModel.onShowPopup.observe(viewLifecycleOwner, Observer {
+            if(recyclerView == null){
+                return@Observer
+            }
             AdsUtils.showAdsPopup(activity, it)
         })
 
         viewModel.onUpdateAds.observe(viewLifecycleOwner, Observer {
+            if(recyclerView == null){
+                return@Observer
+            }
             if (it == true) {
                 closeLoading()
                 homeAdapter.updateAds()
@@ -251,6 +257,9 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         })
 
         viewModel.onError.observe(viewLifecycleOwner, Observer {
+            if(recyclerView == null){
+                return@Observer
+            }
             closeLoading()
             it.message?.let { it1 ->
                 homeAdapter.setError(it.icon, it1)
@@ -258,10 +267,16 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         })
 
         viewModel.onAddData.observe(viewLifecycleOwner, Observer {
+            if(recyclerView == null){
+                return@Observer
+            }
             homeAdapter.addItem(it)
         })
 
         viewModel.onUpdateData.observe(viewLifecycleOwner, Observer {
+            if(recyclerView == null){
+                return@Observer
+            }
             if (it.data != null) {
                 closeLoading()
             }
@@ -270,6 +285,9 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         })
 
         viewModel.onUpdateListData.observe(viewLifecycleOwner, Observer {
+            if(recyclerView == null){
+                return@Observer
+            }
             homeAdapter.updateItem(it)
             layoutHeader.beVisible()
         })
