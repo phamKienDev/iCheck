@@ -61,6 +61,7 @@ import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.icheckscanditv6.IcheckScanActivity
 import java.io.File
+import java.util.regex.Pattern
 
 class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBinding>(), IRecyclerViewCallback, View.OnClickListener {
     companion object {
@@ -229,9 +230,19 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         })
     }
 
+    fun validNumber(text: String): Boolean {
+        return Pattern.compile("^[0-9]+").matcher(text).matches()
+    }
+
     private fun createRoom() {
+
         val listMember = mutableListOf<MCMember>()
-        listMember.add(MCMember(FirebaseAuth.getInstance().uid.toString().toLong(), "user", "admin"))
+
+        val uid = FirebaseAuth.getInstance().uid
+
+        if (!uid.isNullOrEmpty() && validNumber(uid)) {
+            listMember.add(MCMember(uid.toLong(), "user", "admin"))
+        }
         listMember.add(MCMember(userId, userType, "member"))
 
         viewModel.createRoom(listMember).observe(this@ChatSocialDetailActivity, {
@@ -293,7 +304,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
                                     })
                                 } else {
-                                    deleteAt = if (item.child("deleted_at").value != null) {
+                                    deleteAt = if (item.child("deleted_at").value != null && validNumber(item.child("deleted_at").value.toString())) {
                                         item.child("deleted_at").value.toString().toLong()
                                     } else {
                                         -1
@@ -353,21 +364,24 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                     val listChatMessage = mutableListOf<MCDetailMessage>()
                     if (obj.hasChildren()) {
                         for (item in obj.children.reversed()) { // đảo list - tin nhắn cũ được đọc trước : so sánh thời gian với tin nhắn trước dễ hơn
-                            if (item.child("time").value.toString().toLong() > deleteAt) {
-                                val message = convertDataFirebase(item, newMessage)
+                            if (item.child("time").value != null && validNumber(item.child("time").value.toString())) {
+                                if (item.child("time").value.toString().toLong() > deleteAt) {
+                                    val message = convertDataFirebase(item, newMessage)
 
-                                listChatMessage.add(message)
-                                newMessage = if (isLoadData) {
-                                    if (adapter.getListData.isNullOrEmpty()) {
-                                        message
+                                    listChatMessage.add(message)
+                                    newMessage = if (isLoadData) {
+                                        if (adapter.getListData.isNullOrEmpty()) {
+                                            message
+                                        } else {
+                                            adapter.getListData.last { it.time != null }
+                                        }
                                     } else {
-                                        adapter.getListData.last { it.time != null }
+                                        message
                                     }
-                                } else {
-                                    message
+                                    isLoadData = false
                                 }
-                                isLoadData = false
                             }
+
                         }
 
                         markReadMessage(key)
@@ -555,9 +569,14 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                         message.child("message").child("sticker").value.toString()
                     } else {
                         MCSticker().apply {
-                            id = stickerFirebase.child("id").value.toString().toLong()
+                            if (stickerFirebase.child("id").value != null && validNumber(stickerFirebase.child("id").value.toString())) {
+                                id = stickerFirebase.child("id").value.toString().toLong()
+                            }
+
                             thumbnail = stickerFirebase.child("thumbnail").value.toString()
-                            packageId = stickerFirebase.child("packageId").value.toString().toLong()
+                            if (stickerFirebase.child("packageId").value != null && validNumber(stickerFirebase.child("packageId").value.toString())) {
+                                packageId = stickerFirebase.child("packageId").value.toString().toLong()
+                            }
                         }
                     }
                 }
